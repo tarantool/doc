@@ -1,0 +1,56 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(tarantool C)
+
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+set(CMAKE_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_INCLUDE_PATH})
+
+include(FindOptionalPackage)
+include(FindPackageMessage)
+
+include(cmake/FindSphinx.cmake)
+
+#
+# Get version
+#
+
+set (PACKAGE_VERSION "")
+set (TARANTOOL_VERSION "")
+
+# Try to get version from VERSION file
+set(VERSION_FILE_ORIG "${PROJECT_SOURCE_DIR}/VERSION")
+set(VERSION_FILE "${PROJECT_BINARY_DIR}/VERSION")
+if (EXISTS "${VERSION_FILE_ORIG}")
+    file (STRINGS "${VERSION_FILE_ORIG}" TARANTOOL_VERSION)
+elseif (EXISTS "${VERSION_FILE}")
+    file (STRINGS "${VERSION_FILE}" TARANTOOL_VERSION)
+endif()
+
+if (NOT TARANTOOL_VERSION)
+    message (FATAL_ERROR "Unable to retrive version from git or ${VERSION_FILE} file.")
+endif()
+
+#
+# Split full version (git describe --long) to get components
+#
+string(REPLACE "-" "." TARANTOOL_VERSION_LIST ${TARANTOOL_VERSION})
+string(REPLACE "." ";" TARANTOOL_VERSION_LIST ${TARANTOOL_VERSION_LIST})
+LIST(GET TARANTOOL_VERSION_LIST 0 CPACK_PACKAGE_VERSION_MAJOR)
+LIST(GET TARANTOOL_VERSION_LIST 1 CPACK_PACKAGE_VERSION_MINOR)
+LIST(GET TARANTOOL_VERSION_LIST 2 CPACK_PACKAGE_VERSION_PATCH)
+
+set(PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}")
+set(PACKAGE_VERSION "${PACKAGE_VERSION}.${CPACK_PACKAGE_VERSION_MINOR}")
+set(PACKAGE_VERSION "${PACKAGE_VERSION}.${CPACK_PACKAGE_VERSION_PATCH}")
+
+find_package_message(TARANTOOL_VERSION
+    "Tarantool version is ${TARANTOOL_VERSION} (${PACKAGE_VERSION})"
+    "${PACKAGE_VERSION}")
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/www/content/newsite/download.yml.in"
+    "${PROJECT_BINARY_DIR}/www/content/newsite/download.yml"
+    )
+
+add_subdirectory(sphinx)
+add_subdirectory(www)
