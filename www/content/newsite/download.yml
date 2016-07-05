@@ -266,10 +266,10 @@ blocks :
     - - "Source tarball"
       - format : rst
         content: |
-          The latest source archive is `tarantool-@PACKAGE_VERSION@.tar.gz`_.
+          The latest source archive is `tarantool-latest.tar.gz`_.
           Please consult with README for build instructions on your system.
 
-          .. _tarantool-@PACKAGE_VERSION@.tar.gz: http://download.tarantool.org/tarantool/1.7/src/tarantool-@PACKAGE_VERSION@.tar.gz
+          .. _tarantool-latest.tar.gz: https://github.com/tarantool/tarantool/releases/latest
     - - "Development Version"
       - format : rst
         content: |

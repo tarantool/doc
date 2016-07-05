@@ -47,10 +47,5 @@ find_package_message(TARANTOOL_VERSION
     "Tarantool version is ${TARANTOOL_VERSION} (${PACKAGE_VERSION})"
     "${PACKAGE_VERSION}")
 
-configure_file(
-    "${PROJECT_SOURCE_DIR}/www/content/newsite/download.yml.in"
-    "${PROJECT_BINARY_DIR}/www/content/newsite/download.yml"
-    )
-
 add_subdirectory(sphinx)
 add_subdirectory(www)
