@@ -1147,9 +1147,9 @@ input.b-button.p-smaller {
 .b-article ul {
     margin:0;
     padding:0 0 22px 13px;
+    list-style-type: disc;
 }
 .b-article li {
-    list-style-type: disc;
     padding:0  0 8px 0;
 }
 .b-path-list-item-url,
