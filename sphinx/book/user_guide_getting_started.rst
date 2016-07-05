@@ -10,19 +10,20 @@ This will ensure that you have the same build of the same version that the
 developers have. That makes analysis easier if later you need to report a problem,
 and avoids subtle problems that might happen if you used different tools or
 different parameters when building from source. The section about binaries is
-“`Downloading and installing a binary package`_”.
+“:ref:`user_guide_getting_started-downloading_and_installing_a_binary_package`”.
 
 For development, you will want to download a source package and make the binary
 by yourself using a C/C++ compiler and common tools. Although this is a bit harder,
 it gives more control. And the source packages include additional files, for example
-the Tarantool test suite. The section about source is “:ref:`building-from-source`”.
+the Tarantool test suite. The section about source is “:ref:`building_from_source`”.
 
 If the installation has already been done, then you should try it out. So we've
 provided some instructions that you can use to make a temporary “sandbox”. In a
 few minutes you can start the server and type in some database-manipulation
-statements. The section about the sandbox is “`Starting Tarantool and making your first database`_”.
+statements. The section about the sandbox is
+“:ref:`user_guide_getting_started-first_database`”.
 
-.. _downloading-and-installing-a-binary-package:
+.. _user_guide_getting_started-downloading_and_installing_a_binary_package:
 
 =====================================================================
             Downloading and installing a binary package
@@ -37,7 +38,7 @@ start a shell (terminal) and enter the command-line instructions provided
 for your OS at http://tarantool.org/download.html.
 
 
-.. _first database:
+.. _user_guide_getting_started-first_database:
 
 =====================================================================
         Starting Tarantool and making your first database
@@ -103,7 +104,7 @@ interactive mode is just for administrators, but because it's
 convenient for learning it will be used for most examples in
 this manual. Tarantool is waiting for the user to type instructions.
 
-To create the first space and the first :ref:`index <box.index>`, try this:
+To create the first space and the first :ref:`index <box_index>`, try this:
 
 .. code-block:: tarantoolsession
 
@@ -171,8 +172,8 @@ In the previous section the first request was with :code:`box.cfg{listen = 3301}
 The :code:`listen` value can be any form of URI (uniform resource identifier);
 in this case it's just a local port: port 3301.
 It's possible to send requests to the listen URI via (a) telnet,
-(b) a connector (which will be the subject of the :ref:`Connectors <box-connectors>` chapter),
-or (c) another instance of Tarantool. Let's try (c).
+(b) a connector (which will be the subject of the ":ref:`index-box_connectors`"
+chapter), or (c) another instance of Tarantool. Let's try (c).
 
 Switch to another terminal.
 On Linux, for example, this means starting another instance of a Bash shell.
@@ -198,7 +199,7 @@ Try these requests:
     tarantool> console.connect('localhost:3301')
     tarantool> box.space.tester:select{2}
 
-The requests are saying "use the :ref:`console package <package-console>`
+The requests are saying "use the :ref:`console package <console-package>`
 to connect to the Tarantool server that's listening
 on ``localhost:3301``, send a request to that server,
 and display the result." The result in this case is

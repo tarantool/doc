@@ -263,7 +263,8 @@ API is a direct binding to corresponding methods of index objects of type
             |                    |           | defined by the index key, it matches.                   |
             |                    |           | Tuples are returned in their order within the space.    |
             |                    |           | "Rectangle-or-box" means "rectangle-or-box as           |
-            |                    |           | explained in section RTREE_". This is the default.      |
+            |                    |           | explained in section about                              |
+            |                    |           | :ref:`RTREE <box_index-rtree>`". This is the default.   |
             +--------------------+-----------+---------------------------------------------------------+
             | box.index.GT       | search    | If all points of the rectangle-or-box defined by the    |
             | or 'GT'            | value     | search value are within the rectangle-or-box            |
