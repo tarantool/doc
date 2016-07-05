@@ -1,9 +1,6 @@
 find_package(Sphinx REQUIRED)
 #find_program(MKDIR mkdir)
 
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/conf.py.in"
-    "${CMAKE_CURRENT_SOURCE_DIR}/conf.py")
-
 set(SPHINX_BUILD_SINGLEHTML_DIR "${PROJECT_BINARY_DIR}/sphinx/_single_build/")
 set(SPHINX_BUILD_HTML_DIR   "${PROJECT_BINARY_DIR}/sphinx/_html_build/")
 set(SPHINX_BUILD_LOCALE_DIR "${PROJECT_BINARY_DIR}/sphinx/_locale_build/")

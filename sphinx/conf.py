@@ -27,12 +27,12 @@ templates_path = ['../_templates']
 source_suffix = '.rst'
 
 project = u'Tarantool'
-breathe_projects = {
-    "api":"../../api/xml",
-}
+#breathe_projects = {
+#    "api":"../../api/xml",
+#}
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "@PACKAGE_VERSION@"
+release = "1.7.0"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 

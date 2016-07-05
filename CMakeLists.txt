@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(tarantool C)
+project(tarantoold-doc)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 set(CMAKE_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_INCLUDE_PATH})
