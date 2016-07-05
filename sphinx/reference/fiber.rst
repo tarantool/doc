@@ -13,23 +13,26 @@ When a fiber yields control with :ref:`fiber.sleep() <fiber-sleep>`, it is suspe
 When a fiber ends (because the fiber function ends), it is dead.
 
 All fibers are part of the fiber registry. This registry can be searched
-with :ref:`fiber.find() <fiber-find>` - via fiber id (fid), which is a numeric identifier.
+with :ref:`fiber.find() <fiber-find>` - via fiber id (fid), which is a numeric
+identifier.
 
-A runaway fiber can be stopped with :ref:`fiber_object.cancel <fiber-cancel>`. However,
-:ref:`fiber_object.cancel <fiber-cancel>` is advisory — it works only if the runaway fiber
-calls :ref:`fiber.testcancel() <fiber-testcancel>` occasionally. Most ``box.*`` functions, such
-as :ref:`box.space...delete() <box_space-delete>` or
+A runaway fiber can be stopped with :ref:`fiber_object.cancel <fiber_object-cancel>`.
+However, :ref:`fiber_object.cancel <fiber_object-cancel>` is advisory — it works
+only if the runaway fiber calls :ref:`fiber.testcancel() <fiber-testcancel>`
+occasionally. Most ``box.*`` functions, such as
+:ref:`box.space...delete() <box_space-delete>` or
 :ref:`box.space...update() <box_space-update>`, do call
-:ref:`fiber.testcancel() <fiber-testcancel>` but :ref:`box.space...select{} <box_space-select>`
-does not. In practice, a runaway fiber can only become unresponsive if it does
-many computations and does not check whether it has been cancelled.
+:ref:`fiber.testcancel() <fiber-testcancel>` but
+:ref:`box.space...select{} <box_space-select>` does not. In practice, a runaway
+fiber can only become unresponsive if it does many computations and does not
+check whether it has been cancelled.
 
-The other potential problem comes from fibers which never get scheduled,
-because they are not subscribed to any events, or because no relevant
-events occur. Such morphing fibers can be killed with :ref:`fiber.kill() <fiber-kill>`
-at any time, since :ref:`fiber.kill() <fiber-kill>` sends an asynchronous wakeup event
-to the fiber, and :ref:`fiber.testcancel() <fiber-testcancel>` is checked whenever such a
-wakeup event occurs.
+The other potential problem comes from fibers which never get scheduled, because
+they are not subscribed to any events, or because no relevant events occur. Such
+morphing fibers can be killed with :ref:`fiber.kill() <fiber-kill>` at any time,
+since :ref:`fiber.kill() <fiber-kill>` sends an asynchronous wakeup event to the
+fiber, and :ref:`fiber.testcancel() <fiber-testcancel>` is checked whenever such
+a wakeup event occurs.
 
 Like all Lua objects, dead fibers are garbage collected. The garbage collector
 frees pool allocator memory owned by the fiber, resets all fiber data, and
@@ -193,7 +196,7 @@ recommended.
 
     Locate a fiber by its numeric id and cancel it. In other words,
     :ref:`fiber.kill() <fiber-kill>` combines :ref:`fiber.find() <fiber-find>` and
-    :ref:`fiber_object:cancel() <fiber-cancel>`.
+    :ref:`fiber_object:cancel() <fiber_object-cancel>`.
 
     :param id: the id of the fiber to be cancelled.
     :Exception: the specified fiber does not exist or cancel is not permitted.
@@ -225,7 +228,7 @@ recommended.
 
 .. class:: fiber_object
 
-    .. _fiber-id:
+    .. _fiber_object-id:
 
     .. method:: id()
 
@@ -246,6 +249,8 @@ recommended.
             - 101
             ...
 
+    .. _fiber_object-name_get:
+
     .. method:: name()
 
         :param self: fiber object, for example the fiber object returned
@@ -261,6 +266,8 @@ recommended.
             ---
             - interactive
             ...
+
+    .. _fiber_object-name_set:
 
     .. method:: name(name)
 
@@ -284,7 +291,7 @@ recommended.
             ---
             ...
 
-    .. _fiber-status:
+    .. _fiber_object-status:
 
     .. method:: status()
 
@@ -305,13 +312,13 @@ recommended.
             - running
             ...
 
-    .. _fiber-cancel:
+    .. _fiber_object-cancel:
 
     .. method:: cancel()
 
         Cancel a fiber. Running and suspended fibers can be cancelled.
         After a fiber has been cancelled, attempts to operate on it will
-        cause errors, for example :ref:`fiber_object:id() <fiber-id>`
+        cause errors, for example :ref:`fiber_object:id() <fiber_object-id>`
         will cause ``error: the fiber is dead``.
 
         :param self: fiber object, for example the fiber
@@ -330,7 +337,7 @@ recommended.
             - error: fiber is cancelled
             ...
 
-    .. _fiber-storage:
+    .. _fiber_object-storage:
 
     .. data:: storage
 

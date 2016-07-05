@@ -106,7 +106,7 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     .. code-block:: lua
 
-        box.schema.user.create('Lena') 
+        box.schema.user.create('Lena')
         box.schema.user.create('Lena', {password = 'X'})
         box.schema.user.create('Lena', {if_not_exists = false})
 
