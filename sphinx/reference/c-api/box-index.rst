@@ -25,51 +25,51 @@
     can use ITER_GE or ITER_LE iteration types with start key equal to NULL.
     For ITER_EQ, the key must not be NULL.
 
-    .. cpp:enumerator:: iterator_type:ITER_EQ
+    .. cpp:enumerator:: ::ITER_EQ
 
         key == x ASC order
 
-    .. cpp:enumerator:: iterator_type:ITER_REQ
+    .. cpp:enumerator:: ::ITER_REQ
 
         key == x DESC order
 
-    .. cpp:enumerator:: iterator_type:ITER_ALL
+    .. cpp:enumerator:: ::ITER_ALL
 
         all tuples
 
-    .. cpp:enumerator:: iterator_type:ITER_LT
+    .. cpp:enumerator:: ::ITER_LT
 
         key < x
 
-    .. cpp:enumerator:: iterator_type:ITER_LE
+    .. cpp:enumerator:: ::ITER_LE
 
         key <= x
 
-    .. cpp:enumerator:: iterator_type:ITER_GE
+    .. cpp:enumerator:: ::ITER_GE
 
         key >= x
 
-    .. cpp:enumerator:: iterator_type:ITER_GT
+    .. cpp:enumerator:: ::ITER_GT
 
         key > x
 
-    .. cpp:enumerator:: iterator_type:ITER_BITS_ALL_SET
+    .. cpp:enumerator:: ::ITER_BITS_ALL_SET
 
         all bits from x are set in key
 
-    .. cpp:enumerator:: iterator_type:ITER_BITS_ANY_SET
+    .. cpp:enumerator:: ::ITER_BITS_ANY_SET
 
         at least one x's bit is set
 
-    .. cpp:enumerator:: iterator_type:ITER_BITS_ALL_NOT_SET
+    .. cpp:enumerator:: ::ITER_BITS_ALL_NOT_SET
 
         all bits are not set
 
-    .. cpp:enumerator:: iterator_type:ITER_OVERLAPS
+    .. cpp:enumerator:: ::ITER_OVERLAPS
 
         key overlaps x
 
-    .. cpp:enumerator:: iterator_type:ITER_NEIGHBOR
+    .. cpp:enumerator:: ::ITER_NEIGHBOR
 
         tuples in distance ascending order from specified point
 

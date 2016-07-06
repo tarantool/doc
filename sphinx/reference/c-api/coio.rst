@@ -4,11 +4,11 @@
 
 .. cpp:enum:: COIO_EVENT
 
-    .. cpp:enumerator:: COIO_EVENT:COIO_READ
+    .. cpp:enumerator:: ::COIO_READ
 
         READ event
 
-    .. cpp:enumerator:: COIO_EVENT:COIO_WRITE
+    .. cpp:enumerator:: ::COIO_WRITE
 
         WRITE event
 

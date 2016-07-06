@@ -4,62 +4,62 @@
 
 .. cpp:enum:: SCHEMA
 
-.. cpp:enumerator:: SCHEMA:BOX_SYSTEM_ID_MIN
+    .. cpp:enumerator:: ::BOX_SYSTEM_ID_MIN
 
-    Start of the reserved range of system spaces.
+        Start of the reserved range of system spaces.
 
-.. cpp:enumerator:: SCHEMA:BOX_SCHEMA_ID
+    .. cpp:enumerator:: ::BOX_SCHEMA_ID
 
-    Space id of _schema.
+        Space id of _schema.
 
-.. cpp:enumerator:: SCHEMA:BOX_SPACE_ID
+    .. cpp:enumerator:: ::BOX_SPACE_ID
 
-    Space id of _space.
+        Space id of _space.
 
-.. cpp:enumerator:: SCHEMA:BOX_VSPACE_ID
+    .. cpp:enumerator:: ::BOX_VSPACE_ID
 
-    Space id of _vspace view.
+        Space id of _vspace view.
 
-.. cpp:enumerator:: SCHEMA:BOX_INDEX_ID
+    .. cpp:enumerator:: ::BOX_INDEX_ID
 
-    Space id of _index.
+        Space id of _index.
 
-.. cpp:enumerator:: SCHEMA:BOX_VINDEX_ID
+    .. cpp:enumerator:: ::BOX_VINDEX_ID
 
-    Space id of _vindex view.
+        Space id of _vindex view.
 
-.. cpp:enumerator:: SCHEMA:BOX_FUNC_ID
+    .. cpp:enumerator:: ::BOX_FUNC_ID
 
-    Space id of _func.
+        Space id of _func.
 
-.. cpp:enumerator:: SCHEMA:BOX_VFUNC_ID
+    .. cpp:enumerator:: ::BOX_VFUNC_ID
 
-    Space id of _vfunc view.
+        Space id of _vfunc view.
 
-.. cpp:enumerator:: SCHEMA:BOX_USER_ID
+    .. cpp:enumerator:: ::BOX_USER_ID
 
-    Space id of _user.
+        Space id of _user.
 
-.. cpp:enumerator:: SCHEMA:BOX_VUSER_ID
+    .. cpp:enumerator:: ::BOX_VUSER_ID
 
-    Space id of _vuser view.
+        Space id of _vuser view.
 
-.. cpp:enumerator:: SCHEMA:BOX_PRIV_ID
+    .. cpp:enumerator:: ::BOX_PRIV_ID
 
-    Space id of _priv.
+        Space id of _priv.
 
-.. cpp:enumerator:: SCHEMA:BOX_VPRIV_ID
+    .. cpp:enumerator:: ::BOX_VPRIV_ID
 
-    Space id of _vpriv view.
+        Space id of _vpriv view.
 
-.. cpp:enumerator:: SCHEMA:BOX_CLUSTER_ID
+    .. cpp:enumerator:: ::BOX_CLUSTER_ID
 
-    Space id of _cluster.
+        Space id of _cluster.
 
-.. cpp:enumerator:: SCHEMA:BOX_SYSTEM_ID_MAX
+    .. cpp:enumerator:: ::BOX_SYSTEM_ID_MAX
 
-    End of reserved range of system spaces.
+        End of reserved range of system spaces.
 
-.. cpp:enumerator:: SCHEMA:BOX_ID_NIL
+    .. cpp:enumerator:: ::BOX_ID_NIL
 
-    NULL value, returned on error.
+        NULL value, returned on error.

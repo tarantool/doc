@@ -6,21 +6,21 @@
 
 .. cpp:enum:: say_level
 
-    .. cpp:enumerator:: say_level:S_FATAL
+    .. cpp:enumerator:: ::S_FATAL
 
         do not use this value directly
 
-    .. cpp:enumerator:: say_level:S_SYSERROR
+    .. cpp:enumerator:: ::S_SYSERROR
 
-    .. cpp:enumerator:: say_level:S_ERROR
+    .. cpp:enumerator:: ::S_ERROR
 
-    .. cpp:enumerator:: say_level:S_CRIT
+    .. cpp:enumerator:: ::S_CRIT
 
-    .. cpp:enumerator:: say_level:S_WARN
+    .. cpp:enumerator:: ::S_WARN
 
-    .. cpp:enumerator:: say_level:S_INFO
+    .. cpp:enumerator:: ::S_INFO
 
-    .. cpp:enumerator:: say_level:S_DEBUG
+    .. cpp:enumerator:: ::S_DEBUG
 
 .. c:macro:: say(level, format, ...)
 
