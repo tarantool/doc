@@ -10,5 +10,7 @@
     intro.rst
     faq.rst
     book/index.rst
-    reference/index.rst
+    reference_lua/index.rst
+    reference_rock/index.rst
+    reference_capi/index.rst
     dev_guide/index.rst

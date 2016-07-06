@@ -1,21 +1,12 @@
-.. _d_plugins-dbms_plugins:
+.. _dbms_packages:
 
 -------------------------------------------------------------------------------
-                        Appendix D. Modules
+                            SQL DBMS Modules
 -------------------------------------------------------------------------------
 
-A module is an optional library which enhances Tarantool functionality.
-
-For examples of creating one's own module with Lua or C, see
-`gist.github.com/rtsisyk/aa95cf9ed9bbb538ff80`_.
-
-The discussion here in the user guide is about incorporating and using two
-modules that have already been created: the "SQL DBMS rocks" for
-MySQL and PostgreSQL.
-
-===========================================================
-                  SQL DBMS Modules
-===========================================================
+The discussion here in the reference is about incorporating and using two
+modules that have already been created: the "SQL DBMS rocks" for MySQL and
+PostgreSQL.
 
 To call another DBMS from Tarantool, the essential requirements are: another
 DBMS, and Tarantool. The module which connects Tarantool to another DBMS may
@@ -40,7 +31,7 @@ From a user's point of view the MySQL and PostgreSQL rocks are
 very similar, so the following sections -- "MySQL Example" and
 "PostgreSQL Example" -- contain some redundancy.
 
-.. _d_plugins-mysql-example:
+.. _dbms_packages-mysql-example:
 
 ===========================================================
                   MySQL Example
@@ -388,7 +379,7 @@ Lua tutorial earlier in the Tarantool user manual.
 Observe the result. It contains "MySQL row". So this is the row that was inserted
 into the MySQL database. And now it's been selected with the Tarantool client.
 
-.. _d_plugins-postgresql-example:
+.. _dbms_packages-postgresql-example:
 
 ===========================================================
                   PostgreSQL Example
@@ -726,7 +717,6 @@ Observe the result. It contains "PostgreSQL row". So this is the row that was
 inserted into the PostgreSQL database. And now it's been selected with the
 Tarantool client.
 
-.. _gist.github.com/rtsisyk/aa95cf9ed9bbb538ff80: https://gist.github.com/rtsisyk/aa95cf9ed9bbb538ff80
 .. _rocks.tarantool.org: http://rocks.tarantool.org/
 .. _github.com/tarantool/mysql: https://github.com/tarantool/mysql
 .. _dev.mysql.com/doc/refman/5.6/en/connecting.html: https://dev.mysql.com/doc/refman/5.6/en/connecting.html

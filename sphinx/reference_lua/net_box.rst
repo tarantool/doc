@@ -6,7 +6,7 @@
 
 The ``net.box`` package contains connectors to remote database systems. One
 variant, to be discussed later, is for connecting to MySQL or MariaDB or PostgreSQL —
-that variant is the subject of the :ref:`SQL DBMS plugins <d_plugins-dbms_plugins>` appendix.
+that variant is the subject of the :ref:`SQL DBMS plugins <dbms_packages>` appendix.
 In this section the subject is the built-in variant, ``net.box``. This is for
 connecting to tarantool servers via a network.
 

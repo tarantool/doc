@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                              Reference Manual
+                              Lua reference
 -------------------------------------------------------------------------------
 
 .. _Lua: http://www.lua.org
@@ -14,7 +14,6 @@
     csv
     digest
     box_error
-    expirationd
     fiber
     fiber_ipc
     fio
@@ -27,13 +26,10 @@
     box_once
     os
     pickle
-    shard
     socket
     strict
     tap
     tarantool
-    tdb
     uuid
     yaml
     other
-    c_api/index

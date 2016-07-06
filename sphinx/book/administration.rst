@@ -970,8 +970,8 @@ before reading this section.
 The modules that come from Tarantool developers and community contributors are
 on rocks.tarantool.org_. Some of them
 -- :ref:`expirationd <expirationd-package>`,
-:ref:`mysql <d_plugins-mysql-example>`,
-:ref:`postgresql <d_plugins-postgresql-example>`,
+:ref:`mysql <dbms_packages-mysql-example>`,
+:ref:`postgresql <dbms_packages-postgresql-example>`,
 :ref:`shard <shard-package>` --
 are discussed elsewhere in this manual.
 

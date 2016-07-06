@@ -17,5 +17,4 @@
     app/a_errcodes
     app/b_internals
     app/c_lua_tutorial
-    app/d_plugins
-    app/e_vinyl/index
+    app/d_vinyl/index
