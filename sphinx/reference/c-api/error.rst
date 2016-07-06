@@ -1,5 +1,5 @@
 ===========================================================
-                        Error Module
+                    Module `error`
 ===========================================================
 
 .. c:type:: box_error_t
@@ -18,7 +18,7 @@
     Return IPROTO error code
 
     :param box_error_t* error: error
-    :return: :cpp:enum:`enum box_error_code <box_error_code>`
+    :return: enum :ref:`box_error_code <box_error_code>`
 
 .. c:function:: const char * box_error_message(const box_error_t *error);
 
@@ -26,6 +26,8 @@
 
     :param box_error_t* error: error
     :return: not-null string
+
+.. _c_api-error-box_error_last:
 
 .. c:function:: box_error_t * box_error_last(void);
 
@@ -57,11 +59,11 @@
 
     :param const char* file:
     :param unsigned line:
-    :param uint32_t code: IPROTO :cpp:enum:`error code <box_error_code>`
+    :param uint32_t code: IPROTO :ref:`error code<box_error_code>`
     :param const char* format:
     :param ...: format arguments
 
-    See also :cpp:enum:`box_error_code`
+    See also: IPROTO :ref:`error code<box_error_code>`
 
 .. c:macro:: box_error_raise(code, format, ...)
 

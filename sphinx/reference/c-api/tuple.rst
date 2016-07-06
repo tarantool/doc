@@ -1,12 +1,14 @@
 ===========================================================
-                        Tuple Module
+                     Module `tuple`
 ===========================================================
 
 .. c:type:: box_tuple_format_t
 
+.. _c_api-tuple-box_tuple_format_default:
+
 .. c:function:: box_tuple_format_t *box_tuple_format_default(void);
 
-    Tuple Format.
+    Tuple format.
 
     Each Tuple has associated format (class). Default format is used to
     create tuples which are not attach to any particular space.
@@ -15,11 +17,14 @@
 
     Tuple
 
+.. _c_api-tuple-box_tuple_new:
+
 .. c:function:: box_tuple_t *box_tuple_new(box_tuple_format_t *format, const char *tuple, const char *tuple_end);
 
     Allocate and initialize a new tuple from a raw MsgPack Array data.
 
-    :param box_tuple_format_t* format: tuple format. Use :c:func:`box_tuple_format_default`
+    :param box_tuple_format_t* format: tuple format. Use 
+                                       :ref:`box_tuple_format_default()<c_api-tuple-box_tuple_format_default>`
                                        to create space-independent tuple.
     :param const char*          tuple: tuple data in MsgPack Array format ([field1, field2, ...])
     :param const char*      tuple_end: the end of ``data``
@@ -27,7 +32,9 @@
     :return: NULL on out of memory
     :return: tuple otherwise
 
-    See also: :func:`box.tuple.new`
+    See also: :ref:`box.tuple.new()<box_tuple-new>`
+
+.. _c_api-tuple-box_tuple_ref:
 
 .. c:function:: int box_tuple_ref(box_tuple_t *tuple);
 
@@ -40,7 +47,8 @@
     You should increase the reference counter before taking tuples for long
     processing in your code. Such tuples will not be garbage collected even
     if another fiber remove they from space. After processing please
-    decrement the reference counter using :c:func:`box_tuple_unref`,
+    decrement the reference counter using 
+    :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`,
     otherwise the tuple will leak.
 
     :param box_tuple_t* tuple: a tuple
@@ -48,7 +56,9 @@
     :return: -1 on error
     :return: 0 otherwise
 
-    See also: :c:func:`box_tuple_unref`
+    See also: :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`
+
+.. _c_api-tuple-box_tuple_unref:
 
 .. c:function:: void box_tuple_unref(box_tuple_t *tuple);
 
@@ -59,7 +69,9 @@
     :return: -1 on error
     :return: 0 otherwise
 
-    See also: :c:func:`box_tuple_ref`
+    See also: :ref:`box_tuple_ref()<c_api-tuple-box_tuple_ref>`
+
+.. _c_api-tuple-box_tuple_field_count:
 
 .. c:function:: uint32_t box_tuple_field_count(const box_tuple_t *tuple);
 
@@ -103,7 +115,7 @@
     :param box_tuple_t* tuple: a tuple
     :param uint32_t field_id: zero-based index in MsgPack array.
 
-    :return: NULL if i >= :c:func:`box_tuple_field_count`
+    :return: NULL if i >= :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`
     :return: msgpack otherwise
 
 .. c:type:: box_tuple_iterator_t
@@ -142,12 +154,16 @@
 
     Destroy and free tuple iterator
 
+.. _c_api-tuple-box_tuple_position:
+
 .. c:function:: uint32_t box_tuple_position(box_tuple_iterator_t *it);
 
     Return zero-based next position in iterator. That is, this function
     return the field id of field that will be returned by the next call
-    to :c:func:`box_tuple_next`. Returned value is zero after initialization
-    or rewind and :c:func:`box_tuple_field_count` after the end of iteration.
+    to :ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`. 
+    Returned value is zero after initialization
+    or rewind and :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`
+    after the end of iteration.
 
     :param box_tuple_iterator_t* it: a tuple iterator
     :return: position
@@ -177,6 +193,8 @@
     * ``box_tuple_position(it) == box_tuple_field_count(tuple)`` if returned
       value is NULL.
 
+.. _c_api-tuple-box_tuple_next:
+
 .. c:function:: const char *box_tuple_next(box_tuple_iterator_t *it);
 
     Return the next tuple field from tuple iterator.
@@ -187,7 +205,8 @@
     :return: NULL if there are no more fields
     :return: MsgPack otherwise
 
-    Before: :c:func:`box_tuple_position` is zero-based ID of returned field.
+    Before: :ref:`box_tuple_position()<c_api-tuple-box_tuple_position>`
+    is zero-based ID of returned field.
 
     After: ``box_tuple_position(it) == box_tuple_field_count(tuple)`` if
     returned value is NULL.

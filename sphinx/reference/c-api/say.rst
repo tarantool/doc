@@ -1,6 +1,8 @@
 ===========================================================
-                Logging module
+                Module `say` (logging)
 ===========================================================
+
+.. _c_api-say-say_level:
 
 .. cpp:enum:: say_level
 
@@ -24,11 +26,11 @@
 
     Format and print a message to Tarantool log file.
 
-    :param int          level: :cpp:enum:`log level <say_level>`
+    :param int          level: :ref:`log level <c_api-say-say_level>`
     :param const char* format: ``printf()``-like format string
     :param                ...: format arguments
 
-    See also :manpage:`printf(3)`, :cpp:enum:`say_level`
+    See also :manpage:`printf(3)`, :ref:`say_level<c_api-say-say_level>`
 
 .. c:macro:: say_error    (format, ...)
              say_crit     (format, ...)
@@ -42,7 +44,7 @@
     :param const char* format: ``printf()``-like format string
     :param                ...: format arguments
 
-    See also :manpage:`printf(3)`, :cpp:enum:`say_level`
+    See also :manpage:`printf(3)`, :ref:`say_level<c_api-say-say_level>`
 
     Example:
 

@@ -1,6 +1,8 @@
 ===========================================================
-                        Lua utils Module
+                Module `lua/utils`
 ===========================================================
+
+.. _c_api-utils-luaL_pushcdata:
 
 .. c:function:: void *luaL_pushcdata(struct lua_State *L, uint32_t ctypeid);
 
@@ -14,7 +16,9 @@
 
     :return: memory associated with this cdata
 
-    See also: :c:func:`luaL_checkcdata`
+    See also: :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`
+
+.. _c_api-utils-luaL_checkcdata:
 
 .. c:function:: void *luaL_checkcdata(struct lua_State *L, int idx, uint32_t *ctypeid);
 
@@ -26,7 +30,7 @@
 
     :return: memory associated with this cdata
 
-    See also: :c:func:`luaL_pushcdata`
+    See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`
 
 .. c:function:: void luaL_setcdatagc(struct lua_State *L, int idx);
 
@@ -48,7 +52,8 @@
 
     :return: CTypeID
 
-    See also: :c:func:`luaL_pushcdata`, :c:func:`luaL_checkcdata`
+    See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`, 
+              :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`
 
 .. c:function:: int luaL_cdef(struct lua_State *L, const char *ctypename);
 

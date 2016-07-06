@@ -1,5 +1,5 @@
 ===========================================================
-                        Box Module
+                        Module `box`
 ===========================================================
 
 .. c:type:: box_function_ctx_t
@@ -16,7 +16,8 @@
                                    procedure by Tarantool
     :param box_tuple_t*     tuple: a tuple to return
 
-    :return: -1 on error (perhaps, out of memory; check :c:func:`box_error_last`)
+    :return: -1 on error (perhaps, out of memory; check 
+             :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
 .. c:function:: uint32_t box_space_id_by_name(const char *name, uint32_t len);
@@ -28,7 +29,8 @@
     :param const char* name: space name
     :param uint32_t     len: length of ``name``
 
-    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check :c:func:`box_error_last`)
+    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check 
+             :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: space_id otherwise
 
     See also: :c:type:`box_index_id_by_name`
@@ -41,7 +43,8 @@
     :param const char*  name: index name
     :param uint32_t      len: length of ``name``
 
-    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check :c:func:`box_error_last`)
+    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check 
+             :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: space_id otherwise
 
     This function performs SELECT request to _vindex system space.
@@ -58,10 +61,10 @@
     :param box_tuple_t**  result: output argument. Resulted tuple. Can be set to
                                   NULL to discard result
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :func:`space_object.insert`
+    See also :ref:`space_object.insert()<box_space-insert>`
 
 .. c:function:: int box_replace(uint32_t space_id, const char *tuple, const char *tuple_end, box_tuple_t **result);
 
@@ -73,10 +76,10 @@
     :param box_tuple_t**  result: output argument. Resulted tuple. Can be set to
                                   NULL to discard result
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :func:`space_object.replace`
+    See also :ref:`space_object.replace()<box_space-replace>`
 
 .. c:function:: int box_delete(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
 
@@ -89,10 +92,10 @@
     :param box_tuple_t** result: output argument. Result an old tuple. Can be
                                  set to NULL to discard result
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :func:`space_object.delete`
+    See also :ref:`space_object.delete()<box_space-delete>`
 
 .. c:function:: int box_update(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result);
 
@@ -111,10 +114,10 @@
     :param box_tuple_t** result: output argument. Result an old tuple. Can be
                                  set to NULL to discard result
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :func:`space_object.update`
+    See also :ref:`space_object.update()<box_space-update>`
 
 .. c:function:: int box_upsert(uint32_t space_id, uint32_t index_id, const char *tuple, const char *tuple_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result);
 
@@ -133,7 +136,7 @@
     :param box_tuple_t**  result: output argument. Result an old tuple. Can be
                                   set to NULL to discard result
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :func:`space_object.upsert`
+    See also :ref:`space_object.upsert()<box_space-upsert>`

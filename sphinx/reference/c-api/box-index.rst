@@ -1,10 +1,12 @@
 ===========================================================
-                     Index module
+                     Module `index`
 ===========================================================
 
 .. c:type:: box_iterator_t
 
     A space iterator
+
+.. _c_api-box_index-iterator_type:
 
 .. cpp:enum:: iterator_type
 
@@ -71,39 +73,49 @@
 
         tuples in distance ascending order from specified point
 
+.. _c_api-box_index-box_index_iterator:
+
 .. c:function:: box_iterator_t *box_index_iterator(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end);
 
     Allocate and initialize iterator for space_id, index_id.
 
-    A returned iterator must be destroyed by :c:func:`box_iterator_free`.
+    The returned iterator must be destroyed by 
+    :ref:`box_iterator_free<c_api-box_index-box_iterator_free>`.
 
     :param uint32_t   space_id: space identifier
     :param uint32_t   index_id: index identifier
-    :param int            type: :cpp:func:`iterator_type`
+    :param int            type: :ref:`iterator_type<c_api-box_index-iterator_type>`
     :param const char*     key: encode key in MsgPack Array format ([part1, part2, ...])
     :param const char* key_end: the end of encoded ``key``
 
-    :return: NULL on error (check :c:func:`box_error_last`)
+    :return: NULL on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: iterator otherwise
 
-    See also :c:func:`box_iterator_next`, :c:func:`box_iterator_free`
+    See also :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`,
+    :ref:`box_iterator_free<c_api-box_index-box_iterator_free>`
+
+.. _c_api-box_index-box_iterator_next:
 
 .. c:function:: int box_iterator_next(box_iterator_t *iterator, box_tuple_t **result);
 
-    Retrive the next item from the ``iterator``.
+    Retrieve the next item from the ``iterator``.
 
-    :param box_iterator_t* iterator: an iterator returned by :c:func:`box_index_iterator`
+    :param box_iterator_t* iterator: an iterator returned by 
+                                     :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
     :param box_tuple_t**     result: output argument. result a tuple or NULL if
                                      there is no more data.
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: 0 on success. The end of data is not an error.
+
+.. _c_api-box_index-box_iterator_free:
 
 .. c:function:: void box_iterator_free(box_iterator_t *iterator);
 
     Destroy and deallocate iterator.
 
-    :param box_iterator_t* iterator: an iterator returned by :c:func:`box_index_iterator`
+    :param box_iterator_t* iterator: an iterator returned by 
+                                     :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
 
 .. c:function:: ssize_t box_index_len(uint32_t space_id, uint32_t index_id);
 
@@ -112,7 +124,7 @@
     :param uint32_t space_id: space identifier
     :param uint32_t index_id: index identifier
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: >= 0 otherwise
 
 .. c:function:: ssize_t box_index_bsize(uint32_t space_id, uint32_t index_id);
@@ -122,7 +134,7 @@
     :param uint32_t space_id: space identifier
     :param uint32_t index_id: index identifier
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: >= 0 otherwise
 
 .. c:function:: int box_index_random(uint32_t space_id, uint32_t index_id, uint32_t rnd, box_tuple_t **result);
@@ -135,14 +147,16 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    See also: :func:`index_object.random`
+    See also: :ref:`index_object.random<box_index-random>`
 
 .. c:function:: int box_index_get(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
 
     Get a tuple from index by the key.
 
-    Please note that this function works much more faster than ``box_select`` or
-    :c:func:`box_index_iterator` + :c:func:`box_iterator_next`.
+    Please note that this function works much more faster than 
+    :ref:`index_object.select<box_index-select>` or
+    :ref:`box_index_iterator<c_api-box_index-box_index_iterator>` + 
+    :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`.
 
     :param uint32_t    space_id: space identifier
     :param uint32_t    index_id: index identifier
@@ -151,10 +165,10 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: 0 on success
 
-    See also: :func:`index_object.get`
+    See also: ``index_object.get()``
 
 .. c:function:: int box_index_min(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
 
@@ -167,10 +181,10 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last()`c_api-error-box_error_last>`)
     :return: 0 on success
 
-    See also: :func:`index_object.min`
+    See also: :ref:`index_object.min()<box_index-min>`
 
 .. c:function:: int box_index_max(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
 
@@ -183,10 +197,10 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last()`c_api-error-box_error_last>`)
     :return: 0 on success
 
-    See also: :func:`index_object.max`
+    See also: :ref:`index_object.max()<box_index-max>`
 
 .. c:function:: ssize_t box_index_count(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end);
 
@@ -194,11 +208,11 @@
 
     :param uint32_t   space_id: space identifier
     :param uint32_t   index_id: index identifier
-    :param int            type: :cpp:func:`iterator_type`
+    :param int            type: :ref:`iterator_type<c_api-box_index-iterator_type>`
     :param const char*     key: encode key in MsgPack Array format ([part1, part2, ...])
     :param const char* key_end: the end of encoded ``key``
 
-    :return: -1 on error (check :c:func:`box_error_last`)
+    :return: -1 on error (check :ref:box_error_last()`c_api-error-box_error_last>`)
     :return: 0 on success
 
-    See also: :func:`index_object.count`
+    See also: :ref:`index_object.count()<box_index-count>`

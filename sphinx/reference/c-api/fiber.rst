@@ -1,5 +1,5 @@
 ===========================================================
-            Fiber module
+                       Module `fiber`
 ===========================================================
 
 .. c:type:: struct fiber;
@@ -21,13 +21,15 @@
     :param const char* name: string with fiber name
     :param fiber_func     f: func for run inside fiber
 
-    See also: :c:func:`fiber_start`
+    See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`
 
 .. c:function:: void fiber_yield(void);
 
     Return control to another fiber and wait until it'll be woken.
 
-    See also: :c:func:`fiber_wakeup`
+    See also: :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`
+
+.. _c_api-fiber-fiber_start:
 
 .. c:function:: void fiber_start(struct fiber *callee, ...);
 
@@ -35,6 +37,8 @@
 
     :param struct fiber* callee: fiber to start
     :param                  ...: arguments to start the fiber with
+
+.. _c_api-fiber-fiber_wakeup:
 
 .. c:function:: void fiber_wakeup(struct fiber *f);
 
@@ -48,7 +52,7 @@
 
     If target fiber's flag ``FIBER_IS_CANCELLABLE`` set, then it would be woken
     up (maybe prematurely). Then current fiber yields until the target fiber is
-    dead (or is woken up by :c:func:`fiber_wakeup`).
+    dead (or is woken up by :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`).
 
     :param struct fiber* f: fiber to be cancelled
 
@@ -61,6 +65,8 @@
     :param bool      yesno: status to set
 
     :return: previous state
+
+.. _c_api-fiber-fiber_set_joinable:
 
 .. c:function:: void fiber_set_joinable(struct fiber *fiber, bool yesno);
 
@@ -78,7 +84,7 @@
 
     Before: ``FIBER_IS_JOINABLE`` flag is set.
 
-    See also: :c:func:`fiber_set_joinable`
+    See also: :ref:`fiber_set_joinable()<c_api-fiber-fiber_set_joinable>`
 
 .. c:function:: void fiber_sleep(double s);
 
@@ -86,7 +92,11 @@
 
     :param double s: time to sleep
 
-    Note: this is a cancellation point. See also: :c:func:`fiber_is_cancelled`
+    Note: this is a cancellation point. 
+    
+    See also: :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>`
+
+.. _c_api-fiber-fiber_is_cancelled:
 
 .. c:function:: bool fiber_is_cancelled();
 

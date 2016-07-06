@@ -11,6 +11,8 @@ userdata type. It allows, for a single tuple: selective retrieval of the field
 contents, retrieval of information about size, iteration over all the fields,
 and conversion to a Lua table.
 
+.. _box_tuple-new:
+
 .. function:: new(value)
 
     Construct a new tuple from either a scalar or a Lua table. Alternatively,
