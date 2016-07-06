@@ -23,7 +23,7 @@
 
     Allocate and initialize a new tuple from a raw MsgPack Array data.
 
-    :param box_tuple_format_t* format: tuple format. Use 
+    :param box_tuple_format_t* format: tuple format. Use
                                        :ref:`box_tuple_format_default()<c_api-tuple-box_tuple_format_default>`
                                        to create space-independent tuple.
     :param const char*          tuple: tuple data in MsgPack Array format ([field1, field2, ...])
@@ -47,7 +47,7 @@
     You should increase the reference counter before taking tuples for long
     processing in your code. Such tuples will not be garbage collected even
     if another fiber remove they from space. After processing please
-    decrement the reference counter using 
+    decrement the reference counter using
     :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`,
     otherwise the tuple will leak.
 
@@ -160,7 +160,7 @@
 
     Return zero-based next position in iterator. That is, this function
     return the field id of field that will be returned by the next call
-    to :ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`. 
+    to :ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`.
     Returned value is zero after initialization
     or rewind and :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`
     after the end of iteration.

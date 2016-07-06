@@ -52,7 +52,7 @@
 
     :return: CTypeID
 
-    See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`, 
+    See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`,
               :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`
 
 .. c:function:: int luaL_cdef(struct lua_State *L, const char *ctypename);

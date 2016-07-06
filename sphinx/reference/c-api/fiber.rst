@@ -92,8 +92,8 @@
 
     :param double s: time to sleep
 
-    Note: this is a cancellation point. 
-    
+    Note: this is a cancellation point.
+
     See also: :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>`
 
 .. _c_api-fiber-fiber_is_cancelled:

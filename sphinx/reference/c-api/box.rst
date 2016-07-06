@@ -16,7 +16,7 @@
                                    procedure by Tarantool
     :param box_tuple_t*     tuple: a tuple to return
 
-    :return: -1 on error (perhaps, out of memory; check 
+    :return: -1 on error (perhaps, out of memory; check
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
@@ -29,7 +29,7 @@
     :param const char* name: space name
     :param uint32_t     len: length of ``name``
 
-    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check 
+    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: space_id otherwise
 
@@ -43,7 +43,7 @@
     :param const char*  name: index name
     :param uint32_t      len: length of ``name``
 
-    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check 
+    :return: :c:macro:`BOX_ID_NIL` on error or if not found (check
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: space_id otherwise
 

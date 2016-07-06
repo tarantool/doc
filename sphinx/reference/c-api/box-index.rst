@@ -79,7 +79,7 @@
 
     Allocate and initialize iterator for space_id, index_id.
 
-    The returned iterator must be destroyed by 
+    The returned iterator must be destroyed by
     :ref:`box_iterator_free<c_api-box_index-box_iterator_free>`.
 
     :param uint32_t   space_id: space identifier
@@ -100,7 +100,7 @@
 
     Retrieve the next item from the ``iterator``.
 
-    :param box_iterator_t* iterator: an iterator returned by 
+    :param box_iterator_t* iterator: an iterator returned by
                                      :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
     :param box_tuple_t**     result: output argument. result a tuple or NULL if
                                      there is no more data.
@@ -114,7 +114,7 @@
 
     Destroy and deallocate iterator.
 
-    :param box_iterator_t* iterator: an iterator returned by 
+    :param box_iterator_t* iterator: an iterator returned by
                                      :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
 
 .. c:function:: ssize_t box_index_len(uint32_t space_id, uint32_t index_id);
@@ -153,9 +153,9 @@
 
     Get a tuple from index by the key.
 
-    Please note that this function works much more faster than 
+    Please note that this function works much more faster than
     :ref:`index_object.select<box_index-select>` or
-    :ref:`box_index_iterator<c_api-box_index-box_index_iterator>` + 
+    :ref:`box_index_iterator<c_api-box_index-box_index_iterator>` +
     :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`.
 
     :param uint32_t    space_id: space identifier
