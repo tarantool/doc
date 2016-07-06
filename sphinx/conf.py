@@ -19,7 +19,6 @@ extensions = [
     'ext.LuaLexer',
     'ext.TapLexer',
     'ext.TarantoolSessionLexer',
-    'breathe',
     'sphinx.ext.intersphinx',
 ]
 primary_domain = 'lua'
@@ -27,9 +26,6 @@ templates_path = ['../_templates']
 source_suffix = '.rst'
 
 project = u'Tarantool'
-#breathe_projects = {
-#    "api":"../../api/xml",
-#}
 
 # |release| The full version, including alpha/beta/rc tags.
 release = "1.7.0"
