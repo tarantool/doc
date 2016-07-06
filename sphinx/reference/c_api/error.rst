@@ -2,6 +2,8 @@
                     Module `error`
 ===========================================================
 
+.. module:: capi_error
+
 .. _capi-box_error_code:
 
 .. cpp:enum:: box_error_code
@@ -126,21 +128,21 @@
 
     Error - contains information about error.
 
-.. c:function:: const char * box_error_type(const box_error_t *error);
+.. c:function:: const char * box_error_type(const box_error_t *error)
 
     Return the error type, e.g. "ClientError", "SocketError", etc.
 
     :param box_error_t* error: error
     :return: not-null string
 
-.. c:function:: uint32_t box_error_code(const box_error_t *error);
+.. c:function:: uint32_t box_error_code(const box_error_t *error)
 
     Return IPROTO error code
 
     :param box_error_t* error: error
     :return: enum :ref:`box_error_code <capi-box_error_code>`
 
-.. c:function:: const char * box_error_message(const box_error_t *error);
+.. c:function:: const char * box_error_message(const box_error_t *error)
 
     Return the error message
 
@@ -149,7 +151,7 @@
 
 .. _c_api-error-box_error_last:
 
-.. c:function:: box_error_t * box_error_last(void);
+.. c:function:: box_error_t * box_error_last(void)
 
     Get the information about the last API call error.
 
@@ -169,11 +171,11 @@
 
     :return: last error
 
-.. c:function:: void box_error_clear(void);
+.. c:function:: void box_error_clear(void)
 
     Clear the last error.
 
-.. c:function:: int box_error_set(const char *file, unsigned line, uint32_t code, const char *format, ...);
+.. c:function:: int box_error_set(const char *file, unsigned line, uint32_t code, const char *format, ...)
 
     Set the last error.
 

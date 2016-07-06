@@ -75,7 +75,7 @@
 
 .. _c_api-box_index-box_index_iterator:
 
-.. c:function:: box_iterator_t *box_index_iterator(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end);
+.. c:function:: box_iterator_t *box_index_iterator(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end)
 
     Allocate and initialize iterator for space_id, index_id.
 
@@ -96,7 +96,7 @@
 
 .. _c_api-box_index-box_iterator_next:
 
-.. c:function:: int box_iterator_next(box_iterator_t *iterator, box_tuple_t **result);
+.. c:function:: int box_iterator_next(box_iterator_t *iterator, box_tuple_t **result)
 
     Retrieve the next item from the ``iterator``.
 
@@ -110,14 +110,14 @@
 
 .. _c_api-box_index-box_iterator_free:
 
-.. c:function:: void box_iterator_free(box_iterator_t *iterator);
+.. c:function:: void box_iterator_free(box_iterator_t *iterator)
 
     Destroy and deallocate iterator.
 
     :param box_iterator_t* iterator: an iterator returned by
                                      :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
 
-.. c:function:: ssize_t box_index_len(uint32_t space_id, uint32_t index_id);
+.. c:function:: ssize_t box_index_len(uint32_t space_id, uint32_t index_id)
 
     Return the number of element in the index.
 
@@ -127,7 +127,7 @@
     :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: >= 0 otherwise
 
-.. c:function:: ssize_t box_index_bsize(uint32_t space_id, uint32_t index_id);
+.. c:function:: ssize_t box_index_bsize(uint32_t space_id, uint32_t index_id)
 
     Return the number of bytes used in memory by the index.
 
@@ -137,7 +137,7 @@
     :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
     :return: >= 0 otherwise
 
-.. c:function:: int box_index_random(uint32_t space_id, uint32_t index_id, uint32_t rnd, box_tuple_t **result);
+.. c:function:: int box_index_random(uint32_t space_id, uint32_t index_id, uint32_t rnd, box_tuple_t **result)
 
     Return a random tuple from the index (useful for statistical analysis).
 
@@ -149,7 +149,7 @@
 
     See also: :ref:`index_object.random<box_index-random>`
 
-.. c:function:: int box_index_get(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
+.. c:function:: int box_index_get(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
     Get a tuple from index by the key.
 
@@ -170,7 +170,7 @@
 
     See also: ``index_object.get()``
 
-.. c:function:: int box_index_min(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
+.. c:function:: int box_index_min(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
     Return a first (minimal) tuple matched the provided key.
 
@@ -186,7 +186,7 @@
 
     See also: :ref:`index_object.min()<box_index-min>`
 
-.. c:function:: int box_index_max(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
+.. c:function:: int box_index_max(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
     Return a last (maximal) tuple matched the provided key.
 
@@ -202,7 +202,7 @@
 
     See also: :ref:`index_object.max()<box_index-max>`
 
-.. c:function:: ssize_t box_index_count(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end);
+.. c:function:: ssize_t box_index_count(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end)
 
     Count the number of tuple matched the provided key.
 

@@ -4,7 +4,7 @@
 
 .. _c_api-utils-luaL_pushcdata:
 
-.. c:function:: void *luaL_pushcdata(struct lua_State *L, uint32_t ctypeid);
+.. c:function:: void *luaL_pushcdata(struct lua_State *L, uint32_t ctypeid)
 
     Push cdata of given ``ctypeid`` onto the stack.
 
@@ -20,7 +20,7 @@
 
 .. _c_api-utils-luaL_checkcdata:
 
-.. c:function:: void *luaL_checkcdata(struct lua_State *L, int idx, uint32_t *ctypeid);
+.. c:function:: void *luaL_checkcdata(struct lua_State *L, int idx, uint32_t *ctypeid)
 
     Checks whether the function argument ``idx`` is a cdata
 
@@ -32,7 +32,7 @@
 
     See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`
 
-.. c:function:: void luaL_setcdatagc(struct lua_State *L, int idx);
+.. c:function:: void luaL_setcdatagc(struct lua_State *L, int idx)
 
     Sets finalizer function on a cdata object.
 
@@ -42,7 +42,7 @@
     :param lua_State*      L: Lua State
     :param int           idx: stack index
 
-.. c:function:: uint32_t luaL_ctypeid(struct lua_State *L, const char *ctypename);
+.. c:function:: uint32_t luaL_ctypeid(struct lua_State *L, const char *ctypename)
 
     Return CTypeID (FFI) of given СDATA type
 
@@ -55,7 +55,7 @@
     See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`,
               :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`
 
-.. c:function:: int luaL_cdef(struct lua_State *L, const char *ctypename);
+.. c:function:: int luaL_cdef(struct lua_State *L, const char *ctypename)
 
     Declare symbols for FFI
 
@@ -67,42 +67,42 @@
 
     See also: ``ffi.cdef(def)``
 
-.. c:function:: void luaL_pushuint64(struct lua_State *L, uint64_t val);
+.. c:function:: void luaL_pushuint64(struct lua_State *L, uint64_t val)
 
     Push uint64_t onto the stack
 
     :param lua_State*  L: Lua State
     :param uint64_t  val: value to push
 
-.. c:function:: void luaL_pushint64(struct lua_State *L, int64_t val);
+.. c:function:: void luaL_pushint64(struct lua_State *L, int64_t val)
 
     Push int64_t onto the stack
 
     :param lua_State* L: Lua State
     :param int64_t  val: value to push
 
-.. c:function:: uint64_t luaL_checkuint64(struct lua_State *L, int idx);
+.. c:function:: uint64_t luaL_checkuint64(struct lua_State *L, int idx)
 
     Checks whether the argument idx is a uint64 or a convertable string and
     returns this number.
 
     :throws: error if the argument can't be converted
 
-.. c:function:: uint64_t luaL_checkint64(struct lua_State *L, int idx);
+.. c:function:: uint64_t luaL_checkint64(struct lua_State *L, int idx)
 
     Checks whether the argument idx is a int64 or a convertable string and
     returns this number.
 
     :throws: error if the argument can't be converted
 
-.. c:function:: uint64_t luaL_touint64(struct lua_State *L, int idx);
+.. c:function:: uint64_t luaL_touint64(struct lua_State *L, int idx)
 
     Checks whether the argument idx is a uint64 or a convertable string and
     returns this number.
 
     :return: the converted number or 0 of argument can't be converted
 
-.. c:function:: int64_t luaL_toint64(struct lua_State *L, int idx);
+.. c:function:: int64_t luaL_toint64(struct lua_State *L, int idx)
 
     Checks whether the argument idx is a int64 or a convertable string and
     returns this number.

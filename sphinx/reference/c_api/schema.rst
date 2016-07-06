@@ -2,6 +2,8 @@
                        Module `schema`
 ===========================================================
 
+.. module:: schema
+
 .. cpp:enum:: SCHEMA
 
     .. cpp:enumerator:: ::BOX_SYSTEM_ID_MIN

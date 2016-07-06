@@ -6,7 +6,7 @@
 
 .. _c_api-tuple-box_tuple_format_default:
 
-.. c:function:: box_tuple_format_t *box_tuple_format_default(void);
+.. c:function:: box_tuple_format_t *box_tuple_format_default(void)
 
     Tuple format.
 
@@ -19,7 +19,7 @@
 
 .. _c_api-tuple-box_tuple_new:
 
-.. c:function:: box_tuple_t *box_tuple_new(box_tuple_format_t *format, const char *tuple, const char *tuple_end);
+.. c:function:: box_tuple_t *box_tuple_new(box_tuple_format_t *format, const char *tuple, const char *tuple_end)
 
     Allocate and initialize a new tuple from a raw MsgPack Array data.
 
@@ -36,7 +36,7 @@
 
 .. _c_api-tuple-box_tuple_ref:
 
-.. c:function:: int box_tuple_ref(box_tuple_t *tuple);
+.. c:function:: int box_tuple_ref(box_tuple_t *tuple)
 
     Increase the reference counter of tuple.
 
@@ -60,7 +60,7 @@
 
 .. _c_api-tuple-box_tuple_unref:
 
-.. c:function:: void box_tuple_unref(box_tuple_t *tuple);
+.. c:function:: void box_tuple_unref(box_tuple_t *tuple)
 
     Decrease the reference counter of tuple.
 
@@ -73,19 +73,19 @@
 
 .. _c_api-tuple-box_tuple_field_count:
 
-.. c:function:: uint32_t box_tuple_field_count(const box_tuple_t *tuple);
+.. c:function:: uint32_t box_tuple_field_count(const box_tuple_t *tuple)
 
     Return the number of fields in tuple (the size of MsgPack Array).
 
     :param box_tuple_t* tuple: a tuple
 
-.. c:function:: size_t box_tuple_bsize(const box_tuple_t *tuple);
+.. c:function:: size_t box_tuple_bsize(const box_tuple_t *tuple)
 
     Return the number of bytes used to store internal tuple data (MsgPack Array).
 
     :param box_tuple_t* tuple: a tuple
 
-.. c:function:: ssize_t box_tuple_to_buf(const box_tuple_t *tuple, char *buf, size_t size);
+.. c:function:: ssize_t box_tuple_to_buf(const box_tuple_t *tuple, char *buf, size_t size)
 
     Dump raw MsgPack data to the memory buffer ``buf`` of size ``size``.
 
@@ -98,7 +98,7 @@
     :return: -1 on error
     :return: number of bytes written on success.
 
-.. c:function:: box_tuple_format_t *box_tuple_format(const box_tuple_t *tuple);
+.. c:function:: box_tuple_format_t *box_tuple_format(const box_tuple_t *tuple)
 
     Return the associated format.
 
@@ -106,7 +106,7 @@
 
     :return: tuple format
 
-.. c:function:: const char *box_tuple_field(const box_tuple_t *tuple, uint32_t field_id);
+.. c:function:: const char *box_tuple_field(const box_tuple_t *tuple, uint32_t field_id)
 
     Return the raw tuple field in MsgPack format.
 
@@ -122,7 +122,7 @@
 
     Tuple iterator
 
-.. c:function:: box_tuple_iterator_t *box_tuple_iterator(box_tuple_t *tuple);
+.. c:function:: box_tuple_iterator_t *box_tuple_iterator(box_tuple_t *tuple)
 
     Allocate and initialize a new tuple iterator. The tuple iterator allow to
     iterate over fields at root level of MsgPack array.
@@ -150,13 +150,13 @@
 
         box_iterator_free(it);
 
-.. c:function:: void box_tuple_iterator_free(box_tuple_iterator_t *it);
+.. c:function:: void box_tuple_iterator_free(box_tuple_iterator_t *it)
 
     Destroy and free tuple iterator
 
 .. _c_api-tuple-box_tuple_position:
 
-.. c:function:: uint32_t box_tuple_position(box_tuple_iterator_t *it);
+.. c:function:: uint32_t box_tuple_position(box_tuple_iterator_t *it)
 
     Return zero-based next position in iterator. That is, this function
     return the field id of field that will be returned by the next call
@@ -168,7 +168,7 @@
     :param box_tuple_iterator_t* it: a tuple iterator
     :return: position
 
-.. c:function:: void box_tuple_rewind(box_tuple_iterator_t *it);
+.. c:function:: void box_tuple_rewind(box_tuple_iterator_t *it)
 
     Rewind iterator to the initial position.
 
@@ -176,7 +176,7 @@
 
     After: ``box_tuple_position(it) == 0``
 
-.. c:function:: const char *box_tuple_seek(box_tuple_iterator_t *it, uint32_t field_no);
+.. c:function:: const char *box_tuple_seek(box_tuple_iterator_t *it, uint32_t field_no)
 
     Seek the tuple iterator.
 
@@ -195,7 +195,7 @@
 
 .. _c_api-tuple-box_tuple_next:
 
-.. c:function:: const char *box_tuple_next(box_tuple_iterator_t *it);
+.. c:function:: const char *box_tuple_next(box_tuple_iterator_t *it)
 
     Return the next tuple field from tuple iterator.
 
@@ -211,6 +211,6 @@
     After: ``box_tuple_position(it) == box_tuple_field_count(tuple)`` if
     returned value is NULL.
 
-.. c:function:: box_tuple_t *box_tuple_update(const box_tuple_t *tuple, const char *expr, const char *expr_end);
+.. c:function:: box_tuple_t *box_tuple_update(const box_tuple_t *tuple, const char *expr, const char *expr_end)
 
-.. c:function:: box_tuple_t *box_tuple_upsert(const box_tuple_t *tuple, const char *expr, const char *expr_end);
+.. c:function:: box_tuple_t *box_tuple_upsert(const box_tuple_t *tuple, const char *expr, const char *expr_end)

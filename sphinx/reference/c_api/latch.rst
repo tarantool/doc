@@ -6,14 +6,14 @@
 
     A lock for cooperative multitasking environment
 
-.. c:function:: box_latch_t *box_latch_new(void);
+.. c:function:: box_latch_t *box_latch_new(void)
 
     Allocate and initialize the new latch.
 
     :return: allocated latch object
     :rtype: box_latch_t *
 
-.. c:function:: void box_latch_delete(box_latch_t *latch);
+.. c:function:: void box_latch_delete(box_latch_t *latch)
 
     Destroy and free the latch.
 

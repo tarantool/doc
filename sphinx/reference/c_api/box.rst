@@ -6,7 +6,7 @@
 
     Opaque structure passed to the stored C procedure
 
-.. c:function:: int box_return_tuple(box_function_ctx_t *ctx, box_tuple_t *tuple);
+.. c:function:: int box_return_tuple(box_function_ctx_t *ctx, box_tuple_t *tuple)
 
     Return a tuple from stored C procedure.
 
@@ -20,7 +20,7 @@
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-.. c:function:: uint32_t box_space_id_by_name(const char *name, uint32_t len);
+.. c:function:: uint32_t box_space_id_by_name(const char *name, uint32_t len)
 
     Find space id by name.
 
@@ -35,7 +35,7 @@
 
     See also: :c:type:`box_index_id_by_name`
 
-.. c:function:: uint32_t box_index_id_by_name(uint32_t space_id, const char *name, uint32_t len);
+.. c:function:: uint32_t box_index_id_by_name(uint32_t space_id, const char *name, uint32_t len)
 
     Find index id by name.
 
@@ -51,7 +51,7 @@
 
     See also: :c:type:`box_space_id_by_name`
 
-.. c:function:: int box_insert(uint32_t space_id, const char *tuple, const char *tuple_end, box_tuple_t **result);
+.. c:function:: int box_insert(uint32_t space_id, const char *tuple, const char *tuple_end, box_tuple_t **result)
 
     Execute an INSERT/REPLACE request.
 
@@ -66,7 +66,7 @@
 
     See also :ref:`space_object.insert()<box_space-insert>`
 
-.. c:function:: int box_replace(uint32_t space_id, const char *tuple, const char *tuple_end, box_tuple_t **result);
+.. c:function:: int box_replace(uint32_t space_id, const char *tuple, const char *tuple_end, box_tuple_t **result)
 
     Execute an REPLACE request.
 
@@ -81,7 +81,7 @@
 
     See also :ref:`space_object.replace()<box_space-replace>`
 
-.. c:function:: int box_delete(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result);
+.. c:function:: int box_delete(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
     Execute an DELETE request.
 
@@ -97,7 +97,7 @@
 
     See also :ref:`space_object.delete()<box_space-delete>`
 
-.. c:function:: int box_update(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result);
+.. c:function:: int box_update(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result)
 
     Execute an UPDATE request.
 
@@ -119,7 +119,7 @@
 
     See also :ref:`space_object.update()<box_space-update>`
 
-.. c:function:: int box_upsert(uint32_t space_id, uint32_t index_id, const char *tuple, const char *tuple_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result);
+.. c:function:: int box_upsert(uint32_t space_id, uint32_t index_id, const char *tuple, const char *tuple_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result)
 
     Execute an UPSERT request.
 

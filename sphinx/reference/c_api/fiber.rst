@@ -2,13 +2,13 @@
                        Module `fiber`
 ===========================================================
 
-.. c:type:: struct fiber;
+.. c:type:: struct fiber
 
     Fiber - contains information about fiber
 
-.. c:function:: struct fiber *fiber_new(const char *name, fiber_func f);
+.. c:function:: struct fiber *fiber_new(const char *name, fiber_func f)
 
-.. c:type:: typedef int (*fuber_func)(va_list);
+.. c:type:: typedef int (*fuber_func)(va_list)
 
     Create a new fiber.
 
@@ -23,7 +23,7 @@
 
     See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`
 
-.. c:function:: void fiber_yield(void);
+.. c:function:: void fiber_yield(void)
 
     Return control to another fiber and wait until it'll be woken.
 
@@ -31,7 +31,7 @@
 
 .. _c_api-fiber-fiber_start:
 
-.. c:function:: void fiber_start(struct fiber *callee, ...);
+.. c:function:: void fiber_start(struct fiber *callee, ...)
 
     Start execution of created fiber.
 
@@ -40,13 +40,13 @@
 
 .. _c_api-fiber-fiber_wakeup:
 
-.. c:function:: void fiber_wakeup(struct fiber *f);
+.. c:function:: void fiber_wakeup(struct fiber *f)
 
     Interrupt a synchronous wait of a fiber
 
     :param struct fiber* f: fiber to be woken up
 
-.. c:function:: void fiber_cancel(struct fiber *f);
+.. c:function:: void fiber_cancel(struct fiber *f)
 
     Cancel the subject fiber (set ``FIBER_IS_CANCELLED`` flag)
 
@@ -56,7 +56,7 @@
 
     :param struct fiber* f: fiber to be cancelled
 
-.. c:function:: bool fiber_set_cancellable(bool yesno);
+.. c:function:: bool fiber_set_cancellable(bool yesno)
 
     Make it possible or not possible to wakeup the current fiber immediately
     when it's cancelled.
@@ -68,14 +68,14 @@
 
 .. _c_api-fiber-fiber_set_joinable:
 
-.. c:function:: void fiber_set_joinable(struct fiber *fiber, bool yesno);
+.. c:function:: void fiber_set_joinable(struct fiber *fiber, bool yesno)
 
     Set fiber to be joinable (``false`` by default).
 
     :param struct fiber* f: fiber
     :param bool      yesno: status to set
 
-.. c:function:: void fiber_join(struct fiber *f);
+.. c:function:: void fiber_join(struct fiber *f)
 
     Wait until the fiber is dead and then move its execution status to the
     caller. The fiber must not be detached.
@@ -86,7 +86,7 @@
 
     See also: :ref:`fiber_set_joinable()<c_api-fiber-fiber_set_joinable>`
 
-.. c:function:: void fiber_sleep(double s);
+.. c:function:: void fiber_sleep(double s)
 
     Put the current fiber to sleep for at least 's' seconds.
 
@@ -98,24 +98,24 @@
 
 .. _c_api-fiber-fiber_is_cancelled:
 
-.. c:function:: bool fiber_is_cancelled();
+.. c:function:: bool fiber_is_cancelled()
 
     Check current fiber for cancellation (it must be checked manually).
 
-.. c:function:: double fiber_time(void);
+.. c:function:: double fiber_time(void)
 
     Report loop begin time as double (cheap).
 
-.. c:function:: uint64_t fiber_time64(void);
+.. c:function:: uint64_t fiber_time64(void)
 
     Report loop begin time as 64-bit int.
 
-.. c:function:: void fiber_reschedule(void);
+.. c:function:: void fiber_reschedule(void)
 
     Reschedule fiber to end of event loop cycle.
 
-.. c:type:: struct slab_cache;
+.. c:type:: struct slab_cache
 
-.. c:function:: struct slab_cache *cord_slab_cache(void);
+.. c:function:: struct slab_cache *cord_slab_cache(void)
 
     Return slab_cache suitable to use with ``tarantool/small`` library

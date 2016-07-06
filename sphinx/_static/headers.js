@@ -11,7 +11,7 @@ $(document).ready(function () {
       }
     }
   );
-  $("[id^='lua-object'], [id^='lua-function'], [id^='lua-data']").each(
+  $("[id^='lua-object'], [id^='lua-function'], [id^='lua-data'], [id^='c.'], [id^='_CPP']").each(
     function(i, el) {
       var icon = '<i class="fa fa-link"></i>';
       var hlink = $(el).find(".headerlink");

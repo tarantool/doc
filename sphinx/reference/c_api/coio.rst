@@ -12,7 +12,7 @@
 
         WRITE event
 
-.. c:function:: int coio_wait(int fd, int event, double timeout);
+.. c:function:: int coio_wait(int fd, int event, double timeout)
 
     Wait until READ or WRITE event on socket (``fd``). Yields.
 
@@ -24,7 +24,7 @@
     :return: 0 - timeout
     :return: >0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit flags.
 
-.. c:function:: ssize_t coio_call(ssize_t (*func)(va_list), ...);
+.. c:function:: ssize_t coio_call(ssize_t (*func)(va_list), ...)
 
     Create new eio task with specified function and arguments. Yield and wait
     until the task is complete or a timeout occurs.
@@ -53,7 +53,7 @@
         ...
 
 
-.. c:function:: int coio_getaddrinfo(const char *host, const char *port, const struct addrinfo *hints, struct addrinfo **res, double timeout);
+.. c:function:: int coio_getaddrinfo(const char *host, const char *port, const struct addrinfo *hints, struct addrinfo **res, double timeout)
 
     Fiber-friendly version of :manpage:`getaddrinfo(3)`.
 

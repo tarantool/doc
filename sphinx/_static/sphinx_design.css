@@ -218,13 +218,17 @@ a.headerlink {
 
 [id^="lua-object"  ],
 [id^="lua-function"],
-[id^="lua-data"    ] {
+[id^="lua-data"    ],
+[id^="c."          ],
+[id^="_CPP"        ]{
     margin-left: -25px;
 }
 
 [id^="lua-object"  ]:hover .headerlink,
 [id^="lua-function"]:hover .headerlink,
-[id^="lua-data"    ]:hover .headerlink {
+[id^="lua-data"    ]:hover .headerlink,
+[id^="c."          ]:hover .headerlink,
+[id^="_CPP"        ]:hover .headerlink {
     opacity: 1;
 }
 
