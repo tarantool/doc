@@ -14,7 +14,7 @@
                               Notion in diagrams
 ================================================================================
 
-.. code-block:: bash
+.. code-block:: none
 
     0    X
     +----+
@@ -53,7 +53,7 @@ IPROTO is a binary request/response protocol.
                                  Greeting Packet
 ================================================================================
 
-.. code-block:: bash
+.. code-block:: none
 
     TARANTOOL'S GREETING:
 
@@ -95,7 +95,7 @@ maps used in the protocol. These constants are defined in `src/box/iproto_consta
 
 Let's list them here too:
 
-.. code-block:: bash
+.. code-block:: none
 
     -- user keys
     <code>          ::= 0x00
@@ -115,7 +115,7 @@ Let's list them here too:
     <data>          ::= 0x30
     <error>         ::= 0x31
 
-.. code-block:: bash
+.. code-block:: none
 
     -- -- Value for <code> key in request can be:
     -- User command codes
@@ -138,7 +138,7 @@ Let's list them here too:
 
 Both :code:`<header>` and :code:`<body>` are msgpack maps:
 
-.. code-block:: bash
+.. code-block:: none
 
     Request/Response:
 
@@ -150,7 +150,7 @@ Both :code:`<header>` and :code:`<body>` are msgpack maps:
     +--------+ +============+ +===================================+
       MP_INT       MP_MAP                     MP_MAP
 
-.. code-block:: bash
+.. code-block:: none
 
     UNIFIED HEADER:
 
@@ -182,7 +182,7 @@ salt (44 bytes) exceeds the amount necessary to sign the authentication
 message (first 20 bytes). An excess is reserved for future authentication
 schemas.
 
-.. code-block:: bash
+.. code-block:: none
 
     PREPARE SCRAMBLE:
 
@@ -223,7 +223,7 @@ The server responds to authentication packet with a standard response with 0 tup
 * SELECT: CODE - 0x01
   Find tuples matching the search pattern
 
-.. code-block:: bash
+.. code-block:: none
 
     SELECT BODY:
 
@@ -245,7 +245,7 @@ The server responds to authentication packet with a standard response with 0 tup
 * REPLACE: CODE - 0x03
   Insert a tuple into the space or replace an existing one.
 
-.. code-block:: bash
+.. code-block:: none
 
 
     INSERT/REPLACE BODY:
@@ -261,7 +261,7 @@ The server responds to authentication packet with a standard response with 0 tup
 * UPDATE: CODE - 0x04
   Update a tuple
 
-.. code-block:: bash
+.. code-block:: none
 
     UPDATE BODY:
 
@@ -280,7 +280,7 @@ The server responds to authentication packet with a standard response with 0 tup
     +==================+=======================+
                      MP_MAP
 
-.. code-block:: bash
+.. code-block:: none
 
     OP:
         Works only for integer fields:
@@ -303,7 +303,7 @@ The server responds to authentication packet with a standard response with 0 tup
     +-----------+==========+==========+
                   MP_ARRAY
 
-.. code-block:: bash
+.. code-block:: none
 
         * Insert      OP = '!'
           insert <argument> before <field_no>
@@ -325,7 +325,7 @@ The server responds to authentication packet with a standard response with 0 tup
           take the string from space[key][field_no] and
           substitute <offset> bytes from <position> with <argument>
 
-.. code-block:: bash
+.. code-block:: none
 
     0           2
     +-----------+==========+==========+========+==========+
@@ -342,7 +342,7 @@ It's an error to specify an argument of a type that differs from expected type.
 * DELETE: CODE - 0x05
   Delete a tuple
 
-.. code-block:: bash
+.. code-block:: none
 
     DELETE BODY:
 
@@ -358,7 +358,7 @@ It's an error to specify an argument of a type that differs from expected type.
 * CALL: CODE - 0x06
   Call a stored function
 
-.. code-block:: bash
+.. code-block:: none
 
     CALL BODY:
 
@@ -374,7 +374,7 @@ It's an error to specify an argument of a type that differs from expected type.
 * EVAL: CODE - 0x08
   Evaulate Lua expression
 
-.. code-block:: bash
+.. code-block:: none
 
     EVAL BODY:
 
@@ -390,7 +390,7 @@ It's an error to specify an argument of a type that differs from expected type.
 * UPSERT: CODE - 0x09
   Update tuple if it would be found elsewhere try to insert tuple. Always use primary index for key.
 
-.. code-block:: bash
+.. code-block:: none
 
     UPSERT BODY:
 
@@ -438,7 +438,7 @@ It's an error to specify an argument of a type that differs from expected type.
 
 We'll show whole packets here:
 
-.. code-block:: bash
+.. code-block:: none
 
 
     OK:    LEN + HEADER + BODY
@@ -455,7 +455,7 @@ We'll show whole packets here:
 Set of tuples in the response :code:`<data>` expects a msgpack array of tuples as value
 EVAL command returns arbitrary `MP_ARRAY` with arbitrary MsgPack values.
 
-.. code-block:: bash
+.. code-block:: none
 
     ERROR: LEN + HEADER + BODY
 
@@ -481,7 +481,7 @@ can be found in `src/box/errcode.h
                          Replication packet structure
 ================================================================================
 
-.. code-block:: bash
+.. code-block:: none
 
     -- replication keys
     <server_id>     ::= 0x02
@@ -491,14 +491,14 @@ can be found in `src/box/errcode.h
     <cluster_uuid>  ::= 0x25
     <vclock>        ::= 0x26
 
-.. code-block:: bash
+.. code-block:: none
 
     -- replication codes
     <join>      ::= 0x41
     <subscribe> ::= 0x42
 
 
-.. code-block:: bash
+.. code-block:: none
 
     JOIN:
 
@@ -562,7 +562,7 @@ can be found in `src/box/errcode.h
 
 XLOG and SNAP have the same format. They start with:
 
-.. code-block:: bash
+.. code-block:: none
 
     SNAP\n
     0.12\n
@@ -573,7 +573,7 @@ XLOG and SNAP have the same format. They start with:
 
 So, **Header** of an SNAP/XLOG consists of:
 
-.. code-block:: bash
+.. code-block:: none
 
     <format>\n
     <format_version>\n
@@ -586,7 +586,7 @@ There are two markers: tuple beginning - **0xd5ba0bab** and EOF marker -
 **0xd510aded**. So, next, between **Header** and EOF marker there's data with
 the following schema:
 
-.. code-block:: bash
+.. code-block:: none
 
     0            3 4                                         17
     +-------------+========+============+===========+=========+

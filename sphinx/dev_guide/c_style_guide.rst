@@ -44,20 +44,20 @@ The main tags in use are @param, @retval, @return, @see, @note and @todo.
 Every function, except perhaps a very short and obvious one, should have a
 comment. A sample function comment may look like below:
 
-.. code-block:: c
+.. code-block:: none
 
     /** Write all data to a descriptor.
-    *
-    * This function is equivalent to 'write', except it would ensure
-    * that all data is written to the file unless a non-ignorable
-    * error occurs.
-    *
-    * @retval 0  Success
-    *
-    * @reval  1  An error occurred (not EINTR)
-    * /
+     *
+     * This function is equivalent to 'write', except it would ensure
+     * that all data is written to the file unless a non-ignorable
+     * error occurs.
+     *
+     * @retval 0  Success
+     *
+     * @reval  1  An error occurred (not EINTR)
+     * /
     static int
-    write_all(int fd, void \*data, size_t len)
+    write_all(int fd, void \*data, size_t len);
 
 Public structures and important structure members should be commented as well.
 
@@ -69,7 +69,7 @@ Use header guards. Put the header guard in the first line in the header,
 before the copyright or declarations. Use all-uppercase name for the header
 guard. Derive the header guard name from the file name, and append _INCLUDED
 to get a macro name. For example, core/log_io.h -> CORE_LOG_IO_H_INCLUDED. In
-.c (implementation) file, include the respective declaration header before all
+``.c`` (implementation) file, include the respective declaration header before all
 other headers, to ensure that the header is self- sufficient. Header "header.h"
 is self-sufficient if the following compiles without errors:
 
@@ -167,7 +167,7 @@ instead of "double-indenting" the "case" labels. e.g.:
 Don't put multiple statements on a single line unless you have
 something to hide:
 
-.. code-block:: c
+.. code-block:: none
 
     if (condition) do_this;
       do_something_everytime;
@@ -220,7 +220,7 @@ choose one placement strategy over the other, but the preferred way, as
 shown to us by the prophets Kernighan and Ritchie, is to put the opening
 brace last on the line, and put the closing brace first, thusly:
 
-.. code-block:: c
+.. code-block:: none
 
     if (x is true) {
         we do y
@@ -249,7 +249,7 @@ opening brace at the beginning of the next line, thus:
 
     int function(int x)
     {
-        body of function
+        body of function;
     }
 
 Heretic people all over the world have claimed that this inconsistency
@@ -265,7 +265,7 @@ this:
 .. code-block:: c
 
     do {
-        body of do-loop
+        body of do-loop;
     } while (condition);
 
 and
@@ -579,13 +579,15 @@ The rationale is:
         return result;
     }
 
-        Chapter 8: Commenting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                Chapter 8: Commenting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Comments are good, but there is also a danger of over-commenting. NEVER
 try to explain HOW your code works in a comment: it's much better to
 write the code so that the _working_ is obvious, and it's a waste of
 time to explain badly written code.
-
+с
 Generally, you want your comments to tell WHAT your code does, not HOW.
 Also, try to avoid putting comments inside a function body: if the
 function is so complex that you need to separately comment parts of it,
@@ -599,8 +601,8 @@ When commenting the kernel API functions, please use the kernel-doc format.
 See the files Documentation/kernel-doc-nano-HOWTO.txt and scripts/kernel-doc
 for details.
 
-Linux style for comments is the C89 `"/\* ... \*/"` style.
-Don't use C99-style `"// ..."` comments.
+Linux style for comments is the C89 ``"/\* ... \*/"`` style.
+Don't use C99-style ``"// ..."`` comments.
 
 The preferred style for long (multi-line) comments is:
 
@@ -634,7 +636,7 @@ make a good program).
 So, you can either get rid of GNU emacs, or change it to use saner
 values.  To do the latter, you can stick the following in your .emacs file:
 
-.. code-block:: c
+.. code-block:: lisp
 
     (defun c-lineup-arglist-tabs-only (ignored)
     "Line up argument lists by tabs, not spaces"
@@ -691,9 +693,9 @@ remember: "indent" is not a fix for bad programming.
 For all of the Kconfig* configuration files throughout the source tree,
 the indentation is somewhat different.  Lines under a "config" definition
 are indented with one tab, while help text is indented an additional two
-spaces.  Example:
+spaces. Example:
 
-.. code-block:: c
+.. code-block:: kconfig
 
     config AUDIT
         bool "Auditing support"
@@ -707,7 +709,7 @@ spaces.  Example:
 Features that might still be considered unstable should be defined as
 dependent on "EXPERIMENTAL":
 
-.. code-block:: c
+.. code-block:: kconfig
 
     config SLUB
         depends on EXPERIMENTAL && !ARCH_USES_SLAB_PAGE_STRUCT
@@ -717,7 +719,7 @@ dependent on "EXPERIMENTAL":
 while seriously dangerous features (such as write support for certain
 filesystems) should advertise this prominently in their prompt string:
 
-.. code-block:: c
+.. code-block:: kconfig
 
     config ADFS_FS_RW
         bool "ADFS write support (DANGEROUS)"
@@ -972,13 +974,13 @@ Some editors can interpret configuration information embedded in source files,
 indicated with special markers.  For example, emacs interprets lines marked
 like this:
 
-.. code-block:: c
+.. code-block:: none
 
     -*- mode: c -*-
 
 Or like this:
 
-.. code-block:: c
+.. code-block:: none
 
     /*
     Local Variables:
@@ -988,7 +990,7 @@ Or like this:
 
 Vim interprets markers that look like this:
 
-.. code-block:: c
+.. code-block:: none
 
     /* vim:set sw=8 noet */
 
