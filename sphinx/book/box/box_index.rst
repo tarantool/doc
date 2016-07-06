@@ -58,7 +58,7 @@ API is a direct binding to corresponding methods of index objects of type
               type: TREE
             ...
 
-.. _box_index-index_pairs:
+    .. _box_index-index_pairs:
 
     .. method:: pairs(bitset-value | search-value, iterator-type)
 
