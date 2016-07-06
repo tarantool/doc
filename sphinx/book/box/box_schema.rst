@@ -45,7 +45,7 @@ for spaces, users, roles, and function tuples.
         +---------------+--------------------------------+---------+---------------------+
         | engine        | storage engine =               | string  | 'memtx'             |
         |               | :ref:`'memtx' or 'vinyl'       |         |                     |
-        |               | <index-two-storage-engines>`   |         |                     |
+        |               | <index-two_storage_engines>`   |         |                     |
         +---------------+--------------------------------+---------+---------------------+
         | user          | user name                      | string  | current user's name |
         +---------------+--------------------------------+---------+---------------------+
