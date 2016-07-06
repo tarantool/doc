@@ -30,6 +30,7 @@ from docutils import nodes
 from docutils.parsers.rst import directives
 
 from sphinx import addnodes
+from sphinx import version_info as sphinx_version_info
 from sphinx.roles import XRefRole
 from sphinx.locale import l_, _
 from sphinx.domains import Domain, ObjType, Index
@@ -297,8 +298,14 @@ class LuaObject(ObjectDescription):
 
         indextext = self.get_index_text(names)
         if indextext:
-            self.indexnode['entries'].append(('single', indextext,
-                                              fullid, ''))
+            entry = None
+
+            if sphinx_version_info < (1, 4, 0):
+                entry = ('single', indextext, fullid, '')
+            else:
+                entry = ('single', indextext, fullid, '', None)
+
+            self.indexnode['entries'].append(entry)
 
     def get_index_name(self, names):
         return names['fullname']
@@ -597,15 +604,18 @@ class LuaModule(Directive):
             # make a duplicate entry in 'objects' to facilitate searching for
             # the module in LuaDomain.find_obj()
             env.domaindata['lua']['objects'][modname] = (env.docname, 'module', ids)
-            targetnode = nodes.target('', '', ids=[ids],
-                                      ismod=True)
+            targetnode = nodes.target('', '', ids=[ids], ismod=True)
             self.state.document.note_explicit_target(targetnode)
             # the platform and synopsis aren't printed; in fact, they are only
             # used in the modindex currently
             ret.append(targetnode)
             indextext = _('%s (module)') % modname
-            inode = addnodes.index(entries=[('single', indextext,
-                                             ids, '')])
+            entry = None
+            if sphinx_version_info < (1, 4, 0):
+                entry = ('single', indextext, ids, '')
+            else:
+                entry = ('single', indextext, ids, '', None)
+            inode = addnodes.index(entries=[entry])
             ret.append(inode)
         return ret
 
