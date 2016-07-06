@@ -4,3 +4,5 @@ Makefile
 cmake_install.cmake
 sphinx/locale/ru/LC_MESSAGES/*.mo
 .DS_Store
+sphinx/_html_ru_build/
+sphinx/_single_ru_build/
