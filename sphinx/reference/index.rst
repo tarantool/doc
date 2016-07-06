@@ -36,4 +36,4 @@
     uuid
     yaml
     other
-    c-api/index
+    c_api/index

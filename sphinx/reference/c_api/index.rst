@@ -10,7 +10,7 @@
     coio
     error
     fiber
-    box-index
+    box_index
     latch
     utils
     say
