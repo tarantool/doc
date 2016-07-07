@@ -14,3 +14,5 @@
     reference_rock/index.rst
     reference_capi/index.rst
     dev_guide/index.rst
+
+* :ref:`genindex`
