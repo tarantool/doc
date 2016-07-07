@@ -18,8 +18,9 @@ highlight the matters that will be enhanced by studying the full source later.
     ...
 
 Whenever one hears "daemon" in Tarantool, one should suspect it's being done
-with :doc:`fiber`. The program is making a fiber and turning control over to it so
-it runs occasionally, goes to sleep, then comes back for more.
+with a :doc:`fiber<../reference_lua/fiber>`. The program is making a fiber and
+turning control over to it so it runs occasionally, goes to sleep, then comes
+back for more.
 
 .. code-block:: lua
 
