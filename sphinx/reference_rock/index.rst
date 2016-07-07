@@ -1,6 +1,6 @@
 
 -------------------------------------------------------------------------------
-                            Rocks reference
+                            Lua rocks reference
 -------------------------------------------------------------------------------
 
 A module is an optional library which enhances Tarantool functionality.
