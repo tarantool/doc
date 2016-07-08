@@ -1,10 +1,10 @@
 {# Modify i_links to add records to site #}
 {% set i_links = [
-  ("Overview", "http://tarantool.org"),
+  ("Overview", "/"),
   ("Try", "http://try.tarantool.org"),
-  ("Documentation", "http://tarantool.org/doc/"),
-  ("Download", "http://tarantool.org/download.html"),
-  ("Careers", "http://tarantool.org/careers.html"),
+  ("Documentation", "/doc/"),
+  ("Download", "/download.html"),
+  ("Careers", "/careers.html"),
   ("Rocks", "http://rocks.tarantool.org")
 ] %}
 
@@ -23,6 +23,29 @@
         <a href="{{ item[1] }}" class="b-menu-item-url p-active">{{ item[0] }}</a>
         {% else %}
         <a href="{{ item[1] }}" class="b-menu-item-url">{{ item[0] }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% set i_dlinks = [
+  ("1.6", "/download_16.html"),
+  ("1.7", "/download.html")
+] %}
+
+{% macro i_downloads(page) %}
+  <ul class="b-download-tlist">
+    Available versions:
+    {% for item in i_dlinks %}
+      <li class="b-download-item">
+        {% if
+          (item[0] == "1.6" and page.slug == "download_16") or
+          (item[0] == "1.7" and page.slug == "download_17")
+        %}
+        <a href="{{ item[1] }}" class="b-download-item-url p-active">{{ item[0] }}</a>
+        {% else %}
+        <a href="{{ item[1] }}" class="b-download-item-url">{{ item[0] }}</a>
         {% endif %}
       </li>
     {% endfor %}

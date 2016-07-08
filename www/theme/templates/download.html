@@ -5,6 +5,11 @@
 {% endblock header_scripts %}
 
 {% block content %}
+<section class="b-gray_block">
+  <div class="b-block-wrapper b-downloads-tlist_block">
+    {{ menu.i_downloads(page) }}
+  </div>
+</section>
 <section class="b-lightgray_block b-downloads_top">
   <div class="b-block-wrapper">
     <h2 class="b-section-title">{{ page.blocks.top.title }}</h2>

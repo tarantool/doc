@@ -1563,8 +1563,41 @@ div.b-rock-list-item-ico {
     background: url('/theme/tarantool_infinity_logo.png') center no-repeat;
 }
 
-.papers a:hover{
+.papers a:hover {
     text-decoration: underline;
 }
 
+.b-download-tlist {
+    text-align: right;
+}
+
+.b-download-tlist ul {
+    border-top: 0px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    height: 1em;
+    width: 20%;
+}
+
+.b-download-tlist li {
+    display: inline;
+}
+
+.b-download-tlist li + li:before {
+    content: "/"
+}
+
+.b-downloads-tlist_block {
+    padding: 10px
+}
+
+.b-download-item-url:hover {
+    background:#e7f3fc;
+}
+.b-download-item-url.p-active {
+    color:#FFF;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
 /* vim: expandtab */
