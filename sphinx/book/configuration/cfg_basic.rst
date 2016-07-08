@@ -99,7 +99,7 @@
 
 .. confval:: vinyl_dir
 
-    A directory where sophia files or sub-directories will be stored. Can be relative to
+    A directory where vinyl files or sub-directories will be stored. Can be relative to
     :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to work_dir.
 
     Type: string |br|

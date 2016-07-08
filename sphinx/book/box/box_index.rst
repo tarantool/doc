@@ -141,7 +141,7 @@ API is a direct binding to corresponding methods of index objects of type
             |               |           | Tuples are returned in descending order by  |
             |               |           | index key.                                  |
             |               |           | Note re storage engine: vinyl does not      |
-            |               |           | REQ.                                        |
+            |               |           | support REQ.                                |
             +---------------+-----------+---------------------------------------------+
             | box.index.GT  | search    | The comparison operator is '>' (greater     |
             | or 'GT'       | value     | than).                                      |

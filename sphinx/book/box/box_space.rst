@@ -144,21 +144,19 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | Name          | Effect             | Type                        | Default             |
             +===============+====================+=============================+=====================+
             | type          | type of index      | string                      | 'TREE'              |
-            |               |                    | ('HASH',     'TREE',        |                     |
-            |               |                    | 'BITSET',   'RTREE')        |                     |
-            |               |                    |                             |                     |
-            |               |                    |                             |                     |
-            |               |                    |                             |                     |
+            |               |                    | ('HASH' or 'TREE' or        |                     |
+            |               |                    | 'BITSET' or 'RTREE')        |                     |
             +---------------+--------------------+-----------------------------+---------------------+
             | id            | unique identifier  | number                      | last index's id, +1 |
             +---------------+--------------------+-----------------------------+---------------------+
-            | unique        | index is unique    | boolean                     | true                |
+            | unique        | index is unique    | boolean                     | ``true``            |
             +---------------+--------------------+-----------------------------+---------------------+
-            | if_not_exists | no error if        | boolean                     | false               |
+            | if_not_exists | no error if        | boolean                     | ``false``           |
             |               | duplicate name     |                             |                     |
             +---------------+--------------------+-----------------------------+---------------------+
-            | parts         | field-numbers  +   | ``{field_no, 'NUM'|'STR'}`` | ``{1, 'NUM'}``      |
-            |               | types              |                             |                     |
+            | parts         | field-numbers  +   | {field_no, 'NUM' or 'STR'   | ``{1, 'NUM'}``      |
+            |               | types              | or 'INT' or 'NUMBER' or     |                     |
+            |               |                    | 'ARRAY' or 'SCALAR'}        |                     |
             +---------------+--------------------+-----------------------------+---------------------+
 
         Possible errors: too many parts. Index '...' already exists. Primary key must be unique.
@@ -166,6 +164,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Note re storage engine: vinyl supports only the TREE index type,
         and supports only one index per space,
         and supports only the unique = true option,
+        and supports only the 'NUM' and 'STR' types,
         and requires that field numbers be in order starting with 1.
 
         .. code-block:: tarantoolsession
@@ -176,6 +175,27 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> s:create_index('primary', {unique = true, parts = {1, 'NUM', 2, 'STR'}})
             ---
             ...
+
+    .. _details_about_index_field_types:
+
+        Details about index field types: |br|
+        The six index field types (NUM | STR | INT | NUMBER | ARRAY | SCALAR)
+        differ depending on what values are allowed, and what index types are allowed. |br|
+        NUM: unsigned integers between 0 and 18446744073709551615.
+        Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
+        STR: strings -- any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`.
+        Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
+        INT: integers between -9223372036854775808 and 18446744073709551615.
+        Legal in memtx TREE or HASH indexes. |br|
+        NUMBER: integers between -9223372036854775808 and 18446744073709551615,
+        single-precision floating point numbers, or double-precision floating point numbers.
+        Legal in memtx TREE or HASH indexes. |br|
+        ARRAY: array of integers between -9223372036854775808 and 9223372036854775807.
+        Legal in memtx RTREE indexes. |br|
+        SCALAR: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615,
+        or single-precision floating point numbers, or double-precison floating-point numbers,
+        or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings.
+        Legal in memtx TREE or HASH indexes.
 
     .. _box_space-insert:
 

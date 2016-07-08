@@ -21,7 +21,7 @@ takes a series of non-MsgPack values and encodes them.
 
     Convert a MsgPack string to a Lua object.
 
-    :param string: a string formatted as YAML.
+    :param string: a string formatted as MsgPack.
     :return: the original contents formatted as a Lua table.
     :rtype: table
 

@@ -40,6 +40,16 @@
     specify a larger value. For example
     :code:`box.cfg{slab_alloc_maximal=2*1048576}`.
 
+.. _limitations_bytes_in_index_key:
+
+**Number of bytes in an index key**
+
+    If a field in a tuple can contain a million bytes, then the index key
+    can contain a million bytes, so the maximum is determined by factors
+    such as :ref:`Number of bytes in a tuple <limitations_bytes_in_tuple>`,
+    not by the index support. Note re storage engines: with vinyl the
+    maximum is 1024.
+
 .. _limitations_number_of_spaces:
 
 **Number of spaces**

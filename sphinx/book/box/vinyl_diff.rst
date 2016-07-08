@@ -6,7 +6,7 @@
 
     The primary difference between memtx and vinyl is that
     memtx is an "in-memory" engine while vinyl is an "on-disk"
-    engine. An in-memory storage engine is generally fastr,
+    engine. An in-memory storage engine is generally faster,
     and the memtx engine is justifiably the default for Tarantool,
     but there are two situations where an on-disk engine such as
     vinyl would be preferable:
@@ -30,6 +30,9 @@
 
     With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
     With vinyl, the only index type is TREE.
+
+    With memtx, the index field type can be NUM or STR or INT or NUMBER or ARRAY or SCALAR. |br|
+    With vinyl, the only index field types are NUM or STR.
 
     With memtx, field numbers for index parts may be in any order. |br|
     With vinyl, they must be in order, with no gaps, starting with field number 1.
@@ -59,4 +62,3 @@
     for :ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
 
     For more about vinyl, see Appendix E :ref:`vinyl <index-vinyl>`.
-

@@ -113,10 +113,13 @@ The first index is called the “*primary key*” index and it must be unique;
 all other indexes are called “secondary” indexes.
 
 An index definition may include identifiers of tuple fields
-and their expected types. The allowed types for indexed fields are NUM
-(unsigned integer between 0 and
-18,446,744,073,709,551,615), or STR (string, any sequence of octets), or ARRAY
-(a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`.
+and their expected types. The allowed types for indexed fields are
+NUM (unsigned integer between 0 and 18,446,744,073,709,551,615),
+or INT (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807),
+or NUMBER (unsigned integer or signed integer or floating-point value),
+or STR (string, any sequence of octets),
+or SCALAR (boolean or number or string),
+or ARRAY (a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`).
 Take our example, which has the request:
 
 .. code-block:: tarantoolsession
@@ -471,16 +474,18 @@ By default, this creates a unique "tree" index on the first field of all
 tuples (often called "Field#1"), which is assumed to be numeric.
 
 These variations exist: |br|
-(1) A indexed field may be a string rather than a number. |br|
+(1) An indexed field may be a string rather than a number. |br|
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name',{parts = {1, 'STR'}})` |br|
-For an ordinary index, the two possible data types are 'NUM'
+For an ordinary index, the most common data types are 'NUM'
 = numeric = any positive integer, or 'STR' ='string' = any
 series of bytes. Numbers are ordered
 according to their point on the number line -- so 2345 is
 greater than 500 -- while strings are ordered according to the
 encoding of the first byte then the encoding of the second
 byte then the encoding of the third byte and so on -- so
-'2345' is less than '500'. |br|
+'2345' is less than '500'.
+For details about other index types see :ref:`create_index <box_space-create_index>`.
+|br|
 (2) There may be more than one field. |br|
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {parts = {3, 'NUM', 2, 'STR'}})` |br|
 For an ordinary index, the maximum number of parts is 255.
