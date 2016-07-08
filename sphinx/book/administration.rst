@@ -253,6 +253,9 @@ The script handles such things as:
 starting, stopping, rotating logs, logging in to the application's console,
 and checking status.
 
+The use of tarantoolctl as a client is described in a separate section,
+:ref:`tarantoolctl connect <administration-tarantoolctl_connect>`.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             configuring for tarantoolctl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -478,6 +481,38 @@ Clean up. Restore the original contents of :file:`/usr/local/etc/default/taranto
 
     $ cd /
     $ sudo rm -R tarantool_test
+
+.. _administration-tarantoolctl_connect:
+
+=====================================================================
+                        Utility ``tarantoolctl connect``
+=====================================================================
+
+The ``tarantoolctl connect`` utility is a client program.
+Use it to connect to a tarantool server and pass requests.
+
+To invoke the utility one says: |br|
+:codenormal:`tarantoolctl connect` :codeitalic:`URI` |br|
+and the format of a URI is described :ref:`in the URI section <index-uri>`.
+
+Example:
+
+.. code-block:: console
+
+    $ tarantoolctl connect username:password@127.0.0.1:3306
+
+There are alternatives to ``tarantoolctl connect`` -- one can use
+the :ref:`console package <console-package>` or the :ref:`net.box package <net_box-package>` from a Tarantool server.
+Also one can write one's one client programs with any of the
+Connectors. However, most of the examples in this manual illustrate
+usage with either ``tarantoolctl connect`` or with
+:ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`.
+
+Statements about :ref:`console.connect() <console-connect>` behavior are
+usually applicable for ``tarantoolctl connect`` as well.
+For example, an :ref:`authentication trigger <triggers-authentication_triggers>` will be
+activated whenever ``tarantoolctl connect`` starts
+or ends.
 
 =====================================================================
             System-specific administration notes

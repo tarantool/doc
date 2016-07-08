@@ -121,6 +121,8 @@ Here is what might appear in the log file in a typical installation:
     2014-12-15 13:22:19.289 [11360] main/103/iproto I>
         Disconnection. user=guest id=3
 
+.. _triggers-authentication_triggers:
+
 ===========================================================
                     Authentication triggers
 ===========================================================
