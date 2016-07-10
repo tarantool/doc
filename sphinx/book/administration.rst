@@ -15,7 +15,7 @@ The server processes these signals during the main thread event loop:
 
     SIGHUP
         may cause log file rotation, see
-        :ref:`the example in section "Logging" <logging_example>`.
+        :ref:`the example in section "Logging" <cfg_logging-logging_example>`.
 
     SIGUSR1
         may cause saving of a snapshot, see the description of

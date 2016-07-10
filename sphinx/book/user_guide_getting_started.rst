@@ -163,69 +163,51 @@ Now, to prepare for the example in the next section, try this:
 
 
 =====================================================================
-        Starting another Tarantool instance and connecting remotely
+        Connecting remotely
 =====================================================================
 
 In the previous section the first request was with :code:`box.cfg{listen = 3301}`.
 The :code:`listen` value can be any form of URI (uniform resource identifier);
 in this case it's just a local port: port 3301.
-It's possible to send requests to the listen URI via (a) telnet,
-(b) a connector (which will be the subject of the ":ref:`index-box_connectors`"
-chapter), or (c) another instance of Tarantool. Let's try (c).
+It's possible to send requests to the listen URI via
+(a) telnet,
+or (b) a connector (which will be the subject of the ":ref:`index-box_connectors`" chapter),
+or (c) another instance of Tarantool via the :ref:`console package <console-package>`,
+or (d) ``tarantoolctl connect``.
+Let's try (d).
 
 Switch to another terminal.
 On Linux, for example, this means starting another instance of a Bash shell.
 There is no need to use cd to switch to the :code:`~/tarantool_sandbox` directory.
 
-Start the second instance of Tarantool. The server name is tarantool.
-
-.. code-block:: console
-
-    $ # if you downloaded a binary with apt-get or yum, say this:
-    $ /usr/bin/tarantool
-    $ # if you downloaded and untarred a
-    $ # binary tarball to ~/tarantool, say this:
-    $ ~/tarantool/bin/tarantool
-    $ # if you built from a source download, say this:
-    $ ~/tarantool/src/tarantool
-
-Try these requests:
-
-.. code-block:: tarantoolsession
-
-    tarantool> console = require('console')
-    tarantool> console.connect('localhost:3301')
-    tarantool> box.space.tester:select{2}
-
-The requests are saying "use the :ref:`console package <console-package>`
+Start the tarantoolctl utility: |br|
+:codenormal:`$` :codebold:`tarantoolctl connect '3301'` |br|
+This means "use the :ref:`tarantoolctl connect utility <administration-tarantoolctl_connect>`
 to connect to the Tarantool server that's listening
-on ``localhost:3301``, send a request to that server,
+on ``localhost:3301``."
+
+Try this request: |br|
+:codenormal:`tarantool>` :codebold:`box.space.tester:select{2}` |br|
+This means "send a request to that Tarantool server,
 and display the result." The result in this case is
 one of the tuples that was inserted earlier.
 Your terminal screen should now look like this:
 
-...
-
 .. code-block:: tarantoolsession
 
-    tarantool> console = require('console')
-    ---
-    ...
-    tarantool> console.connect('localhost:3301')
-    tarantool: connected to localhost:3301
-    ---
-    - true
-    ...
+    $ tarantoolctl connect 3301
+    /usr/local/bin/tarantoolctl: connected to localhost:3301
     localhost:3301> box.space.tester:select{2}
     ---
     - - [2, 'Music']
     ...
+
     localhost:3301> 
 
 You can repeat :code:`box.space...:insert{}` and :code:`box.space...:select{}`
 indefinitely, on either Tarantool instance.
 When the testing is over: To drop the space: :code:`s:drop()`.
-To stop tarantool: Ctrl+C. To stop tarantool (an alternative):
+To stop tarantoolctl: Ctrl+C or Ctrl+D. To stop tarantool (an alternative):
 :ref:`os.exit() <os-exit>`. To stop tarantool (from another terminal):
 :code:`sudo pkill -f tarantool`.
 To destroy the test: :code:`rm -r ~/tarantool_sandbox`.

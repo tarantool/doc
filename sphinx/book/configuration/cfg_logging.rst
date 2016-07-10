@@ -112,7 +112,7 @@
     Default: 0.5 |br|
     Dynamic: **yes** |br|
 
-.. _logging_example:
+.. _cfg_logging-logging_example:
 
 **Logging Example:**
 
