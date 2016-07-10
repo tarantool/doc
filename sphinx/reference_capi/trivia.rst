@@ -8,20 +8,20 @@
 
 .. c:macro:: PACKAGE_VERSION_MAJOR
 
-    Package major version - 1 for 1.6.7.
+    Package major version - 1 for 1.7.0.
 
 .. c:macro:: PACKAGE_VERSION_MINOR
 
-    Package minor version - 6 for 1.6.7.
+    Package minor version - 7 for 1.7.0.
 
 .. c:macro:: PACKAGE_VERSION_PATCH
 
-    Package patch version - 7 for 1.6.7.
+    Package patch version - 0 for 1.7.0.
 
 .. c:macro:: PACKAGE_VERSION
 
     A string with major-minor-patch-commit-id identifier of the release, e.g.
-    1.6.6-113-g8399d0e.
+    1.7.0-1216-g73f7154.
 
 .. c:macro:: SYSCONF_DIR
 

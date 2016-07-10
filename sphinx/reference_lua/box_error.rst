@@ -26,7 +26,7 @@ be presented to the client as :errcode:`ER_PROC_LUA`.
 
     Emulate a request error, with text based on one of the pre-defined Tarantool
     errors defined in the file `errcode.h
-    <https://github.com/tarantool/tarantool/blob/1.6/src/box/errcode.h>`_ in
+    <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_ in
     the source tree. Lua constants which correspond to those Tarantool errors are
     defined as members of ``box.error``, for example ``box.error.NO_SUCH_USER == 45``.
 
@@ -97,7 +97,7 @@ be presented to the client as :errcode:`ER_PROC_LUA`.
           code: 70
           type: ClientError
           message: Invalid identifier '#' (expected letters, digits or an underscore)
-          file: /tmp/buildd/tarantool-1.6.6.252.g1654e31~precise/src/box/key_def.cc
+          file: /tmp/buildd/tarantool-1.7.0.252.g1654e31~precise/src/box/key_def.cc
         ...
         tarantool> box.error.clear()
         ---

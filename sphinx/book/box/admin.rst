@@ -44,7 +44,7 @@ A reference description also follows below:
 
         tarantool> box.info.version
         ---
-        - 1.6.8-66-g9093daa
+        - 1.7.0-1216-g73f7154
         ...
         tarantool> box.snapshot()
         ---

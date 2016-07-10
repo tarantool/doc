@@ -256,7 +256,7 @@ greater than (lsn of the vector clock in the subscribe request). After all the
 other servers of the cluster have responded to the local server's subscribe
 request, the server startup is complete.
 
-The following temporary limitations apply for version 1.6:
+The following temporary limitations apply for version 1.7:
 
 * The URIs in replication_source should all be in the same order on all servers.
   This is not mandatory but is an aid to consistency.

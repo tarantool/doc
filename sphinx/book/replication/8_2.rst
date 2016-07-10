@@ -20,7 +20,7 @@
     ---
     - [3, 'Another']
     ...
-    <...> [11243] main/105/applier/localhost:3301 I> connected to 1.6.0 at 127.0.0.1:3301
+    <...> [11243] main/105/applier/localhost:3301 I> connected to 1.7.0 at 127.0.0.1:3301
     <...> [11243] main/105/applier/localhost:3301 I> authenticated
     tarantool>
     <...> [11243] relay/127.0.0.1:36150/101/main I> recover from `./00000000000000000000.xlog'

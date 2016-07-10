@@ -104,7 +104,7 @@ explain what the steps are, then on the Internet you can look at some example sc
      sudo pip install -U sphinx
 
 3. Use :code:`git` to download the latest source code from the
-   Tarantool 1.6 branch on github.com. |br| |br|
+   Tarantool 1.7 branch on github.com. |br| |br|
    :code:`cd ~` |br|
    :code:`git clone https://github.com/tarantool/tarantool.git ~/tarantool`
 
@@ -208,10 +208,10 @@ explain what the steps are, then on the Internet you can look at some example sc
 This is the end of the list of steps to take for source downloads.
 
 For your added convenience, github.com has README files with example scripts: |br|
-`README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.6/README.FreeBSD>`_ for FreeBSD 10.1, |br|
-`README.MacOSX <https://github.com/tarantool/tarantool/blob/1.6/README.MacOSX>`_ for Mac OS X `El Capitan`, |br|
-`README.md <https://github.com/tarantool/tarantool/blob/1.6/README.md>`_ for generic GNU/Linux. |br|
-These example scripts assume that the intent is to download from the 1.6
+`README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.7/README.FreeBSD>`_ for FreeBSD 10.1, |br|
+`README.MacOSX <https://github.com/tarantool/tarantool/blob/1.7/README.MacOSX>`_ for Mac OS X `El Capitan`, |br|
+`README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ for generic GNU/Linux. |br|
+These example scripts assume that the intent is to download from the 1.7
 branch, build the server (but not the documentation), and run tests after build.
 
 The python connector can be installed with ``sudo easy_install pip`` and ``sudo pip install tarantool``.

@@ -63,7 +63,7 @@ those steps and successfully tested your instance of Tarantool.
    page), it has to be saved to the relevant section at GitHub.
 
    * Root folder for documentation source files is located at
-     https://github.com/tarantool/tarantool/tree/1.6/doc/sphinx.
+     https://github.com/tarantool/tarantool/tree/1.7/doc/sphinx.
 
    * Source files for the developers' guide are located at
-     https://github.com/tarantool/tarantool/tree/1.6/doc/sphinx/dev_guide.
+     https://github.com/tarantool/tarantool/tree/1.7/doc/sphinx/dev_guide.

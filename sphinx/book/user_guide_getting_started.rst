@@ -29,9 +29,9 @@ statements. The section about the sandbox is
             Downloading and installing a binary package
 =====================================================================
 
-Binary packages for the stable 1.6.x release are provided at
+Binary packages for the stable 1.7.x release are provided at
 http://tarantool.org/download.html. An automatic build system creates,
-tests and publishes packages for every push into the 1.6 branch.
+tests and publishes packages for every push into the 1.7 branch.
 
 To download and install the package that's appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided
@@ -80,7 +80,7 @@ initializes, something like this:
 .. code-block:: tarantoolsession
 
     tarantool> box.cfg{listen = 3301}
-    2015-08-07 09:41:41.077 ... version 1.6.7-439-g7e1011b
+    2015-08-07 09:41:41.077 ... version 1.7.0-1216-g73f7154
     2015-08-07 09:41:41.077 ... log level 5
     2015-08-07 09:41:41.078 ... mapping 1073741824 bytes for a shared arena...
     2015-08-07 09:41:41.079 ... initialized
@@ -160,8 +160,6 @@ Now, to prepare for the example in the next section, try this:
 
     tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
-.. _tarantool.org/dist/1.6: http://tarantool.org/dist/1.6
-.. _tarantool.org/dist/1.7: http://tarantool.org/dist/1.7
 
 
 =====================================================================

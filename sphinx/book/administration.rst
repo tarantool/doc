@@ -1241,7 +1241,7 @@ with a database that was created in early 2015. Only a small part of the output 
 :codenormal:`alter space _schema set options to {}` |br|
 :codenormal:`create view _vindex...` |br|
 :codenormal:`grant read access to 'public' role for _vindex view` |br|
-:codenormal:`set schema version to 1.6.8` |br|
+:codenormal:`set schema version to 1.7.0` |br|
 :codenormal:`---` |br|
 :codenormal:`...` |br|
 

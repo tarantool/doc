@@ -5,7 +5,7 @@
     $ cd ~/tarantool_test_node_2
     $ rm -R ./*
     $ ~/tarantool/src/tarantool
-    /home/username/tarantool/src/tarantool: version 1.6.3-1724-g033ed69
+    /home/username/tarantool/src/tarantool: version 1.7.0-1724-g033ed69
     type 'help' for interactive help
     tarantool> box.cfg{
              >   listen = 3302,
@@ -14,7 +14,7 @@
     <...>
     <...> [11243] main/101/interactive I> mapping 1073741824 bytes for tuple arena...
     <...> [11243] main/101/interactive C> starting replication from localhost:3301
-    <...> [11243] main/102/applier/localhost:3301 I> connected to 1.6.0 at 127.0.0.1:3301
+    <...> [11243] main/102/applier/localhost:3301 I> connected to 1.7.0 at 127.0.0.1:3301
     <...> [11243] main/102/applier/localhost:3301 I> authenticated
     <...> [11243] main/102/applier/localhost:3301 I> downloading a snapshot from 127.0.0.1:3301
     <...> [11243] main/102/applier/localhost:3301 I> done

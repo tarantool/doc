@@ -332,7 +332,7 @@ on ~/mysql-5.5. The mysqld server is already running on the local host 127.0.0.1
     $ # Start the Tarantool server. Do not use a Lua initialization file.
 
     $ tarantool
-    tarantool: version 1.6.6-222-g48b98bb
+    tarantool: version 1.7.0-222-g48b98bb
     type 'help' for interactive help
     tarantool>
 
@@ -641,9 +641,9 @@ on /usr. The PostgreSQL server is already running on the local host 127.0.0.1.
     deb http://tarantool.org/dist/1.7/ubuntu/ precise main
     deb-src http://tarantool.org/dist/1.7/ubuntu/ precise main
 
-    $ # Install tarantool-dev. The displayed line should show version = 1.6
+    $ # Install tarantool-dev. The displayed line should show version = 1.7
     $ sudo apt-get -y install tarantool-dev | grep -E "Setting up|already"
-    Setting up tarantool-dev (1.6.6.222.g48b98bb~precise-1) ...
+    Setting up tarantool-dev (1.7.0.222.g48b98bb~precise-1) ...
     $
 
     $ # Use luarocks to install locally, that is, relative to $HOME
@@ -667,7 +667,7 @@ on /usr. The PostgreSQL server is already running on the local host 127.0.0.1.
     $ # Start the Tarantool server. Do not use a Lua initialization file.
 
     $ tarantool
-    tarantool: version 1.6.8-412-g803b15c
+    tarantool: version 1.7.0-412-g803b15c
     type 'help' for interactive help
     tarantool>
 

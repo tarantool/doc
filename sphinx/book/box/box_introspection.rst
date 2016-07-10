@@ -69,7 +69,7 @@ Some important ones:
             ro: false
             uuid: a2684219-b2b1-4334-88ab-50b0722283fd
             id: 1
-          version: 1.6.8-66-g9093daa
+          version: 1.7.0-1216-g73f7154
           pid: 12932
           status: running
           vclock:
@@ -92,7 +92,7 @@ Some important ones:
         ...
         tarantool> box.info.version
         ---
-        - 1.6.8-66-g9093daa
+        - 1.7.0-66-g9093daa
         ...
 
 =====================================================================
