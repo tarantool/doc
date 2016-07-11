@@ -11,8 +11,6 @@
     maximum is 1 but the field is an ARRAY.
     For BITSET indexes, the maximum is 1. 
 
-    Note re storage engine: vinyl allows 8 parts in an index.
-
 .. _limitations_indexes_in_space:
 
 **Number of indexes in a space**
