@@ -121,8 +121,6 @@ API is a direct binding to corresponding methods of index objects of type
             the comparison-result for equality is always true when a search-value-part is ``nil``
             or is missing. This behavior of searches with nil is subject to change.
 
-            Note re storage engine: vinyl does not allow search-value-parts to be ``nil`` or missing.
-
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
@@ -140,8 +138,6 @@ API is a direct binding to corresponding methods of index objects of type
             | or 'REQ'      | value     | ``box.index.EQ``.                           |
             |               |           | Tuples are returned in descending order by  |
             |               |           | index key.                                  |
-            |               |           | Note re storage engine: vinyl does not      |
-            |               |           | support REQ.                                |
             +---------------+-----------+---------------------------------------------+
             | box.index.GT  | search    | The comparison operator is '>' (greater     |
             | or 'GT'       | value     | than).                                      |

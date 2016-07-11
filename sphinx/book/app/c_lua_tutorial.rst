@@ -1,3 +1,4 @@
+
 -------------------------------------------------------------------------------
                         Appendix C. Lua tutorials
 -------------------------------------------------------------------------------
@@ -611,8 +612,7 @@ contain a "yield" instruction if the count of tuples is huge.
 
 Here is a generic function which takes a field identifier
 and a search pattern, and returns all tuples that match. |br|
-* The field must be the first field of a TREE index.
-If the engine is vinyl, the field must be the only field of the index. |br|
+* The field must be the first field of a TREE index. |br|
 * The function will use `Lua pattern matching <http://www.lua.org/manual/5.2/manual.html#6.4.1>`_,
 which allows "magic characters" in regular expressions. |br|
 * The initial characters in the pattern, as far as the
@@ -642,9 +642,8 @@ explanations that follow the code.
        if (box.space[space_name].index[i] == nil) then break end
        if (box.space[space_name].index[i].type == "TREE"
            and box.space[space_name].index[i].parts[1].fieldno == field_no
-           and box.space[space_name].index[i].parts[1].type == "STR"
-           and (box.space[space_name].index[i].parts[2] == nil
-                or box.space[space_name].engine == "memtx")) then
+           and (box.space[space_name].index[i].parts[1].type == "SCALAR"
+           or box.space[space_name].index[i].parts[1].type == "STR")) then
          index_no = i
          break
        end
@@ -658,6 +657,7 @@ explanations that follow the code.
      local index_search_key_length = 0
      local last_character = ""
      local c = ""
+     local c2 = ""
      for i=1,string.len(pattern),1 do
        c = string.sub(pattern, i, i)
        if (last_character ~= "%") then
@@ -727,12 +727,8 @@ The requirements are: |br|
 (HASH, BITSET, RTREE) a search with iterator=GE
 will not return strings in order by string value; |br|
 (b) field_no must be the first index part; |br|
-(c) the field must contain strings, because for the other data type
-("NUM") pattern searches are not possible; |br|
-(d) if the index has more than one part then the space's engine
-must be "memtx", because for the other engine ("vinyl")
-a search on only one part will cause an error
-"Index ... does not support partial keys". |br|
+(c) the field must contain strings, because for other data types
+(such as "NUM") pattern searches are not possible; |br|
 If these requirements are not met by any index, then
 print an error message and return nil.
 
@@ -836,10 +832,3 @@ The result will be: |br|
 :codenormal:`---` |br|
 :codenormal:`- - [7, 'ABCDEF', 'a']` |br|
 :codenormal:`...` |br|
-
-
-
-
-
-
-

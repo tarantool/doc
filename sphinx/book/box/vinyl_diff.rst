@@ -49,10 +49,6 @@
     With memtx, insert and replace and update will return a tuple, if successful. |br|
     With vinyl, insert and replace and update will return nil.
 
-    With memtx, the REQ (reverse equality) comparison-operator is supported. |br|
-    With vinyl, it is not.
-    (This is a minor matter because on a unique index EQ and REQ do the same thing.)
-
     It was explained :ref:`earlier <index-yields_must_happen>` that memtx does not "yield" on a select request,
     it yields only on data-change requests. However, vinyl does yield on a select
     request, or on an equivalent such as get() or pairs(). This has significance

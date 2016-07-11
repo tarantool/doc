@@ -525,7 +525,6 @@ This type of search may return more than one tuple;
 if so, the tuples will be in descending order by key
 when the comparison operator is LT or LE or REQ,
 otherwise in ascending order. |br|
-Note re storage engines: vinyl does not allow REQ. |br|
 (2) The search can use a secondary index. |br|
 :samp:`box.space.{space-name}.index.{index-name}:select('value')` |br|
 For a primary-key search, it is optional to specify
@@ -541,7 +540,6 @@ in the second case, the result will be two tuples:
 {1, 'A'} and {1, 'B'}. It's even possible to specify zero
 fields, causing all three tuples to be
 returned.
-Note re storage engines: vinyl requires that all fields, or none, be specified.
 
 (1) BITSET example: |br|
 :codenormal:`box.schema.space.create('bitset_example')` |br|
