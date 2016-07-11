@@ -8,8 +8,7 @@
 
     For TREE or HASH indexes, the maximum
     is 255 (``box.schema.INDEX_PART_MAX``). For RTREE indexes, the
-    maximum is 1 but the field is an ARRAY.
-    For BITSET indexes, the maximum is 1. 
+    maximum is 1 but the field is an ARRAY. For BITSET indexes, the maximum is 1. 
 
 .. _limitations_indexes_in_space:
 

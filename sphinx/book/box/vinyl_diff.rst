@@ -25,9 +25,6 @@
     With vinyl, the maximum is 1, that is, only primary indexes are supported.
     Since primary indexes are always unique, it follows that vinyl indexes must be unique.
 
-    With memtx, the maximum number of (TREE) index-key parts is 255. |br|
-    With vinyl, the maximum is 8.
-
     With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
     With vinyl, the only index type is TREE.
 
