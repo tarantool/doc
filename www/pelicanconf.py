@@ -27,8 +27,8 @@ BSITE_PATH = ['newsite']
 ARTICLE_EXCLUDES = ['doc', 'newsite']
 
 JINJA_FILTERS = {
-        're_replace': (lambda s, i, o: re.sub(i, o, s)),
-        'url_split':  (lambda s: re.sub('www\.', '', urlparse.urlsplit(s).netloc))
+    're_replace': (lambda s, i, o: re.sub(i, o, s)),
+    'url_split':  (lambda s: re.sub('www\.', '', urlparse.urlsplit(s).netloc))
 }
 
 INDEX_SAVE_AS = ''
@@ -49,7 +49,9 @@ STATIC_PATHS = [
     'js/main.js',
     'js/old_tabs.js',
     'js/select.js',
-    'js/filesize.min.js'
+    'js/filesize.min.js',
+    'js/highcharts_base.js',
+    'js/jquery.min.js'
 ]
 
 EXTRA_PATH_METADATA = {}

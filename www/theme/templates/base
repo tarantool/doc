@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="/theme/favicon.ico" />
     <link rel="stylesheet"    href="/theme/design.css" />
     <link rel="stylesheet"    href="/theme/pygmentize.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <!--script src="/js/select.js"></script-->
     <!--[if lt IE 9]>
       <script src="scripts/ie8.js"></script>
