@@ -19,31 +19,41 @@ blocks :
       - format : rst
         content: |
           We maintain an always up-to-date Ubuntu package repository.
-          At the moment the repository contains builds for Ubuntu
+          At the moment, the repository contains builds for Ubuntu
           "xenial", "wily", "trusty", "precise".
-
-          Copy and paste the script below to the terminal prompt:
+          
+          In these instructions, ``$release`` is an environment variable which
+          will contain the Ubuntu version code (e.g. "precise"). 
+          
+          Copy and paste the script below to the terminal prompt (if you want
+          the version that comes with Ubuntu, start with the lines that follow
+          the '# install' comment):
 
           .. code-block:: bash
 
             curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -
             release=`lsb_release -c -s`
 
+            # append two lines to a list of source repositories
             sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
             sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF
             deb http://download.tarantool.org/tarantool/1.6/ubuntu/ $release main
             deb-src http://download.tarantool.org/tarantool/1.6/ubuntu/ $release main
             EOF
 
+            # install
             sudo apt-get update
             sudo apt-get -y install tarantool
-
+            
     - - "Debian GNU/Linux"
       - format : rst
         content: |
           We maintain an always up-to-date Debian GNU/Linux
-          package repository. At the moment the repository contains builds for
+          package repository. At the moment, the repository contains builds for
           Debian "stretch", "jessie", "wheezy".
+          
+          In these instructions, ``$release`` is an environment variable which
+          will contain the Debian version code (e.g. "wheezy").
 
           Copy and paste the script below to the terminal prompt:
 
@@ -52,12 +62,14 @@ blocks :
             curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -
             release=`lsb_release -c -s`
 
+            # append two lines to a list of source repositories
             sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
             sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF
             deb http://download.tarantool.org/tarantool/1.6/debian/ $release main
             deb-src http://download.tarantool.org/tarantool/1.6/debian/ $release main
             EOF
 
+            # install
             sudo apt-get update
             sudo apt-get -y install tarantool
 
@@ -65,9 +77,13 @@ blocks :
       - format : rst
         content: |
           We maintain an always up-to-date Fedora package repository.
-          At the moment the repository contains builds for Fedora
+          At the moment, the repository contains builds for Fedora
           22 and 23.
-
+          
+          In these instructions, 
+          ``$releasever`` (i.e. Fedora release version) must be 21 or 22 or rawhide, and
+          ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
+          
           Copy and paste the script below to the terminal prompt:
 
           .. code-block:: bash
@@ -100,6 +116,10 @@ blocks :
           derivatives. You may need to enable the `EPEL`_ repository for
           some packages.
 
+          In these instructions,
+          ``$releasever`` (i.e. CentOS release version) must be 6, and
+          ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
+
           Copy and paste the script below to the terminal prompt:
 
           .. code-block:: bash
@@ -107,6 +127,7 @@ blocks :
             # Enable EPEL repository
             sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
             sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo
+            
             # Add Tarantool repository
             sudo rm -f /etc/yum.repos.d/*tarantool*.repo
             sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF
@@ -128,6 +149,7 @@ blocks :
 
             # Update metadata
             sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6' --enablerepo='epel'
+            
             # Install tarantool
             sudo yum -y install tarantool
 
@@ -139,6 +161,10 @@ blocks :
           We maintain an always up-to-date package repository for RHEL 7
           derivatives.
 
+          In these instructions,
+          ``$releasever`` (i.e. CentOS release version) must be 7, and
+          ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
+    
           Copy and paste the script below to the terminal prompt:
 
           .. code-block:: bash
@@ -164,6 +190,7 @@ blocks :
 
             # Update metadata
             sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6'
+            
             # Install Tarantool
             sudo yum -y install tarantool
 
@@ -175,6 +202,10 @@ blocks :
           derivatives. You may need to enable the `EPEL`_ repository for some
           packages.
 
+          In these instructions,
+          ``$releasever`` (i.e. RHEL / CentOS release version) must be 6, and
+          ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
+
           Copy and paste the script below to the terminal prompt:
 
           .. code-block:: bash
@@ -182,6 +213,7 @@ blocks :
             # Enable EPEL repository
             sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
             sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo
+            
             # Add Tarantool repository
             sudo rm -f /etc/yum.repos.d/*tarantool*.repo
             sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF
@@ -203,6 +235,7 @@ blocks :
 
             # Update metadata
             sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6' --enablerepo='epel'
+            
             # Install Tarantool
             sudo yum -y install tarantool
 
@@ -230,14 +263,24 @@ blocks :
           .. code-block:: bash
 
             $ brew install tarantool
+            ==> Downloading https://homebrew.bintray.com/bottles/tarantool-1.7.0-593.el_capitan.bottle.tar.gz
+            Already downloaded: /Library/Caches/Homebrew/tarantool-1.7.0-593.el_capitan.bottle.tar.gz
+            ==> Pouring tarantool-1.7.0-593.el_capitan.bottle.tar.gz
+            /usr/local/Cellar/tarantool/1.7.0-593: 19 files, 2.1M
 
     - - "FreeBSD"
       - format : rst
         content: |
-          Tarantool is available from the FreeBSD
-          Ports collection (`databases/tarantool`_).
-
-          .. _databases/tarantool: http://freshports.org/databases/tarantool
+          Tarantool is available from the FreeBSD Ports collection.
+          
+          With your browser, go to the `FreeBSD Ports`_ page.           
+          Enter the search term: `tarantool`.
+          Choose the package you want.            
+          
+          Also, look at the `Fresh Ports`_ page.
+          
+          .. _FreeBSD Ports: http://www.freebsd.org/ports/index.html
+          .. _Fresh Ports: http://freshports.org/databases/tarantool        
 
   gimemore :
     title : "Connectors & Extras"
@@ -263,21 +306,16 @@ blocks :
           .. _DR\:Tarantool:    http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
           .. _Maven repository: http://github.com/tarantool/tarantool-java
           .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-    - - "Source tarball"
+    - - "Source files"
       - format : rst
         content: |
-          The latest source archive is `tarantool-latest.tar.gz`_.
-          Please consult with README for build instructions on your system.
+          Visit the Tarantool repository at GitHub to download the latest
+          source files for version `1.6`_.
 
-          .. _tarantool-latest.tar.gz: https://github.com/tarantool/tarantool/releases/latest
-    - - "Development Version"
-      - format : rst
-        content: |
-          In the same manner as for `the 1.6 branch`_, every push into
-          `the 1.6 branch`_ is available online - just replace 1.6 with 1.6
-          in instructions above.
+          Please consult with the Tarantool documentation for 
+          `build-from-source`_ instructions on your system.
 
-          .. _the 1.6 branch:    http://github.com/tarantool/tarantool/tree/1.6
-          .. _the 1.6 branch:    http://github.com/tarantool/tarantool/tree/1.6
+          .. _1.6:    http://github.com/tarantool/tarantool/tree/1.6
+          .. _build-from-source: http://tarantool.org/doc/book/user_guide_getting_started.html#downloading-and-installing-a-binary-package
 ...
 # vim: ts=2 expandtab syntax=yaml
