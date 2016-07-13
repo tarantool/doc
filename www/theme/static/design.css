@@ -1534,6 +1534,20 @@ div.b-rock-list-item-ico {
     font-family: 'helvetica-b';
 }
 
+.buttons-header .btn {
+    background-color: white;
+    padding-left: 25px;
+    color: #262626;
+    margin-left: 10px;
+}
+
+.buttons-header .btn-danger {
+    background-color: #FF272C;
+    padding-left: 25px;
+    color: white;
+    margin-right: 10px;
+}
+
 .b-button-red-download {
     background: url('/theme/download_button_icon.png') 15px no-repeat;
     background-color: #FF272C;
@@ -1600,4 +1614,12 @@ div.b-rock-list-item-ico {
     cursor: default;
     text-decoration: none;
 }
+ul.b-social_block a {
+    text-decoration: blink;
+    font-size: 19px;
+}
+ul.b-social_block a:hover {
+    color:#808080;
+}
+
 /* vim: expandtab */
