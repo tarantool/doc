@@ -58,37 +58,32 @@
     .. parsed-literal::
 
         vinyl = {
-          page_size = *number*,
-          memory_limit = *number*,
-          compression_key = *number*,
+          branch_age_wm = *number*,
+          branch_age_period = *number of seconds*,
+          memory_limit = *number of gigabytes*,
+          compact_wm = *number*,
           threads = *number*,
-          node_size = *number*,
-          compression = *enum*,
+          branch_prio = *number*,
+          branch_age = *number*,
         }
-
-    ``compression`` value may be one of:
-
-    * 'lz4' - `LZ4 algorithm`_
-    * 'zstd' - `Zstandard algorithm`_
-    * 'none' - value compression disabled
 
     This method may change in the future.
 
-    Type: table |br|
-    Dynamic: no |br|
-    Default:
+    Default values are:
 
-        .. cssclass:: highlight
-        .. parsed-literal::
+    .. cssclass:: highlight
+    .. parsed-literal::
 
-            vinyl = {
-                page_size = 131072,
-                memory_limit = 0,
-                compression_key = 0,
-                threads = 5,
-                node_size = 134217728,
-                compression = 'none'
-            }
+        vinyl = {
+          branch_age_wm = 0,
+          branch_age_period = 0,
+          memory_limit = 1,
+          compact_wm = 2,
+          threads = 5,
+          branch_prio = 2,
+          branch_age = 0,
+        }
+
 
 .. _LZ4 algorithm: https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29
 .. _ZStandard algorithm: http://zstd.net
