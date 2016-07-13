@@ -50,8 +50,8 @@ on the Internet.
    
    You need the following Python modules:
 
-   * `pip <https://pypi.python.org/pypi/pip>`_, the latest version
-   * `dev <https://pypi.python.org/pypi/dev>`_, the latest version
+   * `pip <https://pypi.python.org/pypi/pip>`_, any version
+   * `dev <https://pypi.python.org/pypi/dev>`_, any version
    * `pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
    * `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
    * `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6

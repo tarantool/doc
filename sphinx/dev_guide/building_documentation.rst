@@ -17,12 +17,12 @@ You need to install:
   
 Also, make sure to install the following Python modules:
 
-* `pip <https://pypi.python.org/pypi/pip>`_, the latest version
-* `dev <https://pypi.python.org/pypi/dev>`_, the latest version
+* `pip <https://pypi.python.org/pypi/pip>`_, any version
+* `dev <https://pypi.python.org/pypi/dev>`_, any version
 * `pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
 * `Sphinx <https://pypi.python.org/pypi/Sphinx>`_ version 1.4.4
-* `pelican <https://pypi.python.org/pypi/pelican>`_, the latest version
-* `BeautifulSoup <https://pypi.python.org/pypi/BeautifulSoup>`_, the latest version
+* `pelican <https://pypi.python.org/pypi/pelican>`_, any version
+* `BeautifulSoup <https://pypi.python.org/pypi/BeautifulSoup>`_, any version
 * `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1b5
   
 See installation details in the :ref:`build-from-source <building_from_source>`
@@ -70,24 +70,9 @@ prerequisites are met.
 
 4. Set up a web-server.
 
-   Note that if you build and browse the documentation on a Virtual machine, you
-   need to make sure that your host and client machines operate in the same
-   network, i.e., to configure port forwarding. If you use Oracle VM VirtualBox,
-   follow the guidelines below:
-
-   * To create a network, navigate to **Network > Advanced > Port Forwarding** in
-     your VirtualBox instance menu.
-   * Enable the **Cable connected** checkbox. 
-   * Click the **Port Forwarding** button.
-   * Set Host and Guest Ports to ``8000``, Host IP to ``127.0.0.1`` and Guest
-     IP to ``10.0.2.15``. Make sure to check the IP of your VB instance, it must
-     be 10.0.2.15 (``ifconfig`` command)
-   * Save your settings.
-
-   If all the prerequisites are met, run the following command to set up a
-   web-server (the example below is for Ubuntu, but the procedure is similar
-   for other supported OS's). Make sure to run it from the documentation output
-   folder, as specified below:
+   Run the following command to set up a web-server (the example below is for
+   Ubuntu, but the procedure is similar for other supported OS's).
+   Make sure to run it from the documentation output folder, as specified below:
 
    .. code-block:: bash
 
