@@ -21,6 +21,7 @@ Also, make sure to install the following Python modules:
 * `dev <https://pypi.python.org/pypi/dev>`_, any version
 * `pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
 * `Sphinx <https://pypi.python.org/pypi/Sphinx>`_ version 1.4.4
+* `sphinx-intl <https://pypi.python.org/pypi/sphinx-intl>`_ version 0.9.9
 * `pelican <https://pypi.python.org/pypi/pelican>`_, any version
 * `BeautifulSoup <https://pypi.python.org/pypi/BeautifulSoup>`_, any version
 * `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1b5
