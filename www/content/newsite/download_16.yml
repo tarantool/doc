@@ -258,15 +258,15 @@ blocks :
     - - "OS X"
       - format : rst
         content: |
-          You can install Tarantool using homebrew:
+          You can install Tarantool using ``homebrew``:
 
           .. code-block:: bash
 
             $ brew install tarantool
-            ==> Downloading https://homebrew.bintray.com/bottles/tarantool-1.7.0-593.el_capitan.bottle.tar.gz
-            Already downloaded: /Library/Caches/Homebrew/tarantool-1.7.0-593.el_capitan.bottle.tar.gz
-            ==> Pouring tarantool-1.7.0-593.el_capitan.bottle.tar.gz
-            /usr/local/Cellar/tarantool/1.7.0-593: 19 files, 2.1M
+            ==> Downloading https://homebrew.bintray.com/bottles/tarantool-1.6.8-653.el_capitan.bottle.tar.gz
+            ######################################################################## 100.0%
+            ==> Pouring tarantool-1.6.8-653.el_capitan.bottle.tar.gz
+            /usr/local/Cellar/tarantool/1.6.8-653: 17 files, 2.2M
 
     - - "FreeBSD"
       - format : rst
