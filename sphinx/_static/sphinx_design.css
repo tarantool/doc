@@ -570,6 +570,18 @@ table.right-align-column-4 td + td + td +td {
     text-align: right
 }
 
+table.top-align-column-1 td {
+    vertical-align: top
+}
+
+table.border-0-column-1 td {
+    border: 0px
+}
+
+table.border-0-column-2 td {
+    border: 0px
+}
+
 .b-article ol.arabic {
     list-style-type: decimal
 }
