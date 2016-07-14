@@ -31,9 +31,10 @@ statements. The section about the sandbox is
             Downloading and installing a binary package
 =====================================================================
 
-Binary packages for the stable 1.7.x release are provided at
-http://tarantool.org/download.html. An automatic build system creates,
-tests and publishes packages for every push into the 1.7 branch.
+Binary packages for two Tarantool versions -- for the stable 1.6 and the latest 
+1.7 -- are provided at http://tarantool.org/download.html.
+An automatic build system creates, tests and publishes packages for every push
+into the 1.7 branch.
 
 To download and install the package that's appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided

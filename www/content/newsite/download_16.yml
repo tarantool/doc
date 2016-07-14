@@ -282,6 +282,18 @@ blocks :
           .. _FreeBSD Ports: http://www.freebsd.org/ports/index.html
           .. _Fresh Ports: http://freshports.org/databases/tarantool        
 
+    - - "Building from source"
+      - format : rst
+        content: |
+          Visit the Tarantool repository at GitHub to download the latest
+          source files for version `1.6`_.
+
+          Please consult with the Tarantool documentation for 
+          `build-from-source`_ instructions on your system.
+
+          .. _1.6:    http://github.com/tarantool/tarantool/tree/1.6
+          .. _build-from-source: http://tarantool.org/doc/book/user_guide_getting_started.html#downloading-and-installing-a-binary-package
+
   gimemore :
     title : "Connectors & Extras"
     content: ""
@@ -306,16 +318,5 @@ blocks :
           .. _DR\:Tarantool:    http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
           .. _Maven repository: http://github.com/tarantool/tarantool-java
           .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-    - - "Source files"
-      - format : rst
-        content: |
-          Visit the Tarantool repository at GitHub to download the latest
-          source files for version `1.6`_.
-
-          Please consult with the Tarantool documentation for 
-          `build-from-source`_ instructions on your system.
-
-          .. _1.6:    http://github.com/tarantool/tarantool/tree/1.6
-          .. _build-from-source: http://tarantool.org/doc/book/user_guide_getting_started.html#downloading-and-installing-a-binary-package
 ...
 # vim: ts=2 expandtab syntax=yaml

@@ -274,7 +274,7 @@ blocks :
                         -DCMAKE_BUILD_TYPE=Release
                         -DCMAKE_FIND_FRAMEWORK=LAST
                         -DCMAKE_VERBOSE_MAKEFILE=ON
-                        -Wno-dev -DCMAKE_INSTALL_MANDIR=/us
+                        -Wno-dev -DCMAKE_INSTALL_MANDIR=/usr/share/man
             ==> make
             ==> make install
             /usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds
@@ -292,6 +292,18 @@ blocks :
           
           .. _FreeBSD Ports: http://www.freebsd.org/ports/index.html
           .. _Fresh Ports: http://freshports.org/databases/tarantool    
+
+    - - "Building from source"
+      - format : rst
+        content: |
+          Visit the Tarantool repository at GitHub to download the latest
+          source files for version `1.7`_.
+
+          Please consult with the Tarantool documentation for 
+          `build-from-source`_ instructions on your system.
+
+          .. _1.7:    http://github.com/tarantool/tarantool/tree/1.7
+          .. _build-from-source: http://tarantool.org/doc/book/user_guide_getting_started.html#downloading-and-installing-a-binary-package
 
   gimemore :
     title : "Connectors & Extras"
@@ -317,16 +329,5 @@ blocks :
           .. _DR\:Tarantool:    http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
           .. _Maven repository: http://github.com/tarantool/tarantool-java
           .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-    - - "Source files"
-      - format : rst
-        content: |
-          Visit the Tarantool repository at GitHub to download the latest
-          source files for version `1.7`_.
-
-          Please consult with the Tarantool documentation for 
-          `build-from-source`_ instructions on your system.
-
-          .. _1.7:    http://github.com/tarantool/tarantool/tree/1.7
-          .. _build-from-source: http://tarantool.org/doc/book/user_guide_getting_started.html#downloading-and-installing-a-binary-package
 ...
 # vim: ts=2 expandtab syntax=yaml
