@@ -8,30 +8,31 @@ blocks  :
     - "Tarantool"
     - "Get your data in RAM. Get compute close to data. Enjoy the performance."
   features:
-    - format: rst
+    - format: rst/
       content: >
         .. |br| raw:: html
 
             <br />
 
-        A drop-in *replacement for Lua 5.1*, based on
+        A drop-in **replacement for Lua 5.1**, based on
         LuaJIT 2.1; |br| simply use ``#!/usr/bin/tarantool``
-        instead of ``#!/usr/bin/lua`` in your script.
-    - format: rst
-      content: "*Lua packages* for non-blocking I/O, fibers and HTTP."
+        instead of ``#!/usr/bin/lua`` in your script
     - format: rst
       content: >
-        *indexes*:
+        **Lua packages** for non-blocking I/O, fibers and HTTP
+    - format: rst
+      content: >
+        **indexes**:
         `secondary indexes <http://tarantool.org/doc/book/box/box_index.html>`_,
         `range queries <http://tarantool.org/doc/book/box/box_index.html>`_,
         `index iterators <http://tarantool.org/doc/book/box/box_index.html>`_
     - format: rst
       content: >
-        *transactions*:
+        **transactions**:
         `ACID transactions <http://tarantool.org/doc/book/box/atomic.html>`_
     - format: rst
       content: >
-        *replication*:
+        **replication**:
         asynchronous
         `master-slave <http://tarantool.org/doc/book/replication/index.html>`_
         and
@@ -39,11 +40,11 @@ blocks  :
         replication
     - format: rst
       content: >
-        *query language*:
+        **query language**:
         `server-side scripting and stored procedures <http://tarantool.org/doc/book/app/c_lua_tutorial.html>`_
     - format: rst
       content: >
-        *security*:
+        **security**:
         `authentication and access control <http://tarantool.org/doc/book/box/authentication.html>`_
   support:
     - format: rst
@@ -56,8 +57,8 @@ blocks  :
         consulting, implementation and training.
     - format: rst
       content: >
-        *Our support is conducted by real software engineers of the Tarantool
-        core engine!*
+        **Our support is conducted by real software engineers of the Tarantool
+        core engine!**
     - format: rst
       content: >
         All Tarantool users can get help on support@tarantool.org and
