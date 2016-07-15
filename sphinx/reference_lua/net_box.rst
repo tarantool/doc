@@ -120,6 +120,11 @@ necessary to prioritize requests or to use different authentication ids.
         does yield, so global variables or database tuples data may change when a remote
         :samp:`conn.space.{space-name}:select`:code:`{...}` occurs.
 
+    .. method:: conn.space.<space-name>:get{field-value, ...}
+
+        :samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent
+        of the local call :samp:`box.space.{space-name}:get(...)`.
+
     .. method:: conn.space.<space-name>:insert{field-value, ...}
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
@@ -128,17 +133,22 @@ necessary to prioritize requests or to use different authentication ids.
     .. method:: conn.space.<space-name>:replace{field-value, ...}
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.space-name:replace(...)`.
+        of the local call :samp:`box.space.{space-name}:replace(...)`.
 
     .. method:: conn.space.<space-name>:update{field-value, ...}
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.space-name:update(...)`.
+        of the local call :samp:`box.space.{space-name}:update(...)`.
+
+    .. method:: conn.space.<space-name>:upsert{field-value, ...}
+
+        :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
+        of the local call :samp:`box.space.{space-name}:upsert(...)`.
 
     .. method:: conn.space.<space-name>:delete{field-value, ...}
 
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.space-name:delete(...)`.
+        of the local call :samp:`box.space.{space-name}:delete(...)`.
 
     .. method:: call(function-name [, arguments])
 
