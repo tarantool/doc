@@ -28,14 +28,11 @@
     With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
     With vinyl, the only index type is TREE.
 
-    With memtx, the index field type can be NUM or STR or INT or NUMBER or ARRAY or SCALAR. |br|
-    With vinyl, the only index field types are NUM or STR.
-
     With memtx, field numbers for index parts may be in any order. |br|
     With vinyl, they must be in order, with no gaps, starting with field number 1.
 
     With memtx, for index searches, ``nil`` is considered to be equal to any scalar key-part. |br|
-    With memtx, ``nil`` or missing parts are not allowed.
+    With vinyl, ``nil`` or missing parts are not allowed.
 
     With memtx, temporary spaces are supported. |br|
     With vinyl, they are not.

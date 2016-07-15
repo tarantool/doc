@@ -164,7 +164,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Note re storage engine: vinyl supports only the TREE index type,
         and supports only one index per space,
         and supports only the unique = true option,
-        and supports only the 'NUM' and 'STR' types,
         and requires that field numbers be in order starting with 1.
 
         .. code-block:: tarantoolsession
@@ -186,16 +185,16 @@ A list of all ``box.space`` functions follows, then comes a list of all
         STR: strings -- any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`.
         Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
         INT: integers between -9223372036854775808 and 18446744073709551615.
-        Legal in memtx TREE or HASH indexes. |br|
+        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
         NUMBER: integers between -9223372036854775808 and 18446744073709551615,
         single-precision floating point numbers, or double-precision floating point numbers.
-        Legal in memtx TREE or HASH indexes. |br|
+        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
         ARRAY: array of integers between -9223372036854775808 and 9223372036854775807.
         Legal in memtx RTREE indexes. |br|
         SCALAR: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615,
         or single-precision floating point numbers, or double-precison floating-point numbers,
         or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings.
-        Legal in memtx TREE or HASH indexes.
+        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes.
 
     .. _box_space-insert:
 
