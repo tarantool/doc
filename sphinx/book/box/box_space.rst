@@ -1077,22 +1077,35 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _index
 
     ``_index`` is a system tuple set. Its tuples contain these fields:
-    ``space-id index-id index-name index-type index-is-unique
-    index-field-count [tuple-field-no, tuple-field-type ...]``.
+    ``space-id index-id index-name index-type is-index-unique
+    [tuple-field-no, tuple-field-type ...]``.
 
-    The following function will display some fields in all tuples of ``_index``:
+    The following function will display all fields in all tuples of ``_index``:
+    (notice that the fifth field gets special treatment as a map value and
+    the sixth or later fields get special treatment as arrays):
 
     .. code-block:: lua
 
         function example()
           local ta = {}
-          local i, line
+          local i, line, value
           for k, v in box.space._index:pairs() do
             i = 1
             line = ''
-            while i <= 4 do
-                line = line .. v[i] .. ' '
-                i = i + 1
+             while v[i] ~= nil do
+              if i < 5 then
+                value = v[i]
+                end
+              if i == 5 then
+                if v[i].unique == true then
+                  value = 'true'
+                  end
+                end
+              if i > 5 then
+                value = v[i][1][1] .. ' ' .. v[i][1][2]
+                end
+              line = line .. value .. ' '
+              i = i + 1
             end
             table.insert(ta, line)
             end
@@ -1105,29 +1118,40 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         tarantool> example()
         ---
-        - - '272 0 primary tree 1 1 0 str '
-          - '280 0 primary tree 1 1 0 num '
-          - '280 1 owner tree 0 1 1 num '
-          - '280 2 name tree 1 1 2 str '
-          - '288 0 primary tree 1 2 0 num 1 num '
-          - '288 2 name tree 1 2 0 num 2 str '
-          - '296 0 primary tree 1 1 0 num '
-          - '296 1 owner tree 0 1 1 num '
-          - '296 2 name tree 1 1 2 str '
-          - '304 0 primary tree 1 1 0 num '
-          - '304 1 owner tree 0 1 1 num '
-          - '304 2 name tree 1 1 2 str '
-          - '312 0 primary tree 1 3 1 num 2 str 3 num '
-          - '312 1 owner tree 0 1 0 num '
-          - '312 2 object tree 0 2 2 str 3 num '
-          - '313 0 primary tree '
-          - '313 1 owner tree '
-          - '313 2 object tree '
-          - '320 0 primary tree 1 1 0 num '
-          - '320 1 uuid tree 1 1 1 str '
-          - '512 0 primary tree 1 1 0 num '
-          - '513 0 first tree 1 1 0 NUM '
-          - '514 0 first tree 1 1 0 STR '
+        - - '272 0 primary tree true 0 str '
+          - '280 0 primary tree true 0 num '
+          - '280 1 owner tree tree 1 num '
+          - '280 2 name tree true 2 str '
+          - '281 0 primary tree true 0 num '
+          - '281 1 owner tree tree 1 num '
+          - '281 2 name tree true 2 str '
+          - '288 0 primary tree true 0 num '
+          - '288 2 name tree true 0 num '
+          - '289 0 primary tree true 0 num '
+          - '289 2 name tree true 0 num '
+          - '296 0 primary tree true 0 num '
+          - '296 1 owner tree tree 1 num '
+          - '296 2 name tree true 2 str '
+          - '297 0 primary tree true 0 num '
+          - '297 1 owner tree tree 1 num '
+          - '297 2 name tree true 2 str '
+          - '304 0 primary tree true 0 num '
+          - '304 1 owner tree tree 1 num '
+          - '304 2 name tree true 2 str '
+          - '305 0 primary tree true 0 num '
+          - '305 1 owner tree tree 1 num '
+          - '305 2 name tree true 2 str '
+          - '312 0 primary tree true 1 num '
+          - '312 1 owner tree tree 0 num '
+          - '312 2 object tree tree 2 str '
+          - '313 0 primary tree true 1 num '
+          - '313 1 owner tree tree 0 num '
+          - '313 2 object tree tree 2 str '
+          - '320 0 primary tree true 0 num '
+          - '320 1 uuid tree true 1 str '
+          - '512 0 primary tree true 0 num '
+          - '513 0 primary tree true 0 num '
+          - '516 0 primary tree true 0 STR '
         ...
 
 .. _box_space-user:
