@@ -421,7 +421,7 @@ which are spaces as in the above examples, and ":code:`index_object:`"
 for references to objects which are indexes (for example
 :samp:`box.space.{tester}.index.{primary}:`).
 
-Then, there are six *parameter variations*:
+Then, there are seven *parameter variations*:
 
 .. code-block:: tarantoolsession
 
@@ -432,11 +432,13 @@ Then, there are six *parameter variations*:
     -- #3
     tarantool> box.space.tester:select(1)
     -- #4
-    tarantool> box.space.tester:select({1},{iterator='EQ'})
+    tarantool> box.space.tester.select(box.space.tester,1)
     -- #5
+    tarantool> box.space.tester:select({1},{iterator='EQ'})
+    -- #6
     tarantool> variable = 1
     tarantool> box.space.tester:select{variable}
-    -- #6
+    -- #7
     tarantool> variable = {1}
     tarantool> box.space.tester:select(variable)
 
@@ -444,11 +446,11 @@ The primary-key value is enclosed in braces, and if
 it was a multi-part primary key then the value would be
 multi-part, for example ``...select{1,2,3}``. The braces
 can be enclosed inside parentheses — ``...select({...})`` — which
-is optional unless it is necessary to pass something
-besides the primary-key value, as in the fourth example.
+are optional unless it is necessary to pass something
+besides the primary-key value, as in example #5.
 Literal values such as 1 (a scalar value) or {1} (a Lua table
 value) may be replaced by variable names, as in examples
-``#5`` and ``#6``. Although there are special cases where braces
+#6 and #7. Although there are special cases where braces
 can be omitted, they are preferable because they signal
 "Lua table". Examples and descriptions in this manual
 have the "{1}" form; however, this too is a matter of
@@ -477,7 +479,7 @@ These variations exist: |br|
 (1) An indexed field may be a string rather than a number. |br|
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name',{parts = {1, 'STR'}})` |br|
 For an ordinary index, the most common data types are 'NUM'
-= numeric = any positive integer, or 'STR' ='string' = any
+= numeric = any non-negative integer, or 'STR' ='string' = any
 series of bytes. Numbers are ordered
 according to their point on the number line -- so 2345 is
 greater than 500 -- while strings are ordered according to the
@@ -517,7 +519,7 @@ These variations exist: |br|
 (1) The search can use comparisons other than equality. |br|
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select('value', {iterator='GT'})` |br|
 The comparison operators are LT LE EQ REQ REQ GE GT for
-"less than" "less than or equal" " "reversed
+"less than" "less than or equal" "equal" "reversed
 equal" "greater than or equal" "greater than" respectively.
 Comparisons make sense if and only if the index type
 is 'tree'.
@@ -590,7 +592,7 @@ the Tarantool server's storage functionality with the ``Lua library``.
 
 The contents of the ``box`` library can be inspected at runtime
 with ``box``, with no arguments. The packages inside the box library are:
-``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``net.box``,
+``box.schema``, ``box.tuple``, ``box.space``, ``box.index``,
 ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``.
 Every package contains one or more Lua functions. A few packages contain
 members as well as functions. The functions allow data definition (create

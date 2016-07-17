@@ -54,7 +54,7 @@ for spaces, users, roles, and function tuples.
 
     :param num space-id: the numeric identifier established by box.schema.space.create
 
-    Note: for symmetry, there are other box.schema functions targeting
+    There are five :ref:`syntax variations <index-object_reference>` for object references targeting
     space objects, for example :samp:`box.schema.space.drop({space-id})`
     will drop a space. However, the common approach is to use functions
     attached to the space objects, for example

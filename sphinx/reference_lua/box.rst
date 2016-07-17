@@ -4,7 +4,7 @@
 
 The contents of the ``box`` library can be inspected at runtime
 with ``box``, with no arguments. The packages inside the box library are:
-``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``net.box``,
+``box.schema``, ``box.tuple``, ``box.space``, ``box.index``,
 ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``.
 Every package contains one or more Lua functions. A few packages contain
 members as well as functions. The functions allow data definition (create
