@@ -28,12 +28,6 @@
     With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
     With vinyl, the only index type is TREE.
 
-    With memtx, field numbers for index parts may be in any order. |br|
-    With vinyl, they must be in order, with no gaps, starting with field number 1.
-
-    With memtx, for index searches, ``nil`` is considered to be equal to any scalar key-part. |br|
-    With vinyl, ``nil`` or missing parts are not allowed.
-
     With memtx, temporary spaces are supported. |br|
     With vinyl, they are not.
 
@@ -43,8 +37,8 @@
     and :ref:`truncate() <box_space-truncate>` functions are supported. |br|
     With vinyl, they are not.
 
-    With memtx, insert and replace and update will return a tuple, if successful. |br|
-    With vinyl, insert and replace and update will return nil.
+    With memtx, delete will return deleted tuple, if any. |br|
+    With vinyl, delete will always return nil.
 
     It was explained :ref:`earlier <index-yields_must_happen>` that memtx does not "yield" on a select request,
     it yields only on data-change requests. However, vinyl does yield on a select
