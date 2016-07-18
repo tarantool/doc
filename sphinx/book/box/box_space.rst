@@ -744,8 +744,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 1
             ...
 
-    Note re storage engine: vinyl does not support :codenormal:`count(...)`.
-    One possible workaround is to say :codenormal:`#select(...)`.
+        Note re storage engine: vinyl does not support :codenormal:`count(...)`.
+        One possible workaround is to say :codenormal:`#select(...)`.
 
     .. _box_space-len:
 
@@ -768,7 +768,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: truncate()
 
-        Deletes all tuples.
+        Deletes all tuples. Note that ``truncate`` must be called only by the
+        user who created the space OR under a `setuid` function created by that
+        user. Read more about `setuid` functions :ref:`here <authentication-funcs>`.
 
         Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
 
