@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 1.6\n"
+"Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-23 13:32+0300\n"
+"POT-Creation-Date: 2016-07-16 19:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../dev_guide/box-protocol.rst:36
+#: ../dev_guide/box_protocol.rst:36
 msgid "IProto Protocol"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:40
+#: ../dev_guide/box_protocol.rst:40
 msgid "Notion in diagrams"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:42
+#: ../dev_guide/box_protocol.rst:42
 msgid "0    X\n"
 "+----+\n"
 "|    | - X bytes\n"
@@ -42,47 +42,47 @@ msgid "0    X\n"
 " TYPE - type of MsgPack value"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:61
+#: ../dev_guide/box_protocol.rst:61
 msgid "MsgPack data types:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:63
+#: ../dev_guide/box_protocol.rst:63
 msgid "**MP_INT** - Integer"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:64
+#: ../dev_guide/box_protocol.rst:64
 msgid "**MP_MAP** - Map"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:65
+#: ../dev_guide/box_protocol.rst:65
 msgid "**MP_ARR** - Array"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:66
+#: ../dev_guide/box_protocol.rst:66
 msgid "**MP_STRING** - String"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:67
+#: ../dev_guide/box_protocol.rst:67
 msgid "**MP_FIXSTR** - Fixed size string"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:68
+#: ../dev_guide/box_protocol.rst:68
 msgid "**MP_OBJECT** - Any MsgPack object"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:73
+#: ../dev_guide/box_protocol.rst:73
 msgid "Overview"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:75
+#: ../dev_guide/box_protocol.rst:75
 msgid "IPROTO is a binary request/response protocol."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:79
+#: ../dev_guide/box_protocol.rst:79
 msgid "Greeting Packet"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:81
+#: ../dev_guide/box_protocol.rst:81
 msgid "TARANTOOL'S GREETING:\n"
 "\n"
 "0                                     63\n"
@@ -98,39 +98,39 @@ msgid "TARANTOOL'S GREETING:\n"
 "64                  107              127"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:97
+#: ../dev_guide/box_protocol.rst:97
 msgid "The server begins the dialogue by sending a fixed-size (128 bytes) text greeting to the client. The greeting always contains two 64 byte lines of ASCII text, each line ending with newline character ('\\\\n'). The first line contains the server version and protocol type. The second line contains up to 44 bytes of base64-encoded random string, to use in authentication packet, and ends with up to 23 spaces."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:105
+#: ../dev_guide/box_protocol.rst:105
 msgid "Unified packet structure"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:107
+#: ../dev_guide/box_protocol.rst:107
 msgid "Once a greeting is read, the protocol becomes pure request/response and features a complete access to Tarantool functionality, including:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:110
+#: ../dev_guide/box_protocol.rst:110
 msgid "request multiplexing, e.g. ability to asynchronously issue multiple requests via the same connection"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:112
+#: ../dev_guide/box_protocol.rst:112
 msgid "response format that supports zero-copy writes"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:114
+#: ../dev_guide/box_protocol.rst:114
 msgid "For data structuring and encoding, the protocol uses msgpack data format, see http://msgpack.org"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:117
-msgid "Tarantool protocol mandates use of a few integer constants serving as keys in maps used in the protocol. These constants are defined in `src/box/iproto_constants.h <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_"
+#: ../dev_guide/box_protocol.rst:117
+msgid "Tarantool protocol mandates use of a few integer constants serving as keys in maps used in the protocol. These constants are defined in `src/box/iproto_constants.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:121
+#: ../dev_guide/box_protocol.rst:121
 msgid "Let's list them here too:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:123
+#: ../dev_guide/box_protocol.rst:123
 msgid "-- user keys\n"
 "<code>          ::= 0x00\n"
 "<sync>          ::= 0x01\n"
@@ -150,7 +150,7 @@ msgid "-- user keys\n"
 "<error>         ::= 0x31"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:143
+#: ../dev_guide/box_protocol.rst:143
 msgid "-- -- Value for <code> key in request can be:\n"
 "-- User command codes\n"
 "<select>  ::= 0x01\n"
@@ -170,11 +170,11 @@ msgid "-- -- Value for <code> key in request can be:\n"
 "<ERROR>   ::= 0x8XXX"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:164
+#: ../dev_guide/box_protocol.rst:164
 msgid "Both :code:`<header>` and :code:`<body>` are msgpack maps:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:166
+#: ../dev_guide/box_protocol.rst:166
 msgid "Request/Response:\n"
 "\n"
 "0        5\n"
@@ -186,7 +186,7 @@ msgid "Request/Response:\n"
 "  MP_INT       MP_MAP                     MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:178
+#: ../dev_guide/box_protocol.rst:178
 msgid "UNIFIED HEADER:\n"
 "\n"
 "+================+================+=====================+\n"
@@ -198,19 +198,19 @@ msgid "UNIFIED HEADER:\n"
 "                          MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:190
+#: ../dev_guide/box_protocol.rst:190
 msgid "They only differ in the allowed set of keys and values, the key defines the type of value that follows. If a body has no keys, entire msgpack map for the body may be missing. Such is the case, for example, in <ping> request. ``schema_id`` may be absent in request's header, that means that there'll be no version checking, but it must be present in the response. If ``schema_id`` is sent in the header, then it'll be checked."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:201
+#: ../dev_guide/box_protocol.rst:201
 msgid "Authentication"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:203
+#: ../dev_guide/box_protocol.rst:203
 msgid "When a client connects to the server, the server responds with a 128-byte text greeting message. Part of the greeting is base-64 encoded session salt - a random string which can be used for authentication. The length of decoded salt (44 bytes) exceeds the amount necessary to sign the authentication message (first 20 bytes). An excess is reserved for future authentication schemas."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:210
+#: ../dev_guide/box_protocol.rst:210
 msgid "PREPARE SCRAMBLE:\n"
 "\n"
 "    LEN(ENCODED_SALT) = 44;\n"
@@ -238,19 +238,19 @@ msgid "PREPARE SCRAMBLE:\n"
 "                        MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:238
+#: ../dev_guide/box_protocol.rst:238
 msgid ":code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 fields: authentication mechanism (\"chap-sha1\" is the only supported mechanism right now) and password, encrypted according to the specified mechanism. Authentication in Tarantool is optional, if no authentication is performed, session user is 'guest'. The server responds to authentication packet with a standard response with 0 tuples."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:246
+#: ../dev_guide/box_protocol.rst:246
 msgid "Requests"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:248
+#: ../dev_guide/box_protocol.rst:248
 msgid "SELECT: CODE - 0x01 Find tuples matching the search pattern"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:251
+#: ../dev_guide/box_protocol.rst:251
 msgid "SELECT BODY:\n"
 "\n"
 "+==================+==================+==================+\n"
@@ -267,15 +267,15 @@ msgid "SELECT BODY:\n"
 "                          MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:268
+#: ../dev_guide/box_protocol.rst:268
 msgid "INSERT:  CODE - 0x02 Inserts tuple into the space, if no tuple with same unique keys exists. Otherwise throw *duplicate key* error."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:270
+#: ../dev_guide/box_protocol.rst:270
 msgid "REPLACE: CODE - 0x03 Insert a tuple into the space or replace an existing one."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:273
+#: ../dev_guide/box_protocol.rst:273
 msgid "INSERT/REPLACE BODY:\n"
 "\n"
 "+==================+==================+\n"
@@ -287,11 +287,11 @@ msgid "INSERT/REPLACE BODY:\n"
 "                 MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:286
+#: ../dev_guide/box_protocol.rst:286
 msgid "UPDATE: CODE - 0x04 Update a tuple"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:289
+#: ../dev_guide/box_protocol.rst:289
 msgid "UPDATE BODY:\n"
 "\n"
 "+==================+=======================+\n"
@@ -310,7 +310,7 @@ msgid "UPDATE BODY:\n"
 "                 MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:308
+#: ../dev_guide/box_protocol.rst:308
 msgid "OP:\n"
 "    Works only for integer fields:\n"
 "    * Addition    OP = '+' . space[key][field_no] += argument\n"
@@ -333,7 +333,7 @@ msgid "OP:\n"
 "              MP_ARRAY"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:331
+#: ../dev_guide/box_protocol.rst:331
 msgid "    * Insert      OP = '!'\n"
 "      insert <argument> before <field_no>\n"
 "    * Assign      OP = '='\n"
@@ -355,7 +355,7 @@ msgid "    * Insert      OP = '!'\n"
 "      substitute <offset> bytes from <position> with <argument>"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:353
+#: ../dev_guide/box_protocol.rst:353
 msgid "0           2\n"
 "+-----------+==========+==========+========+==========+\n"
 "|           |          |          |        |          |\n"
@@ -366,15 +366,15 @@ msgid "0           2\n"
 "                         MP_ARRAY"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:365
+#: ../dev_guide/box_protocol.rst:365
 msgid "It's an error to specify an argument of a type that differs from expected type."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:367
+#: ../dev_guide/box_protocol.rst:367
 msgid "DELETE: CODE - 0x05 Delete a tuple"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:370
+#: ../dev_guide/box_protocol.rst:370
 msgid "DELETE BODY:\n"
 "\n"
 "+==================+==================+==================+\n"
@@ -386,11 +386,11 @@ msgid "DELETE BODY:\n"
 "                          MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:383
+#: ../dev_guide/box_protocol.rst:383
 msgid "CALL: CODE - 0x06 Call a stored function"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:386
+#: ../dev_guide/box_protocol.rst:386
 msgid "CALL BODY:\n"
 "\n"
 "+=======================+==================+\n"
@@ -402,11 +402,11 @@ msgid "CALL BODY:\n"
 "                    MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:399
+#: ../dev_guide/box_protocol.rst:399
 msgid "EVAL: CODE - 0x08 Evaulate Lua expression"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:402
+#: ../dev_guide/box_protocol.rst:402
 msgid "EVAL BODY:\n"
 "\n"
 "+=======================+==================+\n"
@@ -418,11 +418,11 @@ msgid "EVAL BODY:\n"
 "                    MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:415
+#: ../dev_guide/box_protocol.rst:415
 msgid "UPSERT: CODE - 0x09 Update tuple if it would be found elsewhere try to insert tuple. Always use primary index for key."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:418
+#: ../dev_guide/box_protocol.rst:418
 msgid "UPSERT BODY:\n"
 "\n"
 "+==================+==================+==========================+\n"
@@ -463,15 +463,15 @@ msgid "UPSERT BODY:\n"
 "      key (this is validated before performing upsert)."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:462
+#: ../dev_guide/box_protocol.rst:462
 msgid "Response packet structure"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:464
+#: ../dev_guide/box_protocol.rst:464
 msgid "We'll show whole packets here:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:466
+#: ../dev_guide/box_protocol.rst:466
 msgid "OK:    LEN + HEADER + BODY\n"
 "\n"
 "0      5                                          OPTIONAL\n"
@@ -484,11 +484,11 @@ msgid "OK:    LEN + HEADER + BODY\n"
 " MP_INT                MP_MAP                      MP_MAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:480
+#: ../dev_guide/box_protocol.rst:480
 msgid "Set of tuples in the response :code:`<data>` expects a msgpack array of tuples as value EVAL command returns arbitrary `MP_ARRAY` with arbitrary MsgPack values."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:483
+#: ../dev_guide/box_protocol.rst:483
 msgid "ERROR: LEN + HEADER + BODY\n"
 "\n"
 "0      5\n"
@@ -503,19 +503,19 @@ msgid "ERROR: LEN + HEADER + BODY\n"
 "Where 0xXXX is ERRCODE."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:498
+#: ../dev_guide/box_protocol.rst:498
 msgid "Error message is present in the response only if there is an error :code:`<error>` expects as value a msgpack string"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:501
-msgid "Convenience macros which define hexadecimal constants for return codes can be found in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_"
+#: ../dev_guide/box_protocol.rst:501
+msgid "Convenience macros which define hexadecimal constants for return codes can be found in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:507
+#: ../dev_guide/box_protocol.rst:507
 msgid "Replication packet structure"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:509
+#: ../dev_guide/box_protocol.rst:509
 msgid "-- replication keys\n"
 "<server_id>     ::= 0x02\n"
 "<lsn>           ::= 0x03\n"
@@ -525,13 +525,13 @@ msgid "-- replication keys\n"
 "<vclock>        ::= 0x26"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:519
+#: ../dev_guide/box_protocol.rst:519
 msgid "-- replication codes\n"
 "<join>      ::= 0x41\n"
 "<subscribe> ::= 0x42"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:526
+#: ../dev_guide/box_protocol.rst:526
 msgid "JOIN:\n"
 "\n"
 "In the beginning you must send JOIN\n"
@@ -589,15 +589,15 @@ msgid "JOIN:\n"
 "Every request between masters will have Additional LSN and SERVER_ID."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:586
+#: ../dev_guide/box_protocol.rst:586
 msgid "XLOG / SNAP"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:588
+#: ../dev_guide/box_protocol.rst:588
 msgid "XLOG and SNAP have the same format. They start with:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:590
+#: ../dev_guide/box_protocol.rst:590
 msgid "SNAP\\n\n"
 "0.12\\n\n"
 "Server: e6eda543-eda7-4a82-8bf4-7ddd442a9275\\n\n"
@@ -606,11 +606,11 @@ msgid "SNAP\\n\n"
 "..."
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:599
+#: ../dev_guide/box_protocol.rst:599
 msgid "So, **Header** of an SNAP/XLOG consists of:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:601
+#: ../dev_guide/box_protocol.rst:601
 msgid "<format>\\n\n"
 "<format_version>\\n\n"
 "Server: <server_uuid>\\n\n"
@@ -618,11 +618,11 @@ msgid "<format>\\n\n"
 "\\n"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:610
+#: ../dev_guide/box_protocol.rst:610
 msgid "There are two markers: tuple beginning - **0xd5ba0bab** and EOF marker - **0xd510aded**. So, next, between **Header** and EOF marker there's data with the following schema:"
 msgstr ""
 
-#: ../dev_guide/box-protocol.rst:614
+#: ../dev_guide/box_protocol.rst:614
 msgid "0            3 4                                         17\n"
 "+-------------+========+============+===========+=========+\n"
 "|             |        |            |           |         |\n"
@@ -640,94 +640,160 @@ msgid "0            3 4                                         17\n"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:30
-msgid "Building Documentation"
+msgid "Building documentation"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:32
-msgid "After building and testing your local instance of Tarantool, you can build a local version of this documentation and contribute to it."
-msgstr ""
-
-#: ../dev_guide/building_documentation.rst:34
-msgid "Documentation is based on the python-based Sphinx generator. So, make sure to install all python modules indicated in the BUILDING FROM SOURCE (http://tarantool.org/doc/dev_guide/building_from_source.html) section of this documentation. The procedure below implies that you already took those steps and successfully tested your instance of Tarantool."
+msgid "This documentation is built using a simplified markup system named ``Sphinx`` (see http://sphinx-doc.org). You can build a local version of this documentation and contribute to it."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:36
-msgid "Build a local version of the existing documentation package."
+msgid "You need to install:"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:38
-msgid "Run the following set of commands (the example below is based on Ubuntu OS, but the precedure is similar for other supported OS's):"
+msgid "``git`` (a program for downloading source repositories)"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:39
+msgid "``CMake`` version 2.8 or later (a program for managing the build process)"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:40
-msgid "cd ~/tarantool\n"
-"cmake -DENABLE_DOC=TRUE\n"
-"make -C doc"
+msgid "``Python`` version greater than 2.6 -- preferably 2.7 -- and less than 3.0 (Sphinx is a Python-based tool)"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:43
+msgid "Also, make sure to install the following Python modules:"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:45
+#: ../dev_guide/building_from_source.rst:78
+msgid "`pip <https://pypi.python.org/pypi/pip>`_, any version"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:46
-msgid "Documentation is created and stored at ``doc/www/output``."
+#: ../dev_guide/building_from_source.rst:79
+msgid "`dev <https://pypi.python.org/pypi/dev>`_, any version"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:47
+#: ../dev_guide/building_from_source.rst:80
+msgid "`pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:48
-msgid "Set up a web-server."
+msgid "`Sphinx <https://pypi.python.org/pypi/Sphinx>`_ version 1.4.4"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:49
+msgid "`sphinx-intl <https://pypi.python.org/pypi/sphinx-intl>`_ version 0.9.9"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:50
-msgid "Note that if your Tarantool Database runs on a Virtual machine, you need to make sure that your host and client machines operate in the same network, i.e., to configure port forwarding. If you use Oracle VM VirtualBox, follow the guidelines below:"
+msgid "`pelican <https://pypi.python.org/pypi/pelican>`_, any version"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:51
+msgid "`BeautifulSoup <https://pypi.python.org/pypi/BeautifulSoup>`_, any version"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:52
-msgid "To create a network, navigate to **Network > Advanced > Port Forwarding** in your VirtualBox instance menu."
-msgstr ""
-
-#: ../dev_guide/building_documentation.rst:53
-msgid "Enable the **Cable connected** checkbox."
+#: ../dev_guide/building_from_source.rst:83
+msgid "`gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1b5"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:54
-msgid "Click the **Port Forwarding** button."
-msgstr ""
-
-#: ../dev_guide/building_documentation.rst:55
-msgid "Set Host and Guest Ports to ``8000``, Host IP to ``127.0.0.1`` and Guest IP to ``10.0.2.15``. Make sure to check the IP of your VB instance, it must be 10.0.2.15 (``ifconfig`` command)"
-msgstr ""
-
-#: ../dev_guide/building_documentation.rst:56
-msgid "Save your settings"
+msgid "See installation details in the :ref:`build-from-source <building_from_source>` section of this documentation. The procedure below implies that all the prerequisites are met."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:58
-msgid "If all the prerequisites are met, run the following command to set up a web-server (the example below is based on Ubuntu, but the procedure is similar for other supported OS's). Make sure to run it from the documentation output folder, as specified below:"
+msgid "Use ``git`` to download the latest source code of this documentation from the GitHub repository ``tarantool/doc``, branch 1.7. For example, to a local directory named `~/tarantool-doc`:"
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:60
-msgid "cd ~/tarantool/doc/www/output\n"
+#: ../dev_guide/building_documentation.rst:62
+msgid "git clone https://github.com/tarantool/doc.git ~/tarantool-doc"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:66
+msgid "Use ``CMake`` to initiate the build."
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:68
+msgid "cd ~/tarantool-doc\n"
+"make clean         # unnecessary, added for good luck\n"
+"rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"cmake .            # start initiating"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:75
+msgid "Build a local version of the existing documentation package."
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:77
+msgid "Run the ``make`` command with an appropriate option to specify which documentation version to build."
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:80
+msgid "cd ~/tarantool-doc\n"
+"make all                # all versions\n"
+"make sphinx-html        # multi-page English version\n"
+"make sphinx-singlehtml  # one-page English version\n"
+"make sphinx-html-ru     # multi-page Russian version\n"
+"make sphinx-singlehtml  # one-page Russian version"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:89
+msgid "Documentation is created and stored at `/www/output`:"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:91
+msgid "`/www/output/doc` (English versions)"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:92
+msgid "`/www/output/doc/ru` (Russian versions)"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:94
+msgid "The entry point for each version is `index.html` file in the appropriate directory."
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:97
+msgid "Set up a web-server."
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:99
+msgid "Run the following command to set up a web-server (the example below is for Ubuntu, but the procedure is similar for other supported OS's). Make sure to run it from the documentation output folder, as specified below:"
+msgstr ""
+
+#: ../dev_guide/building_documentation.rst:103
+msgid "cd ~/tarantool-doc/www/output\n"
 "python -m SimpleHTTPServer 8000"
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:65
-msgid "Open your browser and enter ``127.0.0.1:8000`` into the address box. If your local documentation build is valid, the HTML version will be displayed in the browser."
+#: ../dev_guide/building_documentation.rst:108
+msgid "Open your browser and enter ``127.0.0.1:8000`` into the address box. If your local documentation build is valid, the default version (English multi-page) will be displayed in the browser."
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:67
+#: ../dev_guide/building_documentation.rst:112
 msgid "To contribute to documentation, use the ``.rst`` format for drafting and submit your updates as \"Pull Requests\" via GitHub."
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:69
-msgid "To comply with the writing and formatting style, use guidelines provided in the documentation, common sense and existing documents."
+#: ../dev_guide/building_documentation.rst:115
+msgid "To comply with the writing and formatting style, use the :ref:`guidelines <documentation_guidelines>` provided in the documentation, common sense and existing documents."
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:71
-msgid "Note that if you suggest creating a new documentation section (i.e., a whole new page), it has to be saved to the relevant section at GitHub."
+#: ../dev_guide/building_documentation.rst:119
+msgid "Notes:"
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:73
-msgid "Root folder for documentation source files is located at https://github.com/tarantool/tarantool/tree/master/doc/sphinx."
+#: ../dev_guide/building_documentation.rst:121
+msgid "If you suggest creating a new documentation section (i.e., a whole new page), it has to be saved to the relevant section at GitHub."
 msgstr ""
 
-#: ../dev_guide/building_documentation.rst:74
-msgid "Source files for the developers' guide are located at https://github.com/tarantool/tarantool/tree/master/doc/sphinx/dev_guide."
+#: ../dev_guide/building_documentation.rst:124
+msgid "If you want to contribute to localizing this documentation (e.g. into Russian), add your translation strings to ``.po`` files stored in the corresponding locale directory (e.g. ``/sphinx/locale/ru/LC_MESSAGES/`` for Russian). See more about localizing with Sphinx at http://www.sphinx-doc.org/en/stable/intl.html"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:30
@@ -735,185 +801,258 @@ msgid "Building from source"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:32
-msgid "For downloading Tarantool source and building it, the platforms can differ and the preferences can differ. But the steps are always the same. Here in the manual we'll explain what the steps are, then on the Internet you can look at some example scripts."
+msgid "For downloading Tarantool source and building it, the platforms can differ and the preferences can differ. But the steps are always the same. Here in the manual we'll explain what the steps are, and after that you can look at some example scripts on the Internet."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:36
-msgid "Get tools and libraries that will be necessary for building and testing. The absolutely necessary ones are:"
+#: ../dev_guide/building_from_source.rst:37
+msgid "Get tools and libraries that will be necessary for building and testing."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:39
-msgid "A program for downloading source repositories. |br| In this case the necessary program is ``git``. Although tarantool.org/dist has source tarballs (the files whose names end in `-src.tar.gz`), the latest complete source downloads are on github.com, and from github one gets with git."
+#: ../dev_guide/building_from_source.rst:40
+msgid "The absolutely necessary ones are:"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:44
-msgid "A C/C++ compiler. |br| Ordinarily the compiler is `gcc` and ``g++`` version 4.6 or later, on Mac OS X it should be ``Clang`` version 3.2 or later."
+#: ../dev_guide/building_from_source.rst:42
+msgid "A program for downloading source repositories. |br| For all platforms, this is ``git``. It allows to download the latest complete set of source files from the Tarantool repository at GitHub."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:47
-msgid "A program for managing the build process. |br| This is always ``CMake`` for GNU/Linux and FreeBSD. The CMake version should be 2.8 or later."
+#: ../dev_guide/building_from_source.rst:46
+msgid "A C/C++ compiler. |br| Ordinarily, this is ``gcc`` and ``g++`` version 4.6 or later. On Mac OS X, this is ``Clang`` version 3.2 or later."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:50
-msgid "Here are names of tools and libraries which may have to be installed in advance, using ``sudo apt-get`` (for Ubuntu), ``sudo yum install`` (for CentOS), or the equivalent on other platforms. Different platforms may use slightly different names. Ignore the ones marked `optional, only in Mac OS scripts` unless the platform is Mac OS. Ignore the one marked `optional, only for documentation` unless the intent is to use the ``-DENABLE_DOC`` option in step 5."
+#: ../dev_guide/building_from_source.rst:49
+msgid "A program for managing the build process. |br| For all platforms, this is ``CMake``. The CMake version should be 2.8 or later."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:57
-msgid "**gcc and g++, or clang**                # see above"
+#: ../dev_guide/building_from_source.rst:52
+msgid "Command-line interpreter for Python-based code (namely, for Tarantool test suite). |br| For all platforms, this is ``python``. The Python version should be greater than 2.6 -- preferably 2.7 -- and less than 3.0."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:58
-msgid "**git**                                  # see above"
-msgstr ""
-
-#: ../dev_guide/building_from_source.rst:59
-msgid "**cmake**                                # see above"
-msgstr ""
-
-#: ../dev_guide/building_from_source.rst:60
-msgid "**libreadline-dev or libreadline6-dev or readline-devel**  # for interactive mode"
-msgstr ""
-
-#: ../dev_guide/building_from_source.rst:61
-msgid "**autoconf**                             # optional, only in Mac OS scripts"
+#: ../dev_guide/building_from_source.rst:56
+msgid "Here are names of tools and libraries which may have to be installed in advance, using ``sudo apt-get`` (for Ubuntu), ``sudo yum install`` (for CentOS), or the equivalent on other platforms. Different platforms may use slightly different names. Ignore the ones marked `optional, only in Mac OS scripts` unless the platform is Mac OS."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:62
-msgid "**zlib1g** or **zlib**                   # optional, only in Mac OS scripts"
+msgid "**gcc** and **g++**, or **clang**        # see above"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:63
-msgid "**doxygen**                              # optional, only for documentation"
+msgid "**git**                                  # see above"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:64
+msgid "**cmake**                                # see above"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:65
-msgid "Set up python modules for running the test suite or creating documentation. This step is optional. Python modules are not necessary for building Tarantool itself, unless one intends to use the ``-DENABLE_DOC`` option in step 5 or the \"Run the test suite\" option in step 7. Say: |br| ``python --version`` |br| You should see that the python version is greater than 2.6 -- preferably 2.7 -- and less than 3.0. It may be necessary to install python first."
+msgid "**python**                               # see above; for test suite"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:74
-msgid "On Ubuntu you can get modules from the repository:"
+#: ../dev_guide/building_from_source.rst:66
+msgid "**libreadline-dev** or **libreadline6-dev** or **readline-devel**  # for interactive mode"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:67
+msgid "**libssl-dev**                           # for `digest` module"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:68
+msgid "**autoconf**                             # optional, only in Mac OS scripts"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:69
+msgid "**zlib1g** or **zlib**                   # optional, only in Mac OS scripts"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:71
+msgid "Set up Python modules for running the test suite."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:73
+msgid "This step is optional. Python modules are not necessary for building Tarantool itself, unless you intend to use the \"Run the test suite\" option in step 7."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:76
-msgid "# For both test suite and documentation\n"
-"sudo apt-get install python-pip python-dev python-yaml\n"
-"# For test suite\n"
-"sudo apt-get install python-daemon\n"
-"# For documentation\n"
-"sudo apt-get install python-sphinx python-pelican python-beautifulsoup"
+msgid "You need the following Python modules:"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:85
-msgid "On CentOS 6 too you can get modules from the repository:"
+#: ../dev_guide/building_from_source.rst:81
+msgid "`argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:87
-msgid "sudo yum install python26 python26-PyYAML etc."
+#: ../dev_guide/building_from_source.rst:82
+msgid "`msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:91
-msgid "If modules are not available on a repository, it is best to set up the modules by getting a tarball and doing the setup with ``python setup.py``, thus:"
+#: ../dev_guide/building_from_source.rst:84
+msgid "`six <https://pypi.python.org/pypi/six)>`_ version 1.8.0"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:95
-msgid "# On some machines this initial command may be necessary:\n"
+#: ../dev_guide/building_from_source.rst:86
+msgid "On Ubuntu, you can get the modules from the repository:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:88
+msgid "sudo apt-get install python-pip python-dev python-yaml <...>"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:92
+msgid "On CentOS 6, you can likewise get the modules from the repository:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:94
+msgid "sudo yum install python26 python26-PyYAML <...>"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:98
+msgid "If some modules are not available on a repository, it is best to set up the modules by getting a tarball and doing the setup with ``python setup.py``, thus:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:102
+msgid "# On some machines, this initial command may be necessary:\n"
 "# wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python\n"
 "\n"
-"# python module for parsing YAML (pyYAML): For test suite:\n"
-"# (If wget fails, check the http://pyyaml.org/wiki/PyYAML\n"
-"# to see what the current version is.)\n"
+"# Python module for parsing YAML (pyYAML), for test suite:\n"
+"# (If wget fails, check at http://pyyaml.org/wiki/PyYAML\n"
+"# what the current version is.)\n"
 "cd ~\n"
 "wget http://pyyaml.org/download/pyyaml/PyYAML-3.10.tar.gz\n"
 "tar -xzf PyYAML-3.10.tar.gz\n"
 "cd PyYAML-3.10\n"
-"sudo python setup.py install\n"
-"\n"
-"# python module for helping programs become daemons (daemon):\n"
-"# For test suite: (if wget fails, check the\n"
-"# http://pypi.python.org/pypi/python-daemon\n"
-"# to see what the current version is.)\n"
-"cd ~\n"
-"wget http://pypi.python.org/packages/source/p/python-daemon/python-daemon-1.5.5.tar.gz\n"
-"tar -xzvf python-daemon-1.5.5.tar.gz\n"
-"cd python-daemon-1.5.5\n"
-"sudo python setup.py install\n"
-"\n"
-"# python module for HTML scraping: For documentation:\n"
-"cd ~\n"
-"wget http://www.crummy.com/software/BeautifulSoup/bs3/download//3.x/BeautifulSoup-3.2.1.tar.gz\n"
-"tar -xzvf BeautifulSoup-3.2.1.tar.gz\n"
-"cd BeautifulSoup-3.2.1\n"
 "sudo python setup.py install"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:126
-msgid "Finally, use Python :code:`pip` to bring in Python packages that may not be up-to-date in the distro repositories. (On CentOS 7 it will be necessary to install pip first, with :code:`sudo yum install epel-release` followed by :code:`sudo yum install python-pip`.)"
+#: ../dev_guide/building_from_source.rst:116
+msgid "Finally, use Python :code:`pip` to bring in Python packages that may not be up-to-date in the distro repositories. (On CentOS 7, it will be necessary to install ``pip`` first, with :code:`sudo yum install epel-release` followed by :code:`sudo yum install python-pip`.)"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:132
-msgid "# For test suite\n"
-"pip install tarantool\\>0.4 --user\n"
-"# For documentation\n"
-"sudo pip install pelican\n"
-"sudo pip install breathe\n"
-"sudo pip install -U sphinx"
+#: ../dev_guide/building_from_source.rst:122
+msgid "pip install tarantool\\>0.4 --user"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:126
+msgid "Use ``git`` to download the latest Tarantool source code from the GitHub repository ``tarantool/tarantool``, branch 1.7. For example, to a local directory named `~/tarantool`:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:130
+msgid "git clone https://github.com/tarantool/tarantool.git ~/tarantool"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:134
+msgid "Use ``git`` again so that third-party contributions will be seen as well."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:136
+msgid "The build depends on the following external libraries:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:138
+msgid "Readline development files (``libreadline-dev/readline-devel`` package)."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:139
+msgid "OpenSSL development files (``libssl-dev/openssl-devel`` package)."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:140
+msgid "``libyaml`` (``libyaml-dev/libyaml-devel`` package)."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:141
-msgid "Use :code:`git` to download the latest source code from the Tarantool 1.6 master branch on github.com. |br| |br| :code:`cd ~` |br| :code:`git clone https://github.com/tarantool/tarantool.git ~/tarantool`"
+msgid "``liblz4`` (``liblz4-dev/lz4-devel`` package)."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:146
-msgid "Use ``git`` again so that third-party contributions will be seen as well. This step is only necessary once, the first time you do a download. There is an alternative -- say ``git clone --recursive`` in step 3 -- but we prefer this method because it works with older versions of ``git``."
+#: ../dev_guide/building_from_source.rst:142
+msgid "GNU ``bfd`` which is the part of GNU ``binutils`` (``binutils-dev/binutils-devel`` package)."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:151
+#: ../dev_guide/building_from_source.rst:145
+msgid "This step is only necessary once, the first time you do a download."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:147
 msgid "cd ~/tarantool\n"
 "git submodule init\n"
 "git submodule update --recursive\n"
 "cd ../"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:158
-msgid "On rare occasions, the submodules will need to be updated again with the command: ``git submodule update --init --recursive``."
+#: ../dev_guide/building_from_source.rst:154
+msgid "On rare occasions, the submodules will need to be updated again with the command:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:157
+msgid "git submodule update --init --recursive"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:161
+msgid "Note: There is an alternative -- to say ``git clone --recursive`` earlier in step 3, -- but we prefer the method above because it works with older versions of ``git``."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:165
 msgid "Use CMake to initiate the build."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:163
+#: ../dev_guide/building_from_source.rst:167
 msgid "cd ~/tarantool\n"
 "make clean         # unnecessary, added for good luck\n"
 "rm CMakeCache.txt  # unnecessary, added for good luck\n"
-"cmake .            # Start build with build type=Debug, no doc"
+"cmake .            # start initiating with build type=Debug"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:170
-msgid "On some platforms it may be necessary to specify the C and C++ versions, for example |br| :code:`CC=gcc-4.8 CXX=g++-4.8 cmake .` |br| The option for specifying build type is :samp:`-DCMAKE_BUILD_TYPE={type}` where :samp:`{type} = Debug | Release | RelWithDebInfo` and a reasonable choice for production is ``-DCMAKE_BUILD_TYPE=RelWithDebInfo`` (``Debug`` is a default used by project maintainers and ``Release`` is used when the highest performance is required)."
+#: ../dev_guide/building_from_source.rst:174
+msgid "On some platforms, it may be necessary to specify the C and C++ versions, for example:"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:179
-msgid "The option for asking to build documentation is :code:`-DENABLE_DOC=true|false`, which outputs HTML documentation (such as what you're reading now) to the subdirectory doc/www/output/doc. Tarantool uses the `Sphinx <http://sphinx-doc.org/>`_ simplified markup system. Since most users do not need to rebuild the documentation, the reasonable option is ``-DENABLE_DOC=false`` or just don't use the ``-DENABLE_DOC`` clause at all."
+#: ../dev_guide/building_from_source.rst:177
+msgid "CC=gcc-4.8 CXX=g++-4.8 cmake ."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:187
-msgid "Use make to complete the build."
+#: ../dev_guide/building_from_source.rst:181
+msgid "The CMake option for specifying build type is :samp:`-DCMAKE_BUILD_TYPE={type}`, where :samp:`{type}` can be:"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:189
+#: ../dev_guide/building_from_source.rst:184
+msgid "``Debug`` -- used by project maintainers"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:185
+msgid "``Release`` -- used only if the highest performance is required"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:186
+msgid "``RelWithDebInfo`` -- used for production, also provides debugging capabilities"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:188
+msgid "The CMake option for hinting that the result will be distributed is :code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install`` will install tarantoolctl files in addition to tarantool files."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:192
+msgid "Use ``make`` to complete the build."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:194
 msgid "make"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:193
-msgid "It's possible to say ``make install`` too, but that's not generally done."
-msgstr ""
-
-#: ../dev_guide/building_from_source.rst:195
-msgid "Run the test suite. This step is optional. |br| Tarantool's developers always run the test suite before they publish new versions. You should run the test suite too, if you make any changes in the code. Assuming you downloaded to ``~/tarantool``, the principal steps are:"
+#: ../dev_guide/building_from_source.rst:198
+msgid "This creates the 'tarantool' executable in the directory `src/`"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:200
+msgid "Next, it's highly recommended to say ``make install`` to install Tarantool to the `/usr/local` directory and keep your system clean. However, it is possible to run the Tarantool executable without installation."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:204
+msgid "Run the test suite."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:206
+msgid "This step is optional. Tarantool's developers always run the test suite before they publish new versions. You should run the test suite too, if you make any changes in the code. Assuming you downloaded to ``~/tarantool``, the principal steps are:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:211
 msgid "# make a subdirectory named `bin`\n"
 "mkdir ~/tarantool/bin\n"
 "# link python to bin (this may require superuser privilege)\n"
@@ -924,11 +1063,11 @@ msgid "# make a subdirectory named `bin`\n"
 "PATH=~/tarantool/bin:$PATH ./test-run.py"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:211
+#: ../dev_guide/building_from_source.rst:222
 msgid "The output should contain reassuring reports, for example:"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:213
+#: ../dev_guide/building_from_source.rst:224
 msgid "======================================================================\n"
 "TEST                                            RESULT\n"
 "------------------------------------------------------------\n"
@@ -941,33 +1080,53 @@ msgid "======================================================================\n"
 "... etc."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:226
-msgid "There are more than 70 tests in the suite."
-msgstr ""
-
-#: ../dev_guide/building_from_source.rst:228
+#: ../dev_guide/building_from_source.rst:237
 msgid "To prevent later confusion, clean up what's in the `bin` subdirectory:"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:231
+#: ../dev_guide/building_from_source.rst:239
 msgid "rm ~/tarantool/bin/python\n"
 "rmdir ~/tarantool/bin"
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:236
-msgid "Make an rpm. |br| This step is optional. It's only for people who want to redistribute Tarantool. Package maintainers who want to build with rpmbuild should consult the rpm-build instructions for the appropriate platform."
+#: ../dev_guide/building_from_source.rst:244
+msgid "Make an rpm package."
 msgstr ""
 
-#: ../dev_guide/building_from_source.rst:240
-msgid "This is the end of the list of steps to take for source downloads."
-msgstr ""
-
-#: ../dev_guide/building_from_source.rst:242
-msgid "For your added convenience, github.com has README files with example scripts: |br| `README.CentOS <https://github.com/tarantool/tarantool/blob/master/README.CentOS>`_ for CentOS 5.8, |br| `README.FreeBSD <https://github.com/tarantool/tarantool/blob/master/README.FreeBSD>`_ for FreeBSD 10.1, |br| `README.MacOSX <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_ for Mac OS X `El Capitan`, |br| `README.md <https://github.com/tarantool/tarantool/blob/master/README.md>`_ for generic GNU/Linux. |br| These example scripts assume that the intent is to download from the master branch, build the server (but not the documentation), and run tests after build."
+#: ../dev_guide/building_from_source.rst:246
+msgid "This step is optional. It's only for people who want to redistribute Tarantool. Package maintainers who want to build with ``rpmbuild`` should consult the ``rpm-build`` instructions for the appropriate platform."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:250
-msgid "The python connector can be installed with ``sudo easy_install pip`` and ``sudo pip install tarantool``."
+msgid "Verify your Tarantool installation."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:252
+msgid "tarantool $ ./src/tarantool"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:256
+msgid "This will start Tarantool in the interactive mode."
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:258
+msgid "For your added convenience, we provide OS-specific README files with example scripts at GitHub:"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:261
+msgid "`README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.7/README.FreeBSD>`_ for FreeBSD 10.1"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:263
+msgid "`README.MacOSX <https://github.com/tarantool/tarantool/blob/1.7/README.MacOSX>`_ for Mac OS X `El Capitan`"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:265
+msgid "`README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ for generic GNU/Linux"
+msgstr ""
+
+#: ../dev_guide/building_from_source.rst:267
+msgid "These example scripts assume that the intent is to download from the 1.7 branch, build the server and run tests after build."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:28
@@ -1024,17 +1183,17 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:72
 msgid "/** Write all data to a descriptor.\n"
-"*\n"
-"* This function is equivalent to 'write', except it would ensure\n"
-"* that all data is written to the file unless a non-ignorable\n"
-"* error occurs.\n"
-"*\n"
-"* @retval 0  Success\n"
-"*\n"
-"* @reval  1  An error occurred (not EINTR)\n"
-"* /\n"
+" *\n"
+" * This function is equivalent to 'write', except it would ensure\n"
+" * that all data is written to the file unless a non-ignorable\n"
+" * error occurs.\n"
+" *\n"
+" * @retval 0  Success\n"
+" *\n"
+" * @reval  1  An error occurred (not EINTR)\n"
+" * /\n"
 "static int\n"
-"write_all(int fd, void \\*data, size_t len)"
+"write_all(int fd, void \\*data, size_t len);"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:87
@@ -1046,7 +1205,7 @@ msgid "Header files"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:93
-msgid "Use header guards. Put the header guard in the first line in the header, before the copyright or declarations. Use all-uppercase name for the header guard. Derive the header guard name from the file name, and append _INCLUDED to get a macro name. For example, core/log_io.h -> CORE_LOG_IO_H_INCLUDED. In .c (implementation) file, include the respective declaration header before all other headers, to ensure that the header is self- sufficient. Header \"header.h\" is self-sufficient if the following compiles without errors:"
+msgid "Use header guards. Put the header guard in the first line in the header, before the copyright or declarations. Use all-uppercase name for the header guard. Derive the header guard name from the file name, and append _INCLUDED to get a macro name. For example, core/log_io.h -> CORE_LOG_IO_H_INCLUDED. In ``.c`` (implementation) file, include the respective declaration header before all other headers, to ensure that the header is self- sufficient. Header \"header.h\" is self-sufficient if the following compiles without errors:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:101
@@ -1223,7 +1382,7 @@ msgstr ""
 #: ../dev_guide/c_style_guide.rst:273
 msgid "int function(int x)\n"
 "{\n"
-"    body of function\n"
+"    body of function;\n"
 "}"
 msgstr ""
 
@@ -1237,7 +1396,7 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:290
 msgid "do {\n"
-"    body of do-loop\n"
+"    body of do-loop;\n"
 "} while (condition);"
 msgstr ""
 
@@ -1580,32 +1739,30 @@ msgid "int fun(int a)\n"
 "out:\n"
 "    kfree(buffer);\n"
 "    return result;\n"
-"}\n"
-"\n"
-"    Chapter 8: Commenting"
+"}"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:609
-msgid "Comments are good, but there is also a danger of over-commenting. NEVER try to explain HOW your code works in a comment: it's much better to write the code so that the _working_ is obvious, and it's a waste of time to explain badly written code."
+msgid "Chapter 8: Commenting"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:614
-msgid "Generally, you want your comments to tell WHAT your code does, not HOW. Also, try to avoid putting comments inside a function body: if the function is so complex that you need to separately comment parts of it, you should probably go back to chapter 6 for a while.  You can make small comments to note or warn about something particularly clever (or ugly), but try to avoid excess.  Instead, put the comments at the head of the function, telling people what it does, and possibly WHY it does it."
+#: ../dev_guide/c_style_guide.rst:611
+msgid "Comments are good, but there is also a danger of over-commenting. NEVER try to explain HOW your code works in a comment: it's much better to write the code so that the _working_ is obvious, and it's a waste of time to explain badly written code. с Generally, you want your comments to tell WHAT your code does, not HOW. Also, try to avoid putting comments inside a function body: if the function is so complex that you need to separately comment parts of it, you should probably go back to chapter 6 for a while.  You can make small comments to note or warn about something particularly clever (or ugly), but try to avoid excess.  Instead, put the comments at the head of the function, telling people what it does, and possibly WHY it does it."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:623
+#: ../dev_guide/c_style_guide.rst:625
 msgid "When commenting the kernel API functions, please use the kernel-doc format. See the files Documentation/kernel-doc-nano-HOWTO.txt and scripts/kernel-doc for details."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:627
-msgid "Linux style for comments is the C89 `\"/\\* ... \\*/\"` style. Don't use C99-style `\"// ...\"` comments."
-msgstr ""
-
-#: ../dev_guide/c_style_guide.rst:630
-msgid "The preferred style for long (multi-line) comments is:"
+#: ../dev_guide/c_style_guide.rst:629
+msgid "Linux style for comments is the C89 ``\"/\\* ... \\*/\"`` style. Don't use C99-style ``\"// ...\"`` comments."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:632
+msgid "The preferred style for long (multi-line) comments is:"
+msgstr ""
+
+#: ../dev_guide/c_style_guide.rst:634
 msgid "/*\n"
 " * This is the preferred style for multi-line\n"
 " * comments in the Linux kernel source code.\n"
@@ -1616,23 +1773,23 @@ msgid "/*\n"
 " */"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:643
+#: ../dev_guide/c_style_guide.rst:645
 msgid "It's also important to comment data, whether they are basic types or derived types.  To this end, use just one data declaration per line (no commas for multiple data declarations).  This leaves you room for a small comment on each item, explaining its use."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:650
+#: ../dev_guide/c_style_guide.rst:652
 msgid "Chapter 9: You've made a mess of it"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:652
+#: ../dev_guide/c_style_guide.rst:654
 msgid "That's OK, we all do.  You've probably been told by your long-time Unix user helper that \"GNU emacs\" automatically formats the C sources for you, and you've noticed that yes, it does do that, but the defaults it uses are less than desirable (in fact, they are worse than random typing - an infinite number of monkeys typing into GNU emacs would never make a good program)."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:659
+#: ../dev_guide/c_style_guide.rst:661
 msgid "So, you can either get rid of GNU emacs, or change it to use saner values.  To do the latter, you can stick the following in your .emacs file:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:662
+#: ../dev_guide/c_style_guide.rst:664
 msgid "(defun c-lineup-arglist-tabs-only (ignored)\n"
 "\"Line up argument lists by tabs, not spaces\"\n"
 "(let* ((anchor (c-langelem-pos c-syntactic-element))\n"
@@ -1663,31 +1820,31 @@ msgid "(defun c-lineup-arglist-tabs-only (ignored)\n"
 "                (c-set-style \"linux-tabs-only\")))))"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:693
+#: ../dev_guide/c_style_guide.rst:695
 msgid "This will make emacs go better with the kernel coding style for C files below ~/src/linux-trees."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:696
+#: ../dev_guide/c_style_guide.rst:698
 msgid "But even if you fail in getting emacs to do sane formatting, not everything is lost: use \"indent\"."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:699
+#: ../dev_guide/c_style_guide.rst:701
 msgid "Now, again, GNU indent has the same brain-dead settings that GNU emacs has, which is why you need to give it a few command line options. However, that's not too bad, because even the makers of GNU indent recognize the authority of K&R (the GNU people aren't evil, they are just severely misguided in this matter), so you just give indent the options \"-kr -i8\" (stands for \"K&R, 8 character indents\"), or use \"scripts/Lindent\", which indents in the latest style."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:707
+#: ../dev_guide/c_style_guide.rst:709
 msgid "\"indent\" has a lot of options, and especially when it comes to comment re-formatting you may want to take a look at the man page.  But remember: \"indent\" is not a fix for bad programming."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:714
+#: ../dev_guide/c_style_guide.rst:716
 msgid "Chapter 10: Kconfig configuration files"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:716
-msgid "For all of the Kconfig* configuration files throughout the source tree, the indentation is somewhat different.  Lines under a \"config\" definition are indented with one tab, while help text is indented an additional two spaces.  Example:"
+#: ../dev_guide/c_style_guide.rst:718
+msgid "For all of the Kconfig* configuration files throughout the source tree, the indentation is somewhat different.  Lines under a \"config\" definition are indented with one tab, while help text is indented an additional two spaces. Example:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:721
+#: ../dev_guide/c_style_guide.rst:723
 msgid "config AUDIT\n"
 "    bool \"Auditing support\"\n"
 "    depends on NET\n"
@@ -1698,89 +1855,89 @@ msgid "config AUDIT\n"
 "    auditing without CONFIG_AUDITSYSCALL."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:732
+#: ../dev_guide/c_style_guide.rst:734
 msgid "Features that might still be considered unstable should be defined as dependent on \"EXPERIMENTAL\":"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:735
+#: ../dev_guide/c_style_guide.rst:737
 msgid "config SLUB\n"
 "    depends on EXPERIMENTAL && !ARCH_USES_SLAB_PAGE_STRUCT\n"
 "    bool \"SLUB (Unqueued Allocator)\"\n"
 "    ..."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:742
+#: ../dev_guide/c_style_guide.rst:744
 msgid "while seriously dangerous features (such as write support for certain filesystems) should advertise this prominently in their prompt string:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:745
+#: ../dev_guide/c_style_guide.rst:747
 msgid "config ADFS_FS_RW\n"
 "    bool \"ADFS write support (DANGEROUS)\"\n"
 "    depends on ADFS_FS\n"
 "    ..."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:752
+#: ../dev_guide/c_style_guide.rst:754
 msgid "For full documentation on the configuration files, see the file Documentation/kbuild/kconfig-language.txt."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:758
+#: ../dev_guide/c_style_guide.rst:760
 msgid "Chapter 11: Data structures"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:760
+#: ../dev_guide/c_style_guide.rst:762
 msgid "Data structures that have visibility outside the single-threaded environment they are created and destroyed in should always have reference counts.  In the kernel, garbage collection doesn't exist (and outside the kernel garbage collection is slow and inefficient), which means that you absolutely _have_ to reference count all your uses."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:766
+#: ../dev_guide/c_style_guide.rst:768
 msgid "Reference counting means that you can avoid locking, and allows multiple users to have access to the data structure in parallel - and not having to worry about the structure suddenly going away from under them just because they slept or did something else for a while."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:771
+#: ../dev_guide/c_style_guide.rst:773
 msgid "Note that locking is _not_ a replacement for reference counting. Locking is used to keep data structures coherent, while reference counting is a memory management technique.  Usually both are needed, and they are not to be confused with each other."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:776
+#: ../dev_guide/c_style_guide.rst:778
 msgid "Many data structures can indeed have two levels of reference counting, when there are users of different \"classes\".  The subclass count counts the number of subclass users, and decrements the global count just once when the subclass count goes to zero."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:781
+#: ../dev_guide/c_style_guide.rst:783
 msgid "Examples of this kind of \"multi-level-reference-counting\" can be found in memory management (\"struct mm_struct\": mm_users and mm_count), and in filesystem code (\"struct super_block\": s_count and s_active)."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:785
+#: ../dev_guide/c_style_guide.rst:787
 msgid "Remember: if another thread can find your data structure, and you don't have a reference count on it, you almost certainly have a bug."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:790
+#: ../dev_guide/c_style_guide.rst:792
 msgid "Chapter 12: Macros, Enums and RTL"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:792
+#: ../dev_guide/c_style_guide.rst:794
 msgid "Names of macros defining constants and labels in enums are capitalized."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:794
+#: ../dev_guide/c_style_guide.rst:796
 msgid "#define CONSTANT 0x12345"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:798
+#: ../dev_guide/c_style_guide.rst:800
 msgid "Enums are preferred when defining several related constants."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:800
+#: ../dev_guide/c_style_guide.rst:802
 msgid "CAPITALIZED macro names are appreciated but macros resembling functions may be named in lower case."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:803
+#: ../dev_guide/c_style_guide.rst:805
 msgid "Generally, inline functions are preferable to macros resembling functions."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:805
+#: ../dev_guide/c_style_guide.rst:807
 msgid "Macros with multiple statements should be enclosed in a do - while block:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:807
+#: ../dev_guide/c_style_guide.rst:809
 msgid "#define macrofun(a, b, c)   \\\n"
 "    do {                    \\\n"
 "        if (a == 5)         \\\n"
@@ -1788,15 +1945,15 @@ msgid "#define macrofun(a, b, c)   \\\n"
 "    } while (0)"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:815
+#: ../dev_guide/c_style_guide.rst:817
 msgid "Things to avoid when using macros:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:817
+#: ../dev_guide/c_style_guide.rst:819
 msgid "macros that affect control flow:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:819
+#: ../dev_guide/c_style_guide.rst:821
 msgid "#define FOO(x)                  \\\n"
 "    do {                        \\\n"
 "        if (blah(x) < 0)        \\\n"
@@ -1804,174 +1961,174 @@ msgid "#define FOO(x)                  \\\n"
 "    } while(0)"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:827
+#: ../dev_guide/c_style_guide.rst:829
 msgid "is a _very_ bad idea.  It looks like a function call but exits the \"calling\" function; don't break the internal parsers of those who will read the code."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:830
+#: ../dev_guide/c_style_guide.rst:832
 msgid "macros that depend on having a local variable with a magic name:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:832
+#: ../dev_guide/c_style_guide.rst:834
 msgid "#define FOO(val) bar(index, val)"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:836
+#: ../dev_guide/c_style_guide.rst:838
 msgid "might look like a good thing, but it's confusing as hell when one reads the code and it's prone to breakage from seemingly innocent changes."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:839
+#: ../dev_guide/c_style_guide.rst:841
 msgid "macros with arguments that are used as l-values: FOO(x) = y; will bite you if somebody e.g. turns FOO into an inline function."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:842
+#: ../dev_guide/c_style_guide.rst:844
 msgid "forgetting about precedence: macros defining constants using expressions must enclose the expression in parentheses. Beware of similar issues with macros using parameters."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:846
+#: ../dev_guide/c_style_guide.rst:848
 msgid "#define CONSTANT 0x4000\n"
 "#define CONSTEXP (CONSTANT | 3)"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:851
+#: ../dev_guide/c_style_guide.rst:853
 msgid "The cpp manual deals with macros exhaustively. The gcc internals manual also covers RTL which is used frequently with assembly language in the kernel."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:856
+#: ../dev_guide/c_style_guide.rst:858
 msgid "Chapter 13: Printing kernel messages"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:858
+#: ../dev_guide/c_style_guide.rst:860
 msgid "Kernel developers like to be seen as literate. Do mind the spelling of kernel messages to make a good impression. Do not use crippled words like \"dont\"; use \"do not\" or \"don't\" instead.  Make the messages concise, clear, and unambiguous."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:863
+#: ../dev_guide/c_style_guide.rst:865
 msgid "Kernel messages do not have to be terminated with a period."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:865
+#: ../dev_guide/c_style_guide.rst:867
 msgid "Printing numbers in parentheses (%d) adds no value and should be avoided."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:867
+#: ../dev_guide/c_style_guide.rst:869
 msgid "There are a number of driver model diagnostic macros in <linux/device.h> which you should use to make sure messages are matched to the right device and driver, and are tagged with the right level:  dev_err(), dev_warn(), dev_info(), and so forth.  For messages that aren't associated with a particular device, <linux/kernel.h> defines pr_debug() and pr_info()."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:873
+#: ../dev_guide/c_style_guide.rst:875
 msgid "Coming up with good debugging messages can be quite a challenge; and once you have them, they can be a huge help for remote troubleshooting.  Such messages should be compiled out when the DEBUG symbol is not defined (that is, by default they are not included).  When you use dev_dbg() or pr_debug(), that's automatic.  Many subsystems have Kconfig options to turn on -DDEBUG. A related convention uses VERBOSE_DEBUG to add dev_vdbg() messages to the ones already enabled by DEBUG."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:883
+#: ../dev_guide/c_style_guide.rst:885
 msgid "Chapter 14: Allocating memory"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:885
+#: ../dev_guide/c_style_guide.rst:887
 msgid "The kernel provides the following general purpose memory allocators: kmalloc(), kzalloc(), kcalloc(), and vmalloc().  Please refer to the API documentation for further information about them."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:889
+#: ../dev_guide/c_style_guide.rst:891
 msgid "The preferred form for passing a size of a struct is the following:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:891
+#: ../dev_guide/c_style_guide.rst:893
 msgid "p = kmalloc(sizeof(*p), ...);"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:895
+#: ../dev_guide/c_style_guide.rst:897
 msgid "The alternative form where struct name is spelled out hurts readability and introduces an opportunity for a bug when the pointer variable type is changed but the corresponding sizeof that is passed to a memory allocator is not."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:899
+#: ../dev_guide/c_style_guide.rst:901
 msgid "Casting the return value which is a void pointer is redundant. The conversion from void pointer to any other pointer type is guaranteed by the C programming language."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:905
+#: ../dev_guide/c_style_guide.rst:907
 msgid "Chapter 15: The inline disease"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:907
+#: ../dev_guide/c_style_guide.rst:909
 msgid "There appears to be a common misperception that gcc has a magic \"make me faster\" speedup option called \"inline\". While the use of inlines can be appropriate (for example as a means of replacing macros, see Chapter 12), it very often is not. Abundant use of the inline keyword leads to a much bigger kernel, which in turn slows the system as a whole down, due to a bigger icache footprint for the CPU and simply because there is less memory available for the pagecache. Just think about it; a pagecache miss causes a disk seek, which easily takes 5 milliseconds. There are a LOT of cpu cycles that can go into these 5 milliseconds."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:917
+#: ../dev_guide/c_style_guide.rst:919
 msgid "A reasonable rule of thumb is to not put inline at functions that have more than 3 lines of code in them. An exception to this rule are the cases where a parameter is known to be a compiletime constant, and as a result of this constantness you *know* the compiler will be able to optimize most of your function away at compile time. For a good example of this later case, see the kmalloc() inline function."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:924
+#: ../dev_guide/c_style_guide.rst:926
 msgid "Often people argue that adding inline to functions that are static and used only once is always a win since there is no space tradeoff. While this is technically correct, gcc is capable of inlining these automatically without help, and the maintenance issue of removing the inline when a second user appears outweighs the potential value of the hint that tells gcc to do something it would have done anyway."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:933
+#: ../dev_guide/c_style_guide.rst:935
 msgid "Chapter 16: Function return values and names"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:935
+#: ../dev_guide/c_style_guide.rst:937
 msgid "Functions can return values of many different kinds, and one of the most common is a value indicating whether the function succeeded or failed.  Such a value can be represented as an error-code integer (-Exxx = failure, 0 = success) or a \"succeeded\" boolean (0 = failure, non-zero = success)."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:941
+#: ../dev_guide/c_style_guide.rst:943
 msgid "Mixing up these two sorts of representations is a fertile source of difficult-to-find bugs.  If the C language included a strong distinction between integers and booleans then the compiler would find these mistakes for us... but it doesn't.  To help prevent such bugs, always follow this convention:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:949
+#: ../dev_guide/c_style_guide.rst:951
 msgid "If the name of a function is an action or an imperative command,\n"
 "the function should return an error-code integer.  If the name\n"
 "is a predicate, the function should return a \"succeeded\" boolean."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:953
+#: ../dev_guide/c_style_guide.rst:955
 msgid "For example, \"add work\" is a command, and the add_work() function returns 0 for success or -EBUSY for failure.  In the same way, \"PCI device present\" is a predicate, and the pci_dev_present() function returns 1 if it succeeds in finding a matching device or 0 if it doesn't."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:958
+#: ../dev_guide/c_style_guide.rst:960
 msgid "All EXPORTed functions must respect this convention, and so should all public functions.  Private (static) functions need not, but it is recommended that they do."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:962
+#: ../dev_guide/c_style_guide.rst:964
 msgid "Functions whose return value is the actual result of a computation, rather than an indication of whether the computation succeeded, are not subject to this rule.  Generally they indicate failure by returning some out-of-range result.  Typical examples would be functions that return pointers; they use NULL or the ERR_PTR mechanism to report failure."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:971
+#: ../dev_guide/c_style_guide.rst:973
 msgid "Chapter 17:  Don't re-invent the kernel macros"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:973
+#: ../dev_guide/c_style_guide.rst:975
 msgid "The header file include/linux/kernel.h contains a number of macros that you should use, rather than explicitly coding some variant of them yourself. For example, if you need to calculate the length of an array, take advantage of the macro"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:978
+#: ../dev_guide/c_style_guide.rst:980
 msgid "#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:982
+#: ../dev_guide/c_style_guide.rst:984
 msgid "Similarly, if you need to calculate the size of some structure member, use"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:984
+#: ../dev_guide/c_style_guide.rst:986
 msgid "#define FIELD_SIZEOF(t, f) (sizeof(((t*)0)->f))"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:988
+#: ../dev_guide/c_style_guide.rst:990
 msgid "There are also min() and max() macros that do strict type checking if you need them.  Feel free to peruse that header file to see what else is already defined that you shouldn't reproduce in your code."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:994
+#: ../dev_guide/c_style_guide.rst:996
 msgid "Chapter 18:  Editor modelines and other cruft"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:996
+#: ../dev_guide/c_style_guide.rst:998
 msgid "Some editors can interpret configuration information embedded in source files, indicated with special markers.  For example, emacs interprets lines marked like this:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1000
+#: ../dev_guide/c_style_guide.rst:1002
 msgid "-*- mode: c -*-"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1004
+#: ../dev_guide/c_style_guide.rst:1006
 msgid "Or like this:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1006
+#: ../dev_guide/c_style_guide.rst:1008
 msgid "/*\n"
 "Local Variables:\n"
 "compile-command: \"gcc -DMAGIC_DEBUG_FLAG foo.c\"\n"
@@ -1979,39 +2136,39 @@ msgid "/*\n"
 "*/"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1014
+#: ../dev_guide/c_style_guide.rst:1016
 msgid "Vim interprets markers that look like this:"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1016
+#: ../dev_guide/c_style_guide.rst:1018
 msgid "/* vim:set sw=8 noet */"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1020
+#: ../dev_guide/c_style_guide.rst:1022
 msgid "Do not include any of these in source files.  People have their own personal editor configurations, and your source files should not override them.  This includes markers for indentation and mode configuration.  People may use their own custom mode, or may have some other magic method for making indentation work correctly."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1028
+#: ../dev_guide/c_style_guide.rst:1030
 msgid "Appendix I: References"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1030
-msgid "`The C Programming Language, Second Edition <http://cm.bell-labs.com/cm/cs/cbook/>`_ by Brian W. Kernighan and Dennis M. Ritchie. |br| Prentice Hall, Inc., 1988. |br| ISBN 0-13-110362-8 (paperback), 0-13-110370-9 (hardback)."
+#: ../dev_guide/c_style_guide.rst:1032
+msgid "`The C Programming Language, Second Edition <https://en.wikipedia.org/wiki/The_C_Programming_Language>`_ by Brian W. Kernighan and Dennis M. Ritchie. |br| Prentice Hall, Inc., 1988. |br| ISBN 0-13-110362-8 (paperback), 0-13-110370-9 (hardback)."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1035
-msgid "`The Practice of Programming <http://cm.bell-labs.com/cm/cs/tpop/>`_ by Brian W. Kernighan and Rob Pike. |br| Addison-Wesley, Inc., 1999. |br| ISBN 0-201-61586-X."
+#: ../dev_guide/c_style_guide.rst:1037
+msgid "`The Practice of Programming <https://en.wikipedia.org/wiki/The_Practice_of_Programming>`_ by Brian W. Kernighan and Rob Pike. |br| Addison-Wesley, Inc., 1999. |br| ISBN 0-201-61586-X."
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1040
+#: ../dev_guide/c_style_guide.rst:1042
 msgid "`GNU manuals <http://www.gnu.org/manual/>`_ - where in compliance with K&R and this text - for **cpp**, **gcc**, **gcc internals** and **indent**"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1043
+#: ../dev_guide/c_style_guide.rst:1045
 msgid "`WG14 International standardization workgroup for the programming language C <http://www.open-std.org/JTC1/SC22/WG14/>`_"
 msgstr ""
 
-#: ../dev_guide/c_style_guide.rst:1046
+#: ../dev_guide/c_style_guide.rst:1048
 msgid "`Kernel CodingStyle, by greg@kroah.com at OLS 2002 <http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/html/>`_"
 msgstr ""
 
@@ -2049,6 +2206,198 @@ msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:51
 msgid "delete the remote branch."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:30
+msgid "Documentation guidelines"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:32
+msgid "These guidelines are updated on the on-demand basis, covering only those issues that cause pains to the existing writers. At this point, we do not aim to come up with an exhaustive Documentation Style Guide for the Tarantool project."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:38
+msgid "Markup issues"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:42
+msgid "Wrapping text"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:44
+msgid "The limit is 80 characters per line for plain text, and no limit for any other constructions when wrapping affects ReST readability and/or HTML output. Also, it makes no sense to wrap text into lines shorter than 80 characters unless you have a good reason to do so."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:49
+msgid "The 80-character limit comes from the ISO/ANSI 80x24 screen resolution, and it's unlikely that readers/writers will use 80-character consoles. Yet it's still a standard for many coding guidelines (including Tarantool). As for writers, the benefit is that an 80-character page guide allows keeping the text window rather narrow most of the time, leaving more space for other applications in a wide-screen environment."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:58
+msgid "Formatting code snippets"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:60
+msgid "For code snippets, we mainly use the ``code-block`` directive with an appropriate highlighting language. The most commonly used highlighting languages are:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:64
+msgid "``.. code-block:: tarantoolsession``"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:65
+msgid "``.. code-block:: console``"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:66
+msgid "``.. code-block:: lua``"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:68
+msgid "For example (a code snippet in Lua):"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:70
+msgid "for page in paged_iter(\"X\", 10) do\n"
+"  print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"  for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:77
+msgid "In rare cases, when we need custom highlight for specific parts of a code snippet and the ``code-block`` directive is not enough, we use the per-line ``codenormal`` directive together with explicit output formatting (defined in :file:`doc/sphinx/_static/sphinx_design.css`)."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:82
+msgid "For example (a tdb session with custom formatting in bold, blue and green):"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:84
+msgid ":codenormal:`$` :codebold:`tarantool example.lua` |br| :codeblue:`(TDB)` |nbsp| :codegreen:`Tarantool debugger v.0.0.3. Type h for help` |br| :codenormal:`example.lua` |br| :codeblue:`(TDB)` |nbsp| :codegreen:`[example.lua]` |br| :codeblue:`(TDB)` |nbsp| :codenormal:`3: i = 1` |br| :codeblue:`(TDB)>` |br|"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:93
+msgid "Making comments"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:95
+msgid "Sometimes we may need to leave comments in a ReST file. To make sphinx ignore some text during processing, use the following per-line notation with \".. //\" as the comment marker:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:101
+msgid "`The notation example is excluded from HTML output, so please see the source in ReST.`"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:104
+msgid "The starting symbols \".. //\" do not interfere with the other ReST markup, and they are easy to find both visually and using grep. There are no symbols to escape in grep search, just go ahead with something like this:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:108
+msgid "grep \".. //\" doc/sphinx/dev_guide/*.rst"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:112
+msgid "These comments don't work properly in nested documentation, though (e.g. if you leave a comment in module -> object -> method, sphinx ignores the comment and all nested content that follows in the method description)."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:118
+msgid "Language and style issues"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:122
+msgid "US vs British spelling"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:124
+msgid "We use English US spelling."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:128
+msgid "Examples and templates"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:132
+msgid "Module and function"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:134
+msgid "Here is an example of documenting a module (``my_fiber``) and a function (``my_fiber.create``)."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:141
+msgid "Create and start a ``my_fiber`` object. The object is created and begins to run immediately."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:144
+msgid "the function to be associated with the ``my_fiber`` object"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:145
+msgid "what will be passed to function"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:147
+msgid "created ``my_fiber`` object"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:148
+msgid "userdata"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:150
+#: ../dev_guide/documentation_guidelines.rst:188
+msgid "**Example:**"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:152
+msgid "tarantool> my_fiber = require('my_fiber')\n"
+"---\n"
+"...\n"
+"tarantool> function function_name()\n"
+"         >   my_fiber.sleep(1000)\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> my_fiber_object = my_fiber.create(function_name)\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:168
+msgid "Module, class and method"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:170
+msgid "Here is an example of documenting a module (``my_box.index``), a class (``my_index_object``) and a function (``my_index_object.rename``)."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:179
+msgid "Rename an index."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:181
+msgid "an object reference"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:182
+msgid "a new name for the index (type = string)"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:184
+msgid "nil"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:186
+msgid "Possible errors: index_object does not exist."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:190
+msgid "tarantool> box.space.space55.index.primary:rename('secondary')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:196
+msgid "Complexity Factors: Index size, Index type, Number of tuples accessed."
 msgstr ""
 
 #: ../dev_guide/index.rst:28
