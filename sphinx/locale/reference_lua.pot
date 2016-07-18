@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 19:34+0300\n"
+"POT-Creation-Date: 2016-07-18 11:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgid "Package `box`"
 msgstr ""
 
 #: ../reference_lua/box.rst:30
-msgid "The contents of the ``box`` library can be inspected at runtime with ``box``, with no arguments. The packages inside the box library are: ``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``net.box``, ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``. Every package contains one or more Lua functions. A few packages contain members as well as functions. The functions allow data definition (create alter drop), data manipulation (insert delete update upsert select replace), and introspection (inspecting contents of spaces, accessing server configuration)."
+msgid "The contents of the ``box`` library can be inspected at runtime with ``box``, with no arguments. The packages inside the box library are: ``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``. Every package contains one or more Lua functions. A few packages contain members as well as functions. The functions allow data definition (create alter drop), data manipulation (insert delete update upsert select replace), and introspection (inspecting contents of spaces, accessing server configuration)."
 msgstr ""
 
 #: ../reference_lua/box_error.rst:28
