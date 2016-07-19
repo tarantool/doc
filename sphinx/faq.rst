@@ -36,7 +36,7 @@
         +---------+--------------------------------------------------------------------------------------+
         | Q: |br| | What are your development plans? |br|                                                |
         | A: |br| | We continuously improve server performance. On the feature front, automatic          |
-        |         | sharding and bsync (bidirectional file synchronization)                              |
+        |         | sharding and synchronization,                                                        |
         |         | and a subset of SQL are the major goals for 2016.                                    |
         |         | We have an open roadmap to which we encourage anyone to add feature requests.        |
         +---------+--------------------------------------------------------------------------------------+
