@@ -163,8 +163,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Note re storage engine: vinyl supports only the TREE index type,
         and supports only one index per space,
-        and supports only the unique = true option,
-        and requires that field numbers be in order starting with 1.
+        and supports only the unique = true option.
 
         .. code-block:: tarantoolsession
 
@@ -210,8 +209,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Possible errors: If a tuple with the same unique-key value already exists,
         returns :errcode:`ER_TUPLE_FOUND`.
-
-        Note re storage engine: vinyl will return nil, rather than the inserted tuple.
 
         **Example:**
 
@@ -397,8 +394,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         **Complexity Factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
 
-        Note re storage engine: vinyl will return nil, rather than the inserted tuple.
-
         **Example:**
 
         .. code-block:: lua
@@ -454,8 +449,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Complexity Factors:** Index size, Index type, number of indexes accessed, WAL
         settings.
-
-        Note re storage engine: vinyl will return nil, rather than the updated tuple.
 
         Thus, in the instruction:
 
