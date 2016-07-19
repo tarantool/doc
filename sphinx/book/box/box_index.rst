@@ -383,7 +383,7 @@ API is a direct binding to corresponding methods of index objects of type
 
     .. _box_index-select:
 
-    .. method:: select(key, options)
+    .. method:: select(search-key, options)
 
         This is an alternative to :ref:`box.space...select() <box_space-select>`
         which goes via a particular index and can make use of additional
@@ -394,7 +394,7 @@ API is a direct binding to corresponding methods of index objects of type
         Parameters:
 
         * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
-        * :samp:`field-value(s)` = values to be matched against the index key;
+        * :samp:`search-key` = values to be matched against the index key;
         * :samp:`option(s)` any or all of
             * :samp:`iterator = {iterator-type}`,
             * :samp:`limit = {maximum-number-of-tuples}`,
@@ -460,6 +460,8 @@ API is a direct binding to corresponding methods of index objects of type
             ``box.space.tester:select{}`` will select every tuple in the tester
             space via the first (primary-key) index.
 
+.. _box_index-note:
+
         .. NOTE::
 
             :samp:`box.space.{space-name}.index.{index-name}:select(...)[1]``. can be
@@ -517,6 +519,33 @@ API is a direct binding to corresponding methods of index objects of type
                      > })
             ---
             - - ['Tuple with bit value = 01', 1]
+            ...
+
+    .. _box_index-get:
+
+    .. method:: get(key)
+
+        Search for a tuple via the given index, as described :ref:`earlier <box_index-note>`.
+
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index key,
+        which may be multi-part.
+
+        :return: the tuple whose index-key fields are equal to the passed key values.
+        :rtype:  tuple
+
+        Possible errors: No such index; wrong type; more than one tuple matches.
+
+        Complexity Factors: Index size, Index type.
+        See also :ref:`space_object:get() <box_space-get>`.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester.index.primary:get(2)
+            ---
+            - [2, 'Music']
             ...
 
     .. _box_index-min:
