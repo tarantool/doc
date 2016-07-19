@@ -1,7 +1,7 @@
 {% import "menu" as menu with context %}
 
 {% set script_files = script_files %}
-{% set css_files = ['/theme/design.css', '/theme/pygmentize.css'] + css_files %}
+{% set css_files = ['/theme/design.css', '/theme/pygmentize.css', '/theme/font-awesome.min.css'] + css_files %}
 
 <!doctype html>
 <html>
@@ -13,9 +13,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/theme/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/theme/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/theme/favicon/favicon-16x16.png">
-    <link rel="stylesheet"    href="/theme/design.css" />
-    <link rel="stylesheet"    href="/theme/pygmentize.css" />
-    <link rel="stylesheet"    href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '{{ url_root }}',
