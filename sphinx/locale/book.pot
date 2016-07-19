@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-18 11:33+0300\n"
+"POT-Creation-Date: 2016-07-19 11:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2725,14 +2725,14 @@ msgstr ""
 #: ../book/box/box_space.rst:740
 #: ../book/box/box_space.rst:763
 #: ../book/box/box_space.rst:783
-#: ../book/box/box_space.rst:806
-#: ../book/box/box_space.rst:837
-#: ../book/box/box_space.rst:877
-#: ../book/box/box_space.rst:923
-#: ../book/box/box_space.rst:947
-#: ../book/box/box_space.rst:983
-#: ../book/box/box_space.rst:1023
-#: ../book/box/box_space.rst:1067
+#: ../book/box/box_space.rst:808
+#: ../book/box/box_space.rst:839
+#: ../book/box/box_space.rst:879
+#: ../book/box/box_space.rst:925
+#: ../book/box/box_space.rst:949
+#: ../book/box/box_space.rst:985
+#: ../book/box/box_space.rst:1025
+#: ../book/box/box_space.rst:1069
 #: ../book/box/box_tuple.rst:59
 #: ../book/box/triggers.rst:82
 #: ../book/box/triggers.rst:109
@@ -3552,7 +3552,7 @@ msgid "this method returns an iterator closure, i.e. a function which can be use
 msgstr ""
 
 #: ../book/box/box_index.rst:122
-#: ../book/box/box_space.rst:945
+#: ../book/box/box_space.rst:947
 msgid "function, tuple"
 msgstr ""
 
@@ -4031,7 +4031,7 @@ msgstr ""
 #: ../book/box/box_space.rst:415
 #: ../book/box/box_space.rst:476
 #: ../book/box/box_space.rst:649
-#: ../book/box/box_space.rst:916
+#: ../book/box/box_space.rst:918
 #: ../book/box/box_tuple.rst:53
 #: ../book/box/box_tuple.rst:197
 #: ../book/box/box_tuple.rst:198
@@ -4124,8 +4124,8 @@ msgstr ""
 #: ../book/box/box_session.rst:46
 #: ../book/box/box_session.rst:71
 #: ../book/box/box_space.rst:175
-#: ../book/box/box_space.rst:833
-#: ../book/box/box_space.rst:873
+#: ../book/box/box_space.rst:835
+#: ../book/box/box_space.rst:875
 #: ../book/box/box_tuple.rst:85
 #: ../book/box/box_tuple.rst:110
 #: ../book/box/box_tuple.rst:159
@@ -4203,7 +4203,7 @@ msgstr ""
 #: ../book/box/box_schema.rst:344
 #: ../book/box/box_space.rst:363
 #: ../book/box/box_space.rst:385
-#: ../book/box/box_space.rst:802
+#: ../book/box/box_space.rst:804
 #: ../book/box/index.rst:178
 #: ../book/box/index.rst:178
 #: ../book/box/triggers.rst:177
@@ -5649,7 +5649,7 @@ msgstr ""
 #: ../book/box/box_space.rst:338
 #: ../book/box/box_space.rst:367
 #: ../book/box/box_space.rst:422
-#: ../book/box/box_space.rst:918
+#: ../book/box/box_space.rst:920
 msgid "**Complexity Factors:** Index size, Index type, Number of indexes accessed, WAL settings."
 msgstr ""
 
@@ -5671,8 +5671,8 @@ msgstr ""
 #: ../book/box/box_space.rst:719
 #: ../book/box/box_space.rst:736
 #: ../book/box/box_space.rst:779
-#: ../book/box/box_space.rst:798
-#: ../book/box/box_space.rst:942
+#: ../book/box/box_space.rst:800
+#: ../book/box/box_space.rst:944
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`."
 msgstr ""
 
@@ -5706,7 +5706,7 @@ msgid "Insert a tuple into a space. If a tuple with the same primary key already
 msgstr ""
 
 #: ../book/box/box_space.rst:414
-#: ../book/box/box_space.rst:915
+#: ../book/box/box_space.rst:917
 msgid "the inserted tuple."
 msgstr ""
 
@@ -6019,18 +6019,18 @@ msgid "tarantool> box.space.tester:len()\n"
 msgstr ""
 
 #: ../book/box/box_space.rst:796
-msgid "Deletes all tuples."
+msgid "Deletes all tuples. Note that ``truncate`` must be called only by the user who created the space OR under a `setuid` function created by that user. Read more about `setuid` functions :ref:`here <authentication-funcs>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:800
+#: ../book/box/box_space.rst:802
 msgid "**Complexity Factors:** Index size, Index type, Number of tuples accessed."
 msgstr ""
 
-#: ../book/box/box_space.rst:804
+#: ../book/box/box_space.rst:806
 msgid "Note re storage engine: vinyl does not support ``truncate``."
 msgstr ""
 
-#: ../book/box/box_space.rst:808
+#: ../book/box/box_space.rst:810
 msgid "tarantool> box.space.tester:truncate()\n"
 "---\n"
 "...\n"
@@ -6040,25 +6040,25 @@ msgid "tarantool> box.space.tester:truncate()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:822
+#: ../book/box/box_space.rst:824
 msgid "Increments a counter in a tuple whose primary key matches the field-value(s). The field following the primary-key fields will be the counter. If there is no tuple matching the ``field-value(s)``, a new one is inserted with initial counter value set to ``1``."
 msgstr ""
 
-#: ../book/box/box_space.rst:829
-#: ../book/box/box_space.rst:869
+#: ../book/box/box_space.rst:831
+#: ../book/box/box_space.rst:871
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`field-value(s)` (type = Lua table or scalar) = values which must match the primary key."
 msgstr ""
 
-#: ../book/box/box_space.rst:832
-#: ../book/box/box_space.rst:872
+#: ../book/box/box_space.rst:834
+#: ../book/box/box_space.rst:874
 msgid "the new counter value"
 msgstr ""
 
-#: ../book/box/box_space.rst:835
+#: ../book/box/box_space.rst:837
 msgid "**Complexity Factors:** Index size, Index type, WAL settings."
 msgstr ""
 
-#: ../book/box/box_space.rst:839
+#: ../book/box/box_space.rst:841
 msgid "tarantool> s = box.schema.space.create('forty_second_space')\n"
 "---\n"
 "...\n"
@@ -6078,15 +6078,15 @@ msgid "tarantool> s = box.schema.space.create('forty_second_space')\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:863
+#: ../book/box/box_space.rst:865
 msgid "Decrements a counter in a tuple whose primary key matches the ``field-value(s)``. The field following the primary-key fields will be the counter. If there is no tuple matching the ``field-value(s)``, a new one is not inserted. If the counter value drops to zero, the tuple is deleted."
 msgstr ""
 
-#: ../book/box/box_space.rst:875
+#: ../book/box/box_space.rst:877
 msgid "**Complexity factors:** Index size, Index type, WAL settings."
 msgstr ""
 
-#: ../book/box/box_space.rst:879
+#: ../book/box/box_space.rst:881
 msgid "tarantool> s = box.schema.space.create('space19')\n"
 "---\n"
 "...\n"
@@ -6110,19 +6110,19 @@ msgid "tarantool> s = box.schema.space.create('space19')\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:907
+#: ../book/box/box_space.rst:909
 msgid "Insert a new tuple using an auto-increment primary key. The space specified by space_object must have a ``NUM`` primary key index of type ``TREE``. The primary-key field will be incremented before the insert. Note re storage engine: vinyl does not support auto_increment."
 msgstr ""
 
-#: ../book/box/box_space.rst:912
+#: ../book/box/box_space.rst:914
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`field-value(s)` (type = Lua table or scalar) = tuple's fields, other than the primary-key field."
 msgstr ""
 
-#: ../book/box/box_space.rst:921
+#: ../book/box/box_space.rst:923
 msgid "Possible errors: index has wrong type or primary-key indexed field is not a number."
 msgstr ""
 
-#: ../book/box/box_space.rst:925
+#: ../book/box/box_space.rst:927
 msgid "tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}\n"
 "---\n"
 "- [1, 'Fld#1', 'Fld#2']\n"
@@ -6133,15 +6133,15 @@ msgid "tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:940
+#: ../book/box/box_space.rst:942
 msgid "A helper function to prepare for iterating over all tuples in a space."
 msgstr ""
 
-#: ../book/box/box_space.rst:944
+#: ../book/box/box_space.rst:946
 msgid "function which can be used in a for/end loop. Within the loop, a value is returned for each iteration."
 msgstr ""
 
-#: ../book/box/box_space.rst:949
+#: ../book/box/box_space.rst:951
 msgid "tarantool> s = box.schema.space.create('space33')\n"
 "---\n"
 "...\n"
@@ -6168,15 +6168,15 @@ msgid "tarantool> s = box.schema.space.create('space33')\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:980
+#: ../book/box/box_space.rst:982
 msgid "``_schema`` is a system tuple set. Its single tuple contains these fields: ``'version', major-version-number, minor-version-number``."
 msgstr ""
 
-#: ../book/box/box_space.rst:985
+#: ../book/box/box_space.rst:987
 msgid "The following function will display all fields in all tuples of ``_schema``:"
 msgstr ""
 
-#: ../book/box/box_space.rst:987
+#: ../book/box/box_space.rst:989
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line\n"
@@ -6193,13 +6193,13 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:1004
-#: ../book/box/box_space.rst:1046
-#: ../book/box/box_space.rst:1139
+#: ../book/box/box_space.rst:1006
+#: ../book/box/box_space.rst:1048
+#: ../book/box/box_space.rst:1141
 msgid "Here is what ``example()`` returns in a typical installation:"
 msgstr ""
 
-#: ../book/box/box_space.rst:1006
+#: ../book/box/box_space.rst:1008
 msgid "tarantool> example()\n"
 "---\n"
 "- - 'cluster 1ec4e1f8-8f1b-4304-bb22-6c47ce0cf9c6 '\n"
@@ -6208,15 +6208,15 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1019
+#: ../book/box/box_space.rst:1021
 msgid "``_space`` is a system tuple set. Its tuples contain these fields: ``id``, ``uid``, ``space-name``, ``engine``, ``field_count``, ``temporary``, ``format``. These fields are established by :ref:`space.create() <box_schema-space_create>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1025
+#: ../book/box/box_space.rst:1027
 msgid "The following function will display all simple fields in all tuples of ``_space``."
 msgstr ""
 
-#: ../book/box/box_space.rst:1027
+#: ../book/box/box_space.rst:1029
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line\n"
@@ -6235,7 +6235,7 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:1048
+#: ../book/box/box_space.rst:1050
 msgid "tarantool> example()\n"
 "---\n"
 "- - '272 1 _schema memtx 0  '\n"
@@ -6254,11 +6254,11 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1069
+#: ../book/box/box_space.rst:1071
 msgid "The following requests will create a space using ``box.schema.space.create`` with a ``format`` clause. Then it retrieves the _space tuple for the new space. This illustrates the typical use of the ``format`` clause, it shows the recommended names and data types for the fields."
 msgstr ""
 
-#: ../book/box/box_space.rst:1075
+#: ../book/box/box_space.rst:1077
 msgid "tarantool> box.schema.space.create('TM', {\n"
 "         >   format = {\n"
 "         >     [1] = {[\"name\"] = \"field#1\"},\n"
@@ -6282,15 +6282,15 @@ msgid "tarantool> box.schema.space.create('TM', {\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1103
+#: ../book/box/box_space.rst:1105
 msgid "``_index`` is a system tuple set. Its tuples contain these fields: ``space-id index-id index-name index-type is-index-unique [tuple-field-no, tuple-field-type ...]``."
 msgstr ""
 
-#: ../book/box/box_space.rst:1107
+#: ../book/box/box_space.rst:1109
 msgid "The following function will display all fields in all tuples of ``_index``: (notice that the fifth field gets special treatment as a map value and the sixth or later fields get special treatment as arrays):"
 msgstr ""
 
-#: ../book/box/box_space.rst:1111
+#: ../book/box/box_space.rst:1113
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line, value\n"
@@ -6318,7 +6318,7 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:1141
+#: ../book/box/box_space.rst:1143
 msgid "tarantool> example()\n"
 "---\n"
 "- - '272 0 primary tree true 0 str '\n"
@@ -6358,27 +6358,27 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1185
+#: ../book/box/box_space.rst:1187
 msgid "``_user`` is a system tuple set for support of the :ref:`authorization feature <authentication>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1192
+#: ../book/box/box_space.rst:1194
 msgid "``_priv`` is a system tuple set for support of the :ref:`authorization feature <authentication>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1199
+#: ../book/box/box_space.rst:1201
 msgid "``_cluster`` is a system tuple set for support of the :ref:`replication feature <index-box_replication>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1204
+#: ../book/box/box_space.rst:1206
 msgid "Example: use box.space functions to read _space tuples"
 msgstr ""
 
-#: ../book/box/box_space.rst:1206
+#: ../book/box/box_space.rst:1208
 msgid "This function will illustrate how to look at all the spaces, and for each display: approximately how many tuples it contains, and the first field of its first tuple. The function uses Tarantool ``box.space`` functions ``len()`` and ``pairs()``. The iteration through the spaces is coded as a scan of the ``_space`` system tuple set, which contains metadata. The third field in ``_space`` contains the space name, so the key instruction ``space_name = v[3]`` means ``space_name`` is the ``space_name`` field in the tuple of ``_space`` that we've just fetched with ``pairs()``. The function returns a table:"
 msgstr ""
 
-#: ../book/box/box_space.rst:1216
+#: ../book/box/box_space.rst:1218
 msgid "function example()\n"
 "  local tuple_count, space_name, line\n"
 "  local ta = {}\n"
@@ -6402,11 +6402,11 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:1240
+#: ../book/box/box_space.rst:1242
 msgid "And here is what happens when one invokes the function:"
 msgstr ""
 
-#: ../book/box/box_space.rst:1242
+#: ../book/box/box_space.rst:1244
 msgid "tarantool> example()\n"
 "---\n"
 "- - _schema tuple_count =1 or more. first field in first tuple = cluster\n"
@@ -6424,35 +6424,35 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1262
+#: ../book/box/box_space.rst:1264
 msgid "Example: use box.space functions to organize a _space tuple"
 msgstr ""
 
-#: ../book/box/box_space.rst:1264
+#: ../book/box/box_space.rst:1266
 msgid "The objective is to display field names and field types of a system space -- using metadata to find metadata."
 msgstr ""
 
-#: ../book/box/box_space.rst:1267
+#: ../book/box/box_space.rst:1269
 msgid "To begin: how can one select the _space tuple that describes _space?"
 msgstr ""
 
-#: ../book/box/box_space.rst:1269
+#: ../book/box/box_space.rst:1271
 msgid "A simple way is to look at the constants in box.schema, which tell us that there is an item named SPACE_ID == 288, so these statements will retrieve the correct tuple: |br| :codenormal:`box.space._space:select{288}` |br| or |br| :codenormal:`box.space._space:select{box.schema.SPACE_ID}` |br|"
 msgstr ""
 
-#: ../book/box/box_space.rst:1276
+#: ../book/box/box_space.rst:1278
 msgid "Another way is to look at the tuples in box.space._index, which tell us that there is a secondary index named 'name' for space number 288, so this statement also will retrieve the correct tuple: |br| :codenormal:`box.space._space.index.name:select{'_space'}`"
 msgstr ""
 
-#: ../book/box/box_space.rst:1281
+#: ../book/box/box_space.rst:1283
 msgid "However, the retrieved tuple is not easy to read: |br| :codenormal:`tarantool>` :codebold:`box.space._space.index.name:select{'_space'}` |br| :codenormal:`---` |br| :codenormal:`- - [280, 1, '_space', 'memtx', 0, '', [{'name': 'id',` |br| |nbsp| |nbsp| |nbsp| :codenormal:`'type': 'num'}, {'name': 'owner','type': 'num'},` |br| |nbsp| |nbsp| |nbsp| :codenormal:`{'name': 'name','type': 'str'}, {'name': 'engine',` |br| |nbsp| |nbsp| |nbsp| :codenormal:`'type': 'str'},{'name': 'field_count', 'type': 'num'},` |br| |nbsp| |nbsp| |nbsp| :codenormal:`{'name': 'flags','type': 'str'}, {'name': 'format',` |br| |nbsp| |nbsp| |nbsp| :codenormal:`'type': '*'}]]` |br| |nbsp| |nbsp| |nbsp| :codenormal:`...`"
 msgstr ""
 
-#: ../book/box/box_space.rst:1292
+#: ../book/box/box_space.rst:1294
 msgid "It looks disorganized because field number 7 has been formatted with recommended names and data types. How can one get those specific sub-fields? Since it's visible that field number 7 is an array of maps, this `for` loop will do the organizing: |br| :codenormal:`local tuple_of_space, field_name, field_type` |br| :codenormal:`tuple_of_space = box.space._space.index.name:select{'_space'}[1]` |br| :codenormal:`for i = 1, #tuple_of_space[7], 1` |br| :codenormal:`do` |br| |nbsp| |nbsp| |nbsp| :codenormal:`field_name = tuple_of_space[7][i]['name']` |br| |nbsp| |nbsp| |nbsp| :codenormal:`field_type = tuple_of_space[7][i]['type']` |br| |nbsp| |nbsp| |nbsp| :codenormal:`print(field_name .. ',' ..field_type)` |br| :codenormal:`end`"
 msgstr ""
 
-#: ../book/box/box_space.rst:1306
+#: ../book/box/box_space.rst:1308
 msgid "And here is what happens when one executes the `for` loop: |br| :codenormal:`id,num` |br| :codenormal:`owner,num` |br| :codenormal:`name,str` |br| :codenormal:`engine,str` |br| :codenormal:`field_count,num` |br| :codenormal:`flags,str` |br| :codenormal:`format,*`"
 msgstr ""
 
@@ -7649,30 +7649,22 @@ msgid "With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br| W
 msgstr ""
 
 #: ../book/box/vinyl_diff.rst:56
-msgid "With memtx, field numbers for index parts may be in any order. |br| With vinyl, they must be in order, with no gaps, starting with field number 1."
-msgstr ""
-
-#: ../book/box/vinyl_diff.rst:59
-msgid "With memtx, for index searches, ``nil`` is considered to be equal to any scalar key-part. |br| With vinyl, ``nil`` or missing parts are not allowed."
-msgstr ""
-
-#: ../book/box/vinyl_diff.rst:62
 msgid "With memtx, temporary spaces are supported. |br| With vinyl, they are not."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:65
+#: ../book/box/vinyl_diff.rst:59
 msgid "With memtx, the :ref:`alter() <box_index-alter>` and :ref:`count() <box_index-count>` and :ref:`min() <box_index-min>` and :ref:`max() <box_index-max>` and :ref:`random() <box_index-random>` and :ref:`auto_increment() <box_space-auto_increment>` and :ref:`truncate() <box_space-truncate>` functions are supported. |br| With vinyl, they are not."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:71
-msgid "With memtx, insert and replace and update will return a tuple, if successful. |br| With vinyl, insert and replace and update will return nil."
+#: ../book/box/vinyl_diff.rst:65
+msgid "With memtx, delete will return deleted tuple, if any. |br| With vinyl, delete will always return nil."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:74
+#: ../book/box/vinyl_diff.rst:68
 msgid "It was explained :ref:`earlier <index-yields_must_happen>` that memtx does not \"yield\" on a select request, it yields only on data-change requests. However, vinyl does yield on a select request, or on an equivalent such as get() or pairs(). This has significance for :ref:`cooperative multitasking <atomic-cooperative_multitasking>`."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:79
+#: ../book/box/vinyl_diff.rst:73
 msgid "For more about vinyl, see Appendix E :ref:`vinyl <index-vinyl>`."
 msgstr ""
 
