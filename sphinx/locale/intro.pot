@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-19 11:54+0300\n"
+"POT-Creation-Date: 2016-07-20 10:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgid "**Tarantool's in-memory engine is lock-free** in typical situations. Inst
 msgstr ""
 
 #: ../intro.rst:121
-msgid "**Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems, log-structured merge trees and classical B-trees. All data is organized into **branches**. Each branch is represented by a file on disk. Branch size is a configuration option and normally is around 64MB. Each branch is a collection of pages, serving different purposes. Pages in a fully merged branch contain non-overlapping ranges of keys. A branch can be partially merged if there were a lot of changes in its key range recently. In that case some pages represent new keys and values in the branch. The disk-based storage engine is append only: new data never overwrites old data."
+msgid "**Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems, log-structured merge trees and classical B-trees. All data is organized into **runs**. Each run is represented by a file on disk. Run size is a configuration option and normally is around 64MB. Each run is a collection of pages, serving different purposes. Pages in a fully merged run contain non-overlapping ranges of keys. A run can be partially merged if there were a lot of changes in its key range recently. In that case some pages represent new keys and values in the run. The disk-based storage engine is append only: new data never overwrites old data. The disk-based storage engine is named :ref:`vinyl <index-vinyl>`."
 msgstr ""
 
 #: ../intro.rst:132

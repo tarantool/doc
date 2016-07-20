@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-19 11:54+0300\n"
+"POT-Creation-Date: 2016-07-20 10:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -306,7 +306,7 @@ msgstr ""
 #: ../reference_lua/fio.rst:185
 #: ../reference_lua/fio.rst:487
 #: ../reference_lua/json.rst:84
-#: ../reference_lua/msgpack.rst:51
+#: ../reference_lua/msgpack.rst:55
 #: ../reference_lua/pickle.rst:132
 #: ../reference_lua/socket.rst:161
 #: ../reference_lua/socket.rst:505
@@ -360,7 +360,7 @@ msgstr ""
 #: ../reference_lua/fiber.rst:309
 #: ../reference_lua/fiber.rst:352
 #: ../reference_lua/log.rst:56
-#: ../reference_lua/msgpack.rst:166
+#: ../reference_lua/msgpack.rst:170
 #: ../reference_lua/tap.rst:61
 #: ../reference_lua/tap.rst:72
 #: ../reference_lua/tap.rst:79
@@ -885,7 +885,7 @@ msgstr ""
 #: ../reference_lua/digest.rst:194
 #: ../reference_lua/fiber_ipc.rst:129
 #: ../reference_lua/log.rst:66
-#: ../reference_lua/msgpack.rst:61
+#: ../reference_lua/msgpack.rst:65
 #: ../reference_lua/socket.rst:523
 #: ../reference_lua/tap.rst:202
 #: ../reference_lua/uuid.rst:131
@@ -2162,7 +2162,6 @@ msgid "a string formatted as JSON."
 msgstr ""
 
 #: ../reference_lua/json.rst:83
-#: ../reference_lua/msgpack.rst:50
 #: ../reference_lua/yaml.rst:50
 msgid "the original contents formatted as a Lua table."
 msgstr ""
@@ -2186,7 +2185,7 @@ msgid "tarantool> json = require('json')\n"
 msgstr ""
 
 #: ../reference_lua/json.rst:110
-#: ../reference_lua/msgpack.rst:57
+#: ../reference_lua/msgpack.rst:61
 #: ../reference_lua/yaml.rst:57
 msgid "A value comparable to Lua \"nil\" which may be useful as a placeholder in a tuple."
 msgstr ""
@@ -2318,7 +2317,15 @@ msgstr ""
 msgid "a string formatted as MsgPack."
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:63
+#: ../reference_lua/msgpack.rst:52
+msgid "the original contents formatted as a Lua table;"
+msgstr ""
+
+#: ../reference_lua/msgpack.rst:53
+msgid "the number of bytes that were decoded."
+msgstr ""
+
+#: ../reference_lua/msgpack.rst:67
 msgid "tarantool> msgpack = require('msgpack')\n"
 "---\n"
 "...\n"
@@ -2341,23 +2348,23 @@ msgid "tarantool> msgpack = require('msgpack')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:86
+#: ../reference_lua/msgpack.rst:90
 msgid "The MsgPack output structure can be specified with ``__serialize``:"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:88
+#: ../reference_lua/msgpack.rst:92
 msgid "``__serialize = \"seq\" or \"sequence\"`` for an array"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:89
+#: ../reference_lua/msgpack.rst:93
 msgid "``__serialize = \"map\" or \"mapping\"`` for a map"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:91
+#: ../reference_lua/msgpack.rst:95
 msgid "Serializing 'A' and 'B' with different ``__serialize`` values causes different results. To show this, here is a routine which encodes `{'A','B'}` both as an array and as a map, then displays each result in hexadecimal."
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:95
+#: ../reference_lua/msgpack.rst:99
 msgid "function hexdump(bytes)\n"
 "    local result = ''\n"
 "    for i = 1, #bytes do\n"
@@ -2377,132 +2384,132 @@ msgid "function hexdump(bytes)\n"
 "print('map encoding: ', hexdump(m2))"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:115
+#: ../reference_lua/msgpack.rst:119
 msgid "**Result:**"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:120
+#: ../reference_lua/msgpack.rst:124
 msgid "**array** encoding: 92 a1 41 a1 42\n"
 "**map** encoding:   82 1 a1 41 2 a1 42"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:123
+#: ../reference_lua/msgpack.rst:127
 msgid "The MsgPack Specification_ page explains that the first encoding means:"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:128
+#: ../reference_lua/msgpack.rst:132
 msgid "fixarray(2), fixstr(1), \"A\", fixstr(1), \"B\""
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:130
+#: ../reference_lua/msgpack.rst:134
 msgid "and the second encoding means:"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:135
+#: ../reference_lua/msgpack.rst:139
 msgid "fixmap(2), key(1), fixstr(1), \"A\", key(2), fixstr(2), \"B\"."
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:137
+#: ../reference_lua/msgpack.rst:141
 msgid "Here are examples for all the common types, with the Lua-table representation on the left, with the MsgPack format name and encoding on the right."
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:145
+#: ../reference_lua/msgpack.rst:149
 msgid "**Common Types and MsgPack Encodings**"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:151
+#: ../reference_lua/msgpack.rst:155
 msgid "{}"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:151
+#: ../reference_lua/msgpack.rst:155
 msgid "'fixmap' if metatable is 'map' = 80 otherwise 'fixarray' = 90"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:154
+#: ../reference_lua/msgpack.rst:158
 msgid "'a'"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:154
+#: ../reference_lua/msgpack.rst:158
 msgid "'fixstr' = a1 61"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:156
+#: ../reference_lua/msgpack.rst:160
 msgid "false"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:156
+#: ../reference_lua/msgpack.rst:160
 msgid "'false' = c2"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:158
+#: ../reference_lua/msgpack.rst:162
 msgid "true"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:158
+#: ../reference_lua/msgpack.rst:162
 msgid "'true' = c3"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:160
+#: ../reference_lua/msgpack.rst:164
 msgid "127"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:160
+#: ../reference_lua/msgpack.rst:164
 msgid "'positive fixint' = 7f"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:162
+#: ../reference_lua/msgpack.rst:166
 msgid "65535"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:162
+#: ../reference_lua/msgpack.rst:166
 msgid "'uint 16' = cd ff ff"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:164
+#: ../reference_lua/msgpack.rst:168
 msgid "4294967295"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:164
+#: ../reference_lua/msgpack.rst:168
 msgid "'uint 32' = ce ff ff ff ff"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:166
+#: ../reference_lua/msgpack.rst:170
 msgid "'nil' = c0"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:168
+#: ../reference_lua/msgpack.rst:172
 msgid "msgpack.NULL"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:168
+#: ../reference_lua/msgpack.rst:172
 msgid "same as nil"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:170
+#: ../reference_lua/msgpack.rst:174
 msgid "[0] = 5"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:170
+#: ../reference_lua/msgpack.rst:174
 msgid "'fixmap(1)' + 'positive fixint' (for the key) + 'positive fixint' (for the value) = 81 00 05"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:173
+#: ../reference_lua/msgpack.rst:177
 msgid "[0] = nil"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:173
+#: ../reference_lua/msgpack.rst:177
 msgid "'fixmap(0)' = 80 -- nil is not stored when it is a missing map value"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:176
+#: ../reference_lua/msgpack.rst:180
 msgid "1.5"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:176
+#: ../reference_lua/msgpack.rst:180
 msgid "'float 64' = cb 3f f8 0 0 0 0 0 0"
 msgstr ""
 
-#: ../reference_lua/msgpack.rst:179
+#: ../reference_lua/msgpack.rst:183
 msgid "Also, some MsgPack configuration settings for encoding can be changed, in the same way that they can be changed for :ref:`JSON <json-package_cfg>`."
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-19 11:54+0300\n"
+"POT-Creation-Date: 2016-07-20 10:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgid "What's the key advantage of Tarantool? |br| Tarantool provides a rich dat
 msgstr ""
 
 #: ../faq.rst:62
-msgid "What are your development plans? |br| We continuously improve server performance. On the feature front, automatic sharding and bsync (bidirectional file synchronization) and a subset of SQL are the major goals for 2016. We have an open roadmap to which we encourage anyone to add feature requests."
+msgid "What are your development plans? |br| We continuously improve server performance. On the feature front, automatic sharding and synchronization, and a subset of SQL are the major goals for 2016. We have an open roadmap to which we encourage anyone to add feature requests."
 msgstr ""
 
 #: ../faq.rst:68
