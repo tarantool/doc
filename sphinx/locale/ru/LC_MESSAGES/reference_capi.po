@@ -3,23 +3,24 @@
 # This file is distributed under the same license as the Tarantool package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 19:16+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-07-20 14:11+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../reference_capi/box.rst:28
 msgid "Module `box`"
-msgstr ""
+msgstr "Модуль `box`"
 
 #: ../reference_capi/box.rst:32
 msgid "Opaque structure passed to the stored C procedure"
@@ -43,8 +44,8 @@ msgstr ""
 
 #: ../reference_capi/box.rst:44
 msgid ""
-"-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-"
-"error-box_error_last>`)"
+"-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-error-"
+"box_error_last>`)"
 msgstr ""
 
 #: ../reference_capi/box.rst:46 ../reference_capi/box.rst:90
@@ -72,8 +73,8 @@ msgstr ""
 
 #: ../reference_capi/box.rst:57 ../reference_capi/box.rst:71
 msgid ""
-":c:macro:`BOX_ID_NIL` on error or if not found (check "
-":ref:`box_error_last()<c_api-error-box_error_last>`)"
+":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:"
+"`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
 #: ../reference_capi/box.rst:59 ../reference_capi/box.rst:73
@@ -181,8 +182,8 @@ msgstr ""
 
 #: ../reference_capi/box.rst:133 ../reference_capi/box.rst:155
 msgid ""
-"encoded operations in MsgPack Arrat format, e.g. ``[[ '=', field_id,  "
-"value ], ['!', 2, 'xxx']]``"
+"encoded operations in MsgPack Arrat format, e.g. ``[[ '=', field_id,  value ], "
+"['!', 2, 'xxx']]``"
 msgstr ""
 
 #: ../reference_capi/box.rst:135 ../reference_capi/box.rst:157
@@ -191,8 +192,8 @@ msgstr ""
 
 #: ../reference_capi/box.rst:136 ../reference_capi/box.rst:158
 msgid ""
-"0 if field_ids in update operation are zero-based indexed (like C) or 1 "
-"if for one-based indexed field ids (like Lua)."
+"0 if field_ids in update operation are zero-based indexed (like C) or 1 if for "
+"one-based indexed field ids (like Lua)."
 msgstr ""
 
 #: ../reference_capi/box.rst:145
@@ -213,7 +214,7 @@ msgstr ""
 
 #: ../reference_capi/box_index.rst:28
 msgid "Module `index`"
-msgstr ""
+msgstr "Модуль `index`"
 
 #: ../reference_capi/box_index.rst:32
 msgid "A space iterator"
@@ -221,26 +222,26 @@ msgstr ""
 
 #: ../reference_capi/box_index.rst:38
 msgid ""
-"Controls how to iterate over tuples in an index. Different index types "
-"support different iterator types. For example, one can start iteration "
-"from a particular value (request key) and then retrieve all tuples where "
-"keys are greater or equal (= GE) to this key."
+"Controls how to iterate over tuples in an index. Different index types support "
+"different iterator types. For example, one can start iteration from a "
+"particular value (request key) and then retrieve all tuples where keys are "
+"greater or equal (= GE) to this key."
 msgstr ""
 
 #: ../reference_capi/box_index.rst:43
 msgid ""
 "If iterator type is not supported by the selected index type, iterator "
-"constructor must fail with ER_UNSUPPORTED. To be selectable for primary "
-"key, an index must support at least ITER_EQ and ITER_GE types."
+"constructor must fail with ER_UNSUPPORTED. To be selectable for primary key, an "
+"index must support at least ITER_EQ and ITER_GE types."
 msgstr ""
 
 #: ../reference_capi/box_index.rst:47
 msgid ""
-"NULL value of request key corresponds to the first or last key in the "
-"index, depending on iteration direction. (first key for GE and GT types, "
-"and last key for LE and LT). Therefore, to iterate over all tuples in an "
-"index, one can use ITER_GE or ITER_LE iteration types with start key "
-"equal to NULL. For ITER_EQ, the key must not be NULL."
+"NULL value of request key corresponds to the first or last key in the index, "
+"depending on iteration direction. (first key for GE and GT types, and last key "
+"for LE and LT). Therefore, to iterate over all tuples in an index, one can use "
+"ITER_GE or ITER_LE iteration types with start key equal to NULL. For ITER_EQ, "
+"the key must not be NULL."
 msgstr ""
 
 #: ../reference_capi/box_index.rst:55
@@ -327,8 +328,8 @@ msgstr ""
 
 #: ../reference_capi/box_index.rst:119
 msgid ""
-"See also :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`, "
-":ref:`box_iterator_free<c_api-box_index-box_iterator_free>`"
+"See also :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`, :ref:"
+"`box_iterator_free<c_api-box_index-box_iterator_free>`"
 msgstr ""
 
 #: ../reference_capi/box_index.rst:126
@@ -393,10 +394,10 @@ msgstr ""
 
 #: ../reference_capi/box_index.rst:181
 msgid ""
-"Please note that this function works much more faster than "
-":ref:`index_object.select<box_index-select>` or :ref:`box_index_iterator"
-"<c_api-box_index-box_index_iterator>` + :ref:`box_iterator_next<c_api-"
-"box_index-box_iterator_next>`."
+"Please note that this function works much more faster than :ref:`index_object."
+"select<box_index-select>` or :ref:`box_index_iterator<c_api-box_index-"
+"box_index_iterator>` + :ref:`box_iterator_next<c_api-box_index-"
+"box_iterator_next>`."
 msgstr ""
 
 #: ../reference_capi/box_index.rst:194 ../reference_capi/box_index.rst:210
@@ -441,11 +442,11 @@ msgstr ""
 
 #: ../reference_capi/clock.rst:28
 msgid "Module `clock`"
-msgstr ""
+msgstr "Модуль `clock`"
 
 #: ../reference_capi/coio.rst:28
 msgid "Module `coio`"
-msgstr ""
+msgstr "Модуль `coio`"
 
 #: ../reference_capi/coio.rst:34
 msgid "READ event"
@@ -465,8 +466,7 @@ msgstr ""
 
 #: ../reference_capi/coio.rst:45
 msgid ""
-"requested events to wait. Combination of ``COIO_READ | COIO_WRITE`` bit "
-"flags."
+"requested events to wait. Combination of ``COIO_READ | COIO_WRITE`` bit flags."
 msgstr ""
 
 #: ../reference_capi/coio.rst:47
@@ -479,22 +479,21 @@ msgstr ""
 
 #: ../reference_capi/coio.rst:50
 msgid ""
-">0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit "
-"flags."
+">0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit flags."
 msgstr ""
 
 #: ../reference_capi/coio.rst:54
 msgid ""
-"Create new eio task with specified function and arguments. Yield and wait"
-" until the task is complete or a timeout occurs."
+"Create new eio task with specified function and arguments. Yield and wait until "
+"the task is complete or a timeout occurs."
 msgstr ""
 
 #: ../reference_capi/coio.rst:57
 msgid ""
-"This function doesn't throw exceptions to avoid double error checking: in"
-" most cases it's also necessary to check the return value of the called "
-"function and perform necessary actions. If func sets errno, the errno is "
-"preserved across the call."
+"This function doesn't throw exceptions to avoid double error checking: in most "
+"cases it's also necessary to check the return value of the called function and "
+"perform necessary actions. If func sets errno, the errno is preserved across "
+"the call."
 msgstr ""
 
 #: ../reference_capi/coio.rst:62
@@ -530,7 +529,7 @@ msgstr ""
 
 #: ../reference_capi/error.rst:28
 msgid "Module `error`"
-msgstr ""
+msgstr "Модуль `error`"
 
 #: ../reference_capi/error.rst:154
 msgid "Error - contains information about error."
@@ -567,25 +566,25 @@ msgstr ""
 
 #: ../reference_capi/error.rst:183
 msgid ""
-"The Tarantool error handling works most like libc's errno. All API calls "
-"return -1 or NULL in the event of error. An internal pointer to "
-"box_error_t type is set by API functions to indicate what went wrong. "
-"This value is only significant if API call failed (returned -1 or NULL)."
+"The Tarantool error handling works most like libc's errno. All API calls return "
+"-1 or NULL in the event of error. An internal pointer to box_error_t type is "
+"set by API functions to indicate what went wrong. This value is only "
+"significant if API call failed (returned -1 or NULL)."
 msgstr ""
 
 #: ../reference_capi/error.rst:188
 msgid ""
-"Successful function can also touch the last error in some cases. You "
-"don't have to clear the last error before calling API functions. The "
-"returned object is valid only until next call to **any** API function."
+"Successful function can also touch the last error in some cases. You don't have "
+"to clear the last error before calling API functions. The returned object is "
+"valid only until next call to **any** API function."
 msgstr ""
 
 #: ../reference_capi/error.rst:192
 msgid ""
-"You must set the last error using box_error_set() in your stored C "
-"procedures if you want to return a custom error message. You can re-throw"
-" the last API error to IPROTO client by keeping the current value and "
-"returning -1 to Tarantool from your stored procedure."
+"You must set the last error using box_error_set() in your stored C procedures "
+"if you want to return a custom error message. You can re-throw the last API "
+"error to IPROTO client by keeping the current value and returning -1 to "
+"Tarantool from your stored procedure."
 msgstr ""
 
 #: ../reference_capi/error.rst:197
@@ -619,7 +618,7 @@ msgstr ""
 
 #: ../reference_capi/fiber.rst:28
 msgid "Module `fiber`"
-msgstr ""
+msgstr "Модуль `fiber`"
 
 #: ../reference_capi/fiber.rst:32
 msgid "Fiber - contains information about fiber"
@@ -631,14 +630,14 @@ msgstr ""
 
 #: ../reference_capi/fiber.rst:40
 msgid ""
-"Takes a fiber from fiber cache, if it's not empty. Can fail only if there"
-" is not enough memory for the fiber structure or fiber stack."
+"Takes a fiber from fiber cache, if it's not empty. Can fail only if there is "
+"not enough memory for the fiber structure or fiber stack."
 msgstr ""
 
 #: ../reference_capi/fiber.rst:43
 msgid ""
-"The created fiber automatically returns itself to the fiber cache when "
-"its \"main\" function completes."
+"The created fiber automatically returns itself to the fiber cache when its "
+"\"main\" function completes."
 msgstr ""
 
 #: ../reference_capi/fiber.rst:46
@@ -687,10 +686,9 @@ msgstr ""
 
 #: ../reference_capi/fiber.rst:78
 msgid ""
-"If target fiber's flag ``FIBER_IS_CANCELLABLE`` set, then it would be "
-"woken up (maybe prematurely). Then current fiber yields until the target "
-"fiber is dead (or is woken up by :ref:`fiber_wakeup()<c_api-fiber-"
-"fiber_wakeup>`)."
+"If target fiber's flag ``FIBER_IS_CANCELLABLE`` set, then it would be woken up "
+"(maybe prematurely). Then current fiber yields until the target fiber is dead "
+"(or is woken up by :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`)."
 msgstr ""
 
 #: ../reference_capi/fiber.rst:82
@@ -699,8 +697,8 @@ msgstr ""
 
 #: ../reference_capi/fiber.rst:86
 msgid ""
-"Make it possible or not possible to wakeup the current fiber immediately "
-"when it's cancelled."
+"Make it possible or not possible to wakeup the current fiber immediately when "
+"it's cancelled."
 msgstr ""
 
 #: ../reference_capi/fiber.rst:89 ../reference_capi/fiber.rst:100
@@ -721,8 +719,8 @@ msgstr ""
 
 #: ../reference_capi/fiber.rst:105
 msgid ""
-"Wait until the fiber is dead and then move its execution status to the "
-"caller. The fiber must not be detached."
+"Wait until the fiber is dead and then move its execution status to the caller. "
+"The fiber must not be detached."
 msgstr ""
 
 #: ../reference_capi/fiber.rst:110
@@ -771,11 +769,11 @@ msgstr ""
 
 #: ../reference_capi/index.rst:28
 msgid "C API reference"
-msgstr ""
+msgstr "Справочник по C API"
 
 #: ../reference_capi/latch.rst:28
 msgid "Module `latch`"
-msgstr ""
+msgstr "Модуль `latch`"
 
 #: ../reference_capi/latch.rst:32
 msgid "A lock for cooperative multitasking environment"
@@ -803,8 +801,8 @@ msgstr ""
 
 #: ../reference_capi/latch.rst:49
 msgid ""
-"Lock a latch. Waits indefinitely until the current fiber can gain access "
-"to the latch."
+"Lock a latch. Waits indefinitely until the current fiber can gain access to the "
+"latch."
 msgstr ""
 
 #: ../reference_capi/latch.rst:52 ../reference_capi/latch.rst:58
@@ -833,7 +831,7 @@ msgstr ""
 
 #: ../reference_capi/say.rst:28
 msgid "Module `say` (logging)"
-msgstr ""
+msgstr "Модуль `say` (логирование)"
 
 #: ../reference_capi/say.rst:36
 msgid "do not use this value directly"
@@ -862,7 +860,7 @@ msgstr ""
 
 #: ../reference_capi/schema.rst:28
 msgid "Module `schema`"
-msgstr ""
+msgstr "Модуль `schema`"
 
 #: ../reference_capi/schema.rst:36
 msgid "Start of the reserved range of system spaces."
@@ -926,7 +924,7 @@ msgstr ""
 
 #: ../reference_capi/trivia.rst:28
 msgid "Module `trivia/config`"
-msgstr ""
+msgstr "Модуль `trivia/config`"
 
 #: ../reference_capi/trivia.rst:32
 msgid "Extern modifier for all public functions."
@@ -946,8 +944,8 @@ msgstr ""
 
 #: ../reference_capi/trivia.rst:48
 msgid ""
-"A string with major-minor-patch-commit-id identifier of the release, e.g."
-" 1.7.0-1216-g73f7154."
+"A string with major-minor-patch-commit-id identifier of the release, e.g. "
+"1.7.0-1216-g73f7154."
 msgstr ""
 
 #: ../reference_capi/trivia.rst:53
@@ -996,19 +994,17 @@ msgstr ""
 
 #: ../reference_capi/trivia.rst:97
 msgid ""
-"A constant added to ``package.path`` in Lua to find ``*.lua`` module "
-"files."
+"A constant added to ``package.path`` in Lua to find ``*.lua`` module files."
 msgstr ""
 
 #: ../reference_capi/trivia.rst:101
 msgid ""
-"A constant added to ``package.cpath`` in Lua to find ``*.so`` module "
-"files."
+"A constant added to ``package.cpath`` in Lua to find ``*.so`` module files."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:28
 msgid "Module `tuple`"
-msgstr ""
+msgstr "Модуль `tuple`"
 
 #: ../reference_capi/tuple.rst:36
 msgid "Tuple format."
@@ -1016,8 +1012,8 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:38
 msgid ""
-"Each Tuple has associated format (class). Default format is used to "
-"create tuples which are not attach to any particular space."
+"Each Tuple has associated format (class). Default format is used to create "
+"tuples which are not attach to any particular space."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:43
@@ -1060,18 +1056,18 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:68
 msgid ""
-"Tuples are reference counted. All functions that return tuples guarantee "
-"that the last returned tuple is refcounted internally until the next call"
-" to API function that yields or returns another tuple."
+"Tuples are reference counted. All functions that return tuples guarantee that "
+"the last returned tuple is refcounted internally until the next call to API "
+"function that yields or returns another tuple."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:72
 msgid ""
 "You should increase the reference counter before taking tuples for long "
-"processing in your code. Such tuples will not be garbage collected even "
-"if another fiber remove they from space. After processing please "
-"decrement the reference counter using :ref:`box_tuple_unref()<c_api-"
-"tuple-box_tuple_unref>`, otherwise the tuple will leak."
+"processing in your code. Such tuples will not be garbage collected even if "
+"another fiber remove they from space. After processing please decrement the "
+"reference counter using :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`, "
+"otherwise the tuple will leak."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:79 ../reference_capi/tuple.rst:92
@@ -1103,8 +1099,7 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:109
 msgid ""
-"Return the number of bytes used to store internal tuple data (MsgPack "
-"Array)."
+"Return the number of bytes used to store internal tuple data (MsgPack Array)."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:115
@@ -1117,9 +1112,9 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:119
 msgid ""
-"Upon successful return, the function returns the number of bytes written."
-" If buffer size is not enough then the return value is the number of "
-"bytes which would have been written if enough space had been available."
+"Upon successful return, the function returns the number of bytes written. If "
+"buffer size is not enough then the return value is the number of bytes which "
+"would have been written if enough space had been available."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:124
@@ -1148,8 +1143,7 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:143
 msgid ""
-"NULL if i >= :ref:`box_tuple_field_count()<c_api-tuple-"
-"box_tuple_field_count>`"
+"NULL if i >= :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`"
 msgstr ""
 
 #: ../reference_capi/tuple.rst:144
@@ -1162,8 +1156,8 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:152
 msgid ""
-"Allocate and initialize a new tuple iterator. The tuple iterator allow to"
-" iterate over fields at root level of MsgPack array."
+"Allocate and initialize a new tuple iterator. The tuple iterator allow to "
+"iterate over fields at root level of MsgPack array."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:157
@@ -1194,11 +1188,11 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:186
 msgid ""
-"Return zero-based next position in iterator. That is, this function "
-"return the field id of field that will be returned by the next call to "
-":ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`. Returned value is "
-"zero after initialization or rewind and :ref:`box_tuple_field_count"
-"()<c_api-tuple-box_tuple_field_count>` after the end of iteration."
+"Return zero-based next position in iterator. That is, this function return the "
+"field id of field that will be returned by the next call to :ref:"
+"`box_tuple_next()<c_api-tuple-box_tuple_next>`. Returned value is zero after "
+"initialization or rewind and :ref:`box_tuple_field_count()<c_api-tuple-"
+"box_tuple_field_count>` after the end of iteration."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:193 ../reference_capi/tuple.rst:200
@@ -1224,8 +1218,8 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:208
 msgid ""
-"The returned buffer is valid until next call to box_tuple_* API. "
-"Requested field_no returned by next call to box_tuple_next(it)."
+"The returned buffer is valid until next call to box_tuple_* API. Requested "
+"field_no returned by next call to box_tuple_next(it)."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:212
@@ -1242,8 +1236,8 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:218
 msgid ""
-"``box_tuple_position(it) == box_tuple_field_count(tuple)`` if returned "
-"value is NULL."
+"``box_tuple_position(it) == box_tuple_field_count(tuple)`` if returned value is "
+"NULL."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:225
@@ -1264,19 +1258,19 @@ msgstr ""
 
 #: ../reference_capi/tuple.rst:233
 msgid ""
-"Before: :ref:`box_tuple_position()<c_api-tuple-box_tuple_position>` is "
-"zero-based ID of returned field."
+"Before: :ref:`box_tuple_position()<c_api-tuple-box_tuple_position>` is zero-"
+"based ID of returned field."
 msgstr ""
 
 #: ../reference_capi/tuple.rst:236
 msgid ""
-"After: ``box_tuple_position(it) == box_tuple_field_count(tuple)`` if "
-"returned value is NULL."
+"After: ``box_tuple_position(it) == box_tuple_field_count(tuple)`` if returned "
+"value is NULL."
 msgstr ""
 
 #: ../reference_capi/txn.rst:28
 msgid "Module `txn`"
-msgstr ""
+msgstr "Модуль `txn`"
 
 #: ../reference_capi/txn.rst:32
 msgid "Return true if there is an active transaction."
@@ -1288,8 +1282,8 @@ msgstr ""
 
 #: ../reference_capi/txn.rst:38
 msgid ""
-"A transaction is attached to caller fiber, therefore one fiber can have "
-"only one active transaction."
+"A transaction is attached to caller fiber, therefore one fiber can have only "
+"one active transaction."
 msgstr ""
 
 #: ../reference_capi/txn.rst:42
@@ -1314,13 +1308,13 @@ msgstr ""
 
 #: ../reference_capi/txn.rst:59
 msgid ""
-"The memory is automatically deallocated when the transaction is committed"
-" or rolled back."
+"The memory is automatically deallocated when the transaction is committed or "
+"rolled back."
 msgstr ""
 
 #: ../reference_capi/utils.rst:28
 msgid "Module `lua/utils`"
-msgstr ""
+msgstr "Модуль `lua/utils`"
 
 #: ../reference_capi/utils.rst:34
 msgid "Push cdata of given ``ctypeid`` onto the stack."
@@ -1373,8 +1367,8 @@ msgstr ""
 
 #: ../reference_capi/utils.rst:64
 msgid ""
-"Equivalent to call `ffi.gc(obj, function)`. Finalizer function must be on"
-" the top of the stack."
+"Equivalent to call `ffi.gc(obj, function)`. Finalizer function must be on the "
+"top of the stack."
 msgstr ""
 
 #: ../reference_capi/utils.rst:72
@@ -1427,8 +1421,8 @@ msgstr ""
 
 #: ../reference_capi/utils.rst:111 ../reference_capi/utils.rst:125
 msgid ""
-"Checks whether the argument idx is a uint64 or a convertable string and "
-"returns this number."
+"Checks whether the argument idx is a uint64 or a convertable string and returns "
+"this number."
 msgstr ""
 
 #: ../reference_capi/utils.rst:114 ../reference_capi/utils.rst:121
@@ -1437,11 +1431,10 @@ msgstr ""
 
 #: ../reference_capi/utils.rst:118 ../reference_capi/utils.rst:132
 msgid ""
-"Checks whether the argument idx is a int64 or a convertable string and "
-"returns this number."
+"Checks whether the argument idx is a int64 or a convertable string and returns "
+"this number."
 msgstr ""
 
 #: ../reference_capi/utils.rst:128 ../reference_capi/utils.rst:135
 msgid "the converted number or 0 of argument can't be converted"
 msgstr ""
-

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-20 10:20+0300\n"
-"PO-Revision-Date: 2016-07-20 11:54+0300\n"
+"PO-Revision-Date: 2016-07-20 15:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1852,7 +1852,7 @@ msgstr ""
 
 #: ../book/app/a_errcodes.rst:28
 msgid "Appendix A. List of error codes"
-msgstr ""
+msgstr "Приложение А. Коды ошибок"
 
 #: ../book/app/a_errcodes.rst:30
 msgid ""
@@ -1964,7 +1964,7 @@ msgstr ""
 
 #: ../book/app/b_internals.rst:30
 msgid "Appendix B. Internals"
-msgstr ""
+msgstr "Приложение Б. Детали реализации"
 
 #: ../book/app/b_internals.rst:32
 msgid ""
@@ -2371,7 +2371,7 @@ msgstr ""
 
 #: ../book/app/c_lua_tutorial.rst:29
 msgid "Appendix C. Lua tutorials"
-msgstr ""
+msgstr "Приложение В. Примеры на языке Lua"
 
 #: ../book/app/c_lua_tutorial.rst:31
 msgid ""
@@ -8834,7 +8834,7 @@ msgstr ""
 
 #: ../book/box/index.rst:30
 msgid "Database"
-msgstr ""
+msgstr "Функционал СУБД"
 
 #: ../book/box/index.rst:32
 msgid ""
@@ -10223,7 +10223,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:30
 msgid "Configuration reference"
-msgstr ""
+msgstr "Справочник по конфигурированию"
 
 #: ../book/configuration/index.rst:32
 msgid ""
@@ -10840,7 +10840,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:245 ../book/replication/index.rst:30
 msgid "Replication"
-msgstr ""
+msgstr "Репликация"
 
 #: ../book/configuration/cfg_replication.rst:5
 msgid ""
@@ -11202,7 +11202,7 @@ msgstr ""
 
 #: ../book/connectors/index.rst:30
 msgid "Connectors"
-msgstr ""
+msgstr "Коннекторы"
 
 #: ../book/connectors/index.rst:32
 msgid "This chapter documents APIs for various programming languages."
@@ -11606,9 +11606,8 @@ msgid "Here follow two examples of using Tarantool's high-level C API."
 msgstr ""
 
 #: ../book/connectors/__c.rst:11
-#, fuzzy
 msgid "Example 1"
-msgstr "Например:"
+msgstr "Пример 1"
 
 #: ../book/connectors/__c.rst:13
 msgid ""
@@ -11854,9 +11853,8 @@ msgid ""
 msgstr ""
 
 #: ../book/connectors/__c.rst:211
-#, fuzzy
 msgid "Example 2"
-msgstr "Например:"
+msgstr "Пример 2"
 
 #: ../book/connectors/__c.rst:213
 msgid ""

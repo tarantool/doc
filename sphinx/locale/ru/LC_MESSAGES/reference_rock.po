@@ -3,64 +3,64 @@
 # This file is distributed under the same license as the Tarantool package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-16 19:16+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-07-20 14:15+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../reference_rock/dbms.rst:30
 msgid "SQL DBMS Modules"
-msgstr ""
+msgstr "Модули SQL СУБД"
 
 #: ../reference_rock/dbms.rst:32
 msgid ""
-"The discussion here in the reference is about incorporating and using two"
-" modules that have already been created: the \"SQL DBMS rocks\" for MySQL"
-" and PostgreSQL."
+"The discussion here in the reference is about incorporating and using two "
+"modules that have already been created: the \"SQL DBMS rocks\" for MySQL and "
+"PostgreSQL."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:36
 msgid ""
-"To call another DBMS from Tarantool, the essential requirements are: "
-"another DBMS, and Tarantool. The module which connects Tarantool to "
-"another DBMS may be called a \"connector\". Within the module there is a "
-"shared library which may be called a \"driver\"."
+"To call another DBMS from Tarantool, the essential requirements are: another "
+"DBMS, and Tarantool. The module which connects Tarantool to another DBMS may be "
+"called a \"connector\". Within the module there is a shared library which may "
+"be called a \"driver\"."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:41
 msgid ""
-"Tarantool supplies DBMS connector modules with the package manager for "
-"Lua, LuaRocks. So the connector modules may be called \"rocks\"."
+"Tarantool supplies DBMS connector modules with the package manager for Lua, "
+"LuaRocks. So the connector modules may be called \"rocks\"."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:44
 msgid ""
-"The Tarantool rocks allow for connecting to an SQL server and executing "
-"SQL statements the same way that a MySQL or PostgreSQL client does. The "
-"SQL statements are visible as Lua methods. Thus Tarantool can serve as a "
-"\"MySQL Lua Connector\" or \"PostgreSQL Lua Connector\", which would be "
-"useful even if that was all Tarantool could do. But of course Tarantool "
-"is also a DBMS, so the plugin also is useful for any operations, such as "
-"database copying and accelerating, which work best when the application "
-"can work on both SQL and Tarantool inside the same Lua routine. The "
-"methods for connect/select/insert/etc. are similar to the ones in the "
-":ref:`net.box <net_box-package>` package."
+"The Tarantool rocks allow for connecting to an SQL server and executing SQL "
+"statements the same way that a MySQL or PostgreSQL client does. The SQL "
+"statements are visible as Lua methods. Thus Tarantool can serve as a \"MySQL "
+"Lua Connector\" or \"PostgreSQL Lua Connector\", which would be useful even if "
+"that was all Tarantool could do. But of course Tarantool is also a DBMS, so the "
+"plugin also is useful for any operations, such as database copying and "
+"accelerating, which work best when the application can work on both SQL and "
+"Tarantool inside the same Lua routine. The methods for connect/select/insert/"
+"etc. are similar to the ones in the :ref:`net.box <net_box-package>` package."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:55
 msgid ""
-"From a user's point of view the MySQL and PostgreSQL rocks are very "
-"similar, so the following sections -- \"MySQL Example\" and \"PostgreSQL "
-"Example\" -- contain some redundancy."
+"From a user's point of view the MySQL and PostgreSQL rocks are very similar, so "
+"the following sections -- \"MySQL Example\" and \"PostgreSQL Example\" -- "
+"contain some redundancy."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:63
@@ -70,20 +70,18 @@ msgstr ""
 #: ../reference_rock/dbms.rst:65
 msgid ""
 "This example assumes that MySQL 5.5 or MySQL 5.6 or MySQL 5.7 has been "
-"installed. Recent MariaDB versions will also work, the MariaDB C "
-"connector is used. The package that matters most is the MySQL client "
-"developer package, typically named something like libmysqlclient-dev. The"
-" file that matters most from this package is libmysqlclient.so or a "
-"similar name. One can use :code:`find` or :code:`whereis` to see what "
-"directories these files are installed in."
+"installed. Recent MariaDB versions will also work, the MariaDB C connector is "
+"used. The package that matters most is the MySQL client developer package, "
+"typically named something like libmysqlclient-dev. The file that matters most "
+"from this package is libmysqlclient.so or a similar name. One can use :code:"
+"`find` or :code:`whereis` to see what directories these files are installed in."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:73
 msgid ""
-"It will be necessary to install Tarantool's MySQL driver shared library, "
-"load it, and use it to connect to a MySQL server. After that, one can "
-"pass any MySQL statement to the server and receive results, including "
-"multiple result sets."
+"It will be necessary to install Tarantool's MySQL driver shared library, load "
+"it, and use it to connect to a MySQL server. After that, one can pass any MySQL "
+"statement to the server and receive results, including multiple result sets."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:79 ../reference_rock/dbms.rst:434
@@ -92,12 +90,11 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:81
 msgid ""
-"Check the instructions for :ref:`Downloading and installing a binary "
-"package <user_guide_getting_started-"
-"downloading_and_installing_a_binary_package>` that apply for the "
-"environment where tarantool was installed. In addition to installing "
-":code:`tarantool`, install :code:`tarantool-dev`. For example, on Ubuntu,"
-" add the line"
+"Check the instructions for :ref:`Downloading and installing a binary package "
+"<user_guide_getting_started-downloading_and_installing_a_binary_package>` that "
+"apply for the environment where tarantool was installed. In addition to "
+"installing :code:`tarantool`, install :code:`tarantool-dev`. For example, on "
+"Ubuntu, add the line"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:86 ../reference_rock/dbms.rst:442
@@ -146,8 +143,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:119
 msgid ""
-"Go the site `github.com/tarantool/mysql`_. Follow the instructions there,"
-" saying:"
+"Go the site `github.com/tarantool/mysql`_. Follow the instructions there, "
+"saying:"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:121
@@ -160,9 +157,9 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:128 ../reference_rock/dbms.rst:484
 msgid ""
-"At this point it is a good idea to check that the installation produced a"
-" file named :code:`driver.so`, and to check that this file is on a "
-"directory that is searched by the :code:`require` request."
+"At this point it is a good idea to check that the installation produced a file "
+"named :code:`driver.so`, and to check that this file is on a directory that is "
+"searched by the :code:`require` request."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:134 ../reference_rock/dbms.rst:490
@@ -171,8 +168,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:136
 msgid ""
-"Begin by making a :code:`require` request for the mysql driver. We will "
-"assume that the name is :code:`mysql` in further examples."
+"Begin by making a :code:`require` request for the mysql driver. We will assume "
+"that the name is :code:`mysql` in further examples."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:139
@@ -201,8 +198,7 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:154 ../reference_rock/dbms.rst:510
 msgid ""
-":samp:`user = {user-name}` - string, default value is operating-system "
-"user name"
+":samp:`user = {user-name}` - string, default value is operating-system user name"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:155
@@ -219,12 +215,12 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:159
 msgid ""
-"The option names, except for `raise`, are similar to the names that "
-"MySQL's mysql client uses, for details see the MySQL manual at "
-"`dev.mysql.com/doc/refman/5.6/en/connecting.html`_. The `raise` option "
-"should be set to :codenormal:`true` if errors should be raised when "
-"encountered. To connect with a Unix socket rather than with TCP, specify "
-"``host = 'unix/'`` and :samp:`port = {socket-name}`."
+"The option names, except for `raise`, are similar to the names that MySQL's "
+"mysql client uses, for details see the MySQL manual at `dev.mysql.com/doc/"
+"refman/5.6/en/connecting.html`_. The `raise` option should be set to :"
+"codenormal:`true` if errors should be raised when encountered. To connect with "
+"a Unix socket rather than with TCP, specify ``host = 'unix/'`` and :samp:`port "
+"= {socket-name}`."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:167 ../reference_rock/dbms.rst:516
@@ -313,15 +309,14 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:236 ../reference_rock/dbms.rst:581
 msgid ""
-"where :code:`sql-statement` is a string, and the optional "
-":code:`parameters` are extra values that can be plugged in to replace any"
-" question marks (\"?\"s) in the SQL statement."
+"where :code:`sql-statement` is a string, and the optional :code:`parameters` "
+"are extra values that can be plugged in to replace any question marks (\"?\"s) "
+"in the SQL statement."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:242
 msgid ""
-"tarantool> conn:execute('select table_name from "
-"information_schema.tables')\n"
+"tarantool> conn:execute('select table_name from information_schema.tables')\n"
 "---\n"
 "- - table_name: ALL_PLUGINS\n"
 "  - table_name: APPLICABLE_ROLES\n"
@@ -352,8 +347,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:272
 msgid ""
-"For further information, including examples of rarely-used requests, see "
-"the README.md file at `github.com/tarantool/mysql`_."
+"For further information, including examples of rarely-used requests, see the "
+"README.md file at `github.com/tarantool/mysql`_."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:277 ../reference_rock/dbms.rst:619
@@ -362,10 +357,10 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:279
 msgid ""
-"The example was run on an Ubuntu 12.04 (\"precise\") machine where "
-"tarantool had been installed in a /usr subdirectory, and a copy of MySQL "
-"had been installed on ~/mysql-5.5. The mysqld server is already running "
-"on the local host 127.0.0.1."
+"The example was run on an Ubuntu 12.04 (\"precise\") machine where tarantool "
+"had been installed in a /usr subdirectory, and a copy of MySQL had been "
+"installed on ~/mysql-5.5. The mysqld server is already running on the local "
+"host 127.0.0.1."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:283
@@ -452,8 +447,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:364
 msgid ""
-"Configure tarantool and load mysql module. Make sure that tarantool "
-"doesn't reply \"error\" for the call to \"require()\"."
+"Configure tarantool and load mysql module. Make sure that tarantool doesn't "
+"reply \"error\" for the call to \"require()\"."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:367
@@ -468,9 +463,9 @@ msgstr ""
 #: ../reference_rock/dbms.rst:375
 msgid ""
 "Create a Lua function that will connect to the MySQL server, (using some "
-"factory default values for the port and user and password), retrieve one "
-"row, and display the row. For explanations of the statement types used "
-"here, read the Lua tutorial earlier in the Tarantool user manual."
+"factory default values for the port and user and password), retrieve one row, "
+"and display the row. For explanations of the statement types used here, read "
+"the Lua tutorial earlier in the Tarantool user manual."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:380
@@ -482,8 +477,7 @@ msgid ""
 "         >     user = 'root',\n"
 "         >     db = 'test'\n"
 "         >   })\n"
-"         >   local test = conn:execute('SELECT * FROM test WHERE s1 = 1')"
-"\n"
+"         >   local test = conn:execute('SELECT * FROM test WHERE s1 = 1')\n"
 "         >   local row = ''\n"
 "         >   for i, card in pairs(test) do\n"
 "         >       row = row .. card.s2 .. ' '\n"
@@ -501,9 +495,9 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:404
 msgid ""
-"Observe the result. It contains \"MySQL row\". So this is the row that "
-"was inserted into the MySQL database. And now it's been selected with the"
-" Tarantool client."
+"Observe the result. It contains \"MySQL row\". So this is the row that was "
+"inserted into the MySQL database. And now it's been selected with the Tarantool "
+"client."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:411
@@ -512,10 +506,10 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:413
 msgid ""
-"This example assumes that PostgreSQL 8 or PostgreSQL 9 has been "
-"installed. More recent versions should also work. The package that "
-"matters most is the PostgreSQL developer package, typically named "
-"something like libpq-dev. On Ubuntu this can be installed with:"
+"This example assumes that PostgreSQL 8 or PostgreSQL 9 has been installed. More "
+"recent versions should also work. The package that matters most is the "
+"PostgreSQL developer package, typically named something like libpq-dev. On "
+"Ubuntu this can be installed with:"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:418
@@ -524,36 +518,32 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:422
 msgid ""
-"However, because not all platforms are alike, for this example the "
-"assumption is that the user must check that the appropriate PostgreSQL "
-"files are present and must explicitly state where they are when building "
-"the Tarantool/PostgreSQL driver. One can use :code:`find` or "
-":code:`whereis` to see what directories PostgreSQL files are installed "
-"in."
+"However, because not all platforms are alike, for this example the assumption "
+"is that the user must check that the appropriate PostgreSQL files are present "
+"and must explicitly state where they are when building the Tarantool/PostgreSQL "
+"driver. One can use :code:`find` or :code:`whereis` to see what directories "
+"PostgreSQL files are installed in."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:428
 msgid ""
-"It will be necessary to install Tarantool's PostgreSQL driver shared "
-"library, load it, and use it to connect to a PostgreSQL server. After "
-"that, one can pass any PostgreSQL statement to the server and receive "
-"results."
+"It will be necessary to install Tarantool's PostgreSQL driver shared library, "
+"load it, and use it to connect to a PostgreSQL server. After that, one can pass "
+"any PostgreSQL statement to the server and receive results."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:436
 msgid ""
-"Check the instructions for :ref:`Downloading and installing a binary "
-"package <user_guide_getting_started-"
-"downloading_and_installing_a_binary_package>` that apply for the "
-"environment where tarantool was installed. In addition to installing "
-":code:`tarantool`, install :code:`tarantool-dev`. For example, on Ubuntu,"
-" add the line:"
+"Check the instructions for :ref:`Downloading and installing a binary package "
+"<user_guide_getting_started-downloading_and_installing_a_binary_package>` that "
+"apply for the environment where tarantool was installed. In addition to "
+"installing :code:`tarantool`, install :code:`tarantool-dev`. For example, on "
+"Ubuntu, add the line:"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:446
 msgid ""
-"Now, for the PostgreSQL driver shared library, there are two ways to "
-"install:"
+"Now, for the PostgreSQL driver shared library, there are two ways to install:"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:459
@@ -569,8 +559,7 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:475
 msgid ""
-"Go the site `github.com/tarantool/pg`_. Follow the instructions there, "
-"saying:"
+"Go the site `github.com/tarantool/pg`_. Follow the instructions there, saying:"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:477
@@ -583,8 +572,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:492
 msgid ""
-"Begin by making a :code:`require` request for the pg driver. We will "
-"assume that the name is :code:`pg` in further examples."
+"Begin by making a :code:`require` request for the pg driver. We will assume "
+"that the name is :code:`pg` in further examples."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:495
@@ -597,8 +586,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:511
 msgid ""
-":samp:`pass = {password}` or :samp:`password = {password}` - string, "
-"default value is blank"
+":samp:`pass = {password}` or :samp:`password = {password}` - string, default "
+"value is blank"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:514
@@ -659,30 +648,27 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:614
 msgid ""
-"For further information, including examples of rarely-used requests, see "
-"the README.md file at `github.com/tarantool/pg`_."
+"For further information, including examples of rarely-used requests, see the "
+"README.md file at `github.com/tarantool/pg`_."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:621
 msgid ""
-"The example was run on an Ubuntu 12.04 (\"precise\") machine where "
-"tarantool had been installed in a /usr subdirectory, and a copy of "
-"PostgreSQL had been installed on /usr. The PostgreSQL server is already "
-"running on the local host 127.0.0.1."
+"The example was run on an Ubuntu 12.04 (\"precise\") machine where tarantool "
+"had been installed in a /usr subdirectory, and a copy of PostgreSQL had been "
+"installed on /usr. The PostgreSQL server is already running on the local host "
+"127.0.0.1."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:625
 msgid ""
 "$ # Check that the include subdirectory exists\n"
 "$ # by looking for /usr/include/postgresql/libpq-fe-h.\n"
-"$ [ -f /usr/include/postgresql/libpq-fe.h ] && echo \"OK\" || echo "
-"\"Error\"\n"
+"$ [ -f /usr/include/postgresql/libpq-fe.h ] && echo \"OK\" || echo \"Error\"\n"
 "OK\n"
 "\n"
-"$ # Check that the library subdirectory exists and has the necessary .so "
-"file.\n"
-"$ [ -f /usr/lib/x86_64-linux-gnu/libpq.so ] && echo \"OK\" || echo "
-"\"Error\"\n"
+"$ # Check that the library subdirectory exists and has the necessary .so file.\n"
+"$ [ -f /usr/lib/x86_64-linux-gnu/libpq.so ] && echo \"OK\" || echo \"Error\"\n"
 "OK\n"
 "\n"
 "$ # Check that the psql client can connect using some factory defaults:\n"
@@ -712,8 +698,7 @@ msgid ""
 "$ echo \"rocks_servers = {[[http://rocks.tarantool.org/]]}\" >> \\\n"
 "        ~/.luarocks/config.lua\n"
 "\n"
-"$ # Ensure that the next \"install\" will get files from Tarantool master"
-"\n"
+"$ # Ensure that the next \"install\" will get files from Tarantool master\n"
 "$ # repository. The resultant display is normal for Ubuntu 12.04 precise\n"
 "$ cat /etc/apt/sources.list.d/tarantool.list\n"
 "deb http://tarantool.org/dist/1.7/ubuntu/ precise main\n"
@@ -725,11 +710,9 @@ msgid ""
 "$\n"
 "\n"
 "$ # Use luarocks to install locally, that is, relative to $HOME\n"
-"$ luarocks install pg POSTGRESQL_LIBDIR=/usr/lib/x86_64-linux-gnu --local"
-"\n"
+"$ luarocks install pg POSTGRESQL_LIBDIR=/usr/lib/x86_64-linux-gnu --local\n"
 "Installing http://rocks.tarantool.org/pg-scm-1.rockspec...\n"
-"... (more info about building the Tarantool/PostgreSQL driver appears "
-"here)\n"
+"... (more info about building the Tarantool/PostgreSQL driver appears here)\n"
 "pg scm-1 is now built and installed in ~/.luarocks/\n"
 "\n"
 "$ # Ensure driver.so now has been created in a place\n"
@@ -754,8 +737,8 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:699
 msgid ""
-"Configure tarantool and load pg module. Make sure that tarantool doesn't "
-"reply \"error\" for the call to \"require()\"."
+"Configure tarantool and load pg module. Make sure that tarantool doesn't reply "
+"\"error\" for the call to \"require()\"."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:702
@@ -769,10 +752,10 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:710
 msgid ""
-"Create a Lua function that will connect to the PostgreSQL server, (using "
-"some factory default values for the port and user and password), retrieve"
-" one row, and display the row. For explanations of the statement types "
-"used here, read the Lua tutorial earlier in the Tarantool user manual."
+"Create a Lua function that will connect to the PostgreSQL server, (using some "
+"factory default values for the port and user and password), retrieve one row, "
+"and display the row. For explanations of the statement types used here, read "
+"the Lua tutorial earlier in the Tarantool user manual."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:716
@@ -785,8 +768,7 @@ msgid ""
 "         >     password = 'postgres',\n"
 "         >     db = 'postgres'\n"
 "         >   })\n"
-"         >   local test = conn:execute('SELECT * FROM test WHERE s1 = 1')"
-"\n"
+"         >   local test = conn:execute('SELECT * FROM test WHERE s1 = 1')\n"
 "         >   local row = ''\n"
 "         >   for i, card in pairs(test) do\n"
 "         >       row = row .. card.s2 .. ' '\n"
@@ -804,22 +786,22 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:741
 msgid ""
-"Observe the result. It contains \"PostgreSQL row\". So this is the row "
-"that was inserted into the PostgreSQL database. And now it's been "
-"selected with the Tarantool client."
+"Observe the result. It contains \"PostgreSQL row\". So this is the row that was "
+"inserted into the PostgreSQL database. And now it's been selected with the "
+"Tarantool client."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:30
 msgid "Package `expirationd`"
-msgstr ""
+msgstr "Пакет `expirationd`"
 
 #: ../reference_rock/expirationd.rst:32
 msgid ""
-"For a commercial-grade example of a Lua rock that works with Tarantool, "
-"let us look at expirationd, which Tarantool supplies on GitHub_ with an "
-"Artistic license. The expirationd.lua program is lengthy (about 500 "
-"lines), so here we will only highlight the matters that will be enhanced "
-"by studying the full source later."
+"For a commercial-grade example of a Lua rock that works with Tarantool, let us "
+"look at expirationd, which Tarantool supplies on GitHub_ with an Artistic "
+"license. The expirationd.lua program is lengthy (about 500 lines), so here we "
+"will only highlight the matters that will be enhanced by studying the full "
+"source later."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:37
@@ -833,16 +815,15 @@ msgstr ""
 
 #: ../reference_rock/expirationd.rst:45
 msgid ""
-"Whenever one hears \"daemon\" in Tarantool, one should suspect it's being"
-" done with a :doc:`fiber<../reference_lua/fiber>`. The program is making "
-"a fiber and turning control over to it so it runs occasionally, goes to "
-"sleep, then comes back for more."
+"Whenever one hears \"daemon\" in Tarantool, one should suspect it's being done "
+"with a :doc:`fiber<../reference_lua/fiber>`. The program is making a fiber and "
+"turning control over to it so it runs occasionally, goes to sleep, then comes "
+"back for more."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:50
 msgid ""
-"for _, tuple in scan_space.index[0]:pairs(nil, {iterator = "
-"box.index.ALL}) do\n"
+"for _, tuple in scan_space.index[0]:pairs(nil, {iterator = box.index.ALL}) do\n"
 "...\n"
 "        if task.is_tuple_expired(task.args, tuple) then\n"
 "        task.expired_tuples_count = task.expired_tuples_count + 1\n"
@@ -852,10 +833,10 @@ msgstr ""
 
 #: ../reference_rock/expirationd.rst:59
 msgid ""
-"The \"for\" instruction can be translated as \"iterate through the index "
-"of the space that is being scanned\", and within it, if the tuple is "
-"\"expired\" (for example, if the tuple has a timestamp field which is "
-"less than the current time), process the tuple as an expired tuple."
+"The \"for\" instruction can be translated as \"iterate through the index of the "
+"space that is being scanned\", and within it, if the tuple is \"expired\" (for "
+"example, if the tuple has a timestamp field which is less than the current "
+"time), process the tuple as an expired tuple."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:64
@@ -872,33 +853,31 @@ msgstr ""
 
 #: ../reference_rock/expirationd.rst:75
 msgid ""
-"Ultimately the tuple-expiry process leads to ``default_tuple_drop()`` "
-"which does a \"delete\" of a tuple from its original space. First the fun"
-" :ref:`fun <fun-package>` package is used, specifically fun.map_. "
-"Remembering that :codenormal:`index[0]` is always the space's primary "
-"key, and "
-":codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno` is "
-"always the field number for key part :codeitalic:`N`, fun.map() is "
-"creating a table from the primary-key values of the tuple. The result of "
-"fun.map() is passed to :ref:`space_object:delete() <box_space-delete>`."
+"Ultimately the tuple-expiry process leads to ``default_tuple_drop()`` which "
+"does a \"delete\" of a tuple from its original space. First the fun :ref:`fun "
+"<fun-package>` package is used, specifically fun.map_. Remembering that :"
+"codenormal:`index[0]` is always the space's primary key, and :codenormal:"
+"`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno` is always the field "
+"number for key part :codeitalic:`N`, fun.map() is creating a table from the "
+"primary-key values of the tuple. The result of fun.map() is passed to :ref:"
+"`space_object:delete() <box_space-delete>`."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:85
 msgid ""
-"local function expirationd_run_task(name, space_id, is_tuple_expired, "
-"options)\n"
+"local function expirationd_run_task(name, space_id, is_tuple_expired, options)\n"
 "..."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:90
 msgid ""
 "At this point, if the above explanation is worthwhile, it's clear that "
-"``expirationd.lua`` starts a background routine (fiber) which iterates "
-"through all the tuples in a space, sleeps cooperatively so that other "
-"fibers can operate at the same time, and - whenever it finds a tuple that"
-" has expired - deletes it from this space. Now the "
-"\"``expirationd_run_task()``\" function can be used in a test which "
-"creates sample data, lets the daemon run for a while, and prints results."
+"``expirationd.lua`` starts a background routine (fiber) which iterates through "
+"all the tuples in a space, sleeps cooperatively so that other fibers can "
+"operate at the same time, and - whenever it finds a tuple that has expired - "
+"deletes it from this space. Now the \"``expirationd_run_task()``\" function can "
+"be used in a test which creates sample data, lets the daemon run for a while, "
+"and prints results."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:99
@@ -909,10 +888,9 @@ msgstr ""
 
 #: ../reference_rock/expirationd.rst:102
 msgid ""
-"Get ``expirationd.lua``. There are standard ways - it is after all part "
-"of a `standard rock <https://luarocks.org/modules/rtsisyk/expirationd>`_"
-"  - but for this purpose just copy the contents of expirationd.lua_ to a "
-"default directory."
+"Get ``expirationd.lua``. There are standard ways - it is after all part of a "
+"`standard rock <https://luarocks.org/modules/rtsisyk/expirationd>`_  - but for "
+"this purpose just copy the contents of expirationd.lua_ to a default directory."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:105
@@ -950,51 +928,49 @@ msgstr ""
 #: ../reference_rock/expirationd.rst:131
 msgid ""
 "The database-specific requests (``cfg``, :ref:`space.create <box_schema-"
-"space_create>`, :ref:`create_index <box_space-create_index>`) should "
-"already be familiar."
+"space_create>`, :ref:`create_index <box_space-create_index>`) should already be "
+"familiar."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:136
 msgid ""
-"The function which will be supplied to expirationd is "
-":codenormal:`is_tuple_expired`, which is saying \"if the second field of "
-"the tuple is less than the :ref:`current time <fiber-time>`  , then "
-"return true, otherwise return false\"."
+"The function which will be supplied to expirationd is :codenormal:"
+"`is_tuple_expired`, which is saying \"if the second field of the tuple is less "
+"than the :ref:`current time <fiber-time>`  , then return true, otherwise return "
+"false\"."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:141
 msgid ""
-"The key for getting the rock rolling is ``expd = "
-"require('expirationd')``. The \"``require``\" function is what reads in "
-"the program; it will appear in many later examples in this manual, when "
-"it's necessary to get a package that's not part of the Tarantool kernel. "
-"After the Lua variable expd has been assigned the value of the "
-"expirationd package, it's possible to invoke the package's ``run_task()``"
-" function."
+"The key for getting the rock rolling is ``expd = require('expirationd')``. The "
+"\"``require``\" function is what reads in the program; it will appear in many "
+"later examples in this manual, when it's necessary to get a package that's not "
+"part of the Tarantool kernel. After the Lua variable expd has been assigned the "
+"value of the expirationd package, it's possible to invoke the package's "
+"``run_task()`` function."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:148
 msgid ""
-"After :ref:`sleeping <fiber-sleep>` for two seconds, when the task has "
-"had time to do its iterations through the spaces, ``expd.task_stats()`` "
-"will print out a report showing how many tuples have expired -- "
-"\"expired_count: 0\". After sleeping for two more seconds, "
-"``expd.task_stats()`` will print out a report showing how many tuples "
-"have expired -- \"expired_count: 1\". This shows that the "
-"is_tuple_expired() function eventually returned \"true\" for one of the "
+"After :ref:`sleeping <fiber-sleep>` for two seconds, when the task has had time "
+"to do its iterations through the spaces, ``expd.task_stats()`` will print out a "
+"report showing how many tuples have expired -- \"expired_count: 0\". After "
+"sleeping for two more seconds, ``expd.task_stats()`` will print out a report "
+"showing how many tuples have expired -- \"expired_count: 1\". This shows that "
+"the is_tuple_expired() function eventually returned \"true\" for one of the "
 "tuples, because its timestamp field was more than three seconds old."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:158
 msgid ""
-"Of course, expirationd can be customized to do different things by "
-"passing different parameters, which will be evident after looking in more"
-" detail at the source code."
+"Of course, expirationd can be customized to do different things by passing "
+"different parameters, which will be evident after looking in more detail at the "
+"source code."
 msgstr ""
 
 #: ../reference_rock/index.rst:29
 msgid "Lua rocks reference"
-msgstr ""
+msgstr "Справочник по Lua rocks"
 
 #: ../reference_rock/index.rst:31
 msgid "A module is an optional library which enhances Tarantool functionality."
@@ -1006,21 +982,21 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:30
 msgid "Package `shard`"
-msgstr ""
+msgstr "Пакет `shard`"
 
 #: ../reference_rock/shard.rst:34
 msgid ""
-"With sharding, the tuples of a tuple set are distributed to multiple "
-"nodes, with a Tarantool database server on each node. With this "
-"arrangement, each server is handling only a subset of the total data, so "
-"larger loads can be handled by simply adding more computers to a network."
+"With sharding, the tuples of a tuple set are distributed to multiple nodes, "
+"with a Tarantool database server on each node. With this arrangement, each "
+"server is handling only a subset of the total data, so larger loads can be "
+"handled by simply adding more computers to a network."
 msgstr ""
 
 #: ../reference_rock/shard.rst:39
 msgid ""
-"The Tarantool shard package has facilities for creating shards, as well "
-"as analogues for the data-manipulation functions of the box library "
-"(select, insert, replace, update, delete)."
+"The Tarantool shard package has facilities for creating shards, as well as "
+"analogues for the data-manipulation functions of the box library (select, "
+"insert, replace, update, delete)."
 msgstr ""
 
 #: ../reference_rock/shard.rst:43
@@ -1034,11 +1010,11 @@ msgstr ""
 #: ../reference_rock/shard.rst:48
 msgid ""
 "The shard package distributes according to a hash algorithm, that is, it "
-"applies a hash function to a tuple's primary-key value in order to decide"
-" which shard the tuple belongs to. The hash function is `consistent`_ so "
-"that changing the number of servers will not affect results for many "
-"keys. The specific hash function that the shard package uses is "
-":ref:`digest.guava <digest-guava>` in the :codeitalic:`digest` package."
+"applies a hash function to a tuple's primary-key value in order to decide which "
+"shard the tuple belongs to. The hash function is `consistent`_ so that changing "
+"the number of servers will not affect results for many keys. The specific hash "
+"function that the shard package uses is :ref:`digest.guava <digest-guava>` in "
+"the :codeitalic:`digest` package."
 msgstr ""
 
 #: ../reference_rock/shard.rst:54
@@ -1047,12 +1023,11 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:56
 msgid ""
-"A temporary list of recent update requests. Sometimes called "
-"\"batching\". Since updates to a sharded database can be slow, it may "
-"speed up throughput to send requests to a queue rather than wait for the "
-"update to finish on ever node. The shard package has functions for adding"
-" requests to the queue, which it will process without further "
-"intervention. Queuing is optional."
+"A temporary list of recent update requests. Sometimes called \"batching\". "
+"Since updates to a sharded database can be slow, it may speed up throughput to "
+"send requests to a queue rather than wait for the update to finish on ever "
+"node. The shard package has functions for adding requests to the queue, which "
+"it will process without further intervention. Queuing is optional."
 msgstr ""
 
 #: ../reference_rock/shard.rst:62
@@ -1070,9 +1045,9 @@ msgstr ""
 #: ../reference_rock/shard.rst:67
 msgid ""
 "A complete copy of the data. The shard package handles both sharding and "
-"replication. One shard can contain one or more replicas. When a write "
-"occurs, the write is attempted on every replica in turn. The shard "
-"package does not use the built-in replication feature."
+"replication. One shard can contain one or more replicas. When a write occurs, "
+"the write is attempted on every replica in turn. The shard package does not use "
+"the built-in replication feature."
 msgstr ""
 
 #: ../reference_rock/shard.rst:71
@@ -1081,10 +1056,10 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:73
 msgid ""
-"A subset of the tuples in the database partitioned according to the value"
-" returned by the consistent hash function. Usually each shard is on a "
-"separate node, or a separate set of nodes (for example if redundancy = 3 "
-"then the shard will be on three nodes)."
+"A subset of the tuples in the database partitioned according to the value "
+"returned by the consistent hash function. Usually each shard is on a separate "
+"node, or a separate set of nodes (for example if redundancy = 3 then the shard "
+"will be on three nodes)."
 msgstr ""
 
 #: ../reference_rock/shard.rst:77
@@ -1094,15 +1069,15 @@ msgstr ""
 #: ../reference_rock/shard.rst:79
 msgid ""
 "A physical location where the nodes are closely connected, with the same "
-"security and backup and access points. The simplest example of a zone is "
-"a single computer with a single tarantool-server instance. A shard's "
-"replicas should be in different zones."
+"security and backup and access points. The simplest example of a zone is a "
+"single computer with a single tarantool-server instance. A shard's replicas "
+"should be in different zones."
 msgstr ""
 
 #: ../reference_rock/shard.rst:84
 msgid ""
-"The shard package is distributed separately from the main tarantool "
-"package. To acquire it, do a separate install. For example on Ubuntu say:"
+"The shard package is distributed separately from the main tarantool package. To "
+"acquire it, do a separate install. For example on Ubuntu say:"
 msgstr ""
 
 #: ../reference_rock/shard.rst:87
@@ -1125,8 +1100,8 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:101
 msgid ""
-"This must be called for every shard. The shard-configuration is a table "
-"with these fields:"
+"This must be called for every shard. The shard-configuration is a table with "
+"these fields:"
 msgstr ""
 
 #: ../reference_rock/shard.rst:104
@@ -1147,15 +1122,15 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:108
 msgid ""
-"binary (a port number that this host is listening on, on the current "
-"host) (distinguishable from the 'listen' port specified by box.cfg)"
+"binary (a port number that this host is listening on, on the current host) "
+"(distinguishable from the 'listen' port specified by box.cfg)"
 msgstr ""
 
 #: ../reference_rock/shard.rst:111
 msgid ""
-"Possible Errors: Redundancy should not be greater than the number of "
-"servers; the servers must be alive; two replicas of the same shard should"
-" not be in the same zone."
+"Possible Errors: Redundancy should not be greater than the number of servers; "
+"the servers must be alive; two replicas of the same shard should not be in the "
+"same zone."
 msgstr ""
 
 #: ../reference_rock/shard.rst:117
@@ -1164,8 +1139,8 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:119
 msgid ""
-"The number of replicas per shard (redundancy) is 3. The number of servers"
-" is 3. The shard package will conclude that there is only one shard."
+"The number of replicas per shard (redundancy) is 3. The number of servers is 3. "
+"The shard package will conclude that there is only one shard."
 msgstr ""
 
 #: ../reference_rock/shard.rst:123
@@ -1194,11 +1169,11 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:146
 msgid ""
-"This describes three shards. Each shard has two replicas. Since the "
-"number of servers is 7, and the number of replicas per shard is 2, and "
-"dividing 7 / 2 leaves a remainder of 1, one of the servers will not be "
-"used. This is not necessarily an error, because perhaps one of the "
-"servers in the list is not alive."
+"This describes three shards. Each shard has two replicas. Since the number of "
+"servers is 7, and the number of replicas per shard is 2, and dividing 7 / 2 "
+"leaves a remainder of 1, one of the servers will not be used. This is not "
+"necessarily an error, because perhaps one of the servers in the list is not "
+"alive."
 msgstr ""
 
 #: ../reference_rock/shard.rst:151
@@ -1237,11 +1212,10 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:184
 msgid ""
-"Every data-access function in the box package has an analogue in the "
-"shard package, so (for example) to insert in table T in a sharded "
-"database one simply says ``shard.T:insert{...}`` instead of "
-"``box.T:insert{...}``. A ``shard.T:select{}`` request without a primary "
-"key will search all shards."
+"Every data-access function in the box package has an analogue in the shard "
+"package, so (for example) to insert in table T in a sharded database one simply "
+"says ``shard.T:insert{...}`` instead of ``box.T:insert{...}``. A ``shard.T:"
+"select{}`` request without a primary key will search all shards."
 msgstr ""
 
 #: ../reference_rock/shard.rst:192
@@ -1256,10 +1230,9 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:199
 msgid ""
-"Every queued data-access function has an analogue in the shard package. "
-"The user must add an operation_id. The details of queued data-access "
-"functions, and of maintenance-related functions, are on `the shard "
-"section of github`_."
+"Every queued data-access function has an analogue in the shard package. The "
+"user must add an operation_id. The details of queued data-access functions, and "
+"of maintenance-related functions, are on `the shard section of github`_."
 msgstr ""
 
 #: ../reference_rock/shard.rst:205
@@ -1268,11 +1241,10 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:207
 msgid ""
-"There is only one shard, and that shard contains only one replica. So "
-"this isn't illustrating the features of either replication or sharding, "
-"it's only illustrating what the syntax is, and what the messages look "
-"like, that anyone could duplicate in a minute or two with the magic of "
-"cut-and-paste."
+"There is only one shard, and that shard contains only one replica. So this "
+"isn't illustrating the features of either replication or sharding, it's only "
+"illustrating what the syntax is, and what the messages look like, that anyone "
+"could duplicate in a minute or two with the magic of cut-and-paste."
 msgstr ""
 
 #: ../reference_rock/shard.rst:212
@@ -1304,9 +1276,9 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:238
 msgid ""
-"If one cuts and pastes the above, then the result, showing only the "
-"requests and responses for shard.init and shard.tester, should look "
-"approximately like this:"
+"If one cuts and pastes the above, then the result, showing only the requests "
+"and responses for shard.init and shard.tester, should look approximately like "
+"this:"
 msgstr ""
 
 #: ../reference_rock/shard.rst:242
@@ -1342,10 +1314,10 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:273
 msgid ""
-"There are two shards, and each shard contains one replica. This requires "
-"two nodes. In real life the two nodes would be two computers, but for "
-"this illustration the requirement is merely: start two shells, which "
-"we'll call Terminal#1 and Terminal #2."
+"There are two shards, and each shard contains one replica. This requires two "
+"nodes. In real life the two nodes would be two computers, but for this "
+"illustration the requirement is merely: start two shells, which we'll call "
+"Terminal#1 and Terminal #2."
 msgstr ""
 
 #: ../reference_rock/shard.rst:278
@@ -1417,8 +1389,8 @@ msgstr ""
 #: ../reference_rock/shard.rst:338
 msgid ""
 "What will appear on Terminal #1 is: a loop of error messages saying "
-"\"Connection refused\" and \"server check failure\". This is normal. It "
-"will go on until Terminal #2 process starts."
+"\"Connection refused\" and \"server check failure\". This is normal. It will go "
+"on until Terminal #2 process starts."
 msgstr ""
 
 #: ../reference_rock/shard.rst:342
@@ -1435,8 +1407,8 @@ msgstr ""
 
 #: ../reference_rock/shard.rst:351
 msgid ""
-"This shows that what was inserted by Terminal #1 can be selected by "
-"Terminal #2, via the shard package."
+"This shows that what was inserted by Terminal #1 can be selected by Terminal "
+"#2, via the shard package."
 msgstr ""
 
 #: ../reference_rock/shard.rst:354
@@ -1445,22 +1417,21 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:28
 msgid "Package `tdb`"
-msgstr ""
+msgstr "Пакет `tdb`"
 
 #: ../reference_rock/tdb.rst:30
 msgid ""
-"The Tarantool Debugger (abbreviation = tdb) can be used with any Lua "
-"program. The operational features include: setting breakpoints, examining"
-" variables, going forward one line at a time, backtracing, and showing "
-"information about fibers. The display features include: using different "
-"colors for different situations, including line numbers, and adding "
-"hints."
+"The Tarantool Debugger (abbreviation = tdb) can be used with any Lua program. "
+"The operational features include: setting breakpoints, examining variables, "
+"going forward one line at a time, backtracing, and showing information about "
+"fibers. The display features include: using different colors for different "
+"situations, including line numbers, and adding hints."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:36
 msgid ""
-"It is not supplied as part of the Tarantool repository; it must be "
-"installed separately. Here is the usual way:"
+"It is not supplied as part of the Tarantool repository; it must be installed "
+"separately. Here is the usual way:"
 msgstr ""
 
 #: ../reference_rock/tdb.rst:39
@@ -1473,8 +1444,8 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:46
 msgid ""
-"To initiate tdb within a Lua program and set a breakpoint, edit the "
-"program to include these lines:"
+"To initiate tdb within a Lua program and set a breakpoint, edit the program to "
+"include these lines:"
 msgstr ""
 
 #: ../reference_rock/tdb.rst:49
@@ -1485,9 +1456,8 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:54
 msgid ""
-"To start the debugging session, execute the Lua program. Execution will "
-"stop at the breakpoint, and it will be possible to enter debugging "
-"commands."
+"To start the debugging session, execute the Lua program. Execution will stop at "
+"the breakpoint, and it will be possible to enter debugging commands."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:59
@@ -1500,8 +1470,8 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:62
 msgid ""
-"Backtrace -- show the stack (in red), with program/function names and "
-"line numbers of whatever has been invoked to reach the current line."
+"Backtrace -- show the stack (in red), with program/function names and line "
+"numbers of whatever has been invoked to reach the current line."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:66
@@ -1518,11 +1488,10 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:69
 msgid ""
-"Enter evaluation mode. When the program is in evaluation mode, one can "
-"execute certain Lua statements that would be valid in the context. This "
-"is particularly useful for displaying the values of the program's "
-"variables. Other debugger commands will not work until one exits "
-"evaluation mode by typing :codebold:`-e`."
+"Enter evaluation mode. When the program is in evaluation mode, one can execute "
+"certain Lua statements that would be valid in the context. This is particularly "
+"useful for displaying the values of the program's variables. Other debugger "
+"commands will not work until one exits evaluation mode by typing :codebold:`-e`."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:76
@@ -1539,8 +1508,8 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:79
 msgid ""
-"Display the fiber id, the program name, and the percentage of memory "
-"used, as a table."
+"Display the fiber id, the program name, and the percentage of memory used, as a "
+"table."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:83
@@ -1573,8 +1542,8 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:92
 msgid ""
-"Display names and values of variables, for example the control variables "
-"of a Lua \"for\" statement."
+"Display names and values of variables, for example the control variables of a "
+"Lua \"for\" statement."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:96
@@ -1591,8 +1560,7 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:102
 msgid ""
-"Put the following program in a default directory and call it "
-"\"example.lua\":"
+"Put the following program in a default directory and call it \"example.lua\":"
 msgstr ""
 
 #: ../reference_rock/tdb.rst:104
@@ -1619,8 +1587,7 @@ msgstr ""
 #: ../reference_rock/tdb.rst:124
 msgid ""
 "$ :codebold:`tarantool example.lua`\n"
-":codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for "
-"help`\n"
+":codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`\n"
 "example.lua\n"
 ":codeblue:`(TDB)`  :codegreen:`[example.lua]`\n"
 ":codeblue:`(TDB)`  :codenormal:`3: i = 1`\n"
@@ -1629,9 +1596,9 @@ msgstr ""
 
 #: ../reference_rock/tdb.rst:131
 msgid ""
-"Debugger prompts are blue, debugger hints and information are green, and "
-"the current line -- line 3 of example.lua -- is the default color. Now "
-"enter six debugger commands:"
+"Debugger prompts are blue, debugger hints and information are green, and the "
+"current line -- line 3 of example.lua -- is the default color. Now enter six "
+"debugger commands:"
 msgstr ""
 
 #: ../reference_rock/tdb.rst:135
@@ -1647,8 +1614,7 @@ msgstr ""
 #: ../reference_rock/tdb.rst:149
 msgid ""
 "$ :codebold:`tarantool example.lua`\n"
-":codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for "
-"help`\n"
+":codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`\n"
 "example.lua\n"
 ":codeblue:`(TDB)`  :codegreen:`[example.lua]`\n"
 ":codeblue:`(TDB)`  :codenormal:`3: i = 1`\n"
@@ -1668,4 +1634,3 @@ msgstr ""
 #: ../reference_rock/tdb.rst:166
 msgid "Another debugger example can be found here_."
 msgstr ""
-
