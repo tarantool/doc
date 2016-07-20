@@ -48,4 +48,4 @@
     request, or on an equivalent such as get() or pairs(). This has significance
     for :ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
 
-    For more about vinyl, see Appendix E :ref:`vinyl <index-vinyl>`.
+    For more about vinyl, see Appendix D :ref:`vinyl <index-vinyl>`.

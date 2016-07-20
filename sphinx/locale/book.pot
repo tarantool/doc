@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-20 10:20+0300\n"
+"POT-Creation-Date: 2016-07-20 16:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2328,7 +2328,7 @@ msgid "Start tarantool, cut and paste the code for function indexed_pattern_sear
 msgstr ""
 
 #: ../book/app/d_vinyl/index.rst:30
-msgid "Appendix E. Vinyl"
+msgid "Appendix D. Vinyl"
 msgstr ""
 
 #: ../book/app/d_vinyl/index.rst:34
@@ -7286,7 +7286,7 @@ msgid "The two storage engines: memtx and vinyl"
 msgstr ""
 
 #: ../book/box/index.rst:675
-msgid "A storage engine is a set of very-low-level routines which actually store and retrieve tuple values. Tarantool offers a choice of two storage engines: memtx (the in-memory storage engine) and vinyl (the on-disk storage engine). To specify that the engine should be vinyl, add a clause: ``engine = 'vinyl'``. The manual concentrates on memtx because it is the default and has been around longer. But vinyl is a working key-value engine and will especially appeal to users who like to see data go directly to disk, so that recovery time might be shorter and database size might be larger. For architectural explanations and benchmarks, see Appendix E: :ref:`vinyl <index-vinyl>`. On the other hand, vinyl lacks some functions and options that are available with memtx. Where that is the case, the relevant description will contain a note beginning with the words \"Note re storage engine: vinyl\". The end of this chapter has coverage for all :ref:`the differences between memtx and vinyl <vinyl_diff>`."
+msgid "A storage engine is a set of very-low-level routines which actually store and retrieve tuple values. Tarantool offers a choice of two storage engines: memtx (the in-memory storage engine) and vinyl (the on-disk storage engine). To specify that the engine should be vinyl, add a clause: ``engine = 'vinyl'``. The manual concentrates on memtx because it is the default and has been around longer. But vinyl is a working key-value engine and will especially appeal to users who like to see data go directly to disk, so that recovery time might be shorter and database size might be larger. For architectural explanations and benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`. On the other hand, vinyl lacks some functions and options that are available with memtx. Where that is the case, the relevant description will contain a note beginning with the words \"Note re storage engine: vinyl\". The end of this chapter has coverage for all :ref:`the differences between memtx and vinyl <vinyl_diff>`."
 msgstr ""
 
 #: ../book/box/index.rst:692
@@ -7686,7 +7686,7 @@ msgid "It was explained :ref:`earlier <index-yields_must_happen>` that memtx doe
 msgstr ""
 
 #: ../book/box/vinyl_diff.rst:76
-msgid "For more about vinyl, see Appendix E :ref:`vinyl <index-vinyl>`."
+msgid "For more about vinyl, see Appendix D :ref:`vinyl <index-vinyl>`."
 msgstr ""
 
 #: ../book/configuration/index.rst:30

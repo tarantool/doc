@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-20 10:20+0300\n"
-"PO-Revision-Date: 2016-07-20 15:40+0300\n"
+"POT-Creation-Date: 2016-07-20 16:01+0300\n"
+"PO-Revision-Date: 2016-07-20 16:04+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1852,7 +1852,7 @@ msgstr ""
 
 #: ../book/app/a_errcodes.rst:28
 msgid "Appendix A. List of error codes"
-msgstr "Приложение А. Коды ошибок"
+msgstr "Приложение A. Коды ошибок"
 
 #: ../book/app/a_errcodes.rst:30
 msgid ""
@@ -1964,7 +1964,7 @@ msgstr ""
 
 #: ../book/app/b_internals.rst:30
 msgid "Appendix B. Internals"
-msgstr "Приложение Б. Детали реализации"
+msgstr "Приложение B. Детали реализации"
 
 #: ../book/app/b_internals.rst:32
 msgid ""
@@ -2371,7 +2371,7 @@ msgstr ""
 
 #: ../book/app/c_lua_tutorial.rst:29
 msgid "Appendix C. Lua tutorials"
-msgstr "Приложение В. Примеры на языке Lua"
+msgstr "Приложение C. Примеры на языке Lua"
 
 #: ../book/app/c_lua_tutorial.rst:31
 msgid ""
@@ -3354,8 +3354,8 @@ msgid ""
 msgstr ""
 
 #: ../book/app/d_vinyl/index.rst:30
-msgid "Appendix E. Vinyl"
-msgstr ""
+msgid "Appendix D. Vinyl"
+msgstr "Приложение D. Vinyl"
 
 #: ../book/app/d_vinyl/index.rst:34
 msgid "Introduction"
@@ -9673,7 +9673,7 @@ msgid ""
 "longer. But vinyl is a working key-value engine and will especially appeal to "
 "users who like to see data go directly to disk, so that recovery time might be "
 "shorter and database size might be larger. For architectural explanations and "
-"benchmarks, see Appendix E: :ref:`vinyl <index-vinyl>`. On the other hand, "
+"benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`. On the other hand, "
 "vinyl lacks some functions and options that are available with memtx. Where "
 "that is the case, the relevant description will contain a note beginning with "
 "the words \"Note re storage engine: vinyl\". The end of this chapter has "
@@ -10218,7 +10218,7 @@ msgid ""
 msgstr ""
 
 #: ../book/box/vinyl_diff.rst:76
-msgid "For more about vinyl, see Appendix E :ref:`vinyl <index-vinyl>`."
+msgid "For more about vinyl, see Appendix D :ref:`vinyl <index-vinyl>`."
 msgstr ""
 
 #: ../book/configuration/index.rst:30

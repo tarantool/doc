@@ -655,7 +655,7 @@ The manual concentrates on memtx because it is the default and has been around
 longer. But vinyl is a working key-value engine and will especially appeal to
 users who like to see data go directly to disk, so that recovery time might be
 shorter and database size might be larger. For architectural explanations and
-benchmarks, see Appendix E: :ref:`vinyl <index-vinyl>`.
+benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`.
 On the other hand, vinyl lacks some functions and
 options that are available with memtx. Where that is the case, the relevant
 description will contain a note beginning with the words
