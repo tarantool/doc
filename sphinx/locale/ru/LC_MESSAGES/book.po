@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-20 16:01+0300\n"
-"PO-Revision-Date: 2016-07-20 16:04+0300\n"
+"PO-Revision-Date: 2016-07-20 16:52+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,6 @@ msgstr ""
 "длительную процедуру, которая позволяет вернуться к главному циклу."
 
 #: ../book/administration.rst:66
-#, fuzzy
 msgid "Process title"
 msgstr "Название процесса"
 
@@ -456,7 +455,7 @@ msgstr ""
 
 #: ../book/administration.rst:267
 msgid "Utility ``tarantoolctl``"
-msgstr ""
+msgstr "Утилита ``tarantoolctl``"
 
 #: ../book/administration.rst:271
 msgid ""
@@ -803,7 +802,7 @@ msgstr ""
 
 #: ../book/administration.rst:514
 msgid "Utility ``tarantoolctl connect``"
-msgstr ""
+msgstr "Утилита ``tarantoolctl connect``"
 
 #: ../book/administration.rst:516
 msgid ""
@@ -847,7 +846,7 @@ msgstr ""
 
 #: ../book/administration.rst:544
 msgid "System-specific administration notes"
-msgstr ""
+msgstr "Заметки по администрированию на разных платформах"
 
 #: ../book/administration.rst:546
 msgid ""
@@ -927,7 +926,7 @@ msgstr ""
 
 #: ../book/administration.rst:604
 msgid "Notes for systemd users"
-msgstr ""
+msgstr "Заметки для пользователей ``systemd``"
 
 #: ../book/administration.rst:606
 msgid ""
@@ -1379,7 +1378,7 @@ msgstr ""
 
 #: ../book/administration.rst:912
 msgid "Updating Tarantool in production"
-msgstr ""
+msgstr "Обновление Tarantool'а в условиях эксплуатации"
 
 #: ../book/administration.rst:914
 msgid ""
@@ -1520,7 +1519,7 @@ msgstr ""
 
 #: ../book/administration.rst:1020
 msgid "Modules, LuaRocks, and requiring packages"
-msgstr ""
+msgstr "Модули, Lua Rocks и пакеты, подключаемые с помощью require"
 
 #: ../book/administration.rst:1022
 msgid ""
@@ -1752,7 +1751,7 @@ msgstr ""
 
 #: ../book/administration.rst:1196
 msgid "Backups"
-msgstr ""
+msgstr "Резервное копирование"
 
 #: ../book/administration.rst:1198
 msgid ""
@@ -1828,7 +1827,7 @@ msgstr ""
 
 #: ../book/administration.rst:1256
 msgid "Upgrades"
-msgstr ""
+msgstr "Обновление Tarantool'а"
 
 #: ../book/administration.rst:1258
 msgid ""
@@ -1975,7 +1974,7 @@ msgstr ""
 
 #: ../book/app/b_internals.rst:39
 msgid "Data persistence and the WAL file format"
-msgstr ""
+msgstr "Сохранность данных и формат WAL-файла"
 
 #: ../book/app/b_internals.rst:41
 msgid ""
@@ -2115,7 +2114,7 @@ msgstr ""
 
 #: ../book/app/b_internals.rst:133
 msgid "The snapshot file format"
-msgstr ""
+msgstr "Формат статического файла-снимка"
 
 #: ../book/app/b_internals.rst:135
 msgid ""
@@ -2143,7 +2142,7 @@ msgstr ""
 
 #: ../book/app/b_internals.rst:151
 msgid "The Recovery Process"
-msgstr ""
+msgstr "Процесс восстановления"
 
 #: ../book/app/b_internals.rst:153
 msgid ""
@@ -2241,7 +2240,7 @@ msgstr ""
 
 #: ../book/app/b_internals.rst:212
 msgid "Server Startup With Replication"
-msgstr ""
+msgstr "Запуск сервера с репликацией"
 
 #: ../book/app/b_internals.rst:214
 msgid ""
@@ -2383,7 +2382,7 @@ msgstr ""
 
 #: ../book/app/c_lua_tutorial.rst:40
 msgid "Insert one million tuples with a Lua stored procedure"
-msgstr ""
+msgstr "Вставка 1 млн таплов с помощью хранимой процедуры на языке Lua"
 
 #: ../book/app/c_lua_tutorial.rst:42
 msgid ""
@@ -2946,7 +2945,7 @@ msgstr ""
 
 #: ../book/app/c_lua_tutorial.rst:509
 msgid "Sum a JSON field for all tuples"
-msgstr ""
+msgstr "Подсчет суммы по JSON-полям во всех таплах"
 
 #: ../book/app/c_lua_tutorial.rst:511
 msgid ""
@@ -3118,7 +3117,7 @@ msgstr ""
 
 #: ../book/app/c_lua_tutorial.rst:636
 msgid "Indexed Pattern Search"
-msgstr ""
+msgstr "Индексированный поиск по шаблонам"
 
 #: ../book/app/c_lua_tutorial.rst:638
 msgid ""
@@ -3331,7 +3330,6 @@ msgid ""
 msgstr ""
 
 #: ../book/app/c_lua_tutorial.rst:838
-#, fuzzy
 msgid "EXAMPLE:"
 msgstr "Например:"
 
@@ -3359,7 +3357,7 @@ msgstr "Приложение D. Vinyl"
 
 #: ../book/app/d_vinyl/index.rst:34
 msgid "Introduction"
-msgstr ""
+msgstr "Введение"
 
 #: ../book/app/d_vinyl/index.rst:36
 msgid "Vinyl's features are:"
@@ -3566,7 +3564,7 @@ msgstr ""
 
 #: ../book/app/d_vinyl/index.rst:107
 msgid "Under the hood"
-msgstr ""
+msgstr "А что там \"под капотом\"?"
 
 #: ../book/app/d_vinyl/index.rst:109
 msgid "In this section, to illustrate internals, we will discuss this example:"
@@ -8844,7 +8842,7 @@ msgstr ""
 
 #: ../book/box/index.rst:37
 msgid "Document data model"
-msgstr ""
+msgstr "Модель данных"
 
 #: ../book/box/index.rst:39
 msgid ""
@@ -9577,7 +9575,7 @@ msgstr ""
 
 #: ../book/box/index.rst:616
 msgid "Packages of the box library"
-msgstr ""
+msgstr "Пакеты в библиотеке `box`"
 
 #: ../book/box/index.rst:618
 msgid ""
@@ -9661,7 +9659,7 @@ msgstr ""
 
 #: ../book/box/index.rst:673
 msgid "The two storage engines: memtx and vinyl"
-msgstr ""
+msgstr "Два движка базы данных: memtx и vinyl"
 
 #: ../book/box/index.rst:675
 msgid ""
@@ -9682,7 +9680,7 @@ msgstr ""
 
 #: ../book/box/index.rst:692
 msgid "Library Reference"
-msgstr ""
+msgstr "Справочник по библиотекам"
 
 #: ../book/box/limitations.rst:28
 msgid "Limitations"
@@ -10246,7 +10244,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:51
 msgid "Command options"
-msgstr ""
+msgstr "Командные опции"
 
 #: ../book/configuration/index.rst:55
 msgid "Print an annotated list of all available options and exit."
@@ -10300,7 +10298,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:99
 msgid "URI"
-msgstr ""
+msgstr "Универсальный код ресурса (URI)"
 
 #: ../book/configuration/index.rst:101
 msgid ""
@@ -10353,7 +10351,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:138
 msgid "Initialization file"
-msgstr ""
+msgstr "Файл инициализации"
 
 #: ../book/configuration/index.rst:140
 msgid ""
@@ -10408,7 +10406,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:192
 msgid "Configuration parameters"
-msgstr ""
+msgstr "Параметры конфигурации"
 
 #: ../book/configuration/index.rst:194
 msgid "Configuration parameters have the form:"
@@ -11158,7 +11156,7 @@ msgstr ""
 
 #: ../book/configuration/index.rst:265
 msgid "Local hot standby"
-msgstr ""
+msgstr "Режим горячего резервирования"
 
 #: ../book/configuration/index.rst:267
 msgid ""
@@ -11210,7 +11208,7 @@ msgstr ""
 
 #: ../book/connectors/index.rst:36
 msgid "Protocol"
-msgstr ""
+msgstr "Протокол"
 
 #: ../book/connectors/index.rst:38
 msgid ""
@@ -11241,7 +11239,7 @@ msgstr ""
 
 #: ../book/connectors/index.rst:55
 msgid "Packet example"
-msgstr ""
+msgstr "Пример пакета"
 
 #: ../book/connectors/index.rst:57
 msgid ""
@@ -11352,7 +11350,7 @@ msgstr ""
 
 #: ../book/connectors/index.rst:100
 msgid "Setting up the server for connector examples"
-msgstr ""
+msgstr "Примеры настроек для различных коннекторов"
 
 #: ../book/connectors/index.rst:102
 msgid ""
@@ -11384,7 +11382,7 @@ msgstr ""
 
 #: ../book/connectors/__java.rst:3
 msgid "Java"
-msgstr ""
+msgstr "Java"
 
 #: ../book/connectors/__java.rst:5
 msgid "See http://github.com/tarantool/tarantool-java/."
@@ -11392,7 +11390,7 @@ msgstr ""
 
 #: ../book/connectors/__go.rst:3
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: ../book/connectors/__go.rst:5
 msgid "Please see https://github.com/mialinx/go-tarantool-1.6."
@@ -11400,7 +11398,7 @@ msgstr ""
 
 #: ../book/connectors/__r.rst:3
 msgid "R"
-msgstr ""
+msgstr "R"
 
 #: ../book/connectors/__r.rst:5
 msgid "See https://github.com/thekvs/tarantoolr."
@@ -11408,7 +11406,7 @@ msgstr ""
 
 #: ../book/connectors/__perl.rst:3
 msgid "Perl"
-msgstr ""
+msgstr "Perl"
 
 #: ../book/connectors/__perl.rst:5
 msgid ""
@@ -11486,7 +11484,7 @@ msgstr ""
 
 #: ../book/connectors/__php.rst:3
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: ../book/connectors/__php.rst:5
 msgid ""
@@ -11553,7 +11551,7 @@ msgstr ""
 
 #: ../book/connectors/__python.rst:3
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: ../book/connectors/__python.rst:5
 msgid ""
@@ -11595,7 +11593,7 @@ msgstr ""
 
 #: ../book/connectors/__c.rst:3
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #: ../book/connectors/__c.rst:5
 msgid ":c:func:`tarantoolc:tnt_connect`"
@@ -11956,7 +11954,7 @@ msgstr ""
 
 #: ../book/connectors/__results.rst:4
 msgid "Interpreting function return values"
-msgstr ""
+msgstr "Интерпретация возвращаемых значений"
 
 #: ../book/connectors/__results.rst:7
 msgid ""
@@ -12071,7 +12069,7 @@ msgstr ""
 
 #: ../book/intro.rst:36
 msgid "How to read the documentation"
-msgstr ""
+msgstr "Как пользоваться документацией"
 
 #: ../book/intro.rst:38
 msgid ""
@@ -12125,7 +12123,7 @@ msgstr ""
 
 #: ../book/intro.rst:69
 msgid "Getting In Touch With The Tarantool Community"
-msgstr ""
+msgstr "Как связаться с сообществом разработчиков Tarantool'а"
 
 #: ../book/intro.rst:71
 msgid ""
@@ -12162,7 +12160,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:45
 msgid "Replication architecture"
-msgstr ""
+msgstr "Архитектура механизма репликации"
 
 #: ../book/replication/index.rst:47
 msgid ""
@@ -12184,7 +12182,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:61
 msgid "Setting up the master"
-msgstr ""
+msgstr "Настройка master-экземпляра"
 
 #: ../book/replication/index.rst:63
 msgid ""
@@ -12197,7 +12195,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:71
 msgid "Setting up a replica"
-msgstr ""
+msgstr "Настройка экземпляра-реплики"
 
 #: ../book/replication/index.rst:73
 msgid ""
@@ -12250,7 +12248,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:111
 msgid "Recovering from a degraded state"
-msgstr ""
+msgstr "Восстановление после сбоя"
 
 #: ../book/replication/index.rst:113
 msgid ""
@@ -12272,7 +12270,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:127
 msgid "Instructions for quick startup of a new two-server simple cluster"
-msgstr ""
+msgstr "Инструкции по быстрому запуску простого кластера из двух серверов с нуля"
 
 #: ../book/replication/index.rst:129
 msgid "Step 1. Start the first server thus:"
@@ -12336,7 +12334,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:172
 msgid "Monitoring a Replica's Actions"
-msgstr ""
+msgstr "Мониторинг действий реплики"
 
 #: ../book/replication/index.rst:174
 msgid ""
@@ -12371,7 +12369,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:199
 msgid "Preventing Duplicate Actions"
-msgstr ""
+msgstr "Предотвращение дублирующихся действий"
 
 #: ../book/replication/index.rst:201
 msgid ""
@@ -12397,7 +12395,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:225
 msgid "Master-Master Replication"
-msgstr ""
+msgstr "Репликация по схеме master-master"
 
 #: ../book/replication/index.rst:227
 msgid ""
@@ -12437,7 +12435,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:256
 msgid "All the \"What If?\" Questions"
-msgstr ""
+msgstr "Ответы на вопросы \"Что будет, если?\""
 
 #: ../book/replication/index.rst:258
 msgid ""
@@ -12534,7 +12532,7 @@ msgstr ""
 
 #: ../book/replication/index.rst:325
 msgid "Hands-On Replication Tutorial"
-msgstr ""
+msgstr "Практическое руководство по репликации"
 
 #: ../book/replication/index.rst:327
 msgid ""
