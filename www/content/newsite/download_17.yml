@@ -293,6 +293,20 @@ blocks :
           .. _FreeBSD Ports: http://www.freebsd.org/ports/index.html
           .. _Fresh Ports: http://freshports.org/databases/tarantool    
 
+    - - "Microsoft Azure"
+      - format : rst
+        content: |
+          Tarantool images are available at `Microsoft Azure`_.
+          
+          .. _Microsoft Azure: https://azure.microsoft.com/en-us/marketplace/partners/my-com/tarantool/
+
+    - - "Docker Hub"
+      - format : rst
+        content: |
+          Tarantool images are available at `Docker Hub`_.
+
+          .. _Docker Hub: https://hub.docker.com/r/tarantool/tarantool/
+
     - - "Building from source"
       - format : rst
         content: |
