@@ -65,12 +65,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:truncate()        | Delete all tuples               |
         | <box_space-truncate>`                |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:inc()             | Increment a tuple's counter     |
-        | <box_space-inc>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:dec()             | Decrement a tuple's counter     |
-        | <box_space-dec>`                     |                                 |
-        +--------------------------------------+---------------------------------+
         | :ref:`space_object:auto_increment()  | Generate key + Insert a tuple   |
         | <box_space-auto_increment>`          |                                 |
         +--------------------------------------+---------------------------------+
@@ -783,91 +777,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> box.space.tester:len()
             ---
             - 0
-            ...
-
-    .. _box_space-inc:
-
-    .. method:: inc{field-value [, field-value ...]}
-
-        Increments a counter in a tuple whose primary key matches the
-        field-value(s). The field following the primary-key fields
-        will be the counter. If there is no tuple matching the
-        ``field-value(s)``, a new one is inserted with initial counter
-        value set to ``1``.
-
-
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
-        :codeitalic:`field-value(s)` (type = Lua table or scalar) = values which must match the primary key.
-
-        :return: the new counter value
-        :rtype:  number
-
-        **Complexity Factors:** Index size, Index type, WAL settings.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> s = box.schema.space.create('forty_second_space')
-            ---
-            ...
-            tarantool> s:create_index('primary', {
-                     >   unique = true,
-                     >   parts = {1, 'NUM', 2, 'STR'}
-                     > })
-            ---
-            ...
-            tarantool> box.space.forty_second_space:inc{1, 'a'}
-            ---
-            - 1
-            ...
-            tarantool> box.space.forty_second_space:inc{1, 'a'}
-            ---
-            - 2
-            ...
-
-    .. _box_space-dec:
-
-    .. method:: dec{field-value [, field-value ...]}
-
-        Decrements a counter in a tuple whose primary key matches the
-        ``field-value(s)``. The field following the primary-key fields
-        will be the counter. If there is no tuple matching the
-        ``field-value(s)``, a new one is not inserted. If the counter value drops
-        to zero, the tuple is deleted.
-
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
-        :codeitalic:`field-value(s)` (type = Lua table or scalar) = values which must match the primary key.
-
-        :return: the new counter value
-        :rtype:  number
-
-        **Complexity factors:** Index size, Index type, WAL settings.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> s = box.schema.space.create('space19')
-            ---
-            ...
-            tarantool> s:create_index('primary', {
-                     >   unique = true,
-                     >   parts = {1, 'NUM', 2, 'STR'}
-                     > })
-            ---
-            ...
-            tarantool> box.space.space19:insert{1, 'a', 1000}
-            ---
-            - [1, 'a', 1000]
-            ...
-            tarantool> box.space.space19:dec{1, 'a'}
-            ---
-            - 999
-            ...
-            tarantool> box.space.space19:dec{1, 'a'}
-            ---
-            - 998
             ...
 
     .. _box_space-auto_increment:

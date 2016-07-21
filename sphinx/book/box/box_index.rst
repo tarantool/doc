@@ -460,7 +460,7 @@ API is a direct binding to corresponding methods of index objects of type
             ``box.space.tester:select{}`` will select every tuple in the tester
             space via the first (primary-key) index.
 
-.. _box_index-note:
+        .. _box_index-note:
 
         .. NOTE::
 
