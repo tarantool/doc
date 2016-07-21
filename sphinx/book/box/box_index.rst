@@ -568,8 +568,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         Complexity Factors: Index size, Index type.
 
-        Note re storage engine: vinyl does not support ``min()``.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -598,8 +596,6 @@ API is a direct binding to corresponding methods of index objects of type
         Possible errors: index is not of type 'TREE'.
 
         Complexity Factors: Index size, Index type.
-
-        Note re storage engine: vinyl does not support ``max()``.
 
         **Example:**
 
@@ -656,9 +652,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         :return: the number of matching index keys.
         :rtype:  number
-
-        Note re storage engine: vinyl does not support :codenormal:`count(...)`.
-        One possible workaround is to say :codenormal:`#select(...)`.
 
 
         **Example:**

@@ -34,11 +34,14 @@
     With memtx, temporary spaces are supported. |br|
     With vinyl, they are not.
 
-    With memtx, the :ref:`alter() <box_index-alter>` and :ref:`count() <box_index-count>`
-    and :ref:`min() <box_index-min>` and :ref:`max() <box_index-max>` and
-    :ref:`random() <box_index-random>` and :ref:`auto_increment() <box_space-auto_increment>`
+    With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>`
+    and :ref:`random() <box_index-random>` and :ref:`auto_increment() <box_space-auto_increment>`
     and :ref:`truncate() <box_space-truncate>` functions are supported. |br|
     With vinyl, they are not.
+
+    With memtx, the :ref:`count() <box_index-count>` function takes a constant
+    amount of time. |br|
+    With vinyl, it takes a variable amount of time depending on index size.
 
     With memtx, delete will return deleted tuple, if any. |br|
     With vinyl, delete will always return nil.

@@ -731,9 +731,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 1
             ...
 
-        Note re storage engine: vinyl does not support :codenormal:`count(...)`.
-        One possible workaround is to say :codenormal:`#select(...)`.
-
     .. _box_space-len:
 
     .. method:: len()
@@ -750,6 +747,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
             ---
             - 2
             ...
+
+        Note re storage engine: vinyl does not support :codenormal:`len(...)`.
+        One possible workaround is to say :codenormal:`#select(...)`.
 
     .. _box_space-truncate:
 
