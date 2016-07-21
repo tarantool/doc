@@ -44,8 +44,7 @@
     If a field in a tuple can contain a million bytes, then the index key
     can contain a million bytes, so the maximum is determined by factors
     such as :ref:`Number of bytes in a tuple <limitations_bytes_in_tuple>`,
-    not by the index support. Note re storage engines: with vinyl the
-    maximum is 1024.
+    not by the index support.
 
 .. _limitations_number_of_spaces:
 
