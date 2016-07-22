@@ -237,6 +237,8 @@ Explanatory notes about what tarantool displayed in the above example:
 * A display of an object always begins with "``---``" and ends with "``...``".
 * The insert request returns an object of type = tuple, so the object display line begins with a single dash ('``-``'). However, the select request returns an object of type = table of tuples, so the object display line begins with two dashes ('``- -``').
 
+.. _administration-tarantoolctl:
+
 =====================================================================
                         Utility ``tarantoolctl``
 =====================================================================
@@ -513,6 +515,68 @@ usually applicable for ``tarantoolctl connect`` as well.
 For example, an :ref:`authentication trigger <triggers-authentication_triggers>` will be
 activated whenever ``tarantoolctl connect`` starts
 or ends.
+
+.. _administration-admin_ports:
+
+====================================================================
+            Admin ports
+====================================================================
+
+
+"Admin port", "admin console", and "text protocol" all
+refer to the same thing: a connection which is set up
+with :ref:`console.listen(...) <console-listen>` for entry of requests by administrators.
+
+"Binary port", "binary protocol", and "primary port"
+all refer to a different thing: a connection which is set up
+with :ref:`box.cfg{listen=...} <cfg_basic-listen>` for entry of requests by anyone.
+
+Ordinary connections to the Tarantool server should go via a binary port. 
+But admin ports are useful for special cases involving security.
+
+When one connects to an admin port: |br|
+* No password is necessary |br|
+* The user is automatically 'admin', a user with many privileges. |br|
+Therefore one must set up admin ports very cautiously.
+If it is a TCP port, it should only be opened for a specific IP.
+Ideally it should not be a TCP port at all, it should be a Unix domain socket,
+so that access to the server machine is required.
+Thus a typical setup for an admin port is: |br|
+:codenormal:`console.listen('/var/lib/tarantool/socket_name.sock')` |br|
+and a typical connection :ref:`URI <index-uri>` is: |br|
+:codenormal:`admin:any_string@/var/lib/tarantool/socket_name.sock` |br|
+if the listener has the privilege to write on /var/lib/tarantool
+and the connector has the privilege to read on /var/lib/tarantool.
+Alternatively both setup and connection can be done with
+:ref:`tarantoolctl <administration-tarantoolctl>`.
+
+If no administrator password exists which could be given out to users,
+and admin ports are restricted or are sockets,
+then requests which require 'admin' privileges can only occur locally,
+and are subject to Unix security and monitoring.
+
+For additional security, some requests are illegal.
+For example, :ref:`"conn:eval" <net_box-eval>`  will result in the error message
+"- error: console does not support this request type"
+because conn:eval requires the binary protocol.
+
+If security via admin ports is not necessary, it is still possible
+to be an admin user by 
+:ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`,
+or by connecting to a binary port with a valid password.
+
+To find out whether a TCP port is an admin port, use telnet. For example: |br|
+:codenormal:`$` :codebold:`telnet 0 3303` |br|
+:codenormal:`Trying 0.0.0.0...` |br|
+:codenormal:`Connected to 0.` |br|
+:codenormal:`Escape character is '^]'.` |br|
+:codenormal:`Tarantool 1.7.1-70-gbc479ad (Lua console)` |br|                   
+:codenormal:`type 'help' for interactive help` |br|                          
+In this example the response does not include the word "binary"
+and does include the words "Lua console". Therefore it is
+clear that this is a successful connection to an admin
+port, and admin requests can now be entered on this terminal.
+
 
 =====================================================================
             System-specific administration notes

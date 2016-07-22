@@ -5,8 +5,7 @@
 -------------------------------------------------------------------------------
 
 The console package allows one Tarantool server to access another Tarantool
-server, and allows one Tarantool server to start listening on an administrative
-host/port.
+server, and allows one Tarantool server to start listening on an :ref:`admin port <administration-admin_ports>`.
 
 .. module:: console
 
@@ -64,17 +63,16 @@ host/port.
     is via the connection-information string, or URI, specified in :code:`box.cfg{listen=...}`.
     The alternative way of listening is via the URI
     specified in :code:`console.listen(...)`. This alternative way is called
-    "administrative" or simply "admin port".
-    The listening is usually over a local host with a Unix socket,
-    specified with host = 'unix/', port = 'path/to/something.sock'.
+    "administrative" or simply :ref:`"admin port" <administration-admin_ports>`.
+    The listening is usually over a local host with a Unix domain socket.
 
     :param string uri: the URI of the local server
 
-    The "admin" address is the URI to listen on for administrative
-    connections. It has no default value, so it must be specified if
-    connections will occur via telnet.
+    The "admin" address is the URI to listen on.
+    It has no default value, so it must be specified if
+    connections will occur via an admin port.
     The parameter is expressed with URI = Universal Resource
-    Identifier format, for example "/tmpdir/unix_domain_socket.sock", or as a
+    Identifier format, for example "/tmpdir/unix_domain_socket.sock", or a
     numeric TCP port. Connections are often made with telnet.
     A typical port value is 3313.
 

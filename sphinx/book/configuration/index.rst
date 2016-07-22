@@ -156,7 +156,6 @@ initialization is complete, one can use :ref:`console.start() <console-start>`.
 .. _index-replication_port:
 .. _index-slab_alloc_arena:
 .. _index-replication_source:
-.. _index-admin_port:
 .. _index-snap_dir:
 .. _index-wal_dir:
 .. _index-wal_mode:

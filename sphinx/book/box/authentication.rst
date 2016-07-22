@@ -346,9 +346,10 @@ purposes are:
     box.session.user()        -- returns the name of the current user
     box.session.su(*user-name*) -- allows changing current user to 'user-name'
 
-If a user types requests directly on the Tarantool server in its interactive
-mode, or if a user connects via telnet to the administrative port (using :ref:`admin <index-admin_port>`
-instead of listen), then the user by default is 'admin' and has many privileges.
+If a user types requests directly on the Tarantool server in its
+:ref:`interactive mode <administration-using_tarantool_as_a_client>`,
+or if a user connects to the :ref:`admin port <administration-admin_ports>`,
+then the user by default is 'admin' and has many privileges.
 If a user connects from an application program via one of the :ref:`connectors <index-box_connectors>`, then
 the user by default is 'guest' and has few privileges. Typically an admin user
 will set up and configure objects, then grant privileges to appropriate non-admin

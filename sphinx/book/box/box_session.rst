@@ -31,7 +31,7 @@ client connection.
              separate server, the return is null.
              The command is executed on the server,
              so the "local name" is the server's host
-             and administrative port, and the "peer name" is the client's host
+             and port, and the "peer name" is the client's host
              and port.
     :rtype:  string
 

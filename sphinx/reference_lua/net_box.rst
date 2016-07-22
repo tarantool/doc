@@ -158,6 +158,8 @@ necessary to prioritize requests or to use different authentication ids.
 
         Example: ``conn:call('function5')``
 
+    .. _net_box-eval:
+
     .. method:: eval(Lua-string)
 
         :samp:`conn:eval({Lua-string})` evaluates and executes the expression

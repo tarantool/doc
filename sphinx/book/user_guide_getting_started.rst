@@ -102,7 +102,7 @@ and connect to its primary port with:
 
 but for example purposes it is simpler to just leave the server
 running in "interactive mode". On production machines the
-interactive mode is just for administrators, but because it's
+:ref:`interactive mode <administration-using_tarantool_as_a_client>` is just for administrators, but because it's
 convenient for learning it will be used for most examples in
 this manual. Tarantool is waiting for the user to type instructions.
 
