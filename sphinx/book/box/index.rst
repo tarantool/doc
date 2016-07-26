@@ -167,7 +167,7 @@ Tarantool can work with numbers, strings, booleans, tables, and userdata.
 In Lua a *number* is double-precision floating-point,
 but Tarantool allows both integer and floating-point values.
 Tarantool will try to store a number as floating-point if
-the value contains a decimal point or is very large (greater than 100 quadrillion = 1e14),
+the value contains a decimal point or is very large (greater than 100 billion = 1e14),
 otherwise Tarantool will store it as an integer.
 To ensure that even very large numbers will be treated as
 integers, use the :ref:`tonumber64 <other-tonumber64>`
@@ -336,18 +336,16 @@ transactions are usually fast. Also the Tarantool server may not be using
 up all the threads of a powerful multi-core processor, so advanced users
 may be able to start a second Tarantool server on the same processor without ill effects.
 
-Additional examples of requests can be found in the `Tarantool regression test suite`_.
+Additional examples of requests can be found in the Tarantool regression test suite
+(https://github.com/tarantool/tarantool/tree/1.7/test/box).
 A complete grammar of supported data-manipulation functions will come later in this chapter.
-
-.. _Tarantool regression test suite: https://github.com/tarantool/tarantool/tree/1.7/test/box
 
 Since not all Tarantool operations can be expressed with the data-manipulation
 functions, or with Lua, to gain complete access to data manipulation
-functionality one must use a :ref:`Perl, PHP, Python or other programming language connector <index-box_connectors>`.
-The client/server protocol is open and documented: an annotated BNF can be found
-in the source tree, file `doc/dev_guide/box-protocol.html`_.
-
-.. _doc/dev_guide/box-protocol.html: http://tarantool.org/doc/dev_guide/box-protocol.html
+functionality one must use a 
+:ref:`Perl, PHP, Python or other programming language connector <index-box_connectors>`.
+The client/server protocol is open and documented. See this
+:ref:`annotated BNF <box_protocol-iproto_protocol>`.
 
 --------------
 Saving To Disk
@@ -388,7 +386,7 @@ Most of them may return data. Usually both inputs and outputs are Lua tables.
 The Lua syntax for data-manipulation functions can vary. Here are examples of
 the variations with ``select`` requests; the same rules exist for the other
 data-manipulation functions. Every one of the examples does the same thing:
-select a tuple set from a space named tester where the primary-key field value
+select a tuple set from a space named 'tester' where the primary-key field value
 equals 1. For the examples there is an assumption that the numeric id of 'tester' is 512,
 which happens to be the case in our sandbox example only.
 
@@ -470,41 +468,46 @@ changes a tuple, then it also changes the index keys defined
 for the tuple.
 Therefore the user only needs to know how and why to define.
 
-The simple index-creation operation which has been illustrated before is: |br|
+The simple index-creation operation which has been illustrated before is:|br|
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')` |br|
+
 By default, this creates a unique "tree" index on the first field of all
 tuples (often called "Field#1"), which is assumed to be numeric.
 
-These variations exist: |br|
-(1) An indexed field may be a string rather than a number. |br|
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name',{parts = {1, 'STR'}})` |br|
-For an ordinary index, the most common data types are 'NUM'
-= numeric = any non-negative integer, or 'STR' ='string' = any
-series of bytes. Numbers are ordered
-according to their point on the number line -- so 2345 is
-greater than 500 -- while strings are ordered according to the
-encoding of the first byte then the encoding of the second
-byte then the encoding of the third byte and so on -- so
-'2345' is less than '500'.
-For details about other index types see :ref:`create_index <box_space-create_index>`.
-|br|
-(2) There may be more than one field. |br|
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {parts = {3, 'NUM', 2, 'STR'}})` |br|
-For an ordinary index, the maximum number of parts is 255.
-The specification of each part consists of a field number and
-a type. |br|
-(3) The index does not have to be unique. |br|
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {unique=false})` |br|
-The first index of a tuple set must be unique, but other indexes ("secondary"
-indexes) may be non-unique. |br|
-(4) The index does not have to be a tree. |br|
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {type='hash'})` |br|
-The two ordinary index types are 'tree' which is the default,
-and 'hash' which must be unique and which may be faster or
-smaller. The third type is 'bitset' which is not unique and
-which works best for combinations of binary values.
-The fourth type is 'rtree' which is not unique and
-which, instead of 'STR' or 'NUM' values, works with arrays.
+These variations exist:
+
+1. An indexed field may be a string rather than a number.|br|
+   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name',{parts = {1, 'STR'}})` |br|
+   For an ordinary index, the most common data types are 'NUM'
+   = numeric = any non-negative integer, or 'STR' ='string' = any
+   series of bytes. Numbers are ordered
+   according to their point on the number line -- so 2345 is
+   greater than 500 -- while strings are ordered according to the
+   encoding of the first byte then the encoding of the second
+   byte then the encoding of the third byte and so on -- so
+   '2345' is less than '500'.
+   
+   For details about other index types see :ref:`create_index <box_space-create_index>`.
+
+2. There may be more than one field.|br|
+   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {parts = {3, 'NUM', 2, 'STR'}})` |br|  
+   For an ordinary index, the maximum number of parts is 255.
+   The specification of each part consists of a field number and
+   a type.
+   
+3. The index does not have to be unique. |br|
+   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {unique=false})` |br|
+   The first index of a tuple set must be unique, but other indexes ("secondary"
+   indexes) may be non-unique.
+
+4. The index does not have to be a tree. |br|
+   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {type='hash'})` |br|
+   The two ordinary index types are 'tree' which is the default,
+   and 'hash' which must be unique and which may be faster or
+   smaller. The third type is 'bitset' which is not unique and
+   which works best for combinations of binary values.
+   The fourth type is 'rtree' which is not unique and
+   which, instead of 'STR' or 'NUM' values, works with arrays.
 
 The existence of indexes does not affect the syntax of data-change requests, but
 does cause select requests to have more variety.
@@ -515,67 +518,90 @@ By default, this looks for a single tuple
 via the first index. Since the first index is always unique,
 the maximum number of returned tuples will be: one.
 
-These variations exist: |br|
-(1) The search can use comparisons other than equality. |br|
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select('value', {iterator='GT'})` |br|
-The comparison operators are LT LE EQ REQ REQ GE GT for
-"less than" "less than or equal" "equal" "reversed
-equal" "greater than or equal" "greater than" respectively.
-Comparisons make sense if and only if the index type
-is 'tree'.
-This type of search may return more than one tuple;
-if so, the tuples will be in descending order by key
-when the comparison operator is LT or LE or REQ,
-otherwise in ascending order. |br|
-(2) The search can use a secondary index. |br|
-:samp:`box.space.{space-name}.index.{index-name}:select('value')` |br|
-For a primary-key search, it is optional to specify
-an index name. For a secondary-key search, it is mandatory. |br|
-(3) The search may be for some or all key parts. |br|
-Suppose an index has two parts: {1,'NUM', 2, 'STR'}.
-Suppose the space has three tuples: {1, 'A'},{1, 'B'},{2, ''}.
-The search can be for all fields, using a table for the value: |br|
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select({1, 'A'})` |br|
-or the search can be for one field, using a table or a scalar: |br|
-:samp:`box.space.{space-name}:select(1)` |br|
-in the second case, the result will be two tuples:
-{1, 'A'} and {1, 'B'}. It's even possible to specify zero
-fields, causing all three tuples to be
-returned.
+These variations exist:
 
-(1) BITSET example: |br|
-:codenormal:`box.schema.space.create('bitset_example')` |br|
-:codenormal:`box.space.bitset_example:create_index('primary')` |br|
-:codenormal:`box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'NUM'}})` |br|
-:codenormal:`box.space.bitset_example:insert{1,1}` |br|
-:codenormal:`box.space.bitset_example:insert{2,4}` |br|
-:codenormal:`box.space.bitset_example:insert{3,7}` |br|
-:codenormal:`box.space.bitset_example:insert{4,3}` |br|
-:codenormal:`box.space.bitset_example.index.bitset:select(2, {iterator='BITS_ANY_SET'})` |br|
-The result will be: |br|
-:codenormal:`---` |br|
-:codenormal:`- - [3, 7]` |br|
-|nbsp| |nbsp| :codenormal:`- [4, 3]` |br|
-:codenormal:`...` |br|
-because (7 AND 2) is not equal to 0, and (3 AND 2) is not equal to 0.
-Searches on BITSET indexes can be for BITS_ANY_SET, BITS_ALL_SET,
-BITS_ALL_NOT_SET, EQ, or ALL.
+1. The search can use comparisons other than equality. |br|
+   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select('value', {iterator='GT'})` |br|
+   The comparison operators are LT LE EQ REQ GE GT for
+   "less than" "less than or equal" "equal" "reversed
+   equal" "greater than or equal" "greater than" respectively.
+   Comparisons make sense if and only if the index type
+   is 'tree'.
 
-(2) RTREE example |br|
-:codenormal:`box.schema.space.create('rtree_example')` |br|
-:codenormal:`box.space.rtree_example:create_index('primary')` |br|
-:codenormal:`box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})` |br|
-:codenormal:`box.space.rtree_example:insert{1, {3, 5, 9, 10}}` |br|
-:codenormal:`box.space.rtree_example:insert{2, {10, 11}}` |br|
-:codenormal:`box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})` |br|
-The result will be:
-:codenormal:`---` |br|
-:codenormal:`- - [1, [3, 5, 9, 10]]` |br|
-:codenormal:`...` |br|
-because a rectangle whose corners are at coordinates
-4,7,5,9 is entirely within a rectangle whose corners
-are at coordinates 3,5,9,10. Searches on RTREE indexes
-can be for GT, GE, LT, LE, OVERLAPS, or NEIGHBOR.
+   This type of search may return more than one tuple;
+   if so, the tuples will be in descending order by key
+   when the comparison operator is LT or LE or REQ,
+   otherwise in ascending order.
+
+2. The search can use a secondary index. |br|
+   :samp:`box.space.{space-name}.index.{index-name}:select('value')` |br|
+   For a primary-key search, it is optional to specify
+   an index name. For a secondary-key search, it is mandatory.
+
+3. The search may be for some or all key parts. |br|
+   Suppose an index has two parts: {1,'NUM', 2, 'STR'}. |br|
+   Suppose the space has three tuples: {1, 'A'},{1, 'B'},{2, ''}. |br|
+   The search can be for all fields, using a table for the value: |br|
+   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select({1, 'A'})` |br|
+   or the search can be for one field, using a table or a scalar: |br|
+   :samp:`box.space.{space-name}:select(1)` |br|
+   in the second case, the result will be two tuples:
+   {1, 'A'} and {1, 'B'}. It's even possible to specify zero
+   fields, causing all three tuples to be
+   returned.
+
+Examples:
+
+* BITSET example:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.schema.space.create('bitset_example')
+      tarantool> box.space.bitset_example:create_index('primary')
+      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'NUM'}})
+      tarantool> box.space.bitset_example:insert{1,1}
+      tarantool> box.space.bitset_example:insert{2,4}
+      tarantool> box.space.bitset_example:insert{3,7}
+      tarantool> box.space.bitset_example:insert{4,3}
+      tarantool> box.space.bitset_example.index.bitset:select(2, {iterator='BITS_ANY_SET'})
+
+  The result will be:
+  
+  .. code-block:: tarantoolsession
+
+      ---
+      - - [3, 7]
+      - [4, 3]
+      ...
+
+  because (7 AND 2) is not equal to 0, and (3 AND 2) is not equal to 0.
+
+  Searches on BITSET indexes can be for BITS_ANY_SET, BITS_ALL_SET,
+  BITS_ALL_NOT_SET, EQ, or ALL.
+
+* RTREE example:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.schema.space.create('rtree_example')
+      tarantool> box.space.rtree_example:create_index('primary')
+      tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})
+      tarantool> box.space.rtree_example:insert{1, {3, 5, 9, 10}}
+      tarantool> box.space.rtree_example:insert{2, {10, 11}}
+      tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})
+
+  The result will be:
+
+  .. code-block:: tarantoolsession
+
+      ---
+      - - [1, [3, 5, 9, 10]]
+      ...
+    
+  because a rectangle whose corners are at coordinates 4,7,5,9 is entirely within
+  a rectangle whose corners are at coordinates 3,5,9,10.
+
+  Searches on RTREE indexes can be for GT, GE, LT, LE, OVERLAPS, or NEIGHBOR.
 
 .. _index-box_library:
 

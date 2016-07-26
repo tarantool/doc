@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-20 16:01+0300\n"
+"POT-Creation-Date: 2016-07-26 11:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,9 +71,9 @@ msgstr ""
 #: ../reference_lua/clock.rst:87
 #: ../reference_lua/clock.rst:105
 #: ../reference_lua/clock.rst:127
-#: ../reference_lua/console.rst:72
-#: ../reference_lua/console.rst:106
-#: ../reference_lua/console.rst:131
+#: ../reference_lua/console.rst:71
+#: ../reference_lua/console.rst:104
+#: ../reference_lua/console.rst:129
 #: ../reference_lua/csv.rst:70
 #: ../reference_lua/csv.rst:149
 #: ../reference_lua/csv.rst:191
@@ -333,30 +333,30 @@ msgid "Package `console`"
 msgstr ""
 
 #: ../reference_lua/console.rst:32
-msgid "The console package allows one Tarantool server to access another Tarantool server, and allows one Tarantool server to start listening on an administrative host/port."
+msgid "The console package allows one Tarantool server to access another Tarantool server, and allows one Tarantool server to start listening on an :ref:`admin port <administration-admin_ports>`."
 msgstr ""
 
-#: ../reference_lua/console.rst:42
+#: ../reference_lua/console.rst:41
 msgid "Connect to the server at :ref:`URI <index-uri>`, change the prompt from ':samp:`tarantool>`' to ':samp:`{uri}>`', and act henceforth as a client until the user ends the session or types :code:`control-D`."
 msgstr ""
 
-#: ../reference_lua/console.rst:46
+#: ../reference_lua/console.rst:45
 msgid "The console.connect function allows one Tarantool server, in interactive mode, to access another Tarantool server. Subsequent requests will appear to be handled locally, but in reality the requests are being sent to the remote server and the local server is acting as a client. Once connection is successful, the prompt will change and subsequent requests are sent to, and executed on, the remote server. Results are displayed on the local server. To return to local mode, enter :code:`control-D`."
 msgstr ""
 
-#: ../reference_lua/console.rst:55
+#: ../reference_lua/console.rst:54
 msgid "If the Tarantool server at :samp:`uri` requires authentication, the connection might look something like: :code:`console.connect('admin:secretpassword@distanthost.com:3301')`."
 msgstr ""
 
-#: ../reference_lua/console.rst:59
+#: ../reference_lua/console.rst:58
 msgid "There are no restrictions on the types of requests that can be entered, except those which are due to privilege restrictions -- by default the login to the remote server is done with user name = 'guest'. The remote server could allow for this by granting at least one privilege: :code:`box.schema.user.grant('guest','execute','universe')`."
 msgstr ""
 
-#: ../reference_lua/console.rst:65
+#: ../reference_lua/console.rst:64
 msgid "the URI of the remote server"
 msgstr ""
 
-#: ../reference_lua/console.rst:67
+#: ../reference_lua/console.rst:66
 #: ../reference_lua/fiber.rst:309
 #: ../reference_lua/fiber.rst:352
 #: ../reference_lua/log.rst:56
@@ -368,11 +368,11 @@ msgstr ""
 msgid "nil"
 msgstr ""
 
-#: ../reference_lua/console.rst:69
+#: ../reference_lua/console.rst:68
 msgid "Possible errors: the connection will fail if the target Tarantool server was not initiated with :code:`box.cfg{listen=...}`."
 msgstr ""
 
-#: ../reference_lua/console.rst:74
+#: ../reference_lua/console.rst:73
 msgid "tarantool> console = require('console')\n"
 "---\n"
 "...\n"
@@ -382,19 +382,19 @@ msgid "tarantool> console = require('console')\n"
 "198.18.44.44:3301> -- prompt is telling us that server is remote"
 msgstr ""
 
-#: ../reference_lua/console.rst:88
-msgid "Listen on :ref:`URI <index-uri>`. The primary way of listening for incoming requests is via the connection-information string, or URI, specified in :code:`box.cfg{listen=...}`. The alternative way of listening is via the URI specified in :code:`console.listen(...)`. This alternative way is called \"administrative\" or simply \"admin port\". The listening is usually over a local host with a Unix socket, specified with host = 'unix/', port = 'path/to/something.sock'."
+#: ../reference_lua/console.rst:87
+msgid "Listen on :ref:`URI <index-uri>`. The primary way of listening for incoming requests is via the connection-information string, or URI, specified in :code:`box.cfg{listen=...}`. The alternative way of listening is via the URI specified in :code:`console.listen(...)`. This alternative way is called \"administrative\" or simply :ref:`\"admin port\" <administration-admin_ports>`. The listening is usually over a local host with a Unix domain socket."
 msgstr ""
 
-#: ../reference_lua/console.rst:96
+#: ../reference_lua/console.rst:94
 msgid "the URI of the local server"
 msgstr ""
 
-#: ../reference_lua/console.rst:98
-msgid "The \"admin\" address is the URI to listen on for administrative connections. It has no default value, so it must be specified if connections will occur via telnet. The parameter is expressed with URI = Universal Resource Identifier format, for example \"/tmpdir/unix_domain_socket.sock\", or as a numeric TCP port. Connections are often made with telnet. A typical port value is 3313."
+#: ../reference_lua/console.rst:96
+msgid "The \"admin\" address is the URI to listen on. It has no default value, so it must be specified if connections will occur via an admin port. The parameter is expressed with URI = Universal Resource Identifier format, for example \"/tmpdir/unix_domain_socket.sock\", or a numeric TCP port. Connections are often made with telnet. A typical port value is 3313."
 msgstr ""
 
-#: ../reference_lua/console.rst:108
+#: ../reference_lua/console.rst:106
 msgid "tarantool> console = require('console')\n"
 "---\n"
 "...\n"
@@ -411,20 +411,20 @@ msgid "tarantool> console = require('console')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/console.rst:129
+#: ../reference_lua/console.rst:127
 msgid "Start the console on the current interactive terminal."
 msgstr ""
 
-#: ../reference_lua/console.rst:133
+#: ../reference_lua/console.rst:131
 msgid "A special use of ``console.start()`` is with :ref:`initialization files <index-init_label>`. Normally, if one starts the tarantool server with :samp:`tarantool {initialization file}` there is no console. This can be remedied by adding these lines at the end of the initialization file:"
 msgstr ""
 
-#: ../reference_lua/console.rst:140
+#: ../reference_lua/console.rst:138
 msgid "console = require('console')\n"
 "console.start()"
 msgstr ""
 
-#: ../reference_lua/console.rst:149
+#: ../reference_lua/console.rst:147
 msgid "Set the auto-completion flag. If auto-completion is `true`, and the user is using tarantool as a client, then hitting the TAB key may cause tarantool to complete a word automatically. The default auto-completion value is `true`."
 msgstr ""
 
@@ -2638,35 +2638,35 @@ msgstr ""
 msgid "Example: ``conn:call('function5')``"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:188
+#: ../reference_lua/net_box.rst:190
 msgid ":samp:`conn:eval({Lua-string})` evaluates and executes the expression in Lua-string, which may be any statement or series of statements. An :ref:`execute privilege <authentication-privileges>` is required; if the user does not have it, an administrator may grant it with :samp:`box.schema.user.grant({username}, 'execute', 'universe')`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:194
+#: ../reference_lua/net_box.rst:196
 msgid "Example: ``conn:eval('return 5+5')``"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:198
+#: ../reference_lua/net_box.rst:200
 msgid "``timeout(...)`` is a wrapper which sets a timeout for the request that follows it."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:201
+#: ../reference_lua/net_box.rst:203
 msgid "Example: ``conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})``"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:203
+#: ../reference_lua/net_box.rst:205
 msgid "All remote calls support execution timeouts. Using a wrapper object makes the remote connection API compatible with the local one, removing the need for a separate ``timeout`` argument, which the local version would ignore. Once a request is sent, it cannot be revoked from the remote server even if a timeout expires: the timeout expiration only aborts the wait for the remote server response, not the request itself."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:212
+#: ../reference_lua/net_box.rst:214
 msgid "Example showing use of most of the net.box methods"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:214
+#: ../reference_lua/net_box.rst:216
 msgid "This example will work with the sandbox configuration described in the preface. That is, there is a space named tester with a numeric primary key. Assume that the database is nearly empty. Assume that the tarantool server is running on ``localhost 127.0.0.1:3301``."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:219
+#: ../reference_lua/net_box.rst:221
 msgid "tarantool> net_box = require('net.box')\n"
 "---\n"
 "...\n"
