@@ -54,14 +54,85 @@ snippet and the ``code-block`` directive is not enough, we use the per-line
 ``codenormal`` directive together with explicit output formatting (defined in 
 :file:`doc/sphinx/_static/sphinx_design.css`).
 
-For example (a tdb session with custom formatting in bold, blue and green):
+Examples:
 
-:codenormal:`$` :codebold:`tarantool example.lua` |br|
-:codeblue:`(TDB)` |nbsp| :codegreen:`Tarantool debugger v.0.0.3. Type h for help` |br|
-:codenormal:`example.lua` |br|
-:codeblue:`(TDB)` |nbsp| :codegreen:`[example.lua]` |br|
-:codeblue:`(TDB)` |nbsp| :codenormal:`3: i = 1` |br|
-:codeblue:`(TDB)>` |br|
+* Function syntax (the placeholder `space-name` is displayed in italics):
+
+  :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')`
+
+* A tdb session (with custom formatting in bold, blue and green):
+
+  .. cssclass:: highlight
+  .. parsed-literal::
+
+      $ :codebold:`tarantool example.lua`
+      :codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`
+      example.lua
+      :codeblue:`(TDB)`  :codegreen:`[example.lua]`
+      :codeblue:`(TDB)`  :codenormal:`3: i = 1`
+
+Warning: Every entry of the ``codenormal`` directive tends to cause troubles
+when this documentation is translated to other languages. Please avoid using
+``codenormal`` unless it is REALLY needed.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              Using separated links
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Avoid separating the link and the target definition (ref), like this:
+
+.. code-block:: text
+
+   This is a paragraph that contains `a link`_.
+
+   .. _a link: http://example.com/
+
+Use non-separated links instead:
+
+.. code-block:: text
+
+   This is a paragraph that contains `a link <http://example.com/>`.
+
+Warning: Every separated link tends to cause troubles when this documentation is
+translated to other languages. Please avoid using separated links unless it is
+REALLY needed (e.g. in tables).
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Creating labels for local links
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We avoid using links that sphinx generates automatically for most objects.
+Instead, we add our own labels for linking to any place in this documentation.
+
+Our naming convention is as follows:
+
+* Character set: a through z, 0 through 9, dash, underscore.
+
+* Format: ``path dash filename dash tag``
+
+  Example: ``_c_api-box_index-iterator_type`` |br|
+  where: |br|
+  ``c_api`` is the directory name, |br|
+  ``box_index`` is the file name (without ".rst"), and |br|
+  ``iterator_type`` is the tag.
+  
+The file name is useful for knowing, when you see "ref", where it is pointing
+to. And if the file name is meaningful, you see that better.
+  
+The file name alone, without a path, is enough when the file name is unique
+within ``doc/sphinx``.
+So, for ``fiber.rst`` it should be just "fiber", not "reference-fiber".
+While for "index.rst" (we have a handful of "index.rst" in different
+directories) please specify the path before the file name, e.g.
+"reference-index".
+  
+Use a dash "-" to delimit the path and the file name. In the documentation
+source, we use only underscores "_" in paths and file names, reserving dash "-"
+as the delimiter for local links.  
+
+The tag can be anything meaningful. The only guideline is for Tarantool syntax
+items (such as members), where the preferred tag syntax is
+``package_or_object_name dash member_name``. For example, ``box_space-drop``.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               Making comments
@@ -71,16 +142,15 @@ Sometimes we may need to leave comments in a ReST file. To make sphinx ignore
 some text during processing, use the following per-line notation with ".. //" as
 the comment marker:
 
-.. // your comment here
+.. code-block:: text
 
-`The notation example is excluded from HTML output, so please see the source in
-ReST.`
+   .. // your comment here
 
 The starting symbols ".. //" do not interfere with the other ReST markup, and
 they are easy to find both visually and using grep. There are no symbols to
 escape in grep search, just go ahead with something like this:
 
-  .. code-block:: console
+.. code-block:: console
 
     grep ".. //" doc/sphinx/dev_guide/*.rst
 
