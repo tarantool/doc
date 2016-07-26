@@ -703,6 +703,8 @@ API is a direct binding to corresponding methods of index objects of type
         :return: the deleted tuple.
         :rtype:  tuple
 
+        Note re storage engine: vinyl will return nil, rather than the deleted tuple.
+
     .. _box_index-alter:
 
     .. method:: alter({options})
