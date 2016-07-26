@@ -144,11 +144,13 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     Grant :ref:`privileges <authentication-privileges>` to a user.
 
     :param string user-name: the name of the user
-    :param string privileges: either privilege,object-type,object-name
-                              or privilege,'universe' where privilege =
-                              'read' or 'write' or 'execute' or a combination
+    :param string privileges: privilege,object-type,object-name
+                              where privilege = 'read' or 'write' or 'execute' or a combination,
                               and object-type = 'space' or 'function'.
+                              Or: privilege,'universe'.
                               Or: role-name.
+
+    If :samp:`'function','{object-name}'` is specified, then a _func tuple with that object-name must exist.
 
     **Examples:**
 
@@ -162,10 +164,10 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     Revoke :ref:`privileges <authentication-privileges>` from a user.
 
     :param string user-name: the name of the user
-    :param string privileges: either privilege,object-type,object-name
-                              or privilege,'universe' where privilege =
-                              'read' or 'write' or 'execute' or a combination
+    :param string privileges: privilege,object-type,object-name
+                              where privilege = 'read' or 'write' or 'execute' or a combination,
                               and object-type = 'space' or 'function'.
+                              Or: privilege,'universe'.
                               Or: role-name.
 
     **Examples:**

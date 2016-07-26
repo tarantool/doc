@@ -280,8 +280,8 @@ The possible options are:
 
     box.schema.func.create('f', {language = 'C', setuid = false})
 
-Specifying :code:`if_not_exists=true` would cause ``error: Function '...' already
-exists`` if the function already exists.
+Specifying :code:`if_not_exists=false` would cause ``error: Function '...' already
+exists`` if the _func tuple already exists.
 
 Specifying :code:`setuid=true` would cause the setuid flag (the fourth field in
 the _func tuple) to have a value meaning "true", and the effect of that is that
