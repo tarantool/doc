@@ -51,7 +51,7 @@ For example (a code snippet in Lua):
 
 In rare cases, when we need custom highlight for specific parts of a code
 snippet and the ``code-block`` directive is not enough, we use the per-line
-``codenormal`` directive together with explicit output formatting (defined in 
+``codenormal`` directive together and explicit output formatting (defined in 
 :file:`doc/sphinx/_static/sphinx_design.css`).
 
 Examples:
@@ -60,7 +60,8 @@ Examples:
 
   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')`
 
-* A tdb session (with custom formatting in bold, blue and green):
+* A tdb session (user input is in bold, command prompt is in blue, computer 
+  output is in green):
 
   .. cssclass:: highlight
   .. parsed-literal::
@@ -69,11 +70,12 @@ Examples:
       :codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`
       example.lua
       :codeblue:`(TDB)`  :codegreen:`[example.lua]`
-      :codeblue:`(TDB)`  :codenormal:`3: i = 1`
+      :codeblue:`(TDB)`  :codenormal:`3: i = 1`      
 
-Warning: Every entry of the ``codenormal`` directive tends to cause troubles
-when this documentation is translated to other languages. Please avoid using
-``codenormal`` unless it is REALLY needed.
+Warning: Every entry of explicit output formatting (``codenormal``, ``codebold``,
+etc) tends to cause troubles when this documentation is translated to other
+languages. Please avoid using explicit output formatting unless it is REALLY
+needed.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               Using separated links
