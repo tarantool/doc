@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-26 11:39+0300\n"
+"POT-Creation-Date: 2016-07-28 16:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2264,91 +2264,169 @@ msgid "for page in paged_iter(\"X\", 10) do\n"
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:77
-msgid "In rare cases, when we need custom highlight for specific parts of a code snippet and the ``code-block`` directive is not enough, we use the per-line ``codenormal`` directive together with explicit output formatting (defined in :file:`doc/sphinx/_static/sphinx_design.css`)."
+msgid "In rare cases, when we need custom highlight for specific parts of a code snippet and the ``code-block`` directive is not enough, we use the per-line ``codenormal`` directive together and explicit output formatting (defined in :file:`doc/sphinx/_static/sphinx_design.css`)."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:82
-msgid "For example (a tdb session with custom formatting in bold, blue and green):"
+msgid "Examples:"
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:84
-msgid ":codenormal:`$` :codebold:`tarantool example.lua` |br| :codeblue:`(TDB)` |nbsp| :codegreen:`Tarantool debugger v.0.0.3. Type h for help` |br| :codenormal:`example.lua` |br| :codeblue:`(TDB)` |nbsp| :codegreen:`[example.lua]` |br| :codeblue:`(TDB)` |nbsp| :codenormal:`3: i = 1` |br| :codeblue:`(TDB)>` |br|"
+msgid "Function syntax (the placeholder `space-name` is displayed in italics):"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:93
-msgid "Making comments"
+#: ../dev_guide/documentation_guidelines.rst:86
+msgid ":codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')`"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:95
-msgid "Sometimes we may need to leave comments in a ReST file. To make sphinx ignore some text during processing, use the following per-line notation with \".. //\" as the comment marker:"
+#: ../dev_guide/documentation_guidelines.rst:88
+msgid "A tdb session (user input is in bold, command prompt is in blue, computer output is in green):"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:101
-msgid "`The notation example is excluded from HTML output, so please see the source in ReST.`"
+#: ../dev_guide/documentation_guidelines.rst:100
+msgid "Warning: Every entry of explicit output formatting (``codenormal``, ``codebold``, etc) tends to cause troubles when this documentation is translated to other languages. Please avoid using explicit output formatting unless it is REALLY needed."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:104
-msgid "The starting symbols \".. //\" do not interfere with the other ReST markup, and they are easy to find both visually and using grep. There are no symbols to escape in grep search, just go ahead with something like this:"
+#: ../dev_guide/documentation_guidelines.rst:107
+msgid "Using separated links"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:108
-msgid "grep \".. //\" doc/sphinx/dev_guide/*.rst"
+#: ../dev_guide/documentation_guidelines.rst:109
+msgid "Avoid separating the link and the target definition (ref), like this:"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:112
-msgid "These comments don't work properly in nested documentation, though (e.g. if you leave a comment in module -> object -> method, sphinx ignores the comment and all nested content that follows in the method description)."
+#: ../dev_guide/documentation_guidelines.rst:111
+msgid "This is a paragraph that contains `a link`_.\n"
+"\n"
+".. _a link: http://example.com/"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:118
-msgid "Language and style issues"
+#: ../dev_guide/documentation_guidelines.rst:117
+msgid "Use non-separated links instead:"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:122
-msgid "US vs British spelling"
+#: ../dev_guide/documentation_guidelines.rst:119
+msgid "This is a paragraph that contains `a link <http://example.com/>`."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:124
-msgid "We use English US spelling."
+#: ../dev_guide/documentation_guidelines.rst:123
+msgid "Warning: Every separated link tends to cause troubles when this documentation is translated to other languages. Please avoid using separated links unless it is REALLY needed (e.g. in tables)."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:128
-msgid "Examples and templates"
+#: ../dev_guide/documentation_guidelines.rst:129
+msgid "Creating labels for local links"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:132
-msgid "Module and function"
+#: ../dev_guide/documentation_guidelines.rst:131
+msgid "We avoid using links that sphinx generates automatically for most objects. Instead, we add our own labels for linking to any place in this documentation."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:134
+msgid "Our naming convention is as follows:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:136
+msgid "Character set: a through z, 0 through 9, dash, underscore."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:138
+msgid "Format: ``path dash filename dash tag``"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:140
+msgid "Example: ``_c_api-box_index-iterator_type`` |br| where: |br| ``c_api`` is the directory name, |br| ``box_index`` is the file name (without \".rst\"), and |br| ``iterator_type`` is the tag."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:146
+msgid "The file name is useful for knowing, when you see \"ref\", where it is pointing to. And if the file name is meaningful, you see that better."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:149
+msgid "The file name alone, without a path, is enough when the file name is unique within ``doc/sphinx``. So, for ``fiber.rst`` it should be just \"fiber\", not \"reference-fiber\". While for \"index.rst\" (we have a handful of \"index.rst\" in different directories) please specify the path before the file name, e.g. \"reference-index\"."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:156
+msgid "Use a dash \"-\" to delimit the path and the file name. In the documentation source, we use only underscores \"_\" in paths and file names, reserving dash \"-\" as the delimiter for local links."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:160
+msgid "The tag can be anything meaningful. The only guideline is for Tarantool syntax items (such as members), where the preferred tag syntax is ``package_or_object_name dash member_name``. For example, ``box_space-drop``."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:166
+msgid "Making comments"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:168
+msgid "Sometimes we may need to leave comments in a ReST file. To make sphinx ignore some text during processing, use the following per-line notation with \".. //\" as the comment marker:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:172
+msgid ".. // your comment here"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:176
+msgid "The starting symbols \".. //\" do not interfere with the other ReST markup, and they are easy to find both visually and using grep. There are no symbols to escape in grep search, just go ahead with something like this:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:180
+msgid "grep \".. //\" doc/sphinx/dev_guide/*.rst"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:184
+msgid "These comments don't work properly in nested documentation, though (e.g. if you leave a comment in module -> object -> method, sphinx ignores the comment and all nested content that follows in the method description)."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:190
+msgid "Language and style issues"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:194
+msgid "US vs British spelling"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:196
+msgid "We use English US spelling."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:200
+msgid "Examples and templates"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:204
+msgid "Module and function"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:206
 msgid "Here is an example of documenting a module (``my_fiber``) and a function (``my_fiber.create``)."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:141
+#: ../dev_guide/documentation_guidelines.rst:213
 msgid "Create and start a ``my_fiber`` object. The object is created and begins to run immediately."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:144
+#: ../dev_guide/documentation_guidelines.rst:216
 msgid "the function to be associated with the ``my_fiber`` object"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:145
+#: ../dev_guide/documentation_guidelines.rst:217
 msgid "what will be passed to function"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:147
+#: ../dev_guide/documentation_guidelines.rst:219
 msgid "created ``my_fiber`` object"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:148
+#: ../dev_guide/documentation_guidelines.rst:220
 msgid "userdata"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:150
-#: ../dev_guide/documentation_guidelines.rst:188
+#: ../dev_guide/documentation_guidelines.rst:222
+#: ../dev_guide/documentation_guidelines.rst:260
 msgid "**Example:**"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:152
+#: ../dev_guide/documentation_guidelines.rst:224
 msgid "tarantool> my_fiber = require('my_fiber')\n"
 "---\n"
 "...\n"
@@ -2362,41 +2440,41 @@ msgid "tarantool> my_fiber = require('my_fiber')\n"
 "..."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:168
+#: ../dev_guide/documentation_guidelines.rst:240
 msgid "Module, class and method"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:170
+#: ../dev_guide/documentation_guidelines.rst:242
 msgid "Here is an example of documenting a module (``my_box.index``), a class (``my_index_object``) and a function (``my_index_object.rename``)."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:179
+#: ../dev_guide/documentation_guidelines.rst:251
 msgid "Rename an index."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:181
+#: ../dev_guide/documentation_guidelines.rst:253
 msgid "an object reference"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:182
+#: ../dev_guide/documentation_guidelines.rst:254
 msgid "a new name for the index (type = string)"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:184
+#: ../dev_guide/documentation_guidelines.rst:256
 msgid "nil"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:186
+#: ../dev_guide/documentation_guidelines.rst:258
 msgid "Possible errors: index_object does not exist."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:190
+#: ../dev_guide/documentation_guidelines.rst:262
 msgid "tarantool> box.space.space55.index.primary:rename('secondary')\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:196
+#: ../dev_guide/documentation_guidelines.rst:268
 msgid "Complexity Factors: Index size, Index type, Number of tuples accessed."
 msgstr ""
 

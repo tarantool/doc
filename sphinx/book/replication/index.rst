@@ -39,7 +39,7 @@ To prepare the master for connections from the replica, it's only necessary
 to include ":ref:`listen <cfg_basic-listen>`" in the initial ``box.cfg`` request, for example
 ``box.cfg{listen=3301}``. A master with enabled "listen" URI can accept
 connections from as many replicas as necessary on that URI. Each replica
-has its own replication state.
+has its own :ref:`replication state <index-monitoring_replica_actions>`.
 
 =====================================================================
                         Setting up a replica
@@ -116,7 +116,7 @@ Step 1. Start the first server thus:
 Step 2. Check where the second server's files will go by looking at its
 directories (:ref:`snap_dir <cfg_basic-snap_dir>` for snapshot files, :ref:`wal_dir <cfg_basic-wal_dir>` for .xlog files).
 They must be empty - when the second server joins for the first time, it
-has to be working with a clean slate so that the initial copy of the first
+has to be working with a clean state so that the initial copy of the first
 server's databases can happen without conflicts.
 
 Step 3. Start the second server thus:
@@ -142,8 +142,10 @@ take over), or LOAD BALANCING (because clients can connect to either the master
 or the replica for select requests). Sometimes the replica may be configured with
 the additional parameter :ref:`read_only = true <cfg_basic-read_only>`.
 
+.. _index-monitoring_replica_actions:
+
 =====================================================================
-                    Monitoring a Replica's Actions
+                    Monitoring a replica's actions
 =====================================================================
 
 In :ref:`box.info <box_introspection-box_info>` there is a :code:`box.info.replication.status` field:
@@ -170,7 +172,7 @@ when a replica connects or disconnects.
 .. _index-preventing_duplicate_actions:
 
 =====================================================================
-                    Preventing Duplicate Actions
+                    Preventing duplicate actions
 =====================================================================
 
 Suppose that the replica tries to do something that the master has already done.
@@ -196,7 +198,7 @@ which is executed via :code:`box.once()`. For example:
     box.once('space_creator', f)
 
 =====================================================================
-                    Master-Master Replication
+                    Master-master replication
 =====================================================================
 
 In the simple master-replica configuration, the master's changes are seen by
@@ -227,7 +229,7 @@ servers will end up with different contents.
 
 
 =====================================================================
-                All the "What If?" Questions
+                All the "What If?" questions
 =====================================================================
 
 Q: What if there are more than two servers with master-master? |br|
@@ -238,7 +240,7 @@ others. For example, server #3 would have a request: |br|
 :codenormal:`}`
 
 Q: What if a server should be taken out of the cluster? |br|
-A: Run ``box.cfg{}`` again specifying a blank replication source: |br|
+A: For a replica, run ``box.cfg{}`` again specifying a blank replication source: |br|
 ``box.cfg{replication_source=''}``
 
 Q: What if a server leaves the cluster? |br|
@@ -249,7 +251,7 @@ Q: What if two servers both change the same tuple? |br|
 A: The last changer wins. For example, suppose that server#1 changes the
 tuple, then server#2 changes the tuple. In that case server#2's change
 overrides whatever server#1 did. In order to keep track of who came last,
-Tarantool implements a `vector clock`_.
+Tarantool implements a `vector clock <https://en.wikipedia.org/wiki/Vector_clock>`_.
 
 Q: What if two servers both insert the same tuple? |br|
 A: If a master tries to insert a tuple which a replica has inserted
@@ -285,18 +287,16 @@ Q: What if replication causes security concerns? |br|
 A: Prevent unauthorized replication sources by associating a password with
 every user that has access privileges for the relevant spaces, and every
 user that has a replication :ref:`role <authentication-rep_role>`. That way,
-the :ref:`URI <index-uri>` for the ref:`replication_source <cfg_replication-replication_source>` parameter will
-always have to have the long form |br|
+the :ref:`URI <index-uri>` for the :ref:`replication_source <cfg_replication-replication_source>`
+parameter will always have to have the long form |br|
 ``replication_source='username:password@host:port'``
 
 Q: What if advanced users want to understand better how it all works? |br|
 A: See the description of server startup with replication in the
 :ref:`Internals <b_internals-replication>` appendix.
 
-.. _vector clock: https://en.wikipedia.org/wiki/Vector_clock
-
 =====================================================================
-                    Hands-On Replication Tutorial
+                    Hands-on replication tutorial
 =====================================================================
 
 After following the steps here, an administrator will have experience creating

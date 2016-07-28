@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-20 10:20+0300\n"
-"PO-Revision-Date: 2016-07-20 16:57+0300\n"
+"PO-Revision-Date: 2016-07-28 16:42+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Вопросы и ответы"
 #: ../faq.rst:39 ../faq.rst:44 ../faq.rst:51 ../faq.rst:62 ../faq.rst:68
 #: ../faq.rst:74 ../faq.rst:79
 msgid "Q: |br| A: |br|"
-msgstr "В: |br| О: |br|"
+msgstr "Вопрос: |br| Ответ: |br|"
 
 #: ../faq.rst:39
 msgid ""

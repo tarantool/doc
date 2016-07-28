@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-26 11:39+0300\n"
+"POT-Creation-Date: 2016-07-28 16:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2733,21 +2733,21 @@ msgstr ""
 #: ../book/box/box_index.rst:625
 #: ../book/box/box_index.rst:654
 #: ../book/box/box_index.rst:682
-#: ../book/box/box_index.rst:751
-#: ../book/box/box_index.rst:773
-#: ../book/box/box_index.rst:794
+#: ../book/box/box_index.rst:753
+#: ../book/box/box_index.rst:775
+#: ../book/box/box_index.rst:796
 #: ../book/box/box_introspection.rst:43
 #: ../book/box/box_introspection.rst:86
 #: ../book/box/box_introspection.rst:143
 #: ../book/box/box_schema.rst:147
 #: ../book/box/box_schema.rst:161
-#: ../book/box/box_schema.rst:210
-#: ../book/box/box_schema.rst:241
-#: ../book/box/box_schema.rst:271
-#: ../book/box/box_schema.rst:282
-#: ../book/box/box_schema.rst:327
-#: ../book/box/box_schema.rst:361
-#: ../book/box/box_schema.rst:372
+#: ../book/box/box_schema.rst:212
+#: ../book/box/box_schema.rst:243
+#: ../book/box/box_schema.rst:273
+#: ../book/box/box_schema.rst:284
+#: ../book/box/box_schema.rst:329
+#: ../book/box/box_schema.rst:363
+#: ../book/box/box_schema.rst:374
 #: ../book/box/box_space.rst:232
 #: ../book/box/box_space.rst:262
 #: ../book/box/box_space.rst:340
@@ -3312,7 +3312,7 @@ msgid "box.schema.func.create('f', {language = 'C', setuid = false})"
 msgstr ""
 
 #: ../book/box/authentication.rst:308
-msgid "Specifying :code:`if_not_exists=true` would cause ``error: Function '...' already exists`` if the function already exists."
+msgid "Specifying :code:`if_not_exists=false` would cause ``error: Function '...' already exists`` if the _func tuple already exists."
 msgstr ""
 
 #: ../book/box/authentication.rst:311
@@ -3500,18 +3500,18 @@ msgstr ""
 #: ../book/box/box_index.rst:670
 #: ../book/box/box_index.rst:703
 #: ../book/box/box_index.rst:722
-#: ../book/box/box_index.rst:737
-#: ../book/box/box_index.rst:764
-#: ../book/box/box_index.rst:785
-#: ../book/box/box_index.rst:808
+#: ../book/box/box_index.rst:739
+#: ../book/box/box_index.rst:766
+#: ../book/box/box_index.rst:787
+#: ../book/box/box_index.rst:810
 msgid "Parameters:"
 msgstr ""
 
 #: ../book/box/box_index.rst:48
 #: ../book/box/box_index.rst:58
 #: ../book/box/box_index.rst:66
-#: ../book/box/box_index.rst:766
-#: ../book/box/box_index.rst:810
+#: ../book/box/box_index.rst:768
+#: ../book/box/box_index.rst:812
 msgid ":samp:`{index_object}` = an :ref:`object reference <index-object_reference>`."
 msgstr ""
 
@@ -3569,8 +3569,8 @@ msgstr ""
 #: ../book/box/box_index.rst:672
 #: ../book/box/box_index.rst:705
 #: ../book/box/box_index.rst:724
-#: ../book/box/box_index.rst:739
-#: ../book/box/box_index.rst:787
+#: ../book/box/box_index.rst:741
+#: ../book/box/box_index.rst:789
 msgid ":samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;"
 msgstr ""
 
@@ -3596,7 +3596,7 @@ msgid "Possible errors: Selected iteration type is not supported for the index t
 msgstr ""
 
 #: ../book/box/box_index.rst:127
-#: ../book/box/box_index.rst:802
+#: ../book/box/box_index.rst:804
 msgid "Complexity Factors: Index size, Index type, Number of tuples accessed."
 msgstr ""
 
@@ -4174,7 +4174,7 @@ msgid "the number of matching index keys."
 msgstr ""
 
 #: ../book/box/box_index.rst:679
-#: ../book/box/box_index.rst:813
+#: ../book/box/box_index.rst:815
 #: ../book/box/box_schema.rst:64
 #: ../book/box/box_schema.rst:66
 #: ../book/box/box_session.rst:41
@@ -4238,19 +4238,24 @@ msgstr ""
 msgid "the deleted tuple."
 msgstr ""
 
-#: ../book/box/box_index.rst:735
+#: ../book/box/box_index.rst:731
+#: ../book/box/box_space.rst:640
+msgid "Note re storage engine: vinyl will return nil, rather than the deleted tuple."
+msgstr ""
+
+#: ../book/box/box_index.rst:737
 msgid "Alter an index."
 msgstr ""
 
-#: ../book/box/box_index.rst:740
+#: ../book/box/box_index.rst:742
 msgid ":samp:`{options}` = options list, same as the options list for :ref:`create_index <box_space-create_index>`."
 msgstr ""
 
-#: ../book/box/box_index.rst:743
-#: ../book/box/box_index.rst:790
+#: ../book/box/box_index.rst:745
+#: ../book/box/box_index.rst:792
 #: ../book/box/box_schema.rst:128
-#: ../book/box/box_schema.rst:256
-#: ../book/box/box_schema.rst:344
+#: ../book/box/box_schema.rst:258
+#: ../book/box/box_schema.rst:346
 #: ../book/box/box_space.rst:354
 #: ../book/box/box_space.rst:376
 #: ../book/box/box_space.rst:791
@@ -4261,114 +4266,114 @@ msgstr ""
 msgid "nil"
 msgstr ""
 
-#: ../book/box/box_index.rst:745
+#: ../book/box/box_index.rst:747
 msgid "Possible errors: Index does not exist, or the first index cannot be changed to {unique = false}, or the alter function is only applicable for the memtx storage engine."
 msgstr ""
 
-#: ../book/box/box_index.rst:749
+#: ../book/box/box_index.rst:751
 msgid "Note re storage engine: vinyl does not support ``alter()``."
 msgstr ""
 
-#: ../book/box/box_index.rst:753
+#: ../book/box/box_index.rst:755
 msgid "tarantool> box.space.space55.index.primary:alter({type = 'HASH'})\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_index.rst:761
+#: ../book/box/box_index.rst:763
 msgid "Drop an index. Dropping a primary-key index has a side effect: all tuples are deleted."
 msgstr ""
 
-#: ../book/box/box_index.rst:768
+#: ../book/box/box_index.rst:770
 msgid "nil."
 msgstr ""
 
-#: ../book/box/box_index.rst:770
+#: ../book/box/box_index.rst:772
 msgid "Possible errors: Index does not exist, or a primary-key index cannot be dropped while a secondary-key index exists."
 msgstr ""
 
-#: ../book/box/box_index.rst:775
+#: ../book/box/box_index.rst:777
 msgid "tarantool> box.space.space55.index.primary:drop()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_index.rst:783
+#: ../book/box/box_index.rst:785
 msgid "Rename an index."
 msgstr ""
 
-#: ../book/box/box_index.rst:788
+#: ../book/box/box_index.rst:790
 msgid ":samp:`{index-name}` (type = string) = new name for index."
 msgstr ""
 
-#: ../book/box/box_index.rst:792
+#: ../book/box/box_index.rst:794
 msgid "Possible errors: index_object does not exist."
 msgstr ""
 
-#: ../book/box/box_index.rst:796
+#: ../book/box/box_index.rst:798
 msgid "tarantool> box.space.space55.index.primary:rename('secondary')\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_index.rst:806
+#: ../book/box/box_index.rst:808
 msgid "Return the total number of bytes taken by the index."
 msgstr ""
 
-#: ../book/box/box_index.rst:812
+#: ../book/box/box_index.rst:814
 #: ../book/box/box_tuple.rst:109
 msgid "number of bytes"
 msgstr ""
 
-#: ../book/box/box_index.rst:817
+#: ../book/box/box_index.rst:819
 msgid "Example showing use of the box functions"
 msgstr ""
 
-#: ../book/box/box_index.rst:819
+#: ../book/box/box_index.rst:821
 msgid "This example will work with the sandbox configuration described in the preface. That is, there is a space named tester with a numeric primary key. The example function will:"
 msgstr ""
 
-#: ../book/box/box_index.rst:823
+#: ../book/box/box_index.rst:825
 msgid "select a tuple whose key value is 1000;"
 msgstr ""
 
-#: ../book/box/box_index.rst:824
+#: ../book/box/box_index.rst:826
 msgid "return an error if the tuple already exists and already has 3 fields;"
 msgstr ""
 
-#: ../book/box/box_index.rst:827
+#: ../book/box/box_index.rst:829
 msgid "Insert or replace the tuple with:"
 msgstr ""
 
-#: ../book/box/box_index.rst:826
+#: ../book/box/box_index.rst:828
 msgid "field[1] = 1000"
 msgstr ""
 
-#: ../book/box/box_index.rst:827
+#: ../book/box/box_index.rst:829
 msgid "field[2] = a uuid"
 msgstr ""
 
-#: ../book/box/box_index.rst:828
+#: ../book/box/box_index.rst:830
 msgid "field[3] = number of seconds since 1970-01-01;"
 msgstr ""
 
-#: ../book/box/box_index.rst:829
+#: ../book/box/box_index.rst:831
 msgid "Get field[3] from what was replaced;"
 msgstr ""
 
-#: ../book/box/box_index.rst:830
+#: ../book/box/box_index.rst:832
 msgid "Format the value from field[3] as yyyy-mm-dd hh:mm:ss.ffff;"
 msgstr ""
 
-#: ../book/box/box_index.rst:831
+#: ../book/box/box_index.rst:833
 msgid "Return the formatted value."
 msgstr ""
 
-#: ../book/box/box_index.rst:833
+#: ../book/box/box_index.rst:835
 msgid "The function uses Tarantool box functions :ref:`box.space...select <box_space-select>`, :ref:`box.space...replace <box_space-replace>`, :ref:`fiber.time <fiber-time>`, :ref:`uuid.str <uuid-str>`. The function uses Lua functions `os.date()`_ and `string.sub()`_."
 msgstr ""
 
-#: ../book/box/box_index.rst:842
+#: ../book/box/box_index.rst:844
 msgid "function example()\n"
 "  local a, b, c, table_of_selected_tuples, d\n"
 "  local replaced_tuple, time_field\n"
@@ -4393,12 +4398,12 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_index.rst:867
+#: ../book/box/box_index.rst:869
 #: ../book/box/box_tuple.rst:337
 msgid "... And here is what happens when one invokes the function:"
 msgstr ""
 
-#: ../book/box/box_index.rst:869
+#: ../book/box/box_index.rst:871
 msgid "tarantool> box.space.tester:delete(1000)\n"
 "---\n"
 "- [1000, '264ee2da03634f24972be76c43808254', '1391037015.6809']\n"
@@ -4413,15 +4418,15 @@ msgid "tarantool> box.space.tester:delete(1000)\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_index.rst:886
+#: ../book/box/box_index.rst:888
 msgid "Example showing a user-defined iterator"
 msgstr ""
 
-#: ../book/box/box_index.rst:888
+#: ../book/box/box_index.rst:890
 msgid "Here is an example that shows how to build one's own iterator. The ``paged_iter`` function is an \"iterator function\", which will only be understood by programmers who have read the Lua manual section `Iterators and Closures <https://www.lua.org/pil/7.1.html>`_. It does paginated retrievals, that is, it returns 10 tuples at a time from a table named \"t\", whose primary key was defined with :codenormal:`create_index('primary',{parts={1,'STR'}})`."
 msgstr ""
 
-#: ../book/box/box_index.rst:898
+#: ../book/box/box_index.rst:900
 msgid "function paged_iter(search_key, tuples_per_page)\n"
 "  local iterator_string = \"GE\"\n"
 "  return function ()\n"
@@ -4435,30 +4440,30 @@ msgid "function paged_iter(search_key, tuples_per_page)\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_index.rst:912
+#: ../book/box/box_index.rst:914
 msgid "Programmers who use ``paged_iter`` do not need to know why it works, they only need to know that, if they call it within a loop, they will get 10 tuples at a time until there are no more tuples. In this example the tuples are merely printed, a page at a time. But it should be simple to change the functionality, for example by yielding after each retrieval, or by breaking when the tuples fail to match some additional criteria."
 msgstr ""
 
-#: ../book/box/box_index.rst:922
+#: ../book/box/box_index.rst:924
 msgid "for page in paged_iter(\"X\", 10) do\n"
 "  print(\"New Page. Number Of Tuples = \" .. #page)\n"
 "  for i=1,#page,1 do print(page[i]) end\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_index.rst:933
+#: ../book/box/box_index.rst:935
 msgid "Package `box.index` with index type = RTREE for spatial searches"
 msgstr ""
 
-#: ../book/box/box_index.rst:935
+#: ../book/box/box_index.rst:937
 msgid "The :ref:`box.index <box_index>` package may be used for spatial searches if the index type is RTREE. There are operations for searching *rectangles* (geometric objects with 4 corners and 4 sides) and *boxes* (geometric objects with more than 4 corners and more than 4 sides, sometimes called hyperrectangles). This manual uses the term *rectangle-or-box* for the whole class of objects that includes both rectangles and boxes. Only rectangles will be illustrated."
 msgstr ""
 
-#: ../book/box/box_index.rst:942
+#: ../book/box/box_index.rst:944
 msgid "Rectangles are described according to their X-axis (horizontal axis) and Y-axis (vertical axis) coordinates in a grid of arbitrary size. Here is a picture of four rectangles on a grid with 11 horizontal points and 11 vertical points:"
 msgstr ""
 
-#: ../book/box/box_index.rst:948
+#: ../book/box/box_index.rst:950
 msgid "           X AXIS\n"
 "           1   2   3   4   5   6   7   8   9   10  11\n"
 "        1\n"
@@ -4474,19 +4479,19 @@ msgid "           X AXIS\n"
 "        11                                     #               <-Rectangle#4"
 msgstr ""
 
-#: ../book/box/box_index.rst:962
+#: ../book/box/box_index.rst:964
 msgid "The rectangles are defined according to this scheme: {X-axis coordinate of top left, Y-axis coordinate of top left, X-axis coordinate of bottom right, Y-axis coordinate of bottom right} -- or more succinctly: {x1,y1,x2,y2}. So in the picture ... Rectangle#1 starts at position 1 on the X axis and position 2 on the Y axis, and ends at position 3 on the X axis and position 4 on the Y axis, so its coordinates are {1,2,3,4}. Rectangle#2's coordinates are {3,5,9,10}. Rectangle#3's coordinates are {4,7,5,9}. And finally Rectangle#4's coordinates are {10,11,10,11}. Rectangle#4 is actually a \"point\" since it has zero width and zero height, so it could have been described with only two digits: {10,11}."
 msgstr ""
 
-#: ../book/box/box_index.rst:972
+#: ../book/box/box_index.rst:974
 msgid "Some relationships between the rectangles are: \"Rectangle#1's nearest neighbor is Rectangle#2\", and \"Rectangle#3 is entirely inside Rectangle#2\"."
 msgstr ""
 
-#: ../book/box/box_index.rst:975
+#: ../book/box/box_index.rst:977
 msgid "Now let us create a space and add an RTREE index."
 msgstr ""
 
-#: ../book/box/box_index.rst:977
+#: ../book/box/box_index.rst:979
 msgid "tarantool> s = box.schema.space.create('rectangles')\n"
 "tarantool> i = s:create_index('primary', {\n"
 "         >   type = 'HASH',\n"
@@ -4499,20 +4504,20 @@ msgid "tarantool> s = box.schema.space.create('rectangles')\n"
 "         > })"
 msgstr ""
 
-#: ../book/box/box_index.rst:990
+#: ../book/box/box_index.rst:992
 msgid "Field#1 doesn't matter, we just make it because we need a primary-key index. (RTREE indexes cannot be unique and therefore cannot be primary-key indexes.) The second field must be an \"array\", which means its values must represent {x,y} points or {x1,y1,x2,y2} rectangles. Now let us populate the table by inserting two tuples, containing the coordinates of Rectangle#2 and Rectangle#4."
 msgstr ""
 
-#: ../book/box/box_index.rst:996
+#: ../book/box/box_index.rst:998
 msgid "tarantool> s:insert{1, {3, 5, 9, 10}}\n"
 "tarantool> s:insert{2, {10, 11}}"
 msgstr ""
 
-#: ../book/box/box_index.rst:1001
+#: ../book/box/box_index.rst:1003
 msgid "And now, following the description of `RTREE iterator types`_, we can search the rectangles with these requests:"
 msgstr ""
 
-#: ../book/box/box_index.rst:1006
+#: ../book/box/box_index.rst:1008
 msgid "tarantool> r:select({10, 11, 10, 11}, {iterator = 'EQ'})\n"
 "---\n"
 "- - [2, [10, 11]]\n"
@@ -4528,15 +4533,15 @@ msgid "tarantool> r:select({10, 11, 10, 11}, {iterator = 'EQ'})\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_index.rst:1022
+#: ../book/box/box_index.rst:1024
 msgid "Request#1 returns 1 tuple because the point {10,11} is the same as the rectangle {10,11,10,11} (\"Rectangle#4\" in the picture). Request#2 returns 1 tuple because the rectangle {4,7,5,9}, which was \"Rectangle#3\" in the picture, is entirely within{3,5,9,10} which was Rectangle#2. Request#3 returns 2 tuples, because the NEIGHBOR iterator always returns all tuples, and the first returned tuple will be {3,5,9,10} (\"Rectangle#2\" in the picture) because it is the closest neighbor of {1,2,3,4} (\"Rectangle#1\" in the picture)."
 msgstr ""
 
-#: ../book/box/box_index.rst:1030
+#: ../book/box/box_index.rst:1032
 msgid "Now let us create a space and index for cuboids, which are rectangle-or-boxes that have 6 corners and 6 sides."
 msgstr ""
 
-#: ../book/box/box_index.rst:1033
+#: ../book/box/box_index.rst:1035
 msgid "tarantool> s = box.schema.space.create('R')\n"
 "tarantool> i = s:create_index('primary', {parts = {1, 'NUM'}})\n"
 "tarantool> r = s:create_index('S', {\n"
@@ -4547,20 +4552,20 @@ msgid "tarantool> s = box.schema.space.create('R')\n"
 "         > })"
 msgstr ""
 
-#: ../book/box/box_index.rst:1044
+#: ../book/box/box_index.rst:1046
 msgid "The additional field here is ``dimension=3``. The default dimension is 2, which is why it didn't need to be specified for the examples of rectangle. The maximum dimension is 20. Now for insertions and selections there will usually be 6 coordinates. For example:"
 msgstr ""
 
-#: ../book/box/box_index.rst:1048
+#: ../book/box/box_index.rst:1050
 msgid "tarantool> s:insert{1, {0, 3, 0, 3, 0, 3}}\n"
 "tarantool> r:select({1, 2, 1, 2, 1, 2}, {iterator = box.index.GT})"
 msgstr ""
 
-#: ../book/box/box_index.rst:1053
+#: ../book/box/box_index.rst:1055
 msgid "Now let us create a space and index for Manhattan-style spatial objects, which are rectangle-or-boxes that have a different way to calculate neighbors."
 msgstr ""
 
-#: ../book/box/box_index.rst:1056
+#: ../book/box/box_index.rst:1058
 msgid "tarantool> s = box.schema.space.create('R')\n"
 "tarantool> i = s:create_index('primary', {parts = {1, 'NUM'}})\n"
 "tarantool> r = s:create_index('S', {\n"
@@ -4571,16 +4576,16 @@ msgid "tarantool> s = box.schema.space.create('R')\n"
 "         > })"
 msgstr ""
 
-#: ../book/box/box_index.rst:1067
+#: ../book/box/box_index.rst:1069
 msgid "The additional field here is ``distance='manhattan'``. The default distance calculator is 'euclid', which is the straightforward as-the-crow-flies method. The optional distance calculator is 'manhattan', which can be a more appropriate method if one is following the lines of a grid rather than traveling in a straight line."
 msgstr ""
 
-#: ../book/box/box_index.rst:1072
+#: ../book/box/box_index.rst:1074
 msgid "tarantool> s:insert{1, {0, 3, 0, 3}}\n"
 "tarantool> r:select({1, 2, 1, 2}, {iterator = box.index.NEIGHBOR})"
 msgstr ""
 
-#: ../book/box/box_index.rst:1078
+#: ../book/box/box_index.rst:1080
 msgid "More examples of spatial searching are online in the file `R tree index quick start and usage`_."
 msgstr ""
 
@@ -4879,7 +4884,7 @@ msgid "0 i.e. not fixed"
 msgstr ""
 
 #: ../book/box/box_schema.rst:68
-#: ../book/box/box_schema.rst:254
+#: ../book/box/box_schema.rst:256
 #: ../book/box/box_space.rst:173
 msgid "if_not_exists"
 msgstr ""
@@ -4899,7 +4904,7 @@ msgstr ""
 
 #: ../book/box/box_schema.rst:71
 #: ../book/box/box_schema.rst:75
-#: ../book/box/box_schema.rst:208
+#: ../book/box/box_schema.rst:210
 #: ../book/box/box_session.rst:61
 #: ../book/box/index.rst:174
 msgid "string"
@@ -4978,13 +4983,13 @@ msgid "if_not_exists, password"
 msgstr ""
 
 #: ../book/box/box_schema.rst:130
-#: ../book/box/box_schema.rst:178
-#: ../book/box/box_schema.rst:196
-#: ../book/box/box_schema.rst:226
-#: ../book/box/box_schema.rst:258
-#: ../book/box/box_schema.rst:297
-#: ../book/box/box_schema.rst:314
-#: ../book/box/box_schema.rst:346
+#: ../book/box/box_schema.rst:180
+#: ../book/box/box_schema.rst:198
+#: ../book/box/box_schema.rst:228
+#: ../book/box/box_schema.rst:260
+#: ../book/box/box_schema.rst:299
+#: ../book/box/box_schema.rst:316
+#: ../book/box/box_schema.rst:348
 msgid "**Examples:**"
 msgstr ""
 
@@ -5001,7 +5006,7 @@ msgstr ""
 #: ../book/box/box_schema.rst:144
 #: ../book/box/box_schema.rst:158
 #: ../book/box/box_schema.rst:171
-#: ../book/box/box_schema.rst:189
+#: ../book/box/box_schema.rst:191
 msgid "the name of the user"
 msgstr ""
 
@@ -5019,8 +5024,8 @@ msgid "Return true if a user exists; return false if a user does not exist."
 msgstr ""
 
 #: ../book/box/box_schema.rst:159
-#: ../book/box/box_schema.rst:280
-#: ../book/box/box_schema.rst:370
+#: ../book/box/box_schema.rst:282
+#: ../book/box/box_schema.rst:372
 msgid "bool"
 msgstr ""
 
@@ -5033,161 +5038,168 @@ msgid "Grant :ref:`privileges <authentication-privileges>` to a user."
 msgstr ""
 
 #: ../book/box/box_schema.rst:172
-#: ../book/box/box_schema.rst:190
-#: ../book/box/box_schema.rst:291
-msgid "either privilege,object-type,object-name or privilege,'universe' where privilege = 'read' or 'write' or 'execute' or a combination and object-type = 'space' or 'function'. Or: role-name."
+#: ../book/box/box_schema.rst:192
+msgid "privilege,object-type,object-name where privilege = 'read' or 'write' or 'execute' or a combination, and object-type = 'space' or 'function'. Or: privilege,'universe'. Or: role-name."
 msgstr ""
 
-#: ../book/box/box_schema.rst:180
+#: ../book/box/box_schema.rst:178
+msgid "If :samp:`'function','{object-name}'` is specified, then a _func tuple with that object-name must exist."
+msgstr ""
+
+#: ../book/box/box_schema.rst:182
 msgid "box.schema.user.grant('Lena', 'read', 'space', 'tester') |br| box.schema.user.grant('Lena', 'execute', 'function', 'f') |br| box.schema.user.grant('Lena', 'read,write', 'universe') |br| box.schema.user.grant('Lena', 'Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:187
+#: ../book/box/box_schema.rst:189
 msgid "Revoke :ref:`privileges <authentication-privileges>` from a user."
 msgstr ""
 
-#: ../book/box/box_schema.rst:198
+#: ../book/box/box_schema.rst:200
 msgid "box.schema.user.revoke('Lena', 'read', 'space', 'tester') |br| box.schema.user.revoke('Lena', 'execute', 'function', 'f') |br| box.schema.user.revoke('Lena', 'read,write', 'universe') |br| box.schema.user.revoke('Lena', 'Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:205
+#: ../book/box/box_schema.rst:207
 msgid "Return a hash of a password."
 msgstr ""
 
-#: ../book/box/box_schema.rst:207
-#: ../book/box/box_schema.rst:224
+#: ../book/box/box_schema.rst:209
+#: ../book/box/box_schema.rst:226
 msgid "password"
 msgstr ""
 
-#: ../book/box/box_schema.rst:212
+#: ../book/box/box_schema.rst:214
 msgid "box.schema.user.password('ЛЕНА')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:216
+#: ../book/box/box_schema.rst:218
 msgid "Associate a password with the user who is currently logged in. or with another user. Users who wish to change their own passwords should use box.schema.user.passwd(password). Administrators who wish to change passwords of other users should use box.schema.user.passwd(user-name, password)."
 msgstr ""
 
-#: ../book/box/box_schema.rst:223
+#: ../book/box/box_schema.rst:225
 msgid "user-name"
 msgstr ""
 
-#: ../book/box/box_schema.rst:228
+#: ../book/box/box_schema.rst:230
 msgid "box.schema.user.passwd('ЛЕНА') |br| box.schema.user.passwd('Lena', 'ЛЕНА')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:233
+#: ../book/box/box_schema.rst:235
 msgid "Return a description of a user's privileges."
 msgstr ""
 
-#: ../book/box/box_schema.rst:235
+#: ../book/box/box_schema.rst:237
 msgid "the name of the user. This is optional; if it is not supplied, then the information will be for the user who is currently logged in."
 msgstr ""
 
-#: ../book/box/box_schema.rst:243
+#: ../book/box/box_schema.rst:245
 msgid "box.schema.user.info() |br| box.schema.user.info('Lena')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:248
+#: ../book/box/box_schema.rst:250
 msgid "Create a role. For explanation of how Tarantool maintains role data, see section :ref:`Roles <authentication-roles>`."
 msgstr ""
 
-#: ../book/box/box_schema.rst:252
+#: ../book/box/box_schema.rst:254
 msgid "name of role, which should not be a number and should not contain special characters"
 msgstr ""
 
-#: ../book/box/box_schema.rst:260
+#: ../book/box/box_schema.rst:262
 msgid "box.schema.role.create('Accountant') |br| box.schema.role.create('Accountant', {if_not_exists = false})"
 msgstr ""
 
-#: ../book/box/box_schema.rst:265
+#: ../book/box/box_schema.rst:267
 msgid "Drop a role. For explanation of how Tarantool maintains role data, see section :ref:`Roles <authentication-roles>`."
 msgstr ""
 
-#: ../book/box/box_schema.rst:269
-#: ../book/box/box_schema.rst:279
-#: ../book/box/box_schema.rst:290
-#: ../book/box/box_schema.rst:308
+#: ../book/box/box_schema.rst:271
+#: ../book/box/box_schema.rst:281
+#: ../book/box/box_schema.rst:292
+#: ../book/box/box_schema.rst:310
 msgid "the name of the role"
 msgstr ""
 
-#: ../book/box/box_schema.rst:273
+#: ../book/box/box_schema.rst:275
 msgid "box.schema.role.drop('Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:277
+#: ../book/box/box_schema.rst:279
 msgid "Return true if a role exists; return false if a role does not exist."
 msgstr ""
 
-#: ../book/box/box_schema.rst:284
+#: ../book/box/box_schema.rst:286
 msgid "box.schema.role.exists('Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:288
+#: ../book/box/box_schema.rst:290
 msgid "Grant :ref:`privileges <authentication-privileges>` to a role."
 msgstr ""
 
-#: ../book/box/box_schema.rst:299
+#: ../book/box/box_schema.rst:293
+msgid "either privilege,object-type,object-name or privilege,'universe' where privilege = 'read' or 'write' or 'execute' or a combination and object-type = 'space' or 'function'. Or: role-name."
+msgstr ""
+
+#: ../book/box/box_schema.rst:301
 msgid "box.schema.role.grant('Accountant', 'read', 'space', 'tester') |br| box.schema.role.grant('Accountant', 'execute', 'function', 'f') |br| box.schema.role.grant('Accountant', 'read,write', 'universe') |br| box.schema.role.grant('public', 'Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:306
+#: ../book/box/box_schema.rst:308
 msgid "Revoke :ref:`privileges <authentication-privileges>` to a role."
 msgstr ""
 
-#: ../book/box/box_schema.rst:309
+#: ../book/box/box_schema.rst:311
 msgid "either privilege,object-type,object-name or privilege,'universe' where privilege = 'read' or 'write' or 'execute' or a combination and object-type = 'space' or 'function'"
 msgstr ""
 
-#: ../book/box/box_schema.rst:316
+#: ../book/box/box_schema.rst:318
 msgid "box.schema.role.revoke('Accountant', 'read', 'space', 'tester') |br| box.schema.role.revoke('Accountant', 'execute', 'function', 'f') |br| box.schema.role.revoke('Accountant', 'read,write', 'universe') |br| box.schema.role.revoke('public', 'Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:323
+#: ../book/box/box_schema.rst:325
 msgid "Return a description of a role's privileges."
 msgstr ""
 
-#: ../book/box/box_schema.rst:325
+#: ../book/box/box_schema.rst:327
 msgid "the name of the role."
 msgstr ""
 
-#: ../book/box/box_schema.rst:329
+#: ../book/box/box_schema.rst:331
 msgid "box.schema.role.info('Accountant')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:333
+#: ../book/box/box_schema.rst:335
 msgid "Create a function tuple. This does not create the function itself -- that is done with Lua -- but if it is necessary to grant privileges for a function, box.schema.func.create must be done first. For explanation of how Tarantool maintains function data, see section :ref:`Functions and the _func space <authentication-funcs>`."
 msgstr ""
 
-#: ../book/box/box_schema.rst:340
+#: ../book/box/box_schema.rst:342
 msgid "name of function, which should not be a number and should not contain special characters"
 msgstr ""
 
-#: ../book/box/box_schema.rst:342
+#: ../book/box/box_schema.rst:344
 msgid "if_not_exists, setuid, language"
 msgstr ""
 
-#: ../book/box/box_schema.rst:348
+#: ../book/box/box_schema.rst:350
 msgid "box.schema.func.create('calculate') |br| box.schema.func.create('calculate', {if_not_exists = false}) |br| box.schema.func.create('calculate', {setuid = false}) |br| box.schema.func.create('calculate', {language = 'LUA'})"
 msgstr ""
 
-#: ../book/box/box_schema.rst:355
+#: ../book/box/box_schema.rst:357
 msgid "Drop a function tuple. For explanation of how Tarantool maintains function data, see section :ref:`Functions and the _func space <authentication-funcs>`."
 msgstr ""
 
-#: ../book/box/box_schema.rst:359
-#: ../book/box/box_schema.rst:369
+#: ../book/box/box_schema.rst:361
+#: ../book/box/box_schema.rst:371
 msgid "the name of the function"
 msgstr ""
 
-#: ../book/box/box_schema.rst:363
+#: ../book/box/box_schema.rst:365
 msgid "box.schema.func.drop('calculate')"
 msgstr ""
 
-#: ../book/box/box_schema.rst:367
+#: ../book/box/box_schema.rst:369
 msgid "Return true if a function tuple exists; return false if a function tuple does not exist."
 msgstr ""
 
-#: ../book/box/box_schema.rst:374
+#: ../book/box/box_schema.rst:376
 msgid "box.schema.func.exists('calculate')"
 msgstr ""
 
@@ -5938,10 +5950,6 @@ msgstr ""
 
 #: ../book/box/box_space.rst:638
 msgid "**Complexity Factors:** Index size, Index type"
-msgstr ""
-
-#: ../book/box/box_space.rst:640
-msgid "Note re storage engine: vinyl will return nil, rather than the deleted tuple."
 msgstr ""
 
 #: ../book/box/box_space.rst:644
@@ -9182,7 +9190,7 @@ msgid "Setting up the master"
 msgstr ""
 
 #: ../book/replication/index.rst:63
-msgid "To prepare the master for connections from the replica, it's only necessary to include \":ref:`listen <cfg_basic-listen>`\" in the initial ``box.cfg`` request, for example ``box.cfg{listen=3301}``. A master with enabled \"listen\" URI can accept connections from as many replicas as necessary on that URI. Each replica has its own replication state."
+msgid "To prepare the master for connections from the replica, it's only necessary to include \":ref:`listen <cfg_basic-listen>`\" in the initial ``box.cfg`` request, for example ``box.cfg{listen=3301}``. A master with enabled \"listen\" URI can accept connections from as many replicas as necessary on that URI. Each replica has its own :ref:`replication state <index-monitoring_replica_actions>`."
 msgstr ""
 
 #: ../book/replication/index.rst:71
@@ -9241,7 +9249,7 @@ msgid "... Now a new cluster exists."
 msgstr ""
 
 #: ../book/replication/index.rst:141
-msgid "Step 2. Check where the second server's files will go by looking at its directories (:ref:`snap_dir <cfg_basic-snap_dir>` for snapshot files, :ref:`wal_dir <cfg_basic-wal_dir>` for .xlog files). They must be empty - when the second server joins for the first time, it has to be working with a clean slate so that the initial copy of the first server's databases can happen without conflicts."
+msgid "Step 2. Check where the second server's files will go by looking at its directories (:ref:`snap_dir <cfg_basic-snap_dir>` for snapshot files, :ref:`wal_dir <cfg_basic-wal_dir>` for .xlog files). They must be empty - when the second server joins for the first time, it has to be working with a clean state so that the initial copy of the first server's databases can happen without conflicts."
 msgstr ""
 
 #: ../book/replication/index.rst:147
@@ -9267,19 +9275,19 @@ msgstr ""
 msgid "In this configuration, the first server is the \"master\" and the second server is the \"replica\". Henceforth every change that happens on the master will be visible on the replica. A simple two-server cluster with the master on one computer and the replica on a different computer is very common and provides two benefits: FAILOVER (because if the master goes down then the replica can take over), or LOAD BALANCING (because clients can connect to either the master or the replica for select requests). Sometimes the replica may be configured with the additional parameter :ref:`read_only = true <cfg_basic-read_only>`."
 msgstr ""
 
-#: ../book/replication/index.rst:172
-msgid "Monitoring a Replica's Actions"
+#: ../book/replication/index.rst:174
+msgid "Monitoring a replica's actions"
 msgstr ""
 
-#: ../book/replication/index.rst:174
+#: ../book/replication/index.rst:176
 msgid "In :ref:`box.info <box_introspection-box_info>` there is a :code:`box.info.replication.status` field: \"off\", \"stopped\", \"connecting\", \"auth\", \"follow\", or \"disconnected\". |br| If a replica's status is \"follow\", then there will be two more fields: |br| :code:`box.info.replication.idle` = the number of seconds the replica has been idle, |br| :code:`box.info.replication.lag` = the number of seconds the replica is behind the master."
 msgstr ""
 
-#: ../book/replication/index.rst:180
+#: ../book/replication/index.rst:182
 msgid "In the :ref:`log <log>` there is a record of replication activity. If a primary server is started with:"
 msgstr ""
 
-#: ../book/replication/index.rst:186
+#: ../book/replication/index.rst:188
 msgid "box.cfg{\n"
 "  <...>,\n"
 "  logger = *log file name*,\n"
@@ -9287,99 +9295,99 @@ msgid "box.cfg{\n"
 "}"
 msgstr ""
 
-#: ../book/replication/index.rst:192
+#: ../book/replication/index.rst:194
 msgid "then there will be lines in the log file, containing the word \"relay\", when a replica connects or disconnects."
 msgstr ""
 
-#: ../book/replication/index.rst:199
-msgid "Preventing Duplicate Actions"
+#: ../book/replication/index.rst:201
+msgid "Preventing duplicate actions"
 msgstr ""
 
-#: ../book/replication/index.rst:201
+#: ../book/replication/index.rst:203
 msgid "Suppose that the replica tries to do something that the master has already done. For example: |br| :code:`box.schema.space.create('X')` |br| This would cause an error, \"Space X exists\". For this particular situation, the code could be changed to: |br| :code:`box.schema.space.create('X', {if_not_exists=true})` |br| But there is a more general solution: the :samp:`box.once({key}, {function})` method. If :code:`box.once()` has been called before with the same :samp:`{key}` value, then :samp:`{function}` is ignored; otherwise :samp:`{function}` is executed. Therefore, actions which should only occur once during the life of a replicated session should be placed in a function which is executed via :code:`box.once()`. For example:"
 msgstr ""
 
-#: ../book/replication/index.rst:216
+#: ../book/replication/index.rst:218
 msgid "function f()\n"
 "  box.schema.space.create('X')\n"
 "end\n"
 "box.once('space_creator', f)"
 msgstr ""
 
-#: ../book/replication/index.rst:225
-msgid "Master-Master Replication"
+#: ../book/replication/index.rst:227
+msgid "Master-master replication"
 msgstr ""
 
-#: ../book/replication/index.rst:227
+#: ../book/replication/index.rst:229
 msgid "In the simple master-replica configuration, the master's changes are seen by the replica, but not vice versa, because the master was specified as the sole replication source. In the master-master configuration, also sometimes called multi-master configuration, it's possible to go both ways. Starting with the simple configuration, the first server has to say:"
 msgstr ""
 
-#: ../book/replication/index.rst:237
+#: ../book/replication/index.rst:239
 msgid "box.cfg{ replication_source = *uri#2* }"
 msgstr ""
 
-#: ../book/replication/index.rst:239
+#: ../book/replication/index.rst:241
 msgid "This request can be performed at any time -- :ref:`replication_source <cfg_replication-replication_source>` is a dynamic parameter."
 msgstr ""
 
-#: ../book/replication/index.rst:242
+#: ../book/replication/index.rst:244
 msgid "In this configuration, both servers are \"masters\" and both servers are \"replicas\". Henceforth every change that happens on either server will be visible on the other. The failover benefit is still present, and the load-balancing benefit is enhanced (because clients can connect to either server for data-change requests as well as select requests)."
 msgstr ""
 
-#: ../book/replication/index.rst:248
+#: ../book/replication/index.rst:250
 msgid "If two operations for the same tuple take place \"concurrently\" (which can involve a long interval because replication is asynchronous), and one of the operations is ``delete`` or ``replace``, there is a possibility that servers will end up with different contents."
 msgstr ""
 
-#: ../book/replication/index.rst:256
-msgid "All the \"What If?\" Questions"
+#: ../book/replication/index.rst:258
+msgid "All the \"What If?\" questions"
 msgstr ""
 
-#: ../book/replication/index.rst:258
+#: ../book/replication/index.rst:260
 msgid "Q: What if there are more than two servers with master-master? |br| A: On each server, specify the :ref:`replication_source <cfg_replication-replication_source>` for all the others. For example, server #3 would have a request: |br| :codenormal:`box.cfg{` |br| |nbsp| |nbsp| |nbsp| :codenormal:`replication_source = {`:codeitalic:`uri#1, uri#2`:codenormal:`}` |br| :codenormal:`}`"
 msgstr ""
 
-#: ../book/replication/index.rst:265
+#: ../book/replication/index.rst:267
 msgid "Q: What if a server should be taken out of the cluster? |br| A: Run ``box.cfg{}`` again specifying a blank replication source: |br| ``box.cfg{replication_source=''}``"
 msgstr ""
 
-#: ../book/replication/index.rst:269
+#: ../book/replication/index.rst:271
 msgid "Q: What if a server leaves the cluster? |br| A: The other servers carry on. If the wayward server rejoins, it will receive all the updates that the other servers made while it was away."
 msgstr ""
 
-#: ../book/replication/index.rst:273
-msgid "Q: What if two servers both change the same tuple? |br| A: The last changer wins. For example, suppose that server#1 changes the tuple, then server#2 changes the tuple. In that case server#2's change overrides whatever server#1 did. In order to keep track of who came last, Tarantool implements a `vector clock`_."
+#: ../book/replication/index.rst:275
+msgid "Q: What if two servers both change the same tuple? |br| A: The last changer wins. For example, suppose that server#1 changes the tuple, then server#2 changes the tuple. In that case server#2's change overrides whatever server#1 did. In order to keep track of who came last, Tarantool implements a `vector clock <https://en.wikipedia.org/wiki/Vector_clock>`_."
 msgstr ""
 
-#: ../book/replication/index.rst:279
+#: ../book/replication/index.rst:281
 msgid "Q: What if two servers both insert the same tuple? |br| A: If a master tries to insert a tuple which a replica has inserted already, this is an example of a severe error. Replication stops. It will have to be restarted manually."
 msgstr ""
 
-#: ../book/replication/index.rst:284
+#: ../book/replication/index.rst:286
 msgid "Q: What if a master disappears and the replica must take over? |br| A: A message will appear on the replica stating that the connection is lost. The replica must now become independent, which can be done by saying ``box.cfg{replication_source=''}``."
 msgstr ""
 
-#: ../book/replication/index.rst:289
+#: ../book/replication/index.rst:291
 msgid "Q: What if it's necessary to know what cluster a server is in? |br| A: The identification of the cluster is a UUID which is generated when the first master starts for the first time. This UUID is stored in a tuple of the :ref:`box.space._schema <box_space-schema>` system space. So to see it, say: ``box.space._schema:select{'cluster'}``"
 msgstr ""
 
-#: ../book/replication/index.rst:295
+#: ../book/replication/index.rst:297
 msgid "Q: What if it's necessary to know what other servers belong in the cluster? |br| A: The universal identification of a server is a UUID in ``box.info.server.uuid``. The ordinal identification of a server within a cluster is a number in ``box.info.server.id``. To see all the servers in the cluster, say: ``box.space._cluster:select{}``. This will return a table with all {server.id, server.uuid} tuples for every server that has ever joined the cluster."
 msgstr ""
 
-#: ../book/replication/index.rst:303
+#: ../book/replication/index.rst:305
 msgid "Q: What if one of the server's files is corrupted or deleted? |br| A: Stop the server, destroy all the database files (the ones with extension \"snap\" or \"xlog\" or \".inprogress\"), restart the server, and catch up with the master by contacting it again (just say ``box.cfg{...replication_source=...}``)."
 msgstr ""
 
-#: ../book/replication/index.rst:309
-msgid "Q: What if replication causes security concerns? |br| A: Prevent unauthorized replication sources by associating a password with every user that has access privileges for the relevant spaces, and every user that has a replication :ref:`role <authentication-rep_role>`. That way, the :ref:`URI <index-uri>` for the ref:`replication_source <cfg_replication-replication_source>` parameter will always have to have the long form |br| ``replication_source='username:password@host:port'``"
+#: ../book/replication/index.rst:311
+msgid "Q: What if replication causes security concerns? |br| A: Prevent unauthorized replication sources by associating a password with every user that has access privileges for the relevant spaces, and every user that has a replication :ref:`role <authentication-rep_role>`. That way, the :ref:`URI <index-uri>` for the :ref:`replication_source <cfg_replication-replication_source>` parameter will always have to have the long form |br| ``replication_source='username:password@host:port'``"
 msgstr ""
 
-#: ../book/replication/index.rst:317
+#: ../book/replication/index.rst:319
 msgid "Q: What if advanced users want to understand better how it all works? |br| A: See the description of server startup with replication in the :ref:`Internals <b_internals-replication>` appendix."
 msgstr ""
 
 #: ../book/replication/index.rst:325
-msgid "Hands-On Replication Tutorial"
+msgid "Hands-on replication tutorial"
 msgstr ""
 
 #: ../book/replication/index.rst:327

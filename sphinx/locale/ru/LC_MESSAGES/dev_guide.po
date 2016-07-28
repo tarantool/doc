@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 19:16+0300\n"
+"POT-Creation-Date: 2016-07-27 16:39+0300\n"
 "PO-Revision-Date: 2016-07-20 14:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,8 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
-"Language: ru\n"
-"X-Generator: Poedit 1.8.8\n"
 
 #: ../dev_guide/box_protocol.rst:36
 msgid "IProto Protocol"
@@ -48,8 +46,8 @@ msgstr ""
 "+----+\n"
 "|    | - X байт\n"
 "+----+\n"
-" TYPE - тип переменной из библиотеки MsgPack (если это объект из библиотеки "
-"MsgPack)\n"
+" TYPE - тип переменной из библиотеки MsgPack (если это объект из "
+"библиотеки MsgPack)\n"
 "\n"
 "+====+\n"
 "|    | - объект из библиотеки MsgPack, динамически изменяемого размера\n"
@@ -57,8 +55,8 @@ msgstr ""
 " TYPE - тип переменной из библиотеки MsgPack\n"
 "\n"
 "+~~~~+\n"
-"|    | - массив/сопоставление из библиотеки MsgPack, динамически изменяемого "
-"размера\n"
+"|    | - массив/сопоставление из библиотеки MsgPack, динамически "
+"изменяемого размера\n"
 "+~~~~+\n"
 " TYPE - тип переменной из библиотеки MsgPack"
 
@@ -122,11 +120,11 @@ msgstr ""
 #: ../dev_guide/box_protocol.rst:97
 msgid ""
 "The server begins the dialogue by sending a fixed-size (128 bytes) text "
-"greeting to the client. The greeting always contains two 64 byte lines of ASCII "
-"text, each line ending with newline character ('\\\\n'). The first line "
-"contains the server version and protocol type. The second line contains up to "
-"44 bytes of base64-encoded random string, to use in authentication packet, and "
-"ends with up to 23 spaces."
+"greeting to the client. The greeting always contains two 64 byte lines of"
+" ASCII text, each line ending with newline character ('\\\\n'). The first"
+" line contains the server version and protocol type. The second line "
+"contains up to 44 bytes of base64-encoded random string, to use in "
+"authentication packet, and ends with up to 23 spaces."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:105
@@ -141,8 +139,8 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:110
 msgid ""
-"request multiplexing, e.g. ability to asynchronously issue multiple requests "
-"via the same connection"
+"request multiplexing, e.g. ability to asynchronously issue multiple "
+"requests via the same connection"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:112
@@ -151,16 +149,16 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:114
 msgid ""
-"For data structuring and encoding, the protocol uses msgpack data format, see "
-"http://msgpack.org"
+"For data structuring and encoding, the protocol uses msgpack data format,"
+" see http://msgpack.org"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:117
 msgid ""
-"Tarantool protocol mandates use of a few integer constants serving as keys in "
-"maps used in the protocol. These constants are defined in `src/box/"
-"iproto_constants.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/"
-"iproto_constants.h>`_"
+"Tarantool protocol mandates use of a few integer constants serving as "
+"keys in maps used in the protocol. These constants are defined in "
+"`src/box/iproto_constants.h "
+"<https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:121
@@ -241,12 +239,12 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:190
 msgid ""
-"They only differ in the allowed set of keys and values, the key defines the "
-"type of value that follows. If a body has no keys, entire msgpack map for the "
-"body may be missing. Such is the case, for example, in <ping> request. "
-"``schema_id`` may be absent in request's header, that means that there'll be no "
-"version checking, but it must be present in the response. If ``schema_id`` is "
-"sent in the header, then it'll be checked."
+"They only differ in the allowed set of keys and values, the key defines "
+"the type of value that follows. If a body has no keys, entire msgpack map"
+" for the body may be missing. Such is the case, for example, in <ping> "
+"request. ``schema_id`` may be absent in request's header, that means that"
+" there'll be no version checking, but it must be present in the response."
+" If ``schema_id`` is sent in the header, then it'll be checked."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:201
@@ -255,11 +253,12 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:203
 msgid ""
-"When a client connects to the server, the server responds with a 128-byte text "
-"greeting message. Part of the greeting is base-64 encoded session salt - a "
-"random string which can be used for authentication. The length of decoded salt "
-"(44 bytes) exceeds the amount necessary to sign the authentication message "
-"(first 20 bytes). An excess is reserved for future authentication schemas."
+"When a client connects to the server, the server responds with a 128-byte"
+" text greeting message. Part of the greeting is base-64 encoded session "
+"salt - a random string which can be used for authentication. The length "
+"of decoded salt (44 bytes) exceeds the amount necessary to sign the "
+"authentication message (first 20 bytes). An excess is reserved for future"
+" authentication schemas."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:210
@@ -294,11 +293,11 @@ msgstr ""
 #: ../dev_guide/box_protocol.rst:238
 msgid ""
 ":code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 "
-"fields: authentication mechanism (\"chap-sha1\" is the only supported mechanism "
-"right now) and password, encrypted according to the specified mechanism. "
-"Authentication in Tarantool is optional, if no authentication is performed, "
-"session user is 'guest'. The server responds to authentication packet with a "
-"standard response with 0 tuples."
+"fields: authentication mechanism (\"chap-sha1\" is the only supported "
+"mechanism right now) and password, encrypted according to the specified "
+"mechanism. Authentication in Tarantool is optional, if no authentication "
+"is performed, session user is 'guest'. The server responds to "
+"authentication packet with a standard response with 0 tuples."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:246
@@ -329,13 +328,14 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:268
 msgid ""
-"INSERT:  CODE - 0x02 Inserts tuple into the space, if no tuple with same unique "
-"keys exists. Otherwise throw *duplicate key* error."
+"INSERT:  CODE - 0x02 Inserts tuple into the space, if no tuple with same "
+"unique keys exists. Otherwise throw *duplicate key* error."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:270
 msgid ""
-"REPLACE: CODE - 0x03 Insert a tuple into the space or replace an existing one."
+"REPLACE: CODE - 0x03 Insert a tuple into the space or replace an existing"
+" one."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:273
@@ -436,7 +436,8 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:365
 msgid ""
-"It's an error to specify an argument of a type that differs from expected type."
+"It's an error to specify an argument of a type that differs from expected"
+" type."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:367
@@ -492,8 +493,8 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:415
 msgid ""
-"UPSERT: CODE - 0x09 Update tuple if it would be found elsewhere try to insert "
-"tuple. Always use primary index for key."
+"UPSERT: CODE - 0x09 Update tuple if it would be found elsewhere try to "
+"insert tuple. Always use primary index for key."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:418
@@ -525,16 +526,22 @@ msgid ""
 "'+' - add a value to a numeric field. If the filed is not numeric, it's\n"
 "      changed to 0 first. If the field does not exist, the operation is\n"
 "      skipped. There is no error in case of overflow either, the value\n"
-"      simply wraps around in C style. The range of the integer is MsgPack:\n"
+"      simply wraps around in C style. The range of the integer is "
+"MsgPack:\n"
 "      from -2^63 to 2^64-1\n"
 "'-' - same as the previous, but subtract a value\n"
-"'=' - assign a field to a value. The field must exist, if it does not exist,\n"
+"'=' - assign a field to a value. The field must exist, if it does not "
+"exist,\n"
 "      the operation is skipped.\n"
-"'!' - insert a field. It's only possible to insert a field if this create no\n"
-"      nil \"gaps\" between fields. E.g. it's possible to add a field between\n"
+"'!' - insert a field. It's only possible to insert a field if this create"
+" no\n"
+"      nil \"gaps\" between fields. E.g. it's possible to add a field "
+"between\n"
 "      existing fields or as the last field of the tuple.\n"
-"'#' - delete a field. If the field does not exist, the operation is skipped.\n"
-"      It's not possible to change with update operations a part of the primary\n"
+"'#' - delete a field. If the field does not exist, the operation is "
+"skipped.\n"
+"      It's not possible to change with update operations a part of the "
+"primary\n"
 "      key (this is validated before performing upsert)."
 msgstr ""
 
@@ -562,9 +569,9 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:480
 msgid ""
-"Set of tuples in the response :code:`<data>` expects a msgpack array of tuples "
-"as value EVAL command returns arbitrary `MP_ARRAY` with arbitrary MsgPack "
-"values."
+"Set of tuples in the response :code:`<data>` expects a msgpack array of "
+"tuples as value EVAL command returns arbitrary `MP_ARRAY` with arbitrary "
+"MsgPack values."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:483
@@ -585,15 +592,15 @@ msgstr ""
 
 #: ../dev_guide/box_protocol.rst:498
 msgid ""
-"Error message is present in the response only if there is an error :code:"
-"`<error>` expects as value a msgpack string"
+"Error message is present in the response only if there is an error "
+":code:`<error>` expects as value a msgpack string"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:501
 msgid ""
-"Convenience macros which define hexadecimal constants for return codes can be "
-"found in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/"
-"src/box/errcode.h>`_"
+"Convenience macros which define hexadecimal constants for return codes "
+"can be found in `src/box/errcode.h "
+"<https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:507
@@ -711,8 +718,8 @@ msgstr ""
 #: ../dev_guide/box_protocol.rst:610
 msgid ""
 "There are two markers: tuple beginning - **0xd5ba0bab** and EOF marker - "
-"**0xd510aded**. So, next, between **Header** and EOF marker there's data with "
-"the following schema:"
+"**0xd510aded**. So, next, between **Header** and EOF marker there's data "
+"with the following schema:"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:614
@@ -739,9 +746,9 @@ msgstr "Сборка документации"
 
 #: ../dev_guide/building_documentation.rst:32
 msgid ""
-"This documentation is built using a simplified markup system named ``Sphinx`` "
-"(see http://sphinx-doc.org). You can build a local version of this "
-"documentation and contribute to it."
+"This documentation is built using a simplified markup system named "
+"``Sphinx`` (see http://sphinx-doc.org). You can build a local version of "
+"this documentation and contribute to it."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:36
@@ -758,8 +765,8 @@ msgstr ""
 
 #: ../dev_guide/building_documentation.rst:40
 msgid ""
-"``Python`` version greater than 2.6 -- preferably 2.7 -- and less than 3.0 "
-"(Sphinx is a Python-based tool)"
+"``Python`` version greater than 2.6 -- preferably 2.7 -- and less than "
+"3.0 (Sphinx is a Python-based tool)"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:43
@@ -804,16 +811,16 @@ msgstr ""
 
 #: ../dev_guide/building_documentation.rst:54
 msgid ""
-"See installation details in the :ref:`build-from-source <building_from_source>` "
-"section of this documentation. The procedure below implies that all the "
-"prerequisites are met."
+"See installation details in the :ref:`build-from-source "
+"<building_from_source>` section of this documentation. The procedure "
+"below implies that all the prerequisites are met."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:58
 msgid ""
-"Use ``git`` to download the latest source code of this documentation from the "
-"GitHub repository ``tarantool/doc``, branch 1.7. For example, to a local "
-"directory named `~/tarantool-doc`:"
+"Use ``git`` to download the latest source code of this documentation from"
+" the GitHub repository ``tarantool/doc``, branch 1.7. For example, to a "
+"local directory named `~/tarantool-doc`:"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:62
@@ -876,9 +883,9 @@ msgstr ""
 
 #: ../dev_guide/building_documentation.rst:99
 msgid ""
-"Run the following command to set up a web-server (the example below is for "
-"Ubuntu, but the procedure is similar for other supported OS's). Make sure to "
-"run it from the documentation output folder, as specified below:"
+"Run the following command to set up a web-server (the example below is "
+"for Ubuntu, but the procedure is similar for other supported OS's). Make "
+"sure to run it from the documentation output folder, as specified below:"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:103
@@ -889,22 +896,22 @@ msgstr ""
 
 #: ../dev_guide/building_documentation.rst:108
 msgid ""
-"Open your browser and enter ``127.0.0.1:8000`` into the address box. If your "
-"local documentation build is valid, the default version (English multi-page) "
-"will be displayed in the browser."
+"Open your browser and enter ``127.0.0.1:8000`` into the address box. If "
+"your local documentation build is valid, the default version (English "
+"multi-page) will be displayed in the browser."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:112
 msgid ""
-"To contribute to documentation, use the ``.rst`` format for drafting and submit "
-"your updates as \"Pull Requests\" via GitHub."
+"To contribute to documentation, use the ``.rst`` format for drafting and "
+"submit your updates as \"Pull Requests\" via GitHub."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:115
 msgid ""
-"To comply with the writing and formatting style, use the :ref:`guidelines "
-"<documentation_guidelines>` provided in the documentation, common sense and "
-"existing documents."
+"To comply with the writing and formatting style, use the :ref:`guidelines"
+" <documentation_guidelines>` provided in the documentation, common sense "
+"and existing documents."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:119
@@ -913,17 +920,17 @@ msgstr ""
 
 #: ../dev_guide/building_documentation.rst:121
 msgid ""
-"If you suggest creating a new documentation section (i.e., a whole new page), "
-"it has to be saved to the relevant section at GitHub."
+"If you suggest creating a new documentation section (i.e., a whole new "
+"page), it has to be saved to the relevant section at GitHub."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:124
 msgid ""
-"If you want to contribute to localizing this documentation (e.g. into Russian), "
-"add your translation strings to ``.po`` files stored in the corresponding "
-"locale directory (e.g. ``/sphinx/locale/ru/LC_MESSAGES/`` for Russian). See "
-"more about localizing with Sphinx at http://www.sphinx-doc.org/en/stable/intl."
-"html"
+"If you want to contribute to localizing this documentation (e.g. into "
+"Russian), add your translation strings to ``.po`` files stored in the "
+"corresponding locale directory (e.g. ``/sphinx/locale/ru/LC_MESSAGES/`` "
+"for Russian). See more about localizing with Sphinx at http://www.sphinx-"
+"doc.org/en/stable/intl.html"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:30
@@ -932,10 +939,10 @@ msgstr "Сборка из исходных файлов"
 
 #: ../dev_guide/building_from_source.rst:32
 msgid ""
-"For downloading Tarantool source and building it, the platforms can differ and "
-"the preferences can differ. But the steps are always the same. Here in the "
-"manual we'll explain what the steps are, and after that you can look at some "
-"example scripts on the Internet."
+"For downloading Tarantool source and building it, the platforms can "
+"differ and the preferences can differ. But the steps are always the same."
+" Here in the manual we'll explain what the steps are, and after that you "
+"can look at some example scripts on the Internet."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:37
@@ -948,37 +955,38 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:42
 msgid ""
-"A program for downloading source repositories. |br| For all platforms, this is "
-"``git``. It allows to download the latest complete set of source files from the "
-"Tarantool repository at GitHub."
+"A program for downloading source repositories. |br| For all platforms, "
+"this is ``git``. It allows to download the latest complete set of source "
+"files from the Tarantool repository at GitHub."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:46
 msgid ""
-"A C/C++ compiler. |br| Ordinarily, this is ``gcc`` and ``g++`` version 4.6 or "
-"later. On Mac OS X, this is ``Clang`` version 3.2 or later."
+"A C/C++ compiler. |br| Ordinarily, this is ``gcc`` and ``g++`` version "
+"4.6 or later. On Mac OS X, this is ``Clang`` version 3.2 or later."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:49
 msgid ""
-"A program for managing the build process. |br| For all platforms, this is "
-"``CMake``. The CMake version should be 2.8 or later."
+"A program for managing the build process. |br| For all platforms, this is"
+" ``CMake``. The CMake version should be 2.8 or later."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:52
 msgid ""
-"Command-line interpreter for Python-based code (namely, for Tarantool test "
-"suite). |br| For all platforms, this is ``python``. The Python version should "
-"be greater than 2.6 -- preferably 2.7 -- and less than 3.0."
+"Command-line interpreter for Python-based code (namely, for Tarantool "
+"test suite). |br| For all platforms, this is ``python``. The Python "
+"version should be greater than 2.6 -- preferably 2.7 -- and less than "
+"3.0."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:56
 msgid ""
 "Here are names of tools and libraries which may have to be installed in "
 "advance, using ``sudo apt-get`` (for Ubuntu), ``sudo yum install`` (for "
-"CentOS), or the equivalent on other platforms. Different platforms may use "
-"slightly different names. Ignore the ones marked `optional, only in Mac OS "
-"scripts` unless the platform is Mac OS."
+"CentOS), or the equivalent on other platforms. Different platforms may "
+"use slightly different names. Ignore the ones marked `optional, only in "
+"Mac OS scripts` unless the platform is Mac OS."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:62
@@ -1009,12 +1017,14 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:68
 msgid ""
-"**autoconf**                             # optional, only in Mac OS scripts"
+"**autoconf**                             # optional, only in Mac OS "
+"scripts"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:69
 msgid ""
-"**zlib1g** or **zlib**                   # optional, only in Mac OS scripts"
+"**zlib1g** or **zlib**                   # optional, only in Mac OS "
+"scripts"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:71
@@ -1023,8 +1033,9 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:73
 msgid ""
-"This step is optional. Python modules are not necessary for building Tarantool "
-"itself, unless you intend to use the \"Run the test suite\" option in step 7."
+"This step is optional. Python modules are not necessary for building "
+"Tarantool itself, unless you intend to use the \"Run the test suite\" "
+"option in step 7."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:76
@@ -1037,7 +1048,8 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:82
 msgid ""
-"`msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6"
+"`msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version "
+"0.4.6"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:84
@@ -1062,8 +1074,9 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:98
 msgid ""
-"If some modules are not available on a repository, it is best to set up the "
-"modules by getting a tarball and doing the setup with ``python setup.py``, thus:"
+"If some modules are not available on a repository, it is best to set up "
+"the modules by getting a tarball and doing the setup with ``python "
+"setup.py``, thus:"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:102
@@ -1083,10 +1096,10 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:116
 msgid ""
-"Finally, use Python :code:`pip` to bring in Python packages that may not be up-"
-"to-date in the distro repositories. (On CentOS 7, it will be necessary to "
-"install ``pip`` first, with :code:`sudo yum install epel-release` followed by :"
-"code:`sudo yum install python-pip`.)"
+"Finally, use Python :code:`pip` to bring in Python packages that may not "
+"be up-to-date in the distro repositories. (On CentOS 7, it will be "
+"necessary to install ``pip`` first, with :code:`sudo yum install epel-"
+"release` followed by :code:`sudo yum install python-pip`.)"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:122
@@ -1130,8 +1143,8 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:142
 msgid ""
-"GNU ``bfd`` which is the part of GNU ``binutils`` (``binutils-dev/binutils-"
-"devel`` package)."
+"GNU ``bfd`` which is the part of GNU ``binutils`` (``binutils-dev"
+"/binutils-devel`` package)."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:145
@@ -1158,9 +1171,9 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:161
 msgid ""
-"Note: There is an alternative -- to say ``git clone --recursive`` earlier in "
-"step 3, -- but we prefer the method above because it works with older versions "
-"of ``git``."
+"Note: There is an alternative -- to say ``git clone --recursive`` earlier"
+" in step 3, -- but we prefer the method above because it works with older"
+" versions of ``git``."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:165
@@ -1177,8 +1190,8 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:174
 msgid ""
-"On some platforms, it may be necessary to specify the C and C++ versions, for "
-"example:"
+"On some platforms, it may be necessary to specify the C and C++ versions,"
+" for example:"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:177
@@ -1187,8 +1200,8 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:181
 msgid ""
-"The CMake option for specifying build type is :samp:`-DCMAKE_BUILD_TYPE={type}"
-"`, where :samp:`{type}` can be:"
+"The CMake option for specifying build type is "
+":samp:`-DCMAKE_BUILD_TYPE={type}`, where :samp:`{type}` can be:"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:184
@@ -1201,14 +1214,15 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:186
 msgid ""
-"``RelWithDebInfo`` -- used for production, also provides debugging capabilities"
+"``RelWithDebInfo`` -- used for production, also provides debugging "
+"capabilities"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:188
 msgid ""
-"The CMake option for hinting that the result will be distributed is :code:`-"
-"DENABLE_DIST=ON`. If this option is on, then later ``make install`` will "
-"install tarantoolctl files in addition to tarantool files."
+"The CMake option for hinting that the result will be distributed is "
+":code:`-DENABLE_DIST=ON`. If this option is on, then later ``make "
+"install`` will install tarantoolctl files in addition to tarantool files."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:192
@@ -1225,9 +1239,10 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:200
 msgid ""
-"Next, it's highly recommended to say ``make install`` to install Tarantool to "
-"the `/usr/local` directory and keep your system clean. However, it is possible "
-"to run the Tarantool executable without installation."
+"Next, it's highly recommended to say ``make install`` to install "
+"Tarantool to the `/usr/local` directory and keep your system clean. "
+"However, it is possible to run the Tarantool executable without "
+"installation."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:204
@@ -1236,10 +1251,10 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:206
 msgid ""
-"This step is optional. Tarantool's developers always run the test suite before "
-"they publish new versions. You should run the test suite too, if you make any "
-"changes in the code. Assuming you downloaded to ``~/tarantool``, the principal "
-"steps are:"
+"This step is optional. Tarantool's developers always run the test suite "
+"before they publish new versions. You should run the test suite too, if "
+"you make any changes in the code. Assuming you downloaded to "
+"``~/tarantool``, the principal steps are:"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:211
@@ -1288,9 +1303,9 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:246
 msgid ""
-"This step is optional. It's only for people who want to redistribute Tarantool. "
-"Package maintainers who want to build with ``rpmbuild`` should consult the "
-"``rpm-build`` instructions for the appropriate platform."
+"This step is optional. It's only for people who want to redistribute "
+"Tarantool. Package maintainers who want to build with ``rpmbuild`` should"
+" consult the ``rpm-build`` instructions for the appropriate platform."
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:250
@@ -1307,26 +1322,28 @@ msgstr ""
 
 #: ../dev_guide/building_from_source.rst:258
 msgid ""
-"For your added convenience, we provide OS-specific README files with example "
-"scripts at GitHub:"
+"For your added convenience, we provide OS-specific README files with "
+"example scripts at GitHub:"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:261
 msgid ""
-"`README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.7/README."
-"FreeBSD>`_ for FreeBSD 10.1"
+"`README.FreeBSD "
+"<https://github.com/tarantool/tarantool/blob/1.7/README.FreeBSD>`_ for "
+"FreeBSD 10.1"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:263
 msgid ""
-"`README.MacOSX <https://github.com/tarantool/tarantool/blob/1.7/README."
-"MacOSX>`_ for Mac OS X `El Capitan`"
+"`README.MacOSX "
+"<https://github.com/tarantool/tarantool/blob/1.7/README.MacOSX>`_ for Mac"
+" OS X `El Capitan`"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:265
 msgid ""
-"`README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ for "
-"generic GNU/Linux"
+"`README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ "
+"for generic GNU/Linux"
 msgstr ""
 
 #: ../dev_guide/building_from_source.rst:267
@@ -1341,34 +1358,34 @@ msgstr "Соглашения по разработке на языке C"
 
 #: ../dev_guide/c_style_guide.rst:30
 msgid ""
-"The project's coding style is based on a version of the Linux kernel coding "
-"style."
+"The project's coding style is based on a version of the Linux kernel "
+"coding style."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:32
 msgid ""
-"The latest version of the Linux style can be found at: http://www.kernel.org/"
-"doc/Documentation/CodingStyle"
+"The latest version of the Linux style can be found at: "
+"http://www.kernel.org/doc/Documentation/CodingStyle"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:35
 msgid ""
-"Since it is open for changes, the version of style that we follow, one from "
-"2007-July-13, will be also copied later in this document."
+"Since it is open for changes, the version of style that we follow, one "
+"from 2007-July-13, will be also copied later in this document."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:38
 msgid ""
-"There are a few additional guidelines, either unique to Tarantool or deviating "
-"from the Kernel guidelines."
+"There are a few additional guidelines, either unique to Tarantool or "
+"deviating from the Kernel guidelines."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:41
 msgid ""
 "Chapters 10 \"Kconfig configuration files\", 11 \"Data structures\", 13 "
-"\"Printing kernel messages\", 14 \"Allocating memory\" and 17 \"Don't re-invent "
-"the kernel macros\" do not apply, since they are specific to Linux kernel "
-"programming environment."
+"\"Printing kernel messages\", 14 \"Allocating memory\" and 17 \"Don't re-"
+"invent the kernel macros\" do not apply, since they are specific to Linux"
+" kernel programming environment."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:46
@@ -1381,20 +1398,21 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:52
 msgid ""
-"We use Git for revision control. The latest development is happening in the "
-"'master' branch. Our git repository is hosted on github, and can be checked out "
-"with git clone git://github.com/tarantool/tarantool.git # anonymous read-only "
-"access"
+"We use Git for revision control. The latest development is happening in "
+"the 'master' branch. Our git repository is hosted on github, and can be "
+"checked out with git clone git://github.com/tarantool/tarantool.git # "
+"anonymous read-only access"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:56
 msgid ""
-"If you have any questions about Tarantool internals, please post them on the "
-"developer discussion list, https://groups.google.com/forum/#!forum/tarantool. "
-"However, please be warned: Launchpad silently deletes posts from non-subscribed "
-"members, thus please be sure to have subscribed to the list prior to posting. "
-"Additionally, some engineers are always present on #tarantool channel on irc."
-"freenode.net."
+"If you have any questions about Tarantool internals, please post them on "
+"the developer discussion list, "
+"https://groups.google.com/forum/#!forum/tarantool. However, please be "
+"warned: Launchpad silently deletes posts from non-subscribed members, "
+"thus please be sure to have subscribed to the list prior to posting. "
+"Additionally, some engineers are always present on #tarantool channel on "
+"irc.freenode.net."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:64
@@ -1403,14 +1421,15 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:66
 msgid ""
-"Use Doxygen comment format, Javadoc flavor, i.e. `@tag` rather than `\\tag`. "
-"The main tags in use are @param, @retval, @return, @see, @note and @todo."
+"Use Doxygen comment format, Javadoc flavor, i.e. `@tag` rather than "
+"`\\tag`. The main tags in use are @param, @retval, @return, @see, @note "
+"and @todo."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:69
 msgid ""
-"Every function, except perhaps a very short and obvious one, should have a "
-"comment. A sample function comment may look like below:"
+"Every function, except perhaps a very short and obvious one, should have "
+"a comment. A sample function comment may look like below:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:72
@@ -1431,7 +1450,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:87
 msgid ""
-"Public structures and important structure members should be commented as well."
+"Public structures and important structure members should be commented as "
+"well."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:91
@@ -1440,13 +1460,14 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:93
 msgid ""
-"Use header guards. Put the header guard in the first line in the header, before "
-"the copyright or declarations. Use all-uppercase name for the header guard. "
-"Derive the header guard name from the file name, and append _INCLUDED to get a "
-"macro name. For example, core/log_io.h -> CORE_LOG_IO_H_INCLUDED. In ``.c`` "
-"(implementation) file, include the respective declaration header before all "
-"other headers, to ensure that the header is self- sufficient. Header \"header.h"
-"\" is self-sufficient if the following compiles without errors:"
+"Use header guards. Put the header guard in the first line in the header, "
+"before the copyright or declarations. Use all-uppercase name for the "
+"header guard. Derive the header guard name from the file name, and append"
+" _INCLUDED to get a macro name. For example, core/log_io.h -> "
+"CORE_LOG_IO_H_INCLUDED. In ``.c`` (implementation) file, include the "
+"respective declaration header before all other headers, to ensure that "
+"the header is self- sufficient. Header \"header.h\" is self-sufficient if"
+" the following compiles without errors:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:101
@@ -1459,20 +1480,20 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:109
 msgid ""
-"Prefer the supplied slab (salloc) and pool (palloc) allocators to malloc()/"
-"free() for any performance-intensive or large  memory allocations. Repetitive "
-"use of malloc()/free() can lead to memory fragmentation and should therefore be "
-"avoided."
+"Prefer the supplied slab (salloc) and pool (palloc) allocators to "
+"malloc()/free() for any performance-intensive or large  memory "
+"allocations. Repetitive use of malloc()/free() can lead to memory "
+"fragmentation and should therefore be avoided."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:113
 msgid ""
-"Always free all allocated memory, even allocated  at start-up. We aim at being "
-"valgrind leak-check clean, and in most cases it's just as easy to free() the "
-"allocated memory as it is to write a valgrind suppression. Freeing all "
-"allocated memory is also dynamic-load friendly: assuming a plug-in can be "
-"dynamically loaded and unloaded multiple times, reload should not lead to a "
-"memory leak."
+"Always free all allocated memory, even allocated  at start-up. We aim at "
+"being valgrind leak-check clean, and in most cases it's just as easy to "
+"free() the allocated memory as it is to write a valgrind suppression. "
+"Freeing all allocated memory is also dynamic-load friendly: assuming a "
+"plug-in can be dynamically loaded and unloaded multiple times, reload "
+"should not lead to a memory leak."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:121
@@ -1481,14 +1502,14 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:123
 msgid ""
-"Select GNU C99 extensions are acceptable. It's OK to mix declarations and "
-"statements, use true and false."
+"Select GNU C99 extensions are acceptable. It's OK to mix declarations and"
+" statements, use true and false."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:126
 msgid ""
-"The not-so-current list of all GCC C extensions can be found at: http://gcc.gnu."
-"org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html"
+"The not-so-current list of all GCC C extensions can be found at: "
+"http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:131
@@ -1497,17 +1518,17 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:133
 msgid ""
-"This is a short document describing the preferred coding style for the linux "
-"kernel.  Coding style is very personal, and I won't _force_ my views on "
-"anybody, but this is what goes for anything that I have to be able to maintain, "
-"and I'd prefer it for most other things too.  Please at least consider the "
-"points made here."
+"This is a short document describing the preferred coding style for the "
+"linux kernel.  Coding style is very personal, and I won't _force_ my "
+"views on anybody, but this is what goes for anything that I have to be "
+"able to maintain, and I'd prefer it for most other things too.  Please at"
+" least consider the points made here."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:139
 msgid ""
-"First off, I'd suggest printing out a copy of the GNU coding standards, and NOT "
-"read it.  Burn them, it's a great symbolic gesture."
+"First off, I'd suggest printing out a copy of the GNU coding standards, "
+"and NOT read it.  Burn them, it's a great symbolic gesture."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:142
@@ -1520,38 +1541,42 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:148
 msgid ""
-"Tabs are 8 characters, and thus indentations are also 8 characters. There are "
-"heretic movements that try to make indentations 4 (or even 2!) characters deep, "
-"and that is akin to trying to define the value of PI to be 3."
+"Tabs are 8 characters, and thus indentations are also 8 characters. There"
+" are heretic movements that try to make indentations 4 (or even 2!) "
+"characters deep, and that is akin to trying to define the value of PI to "
+"be 3."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:153
 msgid ""
-"Rationale: The whole idea behind indentation is to clearly define where a block "
-"of control starts and ends.  Especially when you've been looking at your screen "
-"for 20 straight hours, you'll find it a lot easier to see how the indentation "
-"works if you have large indentations."
+"Rationale: The whole idea behind indentation is to clearly define where a"
+" block of control starts and ends.  Especially when you've been looking "
+"at your screen for 20 straight hours, you'll find it a lot easier to see "
+"how the indentation works if you have large indentations."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:158
 msgid ""
-"Now, some people will claim that having 8-character indentations makes the code "
-"move too far to the right, and makes it hard to read on a 80-character terminal "
-"screen.  The answer to that is that if you need more than 3 levels of "
-"indentation, you're screwed anyway, and should fix your program."
+"Now, some people will claim that having 8-character indentations makes "
+"the code move too far to the right, and makes it hard to read on a "
+"80-character terminal screen.  The answer to that is that if you need "
+"more than 3 levels of indentation, you're screwed anyway, and should fix "
+"your program."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:164
 msgid ""
-"In short, 8-char indents make things easier to read, and have the added benefit "
-"of warning you when you're nesting your functions too deep. Heed that warning."
+"In short, 8-char indents make things easier to read, and have the added "
+"benefit of warning you when you're nesting your functions too deep. Heed "
+"that warning."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:168
 msgid ""
-"The preferred way to ease multiple indentation levels in a switch statement is "
-"to align the \"switch\" and its subordinate \"case\" labels in the same column "
-"instead of \"double-indenting\" the \"case\" labels. e.g.:"
+"The preferred way to ease multiple indentation levels in a switch "
+"statement is to align the \"switch\" and its subordinate \"case\" labels "
+"in the same column instead of \"double-indenting\" the \"case\" labels. "
+"e.g.:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:172
@@ -1576,8 +1601,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:192
 msgid ""
-"Don't put multiple statements on a single line unless you have something to "
-"hide:"
+"Don't put multiple statements on a single line unless you have something "
+"to hide:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:195
@@ -1588,14 +1613,14 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:200
 msgid ""
-"Don't put multiple assignments on a single line either. Kernel coding style is "
-"super simple. Avoid tricky expressions."
+"Don't put multiple assignments on a single line either. Kernel coding "
+"style is super simple. Avoid tricky expressions."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:203
 msgid ""
-"Outside of comments, documentation and except in Kconfig, spaces are never used "
-"for indentation, and the above example is deliberately broken."
+"Outside of comments, documentation and except in Kconfig, spaces are "
+"never used for indentation, and the above example is deliberately broken."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:206
@@ -1614,18 +1639,18 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:216
 msgid ""
-"The limit on the length of lines is 80 columns and this is a strongly preferred "
-"limit."
+"The limit on the length of lines is 80 columns and this is a strongly "
+"preferred limit."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:219
 msgid ""
 "Statements longer than 80 columns will be broken into sensible chunks. "
-"Descendants are always substantially shorter than the parent and are placed "
-"substantially to the right. The same applies to function headers with a long "
-"argument list. Long strings are as well broken into shorter strings. The only "
-"exception to this is where exceeding 80 columns significantly increases "
-"readability and does not hide information."
+"Descendants are always substantially shorter than the parent and are "
+"placed substantially to the right. The same applies to function headers "
+"with a long argument list. Long strings are as well broken into shorter "
+"strings. The only exception to this is where exceeding 80 columns "
+"significantly increases readability and does not hide information."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:226
@@ -1648,11 +1673,11 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:242
 msgid ""
-"The other issue that always comes up in C styling is the placement of braces.  "
-"Unlike the indent size, there are few technical reasons to choose one placement "
-"strategy over the other, but the preferred way, as shown to us by the prophets "
-"Kernighan and Ritchie, is to put the opening brace last on the line, and put "
-"the closing brace first, thusly:"
+"The other issue that always comes up in C styling is the placement of "
+"braces.  Unlike the indent size, there are few technical reasons to "
+"choose one placement strategy over the other, but the preferred way, as "
+"shown to us by the prophets Kernighan and Ritchie, is to put the opening "
+"brace last on the line, and put the closing brace first, thusly:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:248
@@ -1664,8 +1689,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:254
 msgid ""
-"This applies to all non-function statement blocks (if, switch, for, while, do). "
-"e.g.:"
+"This applies to all non-function statement blocks (if, switch, for, "
+"while, do). e.g.:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:257
@@ -1684,8 +1709,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:270
 msgid ""
-"However, there is one special case, namely functions: they have the opening "
-"brace at the beginning of the next line, thus:"
+"However, there is one special case, namely functions: they have the "
+"opening brace at the beginning of the next line, thus:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:273
@@ -1698,17 +1723,18 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:280
 msgid ""
-"Heretic people all over the world have claimed that this inconsistency is ...  "
-"well ...  inconsistent, but all right-thinking people know that (a) K&R are "
-"_right_ and (b) K&R are right.  Besides, functions are special anyway (you "
-"can't nest them in C)."
+"Heretic people all over the world have claimed that this inconsistency is"
+" ...  well ...  inconsistent, but all right-thinking people know that (a)"
+" K&R are _right_ and (b) K&R are right.  Besides, functions are special "
+"anyway (you can't nest them in C)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:285
 msgid ""
-"Note that the closing brace is empty on a line of its own, _except_ in the "
-"cases where it is followed by a continuation of the same statement, ie a \"while"
-"\" in a do-statement or an \"else\" in an if-statement, like this:"
+"Note that the closing brace is empty on a line of its own, _except_ in "
+"the cases where it is followed by a continuation of the same statement, "
+"ie a \"while\" in a do-statement or an \"else\" in an if-statement, like "
+"this:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:290
@@ -1739,10 +1765,11 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:310
 msgid ""
-"Also, note that this brace-placement also minimizes the number of empty (or "
-"almost empty) lines, without any loss of readability.  Thus, as the supply of "
-"new-lines on your screen is not a renewable resource (think 25-line terminal "
-"screens here), you have more empty lines to put comments on."
+"Also, note that this brace-placement also minimizes the number of empty "
+"(or almost empty) lines, without any loss of readability.  Thus, as the "
+"supply of new-lines on your screen is not a renewable resource (think "
+"25-line terminal screens here), you have more empty lines to put comments"
+" on."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:316
@@ -1778,17 +1805,17 @@ msgstr ""
 #: ../dev_guide/c_style_guide.rst:339
 msgid ""
 "Linux kernel style for use of spaces depends (mostly) on function-versus-"
-"keyword usage.  Use a space after (most) keywords.  The notable exceptions are "
-"sizeof, typeof, alignof, and __attribute__, which look somewhat like functions "
-"(and are usually used with parentheses in Linux, although they are not required "
-"in the language, as in: \"sizeof info\" after \"struct fileinfo info;\" is "
-"declared)."
+"keyword usage.  Use a space after (most) keywords.  The notable "
+"exceptions are sizeof, typeof, alignof, and __attribute__, which look "
+"somewhat like functions (and are usually used with parentheses in Linux, "
+"although they are not required in the language, as in: \"sizeof info\" "
+"after \"struct fileinfo info;\" is declared)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:346
 msgid ""
-"So use a space after these keywords: if, switch, case, for, do, while but not "
-"with sizeof, typeof, alignof, or __attribute__.  E.g.,"
+"So use a space after these keywords: if, switch, case, for, do, while but"
+" not with sizeof, typeof, alignof, or __attribute__.  E.g.,"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:349
@@ -1797,8 +1824,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:353
 msgid ""
-"Do not add spaces around (inside) parenthesized expressions. This example is "
-"**bad**:"
+"Do not add spaces around (inside) parenthesized expressions. This example"
+" is **bad**:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:356
@@ -1807,9 +1834,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:360
 msgid ""
-"When declaring pointer data or a function that returns a pointer type, the "
-"preferred use of '*' is adjacent to the data name or function name and not "
-"adjacent to the type name.  Examples:"
+"When declaring pointer data or a function that returns a pointer type, "
+"the preferred use of '*' is adjacent to the data name or function name "
+"and not adjacent to the type name.  Examples:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:364
@@ -1821,8 +1848,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:370
 msgid ""
-"Use one space around (on each side of) most binary and ternary operators, such "
-"as any of these:"
+"Use one space around (on each side of) most binary and ternary operators,"
+" such as any of these:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:373
@@ -1855,20 +1882,20 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:389
 msgid ""
-"Do not leave trailing whitespace at the ends of lines.  Some editors with "
-"\"smart\" indentation will insert whitespace at the beginning of new lines as "
-"appropriate, so you can start typing the next line of code right away. However, "
-"some such editors do not remove the whitespace if you end up not putting a line "
-"of code there, such as if you leave a blank line.  As a result, you end up with "
-"lines containing trailing whitespace."
+"Do not leave trailing whitespace at the ends of lines.  Some editors with"
+" \"smart\" indentation will insert whitespace at the beginning of new "
+"lines as appropriate, so you can start typing the next line of code right"
+" away. However, some such editors do not remove the whitespace if you end"
+" up not putting a line of code there, such as if you leave a blank line."
+"  As a result, you end up with lines containing trailing whitespace."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:396
 msgid ""
-"Git will warn you about patches that introduce trailing whitespace, and can "
-"optionally strip the trailing whitespace for you; however, if applying a series "
-"of patches, this may make later patches in the series fail by changing their "
-"context lines."
+"Git will warn you about patches that introduce trailing whitespace, and "
+"can optionally strip the trailing whitespace for you; however, if "
+"applying a series of patches, this may make later patches in the series "
+"fail by changing their context lines."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:404
@@ -1877,48 +1904,51 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:406
 msgid ""
-"C is a Spartan language, and so should your naming be.  Unlike Modula-2 and "
-"Pascal programmers, C programmers do not use cute names like "
-"ThisVariableIsATemporaryCounter.  A C programmer would call that variable \"tmp"
-"\", which is much easier to write, and not the least more difficult to "
-"understand."
+"C is a Spartan language, and so should your naming be.  Unlike Modula-2 "
+"and Pascal programmers, C programmers do not use cute names like "
+"ThisVariableIsATemporaryCounter.  A C programmer would call that variable"
+" \"tmp\", which is much easier to write, and not the least more difficult"
+" to understand."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:412
 msgid ""
-"HOWEVER, while mixed-case names are frowned upon, descriptive names for global "
-"variables are a must.  To call a global function \"foo\" is a shooting offense."
+"HOWEVER, while mixed-case names are frowned upon, descriptive names for "
+"global variables are a must.  To call a global function \"foo\" is a "
+"shooting offense."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:416
 msgid ""
-"GLOBAL variables (to be used only if you _really_ need them) need to have "
-"descriptive names, as do global functions.  If you have a function that counts "
-"the number of active users, you should call that \"count_active_users()\" or "
-"similar, you should _not_ call it \"cntusr()\"."
+"GLOBAL variables (to be used only if you _really_ need them) need to have"
+" descriptive names, as do global functions.  If you have a function that "
+"counts the number of active users, you should call that "
+"\"count_active_users()\" or similar, you should _not_ call it "
+"\"cntusr()\"."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:421
 msgid ""
-"Encoding the type of a function into the name (so-called Hungarian notation) is "
-"brain damaged - the compiler knows the types anyway and can check those, and it "
-"only confuses the programmer.  No wonder MicroSoft makes buggy programs."
+"Encoding the type of a function into the name (so-called Hungarian "
+"notation) is brain damaged - the compiler knows the types anyway and can "
+"check those, and it only confuses the programmer.  No wonder MicroSoft "
+"makes buggy programs."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:426
 msgid ""
-"LOCAL variable names should be short, and to the point.  If you have some "
-"random integer loop counter, it should probably be called \"i\". Calling it "
-"\"loop_counter\" is non-productive, if there is no chance of it being mis-"
-"understood.  Similarly, \"tmp\" can be just about any type of variable that is "
-"used to hold a temporary value."
+"LOCAL variable names should be short, and to the point.  If you have some"
+" random integer loop counter, it should probably be called \"i\". Calling"
+" it \"loop_counter\" is non-productive, if there is no chance of it being"
+" mis-understood.  Similarly, \"tmp\" can be just about any type of "
+"variable that is used to hold a temporary value."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:432
 msgid ""
 "If you are afraid to mix up your local variable names, you have another "
-"problem, which is called the function-growth-hormone-imbalance syndrome. See "
-"chapter 6 (Functions)."
+"problem, which is called the function-growth-hormone-imbalance syndrome. "
+"See chapter 6 (Functions)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:439
@@ -1931,7 +1961,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:443
 msgid ""
-"It's a _mistake_ to use typedef for structures and pointers. When you see a"
+"It's a _mistake_ to use typedef for structures and pointers. When you see"
+" a"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:445
@@ -1956,45 +1987,45 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:459
 msgid ""
-"Lots of people think that typedefs \"help readability\". Not so. They are "
-"useful only for:"
+"Lots of people think that typedefs \"help readability\". Not so. They are"
+" useful only for:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:462
 msgid ""
-"totally opaque objects (where the typedef is actively used to _hide_ what the "
-"object is)."
+"totally opaque objects (where the typedef is actively used to _hide_ what"
+" the object is)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:465
 msgid ""
-"Example: \"pte_t\" etc. opaque objects that you can only access using the "
-"proper accessor functions."
+"Example: \"pte_t\" etc. opaque objects that you can only access using the"
+" proper accessor functions."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:468
 msgid ""
-"NOTE! Opaqueness and \"accessor functions\" are not good in themselves. The "
-"reason we have them for things like pte_t etc. is that there really is "
-"absolutely _zero_ portably accessible information there."
+"NOTE! Opaqueness and \"accessor functions\" are not good in themselves. "
+"The reason we have them for things like pte_t etc. is that there really "
+"is absolutely _zero_ portably accessible information there."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:472
 msgid ""
-"Clear integer types, where the abstraction _helps_ avoid confusion whether it "
-"is \"int\" or \"long\"."
+"Clear integer types, where the abstraction _helps_ avoid confusion "
+"whether it is \"int\" or \"long\"."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:475
 msgid ""
-"u8/u16/u32 are perfectly fine typedefs, although they fit into category (d) "
-"better than here."
+"u8/u16/u32 are perfectly fine typedefs, although they fit into category "
+"(d) better than here."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:478
 msgid ""
-"NOTE! Again - there needs to be a _reason_ for this. If something is \"unsigned "
-"long\", then there's no reason to do"
+"NOTE! Again - there needs to be a _reason_ for this. If something is "
+"\"unsigned long\", then there's no reason to do"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:481
@@ -2003,9 +2034,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:485
 msgid ""
-"but if there is a clear reason for why it under certain circumstances might be "
-"an \"unsigned int\" and under other configurations might be \"unsigned long\", "
-"then by all means go ahead and use a typedef."
+"but if there is a clear reason for why it under certain circumstances "
+"might be an \"unsigned int\" and under other configurations might be "
+"\"unsigned long\", then by all means go ahead and use a typedef."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:489
@@ -2014,28 +2045,28 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:492
 msgid ""
-"New types which are identical to standard C99 types, in certain exceptional "
-"circumstances."
+"New types which are identical to standard C99 types, in certain "
+"exceptional circumstances."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:495
 msgid ""
-"Although it would only take a short amount of time for the eyes and brain to "
-"become accustomed to the standard types like 'uint32_t', some people object to "
-"their use anyway."
+"Although it would only take a short amount of time for the eyes and brain"
+" to become accustomed to the standard types like 'uint32_t', some people "
+"object to their use anyway."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:499
 msgid ""
 "Therefore, the Linux-specific 'u8/u16/u32/u64' types and their signed "
-"equivalents which are identical to standard types are permitted -- although "
-"they are not mandatory in new code of your own."
+"equivalents which are identical to standard types are permitted -- "
+"although they are not mandatory in new code of your own."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:504
 msgid ""
-"When editing existing code which already uses one or the other set of types, "
-"you should conform to the existing choices in that code."
+"When editing existing code which already uses one or the other set of "
+"types, you should conform to the existing choices in that code."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:507
@@ -2044,21 +2075,21 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:509
 msgid ""
-"In certain structures which are visible to userspace, we cannot require C99 "
-"types and cannot use the 'u32' form above. Thus, we use __u32 and similar types "
-"in all structures which are shared with userspace."
+"In certain structures which are visible to userspace, we cannot require "
+"C99 types and cannot use the 'u32' form above. Thus, we use __u32 and "
+"similar types in all structures which are shared with userspace."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:514
 msgid ""
-"Maybe there are other cases too, but the rule should basically be to NEVER EVER "
-"use a typedef unless you can clearly match one of those rules."
+"Maybe there are other cases too, but the rule should basically be to "
+"NEVER EVER use a typedef unless you can clearly match one of those rules."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:517
 msgid ""
-"In general, a pointer, or a struct that has elements that can reasonably be "
-"directly accessed should **never** be a typedef."
+"In general, a pointer, or a struct that has elements that can reasonably "
+"be directly accessed should **never** be a typedef."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:523
@@ -2067,45 +2098,45 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:525
 msgid ""
-"Functions should be short and sweet, and do just one thing.  They should fit on "
-"one or two screenfuls of text (the ISO/ANSI screen size is 80x24, as we all "
-"know), and do one thing and do that well."
+"Functions should be short and sweet, and do just one thing.  They should "
+"fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24, "
+"as we all know), and do one thing and do that well."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:529
 msgid ""
-"The maximum length of a function is inversely proportional to the complexity "
-"and indentation level of that function.  So, if you have a conceptually simple "
-"function that is just one long (but simple) case-statement, where you have to "
-"do lots of small things for a lot of different cases, it's OK to have a longer "
-"function."
+"The maximum length of a function is inversely proportional to the "
+"complexity and indentation level of that function.  So, if you have a "
+"conceptually simple function that is just one long (but simple) case-"
+"statement, where you have to do lots of small things for a lot of "
+"different cases, it's OK to have a longer function."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:535
 msgid ""
-"However, if you have a complex function, and you suspect that a less-than-"
-"gifted first-year high-school student might not even understand what the "
-"function is all about, you should adhere to the maximum limits all the more "
-"closely.  Use helper functions with descriptive names (you can ask the compiler "
-"to in-line them if you think it's performance-critical, and it will probably do "
-"a better job of it than you would have done)."
+"However, if you have a complex function, and you suspect that a less-"
+"than-gifted first-year high-school student might not even understand what"
+" the function is all about, you should adhere to the maximum limits all "
+"the more closely.  Use helper functions with descriptive names (you can "
+"ask the compiler to in-line them if you think it's performance-critical, "
+"and it will probably do a better job of it than you would have done)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:543
 msgid ""
 "Another measure of the function is the number of local variables.  They "
-"shouldn't exceed 5-10, or you're doing something wrong.  Re-think the function, "
-"and split it into smaller pieces.  A human brain can generally easily keep "
-"track of about 7 different things, anything more and it gets confu/sed.  You "
-"know you're brilliant, but maybe you'd like to understand what you did 2 weeks "
-"from now."
+"shouldn't exceed 5-10, or you're doing something wrong.  Re-think the "
+"function, and split it into smaller pieces.  A human brain can generally "
+"easily keep track of about 7 different things, anything more and it gets "
+"confu/sed.  You know you're brilliant, but maybe you'd like to understand"
+" what you did 2 weeks from now."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:550
 msgid ""
-"In source files, separate functions with one blank line.  If the function is "
-"exported, the EXPORT* macro for it should follow immediately after the closing "
-"function brace line.  E.g.:"
+"In source files, separate functions with one blank line.  If the function"
+" is exported, the EXPORT* macro for it should follow immediately after "
+"the closing function brace line.  E.g.:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:554
@@ -2119,9 +2150,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:562
 msgid ""
-"In function prototypes, include parameter names with their data types. Although "
-"this is not required by the C language, it is preferred in Linux because it is "
-"a simple way to add valuable information for the reader."
+"In function prototypes, include parameter names with their data types. "
+"Although this is not required by the C language, it is preferred in Linux"
+" because it is a simple way to add valuable information for the reader."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:568
@@ -2130,14 +2161,15 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:570
 msgid ""
-"Albeit deprecated by some people, the equivalent of the goto statement is used "
-"frequently by compilers in form of the unconditional jump instruction."
+"Albeit deprecated by some people, the equivalent of the goto statement is"
+" used frequently by compilers in form of the unconditional jump "
+"instruction."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:573
 msgid ""
-"The goto statement comes in handy when a function exits from multiple locations "
-"and some common work such as cleanup has to be done."
+"The goto statement comes in handy when a function exits from multiple "
+"locations and some common work such as cleanup has to be done."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:576
@@ -2154,8 +2186,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:580
 msgid ""
-"errors by not updating individual exit points when making modifications are "
-"prevented"
+"errors by not updating individual exit points when making modifications "
+"are prevented"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:582
@@ -2192,29 +2224,30 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:611
 msgid ""
-"Comments are good, but there is also a danger of over-commenting. NEVER try to "
-"explain HOW your code works in a comment: it's much better to write the code so "
-"that the _working_ is obvious, and it's a waste of time to explain badly "
-"written code. с Generally, you want your comments to tell WHAT your code does, "
-"not HOW. Also, try to avoid putting comments inside a function body: if the "
-"function is so complex that you need to separately comment parts of it, you "
-"should probably go back to chapter 6 for a while.  You can make small comments "
-"to note or warn about something particularly clever (or ugly), but try to avoid "
-"excess.  Instead, put the comments at the head of the function, telling people "
-"what it does, and possibly WHY it does it."
+"Comments are good, but there is also a danger of over-commenting. NEVER "
+"try to explain HOW your code works in a comment: it's much better to "
+"write the code so that the _working_ is obvious, and it's a waste of time"
+" to explain badly written code. с Generally, you want your comments to "
+"tell WHAT your code does, not HOW. Also, try to avoid putting comments "
+"inside a function body: if the function is so complex that you need to "
+"separately comment parts of it, you should probably go back to chapter 6 "
+"for a while.  You can make small comments to note or warn about something"
+" particularly clever (or ugly), but try to avoid excess.  Instead, put "
+"the comments at the head of the function, telling people what it does, "
+"and possibly WHY it does it."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:625
 msgid ""
-"When commenting the kernel API functions, please use the kernel-doc format. See "
-"the files Documentation/kernel-doc-nano-HOWTO.txt and scripts/kernel-doc for "
-"details."
+"When commenting the kernel API functions, please use the kernel-doc "
+"format. See the files Documentation/kernel-doc-nano-HOWTO.txt and scripts"
+"/kernel-doc for details."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:629
 msgid ""
-"Linux style for comments is the C89 ``\"/\\* ... \\*/\"`` style. Don't use C99-"
-"style ``\"// ...\"`` comments."
+"Linux style for comments is the C89 ``\"/\\* ... \\*/\"`` style. Don't "
+"use C99-style ``\"// ...\"`` comments."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:632
@@ -2235,10 +2268,10 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:645
 msgid ""
-"It's also important to comment data, whether they are basic types or derived "
-"types.  To this end, use just one data declaration per line (no commas for "
-"multiple data declarations).  This leaves you room for a small comment on each "
-"item, explaining its use."
+"It's also important to comment data, whether they are basic types or "
+"derived types.  To this end, use just one data declaration per line (no "
+"commas for multiple data declarations).  This leaves you room for a small"
+" comment on each item, explaining its use."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:652
@@ -2247,17 +2280,19 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:654
 msgid ""
-"That's OK, we all do.  You've probably been told by your long-time Unix user "
-"helper that \"GNU emacs\" automatically formats the C sources for you, and "
-"you've noticed that yes, it does do that, but the defaults it uses are less "
-"than desirable (in fact, they are worse than random typing - an infinite number "
-"of monkeys typing into GNU emacs would never make a good program)."
+"That's OK, we all do.  You've probably been told by your long-time Unix "
+"user helper that \"GNU emacs\" automatically formats the C sources for "
+"you, and you've noticed that yes, it does do that, but the defaults it "
+"uses are less than desirable (in fact, they are worse than random typing "
+"- an infinite number of monkeys typing into GNU emacs would never make a "
+"good program)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:661
 msgid ""
-"So, you can either get rid of GNU emacs, or change it to use saner values.  To "
-"do the latter, you can stick the following in your .emacs file:"
+"So, you can either get rid of GNU emacs, or change it to use saner "
+"values.  To do the latter, you can stick the following in your .emacs "
+"file:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:664
@@ -2286,7 +2321,8 @@ msgid ""
 "            (let ((filename (buffer-file-name)))\n"
 "            ;; Enable kernel mode for the appropriate files\n"
 "            (when (and filename\n"
-"                        (string-match (expand-file-name \"~/src/linux-trees\")\n"
+"                        (string-match (expand-file-name \"~/src/linux-"
+"trees\")\n"
 "                                    filename))\n"
 "                (setq indent-tabs-mode t)\n"
 "                (c-set-style \"linux-tabs-only\")))))"
@@ -2294,32 +2330,32 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:695
 msgid ""
-"This will make emacs go better with the kernel coding style for C files below ~/"
-"src/linux-trees."
+"This will make emacs go better with the kernel coding style for C files "
+"below ~/src/linux-trees."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:698
 msgid ""
-"But even if you fail in getting emacs to do sane formatting, not everything is "
-"lost: use \"indent\"."
+"But even if you fail in getting emacs to do sane formatting, not "
+"everything is lost: use \"indent\"."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:701
 msgid ""
-"Now, again, GNU indent has the same brain-dead settings that GNU emacs has, "
-"which is why you need to give it a few command line options. However, that's "
-"not too bad, because even the makers of GNU indent recognize the authority of "
-"K&R (the GNU people aren't evil, they are just severely misguided in this "
-"matter), so you just give indent the options \"-kr -i8\" (stands for \"K&R, 8 "
-"character indents\"), or use \"scripts/Lindent\", which indents in the latest "
-"style."
+"Now, again, GNU indent has the same brain-dead settings that GNU emacs "
+"has, which is why you need to give it a few command line options. "
+"However, that's not too bad, because even the makers of GNU indent "
+"recognize the authority of K&R (the GNU people aren't evil, they are just"
+" severely misguided in this matter), so you just give indent the options "
+"\"-kr -i8\" (stands for \"K&R, 8 character indents\"), or use "
+"\"scripts/Lindent\", which indents in the latest style."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:709
 msgid ""
-"\"indent\" has a lot of options, and especially when it comes to comment re-"
-"formatting you may want to take a look at the man page.  But remember: \"indent"
-"\" is not a fix for bad programming."
+"\"indent\" has a lot of options, and especially when it comes to comment "
+"re-formatting you may want to take a look at the man page.  But remember:"
+" \"indent\" is not a fix for bad programming."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:716
@@ -2328,10 +2364,10 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:718
 msgid ""
-"For all of the Kconfig* configuration files throughout the source tree, the "
-"indentation is somewhat different.  Lines under a \"config\" definition are "
-"indented with one tab, while help text is indented an additional two spaces. "
-"Example:"
+"For all of the Kconfig* configuration files throughout the source tree, "
+"the indentation is somewhat different.  Lines under a \"config\" "
+"definition are indented with one tab, while help text is indented an "
+"additional two spaces. Example:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:723
@@ -2348,8 +2384,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:734
 msgid ""
-"Features that might still be considered unstable should be defined as dependent "
-"on \"EXPERIMENTAL\":"
+"Features that might still be considered unstable should be defined as "
+"dependent on \"EXPERIMENTAL\":"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:737
@@ -2376,8 +2412,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:754
 msgid ""
-"For full documentation on the configuration files, see the file Documentation/"
-"kbuild/kconfig-language.txt."
+"For full documentation on the configuration files, see the file "
+"Documentation/kbuild/kconfig-language.txt."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:760
@@ -2386,48 +2422,48 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:762
 msgid ""
-"Data structures that have visibility outside the single-threaded environment "
-"they are created and destroyed in should always have reference counts.  In the "
-"kernel, garbage collection doesn't exist (and outside the kernel garbage "
-"collection is slow and inefficient), which means that you absolutely _have_ to "
-"reference count all your uses."
+"Data structures that have visibility outside the single-threaded "
+"environment they are created and destroyed in should always have "
+"reference counts.  In the kernel, garbage collection doesn't exist (and "
+"outside the kernel garbage collection is slow and inefficient), which "
+"means that you absolutely _have_ to reference count all your uses."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:768
 msgid ""
-"Reference counting means that you can avoid locking, and allows multiple users "
-"to have access to the data structure in parallel - and not having to worry "
-"about the structure suddenly going away from under them just because they slept "
-"or did something else for a while."
+"Reference counting means that you can avoid locking, and allows multiple "
+"users to have access to the data structure in parallel - and not having "
+"to worry about the structure suddenly going away from under them just "
+"because they slept or did something else for a while."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:773
 msgid ""
-"Note that locking is _not_ a replacement for reference counting. Locking is "
-"used to keep data structures coherent, while reference counting is a memory "
-"management technique.  Usually both are needed, and they are not to be confused "
-"with each other."
+"Note that locking is _not_ a replacement for reference counting. Locking "
+"is used to keep data structures coherent, while reference counting is a "
+"memory management technique.  Usually both are needed, and they are not "
+"to be confused with each other."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:778
 msgid ""
-"Many data structures can indeed have two levels of reference counting, when "
-"there are users of different \"classes\".  The subclass count counts the number "
-"of subclass users, and decrements the global count just once when the subclass "
-"count goes to zero."
+"Many data structures can indeed have two levels of reference counting, "
+"when there are users of different \"classes\".  The subclass count counts"
+" the number of subclass users, and decrements the global count just once "
+"when the subclass count goes to zero."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:783
 msgid ""
-"Examples of this kind of \"multi-level-reference-counting\" can be found in "
-"memory management (\"struct mm_struct\": mm_users and mm_count), and in "
-"filesystem code (\"struct super_block\": s_count and s_active)."
+"Examples of this kind of \"multi-level-reference-counting\" can be found "
+"in memory management (\"struct mm_struct\": mm_users and mm_count), and "
+"in filesystem code (\"struct super_block\": s_count and s_active)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:787
 msgid ""
-"Remember: if another thread can find your data structure, and you don't have a "
-"reference count on it, you almost certainly have a bug."
+"Remember: if another thread can find your data structure, and you don't "
+"have a reference count on it, you almost certainly have a bug."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:792
@@ -2448,8 +2484,8 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:802
 msgid ""
-"CAPITALIZED macro names are appreciated but macros resembling functions may be "
-"named in lower case."
+"CAPITALIZED macro names are appreciated but macros resembling functions "
+"may be named in lower case."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:805
@@ -2488,8 +2524,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:829
 msgid ""
-"is a _very_ bad idea.  It looks like a function call but exits the \"calling\" "
-"function; don't break the internal parsers of those who will read the code."
+"is a _very_ bad idea.  It looks like a function call but exits the "
+"\"calling\" function; don't break the internal parsers of those who will "
+"read the code."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:832
@@ -2502,21 +2539,21 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:838
 msgid ""
-"might look like a good thing, but it's confusing as hell when one reads the "
-"code and it's prone to breakage from seemingly innocent changes."
+"might look like a good thing, but it's confusing as hell when one reads "
+"the code and it's prone to breakage from seemingly innocent changes."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:841
 msgid ""
-"macros with arguments that are used as l-values: FOO(x) = y; will bite you if "
-"somebody e.g. turns FOO into an inline function."
+"macros with arguments that are used as l-values: FOO(x) = y; will bite "
+"you if somebody e.g. turns FOO into an inline function."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:844
 msgid ""
-"forgetting about precedence: macros defining constants using expressions must "
-"enclose the expression in parentheses. Beware of similar issues with macros "
-"using parameters."
+"forgetting about precedence: macros defining constants using expressions "
+"must enclose the expression in parentheses. Beware of similar issues with"
+" macros using parameters."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:848
@@ -2527,8 +2564,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:853
 msgid ""
-"The cpp manual deals with macros exhaustively. The gcc internals manual also "
-"covers RTL which is used frequently with assembly language in the kernel."
+"The cpp manual deals with macros exhaustively. The gcc internals manual "
+"also covers RTL which is used frequently with assembly language in the "
+"kernel."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:858
@@ -2537,10 +2575,10 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:860
 msgid ""
-"Kernel developers like to be seen as literate. Do mind the spelling of kernel "
-"messages to make a good impression. Do not use crippled words like \"dont\"; "
-"use \"do not\" or \"don't\" instead.  Make the messages concise, clear, and "
-"unambiguous."
+"Kernel developers like to be seen as literate. Do mind the spelling of "
+"kernel messages to make a good impression. Do not use crippled words like"
+" \"dont\"; use \"do not\" or \"don't\" instead.  Make the messages "
+"concise, clear, and unambiguous."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:865
@@ -2554,22 +2592,23 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:869
 msgid ""
-"There are a number of driver model diagnostic macros in <linux/device.h> which "
-"you should use to make sure messages are matched to the right device and "
-"driver, and are tagged with the right level:  dev_err(), dev_warn(), "
-"dev_info(), and so forth.  For messages that aren't associated with a "
-"particular device, <linux/kernel.h> defines pr_debug() and pr_info()."
+"There are a number of driver model diagnostic macros in <linux/device.h> "
+"which you should use to make sure messages are matched to the right "
+"device and driver, and are tagged with the right level:  dev_err(), "
+"dev_warn(), dev_info(), and so forth.  For messages that aren't "
+"associated with a particular device, <linux/kernel.h> defines pr_debug() "
+"and pr_info()."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:875
 msgid ""
-"Coming up with good debugging messages can be quite a challenge; and once you "
-"have them, they can be a huge help for remote troubleshooting.  Such messages "
-"should be compiled out when the DEBUG symbol is not defined (that is, by "
-"default they are not included).  When you use dev_dbg() or pr_debug(), that's "
-"automatic.  Many subsystems have Kconfig options to turn on -DDEBUG. A related "
-"convention uses VERBOSE_DEBUG to add dev_vdbg() messages to the ones already "
-"enabled by DEBUG."
+"Coming up with good debugging messages can be quite a challenge; and once"
+" you have them, they can be a huge help for remote troubleshooting.  Such"
+" messages should be compiled out when the DEBUG symbol is not defined "
+"(that is, by default they are not included).  When you use dev_dbg() or "
+"pr_debug(), that's automatic.  Many subsystems have Kconfig options to "
+"turn on -DDEBUG. A related convention uses VERBOSE_DEBUG to add "
+"dev_vdbg() messages to the ones already enabled by DEBUG."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:885
@@ -2578,9 +2617,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:887
 msgid ""
-"The kernel provides the following general purpose memory allocators: kmalloc(), "
-"kzalloc(), kcalloc(), and vmalloc().  Please refer to the API documentation for "
-"further information about them."
+"The kernel provides the following general purpose memory allocators: "
+"kmalloc(), kzalloc(), kcalloc(), and vmalloc().  Please refer to the API "
+"documentation for further information about them."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:891
@@ -2593,16 +2632,17 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:897
 msgid ""
-"The alternative form where struct name is spelled out hurts readability and "
-"introduces an opportunity for a bug when the pointer variable type is changed "
-"but the corresponding sizeof that is passed to a memory allocator is not."
+"The alternative form where struct name is spelled out hurts readability "
+"and introduces an opportunity for a bug when the pointer variable type is"
+" changed but the corresponding sizeof that is passed to a memory "
+"allocator is not."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:901
 msgid ""
-"Casting the return value which is a void pointer is redundant. The conversion "
-"from void pointer to any other pointer type is guaranteed by the C programming "
-"language."
+"Casting the return value which is a void pointer is redundant. The "
+"conversion from void pointer to any other pointer type is guaranteed by "
+"the C programming language."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:907
@@ -2611,35 +2651,35 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:909
 msgid ""
-"There appears to be a common misperception that gcc has a magic \"make me faster"
-"\" speedup option called \"inline\". While the use of inlines can be "
-"appropriate (for example as a means of replacing macros, see Chapter 12), it "
-"very often is not. Abundant use of the inline keyword leads to a much bigger "
-"kernel, which in turn slows the system as a whole down, due to a bigger icache "
-"footprint for the CPU and simply because there is less memory available for the "
-"pagecache. Just think about it; a pagecache miss causes a disk seek, which "
-"easily takes 5 milliseconds. There are a LOT of cpu cycles that can go into "
-"these 5 milliseconds."
+"There appears to be a common misperception that gcc has a magic \"make me"
+" faster\" speedup option called \"inline\". While the use of inlines can "
+"be appropriate (for example as a means of replacing macros, see Chapter "
+"12), it very often is not. Abundant use of the inline keyword leads to a "
+"much bigger kernel, which in turn slows the system as a whole down, due "
+"to a bigger icache footprint for the CPU and simply because there is less"
+" memory available for the pagecache. Just think about it; a pagecache "
+"miss causes a disk seek, which easily takes 5 milliseconds. There are a "
+"LOT of cpu cycles that can go into these 5 milliseconds."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:919
 msgid ""
-"A reasonable rule of thumb is to not put inline at functions that have more "
-"than 3 lines of code in them. An exception to this rule are the cases where a "
-"parameter is known to be a compiletime constant, and as a result of this "
-"constantness you *know* the compiler will be able to optimize most of your "
-"function away at compile time. For a good example of this later case, see the "
-"kmalloc() inline function."
+"A reasonable rule of thumb is to not put inline at functions that have "
+"more than 3 lines of code in them. An exception to this rule are the "
+"cases where a parameter is known to be a compiletime constant, and as a "
+"result of this constantness you *know* the compiler will be able to "
+"optimize most of your function away at compile time. For a good example "
+"of this later case, see the kmalloc() inline function."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:926
 msgid ""
-"Often people argue that adding inline to functions that are static and used "
-"only once is always a win since there is no space tradeoff. While this is "
-"technically correct, gcc is capable of inlining these automatically without "
-"help, and the maintenance issue of removing the inline when a second user "
-"appears outweighs the potential value of the hint that tells gcc to do "
-"something it would have done anyway."
+"Often people argue that adding inline to functions that are static and "
+"used only once is always a win since there is no space tradeoff. While "
+"this is technically correct, gcc is capable of inlining these "
+"automatically without help, and the maintenance issue of removing the "
+"inline when a second user appears outweighs the potential value of the "
+"hint that tells gcc to do something it would have done anyway."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:935
@@ -2648,18 +2688,20 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:937
 msgid ""
-"Functions can return values of many different kinds, and one of the most common "
-"is a value indicating whether the function succeeded or failed.  Such a value "
-"can be represented as an error-code integer (-Exxx = failure, 0 = success) or a "
-"\"succeeded\" boolean (0 = failure, non-zero = success)."
+"Functions can return values of many different kinds, and one of the most "
+"common is a value indicating whether the function succeeded or failed.  "
+"Such a value can be represented as an error-code integer (-Exxx = "
+"failure, 0 = success) or a \"succeeded\" boolean (0 = failure, non-zero ="
+" success)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:943
 msgid ""
-"Mixing up these two sorts of representations is a fertile source of difficult-"
-"to-find bugs.  If the C language included a strong distinction between integers "
-"and booleans then the compiler would find these mistakes for us... but it "
-"doesn't.  To help prevent such bugs, always follow this convention:"
+"Mixing up these two sorts of representations is a fertile source of "
+"difficult-to-find bugs.  If the C language included a strong distinction "
+"between integers and booleans then the compiler would find these mistakes"
+" for us... but it doesn't.  To help prevent such bugs, always follow this"
+" convention:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:951
@@ -2671,26 +2713,26 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:955
 msgid ""
-"For example, \"add work\" is a command, and the add_work() function returns 0 "
-"for success or -EBUSY for failure.  In the same way, \"PCI device present\" is "
-"a predicate, and the pci_dev_present() function returns 1 if it succeeds in "
-"finding a matching device or 0 if it doesn't."
+"For example, \"add work\" is a command, and the add_work() function "
+"returns 0 for success or -EBUSY for failure.  In the same way, \"PCI "
+"device present\" is a predicate, and the pci_dev_present() function "
+"returns 1 if it succeeds in finding a matching device or 0 if it doesn't."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:960
 msgid ""
-"All EXPORTed functions must respect this convention, and so should all public "
-"functions.  Private (static) functions need not, but it is recommended that "
-"they do."
+"All EXPORTed functions must respect this convention, and so should all "
+"public functions.  Private (static) functions need not, but it is "
+"recommended that they do."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:964
 msgid ""
-"Functions whose return value is the actual result of a computation, rather than "
-"an indication of whether the computation succeeded, are not subject to this "
-"rule.  Generally they indicate failure by returning some out-of-range result.  "
-"Typical examples would be functions that return pointers; they use NULL or the "
-"ERR_PTR mechanism to report failure."
+"Functions whose return value is the actual result of a computation, "
+"rather than an indication of whether the computation succeeded, are not "
+"subject to this rule.  Generally they indicate failure by returning some "
+"out-of-range result.  Typical examples would be functions that return "
+"pointers; they use NULL or the ERR_PTR mechanism to report failure."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:973
@@ -2699,10 +2741,10 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:975
 msgid ""
-"The header file include/linux/kernel.h contains a number of macros that you "
-"should use, rather than explicitly coding some variant of them yourself. For "
-"example, if you need to calculate the length of an array, take advantage of the "
-"macro"
+"The header file include/linux/kernel.h contains a number of macros that "
+"you should use, rather than explicitly coding some variant of them "
+"yourself. For example, if you need to calculate the length of an array, "
+"take advantage of the macro"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:980
@@ -2719,9 +2761,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:990
 msgid ""
-"There are also min() and max() macros that do strict type checking if you need "
-"them.  Feel free to peruse that header file to see what else is already defined "
-"that you shouldn't reproduce in your code."
+"There are also min() and max() macros that do strict type checking if you"
+" need them.  Feel free to peruse that header file to see what else is "
+"already defined that you shouldn't reproduce in your code."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:996
@@ -2730,9 +2772,9 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:998
 msgid ""
-"Some editors can interpret configuration information embedded in source files, "
-"indicated with special markers.  For example, emacs interprets lines marked "
-"like this:"
+"Some editors can interpret configuration information embedded in source "
+"files, indicated with special markers.  For example, emacs interprets "
+"lines marked like this:"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1002
@@ -2762,11 +2804,11 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1022
 msgid ""
-"Do not include any of these in source files.  People have their own personal "
-"editor configurations, and your source files should not override them.  This "
-"includes markers for indentation and mode configuration.  People may use their "
-"own custom mode, or may have some other magic method for making indentation "
-"work correctly."
+"Do not include any of these in source files.  People have their own "
+"personal editor configurations, and your source files should not override"
+" them.  This includes markers for indentation and mode configuration.  "
+"People may use their own custom mode, or may have some other magic method"
+" for making indentation work correctly."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1030
@@ -2775,35 +2817,37 @@ msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1032
 msgid ""
-"`The C Programming Language, Second Edition <https://en.wikipedia.org/wiki/"
-"The_C_Programming_Language>`_ by Brian W. Kernighan and Dennis M. Ritchie. |br| "
-"Prentice Hall, Inc., 1988. |br| ISBN 0-13-110362-8 (paperback), 0-13-110370-9 "
-"(hardback)."
+"`The C Programming Language, Second Edition "
+"<https://en.wikipedia.org/wiki/The_C_Programming_Language>`_ by Brian W. "
+"Kernighan and Dennis M. Ritchie. |br| Prentice Hall, Inc., 1988. |br| "
+"ISBN 0-13-110362-8 (paperback), 0-13-110370-9 (hardback)."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1037
 msgid ""
-"`The Practice of Programming <https://en.wikipedia.org/wiki/"
-"The_Practice_of_Programming>`_ by Brian W. Kernighan and Rob Pike. |br| Addison-"
-"Wesley, Inc., 1999. |br| ISBN 0-201-61586-X."
+"`The Practice of Programming "
+"<https://en.wikipedia.org/wiki/The_Practice_of_Programming>`_ by Brian W."
+" Kernighan and Rob Pike. |br| Addison-Wesley, Inc., 1999. |br| ISBN "
+"0-201-61586-X."
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1042
 msgid ""
-"`GNU manuals <http://www.gnu.org/manual/>`_ - where in compliance with K&R and "
-"this text - for **cpp**, **gcc**, **gcc internals** and **indent**"
+"`GNU manuals <http://www.gnu.org/manual/>`_ - where in compliance with "
+"K&R and this text - for **cpp**, **gcc**, **gcc internals** and "
+"**indent**"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1045
 msgid ""
-"`WG14 International standardization workgroup for the programming language C "
-"<http://www.open-std.org/JTC1/SC22/WG14/>`_"
+"`WG14 International standardization workgroup for the programming "
+"language C <http://www.open-std.org/JTC1/SC22/WG14/>`_"
 msgstr ""
 
 #: ../dev_guide/c_style_guide.rst:1048
 msgid ""
-"`Kernel CodingStyle, by greg@kroah.com at OLS 2002 <http://www.kroah.com/linux/"
-"talks/ols_2002_kernel_codingstyle_talk/html/>`_"
+"`Kernel CodingStyle, by greg@kroah.com at OLS 2002 "
+"<http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/html/>`_"
 msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:28
@@ -2816,34 +2860,38 @@ msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:34
 msgid ""
-"Any defect, even minor, if it changes the user-visible server behavior, needs a "
-"bug report. Report a bug at http://github.com/tarantool/tarantool/issues."
+"Any defect, even minor, if it changes the user-visible server behavior, "
+"needs a bug report. Report a bug at "
+"http://github.com/tarantool/tarantool/issues."
 msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:37
 msgid ""
-"When reporting a bug, try to come up with a test case right away. Set the "
-"current maintenance milestone for the bug fix, and specify the series. Assign "
-"the bug to yourself. Put the status to 'In progress' Once the patch is ready, "
-"put the bug the bug to 'In review' and solicit a review for the fix."
+"When reporting a bug, try to come up with a test case right away. Set the"
+" current maintenance milestone for the bug fix, and specify the series. "
+"Assign the bug to yourself. Put the status to 'In progress' Once the "
+"patch is ready, put the bug the bug to 'In review' and solicit a review "
+"for the fix."
 msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:42
 msgid ""
-"Once there is a positive code review, push the patch and set the status to "
-"'Closed'"
+"Once there is a positive code review, push the patch and set the status "
+"to 'Closed'"
 msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:44
 msgid ""
-"Patches for bugs should contain a reference to the respective Launchpad bug "
-"page or at least bug id. Each patch should have a test, unless coming up with "
-"one is difficult in the current framework, in which case QA should be alerted."
+"Patches for bugs should contain a reference to the respective Launchpad "
+"bug page or at least bug id. Each patch should have a test, unless coming"
+" up with one is difficult in the current framework, in which case QA "
+"should be alerted."
 msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:48
 msgid ""
-"There are two things you need to do when your patch makes it into the master:"
+"There are two things you need to do when your patch makes it into the "
+"master:"
 msgstr ""
 
 #: ../dev_guide/developer_guidelines.rst:50
@@ -2860,9 +2908,10 @@ msgstr "Соглашения по документации"
 
 #: ../dev_guide/documentation_guidelines.rst:32
 msgid ""
-"These guidelines are updated on the on-demand basis, covering only those issues "
-"that cause pains to the existing writers. At this point, we do not aim to come "
-"up with an exhaustive Documentation Style Guide for the Tarantool project."
+"These guidelines are updated on the on-demand basis, covering only those "
+"issues that cause pains to the existing writers. At this point, we do not"
+" aim to come up with an exhaustive Documentation Style Guide for the "
+"Tarantool project."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:38
@@ -2875,20 +2924,20 @@ msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:44
 msgid ""
-"The limit is 80 characters per line for plain text, and no limit for any other "
-"constructions when wrapping affects ReST readability and/or HTML output. Also, "
-"it makes no sense to wrap text into lines shorter than 80 characters unless you "
-"have a good reason to do so."
+"The limit is 80 characters per line for plain text, and no limit for any "
+"other constructions when wrapping affects ReST readability and/or HTML "
+"output. Also, it makes no sense to wrap text into lines shorter than 80 "
+"characters unless you have a good reason to do so."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:49
 msgid ""
-"The 80-character limit comes from the ISO/ANSI 80x24 screen resolution, and "
-"it's unlikely that readers/writers will use 80-character consoles. Yet it's "
-"still a standard for many coding guidelines (including Tarantool). As for "
-"writers, the benefit is that an 80-character page guide allows keeping the text "
-"window rather narrow most of the time, leaving more space for other "
-"applications in a wide-screen environment."
+"The 80-character limit comes from the ISO/ANSI 80x24 screen resolution, "
+"and it's unlikely that readers/writers will use 80-character consoles. "
+"Yet it's still a standard for many coding guidelines (including "
+"Tarantool). As for writers, the benefit is that an 80-character page "
+"guide allows keeping the text window rather narrow most of the time, "
+"leaving more space for other applications in a wide-screen environment."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:58
@@ -2928,114 +2977,218 @@ msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:77
 msgid ""
-"In rare cases, when we need custom highlight for specific parts of a code "
-"snippet and the ``code-block`` directive is not enough, we use the per-line "
-"``codenormal`` directive together with explicit output formatting (defined in :"
-"file:`doc/sphinx/_static/sphinx_design.css`)."
+"In rare cases, when we need custom highlight for specific parts of a code"
+" snippet and the ``code-block`` directive is not enough, we use the per-"
+"line ``codenormal`` directive together and explicit output formatting "
+"(defined in :file:`doc/sphinx/_static/sphinx_design.css`)."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:82
-msgid ""
-"For example (a tdb session with custom formatting in bold, blue and green):"
+msgid "Examples:"
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:84
+msgid "Function syntax (the placeholder `space-name` is displayed in italics):"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:86
 msgid ""
-":codenormal:`$` :codebold:`tarantool example.lua` |br| :codeblue:`(TDB)` |"
-"nbsp| :codegreen:`Tarantool debugger v.0.0.3. Type h for help` |br| :codenormal:"
-"`example.lua` |br| :codeblue:`(TDB)` |nbsp| :codegreen:`[example.lua]` |br| :"
-"codeblue:`(TDB)` |nbsp| :codenormal:`3: i = 1` |br| :codeblue:`(TDB)>` |br|"
+":codenormal:`box.space.`:codeitalic:`space-"
+"name`:codenormal:`:create_index('index-name')`"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:93
-msgid "Making comments"
-msgstr ""
-
-#: ../dev_guide/documentation_guidelines.rst:95
+#: ../dev_guide/documentation_guidelines.rst:88
 msgid ""
-"Sometimes we may need to leave comments in a ReST file. To make sphinx ignore "
-"some text during processing, use the following per-line notation with \".. //\" "
-"as the comment marker:"
+"A tdb session (user input is in bold, command prompt is in blue, computer"
+" output is in green):"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:101
+#: ../dev_guide/documentation_guidelines.rst:100
 msgid ""
-"`The notation example is excluded from HTML output, so please see the source in "
-"ReST.`"
+"Warning: Every entry of explicit output formatting (``codenormal``, "
+"``codebold``, etc) tends to cause troubles when this documentation is "
+"translated to other languages. Please avoid using explicit output "
+"formatting unless it is REALLY needed."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:104
+#: ../dev_guide/documentation_guidelines.rst:107
+msgid "Using separated links"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:109
+msgid "Avoid separating the link and the target definition (ref), like this:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:111
 msgid ""
-"The starting symbols \".. //\" do not interfere with the other ReST markup, and "
-"they are easy to find both visually and using grep. There are no symbols to "
-"escape in grep search, just go ahead with something like this:"
+"This is a paragraph that contains `a link`_.\n"
+"\n"
+".. _a link: http://example.com/"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:108
-msgid "grep \".. //\" doc/sphinx/dev_guide/*.rst"
+#: ../dev_guide/documentation_guidelines.rst:117
+msgid "Use non-separated links instead:"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:112
+#: ../dev_guide/documentation_guidelines.rst:119
+msgid "This is a paragraph that contains `a link <http://example.com/>`."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:123
 msgid ""
-"These comments don't work properly in nested documentation, though (e.g. if you "
-"leave a comment in module -> object -> method, sphinx ignores the comment and "
-"all nested content that follows in the method description)."
+"Warning: Every separated link tends to cause troubles when this "
+"documentation is translated to other languages. Please avoid using "
+"separated links unless it is REALLY needed (e.g. in tables)."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:118
-msgid "Language and style issues"
+#: ../dev_guide/documentation_guidelines.rst:129
+msgid "Creating labels for local links"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:122
-msgid "US vs British spelling"
-msgstr ""
-
-#: ../dev_guide/documentation_guidelines.rst:124
-msgid "We use English US spelling."
-msgstr ""
-
-#: ../dev_guide/documentation_guidelines.rst:128
-msgid "Examples and templates"
-msgstr ""
-
-#: ../dev_guide/documentation_guidelines.rst:132
-msgid "Module and function"
+#: ../dev_guide/documentation_guidelines.rst:131
+msgid ""
+"We avoid using links that sphinx generates automatically for most "
+"objects. Instead, we add our own labels for linking to any place in this "
+"documentation."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:134
+msgid "Our naming convention is as follows:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:136
+msgid "Character set: a through z, 0 through 9, dash, underscore."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:138
+msgid "Format: ``path dash filename dash tag``"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:140
+msgid ""
+"Example: ``_c_api-box_index-iterator_type`` |br| where: |br| ``c_api`` is"
+" the directory name, |br| ``box_index`` is the file name (without "
+"\".rst\"), and |br| ``iterator_type`` is the tag."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:146
+msgid ""
+"The file name is useful for knowing, when you see \"ref\", where it is "
+"pointing to. And if the file name is meaningful, you see that better."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:149
+msgid ""
+"The file name alone, without a path, is enough when the file name is "
+"unique within ``doc/sphinx``. So, for ``fiber.rst`` it should be just "
+"\"fiber\", not \"reference-fiber\". While for \"index.rst\" (we have a "
+"handful of \"index.rst\" in different directories) please specify the "
+"path before the file name, e.g. \"reference-index\"."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:156
+msgid ""
+"Use a dash \"-\" to delimit the path and the file name. In the "
+"documentation source, we use only underscores \"_\" in paths and file "
+"names, reserving dash \"-\" as the delimiter for local links."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:160
+msgid ""
+"The tag can be anything meaningful. The only guideline is for Tarantool "
+"syntax items (such as members), where the preferred tag syntax is "
+"``package_or_object_name dash member_name``. For example, ``box_space-"
+"drop``."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:166
+msgid "Making comments"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:168
+msgid ""
+"Sometimes we may need to leave comments in a ReST file. To make sphinx "
+"ignore some text during processing, use the following per-line notation "
+"with \".. //\" as the comment marker:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:172
+msgid ".. // your comment here"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:176
+msgid ""
+"The starting symbols \".. //\" do not interfere with the other ReST "
+"markup, and they are easy to find both visually and using grep. There are"
+" no symbols to escape in grep search, just go ahead with something like "
+"this:"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:180
+msgid "grep \".. //\" doc/sphinx/dev_guide/*.rst"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:184
+msgid ""
+"These comments don't work properly in nested documentation, though (e.g. "
+"if you leave a comment in module -> object -> method, sphinx ignores the "
+"comment and all nested content that follows in the method description)."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:190
+msgid "Language and style issues"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:194
+msgid "US vs British spelling"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:196
+msgid "We use English US spelling."
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:200
+msgid "Examples and templates"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:204
+msgid "Module and function"
+msgstr ""
+
+#: ../dev_guide/documentation_guidelines.rst:206
 msgid ""
 "Here is an example of documenting a module (``my_fiber``) and a function "
 "(``my_fiber.create``)."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:141
+#: ../dev_guide/documentation_guidelines.rst:213
 msgid ""
-"Create and start a ``my_fiber`` object. The object is created and begins to run "
-"immediately."
+"Create and start a ``my_fiber`` object. The object is created and begins "
+"to run immediately."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:144
+#: ../dev_guide/documentation_guidelines.rst:216
 msgid "the function to be associated with the ``my_fiber`` object"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:145
+#: ../dev_guide/documentation_guidelines.rst:217
 msgid "what will be passed to function"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:147
+#: ../dev_guide/documentation_guidelines.rst:219
 msgid "created ``my_fiber`` object"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:148
+#: ../dev_guide/documentation_guidelines.rst:220
 msgid "userdata"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:150
-#: ../dev_guide/documentation_guidelines.rst:188
+#: ../dev_guide/documentation_guidelines.rst:222
+#: ../dev_guide/documentation_guidelines.rst:260
 msgid "**Example:**"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:152
+#: ../dev_guide/documentation_guidelines.rst:224
 msgid ""
 "tarantool> my_fiber = require('my_fiber')\n"
 "---\n"
@@ -3050,44 +3203,44 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:168
+#: ../dev_guide/documentation_guidelines.rst:240
 msgid "Module, class and method"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:170
+#: ../dev_guide/documentation_guidelines.rst:242
 msgid ""
 "Here is an example of documenting a module (``my_box.index``), a class "
 "(``my_index_object``) and a function (``my_index_object.rename``)."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:179
+#: ../dev_guide/documentation_guidelines.rst:251
 msgid "Rename an index."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:181
+#: ../dev_guide/documentation_guidelines.rst:253
 msgid "an object reference"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:182
+#: ../dev_guide/documentation_guidelines.rst:254
 msgid "a new name for the index (type = string)"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:184
+#: ../dev_guide/documentation_guidelines.rst:256
 msgid "nil"
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:186
+#: ../dev_guide/documentation_guidelines.rst:258
 msgid "Possible errors: index_object does not exist."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:190
+#: ../dev_guide/documentation_guidelines.rst:262
 msgid ""
 "tarantool> box.space.space55.index.primary:rename('secondary')\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../dev_guide/documentation_guidelines.rst:196
+#: ../dev_guide/documentation_guidelines.rst:268
 msgid "Complexity Factors: Index size, Index type, Number of tuples accessed."
 msgstr ""
 
@@ -3113,8 +3266,8 @@ msgstr ""
 
 #: ../dev_guide/intro.rst:34
 msgid ""
-"coding style guide for C, Python (for other connectors, we use conventions of "
-"the connector programming language community)"
+"coding style guide for C, Python (for other connectors, we use "
+"conventions of the connector programming language community)"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:28
@@ -3127,17 +3280,17 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:34
 msgid ""
-"This document gives coding conventions for the Python code comprising the "
-"standard library in the main Python distribution.  Please see the companion "
-"informational PEP describing style guidelines for the C code in the C "
-"implementation of Python [1]_."
+"This document gives coding conventions for the Python code comprising the"
+" standard library in the main Python distribution.  Please see the "
+"companion informational PEP describing style guidelines for the C code in"
+" the C implementation of Python [1]_."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:39
 msgid ""
-"This document and PEP 257 (Docstring Conventions) were adapted from Guido's "
-"original Python Style Guide essay, with some additions from Barry's style guide "
-"[2]_."
+"This document and PEP 257 (Docstring Conventions) were adapted from "
+"Guido's original Python Style Guide essay, with some additions from "
+"Barry's style guide [2]_."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:46
@@ -3146,24 +3299,24 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:48
 msgid ""
-"One of Guido's key insights is that code is read much more often than it is "
-"written.  The guidelines provided here are intended to improve the readability "
-"of code and make it consistent across the wide spectrum of Python code.  As PEP "
-"20 says, \"Readability counts\"."
+"One of Guido's key insights is that code is read much more often than it "
+"is written.  The guidelines provided here are intended to improve the "
+"readability of code and make it consistent across the wide spectrum of "
+"Python code.  As PEP 20 says, \"Readability counts\"."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:53
 msgid ""
-"A style guide is about consistency.  Consistency with this style guide is "
-"important.  Consistency within a project is more important. Consistency within "
-"one module or function is the most important."
+"A style guide is about consistency.  Consistency with this style guide is"
+" important.  Consistency within a project is more important. Consistency "
+"within one module or function is the most important."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:57
 msgid ""
-"But most importantly: know when to be inconsistent -- sometimes the style guide "
-"just doesn't apply.  When in doubt, use your best judgment.  Look at other "
-"examples and decide what looks best.  And don't hesitate to ask!"
+"But most importantly: know when to be inconsistent -- sometimes the style"
+" guide just doesn't apply.  When in doubt, use your best judgment.  Look "
+"at other examples and decide what looks best.  And don't hesitate to ask!"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:62
@@ -3172,15 +3325,15 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:64
 msgid ""
-"When applying the rule would make the code less readable, even for someone who "
-"is used to reading code that follows the rules."
+"When applying the rule would make the code less readable, even for "
+"someone who is used to reading code that follows the rules."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:67
 msgid ""
-"To be consistent with surrounding code that also breaks it (maybe for historic "
-"reasons) -- although this is also an opportunity to clean up someone else's "
-"mess (in true XP style)."
+"To be consistent with surrounding code that also breaks it (maybe for "
+"historic reasons) -- although this is also an opportunity to clean up "
+"someone else's mess (in true XP style)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:74
@@ -3197,22 +3350,24 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:82
 msgid ""
-"For really old code that you don't want to mess up, you can continue to use 8-"
-"space tabs."
+"For really old code that you don't want to mess up, you can continue to "
+"use 8-space tabs."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:85
 msgid ""
 "Continuation lines should align wrapped elements either vertically using "
-"Python's implicit line joining inside parentheses, brackets and braces, or "
-"using a hanging indent.  When using a hanging indent the following "
-"considerations should be applied; there should be no arguments on the first "
-"line and further indentation should be used to clearly distinguish itself as a "
-"continuation line."
+"Python's implicit line joining inside parentheses, brackets and braces, "
+"or using a hanging indent.  When using a hanging indent the following "
+"considerations should be applied; there should be no arguments on the "
+"first line and further indentation should be used to clearly distinguish "
+"itself as a continuation line."
 msgstr ""
 
-#: ../dev_guide/python_style_guide.rst:92 ../dev_guide/python_style_guide.rst:349
-#: ../dev_guide/python_style_guide.rst:378 ../dev_guide/python_style_guide.rst:397
+#: ../dev_guide/python_style_guide.rst:92
+#: ../dev_guide/python_style_guide.rst:349
+#: ../dev_guide/python_style_guide.rst:378
+#: ../dev_guide/python_style_guide.rst:397
 #: ../dev_guide/python_style_guide.rst:410
 msgid "Yes::"
 msgstr ""
@@ -3230,8 +3385,10 @@ msgid ""
 "    print(var_one)"
 msgstr ""
 
-#: ../dev_guide/python_style_guide.rst:104 ../dev_guide/python_style_guide.rst:355
-#: ../dev_guide/python_style_guide.rst:386 ../dev_guide/python_style_guide.rst:402
+#: ../dev_guide/python_style_guide.rst:104
+#: ../dev_guide/python_style_guide.rst:355
+#: ../dev_guide/python_style_guide.rst:386
+#: ../dev_guide/python_style_guide.rst:402
 msgid "No::"
 msgstr ""
 
@@ -3262,8 +3419,9 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:123
 msgid ""
-"The closing brace/bracket/parenthesis on multi-line constructs may either line "
-"up under the first non-whitespace character of the last line of list, as in::"
+"The closing brace/bracket/parenthesis on multi-line constructs may either"
+" line up under the first non-whitespace character of the last line of "
+"list, as in::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:127
@@ -3280,8 +3438,8 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:136
 msgid ""
-"or it may be lined up under the first character of the line that starts the "
-"multi-line construct, as in::"
+"or it may be lined up under the first character of the line that starts "
+"the multi-line construct, as in::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:139
@@ -3306,18 +3464,19 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:155
 msgid ""
-"The most popular way of indenting Python is with spaces only.  The second-most "
-"popular way is with tabs only.  Code indented with a mixture of tabs and spaces "
-"should be converted to using spaces exclusively.  When invoking the Python "
-"command line interpreter with the ``-t`` option, it issues warnings about code "
-"that illegally mixes tabs and spaces.  When using ``-tt`` these warnings become "
-"errors. These options are highly recommended!"
+"The most popular way of indenting Python is with spaces only.  The "
+"second-most popular way is with tabs only.  Code indented with a mixture "
+"of tabs and spaces should be converted to using spaces exclusively.  When"
+" invoking the Python command line interpreter with the ``-t`` option, it "
+"issues warnings about code that illegally mixes tabs and spaces.  When "
+"using ``-tt`` these warnings become errors. These options are highly "
+"recommended!"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:163
 msgid ""
-"For new projects, spaces-only are strongly recommended over tabs. Most editors "
-"have features that make this easy to do."
+"For new projects, spaces-only are strongly recommended over tabs. Most "
+"editors have features that make this easy to do."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:168
@@ -3330,28 +3489,29 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:172
 msgid ""
-"There are still many devices around that are limited to 80 character lines; "
-"plus, limiting windows to 80 characters makes it possible to have several "
-"windows side-by-side.  The default wrapping on such devices disrupts the visual "
-"structure of the code, making it more difficult to understand.  Therefore, "
-"please limit all lines to a maximum of 79 characters.  For flowing long blocks "
-"of text (docstrings or comments), limiting the length to 72 characters is "
-"recommended."
+"There are still many devices around that are limited to 80 character "
+"lines; plus, limiting windows to 80 characters makes it possible to have "
+"several windows side-by-side.  The default wrapping on such devices "
+"disrupts the visual structure of the code, making it more difficult to "
+"understand.  Therefore, please limit all lines to a maximum of 79 "
+"characters.  For flowing long blocks of text (docstrings or comments), "
+"limiting the length to 72 characters is recommended."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:180
 msgid ""
-"The preferred way of wrapping long lines is by using Python's implied line "
-"continuation inside parentheses, brackets and braces.  Long lines can be broken "
-"over multiple lines by wrapping expressions in parentheses. These should be "
-"used in preference to using a backslash for line continuation."
+"The preferred way of wrapping long lines is by using Python's implied "
+"line continuation inside parentheses, brackets and braces.  Long lines "
+"can be broken over multiple lines by wrapping expressions in parentheses."
+" These should be used in preference to using a backslash for line "
+"continuation."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:186
 msgid ""
-"Backslashes may still be appropriate at times.  For example, long, multiple "
-"``with``-statements cannot use implicit continuation, so backslashes are "
-"acceptable::"
+"Backslashes may still be appropriate at times.  For example, long, "
+"multiple ``with``-statements cannot use implicit continuation, so "
+"backslashes are acceptable::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:190
@@ -3367,9 +3527,9 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:196
 msgid ""
-"Make sure to indent the continued line appropriately.  The preferred place to "
-"break around a binary operator is *after* the operator, not before it.  Some "
-"examples::"
+"Make sure to indent the continued line appropriately.  The preferred "
+"place to break around a binary operator is *after* the operator, not "
+"before it.  Some examples::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:200
@@ -3406,8 +3566,8 @@ msgstr ""
 #: ../dev_guide/python_style_guide.rst:225
 msgid ""
 "Extra blank lines may be used (sparingly) to separate groups of related "
-"functions.  Blank lines may be omitted between a bunch of related one-liners (e."
-"g. a set of dummy implementations)."
+"functions.  Blank lines may be omitted between a bunch of related one-"
+"liners (e.g. a set of dummy implementations)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:229
@@ -3416,11 +3576,11 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:231
 msgid ""
-"Python accepts the control-L (i.e. ^L) form feed character as whitespace; Many "
-"tools treat these characters as page separators, so you may use them to "
-"separate pages of related sections of your file. Note, some editors and web-"
-"based code viewers may not recognize control-L as a form feed and will show "
-"another glyph in its place."
+"Python accepts the control-L (i.e. ^L) form feed character as whitespace;"
+" Many tools treat these characters as page separators, so you may use "
+"them to separate pages of related sections of your file. Note, some "
+"editors and web-based code viewers may not recognize control-L as a form "
+"feed and will show another glyph in its place."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:239
@@ -3429,35 +3589,37 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:241
 msgid ""
-"Code in the core Python distribution should always use the ASCII or Latin-1 "
-"encoding (a.k.a. ISO-8859-1).  For Python 3.0 and beyond, UTF-8 is preferred "
-"over Latin-1, see PEP 3120."
+"Code in the core Python distribution should always use the ASCII or "
+"Latin-1 encoding (a.k.a. ISO-8859-1).  For Python 3.0 and beyond, UTF-8 "
+"is preferred over Latin-1, see PEP 3120."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:245
 msgid ""
-"Files using ASCII should not have a coding cookie.  Latin-1 (or UTF-8) should "
-"only be used when a comment or docstring needs to mention an author name that "
-"requires Latin-1; otherwise, using ``\\x``, ``\\u`` or ``\\U`` escapes is the "
-"preferred way to include non-ASCII data in string literals."
+"Files using ASCII should not have a coding cookie.  Latin-1 (or UTF-8) "
+"should only be used when a comment or docstring needs to mention an "
+"author name that requires Latin-1; otherwise, using ``\\x``, ``\\u`` or "
+"``\\U`` escapes is the preferred way to include non-ASCII data in string "
+"literals."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:251
 msgid ""
-"For Python 3.0 and beyond, the following policy is prescribed for the standard "
-"library (see PEP 3131): All identifiers in the Python standard library MUST use "
-"ASCII-only identifiers, and SHOULD use English words wherever feasible (in many "
-"cases, abbreviations and technical terms are used which aren't English). In "
-"addition, string literals and comments must also be in ASCII. The only "
-"exceptions are (a) test cases testing the non-ASCII features, and (b) names of "
-"authors. Authors whose names are not based on the latin alphabet MUST provide a "
-"latin transliteration of their names."
+"For Python 3.0 and beyond, the following policy is prescribed for the "
+"standard library (see PEP 3131): All identifiers in the Python standard "
+"library MUST use ASCII-only identifiers, and SHOULD use English words "
+"wherever feasible (in many cases, abbreviations and technical terms are "
+"used which aren't English). In addition, string literals and comments "
+"must also be in ASCII. The only exceptions are (a) test cases testing the"
+" non-ASCII features, and (b) names of authors. Authors whose names are "
+"not based on the latin alphabet MUST provide a latin transliteration of "
+"their names."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:262
 msgid ""
-"Open source projects with a global audience are encouraged to adopt a similar "
-"policy."
+"Open source projects with a global audience are encouraged to adopt a "
+"similar policy."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:268
@@ -3474,8 +3636,8 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:281
 msgid ""
-"Imports are always put at the top of the file, just after any module comments "
-"and docstrings, and before module globals and constants."
+"Imports are always put at the top of the file, just after any module "
+"comments and docstrings, and before module globals and constants."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:284
@@ -3504,16 +3666,17 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:294
 msgid ""
-"Relative imports for intra-package imports are highly discouraged. Always use "
-"the absolute package path for all imports.  Even now that PEP 328 is fully "
-"implemented in Python 2.5, its style of explicit relative imports is actively "
-"discouraged; absolute imports are more portable and usually more readable."
+"Relative imports for intra-package imports are highly discouraged. Always"
+" use the absolute package path for all imports.  Even now that PEP 328 is"
+" fully implemented in Python 2.5, its style of explicit relative imports "
+"is actively discouraged; absolute imports are more portable and usually "
+"more readable."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:300
 msgid ""
-"When importing a class from a class-containing module, it's usually okay to "
-"spell this::"
+"When importing a class from a class-containing module, it's usually okay "
+"to spell this::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:306
@@ -3546,19 +3709,20 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:334
 msgid ""
-"Immediately before the open parenthesis that starts the argument list of a "
-"function call::"
+"Immediately before the open parenthesis that starts the argument list of "
+"a function call::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:340
 msgid ""
-"Immediately before the open parenthesis that starts an indexing or slicing::"
+"Immediately before the open parenthesis that starts an indexing or "
+"slicing::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:346
 msgid ""
-"More than one space around an assignment (or other) operator to align it with "
-"another."
+"More than one space around an assignment (or other) operator to align it "
+"with another."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:364
@@ -3567,24 +3731,25 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:366
 msgid ""
-"Always surround these binary operators with a single space on either side: "
-"assignment (``=``), augmented assignment (``+=``, ``-=`` etc.), comparisons "
-"(``==``, ``<``, ``>``, ``!=``, ``<>``, ``<=``, ``>=``, ``in``, ``not in``, "
-"``is``, ``is not``), Booleans (``and``, ``or``, ``not``)."
+"Always surround these binary operators with a single space on either "
+"side: assignment (``=``), augmented assignment (``+=``, ``-=`` etc.), "
+"comparisons (``==``, ``<``, ``>``, ``!=``, ``<>``, ``<=``, ``>=``, "
+"``in``, ``not in``, ``is``, ``is not``), Booleans (``and``, ``or``, "
+"``not``)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:372
 msgid ""
-"If operators with different priorities are used, consider adding whitespace "
-"around the operators with the lowest priority(ies). Use your own judgement; "
-"however, never use more than one space, and always have the same amount of "
-"whitespace on both sides of a binary operator."
+"If operators with different priorities are used, consider adding "
+"whitespace around the operators with the lowest priority(ies). Use your "
+"own judgement; however, never use more than one space, and always have "
+"the same amount of whitespace on both sides of a binary operator."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:394
 msgid ""
-"Don't use spaces around the ``=`` sign when used to indicate a keyword argument "
-"or a default parameter value."
+"Don't use spaces around the ``=`` sign when used to indicate a keyword "
+"argument or a default parameter value."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:407
@@ -3593,15 +3758,16 @@ msgid ""
 "discouraged."
 msgstr ""
 
-#: ../dev_guide/python_style_guide.rst:418 ../dev_guide/python_style_guide.rst:427
+#: ../dev_guide/python_style_guide.rst:418
+#: ../dev_guide/python_style_guide.rst:427
 msgid "Rather not::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:423
 msgid ""
-"While sometimes it's okay to put an if/for/while with a small body on the same "
-"line, never do this for multi-clause statements.  Also avoid folding such long "
-"lines!"
+"While sometimes it's okay to put an if/for/while with a small body on the"
+" same line, never do this for multi-clause statements.  Also avoid "
+"folding such long lines!"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:433
@@ -3614,22 +3780,23 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:450
 msgid ""
-"Comments that contradict the code are worse than no comments.  Always make a "
-"priority of keeping the comments up-to-date when the code changes!"
+"Comments that contradict the code are worse than no comments.  Always "
+"make a priority of keeping the comments up-to-date when the code changes!"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:454
 msgid ""
-"Comments should be complete sentences.  If a comment is a phrase or sentence, "
-"its first word should be capitalized, unless it is an identifier that begins "
-"with a lower case letter (never alter the case of identifiers!)."
+"Comments should be complete sentences.  If a comment is a phrase or "
+"sentence, its first word should be capitalized, unless it is an "
+"identifier that begins with a lower case letter (never alter the case of "
+"identifiers!)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:459
 msgid ""
-"If a comment is short, the period at the end can be omitted.  Block comments "
-"generally consist of one or more paragraphs built out of complete sentences, "
-"and each sentence should end in a period."
+"If a comment is short, the period at the end can be omitted.  Block "
+"comments generally consist of one or more paragraphs built out of "
+"complete sentences, and each sentence should end in a period."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:463
@@ -3643,9 +3810,9 @@ msgstr ""
 #: ../dev_guide/python_style_guide.rst:467
 #, python-format
 msgid ""
-"Python coders from non-English speaking countries: please write your comments "
-"in English, unless you are 120% sure that the code will never be read by people "
-"who don't speak your language."
+"Python coders from non-English speaking countries: please write your "
+"comments in English, unless you are 120% sure that the code will never be"
+" read by people who don't speak your language."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:473
@@ -3654,15 +3821,16 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:475
 msgid ""
-"Block comments generally apply to some (or all) code that follows them, and are "
-"indented to the same level as that code.  Each line of a block comment starts "
-"with a ``#`` and a single space (unless it is indented text inside the comment)."
+"Block comments generally apply to some (or all) code that follows them, "
+"and are indented to the same level as that code.  Each line of a block "
+"comment starts with a ``#`` and a single space (unless it is indented "
+"text inside the comment)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:480
 msgid ""
-"Paragraphs inside a block comment are separated by a line containing a single "
-"``#``."
+"Paragraphs inside a block comment are separated by a line containing a "
+"single ``#``."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:485
@@ -3675,15 +3843,15 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:489
 msgid ""
-"An inline comment is a comment on the same line as a statement. Inline comments "
-"should be separated by at least two spaces from the statement.  They should "
-"start with a # and a single space."
+"An inline comment is a comment on the same line as a statement. Inline "
+"comments should be separated by at least two spaces from the statement.  "
+"They should start with a # and a single space."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:493
 msgid ""
-"Inline comments are unnecessary and in fact distracting if they state the "
-"obvious.  Don't do this::"
+"Inline comments are unnecessary and in fact distracting if they state the"
+" obvious.  Don't do this::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:496
@@ -3704,29 +3872,29 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:506
 msgid ""
-"Conventions for writing good documentation strings (a.k.a. \"docstrings\") are "
-"immortalized in PEP 257."
+"Conventions for writing good documentation strings (a.k.a. "
+"\"docstrings\") are immortalized in PEP 257."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:509
 msgid ""
-"Write docstrings for all public modules, functions, classes, and methods.  "
-"Docstrings are not necessary for non-public methods, but you should have a "
-"comment that describes what the method does.  This comment should appear after "
-"the ``def`` line."
+"Write docstrings for all public modules, functions, classes, and methods."
+"  Docstrings are not necessary for non-public methods, but you should "
+"have a comment that describes what the method does.  This comment should "
+"appear after the ``def`` line."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:514
 msgid ""
-"PEP 257 describes good docstring conventions.  Note that most importantly, the "
-"``\"\"\"`` that ends a multiline docstring should be on a line by itself, and "
-"preferably preceded by a blank line, e.g.::"
+"PEP 257 describes good docstring conventions.  Note that most "
+"importantly, the ``\"\"\"`` that ends a multiline docstring should be on "
+"a line by itself, and preferably preceded by a blank line, e.g.::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:524
 msgid ""
-"For one liner docstrings, it's okay to keep the closing ``\"\"\"`` on the same "
-"line."
+"For one liner docstrings, it's okay to keep the closing ``\"\"\"`` on the"
+" same line."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:530
@@ -3735,8 +3903,8 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:532
 msgid ""
-"If you have to have Subversion, CVS, or RCS crud in your source file, do it as "
-"follows. ::"
+"If you have to have Subversion, CVS, or RCS crud in your source file, do "
+"it as follows. ::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:535
@@ -3747,8 +3915,8 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:538
 msgid ""
-"These lines should be included after the module's docstring, before any other "
-"code, separated by a blank line above and below."
+"These lines should be included after the module's docstring, before any "
+"other code, separated by a blank line above and below."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:544
@@ -3757,11 +3925,12 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:546
 msgid ""
-"The naming conventions of Python's library are a bit of a mess, so we'll never "
-"get this completely consistent -- nevertheless, here are the currently "
-"recommended naming standards.  New modules and packages (including third party "
-"frameworks) should be written to these standards, but where an existing library "
-"has a different style, internal consistency is preferred."
+"The naming conventions of Python's library are a bit of a mess, so we'll "
+"never get this completely consistent -- nevertheless, here are the "
+"currently recommended naming standards.  New modules and packages "
+"(including third party frameworks) should be written to these standards, "
+"but where an existing library has a different style, internal consistency"
+" is preferred."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:555
@@ -3770,8 +3939,9 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:557
 msgid ""
-"There are a lot of different naming styles.  It helps to be able to recognize "
-"what naming style is being used, independently from what they are used for."
+"There are a lot of different naming styles.  It helps to be able to "
+"recognize what naming style is being used, independently from what they "
+"are used for."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:561
@@ -3804,19 +3974,21 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:569
 msgid ""
-"``CapitalizedWords`` (or CapWords, or CamelCase -- so named because of the "
-"bumpy look of its letters [3]_).  This is also sometimes known as StudlyCaps."
+"``CapitalizedWords`` (or CapWords, or CamelCase -- so named because of "
+"the bumpy look of its letters [3]_).  This is also sometimes known as "
+"StudlyCaps."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:573
 msgid ""
-"Note: When using abbreviations in CapWords, capitalize all the letters of the "
-"abbreviation.  Thus HTTPServerError is better than HttpServerError."
+"Note: When using abbreviations in CapWords, capitalize all the letters of"
+" the abbreviation.  Thus HTTPServerError is better than HttpServerError."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:576
 msgid ""
-"``mixedCase`` (differs from CapitalizedWords by initial lowercase character!)"
+"``mixedCase`` (differs from CapitalizedWords by initial lowercase "
+"character!)"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:578
@@ -3825,50 +3997,56 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:580
 msgid ""
-"There's also the style of using a short unique prefix to group related names "
-"together.  This is not used much in Python, but it is mentioned for "
-"completeness.  For example, the ``os.stat()`` function returns a tuple whose "
-"items traditionally have names like ``st_mode``, ``st_size``, ``st_mtime`` and "
-"so on.  (This is done to emphasize the correspondence with the fields of the "
-"POSIX system call struct, which helps programmers familiar with that.)"
+"There's also the style of using a short unique prefix to group related "
+"names together.  This is not used much in Python, but it is mentioned for"
+" completeness.  For example, the ``os.stat()`` function returns a tuple "
+"whose items traditionally have names like ``st_mode``, ``st_size``, "
+"``st_mtime`` and so on.  (This is done to emphasize the correspondence "
+"with the fields of the POSIX system call struct, which helps programmers "
+"familiar with that.)"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:588
 msgid ""
-"The X11 library uses a leading X for all its public functions.  In Python, this "
-"style is generally deemed unnecessary because attribute and method names are "
-"prefixed with an object, and function names are prefixed with a module name."
+"The X11 library uses a leading X for all its public functions.  In "
+"Python, this style is generally deemed unnecessary because attribute and "
+"method names are prefixed with an object, and function names are prefixed"
+" with a module name."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:593
 msgid ""
-"In addition, the following special forms using leading or trailing underscores "
-"are recognized (these can generally be combined with any case convention):"
+"In addition, the following special forms using leading or trailing "
+"underscores are recognized (these can generally be combined with any case"
+" convention):"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:597
 msgid ""
-"``_single_leading_underscore``: weak \"internal use\" indicator. E.g. ``from M "
-"import *`` does not import objects whose name starts with an underscore."
+"``_single_leading_underscore``: weak \"internal use\" indicator. E.g. "
+"``from M import *`` does not import objects whose name starts with an "
+"underscore."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:601
 msgid ""
-"``single_trailing_underscore_``: used by convention to avoid conflicts with "
-"Python keyword, e.g. ::"
+"``single_trailing_underscore_``: used by convention to avoid conflicts "
+"with Python keyword, e.g. ::"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:606
 msgid ""
-"``__double_leading_underscore``: when naming a class attribute, invokes name "
-"mangling (inside class FooBar, ``__boo`` becomes ``_FooBar__boo``; see below)."
+"``__double_leading_underscore``: when naming a class attribute, invokes "
+"name mangling (inside class FooBar, ``__boo`` becomes ``_FooBar__boo``; "
+"see below)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:610
 msgid ""
-"``__double_leading_and_trailing_underscore__``: \"magic\" objects or attributes "
-"that live in user-controlled namespaces. E.g. ``__init__``, ``__import__`` or "
-"``__file__``.  Never invent such names; only use them as documented."
+"``__double_leading_and_trailing_underscore__``: \"magic\" objects or "
+"attributes that live in user-controlled namespaces. E.g. ``__init__``, "
+"``__import__`` or ``__file__``.  Never invent such names; only use them "
+"as documented."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:617
@@ -3881,14 +4059,14 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:623
 msgid ""
-"Never use the characters 'l' (lowercase letter el), 'O' (uppercase letter oh), "
-"or 'I' (uppercase letter eye) as single character variable names."
+"Never use the characters 'l' (lowercase letter el), 'O' (uppercase letter"
+" oh), or 'I' (uppercase letter eye) as single character variable names."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:627
 msgid ""
-"In some fonts, these characters are indistinguishable from the numerals one and "
-"zero.  When tempted to use 'l', use 'L' instead."
+"In some fonts, these characters are indistinguishable from the numerals "
+"one and zero.  When tempted to use 'l', use 'L' instead."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:632
@@ -3897,24 +4075,26 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:634
 msgid ""
-"Modules should have short, all-lowercase names.  Underscores can be used in the "
-"module name if it improves readability.  Python packages should also have "
-"short, all-lowercase names, although the use of underscores is discouraged."
+"Modules should have short, all-lowercase names.  Underscores can be used "
+"in the module name if it improves readability.  Python packages should "
+"also have short, all-lowercase names, although the use of underscores is "
+"discouraged."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:639
 msgid ""
-"Since module names are mapped to file names, and some file systems are case "
-"insensitive and truncate long names, it is important that module names be "
-"chosen to be fairly short -- this won't be a problem on Unix, but it may be a "
-"problem when the code is transported to older Mac or Windows versions, or DOS."
+"Since module names are mapped to file names, and some file systems are "
+"case insensitive and truncate long names, it is important that module "
+"names be chosen to be fairly short -- this won't be a problem on Unix, "
+"but it may be a problem when the code is transported to older Mac or "
+"Windows versions, or DOS."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:645
 msgid ""
-"When an extension module written in C or C++ has an accompanying Python module "
-"that provides a higher level (e.g. more object oriented) interface, the C/C++ "
-"module has a leading underscore (e.g. ``_socket``)."
+"When an extension module written in C or C++ has an accompanying Python "
+"module that provides a higher level (e.g. more object oriented) "
+"interface, the C/C++ module has a leading underscore (e.g. ``_socket``)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:652
@@ -3923,8 +4103,8 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:654
 msgid ""
-"Almost without exception, class names use the CapWords convention. Classes for "
-"internal use have a leading underscore in addition."
+"Almost without exception, class names use the CapWords convention. "
+"Classes for internal use have a leading underscore in addition."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:659
@@ -3933,9 +4113,9 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:661
 msgid ""
-"Because exceptions should be classes, the class naming convention applies "
-"here.  However, you should use the suffix \"Error\" on your exception names (if "
-"the exception actually is an error)."
+"Because exceptions should be classes, the class naming convention applies"
+" here.  However, you should use the suffix \"Error\" on your exception "
+"names (if the exception actually is an error)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:667
@@ -3944,16 +4124,16 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:669
 msgid ""
-"(Let's hope that these variables are meant for use inside one module only.)  "
-"The conventions are about the same as those for functions."
+"(Let's hope that these variables are meant for use inside one module "
+"only.)  The conventions are about the same as those for functions."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:672
 msgid ""
 "Modules that are designed for use via ``from M import *`` should use the "
-"``__all__`` mechanism to prevent exporting globals, or use the older convention "
-"of prefixing such globals with an underscore (which you might want to do to "
-"indicate these globals are \"module non-public\")."
+"``__all__`` mechanism to prevent exporting globals, or use the older "
+"convention of prefixing such globals with an underscore (which you might "
+"want to do to indicate these globals are \"module non-public\")."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:680
@@ -3962,14 +4142,14 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:682
 msgid ""
-"Function names should be lowercase, with words separated by underscores as "
-"necessary to improve readability."
+"Function names should be lowercase, with words separated by underscores "
+"as necessary to improve readability."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:685
 msgid ""
-"mixedCase is allowed only in contexts where that's already the prevailing style "
-"(e.g. threading.py), to retain backwards compatibility."
+"mixedCase is allowed only in contexts where that's already the prevailing"
+" style (e.g. threading.py), to retain backwards compatibility."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:691
@@ -3986,10 +4166,10 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:697
 msgid ""
-"If a function argument's name clashes with a reserved keyword, it is generally "
-"better to append a single trailing underscore rather than use an abbreviation "
-"or spelling corruption.  Thus ``class_`` is better than ``clss``.  (Perhaps "
-"better is to avoid such clashes by using a synonym.)"
+"If a function argument's name clashes with a reserved keyword, it is "
+"generally better to append a single trailing underscore rather than use "
+"an abbreviation or spelling corruption.  Thus ``class_`` is better than "
+"``clss``.  (Perhaps better is to avoid such clashes by using a synonym.)"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:705
@@ -3998,28 +4178,29 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:707
 msgid ""
-"Use the function naming rules: lowercase with words separated by underscores as "
-"necessary to improve readability."
+"Use the function naming rules: lowercase with words separated by "
+"underscores as necessary to improve readability."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:710
 msgid ""
-"Use one leading underscore only for non-public methods and instance variables."
+"Use one leading underscore only for non-public methods and instance "
+"variables."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:713
 msgid ""
-"To avoid name clashes with subclasses, use two leading underscores to invoke "
-"Python's name mangling rules."
+"To avoid name clashes with subclasses, use two leading underscores to "
+"invoke Python's name mangling rules."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:716
 msgid ""
-"Python mangles these names with the class name: if class Foo has an attribute "
-"named ``__a``, it cannot be accessed by ``Foo.__a``.  (An insistent user could "
-"still gain access by calling ``Foo._Foo__a``.) Generally, double leading "
-"underscores should be used only to avoid name conflicts with attributes in "
-"classes designed to be subclassed."
+"Python mangles these names with the class name: if class Foo has an "
+"attribute named ``__a``, it cannot be accessed by ``Foo.__a``.  (An "
+"insistent user could still gain access by calling ``Foo._Foo__a``.) "
+"Generally, double leading underscores should be used only to avoid name "
+"conflicts with attributes in classes designed to be subclassed."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:722
@@ -4032,9 +4213,9 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:728
 msgid ""
-"Constants are usually defined on a module level and written in all capital "
-"letters with underscores separating words.  Examples include ``MAX_OVERFLOW`` "
-"and ``TOTAL``."
+"Constants are usually defined on a module level and written in all "
+"capital letters with underscores separating words.  Examples include "
+"``MAX_OVERFLOW`` and ``TOTAL``."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:734
@@ -4043,34 +4224,35 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:736
 msgid ""
-"Always decide whether a class's methods and instance variables (collectively: "
-"\"attributes\") should be public or non-public.  If in doubt, choose non-"
-"public; it's easier to make it public later than to make a public attribute non-"
-"public."
+"Always decide whether a class's methods and instance variables "
+"(collectively: \"attributes\") should be public or non-public.  If in "
+"doubt, choose non-public; it's easier to make it public later than to "
+"make a public attribute non-public."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:741
 msgid ""
-"Public attributes are those that you expect unrelated clients of your class to "
-"use, with your commitment to avoid backward incompatible changes.  Non-public "
-"attributes are those that are not intended to be used by third parties; you "
-"make no guarantees that non-public attributes won't change or even be removed."
+"Public attributes are those that you expect unrelated clients of your "
+"class to use, with your commitment to avoid backward incompatible "
+"changes.  Non-public attributes are those that are not intended to be "
+"used by third parties; you make no guarantees that non-public attributes "
+"won't change or even be removed."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:747
 msgid ""
-"We don't use the term \"private\" here, since no attribute is really private in "
-"Python (without a generally unnecessary amount of work)."
+"We don't use the term \"private\" here, since no attribute is really "
+"private in Python (without a generally unnecessary amount of work)."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:750
 msgid ""
-"Another category of attributes are those that are part of the \"subclass API"
-"\" (often called \"protected\" in other languages).  Some classes are designed "
-"to be inherited from, either to extend or modify aspects of the class's "
-"behavior.  When designing such a class, take care to make explicit decisions "
-"about which attributes are public, which are part of the subclass API, and "
-"which are truly only to be used by your base class."
+"Another category of attributes are those that are part of the \"subclass "
+"API\" (often called \"protected\" in other languages).  Some classes are "
+"designed to be inherited from, either to extend or modify aspects of the "
+"class's behavior.  When designing such a class, take care to make "
+"explicit decisions about which attributes are public, which are part of "
+"the subclass API, and which are truly only to be used by your base class."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:758
@@ -4083,14 +4265,15 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:762
 msgid ""
-"If your public attribute name collides with a reserved keyword, append a single "
-"trailing underscore to your attribute name.  This is preferable to an "
-"abbreviation or corrupted spelling.  (However, not withstanding this rule, "
-"'cls' is the preferred spelling for any variable or argument which is known to "
-"be a class, especially the first argument to a class method.)"
+"If your public attribute name collides with a reserved keyword, append a "
+"single trailing underscore to your attribute name.  This is preferable to"
+" an abbreviation or corrupted spelling.  (However, not withstanding this "
+"rule, 'cls' is the preferred spelling for any variable or argument which "
+"is known to be a class, especially the first argument to a class method.)"
 msgstr ""
 
-#: ../dev_guide/python_style_guide.rst:770 ../dev_guide/python_style_guide.rst:781
+#: ../dev_guide/python_style_guide.rst:770
+#: ../dev_guide/python_style_guide.rst:781
 #: ../dev_guide/python_style_guide.rst:803
 msgid "Note 1:"
 msgstr ""
@@ -4101,65 +4284,69 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:772
 msgid ""
-"For simple public data attributes, it is best to expose just the attribute "
-"name, without complicated accessor/mutator methods.  Keep in mind that Python "
-"provides an easy path to future enhancement, should you find that a simple data "
-"attribute needs to grow functional behavior.  In that case, use properties to "
-"hide functional implementation behind simple data attribute access syntax."
+"For simple public data attributes, it is best to expose just the "
+"attribute name, without complicated accessor/mutator methods.  Keep in "
+"mind that Python provides an easy path to future enhancement, should you "
+"find that a simple data attribute needs to grow functional behavior.  In "
+"that case, use properties to hide functional implementation behind simple"
+" data attribute access syntax."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:781
 msgid "Properties only work on new-style classes."
 msgstr ""
 
-#: ../dev_guide/python_style_guide.rst:785 ../dev_guide/python_style_guide.rst:808
+#: ../dev_guide/python_style_guide.rst:785
+#: ../dev_guide/python_style_guide.rst:808
 msgid "Note 2:"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:784
 msgid ""
-"Try to keep the functional behavior side-effect free, although side-effects "
-"such as caching are generally fine."
+"Try to keep the functional behavior side-effect free, although side-"
+"effects such as caching are generally fine."
 msgstr ""
 
-#: ../dev_guide/python_style_guide.rst:790 ../dev_guide/python_style_guide.rst:813
+#: ../dev_guide/python_style_guide.rst:790
+#: ../dev_guide/python_style_guide.rst:813
 msgid "Note 3:"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:788
 msgid ""
-"Avoid using properties for computationally expensive operations; the attribute "
-"notation makes the caller believe that access is (relatively) cheap."
+"Avoid using properties for computationally expensive operations; the "
+"attribute notation makes the caller believe that access is (relatively) "
+"cheap."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:792
 msgid ""
-"If your class is intended to be subclassed, and you have attributes that you do "
-"not want subclasses to use, consider naming them with double leading "
-"underscores and no trailing underscores.  This invokes Python's name mangling "
-"algorithm, where the name of the class is mangled into the attribute name.  "
-"This helps avoid attribute name collisions should subclasses inadvertently "
-"contain attributes with the same name."
+"If your class is intended to be subclassed, and you have attributes that "
+"you do not want subclasses to use, consider naming them with double "
+"leading underscores and no trailing underscores.  This invokes Python's "
+"name mangling algorithm, where the name of the class is mangled into the "
+"attribute name.  This helps avoid attribute name collisions should "
+"subclasses inadvertently contain attributes with the same name."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:801
 msgid ""
-"Note that only the simple class name is used in the mangled name, so if a "
-"subclass chooses both the same class name and attribute name, you can still get "
-"name collisions."
+"Note that only the simple class name is used in the mangled name, so if a"
+" subclass chooses both the same class name and attribute name, you can "
+"still get name collisions."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:806
 msgid ""
-"Name mangling can make certain uses, such as debugging and ``__getattr__()``, "
-"less convenient.  However the name mangling algorithm is well documented and "
-"easy to perform manually."
+"Name mangling can make certain uses, such as debugging and "
+"``__getattr__()``, less convenient.  However the name mangling algorithm "
+"is well documented and easy to perform manually."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:811
 msgid ""
-"Not everyone likes name mangling.  Try to balance the need to avoid accidental "
-"name clashes with potential use by advanced callers."
+"Not everyone likes name mangling.  Try to balance the need to avoid "
+"accidental name clashes with potential use by advanced callers."
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:817
@@ -4168,14 +4355,14 @@ msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:819
 msgid ""
-"`PEP 7, Style Guide for C Code, van Rossum <https://www.python.org/dev/peps/"
-"pep-0007/>`_"
+"`PEP 7, Style Guide for C Code, van Rossum "
+"<https://www.python.org/dev/peps/pep-0007/>`_"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:820
 msgid ""
-"`Barry's GNU Mailman style guide <http://barry.warsaw.us/software/STYLEGUIDE."
-"txt>`_"
+"`Barry's GNU Mailman style guide "
+"<http://barry.warsaw.us/software/STYLEGUIDE.txt>`_"
 msgstr ""
 
 #: ../dev_guide/python_style_guide.rst:821
@@ -4220,13 +4407,47 @@ msgstr ""
 #: ../dev_guide/release_management.rst:41
 msgid ""
 "Update all issues, upload the ChangeLog based on ``git log`` output. The "
-"ChangeLog must only include items which are mentioned as issues on github. If "
-"anything significant is there, which is not mentioned, something went wrong in "
-"release planning and the release should be held up until this is cleared."
+"ChangeLog must only include items which are mentioned as issues on "
+"github. If anything significant is there, which is not mentioned, "
+"something went wrong in release planning and the release should be held "
+"up until this is cleared."
 msgstr ""
 
 #: ../dev_guide/release_management.rst:47
 msgid ""
-"Click 'Release milestone'. Create a milestone for the next minor release. Alert "
-"the driver to target bugs and blueprints to the new milestone."
+"Click 'Release milestone'. Create a milestone for the next minor release."
+" Alert the driver to target bugs and blueprints to the new milestone."
 msgstr ""
+
+#~ msgid ""
+#~ "In rare cases, when we need custom"
+#~ " highlight for specific parts of a"
+#~ " code snippet and the ``code-block``"
+#~ " directive is not enough, we use "
+#~ "the per-line ``codenormal`` directive "
+#~ "together with explicit output formatting "
+#~ "(defined in :file:`doc/sphinx/_static/sphinx_design.css`)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "For example (a tdb session with "
+#~ "custom formatting in bold, blue and "
+#~ "green):"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":codenormal:`$` :codebold:`tarantool example.lua` "
+#~ "|br| :codeblue:`(TDB)` |nbsp| :codegreen:`Tarantool"
+#~ " debugger v.0.0.3. Type h for help`"
+#~ " |br| :codenormal:`example.lua` |br| "
+#~ ":codeblue:`(TDB)` |nbsp| :codegreen:`[example.lua]` "
+#~ "|br| :codeblue:`(TDB)` |nbsp| :codenormal:`3: "
+#~ "i = 1` |br| :codeblue:`(TDB)>` |br|"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`The notation example is excluded from"
+#~ " HTML output, so please see the "
+#~ "source in ReST.`"
+#~ msgstr ""
+
