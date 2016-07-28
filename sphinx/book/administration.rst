@@ -565,13 +565,18 @@ to be an admin user by
 :ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`,
 or by connecting to a binary port with a valid password.
 
-To find out whether a TCP port is an admin port, use telnet. For example: |br|
-:codenormal:`$` :codebold:`telnet 0 3303` |br|
-:codenormal:`Trying 0.0.0.0...` |br|
-:codenormal:`Connected to 0.` |br|
-:codenormal:`Escape character is '^]'.` |br|
-:codenormal:`Tarantool 1.7.1-70-gbc479ad (Lua console)` |br|                   
-:codenormal:`type 'help' for interactive help` |br|                          
+To find out whether a TCP port is an admin port, use telnet. For example:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+  $ telnet 0 3303
+  Trying 0.0.0.0...
+  Connected to 0.
+  Escape character is '^]'.
+  Tarantool 1.7.1-70-gbc479ad (Lua console)
+  type 'help' for interactive help
+
 In this example the response does not include the word "binary"
 and does include the words "Lua console". Therefore it is
 clear that this is a successful connection to an admin
