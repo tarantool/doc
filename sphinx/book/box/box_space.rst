@@ -202,7 +202,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
           +------------------+---------------------------+---------------------------------------+-------------------+
           | Index field type | What can be in it         | Where is it legal                     | Examples          |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          | **NUM**          | integers between 0 and    | memtx TREE or HASH                    | 12345 |br|        |
+          | **NUM**          | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
           |                  | 18446744073709551615      | indexes, |br|                         |                   |
           |                  |                           | vinyl TREE indexes                    |                   |
           +------------------+---------------------------+---------------------------------------+-------------------+
