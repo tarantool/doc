@@ -21,10 +21,6 @@
     All of these differences have been noted elsewhere in
     sentences that begin with the words "Note re storage engine: vinyl".
 
-    With memtx, the maximum number of indexes per space is 128. |br|
-    With vinyl, the maximum is 1, that is, only primary indexes are supported.
-    Since primary indexes are always unique, it follows that vinyl indexes must be unique.
-
     With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
     With vinyl, the only index type is TREE.
 

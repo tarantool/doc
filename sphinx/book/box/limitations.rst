@@ -16,8 +16,6 @@
 
     128 (``box.schema.INDEX_MAX``).
 
-    Note re storage engine: vinyl allows 1 index in a space.
-
 .. _limitations_fields_in_tuple:
 
 **Number of fields in a tuple**

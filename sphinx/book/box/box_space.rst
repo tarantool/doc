@@ -155,9 +155,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Possible errors: too many parts. Index '...' already exists. Primary key must be unique.
 
-        Note re storage engine: vinyl supports only the TREE index type,
-        and supports only one index per space,
-        and supports only the unique = true option.
+        Note re storage engine: vinyl supports only the TREE index type.
 
         .. code-block:: tarantoolsession
 
