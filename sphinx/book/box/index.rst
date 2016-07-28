@@ -199,6 +199,8 @@ A few functions may return tables with multiple tuples.
 A scalar may be converted to a tuple with only one field.
 A Lua table may contain all of a tuple's fields, but not nil.
 
+Some of the scalar data types may be used in :ref:`indexed fields <details_about_index_field_types>`.
+
 For more tuple examples see :ref:`box.tuple <box_tuple>`.
 
 ----------

@@ -171,10 +171,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. _details_about_index_field_types:
 
         Details about index field types: |br|
-        The five index field types (NUM | STR | INT | NUMBER | ARRAY | SCALAR)
+        The six index field types (NUM | STR | INT | NUMBER | ARRAY | SCALAR)
         differ depending on what values are allowed, and what index types are allowed. |br|
-        NUM: unsigned integers between 0 and 18446744073709551615.
-        Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
+        NUM: unsigned integers between 0 and 18446744073709551615, about 18 quintillion.
+        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
         STR: strings -- any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`.
         Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
         INT: integers between -9223372036854775808 and 18446744073709551615.
@@ -188,6 +188,52 @@ A list of all ``box.space`` functions follows, then comes a list of all
         or single-precision floating point numbers, or double-precison floating-point numbers,
         or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings.
         Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes.
+
+        .. container:: table
+
+          **Index field types to use in create_index**
+
+          .. rst-class:: left-align-column-1
+          .. rst-class:: left-align-column-2
+          .. rst-class:: left-align-column-3
+          .. rst-class:: left-align-column-4
+          .. rst-class:: top-align-column-1
+
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          | Index field type | What can be in it         | Where is it legal                     | Examples          |
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          | **NUM**          | integers between 0 and    | memtx TREE or HASH                    | 12345 |br|        |
+          |                  | 18446744073709551615      | indexes, |br|                         |                   |
+          |                  |                           | vinyl TREE indexes                    |                   |
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          |  **STR**         | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
+          |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'  |
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          |  **INT**         | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
+          |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                   |
+          |                  | 18446744073709551615      |                                       |                   |
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          | **NUMBER**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
+          |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|          |
+          |                  | 18446744073709551615,     |                                       | 1.447e+44         |
+          |                  | single-precision          |                                       |                   |
+          |                  | floating point numbers,   |                                       |                   |
+          |                  | double-precision          |                                       |                   |
+          |                  | floating point numbers    |                                       |                   |
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          | **ARRAY**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
+          |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
+          |                  | 9223372036854775807       |                                       |                   |
+          +------------------+---------------------------+---------------------------------------+-------------------+
+          | **SCALAR**       | booleans (true or false), | memtx TREE or HASH indexes, |br|      | true |br|         |
+          |                  | integers between          | vinyl TREE indexes                    | -1 |br|           |
+          |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
+          |                  | 18446744073709551615,     |                                       | '' |br|           |
+          |                  | single-precision floating |                                       | '俄國'            |
+          |                  | point numbers,            |                                       |                   |
+          |                  | double-precision floating |                                       |                   |
+          |                  | point numbers, strings    |                                       |                   |
+          +------------------+---------------------------+---------------------------------------+-------------------+
 
     .. _box_space-insert:
 
