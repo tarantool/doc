@@ -93,7 +93,7 @@ Use non-separated links instead:
 
 .. code-block:: text
 
-   This is a paragraph that contains `a link <http://example.com/>`.
+   This is a paragraph that contains `a link <http://example.com/>`_.
 
 Warning: Every separated link tends to cause troubles when this documentation is
 translated to other languages. Please avoid using separated links unless it is
