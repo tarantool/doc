@@ -1,0 +1,65 @@
+{% set language_list = [
+  (_("English"), "/doc/"   , "en"),
+  (_("Russian"), "/doc/ru/", "ru")
+] %}
+
+{% set translated_title = "Documentation" %}
+{% set translated_path  = "/doc/" %}
+{% if language == "ru" %}
+{%   set translated_title = "Документация" %}
+{%   set translated_path  = "/doc/ru/" %}
+{% endif %}
+
+{% macro language_selector() %}
+  <div class="b-doc-language_selector">
+    <div class="b-doc-language_selector-text">
+      Available languages:
+    </div>
+    <ul class="b-doc-language_selector-list">
+    {% for lang in language_list %}
+      <li class="b-doc-language_selector-item">
+      {% if language == lang[2] %}
+        <a href="{{ lang[1] }}" class="b-doc-language_selector-item-url p-active"> {{ lang[0] }} </a>
+      {% else %}
+        <a href="{{ lang[1] }}" class="b-doc-language_selector-item-url"> {{ lang[0] }} </a>
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro breadcrumbs() %}
+  <div class="b-page_header">
+    <ul class="b-path-list">
+      <li class="b-path-list-item">
+        <a href="{{ translated_path }}" class="b-path-list-item-url">{{ translated_title }}</a>
+      </li>
+      {% for elem in parents %}
+        <li class="b-path-list-item">
+          <a href="{{ elem.link|e }}" class="b-path-list-item-url">{{ elem.title }}</a>
+        </li>
+      {% endfor %}
+      <li class="b-path-list-item"><span class="b-path_current">{{ title }}</span></li>
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro navbar(head=True) %}
+  {% if next and prev %}
+  {% if head %}
+  <div class="b-page_over-head">
+  {% else %}
+  <div class="b-page_over-tail">
+  {% endif %}
+    {% if prev %}
+      <a href="{{ prev.link|e }}" class="b-prev">{{ prev.title }}</a>
+    {% endif %}
+    {% if next %}
+      <a href="{{ next.link|e }}" class="b-next">{{ next.title }}</a>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endmacro %}
+
+{# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}
