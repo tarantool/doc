@@ -15,9 +15,6 @@
 {%   set render_sidebar = false %}
 {% endif %}
 
-{% set title_bar %}
-{% endset %}
-
 {% set content_pane %}
   <article class="b-article">
     {% if render_sidebar == false and not main_page %}
@@ -42,7 +39,7 @@
       <div class="b-cols_content_right">
         <div class="b-cols_content_right-slot">
           {{- breadcrumbs() -}}
-          {{ content_pane }}
+          {{  content_pane   }}
           {{- navbar(False) -}}
         </div>
       </div>
