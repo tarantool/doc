@@ -11,7 +11,9 @@ $(document).ready(function () {
       }
     }
   );
-  $("[id^='lua-object'], [id^='lua-function'], [id^='lua-data'], [id^='c.'], [id^='_CPP']").each(
+  $(''.concat("[id^='lua-object'], [id^='lua-function'], [id^='lua-data'],   ",
+              "[id^='lua-объект'], [id^='lua-функция'],  [id^='lua-данные'], ",
+              "[id^='c.'], [id^='_CPP']")).each(
     function(i, el) {
       var icon = '<i class="fa fa-link"></i>';
       var hlink = $(el).find(".headerlink");
