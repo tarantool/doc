@@ -40,7 +40,7 @@ well — print "Insert succeeded". If the tuple already exists, the program will
     $tarantool = new Tarantool('localhost', 3301);
 
     try {
-        $tarantool->insert('examples', [99999, 'BB']);
+        $tarantool->insert('examples', array(99999, 'BB'));
         echo "Insert succeeded\n";
     } catch (Exception $e) {
         echo "Exception: ", $e->getMessage(), "\n";
