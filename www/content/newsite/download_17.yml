@@ -78,10 +78,10 @@ blocks :
         content: |
           We maintain an always up-to-date Fedora package repository.
           At the moment, the repository contains builds for Fedora
-          22 and 23.
+          23 and 24.
 
           In these instructions,
-          ``$releasever`` (i.e. Fedora release version) must be 21 or 22 or rawhide, and
+          ``$releasever`` (i.e. Fedora release version) must be 23 or 24 or rawhide, and
           ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
 
           Copy and paste the script below to the terminal prompt:
