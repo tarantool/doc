@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 16:58+0300\n"
+"POT-Creation-Date: 2016-08-03 13:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -611,145 +611,158 @@ msgid "If security via admin ports is not necessary, it is still possible to be 
 msgstr ""
 
 #: ../book/administration.rst:593
-msgid "To find out whether a TCP port is an admin port, use telnet. For example: |br| :codenormal:`$` :codebold:`telnet 0 3303` |br| :codenormal:`Trying 0.0.0.0...` |br| :codenormal:`Connected to 0.` |br| :codenormal:`Escape character is '^]'.` |br| :codenormal:`Tarantool 1.7.1-70-gbc479ad (Lua console)` |br| :codenormal:`type 'help' for interactive help` |br| In this example the response does not include the word \"binary\" and does include the words \"Lua console\". Therefore it is clear that this is a successful connection to an admin port, and admin requests can now be entered on this terminal."
+msgid "To find out whether a TCP port is an admin port, use telnet. For example:"
 msgstr ""
 
-#: ../book/administration.rst:608
+#: ../book/administration.rst:598
+msgid "$ telnet 0 3303\n"
+"Trying 0.0.0.0...\n"
+"Connected to 0.\n"
+"Escape character is '^]'.\n"
+"Tarantool 1.7.1-70-gbc479ad (Lua console)\n"
+"type 'help' for interactive help"
+msgstr ""
+
+#: ../book/administration.rst:605
+msgid "In this example the response does not include the word \"binary\" and does include the words \"Lua console\". Therefore it is clear that this is a successful connection to an admin port, and admin requests can now be entered on this terminal."
+msgstr ""
+
+#: ../book/administration.rst:613
 msgid "System-specific administration notes"
 msgstr ""
 
-#: ../book/administration.rst:610
+#: ../book/administration.rst:615
 msgid "This section will contain information about issue or features which exist on some platforms but not others - for example, on certain versions of a particular Linux distribution."
 msgstr ""
 
-#: ../book/administration.rst:616
+#: ../book/administration.rst:621
 msgid "Administrating with Debian GNU/Linux and Ubuntu"
 msgstr ""
 
-#: ../book/administration.rst:618
+#: ../book/administration.rst:623
 msgid "Setting up an instance:"
 msgstr ""
 
-#: ../book/administration.rst:620
+#: ../book/administration.rst:625
 msgid "$ ln -s /etc/tarantool/instances.available/instance-name.cfg /etc/tarantool/instances.enabled/"
 msgstr ""
 
-#: ../book/administration.rst:624
+#: ../book/administration.rst:629
 msgid "Starting all instances:"
 msgstr ""
 
-#: ../book/administration.rst:626
+#: ../book/administration.rst:631
 msgid "$ service tarantool start"
 msgstr ""
 
-#: ../book/administration.rst:630
+#: ../book/administration.rst:635
 msgid "Stopping all instances:"
 msgstr ""
 
-#: ../book/administration.rst:632
+#: ../book/administration.rst:637
 msgid "$ service tarantool stop"
 msgstr ""
 
-#: ../book/administration.rst:636
+#: ../book/administration.rst:641
 msgid "Starting/stopping one instance:"
 msgstr ""
 
-#: ../book/administration.rst:638
+#: ../book/administration.rst:643
 msgid "$ service tarantool-instance-name start/stop"
 msgstr ""
 
-#: ../book/administration.rst:644
+#: ../book/administration.rst:649
 msgid "Fedora, RHEL, CentOS"
 msgstr ""
 
-#: ../book/administration.rst:646
+#: ../book/administration.rst:651
 msgid "There are no known permanent issues. For transient issues, go to http://github.com/tarantool/tarantool/issues and enter \"RHEL\" or \"CentOS\" or \"Fedora\" or \"Red Hat\" in the search box."
 msgstr ""
 
-#: ../book/administration.rst:652
+#: ../book/administration.rst:657
 msgid "FreeBSD"
 msgstr ""
 
-#: ../book/administration.rst:654
+#: ../book/administration.rst:659
 msgid "There are no known permanent issues. For transient issues, go to http://github.com/tarantool/tarantool/issues and enter \"FreeBSD\" in the search box."
 msgstr ""
 
-#: ../book/administration.rst:660
+#: ../book/administration.rst:665
 msgid "Mac OS X"
 msgstr ""
 
-#: ../book/administration.rst:662
+#: ../book/administration.rst:667
 msgid "There are no known permanent issues. For transient issues, go to http://github.com/tarantool/tarantool/issues and enter \"OS X\" in the search box."
 msgstr ""
 
-#: ../book/administration.rst:668
+#: ../book/administration.rst:673
 msgid "Notes for systemd users"
 msgstr ""
 
-#: ../book/administration.rst:670
+#: ../book/administration.rst:675
 msgid "The Tarantool package fully supports :program:`systemd` for managing instances and supervising database daemons."
 msgstr ""
 
-#: ../book/administration.rst:675
+#: ../book/administration.rst:680
 msgid "Instance management"
 msgstr ""
 
-#: ../book/administration.rst:677
+#: ../book/administration.rst:682
 msgid "Tarantool package was designed to have multiple running instances of Tarantool on the same machine. Use :samp:`systemctl {start|stop|restart|status} tarantool@${MYAPP}` to manage your databases and Lua applications."
 msgstr ""
 
-#: ../book/administration.rst:683
+#: ../book/administration.rst:688
 msgid "creating instances"
 msgstr ""
 
-#: ../book/administration.rst:685
+#: ../book/administration.rst:690
 msgid "Simply put your Lua configuration to :file:`/etc/tarantool/instances.available/${MYAPP}.lua`:"
 msgstr ""
 
-#: ../book/administration.rst:687
+#: ../book/administration.rst:692
 msgid "box.cfg{listen = 3313}\n"
 "require('myappcode').start()"
 msgstr ""
 
-#: ../book/administration.rst:692
+#: ../book/administration.rst:697
 msgid "(this minimal example is sufficient)."
 msgstr ""
 
-#: ../book/administration.rst:694
+#: ../book/administration.rst:699
 msgid "Another starting point could be the :file:`example.lua` script that ships with Tarantool and defines all options."
 msgstr ""
 
-#: ../book/administration.rst:699
+#: ../book/administration.rst:704
 msgid "starting instances"
 msgstr ""
 
-#: ../book/administration.rst:701
+#: ../book/administration.rst:706
 msgid "Use :samp:`systemctl start tarantool@${MYAPP}` to start ``${MYAPP}`` instance:"
 msgstr ""
 
-#: ../book/administration.rst:703
+#: ../book/administration.rst:708
 msgid "$ systemctl start tarantool@example\n"
 "$ ps axuf|grep exampl[e]\n"
 "taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool example.lua <running>"
 msgstr ""
 
-#: ../book/administration.rst:709
+#: ../book/administration.rst:714
 msgid "(console examples here and further on are for Fedora)."
 msgstr ""
 
-#: ../book/administration.rst:711
+#: ../book/administration.rst:716
 msgid "Use :samp:`systemctl enable tarantool@${MYAPP}` to enable ``${MYAPP}`` instance for auto-load during system startup."
 msgstr ""
 
-#: ../book/administration.rst:716
+#: ../book/administration.rst:721
 msgid "monitoring instances"
 msgstr ""
 
-#: ../book/administration.rst:718
+#: ../book/administration.rst:723
 msgid "Use :samp:`systemctl status tarantool@${MYAPP}` to check information about ``${MYAPP}`` instance:"
 msgstr ""
 
-#: ../book/administration.rst:721
+#: ../book/administration.rst:726
 msgid "$ systemctl status tarantool@example\n"
 "tarantool@example.service - Tarantool Database Server\n"
 "Loaded: loaded (/etc/systemd/system/tarantool@.service; disabled; vendor preset: disabled)\n"
@@ -762,11 +775,11 @@ msgid "$ systemctl status tarantool@example\n"
 "+ 5350 tarantool example.lua <running>"
 msgstr ""
 
-#: ../book/administration.rst:734
+#: ../book/administration.rst:739
 msgid "Use :samp:`journalctl -u tarantool@${MYAPP}` to check the boot log:"
 msgstr ""
 
-#: ../book/administration.rst:736
+#: ../book/administration.rst:741
 msgid "$ journalctl -u tarantool@example -n 5\n"
 "-- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:17:47 MSK. --\n"
 "Jan 21 21:17:47 localhost.localdomain systemd[1]: Stopped Tarantool Database Server.\n"
@@ -776,15 +789,15 @@ msgid "$ journalctl -u tarantool@example -n 5\n"
 "Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server"
 msgstr ""
 
-#: ../book/administration.rst:748
+#: ../book/administration.rst:753
 msgid "attaching to instances"
 msgstr ""
 
-#: ../book/administration.rst:750
+#: ../book/administration.rst:755
 msgid "You can attach to a running Tarantool instance and evaluate some Lua code using the :program:`tarantoolctl` utility:"
 msgstr ""
 
-#: ../book/administration.rst:753
+#: ../book/administration.rst:758
 msgid "$ tarantoolctl enter example\n"
 "/bin/tarantoolctl: Found example.lua in /etc/tarantool/instances.available\n"
 "/bin/tarantoolctl: Connecting to /var/run/tarantool/example.control\n"
@@ -796,19 +809,19 @@ msgid "$ tarantoolctl enter example\n"
 "unix/:/var/run/tarantool/example.control>"
 msgstr ""
 
-#: ../book/administration.rst:767
+#: ../book/administration.rst:772
 msgid "checking logs"
 msgstr ""
 
-#: ../book/administration.rst:769
+#: ../book/administration.rst:774
 msgid "Tarantool logs important events to :file:`/var/log/tarantool/${MYAPP}.log`."
 msgstr ""
 
-#: ../book/administration.rst:771
+#: ../book/administration.rst:776
 msgid "Let's write something to the log file:"
 msgstr ""
 
-#: ../book/administration.rst:773
+#: ../book/administration.rst:778
 msgid "$ tarantoolctl enter example\n"
 "/bin/tarantoolctl: Found example.lua in /etc/tarantool/instances.available\n"
 "/bin/tarantoolctl: Connecting to /var/run/tarantool/example.control\n"
@@ -818,11 +831,11 @@ msgid "$ tarantoolctl enter example\n"
 "..."
 msgstr ""
 
-#: ../book/administration.rst:783
+#: ../book/administration.rst:788
 msgid "Then check the logs:"
 msgstr ""
 
-#: ../book/administration.rst:785
+#: ../book/administration.rst:790
 msgid "$ tail /var/log/tarantool/example.log\n"
 "2016-01-21 21:09:45.982 [5914] iproto I> binary: started\n"
 "2016-01-21 21:09:45.982 [5914] iproto I> binary: bound to 0.0.0.0:3301\n"
@@ -836,35 +849,35 @@ msgid "$ tail /var/log/tarantool/example.log\n"
 "2016-01-21 21:15:09.250 [5914] main/105/console/unix/: I> client unix/: disconnected"
 msgstr ""
 
-#: ../book/administration.rst:799
+#: ../book/administration.rst:804
 msgid "Log rotation is enabled by default if you have :program:`logrotate` installed. Please configure :file:`/etc/logrotate.d/tarantool` to change the default behavior."
 msgstr ""
 
-#: ../book/administration.rst:804
+#: ../book/administration.rst:809
 msgid "stopping instances"
 msgstr ""
 
-#: ../book/administration.rst:806
+#: ../book/administration.rst:811
 msgid "Use :samp:`systemctl stop tarantool@${MYAPP}` to see information about the running ``${MYAPP}`` instance."
 msgstr ""
 
-#: ../book/administration.rst:809
+#: ../book/administration.rst:814
 msgid "$ systemctl stop tarantool@example"
 msgstr ""
 
-#: ../book/administration.rst:815
+#: ../book/administration.rst:820
 msgid "Daemon supervision"
 msgstr ""
 
-#: ../book/administration.rst:817
+#: ../book/administration.rst:822
 msgid "All instances are automatically restarted by :program:`systemd` in case of failure."
 msgstr ""
 
-#: ../book/administration.rst:819
+#: ../book/administration.rst:824
 msgid "Let's try to destroy an instance:"
 msgstr ""
 
-#: ../book/administration.rst:821
+#: ../book/administration.rst:826
 msgid "$ systemctl status tarantool@example|grep PID\n"
 "Main PID: 5885 (tarantool)\n"
 "$ tarantoolctl enter example\n"
@@ -875,20 +888,20 @@ msgid "$ systemctl status tarantool@example|grep PID\n"
 "/bin/tarantoolctl: unix/:/var/run/tarantool/example.control: Remote host closed connection"
 msgstr ""
 
-#: ../book/administration.rst:832
+#: ../book/administration.rst:837
 msgid "Now let's make sure that :program:`systemd` has revived our Tarantool instance:"
 msgstr ""
 
-#: ../book/administration.rst:834
+#: ../book/administration.rst:839
 msgid "$ systemctl status tarantool@example|grep PID\n"
 "Main PID: 5914 (tarantool)"
 msgstr ""
 
-#: ../book/administration.rst:839
+#: ../book/administration.rst:844
 msgid "Finally, let's check the boot logs:"
 msgstr ""
 
-#: ../book/administration.rst:841
+#: ../book/administration.rst:846
 msgid "$ journalctl -u tarantool@example -n 8\n"
 "-- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:09:45 MSK. --\n"
 "Jan 21 21:09:45 localhost.localdomain systemd[1]: tarantool@example.service: Unit entered failed state.\n"
@@ -901,23 +914,23 @@ msgid "$ journalctl -u tarantool@example -n 8\n"
 "Jan 21 21:09:45 localhost.localdomain systemd[1]: Started Tarantool Database Server."
 msgstr ""
 
-#: ../book/administration.rst:856
+#: ../book/administration.rst:861
 msgid "Customizing the service file"
 msgstr ""
 
-#: ../book/administration.rst:858
+#: ../book/administration.rst:863
 msgid "Please don't modify the :file:`tarantool@.service` file in-place, because it will be overwritten during package upgrades. It is recommended to copy this file to :file:`/etc/systemd/system` and then modify the required settings. Alternatively, you can create a directory named :file:`unit.d/` within :file:`/etc/systemd/system` and put there a drop-in file :file:`name.conf` that only changes the required settings. Please see ``systemd.unit(5)`` manual page for additional information."
 msgstr ""
 
-#: ../book/administration.rst:867
+#: ../book/administration.rst:872
 msgid "Debugging"
 msgstr ""
 
-#: ../book/administration.rst:869
+#: ../book/administration.rst:874
 msgid ":program:`coredumpctl` automatically saves core dumps and stack traces in case of a crash. Here is how it works:"
 msgstr ""
 
-#: ../book/administration.rst:872
+#: ../book/administration.rst:877
 msgid "$ # !!! please never do this on the production system !!!\n"
 "$ tarantoolctl enter example\n"
 "/bin/tarantoolctl: Found example.lua in /etc/tarantool/instances.available\n"
@@ -927,22 +940,22 @@ msgid "$ # !!! please never do this on the production system !!!\n"
 "/bin/tarantoolctl: unix/:/var/run/tarantool/example.control: Remote host closed connection"
 msgstr ""
 
-#: ../book/administration.rst:882
+#: ../book/administration.rst:887
 msgid ":samp:`coredumpctl list /usr/bin/tarantool` displays the latest crashes of the Tarantool daemon:"
 msgstr ""
 
-#: ../book/administration.rst:884
+#: ../book/administration.rst:889
 msgid "$ coredumpctl list /usr/bin/tarantool\n"
 "MTIME                            PID   UID   GID SIG PRESENT EXE\n"
 "Sat 2016-01-23 15:21:24 MSK   20681  1000  1000   6   /usr/bin/tarantool\n"
 "Sat 2016-01-23 15:51:56 MSK   21035   995   992   6   /usr/bin/tarantool"
 msgstr ""
 
-#: ../book/administration.rst:891
+#: ../book/administration.rst:896
 msgid ":samp:`coredumpctl info <pid>` shows the stack trace and other useful information:"
 msgstr ""
 
-#: ../book/administration.rst:893
+#: ../book/administration.rst:898
 msgid "$ coredumpctl info 21035\n"
 "          PID: 21035 (tarantool)\n"
 "          UID: 995 (tarantool)\n"
@@ -977,27 +990,27 @@ msgid "$ coredumpctl info 21035\n"
 "               ..."
 msgstr ""
 
-#: ../book/administration.rst:928
+#: ../book/administration.rst:933
 msgid ":samp:`coredumpctl -o filename.core info <pid>` saves the core dump into a file."
 msgstr ""
 
-#: ../book/administration.rst:930
+#: ../book/administration.rst:935
 msgid ":samp:`coredumpctl gdb <pid>` starts :program:`gdb` on the core dump."
 msgstr ""
 
-#: ../book/administration.rst:932
+#: ../book/administration.rst:937
 msgid "It is highly recommended to install the ``tarantool-debuginfo`` package to improve :program:`gdb` experience. Example:"
 msgstr ""
 
-#: ../book/administration.rst:935
+#: ../book/administration.rst:940
 msgid "$ dnf debuginfo-install tarantool"
 msgstr ""
 
-#: ../book/administration.rst:942
+#: ../book/administration.rst:947
 msgid ":program:`gdb` also provides information about the ``debuginfo`` packages you need to install:"
 msgstr ""
 
-#: ../book/administration.rst:944
+#: ../book/administration.rst:949
 msgid "$ # gdb -p <pid>\n"
 "...\n"
 "Missing separate debuginfos, use: dnf debuginfo-install\n"
@@ -1008,43 +1021,43 @@ msgid "$ # gdb -p <pid>\n"
 "openssl-libs-1.0.2e-3.fc24.x86_64"
 msgstr ""
 
-#: ../book/administration.rst:955
+#: ../book/administration.rst:960
 msgid "Symbol names are present in stack traces even if you don't have the ``tarantool-debuginfo`` package installed."
 msgstr ""
 
-#: ../book/administration.rst:957
+#: ../book/administration.rst:962
 msgid "For additional information, please refer to the documentation provided with your Linux distribution."
 msgstr ""
 
-#: ../book/administration.rst:961
+#: ../book/administration.rst:966
 msgid "Precautions"
 msgstr ""
 
-#: ../book/administration.rst:963
+#: ../book/administration.rst:968
 msgid "Please don't use ``tarantoolctl {start,stop,restart}`` to control instances started by :program:`systemd`. It is still possible to use :program:`tarantoolctl` to start and stop instances from your local directories (e.g. :file:`${HOME}`) without obtaining ``ROOT`` access."
 msgstr ""
 
-#: ../book/administration.rst:967
+#: ../book/administration.rst:972
 msgid ":program:`tarantoolctl` is configured to work properly with ;program:`systemd`. Please don't modify system-wide settings of :program:`tarantoolctl`, such as paths, directory permissions and usernames. Otherwise, you have a chance to shoot yourself in the foot."
 msgstr ""
 
-#: ../book/administration.rst:971
+#: ../book/administration.rst:976
 msgid ":program:`systemd` scripts are maintained by the Tarantool Team (http://tarantool.org). Please file tickets directly to the upstream's bug tracker rather than to your Linux distribution."
 msgstr ""
 
-#: ../book/administration.rst:976
+#: ../book/administration.rst:981
 msgid "Updating Tarantool in production"
 msgstr ""
 
-#: ../book/administration.rst:978
+#: ../book/administration.rst:983
 msgid "First, put your application's business logic in a Tarantool-Lua module that exports its functions for CALL."
 msgstr ""
 
-#: ../book/administration.rst:980
+#: ../book/administration.rst:985
 msgid "For example, :file:`/usr/share/tarantool/myapp.lua`:"
 msgstr ""
 
-#: ../book/administration.rst:982
+#: ../book/administration.rst:987
 msgid "local function start()\n"
 "-- Initial version\n"
 "box.once(\"myapp:.1.0\", function()\n"
@@ -1083,19 +1096,19 @@ msgid "local function start()\n"
 "}"
 msgstr ""
 
-#: ../book/administration.rst:1021
+#: ../book/administration.rst:1026
 msgid "This file is maintained by the application's developers. On its side, Tarantool Team provides templates for you to `assemble deb/rpm packages`_ and utilities to quickly `assemble packages for specific platforms`_. If needed, you can split applications into standalone files and/or modules."
 msgstr ""
 
-#: ../book/administration.rst:1030
+#: ../book/administration.rst:1035
 msgid "Second, put an initialization script to the :file:`/etc/tarantool/instances.available` directory."
 msgstr ""
 
-#: ../book/administration.rst:1032
+#: ../book/administration.rst:1037
 msgid "For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:"
 msgstr ""
 
-#: ../book/administration.rst:1034
+#: ../book/administration.rst:1039
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "box.cfg {\n"
@@ -1116,79 +1129,79 @@ msgid "#!/usr/bin/env tarantool\n"
 "myapp = require('myapp').start({some app options controlled by sysadmins})"
 msgstr ""
 
-#: ../book/administration.rst:1056
+#: ../book/administration.rst:1061
 msgid "As a more detailed example, you can take the :file:`example.lua` script that ships with Tarantool and defines all configuration options."
 msgstr ""
 
-#: ../book/administration.rst:1059
+#: ../book/administration.rst:1064
 msgid "This initialization script is actually a configuration file and should be maintained by system administrators, while developers only provide a template."
 msgstr ""
 
-#: ../book/administration.rst:1063
+#: ../book/administration.rst:1068
 msgid "Now update your app file in :file:`/usr/share/tarantool`. Replace your application file (for example, :file:`/usr/share/tarantool/myapp.lua`) and manually reload the :file:`myappcfg.lua` initialization script using :program:`tarantoolctl`:"
 msgstr ""
 
-#: ../book/administration.rst:1067
+#: ../book/administration.rst:1072
 msgid "$ tarantoolctl eval /etc/tarantool/instance.enabled/myappcfg.lua"
 msgstr ""
 
-#: ../book/administration.rst:1071
+#: ../book/administration.rst:1076
 msgid "After that, you need to manually flush the cache of ``package.loaded`` modules."
 msgstr ""
 
-#: ../book/administration.rst:1073
+#: ../book/administration.rst:1078
 msgid "For deb/rpm packages, you can add the ``tarantoolctl eval`` instruction directly into Tarantool's specification in :file:`RPM.spec` and the :file:`/debian` directory."
 msgstr ""
 
-#: ../book/administration.rst:1076
+#: ../book/administration.rst:1081
 msgid "Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions."
 msgstr ""
 
-#: ../book/administration.rst:1078
+#: ../book/administration.rst:1083
 msgid "In the case of ``tarantool-http``, there is no need to start the binary protocol at all."
 msgstr ""
 
-#: ../book/administration.rst:1084
+#: ../book/administration.rst:1089
 msgid "Modules, LuaRocks, and requiring packages"
 msgstr ""
 
-#: ../book/administration.rst:1086
+#: ../book/administration.rst:1091
 msgid "To extend Tarantool there are packages, which are also called \"modules\", which in Lua are also called \"rocks\". Users who are unfamiliar with Lua modules may benefit from following the Lua-Modules-Tutorial_ before reading this section."
 msgstr ""
 
-#: ../book/administration.rst:1092
+#: ../book/administration.rst:1097
 msgid "**Install a module**"
 msgstr ""
 
-#: ../book/administration.rst:1094
+#: ../book/administration.rst:1099
 msgid "The modules that come from Tarantool developers and community contributors are on rocks.tarantool.org_. Some of them -- :ref:`expirationd <expirationd-package>`, :ref:`mysql <dbms_packages-mysql-example>`, :ref:`postgresql <dbms_packages-postgresql-example>`, :ref:`shard <shard-package>` -- are discussed elsewhere in this manual."
 msgstr ""
 
-#: ../book/administration.rst:1102
+#: ../book/administration.rst:1107
 msgid "Step 1: Install LuaRocks. A general description for installing LuaRocks on a Unix system is in the LuaRocks-Quick-Start-Guide_. For example on Ubuntu one could say: |br| :codenormal:`$` :codebold:`sudo apt-get install luarocks`"
 msgstr ""
 
-#: ../book/administration.rst:1108
+#: ../book/administration.rst:1113
 msgid "Step 2: Add the Tarantool repository to the list of rocks servers. This is done by putting rocks.tarantool.org in the .luarocks/config.lua file: |br| :codenormal:`$` :codebold:`mkdir ~/.luarocks` |br| :codenormal:`$` :codebold:`echo \"rocks_servers = {[[http://rocks.tarantool.org/]]}\" >> ~/.luarocks/config.lua` |br|"
 msgstr ""
 
-#: ../book/administration.rst:1113
+#: ../book/administration.rst:1118
 msgid "Once these steps are complete, the repositories can be searched with |br| :codenormal:`$` :codebold:`luarocks search` :codeitalic:`module-name` |br| and new modules can be added to the local repository with |br| :codenormal:`$` :codebold:`luarocks install` :codeitalic:`module-name` :codenormal:`--local` |br| and any package/module can be loaded for Tarantool with |br| :codenormal:`tarantool>` :codeitalic:`local-name` :codenormal:`=` :codebold:`require('`:codeitalic:`module-name`:codenormal:`')` |br| ... and that is why the examples in the manual's Packages section often begin with `require` requests. See rocks_ on github.com/tarantool for more examples and information about contributing."
 msgstr ""
 
-#: ../book/administration.rst:1123
+#: ../book/administration.rst:1128
 msgid "**Example: making a new Lua module locally**"
 msgstr ""
 
-#: ../book/administration.rst:1125
+#: ../book/administration.rst:1130
 msgid "In this example, create a new Lua file named `mymodule.lua`, containing a named function which will be exported. Then, in Tarantool: load, examine, and call."
 msgstr ""
 
-#: ../book/administration.rst:1129
+#: ../book/administration.rst:1134
 msgid "The Lua file should look like this:"
 msgstr ""
 
-#: ../book/administration.rst:1131
+#: ../book/administration.rst:1136
 msgid "-- mymodule - a simple Tarantool module\n"
 "local exports = {}\n"
 "exports.myfun = function(input_string)\n"
@@ -1197,27 +1210,27 @@ msgid "-- mymodule - a simple Tarantool module\n"
 "return exports"
 msgstr ""
 
-#: ../book/administration.rst:1140
+#: ../book/administration.rst:1145
 msgid "The requests to load and examine and call look like this: |br| :codenormal:`tarantool>`:codebold:`mymodule = require('mymodule')` |br| :codenormal:`>---` |br| :codenormal:`>...` |br| |br| :codenormal:`tarantool>`:codebold:`mymodule` |br| :codenormal:`---` |br| :codenormal:`>- myfun: 'function: 0x405edf20'` |br| :codenormal:`>...` |br| :codenormal:`tarantool>`:codebold:`mymodule.myfun(os.getenv('USER'))` |br| :codenormal:`Hello world` |br| :codenormal:`>---` |br| :codenormal:`>...`"
 msgstr ""
 
-#: ../book/administration.rst:1154
+#: ../book/administration.rst:1159
 msgid "**Example: making a new C/C++ module locally**"
 msgstr ""
 
-#: ../book/administration.rst:1156
+#: ../book/administration.rst:1161
 msgid "In this example, create a new C file named `mycmodule.c`, containing a named function which will be exported. Then, in Tarantool: load, examine, and call."
 msgstr ""
 
-#: ../book/administration.rst:1160
+#: ../book/administration.rst:1165
 msgid "Prerequisite: install `tarantool-dev` first."
 msgstr ""
 
-#: ../book/administration.rst:1162
+#: ../book/administration.rst:1167
 msgid "The C file should look like this:"
 msgstr ""
 
-#: ../book/administration.rst:1164
+#: ../book/administration.rst:1169
 msgid "/* mycmodule - a simple Tarantool module */\n"
 "#include <lua.h>\n"
 "#include <lauxlib.h>\n"
@@ -1248,43 +1261,43 @@ msgid "/* mycmodule - a simple Tarantool module */\n"
 "}"
 msgstr ""
 
-#: ../book/administration.rst:1195
+#: ../book/administration.rst:1200
 msgid "Use :codenormal:`gcc` to compile the code for a shared library (without a \"lib\" prefix), then use :codenormal:`ls` to examine it: |br|"
 msgstr ""
 
-#: ../book/administration.rst:1198
+#: ../book/administration.rst:1203
 msgid ":codenormal:`$` :codebold:`gcc mycmodule.c -shared -fPIC -I/usr/include/tarantool -o mycmodule.so` |br| :codenormal:`$` :codebold:`ls mycmodule.so -l` |br| :codenormal:`-rwxr-xr-x 1 roman roman 7272 Jun  3 16:51 mycmodule.so`"
 msgstr ""
 
-#: ../book/administration.rst:1202
+#: ../book/administration.rst:1207
 msgid "Tarantool's developers recommend use of Tarantool's CMake-scripts_ which will handle some of the build steps automatically."
 msgstr ""
 
-#: ../book/administration.rst:1205
+#: ../book/administration.rst:1210
 msgid "The requests to load and examine and call look like this: |br| :codenormal:`tarantool>`:codebold:`myсmodule = require('myсmodule')` |br| :codenormal:`---` |br| :codenormal:`...` |br| :codenormal:`tarantool>`:codebold:`myсmodule` |br| :codenormal:`---` |br| :codenormal:`- myfun: 'function: 0x4100ec98'` |br| :codenormal:`...` |br| :codenormal:`tarantool>`:codebold:`mycmodule.myfun(os.getenv('USER'))` |br| :codenormal:`---` |br| :codenormal:`- Hello, world` |br| :codenormal:`...` |br|"
 msgstr ""
 
-#: ../book/administration.rst:1218
+#: ../book/administration.rst:1223
 msgid "One can also make modules with C++, provided that the code does not throw exceptions."
 msgstr ""
 
-#: ../book/administration.rst:1220
+#: ../book/administration.rst:1225
 msgid "**Tips for special situations**"
 msgstr ""
 
-#: ../book/administration.rst:1222
+#: ../book/administration.rst:1227
 msgid "Lua caches all loaded modules in the :code:`package.loaded` table. To reload a module from disk, set its key to `nil`: |br| :codenormal:`tarantool>` :codebold:`package.loaded['`:codeitalic:`modulename`:codebold:`'] = nil`"
 msgstr ""
 
-#: ../book/administration.rst:1226
+#: ../book/administration.rst:1231
 msgid "Use ``package.path`` to search for ``.lua`` modules, and use ``package.cpath`` to search for C binary modules. |br| :codenormal:`tarantool>`:codebold:`package.path` |br| :codenormal:`---` |br| :codenormal:`- ./?.lua;./?/init.lua;/home/roman/.luarocks/share/lua/5.1/?.lua;/home/roman/.luarocks/share/lua/5.1/?/init.lua;/home/roman/.luarocks/share/lua/?.lua;/home/roman/.luarocks/share/lua/?/init.lua;/usr/share/tarantool/?.lua;/usr/share/tarantool/?/init.lua;./?.lua;/usr/local/share/luajit-2.0.3/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua` |br| :codenormal:`...` :codenormal:`tarantool>`:codebold:`package.cpath` |br| :codenormal:`---` |br| :codenormal:`- ./?.so;/home/roman/.luarocks/lib/lua/5.1/?.so;/home/roman/.luarocks/lib/lua/?.so;/usr/lib/tarantool/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so` |br| :codenormal:`...` |br| Substitute question-mark with :code:`modulename` when calling :code:`require('modulename')`."
 msgstr ""
 
-#: ../book/administration.rst:1239
+#: ../book/administration.rst:1244
 msgid "To see the internal state from within a Lua module, use `state` and create a local variable inside the scope of the file:"
 msgstr ""
 
-#: ../book/administration.rst:1242
+#: ../book/administration.rst:1247
 msgid "-- mymodule\n"
 "local exports = {}\n"
 "local state = {}\n"
@@ -1294,67 +1307,67 @@ msgid "-- mymodule\n"
 "return exports"
 msgstr ""
 
-#: ../book/administration.rst:1252
+#: ../book/administration.rst:1257
 msgid "Notice that the Lua examples use local variables. Use global variables with caution, since the module's users may be unaware of them."
 msgstr ""
 
-#: ../book/administration.rst:1256
+#: ../book/administration.rst:1261
 msgid "To see a sample Lua + C module, go to http_ on github.com/tarantool."
 msgstr ""
 
-#: ../book/administration.rst:1260
+#: ../book/administration.rst:1265
 msgid "Backups"
 msgstr ""
 
-#: ../book/administration.rst:1262
+#: ../book/administration.rst:1267
 msgid "The exact procedure for backing up a database depends on: how up-to-date the database must be, how frequently backups must be taken, whether it is okay to disrupt other users, and whether the procedure should be optimized for size (saving disk space) or for speed (saving time). So there is a spectrum of possible policies, ranging from cold-and-simple to hot-and-difficult."
 msgstr ""
 
-#: ../book/administration.rst:1269
+#: ../book/administration.rst:1274
 msgid "**Cold Backup**"
 msgstr ""
 
-#: ../book/administration.rst:1271
+#: ../book/administration.rst:1276
 msgid "In essence: The last snapshot file is a backup of the entire database; and the WAL files that are made after the last snapshot are incremental backups. Therefore taking a backup is a matter of copying the snapshot and WAL files. |br| (1) Prevent all users from writing to the database.This can be done by shutting down the server, or by saying :codenormal:`box.cfg{read_only=true}` and then ensuring that all earlier writes are complete (fsync can be used for this purpose). |br| (2) If this is a backup of the whole database, say :codenormal:`box.snapshot()`. |br| (3) Use tar to make a (possibly compressed) copy of the latest .snap and .xlog files on the :ref:`snap_dir <cfg_basic-snap_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>` directories. |br| (4) If there is a security policy, encrypt the tar file. |br| (5) Copy the tar file to a safe place. |br| ... Later, restoring the database is a matter of taking the tar file and putting its contents back in the snap_dir and wal_dir directories."
 msgstr ""
 
-#: ../book/administration.rst:1290
+#: ../book/administration.rst:1295
 msgid "**Continuous remote backup**"
 msgstr ""
 
-#: ../book/administration.rst:1292
+#: ../book/administration.rst:1297
 msgid "In essence: :ref:`replication <index-box_replication>` is useful for backup as well as for load balancing. Therefore taking a backup is a matter of ensuring that any given replica is up to date, and doing a cold backup on it. Since all the other replicas continue to operate, this is not a cold backup from the end user's point of view. This could be done on a regular basis, with a cron job or with a Tarantool fiber."
 msgstr ""
 
-#: ../book/administration.rst:1300
+#: ../book/administration.rst:1305
 msgid "**Hot backup**"
 msgstr ""
 
-#: ../book/administration.rst:1302
+#: ../book/administration.rst:1307
 msgid "In essence: The logged changes done since the last cold backup must be secured, while the system is running."
 msgstr ""
 
-#: ../book/administration.rst:1306
+#: ../book/administration.rst:1311
 msgid "For this purpose one needs a \"file copy\" utility that will do the copying remotely and continuously, copying only the parts of a file that are changing. One such utility is rsync_."
 msgstr ""
 
-#: ../book/administration.rst:1311
+#: ../book/administration.rst:1316
 msgid "Alternatively, one needs an ordinary file copy utility, but there should be frequent production of new snapshot files or new WAL files as changes occur, so that only the new files need to be copied."
 msgstr ""
 
-#: ../book/administration.rst:1316
+#: ../book/administration.rst:1321
 msgid "Note re storage engines: vinyl databases require additional steps."
 msgstr ""
 
-#: ../book/administration.rst:1320
+#: ../book/administration.rst:1325
 msgid "Upgrades"
 msgstr ""
 
-#: ../book/administration.rst:1322
+#: ../book/administration.rst:1327
 msgid "This information applies for users who created databases with older versions of the Tarantool server, and have now installed a newer version. The request to make in this case is: :codenormal:`box.schema.upgrade()`."
 msgstr ""
 
-#: ../book/administration.rst:1326
+#: ../book/administration.rst:1331
 msgid "For example, here is what happens when one runs :codenormal:`box.schema.upgrade()` with a database that was created in early 2015. Only a small part of the output is shown. |br| :codenormal:`tarantool>` :codebold:`box.schema.upgrade()` |br| :codenormal:`alter index primary on _space set options to {\"unique\":true}, parts to [[0,\"num\"]]` |br| :codenormal:`alter space _schema set options to {}` |br| :codenormal:`create view _vindex...` |br| :codenormal:`grant read access to 'public' role for _vindex view` |br| :codenormal:`set schema version to 1.7.0` |br| :codenormal:`---` |br| :codenormal:`...` |br|"
 msgstr ""
 
@@ -2748,26 +2761,26 @@ msgstr ""
 #: ../book/box/box_schema.rst:329
 #: ../book/box/box_schema.rst:363
 #: ../book/box/box_schema.rst:374
-#: ../book/box/box_space.rst:232
-#: ../book/box/box_space.rst:262
-#: ../book/box/box_space.rst:340
-#: ../book/box/box_space.rst:361
-#: ../book/box/box_space.rst:380
-#: ../book/box/box_space.rst:416
-#: ../book/box/box_space.rst:484
-#: ../book/box/box_space.rst:619
-#: ../book/box/box_space.rst:642
-#: ../book/box/box_space.rst:670
-#: ../book/box/box_space.rst:708
-#: ../book/box/box_space.rst:727
-#: ../book/box/box_space.rst:750
-#: ../book/box/box_space.rst:767
-#: ../book/box/box_space.rst:795
-#: ../book/box/box_space.rst:827
-#: ../book/box/box_space.rst:851
-#: ../book/box/box_space.rst:887
-#: ../book/box/box_space.rst:927
+#: ../book/box/box_space.rst:276
+#: ../book/box/box_space.rst:306
+#: ../book/box/box_space.rst:384
+#: ../book/box/box_space.rst:405
+#: ../book/box/box_space.rst:424
+#: ../book/box/box_space.rst:460
+#: ../book/box/box_space.rst:528
+#: ../book/box/box_space.rst:663
+#: ../book/box/box_space.rst:686
+#: ../book/box/box_space.rst:714
+#: ../book/box/box_space.rst:752
+#: ../book/box/box_space.rst:771
+#: ../book/box/box_space.rst:794
+#: ../book/box/box_space.rst:811
+#: ../book/box/box_space.rst:839
+#: ../book/box/box_space.rst:871
+#: ../book/box/box_space.rst:895
+#: ../book/box/box_space.rst:931
 #: ../book/box/box_space.rst:971
+#: ../book/box/box_space.rst:1015
 #: ../book/box/box_tuple.rst:59
 #: ../book/box/triggers.rst:82
 #: ../book/box/triggers.rst:109
@@ -2867,7 +2880,7 @@ msgstr ""
 #: ../book/box/index.rst:170
 #: ../book/box/triggers.rst:120
 #: ../book/box/triggers.rst:238
-#: ../book/configuration/index.rst:121
+#: ../book/configuration/index.rst:119
 msgid "Example"
 msgstr ""
 
@@ -3535,7 +3548,7 @@ msgstr ""
 #: ../book/box/box_index.rst:68
 #: ../book/box/box_introspection.rst:84
 #: ../book/box/box_schema.rst:77
-#: ../book/box/box_space.rst:725
+#: ../book/box/box_space.rst:769
 msgid "table"
 msgstr ""
 
@@ -3587,7 +3600,7 @@ msgid "this method returns an iterator closure, i.e. a function which can be use
 msgstr ""
 
 #: ../book/box/box_index.rst:122
-#: ../book/box/box_space.rst:849
+#: ../book/box/box_space.rst:893
 msgid "function, tuple"
 msgstr ""
 
@@ -4047,8 +4060,8 @@ msgid "Search for a tuple via the given index, as described :ref:`earlier <box_i
 msgstr ""
 
 #: ../book/box/box_index.rst:555
-#: ../book/box/box_space.rst:247
-#: ../book/box/box_space.rst:320
+#: ../book/box/box_space.rst:291
+#: ../book/box/box_space.rst:364
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index key, which may be multi-part."
 msgstr ""
 
@@ -4062,13 +4075,13 @@ msgstr ""
 #: ../book/box/box_index.rst:648
 #: ../book/box/box_index.rst:712
 #: ../book/box/box_index.rst:729
-#: ../book/box/box_space.rst:227
-#: ../book/box/box_space.rst:256
-#: ../book/box/box_space.rst:325
-#: ../book/box/box_space.rst:406
-#: ../book/box/box_space.rst:465
-#: ../book/box/box_space.rst:636
-#: ../book/box/box_space.rst:820
+#: ../book/box/box_space.rst:271
+#: ../book/box/box_space.rst:300
+#: ../book/box/box_space.rst:369
+#: ../book/box/box_space.rst:450
+#: ../book/box/box_space.rst:509
+#: ../book/box/box_space.rst:680
+#: ../book/box/box_space.rst:864
 #: ../book/box/box_tuple.rst:53
 #: ../book/box/box_tuple.rst:197
 #: ../book/box/box_tuple.rst:198
@@ -4200,7 +4213,7 @@ msgid "tarantool> box.space.tester.index.primary:count(999)\n"
 msgstr ""
 
 #: ../book/box/box_index.rst:697
-#: ../book/box/box_space.rst:426
+#: ../book/box/box_space.rst:470
 #: ../book/box/box_tuple.rst:274
 msgid "Update a tuple."
 msgstr ""
@@ -4218,7 +4231,7 @@ msgid ":samp:`{operator, field_no, value}` (type = Lua table) = update operation
 msgstr ""
 
 #: ../book/box/box_index.rst:711
-#: ../book/box/box_space.rst:464
+#: ../book/box/box_space.rst:508
 msgid "the updated tuple."
 msgstr ""
 
@@ -4239,7 +4252,7 @@ msgid "the deleted tuple."
 msgstr ""
 
 #: ../book/box/box_index.rst:731
-#: ../book/box/box_space.rst:640
+#: ../book/box/box_space.rst:684
 msgid "Note re storage engine: vinyl will return nil, rather than the deleted tuple."
 msgstr ""
 
@@ -4256,9 +4269,9 @@ msgstr ""
 #: ../book/box/box_schema.rst:128
 #: ../book/box/box_schema.rst:258
 #: ../book/box/box_schema.rst:346
-#: ../book/box/box_space.rst:354
-#: ../book/box/box_space.rst:376
-#: ../book/box/box_space.rst:791
+#: ../book/box/box_space.rst:398
+#: ../book/box/box_space.rst:420
+#: ../book/box/box_space.rst:835
 #: ../book/box/index.rst:178
 #: ../book/box/index.rst:178
 #: ../book/box/triggers.rst:177
@@ -5564,10 +5577,10 @@ msgid "Possible errors: too many parts. Index '...' already exists. Primary key 
 msgstr ""
 
 #: ../book/box/box_space.rst:183
-msgid "Note re storage engine: vinyl supports only the TREE index type, and supports only one index per space, and supports only the unique = true option."
+msgid "Note re storage engine: vinyl supports only the TREE index type."
 msgstr ""
 
-#: ../book/box/box_space.rst:187
+#: ../book/box/box_space.rst:185
 msgid "tarantool> s = box.space.space55\n"
 "---\n"
 "...\n"
@@ -5576,51 +5589,158 @@ msgid "tarantool> s = box.space.space55\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:198
-msgid "Details about index field types: |br| The five index field types (NUM | STR | INT | NUMBER | ARRAY | SCALAR) differ depending on what values are allowed, and what index types are allowed. |br| NUM: unsigned integers between 0 and 18446744073709551615. Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br| STR: strings -- any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`. Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br| INT: integers between -9223372036854775808 and 18446744073709551615. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br| NUMBER: integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, or double-precision floating point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br| ARRAY: array of integers between -9223372036854775808 and 9223372036854775807. Legal in memtx RTREE indexes. |br| SCALAR: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615, or single-precision floating point numbers, or double-precison floating-point numbers, or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+#: ../book/box/box_space.rst:196
+msgid "Details about index field types: |br| The six index field types (NUM | STR | INT | NUMBER | ARRAY | SCALAR) differ depending on what values are allowed, and what index types are allowed. |br| NUM: unsigned integers between 0 and 18446744073709551615, about 18 quintillion. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br| STR: strings -- any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`. Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br| INT: integers between -9223372036854775808 and 18446744073709551615. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br| NUMBER: integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, or double-precision floating point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br| ARRAY: array of integers between -9223372036854775808 and 9223372036854775807. Legal in memtx RTREE indexes. |br| SCALAR: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615, or single-precision floating point numbers, or double-precison floating-point numbers, or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
 msgstr ""
 
-#: ../book/box/box_space.rst:221
-msgid "Insert a tuple into a space."
-msgstr ""
-
-#: ../book/box/box_space.rst:223
-#: ../book/box/box_space.rst:402
-msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`tuple` (type = Lua table or tuple) = tuple to be inserted."
+#: ../book/box/box_space.rst:217
+msgid "**Index field types to use in create_index**"
 msgstr ""
 
 #: ../book/box/box_space.rst:226
+msgid "Index field type"
+msgstr ""
+
+#: ../book/box/box_space.rst:226
+msgid "What can be in it"
+msgstr ""
+
+#: ../book/box/box_space.rst:226
+msgid "Where is it legal"
+msgstr ""
+
+#: ../book/box/box_space.rst:226
+msgid "Examples"
+msgstr ""
+
+#: ../book/box/box_space.rst:228
+msgid "**NUM**"
+msgstr ""
+
+#: ../book/box/box_space.rst:228
+msgid "integers between 0 and 18446744073709551615"
+msgstr ""
+
+#: ../book/box/box_space.rst:228
+#: ../book/box/box_space.rst:235
+#: ../book/box/box_space.rst:239
+#: ../book/box/box_space.rst:251
+msgid "memtx TREE or HASH indexes, |br| vinyl TREE indexes"
+msgstr ""
+
+#: ../book/box/box_space.rst:228
+msgid "123456 |br|"
+msgstr ""
+
+#: ../book/box/box_space.rst:232
+msgid "**STR**"
+msgstr ""
+
+#: ../book/box/box_space.rst:232
+msgid "strings -- any set of octets"
+msgstr ""
+
+#: ../book/box/box_space.rst:232
+msgid "memtx TREE or HASH indexes |br| vinyl TREE indexes"
+msgstr ""
+
+#: ../book/box/box_space.rst:232
+msgid "'A B C' |br| '\\\\65 \\\\66 \\\\67'"
+msgstr ""
+
+#: ../book/box/box_space.rst:235
+msgid "**INT**"
+msgstr ""
+
+#: ../book/box/box_space.rst:235
+msgid "integers between -9223372036854775808 and 18446744073709551615"
+msgstr ""
+
+#: ../book/box/box_space.rst:235
+msgid "-2^63 |br|"
+msgstr ""
+
+#: ../book/box/box_space.rst:239
+msgid "**NUMBER**"
+msgstr ""
+
+#: ../book/box/box_space.rst:239
+msgid "integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, double-precision floating point numbers"
+msgstr ""
+
+#: ../book/box/box_space.rst:239
+msgid "1.234 |br| -44 |br| 1.447e+44"
+msgstr ""
+
+#: ../book/box/box_space.rst:247
+msgid "**ARRAY**"
+msgstr ""
+
+#: ../book/box/box_space.rst:247
+msgid "array of integers between -9223372036854775808 and 9223372036854775807"
+msgstr ""
+
+#: ../book/box/box_space.rst:247
+msgid "memtx RTREE indexes"
+msgstr ""
+
+#: ../book/box/box_space.rst:247
+msgid "{10, 11} |br| {3, 5, 9, 10}"
+msgstr ""
+
+#: ../book/box/box_space.rst:251
+msgid "**SCALAR**"
+msgstr ""
+
+#: ../book/box/box_space.rst:251
+msgid "booleans (true or false), integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, double-precision floating point numbers, strings"
+msgstr ""
+
+#: ../book/box/box_space.rst:251
+msgid "true |br| -1 |br| 1.234 |br| '' |br| '俄國'"
+msgstr ""
+
+#: ../book/box/box_space.rst:265
+msgid "Insert a tuple into a space."
+msgstr ""
+
+#: ../book/box/box_space.rst:267
+#: ../book/box/box_space.rst:446
+msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`tuple` (type = Lua table or tuple) = tuple to be inserted."
+msgstr ""
+
+#: ../book/box/box_space.rst:270
 msgid "the inserted tuple"
 msgstr ""
 
-#: ../book/box/box_space.rst:229
+#: ../book/box/box_space.rst:273
 msgid "Possible errors: If a tuple with the same unique-key value already exists, returns :errcode:`ER_TUPLE_FOUND`."
 msgstr ""
 
-#: ../book/box/box_space.rst:234
+#: ../book/box/box_space.rst:278
 msgid "tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
 "---\n"
 "- [5000, 'tuple number five thousand']\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:245
+#: ../book/box/box_space.rst:289
 msgid "Search for a tuple or a set of tuples in the given space."
 msgstr ""
 
-#: ../book/box/box_space.rst:251
+#: ../book/box/box_space.rst:295
 msgid "the tuples whose primary-key fields are equal to the passed field-values. If the number of passed field-values is less than the number of fields in the primary key, then only the passed field-values are compared, so ``select{1,2}`` will match a tuple whose primary key is ``{1,2,3}``."
 msgstr ""
 
-#: ../book/box/box_space.rst:258
+#: ../book/box/box_space.rst:302
 msgid "Possible errors: No such space; wrong type."
 msgstr ""
 
-#: ../book/box/box_space.rst:260
+#: ../book/box/box_space.rst:304
 msgid "**Complexity Factors:** Index size, Index type."
 msgstr ""
 
-#: ../book/box/box_space.rst:264
+#: ../book/box/box_space.rst:308
 msgid "tarantool> s = box.schema.space.create('tmp', {temporary=true})\n"
 "---\n"
 "...\n"
@@ -5665,70 +5785,70 @@ msgid "tarantool> s = box.schema.space.create('tmp', {temporary=true})\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:309
+#: ../book/box/box_space.rst:353
 msgid "For examples of complex ``select`` requests, where one can specify which index to search and what condition to use (for example \"greater than\" instead of \"equal to\") and how many tuples to return, see the later section :ref:`index_object:select <box_index-select>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:318
+#: ../book/box/box_space.rst:362
 msgid "Search for a tuple in the given space."
 msgstr ""
 
-#: ../book/box/box_space.rst:324
+#: ../book/box/box_space.rst:368
 msgid "the tuple whose index key matches :codeitalic:`key`, or null."
 msgstr ""
 
-#: ../book/box/box_space.rst:327
-#: ../book/box/box_space.rst:356
+#: ../book/box/box_space.rst:371
+#: ../book/box/box_space.rst:400
 msgid "Possible errors: If space_object does not exist."
 msgstr ""
 
-#: ../book/box/box_space.rst:329
-#: ../book/box/box_space.rst:358
-#: ../book/box/box_space.rst:413
-#: ../book/box/box_space.rst:822
+#: ../book/box/box_space.rst:373
+#: ../book/box/box_space.rst:402
+#: ../book/box/box_space.rst:457
+#: ../book/box/box_space.rst:866
 msgid "**Complexity Factors:** Index size, Index type, Number of indexes accessed, WAL settings."
 msgstr ""
 
-#: ../book/box/box_space.rst:332
+#: ../book/box/box_space.rst:376
 msgid "The ``box.space...select`` function returns a set of tuples as a Lua table; the ``box.space...get`` function returns at most a single tuple. And it is possible to get the first tuple in a tuple set by appending ``[1]``. Therefore ``box.space.tester:get{1}`` has the same effect as ``box.space.tester:select{1}[1]``, if exactly one tuple is found."
 msgstr ""
 
-#: ../book/box/box_space.rst:342
+#: ../book/box/box_space.rst:386
 msgid "box.space.tester:get{1}"
 msgstr ""
 
-#: ../book/box/box_space.rst:350
+#: ../book/box/box_space.rst:394
 msgid "Drop a space."
 msgstr ""
 
-#: ../book/box/box_space.rst:352
-#: ../book/box/box_space.rst:668
-#: ../book/box/box_space.rst:686
-#: ../book/box/box_space.rst:706
-#: ../book/box/box_space.rst:723
-#: ../book/box/box_space.rst:763
-#: ../book/box/box_space.rst:787
-#: ../book/box/box_space.rst:846
+#: ../book/box/box_space.rst:396
+#: ../book/box/box_space.rst:712
+#: ../book/box/box_space.rst:730
+#: ../book/box/box_space.rst:750
+#: ../book/box/box_space.rst:767
+#: ../book/box/box_space.rst:807
+#: ../book/box/box_space.rst:831
+#: ../book/box/box_space.rst:890
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:363
+#: ../book/box/box_space.rst:407
 msgid "box.space.space_that_does_not_exist:drop()"
 msgstr ""
 
-#: ../book/box/box_space.rst:371
+#: ../book/box/box_space.rst:415
 msgid "Rename a space."
 msgstr ""
 
-#: ../book/box/box_space.rst:373
+#: ../book/box/box_space.rst:417
 msgid "Parameters::samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`space-name` (type = string) = new name for space."
 msgstr ""
 
-#: ../book/box/box_space.rst:378
+#: ../book/box/box_space.rst:422
 msgid "Possible errors: space_object does not exist."
 msgstr ""
 
-#: ../book/box/box_space.rst:382
+#: ../book/box/box_space.rst:426
 msgid "tarantool> box.space.space55:rename('space56')\n"
 "---\n"
 "...\n"
@@ -5737,222 +5857,222 @@ msgid "tarantool> box.space.space55:rename('space56')\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:396
+#: ../book/box/box_space.rst:440
 msgid "Insert a tuple into a space. If a tuple with the same primary key already exists, ``box.space...:replace()`` replaces the existing tuple with a new one. The syntax variants ``box.space...:replace()`` and ``box.space...:put()`` have the same effect; the latter is sometimes used to show that the effect is the converse of ``box.space...:get()``."
 msgstr ""
 
-#: ../book/box/box_space.rst:405
-#: ../book/box/box_space.rst:819
+#: ../book/box/box_space.rst:449
+#: ../book/box/box_space.rst:863
 msgid "the inserted tuple."
 msgstr ""
 
-#: ../book/box/box_space.rst:408
+#: ../book/box/box_space.rst:452
 msgid "Possible errors: If a different tuple with the same unique-key value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This will only happen if there is a secondary index. By default secondary indexes are unique.)"
 msgstr ""
 
-#: ../book/box/box_space.rst:418
+#: ../book/box/box_space.rst:462
 msgid "box.space.tester:replace{5000, 'tuple number five thousand'}"
 msgstr ""
 
-#: ../book/box/box_space.rst:428
+#: ../book/box/box_space.rst:472
 msgid "The ``update`` function supports operations on fields — assignment, arithmetic (if the field is unsigned numeric), cutting and pasting fragments of a field, deleting or inserting a field. Multiple operations can be combined in a single update request, and in this case they are performed atomically and sequentially. Each operation requires specification of a field number. When multiple operations are present, the field number for each operation is assumed to be relative to the most recent state of the tuple, that is, as if all previous operations in a multi-operation update have already been applied. In other words, it is always safe to merge multiple ``update`` invocations into a single invocation, with no change in semantics."
 msgstr ""
 
-#: ../book/box/box_space.rst:440
+#: ../book/box/box_space.rst:484
 msgid "Possible operators are:"
 msgstr ""
 
-#: ../book/box/box_space.rst:442
+#: ../book/box/box_space.rst:486
 msgid "``+`` for addition (values must be numeric)"
 msgstr ""
 
-#: ../book/box/box_space.rst:443
+#: ../book/box/box_space.rst:487
 msgid "``-`` for subtraction (values must be numeric)"
 msgstr ""
 
-#: ../book/box/box_space.rst:444
+#: ../book/box/box_space.rst:488
 msgid "``&`` for bitwise AND (values must be unsigned numeric)"
 msgstr ""
 
-#: ../book/box/box_space.rst:445
+#: ../book/box/box_space.rst:489
 msgid "``|`` for bitwise OR (values must be unsigned numeric)"
 msgstr ""
 
-#: ../book/box/box_space.rst:446
+#: ../book/box/box_space.rst:490
 msgid "``^`` for bitwise :abbr:`XOR(exclusive OR)` (values must be unsigned numeric)"
 msgstr ""
 
-#: ../book/box/box_space.rst:447
+#: ../book/box/box_space.rst:491
 msgid "``:`` for string splice"
 msgstr ""
 
-#: ../book/box/box_space.rst:448
+#: ../book/box/box_space.rst:492
 msgid "``!`` for insertion"
 msgstr ""
 
-#: ../book/box/box_space.rst:449
+#: ../book/box/box_space.rst:493
 msgid "``#`` for deletion"
 msgstr ""
 
-#: ../book/box/box_space.rst:450
+#: ../book/box/box_space.rst:494
 msgid "``=`` for assignment"
 msgstr ""
 
-#: ../book/box/box_space.rst:452
+#: ../book/box/box_space.rst:496
 msgid "For ``!`` and ``=`` operations the field number can be ``-1``, meaning the last field in the tuple."
 msgstr ""
 
-#: ../book/box/box_space.rst:455
+#: ../book/box/box_space.rst:499
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`key` (type = Lua table or scalar) = primary-key field values, must be passed as a Lua table if key is multi-part; :codeitalic:`{operator, field_no, value}` (type = table): a group of arguments for each operation, indicating what the operation is, what field the operation will apply to, and what value will be applied. The field number can be negative, meaning the position from the end of tuple (#tuple + negative field number + 1)."
 msgstr ""
 
-#: ../book/box/box_space.rst:467
+#: ../book/box/box_space.rst:511
 msgid "Possible errors: it is illegal to modify a primary-key field."
 msgstr ""
 
-#: ../book/box/box_space.rst:469
+#: ../book/box/box_space.rst:513
 msgid "**Complexity Factors:** Index size, Index type, number of indexes accessed, WAL settings."
 msgstr ""
 
-#: ../book/box/box_space.rst:472
+#: ../book/box/box_space.rst:516
 msgid "Thus, in the instruction:"
 msgstr ""
 
-#: ../book/box/box_space.rst:474
+#: ../book/box/box_space.rst:518
 msgid "s:update(44, {{'+', 1, 55 }, {'=', 3, 'x'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:478
+#: ../book/box/box_space.rst:522
 msgid "the primary-key value is ``44``, the operators are ``'+'`` and ``'='`` meaning *add a value to a field and then assign a value to a field*, the first affected field is field ``1`` and the value which will be added to it is ``55``, the second affected field is field ``3`` and the value which will be assigned to it is ``'x'``."
 msgstr ""
 
-#: ../book/box/box_space.rst:486
+#: ../book/box/box_space.rst:530
 msgid "Assume that the initial state of the database is ``tester`` that has one tuple set and one primary key whose type is ``NUM``. There is one tuple, with ``field[1]`` = ``999`` and ``field[2]`` = ``'A'``."
 msgstr ""
 
-#: ../book/box/box_space.rst:490
-#: ../book/box/box_space.rst:505
-#: ../book/box/box_space.rst:516
-#: ../book/box/box_space.rst:527
-#: ../book/box/box_space.rst:539
-#: ../book/box/box_space.rst:552
-#: ../book/box/box_space.rst:564
+#: ../book/box/box_space.rst:534
+#: ../book/box/box_space.rst:549
+#: ../book/box/box_space.rst:560
+#: ../book/box/box_space.rst:571
+#: ../book/box/box_space.rst:583
+#: ../book/box/box_space.rst:596
+#: ../book/box/box_space.rst:608
 msgid "In the update:"
 msgstr ""
 
-#: ../book/box/box_space.rst:492
+#: ../book/box/box_space.rst:536
 msgid "box.space.tester:update(999, {{'=', 2, 'B'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:496
+#: ../book/box/box_space.rst:540
 msgid "The first argument is ``tester``, that is, the affected space is ``tester``. The second argument is ``999``, that is, the affected tuple is identified by primary key value = 999. The third argument is ``=``, that is, there is one operation — *assignment to a field*. The fourth argument is ``2``, that is, the affected field is ``field[2]``. The fifth argument is ``'B'``, that is, ``field[2]`` contents change to ``'B'``. Therefore, after this update, ``field[1]`` = ``999`` and ``field[2]`` = ``'B'``."
 msgstr ""
 
-#: ../book/box/box_space.rst:507
+#: ../book/box/box_space.rst:551
 msgid "box.space.tester:update({999}, {{'=', 2, 'B'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:511
+#: ../book/box/box_space.rst:555
 msgid "the arguments are the same, except that the key is passed as a Lua table (inside braces). This is unnecessary when the primary key has only one field, but would be necessary if the primary key had more than one field. Therefore, after this update, ``field[1]`` = ``999`` and ``field[2]`` = ``'B'`` (no change)."
 msgstr ""
 
-#: ../book/box/box_space.rst:518
+#: ../book/box/box_space.rst:562
 msgid "box.space.tester:update({999}, {{'=', 3, 1}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:522
+#: ../book/box/box_space.rst:566
 msgid "the arguments are the same, except that the fourth argument is ``3``, that is, the affected field is ``field[3]``. It is okay that, until now, ``field[3]`` has not existed. It gets added. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'B'``, ``field[3]`` = ``1``."
 msgstr ""
 
-#: ../book/box/box_space.rst:529
+#: ../book/box/box_space.rst:573
 msgid "box.space.tester:update({999}, {{'+', 3, 1}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:533
+#: ../book/box/box_space.rst:577
 msgid "the arguments are the same, except that the third argument is ``'+'``, that is, the operation is addition rather than assignment. Since ``field[3]`` previously contained ``1``, this means we're adding ``1`` to ``1``. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'B'``, ``field[3]`` = ``2``."
 msgstr ""
 
-#: ../book/box/box_space.rst:541
+#: ../book/box/box_space.rst:585
 msgid "box.space.tester:update({999}, {{'|', 3, 1}, {'=', 2, 'C'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:545
+#: ../book/box/box_space.rst:589
 msgid "the idea is to modify two fields at once. The formats are ``'|'`` and ``=``, that is, there are two operations, OR and assignment. The fourth and fifth arguments mean that ``field[3]`` gets OR'ed with ``1``. The seventh and eighth arguments mean that ``field[2]`` gets assigned ``'C'``. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'C'``, ``field[3]`` = ``3``."
 msgstr ""
 
-#: ../book/box/box_space.rst:554
+#: ../book/box/box_space.rst:598
 msgid "box.space.tester:update({999}, {{'#', 2, 1}, {'-', 2, 3}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:558
+#: ../book/box/box_space.rst:602
 msgid "The idea is to delete ``field[2]``, then subtract ``3`` from ``field[3]``. But after the delete, there is a renumbering, so ``field[3]`` becomes ``field[2]``` before we subtract ``3`` from it, and that's why the seventh argument is ``2``, not ``3``. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``0``."
 msgstr ""
 
-#: ../book/box/box_space.rst:566
+#: ../book/box/box_space.rst:610
 msgid "box.space.tester:update({999}, {{'=', 2, 'XYZ'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:570
+#: ../book/box/box_space.rst:614
 msgid "we're making a long string so that splice will work in the next example. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'XYZ'``."
 msgstr ""
 
-#: ../book/box/box_space.rst:573
+#: ../book/box/box_space.rst:617
 msgid "In the update"
 msgstr ""
 
-#: ../book/box/box_space.rst:575
+#: ../book/box/box_space.rst:619
 msgid "box.space.tester:update({999}, {{':', 2, 2, 1, '!!'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:579
+#: ../book/box/box_space.rst:623
 msgid "The third argument is ``':'``, that is, this is the example of splice. The fourth argument is ``2`` because the change will occur in ``field[2]``. The fifth argument is 2 because deletion will begin with the second byte. The sixth argument is 1 because the number of bytes to delete is 1. The seventh argument is ``'!!'``, because ``'!!'`` is to be added at this position. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'X!!Z'``."
 msgstr ""
 
-#: ../book/box/box_space.rst:590
+#: ../book/box/box_space.rst:634
 msgid "Update or insert a tuple."
 msgstr ""
 
-#: ../book/box/box_space.rst:592
+#: ../book/box/box_space.rst:636
 msgid "If there is an existing tuple which matches the key fields of ``tuple_value``, then the request has the same effect as :ref:`space_object:update() <box_space-update>` and the ``{{operator, field_no, value}, ...}`` parameter is used. If there is no existing tuple which matches the key fields of ``tuple_value``, then the request has the same effect as :ref:`space_object:insert() <box_space-insert>` and the ``{tuple_value}`` parameter is used. However, unlike ``insert`` or ``update``, ``upsert`` will not read a tuple and perform error checks before returning -- this is a design feature which enhances throughput but requires more caution on the part of the user."
 msgstr ""
 
-#: ../book/box/box_space.rst:602
+#: ../book/box/box_space.rst:646
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :samp:`{tuple_value}` (type = Lua table or scalar) = field values, must be passed as a Lua table; :codeitalic:`{operator, field_no, value}` (type = Lua table) = a group of arguments for each operation, indicating what the operation is, what field the operation will apply to, and what value will be applied. The field number can be negative, meaning the position from the end of the tuple (#tuple + negative field number + 1)."
 msgstr ""
 
-#: ../book/box/box_space.rst:611
+#: ../book/box/box_space.rst:655
 msgid "null."
 msgstr ""
 
-#: ../book/box/box_space.rst:613
+#: ../book/box/box_space.rst:657
 msgid "Possible errors: it is illegal to modify a primary-key field. It is illegal to use upsert with a space that has a unique secondary index."
 msgstr ""
 
-#: ../book/box/box_space.rst:616
+#: ../book/box/box_space.rst:660
 msgid "**Complexity factors:** Index size, Index type, number of indexes accessed, WAL settings."
 msgstr ""
 
-#: ../book/box/box_space.rst:621
+#: ../book/box/box_space.rst:665
 msgid "box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})"
 msgstr ""
 
-#: ../book/box/box_space.rst:629
+#: ../book/box/box_space.rst:673
 msgid "Delete a tuple identified by a primary key."
 msgstr ""
 
-#: ../book/box/box_space.rst:631
+#: ../book/box/box_space.rst:675
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>` :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index key, which may be multi-part."
 msgstr ""
 
-#: ../book/box/box_space.rst:635
+#: ../book/box/box_space.rst:679
 msgid "the deleted tuple"
 msgstr ""
 
-#: ../book/box/box_space.rst:638
+#: ../book/box/box_space.rst:682
 msgid "**Complexity Factors:** Index size, Index type"
 msgstr ""
 
-#: ../book/box/box_space.rst:644
+#: ../book/box/box_space.rst:688
 msgid "tarantool> box.space.tester:delete(1)\n"
 "---\n"
 "- [1, 'My first tuple']\n"
@@ -5967,26 +6087,26 @@ msgid "tarantool> box.space.tester:delete(1)\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:663
+#: ../book/box/box_space.rst:707
 msgid "Ordinal space number. Spaces can be referenced by either name or number. Thus, if space ``tester`` has ``id = 800``, then ``box.space.tester:insert{0}`` and ``box.space[800]:insert{0}`` are equivalent requests."
 msgstr ""
 
-#: ../book/box/box_space.rst:672
+#: ../book/box/box_space.rst:716
 msgid "tarantool> box.space.tester.id\n"
 "---\n"
 "- 512\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:683
+#: ../book/box/box_space.rst:727
 msgid "Whether or not this space is enabled. The value is ``false`` if the space has no index."
 msgstr ""
 
-#: ../book/box/box_space.rst:692
+#: ../book/box/box_space.rst:736
 msgid "The required field count for all tuples in this space. The field_count can be set initially with:"
 msgstr ""
 
-#: ../book/box/box_space.rst:698
+#: ../book/box/box_space.rst:742
 msgid "box.schema.space.create(..., {\n"
 "    ... ,\n"
 "    field_count = *field_count_value* ,\n"
@@ -5994,22 +6114,22 @@ msgid "box.schema.space.create(..., {\n"
 "})"
 msgstr ""
 
-#: ../book/box/box_space.rst:704
+#: ../book/box/box_space.rst:748
 msgid "The default value is ``0``, which means there is no required field count."
 msgstr ""
 
-#: ../book/box/box_space.rst:710
+#: ../book/box/box_space.rst:754
 msgid "tarantool> box.space.tester.field_count\n"
 "---\n"
 "- 0\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:719
+#: ../book/box/box_space.rst:763
 msgid "A container for all defined indexes. There is a Lua object of type :ref:`box.index <box_index>` with methods to search tuples and iterate over them in predefined order."
 msgstr ""
 
-#: ../book/box/box_space.rst:729
+#: ../book/box/box_space.rst:773
 msgid "tarantool> #box.space.tester.index\n"
 "---\n"
 "- 1\n"
@@ -6020,49 +6140,49 @@ msgid "tarantool> #box.space.tester.index\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:744
+#: ../book/box/box_space.rst:788
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the primary index key, which may be multi-part; :codeitalic:`iterator` = comparison method."
 msgstr ""
 
-#: ../book/box/box_space.rst:748
+#: ../book/box/box_space.rst:792
 msgid "Number of tuples."
 msgstr ""
 
-#: ../book/box/box_space.rst:752
+#: ../book/box/box_space.rst:796
 msgid "tarantool> box.space.tester:count(2, {iterator='GE'})\n"
 "---\n"
 "- 1\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:765
+#: ../book/box/box_space.rst:809
 msgid "Number of tuples in the space."
 msgstr ""
 
-#: ../book/box/box_space.rst:769
+#: ../book/box/box_space.rst:813
 msgid "tarantool> box.space.tester:len()\n"
 "---\n"
 "- 2\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:776
+#: ../book/box/box_space.rst:820
 msgid "Note re storage engine: vinyl does not support :codenormal:`len(...)`. One possible workaround is to say :codenormal:`#select(...)`."
 msgstr ""
 
-#: ../book/box/box_space.rst:783
+#: ../book/box/box_space.rst:827
 msgid "Deletes all tuples. Note that ``truncate`` must be called only by the user who created the space OR under a `setuid` function created by that user. Read more about `setuid` functions :ref:`here <authentication-funcs>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:789
+#: ../book/box/box_space.rst:833
 msgid "**Complexity Factors:** Index size, Index type, Number of tuples accessed."
 msgstr ""
 
-#: ../book/box/box_space.rst:793
+#: ../book/box/box_space.rst:837
 msgid "Note re storage engine: vinyl does not support ``truncate``."
 msgstr ""
 
-#: ../book/box/box_space.rst:797
+#: ../book/box/box_space.rst:841
 msgid "tarantool> box.space.tester:truncate()\n"
 "---\n"
 "...\n"
@@ -6072,19 +6192,19 @@ msgid "tarantool> box.space.tester:truncate()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:811
+#: ../book/box/box_space.rst:855
 msgid "Insert a new tuple using an auto-increment primary key. The space specified by space_object must have a ``NUM`` primary key index of type ``TREE``. The primary-key field will be incremented before the insert. Note re storage engine: vinyl does not support auto_increment."
 msgstr ""
 
-#: ../book/box/box_space.rst:816
+#: ../book/box/box_space.rst:860
 msgid "Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`; :codeitalic:`field-value(s)` (type = Lua table or scalar) = tuple's fields, other than the primary-key field."
 msgstr ""
 
-#: ../book/box/box_space.rst:825
+#: ../book/box/box_space.rst:869
 msgid "Possible errors: index has wrong type or primary-key indexed field is not a number."
 msgstr ""
 
-#: ../book/box/box_space.rst:829
+#: ../book/box/box_space.rst:873
 msgid "tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}\n"
 "---\n"
 "- [1, 'Fld#1', 'Fld#2']\n"
@@ -6095,15 +6215,15 @@ msgid "tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:844
+#: ../book/box/box_space.rst:888
 msgid "A helper function to prepare for iterating over all tuples in a space."
 msgstr ""
 
-#: ../book/box/box_space.rst:848
+#: ../book/box/box_space.rst:892
 msgid "function which can be used in a for/end loop. Within the loop, a value is returned for each iteration."
 msgstr ""
 
-#: ../book/box/box_space.rst:853
+#: ../book/box/box_space.rst:897
 msgid "tarantool> s = box.schema.space.create('space33')\n"
 "---\n"
 "...\n"
@@ -6130,15 +6250,15 @@ msgid "tarantool> s = box.schema.space.create('space33')\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:884
+#: ../book/box/box_space.rst:928
 msgid "``_schema`` is a system tuple set. Its single tuple contains these fields: ``'version', major-version-number, minor-version-number``."
 msgstr ""
 
-#: ../book/box/box_space.rst:889
+#: ../book/box/box_space.rst:933
 msgid "The following function will display all fields in all tuples of ``_schema``:"
 msgstr ""
 
-#: ../book/box/box_space.rst:891
+#: ../book/box/box_space.rst:935
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line\n"
@@ -6155,13 +6275,13 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:908
-#: ../book/box/box_space.rst:950
-#: ../book/box/box_space.rst:1043
+#: ../book/box/box_space.rst:952
+#: ../book/box/box_space.rst:994
+#: ../book/box/box_space.rst:1087
 msgid "Here is what ``example()`` returns in a typical installation:"
 msgstr ""
 
-#: ../book/box/box_space.rst:910
+#: ../book/box/box_space.rst:954
 msgid "tarantool> example()\n"
 "---\n"
 "- - 'cluster 1ec4e1f8-8f1b-4304-bb22-6c47ce0cf9c6 '\n"
@@ -6170,15 +6290,15 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:923
+#: ../book/box/box_space.rst:967
 msgid "``_space`` is a system tuple set. Its tuples contain these fields: ``id``, ``uid``, ``space-name``, ``engine``, ``field_count``, ``temporary``, ``format``. These fields are established by :ref:`space.create() <box_schema-space_create>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:929
+#: ../book/box/box_space.rst:973
 msgid "The following function will display all simple fields in all tuples of ``_space``."
 msgstr ""
 
-#: ../book/box/box_space.rst:931
+#: ../book/box/box_space.rst:975
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line\n"
@@ -6197,7 +6317,7 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:952
+#: ../book/box/box_space.rst:996
 msgid "tarantool> example()\n"
 "---\n"
 "- - '272 1 _schema memtx 0  '\n"
@@ -6216,11 +6336,11 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:973
+#: ../book/box/box_space.rst:1017
 msgid "The following requests will create a space using ``box.schema.space.create`` with a ``format`` clause. Then it retrieves the _space tuple for the new space. This illustrates the typical use of the ``format`` clause, it shows the recommended names and data types for the fields."
 msgstr ""
 
-#: ../book/box/box_space.rst:979
+#: ../book/box/box_space.rst:1023
 msgid "tarantool> box.schema.space.create('TM', {\n"
 "         >   format = {\n"
 "         >     [1] = {[\"name\"] = \"field#1\"},\n"
@@ -6244,15 +6364,15 @@ msgid "tarantool> box.schema.space.create('TM', {\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1007
+#: ../book/box/box_space.rst:1051
 msgid "``_index`` is a system tuple set. Its tuples contain these fields: ``space-id index-id index-name index-type is-index-unique [tuple-field-no, tuple-field-type ...]``."
 msgstr ""
 
-#: ../book/box/box_space.rst:1011
+#: ../book/box/box_space.rst:1055
 msgid "The following function will display all fields in all tuples of ``_index``: (notice that the fifth field gets special treatment as a map value and the sixth or later fields get special treatment as arrays):"
 msgstr ""
 
-#: ../book/box/box_space.rst:1015
+#: ../book/box/box_space.rst:1059
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line, value\n"
@@ -6280,7 +6400,7 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:1045
+#: ../book/box/box_space.rst:1089
 msgid "tarantool> example()\n"
 "---\n"
 "- - '272 0 primary tree true 0 str '\n"
@@ -6320,27 +6440,27 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1089
+#: ../book/box/box_space.rst:1133
 msgid "``_user`` is a system tuple set for support of the :ref:`authorization feature <authentication>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1096
+#: ../book/box/box_space.rst:1140
 msgid "``_priv`` is a system tuple set for support of the :ref:`authorization feature <authentication>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1103
+#: ../book/box/box_space.rst:1147
 msgid "``_cluster`` is a system tuple set for support of the :ref:`replication feature <index-box_replication>`."
 msgstr ""
 
-#: ../book/box/box_space.rst:1108
+#: ../book/box/box_space.rst:1152
 msgid "Example: use box.space functions to read _space tuples"
 msgstr ""
 
-#: ../book/box/box_space.rst:1110
+#: ../book/box/box_space.rst:1154
 msgid "This function will illustrate how to look at all the spaces, and for each display: approximately how many tuples it contains, and the first field of its first tuple. The function uses Tarantool ``box.space`` functions ``len()`` and ``pairs()``. The iteration through the spaces is coded as a scan of the ``_space`` system tuple set, which contains metadata. The third field in ``_space`` contains the space name, so the key instruction ``space_name = v[3]`` means ``space_name`` is the ``space_name`` field in the tuple of ``_space`` that we've just fetched with ``pairs()``. The function returns a table:"
 msgstr ""
 
-#: ../book/box/box_space.rst:1120
+#: ../book/box/box_space.rst:1164
 msgid "function example()\n"
 "  local tuple_count, space_name, line\n"
 "  local ta = {}\n"
@@ -6364,11 +6484,11 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../book/box/box_space.rst:1144
+#: ../book/box/box_space.rst:1188
 msgid "And here is what happens when one invokes the function:"
 msgstr ""
 
-#: ../book/box/box_space.rst:1146
+#: ../book/box/box_space.rst:1190
 msgid "tarantool> example()\n"
 "---\n"
 "- - _schema tuple_count =1 or more. first field in first tuple = cluster\n"
@@ -6386,35 +6506,35 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../book/box/box_space.rst:1166
+#: ../book/box/box_space.rst:1210
 msgid "Example: use box.space functions to organize a _space tuple"
 msgstr ""
 
-#: ../book/box/box_space.rst:1168
+#: ../book/box/box_space.rst:1212
 msgid "The objective is to display field names and field types of a system space -- using metadata to find metadata."
 msgstr ""
 
-#: ../book/box/box_space.rst:1171
+#: ../book/box/box_space.rst:1215
 msgid "To begin: how can one select the _space tuple that describes _space?"
 msgstr ""
 
-#: ../book/box/box_space.rst:1173
+#: ../book/box/box_space.rst:1217
 msgid "A simple way is to look at the constants in box.schema, which tell us that there is an item named SPACE_ID == 288, so these statements will retrieve the correct tuple: |br| :codenormal:`box.space._space:select{288}` |br| or |br| :codenormal:`box.space._space:select{box.schema.SPACE_ID}` |br|"
 msgstr ""
 
-#: ../book/box/box_space.rst:1180
+#: ../book/box/box_space.rst:1224
 msgid "Another way is to look at the tuples in box.space._index, which tell us that there is a secondary index named 'name' for space number 288, so this statement also will retrieve the correct tuple: |br| :codenormal:`box.space._space.index.name:select{'_space'}`"
 msgstr ""
 
-#: ../book/box/box_space.rst:1185
+#: ../book/box/box_space.rst:1229
 msgid "However, the retrieved tuple is not easy to read: |br| :codenormal:`tarantool>` :codebold:`box.space._space.index.name:select{'_space'}` |br| :codenormal:`---` |br| :codenormal:`- - [280, 1, '_space', 'memtx', 0, '', [{'name': 'id',` |br| |nbsp| |nbsp| |nbsp| :codenormal:`'type': 'num'}, {'name': 'owner','type': 'num'},` |br| |nbsp| |nbsp| |nbsp| :codenormal:`{'name': 'name','type': 'str'}, {'name': 'engine',` |br| |nbsp| |nbsp| |nbsp| :codenormal:`'type': 'str'},{'name': 'field_count', 'type': 'num'},` |br| |nbsp| |nbsp| |nbsp| :codenormal:`{'name': 'flags','type': 'str'}, {'name': 'format',` |br| |nbsp| |nbsp| |nbsp| :codenormal:`'type': '*'}]]` |br| |nbsp| |nbsp| |nbsp| :codenormal:`...`"
 msgstr ""
 
-#: ../book/box/box_space.rst:1196
+#: ../book/box/box_space.rst:1240
 msgid "It looks disorganized because field number 7 has been formatted with recommended names and data types. How can one get those specific sub-fields? Since it's visible that field number 7 is an array of maps, this `for` loop will do the organizing: |br| :codenormal:`local tuple_of_space, field_name, field_type` |br| :codenormal:`tuple_of_space = box.space._space.index.name:select{'_space'}[1]` |br| :codenormal:`for i = 1, #tuple_of_space[7], 1` |br| :codenormal:`do` |br| |nbsp| |nbsp| |nbsp| :codenormal:`field_name = tuple_of_space[7][i]['name']` |br| |nbsp| |nbsp| |nbsp| :codenormal:`field_type = tuple_of_space[7][i]['type']` |br| |nbsp| |nbsp| |nbsp| :codenormal:`print(field_name .. ',' ..field_type)` |br| :codenormal:`end`"
 msgstr ""
 
-#: ../book/box/box_space.rst:1210
+#: ../book/box/box_space.rst:1254
 msgid "And here is what happens when one executes the `for` loop: |br| :codenormal:`id,num` |br| :codenormal:`owner,num` |br| :codenormal:`name,str` |br| :codenormal:`engine,str` |br| :codenormal:`field_count,num` |br| :codenormal:`flags,str` |br| :codenormal:`format,*`"
 msgstr ""
 
@@ -6920,22 +7040,26 @@ msgid "A *tuple* is returned in YAML format like ``- [120, 'a', 'b', 'c']``. A f
 msgstr ""
 
 #: ../book/box/index.rst:227
+msgid "Some of the data types may be used in :ref:`indexed fields <details_about_index_field_types>`."
+msgstr ""
+
+#: ../book/box/index.rst:229
 msgid "For more tuple examples see :ref:`box.tuple <box_tuple>`."
 msgstr ""
 
-#: ../book/box/index.rst:231
+#: ../book/box/index.rst:233
 msgid "Operations"
 msgstr ""
 
-#: ../book/box/index.rst:233
+#: ../book/box/index.rst:235
 msgid "The basic operations are: the five data-change operations (insert, update, upsert, delete, replace), and the data-retrieval operation (select). There are also minor operations like “ping” which can only be used with the binary protocol. Also, there are :ref:`index iterator <box_index-index_pairs>` operations, which can only be used with Lua code. (Index iterators are for traversing indexes one key at a time, taking advantage of features that are specific to an index type, for example evaluating Boolean expressions when traversing BITSET indexes, or going in descending order when traversing TREE indexes.)"
 msgstr ""
 
-#: ../book/box/index.rst:244
+#: ../book/box/index.rst:246
 msgid "Six examples of basic operations:"
 msgstr ""
 
-#: ../book/box/index.rst:246
+#: ../book/box/index.rst:248
 msgid "-- Add a new tuple to tuple set tester.\n"
 "-- The first field, field[1], will be 999 (type is NUM).\n"
 "-- The second field, field[2], will be 'Taranto' (type is STR).\n"
@@ -6970,109 +7094,109 @@ msgid "-- Add a new tuple to tuple set tester.\n"
 "tarantool> box.space.tester:delete{999}"
 msgstr ""
 
-#: ../book/box/index.rst:281
+#: ../book/box/index.rst:283
 msgid "How does Tarantool do a basic operation? Let's take this example:"
 msgstr ""
 
-#: ../book/box/index.rst:283
+#: ../book/box/index.rst:285
 msgid "tarantool> box.space.tester:update({3}, {{'=', 2, 'size'}, {'=', 3, 0}})"
 msgstr ""
 
-#: ../book/box/index.rst:287
+#: ../book/box/index.rst:289
 msgid "which, for those who know SQL, is equivalent to a statement like"
 msgstr ""
 
-#: ../book/box/index.rst:289
+#: ../book/box/index.rst:291
 msgid "UPDATE tester SET \"field[2]\" = 'size', \"field[3]\" = 0 WHERE \"field[[1]\" = 3"
 msgstr ""
 
-#: ../book/box/index.rst:293
+#: ../book/box/index.rst:295
 msgid "**STEP #1**: if this is happening on a remote client, then the client parses the statement and changes it to a binary-protocol instruction which has already been checked, and which the server can understand without needing to parse everything again. The client ships a packet to the server."
 msgstr ""
 
-#: ../book/box/index.rst:299
+#: ../book/box/index.rst:301
 msgid "**STEP #2**: the server's “transaction processor” thread uses the primary-key index on field[1] to find the location of the tuple in memory. It determines that the tuple can be updated (not much can go wrong when you're merely changing an unindexed field value to something shorter)."
 msgstr ""
 
-#: ../book/box/index.rst:305
+#: ../book/box/index.rst:307
 msgid "**STEP #3**: the transaction processor thread sends a message to the write-ahead logging (WAL) thread."
 msgstr ""
 
-#: ../book/box/index.rst:308
+#: ../book/box/index.rst:310
 msgid "At this point a *yield* takes place. To know the significance of that -- and it's quite significant -- you have to know a few facts and a few new words."
 msgstr ""
 
-#: ../book/box/index.rst:312
+#: ../book/box/index.rst:314
 msgid "**FACT #1**: there is only one transaction processor thread. Some people are used to the idea that there can be multiple threads operating on the database, with (say) thread #1 reading row #x while thread#2 writes row#y. With Tarantool no such thing ever happens. Only the transaction processor thread can access the database, and there is only one transaction processor thread for each instance of the server."
 msgstr ""
 
-#: ../book/box/index.rst:320
+#: ../book/box/index.rst:322
 msgid "**FACT #2**: the transaction processor thread can handle many *fibers*. A fiber is a set of computer instructions that may contain \"yield\" signals. The transaction processor thread will execute all computer instructions until a yield, then switch to execute the instructions of a different fiber. Thus (say) the thread reads row#x for the sake of fiber#1, then writes row#y for the sake of fiber#2."
 msgstr ""
 
-#: ../book/box/index.rst:329
+#: ../book/box/index.rst:331
 msgid "**FACT #3**: yields must happen, otherwise the transaction processor thread would stick permanently on the same fiber. There are :ref:`implicit yields <atomic-the_implicit_yield_rules>`: every data-change operation or network-access causes an implicit yield, and every statement that goes through the tarantool client causes an implicit yield. And there are explicit yields: in a Lua function one can and should add “yield” statements to prevent hogging. This is called *cooperative multitasking*."
 msgstr ""
 
-#: ../book/box/index.rst:338
+#: ../book/box/index.rst:340
 msgid "Since all data-change operations end with an implicit yield and an implicit commit, and since no data-change operation can change more than one tuple, there is no need for any locking. Consider, for example, a Lua function that does three Tarantool operations:"
 msgstr ""
 
-#: ../book/box/index.rst:343
+#: ../book/box/index.rst:345
 msgid "s:select{999}             -- this does not yield and does not commit\n"
 "s:update({...},{{...}})   -- this yields and commits\n"
 "s:select{999}             -- this does not yield and does not commit"
 msgstr ""
 
-#: ../book/box/index.rst:349
+#: ../book/box/index.rst:351
 msgid "The combination “SELECT plus UPDATE” is an atomic transaction: the function holds a consistent view of the database until the UPDATE ends. For the combination “UPDATE plus SELECT” the view is not consistent, because after the UPDATE the transaction processor thread can switch to another fiber, and delete the tuple that was just updated. Note re storage engine: vinyl handles yields differently, see :ref:`differences between memtx and vinyl <vinyl_diff>`. Note re multi-request transactions: there is a way to delay yields, see :ref:`Atomic execution <atomic-atomic_execution>`."
 msgstr ""
 
-#: ../book/box/index.rst:359
+#: ../book/box/index.rst:361
 msgid "Since locks don't exist, and disk writes only involve the write-ahead log, transactions are usually fast. Also the Tarantool server may not be using up all the threads of a powerful multi-core processor, so advanced users may be able to start a second Tarantool server on the same processor without ill effects."
 msgstr ""
 
-#: ../book/box/index.rst:364
+#: ../book/box/index.rst:366
 msgid "Additional examples of requests can be found in the Tarantool regression test suite (https://github.com/tarantool/tarantool/tree/1.7/test/box). A complete grammar of supported data-manipulation functions will come later in this chapter."
 msgstr ""
 
-#: ../book/box/index.rst:368
+#: ../book/box/index.rst:370
 msgid "Since not all Tarantool operations can be expressed with the data-manipulation functions, or with Lua, to gain complete access to data manipulation functionality one must use a :ref:`Perl, PHP, Python or other programming language connector <index-box_connectors>`. The client/server protocol is open and documented. See this :ref:`annotated BNF <box_protocol-iproto_protocol>`."
 msgstr ""
 
-#: ../book/box/index.rst:377
+#: ../book/box/index.rst:379
 msgid "Saving To Disk"
 msgstr ""
 
-#: ../book/box/index.rst:379
+#: ../book/box/index.rst:381
 msgid "Tarantool maintains a set of write-ahead log (WAL) files. There is a separate thread -- the WAL writer -- which catches all requests that can change a database, such as box.schema.create or box.space.insert. Ordinarily the WAL writer writes the request, along with administrative fields and flags, to a WAL file immediately. This ensures data persistence, because, even if an in-memory database is lost when the power goes off, Tarantool recovers it automatically when it starts up again, by reading the WAL files and redoing the requests (this is called the \"recovery process\"). Users can change the timing of the WAL writer, or turn it off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`."
 msgstr ""
 
-#: ../book/box/index.rst:391
+#: ../book/box/index.rst:393
 msgid "Tarantool also maintains a set of snapshot files. A snapshot file is an on-disk copy of the entire data set for a given moment. Instead of reading every WAL file since the databases were created, the recovery process can load the latest snapshot and then read only the WAL files that were produced after the snapshot was made. A snapshot can be made even if there is no WAL file. Some snapshots are automatic, or users can make them at any time with the :ref:`box.snapshot() <admin-snapshot>` request."
 msgstr ""
 
-#: ../book/box/index.rst:400
+#: ../book/box/index.rst:402
 msgid "Details about the WAL writer and the recovery process are in the :ref:`Internals <b_internals>` section."
 msgstr ""
 
-#: ../book/box/index.rst:405
+#: ../book/box/index.rst:407
 msgid "Data manipulation"
 msgstr ""
 
-#: ../book/box/index.rst:407
+#: ../book/box/index.rst:409
 msgid "The basic *data-manipulation* requests are: ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``select``. All of them are part of the ``box`` library. Most of them may return data. Usually both inputs and outputs are Lua tables."
 msgstr ""
 
-#: ../book/box/index.rst:411
+#: ../book/box/index.rst:413
 msgid "The Lua syntax for data-manipulation functions can vary. Here are examples of the variations with ``select`` requests; the same rules exist for the other data-manipulation functions. Every one of the examples does the same thing: select a tuple set from a space named 'tester' where the primary-key field value equals 1. For the examples there is an assumption that the numeric id of 'tester' is 512, which happens to be the case in our sandbox example only."
 msgstr ""
 
-#: ../book/box/index.rst:420
+#: ../book/box/index.rst:422
 msgid "First, there are five *object reference variations*:"
 msgstr ""
 
-#: ../book/box/index.rst:422
+#: ../book/box/index.rst:424
 msgid "-- #1 package . sub-package . name\n"
 "tarantool> box.space.tester:select{1}\n"
 "-- #2 replace name with a literal in square brackets\n"
@@ -7087,19 +7211,19 @@ msgid "-- #1 package . sub-package . name\n"
 "tarantool> s:select{1}"
 msgstr ""
 
-#: ../book/box/index.rst:437
+#: ../book/box/index.rst:439
 msgid "Later examples in this manual will usually have the \":samp:`box.space.{tester}:`\" form (#1); however, this is a matter of user preference and all the variations exist in the wild."
 msgstr ""
 
-#: ../book/box/index.rst:441
+#: ../book/box/index.rst:443
 msgid "Later descriptions in this manual will use the syntax \":code:`space_object:`\" for references to objects which are spaces as in the above examples, and \":code:`index_object:`\" for references to objects which are indexes (for example :samp:`box.space.{tester}.index.{primary}:`)."
 msgstr ""
 
-#: ../book/box/index.rst:447
+#: ../book/box/index.rst:449
 msgid "Then, there are seven *parameter variations*:"
 msgstr ""
 
-#: ../book/box/index.rst:449
+#: ../book/box/index.rst:451
 msgid "-- #1\n"
 "tarantool> box.space.tester:select{1}\n"
 "-- #2\n"
@@ -7118,88 +7242,88 @@ msgid "-- #1\n"
 "tarantool> box.space.tester:select(variable)"
 msgstr ""
 
-#: ../book/box/index.rst:468
+#: ../book/box/index.rst:470
 msgid "The primary-key value is enclosed in braces, and if it was a multi-part primary key then the value would be multi-part, for example ``...select{1,2,3}``. The braces can be enclosed inside parentheses — ``...select({...})`` — which are optional unless it is necessary to pass something besides the primary-key value, as in example #5. Literal values such as 1 (a scalar value) or {1} (a Lua table value) may be replaced by variable names, as in examples #6 and #7. Although there are special cases where braces can be omitted, they are preferable because they signal \"Lua table\". Examples and descriptions in this manual have the \"{1}\" form; however, this too is a matter of user preference and all the variations exist in the wild."
 msgstr ""
 
-#: ../book/box/index.rst:482
+#: ../book/box/index.rst:484
 msgid "All the data-manipulation functions operate on tuple sets but, since primary keys are unique, the number of tuples in the tuple set is always 0 or 1. The only exception is ``box.space...select``, which may accept either a primary-key value or a secondary-key value."
 msgstr ""
 
-#: ../book/box/index.rst:489
+#: ../book/box/index.rst:491
 msgid "Index operations"
 msgstr ""
 
-#: ../book/box/index.rst:491
+#: ../book/box/index.rst:493
 msgid "Index operations are automatic: if a data-manipulation request changes a tuple, then it also changes the index keys defined for the tuple. Therefore the user only needs to know how and why to define."
 msgstr ""
 
-#: ../book/box/index.rst:496
+#: ../book/box/index.rst:498
 msgid "The simple index-creation operation which has been illustrated before is:|br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')` |br|"
 msgstr ""
 
-#: ../book/box/index.rst:499
+#: ../book/box/index.rst:501
 msgid "By default, this creates a unique \"tree\" index on the first field of all tuples (often called \"Field#1\"), which is assumed to be numeric."
 msgstr ""
 
-#: ../book/box/index.rst:502
-#: ../book/box/index.rst:546
+#: ../book/box/index.rst:504
+#: ../book/box/index.rst:548
 msgid "These variations exist:"
 msgstr ""
 
-#: ../book/box/index.rst:504
+#: ../book/box/index.rst:506
 msgid "An indexed field may be a string rather than a number.|br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name',{parts = {1, 'STR'}})` |br| For an ordinary index, the most common data types are 'NUM' = numeric = any non-negative integer, or 'STR' ='string' = any series of bytes. Numbers are ordered according to their point on the number line -- so 2345 is greater than 500 -- while strings are ordered according to the encoding of the first byte then the encoding of the second byte then the encoding of the third byte and so on -- so '2345' is less than '500'."
 msgstr ""
 
-#: ../book/box/index.rst:515
+#: ../book/box/index.rst:517
 msgid "For details about other index types see :ref:`create_index <box_space-create_index>`."
 msgstr ""
 
-#: ../book/box/index.rst:517
+#: ../book/box/index.rst:519
 msgid "There may be more than one field.|br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {parts = {3, 'NUM', 2, 'STR'}})` |br| For an ordinary index, the maximum number of parts is 255. The specification of each part consists of a field number and a type."
 msgstr ""
 
-#: ../book/box/index.rst:523
+#: ../book/box/index.rst:525
 msgid "The index does not have to be unique. |br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {unique=false})` |br| The first index of a tuple set must be unique, but other indexes (\"secondary\" indexes) may be non-unique."
 msgstr ""
 
-#: ../book/box/index.rst:528
+#: ../book/box/index.rst:530
 msgid "The index does not have to be a tree. |br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name', {type='hash'})` |br| The two ordinary index types are 'tree' which is the default, and 'hash' which must be unique and which may be faster or smaller. The third type is 'bitset' which is not unique and which works best for combinations of binary values. The fourth type is 'rtree' which is not unique and which, instead of 'STR' or 'NUM' values, works with arrays."
 msgstr ""
 
-#: ../book/box/index.rst:537
+#: ../book/box/index.rst:539
 msgid "The existence of indexes does not affect the syntax of data-change requests, but does cause select requests to have more variety."
 msgstr ""
 
-#: ../book/box/index.rst:540
+#: ../book/box/index.rst:542
 msgid "The simple select request which has been illustrated before is: |br| :samp:`box.space.{space-name}:select(value)` |br| By default, this looks for a single tuple via the first index. Since the first index is always unique, the maximum number of returned tuples will be: one."
 msgstr ""
 
-#: ../book/box/index.rst:548
+#: ../book/box/index.rst:550
 msgid "The search can use comparisons other than equality. |br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select('value', {iterator='GT'})` |br| The comparison operators are LT LE EQ REQ GE GT for \"less than\" \"less than or equal\" \"equal\" \"reversed equal\" \"greater than or equal\" \"greater than\" respectively. Comparisons make sense if and only if the index type is 'tree'."
 msgstr ""
 
-#: ../book/box/index.rst:556
+#: ../book/box/index.rst:558
 msgid "This type of search may return more than one tuple; if so, the tuples will be in descending order by key when the comparison operator is LT or LE or REQ, otherwise in ascending order."
 msgstr ""
 
-#: ../book/box/index.rst:561
+#: ../book/box/index.rst:563
 msgid "The search can use a secondary index. |br| :samp:`box.space.{space-name}.index.{index-name}:select('value')` |br| For a primary-key search, it is optional to specify an index name. For a secondary-key search, it is mandatory."
 msgstr ""
 
-#: ../book/box/index.rst:566
+#: ../book/box/index.rst:568
 msgid "The search may be for some or all key parts. |br| Suppose an index has two parts: {1,'NUM', 2, 'STR'}. |br| Suppose the space has three tuples: {1, 'A'},{1, 'B'},{2, ''}. |br| The search can be for all fields, using a table for the value: |br| :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:select({1, 'A'})` |br| or the search can be for one field, using a table or a scalar: |br| :samp:`box.space.{space-name}:select(1)` |br| in the second case, the result will be two tuples: {1, 'A'} and {1, 'B'}. It's even possible to specify zero fields, causing all three tuples to be returned."
 msgstr ""
 
-#: ../book/box/index.rst:578
+#: ../book/box/index.rst:580
 msgid "Examples:"
 msgstr ""
 
-#: ../book/box/index.rst:580
+#: ../book/box/index.rst:582
 msgid "BITSET example:"
 msgstr ""
 
-#: ../book/box/index.rst:582
+#: ../book/box/index.rst:584
 msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example:create_index('primary')\n"
 "tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'NUM'}})\n"
@@ -7210,31 +7334,31 @@ msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example.index.bitset:select(2, {iterator='BITS_ANY_SET'})"
 msgstr ""
 
-#: ../book/box/index.rst:593
-#: ../book/box/index.rst:618
+#: ../book/box/index.rst:595
+#: ../book/box/index.rst:620
 msgid "The result will be:"
 msgstr ""
 
-#: ../book/box/index.rst:595
+#: ../book/box/index.rst:597
 msgid "---\n"
 "- - [3, 7]\n"
 "- [4, 3]\n"
 "..."
 msgstr ""
 
-#: ../book/box/index.rst:602
+#: ../book/box/index.rst:604
 msgid "because (7 AND 2) is not equal to 0, and (3 AND 2) is not equal to 0."
 msgstr ""
 
-#: ../book/box/index.rst:604
+#: ../book/box/index.rst:606
 msgid "Searches on BITSET indexes can be for BITS_ANY_SET, BITS_ALL_SET, BITS_ALL_NOT_SET, EQ, or ALL."
 msgstr ""
 
-#: ../book/box/index.rst:607
+#: ../book/box/index.rst:609
 msgid "RTREE example:"
 msgstr ""
 
-#: ../book/box/index.rst:609
+#: ../book/box/index.rst:611
 msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example:create_index('primary')\n"
 "tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})\n"
@@ -7243,93 +7367,93 @@ msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})"
 msgstr ""
 
-#: ../book/box/index.rst:620
+#: ../book/box/index.rst:622
 msgid "---\n"
 "- - [1, [3, 5, 9, 10]]\n"
 "..."
 msgstr ""
 
-#: ../book/box/index.rst:626
+#: ../book/box/index.rst:628
 msgid "because a rectangle whose corners are at coordinates 4,7,5,9 is entirely within a rectangle whose corners are at coordinates 3,5,9,10."
 msgstr ""
 
-#: ../book/box/index.rst:629
+#: ../book/box/index.rst:631
 msgid "Searches on RTREE indexes can be for GT, GE, LT, LE, OVERLAPS, or NEIGHBOR."
 msgstr ""
 
-#: ../book/box/index.rst:635
+#: ../book/box/index.rst:637
 msgid "The box library"
 msgstr ""
 
-#: ../book/box/index.rst:637
+#: ../book/box/index.rst:639
 msgid "As well as executing Lua chunks or defining their own functions, users can exploit the Tarantool server's storage functionality with the ``Lua library``."
 msgstr ""
 
-#: ../book/box/index.rst:642
+#: ../book/box/index.rst:644
 msgid "Packages of the box library"
 msgstr ""
 
-#: ../book/box/index.rst:644
+#: ../book/box/index.rst:646
 msgid "The contents of the ``box`` library can be inspected at runtime with ``box``, with no arguments. The packages inside the box library are: ``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``. Every package contains one or more Lua functions. A few packages contain members as well as functions. The functions allow data definition (create alter drop), data manipulation (insert delete update upsert select replace), and introspection (inspecting contents of spaces, accessing server configuration)."
 msgstr ""
 
-#: ../book/box/index.rst:656
+#: ../book/box/index.rst:658
 msgid "**Complexity Factors that may affect data manipulation functions in the box library**"
 msgstr ""
 
-#: ../book/box/index.rst:663
+#: ../book/box/index.rst:665
 msgid "Index size"
 msgstr ""
 
-#: ../book/box/index.rst:663
+#: ../book/box/index.rst:665
 msgid "The number of index keys is the same as the number of tuples in the data set. For a TREE index, if there are more keys then the lookup time will be greater, although of course the effect is not linear. For a HASH index, if there are more keys then there is more RAM use, but the number of low-level steps tends to remain constant."
 msgstr ""
 
-#: ../book/box/index.rst:671
+#: ../book/box/index.rst:673
 msgid "Index type"
 msgstr ""
 
-#: ../book/box/index.rst:671
+#: ../book/box/index.rst:673
 msgid "Typically a HASH index is faster than a TREE index if the number of tuples in the tuple set is greater than one."
 msgstr ""
 
-#: ../book/box/index.rst:675
+#: ../book/box/index.rst:677
 msgid "Number of indexes accessed"
 msgstr ""
 
-#: ../book/box/index.rst:675
+#: ../book/box/index.rst:677
 msgid "Ordinarily only one index is accessed to retrieve one tuple. But to update the tuple, there must be N accesses if the tuple set has N different indexes."
 msgstr ""
 
-#: ../book/box/index.rst:679
+#: ../book/box/index.rst:681
 msgid "Number of tuples accessed"
 msgstr ""
 
-#: ../book/box/index.rst:679
+#: ../book/box/index.rst:681
 msgid "A few requests, for example select, can retrieve multiple tuples. This factor is usually less important than the others."
 msgstr ""
 
-#: ../book/box/index.rst:683
+#: ../book/box/index.rst:685
 msgid "WAL settings"
 msgstr ""
 
-#: ../book/box/index.rst:683
+#: ../book/box/index.rst:685
 msgid "The important setting for the write-ahead log is :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. If the setting causes no writing or delayed writing, this factor is unimportant. If the setting causes every data-change request to wait for writing to finish on a slow device, this factor is more important than all the others."
 msgstr ""
 
-#: ../book/box/index.rst:692
+#: ../book/box/index.rst:694
 msgid "In the discussion of each data-manipulation function there will be a note about which Complexity Factors might affect the function's resource usage."
 msgstr ""
 
-#: ../book/box/index.rst:699
+#: ../book/box/index.rst:701
 msgid "The two storage engines: memtx and vinyl"
 msgstr ""
 
-#: ../book/box/index.rst:701
+#: ../book/box/index.rst:703
 msgid "A storage engine is a set of very-low-level routines which actually store and retrieve tuple values. Tarantool offers a choice of two storage engines: memtx (the in-memory storage engine) and vinyl (the on-disk storage engine). To specify that the engine should be vinyl, add a clause: ``engine = 'vinyl'``. The manual concentrates on memtx because it is the default and has been around longer. But vinyl is a working key-value engine and will especially appeal to users who like to see data go directly to disk, so that recovery time might be shorter and database size might be larger. For architectural explanations and benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`. On the other hand, vinyl lacks some functions and options that are available with memtx. Where that is the case, the relevant description will contain a note beginning with the words \"Note re storage engine: vinyl\". The end of this chapter has coverage for all :ref:`the differences between memtx and vinyl <vinyl_diff>`."
 msgstr ""
 
-#: ../book/box/index.rst:718
+#: ../book/box/index.rst:720
 msgid "Library Reference"
 msgstr ""
 
@@ -7353,91 +7477,87 @@ msgstr ""
 msgid "128 (``box.schema.INDEX_MAX``)."
 msgstr ""
 
-#: ../book/box/limitations.rst:44
-msgid "Note re storage engine: vinyl allows 1 index in a space."
-msgstr ""
-
-#: ../book/box/limitations.rst:48
+#: ../book/box/limitations.rst:46
 msgid "**Number of fields in a tuple**"
 msgstr ""
 
-#: ../book/box/limitations.rst:50
+#: ../book/box/limitations.rst:48
 msgid "The theoretical maximum is 2147483647 (``box.schema.FIELD_MAX``). The practical maximum is whatever is specified by the space's :ref:`field_count <box_space-field_count>` member, or the maximum tuple length."
 msgstr ""
 
-#: ../book/box/limitations.rst:57
+#: ../book/box/limitations.rst:55
 msgid "**Number of bytes in a tuple**"
 msgstr ""
 
-#: ../book/box/limitations.rst:59
+#: ../book/box/limitations.rst:57
 msgid "By default the value of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` is 1048576, and the maximum tuple length is approximately one quarter of that: approximately 262,000 bytes. To increase it, when starting the server, specify a larger value. For example :code:`box.cfg{slab_alloc_maximal=2*1048576}`."
 msgstr ""
 
-#: ../book/box/limitations.rst:67
+#: ../book/box/limitations.rst:65
 msgid "**Number of bytes in an index key**"
 msgstr ""
 
-#: ../book/box/limitations.rst:69
+#: ../book/box/limitations.rst:67
 msgid "If a field in a tuple can contain a million bytes, then the index key can contain a million bytes, so the maximum is determined by factors such as :ref:`Number of bytes in a tuple <limitations_bytes_in_tuple>`, not by the index support."
 msgstr ""
 
-#: ../book/box/limitations.rst:76
+#: ../book/box/limitations.rst:74
 msgid "**Number of spaces**"
 msgstr ""
 
-#: ../book/box/limitations.rst:78
+#: ../book/box/limitations.rst:76
 msgid "The theoretical maximum is 2147483647 (``box.schema.SPACE_MAX``)."
 msgstr ""
 
-#: ../book/box/limitations.rst:82
+#: ../book/box/limitations.rst:80
 msgid "**Number of connections**"
 msgstr ""
 
-#: ../book/box/limitations.rst:84
+#: ../book/box/limitations.rst:82
 msgid "The practical limit is the number of file descriptors that one can set with the operating system."
 msgstr ""
 
-#: ../book/box/limitations.rst:89
+#: ../book/box/limitations.rst:87
 msgid "**Space size**"
 msgstr ""
 
-#: ../book/box/limitations.rst:91
+#: ../book/box/limitations.rst:89
 msgid "The total maximum size for all spaces is in effect set by :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`, which in turn is limited by the total available memory."
 msgstr ""
 
-#: ../book/box/limitations.rst:97
+#: ../book/box/limitations.rst:95
 msgid "**Update operations count**"
 msgstr ""
 
-#: ../book/box/limitations.rst:99
+#: ../book/box/limitations.rst:97
 msgid "The maximum number of operations that can be in a single update is 4000 (``BOX_UPDATE_OP_CNT_MAX``)."
 msgstr ""
 
-#: ../book/box/limitations.rst:104
+#: ../book/box/limitations.rst:102
 msgid "**Number of users and roles**"
 msgstr ""
 
-#: ../book/box/limitations.rst:106
+#: ../book/box/limitations.rst:104
 msgid "32 (BOX_USER_MAX)."
 msgstr ""
 
-#: ../book/box/limitations.rst:110
+#: ../book/box/limitations.rst:108
 msgid "**Length of an index name or space name or user name**"
 msgstr ""
 
-#: ../book/box/limitations.rst:112
+#: ../book/box/limitations.rst:110
 msgid "32 (``box.schema.NAME_MAX``)."
 msgstr ""
 
-#: ../book/box/limitations.rst:116
+#: ../book/box/limitations.rst:114
 msgid "**Number of replicas in a cluster**"
 msgstr ""
 
-#: ../book/box/limitations.rst:118
+#: ../book/box/limitations.rst:116
 msgid "32 (``box.schema.REPLICA_MAX``)."
 msgstr ""
 
-#: ../book/box/limitations.rst:122
+#: ../book/box/limitations.rst:120
 msgid "For additional limitations which apply only to the vinyl storage engine, see section :ref:`Differences between memtx and vinyl <vinyl_diff>`."
 msgstr ""
 
@@ -7698,38 +7818,34 @@ msgid "Here are behavior differences which affect programmers. All of these diff
 msgstr ""
 
 #: ../book/box/vinyl_diff.rst:49
-msgid "With memtx, the maximum number of indexes per space is 128. |br| With vinyl, the maximum is 1, that is, only primary indexes are supported. Since primary indexes are always unique, it follows that vinyl indexes must be unique."
-msgstr ""
-
-#: ../book/box/vinyl_diff.rst:53
 msgid "With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br| With vinyl, the only index type is TREE."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:56
+#: ../book/box/vinyl_diff.rst:52
 msgid "With memtx, for index searches, ``nil`` is considered to be equal to any scalar. With vinyl, ``nil`` or missing parts are not allowed."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:59
+#: ../book/box/vinyl_diff.rst:55
 msgid "With memtx, temporary spaces are supported. |br| With vinyl, they are not."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:62
+#: ../book/box/vinyl_diff.rst:58
 msgid "With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>` and :ref:`random() <box_index-random>` and :ref:`auto_increment() <box_space-auto_increment>` and :ref:`truncate() <box_space-truncate>` functions are supported. |br| With vinyl, they are not."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:67
+#: ../book/box/vinyl_diff.rst:63
 msgid "With memtx, the :ref:`count() <box_index-count>` function takes a constant amount of time. |br| With vinyl, it takes a variable amount of time depending on index size."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:71
+#: ../book/box/vinyl_diff.rst:67
 msgid "With memtx, delete will return deleted tuple, if any. |br| With vinyl, delete will always return nil."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:74
+#: ../book/box/vinyl_diff.rst:70
 msgid "It was explained :ref:`earlier <index-yields_must_happen>` that memtx does not \"yield\" on a select request, it yields only on data-change requests. However, vinyl does yield on a select request, or on an equivalent such as get() or pairs(). This has significance for :ref:`cooperative multitasking <atomic-cooperative_multitasking>`."
 msgstr ""
 
-#: ../book/box/vinyl_diff.rst:79
+#: ../book/box/vinyl_diff.rst:75
 msgid "For more about vinyl, see Appendix D :ref:`vinyl <index-vinyl>`."
 msgstr ""
 
@@ -7789,58 +7905,58 @@ msgid "“Target” is the platform tarantool was built on. Some platform-specif
 msgstr ""
 
 #: ../book/configuration/index.rst:88
-msgid "Tarantool uses `git describe`_ to produce its version id, and this id can be used at any time to check out the corresponding source from our `git repository`_."
+msgid "Tarantool uses `git describe <http://www.kernel.org/pub/software/scm/git/docs/git-describe.html>`_ to produce its version id, and this id can be used at any time to check out the corresponding source from our `git repository <http://github.com/tarantool/tarantool.git>`_."
 msgstr ""
 
-#: ../book/configuration/index.rst:99
+#: ../book/configuration/index.rst:98
 msgid "URI"
 msgstr ""
 
-#: ../book/configuration/index.rst:101
-msgid "Some configuration parameters and some functions depend on a URI, or \"Universal Resource Identifier\". The URI string format is similar to the `generic syntax for a URI schema`_. So it may contain (in order) a user name for login, a password, a host name or host IP address, and a port number. Only the port number is always mandatory. The password is mandatory if the user name is specified, unless the user name is 'guest'. So, formally, the URI syntax is ``[host:]port`` or ``[username:password@]host:port``. If host is omitted, then '0.0.0.0' or '[::]' is assumed, meaning respectively any IPv4 address or any IPv6 address, on the local machine. If username:password is omitted, then 'guest' is assumed. Some examples:"
+#: ../book/configuration/index.rst:100
+msgid "Some configuration parameters and some functions depend on a URI, or \"Universal Resource Identifier\". The URI string format is similar to the `generic syntax for a URI schema <http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax>`_. So it may contain (in order) a user name for login, a password, a host name or host IP address, and a port number. Only the port number is always mandatory. The password is mandatory if the user name is specified, unless the user name is 'guest'. So, formally, the URI syntax is ``[host:]port`` or ``[username:password@]host:port``. If host is omitted, then '0.0.0.0' or '[::]' is assumed, meaning respectively any IPv4 address or any IPv6 address, on the local machine. If username:password is omitted, then 'guest' is assumed. Some examples:"
 msgstr ""
 
-#: ../book/configuration/index.rst:121
+#: ../book/configuration/index.rst:119
 msgid "URI fragment"
 msgstr ""
 
-#: ../book/configuration/index.rst:123
+#: ../book/configuration/index.rst:121
 msgid "port"
 msgstr ""
 
-#: ../book/configuration/index.rst:123
+#: ../book/configuration/index.rst:121
 msgid "3301"
 msgstr ""
 
-#: ../book/configuration/index.rst:125
+#: ../book/configuration/index.rst:123
 msgid "host:port"
 msgstr ""
 
-#: ../book/configuration/index.rst:125
+#: ../book/configuration/index.rst:123
 msgid "127.0.0.1:3301"
 msgstr ""
 
-#: ../book/configuration/index.rst:127
+#: ../book/configuration/index.rst:125
 msgid "username:password@host:port"
 msgstr ""
 
-#: ../book/configuration/index.rst:127
+#: ../book/configuration/index.rst:125
 msgid "notguest:sesame@mail.ru:3301"
 msgstr ""
 
-#: ../book/configuration/index.rst:130
+#: ../book/configuration/index.rst:128
 msgid "In certain circumstances a Unix domain socket may be used where a URI is expected, for example \"unix/:/tmp/unix_domain_socket.sock\" or simply \"/tmp/unix_domain_socket.sock\"."
 msgstr ""
 
-#: ../book/configuration/index.rst:138
+#: ../book/configuration/index.rst:136
 msgid "Initialization file"
 msgstr ""
 
-#: ../book/configuration/index.rst:140
+#: ../book/configuration/index.rst:138
 msgid "If the command to start Tarantool includes :codeitalic:`lua-initialization-file`, then Tarantool begins by invoking the Lua program in the file, which by convention may have the name \"``script.lua``\". The Lua program may get further arguments from the command line or may use operating-system functions, such as ``getenv()``. The Lua program almost always begins by invoking ``box.cfg()``, if the database server will be used or if ports need to be opened. For example, suppose ``script.lua`` contains the lines"
 msgstr ""
 
-#: ../book/configuration/index.rst:148
+#: ../book/configuration/index.rst:146
 msgid "#!/usr/bin/env tarantool\n"
 "box.cfg{\n"
 "    listen              = os.getenv(\"LISTEN_URI\"),\n"
@@ -7851,11 +7967,11 @@ msgid "#!/usr/bin/env tarantool\n"
 "print('Starting ', arg[1])"
 msgstr ""
 
-#: ../book/configuration/index.rst:159
+#: ../book/configuration/index.rst:157
 msgid "and suppose the environment variable LISTEN_URI contains 3301, and suppose the command line is ``~/tarantool/src/tarantool script.lua ARG``. Then the screen might look like this:"
 msgstr ""
 
-#: ../book/configuration/index.rst:163
+#: ../book/configuration/index.rst:161
 msgid "$ export LISTEN_URI=3301\n"
 "$ ~/tarantool/src/tarantool script.lua ARG\n"
 "... main/101/script.lua C> version 1.7.0-1216-g73f7154\n"
@@ -7869,39 +7985,39 @@ msgid "$ export LISTEN_URI=3301\n"
 "... main C> entering the event loop"
 msgstr ""
 
-#: ../book/configuration/index.rst:177
+#: ../book/configuration/index.rst:175
 msgid "If one wishes to start an interactive session on the same terminal after initialization is complete, one can use :ref:`console.start() <console-start>`."
 msgstr ""
 
-#: ../book/configuration/index.rst:191
+#: ../book/configuration/index.rst:189
 msgid "Configuration parameters"
 msgstr ""
 
-#: ../book/configuration/index.rst:193
+#: ../book/configuration/index.rst:191
 msgid "Configuration parameters have the form:"
 msgstr ""
 
-#: ../book/configuration/index.rst:198
+#: ../book/configuration/index.rst:196
 msgid "box.cfg{ *key = value* [, *key = value* ...]]"
 msgstr ""
 
-#: ../book/configuration/index.rst:200
+#: ../book/configuration/index.rst:198
 msgid "Since ``box.cfg`` may contain many configuration parameters and since some of the parameters (such as directory addresses) are semi-permanent, it's best to keep ``box.cfg`` in a Lua file. Typically this Lua file is the initialization file which is specified on the tarantool command line."
 msgstr ""
 
-#: ../book/configuration/index.rst:205
+#: ../book/configuration/index.rst:203
 msgid "Most configuration parameters are for allocating resources, opening ports, and specifying database behavior. All parameters are optional. A few parameters are dynamic, that is, they can be changed at runtime by calling ``box.cfg{}`` a second time."
 msgstr ""
 
-#: ../book/configuration/index.rst:210
+#: ../book/configuration/index.rst:208
 msgid "To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a particular parameter, for example the listen address, say ``box.cfg.listen``."
 msgstr ""
 
-#: ../book/configuration/index.rst:213
+#: ../book/configuration/index.rst:211
 msgid "The following sections describe all parameters for basic operation, for storage, for binary logging and snapshots, for replication, for networking, and for logging."
 msgstr ""
 
-#: ../book/configuration/index.rst:218
+#: ../book/configuration/index.rst:216
 msgid "Basic parameters"
 msgstr ""
 
@@ -7967,7 +8083,7 @@ msgstr ""
 #: ../book/configuration/cfg_basic.rst:71
 #: ../book/configuration/cfg_basic.rst:113
 #: ../book/configuration/cfg_basic.rst:144
-#: ../book/configuration/cfg_logging.rst:85
+#: ../book/configuration/cfg_logging.rst:88
 msgid "Type: string |br| Default: null |br| Dynamic: no |br|"
 msgstr ""
 
@@ -8005,7 +8121,7 @@ msgstr ""
 msgid "A directory where database working files will be stored. The server switches to work_dir with :manpage:`chdir(2)` after start. Can be relative to the current directory. If not specified, defaults to the current directory. Other directory parameters may be relative to work_dir, for example |br| :codenormal:`box.cfg{work_dir='/home/user/A',wal_dir='B',snap_dir='C'}` |br| will put xlog files in /home/user/A/B, snapshot files in /home/user/A/C, and all other files or sub-directories in /home/user/A."
 msgstr ""
 
-#: ../book/configuration/index.rst:224
+#: ../book/configuration/index.rst:222
 msgid "Configuring the storage"
 msgstr ""
 
@@ -8045,7 +8161,7 @@ msgstr ""
 msgid "The default vinyl configuration can be changed with"
 msgstr ""
 
-#: ../book/configuration/cfg_storage.rst:436
+#: ../book/configuration/cfg_storage.rst:434
 msgid "vinyl = {\n"
 "  branch_age_wm = *number*,\n"
 "  branch_age_period = *number of seconds*,\n"
@@ -8065,7 +8181,7 @@ msgstr ""
 msgid "Default values are:"
 msgstr ""
 
-#: ../book/configuration/cfg_storage.rst:453
+#: ../book/configuration/cfg_storage.rst:451
 msgid "vinyl = {\n"
 "  branch_age_wm = 0,\n"
 "  branch_age_period = 0,\n"
@@ -8077,7 +8193,7 @@ msgid "vinyl = {\n"
 "}"
 msgstr ""
 
-#: ../book/configuration/index.rst:232
+#: ../book/configuration/index.rst:230
 msgid "Snapshot daemon"
 msgstr ""
 
@@ -8120,7 +8236,7 @@ msgstr ""
 msgid "Type: integer |br| Default: 6 |br| Dynamic: yes |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:238
+#: ../book/configuration/index.rst:236
 msgid "Binary logging and snapshots"
 msgstr ""
 
@@ -8133,7 +8249,7 @@ msgid "If there is an error while reading the snapshot file (at server start), a
 msgstr ""
 
 #: ../book/configuration/cfg_binary_logging_snapshots.rst:15
-#: ../book/configuration/cfg_logging.rst:99
+#: ../book/configuration/cfg_logging.rst:102
 msgid "Type: boolean |br| Default: true |br| Dynamic: no |br|"
 msgstr ""
 
@@ -8190,7 +8306,7 @@ msgstr ""
 msgid "Type: float |br| Default: 2 |br| Dynamic: no |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:244
+#: ../book/configuration/index.rst:242
 #: ../book/replication/index.rst:30
 msgid "Replication"
 msgstr ""
@@ -8215,7 +8331,7 @@ msgstr ""
 msgid "Type: string |br| Default: null |br| Dynamic: **yes** |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:250
+#: ../book/configuration/index.rst:248
 msgid "Networking"
 msgstr ""
 
@@ -8235,7 +8351,7 @@ msgstr ""
 msgid "Type: integer |br| Default: 16320 |br| Dynamic: **yes** |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:256
+#: ../book/configuration/index.rst:254
 msgid "Logging"
 msgstr ""
 
@@ -8281,7 +8397,7 @@ msgstr ""
 
 #: ../book/configuration/cfg_logging.rst:31
 #: ../book/configuration/cfg_logging.rst:43
-#: ../book/configuration/cfg_logging.rst:56
+#: ../book/configuration/cfg_logging.rst:57
 msgid "Example setting:"
 msgstr ""
 
@@ -8302,10 +8418,10 @@ msgid "box.cfg{logger = '| cronolog tarantool.log'}\n"
 msgstr ""
 
 #: ../book/configuration/cfg_logging.rst:51
-msgid "This will start the program ``cronolog`` when the server starts, and will send all log messages to the standard input (``stdin``) of cronolog. If the ``logger`` string begins with '|' or has the prefix \"pipe:\", then the string is interpreted as a Unix `pipeline`_."
+msgid "This will start the program ``cronolog`` when the server starts, and will send all log messages to the standard input (``stdin``) of cronolog. If the ``logger`` string begins with '|' or has the prefix \"pipe:\", then the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:58
+#: ../book/configuration/cfg_logging.rst:59
 msgid "box.cfg{logger = 'syslog:identity=tarantool'}\n"
 "-- or\n"
 "box.cfg{logger = 'syslog:facility=user'}\n"
@@ -8313,135 +8429,135 @@ msgid "box.cfg{logger = 'syslog:identity=tarantool'}\n"
 "box.cfg{logger = 'syslog:identity=tarantool,facility=user'}"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:66
-msgid "If the ``logger`` string has the prefix \"syslog:\", then the string is interpreted as a message for the `syslogd`_ program which normally is running in the background of any Unix-like platform. One can optionally specify an ``identity``, a ``facility``, or both. The ``identity`` is an arbitrary string, default value = ``tarantool``, which will be placed at the beginning of all messages. The facility is an abbreviation for the name of one of the `syslog`_ facilities, default value = ``user``, which tell syslogd where the message should go."
+#: ../book/configuration/cfg_logging.rst:67
+msgid "If the ``logger`` string has the prefix \"syslog:\", then the string is interpreted as a message for the `syslogd <http://www.rfc-base.org/txt/rfc-5424.txt>`_ program which normally is running in the background of any Unix-like platform. One can optionally specify an ``identity``, a ``facility``, or both. The ``identity`` is an arbitrary string, default value = ``tarantool``, which will be placed at the beginning of all messages. The facility is an abbreviation for the name of one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_ facilities, default value = ``user``, which tell syslogd where the message should go."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:75
+#: ../book/configuration/cfg_logging.rst:78
 msgid "Possible values for ``facility`` are: auth, authpriv, cron, daemon, ftp, kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2, local3, local4, local5, local6, local7."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:79
+#: ../book/configuration/cfg_logging.rst:82
 msgid "The ``facility`` setting is currently ignored but will be used in the future."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:81
+#: ../book/configuration/cfg_logging.rst:84
 msgid "When logging to a file, tarantool reopens the log on SIGHUP. When log is a program, its pid is saved in the :ref:`log.logger_pid <log-logger_pid>` variable. You need to send it a signal to rotate logs."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:93
+#: ../book/configuration/cfg_logging.rst:96
 msgid "If ``logger_nonblock`` equals true, Tarantool does not block on the log file descriptor when it’s not ready for write, and drops the message instead. If :ref:`log_level <cfg_logging-log_level>` is high, and a lot of messages go to the log file, setting ``logger_nonblock`` to true may improve logging performance at the cost of some log messages getting lost."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:107
+#: ../book/configuration/cfg_logging.rst:110
 msgid "If processing a request takes longer than the given value (in seconds), warn about it in the log. Has effect only if :ref:`log_level <cfg_logging-log_level>` is more than or equal to 4 (WARNING)."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:111
+#: ../book/configuration/cfg_logging.rst:114
 msgid "Type: float |br| Default: 0.5 |br| Dynamic: **yes** |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:117
-msgid "**Logging Example:**"
-msgstr ""
-
-#: ../book/configuration/cfg_logging.rst:119
-msgid "This will illustrate how \"rotation\" works, that is, what happens when the server is writing to a log and signals are used when archiving it."
+#: ../book/configuration/cfg_logging.rst:120
+msgid "**Logging example:**"
 msgstr ""
 
 #: ../book/configuration/cfg_logging.rst:122
-msgid "Start with two terminal shells, Terminal #1 and Terminal#2."
+msgid "This will illustrate how \"rotation\" works, that is, what happens when the server is writing to a log and signals are used when archiving it."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:124
-msgid "On Terminal#1: start an interactive Tarantool session, then say the logging will go to \"Log_file\", then put a message \"Log Line #1\" in the log file:"
+#: ../book/configuration/cfg_logging.rst:125
+msgid "Start with two terminal shells, Terminal #1 and Terminal #2."
 msgstr ""
 
 #: ../book/configuration/cfg_logging.rst:127
+msgid "On Terminal #1: start an interactive Tarantool session, then say the logging will go to `Log_file`, then put a message \"Log Line #1\" in the log file:"
+msgstr ""
+
+#: ../book/configuration/cfg_logging.rst:130
 msgid "box.cfg{logger='Log_file'}\n"
 "log = require('log')\n"
 "log.info('Log Line #1')"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:133
-msgid "On Terminal#2: use :codenormal:`mv` so the log file is now named \"Log_file.bak\". The result of this is: the next log message will go to Log_file.bak. |br|"
+#: ../book/configuration/cfg_logging.rst:136
+msgid "On Terminal #2: use ``mv`` so the log file is now named `Log_file.bak`. The result of this is: the next log message will go to `Log_file.bak`. |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:846
+#: ../book/configuration/cfg_logging.rst:847
 msgid "mv Log_file Log_file.bak"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:141
-msgid "On Terminal#1: put a message \"Log Line #2\" in the log file. |br|"
+#: ../book/configuration/cfg_logging.rst:144
+msgid "On Terminal #1: put a message \"Log Line #2\" in the log file. |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:143
+#: ../book/configuration/cfg_logging.rst:146
 msgid "log.info('Log Line #2')"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:147
-msgid "On Terminal#2: use :codenormal:`ps` to find the process ID of the Tarantool server. |br|"
+#: ../book/configuration/cfg_logging.rst:150
+msgid "On Terminal #2: use ``ps`` to find the process ID of the Tarantool server. |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:859
+#: ../book/configuration/cfg_logging.rst:860
 msgid "ps -A | grep tarantool"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:154
-msgid "On Terminal#2: use 'kill -HUP' to send a SIGHUP signal to the Tarantool server. The result of this is: Tarantool will open Log_file again, and the next log message will go to Log_file. (The same effect could be accomplished by executing log.rotate() on the server.) |br|"
+#: ../book/configuration/cfg_logging.rst:157
+msgid "On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool server. The result of this is: Tarantool will open `Log_file` again, and the next log message will go to `Log_file`. (The same effect could be accomplished by executing log.rotate() on the server.) |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:869
+#: ../book/configuration/cfg_logging.rst:870
 msgid "kill -HUP *process_id*"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:164
-msgid "On Terminal#1: put a message \"Log Line #3\" in the log file."
+#: ../book/configuration/cfg_logging.rst:167
+msgid "On Terminal #1: put a message \"Log Line #3\" in the log file."
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:166
+#: ../book/configuration/cfg_logging.rst:169
 msgid "log.info('Log Line #3')"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:170
-msgid "On Terminal#2: use 'less' to examine files. Log_file.bak will have these lines, except that the date and time will depend on when the example is done:"
+#: ../book/configuration/cfg_logging.rst:173
+msgid "On Terminal #2: use ``less`` to examine files. `Log_file.bak` will have these lines, except that the date and time will depend on when the example is done:"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:883
+#: ../book/configuration/cfg_logging.rst:884
 msgid "2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`\n"
 "2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:179
-msgid "and Log_file will have"
+#: ../book/configuration/cfg_logging.rst:182
+msgid "and `Log_file` will have"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:891
+#: ../internal padding after book/configuration/cfg_logging.rst:892
 msgid "log file has been reopened\n"
 "2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3"
 msgstr ""
 
-#: ../book/configuration/index.rst:264
+#: ../book/configuration/index.rst:262
 msgid "Local hot standby"
 msgstr ""
 
-#: ../book/configuration/index.rst:266
+#: ../book/configuration/index.rst:264
 msgid "Local hot standby is a feature which provides a simple form of failover without replication. To initiate it, start a second instance of the Tarantool server on the same computer with the same :ref:`box.cfg <box_introspection-box_cfg>` configuration settings - including the same directories and same non-null URIs. A warning should appear with a message like"
 msgstr ""
 
-#: ../book/configuration/index.rst:272
+#: ../book/configuration/index.rst:270
 msgid "W> primary: [URI] is already in use, will retry binding after [n] seconds"
 msgstr ""
 
-#: ../book/configuration/index.rst:276
+#: ../book/configuration/index.rst:274
 msgid "This is fine. It means that the second instance is ready to take over if the first instance goes down."
 msgstr ""
 
-#: ../book/configuration/index.rst:279
+#: ../book/configuration/index.rst:277
 msgid "The expectation is that there will be two instances of the server using the same configuration. The first one to start will be the \"primary\" instance. The second one to start will be the \"standby\" instance. The standby instance will initialize and will try to connect on listen address, but will fail because the primary instance has already taken it. So the standby instance goes into a loop, reading the write ahead log which the primary instance is writing (so the two instances are always in synch), and trying to connect on the port. If the primary instance goes down for any reason, the port will become free so the standby instance will succeed in connecting, and will become the primary instance. Thus there is no noticeable downtime if the primary instance goes down."
 msgstr ""
 
-#: ../book/configuration/index.rst:291
+#: ../book/configuration/index.rst:289
 msgid "If this local_hot_standby feature is being used, then wal_mode should not be equal to \"none\"."
 msgstr ""
 
@@ -8703,7 +8819,7 @@ msgid "<?php\n"
 "$tarantool = new Tarantool('localhost', 3301);\n"
 "\n"
 "try {\n"
-"    $tarantool->insert('examples', [99999, 'BB']);\n"
+"    $tarantool->insert('examples', array(99999, 'BB'));\n"
 "    echo \"Insert succeeded\\n\";\n"
 "} catch (Exception $e) {\n"
 "    echo \"Exception: \", $e->getMessage(), \"\\n\";\n"
@@ -9347,7 +9463,7 @@ msgid "Q: What if there are more than two servers with master-master? |br| A: On
 msgstr ""
 
 #: ../book/replication/index.rst:267
-msgid "Q: What if a server should be taken out of the cluster? |br| A: Run ``box.cfg{}`` again specifying a blank replication source: |br| ``box.cfg{replication_source=''}``"
+msgid "Q: What if a server should be taken out of the cluster? |br| A: For a replica, run ``box.cfg{}`` again specifying a blank replication source: |br| ``box.cfg{replication_source=''}``"
 msgstr ""
 
 #: ../book/replication/index.rst:271

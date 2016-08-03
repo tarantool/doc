@@ -51,7 +51,8 @@
     This will start the program ``cronolog`` when the server starts, and
     will send all log messages to the standard input (``stdin``) of cronolog.
     If the ``logger`` string begins with '|' or has the prefix "pipe:",
-    then the string is interpreted as a Unix `pipeline`_.
+    then the string is interpreted as a Unix
+    `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
     Example setting:
 
@@ -64,12 +65,14 @@
         box.cfg{logger = 'syslog:identity=tarantool,facility=user'}
 
     If the ``logger`` string has the prefix "syslog:", then the string is
-    interpreted as a message for the `syslogd`_ program which normally is
-    running in the background of any Unix-like platform. One can optionally
+    interpreted as a message for the
+    `syslogd <http://www.rfc-base.org/txt/rfc-5424.txt>`_ program which normally
+    is running in the background of any Unix-like platform. One can optionally
     specify an ``identity``, a ``facility``, or both. The ``identity`` is an
     arbitrary string, default value = ``tarantool``, which will be placed at
     the beginning of all messages. The facility is an abbreviation for the
-    name of one of the `syslog`_ facilities, default value = ``user``, which
+    name of one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_ 
+    facilities, default value = ``user``, which
     tell syslogd where the message should go.
 
     Possible values for ``facility`` are: auth, authpriv, cron, daemon, ftp,
@@ -114,15 +117,15 @@
 
 .. _cfg_logging-logging_example:
 
-**Logging Example:**
+**Logging example:**
 
 This will illustrate how "rotation" works, that is, what happens when
 the server is writing to a log and signals are used when archiving it.
 
-Start with two terminal shells, Terminal #1 and Terminal#2.
+Start with two terminal shells, Terminal #1 and Terminal #2.
 
-On Terminal#1: start an interactive Tarantool session, then say the logging will
-go to "Log_file", then put a message "Log Line #1" in the log file:
+On Terminal #1: start an interactive Tarantool session, then say the logging will
+go to `Log_file`, then put a message "Log Line #1" in the log file:
 
 .. code-block:: lua
 
@@ -130,30 +133,30 @@ go to "Log_file", then put a message "Log Line #1" in the log file:
     log = require('log')
     log.info('Log Line #1')
 
-On Terminal#2: use :codenormal:`mv` so the log file is now named "Log_file.bak".
-The result of this is: the next log message will go to Log_file.bak. |br|
+On Terminal #2: use ``mv`` so the log file is now named `Log_file.bak`.
+The result of this is: the next log message will go to `Log_file.bak`. |br|
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     mv Log_file Log_file.bak
 
-On Terminal#1: put a message "Log Line #2" in the log file. |br|
+On Terminal #1: put a message "Log Line #2" in the log file. |br|
 
 .. code-block:: lua
 
     log.info('Log Line #2')
 
-On Terminal#2: use :codenormal:`ps` to find the process ID of the Tarantool server. |br|
+On Terminal #2: use ``ps`` to find the process ID of the Tarantool server. |br|
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     ps -A | grep tarantool
 
-On Terminal#2: use 'kill -HUP' to send a SIGHUP signal to the Tarantool server.
-The result of this is: Tarantool will open Log_file again, and
-the next log message will go to Log_file.
+On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool server.
+The result of this is: Tarantool will open `Log_file` again, and
+the next log message will go to `Log_file`.
 (The same effect could be accomplished by executing log.rotate() on the server.) |br|
 
 .. cssclass:: highlight
@@ -161,13 +164,13 @@ the next log message will go to Log_file.
 
     kill -HUP *process_id*
 
-On Terminal#1: put a message "Log Line #3" in the log file.
+On Terminal #1: put a message "Log Line #3" in the log file.
 
 .. code-block:: lua
 
     log.info('Log Line #3')
 
-On Terminal#2: use 'less' to examine files. Log_file.bak will have these lines,
+On Terminal #2: use ``less`` to examine files. `Log_file.bak` will have these lines,
 except that the date and time will depend on when the example is done:
 
 .. cssclass:: highlight
@@ -176,7 +179,7 @@ except that the date and time will depend on when the example is done:
     2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`
     2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`
 
-and Log_file will have
+and `Log_file` will have
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -184,6 +187,3 @@ and Log_file will have
     log file has been reopened
     2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3
 
-.. _pipeline: https://en.wikipedia.org/wiki/Pipeline_%28Unix%29
-.. _syslogd: https://en.wikipedia.org/wiki/Syslog
-.. _syslog: http://www.rfc-base.org/txt/rfc-5424.txt

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 16:58+0300\n"
+"POT-Creation-Date: 2016-08-03 13:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2306,7 +2306,7 @@ msgid "Use non-separated links instead:"
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:119
-msgid "This is a paragraph that contains `a link <http://example.com/>`."
+msgid "This is a paragraph that contains `a link <http://example.com/>`_."
 msgstr ""
 
 #: ../dev_guide/documentation_guidelines.rst:123

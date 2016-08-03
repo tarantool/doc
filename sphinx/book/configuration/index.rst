@@ -60,12 +60,11 @@ Tarantool is started by entering the command:
 
     .. NOTE::
 
-        Tarantool uses `git describe`_ to produce its version id, and this id
-        can be used at any time to check out the corresponding source from our
-        `git repository`_.
-
-.. _git describe: http://www.kernel.org/pub/software/scm/git/docs/git-describe.html
-.. _git repository: http://github.com/tarantool/tarantool.git
+        Tarantool uses
+        `git describe <http://www.kernel.org/pub/software/scm/git/docs/git-describe.html>`_
+        to produce its version id, and this id can be used at any time to check
+        out the corresponding source from our
+        `git repository <http://github.com/tarantool/tarantool.git>`_.
 
 .. _index-uri:
 
@@ -75,7 +74,8 @@ Tarantool is started by entering the command:
 
 Some configuration parameters and some functions depend on a URI, or
 "Universal Resource Identifier". The URI string format is similar to the
-`generic syntax for a URI schema`_. So it may contain (in order) a user name
+`generic syntax for a URI schema <http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax>`_.
+So it may contain (in order) a user name
 for login, a password, a host name or host IP address, and a port number. Only
 the port number is always mandatory. The password is mandatory if the user
 name is specified, unless the user name is 'guest'. So, formally, the URI
@@ -84,8 +84,6 @@ If host is omitted, then '0.0.0.0' or '[::]' is assumed,
 meaning respectively any IPv4 address or any IPv6 address,
 on the local machine.
 If username:password is omitted, then 'guest' is assumed. Some examples:
-
-.. _generic syntax for a URI schema: http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax
 
     .. container:: table
 
