@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 13:30+0300\n"
-"PO-Revision-Date: 2016-08-03 14:31+0300\n"
+"POT-Creation-Date: 2016-08-03 18:18+0300\n"
+"PO-Revision-Date: 2016-08-03 18:18+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13055,8 +13055,11 @@ msgstr "Предисловие"
 #: ../book/intro.rst:30
 msgid ""
 "Welcome to Tarantool. This is the User Guide. We recommend reading this first, "
-"and afterwards reading the Reference Manual which has more detail."
+"and afterwards reading the Reference chapters which have more detail."
 msgstr ""
+"Добро пожаловать в мир Tarantool! Сейчас вы читаете \"Руководство пользователя"
+"\". Мы советуем начинать именно с него, а затем переходить к \"Справочникам\", "
+"если вам понадобятся более подробные сведения."
 
 #: ../book/intro.rst:36
 msgid "How to read the documentation"
@@ -13064,73 +13067,112 @@ msgstr "Как пользоваться документацией"
 
 #: ../book/intro.rst:38
 msgid ""
-"To get started, one can either download the whole package as described in the "
-"first part of Chapter 2 \"Getting started\", or one can initially skip the "
+"To get started, you can either download the whole package as described in the "
+"first part of Chapter 2 \"Getting started\", or you can initially skip the "
 "download and connect to the online Tarantool server running on the web at http://"
 "try.tarantool.org. Either way, the first tryout can be a matter of following the "
 "example in the second part of chapter 2: \"Starting Tarantool and making your "
 "first database\"."
 msgstr ""
+"Знакомство с Tarantool'ом вы можете начать с того, что скачаете готовый "
+"установочный пакет (как описано в начале главы 2 \"Начало работы\") или "
+"воспользуетесь нашим онлайн-стендом на http://try.tarantool.org. В любом случае "
+"для первого знакомства вы можете выполнить тренировочные примеры из второй части "
+"главы 2 \"Первичный запуск Tarantool'а и создание базы данных\"."
 
-#: ../book/intro.rst:45
+#: ../book/intro.rst:46
 msgid ""
 "Chapter 3 \"Database\" is about the Tarantool NoSQL DBMS. If the only intent is "
 "to use Tarantool as a Lua application server, most of the material in this "
 "chapter and in the following chapter (Chapter 4 \"Replication\") will not be "
-"necessary. Once again, the detailed instructions about each package can be "
-"regarded as reference material."
+"necessary. Once again, the detailed instructions about each package in chapter 3 "
+"\"Database\" can be regarded as reference material."
 msgstr ""
+"В главе 3 \"Функционал СУБД\" рассказано о возможностях Tarantool'а как NoSQL "
+"СУБД. В конце этой главы также приводится справочник по библиотекам Tarantool'а. "
+"Но если вы собираетесь использовать Tarantool только как сервер приложений Lua, "
+"то вы можете пропустить и эту, и следующую за ней главу 4 \"Репликация\"."
 
-#: ../book/intro.rst:51
+#: ../book/intro.rst:53
 msgid ""
-"Chapter 6 \"Server administration\" and Chapter 5 \"Configuration reference\" "
+"Chapter 5 \"Configuration reference\" and Chapter 6 \"Server administration\" "
 "are primarily for administrators; however, every user should know something "
-"about how the server is configured so the section about box.cfg is not "
+"about how the server is configured, so the section about box.cfg is not "
 "skippable. Chapter 7 \"Connectors\" is strictly for users who are connecting "
 "from a different language such as C or Perl or Python -- other users will find "
 "no immediate need for this chapter."
 msgstr ""
+"Глава 5 \"Справочник по конфигурированию\" и глава 6 \"Администрирование "
+"серверной части\" предназначены в первую очередь для системных администраторов. "
+"Тем не менее любому пользователю Tarantool'а полезно знать, как производится "
+"настройка Tarantool-сервера, поэтому мы настоятельно рекомендуем прочесть раздел "
+"про параметры ``box.cfg``. Глава 7 \"Коннекторы\" нужна только тем "
+"пользователям, кто хочет устанавливать соединение с Tarantool'ом с помощью "
+"программ на других языках программирования (например C, Perl или Python) -- для "
+"прочих пользователей эта глава неактуальна."
 
-#: ../book/intro.rst:57
+#: ../book/intro.rst:60
 msgid ""
-"The two long tutorials in Appendix C -- \"Insert one million tuples with a Lua "
-"stored procedure\" and \"Sum a JSON field for all tuples\" -- start slowly and "
-"contain commentary that is especially aimed at users who may not consider "
-"themselves experts at either Lua or NoSQL database management."
+"The first two Appendices, A and B, contain reference information about "
+"Tarantool's code errors, internal file formats and internal processes (recovery "
+"and replication)."
 msgstr ""
-
-#: ../book/intro.rst:61
-msgid ""
-"Finally, Appendix D \"Modules\" has examples that will be essential for those "
-"users who want to connect the Tarantool server to another DBMS: MySQL or "
-"PostgreSQL."
-msgstr ""
+"В первых двух Приложениях, A и B, приводится справочная информация по внутренней "
+"реализации Tarantool'а: коды ошибок, логика внутренних процессов (восстановления "
+"и репликации) и собственные форматы файлов."
 
 #: ../book/intro.rst:64
 msgid ""
-"For experienced users, there is also a reference manual plus developer's guide, "
-"and an extensive set of comments in the source code."
+"The three long tutorials in Appendix C -- \"Insert one million tuples with a Lua "
+"stored procedure\", \"Sum a JSON field for all tuples\" and \"Indexed Pattern "
+"Search\" -- start slowly and contain commentary that is especially aimed at "
+"users who may not consider themselves experts at either Lua or NoSQL database "
+"management."
 msgstr ""
+"Три длинных урока в Приложении C -- \"Вставка 1 млн таплов с помощью хранимой "
+"процедуры на языке Lua\", \"Подсчет суммы по JSON-полям во всех таплах\" и "
+"\"Индексированный поиск по шаблонам\"-- предназначены для пользователей, которые "
+"еще плохо знакомы с языком Lua или NoSQL СУБД."
 
 #: ../book/intro.rst:69
-msgid "Getting In Touch With The Tarantool Community"
+msgid ""
+"Finally, Appendix D \"Vinyl\" provides details about Tarantool's disk storage "
+"engine named `vinyl`."
+msgstr ""
+"Наконец, в Приложении D подробно рассказывается про дисковый движок Tarantool'а "
+"под названием `vinyl`."
+
+#: ../book/intro.rst:72
+msgid ""
+"For experienced users, there are also Reference parts plus Developer Guide, and "
+"an extensive set of comments in the source code."
+msgstr ""
+"Опытным же пользователям могут пригодиться Справочники и Руководство "
+"разработчика."
+
+#: ../book/intro.rst:77
+msgid "Getting in touch with the Tarantool community"
 msgstr "Как связаться с сообществом разработчиков Tarantool'а"
 
-#: ../book/intro.rst:71
+#: ../book/intro.rst:79
 msgid ""
-"Please report bugs or make feature requests at `http://github.com/tarantool/"
-"tarantool/issues`_."
+"Please report bugs or make feature requests at http://github.com/tarantool/"
+"tarantool/issues."
 msgstr ""
+"Оставить сообщение о найденых дефектах или сделать запрос на новый функционал "
+"можно тут: http://github.com/tarantool/tarantool/issues"
 
-#: ../book/intro.rst:73
+#: ../book/intro.rst:81
 msgid ""
-"You can contact developers directly on the `#tarantool` IRC channel on freenode."
-"net, or via a mailing list, `Tarantool Google group`_."
+"You can contact developers directly in `telegram <http://telegram.me/"
+"tarantool>`_ or in a Tarantool discussion group (`English <https://groups.google."
+"com/forum/#!forum/tarantool>`_ or `Russian <https://googlegroups.com/group/"
+"tarantool-ru>`_)."
 msgstr ""
-
-#: ../book/intro.rst:76
-msgid "There is also a `Forum for Russian speakers`_."
-msgstr ""
+"Пообщаться напрямую с командой разработки Tarantool'а можно в `telegram <http://"
+"telegram.me/tarantool>`_ или на форумах (`англоязычном <https://groups.google."
+"com/forum/#!forum/tarantool>`_ или `русскоязычном <https://googlegroups.com/"
+"group/tarantool-ru>`_)."
 
 #: ../book/replication/index.rst:32
 msgid ""
