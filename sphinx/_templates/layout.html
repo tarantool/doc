@@ -25,12 +25,13 @@
 {% endset %}
 
 {% block content %}
+  <section class="b-lightgray_block b-documentation_top b-clearbox p-documentation_in">
+    <div class="b-block-wrapper">
+      <h2 class="b-section-title">{{ title | cleantitle }}</h2>
+      {{- language_selector() -}}
+    </div>
+  </section>
   {% if render_sidebar %}
-    <section class="b-lightgray_block b-documentation_top b-clearbox p-documentation_in">
-      <div class="b-block-wrapper">
-        <h2 class="b-section-title">{{ title | cleantitle }}</h2>
-      </div>
-    </section>
     <div class="b-cols_content b-clearbox">
       <div class="b-cols_content_left">
         {% include "searchbox.html" %}
@@ -45,15 +46,9 @@
       </div>
     </div>
   {% else %}
-    <section class="b-lightgray_block b-documentation_top b-clearbox">
-      <div class="b-block-wrapper">
-        <h2 class="b-section-title">{{ title | cleantitle }}</h2>
-        {% include "searchbox.html" %}
-      </div>
-    </section>
     <section class="b-block b-documentation">
       <div class="b-block-wrapper">
-        {{- language_selector() -}}
+        {% include "searchbox.html" %}
         {{ content_pane }}
       </div>
     </section>

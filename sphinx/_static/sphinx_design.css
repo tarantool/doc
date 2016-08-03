@@ -648,8 +648,16 @@ table.border-0-column-2 td {
 
 .b-doc-language_selector-item-url,
 .b-doc-language_selector-item-url:hover {
-    color:inherit;
     text-decoration:none;
+}
+
+.b-doc-language_selector-item-url {
+    color: inherit;
+}
+
+.b-doc-language_selector-item-url:hover {
+    background: #dbdbdb;
+    color: #3366bb;
 }
 
 .b-doc-language_selector-item-url {
@@ -670,7 +678,8 @@ table.border-0-column-2 td {
 
 .b-doc-language_selector-item-url.p-active {
     pointer-events: none;
-    background: #ffffff;
+    background: #404040;
+    color: #ffffff;
 }
 
 .b-page_over-head,

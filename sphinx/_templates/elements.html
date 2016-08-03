@@ -1,6 +1,6 @@
 {% set language_list = [
-  (_("English"), "/doc/"   , "en"),
-  (_("Russian"), "/doc/ru/", "ru")
+  (_("En"), "/doc/"   , "en"),
+  (_("Ru"), "/doc/ru/", "ru")
 ] %}
 
 {% macro convert_path_i18n(tolang) %}
@@ -13,9 +13,6 @@
 
 {% macro language_selector() %}
   <div class="b-doc-language_selector">
-    <div class="b-doc-language_selector-text">
-      {{ _("Available languages") }}:
-    </div>
     <ul class="b-doc-language_selector-list">
     {% for lang in language_list %}
       <li class="b-doc-language_selector-item">
@@ -41,7 +38,9 @@
           <a href="{{ elem.link|e }}" class="b-path-list-item-url">{{ elem.title }}</a>
         </li>
       {% endfor %}
+      {% if title %}
       <li class="b-path-list-item"><span class="b-path_current">{{ title }}</span></li>
+      {% endif %}
     </ul>
   </div>
 {% endmacro %}
@@ -60,6 +59,7 @@
     {% endif %}
     <div class="b-page_over-lang">
       <ul class="b-page_over-lang-list">
+{#
         {% for lang in language_list %}
           {% if language != lang[2] %}
             <li class="b-page_over-lang-item">
@@ -67,6 +67,7 @@
             </li>
           {% endif %}
         {% endfor%}
+#}
         <li class="b-page_over-lang-item">
           <a href="{{ pathto('_sources/' + sourcename, true) | e }}"
              class="b-page_over-lang-url"> {{ _("Source") }} </a>
