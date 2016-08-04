@@ -1,4 +1,4 @@
-{%- if builder != "singlehtml" %}
+{%- if pagename != "search" and builder != "singlehtml" %}
 <form id="searchbox" role="search" class="search b-search" action="{{ pathto('search') }}" method="get">
   <input class="b-search-text" name="q" type="text"/ placeholder="Search the manual">
   <input class="b-search-but" type="submit" />

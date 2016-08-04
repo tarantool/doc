@@ -17,9 +17,9 @@
     {% for lang in language_list %}
       <li class="b-doc-language_selector-item">
       {% if language == lang[2] %}
-        <a href="{{ lang[1] }}" class="b-doc-language_selector-item-url p-active"> {{ lang[0] }} </a>
+        <a href="{{ convert_path_i18n(lang[2]) }}" class="b-doc-language_selector-item-url p-active"> {{ lang[0] }} </a>
       {% else %}
-        <a href="{{ lang[1] }}" class="b-doc-language_selector-item-url"> {{ lang[0] }} </a>
+        <a href="{{ convert_path_i18n(lang[2]) }}" class="b-doc-language_selector-item-url"> {{ lang[0] }} </a>
       {% endif %}
       </li>
     {% endfor %}

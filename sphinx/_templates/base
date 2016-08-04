@@ -35,7 +35,7 @@
     <![endif]-->
     {% include "script" ignore missing %}
   </head>
-  {% if render_sidebar %}
+  {% if not main_page %}
   <body class="p-cols_design">
   {% else %}
   <body class="b-main">

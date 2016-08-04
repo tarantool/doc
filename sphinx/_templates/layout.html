@@ -8,16 +8,12 @@
 {% set script_files = script_files + ['_static/jquery.pin.min.js', '_static/headers.js'] %}
 {% set css_files = ['_static/sphinx_design.css'] + css_files %}
 
-{% set main_page = title in ['Documentation', 'Документация'] %}
-
-{% set render_sidebar = true %}
-{% if theme_nosidebar == true or main_page %}
-{%   set render_sidebar = false %}
-{% endif %}
+{% set main_page = title in ["Documentation", "Документация"] %}
+{#% set main_page = main_page or builder == "singlehtml" %#}
 
 {% set content_pane %}
   <article class="b-article">
-    {% if render_sidebar == false and not main_page %}
+    {% if not main_page %}
       {{ toctree(maxdepth=2, collapse=false) }}
     {% endif %}
     {% block body %} {% endblock %}
@@ -31,8 +27,8 @@
       {{- language_selector() -}}
     </div>
   </section>
-  {% if render_sidebar %}
-    <div class="b-cols_content b-clearbox">
+  {% if not main_page %}
+    <div class="b-cols_content b-clearbox b-doc-{{ pagename }}">
       <div class="b-cols_content_left">
         {% include "searchbox.html" %}
         {{ toctree(maxdepth=2) }}
