@@ -108,17 +108,25 @@ necessary to prioritize requests or to use different authentication ids.
         call, it is good programming practice to close a connection explicitly when it
         is no longer needed, to avoid lengthy stalls of the garbage collector.
 
-        Example: ``conn:close()``
+        **Example:**
+
+        .. code-block:: lua
+
+            conn:close()
 
     .. method:: conn.space.<space-name>:select{field-value, ...}
 
         :samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:select`:code:`{...}`. Please note
-        this difference: due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>`
-        a local :samp:`box.space.{space-name}:select`:code:`{...}` does
-        not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}` call
-        does yield, so global variables or database tuples data may change when a remote
-        :samp:`conn.space.{space-name}:select`:code:`{...}` occurs.
+        of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
+
+        .. NOTE::
+
+            due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>`
+            a local :samp:`box.space.{space-name}:select`:code:`{...}` does
+            not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
+            call does yield, so global variables or database tuples data may
+            change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
+            occurs.
 
     .. method:: conn.space.<space-name>:get{field-value, ...}
 
@@ -152,11 +160,15 @@ necessary to prioritize requests or to use different authentication ids.
 
     .. method:: call(function-name [, arguments])
 
-        :samp:`conn:call('func', '1', '2', '3')` is the remote-call equivalent of
-        :samp:`func('1', '2', '3')`. That is, ``conn:call`` is a remote
+        ``conn:call('func', '1', '2', '3')`` is the remote-call equivalent of
+        ``func('1', '2', '3')``. That is, ``conn:call`` is a remote
         stored-procedure call.
 
-        Example: ``conn:call('function5')``
+        **Example:**
+
+        .. code-block:: lua
+
+            conn:call('function5')
 
     .. _net_box-eval:
 
@@ -164,18 +176,26 @@ necessary to prioritize requests or to use different authentication ids.
 
         :samp:`conn:eval({Lua-string})` evaluates and executes the expression
         in Lua-string, which may be any statement or series of statements.
-        An :ref:`execute privilege <authentication-privileges>` is required; if the user does not have it,
-        an administrator may grant it with
+        An :ref:`execute privilege <authentication-privileges>` is required; if
+        the user does not have it, an administrator may grant it with
         :samp:`box.schema.user.grant({username}, 'execute', 'universe')`.
 
-        Example: ``conn:eval('return 5+5')``
+        **Example:**
+
+        .. code-block:: lua
+
+            conn:eval('return 5+5')
 
     .. method:: timeout(timeout)
 
         ``timeout(...)`` is a wrapper which sets a timeout for the request that
         follows it.
 
-        Example: ``conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})``
+        **Example:**
+
+        .. code-block:: lua
+
+            conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})
 
         All remote calls support execution timeouts. Using a wrapper object makes
         the remote connection API compatible with the local one, removing the need
@@ -185,7 +205,7 @@ necessary to prioritize requests or to use different authentication ids.
         server response, not the request itself.
 
 ============================================================================
-                        Example showing use of most of the net.box methods
+            Example showing use of most of the net.box methods
 ============================================================================
 
 This example will work with the sandbox configuration described in the preface.

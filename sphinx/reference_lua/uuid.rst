@@ -10,20 +10,20 @@ applications, UUIDs are better.
 
 The functions that can return a UUID are:
 
-    * :ref:`uuid() <uuid-__call>`
-    * :ref:`uuid.bin() <uuid-bin>`
-    * :ref:`uuid.str() <uuid-str>`
+* :ref:`uuid() <uuid-__call>`
+* :ref:`uuid.bin() <uuid-bin>`
+* :ref:`uuid.str() <uuid-str>`
 
 The functions that can convert between different types of UUID are:
 
-    * :ref:`uuid_object:bin() <uuid-object_bin>`
-    * :ref:`uuid_object:str() <uuid-object_str>`
-    * :ref:`uuid.fromstr() <uuid-fromstr>`
-    * :ref:`uuid.frombin() <uuid-frombin>`
+* :ref:`uuid_object:bin() <uuid-object_bin>`
+* :ref:`uuid_object:str() <uuid-object_str>`
+* :ref:`uuid.fromstr() <uuid-fromstr>`
+* :ref:`uuid.frombin() <uuid-frombin>`
 
 The function that can determine whether a UUID is an all-zero value is:
 
-    * :ref:`uuid_object:isnil() <uuid-isnil>`
+* :ref:`uuid_object:isnil() <uuid-isnil>`
 
 .. module:: uuid
 
@@ -74,10 +74,14 @@ The function that can determine whether a UUID is an all-zero value is:
 
     .. method:: bin([byte-order])
 
-        :param byte-order: |br| 'l' - little-endian,
-                           |br| 'b' - big-endian,
-                           |br| 'h' - endianness depends on host (default),
-                           |br| 'n' - endianness depends on network
+        ``byte-order`` can be one of next flags:
+
+        * 'l' - little-endian,
+        * 'b' - big-endian,
+        * 'h' - endianness depends on host (default),
+        * 'n' - endianness depends on network
+
+        :param string byte-order: one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``.
 
         :return: UUID converted from cdata input value.
         :rtype: 16-byte binary string

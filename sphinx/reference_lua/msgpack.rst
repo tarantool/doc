@@ -97,7 +97,7 @@ array and as a map, then displays each result in hexadecimal.
 .. parsed-literal::
 
     **array** encoding: 92 a1 41 a1 42
-    **map** encoding:   82 1 a1 41 2 a1 42
+    **map** encoding:   82 01 a1 41 02 a1 42
 
 The MsgPack Specification_ page explains that the first encoding means:
 
@@ -119,41 +119,41 @@ with the MsgPack format name and encoding on the right.
 
 .. _msgpack-common_types_and_msgpack_encodings:
 
-    .. container:: table
+.. container:: table
 
-        **Common Types and MsgPack Encodings**
+    **Common Types and MsgPack Encodings**
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------+-------------------------------------------------+
-        | {}           | 'fixmap' if metatable is 'map' = 80             |
-        |              | otherwise 'fixarray' = 90                       |
-        +--------------+-------------------------------------------------+
-        | 'a'          | 'fixstr' = a1 61                                |
-        +--------------+-------------------------------------------------+
-        | false        | 'false' = c2                                    |
-        +--------------+-------------------------------------------------+
-        | true         | 'true' = c3                                     |
-        +--------------+-------------------------------------------------+
-        | 127          | 'positive fixint' = 7f                          |
-        +--------------+-------------------------------------------------+
-        | 65535        | 'uint 16' = cd ff ff                            |
-        +--------------+-------------------------------------------------+
-        | 4294967295   | 'uint 32' = ce ff ff ff ff                      |
-        +--------------+-------------------------------------------------+
-        | nil          | 'nil' = c0                                      |
-        +--------------+-------------------------------------------------+
-        | msgpack.NULL | same as nil                                     |
-        +--------------+-------------------------------------------------+
-        | [0] = 5      | 'fixmap(1)' + 'positive fixint' (for the key)   |
-        |              | + 'positive fixint' (for the value) = 81 00 05  |
-        +--------------+-------------------------------------------------+
-        | [0] = nil    | 'fixmap(0)' = 80 -- nil is not stored           |
-        |              | when it is a missing map value                  |
-        +--------------+-------------------------------------------------+
-        | 1.5          | 'float 64' = cb 3f f8 0 0 0 0 0 0               |
-        +--------------+-------------------------------------------------+
+    +--------------+-------------------------------------------------+
+    | {}           | 'fixmap' if metatable is 'map' = 80             |
+    |              | otherwise 'fixarray' = 90                       |
+    +--------------+-------------------------------------------------+
+    | 'a'          | 'fixstr' = a1 61                                |
+    +--------------+-------------------------------------------------+
+    | false        | 'false' = c2                                    |
+    +--------------+-------------------------------------------------+
+    | true         | 'true' = c3                                     |
+    +--------------+-------------------------------------------------+
+    | 127          | 'positive fixint' = 7f                          |
+    +--------------+-------------------------------------------------+
+    | 65535        | 'uint 16' = cd ff ff                            |
+    +--------------+-------------------------------------------------+
+    | 4294967295   | 'uint 32' = ce ff ff ff ff                      |
+    +--------------+-------------------------------------------------+
+    | nil          | 'nil' = c0                                      |
+    +--------------+-------------------------------------------------+
+    | msgpack.NULL | same as nil                                     |
+    +--------------+-------------------------------------------------+
+    | [0] = 5      | 'fixmap(1)' + 'positive fixint' (for the key)   |
+    |              | + 'positive fixint' (for the value) = 81 00 05  |
+    +--------------+-------------------------------------------------+
+    | [0] = nil    | 'fixmap(0)' = 80 -- nil is not stored           |
+    |              | when it is a missing map value                  |
+    +--------------+-------------------------------------------------+
+    | 1.5          | 'float 64' = cb 3f f8 00 00 00 00 00 00         |
+    +--------------+-------------------------------------------------+
 
 Also, some MsgPack configuration settings for encoding can be changed, in the
 same way that they can be changed for :ref:`JSON <json-module_cfg>`.

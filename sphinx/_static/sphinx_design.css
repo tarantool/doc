@@ -876,7 +876,11 @@ dt[id ^= "_CPP"         ] dd  {
 }
 
 .b-doc-param_right {
-    padding-left: 15px;
+    padding-left: 10px;
+}
+
+.b-doc-param_right ul {
+    margin: 0;
 }
 
 ul.search {
@@ -892,6 +896,11 @@ ul.search {
 .highlight {
     margin-top: 0px;
     margin-bottom: 20px;
+}
+
+.highlight .highlight {
+    padding: 5px 10px;
+    margin-bottom: 0px;
 }
 
 dd {
