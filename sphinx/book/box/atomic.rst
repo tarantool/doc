@@ -42,8 +42,10 @@ some of the box calls, including the data-change requests
 however, :ref:`box.space...select <box_space-select>` will not.
 A fuller description will appear in section :ref:`The Implicit Yield Rules <atomic-the_implicit_yield_rules>`.
 
-Note re storage engine: vinyl has different rules: insert or update or delete
-will very rarely cause a yield, but select can cause a yield.
+.. Note:: Note re storage engine
+
+    vinyl has different rules: insert or update or delete will very rarely cause
+    a yield, but select can cause a yield.
 
 In the absence of transactions, any function that contains yield points may see
 changes in the database state caused by fibers that preempt. Then the only safe
@@ -136,8 +138,11 @@ functions in module
 :ref:`net_box <net_box-module>`,
 :ref:`console <console-module>`, or
 :ref:`socket <socket-module>` (the "os" and "network" requests).
-Note re storage engine: with Vinyl :ref:`select <box_space-select>` is
-an implicit yield request, but data-change requests may not be.
+
+.. Note:: Note re storage engine
+
+    with Vinyl :ref:`select <box_space-select>` is an implicit yield request,
+    but data-change requests may not be.
 
 The yield occurs just before a blocking syscall, such as a write to the Write-Ahead Log (WAL)
 or a network message reception.

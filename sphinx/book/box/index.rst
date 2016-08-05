@@ -328,10 +328,16 @@ the function holds a consistent view of the database until the UPDATE ends.
 For the combination “UPDATE plus SELECT” the view is not consistent,
 because after the UPDATE the transaction processor thread can switch
 to another fiber, and delete the tuple that was just updated.
-Note re storage engine: vinyl handles yields differently, see
-:ref:`differences between memtx and vinyl <vinyl_diff>`.
-Note re multi-request transactions: there is a way to delay yields,
-see :ref:`Atomic execution <atomic-atomic_execution>`.
+
+.. NOTE:: Note re storage engine (vinyl)
+
+    vinyl handles yields differently, see
+    :ref:`differences between memtx and vinyl <vinyl_diff>`.
+
+.. NOTE:: Note re multi-request transactions
+
+    there is a way to delay yields, see
+    :ref:`Atomic execution <atomic-atomic_execution>`.
 
 Since locks don't exist, and disk writes only involve the write-ahead log,
 transactions are usually fast. Also the Tarantool server may not be using
@@ -688,7 +694,7 @@ benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`.
 On the other hand, vinyl lacks some functions and
 options that are available with memtx. Where that is the case, the relevant
 description will contain a note beginning with the words
-"Note re storage engine: vinyl". The end of this chapter has coverage
+"Note re storage engine (vinyl)". The end of this chapter has coverage
 for all :ref:`the differences between memtx and vinyl <vinyl_diff>`.
 
 =====================================================================
