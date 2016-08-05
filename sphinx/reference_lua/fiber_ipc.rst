@@ -16,6 +16,8 @@ other Lua object. Use object-oriented syntax, for example
 
 .. module:: fiber
 
+.. _fiber_ipc-channel:
+
 .. function:: channel([capacity])
 
     Create a new communication channel.

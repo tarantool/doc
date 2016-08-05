@@ -20,3 +20,6 @@
     app/b_internals
     app/c_lua_tutorial
     app/d_vinyl/index
+    app/e_cookbook
+    app/f_modules
+
