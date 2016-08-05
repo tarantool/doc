@@ -110,16 +110,28 @@ API is a direct binding to corresponding methods of index objects of type
 
             **Iterator types for TREE indexes**
 
-            Note: Formally the logic for TREE index searches is: |br|
-            comparison-operator is = or >= or > or <= or < depending on iterator-type |br|
-            for i = 1 to number-of-parts-of-search-value |br|
-            |nbsp|  if (search-value-part[i] is ``nil`` and <comparison-operator> is "=") |br|
-            |nbsp|  or (search-value-part[i] <comparison-operator> index-key-part[i] is true) |br|
-            |nbsp|  then comparison-result[i] is true |br|
-            if all comparison-results are true, then search-value "matches" index key. |br|
-            Notice how, according to this logic, regardless what the index-key-part contains,
-            the comparison-result for equality is always true when a search-value-part is ``nil``
-            or is missing. This behavior of searches with nil is subject to change.
+            .. NOTE::
+
+                Formally the logic for TREE index searches is: |br|
+                comparison-operator is = or >= or > or <= or < depending on
+                iterator-type
+
+                .. cssclass:: highlight
+                .. parsed-literal::
+
+                    for i = 1 to number-of-parts-of-search-value
+                        if (search-value-part[i] is ``nil`` and <comparison-operator> is "=") or
+                           (search-value-part[i] <comparison-operator> index-key-part[i] is true) then
+                               comparison-result[i] is true
+                        endif
+
+                if all comparison-results are true, then search-value "matches"
+                index key.
+
+                Notice how, according to this logic, regardless what the index-key-part
+                contains, the comparison-result for equality is always true when a
+                search-value-part is ``nil`` or is missing. This behavior of
+                searches with nil is subject to change.
 
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2

@@ -1,3 +1,13 @@
+ol, ul {
+    padding-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
 .b-tcontents .b-block-wrapper {
     padding-top:35px;
 }
@@ -216,14 +226,14 @@ a.headerlink {
   -ms-transition: opacity 0.2s ease-in-out 0.1s;
 }
 
-[id^="lua-object"  ],
-[id^="lua-function"],
-[id^="lua-data"    ],
-[id^="lua-объект"  ],
-[id^="lua-функция" ],
-[id^="lua-данные"  ],
-[id^="c."          ],
-[id^="_CPP"        ],
+[id ^= "lua-object"   ],
+[id ^= "lua-function" ],
+[id ^= "lua-data"     ],
+[id ^= "lua-объект"   ],
+[id ^= "lua-функция"  ],
+[id ^= "lua-данные"   ],
+[id ^= "c."           ],
+[id ^= "_CPP"         ],
 h2, h3, h4, h5, h6 {
     margin-left: -25px;
 }
@@ -242,6 +252,17 @@ h4:hover                   .headerlink,
 h5:hover                   .headerlink,
 h6:hover                   .headerlink{
     opacity: 1;
+}
+
+dt[id ^= "lua-object"   ],
+dt[id ^= "lua-function" ],
+dt[id ^= "lua-data"     ],
+dt[id ^= "lua-объект"   ],
+dt[id ^= "lua-функция"  ],
+dt[id ^= "lua-данные"   ],
+dt[id ^= "c."           ],
+dt[id ^= "_CPP"         ]  {
+    margin-bottom: 10px;
 }
 
 table.docutils.footnote {
@@ -285,8 +306,8 @@ tr.field td p {
     margin-top: 0px;
 }
 
-div.toctree-wrapper.compound {
-    padding: 20px 0px 0px 0px;
+div.toctree-wrapper {
+    padding: 0px 0px 0px 20px;
 }
 
 div.admonition {
@@ -751,4 +772,126 @@ table.border-0-column-2 td {
 
 .b-page_over-next {
     float: right;
+}
+
+.b-documentation_top h2 {
+    font-weight: normal;
+}
+
+/* for Generated Index */
+
+.b-doc-genindex h2 {
+    -webkit-margin-before: 20px;
+    -webkit-margin-after: 20px;
+    margin-before: 20px;
+    margin-after: 20px;
+    margin-left: 0px;
+}
+
+.b-doc-genindex .genindextable dl {
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    margin-before: 0px;
+    margin-after: 0px;
+}
+
+.b-doc-genindex .genindextable dt {
+    padding-bottom: 2px;
+}
+.b-doc-genindex .genindextable dt:last-child {
+    padding-bottom: 0px;
+}
+
+/**/
+
+dt[id ^= "lua-object"   ] dd,
+dt[id ^= "lua-function" ] dd,
+dt[id ^= "lua-data"     ] dd,
+dt[id ^= "lua-объект"   ] dd,
+dt[id ^= "lua-функция"  ] dd,
+dt[id ^= "lua-данные"   ] dd,
+dt[id ^= "c."           ] dd,
+dt[id ^= "_CPP"         ] dd  {
+    margin-start: 20px;
+}
+
+.b-doc-hlink {
+    display: table;
+}
+
+.b-doc-hlink_left {
+    display: table-cell;
+    width:   25px;
+}
+
+.b-doc-hlink_right {
+    font-size: 14px;
+    display: table-cell;
+}
+
+.b-doc-hlink_right em,
+.b-doc-hlink_right code,
+.b-doc-hlink_right span,
+.b-doc-hlink_right big {
+    font-size: inherit;
+}
+
+.b-doc-param {
+    padding: 0 0 10px 0;
+}
+
+.b-doc-param_left  p,
+.b-doc-param_right {
+    display:   block;
+    font-size: 14px;
+    padding:   0 0 5px 0;
+}
+
+.b-doc-param_left {
+    font-weight: bold;
+}
+
+.b-doc-param_right {
+    padding-left: 15px;
+}
+
+ul.search {
+    padding: 0 0 0 20px;
+    margin:  0 0 16px 0;
+}
+
+.search li {
+    padding: 0 0 8px 0;
+}
+
+div[class|=highlight] {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+dd {
+    margin-left: 20px;
+}
+
+.b-cols_content_left ul {
+    margin-top: 20px;
+}
+
+li p:last-child {
+    padding: 0;
+}
+
+li dl {
+    margin: 0px;
+}
+
+.b-doc-param:last-child {
+    padding: 0;
+}
+
+table.docutils {
+    margin-bottom: 20px;
+}
+
+li {
 }

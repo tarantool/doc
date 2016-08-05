@@ -9,6 +9,7 @@ For examples of creating one's own module with Lua or C, see `this link`_.
 
 .. toctree::
     :maxdepth: 2
+    :caption: Table of Contents
 
     dbms
     expirationd
