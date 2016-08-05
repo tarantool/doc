@@ -4,7 +4,7 @@ ol, ul {
     margin-bottom: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h4, h5, h6 {
     font-weight: bold;
 }
 
@@ -819,6 +819,27 @@ dt[id ^= "_CPP"         ] dd  {
     margin-start: 20px;
 }
 
+.b-doc-flink {
+    display: table;
+}
+
+.b-doc-flink_left {
+    display: table-cell;
+    width:   25px;
+}
+
+.b-doc-flink_right {
+    font-size: 14px;
+    display: table-cell;
+}
+
+.b-doc-flink_right em,
+.b-doc-flink_right code,
+.b-doc-flink_right span,
+.b-doc-flink_right big {
+    font-size: inherit;
+}
+
 .b-doc-hlink {
     display: table;
 }
@@ -829,7 +850,6 @@ dt[id ^= "_CPP"         ] dd  {
 }
 
 .b-doc-hlink_right {
-    font-size: 14px;
     display: table-cell;
 }
 
@@ -868,7 +888,8 @@ ul.search {
     padding: 0 0 8px 0;
 }
 
-div[class|=highlight] {
+[class|=highlight],
+.highlight {
     margin-top: 0px;
     margin-bottom: 20px;
 }
@@ -877,8 +898,16 @@ dd {
     margin-left: 20px;
 }
 
+dl {
+    margin-top: 0;
+}
+
 .b-cols_content_left ul {
     margin-top: 20px;
+}
+
+li p {
+    padding: 0 0 8px 0;
 }
 
 li p:last-child,
@@ -896,7 +925,4 @@ li dl {
 
 table.docutils {
     margin-bottom: 20px;
-}
-
-li {
 }

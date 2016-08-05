@@ -167,12 +167,11 @@ The functions in digest are:
 Incremental methods in the digest package
 =========================================
 
-    Suppose that a digest is done for a string 'A', then a new part 'B' is
-    appended to the string, then a new digest is required. The new digest could
-    be recomputed for the whole string 'AB', but it is faster to take what was
-    computed before for 'A' and apply changes based on the new part 'B'. This is
-    called multi-step or "incremental" digesting, which Tarantool supports with
-    crc32 and with murmur ...
+Suppose that a digest is done for a string 'A', then a new part 'B' is appended
+to the string, then a new digest is required. The new digest could be recomputed
+for the whole string 'AB', but it is faster to take what was computed before for
+'A' and apply changes based on the new part 'B'. This is called multi-step or
+"incremental" digesting, which Tarantool supports with crc32 and with murmur...
 
 .. code-block:: lua
 
@@ -200,40 +199,41 @@ In the following example, the user creates two functions, ``password_insert()``
 which inserts a SHA-1_ digest of the word "**^S^e^c^ret Wordpass**" into a tuple
 set, and ``password_check()`` which requires input of a password.
 
-    .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-        tarantool> digest = require('digest')
-        ---
-        ...
-        tarantool> function password_insert()
-                 >   box.space.tester:insert{1234, digest.sha1('^S^e^c^ret Wordpass')}
-                 >   return 'OK'
-        ---
-        ...
-        tarantool> function password_check(password)
-                 >   local t = box.space.tester:select{12345}
-                 >   if digest.sha1(password) == t[2] then
-                 >     return 'Password is valid'
-                 >   else
-                 >     return 'Password is not valid'
-                 >   end
-                 > end
-        ---
-        ...
-        tarantool> password_insert()
-        ---
-        - 'OK'
-        ...
+    tarantool> digest = require('digest')
+    ---
+    ...
+    tarantool> function password_insert()
+             >   box.space.tester:insert{1234, digest.sha1('^S^e^c^ret Wordpass')}
+             >   return 'OK'
+             > end
+    ---
+    ...
+    tarantool> function password_check(password)
+             >   local t = box.space.tester:select{12345}
+             >   if digest.sha1(password) == t[2] then
+             >     return 'Password is valid'
+             >   else
+             >     return 'Password is not valid'
+             >   end
+             > end
+    ---
+    ...
+    tarantool> password_insert()
+    ---
+    - 'OK'
+    ...
 
 If a later user calls the ``password_check()`` function and enters
 the wrong password, the result is an error.
 
-    .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-        tarantool> password_insert('Secret Password')
-        ---
-        - 'Password is not valid'
-        ...
+    tarantool> password_insert('Secret Password')
+    ---
+    - 'Password is not valid'
+    ...
 
 .. _AES: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 .. _SHA-0: https://en.wikipedia.org/wiki/Sha-0

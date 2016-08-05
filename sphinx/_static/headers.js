@@ -7,8 +7,28 @@ $(document).ready(function () {
   $(''.concat(
     "[id^='lua-object'], [id^='lua-function'], [id^='lua-data'],       ",
     "[id^='lua-объект'], [id^='lua-функция'],  [id^='lua-данные'],     ",
-    "[id^='c.'], [id^='_CPP'], [id^='lua-varfunc'], h2, h3, h4, h5, h6 "
+    "[id^='c.'], [id^='_CPP'], [id^='lua-varfunc']"
   )).each(
+    function(i, el) {
+      var icon = '<i class="fa fa-link"></i>';
+      var hll = '<div class="b-doc-flink_left"></div>';
+      var hlr = '<div class="b-doc-flink_right"></div>'
+      var hlp = '<div class="b-doc-flink></div>">'
+      var hlink = $(el).find(".headerlink");
+      var hlink_id = hlink.attr("href");
+      if (typeof(hlink_id) != 'undefined') {
+        $(hlink).remove();
+        var lpane = $("<a />").addClass("headerlink").attr("href", hlink_id);
+        lpane = lpane.html(icon).wrap(hll).parent();
+        var rpane = $(el).clone().wrapInner(hlr);
+        var pane = rpane.prepend(lpane).wrapInner(hlp);
+        $(el).replaceWith(pane);
+      }
+    }
+  );
+
+  /* Add anchor before every function name. Also, add divs for good wrapping */
+  $('h2, h3, h4, h5, h6').each(
     function(i, el) {
       var icon = '<i class="fa fa-link"></i>';
       var hll = '<div class="b-doc-hlink_left"></div>';
