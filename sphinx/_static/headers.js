@@ -5,9 +5,9 @@ $(document).ready(function () {
 
   /* Add anchor before every function name. Also, add divs for good wrapping */
   $(''.concat(
-    "[id^='lua-object'], [id^='lua-function'], [id^='lua-data'],  ",
-    "[id^='lua-объект'], [id^='lua-функция'],  [id^='lua-данные'],",
-    "[id^='c.'], [id^='_CPP'], h2, h3, h4, h5, h6                 "
+    "[id^='lua-object'], [id^='lua-function'], [id^='lua-data'],       ",
+    "[id^='lua-объект'], [id^='lua-функция'],  [id^='lua-данные'],     ",
+    "[id^='c.'], [id^='_CPP'], [id^='lua-varfunc'], h2, h3, h4, h5, h6 "
   )).each(
     function(i, el) {
       var icon = '<i class="fa fa-link"></i>';

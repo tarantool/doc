@@ -228,6 +228,7 @@ a.headerlink {
 
 [id ^= "lua-object"   ],
 [id ^= "lua-function" ],
+[id ^= "lua-varfunc"  ],
 [id ^= "lua-data"     ],
 [id ^= "lua-объект"   ],
 [id ^= "lua-функция"  ],
@@ -238,24 +239,26 @@ h2, h3, h4, h5, h6 {
     margin-left: -25px;
 }
 
-[id^="lua-object"  ]:hover .headerlink,
-[id^="lua-function"]:hover .headerlink,
-[id^="lua-data"    ]:hover .headerlink,
-[id^="lua-объект"  ]:hover .headerlink,
-[id^="lua-функция" ]:hover .headerlink,
-[id^="lua-данные"  ]:hover .headerlink,
-[id^="c."          ]:hover .headerlink,
-[id^="_CPP"        ]:hover .headerlink,
-h2:hover                   .headerlink,
-h3:hover                   .headerlink,
-h4:hover                   .headerlink,
-h5:hover                   .headerlink,
-h6:hover                   .headerlink{
+[id ^= "lua-object"   ]:hover .headerlink,
+[id ^= "lua-function" ]:hover .headerlink,
+[id ^= "lua-varfunc"  ]:hover .headerlink,
+[id ^= "lua-data"     ]:hover .headerlink,
+[id ^= "lua-объект"   ]:hover .headerlink,
+[id ^= "lua-функция"  ]:hover .headerlink,
+[id ^= "lua-данные"   ]:hover .headerlink,
+[id ^= "c."           ]:hover .headerlink,
+[id ^= "_CPP"         ]:hover .headerlink,
+h2:hover                      .headerlink,
+h3:hover                      .headerlink,
+h4:hover                      .headerlink,
+h5:hover                      .headerlink,
+h6:hover                      .headerlink{
     opacity: 1;
 }
 
 dt[id ^= "lua-object"   ],
 dt[id ^= "lua-function" ],
+dt[id ^= "lua-varfunc"  ],
 dt[id ^= "lua-data"     ],
 dt[id ^= "lua-объект"   ],
 dt[id ^= "lua-функция"  ],
@@ -806,6 +809,7 @@ table.border-0-column-2 td {
 
 dt[id ^= "lua-object"   ] dd,
 dt[id ^= "lua-function" ] dd,
+dt[id ^= "lua-varfunc"  ] dd,
 dt[id ^= "lua-data"     ] dd,
 dt[id ^= "lua-объект"   ] dd,
 dt[id ^= "lua-функция"  ] dd,
@@ -877,7 +881,8 @@ dd {
     margin-top: 20px;
 }
 
-li p:last-child {
+li p:last-child,
+dd p:last-child {
     padding: 0;
 }
 

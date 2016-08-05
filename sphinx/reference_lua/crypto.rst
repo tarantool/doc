@@ -4,50 +4,83 @@
                             Package `crypto`
 -------------------------------------------------------------------------------
 
-.. module:: crypto
+.. module:: crypto.cipher
 
-"Crypto" is short for "Cryptography", which generally refers to
-the production of a digest value from a function (usually a
-`Cryptographic hash function`_), applied against a string.
-Tarantool's crypto package supports
-ten  types of cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_, SHA-0_, SHA-1_, SHA-2_).
-Some of the crypto functionality is also present in the :ref:`digest` package.
-The functions in crypto are:
-
-:codebold:`crypto.cipher.`:codeitalic:`{aes128|aes192|aes256|des}.{cbc|cfg|ecb|ofb}.{encrypt|decrypt}` (:codeitalic:`string`, :codeitalic:`key` :codenormal:`[,`:codeitalic:`initialization vector`:codenormal:`])` |br|
-Pass or return a cipher derived from the string, key, and (optionally, sometimes) initialization vector.
-The four choices :codenormal:`aes128|aes192|aes256|des` indicate whether the algorithm will be aes-128 (with
-192-bit binary strings using AES), aes-192 (with 192-bit binary strings using AES), aes-256 (with
-256-bit binary strings using AES), or des (with 56-bit binary strings using DES, though DES is not recommended). |br|
-Examples; |br|
-:codenormal:`crypto.cipher.aes192.cbc.encrypt('string', 'key', 'initialization')` |br|
-:codenormal:`crypto.cipher.aes256.ecb.decrypt('string', 'key')` |br|
+"Crypto" is short for "Cryptography", which generally refers to the production
+of a digest value from a function (usually a `Cryptographic hash function`_),
+applied against a string. Tarantool's crypto package supports ten types of
+cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_,
+SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
+:ref:`digest` package. The functions in crypto are:
 
 
-:codebold:`crypto.digest.`:codeitalic:`{dss|dss1|md4|md5|mdc2|ripemd160|sha|sha1|sha224|sha256|sha384|sha512}`:codenormal:`(`:codeitalic:`string`:codenormal:`)` |br|
-Pass or return a digest derived from the string.
-The twelve choices :codenormal:`dss|dss1|md4|md5|mdc2|ripemd160|sha|sha1|sha224|sha256|sha384|sha512`
-indicate whether the algorithm will be dss (using DSS), dss (using DSS-1), md4 (with 128-bit
-binary strings using MD4), md5 (with 128-bit binary strings using MD5), mdc2 (using MDC2),
-sha (with 160-bit binary strings using SHA-0), sha-1 (with 160-bit binary strings using SHA-1),
-sha-224 (with 224-bit binary strings using SHA-2), sha-256 (with 256-bit binary strings using SHA_2),
-sha-384 (with 384-bit binary strings using SHA_2), or sha-512 (with 512-bit binary strings using SHA-2). |br|
-Examples: |br|
-:codenormal:`crypto.digest.md4('string')` |br|
-:codenormal:`crypto.digest.sha512('string')` |br|
+.. varfunc:: {aes128|aes192|aes256|des}.{cbc|cfb|ecb|ofb}.encrypt(string, key, initialization_vector)
+             {aes128|aes192|aes256|des}.{cbc|cfb|ecb|ofb}.decrypt(string, key, initialization_vector)
+    :needs_modname: True
+
+    Pass or return a cipher derived from the string, key, and (optionally,
+    sometimes) initialization vector. The four choices of algorithms:
+
+    * aes128 - aes-128 (with 192-bit binary strings using AES)
+    * aes192 - aes-192 (with 192-bit binary strings using AES)
+    * aes256 - aes-256 (with 256-bit binary strings using AES)
+    * des    - des (with 56-bit binary strings using DES, though DES is not
+      recommended)
+
+    Four choices of block cipher modes are also available:
+
+    * cbc - Cipher Block Chaining
+    * cfb - Cipher Feedback
+    * ecb - Electronic Codebook
+    * ofb - Output Feedback
+
+    For more information on, read article about `Encryption Modes`_
+
+    Example:
+
+    .. code-block:: lua
+
+        crypto.cipher.aes192.cbc.encrypt('string', 'key', 'initialization')
+        crypto.cipher.aes256.ecb.decrypt('string', 'key', 'initialization')
+
+.. module:: crypto.digest
+
+.. varfunc:: {dss|dss1|md4|md5|mdc2|ripemd160}(string)
+             {sha|sha1|sha224|sha256|sha384|sha512}(string)
+    :needs_modname: True
+
+    Pass or return a digest derived from the string. The twelve choices of
+    algorithms:
+
+    * dss - dss (using DSS)
+    * dss1 - dss (using DSS-1)
+    * md4 - md4 (with 128-bit binary strings using MD4)
+    * md5 - md5 (with 128-bit binary strings using MD5)
+    * mdc2 - mdc2 (using MDC2)
+    * ripemd160 - 
+    * sha - sha (with 160-bit binary strings using SHA-0)
+    * sha1 - sha-1 (with 160-bit binary strings using SHA-1)
+    * sha224 - sha-224 (with 224-bit binary strings using SHA-2)
+    * sha256 - sha-256 (with 256-bit binary strings using SHA-2)
+    * sha384 - sha-384 (with 384-bit binary strings using SHA-2)
+    * sha512 - sha-512(with 512-bit binary strings using SHA-2).
+
+    Examples:
+
+    .. code-block:: lua
+
+        crypto.digest.md4('string')
+        crypto.digest.sha512('string')
 
 =========================================
 Incremental methods in the crypto package
 =========================================
 
-    Suppose that a digest is done for a string 'A',
-    then a new part 'B' is appended to the string,
-    then a new digest is required.
-    The new digest could be recomputed for the whole string 'AB',
-    but it is faster to take what was computed
-    before for 'A' and apply changes based on the new part 'B'.
-    This is called multi-step or "incremental" digesting,
-    which Tarantool supports for all crypto functions ...
+Suppose that a digest is done for a string 'A', then a new part 'B' is appended
+to the string, then a new digest is required. The new digest could be recomputed
+for the whole string 'AB', but it is faster to take what was computed before for
+'A' and apply changes based on the new part 'B'. This is called multi-step or
+"incremental" digesting, which Tarantool supports for all crypto functions..
 
 .. code-block:: lua
 
@@ -75,19 +108,20 @@ Incremental methods in the crypto package
 Getting the same results from digest and crypto packages
 ========================================================
 
-The following functions are equivalent.
-For example, the digest function and the
-crypto function x will both produce the same result.
+The following functions are equivalent. For example, the ``digest`` function and
+the ``crypto`` function will both produce the same result.
 
-:codenormal:`crypto.cipher.aes256.cbc.encrypt('string', 'key') == digest.aes256cbc.encrypt('string', 'key')` |br|
-:codenormal:`crypto.digest.md4('string') == digest.md4('string')` |br|
-:codenormal:`crypto.digest.md5('string') == digest.md5('string')` |br|
-:codenormal:`crypto.digest.sha('string') == digest.sha('string')` |br|
-:codenormal:`crypto.digest.sha1('string') == digest.sha1('string')` |br|
-:codenormal:`crypto.digest.sha224('string') == digest.sha224('string')` |br|
-:codenormal:`crypto.digest.sha256('string') == digest.sha256('string')` |br|
-:codenormal:`crypto.digest.sha384('string') == digest.sha384('string')` |br|
-:codenormal:`crypto.digest.sha512('string') == digest.sha512('string')` |br|
+.. code-block:: lua
+
+    crypto.cipher.aes256.cbc.encrypt('string', 'key') == digest.aes256cbc.encrypt('string', 'key')
+    crypto.digest.md4('string') == digest.md4('string')
+    crypto.digest.md5('string') == digest.md5('string')
+    crypto.digest.sha('string') == digest.sha('string')
+    crypto.digest.sha1('string') == digest.sha1('string')
+    crypto.digest.sha224('string') == digest.sha224('string')
+    crypto.digest.sha256('string') == digest.sha256('string')
+    crypto.digest.sha384('string') == digest.sha384('string')
+    crypto.digest.sha512('string') == digest.sha512('string')
 
 .. _AES: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 .. _DES: https://en.wikipedia.org/wiki/Data_Encryption_Standard
@@ -101,3 +135,4 @@ crypto function x will both produce the same result.
 .. _RIPEMD: http://homes.esat.kuleuven.be/~bosselae/ripemd160.html
 .. _Cryptographic hash function: https://en.wikipedia.org/wiki/Cryptographic_hash_function
 .. _Consistent Hashing: https://en.wikipedia.org/wiki/Consistent_hashing
+.. _Encryption Modes: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation

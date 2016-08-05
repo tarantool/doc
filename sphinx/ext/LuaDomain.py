@@ -143,11 +143,12 @@ class LuaObject(ObjectDescription):
         'objtype': directives.unchanged,
         'idxtype': directives.unchanged,
         'idxctx': directives.unchanged,
+        'needs_modname': bool,
     }
 
     lua_signature_re = re.compile(
         r'''^ ([\w\.\:/\-]+[:.])?     # class name(s)
-              ([<>\w/\-/]+)  \s*        # thing name
+              ([<>\w/\-/]+)  \s*      # thing name
               (?: ([({])(.*)([)}]))?  # optional: arguments
               (?:\s* -> \s* (.*))?    # optional: return annotation
               $                       # and nothing more
@@ -231,13 +232,16 @@ class LuaObject(ObjectDescription):
         prefix = "%s " % (self.objtype)
         signode += addnodes.desc_annotation(prefix, prefix)
 
+        already_module = False
         clsname = ''
-        if fullname.find('.') != -1 or str(self.typename) == "object":
+        needs_modname = self.options.get('needs_modname')
+        if ((fullname.find('.') != -1 or str(self.typename) == "object") and
+                not needs_modname):
             pass
         elif self.clsname and self.needs_class():
             sprtr = '.' if str(self.typename) == "data" else ':'
             clsname = '%s%s' % (self.clsname, sprtr)
-        elif self.module and self.needs_module():
+        elif (self.module and self.needs_module()) or needs_modname:
             clsname = '%s.' % (self.module)
 
         if clsname:
@@ -284,6 +288,9 @@ class LuaObject(ObjectDescription):
         # We need to escape the '<>' to avoid display issue in HTML
         fullname = fullname.replace("<", "&lt;")
         fullname = fullname.replace(">", "&gt;")
+        fullname = fullname.replace("{", "&#123;")
+        fullname = fullname.replace("|", "&#124;")
+        fullname = fullname.replace("}", "&#125;")
 
         if fullid not in self.state.document.ids:
             objtype = self.objtype
@@ -361,6 +368,39 @@ class LuaFunction(LuaObject):
         Field('returntype', label=l_('Return type'), has_arg=False,
               names=('returntype',)),
     ]
+
+    def build_objtype(self):
+        return self.options.get('objtype') or ""
+
+    def needs_arglist(self):
+        return True
+
+    def get_index_name(self, names):
+        return '%s()' % (names['fullname'])
+
+class LuaVarFunction(LuaObject):
+    typename = l_("varfunc")
+
+    doc_field_types = [
+        TypedField('parameter', label=l_('Parameters'),
+                   names=('param', 'parameter', 'arg', 'argument'),
+                   typerolename='obj', typenames=('paramtype', 'type', 'ptype')),
+        TypedField('returnvalues', label=l_('Returns'),
+                  names=('return', 'ret'), typerolename='obj',
+                  typenames=('rtype', 'type')),
+        Field('returnvalue', label=l_('Returns'), has_arg=False,
+              names=('returns')),
+        Field('returntype', label=l_('Return type'), has_arg=False,
+              names=('returntype',)),
+    ]
+
+    lua_signature_re = re.compile(
+        r'''^ ([\w\.\:/\-]+[:.])?     # class name(s)
+              ([{|}<>\w/\-/.]+)  \s*  # thing name(s)
+              (?: ([({])(.*)([)}]))?  # optional: arguments
+              (?:\s* -> \s* (.*))?    # optional: return annotation
+              $                       # and nothing more
+              ''', re.VERBOSE)
 
     def build_objtype(self):
         return self.options.get('objtype') or ""
@@ -739,6 +779,7 @@ class LuaDomain(Domain):
         'class':         ObjType(l_('class'),      'class',  'obj'),
         'attribute':     ObjType(l_('attribute'),  'data',   'obj'),
         'function':      ObjType(l_('function'),   'func',   'obj'),
+        'varunc':        ObjType(l_('varfunc'),    'func',   'obj'),
         'method':        ObjType(l_('method'),     'func',   'obj'),
         'operator':      ObjType(l_('operator'),   'func',   'obj'),
         'module':        ObjType(l_('module'),     'mod',    'obj'),
@@ -748,6 +789,7 @@ class LuaDomain(Domain):
     directives = {
         'class':           LuaClass,
         'function':        LuaFunction,
+        'varfunc':         LuaVarFunction,
         'method':          LuaMethod,
         'operator':        LuaOperator,
         'data':            LuaData,
