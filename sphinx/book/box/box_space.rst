@@ -445,7 +445,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Update a tuple.
 
         The ``update`` function supports operations on fields — assignment,
-        arithmetic (if the field is unsigned numeric), cutting and pasting
+        arithmetic (if the field is numeric), cutting and pasting
         fragments of a field, deleting or inserting a field. Multiple
         operations can be combined in a single update request, and in this
         case they are performed atomically and sequentially. Each operation
