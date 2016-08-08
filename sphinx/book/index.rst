@@ -7,7 +7,6 @@
 .. toctree::
     :maxdepth: 2
     :numbered:
-    :caption: Table of Contents
 
     intro
     user_guide_getting_started

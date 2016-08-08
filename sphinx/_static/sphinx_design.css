@@ -154,6 +154,7 @@ a.headerlink {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    max-width: 200px;
 }
 .b-prev:hover,
 .b-next:hover {
@@ -329,9 +330,14 @@ div.admonition.warning {
     background: rgb(255,228,228);
 }
 
+div.admonition.fact {
+    background: rgb(255,255,204);
+}
+
 p.admonition-title {
     font-size: 16px;
     font-weight: bold;
+    padding: 0 0 10px 0;
 }
 
 p.admonition-title .fa {
@@ -397,6 +403,7 @@ div.b-cols_content_left .b-search-text {
 
 .b-documentation_top .b-section-title {
     float: left;
+    max-width: 820px;
 }
 
 .b-documentation_top .b-search {
@@ -424,6 +431,7 @@ div.b-cols_content_left .b-search-text {
     border-radius: 6px 6px 0 0;
     font-size: 0;
     padding: 0px !important;
+    margin: 0;
 }
 
 .b-tab_switcher-item {
@@ -474,6 +482,7 @@ div.b-cols_content_left .b-search-text {
 
 .b-documentation-tab div {
     height: 100%;
+    overflow-y: hidden;
 }
 
 /*
@@ -513,6 +522,7 @@ div.b-cols_content_left .b-search-text {
     text-align: left
 }
 
+/*
 .line-block {
     padding: 10px;
     -webkit-border-radius: 7px;
@@ -533,6 +543,7 @@ div.b-cols_content_left .b-search-text {
     color: #f8f8f2;
     font-size: 13px;
 }
+*/
 
 p > code.docutils {
     padding: 0px 1px 0px 1px;
@@ -919,8 +930,14 @@ li p {
     padding: 0 0 8px 0;
 }
 
-li p:last-child,
-dd p:last-child {
+li [class|=highlight],
+li .highlight  {
+    margin: 0 0 8px 0;
+}
+
+ul p:last-child,
+dd p:last-child,
+.admonition p:last-child {
     padding: 0;
 }
 
@@ -933,5 +950,38 @@ li dl {
 }
 
 table.docutils {
+    margin-bottom: 20px;
+}
+
+.b-path-list-item-url,
+.b-path_current {
+    max-width: 150px;
+}
+
+.current         ul,
+.toctree-wrapper ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.current         li:last-child,
+.toctree-wrapper li:last-child {
+    padding-bottom: 0px;
+}
+
+.current         li.toctree-l1,
+.toctree-wrapper li.toctree-l1 {
+    margin-bottom: 7px;
+}
+
+.toctree-wrapper .caption {
+    padding-bottom: 7px;
+}
+
+.toctree-wrapper>ul {
+    margin-left: 15px;
+}
+
+.b-documentation .b-search {
     margin-bottom: 20px;
 }

@@ -409,7 +409,7 @@ h1, h2, h3, h4, h5 {
 .b-ellipsis {
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: hidden !important;
 }
 .b-social_block-item {
     padding:0;
@@ -1231,6 +1231,7 @@ input.b-button.p-smaller {
     font-size:16px;
     color:#168de2;
 }
+
 .b-page_title {
     font-size:18px;
     color:#168de2;

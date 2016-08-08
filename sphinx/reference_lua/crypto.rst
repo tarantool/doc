@@ -36,7 +36,7 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
 
     For more information on, read article about `Encryption Modes`_
 
-    Example:
+    **Example:**
 
     .. code-block:: lua
 
@@ -65,7 +65,7 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
     * sha384 - sha-384 (with 384-bit binary strings using SHA-2)
     * sha512 - sha-512(with 512-bit binary strings using SHA-2).
 
-    Examples:
+    **Example:**
 
     .. code-block:: lua
 

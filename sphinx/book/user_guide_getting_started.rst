@@ -12,18 +12,18 @@ This will ensure that you have the same build of the same version that the
 developers have. That makes analysis easier if later you need to report a problem,
 and avoids subtle problems that might happen if you used different tools or
 different parameters when building from source. The section about binaries is
-“:ref:`user_guide_getting_started-downloading_and_installing_a_binary_package`”.
+“:ref:`user_guide_getting_started-downloading_and_installing_a_binary_package` ”.
 
 For development, you will want to download a source package and make the binary
 by yourself using a C/C++ compiler and common tools. Although this is a bit harder,
 it gives more control. And the source packages include additional files, for example
-the Tarantool test suite. The section about source is “:ref:`building_from_source`”.
+the Tarantool test suite. The section about source is “:ref:`building_from_source` ”.
 
 If the installation has already been done, then you should try it out. So we've
 provided some instructions that you can use to make a temporary “sandbox”. In a
 few minutes you can start the server and type in some database-manipulation
 statements. The section about the sandbox is
-“:ref:`user_guide_getting_started-first_database`”.
+“:ref:`user_guide_getting_started-first_database` ”.
 
 .. _user_guide_getting_started-downloading_and_installing_a_binary_package:
 
@@ -31,14 +31,13 @@ statements. The section about the sandbox is
             Downloading and installing a binary package
 =====================================================================
 
-Binary packages for two Tarantool versions -- for the stable 1.6 and the latest 
-1.7 -- are provided at http://tarantool.org/download.html.
-An automatic build system creates, tests and publishes packages for every push
-into the 1.7 branch.
+Binary packages for two Tarantool versions -- for the stable 1.6 and the latest
+1.7 -- are provided at http://tarantool.org/download.html. An automatic build
+system creates, tests and publishes packages for every push into the 1.7 branch.
 
-To download and install the package that's appropriate for your OS,
-start a shell (terminal) and enter the command-line instructions provided
-for your OS at http://tarantool.org/download.html.
+To download and install the package that's appropriate for your OS, start a
+shell (terminal) and enter the command-line instructions provided for your OS
+at http://tarantool.org/download.html.
 
 .. _user_guide_getting_started-first_database:
 
@@ -48,7 +47,8 @@ for your OS at http://tarantool.org/download.html.
 
 Here is how to create a simple test database after installing.
 
-Create a new directory. It's just for tests, you can delete it when the tests are over.
+Create a new directory. It's just for tests, you can delete it when the tests
+are over.
 
 .. code-block:: console
 
@@ -70,14 +70,15 @@ Start the server. The server name is tarantool.
     $ ~/tarantool/src/tarantool
 
 The server starts in interactive mode and outputs a command prompt.
-To turn on the database, :ref:`configure <box_introspection-box_cfg>` it. This minimal example is sufficient:
+To turn on the database, :ref:`configure <box_introspection-box_cfg>` it. This
+minimal example is sufficient:
 
 .. code-block:: tarantoolsession
 
     tarantool> box.cfg{listen = 3301}
 
-If all goes well, you will see the server displaying progress as it
-initializes, something like this:
+If all goes well, you will see the server displaying progress as it initializes,
+something like this:
 
 .. code-block:: tarantoolsession
 
@@ -93,18 +94,19 @@ initializes, something like this:
     2015-08-07 09:41:41.128 ... primary: bound to 0.0.0.0:3301
     2015-08-07 09:41:41.128 ... ready to accept requests
 
-Now that the server is up, you could start up a different shell
-and connect to its primary port with:
+Now that the server is up, you could start up a different shell and connect to
+its primary port with:
 
 .. code-block:: console
 
     $ telnet 0 3301
 
-but for example purposes it is simpler to just leave the server
-running in "interactive mode". On production machines the
-:ref:`interactive mode <administration-using_tarantool_as_a_client>` is just for administrators, but because it's
-convenient for learning it will be used for most examples in
-this manual. Tarantool is waiting for the user to type instructions.
+but for example purposes it is simpler to just leave the server running in
+"interactive mode". On production machines the
+:ref:`interactive mode <administration-using_tarantool_as_a_client>` is just for
+administrators, but because it's convenient for learning it will be used for
+most examples in this manual. Tarantool is waiting for the user to type
+instructions.
 
 To create the first space and the first :ref:`index <box_index>`, try this:
 
@@ -116,7 +118,8 @@ To create the first space and the first :ref:`index <box_index>`, try this:
              >   parts = {1, 'NUM'}
              > })
 
-To insert three “tuples” (our name for “records”) into the first “space” of the database try this:
+To insert three “tuples” (our name for “records”) into the first “space” of the
+database try this:
 
 .. code-block:: tarantoolsession
 
@@ -124,7 +127,8 @@ To insert three “tuples” (our name for “records”) into the first “spac
     tarantool> t = s:insert({2, 'Music'})
     tarantool> t = s:insert({3, 'Length', 93})
 
-To select a tuple from the first space of the database, using the first defined key, try this:
+To select a tuple from the first space of the database, using the first defined
+key, try this:
 
 .. code-block:: tarantoolsession
 
@@ -162,38 +166,47 @@ Now, to prepare for the example in the next section, try this:
 
     tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
-
-
 =====================================================================
-        Connecting remotely
+                       Connecting remotely
 =====================================================================
 
-In the previous section the first request was with :code:`box.cfg{listen = 3301}`.
-The :code:`listen` value can be any form of URI (uniform resource identifier);
-in this case it's just a local port: port 3301.
-It's possible to send requests to the listen URI via
-(a) telnet,
-or (b) a connector (which will be the subject of the ":ref:`index-box_connectors`" chapter),
-or (c) another instance of Tarantool via the :ref:`console module <console-module>`,
-or (d) ``tarantoolctl connect``.
+In the previous section the first request was with ``box.cfg{listen = 3301}``.
+The ``listen`` value can be any form of URI (uniform resource identifier);
+in this case it's just a local port: port 3301. It's possible to send requests
+to the listen URI via:
+
+a. telnet,
+b. a connector (which will be the subject of the ":ref:`index-box_connectors`"
+   chapter),
+c. another instance of Tarantool via the :ref:`console module <console-module>`,
+d. ``tarantoolctl connect``.
+
 Let's try (d).
 
-Switch to another terminal.
-On Linux, for example, this means starting another instance of a Bash shell.
-There is no need to use cd to switch to the :code:`~/tarantool_sandbox` directory.
+Switch to another terminal. On Linux, for example, this means starting another
+instance of a Bash shell. There is no need to use cd to switch to the
+``~/tarantool_sandbox`` directory.
 
-Start the tarantoolctl utility: |br|
-:codenormal:`$` :codebold:`tarantoolctl connect '3301'` |br|
+Start the tarantoolctl utility:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    :extsamp:`$ {**{tarantoolctl connect '3301'}**}`
+
 This means "use the :ref:`tarantoolctl connect utility <administration-tarantoolctl_connect>`
-to connect to the Tarantool server that's listening
-on ``localhost:3301``."
+to connect to the Tarantool server that's listening on ``localhost:3301``."
 
-Try this request: |br|
-:codenormal:`tarantool>` :codebold:`box.space.tester:select{2}` |br|
-This means "send a request to that Tarantool server,
-and display the result." The result in this case is
-one of the tuples that was inserted earlier.
-Your terminal screen should now look like this:
+Try this request:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    tarantool> {**{box.space.tester:select{2}}**}
+
+This means "send a request to that Tarantool server, and display the result".
+The result in this case is one of the tuples that was inserted earlier. Your
+terminal screen should now look like this:
 
 .. code-block:: tarantoolsession
 
@@ -206,17 +219,13 @@ Your terminal screen should now look like this:
 
     localhost:3301> 
 
-You can repeat :code:`box.space...:insert{}` and :code:`box.space...:select{}`
-indefinitely, on either Tarantool instance.
-When the testing is over: To drop the space: :code:`s:drop()`.
-To stop tarantoolctl: Ctrl+C or Ctrl+D. To stop tarantool (an alternative):
-:ref:`os.exit() <os-exit>`. To stop tarantool (from another terminal):
-:code:`sudo pkill -f tarantool`.
-To destroy the test: :code:`rm -r ~/tarantool_sandbox`.
+You can repeat ``box.space...:insert{}`` and ``box.space...:select{}``
+indefinitely, on either Tarantool instance. When the testing is over: To drop
+the space: ``s:drop()``. To stop tarantoolctl: Ctrl+C or Ctrl+D. To stop
+tarantool (an alternative): :ref:`os.exit() <os-exit>`. To stop tarantool (from
+another terminal): ``sudo pkill -f tarantool``. To destroy the test:
+``rm -r ~/tarantool_sandbox``.
 
-To review ... If you followed all the instructions
-in this chapter, then so far you have: installed Tarantool
-from either a binary or a source repository,
+**To review...** If you followed all the instructions in this chapter, then so
+far you have: installed Tarantool from either a binary or a source repository,
 started up the Tarantool server, inserted and selected tuples.
-
-

@@ -4,7 +4,7 @@
 
 .. toctree::
     :maxdepth: 1
-    :caption: Table of Contents
+    :caption: List of C API headers
 
     box
     clock
@@ -19,4 +19,3 @@
     trivia
     tuple
     txn
-

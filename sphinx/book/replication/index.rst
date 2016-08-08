@@ -154,11 +154,11 @@ the additional parameter :ref:`read_only = true <cfg_basic-read_only>`.
                     Monitoring a replica's actions
 =====================================================================
 
-In :ref:`box.info <box_introspection-box_info>` there is a :code:`box.info.replication.status` field:
+In :ref:`box.info <box_introspection-box_info>` there is a ``box.info.replication.status`` field:
 "off", "stopped", "connecting", "auth", "follow", or "disconnected". |br|
 If a replica's status is "follow", then there will be two more fields: |br|
-:code:`box.info.replication.idle` = the number of seconds the replica has been idle, |br|
-:code:`box.info.replication.lag` = the number of seconds the replica is behind the master.
+``box.info.replication.idle`` = the number of seconds the replica has been idle, |br|
+``box.info.replication.lag`` = the number of seconds the replica is behind the master.
 
 In the :ref:`log <log>` there is a record of replication activity.
 If a primary server is started with:
@@ -183,18 +183,18 @@ when a replica connects or disconnects.
 
 Suppose that the replica tries to do something that the master has already done.
 For example: |br|
-:code:`box.schema.space.create('X')` |br|
+``box.schema.space.create('X')`` |br|
 This would cause an error, "Space X exists".
 For this particular situation, the code could be changed to: |br|
-:code:`box.schema.space.create('X', {if_not_exists=true})` |br|
+``box.schema.space.create('X', {if_not_exists=true})`` |br|
 But there is a more general solution: the
 :samp:`box.once({key}, {function})` method.
-If :code:`box.once()` has been called before with the
+If ``box.once()`` has been called before with the
 same :samp:`{key}` value, then :samp:`{function}`
 is ignored; otherwise :samp:`{function}` is executed.
 Therefore, actions which should only occur once during the
 life of a replicated session should be placed in a function
-which is executed via :code:`box.once()`. For example:
+which is executed via ``box.once()``. For example:
 
 .. code-block:: lua
 
@@ -345,36 +345,6 @@ display of the other shell.)
 
                 $
 
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-1 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-1 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-1-1').height(), $('#terminal-1-2').height());
-                    $('#catalog-1-content').height(maxHeight + 10);
-                    $('#terminal-1-1').height(maxHeight);
-                    $('#terminal-1-2').height(maxHeight);
-                    $('#terminal-1-1').show();
-                    $('#terminal-1-2').hide();
-                });
-            })();
-        </script>
-
 On the first shell, which we'll call Terminal #1, execute these commands:
 
 .. code-block:: tarantoolsession
@@ -420,36 +390,6 @@ screen looks like this: (except that UUID values are always different):
             :name: terminal-2-2
 
             .. include:: 1_2.rst
-
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-2 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-2 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-2-1').height(), $('#terminal-2-2').height());
-                    $('#catalog-2-content').height(maxHeight + 10);
-                    $('#terminal-2-1').height(maxHeight);
-                    $('#terminal-2-2').height(maxHeight);
-                    $('#terminal-2-1').show();
-                    $('#terminal-2-2').hide();
-                });
-            })();
-        </script>
 
 On the second shell, which we'll call Terminal #2, execute these commands:
 
@@ -502,36 +442,6 @@ on Terminal #1, because both servers are in the same cluster.
 
             .. include:: 2_2.rst
 
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-3 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-3 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-3-1').height(), $('#terminal-3-2').height());
-                    $('#catalog-3-content').height(maxHeight + 10);
-                    $('#terminal-3-1').height(maxHeight);
-                    $('#terminal-3-2').height(maxHeight);
-                    $('#terminal-3-1').show();
-                    $('#terminal-3-2').hide();
-                });
-            })();
-        </script>
-
 On Terminal #1, execute these requests:
 
 .. code-block:: tarantoolsession
@@ -570,36 +480,6 @@ Now the screen looks like this:
             :name: terminal-4-2
 
             .. include:: 3_2.rst
-
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-4 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-4 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-4-1').height(), $('#terminal-4-2').height());
-                    $('#catalog-4-content').height(maxHeight + 10);
-                    $('#terminal-4-1').height(maxHeight);
-                    $('#terminal-4-2').height(maxHeight);
-                    $('#terminal-4-1').show();
-                    $('#terminal-4-2').hide();
-                });
-            })();
-        </script>
 
 The creation and insertion were successful on Terminal #1. Nothing has happened
 on Terminal #2.
@@ -642,36 +522,6 @@ Now the screen looks like this (remember to click on the "Terminal #2" tab when 
             :name: terminal-5-2
 
             .. include:: 4_2.rst
-
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-5 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-5 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-5-1').height(), $('#terminal-5-2').height());
-                    $('#catalog-5-content').height(maxHeight + 10);
-                    $('#terminal-5-1').height(maxHeight);
-                    $('#terminal-5-2').height(maxHeight);
-                    $('#terminal-5-1').show();
-                    $('#terminal-5-2').hide();
-                });
-            })();
-        </script>
 
 The selection and insertion were successful on Terminal #2. Nothing has
 happened on Terminal #1.
@@ -717,36 +567,6 @@ similar sizes because they both contain the same tuples.
 
             .. include:: 5_2.rst
 
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-6 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-6 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-6-1').height(), $('#terminal-6-2').height());
-                    $('#catalog-6-content').height(maxHeight + 10);
-                    $('#terminal-6-1').height(maxHeight);
-                    $('#terminal-6-2').height(maxHeight);
-                    $('#terminal-6-1').show();
-                    $('#terminal-6-2').hide();
-                });
-            })();
-        </script>
-
 On Terminal #2, ignore the error messages,
 and execute these requests:
 
@@ -786,36 +606,6 @@ messages):
             :name: terminal-7-2
 
             .. include:: 6_2.rst
-
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-7 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-7 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-7-1').height(), $('#terminal-7-2').height());
-                    $('#catalog-7-content').height(maxHeight + 10);
-                    $('#terminal-7-1').height(maxHeight);
-                    $('#terminal-7-2').height(maxHeight);
-                    $('#terminal-7-1').show();
-                    $('#terminal-7-2').hide();
-                });
-            })();
-        </script>
 
 Terminal #2 has done a select and an insert, even though Terminal #1 is down.
 
@@ -857,36 +647,6 @@ Now the screen looks like this:
             :name: terminal-8-2
 
             .. include:: 7_2.rst
-
-    .. raw:: html
-
-        <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-8 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-8 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-8-1').height(), $('#terminal-8-2').height());
-                    $('#catalog-8-content').height(maxHeight + 10);
-                    $('#terminal-8-1').height(maxHeight);
-                    $('#terminal-8-2').height(maxHeight);
-                    $('#terminal-8-1').show();
-                    $('#terminal-8-2').hide();
-                });
-            })();
-        </script>
 
 The master has reconnected to the cluster, and has NOT found what the replica
 wrote while the master was away. That is not a surprise -- the replica has not
@@ -935,31 +695,15 @@ The screen now looks like this:
     .. raw:: html
 
         <script>
-            (function(){
-                var dOn = $(document);
-                dOn.on({
-                    click: function(event) {
-                        event.preventDefault();
-                        link = $(this).children('a');
-                        target = link.attr('href');
-                        if (!(link.hasClass('p-active'))) {
-                            active = $('#catalog-9 .b-tab_switcher-item-url.p-active');
-                            $(active.attr('href')).hide();
-                            active.removeClass('p-active');
-                            link.addClass('p-active');
-                            $(link.attr('href')).show();
-                        }
-                    }
-                }, '#catalog-9 .b-tab_switcher-item');
-                dOn.ready(function(event) {
-                    maxHeight = Math.max($('#terminal-9-1').height(), $('#terminal-9-2').height());
-                    $('#catalog-9-content').height(maxHeight + 10);
-                    $('#terminal-9-1').height(maxHeight);
-                    $('#terminal-9-2').height(maxHeight);
-                    $('#terminal-9-1').show();
-                    $('#terminal-9-2').hide();
-                });
-            })();
+            register_replication_tab(1);
+            register_replication_tab(2);
+            register_replication_tab(3);
+            register_replication_tab(4);
+            register_replication_tab(5);
+            register_replication_tab(6);
+            register_replication_tab(7);
+            register_replication_tab(8);
+            register_replication_tab(9);
         </script>
 
 This shows that the two servers are once again in synch, and that each server

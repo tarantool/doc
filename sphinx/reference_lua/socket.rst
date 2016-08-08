@@ -99,7 +99,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
 .. _socket-socket:
 
-:codebold:`socket`:codenormal:`(`:codeitalic:`domain, type, protocol`:codenormal:`)`
+.. function:: __call(domain, type, protocol)
 
     Create a new TCP or UDP socket. The argument values
     are the same as in the `Linux socket(2) man page <http://man7.org/linux/man-pages/man2/socket.2.html>`_.
@@ -107,8 +107,11 @@ the function invocations will look like ``sock:function_name(...)``.
     :return: an unconnected socket, or nil.
     :rtype:  userdata
 
-    Example: |br|
-    :codenormal:`socket('AF_INET', 'SOCK_STREAM', 'tcp')`
+    **Example:**
+
+    .. code-block:: lua
+
+        socket('AF_INET', 'SOCK_STREAM', 'tcp')
 
 .. _socket-tcp_connect:
 
@@ -121,8 +124,11 @@ the function invocations will look like ``sock:function_name(...)``.
     :return: a connected socket, if no error.
     :rtype: userdata
 
-    Example: |br|
-    :codenormal:`tcp_connect('127.0.0.1', 3301)`
+    **Example:**
+
+    .. code-block:: lua
+
+        tcp_connect('127.0.0.1', 3301)
 
 .. _socket-getaddrinfo:
 
@@ -135,9 +141,10 @@ the function invocations will look like ``sock:function_name(...)``.
     :return: A table containing these fields: "host", "family", "type", "protocol", "port".
     :rtype:  table
 
-    Example: |br|
-    :codenormal:`socket.getaddrinfo('tarantool.org', 'http')` |br|
-    will return variable information such as
+    **Example:**
+
+    ``socket.getaddrinfo('tarantool.org', 'http')`` will return variable
+    information such as
 
     .. code-block:: tarantoolsession
 
@@ -162,8 +169,11 @@ the function invocations will look like ``sock:function_name(...)``.
     can accept connections. Usually the same objective
     is accomplished with ``box.cfg{listen=...)``.
 
-    Example: |br|
-    :codenormal:`socket.tcp_server('localhost', 3302, function () end)`
+    **Example:**
+
+    .. code-block:: lua
+
+        socket.tcp_server('localhost', 3302, function () end)
 
 .. class:: socket_object
 
@@ -193,10 +203,13 @@ the function invocations will look like ``sock:function_name(...)``.
         :return: the socket object value may change if sysconnect() succeeds.
         :rtype:  boolean
 
-        Example: |br|
-        :codenormal:`socket = require('socket')` |br|
-        :codenormal:`sock = socket('AF_INET', 'SOCK_STREAM', 'tcp')` |br|
-        :codenormal:`sock:sysconnect(0, 3301)`
+        **Example:**
+
+        .. code-block:: lua
+
+            socket = require('socket')
+            sock = socket('AF_INET', 'SOCK_STREAM', 'tcp')
+            sock:sysconnect(0, 3301)
 
     .. _socket-send:
 
@@ -337,14 +350,17 @@ the function invocations will look like ``sock:function_name(...)``.
 
         Possible errors: on error, returns status, errno, errstr.
 
-        Example: |br|
-        After |br|
-        :codenormal:`message_content, message_sender = recvfrom(1)` |br|
+        **Example:**
+
+        After ``message_content, message_sender = recvfrom(1)``
         the value of ``message_content`` might be a string containing 'X' and
         the value of ``message_sender`` might be a table containing
-        ``message_sender.host = '18.44.0.1'``,
-        ``message_sender.family = 'AF_INET'``,
-        ``message_sender.port = 43065``.
+
+        .. code-block:: lua
+
+            message_sender.host = '18.44.0.1'
+            message_sender.family = 'AF_INET'
+            message_sender.port = 43065
 
     .. _socket-shutdown:
 
@@ -437,9 +453,10 @@ the function invocations will look like ``sock:function_name(...)``.
 
     .. method:: nonblock([flag])
 
-        ``sock:nonblock()`` returns the current flag value. |br|
-        ``sock:nonblock(false)`` sets the flag to false and returns false. |br|
-        ``sock:nonblock(true)`` sets the flag to true and returns true.
+        * ``sock:nonblock()`` returns the current flag value.
+        * ``sock:nonblock(false)`` sets the flag to false and returns false.
+        * ``sock:nonblock(true)`` sets the flag to true and returns true.
+
         This function may be useful before invoking a function which might
         otherwise block indefinitely.
 

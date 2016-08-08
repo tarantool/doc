@@ -46,7 +46,7 @@
 
     See also :manpage:`printf(3)`, :ref:`say_level<c_api-say-say_level>`
 
-    Example:
+    **Example:**
 
     .. code-block:: c
 

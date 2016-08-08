@@ -27,9 +27,9 @@ the same Lua routine.
 The methods for connect/select/insert/etc. are similar to the ones in the
 :ref:`net.box <net_box-module>` module.
 
-From a user's point of view the MySQL and PostgreSQL rocks are
-very similar, so the following sections -- "MySQL Example" and
-"PostgreSQL Example" -- contain some redundancy.
+From a user's point of view the MySQL and PostgreSQL rocks are very similar, so
+the following sections -- "MySQL Example" and "PostgreSQL Example" -- contain
+some redundancy.
 
 .. _dbms_modules-mysql-example:
 
@@ -38,12 +38,11 @@ very similar, so the following sections -- "MySQL Example" and
 ===========================================================
 
 This example assumes that MySQL 5.5 or MySQL 5.6 or MySQL 5.7 has been installed.
-Recent MariaDB versions will also work, the MariaDB C connector is used.
-The package that matters most is the MySQL
-client developer package, typically named something like libmysqlclient-dev.
-The file that matters most from this package is libmysqlclient.so or a similar name.
-One can use :code:`find` or :code:`whereis` to see what directories these files
-are installed in.
+Recent MariaDB versions will also work, the MariaDB C connector is used. The
+package that matters most is the MySQL client developer package, typically named
+something like libmysqlclient-dev. The file that matters most from this package
+is libmysqlclient.so or a similar name. One can use ``find`` or ``whereis`` to
+see what directories these files are installed in.
 
 It will be necessary to install Tarantool's MySQL driver shared library, load
 it, and use it to connect to a MySQL server. After that, one can pass any MySQL
@@ -55,8 +54,8 @@ statement to the server and receive results, including multiple result sets.
 
 Check the instructions for :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>`
 that apply for the environment where tarantool was installed. In addition to
-installing :code:`tarantool`, install :code:`tarantool-dev`. For example, on
-Ubuntu, add the line
+installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add
+the line
 
 .. code-block:: bash
 
@@ -68,9 +67,9 @@ Now, for the MySQL driver shared library, there are two ways to install:
        With LuaRocks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Begin by installing luarocks and making sure that tarantool is among the upstream
-servers, as in the instructions on `rocks.tarantool.org`_, the Tarantool luarocks
-page. Now execute this:
+Begin by installing luarocks and making sure that tarantool is among the
+upstream servers, as in the instructions on `rocks.tarantool.org`_, the
+Tarantool luarocks page. Now execute this:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -101,15 +100,15 @@ Go the site `github.com/tarantool/mysql`_. Follow the instructions there, saying
     make install
 
 At this point it is a good idea to check that the installation produced a file
-named :code:`driver.so`, and to check that this file is on a directory that is
-searched by the :code:`require` request.
+named ``driver.so``, and to check that this file is on a directory that is
+searched by the ``require`` request.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          Connecting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Begin by making a :code:`require` request for the mysql driver. We will assume
-that the name is :code:`mysql` in further examples.
+Begin by making a ``require`` request for the mysql driver. We will assume that
+the name is ``mysql`` in further examples.
 
 .. code-block:: lua
 
@@ -131,13 +130,12 @@ The connection-options parameter is a table. Possible options are:
 * :samp:`db = {database-name}` - string, default value is blank
 * :samp:`raise = {true|false}` - boolean, default value is false
 
-The option names, except for `raise`,
-are similar to the names that MySQL's mysql client uses, for details
-see the MySQL manual at `dev.mysql.com/doc/refman/5.6/en/connecting.html`_.
-The `raise` option should be set to :codenormal:`true` if
-errors should be raised when encountered.
-To connect with a Unix socket rather than with TCP, specify ``host = 'unix/'``
-and :samp:`port = {socket-name}`.
+The option names, except for `raise`, are similar to the names that MySQL's
+mysql client uses, for details see the MySQL manual at
+`dev.mysql.com/doc/refman/5.6/en/connecting.html`_.
+The `raise` option should be set to :codenormal:`true` if errors should be
+raised when encountered. To connect with a Unix socket rather than with TCP,
+specify ``host = 'unix/'`` and :samp:`port = {socket-name}`.
 
 Example, using a table literal enclosed in {braces}:
 
@@ -208,9 +206,9 @@ For all MySQL statements, the request is:
 
     *connection-name*:execute(*sql-statement* [, *parameters*])
 
-where :code:`sql-statement` is a string, and the optional :code:`parameters`
-are extra values that can be plugged in to replace any question marks ("?"s)
-in the SQL statement.
+where ``sql-statement`` is a string, and the optional ``parameters`` are extra
+values that can be plugged in to replace any question marks ("?"s) in the SQL
+statement.
 
 **Example:**
 
@@ -229,7 +227,7 @@ in the SQL statement.
       Closing connection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To end a session that began with :code:`mysql.connect`, the request is:
+To end a session that began with ``mysql.connect``, the request is:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -385,10 +383,10 @@ into the MySQL database. And now it's been selected with the Tarantool client.
                   PostgreSQL Example
 ===========================================================
 
-This example assumes that PostgreSQL 8 or PostgreSQL 9 has been installed.
-More recent versions should also work. The package that matters most is the
-PostgreSQL developer package, typically named something like libpq-dev.
-On Ubuntu this can be installed with:
+This example assumes that PostgreSQL 8 or PostgreSQL 9 has been installed. More
+recent versions should also work. The package that matters most is the
+PostgreSQL developer package, typically named something like libpq-dev. On
+Ubuntu this can be installed with:
 
 .. code-block:: bash
 
@@ -397,7 +395,7 @@ On Ubuntu this can be installed with:
 However, because not all platforms are alike, for this example the assumption
 is that the user must check that the appropriate PostgreSQL files are present
 and must explicitly state where they are when building the Tarantool/PostgreSQL
-driver. One can use :code:`find` or :code:`whereis` to see what directories
+driver. One can use ``find`` or ``whereis`` to see what directories
 PostgreSQL files are installed in.
 
 It will be necessary to install Tarantool's PostgreSQL driver shared library,
@@ -411,8 +409,8 @@ any PostgreSQL statement to the server and receive results.
 Check the instructions for
 :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>`
 that apply for the environment where tarantool was installed. In addition to
-installing :code:`tarantool`, install :code:`tarantool-dev`. For example, on
-Ubuntu, add the line:
+installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add
+the line:
 
 .. code-block:: bash
 
@@ -457,15 +455,15 @@ Go the site `github.com/tarantool/pg`_. Follow the instructions there, saying:
     make install
 
 At this point it is a good idea to check that the installation produced a file
-named :code:`driver.so`, and to check that this file is on a directory that is
-searched by the :code:`require` request.
+named ``driver.so``, and to check that this file is on a directory that is
+searched by the ``require`` request.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          Connecting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Begin by making a :code:`require` request for the pg driver. We will assume that
-the name is :code:`pg` in further examples.
+Begin by making a ``require`` request for the pg driver. We will assume that the
+name is ``pg`` in further examples.
 
 .. code-block:: lua
 
@@ -553,7 +551,7 @@ For all PostgreSQL statements, the request is:
 
     *connection-name*:execute(*sql-statement* [, *parameters*])
 
-where :code:`sql-statement` is a string, and the optional :code:`parameters`
+where ``sql-statement`` is a string, and the optional ``parameters``
 are extra values that can be plugged in to replace any question marks ("?"s)
 in the SQL statement.
 
@@ -573,7 +571,7 @@ in the SQL statement.
       Closing connection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To end a session that began with :code:`pg.connect`, the request is:
+To end a session that began with ``pg.connect``, the request is:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -582,8 +580,10 @@ To end a session that began with :code:`pg.connect`, the request is:
 
 **Example:**
 
-    tarantool> conn:close() |br|
-    --- |br|
+.. code-block:: tarantoolsession
+
+    tarantool> conn:close()
+    ---
     ...
 
 For further information, including examples of rarely-used requests, see the
@@ -682,10 +682,9 @@ reply "error" for the call to "require()".
     ---
     ...
 
-Create a Lua function that will connect to the PostgreSQL server,
-(using some factory default values for the port and user and password),
-retrieve one row, and display the row.
-For explanations of the statement types used here, read the
+Create a Lua function that will connect to the PostgreSQL server, (using some
+factory default values for the port and user and password), retrieve one row,
+and display the row. For explanations of the statement types used here, read the
 Lua tutorial earlier in the Tarantool user manual.
 
 .. code-block:: tarantoolsession

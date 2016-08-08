@@ -162,7 +162,7 @@ and 1/0 (which is "infinity") as special values rather than nulls or errors:
 
 The result of the json.encode request will look like this:
 
-.. code-block:: tarantool-session
+.. code-block:: tarantoolsession
 
     tarantool> json.encode({1, x, y, 2})
     ---

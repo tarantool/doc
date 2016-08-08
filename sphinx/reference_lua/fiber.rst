@@ -138,7 +138,7 @@ recommended.
 
     Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`.
 
-    Example:
+    **Example:**
 
     .. code-block:: tarantoolsession
 
@@ -346,8 +346,7 @@ recommended.
         :samp:`{fiber_object}.storage.{name}` or :samp:`fiber_object}.storage['{name}'].`
         or with a number :samp:`{fiber_object}.storage[{number}]`.
         Values may be either numbers or strings. The storage is garbage-collected
-        when :samp:`{fiber_object}:cancel()` happens. |br|
-        See also :ref:`box.session.storage <box_session-storage>`.
+        when :samp:`{fiber_object}:cancel()` happens.
 
         **Example:**
 
@@ -381,6 +380,8 @@ recommended.
             ---
             - error: '[string "return fiber_function.storage[''str1'']"]:1: the fiber is dead'
             ...
+
+        See also :ref:`box.session.storage <box_session-storage>`.
 
 .. _fiber-time:
 

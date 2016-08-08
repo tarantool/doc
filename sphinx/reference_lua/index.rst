@@ -6,7 +6,7 @@
 
 .. toctree::
     :maxdepth: 1
-    :caption: Table of Contents
+    :caption: List of lua modules
 
     box
     clock

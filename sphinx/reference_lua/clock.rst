@@ -18,8 +18,7 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
 
     The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME).
     This is the best function for knowing what the official time is,
-    as determined by the system administrator. |br|
-    See also :ref:`fiber.time64 <fiber-time64>` and :ref:`os.clock() <os-clock>`.
+    as determined by the system administrator.
 
     :return: seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted.
     :rtype: number or number64
@@ -31,6 +30,8 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
         -- This will print an approximate number of years since 1970.
         clock = require('clock')
         print(clock.time() / (365*24*60*60))
+
+    See also :ref:`fiber.time64 <fiber-time64>` and :ref:`os.clock() <os-clock>`.
 
 .. function:: monotonic()
               monotonic64()

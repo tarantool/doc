@@ -23,7 +23,9 @@
 {% block content %}
   <section class="b-lightgray_block b-documentation_top b-clearbox p-documentation_in">
     <div class="b-block-wrapper">
-      <h2 class="b-section-title">{{ title | cleantitle }}</h2>
+      <h2 class="b-section-title b-ellipsis" title="{{ title | cleantitle }}">
+        {{ title | cleantitle }}
+      </h2>
       {{- language_selector() -}}
     </div>
   </section>

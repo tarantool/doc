@@ -1,5 +1,32 @@
-$(document).ready(function () {
+window['register_replication_tab'] = function (id) {
+    $(document).on({
+        click: function(event) {
+            event.preventDefault();
+            var link = $(this).children('a');
+            var target = link.attr('href');
+            if (!(link.hasClass('p-active'))) {
+                var active = $('#catalog-' + id + ' .b-tab_switcher-item-url.p-active');
+                $(active.attr('href')).hide();
+                active.removeClass('p-active');
+                link.addClass('p-active');
+                $(link.attr('href')).show();
+            }
+        }
+    }, '#catalog-' + id + ' .b-tab_switcher-item');
+    $(document).ready(function(event) {
+        var maxHeight = Math.max(
+          $('#terminal-' + id + '-1').height(),
+          $('#terminal-' + id + '-2').height()
+        );
+        $('#catalog-'  + id + '-content').height(maxHeight + 15);
+        $('#terminal-' + id + '-1').height(maxHeight);
+        $('#terminal-' + id + '-2').height(maxHeight);
+        $('#terminal-' + id + '-1').show();
+        $('#terminal-' + id + '-2').hide();
+    });
+}
 
+$(document).ready(function () {
   /* Remove first headers, since we move them into Black stripe */
   $("div>h1").remove();
 
@@ -47,20 +74,26 @@ $(document).ready(function () {
     }
   );
 
+  function admonition_icon(name) {
+    return function(i, el) {
+      var icon = $('<i class="fa"></i>').addClass(name);
+      $(el).prepend(icon);
+    }
+  }
+
   /* Add icon to NOTES */
   $(".admonition.note p.first.admonition-title").each(
-    function(i, el) {
-      var icon = '<i class="fa fa-comments-o"></i>';
-      $(el).html(icon + $(el).html());
-    }
+    admonition_icon("fa-comments-o")
   );
 
   /* Add icon to WARNINGS */
   $(".admonition.warning p.first.admonition-title").each(
-    function(i, el) {
-      var icon = '<i class="fa fa-exclamation-triangle"></i>';
-      $(el).html(icon + $(el).html());
-    }
+    admonition_icon("fa-exclamation-triangle")
+  );
+
+  /* Add icon to FACTS */
+  $(".admonition.fact p.first.admonition-title").each(
+    admonition_icon("fa-hand-o-up")
   );
 
   /* Pin left menu - bad design, need to redo */
@@ -68,26 +101,28 @@ $(document).ready(function () {
 
   /* Move all rparams from table */
   $("table.docutils.field-list").each(
-      function(i, table) {
-        $(table).find("tr").each(function(i, el) {
-          /* name of parameter */
-          var left = $(el).children("th.field-name");
-          if (left.html() == "Rtype:") {
-            left.html("Return type:");
-          }
-          left = $("<div />").addClass("b-doc-param_left").html(
-            $("<p />").html(left.html())
-          );
-          /* body of parameter */
-          var right = $(el).children("td.field-body");
-          right = $("<div />").addClass("b-doc-param_right").html(right.html());
-          /* result of (l + r) */
-          var pane = $("<div />").addClass("b-doc-param").append([left, right]);
-          // return pane
-          $(table).before(pane);
-        })
-        $(table).empty().remove();
-      }
+    function(i, table) {
+      $(table).find("tr").each(function(i, el) {
+        /* name of parameter */
+        var left = $(el).children("th.field-name");
+        if (left.html() == "Rtype:") {
+          left.html("Return type:");
+        }
+        left = $("<div />").addClass("b-doc-param_left").html(
+          $("<p />").html(left.html())
+        );
+        /* body of parameter */
+        var right = $(el).children("td.field-body");
+        right = $("<div />").addClass("b-doc-param_right").html(right.html());
+        /* result of (l + r) */
+        var pane = $("<div />").addClass("b-doc-param").append([left, right]);
+        // return pane
+        $(table).before(pane);
+      })
+      $(table).empty().remove();
+    }
+  );
+  $("dl.function").each(
   );
 });
 

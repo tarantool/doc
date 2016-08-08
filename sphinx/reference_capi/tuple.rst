@@ -127,7 +127,7 @@
     Allocate and initialize a new tuple iterator. The tuple iterator allow to
     iterate over fields at root level of MsgPack array.
 
-    Example:
+    **Example:**
 
     .. code-block:: c
 

@@ -37,7 +37,7 @@
     :return: -1 and ``errno`` = ENOMEM if failed to create a task
     :return: the function return (``errno`` is preserved).
 
-    Example:
+    **Example:**
 
     .. code-block:: c
 

@@ -7,12 +7,13 @@
     <...> [22612] main/101/interactive I> ready to accept requests
     <... ...>
     tarantool> box.space.tester:select({0}, {iterator = 'GE'})
+    ---
     - - [1, 'Tuple inserted on Terminal #1']
     ...
     tarantool> box.cfg{
              >   replication_source='replicator:password@localhost:3302'
              > }
-     [28987] main/101/interactive C> starting replication from localhost:3302
+    [28987] main/101/interactive C> starting replication from localhost:3302
     ---
     ...
     [22612] main/101/interactive C> starting replication from localhost:3302
@@ -24,6 +25,7 @@
     [22612] relay/127.0.0.1:33510/102/main I> done `./00000000000000000000.xlog'
     [22612] relay/127.0.0.1:33510/102/main I> recover from `./00000000000000000008.xlog'
     tarantool> box.space.tester:select({0}, {iterator = 'GE'})
+    ---
     - - [1, 'Tuple inserted on Terminal #1']
       - [2, 'Tuple inserted on Terminal #2']
       - [3, 'Another']

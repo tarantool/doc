@@ -205,7 +205,7 @@ necessary to prioritize requests or to use different authentication ids.
         server response, not the request itself.
 
 ============================================================================
-            Example showing use of most of the net.box methods
+              Example showing use of most of the net.box methods
 ============================================================================
 
 This example will work with the sandbox configuration described in the preface.
