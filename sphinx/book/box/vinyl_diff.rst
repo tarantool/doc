@@ -31,7 +31,7 @@
     With vinyl, they are not.
 
     With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>`
-    and :ref:`random() <box_index-random>` and :ref:`auto_increment() <box_space-auto_increment>`
+    and :ref:`random() <box_index-random>`
     and :ref:`truncate() <box_space-truncate>` functions are supported. |br|
     With vinyl, they are not.
 
