@@ -5,12 +5,12 @@
 .. _box_introspection-box_cfg:
 
 =====================================================================
-                         Package `box.cfg`
+                         Submodule `box.cfg`
 =====================================================================
 
 .. module:: box.cfg
 
-The ``box.cfg`` package is for administrators to specify all the server
+The ``box.cfg`` submodule is for administrators to specify all the server
 configuration parameters; the full description of the parameters is in
 section :ref:`book-cfg <index-book_cfg>`. Use ``box.cfg`` without braces to get read-only
 access to those parameters.
@@ -30,18 +30,18 @@ access to those parameters.
     ...
 
 =====================================================================
-                         Package `box.info`
+                         Submodule `box.info`
 =====================================================================
 
 .. module:: box.info
 
-The ``box.info`` package provides access to information about server variables.
+The ``box.info`` submodule provides access to information about server variables.
 Some important ones:
 
 * **server.uuid** holds the unique identifier of the server. This value is also
   in the :ref:`box.space._cluster <box_space-cluster>` system space.
 * **pid** is the process ID of the server. This value is also shown by the
-  :ref:`tarantool <tarantool-build>` package.
+  :ref:`tarantool <tarantool-build>` module.
 * **version** is the Tarantool version. This value is also shown by
   :ref:`tarantool --version <index-tarantool_version>`.
 * **uptime** is the number of seconds since the server started.
@@ -53,9 +53,9 @@ Some important ones:
     Since ``box.info`` contents are dynamic, it's not possible to iterate over
     keys with the Lua ``pairs()`` function. For this purpose, ``box.info()``
     builds and returns a Lua table with all keys and values provided in the
-    package.
+    submodule.
 
-    :return: keys and values in the package.
+    :return: keys and values in the submodule.
     :rtype:  table
 
     **Example:**
@@ -96,12 +96,12 @@ Some important ones:
         ...
 
 =====================================================================
-                         Package `box.slab`
+                         Submodule `box.slab`
 =====================================================================
 
 .. module:: box.slab
 
-The ``box.slab`` package provides access to slab allocator statistics. The
+The ``box.slab`` submodule provides access to slab allocator statistics. The
 slab allocator is the main allocator used to store tuples. This can be used
 to monitor the total memory use and memory fragmentation.
 
@@ -156,10 +156,10 @@ The arena_size and arena_used values are the amount of the % of
 .. _box_introspection-box_stat:
 
 =====================================================================
-                         Package `box.stat`
+                         Submodule `box.stat`
 =====================================================================
 
-The ``box.stat`` package provides access to request and network statistics.
+The ``box.stat`` submodule provides access to request and network statistics.
 Show the average number of requests per second, and the total number of
 requests since startup, broken down by request type and network events statistics.
 

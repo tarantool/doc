@@ -40,7 +40,7 @@ networking in server-side Lua is sequential, yet very efficient, as it is built
 on top of the **cooperative multitasking** environment that Tarantool itself
 uses.
 
-One of the built-in Lua packages is an API for the Database Management System.
+One of the built-in Lua packages provides an API for the Database Management System.
 Thus some developers see Tarantool as a DBMS with a popular stored
 procedure language, while others see it as a Lua interpreter,
 while still others see it as a replacement for many

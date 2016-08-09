@@ -49,7 +49,7 @@ Then use :ref:`console.start() <console-start>` to start interactive mode.
 
 **fio_read.lua**
 
-Use the :ref:`fio package <fio-package>` to open, read, and close a file.
+Use the :ref:`fio module <fio-module>` to open, read, and close a file.
 
 .. code-block:: lua
 
@@ -67,7 +67,7 @@ Use the :ref:`fio package <fio-package>` to open, read, and close a file.
 
 **fio_write.lua**
 
-Use the :ref:`fio package <fio-package>` to open, write, and close a file.
+Use the :ref:`fio module <fio-module>` to open, write, and close a file.
 
 .. code-block:: lua
 
@@ -103,7 +103,7 @@ Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C function: gettimeofday().
 This delivers time with millisecond precision, unlike the time function in
-Tarantool's :ref:`clock package <clock-package>`.
+Tarantool's :ref:`clock module <clock-module>`.
 
 .. code-block:: lua
 

@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
-                                Package `csv`
+                                Module `csv`
 -------------------------------------------------------------------------------
 
 .. module:: csv
 
-The csv package handles records formatted according to Comma-Separated-Values
+The csv module handles records formatted according to Comma-Separated-Values
 (CSV) rules.
 
 The default formatting rules are:

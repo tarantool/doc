@@ -1,10 +1,10 @@
-.. _console-package:
+.. _console-module:
 
 -------------------------------------------------------------------------------
-                                   Package `console`
+                                   Module `console`
 -------------------------------------------------------------------------------
 
-The console package allows one Tarantool server to access another Tarantool
+The console module allows one Tarantool server to access another Tarantool
 server, and allows one Tarantool server to start listening on an :ref:`admin port <administration-admin_ports>`.
 
 .. module:: console

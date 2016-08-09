@@ -1,11 +1,11 @@
 -------------------------------------------------------------------------------
-                            Package `fiber`
+                            Module `fiber`
 -------------------------------------------------------------------------------
 
-The ``fiber`` package allows for creating, running and managing *fibers*.
+The ``fiber`` module allows for creating, running and managing *fibers*.
 
 A fiber is a set of instructions which are executed with cooperative
-multitasking. Fibers managed by the fiber package are associated with
+multitasking. Fibers managed by the fiber module are associated with
 a user-supplied function called the *fiber function*.
 A fiber has three possible states: **running**, **suspended** or **dead**.
 When a fiber is created with :ref:`fiber.create() <fiber-create>`, it is running.

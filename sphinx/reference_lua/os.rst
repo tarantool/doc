@@ -1,12 +1,12 @@
-.. _os-package:
+.. _os-module:
 
 -------------------------------------------------------------------------------
-                            Package `os`
+                            Module `os`
 -------------------------------------------------------------------------------
 
 .. module:: os
 
-The os package contains the functions
+The os module contains the functions
 :ref:`execute() <os-execute>`,
 :ref:`rename() <os-rename>`,
 :ref:`getenv() <os-getenv>`,

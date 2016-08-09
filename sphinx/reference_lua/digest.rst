@@ -1,18 +1,18 @@
 .. _digest:
 
 -------------------------------------------------------------------------------
-                            Package `digest`
+                            Module `digest`
 -------------------------------------------------------------------------------
 
 .. module:: digest
 
 A "digest" is a value which is returned by a function (usually a
 `Cryptographic hash function`_), applied against a string. Tarantool's digest
-package supports several types of cryptographic hash functions (AES_, MD4_,
+module supports several types of cryptographic hash functions (AES_, MD4_,
 MD5_, SHA-0_, SHA-1_, SHA-2_) as well as a checksum function (CRC32_), two
 functions for base64_, and two non-cryptographic hash functions (guava_, murmur_).
 Some of the digest functionality is also present in the :ref:`crypto <crypto>`
-package.
+module.
 
 The functions in digest are:
 
@@ -163,9 +163,9 @@ The functions in digest are:
 
 .. _digest-incremental_digests:
 
-=========================================
-Incremental methods in the digest package
-=========================================
+========================================
+Incremental methods in the digest module
+========================================
 
 Suppose that a digest is done for a string 'A', then a new part 'B' is appended
 to the string, then a new digest is required. The new digest could be recomputed

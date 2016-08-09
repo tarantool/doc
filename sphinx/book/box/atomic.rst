@@ -131,11 +131,11 @@ The implicit yield requests are:
 :ref:`insert <box_space-insert>` :ref:`replace <box_space-replace>`
 :ref:`update <box_space-update>` :ref:`upsert <box_space-upsert>` :ref:`delete <box_space-delete>` (the "data-change" requests),
 and
-functions in package
+functions in module
 :ref:`fio <fio-section>`,
-:ref:`net_box <net_box-package>`,
-:ref:`console <console-package>`, or
-:ref:`socket <socket-package>` (the "os" and "network" requests).
+:ref:`net_box <net_box-module>`,
+:ref:`console <console-module>`, or
+:ref:`socket <socket-module>` (the "os" and "network" requests).
 Note re storage engine: with Vinyl :ref:`select <box_space-select>` is
 an implicit yield request, but data-change requests may not be.
 
@@ -157,8 +157,8 @@ it only enables yields caused by earlier implicit yield requests.
 
 Despite their resemblance to implicit yield requests,
 :ref:`truncate <box_space-truncate>` and :ref:`drop <box_space-drop>` do not cause implicit yield.
-Despite their resemblance to functions of the fio package,
-functions of the :ref:`os <os-package>` package do not cause implicit yield.
+Despite their resemblance to functions of the fio module,
+functions of the :ref:`os <os-module>` module do not cause implicit yield.
 Despite its resemblance to commit, :ref:`rollback <atomic-box_rollback>` does not
 enable yields.
 

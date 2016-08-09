@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                            Package `tdb`
+                            Module `tdb`
 -------------------------------------------------------------------------------
 
 The Tarantool Debugger (abbreviation = tdb) can be used with any Lua program.

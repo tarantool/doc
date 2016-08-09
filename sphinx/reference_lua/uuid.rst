@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                            Package `uuid`
+                            Module `uuid`
 -------------------------------------------------------------------------------
 
 A "UUID" is a `Universally unique identifier`_. If an application requires that

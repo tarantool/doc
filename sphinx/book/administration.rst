@@ -504,7 +504,7 @@ Example:
     $ tarantoolctl connect username:password@127.0.0.1:3306
 
 There are alternatives to ``tarantoolctl connect`` -- one can use
-the :ref:`console package <console-package>` or the :ref:`net.box package <net_box-package>` from a Tarantool server.
+the :ref:`console module <console-module>` or the :ref:`net.box module <net_box-module>` from a Tarantool server.
 Also one can write one's one client programs with any of the
 Connectors. However, most of the examples in this manual illustrate
 usage with either ``tarantoolctl connect`` or with
@@ -647,14 +647,14 @@ the search box.
                      Notes for systemd users
 =====================================================================
 
-The Tarantool package fully supports :program:`systemd` for managing instances and
+Tarantool fully supports :program:`systemd` for managing instances and
 supervising database daemons.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                      Instance management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tarantool package was designed to have multiple running instances of Tarantool
+Tarantool was designed to have multiple running instances of Tarantool
 on the same machine. Use :samp:`systemctl {start|stop|restart|status} tarantool@${MYAPP}`
 to manage your databases and Lua applications.
 
@@ -1057,13 +1057,13 @@ Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions.
 
 In the case of ``tarantool-http``, there is no need to start the binary protocol at all.
 
-.. _administration-modules_luarocks_and_requiring_packages:
+.. _administration-modules_luarocks_and_requiring_modules:
 
 =====================================================================
-       Modules, LuaRocks, and requiring packages
+       Modules, LuaRocks, and requiring modules
 =====================================================================
 
-To extend Tarantool there are packages, which are also called "modules",
+To extend Tarantool there are modules,
 which in Lua are also called "rocks".
 Users who are unfamiliar with Lua modules may benefit from following
 the Lua-Modules-Tutorial_
@@ -1073,10 +1073,10 @@ before reading this section.
 
 The modules that come from Tarantool developers and community contributors are
 on rocks.tarantool.org_. Some of them
--- :ref:`expirationd <expirationd-package>`,
-:ref:`mysql <dbms_packages-mysql-example>`,
-:ref:`postgresql <dbms_packages-postgresql-example>`,
-:ref:`shard <shard-package>` --
+-- :ref:`expirationd <expirationd-module>`,
+:ref:`mysql <dbms_modules-mysql-example>`,
+:ref:`postgresql <dbms_modules-postgresql-example>`,
+:ref:`shard <shard-module>` --
 are discussed elsewhere in this manual.
 
 Step 1: Install LuaRocks.
@@ -1094,9 +1094,9 @@ Once these steps are complete, the repositories can be searched with |br|
 :codenormal:`$` :codebold:`luarocks search` :codeitalic:`module-name` |br|
 and new modules can be added to the local repository with |br|
 :codenormal:`$` :codebold:`luarocks install` :codeitalic:`module-name` :codenormal:`--local` |br|
-and any package/module can be loaded for Tarantool with |br|
+and any module can be loaded for Tarantool with |br|
 :codenormal:`tarantool>` :codeitalic:`local-name` :codenormal:`=` :codebold:`require('`:codeitalic:`module-name`:codenormal:`')` |br|
-... and that is why the examples in the manual's Packages section often begin with `require` requests.
+... and that is why the examples in the manual's Modules section often begin with `require` requests.
 See rocks_ on github.com/tarantool for more examples
 and information about contributing.
 

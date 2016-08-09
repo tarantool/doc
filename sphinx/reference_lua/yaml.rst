@@ -1,10 +1,10 @@
-.. _yaml-package:
+.. _yaml-module:
 
 -------------------------------------------------------------------------------
-                            Package `yaml`
+                            Module `yaml`
 -------------------------------------------------------------------------------
 
-The ``yaml`` package takes strings in YAML_ format and decodes them, or takes a
+The ``yaml`` module takes strings in YAML_ format and decodes them, or takes a
 series of non-YAML values and encodes them.
 
 .. module:: yaml
@@ -106,7 +106,7 @@ different results:
     ...
 
 Also, some YAML configuration settings for encoding can be changed, in the
-same way that they can be changed for :ref:`JSON <json-package_cfg>`.
+same way that they can be changed for :ref:`JSON <json-module_cfg>`.
 
 
 .. _YAML: http://yaml.org/

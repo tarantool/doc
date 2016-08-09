@@ -1,12 +1,12 @@
-.. _clock-package:
+.. _clock-module:
 
 -------------------------------------------------------------------------------
-                            Package `clock`
+                            Module `clock`
 -------------------------------------------------------------------------------
 
-The ``clock`` package returns time values derived from
+The ``clock`` module returns time values derived from
 the Posix / C CLOCK_GETTIME_ function or equivalent.
-Most functions in the package return a number of seconds;
+Most functions in the module return a number of seconds;
 functions whose names end in "64" return a 64-bit number of nanoseconds.
 
 .. module:: clock

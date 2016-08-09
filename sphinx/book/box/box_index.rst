@@ -1,10 +1,10 @@
 .. _box_index:
 
 -------------------------------------------------------------------------------
-                            Package `box.index`
+                            Submodule `box.index`
 -------------------------------------------------------------------------------
 
-The ``box.index`` package provides read-only access for index definitions and
+The ``box.index`` submodule provides read-only access for index definitions and
 index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array within
 each space object. They provide an API for ordered iteration over tuples. This
 API is a direct binding to corresponding methods of index objects of type
@@ -918,10 +918,10 @@ additional criteria.
 .. _box_index-rtree:
 
 =============================================================================
-             Package `box.index` with index type = RTREE for spatial searches
+         Submodule `box.index` with index type = RTREE for spatial searches
 =============================================================================
 
-The :ref:`box.index <box_index>` package may be used for spatial searches if the index type
+The :ref:`box.index <box_index>` submodule may be used for spatial searches if the index type
 is RTREE. There are operations for searching *rectangles* (geometric objects
 with 4 corners and 4 sides) and *boxes* (geometric objects with more than 4
 corners and more than 4 sides, sometimes called hyperrectangles). This manual

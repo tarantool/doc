@@ -1,4 +1,4 @@
-.. _dbms_packages:
+.. _dbms_modules:
 
 -------------------------------------------------------------------------------
                             SQL DBMS Modules
@@ -13,7 +13,7 @@ DBMS, and Tarantool. The module which connects Tarantool to another DBMS may
 be called a "connector". Within the module there is a shared library which
 may be called a "driver".
 
-Tarantool supplies DBMS connector modules with the package manager for Lua,
+Tarantool supplies DBMS connector modules with the module manager for Lua,
 LuaRocks. So the connector modules may be called "rocks".
 
 The Tarantool rocks allow for connecting to an SQL server and executing SQL
@@ -25,13 +25,13 @@ also is useful for any operations, such as database copying and accelerating,
 which work best when the application can work on both SQL and Tarantool inside
 the same Lua routine.
 The methods for connect/select/insert/etc. are similar to the ones in the
-:ref:`net.box <net_box-package>` package.
+:ref:`net.box <net_box-module>` module.
 
 From a user's point of view the MySQL and PostgreSQL rocks are
 very similar, so the following sections -- "MySQL Example" and
 "PostgreSQL Example" -- contain some redundancy.
 
-.. _dbms_packages-mysql-example:
+.. _dbms_modules-mysql-example:
 
 ===========================================================
                   MySQL Example
@@ -85,7 +85,7 @@ For example:
 
     luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib
 
-See also :ref:`Modules, LuaRocks, and requiring packages <administration-modules_luarocks_and_requiring_packages>`.
+See also :ref:`Modules, LuaRocks, and requiring modules <administration-modules_luarocks_and_requiring_modules>`.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub
@@ -379,7 +379,7 @@ Lua tutorial earlier in the Tarantool user manual.
 Observe the result. It contains "MySQL row". So this is the row that was inserted
 into the MySQL database. And now it's been selected with the Tarantool client.
 
-.. _dbms_packages-postgresql-example:
+.. _dbms_modules-postgresql-example:
 
 ===========================================================
                   PostgreSQL Example
@@ -441,7 +441,7 @@ For example:
 
     luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib
 
-See also :ref:`Modules, LuaRocks, and requiring packages <administration-modules_luarocks_and_requiring_packages>`.
+See also :ref:`Modules, LuaRocks, and requiring modules <administration-modules_luarocks_and_requiring_modules>`.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub

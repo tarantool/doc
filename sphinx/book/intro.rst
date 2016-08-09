@@ -22,7 +22,7 @@ Chapter 3 "Database" is about the Tarantool NoSQL DBMS.
 If the only intent is to use Tarantool as a Lua application server,
 most of the material in this chapter and in the following chapter
 (Chapter 4 "Replication") will not be necessary.
-Once again, the detailed instructions about each package in chapter 3 "Database"
+Once again, the detailed instructions about each module in chapter 3 "Database"
 can be regarded as reference material.
 
 Chapter 5 "Configuration reference" and Chapter 6 "Server administration"

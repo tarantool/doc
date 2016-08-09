@@ -398,7 +398,7 @@ First, there are five *object reference variations*:
 
 .. code-block:: tarantoolsession
 
-    -- #1 package . sub-package . name
+    -- #1 module . submodule . name
     tarantool> box.space.tester:select{1}
     -- #2 replace name with a literal in square brackets
     tarantool> box.space['tester']:select{1}
@@ -612,17 +612,18 @@ The box library
 ---------------
 
 As well as executing Lua chunks or defining their own functions, users can exploit
-the Tarantool server's storage functionality with the ``Lua library``.
+the Tarantool server's storage functionality with the ``box library`` and
+its submodules.
 
 =====================================================================
-                     Packages of the box library
+                     Submodules of the box library
 =====================================================================
 
 The contents of the ``box`` library can be inspected at runtime
-with ``box``, with no arguments. The packages inside the box library are:
+with ``box``, with no arguments. The submodules inside the box library are:
 ``box.schema``, ``box.tuple``, ``box.space``, ``box.index``,
 ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``.
-Every package contains one or more Lua functions. A few packages contain
+Every submodule contains one or more Lua functions. A few submodules contain
 members as well as functions. The functions allow data definition (create
 alter drop), data manipulation (insert delete update upsert select replace), and
 introspection (inspecting contents of spaces, accessing server configuration).

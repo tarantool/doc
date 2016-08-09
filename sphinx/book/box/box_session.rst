@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-                            Package `box.session`
+                            Submodule `box.session`
 -------------------------------------------------------------------------------
 
-The ``box.session`` package allows querying the session state, writing to a
+The ``box.session`` submodule allows querying the session state, writing to a
 session-specific temporary Lua table, or setting up triggers which will fire
 when a session starts or ends. A *session* is an object associated with each
 client connection.

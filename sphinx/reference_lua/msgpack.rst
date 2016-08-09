@@ -1,10 +1,10 @@
-.. _msgpack-package:
+.. _msgpack-module:
 
 -------------------------------------------------------------------------------
-                                    Package `msgpack`
+                                    Module `msgpack`
 -------------------------------------------------------------------------------
 
-The ``msgpack`` package takes strings in MsgPack_ format and decodes them, or
+The ``msgpack`` module takes strings in MsgPack_ format and decodes them, or
 takes a series of non-MsgPack values and encodes them.
 
 .. module:: msgpack
@@ -156,7 +156,7 @@ with the MsgPack format name and encoding on the right.
         +--------------+-------------------------------------------------+
 
 Also, some MsgPack configuration settings for encoding can be changed, in the
-same way that they can be changed for :ref:`JSON <json-package_cfg>`.
+same way that they can be changed for :ref:`JSON <json-module_cfg>`.
 
 .. _MsgPack: http://msgpack.org/
 .. _Specification: http://github.com/msgpack/msgpack/blob/master/spec.md

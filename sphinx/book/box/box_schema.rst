@@ -1,12 +1,12 @@
 .. _box_schema:
 
 -------------------------------------------------------------------------------
-                             Package `box.schema`
+                             Submodule `box.schema`
 -------------------------------------------------------------------------------
 
 .. module:: box.schema
 
-The ``box.schema`` package has data-definition functions
+The ``box.schema`` submodule has data-definition functions
 for spaces, users, roles, and function tuples.
 
 .. _box_schema-space_create:

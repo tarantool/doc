@@ -134,7 +134,7 @@ as the delimiter for local links.
 
 The tag can be anything meaningful. The only guideline is for Tarantool syntax
 items (such as members), where the preferred tag syntax is
-``package_or_object_name dash member_name``. For example, ``box_space-drop``.
+``module_or_object_name dash member_name``. For example, ``box_space-drop``.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               Making comments

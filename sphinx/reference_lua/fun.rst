@@ -1,18 +1,18 @@
-.. _fun-package:
+.. _fun-module:
 
 -------------------------------------------------------------------------------
-                                Package `fun`
+                                Module `fun`
 -------------------------------------------------------------------------------
 
 Lua fun, also known as the Lua Functional Library, takes advantage
 of the features of LuaJIT to help users create complex functions.
-Inside the package are "sequence processors" such as
+Inside the module are "sequence processors" such as
 map, filter, reduce, zip -- they take a user-written function as
 an argument and run it against every element in a sequence, which
 can be faster or more convenient than a user-written loop.
-Inside the package are "generators" such as range, tabulate, and
+Inside the module are "generators" such as range, tabulate, and
 rands -- they return a bounded or boundless series of values.
-Within the package are "reducers", "filters", "composers" ...
+Within the module are "reducers", "filters", "composers" ...
 or, in short, all the important features found in languages like
 Standard ML, Haskell, or Erlang.
 

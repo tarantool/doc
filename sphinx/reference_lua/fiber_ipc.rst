@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-                                 Package `fiber-ipc`
+                                 Submodule `fiber-ipc`
 -------------------------------------------------------------------------------
 
-The ``fiber-ipc`` package allows sending and receiving messages between
+The ``fiber-ipc`` submodule allows sending and receiving messages between
 different processes. The words "different processes" in this context
 mean different connections, different sessions, or different fibers.
 

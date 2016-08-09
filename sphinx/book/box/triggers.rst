@@ -95,7 +95,7 @@ All triggers have the following characteristics:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After the following series of requests, the server will write a message
-using the :ref:`log <log>` package whenever any user connects or disconnects.
+using the :ref:`log <log>` module whenever any user connects or disconnects.
 
 .. code-block:: lua_tarantool
 

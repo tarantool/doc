@@ -1,10 +1,10 @@
-.. _socket-package:
+.. _socket-module:
 
 -------------------------------------------------------------------------------
-                            Package `socket`
+                            Module `socket`
 -------------------------------------------------------------------------------
 
-The ``socket`` package allows exchanging data via BSD sockets with a local or
+The ``socket`` module allows exchanging data via BSD sockets with a local or
 remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode.
 Semantics of the calls in the ``socket`` API closely follow semantics of the
 corresponding POSIX calls. Function names and signatures are mostly compatible

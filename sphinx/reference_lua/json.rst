@@ -1,11 +1,11 @@
-.. _json-package:
+.. _json-module:
 
 -------------------------------------------------------------------------------
-                          Package `json`
+                          Module `json`
 -------------------------------------------------------------------------------
 
-The json package provides JSON manipulation routines. It is based on the
-`Lua-CJSON package by Mark Pulford`_. For a complete manual on Lua-CJSON please read
+The json module provides JSON manipulation routines. It is based on the
+`Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please read
 `the official documentation`_.
 
 .. module:: json
@@ -135,7 +135,7 @@ Serializing 'A' and 'B' with different ``__serialize`` values causes different r
     ...
 
 
-.. _json-package_cfg:
+.. _json-module_cfg:
 
 A NOTE ABOUT CONFIGURATION SETTINGS:
 There are configuration settings which affect the way that Tarantool
@@ -157,8 +157,8 @@ The result of the json.encode request will look like this: |br|
 :codenormal:`---` |br|
 :codenormal:`- '[1,nan,inf,2]` |br|
 :codenormal:`...` |br|
-The same configuration settings exist for json, for :ref:`MsgPack <msgpack-package>`, and
-for :ref:`yaml <yaml-package>`.
+The same configuration settings exist for json, for :ref:`MsgPack <msgpack-module>`, and
+for :ref:`yaml <yaml-module>`.
 
-.. _Lua-CJSON package by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
+.. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
 .. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html

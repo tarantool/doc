@@ -1,12 +1,12 @@
 .. _box_tuple:
 
 -------------------------------------------------------------------------------
-                            Package `box.tuple`
+                            Submodule `box.tuple`
 -------------------------------------------------------------------------------
 
 .. module:: box.tuple
 
-The ``box.tuple`` package provides read-only access for the ``tuple``
+The ``box.tuple`` submodule provides read-only access for the ``tuple``
 userdata type. It allows, for a single tuple: selective retrieval of the field
 contents, retrieval of information about size, iteration over all the fields,
 and conversion to a Lua table.

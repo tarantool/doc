@@ -174,7 +174,7 @@ in this case it's just a local port: port 3301.
 It's possible to send requests to the listen URI via
 (a) telnet,
 or (b) a connector (which will be the subject of the ":ref:`index-box_connectors`" chapter),
-or (c) another instance of Tarantool via the :ref:`console package <console-package>`,
+or (c) another instance of Tarantool via the :ref:`console module <console-module>`,
 or (d) ``tarantoolctl connect``.
 Let's try (d).
 

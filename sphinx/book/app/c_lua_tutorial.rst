@@ -276,7 +276,7 @@ The first field is numeric: 1. The second field is a random string. Once again
 the ``string_function()`` can be invoked from ``main_function()`` which can be
 invoked with  ``main_function()``.
 
-For more about Tarantool tuples see Tarantool manual section :ref:`Package box.tuple <box_tuple>`.
+For more about Tarantool tuples see Tarantool manual section :ref:`Submodule box.tuple <box_tuple>`.
 
 The screen now looks like this:
 
@@ -334,7 +334,7 @@ a SELECT request.
     box.space.tester:select{1}
 
 For more about Tarantool insert and replace calls, see Tarantool manual section
-:ref:`Package box.space <box_space>`.
+:ref:`Submodule box.space <box_space>`.
 
 The screen now looks like this:
 

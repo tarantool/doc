@@ -4,13 +4,13 @@
 
 These are notes about modules.
 They may be useful as either a supplement or an alternative to the
-manual section :ref:`"Modules, LuaRocks, and requiring packages" <administration-modules_luarocks_and_requiring_packages>`.
+manual section :ref:`"Modules, LuaRocks, and requiring modules" <administration-modules_luarocks_and_requiring_modules>`.
 
 ================
 Install a module
 ================
 
-Use `LuaRocks <http://rocks.tarantool.org>`_ - a Lua package manager.
+Use `LuaRocks <http://rocks.tarantool.org>`_ - a Lua module manager.
 
 Install LuaRocks:
 

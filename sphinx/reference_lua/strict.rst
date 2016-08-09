@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
-                            Package `strict`
+                            Module `strict`
 -------------------------------------------------------------------------------
 
 .. module:: strict
 
-The :code:`strict` package has functions for turning "strict mode" on or off.
+The :code:`strict` module has functions for turning "strict mode" on or off.
 When strict mode is on, an attempt to use an undeclared global variable will
 cause an error. A global variable is considered "undeclared" if it has never
 had a value assigned to it. Often this is an indication of a programming error.

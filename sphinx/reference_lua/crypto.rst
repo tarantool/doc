@@ -1,17 +1,17 @@
 .. _crypto:
 
 -------------------------------------------------------------------------------
-                            Package `crypto`
+                            Module `crypto`
 -------------------------------------------------------------------------------
 
 .. module:: crypto.cipher
 
 "Crypto" is short for "Cryptography", which generally refers to the production
 of a digest value from a function (usually a `Cryptographic hash function`_),
-applied against a string. Tarantool's crypto package supports ten types of
+applied against a string. Tarantool's crypto module supports ten types of
 cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_,
 SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
-:ref:`digest` package. The functions in crypto are:
+:ref:`digest` module. The functions in crypto are:
 
 
 .. varfunc:: {aes128|aes192|aes256|des}.{cbc|cfb|ecb|ofb}.encrypt(string, key, initialization_vector)
@@ -72,9 +72,9 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
         crypto.digest.md4('string')
         crypto.digest.sha512('string')
 
-=========================================
-Incremental methods in the crypto package
-=========================================
+========================================
+Incremental methods in the crypto module
+========================================
 
 Suppose that a digest is done for a string 'A', then a new part 'B' is appended
 to the string, then a new digest is required. The new digest could be recomputed
@@ -104,9 +104,9 @@ for the whole string 'AB', but it is faster to take what was computed before for
       print(c:result())
       c:free()
 
-========================================================
-Getting the same results from digest and crypto packages
-========================================================
+=======================================================
+Getting the same results from digest and crypto modules
+=======================================================
 
 The following functions are equivalent. For example, the ``digest`` function and
 the ``crypto`` function will both produce the same result.

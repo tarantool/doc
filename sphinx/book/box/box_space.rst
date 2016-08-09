@@ -1,12 +1,12 @@
 .. _box_space:
 
 -------------------------------------------------------------------------------
-                             Package `box.space`
+                             Submodule `box.space`
 -------------------------------------------------------------------------------
 
-The ``box.space`` package has the data-manipulation functions ``select``,
+The ``box.space`` submodule has the data-manipulation functions ``select``,
 ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``.
-It also has members, such as id, and whether or not a space is enabled. Package
+It also has members, such as id, and whether or not a space is enabled. Submodule
 source code is available in file
 `src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_.
 

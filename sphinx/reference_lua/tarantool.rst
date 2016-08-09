@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                            Package `tarantool`
+                            Module `tarantool`
 -------------------------------------------------------------------------------
 
 .. module:: tarantool
@@ -12,7 +12,7 @@ version of the compiler".
 
 Additionally one can see the uptime and the server version and the process id.
 Those information items can also be accessed with :ref:`box.info <box_introspection-box_info>` but use of
-the tarantool package is recommended.
+the tarantool module is recommended.
 
 **Example:**
 

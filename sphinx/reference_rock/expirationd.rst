@@ -1,7 +1,7 @@
-.. _expirationd-package: 
+.. _expirationd-module: 
 
 -------------------------------------------------------------------------------
-                                   Package `expirationd`
+                                   Module `expirationd`
 -------------------------------------------------------------------------------
 
 For a commercial-grade example of a Lua rock that works with Tarantool, let us
@@ -49,7 +49,7 @@ process the tuple as an expired tuple.
 
 Ultimately the tuple-expiry process leads to ``default_tuple_drop()``
 which does a "delete" of a tuple from its original space.
-First the fun :ref:`fun <fun-package>` package is used,
+First the fun :ref:`fun <fun-module>` module is used,
 specifically fun.map_.
 Remembering that :codenormal:`index[0]` is always the space's primary key,
 and :codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno`
@@ -116,9 +116,9 @@ The function which will be supplied to expirationd is
 The key for getting the rock rolling is
 ``expd = require('expirationd')``. The "``require``" function is what reads in
 the program; it will appear in many later examples in this manual, when it's
-necessary to get a package that's not part of the Tarantool kernel. After the
-Lua variable expd has been assigned the value of the expirationd package, it's
-possible to invoke the package's ``run_task()`` function.
+necessary to get a module that's not part of the Tarantool kernel. After the
+Lua variable expd has been assigned the value of the expirationd module, it's
+possible to invoke the module's ``run_task()`` function.
 
 After :ref:`sleeping <fiber-sleep>` for two seconds, when the task has had time to do its iterations through the spaces,
 ``expd.task_stats()`` will print out a report showing how many tuples have expired --
