@@ -99,7 +99,7 @@
 
 .. confval:: vinyl_dir
 
-    A directory where vinyl files or sub-directories will be stored. Can be relative to
+    A directory where vinyl files or subdirectories will be stored. Can be relative to
     :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to work_dir.
 
     Type: string |br|
@@ -139,7 +139,7 @@
     for example |br|
     :codenormal:`box.cfg{work_dir='/home/user/A',wal_dir='B',snap_dir='C'}` |br|
     will put xlog files in /home/user/A/B, snapshot files in /home/user/A/C,
-    and all other files or sub-directories in /home/user/A.
+    and all other files or subdirectories in /home/user/A.
 
     Type: string |br|
     Default: null |br|
