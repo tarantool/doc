@@ -139,36 +139,51 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
         box.schema.user.exists('Lena')
 
-.. function:: box.schema.user.grant(user-name, privileges)
+.. function:: box.schema.user.grant(user-name, privilege, object-type, object-name [,option])
 
     Grant :ref:`privileges <authentication-privileges>` to a user.
 
     :param string user-name: the name of the user
-    :param string privileges: privilege,object-type,object-name
-                              where privilege = 'read' or 'write' or 'execute' or a combination,
-                              and object-type = 'space' or 'function'.
-                              Or: privilege,'universe'.
-                              Or: role-name.
+    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string object-type: 'space' or 'function'
+    :param string object-name: the name of a function or space
+    :param bool option: {if_not_exists=true} or {if_not_exists=false}
 
-    If :samp:`'function','{object-name}'` is specified, then a _func tuple with that object-name must exist.
+    The user must exist, and the object must exist.
+    If 'function','object-name' is specified, then a _func tuple with that object-name must exist.
+
+    Variation: instead of :code:`object-type, object-name` say 'universe'
+    which means 'all object-types and all objects'.
+
+    Variation: instead of :code:`privilege, object-type, object-name` say
+    :code:`role-name` (see section :ref:`Roles <authentication-roles>`).
 
     **Examples:**
 
-        box.schema.user.grant('Lena', 'read', 'space', 'tester') |br|
+        box.schema.user.grant('Lena', 'read,write', 'space', 'tester') |br|
         box.schema.user.grant('Lena', 'execute', 'function', 'f') |br|
-        box.schema.user.grant('Lena', 'read,write', 'universe') |br|
-        box.schema.user.grant('Lena', 'Accountant')
+        box.schema.user.grant('X', 'read', 'space', 'Y', {if_not_exists=true}) |br|
+        box.schema.user.grant('Lena', 'Accountant') |br|
+        box.schema.user.grant('Lena', 'read,write,execute', 'universe') |br|
+        box.schema.user.grant('X', 'read', 'universe', nil, {if_not_exists=true}))
 
-.. function:: box.schema.user.revoke(user-name, privileges)
+.. function:: box.schema.user.revoke(user-name, privilege, object-type, object-name)
 
     Revoke :ref:`privileges <authentication-privileges>` from a user.
 
     :param string user-name: the name of the user
-    :param string privileges: privilege,object-type,object-name
-                              where privilege = 'read' or 'write' or 'execute' or a combination,
-                              and object-type = 'space' or 'function'.
-                              Or: privilege,'universe'.
-                              Or: role-name.
+    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string object-type: 'space' or 'function'
+    :param string object-name: the name of a function or space
+
+    The user must exist, and the object must exist,
+    but it is not an error if the user does not have the privilege.
+
+    Variation: instead of :code:`object-type, object-name` say 'universe'
+    which means 'all object-types and all objects'.
+
+    Variation: instead of :code:`privilege, object-type, object-name` say
+    :code:`role-name` (see section :ref:`Roles <authentication-roles>`).
 
     **Examples:**
 
@@ -260,33 +275,49 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
         box.schema.role.exists('Accountant')
 
-.. function:: box.schema.role.grant(role-name, privileges)
+.. function:: box.schema.role.grant(user-name, privilege, object-type, object-name [,option])
 
     Grant :ref:`privileges <authentication-privileges>` to a role.
 
-    :param string role-name: the name of the role
-    :param string privileges: either privilege,object-type,object-name
-                              or privilege,'universe' where privilege =
-                              'read' or 'write' or 'execute' or a combination
-                              and object-type = 'space' or 'function'.
-                              Or: role-name.
+    :param string user-name: the name of the role
+    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string object-type: 'space' or 'function'
+    :param string object-name: the name of a function or space
+    :param bool option: {if_not_exists=true} or {if_not_exists=false}
+
+    The role must exist, and the object must exist.
+
+    Variation: instead of :code:`object-type, object-name` say 'universe'
+    which means 'all object-types and all objects'.
+
+    Variation: instead of :code:`privilege, object-type, object-name` say
+    :code:`role-name` -- to grant a role to a role.
 
     **Examples:**
 
         box.schema.role.grant('Accountant', 'read', 'space', 'tester') |br|
         box.schema.role.grant('Accountant', 'execute', 'function', 'f') |br|
         box.schema.role.grant('Accountant', 'read,write', 'universe') |br|
-        box.schema.role.grant('public', 'Accountant')
+        box.schema.role.grant('public', 'Accountant') |br|
+        box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})
 
-.. function:: box.schema.role.revoke(role-name, privileges)
+.. function:: box.schema.role.revoke(user-name, privilege, object-type, object-name)
 
-    Revoke :ref:`privileges <authentication-privileges>` to a role.
+    Revoke :ref:`privileges <authentication-privileges>` from a role.
 
-    :param string role-name: the name of the role
-    :param string privileges: either privilege,object-type,object-name
-                              or privilege,'universe' where privilege =
-                              'read' or 'write' or 'execute' or a combination
-                              and object-type = 'space' or 'function'
+    :param string user-name: the name of the role
+    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string object-type: 'space' or 'function'
+    :param string object-name: the name of a function or space
+
+    The role must exist, and the object must exist,
+    but it is not an error if the role does not have the privilege.
+
+    Variation: instead of :code:`object-type, object-name` say 'universe'
+    which means 'all object-types and all objects'.
+
+    Variation: instead of :code:`privilege, object-type, object-name` say
+    :code:`role-name`.
 
     **Examples:**
 
