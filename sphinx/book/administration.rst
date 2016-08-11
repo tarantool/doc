@@ -154,8 +154,7 @@ described in `Lua documentation`_. Examples: 'Hello, world', 'A', [[A\\B!]].
 Numeric literals are: Character sequences containing only digits, optionally
 preceded by + or -. Large or floating-point numeric
 literals may include decimal points, exponential notation, or suffixes.
-Examples: 500, -500, 5e2, 500.1, 5LL, 5ULL. Notes: Tarantool NUM data type is
-unsigned, so -1 is understood as a large unsigned number.
+Examples: 500, -500, 5e2, 500.1, 5LL, 5ULL.
 
 Single-byte tokens are: , or ( or ) or arithmetic operators. Examples: * , ( ).
 
@@ -210,7 +209,7 @@ an interactive-mode tarantool client session:
     [ tarantool may display an in-progress message here ]
     ---
     ...
-    tarantool> s:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
+    tarantool> s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
     ---
     ...
     tarantool> box.space.tester:insert{1,'My first tuple'}
@@ -1306,7 +1305,7 @@ The request to make in this case is: :codenormal:`box.schema.upgrade()`.
 For example, here is what happens when one runs :codenormal:`box.schema.upgrade()`
 with a database that was created in early 2015. Only a small part of the output is shown. |br|
 :codenormal:`tarantool>` :codebold:`box.schema.upgrade()` |br|
-:codenormal:`alter index primary on _space set options to {"unique":true}, parts to [[0,"num"]]` |br|
+:codenormal:`alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]` |br|
 :codenormal:`alter space _schema set options to {}` |br|
 :codenormal:`create view _vindex...` |br|
 :codenormal:`grant read access to 'public' role for _vindex view` |br|

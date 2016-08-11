@@ -42,7 +42,7 @@ Then use :ref:`console.start() <console-start>` to start interactive mode.
     box.once("bootstrap", function()
         box.schema.space.create('tweedledum')
         box.space.tweedledum:create_index('primary',
-            { type = 'TREE', parts = {1, 'NUM'}})
+            { type = 'TREE', parts = {1, 'unsigned'}})
     end)
 
     require('console').start()

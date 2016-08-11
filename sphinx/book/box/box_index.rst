@@ -50,7 +50,7 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             - unique: true
               parts:
-              - type: NUM
+              - type: unsigned
                 fieldno: 1
               id: 0
               space_id: 513
@@ -315,7 +315,7 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             ...
             tarantool> s:create_index('primary', {
-                     >   parts = {1, 'STR', 2, 'STR'}
+                     >   parts = {1, 'string', 2, 'string'}
                      > })
             ---
             ...
@@ -423,13 +423,13 @@ API is a direct binding to corresponding methods of index objects of type
             tarantool> sp = box.schema.space.create('tester')
             -- Create a unique index 'primary'
             -- which won't be needed for this example.
-            tarantool> sp:create_index('primary', {parts = {1, 'NUM' }})
+            tarantool> sp:create_index('primary', {parts = {1, 'unsigned' }})
             -- Create a non-unique index 'secondary'
             -- with an index on the second field.
             tarantool> sp:create_index('secondary', {
                      >   type = 'tree',
                      >   unique = false,
-                     >   parts = {2, 'STR'}
+                     >   parts = {2, 'string'}
                      > })
             -- Insert three tuples, values in field[2]
             -- equal to 'X', 'Y', and 'Z'.
@@ -494,12 +494,12 @@ API is a direct binding to corresponding methods of index objects of type
 
             tarantool> s = box.schema.space.create('space_with_bitset')
             tarantool> s:create_index('primary_index', {
-                     >   parts = {1, 'STR'},
+                     >   parts = {1, 'string'},
                      >   unique = true,
                      >   type = 'TREE'
                      > })
             tarantool> s:create_index('bitset_index', {
-                     >   parts = {2, 'NUM'},
+                     >   parts = {2, 'unsigned'},
                      >   unique = false,
                      >   type = 'BITSET'
                      > })
@@ -882,7 +882,7 @@ manual section
 It does paginated retrievals, that is, it returns 10
 tuples at a time from a table named "t", whose
 primary key was defined with 
-:codenormal:`create_index('primary',{parts={1,'STR'}})`.
+:codenormal:`create_index('primary',{parts={1,'string'}})`.
 
 .. code-block:: lua
     
@@ -968,7 +968,7 @@ Now let us create a space and add an RTREE index.
     tarantool> s = box.schema.space.create('rectangles')
     tarantool> i = s:create_index('primary', {
              >   type = 'HASH',
-             >   parts = {1, 'NUM'}
+             >   parts = {1, 'unsigned'}
              > })
     tarantool> r = s:create_index('rtree', {
              >   type = 'RTREE',
@@ -1022,7 +1022,7 @@ Now let us create a space and index for cuboids, which are rectangle-or-boxes th
 .. code-block:: tarantoolsession
 
     tarantool> s = box.schema.space.create('R')
-    tarantool> i = s:create_index('primary', {parts = {1, 'NUM'}})
+    tarantool> i = s:create_index('primary', {parts = {1, 'unsigned'}})
     tarantool> r = s:create_index('S', {
              >   type = 'RTREE',
              >   unique = false,
@@ -1045,7 +1045,7 @@ a different way to calculate neighbors.
 .. code-block:: tarantoolsession
 
     tarantool> s = box.schema.space.create('R')
-    tarantool> i = s:create_index('primary', {parts = {1, 'NUM'}})
+    tarantool> i = s:create_index('primary', {parts = {1, 'unsigned'}})
     tarantool> r = s:create_index('S', {
              >   type = 'RTREE',
              >   unique = false,

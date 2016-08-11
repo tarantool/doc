@@ -115,7 +115,7 @@ To create the first space and the first :ref:`index <box_index>`, try this:
     tarantool> s = box.schema.space.create('tester')
     tarantool> s:create_index('primary', {
              >   type = 'hash',
-             >   parts = {1, 'NUM'}
+             >   parts = {1, 'unsigned'}
              > })
 
 To insert three “tuples” (our name for “records”) into the first “space” of the
@@ -142,7 +142,7 @@ Your terminal screen should now look like this:
     2015-06-10 12:04:18.158 ... creating './00000000000000000000.xlog.inprogress'
     ---
     ...
-    tarantool>s:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
+    tarantool>s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
     ---
     ...
     tarantool> t = s:insert{1}

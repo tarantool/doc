@@ -80,7 +80,7 @@ work if and only if the server (tarantool) is running on localhost (127.0.0.1)
 and is listening on port 3301 (:code:`box.cfg.listen = '3301'`) and space 'examples'
 has id = 999 (:code:`box.space.examples.id = 999`), and space 'examples' has a
 primary-key index for a numeric field (:code:`box.space[999].index[0].parts[1].type
-= "NUM"`) and user 'guest' has privileges for reading and writing.
+= "unsigned"`) and user 'guest' has privileges for reading and writing.
 
 It is easy to meet all the conditions by starting the server and executing this
 script:
@@ -89,7 +89,7 @@ script:
 
     box.cfg{listen=3301}
     box.schema.space.create('examples',{id=999})
-    box.space.examples:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
+    box.space.examples:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
     box.schema.user.grant('guest','read,write','space','examples')
     box.schema.user.grant('guest','read','space','_space')
 

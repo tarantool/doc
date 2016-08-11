@@ -148,9 +148,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | if_not_exists | no error if        | boolean                     | ``false``           |
             |               | duplicate name     |                             |                     |
             +---------------+--------------------+-----------------------------+---------------------+
-            | parts         | field-numbers  +   | {field_no, 'NUM' or 'STR'   | ``{1, 'NUM'}``      |
-            |               | types              | or 'INT' or 'NUMBER' or     |                     |
-            |               |                    | 'ARRAY' or 'SCALAR'}        |                     |
+            | parts         | field-numbers  +   | {field_no, 'unsigned' or    | ``{1, 'unsigned'}`` |
+            |               | types              | 'string' or 'integer' or    |                     |
+            |               |                    | 'number' or 'array' or      |                     |
+            |               |                    | 'scalar'}                   |                     |
             +---------------+--------------------+-----------------------------+---------------------+
 
         Possible errors: too many parts. Index '...' already exists. Primary key must be unique.
@@ -164,27 +165,30 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> s = box.space.space55
             ---
             ...
-            tarantool> s:create_index('primary', {unique = true, parts = {1, 'NUM', 2, 'STR'}})
+            tarantool> s:create_index('primary', {unique = true, parts = {1, 'unsigned', 2, 'string'}})
             ---
             ...
 
     .. _details_about_index_field_types:
 
         Details about index field types: |br|
-        The six index field types (NUM | STR | INT | NUMBER | ARRAY | SCALAR)
+        The six index field types (unsigned | string | integer | number | array | scalar)
         differ depending on what values are allowed, and what index types are allowed. |br|
-        NUM: unsigned integers between 0 and 18446744073709551615, about 18 quintillion.
+        **unsigned**: unsigned integers between 0 and 18446744073709551615, about 18 quintillion.
+        May also be called 'uint' or 'num', but 'num' is deprecated.
         Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
-        STR: strings -- any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`.
+        **string**: any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`.
+        May also be called 'str'.
         Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
-        INT: integers between -9223372036854775808 and 18446744073709551615.
+        **integer**: integers between -9223372036854775808 and 18446744073709551615.
+        May also be called 'int'.
         Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
-        NUMBER: integers between -9223372036854775808 and 18446744073709551615,
+        **number**: integers between -9223372036854775808 and 18446744073709551615,
         single-precision floating point numbers, or double-precision floating point numbers.
         Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
-        ARRAY: array of integers between -9223372036854775808 and 9223372036854775807.
+        **array**: array of integers between -9223372036854775808 and 9223372036854775807.
         Legal in memtx RTREE indexes. |br|
-        SCALAR: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615,
+        **scalar**: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615,
         or single-precision floating point numbers, or double-precison floating-point numbers,
         or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings.
         Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes.
@@ -202,18 +206,18 @@ A list of all ``box.space`` functions follows, then comes a list of all
           +------------------+---------------------------+---------------------------------------+-------------------+
           | Index field type | What can be in it         | Where is it legal                     | Examples          |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          | **NUM**          | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
+          | **unsigned**     | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
           |                  | 18446744073709551615      | indexes, |br|                         |                   |
           |                  |                           | vinyl TREE indexes                    |                   |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          |  **STR**         | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
+          |  **string**      | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
           |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'  |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          |  **INT**         | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
+          |  **integer**     | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
           |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                   |
           |                  | 18446744073709551615      |                                       |                   |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          | **NUMBER**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
+          | **number**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
           |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|          |
           |                  | 18446744073709551615,     |                                       | 1.447e+44         |
           |                  | single-precision          |                                       |                   |
@@ -221,11 +225,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
           |                  | double-precision          |                                       |                   |
           |                  | floating point numbers    |                                       |                   |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          | **ARRAY**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
+          | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
           |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
           |                  | 9223372036854775807       |                                       |                   |
           +------------------+---------------------------+---------------------------------------+-------------------+
-          | **SCALAR**       | booleans (true or false), | memtx TREE or HASH indexes, |br|      | true |br|         |
+          | **scalar**       | booleans (true or false), | memtx TREE or HASH indexes, |br|      | true |br|         |
           |                  | integers between          | vinyl TREE indexes                    | -1 |br|           |
           |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
           |                  | 18446744073709551615,     |                                       | '' |br|           |
@@ -287,7 +291,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> s = box.schema.space.create('tmp', {temporary=true})
             ---
             ...
-            tarantool> s:create_index('primary',{parts = {1,'NUM', 2, 'STR'}})
+            tarantool> s:create_index('primary',{parts = {1,'unsigned', 2, 'string'}})
             ---
             ...
             tarantool> s:insert{1,'A'}
@@ -505,7 +509,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         **Example:**
 
         Assume that the initial state of the database is ``tester`` that has
-        one tuple set and one primary key whose type is ``NUM``.
+        one tuple set and one primary key whose type is ``unsigned``.
         There is one tuple, with ``field[1]`` = ``999`` and ``field[2]`` = ``'A'``.
 
         In the update:
@@ -676,7 +680,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> box.space.tester:delete('a')
             ---
             - error: 'Supplied key type of part 0 does not match index part type:
-              expected NUM'
+              expected unsigned'
             ...
 
     .. _box_space-id:
@@ -840,7 +844,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. method:: auto_increment{field-value [, field-value ...]}
 
         Insert a new tuple using an auto-increment primary key. The space specified
-        by space_object must have a ``NUM`` primary key index of type ``TREE``. The
+        by space_object must have an ``unsigned`` or ``integer`` or ``numeric`` primary key index of type ``TREE``. The
         primary-key field will be incremented before the insert.
 
         .. NOTE::Note re storage engine (vinyl)
@@ -889,7 +893,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> s = box.schema.space.create('space33')
             ---
             ...
-            tarantool> -- index 'X' has default parts {1, 'NUM'}
+            tarantool> -- index 'X' has default parts {1, 'unsigned'}
             tarantool> s:create_index('X', {})
             ---
             ...
@@ -1015,7 +1019,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         tarantool> box.schema.space.create('TM', {
                  >   format = {
                  >     [1] = {["name"] = "field#1"},
-                 >     [2] = {["type"] = "num"}
+                 >     [2] = {["type"] = "unsigned"}
                  >   }
                  > })
         ---
@@ -1031,7 +1035,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ...
         tarantool> box.space._space:select(522)
         ---
-        - - [522, 1, 'TM', 'memtx', 0, '', [{'name': 'field#1'}, {'type': 'num'}]]
+        - - [522, 1, 'TM', 'memtx', 0, {}, [{'name': 'field#1'}, {'type': 'unsigned'}]]
         ...
 
 .. _box_space-index:

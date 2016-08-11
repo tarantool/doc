@@ -103,18 +103,18 @@ other indexes are called “secondary” indexes.
 An index definition may include identifiers of tuple fields and their expected
 types. The allowed types for indexed fields are:
 
-* ``NUM`` (unsigned integer between 0 and 18,446,744,073,709,551,615)
-* ``INT`` (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807)
-* ``NUMBER`` (unsigned integer or signed integer or floating-point value)
-* ``STR`` (string, any sequence of octets)
-* ``SCALAR`` (boolean or number or string)
-* ``ARRAY`` (a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`)
+* ``unsigned`` (unsigned integer between 0 and 18,446,744,073,709,551,615)
+* ``integer`` (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807)
+* ``number`` (unsigned integer or signed integer or floating-point value)
+* ``string`` (string, any sequence of octets)
+* ``scalar`` (boolean or number or string)
+* ``array`` (a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`)
 
 Take our example, which has the request:
 
 .. code-block:: tarantoolsession
 
-    tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
+    tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
 
 The effect is that, for all tuples in tester, field number 1 must exist and must
 contain an unsigned integer.
@@ -166,7 +166,7 @@ function: ``-55``, ``-2.7e+20``, ``100000000000000ULL``,
 
 For database storage Tarantool uses MsgPack rules. Storage is variable-length,
 so the smallest number requires only one byte but the largest number requires
-nine bytes. When a field has a 'NUM' index, all values must be unsigned integers
+nine bytes. When a field has an 'unsigned' index, all values must be unsigned integers
 between 0 and 18,446,744,073,709,551,615.
 
 A *string* is a variable-length sequence of bytes, usually represented with
@@ -208,8 +208,8 @@ Six examples of basic operations:
 .. code-block:: tarantoolsession
 
     -- Add a new tuple to tuple set tester.
-    -- The first field, field[1], will be 999 (type is NUM).
-    -- The second field, field[2], will be 'Taranto' (type is STR).
+    -- The first field, field[1], will be 999 (type is unsigned).
+    -- The second field, field[2], will be 'Taranto' (type is string).
     tarantool> box.space.tester:insert{999, 'Taranto'}
 
     -- Update the tuple, changing field field[2].
@@ -473,10 +473,10 @@ These variations exist:
    .. cssclass:: highlight
    .. parsed-literal::
 
-       :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {parts = {1, 'STR'}})`
+       :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {parts = {1, 'string'}})`
 
-   For an ordinary index, the most common data types are 'NUM' = numeric = any
-   non-negative integer, or 'STR' ='string' = any series of bytes. Numbers are
+   For an ordinary index, the most common data types are 'unsigned' = any
+   non-negative integer, or 'string' = any series of bytes. Numbers are
    ordered according to their point on the number line -- so 2345 is greater
    than 500 -- while strings are ordered according to the encoding of the first
    byte then the encoding of the second byte then the encoding of the third byte
@@ -490,7 +490,7 @@ These variations exist:
    .. parsed-literal::
 
        :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {
-           parts = {3, 'NUM', 2, 'STR'}
+           parts = {3, 'unsigned', 2, 'string'}
        })`
 
    For an ordinary index, the maximum number of parts is 255. The specification
@@ -516,8 +516,8 @@ These variations exist:
    The two ordinary index types are 'tree' which is the default, and 'hash'
    which must be unique and which may be faster or smaller. The third type is
    'bitset' which is not unique and which works best for combinations of binary
-   values. The fourth type is 'rtree' which is not unique and which, instead of
-   'STR' or 'NUM' values, works with arrays.
+   values. The fourth type is 'rtree' which is not unique and which works with arrays,
+   instead of 'string' or 'unsigned' values.
 
 The existence of indexes does not affect the syntax of data-change requests, but
 does cause select requests to have more variety.
@@ -570,9 +570,9 @@ These variations exist:
         -- Suppose an index has two parts
         :samp:`tarantool> box.space.{space-name}.index.{index-name}.parts`
         ---
-        - - type: NUM
+        - - type: unsigned
             fieldno: 1
-          - type: STR
+          - type: string
             fieldno: 2
         ...
         -- Suppose the space has three tuples
@@ -609,7 +609,7 @@ These variations exist:
 
       tarantool> box.schema.space.create('bitset_example')
       tarantool> box.space.bitset_example:create_index('primary')
-      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'NUM'}})
+      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'unsigned'}})
       tarantool> box.space.bitset_example:insert{1,1}
       tarantool> box.space.bitset_example:insert{2,4}
       tarantool> box.space.bitset_example:insert{3,7}

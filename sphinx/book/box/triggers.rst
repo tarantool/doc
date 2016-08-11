@@ -220,7 +220,7 @@ is executed once after each insert.
 .. code-block:: tarantoolsession
 
     tarantool> s = box.schema.space.create('space53')
-    tarantool> s:create_index('primary', {parts = {1, 'NUM'}})
+    tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
     tarantool> function replace_trigger()
              >   replace_counter = replace_counter + 1
              > end
