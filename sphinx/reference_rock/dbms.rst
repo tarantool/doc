@@ -20,7 +20,7 @@ The Tarantool rocks allow for connecting to an SQL server and executing SQL
 statements the same way that a MySQL or PostgreSQL client does. The SQL
 statements are visible as Lua methods. Thus Tarantool can serve as a "MySQL Lua
 Connector" or "PostgreSQL Lua Connector", which would be useful even if that was
-all Tarantool could do. But of course Tarantool is also a DBMS, so the plugin
+all Tarantool could do. But of course Tarantool is also a DBMS, so the module
 also is useful for any operations, such as database copying and accelerating,
 which work best when the application can work on both SQL and Tarantool inside
 the same Lua routine.

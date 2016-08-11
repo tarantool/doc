@@ -316,10 +316,8 @@ combination “UPDATE plus SELECT” the view is not consistent, because after t
 UPDATE the transaction processor thread can switch to another fiber, and delete
 the tuple that was just updated.
 
-.. NOTE:: Note re storage engine (vinyl)
-
-    vinyl handles yields differently, see
-    :ref:`differences between memtx and vinyl <vinyl_diff>`.
+Note re storage engine: vinyl handles yields differently, see
+:ref:`differences between memtx and vinyl <vinyl_diff>`.
 
 .. NOTE:: Note re multi-request transactions
 
@@ -737,7 +735,7 @@ benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`.
 On the other hand, vinyl lacks some functions and
 options that are available with memtx. Where that is the case, the relevant
 description will contain a note beginning with the words
-"Note re storage engine (vinyl)". The end of this chapter has coverage
+"Note re storage engine". The end of this chapter has coverage
 for all :ref:`the differences between memtx and vinyl <vinyl_diff>`.
 
 =====================================================================

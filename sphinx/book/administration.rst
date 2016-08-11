@@ -1292,7 +1292,7 @@ but there should be frequent production of new snapshot files or
 new WAL files as
 changes occur, so that only the new files need to be copied.
 
-Note re storage engines: vinyl databases require additional steps.
+Note re storage engine: vinyl databases require additional steps.
 
 =====================================================================
        Upgrades

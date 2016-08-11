@@ -1,5 +1,9 @@
 .. _vinyl_diff:
 
+--------------------------------------------------------------------------------
+        Differences between memtx and vinyl storage engines
+--------------------------------------------------------------------------------
+
 The primary difference between memtx and vinyl is that memtx is an "in-memory"
 engine while vinyl is an "on-disk" engine. An in-memory storage engine is
 generally faster, and the memtx engine is justifiably the default for Tarantool,
@@ -14,12 +18,15 @@ preferable:
 
 Here are behavior differences which affect programmers. All of these differences
 have been noted elsewhere in sentences that begin with the words
-"Note re storage engine (vinyl)".
+"Note re storage engine: vinyl".
 
 With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
 With vinyl, the only index type is TREE.
 
-With memtx, for index searches, ``nil`` is considered to be equal to any scalar.
+With memtx, :ref:`create_index <box_space-create_index>` can be done at any time. |br|
+With vinyl, secondary indexes must be created before tuples are inserted.
+
+With memtx, for index searches, ``nil`` is considered to be equal to any scalar. |br|
 With vinyl, ``nil`` or missing parts are not allowed.
 
 With memtx, temporary spaces are supported. |br|

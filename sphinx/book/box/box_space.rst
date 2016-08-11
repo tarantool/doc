@@ -156,9 +156,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Possible errors: too many parts. Index '...' already exists. Primary key must be unique.
 
-        .. NOTE:: Note re storage engine (vinyl)
-
-            vinyl supports only the TREE index type.
+        Note re storage engine: vinyl supports only the TREE index type,
+        and vinyl secondary indexes must be created before tuples are inserted.
 
         .. code-block:: tarantoolsession
 
@@ -662,9 +661,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Complexity Factors:** Index size, Index type
 
-        .. NOTE:: Note re storage engine (vinyl)
-
-            vinyl will return ``nil``, rather than the deleted tuple.
+        Note re storage engine: vinyl will return ``nil``, rather than the deleted tuple.
 
         **Example:**
 
@@ -800,10 +797,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 2
             ...
 
-        .. NOTE:: Note re storage engine (vinyl)
-
-            vinyl does not support ``len(...)``.  One possible workaround is to
-            say ``#select(...)``.
+        Note re storage engine: vinyl does not support ``len()``.  One possible workaround is to
+        say ``#select(...)``.
 
     .. _box_space-truncate:
 
@@ -823,9 +818,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             the space OR under a `setuid` function created by that user. Read
             more about `setuid` functions :ref:`here <authentication-funcs>`
 
-        .. NOTE:: Note re storage engine (vinyl)
-
-            vinyl does not support ``truncate``.
+        Note re storage engine: vinyl does not support ``truncate()``.
 
         **Example:**
 
@@ -847,9 +840,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         by space_object must have an ``unsigned`` or ``integer`` or ``numeric`` primary key index of type ``TREE``. The
         primary-key field will be incremented before the insert.
 
-        .. NOTE::Note re storage engine (vinyl)
-
-            vinyl does not support ``auto_increment``.
+        Note re storage engine: vinyl does not support ``auto_increment()``.
 
         Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
         :codeitalic:`field-value(s)` (type = Lua table or scalar) = tuple's fields, other than the primary-key field.
@@ -1018,7 +1009,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         tarantool> box.schema.space.create('TM', {
                  >   format = {
-                 >     [1] = {["name"] = "field#1"},
+                 >     [1] = {["name"] = "field_1"},
                  >     [2] = {["type"] = "unsigned"}
                  >   }
                  > })
@@ -1035,7 +1026,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ...
         tarantool> box.space._space:select(522)
         ---
-        - - [522, 1, 'TM', 'memtx', 0, {}, [{'name': 'field#1'}, {'type': 'unsigned'}]]
+        - - [522, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
         ...
 
 .. _box_space-index:
