@@ -53,6 +53,9 @@ will print “Connection refused”.
 
     $tnt->insert('examples' => [ 99999, 'BB' ]);
 
+The example program uses field type names 'STR' and 'NUM'
+instead of 'string' and 'unsigned', due to a temporary Perl limitation.
+
 The example program only shows one command and does not show all that's
 necessary for good practice. For that, please see `DR::Tarantool`_ CPAN repository.
 
