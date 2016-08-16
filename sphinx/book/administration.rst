@@ -151,8 +151,9 @@ described in `Lua documentation`_. Examples: 'Hello, world', 'A', [[A\\B!]].
 
 .. _Lua documentation: http://www.lua.org/pil/2.4.html
 
-Numeric literals are: Character sequences containing only digits, optionally
-preceded by + or -. Large or floating-point numeric
+Numeric literals are: Any sequence of one or more digits, not enclosed
+in quotes, optionally preceded by - (minus sign).
+Large or floating-point numeric
 literals may include decimal points, exponential notation, or suffixes.
 Examples: 500, -500, 5e2, 500.1, 5LL, 5ULL.
 
