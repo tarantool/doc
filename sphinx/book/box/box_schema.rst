@@ -139,6 +139,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
         box.schema.user.exists('Lena')
 
+.. _box_schema-user_grant:
+
 .. function:: box.schema.user.grant(user-name, priveleges, object-type, object-name[, {options} ])
               box.schema.user.grant(user-name, priveleges, 'universe'[, nil, {options} ])
               box.schema.user.grant(user-name, role-name[, nil, nil, {options} ])
@@ -361,6 +363,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
         box.schema.role.info('Accountant')
 
+.. _box_schema-func_create:
+
 .. function:: box.schema.func.create(func-name [, {options} ])
 
     Create a function tuple.
@@ -384,6 +388,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
         box.schema.func.create('calculate', {if_not_exists = false})
         box.schema.func.create('calculate', {setuid = false})
         box.schema.func.create('calculate', {language = 'LUA'})
+
+.. _box_schema-func_drop:
 
 .. function:: box.schema.func.drop(func-name)
 

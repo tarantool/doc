@@ -158,6 +158,8 @@ necessary to prioritize requests or to use different authentication ids.
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:delete(...)`.
 
+    .. _net_box-call:
+
     .. method:: call(function-name [, arguments])
 
         ``conn:call('func', '1', '2', '3')`` is the remote-call equivalent of

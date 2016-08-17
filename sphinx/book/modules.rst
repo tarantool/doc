@@ -80,6 +80,8 @@ The requests to load and examine and call look like this: |br|
 :codenormal:`>---` |br|
 :codenormal:`>...`
 
+.. _modules-example_c:
+
 ==========================================
 Example: making a new C/C++ module locally
 ==========================================

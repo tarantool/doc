@@ -20,6 +20,8 @@
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
+.. _box-box_space_id_by_name:
+
 .. c:function:: uint32_t box_space_id_by_name(const char *name, uint32_t len)
 
     Find space id by name.
@@ -50,6 +52,8 @@
     This function performs SELECT request to _vindex system space.
 
     See also: :c:type:`box_space_id_by_name`
+
+.. _box-box_insert:
 
 .. c:function:: int box_insert(uint32_t space_id, const char *tuple, const char *tuple_end, box_tuple_t **result)
 

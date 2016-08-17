@@ -31,6 +31,8 @@ about how the server is configured, so the section about box.cfg is not skippabl
 Chapter 7 "Connectors" is strictly for users who are connecting from a different
 language such as C or Perl or Python -- other users will find no immediate need
 for this chapter.
+Chapter 8 "Modules" shows how to install modules (libraries)
+and how to create new ones in Lua or C.
 
 The first two Appendices, A and B, contain reference information about 
 Tarantool's code errors, internal file formats and internal processes (recovery
@@ -41,10 +43,14 @@ stored procedure", "Sum a JSON field for all tuples" and "Indexed Pattern
 Search" -- start slowly and contain commentary that is especially aimed at users
 who may not consider themselves experts at either Lua or NoSQL database management.
 
-Finally, Appendix D "Vinyl" provides details about Tarantool's disk storage
+Appendix D "Vinyl" provides details about Tarantool's disk storage
 engine named `vinyl`.
 
-For experienced users, there are also Reference parts plus Developer Guide,
+Appendix E "Cookbook" shows some code contributions for common or difficult tasks.
+
+Appendix F has one long tutorial: "C stored procedures".
+
+For experienced users, there are also Reference documents plus a Developer Guide,
 and an extensive set of comments in the source code.
 
 ===============================================================================

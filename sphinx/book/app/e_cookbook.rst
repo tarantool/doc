@@ -83,6 +83,8 @@ Use the :ref:`fio module <fio-module>` to open, write, and close a file.
     f:write("Hello\n");
     f:close()
 
+.. _e_cookbook-ffi_printf:
+
 **ffi_printf.lua**
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built-in function: printf().
