@@ -45,15 +45,16 @@ blocks :
             sudo apt-get update
             sudo apt-get -y install tarantool
             
-    - - "Debian GNU/Linux"
+    - - "Debian Stretch, Jessie and newer"
       - format : rst
         content: |
           We maintain an always up-to-date Debian GNU/Linux
           package repository. At the moment, the repository contains builds for
-          Debian "stretch", "jessie", "wheezy".
+          Debian "stretch" and "jessie". For Debian "wheezy", see personal
+          instructions on this page.
           
           In these instructions, ``$release`` is an environment variable which
-          will contain the Debian version code (e.g. "wheezy").
+          will contain the Debian version code (e.g. "jessie").
 
           Copy and paste the script below to the terminal prompt:
 
@@ -73,6 +74,32 @@ blocks :
             sudo apt-get update
             sudo apt-get -y install tarantool
 
+    - - "Debian Wheezy"
+      - format : rst
+        content: |
+          We maintain an always up-to-date package repository for Debian "wheezy".
+
+          Copy and paste the script below to the terminal prompt:
+
+          .. code-block:: bash
+
+            curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -
+            release=`lsb_release -c -s`
+
+            # install https download transport for APT
+            sudo apt-get -y install apt-transport-https
+
+            # append two lines to a list of source repositories
+            sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
+            sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF
+            deb https://packagecloud.io/tarantool/1_6/debian/ wheezy main
+            deb-src https://packagecloud.io/tarantool/1_6/debian/ wheezy main
+            EOF
+
+            # install
+            sudo apt-get update
+            sudo apt-get -y install tarantool
+            
     - - "Fedora"
       - format : rst
         content: |
