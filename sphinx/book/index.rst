@@ -22,6 +22,8 @@
     app/d_vinyl/index
     app/e_cookbook
     app/f_c_tutorial
+    app/g_changes
+
 
 
 
