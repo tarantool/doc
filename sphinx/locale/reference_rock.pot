@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 18:18+0300\n"
+"POT-Creation-Date: 2016-08-19 12:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgid "To call another DBMS from Tarantool, the essential requirements are: anot
 msgstr ""
 
 #: ../reference_rock/dbms.rst:41
-msgid "Tarantool supplies DBMS connector modules with the package manager for Lua, LuaRocks. So the connector modules may be called \"rocks\"."
+msgid "Tarantool supplies DBMS connector modules with the module manager for Lua, LuaRocks. So the connector modules may be called \"rocks\"."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:44
-msgid "The Tarantool rocks allow for connecting to an SQL server and executing SQL statements the same way that a MySQL or PostgreSQL client does. The SQL statements are visible as Lua methods. Thus Tarantool can serve as a \"MySQL Lua Connector\" or \"PostgreSQL Lua Connector\", which would be useful even if that was all Tarantool could do. But of course Tarantool is also a DBMS, so the plugin also is useful for any operations, such as database copying and accelerating, which work best when the application can work on both SQL and Tarantool inside the same Lua routine. The methods for connect/select/insert/etc. are similar to the ones in the :ref:`net.box <net_box-package>` package."
+msgid "The Tarantool rocks allow for connecting to an SQL server and executing SQL statements the same way that a MySQL or PostgreSQL client does. The SQL statements are visible as Lua methods. Thus Tarantool can serve as a \"MySQL Lua Connector\" or \"PostgreSQL Lua Connector\", which would be useful even if that was all Tarantool could do. But of course Tarantool is also a DBMS, so the module also is useful for any operations, such as database copying and accelerating, which work best when the application can work on both SQL and Tarantool inside the same Lua routine. The methods for connect/select/insert/etc. are similar to the ones in the :ref:`net.box <net_box-module>` module."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:55
@@ -45,147 +45,147 @@ msgid "MySQL Example"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:65
-msgid "This example assumes that MySQL 5.5 or MySQL 5.6 or MySQL 5.7 has been installed. Recent MariaDB versions will also work, the MariaDB C connector is used. The package that matters most is the MySQL client developer package, typically named something like libmysqlclient-dev. The file that matters most from this package is libmysqlclient.so or a similar name. One can use :code:`find` or :code:`whereis` to see what directories these files are installed in."
+msgid "This example assumes that MySQL 5.5 or MySQL 5.6 or MySQL 5.7 has been installed. Recent MariaDB versions will also work, the MariaDB C connector is used. The package that matters most is the MySQL client developer package, typically named something like libmysqlclient-dev. The file that matters most from this package is libmysqlclient.so or a similar name. One can use ``find`` or ``whereis`` to see what directories these files are installed in."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:73
+#: ../reference_rock/dbms.rst:72
 msgid "It will be necessary to install Tarantool's MySQL driver shared library, load it, and use it to connect to a MySQL server. After that, one can pass any MySQL statement to the server and receive results, including multiple result sets."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:79
-#: ../reference_rock/dbms.rst:434
+#: ../reference_rock/dbms.rst:78
+#: ../reference_rock/dbms.rst:432
 msgid "Installation"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:81
-msgid "Check the instructions for :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>` that apply for the environment where tarantool was installed. In addition to installing :code:`tarantool`, install :code:`tarantool-dev`. For example, on Ubuntu, add the line"
+#: ../reference_rock/dbms.rst:80
+msgid "Check the instructions for :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>` that apply for the environment where tarantool was installed. In addition to installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add the line"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:86
-#: ../reference_rock/dbms.rst:442
+#: ../reference_rock/dbms.rst:85
+#: ../reference_rock/dbms.rst:440
 msgid "sudo apt-get install tarantool-dev"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:90
+#: ../reference_rock/dbms.rst:89
 msgid "Now, for the MySQL driver shared library, there are two ways to install:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:94
-#: ../reference_rock/dbms.rst:450
+#: ../reference_rock/dbms.rst:93
+#: ../reference_rock/dbms.rst:448
 msgid "With LuaRocks"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:96
-#: ../reference_rock/dbms.rst:452
+#: ../reference_rock/dbms.rst:95
+#: ../reference_rock/dbms.rst:450
 msgid "Begin by installing luarocks and making sure that tarantool is among the upstream servers, as in the instructions on `rocks.tarantool.org`_, the Tarantool luarocks page. Now execute this:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:103
+#: ../reference_rock/dbms.rst:102
 msgid "luarocks install mysql [MYSQL_LIBDIR = *path*]\n"
 "                       [MYSQL_INCDIR = *path*]\n"
 "                       [--local]"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:107
-#: ../reference_rock/dbms.rst:463
+#: ../reference_rock/dbms.rst:106
+#: ../reference_rock/dbms.rst:461
 msgid "For example:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:109
+#: ../reference_rock/dbms.rst:108
 msgid "luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:113
-#: ../reference_rock/dbms.rst:469
-msgid "See also :ref:`Modules, LuaRocks, and requiring packages <administration-modules_luarocks_and_requiring_packages>`."
+#: ../reference_rock/dbms.rst:112
+#: ../reference_rock/dbms.rst:467
+msgid "See also :ref:`Modules, LuaRocks, and requiring modules <modules-modules_luarocks_and_requiring_modules>`."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:117
-#: ../reference_rock/dbms.rst:473
+#: ../reference_rock/dbms.rst:116
+#: ../reference_rock/dbms.rst:471
 msgid "With GitHub"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:119
+#: ../reference_rock/dbms.rst:118
 msgid "Go the site `github.com/tarantool/mysql`_. Follow the instructions there, saying:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:121
+#: ../reference_rock/dbms.rst:120
 msgid "git clone https://github.com/tarantool/mysql.git\n"
 "cd mysql && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
 "make\n"
 "make install"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:128
-#: ../reference_rock/dbms.rst:484
-msgid "At this point it is a good idea to check that the installation produced a file named :code:`driver.so`, and to check that this file is on a directory that is searched by the :code:`require` request."
+#: ../reference_rock/dbms.rst:127
+#: ../reference_rock/dbms.rst:482
+msgid "At this point it is a good idea to check that the installation produced a file named ``driver.so``, and to check that this file is on a directory that is searched by the ``require`` request."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:134
-#: ../reference_rock/dbms.rst:490
+#: ../reference_rock/dbms.rst:133
+#: ../reference_rock/dbms.rst:488
 msgid "Connecting"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:136
-msgid "Begin by making a :code:`require` request for the mysql driver. We will assume that the name is :code:`mysql` in further examples."
+#: ../reference_rock/dbms.rst:135
+msgid "Begin by making a ``require`` request for the mysql driver. We will assume that the name is ``mysql`` in further examples."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:139
+#: ../reference_rock/dbms.rst:138
 msgid "mysql = require('mysql')"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:143
-#: ../reference_rock/dbms.rst:499
+#: ../reference_rock/dbms.rst:142
+#: ../reference_rock/dbms.rst:497
 msgid "Now, say:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:148
+#: ../reference_rock/dbms.rst:147
 msgid "*connection_name* = mysql.connect(*connection options*)"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:150
-#: ../reference_rock/dbms.rst:506
+#: ../reference_rock/dbms.rst:149
+#: ../reference_rock/dbms.rst:504
 msgid "The connection-options parameter is a table. Possible options are:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:152
-#: ../reference_rock/dbms.rst:508
+#: ../reference_rock/dbms.rst:151
+#: ../reference_rock/dbms.rst:506
 msgid ":samp:`host = {host-name}` - string, default value = 'localhost'"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:153
-#: ../reference_rock/dbms.rst:509
+#: ../reference_rock/dbms.rst:152
+#: ../reference_rock/dbms.rst:507
 msgid ":samp:`port = {port-number}` - number, default value = 3306"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:154
-#: ../reference_rock/dbms.rst:510
+#: ../reference_rock/dbms.rst:153
+#: ../reference_rock/dbms.rst:508
 msgid ":samp:`user = {user-name}` - string, default value is operating-system user name"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:155
+#: ../reference_rock/dbms.rst:154
 msgid ":samp:`password = {password}` - string, default value is blank"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:156
-#: ../reference_rock/dbms.rst:512
+#: ../reference_rock/dbms.rst:155
+#: ../reference_rock/dbms.rst:510
 msgid ":samp:`db = {database-name}` - string, default value is blank"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:157
+#: ../reference_rock/dbms.rst:156
 msgid ":samp:`raise = {true|false}` - boolean, default value is false"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:159
+#: ../reference_rock/dbms.rst:158
 msgid "The option names, except for `raise`, are similar to the names that MySQL's mysql client uses, for details see the MySQL manual at `dev.mysql.com/doc/refman/5.6/en/connecting.html`_. The `raise` option should be set to :codenormal:`true` if errors should be raised when encountered. To connect with a Unix socket rather than with TCP, specify ``host = 'unix/'`` and :samp:`port = {socket-name}`."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:167
-#: ../reference_rock/dbms.rst:516
+#: ../reference_rock/dbms.rst:165
+#: ../reference_rock/dbms.rst:514
 msgid "Example, using a table literal enclosed in {braces}:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:169
+#: ../reference_rock/dbms.rst:167
 msgid "conn = mysql.connect({\n"
 "    host = '127.0.0.1',\n"
 "    port = 3306,\n"
@@ -201,12 +201,12 @@ msgid "conn = mysql.connect({\n"
 "})"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:185
-#: ../reference_rock/dbms.rst:528
+#: ../reference_rock/dbms.rst:183
+#: ../reference_rock/dbms.rst:526
 msgid "Example, creating a function which sets each option in a separate line:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:187
+#: ../reference_rock/dbms.rst:185
 msgid "tarantool> -- Connection function. Usage: conn = mysql_connect()\n"
 "tarantool> function mysql_connection()\n"
 "         >   local p = {}\n"
@@ -222,63 +222,63 @@ msgid "tarantool> -- Connection function. Usage: conn = mysql_connect()\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:203
-#: ../reference_rock/dbms.rst:547
+#: ../reference_rock/dbms.rst:201
+#: ../reference_rock/dbms.rst:545
 msgid "We will assume that the name is 'conn' in further examples."
+msgstr ""
+
+#: ../reference_rock/dbms.rst:205
+#: ../reference_rock/dbms.rst:549
+msgid "How to ping"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:207
 #: ../reference_rock/dbms.rst:551
-msgid "How to ping"
-msgstr ""
-
-#: ../reference_rock/dbms.rst:209
-#: ../reference_rock/dbms.rst:553
 msgid "To ensure that a connection is working, the request is:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:214
-#: ../reference_rock/dbms.rst:558
+#: ../reference_rock/dbms.rst:212
+#: ../reference_rock/dbms.rst:556
 msgid "*connection-name*:ping()"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:216
-#: ../reference_rock/dbms.rst:240
-#: ../reference_rock/dbms.rst:264
-#: ../reference_rock/dbms.rst:561
-#: ../reference_rock/dbms.rst:585
-#: ../reference_rock/dbms.rst:608
+#: ../reference_rock/dbms.rst:214
+#: ../reference_rock/dbms.rst:238
+#: ../reference_rock/dbms.rst:262
+#: ../reference_rock/dbms.rst:559
+#: ../reference_rock/dbms.rst:583
+#: ../reference_rock/dbms.rst:606
 msgid "**Example:**"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:218
-#: ../reference_rock/dbms.rst:563
+#: ../reference_rock/dbms.rst:216
+#: ../reference_rock/dbms.rst:561
 msgid "tarantool> conn:ping()\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:227
-#: ../reference_rock/dbms.rst:572
+#: ../reference_rock/dbms.rst:225
+#: ../reference_rock/dbms.rst:570
 msgid "Executing a statement"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:229
+#: ../reference_rock/dbms.rst:227
 msgid "For all MySQL statements, the request is:"
+msgstr ""
+
+#: ../reference_rock/dbms.rst:232
+#: ../reference_rock/dbms.rst:577
+msgid "*connection-name*:execute(*sql-statement* [, *parameters*])"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:234
 #: ../reference_rock/dbms.rst:579
-msgid "*connection-name*:execute(*sql-statement* [, *parameters*])"
+msgid "where ``sql-statement`` is a string, and the optional ``parameters`` are extra values that can be plugged in to replace any question marks (\"?\"s) in the SQL statement."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:236
-#: ../reference_rock/dbms.rst:581
-msgid "where :code:`sql-statement` is a string, and the optional :code:`parameters` are extra values that can be plugged in to replace any question marks (\"?\"s) in the SQL statement."
-msgstr ""
-
-#: ../reference_rock/dbms.rst:242
+#: ../reference_rock/dbms.rst:240
 msgid "tarantool> conn:execute('select table_name from information_schema.tables')\n"
 "---\n"
 "- - table_name: ALL_PLUGINS\n"
@@ -289,40 +289,41 @@ msgid "tarantool> conn:execute('select table_name from information_schema.tables
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:255
-#: ../reference_rock/dbms.rst:599
+#: ../reference_rock/dbms.rst:253
+#: ../reference_rock/dbms.rst:597
 msgid "Closing connection"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:257
-msgid "To end a session that began with :code:`mysql.connect`, the request is:"
+#: ../reference_rock/dbms.rst:255
+msgid "To end a session that began with ``mysql.connect``, the request is:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:262
-#: ../reference_rock/dbms.rst:606
+#: ../reference_rock/dbms.rst:260
+#: ../reference_rock/dbms.rst:604
 msgid "*connection-name*:close()"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:266
+#: ../reference_rock/dbms.rst:264
+#: ../reference_rock/dbms.rst:608
 msgid "tarantool> conn:close()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:272
+#: ../reference_rock/dbms.rst:270
 msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/mysql`_."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:277
+#: ../reference_rock/dbms.rst:275
 #: ../reference_rock/dbms.rst:619
 msgid "Example"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:279
+#: ../reference_rock/dbms.rst:277
 msgid "The example was run on an Ubuntu 12.04 (\"precise\") machine where tarantool had been installed in a /usr subdirectory, and a copy of MySQL had been installed on ~/mysql-5.5. The mysqld server is already running on the local host 127.0.0.1."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:283
+#: ../reference_rock/dbms.rst:281
 msgid "$ export TMDIR=~/mysql-5.5\n"
 "$ # Check that the include subdirectory exists by looking\n"
 "$ # for .../include/mysql.h. (If this fails, there's a chance\n"
@@ -403,11 +404,11 @@ msgid "$ export TMDIR=~/mysql-5.5\n"
 "tarantool>"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:364
+#: ../reference_rock/dbms.rst:362
 msgid "Configure tarantool and load mysql module. Make sure that tarantool doesn't reply \"error\" for the call to \"require()\"."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:367
+#: ../reference_rock/dbms.rst:365
 msgid "tarantool> box.cfg{}\n"
 "...\n"
 "tarantool> mysql = require('mysql')\n"
@@ -415,11 +416,11 @@ msgid "tarantool> box.cfg{}\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:375
+#: ../reference_rock/dbms.rst:373
 msgid "Create a Lua function that will connect to the MySQL server, (using some factory default values for the port and user and password), retrieve one row, and display the row. For explanations of the statement types used here, read the Lua tutorial earlier in the Tarantool user manual."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:380
+#: ../reference_rock/dbms.rst:378
 msgid "tarantool> function mysql_select ()\n"
 "         >   local conn = mysql.connect({\n"
 "         >     host = '127.0.0.1',\n"
@@ -443,80 +444,80 @@ msgid "tarantool> function mysql_select ()\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:404
+#: ../reference_rock/dbms.rst:402
 msgid "Observe the result. It contains \"MySQL row\". So this is the row that was inserted into the MySQL database. And now it's been selected with the Tarantool client."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:411
+#: ../reference_rock/dbms.rst:409
 msgid "PostgreSQL Example"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:413
+#: ../reference_rock/dbms.rst:411
 msgid "This example assumes that PostgreSQL 8 or PostgreSQL 9 has been installed. More recent versions should also work. The package that matters most is the PostgreSQL developer package, typically named something like libpq-dev. On Ubuntu this can be installed with:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:418
+#: ../reference_rock/dbms.rst:416
 msgid "sudo apt-get install libpq-dev"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:422
-msgid "However, because not all platforms are alike, for this example the assumption is that the user must check that the appropriate PostgreSQL files are present and must explicitly state where they are when building the Tarantool/PostgreSQL driver. One can use :code:`find` or :code:`whereis` to see what directories PostgreSQL files are installed in."
+#: ../reference_rock/dbms.rst:420
+msgid "However, because not all platforms are alike, for this example the assumption is that the user must check that the appropriate PostgreSQL files are present and must explicitly state where they are when building the Tarantool/PostgreSQL driver. One can use ``find`` or ``whereis`` to see what directories PostgreSQL files are installed in."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:428
+#: ../reference_rock/dbms.rst:426
 msgid "It will be necessary to install Tarantool's PostgreSQL driver shared library, load it, and use it to connect to a PostgreSQL server. After that, one can pass any PostgreSQL statement to the server and receive results."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:436
-msgid "Check the instructions for :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>` that apply for the environment where tarantool was installed. In addition to installing :code:`tarantool`, install :code:`tarantool-dev`. For example, on Ubuntu, add the line:"
+#: ../reference_rock/dbms.rst:434
+msgid "Check the instructions for :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>` that apply for the environment where tarantool was installed. In addition to installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add the line:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:446
+#: ../reference_rock/dbms.rst:444
 msgid "Now, for the PostgreSQL driver shared library, there are two ways to install:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:459
+#: ../reference_rock/dbms.rst:457
 msgid "luarocks install pg [POSTGRESQL_LIBDIR = *path*]\n"
 "                    [POSTGRESQL_INCDIR = *path*]\n"
 "                    [--local]"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:465
+#: ../reference_rock/dbms.rst:463
 msgid "luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:475
+#: ../reference_rock/dbms.rst:473
 msgid "Go the site `github.com/tarantool/pg`_. Follow the instructions there, saying:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:477
+#: ../reference_rock/dbms.rst:475
 msgid "git clone https://github.com/tarantool/pg.git\n"
 "cd pg && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
 "make\n"
 "make install"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:492
-msgid "Begin by making a :code:`require` request for the pg driver. We will assume that the name is :code:`pg` in further examples."
+#: ../reference_rock/dbms.rst:490
+msgid "Begin by making a ``require`` request for the pg driver. We will assume that the name is ``pg`` in further examples."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:495
+#: ../reference_rock/dbms.rst:493
 msgid "pg = require('pg')"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:504
+#: ../reference_rock/dbms.rst:502
 msgid "*connection_name* = pg.connect(*connection options*)"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:511
+#: ../reference_rock/dbms.rst:509
 msgid ":samp:`pass = {password}` or :samp:`password = {password}` - string, default value is blank"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:514
+#: ../reference_rock/dbms.rst:512
 msgid "The names are similar to the names that PostgreSQL itself uses."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:518
+#: ../reference_rock/dbms.rst:516
 msgid "conn = pg.connect({\n"
 "    host = '127.0.0.1',\n"
 "    port = 5432,\n"
@@ -526,7 +527,7 @@ msgid "conn = pg.connect({\n"
 "})"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:530
+#: ../reference_rock/dbms.rst:528
 msgid "tarantool> function pg_connect()\n"
 "         >   local p = {}\n"
 "         >   p.host = 'widgets.com'\n"
@@ -543,11 +544,11 @@ msgid "tarantool> function pg_connect()\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:574
+#: ../reference_rock/dbms.rst:572
 msgid "For all PostgreSQL statements, the request is:"
 msgstr ""
 
-#: ../reference_rock/dbms.rst:587
+#: ../reference_rock/dbms.rst:585
 msgid "tarantool> conn:execute('select tablename from pg_tables')\n"
 "---\n"
 "- - tablename: pg_statistic\n"
@@ -557,12 +558,8 @@ msgid "tarantool> conn:execute('select tablename from pg_tables')\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:601
-msgid "To end a session that began with :code:`pg.connect`, the request is:"
-msgstr ""
-
-#: ../reference_rock/dbms.rst:610
-msgid "tarantool> conn:close() |br| --- |br| ..."
+#: ../reference_rock/dbms.rst:599
+msgid "To end a session that began with ``pg.connect``, the request is:"
 msgstr ""
 
 #: ../reference_rock/dbms.rst:614
@@ -663,7 +660,7 @@ msgstr ""
 msgid "Create a Lua function that will connect to the PostgreSQL server, (using some factory default values for the port and user and password), retrieve one row, and display the row. For explanations of the statement types used here, read the Lua tutorial earlier in the Tarantool user manual."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:716
+#: ../reference_rock/dbms.rst:715
 msgid "tarantool> function pg_select ()\n"
 "         >   local conn = pg.connect({\n"
 "         >     host = '127.0.0.1',\n"
@@ -688,12 +685,12 @@ msgid "tarantool> function pg_select ()\n"
 "..."
 msgstr ""
 
-#: ../reference_rock/dbms.rst:741
+#: ../reference_rock/dbms.rst:740
 msgid "Observe the result. It contains \"PostgreSQL row\". So this is the row that was inserted into the PostgreSQL database. And now it's been selected with the Tarantool client."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:30
-msgid "Package `expirationd`"
+msgid "Module `expirationd`"
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:32
@@ -737,7 +734,7 @@ msgid "-- default process_expired_tuple function\n"
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:75
-msgid "Ultimately the tuple-expiry process leads to ``default_tuple_drop()`` which does a \"delete\" of a tuple from its original space. First the fun :ref:`fun <fun-package>` package is used, specifically fun.map_. Remembering that :codenormal:`index[0]` is always the space's primary key, and :codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno` is always the field number for key part :codeitalic:`N`, fun.map() is creating a table from the primary-key values of the tuple. The result of fun.map() is passed to :ref:`space_object:delete() <box_space-delete>`."
+msgid "Ultimately the tuple-expiry process leads to ``default_tuple_drop()`` which does a \"delete\" of a tuple from its original space. First the fun :ref:`fun <fun-module>` module is used, specifically fun.map_. Remembering that :codenormal:`index[0]` is always the space's primary key, and :codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno` is always the field number for key part :codeitalic:`N`, fun.map() is creating a table from the primary-key values of the tuple. The result of fun.map() is passed to :ref:`space_object:delete() <box_space-delete>`."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:85
@@ -770,7 +767,7 @@ msgid "fiber = require('fiber')\n"
 "expd = require('expirationd')\n"
 "box.cfg{}\n"
 "e = box.schema.space.create('expirationd_test')\n"
-"e:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})\n"
+"e:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})\n"
 "e:replace{1, fiber.time() + 3}\n"
 "e:replace{2, fiber.time() + 30}\n"
 "function is_tuple_expired(args, tuple)\n"
@@ -797,7 +794,7 @@ msgid "The function which will be supplied to expirationd is :codenormal:`is_tup
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:141
-msgid "The key for getting the rock rolling is ``expd = require('expirationd')``. The \"``require``\" function is what reads in the program; it will appear in many later examples in this manual, when it's necessary to get a package that's not part of the Tarantool kernel. After the Lua variable expd has been assigned the value of the expirationd package, it's possible to invoke the package's ``run_task()`` function."
+msgid "The key for getting the rock rolling is ``expd = require('expirationd')``. The \"``require``\" function is what reads in the program; it will appear in many later examples in this manual, when it's necessary to get a module that's not part of the Tarantool kernel. After the Lua variable expd has been assigned the value of the expirationd module, it's possible to invoke the module's ``run_task()`` function."
 msgstr ""
 
 #: ../reference_rock/expirationd.rst:148
@@ -821,7 +818,7 @@ msgid "For examples of creating one's own module with Lua or C, see `this link`_
 msgstr ""
 
 #: ../reference_rock/shard.rst:30
-msgid "Package `shard`"
+msgid "Module `shard`"
 msgstr ""
 
 #: ../reference_rock/shard.rst:34
@@ -829,7 +826,7 @@ msgid "With sharding, the tuples of a tuple set are distributed to multiple node
 msgstr ""
 
 #: ../reference_rock/shard.rst:39
-msgid "The Tarantool shard package has facilities for creating shards, as well as analogues for the data-manipulation functions of the box library (select, insert, replace, update, delete)."
+msgid "The Tarantool shard module has facilities for creating shards, as well as analogues for the data-manipulation functions of the box library (select, insert, replace, update, delete)."
 msgstr ""
 
 #: ../reference_rock/shard.rst:43
@@ -841,7 +838,7 @@ msgid "**Consistent Hash**"
 msgstr ""
 
 #: ../reference_rock/shard.rst:48
-msgid "The shard package distributes according to a hash algorithm, that is, it applies a hash function to a tuple's primary-key value in order to decide which shard the tuple belongs to. The hash function is `consistent`_ so that changing the number of servers will not affect results for many keys. The specific hash function that the shard package uses is :ref:`digest.guava <digest-guava>` in the :codeitalic:`digest` package."
+msgid "The shard module distributes according to a hash algorithm, that is, it applies a hash function to a tuple's primary-key value in order to decide which shard the tuple belongs to. The hash function is `consistent`_ so that changing the number of servers will not affect results for many keys. The specific hash function that the shard module uses is :ref:`digest.guava <digest-guava>` in the :codeitalic:`digest` module."
 msgstr ""
 
 #: ../reference_rock/shard.rst:54
@@ -849,7 +846,7 @@ msgid "**Queue**"
 msgstr ""
 
 #: ../reference_rock/shard.rst:56
-msgid "A temporary list of recent update requests. Sometimes called \"batching\". Since updates to a sharded database can be slow, it may speed up throughput to send requests to a queue rather than wait for the update to finish on ever node. The shard package has functions for adding requests to the queue, which it will process without further intervention. Queuing is optional."
+msgid "A temporary list of recent update requests. Sometimes called \"batching\". Since updates to a sharded database can be slow, it may speed up throughput to send requests to a queue rather than wait for the update to finish on ever node. The shard module has functions for adding requests to the queue, which it will process without further intervention. Queuing is optional."
 msgstr ""
 
 #: ../reference_rock/shard.rst:62
@@ -865,7 +862,7 @@ msgid "**Replica**"
 msgstr ""
 
 #: ../reference_rock/shard.rst:67
-msgid "A complete copy of the data. The shard package handles both sharding and replication. One shard can contain one or more replicas. When a write occurs, the write is attempted on every replica in turn. The shard package does not use the built-in replication feature."
+msgid "A complete copy of the data. The shard module handles both sharding and replication. One shard can contain one or more replicas. When a write occurs, the write is attempted on every replica in turn. The shard module does not use the built-in replication feature."
 msgstr ""
 
 #: ../reference_rock/shard.rst:71
@@ -893,7 +890,7 @@ msgid "sudo apt-get install tarantool-shard tarantool-pool"
 msgstr ""
 
 #: ../reference_rock/shard.rst:91
-msgid "Or, download from github tarantool/shard and compile as described in the README. Then, before using the package, say ``shard = require('shard')``"
+msgid "Or, download from github tarantool/shard and compile as described in the README. Then, before using the module, say ``shard = require('shard')``"
 msgstr ""
 
 #: ../reference_rock/shard.rst:94
@@ -913,7 +910,7 @@ msgid "servers (a list of URIs of nodes and the zones the nodes are in)"
 msgstr ""
 
 #: ../reference_rock/shard.rst:105
-msgid "login (the user name which applies for accessing via the shard package)"
+msgid "login (the user name which applies for accessing via the shard module)"
 msgstr ""
 
 #: ../reference_rock/shard.rst:106
@@ -937,7 +934,7 @@ msgid "Example: shard.init syntax for one shard"
 msgstr ""
 
 #: ../reference_rock/shard.rst:119
-msgid "The number of replicas per shard (redundancy) is 3. The number of servers is 3. The shard package will conclude that there is only one shard."
+msgid "The number of replicas per shard (redundancy) is 3. The number of servers is 3. The shard module will conclude that there is only one shard."
 msgstr ""
 
 #: ../reference_rock/shard.rst:123
@@ -1000,7 +997,7 @@ msgid "shard[*space-name*].insert{...}\n"
 msgstr ""
 
 #: ../reference_rock/shard.rst:184
-msgid "Every data-access function in the box package has an analogue in the shard package, so (for example) to insert in table T in a sharded database one simply says ``shard.T:insert{...}`` instead of ``box.T:insert{...}``. A ``shard.T:select{}`` request without a primary key will search all shards."
+msgid "Every data-access function in the box module has an analogue in the shard module, so (for example) to insert in table T in a sharded database one simply says ``shard.T:insert{...}`` instead of ``box.space.T:insert{...}``. A ``shard.T:select{}`` request without a primary key will search all shards."
 msgstr ""
 
 #: ../reference_rock/shard.rst:192
@@ -1013,7 +1010,7 @@ msgid "shard[*space-name*].q_insert{...}\n"
 msgstr ""
 
 #: ../reference_rock/shard.rst:199
-msgid "Every queued data-access function has an analogue in the shard package. The user must add an operation_id. The details of queued data-access functions, and of maintenance-related functions, are on `the shard section of github`_."
+msgid "Every queued data-access function has an analogue in the shard module. The user must add an operation_id. The details of queued data-access functions, and of maintenance-related functions, are on `the shard section of github`_."
 msgstr ""
 
 #: ../reference_rock/shard.rst:205
@@ -1168,7 +1165,7 @@ msgid "tarantool> shard.tester:select{1}\n"
 msgstr ""
 
 #: ../reference_rock/shard.rst:351
-msgid "This shows that what was inserted by Terminal #1 can be selected by Terminal #2, via the shard package."
+msgid "This shows that what was inserted by Terminal #1 can be selected by Terminal #2, via the shard module."
 msgstr ""
 
 #: ../reference_rock/shard.rst:354
@@ -1176,7 +1173,7 @@ msgid "Details are on `the shard section of github`_."
 msgstr ""
 
 #: ../reference_rock/tdb.rst:28
-msgid "Package `tdb`"
+msgid "Module `tdb`"
 msgstr ""
 
 #: ../reference_rock/tdb.rst:30

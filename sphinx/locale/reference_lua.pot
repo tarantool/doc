@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 18:18+0300\n"
+"POT-Creation-Date: 2016-08-19 12:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../reference_lua/box.rst:28
-msgid "Package `box`"
+msgid "Module `box`"
 msgstr ""
 
 #: ../reference_lua/box.rst:30
-msgid "The contents of the ``box`` library can be inspected at runtime with ``box``, with no arguments. The packages inside the box library are: ``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``. Every package contains one or more Lua functions. A few packages contain members as well as functions. The functions allow data definition (create alter drop), data manipulation (insert delete update upsert select replace), and introspection (inspecting contents of spaces, accessing server configuration)."
+msgid "The contents of the ``box`` library can be inspected at runtime with ``box``, with no arguments. The submodules inside the box library are: ``box.schema``, ``box.tuple``, ``box.space``, ``box.index``, ``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``. Every submodule contains one or more Lua functions. A few submodules contain members as well as functions. The functions allow data definition (create alter drop), data manipulation (insert delete update upsert select replace), and introspection (inspecting contents of spaces, accessing server configuration)."
 msgstr ""
 
 #: ../reference_lua/box_error.rst:28
-msgid "Package `box.error`"
+msgid "Submodule `box.error`"
 msgstr ""
 
 #: ../reference_lua/box_error.rst:32
@@ -66,14 +66,16 @@ msgstr ""
 
 #: ../reference_lua/box_error.rst:71
 #: ../reference_lua/box_error.rst:107
-#: ../reference_lua/clock.rst:50
-#: ../reference_lua/clock.rst:69
-#: ../reference_lua/clock.rst:87
-#: ../reference_lua/clock.rst:105
-#: ../reference_lua/clock.rst:127
+#: ../reference_lua/clock.rst:51
+#: ../reference_lua/clock.rst:72
+#: ../reference_lua/clock.rst:90
+#: ../reference_lua/clock.rst:108
+#: ../reference_lua/clock.rst:130
 #: ../reference_lua/console.rst:71
 #: ../reference_lua/console.rst:104
 #: ../reference_lua/console.rst:129
+#: ../reference_lua/crypto.rst:64
+#: ../reference_lua/crypto.rst:93
 #: ../reference_lua/csv.rst:70
 #: ../reference_lua/csv.rst:149
 #: ../reference_lua/csv.rst:191
@@ -81,6 +83,7 @@ msgstr ""
 #: ../reference_lua/fiber.rst:112
 #: ../reference_lua/fiber.rst:132
 #: ../reference_lua/fiber.rst:152
+#: ../reference_lua/fiber.rst:166
 #: ../reference_lua/fiber.rst:183
 #: ../reference_lua/fiber.rst:202
 #: ../reference_lua/fiber.rst:229
@@ -90,31 +93,31 @@ msgstr ""
 #: ../reference_lua/fiber.rst:311
 #: ../reference_lua/fiber.rst:331
 #: ../reference_lua/fiber.rst:356
-#: ../reference_lua/fiber.rst:377
-#: ../reference_lua/fiber.rst:420
-#: ../reference_lua/fiber.rst:439
-#: ../reference_lua/fio.rst:50
-#: ../reference_lua/fio.rst:70
-#: ../reference_lua/fio.rst:88
-#: ../reference_lua/fio.rst:110
-#: ../reference_lua/fio.rst:130
-#: ../reference_lua/fio.rst:168
-#: ../reference_lua/fio.rst:189
-#: ../reference_lua/fio.rst:204
-#: ../reference_lua/fio.rst:217
-#: ../reference_lua/fio.rst:241
-#: ../reference_lua/fio.rst:264
-#: ../reference_lua/fio.rst:283
-#: ../reference_lua/fio.rst:306
-#: ../reference_lua/fio.rst:322
-#: ../reference_lua/fio.rst:355
-#: ../reference_lua/fio.rst:377
-#: ../reference_lua/fio.rst:400
-#: ../reference_lua/fio.rst:430
-#: ../reference_lua/fio.rst:448
-#: ../reference_lua/fio.rst:471
-#: ../reference_lua/fio.rst:489
-#: ../reference_lua/fio.rst:521
+#: ../reference_lua/fiber.rst:376
+#: ../reference_lua/fiber.rst:421
+#: ../reference_lua/fiber.rst:440
+#: ../reference_lua/fio.rst:52
+#: ../reference_lua/fio.rst:72
+#: ../reference_lua/fio.rst:90
+#: ../reference_lua/fio.rst:112
+#: ../reference_lua/fio.rst:132
+#: ../reference_lua/fio.rst:170
+#: ../reference_lua/fio.rst:191
+#: ../reference_lua/fio.rst:206
+#: ../reference_lua/fio.rst:219
+#: ../reference_lua/fio.rst:243
+#: ../reference_lua/fio.rst:266
+#: ../reference_lua/fio.rst:285
+#: ../reference_lua/fio.rst:308
+#: ../reference_lua/fio.rst:324
+#: ../reference_lua/fio.rst:357
+#: ../reference_lua/fio.rst:379
+#: ../reference_lua/fio.rst:402
+#: ../reference_lua/fio.rst:432
+#: ../reference_lua/fio.rst:450
+#: ../reference_lua/fio.rst:473
+#: ../reference_lua/fio.rst:491
+#: ../reference_lua/fio.rst:523
 #: ../reference_lua/jit.rst:40
 #: ../reference_lua/jit.rst:55
 #: ../reference_lua/jit.rst:68
@@ -127,10 +130,29 @@ msgstr ""
 #: ../reference_lua/net_box.rst:93
 #: ../reference_lua/net_box.rst:107
 #: ../reference_lua/net_box.rst:120
+#: ../reference_lua/net_box.rst:136
+#: ../reference_lua/net_box.rst:194
+#: ../reference_lua/net_box.rst:210
+#: ../reference_lua/net_box.rst:221
+#: ../reference_lua/os.rst:55
+#: ../reference_lua/os.rst:78
+#: ../reference_lua/os.rst:97
+#: ../reference_lua/os.rst:114
+#: ../reference_lua/os.rst:132
+#: ../reference_lua/os.rst:147
+#: ../reference_lua/os.rst:160
+#: ../reference_lua/os.rst:175
+#: ../reference_lua/os.rst:190
 #: ../reference_lua/other.rst:40
 #: ../reference_lua/other.rst:77
 #: ../reference_lua/pickle.rst:89
 #: ../reference_lua/pickle.rst:134
+#: ../reference_lua/socket.rst:135
+#: ../reference_lua/socket.rst:152
+#: ../reference_lua/socket.rst:169
+#: ../reference_lua/socket.rst:197
+#: ../reference_lua/socket.rst:231
+#: ../reference_lua/socket.rst:378
 #: ../reference_lua/strict.rst:41
 #: ../reference_lua/tap.rst:93
 #: ../reference_lua/tap.rst:135
@@ -195,127 +217,135 @@ msgstr ""
 msgid "Function `box.once`"
 msgstr ""
 
-#: ../reference_lua/box_once.rst:32
-msgid ":codenormal:`box.`:codebold:`once`:codenormal:`(`:codeitalic:`key, function`:codenormal:`)`"
-msgstr ""
-
 #: ../reference_lua/box_once.rst:34
 msgid "Execute a function, provided it has not been executed before. A passed value is checked to see whether the function has already been executed. If it has been executed before, nothing happens. If it has not been executed before, the function is invoked. For an explanation why ``box.once`` is useful, see the section :ref:`Preventing Duplicate Actions <index-preventing_duplicate_actions>`."
 msgstr ""
 
-#: ../reference_lua/box_once.rst:41
-msgid "Parameters: :codebold:`key` (:codeitalic:`string`) = a value that will be checked, :codebold:`function` = a function name."
+#: ../reference_lua/box_once.rst:40
+msgid "a value that will be checked"
 msgstr ""
 
-#: ../reference_lua/clock.rst:28
-msgid "Package `clock`"
+#: ../reference_lua/box_once.rst:41
+msgid "a function"
+msgstr ""
+
+#: ../reference_lua/box_once.rst:42
+msgid "arguments, that must be passed to function"
 msgstr ""
 
 #: ../reference_lua/clock.rst:30
-msgid "The ``clock`` package returns time values derived from the Posix / C CLOCK_GETTIME_ function or equivalent. Most functions in the package return a number of seconds; functions whose names end in \"64\" return a 64-bit number of nanoseconds."
+msgid "Module `clock`"
 msgstr ""
 
-#: ../reference_lua/clock.rst:42
-msgid "The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME). This is the best function for knowing what the official time is, as determined by the system administrator. |br| See also :ref:`fiber.time64 <fiber-time64>` and :ref:`os.clock() <os-clock>`."
+#: ../reference_lua/clock.rst:32
+msgid "The ``clock`` module returns time values derived from the Posix / C CLOCK_GETTIME_ function or equivalent. Most functions in the module return a number of seconds; functions whose names end in \"64\" return a 64-bit number of nanoseconds."
 msgstr ""
 
-#: ../reference_lua/clock.rst:47
-msgid "seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted."
+#: ../reference_lua/clock.rst:44
+msgid "The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME). This is the best function for knowing what the official time is, as determined by the system administrator."
 msgstr ""
 
 #: ../reference_lua/clock.rst:48
-#: ../reference_lua/clock.rst:67
-#: ../reference_lua/clock.rst:85
-#: ../reference_lua/clock.rst:103
+msgid "seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted."
+msgstr ""
+
+#: ../reference_lua/clock.rst:49
+#: ../reference_lua/clock.rst:70
+#: ../reference_lua/clock.rst:88
+#: ../reference_lua/clock.rst:106
 msgid "number or number64"
 msgstr ""
 
-#: ../reference_lua/clock.rst:52
+#: ../reference_lua/clock.rst:53
 msgid "-- This will print an approximate number of years since 1970.\n"
 "clock = require('clock')\n"
 "print(clock.time() / (365*24*60*60))"
 msgstr ""
 
-#: ../reference_lua/clock.rst:61
+#: ../reference_lua/clock.rst:59
+msgid "See also :ref:`fiber.time64 <fiber-time64>` and :ref:`os.clock() <os-clock>`."
+msgstr ""
+
+#: ../reference_lua/clock.rst:64
 msgid "The monotonic time. Derived from C function clock_gettime(CLOCK_MONOTONIC). Monotonic time is similar to wall clock time but is not affected by changes to or from daylight saving time, or by changes done by a user. This is the best function to use with benchmarks that need to calculate elapsed time."
 msgstr ""
 
-#: ../reference_lua/clock.rst:66
+#: ../reference_lua/clock.rst:69
 msgid "seconds or nanoseconds since the last time that the computer was booted."
 msgstr ""
 
-#: ../reference_lua/clock.rst:71
+#: ../reference_lua/clock.rst:74
 msgid "-- This will print nanoseconds since the start.\n"
 "clock = require('clock')\n"
 "print(clock.monotonic64())"
 msgstr ""
 
-#: ../reference_lua/clock.rst:80
+#: ../reference_lua/clock.rst:83
 msgid "The processor time. Derived from C function clock_gettime(CLOCK_PROCESS_CPUTIME_ID). This is the best function to use with benchmarks that need to calculate how much time has been spent within a CPU."
 msgstr ""
 
-#: ../reference_lua/clock.rst:84
+#: ../reference_lua/clock.rst:87
 msgid "seconds or nanoseconds since processor start."
 msgstr ""
 
-#: ../reference_lua/clock.rst:89
+#: ../reference_lua/clock.rst:92
 msgid "-- This will print nanoseconds in the CPU since the start.\n"
 "clock = require('clock')\n"
 "print(clock.proc64())"
 msgstr ""
 
-#: ../reference_lua/clock.rst:98
+#: ../reference_lua/clock.rst:101
 msgid "The thread time. Derived from C function clock_gettime(CLOCK_THREAD_CPUTIME_ID). This is the best function to use with benchmarks that need to calculate how much time has been spent within a thread within a CPU."
 msgstr ""
 
-#: ../reference_lua/clock.rst:102
+#: ../reference_lua/clock.rst:105
 msgid "seconds or nanoseconds since thread start."
 msgstr ""
 
-#: ../reference_lua/clock.rst:107
+#: ../reference_lua/clock.rst:110
 msgid "-- This will print seconds in the thread since the start.\n"
 "clock = require('clock')\n"
 "print(clock.thread64())"
 msgstr ""
 
-#: ../reference_lua/clock.rst:115
+#: ../reference_lua/clock.rst:118
 msgid "The time that a function takes within a processor. This function uses clock.proc(), therefore it calculates elapsed CPU time. Therefore it is not useful for showing actual elapsed time."
 msgstr ""
 
-#: ../reference_lua/clock.rst:119
-#: ../reference_lua/socket.rst:216
+#: ../reference_lua/clock.rst:122
+#: ../reference_lua/socket.rst:226
 msgid "Parameters:"
 msgstr ""
 
-#: ../reference_lua/clock.rst:121
+#: ../reference_lua/clock.rst:124
 msgid ":samp:`{function}` = function or function reference;"
 msgstr ""
 
-#: ../reference_lua/clock.rst:122
+#: ../reference_lua/clock.rst:125
 msgid ":samp:`{function parameters}` = whatever values are required by the function."
 msgstr ""
 
-#: ../reference_lua/clock.rst:124
+#: ../reference_lua/clock.rst:127
 msgid "table. first element = seconds of CPU time; second element = whatever the function returns."
 msgstr ""
 
-#: ../reference_lua/clock.rst:125
+#: ../reference_lua/clock.rst:128
 #: ../reference_lua/csv.rst:68
 #: ../reference_lua/fiber.rst:200
-#: ../reference_lua/fio.rst:128
-#: ../reference_lua/fio.rst:185
-#: ../reference_lua/fio.rst:487
+#: ../reference_lua/fio.rst:130
+#: ../reference_lua/fio.rst:187
+#: ../reference_lua/fio.rst:489
 #: ../reference_lua/json.rst:84
 #: ../reference_lua/msgpack.rst:55
 #: ../reference_lua/pickle.rst:132
-#: ../reference_lua/socket.rst:161
-#: ../reference_lua/socket.rst:505
-#: ../reference_lua/socket.rst:517
+#: ../reference_lua/socket.rst:167
+#: ../reference_lua/socket.rst:522
+#: ../reference_lua/socket.rst:534
 #: ../reference_lua/yaml.rst:51
 msgid "table"
 msgstr ""
 
-#: ../reference_lua/clock.rst:129
+#: ../reference_lua/clock.rst:132
 msgid "-- Benchmark a function which sleeps 10 seconds.\n"
 "-- NB: bench() will not calculate sleep time.\n"
 "-- So the returned value will be {a number less than 10, 88}.\n"
@@ -329,11 +359,11 @@ msgid "-- Benchmark a function which sleeps 10 seconds.\n"
 msgstr ""
 
 #: ../reference_lua/console.rst:30
-msgid "Package `console`"
+msgid "Module `console`"
 msgstr ""
 
 #: ../reference_lua/console.rst:32
-msgid "The console package allows one Tarantool server to access another Tarantool server, and allows one Tarantool server to start listening on an :ref:`admin port <administration-admin_ports>`."
+msgid "The console module allows one Tarantool server to access another Tarantool server, and allows one Tarantool server to start listening on an :ref:`admin port <administration-admin_ports>`."
 msgstr ""
 
 #: ../reference_lua/console.rst:41
@@ -429,30 +459,128 @@ msgid "Set the auto-completion flag. If auto-completion is `true`, and the user 
 msgstr ""
 
 #: ../reference_lua/crypto.rst:30
-msgid "Package `crypto`"
+msgid "Module `crypto`"
 msgstr ""
 
 #: ../reference_lua/crypto.rst:34
-msgid "\"Crypto\" is short for \"Cryptography\", which generally refers to the production of a digest value from a function (usually a `Cryptographic hash function`_), applied against a string. Tarantool's crypto package supports ten  types of cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_, SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the :ref:`digest` package. The functions in crypto are:"
+msgid "\"Crypto\" is short for \"Cryptography\", which generally refers to the production of a digest value from a function (usually a `Cryptographic hash function`_), applied against a string. Tarantool's crypto module supports ten types of cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_, SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the :ref:`digest` module. The functions in crypto are:"
 msgstr ""
 
-#: ../reference_lua/crypto.rst:42
-msgid ":codebold:`crypto.cipher.`:codeitalic:`{aes128|aes192|aes256|des}.{cbc|cfg|ecb|ofb}.{encrypt|decrypt}` (:codeitalic:`string`, :codeitalic:`key` :codenormal:`[,`:codeitalic:`initialization vector`:codenormal:`])` |br| Pass or return a cipher derived from the string, key, and (optionally, sometimes) initialization vector. The four choices :codenormal:`aes128|aes192|aes256|des` indicate whether the algorithm will be aes-128 (with 192-bit binary strings using AES), aes-192 (with 192-bit binary strings using AES), aes-256 (with 256-bit binary strings using AES), or des (with 56-bit binary strings using DES, though DES is not recommended). |br| Examples; |br| :codenormal:`crypto.cipher.aes192.cbc.encrypt('string', 'key', 'initialization')` |br| :codenormal:`crypto.cipher.aes256.ecb.decrypt('string', 'key')` |br|"
+#: ../reference_lua/crypto.rst:46
+msgid "Pass or return a cipher derived from the string, key, and (optionally, sometimes) initialization vector. The four choices of algorithms:"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:49
+msgid "aes128 - aes-128 (with 192-bit binary strings using AES)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:50
+msgid "aes192 - aes-192 (with 192-bit binary strings using AES)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:51
+msgid "aes256 - aes-256 (with 256-bit binary strings using AES)"
 msgstr ""
 
 #: ../reference_lua/crypto.rst:52
-msgid ":codebold:`crypto.digest.`:codeitalic:`{dss|dss1|md4|md5|mdc2|ripemd160|sha|sha1|sha224|sha256|sha384|sha512}`:codenormal:`(`:codeitalic:`string`:codenormal:`)` |br| Pass or return a digest derived from the string. The twelve choices :codenormal:`dss|dss1|md4|md5|mdc2|ripemd160|sha|sha1|sha224|sha256|sha384|sha512` indicate whether the algorithm will be dss (using DSS), dss (using DSS-1), md4 (with 128-bit binary strings using MD4), md5 (with 128-bit binary strings using MD5), mdc2 (using MDC2), sha (with 160-bit binary strings using SHA-0), sha-1 (with 160-bit binary strings using SHA-1), sha-224 (with 224-bit binary strings using SHA-2), sha-256 (with 256-bit binary strings using SHA_2), sha-384 (with 384-bit binary strings using SHA_2), or sha-512 (with 512-bit binary strings using SHA-2). |br| Examples: |br| :codenormal:`crypto.digest.md4('string')` |br| :codenormal:`crypto.digest.sha512('string')` |br|"
+msgid "des    - des (with 56-bit binary strings using DES, though DES is not recommended)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:55
+msgid "Four choices of block cipher modes are also available:"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:57
+msgid "cbc - Cipher Block Chaining"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:58
+msgid "cfb - Cipher Feedback"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:59
+msgid "ecb - Electronic Codebook"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:60
+msgid "ofb - Output Feedback"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:62
+msgid "For more information on, read article about `Encryption Modes`_"
 msgstr ""
 
 #: ../reference_lua/crypto.rst:66
-msgid "Incremental methods in the crypto package"
-msgstr ""
-
-#: ../reference_lua/crypto.rst:68
-msgid "Suppose that a digest is done for a string 'A', then a new part 'B' is appended to the string, then a new digest is required. The new digest could be recomputed for the whole string 'AB', but it is faster to take what was computed before for 'A' and apply changes based on the new part 'B'. This is called multi-step or \"incremental\" digesting, which Tarantool supports for all crypto functions ..."
+msgid "crypto.cipher.aes192.cbc.encrypt('string', 'key', 'initialization')\n"
+"crypto.cipher.aes256.ecb.decrypt('string', 'key', 'initialization')"
 msgstr ""
 
 #: ../reference_lua/crypto.rst:77
+msgid "Pass or return a digest derived from the string. The twelve choices of algorithms:"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:80
+msgid "dss - dss (using DSS)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:81
+msgid "dss1 - dss (using DSS-1)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:82
+msgid "md4 - md4 (with 128-bit binary strings using MD4)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:83
+msgid "md5 - md5 (with 128-bit binary strings using MD5)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:84
+msgid "mdc2 - mdc2 (using MDC2)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:85
+msgid "ripemd160 -"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:86
+msgid "sha - sha (with 160-bit binary strings using SHA-0)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:87
+msgid "sha1 - sha-1 (with 160-bit binary strings using SHA-1)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:88
+msgid "sha224 - sha-224 (with 224-bit binary strings using SHA-2)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:89
+msgid "sha256 - sha-256 (with 256-bit binary strings using SHA-2)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:90
+msgid "sha384 - sha-384 (with 384-bit binary strings using SHA-2)"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:91
+msgid "sha512 - sha-512(with 512-bit binary strings using SHA-2)."
+msgstr ""
+
+#: ../reference_lua/crypto.rst:95
+msgid "crypto.digest.md4('string')\n"
+"crypto.digest.sha512('string')"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:102
+msgid "Incremental methods in the crypto module"
+msgstr ""
+
+#: ../reference_lua/crypto.rst:104
+msgid "Suppose that a digest is done for a string 'A', then a new part 'B' is appended to the string, then a new digest is required. The new digest could be recomputed for the whole string 'AB', but it is faster to take what was computed before for 'A' and apply changes based on the new part 'B'. This is called multi-step or \"incremental\" digesting, which Tarantool supports for all crypto functions.."
+msgstr ""
+
+#: ../reference_lua/crypto.rst:110
 msgid "crypto = require('crypto')\n"
 "\n"
 "-- print aes-192 digest of 'AB', with one step, then incrementally\n"
@@ -474,24 +602,32 @@ msgid "crypto = require('crypto')\n"
 "c:free()"
 msgstr ""
 
-#: ../reference_lua/crypto.rst:101
-msgid "Getting the same results from digest and crypto packages"
+#: ../reference_lua/crypto.rst:134
+msgid "Getting the same results from digest and crypto modules"
 msgstr ""
 
-#: ../reference_lua/crypto.rst:103
-msgid "The following functions are equivalent. For example, the digest function and the crypto function x will both produce the same result."
+#: ../reference_lua/crypto.rst:136
+msgid "The following functions are equivalent. For example, the ``digest`` function and the ``crypto`` function will both produce the same result."
 msgstr ""
 
-#: ../reference_lua/crypto.rst:107
-msgid ":codenormal:`crypto.cipher.aes256.cbc.encrypt('string', 'key') == digest.aes256cbc.encrypt('string', 'key')` |br| :codenormal:`crypto.digest.md4('string') == digest.md4('string')` |br| :codenormal:`crypto.digest.md5('string') == digest.md5('string')` |br| :codenormal:`crypto.digest.sha('string') == digest.sha('string')` |br| :codenormal:`crypto.digest.sha1('string') == digest.sha1('string')` |br| :codenormal:`crypto.digest.sha224('string') == digest.sha224('string')` |br| :codenormal:`crypto.digest.sha256('string') == digest.sha256('string')` |br| :codenormal:`crypto.digest.sha384('string') == digest.sha384('string')` |br| :codenormal:`crypto.digest.sha512('string') == digest.sha512('string')` |br|"
+#: ../reference_lua/crypto.rst:139
+msgid "crypto.cipher.aes256.cbc.encrypt('string', 'key') == digest.aes256cbc.encrypt('string', 'key')\n"
+"crypto.digest.md4('string') == digest.md4('string')\n"
+"crypto.digest.md5('string') == digest.md5('string')\n"
+"crypto.digest.sha('string') == digest.sha('string')\n"
+"crypto.digest.sha1('string') == digest.sha1('string')\n"
+"crypto.digest.sha224('string') == digest.sha224('string')\n"
+"crypto.digest.sha256('string') == digest.sha256('string')\n"
+"crypto.digest.sha384('string') == digest.sha384('string')\n"
+"crypto.digest.sha512('string') == digest.sha512('string')"
 msgstr ""
 
 #: ../reference_lua/csv.rst:28
-msgid "Package `csv`"
+msgid "Module `csv`"
 msgstr ""
 
 #: ../reference_lua/csv.rst:32
-msgid "The csv package handles records formatted according to Comma-Separated-Values (CSV) rules."
+msgid "The csv module handles records formatted according to Comma-Separated-Values (CSV) rules."
 msgstr ""
 
 #: ../reference_lua/csv.rst:35
@@ -718,153 +854,160 @@ msgid "tarantool> load = function(readable, opts)\n"
 msgstr ""
 
 #: ../reference_lua/digest.rst:30
-msgid "Package `digest`"
+msgid "Module `digest`"
 msgstr ""
 
 #: ../reference_lua/digest.rst:34
-msgid "A \"digest\" is a value which is returned by a function (usually a `Cryptographic hash function`_), applied against a string. Tarantool's digest package supports five types of cryptographic hash functions (AES_, MD4_, MD5_, SHA-0_, SHA-1_, SHA-2_) as well as a checksum function (CRC32_), two functions for base64_, and two non-cryptographic hash functions (guava_, murmur_). Some of the digest functionality is also present in the :ref:`crypto <crypto>` package. The functions in digest are:"
+msgid "A \"digest\" is a value which is returned by a function (usually a `Cryptographic hash function`_), applied against a string. Tarantool's digest module supports several types of cryptographic hash functions (AES_, MD4_, MD5_, SHA-0_, SHA-1_, SHA-2_) as well as a checksum function (CRC32_), two functions for base64_, and two non-cryptographic hash functions (guava_, murmur_). Some of the digest functionality is also present in the :ref:`crypto <crypto>` module."
 msgstr ""
 
-#: ../reference_lua/digest.rst:43
-msgid ":codebold:`digest.aes256cbc.encrypt(`:codeitalic:`string`, :codeitalic:`key`) |br| Returns 256-bit binary string = digest made with AES."
+#: ../reference_lua/digest.rst:42
+msgid "The functions in digest are:"
 msgstr ""
 
-#: ../reference_lua/digest.rst:46
-msgid ":codebold:`digest.md4(`:codeitalic:`string`) |br| Returns 128-bit binary string = digest made with MD4. |br|"
+#: ../reference_lua/digest.rst:47
+msgid "Returns 256-bit binary string = digest made with AES."
 msgstr ""
 
-#: ../reference_lua/digest.rst:49
-msgid ":codebold:`digest.md4_hex(`:codeitalic:`string`) |br| Returns 32-byte string = hexadecimal of a digest calculated with md4."
-msgstr ""
-
-#: ../reference_lua/digest.rst:52
-msgid ":codebold:`digest.md5(`:codeitalic:`string`) |br| Returns 128-bit binary string = digest made with MD5."
+#: ../reference_lua/digest.rst:51
+msgid "Returns 128-bit binary string = digest made with MD4."
 msgstr ""
 
 #: ../reference_lua/digest.rst:55
-msgid ":codebold:`digest.md5_hex(`:codeitalic:`string`) |br| Returns 32-byte string = hexadecimal of a digest calculated with md5."
+msgid "Returns 32-byte string = hexadecimal of a digest calculated with md4."
 msgstr ""
 
-#: ../reference_lua/digest.rst:58
-msgid ":codebold:`digest.sha(`:codeitalic:`string`) |br| Returns 160-bit binary string = digest made with SHA-0. Not recommended."
+#: ../reference_lua/digest.rst:59
+msgid "Returns 128-bit binary string = digest made with MD5."
 msgstr ""
 
-#: ../reference_lua/digest.rst:61
-msgid ":codebold:`digest.sha_hex(`:codeitalic:`string`) |br| Returns 40-byte string = hexadecimal of a digest calculated with sha."
-msgstr ""
-
-#: ../reference_lua/digest.rst:64
-msgid ":codebold:`digest.sha1(`:codeitalic:`string`) |br| Returns 160-bit binary string = digest made with SHA-1."
+#: ../reference_lua/digest.rst:63
+msgid "Returns 32-byte string = hexadecimal of a digest calculated with md5."
 msgstr ""
 
 #: ../reference_lua/digest.rst:67
-msgid ":codebold:`digest.sha1_hex(`:codeitalic:`string`) |br| Returns 40-byte string = hexadecimal of a digest calculated with sha1."
+msgid "Returns 160-bit binary string = digest made with SHA-0.|br| Not recommended."
 msgstr ""
 
-#: ../reference_lua/digest.rst:70
-msgid ":codebold:`digest.sha224(`:codeitalic:`string`) |br| Returns 224-bit binary string = digest made with SHA-2."
-msgstr ""
-
-#: ../reference_lua/digest.rst:73
-msgid ":codebold:`digest.sha224_hex(`:codeitalic:`string`) |br| Returns 56-byte string = hexadecimal of a digest calculated with sha224."
+#: ../reference_lua/digest.rst:72
+msgid "Returns 40-byte string = hexadecimal of a digest calculated with sha."
 msgstr ""
 
 #: ../reference_lua/digest.rst:76
-msgid ":codebold:`digest.sha256(`:codeitalic:`string`) |br| Returns 256-bit binary string =  digest made with SHA-2."
+msgid "Returns 160-bit binary string = digest made with SHA-1."
 msgstr ""
 
-#: ../reference_lua/digest.rst:79
-msgid ":codebold:`digest.sha256_hex(`:codeitalic:`string`) |br| Returns 64-byte string = hexadecimal of a digest calculated with sha256."
+#: ../reference_lua/digest.rst:80
+msgid "Returns 40-byte string = hexadecimal of a digest calculated with sha1."
 msgstr ""
 
-#: ../reference_lua/digest.rst:82
-msgid ":codebold:`digest.sha384(`:codeitalic:`string`) |br| Returns 384-bit binary string =  digest made with SHA-2."
-msgstr ""
-
-#: ../reference_lua/digest.rst:85
-msgid ":codebold:`digest.sha384_hex(`:codeitalic:`string`) |br| Returns 96-byte string = hexadecimal of a digest calculated with sha384."
+#: ../reference_lua/digest.rst:84
+msgid "Returns 224-bit binary string = digest made with SHA-2."
 msgstr ""
 
 #: ../reference_lua/digest.rst:88
-msgid ":codebold:`digest.sha512(`:codeitalic:`string`) |br| Returns 512-bit binary tring = digest made with SHA-2."
+msgid "Returns 56-byte string = hexadecimal of a digest calculated with sha224."
 msgstr ""
 
-#: ../reference_lua/digest.rst:91
-msgid ":codebold:`digest.sha512_hex(`:codeitalic:`string`) |br| Returns 128-byte string = hexadecimal of a digest calculated with sha512."
+#: ../reference_lua/digest.rst:92
+msgid "Returns 256-bit binary string =  digest made with SHA-2."
 msgstr ""
 
-#: ../reference_lua/digest.rst:94
-msgid ":codebold:`digest.base64_encode(`:codeitalic:`string`) |br| Returns base64 encoding from a regular string."
-msgstr ""
-
-#: ../reference_lua/digest.rst:97
-msgid ":codebold:`digest.base64_decode(`:codeitalic:`string`) |br| Returns a regular string from a base64 encoding."
+#: ../reference_lua/digest.rst:96
+msgid "Returns 64-byte string = hexadecimal of a digest calculated with sha256."
 msgstr ""
 
 #: ../reference_lua/digest.rst:100
-msgid ":codebold:`digest.urandom(`:codeitalic:`integer`) |br| Returns array of random bytes with length = integer."
+msgid "Returns 384-bit binary string =  digest made with SHA-2."
 msgstr ""
 
-#: ../reference_lua/digest.rst:103
-msgid ":codebold:`digest.crc32(`:codeitalic:`string`) |br| Returns 32-bit checksum made with CRC32."
+#: ../reference_lua/digest.rst:104
+msgid "Returns 96-byte string = hexadecimal of a digest calculated with sha384."
 msgstr ""
 
-#: ../reference_lua/digest.rst:106
-msgid "The crc32 and crc32_update functions use the `CRC-32C (Castagnoli)`_ polynomial value: 0x1EDC6F41 / 4812730177. If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
+#: ../reference_lua/digest.rst:108
+msgid "Returns 512-bit binary tring = digest made with SHA-2."
 msgstr ""
 
 #: ../reference_lua/digest.rst:112
+msgid "Returns 128-byte string = hexadecimal of a digest calculated with sha512."
+msgstr ""
+
+#: ../reference_lua/digest.rst:116
+msgid "Returns base64 encoding from a regular string."
+msgstr ""
+
+#: ../reference_lua/digest.rst:120
+msgid "Returns a regular string from a base64 encoding."
+msgstr ""
+
+#: ../reference_lua/digest.rst:124
+msgid "Returns array of random bytes with length = integer."
+msgstr ""
+
+#: ../reference_lua/digest.rst:128
+msgid "Returns 32-bit checksum made with CRC32."
+msgstr ""
+
+#: ../reference_lua/digest.rst:130
+msgid "The crc32 and crc32_update functions use the `CRC-32C (Castagnoli)`_ polynomial value: ``0x1EDC6F41`` / ``4812730177``. If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
+msgstr ""
+
+#: ../reference_lua/digest.rst:135
 msgid "For example, in Python, install the ``crcmod`` package and say:"
 msgstr ""
 
-#: ../reference_lua/digest.rst:119
+#: ../reference_lua/digest.rst:142
 msgid "In Perl, install the ``Digest::CRC`` module and run the following code:"
 msgstr ""
 
-#: ../reference_lua/digest.rst:121
+#: ../reference_lua/digest.rst:144
 msgid "use Digest::CRC;\n"
 "$d = Digest::CRC->new(width => 32, poly => 0x1EDC6F41, init => 0xFFFFFFFF, refin => 1, refout => 1);\n"
 "$d->add('string');\n"
 "print $d->digest;"
 msgstr ""
 
-#: ../reference_lua/digest.rst:128
+#: ../reference_lua/digest.rst:151
 msgid "(the expected output is 3304160206)."
 msgstr ""
 
-#: ../reference_lua/digest.rst:132
-msgid ":codebold:`digest.crc32.new()` |br| Initiates incremental crc32. See :ref:`incremental methods <digest-incremental_digests>` notes."
+#: ../reference_lua/digest.rst:157
+msgid "Initiates incremental crc32. See :ref:`incremental methods <digest-incremental_digests>` notes."
 msgstr ""
 
-#: ../reference_lua/digest.rst:138
-msgid ":codebold:`digest.guava(`:codeitalic:`integer, integer`) |br| Returns a number made with consistent hash."
+#: ../reference_lua/digest.rst:164
+msgid "Returns a number made with consistent hash."
 msgstr ""
 
-#: ../reference_lua/digest.rst:141
+#: ../reference_lua/digest.rst:166
 msgid "The guava function uses the `Consistent Hashing`_ algorithm of the Google guava library. The first parameter should be a hash code; the second parameter should be the number of buckets; the returned value will be an integer between 0 and the number of buckets. For example,"
 msgstr ""
 
-#: ../reference_lua/digest.rst:147
-msgid ":codenormal:`tarantool>` :codebold:`digest.guava(10863919174838991, 11)` |br| :codenormal:`---` |br| :codenormal:`- 8` |br| :codenormal:`...` |br|"
+#: ../reference_lua/digest.rst:171
+msgid "tarantool> digest.guava(10863919174838991, 11)\n"
+"---\n"
+"- 8\n"
+"..."
 msgstr ""
 
-#: ../reference_lua/digest.rst:152
-msgid ":codebold:`digest.murmur(`:codeitalic:`string`) |br| Returns 32-bit binary string = digest made with MurmurHash."
+#: ../reference_lua/digest.rst:181
+msgid "Returns 32-bit binary string = digest made with MurmurHash."
 msgstr ""
 
-#: ../reference_lua/digest.rst:155
-msgid ":codebold:`digest.murmur.new([`:codeitalic:`seed`]) |br| Initiates incremental MurmurHash. See :ref:`incremental methods <digest-incremental_digests>` notes."
+#: ../reference_lua/digest.rst:186
+msgid "Initiates incremental MurmurHash. See :ref:`incremental methods <digest-incremental_digests>` notes."
 msgstr ""
 
-#: ../reference_lua/digest.rst:163
-msgid "Incremental methods in the digest package"
+#: ../reference_lua/digest.rst:193
+msgid "Incremental methods in the digest module"
 msgstr ""
 
-#: ../reference_lua/digest.rst:165
-msgid "Suppose that a digest is done for a string 'A', then a new part 'B' is appended to the string, then a new digest is required. The new digest could be recomputed for the whole string 'AB', but it is faster to take what was computed before for 'A' and apply changes based on the new part 'B'. This is called multi-step or \"incremental\" digesting, which Tarantool supports with crc32 and with murmur ..."
+#: ../reference_lua/digest.rst:195
+msgid "Suppose that a digest is done for a string 'A', then a new part 'B' is appended to the string, then a new digest is required. The new digest could be recomputed for the whole string 'AB', but it is faster to take what was computed before for 'A' and apply changes based on the new part 'B'. This is called multi-step or \"incremental\" digesting, which Tarantool supports with crc32 and with murmur..."
 msgstr ""
 
-#: ../reference_lua/digest.rst:174
+#: ../reference_lua/digest.rst:201
 msgid "digest = require('digest')\n"
 "\n"
 "-- print crc32 of 'AB', with one step, then incrementally\n"
@@ -882,43 +1025,68 @@ msgid "digest = require('digest')\n"
 "print(m:result())"
 msgstr ""
 
-#: ../reference_lua/digest.rst:194
-#: ../reference_lua/fiber_ipc.rst:129
+#: ../reference_lua/digest.rst:221
+#: ../reference_lua/fiber_ipc.rst:131
 #: ../reference_lua/log.rst:66
 #: ../reference_lua/msgpack.rst:65
-#: ../reference_lua/socket.rst:523
+#: ../reference_lua/socket.rst:540
 #: ../reference_lua/tap.rst:202
-#: ../reference_lua/uuid.rst:131
+#: ../reference_lua/uuid.rst:135
 #: ../reference_lua/yaml.rst:61
 msgid "Example"
 msgstr ""
 
-#: ../reference_lua/digest.rst:196
+#: ../reference_lua/digest.rst:223
 msgid "In the following example, the user creates two functions, ``password_insert()`` which inserts a SHA-1_ digest of the word \"**^S^e^c^ret Wordpass**\" into a tuple set, and ``password_check()`` which requires input of a password."
 msgstr ""
 
-#: ../reference_lua/digest.rst:200
-msgid ":codenormal:`tarantool>` :codebold:`digest = require('digest')` |br| :codenormal:`---` |br| :codenormal:`...` |br| :codenormal:`tarantool>` :codebold:`function password_insert()` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>`   :codebold:`box.space.tester:insert{12345, digest.sha1('^S^e^c^ret Wordpass')}` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>`   :codebold:`return 'OK'` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` :codebold:`end` |br| :codenormal:`---` |br| :codenormal:`...` |br| :codenormal:`tarantool>` :codebold:`function password_check(password)` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| :codebold:`local t` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| :codebold:`local t = box.space.tester:select{12345}` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| :codebold:`if digest.sha1(password) == t[2] then` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| |nbsp| |nbsp| :codebold:`print('Password is valid')` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| :codebold:`else` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| |nbsp| |nbsp| :codebold:`print('Password is not valid')` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` |nbsp| :codebold:`end` |br| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| :codenormal:`>` :codebold:`end` |br| :codenormal:`---` |br| :codenormal:`...` |br| :codenormal:`tarantool>` :codebold:`password_insert()` |br| :codenormal:`---` |br| :codenormal:`- 'OK'` |br| :codenormal:`...` |br|"
+#: ../reference_lua/digest.rst:227
+msgid "tarantool> digest = require('digest')\n"
+"---\n"
+"...\n"
+"tarantool> function password_insert()\n"
+"         >   box.space.tester:insert{1234, digest.sha1('^S^e^c^ret Wordpass')}\n"
+"         >   return 'OK'\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> function password_check(password)\n"
+"         >   local t = box.space.tester:select{12345}\n"
+"         >   if digest.sha1(password) == t[2] then\n"
+"         >     return 'Password is valid'\n"
+"         >   else\n"
+"         >     return 'Password is not valid'\n"
+"         >   end\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> password_insert()\n"
+"---\n"
+"- 'OK'\n"
+"..."
 msgstr ""
 
-#: ../reference_lua/digest.rst:225
+#: ../reference_lua/digest.rst:253
 msgid "If a later user calls the ``password_check()`` function and enters the wrong password, the result is an error."
 msgstr ""
 
-#: ../reference_lua/digest.rst:228
-msgid ":codenormal:`tarantool>` :codebold:`password_check('Secret Password')` |br| :codenormal:`Password is not valid` |br| :codenormal:`---` |br| :codenormal:`...` |br|"
+#: ../reference_lua/digest.rst:256
+msgid "tarantool> password_insert('Secret Password')\n"
+"---\n"
+"- 'Password is not valid'\n"
+"..."
 msgstr ""
 
 #: ../reference_lua/fiber.rst:28
-msgid "Package `fiber`"
+msgid "Module `fiber`"
 msgstr ""
 
 #: ../reference_lua/fiber.rst:30
-msgid "The ``fiber`` package allows for creating, running and managing *fibers*."
+msgid "The ``fiber`` module allows for creating, running and managing *fibers*."
 msgstr ""
 
 #: ../reference_lua/fiber.rst:32
-msgid "A fiber is a set of instructions which are executed with cooperative multitasking. Fibers managed by the fiber package are associated with a user-supplied function called the *fiber function*. A fiber has three possible states: **running**, **suspended** or **dead**. When a fiber is created with :ref:`fiber.create() <fiber-create>`, it is running. When a fiber yields control with :ref:`fiber.sleep() <fiber-sleep>`, it is suspended. When a fiber ends (because the fiber function ends), it is dead."
+msgid "A fiber is a set of instructions which are executed with cooperative multitasking. Fibers managed by the fiber module are associated with a user-supplied function called the *fiber function*. A fiber has three possible states: **running**, **suspended** or **dead**. When a fiber is created with :ref:`fiber.create() <fiber-create>`, it is running. When a fiber yields control with :ref:`fiber.sleep() <fiber-sleep>`, it is suspended. When a fiber ends (because the fiber function ends), it is dead."
 msgstr ""
 
 #: ../reference_lua/fiber.rst:40
@@ -960,13 +1128,13 @@ msgstr ""
 #: ../reference_lua/fiber.rst:86
 #: ../reference_lua/fiber.rst:110
 #: ../reference_lua/fiber.rst:130
-#: ../reference_lua/fiber_ipc.rst:53
-#: ../reference_lua/fio.rst:351
+#: ../reference_lua/fiber_ipc.rst:55
+#: ../reference_lua/fio.rst:353
 #: ../reference_lua/net_box.rst:75
 #: ../reference_lua/socket.rst:133
-#: ../reference_lua/socket.rst:147
-#: ../reference_lua/socket.rst:308
-#: ../reference_lua/socket.rst:334
+#: ../reference_lua/socket.rst:150
+#: ../reference_lua/socket.rst:321
+#: ../reference_lua/socket.rst:347
 #: ../reference_lua/tap.rst:47
 msgid "userdata"
 msgstr ""
@@ -1033,10 +1201,6 @@ msgstr ""
 msgid "Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:166
-msgid "Example:"
-msgstr ""
-
 #: ../reference_lua/fiber.rst:168
 msgid "tarantool> fiber.yield()\n"
 "---\n"
@@ -1054,14 +1218,14 @@ msgstr ""
 #: ../reference_lua/fiber.rst:181
 #: ../reference_lua/fiber.rst:284
 #: ../reference_lua/fiber.rst:329
-#: ../reference_lua/fio.rst:48
-#: ../reference_lua/fio.rst:68
-#: ../reference_lua/fio.rst:86
+#: ../reference_lua/fio.rst:50
+#: ../reference_lua/fio.rst:70
+#: ../reference_lua/fio.rst:88
 #: ../reference_lua/json.rst:46
 #: ../reference_lua/msgpack.rst:43
 #: ../reference_lua/pickle.rst:85
-#: ../reference_lua/socket.rst:255
-#: ../reference_lua/socket.rst:286
+#: ../reference_lua/socket.rst:268
+#: ../reference_lua/socket.rst:299
 #: ../reference_lua/yaml.rst:43
 msgid "string"
 msgstr ""
@@ -1138,11 +1302,11 @@ msgid "id of the fiber."
 msgstr ""
 
 #: ../reference_lua/fiber.rst:263
-#: ../reference_lua/fiber_ipc.rst:97
-#: ../reference_lua/fio.rst:108
-#: ../reference_lua/fio.rst:467
-#: ../reference_lua/socket.rst:235
-#: ../reference_lua/socket.rst:349
+#: ../reference_lua/fiber_ipc.rst:99
+#: ../reference_lua/fio.rst:110
+#: ../reference_lua/fio.rst:469
+#: ../reference_lua/socket.rst:248
+#: ../reference_lua/socket.rst:362
 msgid "number"
 msgstr ""
 
@@ -1212,10 +1376,10 @@ msgid "tarantool> fiber.self():cancel()\n"
 msgstr ""
 
 #: ../reference_lua/fiber.rst:369
-msgid "Local storage within the fiber. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings. The storage is garbage-collected when :samp:`{fiber_object}:cancel()` happens. |br| See also :ref:`box.session.storage <box_session-storage>`."
+msgid "Local storage within the fiber. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings. The storage is garbage-collected when :samp:`{fiber_object}:cancel()` happens."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:379
+#: ../reference_lua/fiber.rst:378
 msgid "tarantool> fiber = require('fiber')\n"
 "---\n"
 "...\n"
@@ -1246,16 +1410,20 @@ msgid "tarantool> fiber = require('fiber')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:414
+#: ../reference_lua/fiber.rst:409
+msgid "See also :ref:`box.session.storage <box_session-storage>`."
+msgstr ""
+
+#: ../reference_lua/fiber.rst:415
 msgid "current system time (in seconds since the epoch) as a Lua number. The time is taken from the event loop clock, which makes this call very cheap, but still useful for constructing artificial tuple keys."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:418
-#: ../reference_lua/fiber.rst:437
+#: ../reference_lua/fiber.rst:419
+#: ../reference_lua/fiber.rst:438
 msgid "num"
 msgstr ""
 
-#: ../reference_lua/fiber.rst:422
+#: ../reference_lua/fiber.rst:423
 msgid "tarantool> fiber.time(), fiber.time()\n"
 "---\n"
 "- 1448466279.2415\n"
@@ -1263,11 +1431,11 @@ msgid "tarantool> fiber.time(), fiber.time()\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:434
+#: ../reference_lua/fiber.rst:435
 msgid "current system time (in microseconds since the epoch) as a 64-bit integer. The time is taken from the event loop clock."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:441
+#: ../reference_lua/fiber.rst:442
 msgid "tarantool> fiber.time(), fiber.time64()\n"
 "---\n"
 "- 1448466351.2708\n"
@@ -1275,15 +1443,15 @@ msgid "tarantool> fiber.time(), fiber.time64()\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:451
+#: ../reference_lua/fiber.rst:452
 msgid "Example Of Fiber Use"
 msgstr ""
 
-#: ../reference_lua/fiber.rst:453
+#: ../reference_lua/fiber.rst:454
 msgid "Make the function which will be associated with the fiber. This function contains an infinite loop (``while 0 == 0`` is always true). Each iteration of the loop adds 1 to a global variable named gvar, then goes to sleep for 2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:458
+#: ../reference_lua/fiber.rst:459
 msgid "tarantool> fiber = require('fiber')\n"
 "tarantool> function function_x()\n"
 "         >   gvar = 0\n"
@@ -1296,11 +1464,11 @@ msgid "tarantool> fiber = require('fiber')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:471
+#: ../reference_lua/fiber.rst:472
 msgid "Make a fiber, associate function_x with the fiber, and start function_x. It will immediately \"detach\" so it will be running independently of the caller."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:474
+#: ../reference_lua/fiber.rst:475
 msgid "tarantool> gvar = 0\n"
 "\n"
 "tarantool> fiber_of_x = fiber.create(function_x)\n"
@@ -1308,32 +1476,32 @@ msgid "tarantool> gvar = 0\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:482
+#: ../reference_lua/fiber.rst:483
 msgid "Get the id of the fiber (fid), to be used in later displays."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:484
+#: ../reference_lua/fiber.rst:485
 msgid "tarantool> fid = fiber_of_x:id()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:490
+#: ../reference_lua/fiber.rst:491
 msgid "Pause for a while, while the detached function runs. Then ... Display the fiber id, the fiber status, and gvar (gvar will have gone up a bit depending how long the pause lasted). The status is suspended because the fiber spends almost all its time sleeping or yielding."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:495
+#: ../reference_lua/fiber.rst:496
 msgid "tarantool> print('#', fid, '. ', fiber_of_x:status(), '. gvar=', gvar)\n"
 "# 102 .  suspended . gvar= 399\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:502
+#: ../reference_lua/fiber.rst:503
 msgid "Pause for a while, while the detached function runs. Then ... Cancel the fiber. Then, once again ... Display the fiber id, the fiber status, and gvar (gvar will have gone up a bit more depending how long the pause lasted). This time the status is dead because the cancel worked."
 msgstr ""
 
-#: ../reference_lua/fiber.rst:507
+#: ../reference_lua/fiber.rst:508
 msgid "tarantool> fiber_of_x:cancel()\n"
 "---\n"
 "...\n"
@@ -1344,55 +1512,55 @@ msgid "tarantool> fiber_of_x:cancel()\n"
 msgstr ""
 
 #: ../reference_lua/fiber_ipc.rst:28
-msgid "Package `fiber-ipc`"
+msgid "Submodule `fiber-ipc`"
 msgstr ""
 
 #: ../reference_lua/fiber_ipc.rst:30
-msgid "The ``fiber-ipc`` package allows sending and receiving messages between different processes. The words \"different processes\" in this context mean different connections, different sessions, or different fibers."
+msgid "The ``fiber-ipc`` submodule allows sending and receiving messages between different processes. The words \"different processes\" in this context mean different connections, different sessions, or different fibers."
 msgstr ""
 
 #: ../reference_lua/fiber_ipc.rst:34
 msgid "Call ``fiber.channel()`` to allocate space and get a channel object, which will be called channel for examples in this section. Call the other ``fiber-ipc`` routines, via channel, to send messages, receive messages, or check ipc status. Message exchange is synchronous. The channel is garbage collected when no one is using it, as with any other Lua object. Use object-oriented syntax, for example ``channel:put(message)`` rather than ``fiber.channel.put(message)``."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:46
+#: ../reference_lua/fiber_ipc.rst:48
 msgid "Create a new communication channel."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:48
+#: ../reference_lua/fiber_ipc.rst:50
 msgid "positive integer as great as the maximum number of slots (spaces for ``get`` or ``put`` messages) that might be pending at any given time."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:52
+#: ../reference_lua/fiber_ipc.rst:54
 msgid "new channel."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:59
+#: ../reference_lua/fiber_ipc.rst:61
 msgid "Send a message using a channel. If the channel is full, ``channel:put()`` blocks until there is a free slot in the channel."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:64
+#: ../reference_lua/fiber_ipc.rst:66
 msgid "If timeout is provided, and the channel doesn't become empty for the duration of the timeout, ``channel:put()`` returns false. Otherwise it returns true."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:67
-#: ../reference_lua/fiber_ipc.rst:90
-#: ../reference_lua/fiber_ipc.rst:104
-#: ../reference_lua/fiber_ipc.rst:112
-#: ../reference_lua/fiber_ipc.rst:120
-#: ../reference_lua/fiber_ipc.rst:125
-#: ../reference_lua/fio.rst:166
-#: ../reference_lua/fio.rst:262
-#: ../reference_lua/fio.rst:304
-#: ../reference_lua/fio.rst:320
-#: ../reference_lua/fio.rst:375
-#: ../reference_lua/fio.rst:446
+#: ../reference_lua/fiber_ipc.rst:69
+#: ../reference_lua/fiber_ipc.rst:92
+#: ../reference_lua/fiber_ipc.rst:106
+#: ../reference_lua/fiber_ipc.rst:114
+#: ../reference_lua/fiber_ipc.rst:122
+#: ../reference_lua/fiber_ipc.rst:127
+#: ../reference_lua/fio.rst:168
+#: ../reference_lua/fio.rst:264
+#: ../reference_lua/fio.rst:306
+#: ../reference_lua/fio.rst:322
+#: ../reference_lua/fio.rst:377
+#: ../reference_lua/fio.rst:448
 #: ../reference_lua/net_box.rst:91
 #: ../reference_lua/net_box.rst:105
 #: ../reference_lua/net_box.rst:118
-#: ../reference_lua/socket.rst:219
-#: ../reference_lua/socket.rst:383
-#: ../reference_lua/socket.rst:394
+#: ../reference_lua/socket.rst:229
+#: ../reference_lua/socket.rst:399
+#: ../reference_lua/socket.rst:410
 #: ../reference_lua/tap.rst:91
 #: ../reference_lua/tap.rst:123
 #: ../reference_lua/tap.rst:154
@@ -1402,64 +1570,64 @@ msgstr ""
 msgid "boolean"
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:71
+#: ../reference_lua/fiber_ipc.rst:73
 msgid "Close the channel. All waiters in the channel will be woken up. All following ``channel:put()`` or ``channel:get()`` operations will return an error (``nil``)."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:77
+#: ../reference_lua/fiber_ipc.rst:79
 msgid "Fetch a message from a channel. If the channel is empty, ``channel:get()`` blocks until there is a message."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:81
+#: ../reference_lua/fiber_ipc.rst:83
 msgid "the value placed on the channel by an earlier ``channel:put()``."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:83
+#: ../reference_lua/fiber_ipc.rst:85
 msgid "lua_object"
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:87
+#: ../reference_lua/fiber_ipc.rst:89
 msgid "Check whether the specified channel is empty (has no messages)."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:89
+#: ../reference_lua/fiber_ipc.rst:91
 msgid "true if the specified channel is empty"
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:94
+#: ../reference_lua/fiber_ipc.rst:96
 msgid "Find out how many messages are on the channel. The answer is 0 if the channel is empty."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:96
+#: ../reference_lua/fiber_ipc.rst:98
 msgid "the number of messages."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:101
+#: ../reference_lua/fiber_ipc.rst:103
 msgid "Check whether the specified channel is full."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:103
+#: ../reference_lua/fiber_ipc.rst:105
 msgid "true if the specified channel is full (has no room for a new message)."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:108
+#: ../reference_lua/fiber_ipc.rst:110
 msgid "Check whether the specified channel is empty and has readers waiting for a message (because they have issued ``channel:get()`` and then blocked)."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:111
-#: ../reference_lua/fiber_ipc.rst:119
+#: ../reference_lua/fiber_ipc.rst:113
+#: ../reference_lua/fiber_ipc.rst:121
 msgid "true if blocked users are waiting. Otherwise false."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:116
+#: ../reference_lua/fiber_ipc.rst:118
 msgid "Check whether the specified channel is full and has writers waiting (because they have issued ``channel:put()`` and then blocked due to lack of room)."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:124
+#: ../reference_lua/fiber_ipc.rst:126
 msgid "true if the specified channel is already closed. Otherwise false."
 msgstr ""
 
-#: ../reference_lua/fiber_ipc.rst:131
+#: ../reference_lua/fiber_ipc.rst:133
 msgid "fiber = require('fiber')\n"
 "channel = fiber.channel(10)\n"
 "function consumer_fiber()\n"
@@ -1521,109 +1689,109 @@ msgid "fiber = require('fiber')\n"
 "end"
 msgstr ""
 
-#: ../reference_lua/fio.rst:28
-msgid "Package `fio`"
+#: ../reference_lua/fio.rst:30
+msgid "Module `fio`"
 msgstr ""
 
-#: ../reference_lua/fio.rst:32
+#: ../reference_lua/fio.rst:34
 msgid "Tarantool supports file input/output with an API that is similar to POSIX syscalls. All operations are performed asynchronously. Multiple fibers can access the same file simultaneously."
 msgstr ""
 
-#: ../reference_lua/fio.rst:40
+#: ../reference_lua/fio.rst:42
 msgid "Common pathname manipulations"
 msgstr ""
 
-#: ../reference_lua/fio.rst:44
+#: ../reference_lua/fio.rst:46
 msgid "Concatenate partial string, separated by '/' to form a path name."
 msgstr ""
 
-#: ../reference_lua/fio.rst:46
+#: ../reference_lua/fio.rst:48
 msgid "one or more strings to be concatenated."
 msgstr ""
 
-#: ../reference_lua/fio.rst:47
-#: ../reference_lua/fio.rst:64
-#: ../reference_lua/fio.rst:83
+#: ../reference_lua/fio.rst:49
+#: ../reference_lua/fio.rst:66
+#: ../reference_lua/fio.rst:85
 msgid "path name"
 msgstr ""
 
-#: ../reference_lua/fio.rst:52
+#: ../reference_lua/fio.rst:54
 msgid "tarantool> fio.pathjoin('/etc', 'default', 'myfile')\n"
 "---\n"
 "- /etc/default/myfile\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:61
+#: ../reference_lua/fio.rst:63
 msgid "Given a full path name, remove all but the final part (the file name). Also remove the suffix, if it is passed."
 msgstr ""
 
-#: ../reference_lua/fio.rst:65
+#: ../reference_lua/fio.rst:67
 msgid "suffix"
 msgstr ""
 
-#: ../reference_lua/fio.rst:67
+#: ../reference_lua/fio.rst:69
 msgid "file name"
 msgstr ""
 
-#: ../reference_lua/fio.rst:72
+#: ../reference_lua/fio.rst:74
 msgid "tarantool> fio.basename('/path/to/my.lua', '.lua')\n"
 "---\n"
 "- my\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:81
+#: ../reference_lua/fio.rst:83
 msgid "Given a full path name, remove the final part (the file name)."
 msgstr ""
 
-#: ../reference_lua/fio.rst:85
+#: ../reference_lua/fio.rst:87
 msgid "directory name, that is, path name except for file name."
 msgstr ""
 
-#: ../reference_lua/fio.rst:90
+#: ../reference_lua/fio.rst:92
 msgid "tarantool> fio.dirname('path/to/my.lua')\n"
 "---\n"
 "- 'path/to/'\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:99
+#: ../reference_lua/fio.rst:101
 msgid "Common file manipulations"
 msgstr ""
 
-#: ../reference_lua/fio.rst:103
+#: ../reference_lua/fio.rst:105
 msgid "Set the mask bits used when creating files or directories. For a detailed description type \"man 2 umask\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:106
+#: ../reference_lua/fio.rst:108
 msgid "mask bits."
 msgstr ""
 
-#: ../reference_lua/fio.rst:107
+#: ../reference_lua/fio.rst:109
 msgid "previous mask bits."
 msgstr ""
 
-#: ../reference_lua/fio.rst:112
+#: ../reference_lua/fio.rst:114
 msgid "tarantool> fio.umask(tonumber('755', 8))\n"
 "---\n"
 "- 493\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:122
+#: ../reference_lua/fio.rst:124
 msgid "Returns information about a file object. For details type \"man 2 lstat\" or \"man 2 stat\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:125
+#: ../reference_lua/fio.rst:127
 msgid "path name of file."
 msgstr ""
 
-#: ../reference_lua/fio.rst:126
+#: ../reference_lua/fio.rst:128
 msgid "fields which describe the file's block size, creation time, size, and other attributes."
 msgstr ""
 
-#: ../reference_lua/fio.rst:132
+#: ../reference_lua/fio.rst:134
 msgid "tarantool> fio.lstat('/etc')\n"
 "---\n"
 "- inode: 1048577\n"
@@ -1642,54 +1810,54 @@ msgid "tarantool> fio.lstat('/etc')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:158
+#: ../reference_lua/fio.rst:160
 msgid "Create or delete a directory. For details type \"man 2 mkdir\" or \"man 2 rmdir\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:161
+#: ../reference_lua/fio.rst:163
 msgid "path of directory."
 msgstr ""
 
-#: ../reference_lua/fio.rst:162
+#: ../reference_lua/fio.rst:164
 msgid "Mode bits can be passed as a number or as string constants, for example ''`S_IWUSR`\". Mode bits can be combined by enclosing them in braces."
 msgstr ""
 
-#: ../reference_lua/fio.rst:165
-#: ../reference_lua/fio.rst:261
-#: ../reference_lua/fio.rst:303
-#: ../reference_lua/fio.rst:319
-#: ../reference_lua/fio.rst:445
-#: ../reference_lua/fio.rst:519
+#: ../reference_lua/fio.rst:167
+#: ../reference_lua/fio.rst:263
+#: ../reference_lua/fio.rst:305
+#: ../reference_lua/fio.rst:321
+#: ../reference_lua/fio.rst:447
+#: ../reference_lua/fio.rst:521
 msgid "true if success, false if failure."
 msgstr ""
 
-#: ../reference_lua/fio.rst:170
+#: ../reference_lua/fio.rst:172
 msgid "tarantool> fio.mkdir('/etc')\n"
 "---\n"
 "- false\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:179
+#: ../reference_lua/fio.rst:181
 msgid "Return a list of files that match an input string. The list is constructed with a single flag that controls the behavior of the function: GLOB_NOESCAPE. For details type \"man 3 glob\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:183
+#: ../reference_lua/fio.rst:185
 msgid "path-name, which may contain wildcard characters."
 msgstr ""
 
-#: ../reference_lua/fio.rst:184
+#: ../reference_lua/fio.rst:186
 msgid "list of files whose names match the input string"
 msgstr ""
 
-#: ../reference_lua/fio.rst:187
-#: ../reference_lua/fio.rst:353
-#: ../reference_lua/fio.rst:469
-#: ../reference_lua/socket.rst:336
+#: ../reference_lua/fio.rst:189
+#: ../reference_lua/fio.rst:355
+#: ../reference_lua/fio.rst:471
+#: ../reference_lua/socket.rst:349
 msgid "Possible errors: nil."
 msgstr ""
 
-#: ../reference_lua/fio.rst:191
+#: ../reference_lua/fio.rst:193
 msgid "tarantool> fio.glob('/etc/x*')\n"
 "---\n"
 "- - /etc/xdg\n"
@@ -1698,45 +1866,45 @@ msgid "tarantool> fio.glob('/etc/x*')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:202
+#: ../reference_lua/fio.rst:204
 msgid "Return the name of a directory that can be used to store temporary files."
 msgstr ""
 
-#: ../reference_lua/fio.rst:206
+#: ../reference_lua/fio.rst:208
 msgid "tarantool> fio.tempdir()\n"
 "---\n"
 "- /tmp/lG31e7\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:215
+#: ../reference_lua/fio.rst:217
 msgid "Return the name of the current working directory."
 msgstr ""
 
-#: ../reference_lua/fio.rst:219
+#: ../reference_lua/fio.rst:221
 msgid "tarantool> fio.cwd()\n"
 "---\n"
 "- /home/username/tarantool_sandbox\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:231
+#: ../reference_lua/fio.rst:233
 msgid "Functions to create and delete links. For details type \"man readlink\", \"man 2 link\", \"man 2 symlink\", \"man 2 unlink\".."
 msgstr ""
 
-#: ../reference_lua/fio.rst:234
+#: ../reference_lua/fio.rst:236
 msgid "existing file name."
 msgstr ""
 
-#: ../reference_lua/fio.rst:235
+#: ../reference_lua/fio.rst:237
 msgid "linked name."
 msgstr ""
 
-#: ../reference_lua/fio.rst:237
+#: ../reference_lua/fio.rst:239
 msgid "``fio.link`` and ``fio.symlink`` and ``fio.unlink`` return true if success, false if failure. ``fio.readlink`` returns the link value if success, nil if failure."
 msgstr ""
 
-#: ../reference_lua/fio.rst:243
+#: ../reference_lua/fio.rst:245
 msgid "tarantool> fio.link('/home/username/tmp.txt', '/home/username/tmp.txt2')\n"
 "---\n"
 "- true\n"
@@ -1747,42 +1915,42 @@ msgid "tarantool> fio.link('/home/username/tmp.txt', '/home/username/tmp.txt2')\
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:256
+#: ../reference_lua/fio.rst:258
 msgid "Rename a file or directory. For details type \"man 2 rename\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:258
+#: ../reference_lua/fio.rst:260
 msgid "original name."
 msgstr ""
 
-#: ../reference_lua/fio.rst:259
+#: ../reference_lua/fio.rst:261
 msgid "new name."
 msgstr ""
 
-#: ../reference_lua/fio.rst:266
+#: ../reference_lua/fio.rst:268
 msgid "tarantool> fio.rename('/home/username/tmp.txt', '/home/username/tmp.txt2')\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:276
+#: ../reference_lua/fio.rst:278
 msgid "Manage the rights to file objects, or ownership of file objects. For details type \"man 2 chown\" or \"man 2 chmod\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:279
+#: ../reference_lua/fio.rst:281
 msgid "new user uid."
 msgstr ""
 
-#: ../reference_lua/fio.rst:280
+#: ../reference_lua/fio.rst:282
 msgid "new group uid."
 msgstr ""
 
-#: ../reference_lua/fio.rst:281
+#: ../reference_lua/fio.rst:283
 msgid "new permissions"
 msgstr ""
 
-#: ../reference_lua/fio.rst:285
+#: ../reference_lua/fio.rst:287
 msgid "tarantool> fio.chmod('/home/username/tmp.txt', tonumber('0755', 8))\n"
 "---\n"
 "- true\n"
@@ -1793,45 +1961,45 @@ msgid "tarantool> fio.chmod('/home/username/tmp.txt', tonumber('0755', 8))\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:298
+#: ../reference_lua/fio.rst:300
 msgid "Reduce file size to a specified value. For details type \"man 2 truncate\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:308
+#: ../reference_lua/fio.rst:310
 msgid "tarantool> fio.truncate('/home/username/tmp.txt', 99999)\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:317
+#: ../reference_lua/fio.rst:319
 msgid "Ensure that changes are written to disk. For details type \"man 2 sync\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:324
+#: ../reference_lua/fio.rst:326
 msgid "tarantool> fio.sync()\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:338
+#: ../reference_lua/fio.rst:340
 msgid "Open a file in preparation for reading or writing or seeking."
 msgstr ""
 
-#: ../reference_lua/fio.rst:341
+#: ../reference_lua/fio.rst:343
 msgid "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by enclosing them in braces."
 msgstr ""
 
-#: ../reference_lua/fio.rst:345
+#: ../reference_lua/fio.rst:347
 msgid "Mode bits can be passed as a number or as string constants, for example ''`S_IWUSR`\". Mode bits are significant if flags include `O_CREATE` or `O_TMPFILE`. Mode bits can be combined by enclosing them in braces."
 msgstr ""
 
-#: ../reference_lua/fio.rst:350
+#: ../reference_lua/fio.rst:352
 msgid "file handle (later - fh)"
 msgstr ""
 
-#: ../reference_lua/fio.rst:357
+#: ../reference_lua/fio.rst:359
 msgid "tarantool> fh = fio.open('/home/username/tmp.txt', {'O_RDWR', 'O_APPEND'})\n"
 "---\n"
 "...\n"
@@ -1841,54 +2009,54 @@ msgid "tarantool> fh = fio.open('/home/username/tmp.txt', {'O_RDWR', 'O_APPEND'}
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:371
+#: ../reference_lua/fio.rst:373
 msgid "Close a file that was opened with ``fio.open``. For details type \"man 2 close\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:373
-#: ../reference_lua/fio.rst:393
-#: ../reference_lua/fio.rst:424
-#: ../reference_lua/fio.rst:444
-#: ../reference_lua/fio.rst:462
-#: ../reference_lua/fio.rst:485
-#: ../reference_lua/fio.rst:518
+#: ../reference_lua/fio.rst:375
+#: ../reference_lua/fio.rst:395
+#: ../reference_lua/fio.rst:426
+#: ../reference_lua/fio.rst:446
+#: ../reference_lua/fio.rst:464
+#: ../reference_lua/fio.rst:487
+#: ../reference_lua/fio.rst:520
 msgid "file-handle as returned by ``fio.open()``."
 msgstr ""
 
-#: ../reference_lua/fio.rst:374
+#: ../reference_lua/fio.rst:376
 msgid "true if success, false on failure."
 msgstr ""
 
-#: ../reference_lua/fio.rst:379
+#: ../reference_lua/fio.rst:381
 msgid "tarantool> fh:close() -- where fh = file-handle\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:389
+#: ../reference_lua/fio.rst:391
 msgid "Perform read/write random-access operation on a file, without affecting the current seek position of the file. For details type \"man 2 pread\" or \"man 2 pwrite\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:394
-#: ../reference_lua/fio.rst:425
+#: ../reference_lua/fio.rst:396
+#: ../reference_lua/fio.rst:427
 msgid "number of bytes to read"
 msgstr ""
 
-#: ../reference_lua/fio.rst:395
-#: ../reference_lua/fio.rst:426
+#: ../reference_lua/fio.rst:397
+#: ../reference_lua/fio.rst:428
 msgid "value to write"
 msgstr ""
 
-#: ../reference_lua/fio.rst:396
+#: ../reference_lua/fio.rst:398
 msgid "offset within file where reading or writing begins"
 msgstr ""
 
-#: ../reference_lua/fio.rst:397
+#: ../reference_lua/fio.rst:399
 msgid "``fh:pwrite`` returns true if success, false if failure. ``fh:pread`` returns the data that was read, or nil if failure."
 msgstr ""
 
-#: ../reference_lua/fio.rst:402
+#: ../reference_lua/fio.rst:404
 msgid "tarantool> fh:pread(25, 25)\n"
 "---\n"
 "- |\n"
@@ -1897,68 +2065,68 @@ msgid "tarantool> fh:pread(25, 25)\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:414
+#: ../reference_lua/fio.rst:416
 msgid "Perform non-random-access read or write on a file. For details type \"man 2 read\" or \"man 2 write\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:419
+#: ../reference_lua/fio.rst:421
 msgid "``fh:read`` and ``fh:write`` affect the seek position within the file, and this must be taken into account when working on the same file from multiple fibers. It is possible to limit or prevent file access from other fibers with ``fiber.ipc``."
 msgstr ""
 
-#: ../reference_lua/fio.rst:427
+#: ../reference_lua/fio.rst:429
 msgid "``fh:write`` returns true if success, false if failure. ``fh:read`` returns the data that was read, or nil if failure."
 msgstr ""
 
-#: ../reference_lua/fio.rst:432
+#: ../reference_lua/fio.rst:434
 msgid "tarantool> fh:write('new data')\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:441
+#: ../reference_lua/fio.rst:443
 msgid "Change the size of an open file. Differs from ``fio.truncate``, which changes the size of a closed file."
 msgstr ""
 
-#: ../reference_lua/fio.rst:450
+#: ../reference_lua/fio.rst:452
 msgid "tarantool> fh:truncate(0)\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:459
+#: ../reference_lua/fio.rst:461
 msgid "Shift position in the file to the specified position. For details type \"man 2 seek\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:463
+#: ../reference_lua/fio.rst:465
 msgid "position to seek to"
 msgstr ""
 
-#: ../reference_lua/fio.rst:464
+#: ../reference_lua/fio.rst:466
 msgid "'``SEEK_END``' = end of file, '``SEEK_CUR``' = current position, '``SEEK_SET``' = start of file."
 msgstr ""
 
-#: ../reference_lua/fio.rst:466
+#: ../reference_lua/fio.rst:468
 msgid "the new position if success"
 msgstr ""
 
-#: ../reference_lua/fio.rst:473
+#: ../reference_lua/fio.rst:475
 msgid "tarantool> fh:seek(20, 'SEEK_SET')\n"
 "---\n"
 "- 20\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:482
+#: ../reference_lua/fio.rst:484
 msgid "Return statistics about an open file. This differs from ``fio.stat`` which return statistics about a closed file. For details type \"man 2 stat\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:486
+#: ../reference_lua/fio.rst:488
 msgid "details about the file."
 msgstr ""
 
-#: ../reference_lua/fio.rst:491
+#: ../reference_lua/fio.rst:493
 msgid "tarantool> fh:stat()\n"
 "---\n"
 "- inode: 729866\n"
@@ -1977,11 +2145,11 @@ msgid "tarantool> fh:stat()\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/fio.rst:514
+#: ../reference_lua/fio.rst:516
 msgid "Ensure that file changes are written to disk, for an open file. Compare ``fio.sync``, which is for all files. For details type \"man 2 fsync\" or \"man 2 fdatasync\"."
 msgstr ""
 
-#: ../reference_lua/fio.rst:523
+#: ../reference_lua/fio.rst:525
 msgid "tarantool> fh:fsync()\n"
 "---\n"
 "- true\n"
@@ -1989,11 +2157,11 @@ msgid "tarantool> fh:fsync()\n"
 msgstr ""
 
 #: ../reference_lua/fun.rst:30
-msgid "Package `fun`"
+msgid "Module `fun`"
 msgstr ""
 
 #: ../reference_lua/fun.rst:32
-msgid "Lua fun, also known as the Lua Functional Library, takes advantage of the features of LuaJIT to help users create complex functions. Inside the package are \"sequence processors\" such as map, filter, reduce, zip -- they take a user-written function as an argument and run it against every element in a sequence, which can be faster or more convenient than a user-written loop. Inside the package are \"generators\" such as range, tabulate, and rands -- they return a bounded or boundless series of values. Within the package are \"reducers\", \"filters\", \"composers\" ... or, in short, all the important features found in languages like Standard ML, Haskell, or Erlang."
+msgid "Lua fun, also known as the Lua Functional Library, takes advantage of the features of LuaJIT to help users create complex functions. Inside the module are \"sequence processors\" such as map, filter, reduce, zip -- they take a user-written function as an argument and run it against every element in a sequence, which can be faster or more convenient than a user-written loop. Inside the module are \"generators\" such as range, tabulate, and rands -- they return a bounded or boundless series of values. Within the module are \"reducers\", \"filters\", \"composers\" ... or, in short, all the important features found in languages like Standard ML, Haskell, or Erlang."
 msgstr ""
 
 #: ../reference_lua/fun.rst:44
@@ -2019,11 +2187,11 @@ msgid "Lua reference"
 msgstr ""
 
 #: ../reference_lua/jit.rst:28
-msgid "Package `jit`"
+msgid "Module `jit`"
 msgstr ""
 
 #: ../reference_lua/jit.rst:32
-msgid "The ``jit`` package has functions for tracing the LuaJIT Just-In-Time compiler's progress, showing the byte-code or assembler output that the compiler produces, and in general providing information about what LuaJIT does with Lua code."
+msgid "The ``jit`` module has functions for tracing the LuaJIT Just-In-Time compiler's progress, showing the byte-code or assembler output that the compiler produces, and in general providing information about what LuaJIT does with Lua code."
 msgstr ""
 
 #: ../reference_lua/jit.rst:38
@@ -2106,11 +2274,11 @@ msgid "For a list of available options, read `the source code of v.lua`_."
 msgstr ""
 
 #: ../reference_lua/json.rst:30
-msgid "Package `json`"
+msgid "Module `json`"
 msgstr ""
 
 #: ../reference_lua/json.rst:32
-msgid "The json package provides JSON manipulation routines. It is based on the `Lua-CJSON package by Mark Pulford`_. For a complete manual on Lua-CJSON please read `the official documentation`_."
+msgid "The json module provides JSON manipulation routines. It is based on the `Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please read `the official documentation`_."
 msgstr ""
 
 #: ../reference_lua/json.rst:42
@@ -2248,12 +2416,59 @@ msgid "tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize=\"seq\"}))\
 "..."
 msgstr ""
 
-#: ../reference_lua/json.rst:165
-msgid "A NOTE ABOUT CONFIGURATION SETTINGS: There are configuration settings which affect the way that Tarantool encodes invalid numbers or types. They are all boolean true/false values. |br| :codenormal:`cfg.encode_invalid_numbers     default = true    /* allow nan and inf */` |br| :codenormal:`cfg.encode_use_tostring        default = false   /* use tostring for unrecognizable types */` |br| :codenormal:`cfg.encode_invalid_as_nil      default = false   /* use null for all unrecognizable types */` |br| :codenormal:`cfg.encode_load_metatables     default = true    /* load metatables */` |br| For example, the following code will interpret 0/0 (which is \"not a number\") and 1/0 (which is \"infinity\") as special values rather than nulls or errors: |br| :codenormal:`json = require('json')` |br| :codenormal:`json.cfg{encode_invalid_numbers = true}` |br| :codenormal:`x = 0/0` |br| :codenormal:`y = 1/0` |br| :codenormal:`json.encode({1,x,y,2})` |br| The result of the json.encode request will look like this: |br| :codenormal:`tarantool>` :codebold:`json.encode({1,x,y,2})` |br| :codenormal:`---` |br| :codenormal:`- '[1,nan,inf,2]` |br| :codenormal:`...` |br| The same configuration settings exist for json, for :ref:`MsgPack <msgpack-package>`, and for :ref:`yaml <yaml-package>`."
+#: ../reference_lua/json.rst:167
+msgid "Configuration settings"
+msgstr ""
+
+#: ../reference_lua/json.rst:169
+msgid "There are configuration settings which affect the way that Tarantool encodes invalid numbers or types. They are all boolean ``true``/``false`` values"
+msgstr ""
+
+#: ../reference_lua/json.rst:172
+msgid "``cfg.encode_invalid_numbers`` - allow nan and inf (default is true)"
+msgstr ""
+
+#: ../reference_lua/json.rst:173
+msgid "``cfg.encode_use_tostring`` - use tostring for unrecognizable types (default is false)"
+msgstr ""
+
+#: ../reference_lua/json.rst:174
+msgid "``cfg.encode_invalid_as_nil`` - use null for all unrecognizable types (default is false)"
+msgstr ""
+
+#: ../reference_lua/json.rst:175
+msgid "``cfg.encode_load_metatables`` - load metatables (default is false)"
+msgstr ""
+
+#: ../reference_lua/json.rst:177
+msgid "For example, the following code will interpret 0/0 (which is \"not a number\") and 1/0 (which is \"infinity\") as special values rather than nulls or errors:"
+msgstr ""
+
+#: ../reference_lua/json.rst:180
+msgid "json = require('json')\n"
+"json.cfg{encode_invalid_numbers = true}\n"
+"x = 0/0\n"
+"y = 1/0\n"
+"json.encode({1, x, y, 2})"
+msgstr ""
+
+#: ../reference_lua/json.rst:188
+msgid "The result of the json.encode request will look like this:"
+msgstr ""
+
+#: ../reference_lua/json.rst:190
+msgid "tarantool> json.encode({1, x, y, 2})\n"
+"---\n"
+"- '[1,nan,inf,2]\n"
+"..."
+msgstr ""
+
+#: ../reference_lua/json.rst:197
+msgid "The same configuration settings exist for json, for :ref:`MsgPack <msgpack-module>`, and for :ref:`YAML <yaml-module>`. >>>>>>> Fix every NOTE to be highlighted on site + JSON cfg rewritten"
 msgstr ""
 
 #: ../reference_lua/log.rst:30
-msgid "Package `log`"
+msgid "Module `log`"
 msgstr ""
 
 #: ../reference_lua/log.rst:34
@@ -2294,11 +2509,11 @@ msgid "The 'Info' line is not present because the log_level is 3."
 msgstr ""
 
 #: ../reference_lua/msgpack.rst:30
-msgid "Package `msgpack`"
+msgid "Module `msgpack`"
 msgstr ""
 
 #: ../reference_lua/msgpack.rst:32
-msgid "The ``msgpack`` package takes strings in MsgPack_ format and decodes them, or takes a series of non-MsgPack values and encodes them."
+msgid "The ``msgpack`` module takes strings in MsgPack_ format and decodes them, or takes a series of non-MsgPack values and encodes them."
 msgstr ""
 
 #: ../reference_lua/msgpack.rst:39
@@ -2390,7 +2605,7 @@ msgstr ""
 
 #: ../reference_lua/msgpack.rst:124
 msgid "**array** encoding: 92 a1 41 a1 42\n"
-"**map** encoding:   82 1 a1 41 2 a1 42"
+"**map** encoding:   82 01 a1 41 02 a1 42"
 msgstr ""
 
 #: ../reference_lua/msgpack.rst:127
@@ -2506,19 +2721,19 @@ msgid "1.5"
 msgstr ""
 
 #: ../reference_lua/msgpack.rst:180
-msgid "'float 64' = cb 3f f8 0 0 0 0 0 0"
+msgid "'float 64' = cb 3f f8 00 00 00 00 00 00"
 msgstr ""
 
 #: ../reference_lua/msgpack.rst:183
-msgid "Also, some MsgPack configuration settings for encoding can be changed, in the same way that they can be changed for :ref:`JSON <json-package_cfg>`."
+msgid "Also, some MsgPack configuration settings for encoding can be changed, in the same way that they can be changed for :ref:`JSON <json-module_cfg>`."
 msgstr ""
 
 #: ../reference_lua/net_box.rst:30
-msgid "Package `net.box`"
+msgid "Module `net.box`"
 msgstr ""
 
 #: ../reference_lua/net_box.rst:32
-msgid "The ``net.box`` package contains connectors to remote database systems. One variant, to be discussed later, is for connecting to MySQL or MariaDB or PostgreSQL — that variant is the subject of the :ref:`SQL DBMS plugins <dbms_packages>` appendix. In this section the subject is the built-in variant, ``net.box``. This is for connecting to tarantool servers via a network."
+msgid "The ``net.box`` module contains connectors to remote database systems. One variant, to be discussed later, is for connecting to MySQL or MariaDB or PostgreSQL — that variant is the subject of the :ref:`SQL DBMS modules <dbms_modules>` appendix. In this section the subject is the built-in variant, ``net.box``. This is for connecting to tarantool servers via a network."
 msgstr ""
 
 #: ../reference_lua/net_box.rst:38
@@ -2598,75 +2813,79 @@ msgstr ""
 msgid "Connection objects are garbage collected just like any other objects in Lua, so an explicit destruction is not mandatory. However, since close() is a system call, it is good programming practice to close a connection explicitly when it is no longer needed, to avoid lengthy stalls of the garbage collector."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:136
-msgid "Example: ``conn:close()``"
+#: ../reference_lua/net_box.rst:138
+msgid "conn:close()"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:140
-msgid ":samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:select`:code:`{...}`. Please note this difference: due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>` a local :samp:`box.space.{space-name}:select`:code:`{...}` does not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}` call does yield, so global variables or database tuples data may change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}` occurs."
+#: ../reference_lua/net_box.rst:144
+msgid ":samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:select`:code:`{...}`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:150
+#: ../reference_lua/net_box.rst:149
+msgid "due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>` a local :samp:`box.space.{space-name}:select`:code:`{...}` does not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}` call does yield, so global variables or database tuples data may change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}` occurs."
+msgstr ""
+
+#: ../reference_lua/net_box.rst:158
 msgid ":samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:get(...)`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:155
+#: ../reference_lua/net_box.rst:163
 msgid ":samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:insert(...)`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:160
+#: ../reference_lua/net_box.rst:168
 msgid ":samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:replace(...)`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:165
+#: ../reference_lua/net_box.rst:173
 msgid ":samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:update(...)`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:170
+#: ../reference_lua/net_box.rst:178
 msgid ":samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:upsert(...)`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:175
+#: ../reference_lua/net_box.rst:183
 msgid ":samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:delete(...)`."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:180
-msgid ":samp:`conn:call('func', '1', '2', '3')` is the remote-call equivalent of :samp:`func('1', '2', '3')`. That is, ``conn:call`` is a remote stored-procedure call."
-msgstr ""
-
-#: ../reference_lua/net_box.rst:184
-msgid "Example: ``conn:call('function5')``"
-msgstr ""
-
 #: ../reference_lua/net_box.rst:190
-msgid ":samp:`conn:eval({Lua-string})` evaluates and executes the expression in Lua-string, which may be any statement or series of statements. An :ref:`execute privilege <authentication-privileges>` is required; if the user does not have it, an administrator may grant it with :samp:`box.schema.user.grant({username}, 'execute', 'universe')`."
+msgid "``conn:call('func', '1', '2', '3')`` is the remote-call equivalent of ``func('1', '2', '3')``. That is, ``conn:call`` is a remote stored-procedure call."
 msgstr ""
 
 #: ../reference_lua/net_box.rst:196
-msgid "Example: ``conn:eval('return 5+5')``"
+msgid "conn:call('function5')"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:200
+#: ../reference_lua/net_box.rst:204
+msgid ":samp:`conn:eval({Lua-string})` evaluates and executes the expression in Lua-string, which may be any statement or series of statements. An :ref:`execute privilege <authentication-privileges>` is required; if the user does not have it, an administrator may grant it with :samp:`box.schema.user.grant({username}, 'execute', 'universe')`."
+msgstr ""
+
+#: ../reference_lua/net_box.rst:212
+msgid "conn:eval('return 5+5')"
+msgstr ""
+
+#: ../reference_lua/net_box.rst:218
 msgid "``timeout(...)`` is a wrapper which sets a timeout for the request that follows it."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:203
-msgid "Example: ``conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})``"
+#: ../reference_lua/net_box.rst:223
+msgid "conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:205
+#: ../reference_lua/net_box.rst:227
 msgid "All remote calls support execution timeouts. Using a wrapper object makes the remote connection API compatible with the local one, removing the need for a separate ``timeout`` argument, which the local version would ignore. Once a request is sent, it cannot be revoked from the remote server even if a timeout expires: the timeout expiration only aborts the wait for the remote server response, not the request itself."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:214
+#: ../reference_lua/net_box.rst:236
 msgid "Example showing use of most of the net.box methods"
 msgstr ""
 
-#: ../reference_lua/net_box.rst:216
+#: ../reference_lua/net_box.rst:238
 msgid "This example will work with the sandbox configuration described in the preface. That is, there is a space named tester with a numeric primary key. Assume that the database is nearly empty. Assume that the tarantool server is running on ``localhost 127.0.0.1:3301``."
 msgstr ""
 
-#: ../reference_lua/net_box.rst:221
+#: ../reference_lua/net_box.rst:243
 msgid "tarantool> net_box = require('net.box')\n"
 "---\n"
 "...\n"
@@ -2727,15 +2946,11 @@ msgid "tarantool> net_box = require('net.box')\n"
 msgstr ""
 
 #: ../reference_lua/os.rst:30
-msgid "Package `os`"
+msgid "Module `os`"
 msgstr ""
 
 #: ../reference_lua/os.rst:34
-msgid "The os package contains the functions :ref:`execute() <os-execute>`, :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`, :ref:`remove() <os-remove>`, :ref:`date() <os-date>`, :ref:`exit() <os-exit>`, :ref:`time() <os-time>`, :ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`. Most of these functions are described in the Lua manual Chapter 22 `The Operating System Library <https://www.lua.org/pil/contents.html#22>`_."
-msgstr ""
-
-#: ../reference_lua/os.rst:49
-msgid ":codenormal:`os.`:codebold:`execute`:codenormal:`(`:codeitalic:`shell-command`:codenormal:`)`"
+msgid "The os module contains the functions :ref:`execute() <os-execute>`, :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`, :ref:`remove() <os-remove>`, :ref:`date() <os-date>`, :ref:`exit() <os-exit>`, :ref:`time() <os-time>`, :ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`. Most of these functions are described in the Lua manual Chapter 22 `The Operating System Library <https://www.lua.org/pil/contents.html#22>`_."
 msgstr ""
 
 #: ../reference_lua/os.rst:51
@@ -2743,123 +2958,127 @@ msgid "Execute by passing to the shell."
 msgstr ""
 
 #: ../reference_lua/os.rst:53
-msgid "Parameters: (string) shell-command = what to execute."
+msgid "what to execute."
 msgstr ""
 
-#: ../reference_lua/os.rst:55
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.execute('ls -l /usr')` |br| :codenormal:`total 200` |br| :codenormal:`drwxr-xr-x   2 root root 65536 Apr 22 15:49 bin` |br| :codenormal:`drwxr-xr-x  59 root root 20480 Apr 18 07:58 include` |br| :codenormal:`drwxr-xr-x 210 root root 65536 Apr 18 07:59 lib` |br| :codenormal:`drwxr-xr-x  12 root root  4096 Apr 22 15:49 local` |br| :codenormal:`drwxr-xr-x   2 root root 12288 Jan 31 09:50 sbin` |br|"
-msgstr ""
-
-#: ../reference_lua/os.rst:66
-msgid ":codenormal:`os.`:codebold:`rename`:codenormal:`(`:codeitalic:`old-name,new-name`:codenormal:`)`"
-msgstr ""
-
-#: ../reference_lua/os.rst:68
-msgid "Rename a file or directory."
-msgstr ""
-
-#: ../reference_lua/os.rst:70
-msgid "Parameters: (string) old-name = name of existing file or directory, (string) new-name = changed name of file or directory."
+#: ../reference_lua/os.rst:57
+msgid "tarantool> os.execute('ls -l /usr')\n"
+"total 200\n"
+"drwxr-xr-x   2 root root 65536 Apr 22 15:49 bin\n"
+"drwxr-xr-x  59 root root 20480 Apr 18 07:58 include\n"
+"drwxr-xr-x 210 root root 65536 Apr 18 07:59 lib\n"
+"drwxr-xr-x  12 root root  4096 Apr 22 15:49 local\n"
+"drwxr-xr-x   2 root root 12288 Jan 31 09:50 sbin\n"
+"---\n"
+"..."
 msgstr ""
 
 #: ../reference_lua/os.rst:73
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.rename('local','foreign')` |br| :codenormal:`---` |br| :codenormal:`- null` |br| :codenormal:`- 'local: No such file or directory'` |br| :codenormal:`- 2` |br| :codenormal:`...` |br|"
+msgid "Rename a file or directory."
 msgstr ""
 
-#: ../reference_lua/os.rst:83
-msgid ":codenormal:`os.`:codebold:`getenv`:codenormal:`(`:codeitalic:`variable-name`:codenormal:`)`"
+#: ../reference_lua/os.rst:75
+msgid "name of existing file or directory,"
 msgstr ""
 
-#: ../reference_lua/os.rst:85
+#: ../reference_lua/os.rst:76
+msgid "changed name of file or directory."
+msgstr ""
+
+#: ../reference_lua/os.rst:80
+msgid "tarantool> os.rename('local','foreign')\n"
+"---\n"
+"- null\n"
+"- 'local: No such file or directory'\n"
+"- 2\n"
+"..."
+msgstr ""
+
+#: ../reference_lua/os.rst:93
 msgid "Get environment variable."
 msgstr ""
 
-#: ../reference_lua/os.rst:87
+#: ../reference_lua/os.rst:95
 msgid "Parameters: (string) variable-name = environment variable name."
 msgstr ""
 
-#: ../reference_lua/os.rst:89
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.getenv('PATH')` |br| :codenormal:`---` |br| :codenormal:`- /usr/local/sbin:/usr/local/bin:/usr/sbin` |br| :codenormal:`...` |br|"
-msgstr ""
-
-#: ../reference_lua/os.rst:97
-msgid ":codenormal:`os.`:codebold:`remove`:codenormal:`(`:codeitalic:`name`:codenormal:`)`"
-msgstr ""
-
 #: ../reference_lua/os.rst:99
+msgid "tarantool> os.getenv('PATH')\n"
+"---\n"
+"- /usr/local/sbin:/usr/local/bin:/usr/sbin\n"
+"..."
+msgstr ""
+
+#: ../reference_lua/os.rst:110
 msgid "Remove file or directory."
 msgstr ""
 
-#: ../reference_lua/os.rst:101
+#: ../reference_lua/os.rst:112
 msgid "Parameters: (string) name = name of file or directory which will be removed."
 msgstr ""
 
-#: ../reference_lua/os.rst:103
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.remove('file')` |br| :codenormal:`---` |br| :codenormal:`- true` |br| :codenormal:`...` |br|"
+#: ../reference_lua/os.rst:116
+msgid "tarantool> os.remove('file')\n"
+"---\n"
+"- true\n"
+"..."
 msgstr ""
 
-#: ../reference_lua/os.rst:111
-msgid ":codenormal:`os.`:codebold:`date`:codenormal:`(`:codeitalic:`format-string` :codenormal:`[,`:codeitalic:`time-since-epoch`:codenormal:`])`"
-msgstr ""
-
-#: ../reference_lua/os.rst:113
+#: ../reference_lua/os.rst:127
 msgid "Return a formatted date."
 msgstr ""
 
-#: ../reference_lua/os.rst:115
+#: ../reference_lua/os.rst:129
 msgid "Parameters: (string) format-string = instructions; (string) time-since-epoch = number of seconds since 1970-01-01. If time-since-epoch is omitted, it is assumed to be the current time."
 msgstr ""
 
-#: ../reference_lua/os.rst:118
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.date(\"%A %B %d\")` |br| :codenormal:`---` |br| :codenormal:`- Sunday April 24` |br| :codenormal:`...`"
+#: ../reference_lua/os.rst:134
+msgid "tarantool> os.date(\"%A %B %d\")\n"
+"---\n"
+"- Sunday April 24\n"
+"..."
 msgstr ""
 
-#: ../reference_lua/os.rst:126
-msgid ":codenormal:`os.`:codebold:`exit`:codenormal:`()`"
-msgstr ""
-
-#: ../reference_lua/os.rst:128
+#: ../reference_lua/os.rst:145
 msgid "Exit the program. If this is done on the server, then the server stops."
 msgstr ""
 
-#: ../reference_lua/os.rst:130
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.exit()` |br| :codenormal:`user@user-shell:~/tarantool_sandbox$``"
+#: ../reference_lua/os.rst:149
+msgid "tarantool> os.exit()\n"
+"user@user-shell:~/tarantool_sandbox$"
 msgstr ""
 
-#: ../reference_lua/os.rst:136
-msgid ":codenormal:`os.`:codebold:`time`:codenormal:`()`"
-msgstr ""
-
-#: ../reference_lua/os.rst:138
+#: ../reference_lua/os.rst:158
 msgid "Return the number of seconds since the epoch."
 msgstr ""
 
-#: ../reference_lua/os.rst:140
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.time()` |br| :codenormal:`---` |br| :codenormal:`- 1461516945` |br| :codenormal:`...` |br|"
+#: ../reference_lua/os.rst:162
+msgid "tarantool> os.time()\n"
+"---\n"
+"- 1461516945\n"
+"..."
 msgstr ""
 
-#: ../reference_lua/os.rst:148
-msgid ":codenormal:`os.`:codebold:`clock`:codenormal:`()`"
-msgstr ""
-
-#: ../reference_lua/os.rst:150
+#: ../reference_lua/os.rst:173
 msgid "Return the number of CPU seconds since the program start."
 msgstr ""
 
-#: ../reference_lua/os.rst:152
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.clock()` |br| :codenormal:`---` |br| :codenormal:`- 0.05` |br| :codenormal:`...` |br|"
+#: ../reference_lua/os.rst:177
+msgid "tarantool> os.clock()\n"
+"---\n"
+"- 0.05\n"
+"..."
 msgstr ""
 
-#: ../reference_lua/os.rst:160
-msgid ":codenormal:`os.`:codebold:`tmpname`:codenormal:`()`"
-msgstr ""
-
-#: ../reference_lua/os.rst:162
+#: ../reference_lua/os.rst:188
 msgid "Return a name for a temporary file."
 msgstr ""
 
-#: ../reference_lua/os.rst:164
-msgid "**Example:** |br| :codenormal:`tarantool>` :codebold:`os.tmpname()` |br| :codenormal:`---` |br| :codenormal:`- /tmp/lua_7SW1m2` |br| :codenormal:`...` |br|"
+#: ../reference_lua/os.rst:192
+msgid "tarantool> os.tmpname()\n"
+"---\n"
+"- /tmp/lua_7SW1m2\n"
+"..."
 msgstr ""
 
 #: ../reference_lua/other.rst:28
@@ -2941,7 +3160,7 @@ msgid "tarantool> dostring('abc')\n"
 msgstr ""
 
 #: ../reference_lua/pickle.rst:28
-msgid "Package `pickle`"
+msgid "Module `pickle`"
 msgstr ""
 
 #: ../reference_lua/pickle.rst:34
@@ -3119,11 +3338,11 @@ msgid "tarantool> pickle = require('pickle')\n"
 msgstr ""
 
 #: ../reference_lua/socket.rst:30
-msgid "Package `socket`"
+msgid "Module `socket`"
 msgstr ""
 
 #: ../reference_lua/socket.rst:32
-msgid "The ``socket`` package allows exchanging data via BSD sockets with a local or remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode. Semantics of the calls in the ``socket`` API closely follow semantics of the corresponding POSIX calls. Function names and signatures are mostly compatible with `luasocket`_."
+msgid "The ``socket`` module allows exchanging data via BSD sockets with a local or remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode. Semantics of the calls in the ``socket`` API closely follow semantics of the corresponding POSIX calls. Function names and signatures are mostly compatible with `luasocket`_."
 msgstr ""
 
 #: ../reference_lua/socket.rst:38
@@ -3315,10 +3534,6 @@ msgstr ""
 msgid "For all examples in this section the socket name will be sock and the function invocations will look like ``sock:function_name(...)``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:127
-msgid ":codebold:`socket`:codenormal:`(`:codeitalic:`domain, type, protocol`:codenormal:`)`"
-msgstr ""
-
 #: ../reference_lua/socket.rst:129
 msgid "Create a new TCP or UDP socket. The argument values are the same as in the `Linux socket(2) man page <http://man7.org/linux/man-pages/man2/socket.2.html>`_."
 msgstr ""
@@ -3327,45 +3542,45 @@ msgstr ""
 msgid "an unconnected socket, or nil."
 msgstr ""
 
-#: ../reference_lua/socket.rst:135
-msgid "Example: |br| :codenormal:`socket('AF_INET', 'SOCK_STREAM', 'tcp')`"
-msgstr ""
-
-#: ../reference_lua/socket.rst:142
-msgid "Connect a socket to a remote host."
-msgstr ""
-
-#: ../reference_lua/socket.rst:144
-msgid "URL or IP address"
+#: ../reference_lua/socket.rst:137
+msgid "socket('AF_INET', 'SOCK_STREAM', 'tcp')"
 msgstr ""
 
 #: ../reference_lua/socket.rst:145
+msgid "Connect a socket to a remote host."
+msgstr ""
+
+#: ../reference_lua/socket.rst:147
+msgid "URL or IP address"
+msgstr ""
+
+#: ../reference_lua/socket.rst:148
 msgid "port number"
 msgstr ""
 
-#: ../reference_lua/socket.rst:146
+#: ../reference_lua/socket.rst:149
 msgid "a connected socket, if no error."
 msgstr ""
 
-#: ../reference_lua/socket.rst:149
-msgid "Example: |br| :codenormal:`tcp_connect('127.0.0.1', 3301)`"
+#: ../reference_lua/socket.rst:154
+msgid "tcp_connect('127.0.0.1', 3301)"
 msgstr ""
 
-#: ../reference_lua/socket.rst:156
+#: ../reference_lua/socket.rst:162
 msgid "The ``socket.getaddrinfo()`` function is useful for finding information about a remote site so that the correct arguments for ``sock:sysconnect()`` can be passed."
 msgstr ""
 
-#: ../reference_lua/socket.rst:160
-#: ../reference_lua/socket.rst:504
-#: ../reference_lua/socket.rst:516
+#: ../reference_lua/socket.rst:166
+#: ../reference_lua/socket.rst:521
+#: ../reference_lua/socket.rst:533
 msgid "A table containing these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
 msgstr ""
 
-#: ../reference_lua/socket.rst:163
-msgid "Example: |br| :codenormal:`socket.getaddrinfo('tarantool.org', 'http')` |br| will return variable information such as"
+#: ../reference_lua/socket.rst:171
+msgid "``socket.getaddrinfo('tarantool.org', 'http')`` will return variable information such as"
 msgstr ""
 
-#: ../reference_lua/socket.rst:167
+#: ../reference_lua/socket.rst:174
 msgid "---\n"
 "- - host: 188.93.56.70\n"
 "    family: AF_INET\n"
@@ -3380,182 +3595,190 @@ msgid "---\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/socket.rst:186
+#: ../reference_lua/socket.rst:193
 msgid "The ``socket.tcp_server()`` function makes Tarantool act as a server that can accept connections. Usually the same objective is accomplished with ``box.cfg{listen=...)``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:190
-msgid "Example: |br| :codenormal:`socket.tcp_server('localhost', 3302, function () end)`"
+#: ../reference_lua/socket.rst:199
+msgid "socket.tcp_server('localhost', 3302, function () end)"
 msgstr ""
 
-#: ../reference_lua/socket.rst:199
+#: ../reference_lua/socket.rst:209
 msgid "Connect an existing socket to a remote host. The argument values are the same as in tcp_connect(). The host must be an IP address."
 msgstr ""
 
-#: ../reference_lua/socket.rst:206
+#: ../reference_lua/socket.rst:216
 msgid "Either:"
 msgstr ""
 
-#: ../reference_lua/socket.rst:205
+#: ../reference_lua/socket.rst:215
 msgid "host - a string representation of an IPv4 address or an IPv6 address;"
 msgstr ""
 
-#: ../reference_lua/socket.rst:207
+#: ../reference_lua/socket.rst:217
 msgid "port - a number."
 msgstr ""
 
-#: ../reference_lua/socket.rst:209
-#: ../reference_lua/socket.rst:216
+#: ../reference_lua/socket.rst:219
+#: ../reference_lua/socket.rst:226
 msgid "Or:"
 msgstr ""
 
-#: ../reference_lua/socket.rst:209
+#: ../reference_lua/socket.rst:219
 msgid "host - a string containing \"unix/\";"
 msgstr ""
 
-#: ../reference_lua/socket.rst:210
+#: ../reference_lua/socket.rst:220
 msgid "port - a string containing a path to a unix socket."
 msgstr ""
 
-#: ../reference_lua/socket.rst:212
+#: ../reference_lua/socket.rst:222
 msgid "host - a number, 0 (zero), meaning \"all local interfaces\";"
 msgstr ""
 
-#: ../reference_lua/socket.rst:214
+#: ../reference_lua/socket.rst:224
 msgid "port - a number. If a port number is 0 (zero), the socket will be bound to a random local port."
 msgstr ""
 
-#: ../reference_lua/socket.rst:218
+#: ../reference_lua/socket.rst:228
 msgid "the socket object value may change if sysconnect() succeeds."
 msgstr ""
 
-#: ../reference_lua/socket.rst:221
-msgid "Example: |br| :codenormal:`socket = require('socket')` |br| :codenormal:`sock = socket('AF_INET', 'SOCK_STREAM', 'tcp')` |br| :codenormal:`sock:sysconnect(0, 3301)`"
+#: ../reference_lua/socket.rst:233
+msgid "socket = require('socket')\n"
+"sock = socket('AF_INET', 'SOCK_STREAM', 'tcp')\n"
+"sock:sysconnect(0, 3301)"
 msgstr ""
 
-#: ../reference_lua/socket.rst:231
+#: ../reference_lua/socket.rst:244
 msgid "Send data over a connected socket."
 msgstr ""
 
-#: ../reference_lua/socket.rst:234
-#: ../reference_lua/socket.rst:348
+#: ../reference_lua/socket.rst:247
+#: ../reference_lua/socket.rst:361
 msgid "the number of bytes sent."
 msgstr ""
 
-#: ../reference_lua/socket.rst:237
+#: ../reference_lua/socket.rst:250
 msgid "Possible errors: nil on error."
 msgstr ""
 
-#: ../reference_lua/socket.rst:243
+#: ../reference_lua/socket.rst:256
 msgid "Write as much as possible data to the socket buffer if non-blocking. Rarely used. For details see `this description`_."
 msgstr ""
 
-#: ../reference_lua/socket.rst:250
+#: ../reference_lua/socket.rst:263
 msgid "Read ``size`` bytes from a connected socket. An internal read-ahead buffer is used to reduce the cost of this call."
 msgstr ""
 
-#: ../reference_lua/socket.rst:254
+#: ../reference_lua/socket.rst:267
 msgid "a string of the requested length on success."
 msgstr ""
 
-#: ../reference_lua/socket.rst:257
+#: ../reference_lua/socket.rst:270
 msgid "Possible errors: On error, returns an empty string, followed by status, errno, errstr. In case the writing side has closed its end, returns the remainder read from the socket (possibly an empty string), followed by \"eof\" status."
 msgstr ""
 
-#: ../reference_lua/socket.rst:270
+#: ../reference_lua/socket.rst:283
 msgid "Read from a connected socket until some condition is true, and return the bytes that were read. Reading goes on until ``limit`` bytes have been read, or a delimiter has been read, or a timeout has expired."
 msgstr ""
 
-#: ../reference_lua/socket.rst:275
+#: ../reference_lua/socket.rst:288
 msgid "maximum number of bytes to read for example 50 means \"stop after 50 bytes\""
 msgstr ""
 
-#: ../reference_lua/socket.rst:277
+#: ../reference_lua/socket.rst:290
 msgid "separator for example '?' means \"stop after a question mark\""
 msgstr ""
 
-#: ../reference_lua/socket.rst:279
+#: ../reference_lua/socket.rst:292
 msgid "maximum number of seconds to wait for example 50 means \"stop after 50 seconds\"."
 msgstr ""
 
-#: ../reference_lua/socket.rst:282
+#: ../reference_lua/socket.rst:295
 msgid "an empty string if there is nothing more to read, or a nil value if error, or a string up to ``limit`` bytes long, which may include the bytes that matched the ``delimiter`` expression."
 msgstr ""
 
-#: ../reference_lua/socket.rst:292
+#: ../reference_lua/socket.rst:305
 msgid "Return all available data from the socket buffer if non-blocking. Rarely used. For details see `this description`_."
 msgstr ""
 
-#: ../reference_lua/socket.rst:299
+#: ../reference_lua/socket.rst:312
 msgid "Bind a socket to the given host/port. A UDP socket after binding can be used to receive data (see :ref:`socket_object.recvfrom <socket-recvfrom>`). A TCP socket can be used to accept new connections, after it has been put in listen mode."
 msgstr ""
 
-#: ../reference_lua/socket.rst:307
+#: ../reference_lua/socket.rst:320
 msgid "a socket object on success"
 msgstr ""
 
-#: ../reference_lua/socket.rst:310
+#: ../reference_lua/socket.rst:323
 msgid "Possible errors: Returns nil, status, errno, errstr on error."
 msgstr ""
 
-#: ../reference_lua/socket.rst:316
+#: ../reference_lua/socket.rst:329
 msgid "Start listening for incoming connections."
 msgstr ""
 
-#: ../reference_lua/socket.rst:318
+#: ../reference_lua/socket.rst:331
 msgid "On Linux the listen ``backlog`` backlog may be from /proc/sys/net/core/somaxconn, on BSD the backlog may be ``SOMAXCONN``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:322
+#: ../reference_lua/socket.rst:335
 msgid "true for success, false for error."
 msgstr ""
 
-#: ../reference_lua/socket.rst:323
+#: ../reference_lua/socket.rst:336
 msgid "boolean."
 msgstr ""
 
-#: ../reference_lua/socket.rst:329
+#: ../reference_lua/socket.rst:342
 msgid "Accept a new client connection and create a new connected socket. It is good practice to set the socket's blocking mode explicitly after accepting."
 msgstr ""
 
-#: ../reference_lua/socket.rst:333
+#: ../reference_lua/socket.rst:346
 msgid "new socket if success."
 msgstr ""
 
-#: ../reference_lua/socket.rst:342
+#: ../reference_lua/socket.rst:355
 msgid "Send a message on a UDP socket to a specified host."
 msgstr ""
 
-#: ../reference_lua/socket.rst:351
-#: ../reference_lua/socket.rst:363
+#: ../reference_lua/socket.rst:364
+#: ../reference_lua/socket.rst:376
 msgid "Possible errors: on error, returns status, errno, errstr."
 msgstr ""
 
-#: ../reference_lua/socket.rst:357
+#: ../reference_lua/socket.rst:370
 msgid "Receive a message on a UDP socket."
 msgstr ""
 
-#: ../reference_lua/socket.rst:360
+#: ../reference_lua/socket.rst:373
 msgid "message, a table containing \"host\", \"family\" and \"port\" fields."
 msgstr ""
 
-#: ../reference_lua/socket.rst:361
+#: ../reference_lua/socket.rst:374
 msgid "string, table"
 msgstr ""
 
-#: ../reference_lua/socket.rst:365
-msgid "Example: |br| After |br| :codenormal:`message_content, message_sender = recvfrom(1)` |br| the value of ``message_content`` might be a string containing 'X' and the value of ``message_sender`` might be a table containing ``message_sender.host = '18.44.0.1'``, ``message_sender.family = 'AF_INET'``, ``message_sender.port = 43065``."
+#: ../reference_lua/socket.rst:380
+msgid "After ``message_content, message_sender = recvfrom(1)`` the value of ``message_content`` might be a string containing 'X' and the value of ``message_sender`` might be a table containing"
 msgstr ""
 
-#: ../reference_lua/socket.rst:378
+#: ../reference_lua/socket.rst:384
+msgid "message_sender.host = '18.44.0.1'\n"
+"message_sender.family = 'AF_INET'\n"
+"message_sender.port = 43065"
+msgstr ""
+
+#: ../reference_lua/socket.rst:394
 msgid "Shutdown a reading end, a writing end, or both ends of a socket."
 msgstr ""
 
-#: ../reference_lua/socket.rst:380
+#: ../reference_lua/socket.rst:396
 msgid "socket.SHUT_RD, socket.SHUT_WR, or socket.SHUT_RDWR."
 msgstr ""
 
-#: ../reference_lua/socket.rst:382
+#: ../reference_lua/socket.rst:398
 #: ../reference_lua/tap.rst:90
 #: ../reference_lua/tap.rst:122
 #: ../reference_lua/tap.rst:153
@@ -3565,191 +3788,203 @@ msgstr ""
 msgid "true or false."
 msgstr ""
 
-#: ../reference_lua/socket.rst:389
+#: ../reference_lua/socket.rst:405
 msgid "Close (destroy) a socket. A closed socket should not be used any more. A socket is closed automatically when its userdata is garbage collected by Lua."
 msgstr ""
 
-#: ../reference_lua/socket.rst:392
+#: ../reference_lua/socket.rst:408
 msgid "true on success, false on error. For example, if sock is already closed, sock:close() returns false."
 msgstr ""
 
-#: ../reference_lua/socket.rst:401
+#: ../reference_lua/socket.rst:417
 msgid "Retrieve information about the last error that occurred on a socket, if any. Errors do not cause throwing of exceptions so these functions are usually necessary."
 msgstr ""
 
-#: ../reference_lua/socket.rst:404
+#: ../reference_lua/socket.rst:420
 msgid "result for ``sock:errno()``, result for ``sock:error()``. If there is no error, then ``sock:errno()`` will return 0 and ``sock:error()``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:406
+#: ../reference_lua/socket.rst:422
 msgid "number, string"
 msgstr ""
 
-#: ../reference_lua/socket.rst:412
+#: ../reference_lua/socket.rst:428
 msgid "Set socket flags. The argument values are the same as in the `Linux getsockopt(2) man page <http://man7.org/linux/man-pages/man2/setsockopt.2.html>`_. The ones that Tarantool accepts are:"
 msgstr ""
 
-#: ../reference_lua/socket.rst:416
+#: ../reference_lua/socket.rst:432
 msgid "SO_ACCEPTCONN"
 msgstr ""
 
-#: ../reference_lua/socket.rst:417
+#: ../reference_lua/socket.rst:433
 msgid "SO_BINDTODEVICE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:418
+#: ../reference_lua/socket.rst:434
 msgid "SO_BROADCAST"
 msgstr ""
 
-#: ../reference_lua/socket.rst:419
+#: ../reference_lua/socket.rst:435
 msgid "SO_DEBUG"
 msgstr ""
 
-#: ../reference_lua/socket.rst:420
+#: ../reference_lua/socket.rst:436
 msgid "SO_DOMAIN"
 msgstr ""
 
-#: ../reference_lua/socket.rst:421
+#: ../reference_lua/socket.rst:437
 msgid "SO_ERROR"
 msgstr ""
 
-#: ../reference_lua/socket.rst:422
+#: ../reference_lua/socket.rst:438
 msgid "SO_DONTROUTE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:423
+#: ../reference_lua/socket.rst:439
 msgid "SO_KEEPALIVE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:424
+#: ../reference_lua/socket.rst:440
 msgid "SO_MARK"
 msgstr ""
 
-#: ../reference_lua/socket.rst:425
+#: ../reference_lua/socket.rst:441
 msgid "SO_OOBINLINE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:426
+#: ../reference_lua/socket.rst:442
 msgid "SO_PASSCRED"
 msgstr ""
 
-#: ../reference_lua/socket.rst:427
+#: ../reference_lua/socket.rst:443
 msgid "SO_PEERCRED"
 msgstr ""
 
-#: ../reference_lua/socket.rst:428
+#: ../reference_lua/socket.rst:444
 msgid "SO_PRIORITY"
 msgstr ""
 
-#: ../reference_lua/socket.rst:429
+#: ../reference_lua/socket.rst:445
 msgid "SO_PROTOCOL"
 msgstr ""
 
-#: ../reference_lua/socket.rst:430
+#: ../reference_lua/socket.rst:446
 msgid "SO_RCVBUF"
 msgstr ""
 
-#: ../reference_lua/socket.rst:431
+#: ../reference_lua/socket.rst:447
 msgid "SO_RCVBUFFORCE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:432
+#: ../reference_lua/socket.rst:448
 msgid "SO_RCVLOWAT"
 msgstr ""
 
-#: ../reference_lua/socket.rst:433
+#: ../reference_lua/socket.rst:449
 msgid "SO_SNDLOWAT"
 msgstr ""
 
-#: ../reference_lua/socket.rst:434
+#: ../reference_lua/socket.rst:450
 msgid "SO_RCVTIMEO"
 msgstr ""
 
-#: ../reference_lua/socket.rst:435
+#: ../reference_lua/socket.rst:451
 msgid "SO_SNDTIMEO"
 msgstr ""
 
-#: ../reference_lua/socket.rst:436
+#: ../reference_lua/socket.rst:452
 msgid "SO_REUSEADDR"
 msgstr ""
 
-#: ../reference_lua/socket.rst:437
+#: ../reference_lua/socket.rst:453
 msgid "SO_SNDBUF"
 msgstr ""
 
-#: ../reference_lua/socket.rst:438
+#: ../reference_lua/socket.rst:454
 msgid "SO_SNDBUFFORCE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:439
+#: ../reference_lua/socket.rst:455
 msgid "SO_TIMESTAMP"
 msgstr ""
 
-#: ../reference_lua/socket.rst:440
+#: ../reference_lua/socket.rst:456
 msgid "SO_TYPE"
 msgstr ""
 
-#: ../reference_lua/socket.rst:442
+#: ../reference_lua/socket.rst:458
 msgid "Setting SO_LINGER is done with ``sock:linger(active)``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:448
+#: ../reference_lua/socket.rst:464
 msgid "Get socket flags. For a list of possible flags see ``sock:setsockopt()``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:454
+#: ../reference_lua/socket.rst:470
 msgid "Set or clear the SO_LINGER flag. For a description of the flag, see the `Linux man page <http://man7.org/linux/man-pages/man1/loginctl.1.html>`_."
 msgstr ""
 
-#: ../reference_lua/socket.rst:459
+#: ../reference_lua/socket.rst:475
 msgid "new active and timeout values."
 msgstr ""
 
-#: ../reference_lua/socket.rst:465
-msgid "``sock:nonblock()`` returns the current flag value. |br| ``sock:nonblock(false)`` sets the flag to false and returns false. |br| ``sock:nonblock(true)`` sets the flag to true and returns true. This function may be useful before invoking a function which might otherwise block indefinitely."
+#: ../reference_lua/socket.rst:481
+msgid "``sock:nonblock()`` returns the current flag value."
 msgstr ""
 
-#: ../reference_lua/socket.rst:475
-msgid "Wait until something is readable, or until a timeout value expires."
-msgstr ""
-
-#: ../reference_lua/socket.rst:477
-msgid "true if the socket is now readable, false if timeout expired;"
+#: ../reference_lua/socket.rst:482
+msgid "``sock:nonblock(false)`` sets the flag to false and returns false."
 msgstr ""
 
 #: ../reference_lua/socket.rst:483
-msgid "Wait until something is writable, or until a timeout value expires."
+msgid "``sock:nonblock(true)`` sets the flag to true and returns true."
 msgstr ""
 
 #: ../reference_lua/socket.rst:485
+msgid "This function may be useful before invoking a function which might otherwise block indefinitely."
+msgstr ""
+
+#: ../reference_lua/socket.rst:492
+msgid "Wait until something is readable, or until a timeout value expires."
+msgstr ""
+
+#: ../reference_lua/socket.rst:494
+msgid "true if the socket is now readable, false if timeout expired;"
+msgstr ""
+
+#: ../reference_lua/socket.rst:500
+msgid "Wait until something is writable, or until a timeout value expires."
+msgstr ""
+
+#: ../reference_lua/socket.rst:502
 msgid "true if the socket is now writable, false if timeout expired;"
 msgstr ""
 
-#: ../reference_lua/socket.rst:491
+#: ../reference_lua/socket.rst:508
 msgid "Wait until something is either readable or writable, or until a timeout value expires."
 msgstr ""
 
-#: ../reference_lua/socket.rst:493
+#: ../reference_lua/socket.rst:510
 msgid "'R' if the socket is now readable, 'W' if the socket is now writable, 'RW' if the socket is now both readable and writable, '' (empty string) if timeout expired;"
 msgstr ""
 
-#: ../reference_lua/socket.rst:499
+#: ../reference_lua/socket.rst:516
 msgid "The ``sock:name()`` function is used to get information about the near side of the connection. If a socket was bound to ``xyz.com:45``, then ``sock:name`` will return information about ``[host:xyz.com, port:45]``. The equivalent POSIX function is ``getsockname()``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:511
+#: ../reference_lua/socket.rst:528
 msgid "The ``sock:peer()`` function is used to get information about the far side of a connection. If a TCP connection has been made to a distant host ``tarantool.org:80``, ``sock:peer()`` will return information about ``[host:tarantool.org, port:80]``. The equivalent POSIX function is ``getpeername()``."
 msgstr ""
 
-#: ../reference_lua/socket.rst:527
+#: ../reference_lua/socket.rst:544
 msgid "Use of a TCP socket over the Internet"
 msgstr ""
 
-#: ../reference_lua/socket.rst:529
+#: ../reference_lua/socket.rst:546
 msgid "In this example a connection is made over the internet between the Tarantool server and tarantool.org, then an HTTP \"head\" message is sent, and a response is received: \"``HTTP/1.1 200 OK``\". This is not a useful way to communicate with this particular site, but shows that the system works."
 msgstr ""
 
-#: ../reference_lua/socket.rst:534
+#: ../reference_lua/socket.rst:551
 msgid "tarantool> socket = require('socket')\n"
 "---\n"
 "...\n"
@@ -3778,15 +4013,15 @@ msgid "tarantool> socket = require('socket')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/socket.rst:565
+#: ../reference_lua/socket.rst:582
 msgid "Use of a UDP socket on localhost"
 msgstr ""
 
-#: ../reference_lua/socket.rst:567
+#: ../reference_lua/socket.rst:584
 msgid "Here is an example with datagrams. Set up two connections on 127.0.0.1 (localhost): ``sock_1`` and ``sock_2``. Using ``sock_2``, send a message to ``sock_1``. Using ``sock_1``, receive a message. Display the received message. Close both connections. |br| This is not a useful way for a computer to communicate with itself, but shows that the system works."
 msgstr ""
 
-#: ../reference_lua/socket.rst:573
+#: ../reference_lua/socket.rst:590
 msgid "tarantool> socket = require('socket')\n"
 "---\n"
 "...\n"
@@ -3821,23 +4056,23 @@ msgid "tarantool> socket = require('socket')\n"
 "..."
 msgstr ""
 
-#: ../reference_lua/socket.rst:610
+#: ../reference_lua/socket.rst:627
 msgid "Use tcp_server to accept file contents sent with socat"
 msgstr ""
 
-#: ../reference_lua/socket.rst:612
+#: ../reference_lua/socket.rst:629
 msgid "Here is an example of the tcp_server function, reading strings from the client and printing them. On the client side, the Linux socat utility will be used to ship a whole file for the tcp_server function to read."
 msgstr ""
 
-#: ../reference_lua/socket.rst:617
+#: ../reference_lua/socket.rst:634
 msgid "Start two shells. The first shell will be the server. The second shell will be the client."
 msgstr ""
 
-#: ../reference_lua/socket.rst:620
+#: ../reference_lua/socket.rst:637
 msgid "On the first shell, start Tarantool and say:"
 msgstr ""
 
-#: ../reference_lua/socket.rst:622
+#: ../reference_lua/socket.rst:639
 msgid "box.cfg{}\n"
 "socket = require('socket')\n"
 "socket.tcp_server('0.0.0.0', 3302, function(s)\n"
@@ -3852,32 +4087,32 @@ msgid "box.cfg{}\n"
 "  end)"
 msgstr ""
 
-#: ../reference_lua/socket.rst:637
+#: ../reference_lua/socket.rst:654
 msgid "The above code means: use `tcp_server()` to wait for a connection from any host on port 3302. When it happens, enter a loop that reads on the socket and prints what it reads. The \"delimiter\" for the read function is \"\\\\n\" so each `read()` will read a string as far as the next line feed, including the line feed."
 msgstr ""
 
-#: ../reference_lua/socket.rst:644
+#: ../reference_lua/socket.rst:661
 msgid "On the second shell, create a file that contains a few lines. The contents don't matter. Suppose the first line contains A, the second line contains B, the third line contains C. Call this file \"tmp.txt\"."
 msgstr ""
 
-#: ../reference_lua/socket.rst:649
+#: ../reference_lua/socket.rst:666
 msgid "On the second shell, use the socat utility to ship the tmp.txt file to the server's host and port:"
 msgstr ""
 
-#: ../reference_lua/socket.rst:652
+#: ../reference_lua/socket.rst:669
 msgid "$ socat TCP:localhost:3302 ./tmp.txt"
 msgstr ""
 
-#: ../reference_lua/socket.rst:656
+#: ../reference_lua/socket.rst:673
 msgid "Now watch what happens on the first shell. The strings \"A\", \"B\", \"C\" are printed."
 msgstr ""
 
 #: ../reference_lua/strict.rst:28
-msgid "Package `strict`"
+msgid "Module `strict`"
 msgstr ""
 
 #: ../reference_lua/strict.rst:32
-msgid "The :code:`strict` package has functions for turning \"strict mode\" on or off. When strict mode is on, an attempt to use an undeclared global variable will cause an error. A global variable is considered \"undeclared\" if it has never had a value assigned to it. Often this is an indication of a programming error."
+msgid "The :code:`strict` module has functions for turning \"strict mode\" on or off. When strict mode is on, an attempt to use an undeclared global variable will cause an error. A global variable is considered \"undeclared\" if it has never had a value assigned to it. Often this is an indication of a programming error."
 msgstr ""
 
 #: ../reference_lua/strict.rst:37
@@ -3904,11 +4139,11 @@ msgid "tarantool> strict = require('strict')\n"
 msgstr ""
 
 #: ../reference_lua/tap.rst:28
-msgid "Package `tap`"
+msgid "Module `tap`"
 msgstr ""
 
 #: ../reference_lua/tap.rst:30
-msgid "The tap package streamlines the testing of other packages. It allows writing of tests in the `TAP protocol`_. The results from the tests can be parsed by standard TAP-analyzers so they can be passed to utilities such as `prove`_. Thus one can run tests and then use the results for statistics, decision-making, and so on."
+msgid "The tap module streamlines the testing of other modules. It allows writing of tests in the `TAP protocol`_. The results from the tests can be parsed by standard TAP-analyzers so they can be passed to utilities such as `prove`_. Thus one can run tests and then use the results for statistics, decision-making, and so on."
 msgstr ""
 
 #: ../reference_lua/tap.rst:39
@@ -4069,7 +4304,7 @@ msgid "TAP version 13\n"
 msgstr ""
 
 #: ../reference_lua/tarantool.rst:28
-msgid "Package `tarantool`"
+msgid "Module `tarantool`"
 msgstr ""
 
 #: ../reference_lua/tarantool.rst:32
@@ -4077,7 +4312,7 @@ msgid "By saying ``require('tarantool')``, one can answer some questions about h
 msgstr ""
 
 #: ../reference_lua/tarantool.rst:38
-msgid "Additionally one can see the uptime and the server version and the process id. Those information items can also be accessed with :ref:`box.info <box_introspection-box_info>` but use of the tarantool package is recommended."
+msgid "Additionally one can see the uptime and the server version and the process id. Those information items can also be accessed with :ref:`box.info <box_introspection-box_info>` but use of the tarantool module is recommended."
 msgstr ""
 
 #: ../reference_lua/tarantool.rst:44
@@ -4109,7 +4344,7 @@ msgid "tarantool> tarantool = require('tarantool')\n"
 msgstr ""
 
 #: ../reference_lua/uuid.rst:28
-msgid "Package `uuid`"
+msgid "Module `uuid`"
 msgstr ""
 
 #: ../reference_lua/uuid.rst:30
@@ -4198,35 +4433,55 @@ msgid "UUID in 16-byte binary string"
 msgstr ""
 
 #: ../reference_lua/uuid.rst:102
-msgid "|br| 'l' - little-endian, |br| 'b' - big-endian, |br| 'h' - endianness depends on host (default), |br| 'n' - endianness depends on network"
+msgid "``byte-order`` can be one of next flags:"
+msgstr ""
+
+#: ../reference_lua/uuid.rst:104
+msgid "'l' - little-endian,"
+msgstr ""
+
+#: ../reference_lua/uuid.rst:105
+msgid "'b' - big-endian,"
+msgstr ""
+
+#: ../reference_lua/uuid.rst:106
+msgid "'h' - endianness depends on host (default),"
 msgstr ""
 
 #: ../reference_lua/uuid.rst:107
-#: ../reference_lua/uuid.rst:114
+msgid "'n' - endianness depends on network"
+msgstr ""
+
+#: ../reference_lua/uuid.rst:109
+msgid "one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``."
+msgstr ""
+
+#: ../reference_lua/uuid.rst:111
+#: ../reference_lua/uuid.rst:118
 msgid "UUID converted from cdata input value."
 msgstr ""
 
-#: ../reference_lua/uuid.rst:108
+#: ../reference_lua/uuid.rst:112
 msgid "16-byte binary string"
 msgstr ""
 
-#: ../reference_lua/uuid.rst:115
+#: ../reference_lua/uuid.rst:119
 msgid "36-byte hexadecimal string"
 msgstr ""
 
-#: ../reference_lua/uuid.rst:121
+#: ../reference_lua/uuid.rst:125
 msgid "The all-zero UUID value can be expressed as uuid.NULL, or as ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. The comparison with an all-zero value can also be expressed as ``uuid_with_type_cdata == uuid.NULL``."
 msgstr ""
 
-#: ../reference_lua/uuid.rst:126
+#: ../reference_lua/uuid.rst:130
 msgid "true if the value is all zero, otherwise false."
 msgstr ""
 
-#: ../reference_lua/uuid.rst:127
+#: ../reference_lua/uuid.rst:131
 msgid "bool"
 msgstr ""
 
-#: ../reference_lua/uuid.rst:133
+#: ../reference_lua/uuid.rst:137
 msgid "tarantool> uuid = require('uuid')\n"
 "---\n"
 "...\n"
@@ -4249,11 +4504,11 @@ msgid "tarantool> uuid = require('uuid')\n"
 msgstr ""
 
 #: ../reference_lua/yaml.rst:30
-msgid "Package `yaml`"
+msgid "Module `yaml`"
 msgstr ""
 
 #: ../reference_lua/yaml.rst:32
-msgid "The ``yaml`` package takes strings in YAML_ format and decodes them, or takes a series of non-YAML values and encodes them."
+msgid "The ``yaml`` module takes strings in YAML_ format and decodes them, or takes a series of non-YAML values and encodes them."
 msgstr ""
 
 #: ../reference_lua/yaml.rst:39
@@ -4352,6 +4607,6 @@ msgid "tarantool> yaml = require('yaml')\n"
 msgstr ""
 
 #: ../reference_lua/yaml.rst:133
-msgid "Also, some YAML configuration settings for encoding can be changed, in the same way that they can be changed for :ref:`JSON <json-package_cfg>`."
+msgid "Also, some YAML configuration settings for encoding can be changed, in the same way that they can be changed for :ref:`JSON <json-module_cfg>`."
 msgstr ""
 

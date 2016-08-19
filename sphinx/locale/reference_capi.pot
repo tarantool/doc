@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 18:18+0300\n"
+"POT-Creation-Date: 2016-08-19 12:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,57 +45,57 @@ msgid "-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-e
 msgstr ""
 
 #: ../reference_capi/box.rst:46
-#: ../reference_capi/box.rst:90
-#: ../reference_capi/box.rst:105
-#: ../reference_capi/box.rst:121
-#: ../reference_capi/box.rst:143
-#: ../reference_capi/box.rst:165
+#: ../reference_capi/box.rst:94
+#: ../reference_capi/box.rst:109
+#: ../reference_capi/box.rst:125
+#: ../reference_capi/box.rst:147
+#: ../reference_capi/box.rst:169
 #: ../reference_capi/tuple.rst:82
 #: ../reference_capi/tuple.rst:95
 msgid "0 otherwise"
 msgstr ""
 
-#: ../reference_capi/box.rst:50
+#: ../reference_capi/box.rst:52
 msgid "Find space id by name."
 msgstr ""
 
-#: ../reference_capi/box.rst:52
+#: ../reference_capi/box.rst:54
 msgid "This function performs SELECT request to _vspace system space."
 msgstr ""
 
-#: ../reference_capi/box.rst:54
+#: ../reference_capi/box.rst:56
 msgid "space name"
-msgstr ""
-
-#: ../reference_capi/box.rst:55
-#: ../reference_capi/box.rst:69
-msgid "length of ``name``"
 msgstr ""
 
 #: ../reference_capi/box.rst:57
 #: ../reference_capi/box.rst:71
-msgid ":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgid "length of ``name``"
 msgstr ""
 
 #: ../reference_capi/box.rst:59
 #: ../reference_capi/box.rst:73
-msgid "space_id otherwise"
+msgid ":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
 #: ../reference_capi/box.rst:61
+#: ../reference_capi/box.rst:75
+msgid "space_id otherwise"
+msgstr ""
+
+#: ../reference_capi/box.rst:63
 msgid "See also: :c:type:`box_index_id_by_name`"
 msgstr ""
 
-#: ../reference_capi/box.rst:65
+#: ../reference_capi/box.rst:67
 msgid "Find index id by name."
 msgstr ""
 
-#: ../reference_capi/box.rst:67
-#: ../reference_capi/box.rst:83
-#: ../reference_capi/box.rst:98
-#: ../reference_capi/box.rst:113
-#: ../reference_capi/box.rst:129
-#: ../reference_capi/box.rst:151
+#: ../reference_capi/box.rst:69
+#: ../reference_capi/box.rst:87
+#: ../reference_capi/box.rst:102
+#: ../reference_capi/box.rst:117
+#: ../reference_capi/box.rst:133
+#: ../reference_capi/box.rst:155
 #: ../reference_capi/box_index.rst:110
 #: ../reference_capi/box_index.rst:149
 #: ../reference_capi/box_index.rst:159
@@ -107,65 +107,65 @@ msgstr ""
 msgid "space identifier"
 msgstr ""
 
-#: ../reference_capi/box.rst:68
+#: ../reference_capi/box.rst:70
 msgid "index name"
 msgstr ""
 
-#: ../reference_capi/box.rst:75
+#: ../reference_capi/box.rst:77
 msgid "This function performs SELECT request to _vindex system space."
 msgstr ""
 
-#: ../reference_capi/box.rst:77
+#: ../reference_capi/box.rst:79
 msgid "See also: :c:type:`box_space_id_by_name`"
 msgstr ""
 
-#: ../reference_capi/box.rst:81
+#: ../reference_capi/box.rst:85
 msgid "Execute an INSERT/REPLACE request."
 msgstr ""
 
-#: ../reference_capi/box.rst:84
-#: ../reference_capi/box.rst:99
-#: ../reference_capi/box.rst:153
+#: ../reference_capi/box.rst:88
+#: ../reference_capi/box.rst:103
+#: ../reference_capi/box.rst:157
 msgid "encoded tuple in MsgPack Array format ([ field1, field2, ...])"
-msgstr ""
-
-#: ../reference_capi/box.rst:85
-#: ../reference_capi/box.rst:100
-#: ../reference_capi/box.rst:154
-msgid "end of a ``tuple``"
-msgstr ""
-
-#: ../reference_capi/box.rst:86
-#: ../reference_capi/box.rst:101
-msgid "output argument. Resulted tuple. Can be set to NULL to discard result"
 msgstr ""
 
 #: ../reference_capi/box.rst:89
 #: ../reference_capi/box.rst:104
-#: ../reference_capi/box.rst:120
-#: ../reference_capi/box.rst:142
+#: ../reference_capi/box.rst:158
+msgid "end of a ``tuple``"
+msgstr ""
+
+#: ../reference_capi/box.rst:90
+#: ../reference_capi/box.rst:105
+msgid "output argument. Resulted tuple. Can be set to NULL to discard result"
+msgstr ""
+
+#: ../reference_capi/box.rst:93
+#: ../reference_capi/box.rst:108
+#: ../reference_capi/box.rst:124
+#: ../reference_capi/box.rst:146
 msgid "-1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
-#: ../reference_capi/box.rst:92
+#: ../reference_capi/box.rst:96
 msgid "See also :ref:`space_object.insert()<box_space-insert>`"
 msgstr ""
 
-#: ../reference_capi/box.rst:96
+#: ../reference_capi/box.rst:100
 msgid "Execute an REPLACE request."
 msgstr ""
 
-#: ../reference_capi/box.rst:107
+#: ../reference_capi/box.rst:111
 msgid "See also :ref:`space_object.replace()<box_space-replace>`"
 msgstr ""
 
-#: ../reference_capi/box.rst:111
+#: ../reference_capi/box.rst:115
 msgid "Execute an DELETE request."
 msgstr ""
 
-#: ../reference_capi/box.rst:114
-#: ../reference_capi/box.rst:130
-#: ../reference_capi/box.rst:152
+#: ../reference_capi/box.rst:118
+#: ../reference_capi/box.rst:134
+#: ../reference_capi/box.rst:156
 #: ../reference_capi/box_index.rst:111
 #: ../reference_capi/box_index.rst:150
 #: ../reference_capi/box_index.rst:160
@@ -177,58 +177,58 @@ msgstr ""
 msgid "index identifier"
 msgstr ""
 
-#: ../reference_capi/box.rst:115
-#: ../reference_capi/box.rst:131
+#: ../reference_capi/box.rst:119
+#: ../reference_capi/box.rst:135
 msgid "encoded key in MsgPack Array format ([ field1, field2, ...])"
 msgstr ""
 
-#: ../reference_capi/box.rst:116
-#: ../reference_capi/box.rst:132
+#: ../reference_capi/box.rst:120
+#: ../reference_capi/box.rst:136
 msgid "end of a ``key``"
 msgstr ""
 
-#: ../reference_capi/box.rst:117
-#: ../reference_capi/box.rst:139
-#: ../reference_capi/box.rst:161
+#: ../reference_capi/box.rst:121
+#: ../reference_capi/box.rst:143
+#: ../reference_capi/box.rst:165
 msgid "output argument. Result an old tuple. Can be set to NULL to discard result"
 msgstr ""
 
-#: ../reference_capi/box.rst:123
+#: ../reference_capi/box.rst:127
 msgid "See also :ref:`space_object.delete()<box_space-delete>`"
 msgstr ""
 
-#: ../reference_capi/box.rst:127
+#: ../reference_capi/box.rst:131
 msgid "Execute an UPDATE request."
 msgstr ""
 
-#: ../reference_capi/box.rst:133
-#: ../reference_capi/box.rst:155
+#: ../reference_capi/box.rst:137
+#: ../reference_capi/box.rst:159
 msgid "encoded operations in MsgPack Arrat format, e.g. ``[[ '=', field_id,  value ], ['!', 2, 'xxx']]``"
 msgstr ""
 
-#: ../reference_capi/box.rst:135
-#: ../reference_capi/box.rst:157
+#: ../reference_capi/box.rst:139
+#: ../reference_capi/box.rst:161
 msgid "end of a ``ops``"
 msgstr ""
 
-#: ../reference_capi/box.rst:136
-#: ../reference_capi/box.rst:158
+#: ../reference_capi/box.rst:140
+#: ../reference_capi/box.rst:162
 msgid "0 if field_ids in update operation are zero-based indexed (like C) or 1 if for one-based indexed field ids (like Lua)."
 msgstr ""
 
-#: ../reference_capi/box.rst:145
+#: ../reference_capi/box.rst:149
 msgid "See also :ref:`space_object.update()<box_space-update>`"
 msgstr ""
 
-#: ../reference_capi/box.rst:149
+#: ../reference_capi/box.rst:153
 msgid "Execute an UPSERT request."
 msgstr ""
 
-#: ../reference_capi/box.rst:164
+#: ../reference_capi/box.rst:168
 msgid "-1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
-#: ../reference_capi/box.rst:167
+#: ../reference_capi/box.rst:171
 msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
 msgstr ""
 
@@ -512,7 +512,7 @@ msgstr ""
 #: ../reference_capi/coio.rst:65
 #: ../reference_capi/say.rst:74
 #: ../reference_capi/tuple.rst:155
-msgid "Example:"
+msgid "**Example:**"
 msgstr ""
 
 #: ../reference_capi/coio.rst:67
@@ -756,7 +756,7 @@ msgstr ""
 msgid "Return slab_cache suitable to use with ``tarantool/small`` library"
 msgstr ""
 
-#: ../reference_capi/index.rst:28
+#: ../reference_capi/index.rst:30
 msgid "C API reference"
 msgstr ""
 
@@ -1340,11 +1340,7 @@ msgid "CTypeID"
 msgstr ""
 
 #: ../reference_capi/utils.rst:80
-msgid "See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`,"
-msgstr ""
-
-#: ../reference_capi/utils.rst:81
-msgid ":ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`"
+msgid "See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`, :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`"
 msgstr ""
 
 #: ../reference_capi/utils.rst:85
