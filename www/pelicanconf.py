@@ -51,7 +51,9 @@ STATIC_PATHS = [
     'js/select.js',
     'js/filesize.min.js',
     'js/highcharts_base.js',
-    'js/jquery.min.js'
+    'js/jquery.min.js',
+    'terms.docx',
+    'license.docx'
 ]
 
 EXTRA_PATH_METADATA = {}
