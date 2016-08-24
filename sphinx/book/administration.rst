@@ -47,20 +47,22 @@ running on a host, their status, and so on.
 
 A Tarantool server's process title has these components:
 
-.. cssclass:: highlight
-.. parsed-literal::
-
-    **program_name** [**initialization_file_name**] **<role_name>** [**custom_proc_title**]
+:extsamp:`{**{program_name}**} [{**{initialization_file_name}**}] {**{<role_name>}**} [{**{custom_proc_title}**}]`
 
 * **program_name** is typically "tarantool".
-* **initialization_file_name** is the name of an :ref:`initialization file <index-init_label>` if one was specified.
+* **initialization_file_name** is the name of an
+  :ref:`initialization file <index-init_label>`, if one was specified.
 * **role_name** is:
+
   - "running" (ordinary node "ready to accept requests"),
   - "loading" (ordinary node recovering from old snap and wal files),
   - "orphan" (not in a cluster),
   - "hot_standby" (see section :ref:`local hot standby <book_cfg_local_hot_standby>`), or
   - "dumper" + process-id (saving a snapshot).
-* **custom_proc_title** is taken from the :ref:`custom_proc_title <cfg_basic-custom_proc_title>` configuration parameter, if one was specified.
+
+* **custom_proc_title** is taken from the
+  :ref:`custom_proc_title <cfg_basic-custom_proc_title>` configuration parameter,
+  if one was specified.
 
 For example:
 
@@ -73,21 +75,21 @@ For example:
 .. _administration-using_tarantool_as_a_client:
 
 =====================================================================
-                        Using ``tarantool`` as a client
+                        Using tarantool as a client
 =====================================================================
 
 .. program:: tarantool
 
-If ``tarantool`` is started without an :ref:`initialization file <index-init_label>`,
-or if the initialization file contains :ref:`console.start() <console-start>`, then ``tarantool``
-enters interactive mode. There will be a prompt ("``tarantool>``") and it will
-be possible to enter requests. When used this way, ``tarantool`` can be
-a client for a remote server.
+If :program:`tarantool` is started without an :ref:`initialization file <index-init_label>`,
+or if the initialization file contains :ref:`console.start() <console-start>`, then
+:program:`tarantool` enters interactive mode. There will be a prompt ("``tarantool>``")
+and it will be possible to enter requests. When used this way, :program:`tarantool`
+can be a client for a remote server.
 
-This section shows all legal syntax for the tarantool program, with short notes
-and examples. Other client programs may have similar options and request
-syntaxes. Some of the information in this section is duplicated in the
-:ref:`book-cfg <index-book_cfg>` chapter.
+This section shows all legal syntax for the :program:`tarantool` program, with
+short notes and examples. Other client programs may have similar options and
+request syntaxes. Some of the information in this section is duplicated in the
+chapter :ref:`Configuration reference <index-book_cfg>`.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             Conventions used in this section
@@ -113,26 +115,26 @@ General form:
     OR
     $ **tarantool** *lua-initialization-file* **[** *arguments* **]**
 
-*lua-initialization-file* can be any script containing code for initializing.
-Effect: The code in the file is executed during startup. Example: ``init.lua``.
-Notes: If a script is used, there will be no prompt. The script should contain
-configuration information including ``box.cfg{...listen=...}`` or
-``box.listen(...)`` so that a separate program can connect to the server via
+Here *lua-initialization-file* can be any script containing code for initializing.
+Effect: The code in the file is executed during startup. Example: :samp:`init.lua`. 
+|br| Notes: If a script is used, there will be no prompt. The script should contain
+configuration information including :samp:`box.cfg{...listen=...}` or
+:samp:`box.listen(...)` so that a separate program can connect to the server via
 one of the ports.
 
-Option is one of the following (in alphabetical order by the long form of the
+*Option* is one of the following (in alphabetical order by the long form of the
 option):
 
 .. option:: -?, -h, --help
 
     Client displays a help message including a list of options.
-    Example: ``tarantool --help``.
+    Example: :samp:`tarantool --help`
     The program stops after displaying the help.
 
 .. option:: -V, --version
 
     Client displays version information.
-    Example: ``tarantool --version``.
+    Example: :samp:`tarantool --version`.
     The program stops after displaying the version.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,23 +143,24 @@ option):
 
 Procedure identifiers are: Any sequence of letters, digits, or underscores
 which is legal according to the rules for Lua identifiers. Procedure
-identifiers are also called function names. Notes: function names are case
-sensitive so ``insert`` and ``Insert`` are not the same thing.
+identifiers are also called function names. |br|
+Note: function names are case sensitive so ``insert`` and ``Insert`` are not the
+same thing.
 
 String literals are: Any sequence of zero or more characters enclosed in
 single quotes. Double quotes are legal but single quotes are preferred.
 Enclosing in double square brackets is good for multi-line strings as
-described in `Lua documentation`_. Examples: 'Hello, world', 'A', [[A\\B!]].
+described in `Lua documentation <http://www.lua.org/pil/2.4.html>`_. |br|
+Examples: 'Hello, world', 'A', [[A\\B!]].
 
-.. _Lua documentation: http://www.lua.org/pil/2.4.html
-
-Numeric literals are: Any sequence of one or more digits, not enclosed
-in quotes, optionally preceded by - (minus sign).
+Numeric literals are: Any sequence of one or more digits, not enclosed in
+quotes, optionally preceded by - (minus sign).
 Large or floating-point numeric
-literals may include decimal points, exponential notation, or suffixes.
+literals may include decimal points, exponential notation, or suffixes.|br|
 Examples: 500, -500, 5e2, 500.1, 5LL, 5ULL.
 
-Single-byte tokens are: , or ( or ) or arithmetic operators. Examples: * , ( ).
+Single-byte tokens are: , or ( or ) or arithmetic operators. |br|
+Examples: * , ( ).
 
 Tokens must be separated from each other by one or more spaces, except that
 spaces are not necessary around single-byte tokens or string literals.
@@ -169,9 +172,9 @@ spaces are not necessary around single-byte tokens or string literals.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Generally requests are entered following the prompt in interactive mode while
-``tarantool`` is running. (A prompt will be the word tarantool and a
-greater-than sign, for example ``tarantool>``). The end-of-request marker is by
-default a newline (line feed).
+:program:`tarantool` is running. (A prompt will be the word 'tarantool' and a
+greater-than sign, for example :samp:`tarantool>`). The end-of-request marker is
+by default a newline (line feed).
 
 For multi-line requests, it is possible to change the end-of-request marker.
 Syntax: :samp:`console = require('console'); console.delimiter({string-literal})`.
@@ -180,7 +183,7 @@ end-of-request delimiter, so newline alone is not treated as end of request.
 To go back to normal mode: :samp:`console.delimiter(''){string-literal}`.
 Delimiters are usually not necessary because Tarantool can tell when a
 multi-line request has not ended (for example, if it sees that a function
-declaration does not have an ``end`` keyword). Example:
+declaration does not have an :samp:`end` keyword). Example:
 
 .. code-block:: lua_tarantool
 
@@ -191,12 +194,12 @@ declaration does not have an ``end`` keyword). Example:
     end!
     console.delimiter('')!
 
-For a condensed Backus-Naur Form [BNF] description of the suggested form
-of client requests, see http://tarantool.org/doc/dev_guide/box-protocol.html.
+See :ref:`here <box_protocol-iproto_protocol>` a condensed Backus-Naur Form
+[BNF] description of the suggested form of client requests.
 
 In *interactive* mode, one types requests and gets results. Typically the
 requests are typed in by the user following prompts. Here is an example of
-an interactive-mode tarantool client session:
+an interactive-mode Tarantool client session:
 
 .. code-block:: tarantoolsession
 
@@ -204,8 +207,7 @@ an interactive-mode tarantool client session:
     [ tarantool will display an introductory message
       including version number here ]
     tarantool> box.cfg{listen = 3301}
-    [ tarantool will display configuration information
-      here ]
+    [ tarantool will display configuration information here ]
     tarantool> s = box.schema.space.create('tester')
     [ tarantool may display an in-progress message here ]
     ---
@@ -228,25 +230,28 @@ an interactive-mode tarantool client session:
     2014-04-30 10:28:00.886 [20436] main/101/spawner I> Exiting: master shutdown
     $ 
 
-Explanatory notes about what tarantool displayed in the above example:
+Explanatory notes about what Tarantool displayed in the above example:
 
-* Many requests return typed objects. In the case of "``box.cfg{listen=3301}``",
+* Many requests return typed objects. In the case of :samp:`box.cfg{listen=3301}`,
   this result is displayed on the screen. If the request had assigned the result
-  to a variable, for example "``c = box.cfg{listen=3301}``", then the result
+  to a variable, for example :samp:`c = box.cfg{listen=3301}`, then the result
   would not have been displayed on the screen.
 * A display of an object always begins with "``---``" and ends with "``...``".
-* The insert request returns an object of type = tuple, so the object display line begins with a single dash ('``-``'). However, the select request returns an object of type = table of tuples, so the object display line begins with two dashes ('``- -``').
+* The insert request returns an object of type = tuple, so the object display
+  line begins with a single dash ('``-``'). However, the select request returns
+  an object of type = table of tuples, so the object display line begins with
+  two dashes ('``- -``').
 
 .. _administration-tarantoolctl:
 
 =====================================================================
-                        Utility ``tarantoolctl``
+                        Utility tarantoolctl
 =====================================================================
 
 .. program:: tarantoolctl
 
-With ``tarantoolctl`` one can say: "start an instance of the Tarantool server
-which runs a single user-written Lua program, allocating disk resources
+With :program:`tarantoolctl` you can say: "start an instance of the Tarantool
+server which runs a single user-written Lua program, allocating disk resources
 specifically for that program, via a standardized deployment method."
 If Tarantool was installed with Debian or
 Red Hat installation packages, the script is 
@@ -255,23 +260,23 @@ The script handles such things as:
 starting, stopping, rotating logs, logging in to the application's console,
 and checking status.
 
-The use of tarantoolctl as a client is described in a separate section,
+The use of :program:`tarantoolctl` as a client is described in a separate section,
 :ref:`tarantoolctl connect <administration-tarantoolctl_connect>`.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            configuring for tarantoolctl
+            Configuration for tarantoolctl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-"The :codenormal:`tarantoolctl` script will look for a configuration file
-in the current directory (:codenormal:`$PWD/.tarantoolctl`).
-If that fails, it looks in the current user's home directory (:codenormal:`$HOME/.config/tarantool/tarantool`).
-If that fails, it looks in the SYSCONFDIR directory (usually :codenormal:`/etc/sysconfig/tarantool`
-but it may be different on some platforms).
-Most
-of the settings are similar to the settings used by ``box.cfg{...};``
-however, tarantoolctl adjusts some of them by adding an application name.
-A copy of :file:`usr/local/etc/default/tarantool`, with defaults for all settings,
-would look like this:
+The :program:`tarantoolctl` script will look for a configuration file
+in the current directory (:file:`$PWD/.tarantoolctl`).
+If that fails, it looks in the current user's home directory
+(:file:`$HOME/.config/tarantool/tarantool`).
+If that fails, it looks in the SYSCONFDIR directory (usually
+:file:`/etc/sysconfig/tarantool`, but it may be different on some platforms).
+Most of the settings are similar to the settings used by :samp:`box.cfg{...}`;
+however, :program:`tarantoolctl` adjusts some of them by adding an application
+name. A copy of :file:`usr/local/etc/default/tarantool`, with defaults for all
+settings, would look like this:
 
 .. code-block:: lua
 
@@ -308,19 +313,18 @@ The settings in the above script are:
     add ":samp:`/{instance-name}.log`" to the name.
 
 ``username``
-    The user that runs the tarantool server. This is the operating-system
+    The user that runs the Tarantool server. This is the operating-system
     user name rather than the Tarantool-client user name.
 
 ``instance_dir``
     The directory where all applications for this host are stored. The user
     who writes an application for :program:`tarantoolctl` must put the
     application's source code in this directory, or a symbolic link. For
-    examples in this section the application name my_app will be used, and
+    examples in this section the application name ``my_app`` will be used, and
     its source will have to be in :samp:`{instance_dir}/my_app.lua`.
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            commands for tarantoolctl
+            Commands for tarantoolctl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The command format is :samp:`tarantoolctl {operation} {application_name}`, where
@@ -351,10 +355,10 @@ operation is one of: start, stop, enter, logrotate, status, eval. Thus ...
     Execute code from *<scriptname>* on an instance of application
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     typical code snippets for tarantoolctl
+     Typical code snippets for tarantoolctl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A user can check whether my_app is running with these lines:
+A user can check whether ``my_app`` is running with these lines:
 
 .. code-block:: bash
 
@@ -362,7 +366,7 @@ A user can check whether my_app is running with these lines:
     ...
     fi
 
-A user can initiate, for boot time, an init.d set of instructions:
+A user can initiate, for boot time, an :file:`init.d` set of instructions:
 
 .. code-block:: bash
 
@@ -391,22 +395,23 @@ A user can set up a further configuration file for log rotation, like this:
       A detailed example for tarantoolctl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The example's objective is: make a temporary directory where tarantoolctl
-can start a long-running application and monitor it.
+The example's objective is: make a temporary directory where
+:program:`tarantoolctl` can start a long-running application and monitor it.
 
 The assumptions are: the root password is known, the computer is only being used
 for tests, the Tarantool server is ready to run but is not currently running,
 tarantoolctl is installed along the user's path,
 and there currently is no directory named :file:`tarantool_test`.
 
-Create a directory named /tarantool_test:
+Create a directory named :file:`/tarantool_test`:
 
 .. code-block:: console
 
     $ sudo mkdir /tarantool_test
 
-Edit /usr/local/etc/default/tarantool. It might be necessary to
-say :codenormal:`sudo mkdir /usr/local/etc/default` first. Let the new file contents be:
+Edit :file:`/usr/local/etc/default/tarantool`. It might be necessary to
+say :samp:`sudo mkdir /usr/local/etc/default` first. Let the new file contents
+be:
 
 .. code-block:: lua
 
@@ -420,7 +425,8 @@ say :codenormal:`sudo mkdir /usr/local/etc/default` first. Let the new file cont
     }
     instance_dir = "/tarantool_test"
 
-Make the my_app application file, that is, :file:`/tarantool_test/my_app.lua`. Let the file contents be:
+Make the ``my_app`` application file, that is, :file:`/tarantool_test/my_app.lua`.
+Let the file contents be:
 
 .. code-block:: lua
 
@@ -438,7 +444,7 @@ Make the my_app application file, that is, :file:`/tarantool_test/my_app.lua`. L
         box.space.tester:insert{i, 'my_app tuple'}
     end
 
-Tell tarantoolctl to start the application ...
+Tell :program:`tarantoolctl` to start the application ...
 
 .. code-block:: console
 
@@ -451,13 +457,14 @@ Tell tarantoolctl to start the application ...
 
     $ ls -l /tarantool_test/my_app
 
-... expect to see the .snap file and the .xlog file. Then ...
+... expect to see the :file:`.snap` file and the :file:`.xlog` file. Then ...
 
 .. code-block:: console
 
     $ sudo less /tarantool_test/log/my_app.log
 
-... expect to see the contents of my_app's log, including error messages, if any. Then ...
+... expect to see the contents of ``my_app``'s log, including error messages, if
+any. Then ...
 
 .. code-block:: tarantoolsession
 
@@ -469,15 +476,16 @@ Tell tarantoolctl to start the application ...
     tarantool> console.connect('localhost:3301')
     tarantool> box.space.tester:select({0}, {iterator = 'GE'})
 
-... expect to see several tuples that my_app has created.
+... expect to see several tuples that ``my_app`` has created.
 
-Stop. The only clean way to stop my_app is with tarantoolctl, thus:
+Stop. The only clean way to stop ``my_app`` is with :program:`tarantoolctl`, thus:
 
 .. code-block:: console
 
     $ sudo tarantoolctl stop my_app
 
-Clean up. Restore the original contents of :file:`/usr/local/etc/default/tarantool`, and ...
+Clean up. Restore the original contents of :file:`/usr/local/etc/default/tarantool`, 
+and ...
 
 .. code-block:: console
 
@@ -487,14 +495,19 @@ Clean up. Restore the original contents of :file:`/usr/local/etc/default/taranto
 .. _administration-tarantoolctl_connect:
 
 =====================================================================
-                        Utility ``tarantoolctl connect``
+                        Utility tarantoolctl connect
 =====================================================================
 
-The ``tarantoolctl connect`` utility is a client program.
-Use it to connect to a tarantool server and pass requests.
+The :program:`tarantoolctl connect` utility is a client program.
+Use it to connect to a Tarantool server and pass requests.
 
-To invoke the utility one says: |br|
-:codenormal:`tarantoolctl connect` :codeitalic:`URI` |br|
+To invoke the utility, say:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+   tarantoolctl connect *URI*
+   
 and the format of a URI is described :ref:`in the URI section <index-uri>`.
 
 Example:
@@ -503,18 +516,18 @@ Example:
 
     $ tarantoolctl connect username:password@127.0.0.1:3306
 
-There are alternatives to ``tarantoolctl connect`` -- one can use
-the :ref:`console module <console-module>` or the :ref:`net.box module <net_box-module>` from a Tarantool server.
-Also one can write one's one client programs with any of the
+There are alternatives to :program:`tarantoolctl connect` -- you can use
+the :ref:`console module <console-module>` or the
+:ref:`net.box module <net_box-module>` from a Tarantool server.
+Also you can write your client programs with any of the
 Connectors. However, most of the examples in this manual illustrate
-usage with either ``tarantoolctl connect`` or with
-:ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`.
+usage with either :program:`tarantoolctl connect` or with
+:ref:`using the Tarantool server as a client <administration-using_tarantool_as_a_client>`.
 
 Statements about :ref:`console.connect() <console-connect>` behavior are
-usually applicable for ``tarantoolctl connect`` as well.
-For example, an :ref:`authentication trigger <triggers-authentication_triggers>` will be
-activated whenever ``tarantoolctl connect`` starts
-or ends.
+usually applicable for :program:`tarantoolctl connect` as well.
+For example, an :ref:`authentication trigger <triggers-authentication_triggers>`
+will be activated whenever :program:`tarantoolctl connect` starts or ends.
 
 .. _administration-admin_ports:
 
@@ -522,31 +535,42 @@ or ends.
             Admin ports
 ====================================================================
 
-
 "Admin port", "admin console", and "text protocol" all
 refer to the same thing: a connection which is set up
-with :ref:`console.listen(...) <console-listen>` for entry of requests by administrators.
+with :ref:`console.listen(...) <console-listen>` for entry of requests by
+administrators.
 
 "Binary port", "binary protocol", and "primary port"
 all refer to a different thing: a connection which is set up
-with :ref:`box.cfg{listen=...} <cfg_basic-listen>` for entry of requests by anyone.
+with :ref:`box.cfg{listen=...} <cfg_basic-listen>` for entry of requests by
+anyone.
 
 Ordinary connections to the Tarantool server should go via a binary port. 
 But admin ports are useful for special cases involving security.
 
-When one connects to an admin port: |br|
-* No password is necessary |br|
-* The user is automatically 'admin', a user with many privileges. |br|
-Therefore one must set up admin ports very cautiously.
+When you connect to an admin port:
+
+* No password is necessary
+* The user is automatically 'admin', a user with many privileges.
+
+Therefore you must set up admin ports very cautiously.
 If it is a TCP port, it should only be opened for a specific IP.
 Ideally it should not be a TCP port at all, it should be a Unix domain socket,
 so that access to the server machine is required.
-Thus a typical setup for an admin port is: |br|
-:codenormal:`console.listen('/var/lib/tarantool/socket_name.sock')` |br|
-and a typical connection :ref:`URI <index-uri>` is: |br|
-:codenormal:`admin:any_string@/var/lib/tarantool/socket_name.sock` |br|
-if the listener has the privilege to write on /var/lib/tarantool
-and the connector has the privilege to read on /var/lib/tarantool.
+Thus a typical setup for an admin port is:
+  
+.. code-block:: tarantoolsession
+
+   console.listen('/var/lib/tarantool/socket_name.sock')
+
+and a typical connection :ref:`URI <index-uri>` is:
+  
+.. code-block:: text
+
+  admin:any_string@/var/lib/tarantool/socket_name.sock
+
+if the listener has the privilege to write on :file:`/var/lib/tarantool`
+and the connector has the privilege to read on :file:`/var/lib/tarantool`.
 Alternatively both setup and connection can be done with
 :ref:`tarantoolctl <administration-tarantoolctl>`.
 
@@ -558,17 +582,17 @@ and are subject to Unix security and monitoring.
 For additional security, some requests are illegal.
 For example, :ref:`"conn:eval" <net_box-eval>`  will result in the error message
 "- error: console does not support this request type"
-because conn:eval requires the binary protocol.
+because ``conn:eval`` requires the binary protocol.
 
 If security via admin ports is not necessary, it is still possible
 to be an admin user by 
 :ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`,
 or by connecting to a binary port with a valid password.
 
-To find out whether a TCP port is an admin port, use telnet. For example:
+To find out whether a TCP port is an admin port, use :program:`telnet`.
+For example:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: console
 
   $ telnet 0 3303
   Trying 0.0.0.0...
@@ -592,14 +616,14 @@ on some platforms but not others - for example, on certain versions of a
 particular Linux distribution.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Administrating with Debian GNU/Linux and Ubuntu
+           Debian GNU/Linux and Ubuntu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Setting up an instance:
 
 .. code-block:: console
 
-    $ ln -s /etc/tarantool/instances.available/instance-name.cfg /etc/tarantool/instances.enabled/
+    $ ln -s /etc/tarantool/instances.available/*instance-name.cfg* /etc/tarantool/instances.enabled/
 
 Starting all instances:
 
@@ -649,20 +673,22 @@ the search box.
 
 Tarantool fully supports :program:`systemd` for managing instances and
 supervising database daemons.
-
+  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                      Instance management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tarantool was designed to have multiple running instances of Tarantool
-on the same machine. Use :samp:`systemctl {start|stop|restart|status} tarantool@${MYAPP}`
+on the same machine. Use
+:samp:`systemctl {start|stop|restart|status} tarantool@${MYAPP}`
 to manage your databases and Lua applications.
 
 ******************************************************
-                 creating instances
+                 Creating instances
 ******************************************************
 
-Simply put your Lua configuration to :file:`/etc/tarantool/instances.available/${MYAPP}.lua`:
+Simply put your Lua configuration to
+:file:`/etc/tarantool/instances.available/${MYAPP}.lua`:
 
 .. code-block:: lua
 
@@ -671,11 +697,11 @@ Simply put your Lua configuration to :file:`/etc/tarantool/instances.available/$
 
 (this minimal example is sufficient).
 
-Another starting point could be the :file:`example.lua` script that ships with Tarantool
-and defines all options.
+Another starting point could be the :file:`example.lua` script that ships with
+Tarantool and defines all options.
 
 ******************************************************
-                starting instances
+                Starting instances
 ******************************************************
 
 Use :samp:`systemctl start tarantool@${MYAPP}` to start ``${MYAPP}`` instance:
@@ -692,7 +718,7 @@ Use :samp:`systemctl enable tarantool@${MYAPP}` to enable ``${MYAPP}`` instance
 for auto-load during system startup.
 
 ******************************************************
-               monitoring instances
+               Monitoring instances
 ******************************************************
 
 Use :samp:`systemctl status tarantool@${MYAPP}` to check information about
@@ -724,11 +750,11 @@ Use :samp:`journalctl -u tarantool@${MYAPP}` to check the boot log:
     Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server
 
 ******************************************************
-                attaching to instances
+                Attaching to instances
 ******************************************************
 
-You can attach to a running Tarantool instance and evaluate some Lua code using the
-:program:`tarantoolctl` utility:
+You can attach to a running Tarantool instance and evaluate some Lua code using
+the :program:`tarantoolctl` utility:
 
 .. code-block:: console
 
@@ -743,7 +769,7 @@ You can attach to a running Tarantool instance and evaluate some Lua code using 
     unix/:/var/run/tarantool/example.control>
 
 ******************************************************
-                    checking logs
+                    Checking logs
 ******************************************************
 
 Tarantool logs important events to :file:`/var/log/tarantool/${MYAPP}.log`.
@@ -776,11 +802,12 @@ Then check the logs:
     2016-01-21 21:15:07.115 [5914] main/105/console/unix/: I> Hello for README.systemd readers
     2016-01-21 21:15:09.250 [5914] main/105/console/unix/: I> client unix/: disconnected
 
-Log rotation is enabled by default if you have :program:`logrotate` installed. Please configure
-:file:`/etc/logrotate.d/tarantool` to change the default behavior.
+Log rotation is enabled by default if you have :program:`logrotate` installed.
+Please configure :file:`/etc/logrotate.d/tarantool` to change the default
+behavior.
 
 ******************************************************
-                  stopping instances
+                  Stopping instances
 ******************************************************
 
 Use :samp:`systemctl stop tarantool@${MYAPP}` to see information about the running
@@ -846,8 +873,8 @@ Please see ``systemd.unit(5)`` manual page for additional information.
                       Debugging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:program:`coredumpctl` automatically saves core dumps and stack traces in case of a crash.
-Here is how it works:
+:program:`coredumpctl` automatically saves core dumps and stack traces in case
+of a crash. Here is how it works:
 
 .. code-block:: console
 
@@ -859,7 +886,8 @@ Here is how it works:
     unix/:/var/run/tarantool/example.control> require('ffi').cast('char *', 0)[0] = 48
     /bin/tarantoolctl: unix/:/var/run/tarantool/example.control: Remote host closed connection
 
-:samp:`coredumpctl list /usr/bin/tarantool` displays the latest crashes of the Tarantool daemon:
+:samp:`coredumpctl list /usr/bin/tarantool` displays the latest crashes of the
+Tarantool daemon:
 
 .. code-block:: console
 
@@ -932,30 +960,37 @@ It is highly recommended to install the ``tarantool-debuginfo`` package to impro
     libyaml-0.1.6-7.fc23.x86_64 ncurses-libs-6.0-1.20150810.fc24.x86_64
     openssl-libs-1.0.2e-3.fc24.x86_64
 
-Symbol names are present in stack traces even if you don't have the ``tarantool-debuginfo`` package installed.
+Symbol names are present in stack traces even if you don't have the
+``tarantool-debuginfo`` package installed.
 
-For additional information, please refer to the documentation provided with your Linux distribution.
+For additional information, please refer to the documentation provided with your
+Linux distribution.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                      Precautions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Please don't use ``tarantoolctl {start,stop,restart}`` to control instances
-  started by :program:`systemd`. It is still possible to use :program:`tarantoolctl` to start and
-  stop instances from your local directories (e.g. :file:`${HOME}`) without obtaining ``ROOT`` access.
+  started by :program:`systemd`. It is still possible to use
+  :program:`tarantoolctl` to start and stop instances from your local directories
+  (e.g. :file:`${HOME}`) without obtaining ``ROOT`` access.
 
-* :program:`tarantoolctl` is configured to work properly with ;program:`systemd`. Please don't
-  modify system-wide settings of :program:`tarantoolctl`, such as paths, directory permissions and usernames.
-  Otherwise, you have a chance to shoot yourself in the foot.
+* :program:`tarantoolctl` is configured to work properly with :program:`systemd`.
+  Please don't modify system-wide settings of :program:`tarantoolctl`, such as
+  paths, directory permissions and usernames. Otherwise, you have a chance to
+  shoot yourself in the foot.
 
-* :program:`systemd` scripts are maintained by the Tarantool Team (http://tarantool.org).
-  Please file tickets directly to the upstream's bug tracker rather than to your Linux distribution.
+* :program:`systemd` scripts are maintained by the Tarantool Team
+  (http://tarantool.org). Please file tickets directly to the upstream's bug
+  tracker (https://github.com/tarantool/tarantool/issues/) rather than to your
+  Linux distribution.
 
 =====================================================================
              Updating Tarantool in production
 =====================================================================
 
-First, put your application's business logic in a Tarantool-Lua module that exports its functions for CALL.
+First, put your application's business logic in a Tarantool-Lua module that
+exports its functions for CALL.
 
 For example, :file:`/usr/share/tarantool/myapp.lua`:
 
@@ -999,15 +1034,14 @@ For example, :file:`/usr/share/tarantool/myapp.lua`:
     }
 
 This file is maintained by the application's developers. On its side,
-Tarantool Team provides templates for you to `assemble deb/rpm packages`_
-and utilities to quickly `assemble packages for specific platforms`_.
+Tarantool Team provides templates for you to
+`assemble deb/rpm packages <https://github.com/tarantool/modulekit>`_
+and utilities to quickly
+`assemble packages for specific platforms <https://github.com/tarantool/build>`_.
 If needed, you can split applications into standalone files and/or modules.
 
-.. _assemble deb/rpm packages: https://github.com/tarantool/modulekit
-.. _assemble packages for specific platforms: https://github.com/tarantool/build
-
-
-Second, put an initialization script to the :file:`/etc/tarantool/instances.available` directory.
+Second, put an initialization script to the
+:file:`/etc/tarantool/instances.available` directory.
 
 For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:
 
@@ -1033,16 +1067,17 @@ For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:
     myapp = require('myapp').start({some app options controlled by sysadmins})
 
 
-As a more detailed example, you can take the :file:`example.lua` script that ships with Tarantool
-and defines all configuration options.
+As a more detailed example, you can take the :file:`example.lua` script that
+ships with Tarantool and defines all configuration options.
 
-This initialization script is actually a configuration file and should be maintained by system
-administrators, while developers only provide a template.
+This initialization script is actually a configuration file and should be
+maintained by system administrators, while developers only provide a template.
 
 
-Now update your app file in :file:`/usr/share/tarantool`. Replace your application file
-(for example, :file:`/usr/share/tarantool/myapp.lua`) and manually reload
-the :file:`myappcfg.lua` initialization script using :program:`tarantoolctl`:
+Now update your app file in :file:`/usr/share/tarantool`. Replace your
+application file (for example, :file:`/usr/share/tarantool/myapp.lua`) and
+manually reload the :file:`myappcfg.lua` initialization script using
+:program:`tarantoolctl`:
 
 .. code-block:: console
 
@@ -1050,13 +1085,14 @@ the :file:`myappcfg.lua` initialization script using :program:`tarantoolctl`:
 
 After that, you need to manually flush the cache of ``package.loaded`` modules.
 
-For deb/rpm packages, you can add the ``tarantoolctl eval`` instruction directly into Tarantool's
-specification in :file:`RPM.spec` and the :file:`/debian` directory.
+For deb/rpm packages, you can add the ``tarantoolctl eval`` instruction directly
+into Tarantool's specification in :file:`RPM.spec` and the
+:file:`/debian` directory.
 
 Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions.
 
-In the case of ``tarantool-http``, there is no need to start the binary protocol at all.
-
+In the case of ``tarantool-http``, there is no need to start the binary protocol
+at all.
 
 =====================================================================
        Backups
@@ -1066,28 +1102,33 @@ The exact procedure for backing up a database depends on:
 how up-to-date the database must be,
 how frequently backups must be taken,
 whether it is okay to disrupt other users,
-and whether the procedure should be optimized for size (saving disk space) or for speed (saving time).
-So there is a spectrum of possible policies, ranging from cold-and-simple to hot-and-difficult.
+and whether the procedure should be optimized for size (saving disk space)
+or for speed (saving time).
+So there is a spectrum of possible policies, ranging from cold-and-simple
+to hot-and-difficult.
 
-**Cold Backup**
+**Cold backup**
 
 In essence:
 The last snapshot file is a backup of the entire database;
 and the WAL files that are made after the last snapshot are incremental backups.
-Therefore taking a backup is a matter of copying the snapshot and WAL files. |br|
-(1) Prevent all users from writing to the database.This can be done by
-shutting down the server, or by saying
-:codenormal:`box.cfg{read_only=true}` and then ensuring that all earlier
-writes are complete (fsync can be used for this purpose). |br|
+Therefore taking a backup is a matter of copying the snapshot and WAL files.
+
+(1) Prevent all users from writing to the database. This can be done by
+    shutting down the server, or by saying
+    ``box.cfg{read_only=true}`` and then ensuring that all earlier
+    writes are complete (:program:`fsync` can be used for this purpose).
 (2) If this is a backup of the whole database, say
-:codenormal:`box.snapshot()`. |br|
-(3) Use tar to make a (possibly compressed) copy of the
-latest .snap and .xlog files on the :ref:`snap_dir <cfg_basic-snap_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>`
-directories. |br|
-(4) If there is a security policy, encrypt the tar file. |br|
-(5) Copy the tar file to a safe place. |br|
+    :samp:`box.snapshot()`.
+(3) Use :program:`tar` to make a (possibly compressed) copy of the
+    latest :file:`.snap` and :file:`.xlog` files on the
+    :ref:`snap_dir <cfg_basic-snap_dir>` and
+    :ref:`wal_dir <cfg_basic-wal_dir>` directories.
+(4) If there is a security policy, encrypt the tar file.
+(5) Copy the tar file to a safe place.
+
 ... Later, restoring the database is a matter of taking the
-tar file and putting its contents back in the snap_dir and wal_dir
+tar file and putting its contents back in the ``snap_dir`` and ``wal_dir``
 directories.
 
 **Continuous remote backup**
@@ -1106,15 +1147,14 @@ In essence:
 The logged changes done since the last cold backup must be
 secured, while the system is running.
 
-For this purpose one needs a "file copy" utility that will
+For this purpose you need a "file copy" utility that will
 do the copying remotely and continuously, copying only the
 parts of a file that are changing. One such utility is
-rsync_.
+`rsync <https://en.wikipedia.org/wiki/rsync>`_.
 
-Alternatively, one needs an ordinary file copy utility,
+Alternatively, you need an ordinary file copy utility,
 but there should be frequent production of new snapshot files or
-new WAL files as
-changes occur, so that only the new files need to be copied.
+new WAL files as changes occur, so that only the new files need to be copied.
 
 Note re storage engine: vinyl databases require additional steps.
 
@@ -1124,18 +1164,19 @@ Note re storage engine: vinyl databases require additional steps.
 
 This information applies for users who created databases with older
 versions of the Tarantool server, and have now installed a newer version.
-The request to make in this case is: :codenormal:`box.schema.upgrade()`.
+The request to make in this case is: :samp:`box.schema.upgrade()`.
 
-For example, here is what happens when one runs :codenormal:`box.schema.upgrade()`
-with a database that was created in early 2015. Only a small part of the output is shown. |br|
-:codenormal:`tarantool>` :codebold:`box.schema.upgrade()` |br|
-:codenormal:`alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]` |br|
-:codenormal:`alter space _schema set options to {}` |br|
-:codenormal:`create view _vindex...` |br|
-:codenormal:`grant read access to 'public' role for _vindex view` |br|
-:codenormal:`set schema version to 1.7.0` |br|
-:codenormal:`---` |br|
-:codenormal:`...` |br|
+For example, here is what happens when one runs :samp:`box.schema.upgrade()`
+with a database that was created in early 2015. Only a small part of the output
+is shown.
 
-.. _rsync: https://en.wikipedia.org/wiki/rsync
+.. code-block:: tarantoolsession
 
+   tarantool> box.schema.upgrade()
+   alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
+   alter space _schema set options to {}
+   create view _vindex...
+   grant read access to 'public' role for _vindex view
+   set schema version to 1.7.0
+   ---
+   ...
