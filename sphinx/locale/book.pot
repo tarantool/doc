@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-19 12:23+0300\n"
+"POT-Creation-Date: 2016-08-24 21:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,64 +88,84 @@ msgstr ""
 msgid "A Tarantool server's process title has these components:"
 msgstr ""
 
-#: ../book/administration.rst:78
-msgid "**program_name** [**initialization_file_name**] **<role_name>** [**custom_proc_title**]"
+#: ../book/administration.rst:75
+msgid ":extsamp:`{**{program_name}**} [{**{initialization_file_name}**}] {**{<role_name>}**} [{**{custom_proc_title}**}]`"
 msgstr ""
 
-#: ../book/administration.rst:80
+#: ../book/administration.rst:77
 msgid "**program_name** is typically \"tarantool\"."
 msgstr ""
 
-#: ../book/administration.rst:81
-msgid "**initialization_file_name** is the name of an :ref:`initialization file <index-init_label>` if one was specified."
+#: ../book/administration.rst:78
+msgid "**initialization_file_name** is the name of an :ref:`initialization file <index-init_label>`, if one was specified."
+msgstr ""
+
+#: ../book/administration.rst:80
+msgid "**role_name** is:"
 msgstr ""
 
 #: ../book/administration.rst:82
-msgid "**role_name** is: - \"running\" (ordinary node \"ready to accept requests\"), - \"loading\" (ordinary node recovering from old snap and wal files), - \"orphan\" (not in a cluster), - \"hot_standby\" (see section :ref:`local hot standby <book_cfg_local_hot_standby>`), or - \"dumper\" + process-id (saving a snapshot)."
+msgid "\"running\" (ordinary node \"ready to accept requests\"),"
+msgstr ""
+
+#: ../book/administration.rst:83
+msgid "\"loading\" (ordinary node recovering from old snap and wal files),"
+msgstr ""
+
+#: ../book/administration.rst:84
+msgid "\"orphan\" (not in a cluster),"
+msgstr ""
+
+#: ../book/administration.rst:85
+msgid "\"hot_standby\" (see section :ref:`local hot standby <book_cfg_local_hot_standby>`), or"
+msgstr ""
+
+#: ../book/administration.rst:86
+msgid "\"dumper\" + process-id (saving a snapshot)."
 msgstr ""
 
 #: ../book/administration.rst:88
 msgid "**custom_proc_title** is taken from the :ref:`custom_proc_title <cfg_basic-custom_proc_title>` configuration parameter, if one was specified."
 msgstr ""
 
-#: ../book/administration.rst:90
+#: ../book/administration.rst:92
 msgid "For example:"
 msgstr ""
 
-#: ../book/administration.rst:92
+#: ../book/administration.rst:94
 msgid "$ ps -AF | grep tarantool\n"
 "1000     17337 16716  1 91362  6916   0 11:07 pts/5    00:00:13 tarantool script.lua <running>"
 msgstr ""
 
-#: ../book/administration.rst:102
-msgid "Using ``tarantool`` as a client"
+#: ../book/administration.rst:104
+msgid "Using tarantool as a client"
 msgstr ""
 
-#: ../book/administration.rst:106
-msgid "If ``tarantool`` is started without an :ref:`initialization file <index-init_label>`, or if the initialization file contains :ref:`console.start() <console-start>`, then ``tarantool`` enters interactive mode. There will be a prompt (\"``tarantool>``\") and it will be possible to enter requests. When used this way, ``tarantool`` can be a client for a remote server."
+#: ../book/administration.rst:108
+msgid "If :program:`tarantool` is started without an :ref:`initialization file <index-init_label>`, or if the initialization file contains :ref:`console.start() <console-start>`, then :program:`tarantool` enters interactive mode. There will be a prompt (\"``tarantool>``\") and it will be possible to enter requests. When used this way, :program:`tarantool` can be a client for a remote server."
 msgstr ""
 
-#: ../book/administration.rst:112
-msgid "This section shows all legal syntax for the tarantool program, with short notes and examples. Other client programs may have similar options and request syntaxes. Some of the information in this section is duplicated in the :ref:`book-cfg <index-book_cfg>` chapter."
-msgstr ""
-
-#: ../book/administration.rst:119
-msgid "Conventions used in this section"
+#: ../book/administration.rst:114
+msgid "This section shows all legal syntax for the :program:`tarantool` program, with short notes and examples. Other client programs may have similar options and request syntaxes. Some of the information in this section is duplicated in the chapter :ref:`Configuration reference <index-book_cfg>`."
 msgstr ""
 
 #: ../book/administration.rst:121
+msgid "Conventions used in this section"
+msgstr ""
+
+#: ../book/administration.rst:123
 msgid "Tokens are character sequences which are treated as syntactic units within requests. Square brackets [ and ] enclose optional syntax. Three dots in a row ... mean the preceding tokens may be repeated. A vertical bar | means the preceding and following tokens are mutually exclusive alternatives."
 msgstr ""
 
-#: ../book/administration.rst:128
+#: ../book/administration.rst:130
 msgid "Options when starting client from the command line"
 msgstr ""
 
-#: ../book/administration.rst:130
+#: ../book/administration.rst:132
 msgid "General form:"
 msgstr ""
 
-#: ../book/administration.rst:135
+#: ../book/administration.rst:137
 msgid "$ **tarantool**\n"
 "OR\n"
 "$ **tarantool** *options*\n"
@@ -153,59 +173,59 @@ msgid "$ **tarantool**\n"
 "$ **tarantool** *lua-initialization-file* **[** *arguments* **]**"
 msgstr ""
 
-#: ../book/administration.rst:141
-msgid "*lua-initialization-file* can be any script containing code for initializing. Effect: The code in the file is executed during startup. Example: ``init.lua``. Notes: If a script is used, there will be no prompt. The script should contain configuration information including ``box.cfg{...listen=...}`` or ``box.listen(...)`` so that a separate program can connect to the server via one of the ports."
+#: ../book/administration.rst:143
+msgid "Here *lua-initialization-file* can be any script containing code for initializing. Effect: The code in the file is executed during startup. Example: :samp:`init.lua`. |br| Notes: If a script is used, there will be no prompt. The script should contain configuration information including :samp:`box.cfg{...listen=...}` or :samp:`box.listen(...)` so that a separate program can connect to the server via one of the ports."
 msgstr ""
 
-#: ../book/administration.rst:148
-msgid "Option is one of the following (in alphabetical order by the long form of the option):"
+#: ../book/administration.rst:150
+msgid "*Option* is one of the following (in alphabetical order by the long form of the option):"
 msgstr ""
 
-#: ../book/administration.rst:153
-msgid "Client displays a help message including a list of options. Example: ``tarantool --help``. The program stops after displaying the help."
+#: ../book/administration.rst:155
+msgid "Client displays a help message including a list of options. Example: :samp:`tarantool --help` The program stops after displaying the help."
 msgstr ""
 
-#: ../book/administration.rst:159
-msgid "Client displays version information. Example: ``tarantool --version``. The program stops after displaying the version."
-msgstr ""
-
-#: ../book/administration.rst:165
-msgid "Tokens, requests, and special key combinations"
+#: ../book/administration.rst:161
+msgid "Client displays version information. Example: :samp:`tarantool --version`. The program stops after displaying the version."
 msgstr ""
 
 #: ../book/administration.rst:167
-msgid "Procedure identifiers are: Any sequence of letters, digits, or underscores which is legal according to the rules for Lua identifiers. Procedure identifiers are also called function names. Notes: function names are case sensitive so ``insert`` and ``Insert`` are not the same thing."
+msgid "Tokens, requests, and special key combinations"
 msgstr ""
 
-#: ../book/administration.rst:172
-msgid "String literals are: Any sequence of zero or more characters enclosed in single quotes. Double quotes are legal but single quotes are preferred. Enclosing in double square brackets is good for multi-line strings as described in `Lua documentation`_. Examples: 'Hello, world', 'A', [[A\\\\B!]]."
+#: ../book/administration.rst:169
+msgid "Procedure identifiers are: Any sequence of letters, digits, or underscores which is legal according to the rules for Lua identifiers. Procedure identifiers are also called function names. |br| Note: function names are case sensitive so ``insert`` and ``Insert`` are not the same thing."
 msgstr ""
 
-#: ../book/administration.rst:179
-msgid "Numeric literals are: Any sequence of one or more digits, not enclosed in quotes, optionally preceded by - (minus sign). Large or floating-point numeric literals may include decimal points, exponential notation, or suffixes. Examples: 500, -500, 5e2, 500.1, 5LL, 5ULL."
+#: ../book/administration.rst:175
+msgid "String literals are: Any sequence of zero or more characters enclosed in single quotes. Double quotes are legal but single quotes are preferred. Enclosing in double square brackets is good for multi-line strings as described in `Lua documentation <http://www.lua.org/pil/2.4.html>`_. |br| Examples: 'Hello, world', 'A', [[A\\\\B!]]."
 msgstr ""
 
-#: ../book/administration.rst:185
-msgid "Single-byte tokens are: , or ( or ) or arithmetic operators. Examples: * , ( )."
+#: ../book/administration.rst:181
+msgid "Numeric literals are: Any sequence of one or more digits, not enclosed in quotes, optionally preceded by - (minus sign). Large or floating-point numeric literals may include decimal points, exponential notation, or suffixes.|br| Examples: 500, -500, 5e2, 500.1, 5LL, 5ULL."
 msgstr ""
 
 #: ../book/administration.rst:187
+msgid "Single-byte tokens are: , or ( or ) or arithmetic operators. |br| Examples: * , ( )."
+msgstr ""
+
+#: ../book/administration.rst:190
 msgid "Tokens must be separated from each other by one or more spaces, except that spaces are not necessary around single-byte tokens or string literals."
 msgstr ""
 
-#: ../book/administration.rst:194
+#: ../book/administration.rst:197
 msgid "Requests"
 msgstr ""
 
-#: ../book/administration.rst:196
-msgid "Generally requests are entered following the prompt in interactive mode while ``tarantool`` is running. (A prompt will be the word tarantool and a greater-than sign, for example ``tarantool>``). The end-of-request marker is by default a newline (line feed)."
+#: ../book/administration.rst:199
+msgid "Generally requests are entered following the prompt in interactive mode while :program:`tarantool` is running. (A prompt will be the word 'tarantool' and a greater-than sign, for example :samp:`tarantool>`). The end-of-request marker is by default a newline (line feed)."
 msgstr ""
 
-#: ../book/administration.rst:201
-msgid "For multi-line requests, it is possible to change the end-of-request marker. Syntax: :samp:`console = require('console'); console.delimiter({string-literal})`. The string-literal must be a value in single quotes. Effect: string becomes end-of-request delimiter, so newline alone is not treated as end of request. To go back to normal mode: :samp:`console.delimiter(''){string-literal}`. Delimiters are usually not necessary because Tarantool can tell when a multi-line request has not ended (for example, if it sees that a function declaration does not have an ``end`` keyword). Example:"
+#: ../book/administration.rst:204
+msgid "For multi-line requests, it is possible to change the end-of-request marker. Syntax: :samp:`console = require('console'); console.delimiter({string-literal})`. The string-literal must be a value in single quotes. Effect: string becomes end-of-request delimiter, so newline alone is not treated as end of request. To go back to normal mode: :samp:`console.delimiter(''){string-literal}`. Delimiters are usually not necessary because Tarantool can tell when a multi-line request has not ended (for example, if it sees that a function declaration does not have an :samp:`end` keyword). Example:"
 msgstr ""
 
-#: ../book/administration.rst:210
+#: ../book/administration.rst:213
 msgid "console = require('console'); console.delimiter('!')\n"
 "function f ()\n"
 "  statement_1 = 'a'\n"
@@ -214,21 +234,20 @@ msgid "console = require('console'); console.delimiter('!')\n"
 "console.delimiter('')!"
 msgstr ""
 
-#: ../book/administration.rst:219
-msgid "For a condensed Backus-Naur Form [BNF] description of the suggested form of client requests, see http://tarantool.org/doc/dev_guide/box-protocol.html."
-msgstr ""
-
 #: ../book/administration.rst:222
-msgid "In *interactive* mode, one types requests and gets results. Typically the requests are typed in by the user following prompts. Here is an example of an interactive-mode tarantool client session:"
+msgid "See :ref:`here <box_protocol-iproto_protocol>` a condensed Backus-Naur Form [BNF] description of the suggested form of client requests."
 msgstr ""
 
-#: ../book/administration.rst:226
+#: ../book/administration.rst:225
+msgid "In *interactive* mode, one types requests and gets results. Typically the requests are typed in by the user following prompts. Here is an example of an interactive-mode Tarantool client session:"
+msgstr ""
+
+#: ../book/administration.rst:229
 msgid "$ tarantool\n"
 "[ tarantool will display an introductory message\n"
 "  including version number here ]\n"
 "tarantool> box.cfg{listen = 3301}\n"
-"[ tarantool will display configuration information\n"
-"  here ]\n"
+"[ tarantool will display configuration information here ]\n"
 "tarantool> s = box.schema.space.create('tester')\n"
 "[ tarantool may display an in-progress message here ]\n"
 "---\n"
@@ -252,43 +271,43 @@ msgid "$ tarantool\n"
 "$"
 msgstr ""
 
-#: ../book/administration.rst:256
-msgid "Explanatory notes about what tarantool displayed in the above example:"
-msgstr ""
-
 #: ../book/administration.rst:258
-msgid "Many requests return typed objects. In the case of \"``box.cfg{listen=3301}``\", this result is displayed on the screen. If the request had assigned the result to a variable, for example \"``c = box.cfg{listen=3301}``\", then the result would not have been displayed on the screen."
+msgid "Explanatory notes about what Tarantool displayed in the above example:"
 msgstr ""
 
-#: ../book/administration.rst:262
+#: ../book/administration.rst:260
+msgid "Many requests return typed objects. In the case of :samp:`box.cfg{listen=3301}`, this result is displayed on the screen. If the request had assigned the result to a variable, for example :samp:`c = box.cfg{listen=3301}`, then the result would not have been displayed on the screen."
+msgstr ""
+
+#: ../book/administration.rst:264
 msgid "A display of an object always begins with \"``---``\" and ends with \"``...``\"."
 msgstr ""
 
-#: ../book/administration.rst:263
+#: ../book/administration.rst:265
 msgid "The insert request returns an object of type = tuple, so the object display line begins with a single dash ('``-``'). However, the select request returns an object of type = table of tuples, so the object display line begins with two dashes ('``- -``')."
 msgstr ""
 
-#: ../book/administration.rst:269
-msgid "Utility ``tarantoolctl``"
+#: ../book/administration.rst:274
+msgid "Utility tarantoolctl"
 msgstr ""
 
-#: ../book/administration.rst:273
-msgid "With ``tarantoolctl`` one can say: \"start an instance of the Tarantool server which runs a single user-written Lua program, allocating disk resources specifically for that program, via a standardized deployment method.\" If Tarantool was installed with Debian or Red Hat installation packages, the script is in :file:`/usr/bin/tarantoolctl` or :file:`/usr/local/bin/tarantoolctl`. The script handles such things as: starting, stopping, rotating logs, logging in to the application's console, and checking status."
-msgstr ""
-
-#: ../book/administration.rst:283
-msgid "The use of tarantoolctl as a client is described in a separate section, :ref:`tarantoolctl connect <administration-tarantoolctl_connect>`."
+#: ../book/administration.rst:278
+msgid "With :program:`tarantoolctl` you can say: \"start an instance of the Tarantool server which runs a single user-written Lua program, allocating disk resources specifically for that program, via a standardized deployment method.\" If Tarantool was installed with Debian or Red Hat installation packages, the script is in :file:`/usr/bin/tarantoolctl` or :file:`/usr/local/bin/tarantoolctl`. The script handles such things as: starting, stopping, rotating logs, logging in to the application's console, and checking status."
 msgstr ""
 
 #: ../book/administration.rst:288
-msgid "configuring for tarantoolctl"
+msgid "The use of :program:`tarantoolctl` as a client is described in a separate section, :ref:`tarantoolctl connect <administration-tarantoolctl_connect>`."
 msgstr ""
 
-#: ../book/administration.rst:290
-msgid "\"The :codenormal:`tarantoolctl` script will look for a configuration file in the current directory (:codenormal:`$PWD/.tarantoolctl`). If that fails, it looks in the current user's home directory (:codenormal:`$HOME/.config/tarantool/tarantool`). If that fails, it looks in the SYSCONFDIR directory (usually :codenormal:`/etc/sysconfig/tarantool` but it may be different on some platforms). Most of the settings are similar to the settings used by ``box.cfg{...};`` however, tarantoolctl adjusts some of them by adding an application name. A copy of :file:`usr/local/etc/default/tarantool`, with defaults for all settings, would look like this:"
+#: ../book/administration.rst:293
+msgid "Configuration for tarantoolctl"
 msgstr ""
 
-#: ../book/administration.rst:301
+#: ../book/administration.rst:295
+msgid "The :program:`tarantoolctl` script will look for a configuration file in the current directory (:file:`$PWD/.tarantoolctl`). If that fails, it looks in the current user's home directory (:file:`$HOME/.config/tarantool/tarantool`). If that fails, it looks in the SYSCONFDIR directory (usually :file:`/etc/sysconfig/tarantool`, but it may be different on some platforms). Most of the settings are similar to the settings used by :samp:`box.cfg{...}`; however, :program:`tarantoolctl` adjusts some of them by adding an application name. A copy of :file:`usr/local/etc/default/tarantool`, with defaults for all settings, would look like this:"
+msgstr ""
+
+#: ../book/administration.rst:306
 msgid "default_cfg = {\n"
 "    pid_file   = \"/var/run/tarantool\",\n"
 "    wal_dir    = \"/var/lib/tarantool\",\n"
@@ -300,126 +319,126 @@ msgid "default_cfg = {\n"
 "instance_dir = \"/etc/tarantool/instances.enabled\""
 msgstr ""
 
-#: ../book/administration.rst:313
+#: ../book/administration.rst:318
 msgid "The settings in the above script are:"
 msgstr ""
 
-#: ../book/administration.rst:317
+#: ../book/administration.rst:322
 msgid "``pid_file``"
 msgstr ""
 
-#: ../book/administration.rst:316
+#: ../book/administration.rst:321
 msgid "The directory for the pid file and control-socket file. The script will add \":samp:`/{instance-name}`\" to the directory name."
 msgstr ""
 
-#: ../book/administration.rst:321
+#: ../book/administration.rst:326
 msgid "``wal_dir``"
 msgstr ""
 
-#: ../book/administration.rst:320
+#: ../book/administration.rst:325
 msgid "The directory for the write-ahead :file:`*.xlog` files. The script will add \":samp:`/{instance-name}`\" to the directory-name."
 msgstr ""
 
-#: ../book/administration.rst:325
+#: ../book/administration.rst:330
 msgid "``snap_dir``"
 msgstr ""
 
-#: ../book/administration.rst:324
+#: ../book/administration.rst:329
 msgid "The directory for the snapshot :file:`*.snap` files. The script will add \":samp:`/{instance-name}`\" to the directory-name."
 msgstr ""
 
-#: ../book/administration.rst:329
+#: ../book/administration.rst:334
 msgid "``vinyl_dir``"
 msgstr ""
 
-#: ../book/administration.rst:328
+#: ../book/administration.rst:333
 msgid "The directory for the vinyl-storage-engine files. The script will add \":samp:`/vinyl/{instance-name}`\" to the directory-name."
 msgstr ""
 
-#: ../book/administration.rst:333
+#: ../book/administration.rst:338
 msgid "``logger``"
 msgstr ""
 
-#: ../book/administration.rst:332
+#: ../book/administration.rst:337
 msgid "The place where the application log will go. The script will add \":samp:`/{instance-name}.log`\" to the name."
 msgstr ""
 
-#: ../book/administration.rst:337
+#: ../book/administration.rst:342
 msgid "``username``"
 msgstr ""
 
-#: ../book/administration.rst:336
-msgid "The user that runs the tarantool server. This is the operating-system user name rather than the Tarantool-client user name."
-msgstr ""
-
-#: ../book/administration.rst:345
-msgid "``instance_dir``"
-msgstr ""
-
-#: ../book/administration.rst:340
-msgid "The directory where all applications for this host are stored. The user who writes an application for :program:`tarantoolctl` must put the application's source code in this directory, or a symbolic link. For examples in this section the application name my_app will be used, and its source will have to be in :samp:`{instance_dir}/my_app.lua`."
+#: ../book/administration.rst:341
+msgid "The user that runs the Tarantool server. This is the operating-system user name rather than the Tarantool-client user name."
 msgstr ""
 
 #: ../book/administration.rst:349
-msgid "commands for tarantoolctl"
+msgid "``instance_dir``"
 msgstr ""
 
-#: ../book/administration.rst:351
+#: ../book/administration.rst:345
+msgid "The directory where all applications for this host are stored. The user who writes an application for :program:`tarantoolctl` must put the application's source code in this directory, or a symbolic link. For examples in this section the application name ``my_app`` will be used, and its source will have to be in :samp:`{instance_dir}/my_app.lua`."
+msgstr ""
+
+#: ../book/administration.rst:353
+msgid "Commands for tarantoolctl"
+msgstr ""
+
+#: ../book/administration.rst:355
 msgid "The command format is :samp:`tarantoolctl {operation} {application_name}`, where operation is one of: start, stop, enter, logrotate, status, eval. Thus ..."
 msgstr ""
 
-#: ../book/administration.rst:356
+#: ../book/administration.rst:360
 msgid "Start application *<application>*"
 msgstr ""
 
-#: ../book/administration.rst:360
+#: ../book/administration.rst:364
 msgid "Stop application"
 msgstr ""
 
-#: ../book/administration.rst:364
+#: ../book/administration.rst:368
 msgid "Show application's admin console"
 msgstr ""
 
-#: ../book/administration.rst:368
+#: ../book/administration.rst:372
 msgid "Rotate application's log files (make new, remove old)"
 msgstr ""
 
-#: ../book/administration.rst:372
+#: ../book/administration.rst:376
 msgid "Check application's status"
 msgstr ""
 
-#: ../book/administration.rst:376
+#: ../book/administration.rst:380
 msgid "Execute code from *<scriptname>* on an instance of application"
 msgstr ""
 
-#: ../book/administration.rst:380
-msgid "typical code snippets for tarantoolctl"
-msgstr ""
-
-#: ../book/administration.rst:382
-msgid "A user can check whether my_app is running with these lines:"
-msgstr ""
-
 #: ../book/administration.rst:384
+msgid "Typical code snippets for tarantoolctl"
+msgstr ""
+
+#: ../book/administration.rst:386
+msgid "A user can check whether ``my_app`` is running with these lines:"
+msgstr ""
+
+#: ../book/administration.rst:388
 msgid "if tarantoolctl status my_app; then\n"
 "...\n"
 "fi"
 msgstr ""
 
-#: ../book/administration.rst:390
-msgid "A user can initiate, for boot time, an init.d set of instructions:"
+#: ../book/administration.rst:394
+msgid "A user can initiate, for boot time, an :file:`init.d` set of instructions:"
 msgstr ""
 
-#: ../book/administration.rst:392
+#: ../book/administration.rst:396
 msgid "for (each file mentioned in the instance_dir directory):\n"
 "    tarantoolctl start `basename $ file .lua`"
 msgstr ""
 
-#: ../book/administration.rst:397
+#: ../book/administration.rst:401
 msgid "A user can set up a further configuration file for log rotation, like this:"
 msgstr ""
 
-#: ../book/administration.rst:402
+#: ../book/administration.rst:406
 msgid "/path/to/tarantool/\\*.log {\n"
 "    daily\n"
 "    size 512k\n"
@@ -434,31 +453,31 @@ msgid "/path/to/tarantool/\\*.log {\n"
 "}"
 msgstr ""
 
-#: ../book/administration.rst:417
+#: ../book/administration.rst:421
 msgid "A detailed example for tarantoolctl"
 msgstr ""
 
-#: ../book/administration.rst:419
-msgid "The example's objective is: make a temporary directory where tarantoolctl can start a long-running application and monitor it."
+#: ../book/administration.rst:423
+msgid "The example's objective is: make a temporary directory where :program:`tarantoolctl` can start a long-running application and monitor it."
 msgstr ""
 
-#: ../book/administration.rst:422
+#: ../book/administration.rst:426
 msgid "The assumptions are: the root password is known, the computer is only being used for tests, the Tarantool server is ready to run but is not currently running, tarantoolctl is installed along the user's path, and there currently is no directory named :file:`tarantool_test`."
 msgstr ""
 
-#: ../book/administration.rst:427
-msgid "Create a directory named /tarantool_test:"
-msgstr ""
-
-#: ../book/administration.rst:429
-msgid "$ sudo mkdir /tarantool_test"
+#: ../book/administration.rst:431
+msgid "Create a directory named :file:`/tarantool_test`:"
 msgstr ""
 
 #: ../book/administration.rst:433
-msgid "Edit /usr/local/etc/default/tarantool. It might be necessary to say :codenormal:`sudo mkdir /usr/local/etc/default` first. Let the new file contents be:"
+msgid "$ sudo mkdir /tarantool_test"
 msgstr ""
 
-#: ../book/administration.rst:436
+#: ../book/administration.rst:437
+msgid "Edit :file:`/usr/local/etc/default/tarantool`. It might be necessary to say :samp:`sudo mkdir /usr/local/etc/default` first. Let the new file contents be:"
+msgstr ""
+
+#: ../book/administration.rst:441
 msgid "default_cfg = {\n"
 "    pid_file = \"/tarantool_test/my_app.pid\",\n"
 "    wal_dir = \"/tarantool_test\",\n"
@@ -470,11 +489,11 @@ msgid "default_cfg = {\n"
 "instance_dir = \"/tarantool_test\""
 msgstr ""
 
-#: ../book/administration.rst:448
-msgid "Make the my_app application file, that is, :file:`/tarantool_test/my_app.lua`. Let the file contents be:"
+#: ../book/administration.rst:453
+msgid "Make the ``my_app`` application file, that is, :file:`/tarantool_test/my_app.lua`. Let the file contents be:"
 msgstr ""
 
-#: ../book/administration.rst:450
+#: ../book/administration.rst:456
 msgid "box.cfg{listen = 3301}\n"
 "box.schema.user.passwd('Gx5!')\n"
 "box.schema.user.grant('guest','read,write,execute','universe')\n"
@@ -490,36 +509,36 @@ msgid "box.cfg{listen = 3301}\n"
 "end"
 msgstr ""
 
-#: ../book/administration.rst:466
-msgid "Tell tarantoolctl to start the application ..."
+#: ../book/administration.rst:472
+msgid "Tell :program:`tarantoolctl` to start the application ..."
 msgstr ""
 
-#: ../book/administration.rst:468
+#: ../book/administration.rst:474
 msgid "$ cd /tarantool_test\n"
 "$ sudo tarantoolctl start my_app"
 msgstr ""
 
-#: ../book/administration.rst:473
+#: ../book/administration.rst:479
 msgid "... expect to see messages indicating that the instance has started. Then ..."
 msgstr ""
 
-#: ../book/administration.rst:475
+#: ../book/administration.rst:481
 msgid "$ ls -l /tarantool_test/my_app"
 msgstr ""
 
-#: ../book/administration.rst:479
-msgid "... expect to see the .snap file and the .xlog file. Then ..."
-msgstr ""
-
-#: ../book/administration.rst:481
-msgid "$ sudo less /tarantool_test/log/my_app.log"
-msgstr ""
-
 #: ../book/administration.rst:485
-msgid "... expect to see the contents of my_app's log, including error messages, if any. Then ..."
+msgid "... expect to see the :file:`.snap` file and the :file:`.xlog` file. Then ..."
 msgstr ""
 
 #: ../book/administration.rst:487
+msgid "$ sudo less /tarantool_test/log/my_app.log"
+msgstr ""
+
+#: ../book/administration.rst:491
+msgid "... expect to see the contents of ``my_app``'s log, including error messages, if any. Then ..."
+msgstr ""
+
+#: ../book/administration.rst:494
 msgid "$ cd /tarantool_test\n"
 "$ # assume that 'tarantool' invokes the tarantool server\n"
 "$ sudo tarantool\n"
@@ -529,92 +548,128 @@ msgid "$ cd /tarantool_test\n"
 "tarantool> box.space.tester:select({0}, {iterator = 'GE'})"
 msgstr ""
 
-#: ../book/administration.rst:497
-msgid "... expect to see several tuples that my_app has created."
+#: ../book/administration.rst:504
+msgid "... expect to see several tuples that ``my_app`` has created."
 msgstr ""
 
-#: ../book/administration.rst:499
-msgid "Stop. The only clean way to stop my_app is with tarantoolctl, thus:"
+#: ../book/administration.rst:506
+msgid "Stop. The only clean way to stop ``my_app`` is with :program:`tarantoolctl`, thus:"
 msgstr ""
 
-#: ../book/administration.rst:501
+#: ../book/administration.rst:508
 msgid "$ sudo tarantoolctl stop my_app"
 msgstr ""
 
-#: ../book/administration.rst:505
+#: ../book/administration.rst:512
 msgid "Clean up. Restore the original contents of :file:`/usr/local/etc/default/tarantool`, and ..."
 msgstr ""
 
-#: ../book/administration.rst:507
+#: ../book/administration.rst:515
 msgid "$ cd /\n"
 "$ sudo rm -R tarantool_test"
 msgstr ""
 
-#: ../book/administration.rst:516
-msgid "Utility ``tarantoolctl connect``"
+#: ../book/administration.rst:524
+msgid "Utility tarantoolctl connect"
 msgstr ""
 
-#: ../book/administration.rst:518
-msgid "The ``tarantoolctl connect`` utility is a client program. Use it to connect to a tarantool server and pass requests."
+#: ../book/administration.rst:526
+msgid "The :program:`tarantoolctl connect` utility is a client program. Use it to connect to a Tarantool server and pass requests."
 msgstr ""
 
-#: ../book/administration.rst:521
-msgid "To invoke the utility one says: |br| :codenormal:`tarantoolctl connect` :codeitalic:`URI` |br| and the format of a URI is described :ref:`in the URI section <index-uri>`."
+#: ../book/administration.rst:529
+msgid "To invoke the utility, say:"
 msgstr ""
 
-#: ../book/administration.rst:525
-msgid "Example:"
+#: ../book/administration.rst:534
+msgid "tarantoolctl connect *URI*"
 msgstr ""
 
-#: ../book/administration.rst:527
-msgid "$ tarantoolctl connect username:password@127.0.0.1:3306"
-msgstr ""
-
-#: ../book/administration.rst:531
-msgid "There are alternatives to ``tarantoolctl connect`` -- one can use the :ref:`console module <console-module>` or the :ref:`net.box module <net_box-module>` from a Tarantool server. Also one can write one's one client programs with any of the Connectors. However, most of the examples in this manual illustrate usage with either ``tarantoolctl connect`` or with :ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`."
+#: ../book/administration.rst:536
+msgid "and the format of a URI is described :ref:`in the URI section <index-uri>`."
 msgstr ""
 
 #: ../book/administration.rst:538
-msgid "Statements about :ref:`console.connect() <console-connect>` behavior are usually applicable for ``tarantoolctl connect`` as well. For example, an :ref:`authentication trigger <triggers-authentication_triggers>` will be activated whenever ``tarantoolctl connect`` starts or ends."
+msgid "Example:"
 msgstr ""
 
-#: ../book/administration.rst:548
+#: ../book/administration.rst:540
+msgid "$ tarantoolctl connect username:password@127.0.0.1:3306"
+msgstr ""
+
+#: ../book/administration.rst:544
+msgid "There are alternatives to :program:`tarantoolctl connect` -- you can use the :ref:`console module <console-module>` or the :ref:`net.box module <net_box-module>` from a Tarantool server. Also you can write your client programs with any of the Connectors. However, most of the examples in this manual illustrate usage with either :program:`tarantoolctl connect` or with :ref:`using the Tarantool server as a client <administration-using_tarantool_as_a_client>`."
+msgstr ""
+
+#: ../book/administration.rst:552
+msgid "Statements about :ref:`console.connect() <console-connect>` behavior are usually applicable for :program:`tarantoolctl connect` as well. For example, an :ref:`authentication trigger <triggers-authentication_triggers>` will be activated whenever :program:`tarantoolctl connect` starts or ends."
+msgstr ""
+
+#: ../book/administration.rst:561
 msgid "Admin ports"
 msgstr ""
 
-#: ../book/administration.rst:551
+#: ../book/administration.rst:563
 msgid "\"Admin port\", \"admin console\", and \"text protocol\" all refer to the same thing: a connection which is set up with :ref:`console.listen(...) <console-listen>` for entry of requests by administrators."
 msgstr ""
 
-#: ../book/administration.rst:555
+#: ../book/administration.rst:568
 msgid "\"Binary port\", \"binary protocol\", and \"primary port\" all refer to a different thing: a connection which is set up with :ref:`box.cfg{listen=...} <cfg_basic-listen>` for entry of requests by anyone."
 msgstr ""
 
-#: ../book/administration.rst:559
+#: ../book/administration.rst:573
 msgid "Ordinary connections to the Tarantool server should go via a binary port. But admin ports are useful for special cases involving security."
 msgstr ""
 
-#: ../book/administration.rst:562
-msgid "When one connects to an admin port: |br| * No password is necessary |br| * The user is automatically 'admin', a user with many privileges. |br| Therefore one must set up admin ports very cautiously. If it is a TCP port, it should only be opened for a specific IP. Ideally it should not be a TCP port at all, it should be a Unix domain socket, so that access to the server machine is required. Thus a typical setup for an admin port is: |br| :codenormal:`console.listen('/var/lib/tarantool/socket_name.sock')` |br| and a typical connection :ref:`URI <index-uri>` is: |br| :codenormal:`admin:any_string@/var/lib/tarantool/socket_name.sock` |br| if the listener has the privilege to write on /var/lib/tarantool and the connector has the privilege to read on /var/lib/tarantool. Alternatively both setup and connection can be done with :ref:`tarantoolctl <administration-tarantoolctl>`."
+#: ../book/administration.rst:576
+msgid "When you connect to an admin port:"
 msgstr ""
 
 #: ../book/administration.rst:578
-msgid "If no administrator password exists which could be given out to users, and admin ports are restricted or are sockets, then requests which require 'admin' privileges can only occur locally, and are subject to Unix security and monitoring."
+msgid "No password is necessary"
 msgstr ""
 
-#: ../book/administration.rst:583
-msgid "For additional security, some requests are illegal. For example, :ref:`\"conn:eval\" <net_box-eval>`  will result in the error message \"- error: console does not support this request type\" because conn:eval requires the binary protocol."
+#: ../book/administration.rst:579
+msgid "The user is automatically 'admin', a user with many privileges."
 msgstr ""
 
-#: ../book/administration.rst:588
-msgid "If security via admin ports is not necessary, it is still possible to be an admin user by :ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`, or by connecting to a binary port with a valid password."
+#: ../book/administration.rst:581
+msgid "Therefore you must set up admin ports very cautiously. If it is a TCP port, it should only be opened for a specific IP. Ideally it should not be a TCP port at all, it should be a Unix domain socket, so that access to the server machine is required. Thus a typical setup for an admin port is:"
+msgstr ""
+
+#: ../book/administration.rst:587
+msgid "console.listen('/var/lib/tarantool/socket_name.sock')"
+msgstr ""
+
+#: ../book/administration.rst:591
+msgid "and a typical connection :ref:`URI <index-uri>` is:"
 msgstr ""
 
 #: ../book/administration.rst:593
-msgid "To find out whether a TCP port is an admin port, use telnet. For example:"
+msgid "admin:any_string@/var/lib/tarantool/socket_name.sock"
 msgstr ""
 
-#: ../book/administration.rst:598
+#: ../book/administration.rst:597
+msgid "if the listener has the privilege to write on :file:`/var/lib/tarantool` and the connector has the privilege to read on :file:`/var/lib/tarantool`. Alternatively both setup and connection can be done with :ref:`tarantoolctl <administration-tarantoolctl>`."
+msgstr ""
+
+#: ../book/administration.rst:602
+msgid "If no administrator password exists which could be given out to users, and admin ports are restricted or are sockets, then requests which require 'admin' privileges can only occur locally, and are subject to Unix security and monitoring."
+msgstr ""
+
+#: ../book/administration.rst:607
+msgid "For additional security, some requests are illegal. For example, :ref:`\"conn:eval\" <net_box-eval>`  will result in the error message \"- error: console does not support this request type\" because ``conn:eval`` requires the binary protocol."
+msgstr ""
+
+#: ../book/administration.rst:612
+msgid "If security via admin ports is not necessary, it is still possible to be an admin user by :ref:`using the tarantool server as a client <administration-using_tarantool_as_a_client>`, or by connecting to a binary port with a valid password."
+msgstr ""
+
+#: ../book/administration.rst:617
+msgid "To find out whether a TCP port is an admin port, use :program:`telnet`. For example:"
+msgstr ""
+
+#: ../book/administration.rst:620
 msgid "$ telnet 0 3303\n"
 "Trying 0.0.0.0...\n"
 "Connected to 0.\n"
@@ -623,146 +678,146 @@ msgid "$ telnet 0 3303\n"
 "type 'help' for interactive help"
 msgstr ""
 
-#: ../book/administration.rst:605
+#: ../book/administration.rst:629
 msgid "In this example the response does not include the word \"binary\" and does include the words \"Lua console\". Therefore it is clear that this is a successful connection to an admin port, and admin requests can now be entered on this terminal."
 msgstr ""
 
-#: ../book/administration.rst:613
+#: ../book/administration.rst:637
 msgid "System-specific administration notes"
 msgstr ""
 
-#: ../book/administration.rst:615
+#: ../book/administration.rst:639
 msgid "This section will contain information about issue or features which exist on some platforms but not others - for example, on certain versions of a particular Linux distribution."
 msgstr ""
 
-#: ../book/administration.rst:621
-msgid "Administrating with Debian GNU/Linux and Ubuntu"
+#: ../book/administration.rst:645
+msgid "Debian GNU/Linux and Ubuntu"
 msgstr ""
 
-#: ../book/administration.rst:623
+#: ../book/administration.rst:647
 msgid "Setting up an instance:"
 msgstr ""
 
-#: ../book/administration.rst:625
-msgid "$ ln -s /etc/tarantool/instances.available/instance-name.cfg /etc/tarantool/instances.enabled/"
+#: ../book/administration.rst:649
+msgid "$ ln -s /etc/tarantool/instances.available/*instance-name.cfg* /etc/tarantool/instances.enabled/"
 msgstr ""
 
-#: ../book/administration.rst:629
+#: ../book/administration.rst:653
 msgid "Starting all instances:"
 msgstr ""
 
-#: ../book/administration.rst:631
+#: ../book/administration.rst:655
 msgid "$ service tarantool start"
 msgstr ""
 
-#: ../book/administration.rst:635
+#: ../book/administration.rst:659
 msgid "Stopping all instances:"
 msgstr ""
 
-#: ../book/administration.rst:637
+#: ../book/administration.rst:661
 msgid "$ service tarantool stop"
 msgstr ""
 
-#: ../book/administration.rst:641
+#: ../book/administration.rst:665
 msgid "Starting/stopping one instance:"
 msgstr ""
 
-#: ../book/administration.rst:643
+#: ../book/administration.rst:667
 msgid "$ service tarantool-instance-name start/stop"
 msgstr ""
 
-#: ../book/administration.rst:649
+#: ../book/administration.rst:673
 msgid "Fedora, RHEL, CentOS"
 msgstr ""
 
-#: ../book/administration.rst:651
+#: ../book/administration.rst:675
 msgid "There are no known permanent issues. For transient issues, go to http://github.com/tarantool/tarantool/issues and enter \"RHEL\" or \"CentOS\" or \"Fedora\" or \"Red Hat\" in the search box."
 msgstr ""
 
-#: ../book/administration.rst:657
+#: ../book/administration.rst:681
 msgid "FreeBSD"
 msgstr ""
 
-#: ../book/administration.rst:659
+#: ../book/administration.rst:683
 msgid "There are no known permanent issues. For transient issues, go to http://github.com/tarantool/tarantool/issues and enter \"FreeBSD\" in the search box."
 msgstr ""
 
-#: ../book/administration.rst:665
+#: ../book/administration.rst:689
 msgid "Mac OS X"
 msgstr ""
 
-#: ../book/administration.rst:667
+#: ../book/administration.rst:691
 msgid "There are no known permanent issues. For transient issues, go to http://github.com/tarantool/tarantool/issues and enter \"OS X\" in the search box."
 msgstr ""
 
-#: ../book/administration.rst:673
+#: ../book/administration.rst:697
 msgid "Notes for systemd users"
 msgstr ""
 
-#: ../book/administration.rst:675
+#: ../book/administration.rst:699
 msgid "Tarantool fully supports :program:`systemd` for managing instances and supervising database daemons."
 msgstr ""
 
-#: ../book/administration.rst:680
+#: ../book/administration.rst:704
 msgid "Instance management"
 msgstr ""
 
-#: ../book/administration.rst:682
+#: ../book/administration.rst:706
 msgid "Tarantool was designed to have multiple running instances of Tarantool on the same machine. Use :samp:`systemctl {start|stop|restart|status} tarantool@${MYAPP}` to manage your databases and Lua applications."
 msgstr ""
 
-#: ../book/administration.rst:688
-msgid "creating instances"
+#: ../book/administration.rst:713
+msgid "Creating instances"
 msgstr ""
 
-#: ../book/administration.rst:690
+#: ../book/administration.rst:715
 msgid "Simply put your Lua configuration to :file:`/etc/tarantool/instances.available/${MYAPP}.lua`:"
 msgstr ""
 
-#: ../book/administration.rst:692
+#: ../book/administration.rst:718
 msgid "box.cfg{listen = 3313}\n"
 "require('myappcode').start()"
 msgstr ""
 
-#: ../book/administration.rst:697
+#: ../book/administration.rst:723
 msgid "(this minimal example is sufficient)."
 msgstr ""
 
-#: ../book/administration.rst:699
+#: ../book/administration.rst:725
 msgid "Another starting point could be the :file:`example.lua` script that ships with Tarantool and defines all options."
 msgstr ""
 
-#: ../book/administration.rst:704
-msgid "starting instances"
+#: ../book/administration.rst:730
+msgid "Starting instances"
 msgstr ""
 
-#: ../book/administration.rst:706
+#: ../book/administration.rst:732
 msgid "Use :samp:`systemctl start tarantool@${MYAPP}` to start ``${MYAPP}`` instance:"
 msgstr ""
 
-#: ../book/administration.rst:708
+#: ../book/administration.rst:734
 msgid "$ systemctl start tarantool@example\n"
 "$ ps axuf|grep exampl[e]\n"
 "taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool example.lua <running>"
 msgstr ""
 
-#: ../book/administration.rst:714
+#: ../book/administration.rst:740
 msgid "(console examples here and further on are for Fedora)."
 msgstr ""
 
-#: ../book/administration.rst:716
+#: ../book/administration.rst:742
 msgid "Use :samp:`systemctl enable tarantool@${MYAPP}` to enable ``${MYAPP}`` instance for auto-load during system startup."
 msgstr ""
 
-#: ../book/administration.rst:721
-msgid "monitoring instances"
+#: ../book/administration.rst:747
+msgid "Monitoring instances"
 msgstr ""
 
-#: ../book/administration.rst:723
+#: ../book/administration.rst:749
 msgid "Use :samp:`systemctl status tarantool@${MYAPP}` to check information about ``${MYAPP}`` instance:"
 msgstr ""
 
-#: ../book/administration.rst:726
+#: ../book/administration.rst:752
 msgid "$ systemctl status tarantool@example\n"
 "tarantool@example.service - Tarantool Database Server\n"
 "Loaded: loaded (/etc/systemd/system/tarantool@.service; disabled; vendor preset: disabled)\n"
@@ -775,11 +830,11 @@ msgid "$ systemctl status tarantool@example\n"
 "+ 5350 tarantool example.lua <running>"
 msgstr ""
 
-#: ../book/administration.rst:739
+#: ../book/administration.rst:765
 msgid "Use :samp:`journalctl -u tarantool@${MYAPP}` to check the boot log:"
 msgstr ""
 
-#: ../book/administration.rst:741
+#: ../book/administration.rst:767
 msgid "$ journalctl -u tarantool@example -n 5\n"
 "-- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:17:47 MSK. --\n"
 "Jan 21 21:17:47 localhost.localdomain systemd[1]: Stopped Tarantool Database Server.\n"
@@ -789,15 +844,15 @@ msgid "$ journalctl -u tarantool@example -n 5\n"
 "Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server"
 msgstr ""
 
-#: ../book/administration.rst:753
-msgid "attaching to instances"
+#: ../book/administration.rst:779
+msgid "Attaching to instances"
 msgstr ""
 
-#: ../book/administration.rst:755
+#: ../book/administration.rst:781
 msgid "You can attach to a running Tarantool instance and evaluate some Lua code using the :program:`tarantoolctl` utility:"
 msgstr ""
 
-#: ../book/administration.rst:758
+#: ../book/administration.rst:784
 msgid "$ tarantoolctl enter example\n"
 "/bin/tarantoolctl: Found example.lua in /etc/tarantool/instances.available\n"
 "/bin/tarantoolctl: Connecting to /var/run/tarantool/example.control\n"
@@ -809,19 +864,19 @@ msgid "$ tarantoolctl enter example\n"
 "unix/:/var/run/tarantool/example.control>"
 msgstr ""
 
-#: ../book/administration.rst:772
-msgid "checking logs"
+#: ../book/administration.rst:798
+msgid "Checking logs"
 msgstr ""
 
-#: ../book/administration.rst:774
+#: ../book/administration.rst:800
 msgid "Tarantool logs important events to :file:`/var/log/tarantool/${MYAPP}.log`."
 msgstr ""
 
-#: ../book/administration.rst:776
+#: ../book/administration.rst:802
 msgid "Let's write something to the log file:"
 msgstr ""
 
-#: ../book/administration.rst:778
+#: ../book/administration.rst:804
 msgid "$ tarantoolctl enter example\n"
 "/bin/tarantoolctl: Found example.lua in /etc/tarantool/instances.available\n"
 "/bin/tarantoolctl: Connecting to /var/run/tarantool/example.control\n"
@@ -831,11 +886,11 @@ msgid "$ tarantoolctl enter example\n"
 "..."
 msgstr ""
 
-#: ../book/administration.rst:788
+#: ../book/administration.rst:814
 msgid "Then check the logs:"
 msgstr ""
 
-#: ../book/administration.rst:790
+#: ../book/administration.rst:816
 msgid "$ tail /var/log/tarantool/example.log\n"
 "2016-01-21 21:09:45.982 [5914] iproto I> binary: started\n"
 "2016-01-21 21:09:45.982 [5914] iproto I> binary: bound to 0.0.0.0:3301\n"
@@ -849,35 +904,35 @@ msgid "$ tail /var/log/tarantool/example.log\n"
 "2016-01-21 21:15:09.250 [5914] main/105/console/unix/: I> client unix/: disconnected"
 msgstr ""
 
-#: ../book/administration.rst:804
+#: ../book/administration.rst:830
 msgid "Log rotation is enabled by default if you have :program:`logrotate` installed. Please configure :file:`/etc/logrotate.d/tarantool` to change the default behavior."
 msgstr ""
 
-#: ../book/administration.rst:809
-msgid "stopping instances"
+#: ../book/administration.rst:836
+msgid "Stopping instances"
 msgstr ""
 
-#: ../book/administration.rst:811
+#: ../book/administration.rst:838
 msgid "Use :samp:`systemctl stop tarantool@${MYAPP}` to see information about the running ``${MYAPP}`` instance."
 msgstr ""
 
-#: ../book/administration.rst:814
+#: ../book/administration.rst:841
 msgid "$ systemctl stop tarantool@example"
 msgstr ""
 
-#: ../book/administration.rst:820
+#: ../book/administration.rst:847
 msgid "Daemon supervision"
 msgstr ""
 
-#: ../book/administration.rst:822
+#: ../book/administration.rst:849
 msgid "All instances are automatically restarted by :program:`systemd` in case of failure."
 msgstr ""
 
-#: ../book/administration.rst:824
+#: ../book/administration.rst:851
 msgid "Let's try to destroy an instance:"
 msgstr ""
 
-#: ../book/administration.rst:826
+#: ../book/administration.rst:853
 msgid "$ systemctl status tarantool@example|grep PID\n"
 "Main PID: 5885 (tarantool)\n"
 "$ tarantoolctl enter example\n"
@@ -888,20 +943,20 @@ msgid "$ systemctl status tarantool@example|grep PID\n"
 "/bin/tarantoolctl: unix/:/var/run/tarantool/example.control: Remote host closed connection"
 msgstr ""
 
-#: ../book/administration.rst:837
+#: ../book/administration.rst:864
 msgid "Now let's make sure that :program:`systemd` has revived our Tarantool instance:"
 msgstr ""
 
-#: ../book/administration.rst:839
+#: ../book/administration.rst:866
 msgid "$ systemctl status tarantool@example|grep PID\n"
 "Main PID: 5914 (tarantool)"
 msgstr ""
 
-#: ../book/administration.rst:844
+#: ../book/administration.rst:871
 msgid "Finally, let's check the boot logs:"
 msgstr ""
 
-#: ../book/administration.rst:846
+#: ../book/administration.rst:873
 msgid "$ journalctl -u tarantool@example -n 8\n"
 "-- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:09:45 MSK. --\n"
 "Jan 21 21:09:45 localhost.localdomain systemd[1]: tarantool@example.service: Unit entered failed state.\n"
@@ -914,23 +969,23 @@ msgid "$ journalctl -u tarantool@example -n 8\n"
 "Jan 21 21:09:45 localhost.localdomain systemd[1]: Started Tarantool Database Server."
 msgstr ""
 
-#: ../book/administration.rst:861
+#: ../book/administration.rst:888
 msgid "Customizing the service file"
 msgstr ""
 
-#: ../book/administration.rst:863
+#: ../book/administration.rst:890
 msgid "Please don't modify the :file:`tarantool@.service` file in-place, because it will be overwritten during package upgrades. It is recommended to copy this file to :file:`/etc/systemd/system` and then modify the required settings. Alternatively, you can create a directory named :file:`unit.d/` within :file:`/etc/systemd/system` and put there a drop-in file :file:`name.conf` that only changes the required settings. Please see ``systemd.unit(5)`` manual page for additional information."
 msgstr ""
 
-#: ../book/administration.rst:872
+#: ../book/administration.rst:899
 msgid "Debugging"
 msgstr ""
 
-#: ../book/administration.rst:874
+#: ../book/administration.rst:901
 msgid ":program:`coredumpctl` automatically saves core dumps and stack traces in case of a crash. Here is how it works:"
 msgstr ""
 
-#: ../book/administration.rst:877
+#: ../book/administration.rst:904
 msgid "$ # !!! please never do this on the production system !!!\n"
 "$ tarantoolctl enter example\n"
 "/bin/tarantoolctl: Found example.lua in /etc/tarantool/instances.available\n"
@@ -940,22 +995,22 @@ msgid "$ # !!! please never do this on the production system !!!\n"
 "/bin/tarantoolctl: unix/:/var/run/tarantool/example.control: Remote host closed connection"
 msgstr ""
 
-#: ../book/administration.rst:887
+#: ../book/administration.rst:914
 msgid ":samp:`coredumpctl list /usr/bin/tarantool` displays the latest crashes of the Tarantool daemon:"
 msgstr ""
 
-#: ../book/administration.rst:889
+#: ../book/administration.rst:917
 msgid "$ coredumpctl list /usr/bin/tarantool\n"
 "MTIME                            PID   UID   GID SIG PRESENT EXE\n"
 "Sat 2016-01-23 15:21:24 MSK   20681  1000  1000   6   /usr/bin/tarantool\n"
 "Sat 2016-01-23 15:51:56 MSK   21035   995   992   6   /usr/bin/tarantool"
 msgstr ""
 
-#: ../book/administration.rst:896
+#: ../book/administration.rst:924
 msgid ":samp:`coredumpctl info <pid>` shows the stack trace and other useful information:"
 msgstr ""
 
-#: ../book/administration.rst:898
+#: ../book/administration.rst:926
 msgid "$ coredumpctl info 21035\n"
 "          PID: 21035 (tarantool)\n"
 "          UID: 995 (tarantool)\n"
@@ -990,27 +1045,27 @@ msgid "$ coredumpctl info 21035\n"
 "               ..."
 msgstr ""
 
-#: ../book/administration.rst:933
+#: ../book/administration.rst:961
 msgid ":samp:`coredumpctl -o filename.core info <pid>` saves the core dump into a file."
 msgstr ""
 
-#: ../book/administration.rst:935
+#: ../book/administration.rst:963
 msgid ":samp:`coredumpctl gdb <pid>` starts :program:`gdb` on the core dump."
 msgstr ""
 
-#: ../book/administration.rst:937
+#: ../book/administration.rst:965
 msgid "It is highly recommended to install the ``tarantool-debuginfo`` package to improve :program:`gdb` experience. Example:"
 msgstr ""
 
-#: ../book/administration.rst:940
+#: ../book/administration.rst:968
 msgid "$ dnf debuginfo-install tarantool"
 msgstr ""
 
-#: ../book/administration.rst:947
+#: ../book/administration.rst:975
 msgid ":program:`gdb` also provides information about the ``debuginfo`` packages you need to install:"
 msgstr ""
 
-#: ../book/administration.rst:949
+#: ../book/administration.rst:977
 msgid "$ # gdb -p <pid>\n"
 "...\n"
 "Missing separate debuginfos, use: dnf debuginfo-install\n"
@@ -1021,43 +1076,43 @@ msgid "$ # gdb -p <pid>\n"
 "openssl-libs-1.0.2e-3.fc24.x86_64"
 msgstr ""
 
-#: ../book/administration.rst:960
+#: ../book/administration.rst:988
 msgid "Symbol names are present in stack traces even if you don't have the ``tarantool-debuginfo`` package installed."
 msgstr ""
 
-#: ../book/administration.rst:962
+#: ../book/administration.rst:991
 msgid "For additional information, please refer to the documentation provided with your Linux distribution."
 msgstr ""
 
-#: ../book/administration.rst:966
+#: ../book/administration.rst:996
 msgid "Precautions"
 msgstr ""
 
-#: ../book/administration.rst:968
+#: ../book/administration.rst:998
 msgid "Please don't use ``tarantoolctl {start,stop,restart}`` to control instances started by :program:`systemd`. It is still possible to use :program:`tarantoolctl` to start and stop instances from your local directories (e.g. :file:`${HOME}`) without obtaining ``ROOT`` access."
 msgstr ""
 
-#: ../book/administration.rst:972
-msgid ":program:`tarantoolctl` is configured to work properly with ;program:`systemd`. Please don't modify system-wide settings of :program:`tarantoolctl`, such as paths, directory permissions and usernames. Otherwise, you have a chance to shoot yourself in the foot."
+#: ../book/administration.rst:1003
+msgid ":program:`tarantoolctl` is configured to work properly with :program:`systemd`. Please don't modify system-wide settings of :program:`tarantoolctl`, such as paths, directory permissions and usernames. Otherwise, you have a chance to shoot yourself in the foot."
 msgstr ""
 
-#: ../book/administration.rst:976
-msgid ":program:`systemd` scripts are maintained by the Tarantool Team (http://tarantool.org). Please file tickets directly to the upstream's bug tracker rather than to your Linux distribution."
+#: ../book/administration.rst:1008
+msgid ":program:`systemd` scripts are maintained by the Tarantool Team (http://tarantool.org). Please file tickets directly to the upstream's bug tracker (https://github.com/tarantool/tarantool/issues/) rather than to your Linux distribution."
 msgstr ""
 
-#: ../book/administration.rst:981
+#: ../book/administration.rst:1015
 msgid "Updating Tarantool in production"
 msgstr ""
 
-#: ../book/administration.rst:983
+#: ../book/administration.rst:1017
 msgid "First, put your application's business logic in a Tarantool-Lua module that exports its functions for CALL."
 msgstr ""
 
-#: ../book/administration.rst:985
+#: ../book/administration.rst:1020
 msgid "For example, :file:`/usr/share/tarantool/myapp.lua`:"
 msgstr ""
 
-#: ../book/administration.rst:987
+#: ../book/administration.rst:1022
 msgid "local function start()\n"
 "-- Initial version\n"
 "box.once(\"myapp:.1.0\", function()\n"
@@ -1096,19 +1151,19 @@ msgid "local function start()\n"
 "}"
 msgstr ""
 
-#: ../book/administration.rst:1026
-msgid "This file is maintained by the application's developers. On its side, Tarantool Team provides templates for you to `assemble deb/rpm packages`_ and utilities to quickly `assemble packages for specific platforms`_. If needed, you can split applications into standalone files and/or modules."
+#: ../book/administration.rst:1061
+msgid "This file is maintained by the application's developers. On its side, Tarantool Team provides templates for you to `assemble deb/rpm packages <https://github.com/tarantool/modulekit>`_ and utilities to quickly `assemble packages for specific platforms <https://github.com/tarantool/build>`_. If needed, you can split applications into standalone files and/or modules."
 msgstr ""
 
-#: ../book/administration.rst:1035
+#: ../book/administration.rst:1068
 msgid "Second, put an initialization script to the :file:`/etc/tarantool/instances.available` directory."
 msgstr ""
 
-#: ../book/administration.rst:1037
+#: ../book/administration.rst:1071
 msgid "For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:"
 msgstr ""
 
-#: ../book/administration.rst:1039
+#: ../book/administration.rst:1073
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "box.cfg {\n"
@@ -1129,92 +1184,127 @@ msgid "#!/usr/bin/env tarantool\n"
 "myapp = require('myapp').start({some app options controlled by sysadmins})"
 msgstr ""
 
-#: ../book/administration.rst:1061
+#: ../book/administration.rst:1095
 msgid "As a more detailed example, you can take the :file:`example.lua` script that ships with Tarantool and defines all configuration options."
 msgstr ""
 
-#: ../book/administration.rst:1064
+#: ../book/administration.rst:1098
 msgid "This initialization script is actually a configuration file and should be maintained by system administrators, while developers only provide a template."
 msgstr ""
 
-#: ../book/administration.rst:1068
+#: ../book/administration.rst:1102
 msgid "Now update your app file in :file:`/usr/share/tarantool`. Replace your application file (for example, :file:`/usr/share/tarantool/myapp.lua`) and manually reload the :file:`myappcfg.lua` initialization script using :program:`tarantoolctl`:"
 msgstr ""
 
-#: ../book/administration.rst:1072
+#: ../book/administration.rst:1107
 msgid "$ tarantoolctl eval /etc/tarantool/instance.enabled/myappcfg.lua"
 msgstr ""
 
-#: ../book/administration.rst:1076
+#: ../book/administration.rst:1111
 msgid "After that, you need to manually flush the cache of ``package.loaded`` modules."
 msgstr ""
 
-#: ../book/administration.rst:1078
+#: ../book/administration.rst:1113
 msgid "For deb/rpm packages, you can add the ``tarantoolctl eval`` instruction directly into Tarantool's specification in :file:`RPM.spec` and the :file:`/debian` directory."
 msgstr ""
 
-#: ../book/administration.rst:1081
+#: ../book/administration.rst:1117
 msgid "Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions."
 msgstr ""
 
-#: ../book/administration.rst:1083
+#: ../book/administration.rst:1119
 msgid "In the case of ``tarantool-http``, there is no need to start the binary protocol at all."
 msgstr ""
 
-#: ../book/administration.rst:1088
+#: ../book/administration.rst:1124
 msgid "Backups"
 msgstr ""
 
-#: ../book/administration.rst:1090
+#: ../book/administration.rst:1126
 msgid "The exact procedure for backing up a database depends on: how up-to-date the database must be, how frequently backups must be taken, whether it is okay to disrupt other users, and whether the procedure should be optimized for size (saving disk space) or for speed (saving time). So there is a spectrum of possible policies, ranging from cold-and-simple to hot-and-difficult."
 msgstr ""
 
-#: ../book/administration.rst:1097
-msgid "**Cold Backup**"
+#: ../book/administration.rst:1135
+msgid "**Cold backup**"
 msgstr ""
 
-#: ../book/administration.rst:1099
-msgid "In essence: The last snapshot file is a backup of the entire database; and the WAL files that are made after the last snapshot are incremental backups. Therefore taking a backup is a matter of copying the snapshot and WAL files. |br| (1) Prevent all users from writing to the database.This can be done by shutting down the server, or by saying :codenormal:`box.cfg{read_only=true}` and then ensuring that all earlier writes are complete (fsync can be used for this purpose). |br| (2) If this is a backup of the whole database, say :codenormal:`box.snapshot()`. |br| (3) Use tar to make a (possibly compressed) copy of the latest .snap and .xlog files on the :ref:`snap_dir <cfg_basic-snap_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>` directories. |br| (4) If there is a security policy, encrypt the tar file. |br| (5) Copy the tar file to a safe place. |br| ... Later, restoring the database is a matter of taking the tar file and putting its contents back in the snap_dir and wal_dir directories."
+#: ../book/administration.rst:1137
+msgid "In essence: The last snapshot file is a backup of the entire database; and the WAL files that are made after the last snapshot are incremental backups. Therefore taking a backup is a matter of copying the snapshot and WAL files."
 msgstr ""
 
-#: ../book/administration.rst:1118
-msgid "**Continuous remote backup**"
+#: ../book/administration.rst:1142
+msgid "Prevent all users from writing to the database. This can be done by shutting down the server, or by saying ``box.cfg{read_only=true}`` and then ensuring that all earlier writes are complete (:program:`fsync` can be used for this purpose)."
 msgstr ""
 
-#: ../book/administration.rst:1120
-msgid "In essence: :ref:`replication <index-box_replication>` is useful for backup as well as for load balancing. Therefore taking a backup is a matter of ensuring that any given replica is up to date, and doing a cold backup on it. Since all the other replicas continue to operate, this is not a cold backup from the end user's point of view. This could be done on a regular basis, with a cron job or with a Tarantool fiber."
-msgstr ""
-
-#: ../book/administration.rst:1128
-msgid "**Hot backup**"
-msgstr ""
-
-#: ../book/administration.rst:1130
-msgid "In essence: The logged changes done since the last cold backup must be secured, while the system is running."
-msgstr ""
-
-#: ../book/administration.rst:1134
-msgid "For this purpose one needs a \"file copy\" utility that will do the copying remotely and continuously, copying only the parts of a file that are changing. One such utility is rsync_."
-msgstr ""
-
-#: ../book/administration.rst:1139
-msgid "Alternatively, one needs an ordinary file copy utility, but there should be frequent production of new snapshot files or new WAL files as changes occur, so that only the new files need to be copied."
-msgstr ""
-
-#: ../book/administration.rst:1144
-msgid "Note re storage engine: vinyl databases require additional steps."
+#: ../book/administration.rst:1146
+msgid "If this is a backup of the whole database, say :samp:`box.snapshot()`."
 msgstr ""
 
 #: ../book/administration.rst:1148
+msgid "Use :program:`tar` to make a (possibly compressed) copy of the latest :file:`.snap` and :file:`.xlog` files on the :ref:`snap_dir <cfg_basic-snap_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>` directories."
+msgstr ""
+
+#: ../book/administration.rst:1152
+msgid "If there is a security policy, encrypt the tar file."
+msgstr ""
+
+#: ../book/administration.rst:1153
+msgid "Copy the tar file to a safe place."
+msgstr ""
+
+#: ../book/administration.rst:1155
+msgid "... Later, restoring the database is a matter of taking the tar file and putting its contents back in the ``snap_dir`` and ``wal_dir`` directories."
+msgstr ""
+
+#: ../book/administration.rst:1159
+msgid "**Continuous remote backup**"
+msgstr ""
+
+#: ../book/administration.rst:1161
+msgid "In essence: :ref:`replication <index-box_replication>` is useful for backup as well as for load balancing. Therefore taking a backup is a matter of ensuring that any given replica is up to date, and doing a cold backup on it. Since all the other replicas continue to operate, this is not a cold backup from the end user's point of view. This could be done on a regular basis, with a cron job or with a Tarantool fiber."
+msgstr ""
+
+#: ../book/administration.rst:1169
+msgid "**Hot backup**"
+msgstr ""
+
+#: ../book/administration.rst:1171
+msgid "In essence: The logged changes done since the last cold backup must be secured, while the system is running."
+msgstr ""
+
+#: ../book/administration.rst:1175
+msgid "For this purpose you need a \"file copy\" utility that will do the copying remotely and continuously, copying only the parts of a file that are changing. One such utility is `rsync <https://en.wikipedia.org/wiki/rsync>`_."
+msgstr ""
+
+#: ../book/administration.rst:1180
+msgid "Alternatively, you need an ordinary file copy utility, but there should be frequent production of new snapshot files or new WAL files as changes occur, so that only the new files need to be copied."
+msgstr ""
+
+#: ../book/administration.rst:1184
+msgid "Note re storage engine: vinyl databases require additional steps."
+msgstr ""
+
+#: ../book/administration.rst:1188
 msgid "Upgrades"
 msgstr ""
 
-#: ../book/administration.rst:1150
-msgid "This information applies for users who created databases with older versions of the Tarantool server, and have now installed a newer version. The request to make in this case is: :codenormal:`box.schema.upgrade()`."
+#: ../book/administration.rst:1190
+msgid "This information applies for users who created databases with older versions of the Tarantool server, and have now installed a newer version. The request to make in this case is: :samp:`box.schema.upgrade()`."
 msgstr ""
 
-#: ../book/administration.rst:1154
-msgid "For example, here is what happens when one runs :codenormal:`box.schema.upgrade()` with a database that was created in early 2015. Only a small part of the output is shown. |br| :codenormal:`tarantool>` :codebold:`box.schema.upgrade()` |br| :codenormal:`alter index primary on _space set options to {\"unique\":true}, parts to [[0,\"unsigned\"]]` |br| :codenormal:`alter space _schema set options to {}` |br| :codenormal:`create view _vindex...` |br| :codenormal:`grant read access to 'public' role for _vindex view` |br| :codenormal:`set schema version to 1.7.0` |br| :codenormal:`---` |br| :codenormal:`...` |br|"
+#: ../book/administration.rst:1194
+msgid "For example, here is what happens when one runs :samp:`box.schema.upgrade()` with a database that was created in early 2015. Only a small part of the output is shown."
+msgstr ""
+
+#: ../book/administration.rst:1198
+msgid "tarantool> box.schema.upgrade()\n"
+"alter index primary on _space set options to {\"unique\":true}, parts to [[0,\"unsigned\"]]\n"
+"alter space _schema set options to {}\n"
+"create view _vindex...\n"
+"grant read access to 'public' role for _vindex view\n"
+"set schema version to 1.7.0\n"
+"---\n"
+"..."
 msgstr ""
 
 #: ../book/app/a_errcodes.rst:28
@@ -3593,6 +3683,38 @@ msgstr ""
 
 #: ../book/app/f_c_tutorial.rst:323
 msgid "Conclusion: parts of the standard test suite use C stored procedures, and they must work, because releases don't happen if Tarantool doesn't pass the tests."
+msgstr ""
+
+#: ../book/app/g_changes.rst:28
+msgid "Appendix G. Some significant changes in version 1.7"
+msgstr ""
+
+#: ../book/app/g_changes.rst:30
+msgid "The disk-based storge engine, which was called \"sophia\" or \"phia\" in earlier versions, is superseded by the \"vinyl\" storage engine."
+msgstr ""
+
+#: ../book/app/g_changes.rst:33
+msgid "There are new types for indexed fields."
+msgstr ""
+
+#: ../book/app/g_changes.rst:35
+msgid "The LuaJIT version is updated."
+msgstr ""
+
+#: ../book/app/g_changes.rst:37
+msgid "Automatic replication cluster bootstrap (to make it easier to configure a new replication cluster) is supported."
+msgstr ""
+
+#: ../book/app/g_changes.rst:40
+msgid "The space_object:inc() function is removed."
+msgstr ""
+
+#: ../book/app/g_changes.rst:42
+msgid "The space_object:dec() function is removed."
+msgstr ""
+
+#: ../book/app/g_changes.rst:44
+msgid "Smaller feature changes and bug fixes can be seeen by looking at github.com closed milestones_."
 msgstr ""
 
 #: ../book/box/admin.rst:28
