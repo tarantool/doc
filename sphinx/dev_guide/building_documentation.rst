@@ -80,12 +80,12 @@ prerequisites are met.
      cd ~/tarantool-doc/www/output
      python -m SimpleHTTPServer 8000
 
-5. Open your browser and enter ``127.0.0.1:8000`` into the address box. If your
-   local documentation build is valid, the default version (English multi-page)
-   will be displayed in the browser.
+5. Open your browser and enter ``127.0.0.1:8000/doc`` into the address box. If
+   your local documentation build is valid, the default version (English
+   multi-page) will be displayed in the browser.
 
-6. To contribute to documentation, use the ``.rst`` format for drafting and submit
-   your updates as "Pull Requests" via GitHub.
+6. To contribute to documentation, use the ``.rst`` format for drafting and
+   submit your updates as "Pull Requests" via GitHub.
 
    To comply with the writing and formatting style, use the
    :ref:`guidelines <documentation_guidelines>` provided in the documentation,
