@@ -53,7 +53,9 @@ STATIC_PATHS = [
     'js/highcharts_base.js',
     'js/jquery.min.js',
     'terms.docx',
-    'license.docx'
+    'license.docx',
+    '.nojekyll',
+    'CNAME'
 ]
 
 EXTRA_PATH_METADATA = {}

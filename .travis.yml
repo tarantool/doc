@@ -1,0 +1,8 @@
+language: generic # don't install any environment
+install:
+    - pip install sphinx pelican BeautifulSoup sphinx-intl PyYAML --user
+script: bash ./documentation.sh
+env:
+  global:
+    - ENCRYPTION_LABEL: "cc37864fc395"
+
