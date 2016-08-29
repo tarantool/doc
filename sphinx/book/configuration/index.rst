@@ -165,12 +165,8 @@ initialization is complete, one can use :ref:`console.start() <console-start>`.
                 Configuration parameters
 =====================================================================
 
-Configuration parameters have the form:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.cfg{ *key = value* [, *key = value* ...]]
+Configuration parameters have the form: |br|
+:extsamp:`{**{box.cfg}**}{[{*{key = value}*} [, {*{key = value ...}*}]]}`
 
 Since ``box.cfg`` may contain many configuration parameters and since some of the
 parameters (such as directory addresses) are semi-permanent, it's best to keep
