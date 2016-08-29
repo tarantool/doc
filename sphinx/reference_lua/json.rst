@@ -137,41 +137,28 @@ Serializing 'A' and 'B' with different ``__serialize`` values causes different r
 
 .. _json-module_cfg:
 
-================================================================
-                    Configuration settings
-================================================================
-
-There are configuration settings which affect the way that Tarantool encodes
-invalid numbers or types. They are all boolean ``true``/``false`` values
-
-* ``cfg.encode_invalid_numbers`` - allow nan and inf (default is true)
-* ``cfg.encode_use_tostring`` - use tostring for unrecognizable types (default is false)
-* ``cfg.encode_invalid_as_nil`` - use null for all unrecognizable types (default is false)
-* ``cfg.encode_load_metatables`` - load metatables (default is false)
-
-For example, the following code will interpret 0/0 (which is "not a number")
-and 1/0 (which is "infinity") as special values rather than nulls or errors:
-
-.. code-block:: lua
-
-    json = require('json')
-    json.cfg{encode_invalid_numbers = true}
-    x = 0/0
-    y = 1/0
-    json.encode({1, x, y, 2})
-
-The result of the json.encode request will look like this:
-
-.. code-block:: tarantoolsession
-
-    tarantool> json.encode({1, x, y, 2})
-    ---
-    - '[1,nan,inf,2]
-    ...
-
-The same configuration settings exist for json, for
-:ref:`MsgPack <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
->>>>>>> Fix every NOTE to be highlighted on site + JSON cfg rewritten
+A NOTE ABOUT CONFIGURATION SETTINGS:
+There are configuration settings which affect the way that Tarantool
+encodes invalid numbers or types. They are all boolean true/false values. |br|
+:code:`cfg.encode_invalid_numbers     default = true    /* allow nan and inf */` |br|
+:code:`cfg.encode_use_tostring        default = false   /* use tostring for unrecognizable types */` |br|
+:code:`cfg.encode_invalid_as_nil      default = false   /* use null for all unrecognizable types */` |br|
+:code:`cfg.encode_load_metatables     default = true    /* load metatables */` |br|
+For example, the following code will interpret 0/0
+(which is "not a number") and 1/0 (which is "infinity")
+as special values rather than nulls or errors: |br|
+:code:`json = require('json')` |br|
+:code:`json.cfg{encode_invalid_numbers = true}` |br|
+:code:`x = 0/0` |br|
+:code:`y = 1/0` |br|
+:code:`json.encode({1,x,y,2})` |br|
+The result of the json.encode request will look like this: |br|
+:code:`tarantool>` :extsamp:`{**{json.encode({1,x,y,2})}**}` |br|
+:code:`---` |br|
+:code:`- '[1,nan,inf,2]` |br|
+:code:`...` |br|
+The same configuration settings exist for json, for :ref:`MsgPack <msgpack-module>`, and
+for :ref:`yaml <yaml-module>`.
 
 .. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
 .. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html

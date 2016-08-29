@@ -38,12 +38,9 @@ several years ago`_ which has proved adequate for medium-security installations.
 Nevertheless administrators should warn users that no system is foolproof against
 determined long-term attacks, so passwords should be guarded and changed occasionally.
 
-.. NOTE::
-
-    To get the hash-password of a string 'X', say
-    ``box.schema.user.password('X')``. To see more about the details of the
-    algorithm for the purpose of writing a new client application, read the
-    `scramble.h`_ header file.
+Notes: To get the hash-password of a string 'X', say ``box.schema.user.password('X')``.
+To see more about the details of the algorithm for the purpose of writing a new
+client application, read the `scramble.h`_ header file.
 
 .. _Cryptographic hash function: https://en.wikipedia.org/wiki/Cryptographic_hash
 .. _Salt Value: https://en.wikipedia.org/wiki/Salt_%28cryptography%29
