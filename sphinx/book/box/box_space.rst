@@ -277,7 +277,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
                  than the number of fields in the primary key, then only the
                  passed field-values are compared, so ``select{1,2}`` will match
                  a tuple whose primary key is ``{1,2,3}``.
-        :rtype:  tuple
+        :rtype:  array of tuples
 
         Possible errors: No such space; wrong type.
 

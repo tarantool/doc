@@ -413,7 +413,7 @@ API is a direct binding to corresponding methods of index objects of type
             * :samp:`offset = {start-tuple-number}`.
 
         :return: the tuple or tuples that match the field values.
-        :rtype:  tuple set as a Lua table
+        :rtype:  array of tuples
 
         **Example:**
 
