@@ -1,6 +1,6 @@
 language: generic # don't install any environment
 install:
-    - pip install sphinx pelican BeautifulSoup sphinx-intl PyYAML --user
+    - pip install sphinx==1.4.4 pelican BeautifulSoup sphinx-intl PyYAML --user
 script: bash ./documentation.sh
 env:
   global:
