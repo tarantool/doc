@@ -804,15 +804,19 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: truncate()
 
-        Deletes all tuples. Note that ``truncate`` must be called only by the
-        user who created the space OR under a `setuid` function created by that
-        user. Read more about `setuid` functions :ref:`here <authentication-funcs>`.
+        Deletes all tuples. .
 
         Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
 
         **Complexity Factors:** Index size, Index type, Number of tuples accessed.
 
         :return: nil
+
+        .. NOTE::
+
+            Note that ``truncate`` must be called only by the user who created
+            the space OR under a `setuid` function created by that user. Read
+            more about `setuid` functions :ref:`here <authentication-funcs>`
 
         Note re storage engine: vinyl does not support ``truncate()``.
 
