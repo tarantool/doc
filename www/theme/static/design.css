@@ -1615,6 +1615,11 @@ div.b-rock-list-item-ico {
     cursor: default;
     text-decoration: none;
 }
+
+ul.b-social_block {
+    float: right;
+}
+
 ul.b-social_block a {
     text-decoration: blink;
     font-size: 19px;
