@@ -143,12 +143,17 @@ The yield occurs just before a blocking syscall, such as a write to the
 Write-Ahead Log (WAL) or a network message reception.
 
 Implicit yield requests are disabled by :ref:`box.begin <atomic-box_begin>`,
-and enabled again by :ref:`commit <atomic-box_commit>`. Therefore the sequence |br|
-``begin`` |br|
-``implicit yield request #1`` |br|
-``implicit yield request #2`` |br|
-``implicit yield request #3`` |br|
-``commit`` |br|
+and enabled again by :ref:`commit <atomic-box_commit>`. Therefore the sequence
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    begin
+    implicit yield request #1
+    implicit yield request #2
+    implicit yield request #3
+    commit
+
 will not cause implicit yield until the commit occurs (specifically: just before
 the writes to the WAL, which are delayed until commit time). The commit request
 is not itself an implicit yield request, it only enables yields caused by
@@ -167,10 +172,15 @@ implicit yielding is disabled, because there are no writes to the WAL.
 If a task is interactive -- sending requests to the server and receiving
 responses -- then it involves network IO, and therefore there is an implicit
 yield, even if the request that is sent to the server is not itself an implicit
-yield request. Therefore the sequence |br|
-``select`` |br|
-``select`` |br|
-``select`` |br|
+yield request. Therefore the sequence
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    select
+    select
+    select
+
 causes blocking if it is inside a function or Lua program being executed on the
 server, but causes yielding if it is done as a series of transmissions from a
 client, including a client which operates via telnet, via one of the connectors,

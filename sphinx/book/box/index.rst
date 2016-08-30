@@ -45,13 +45,11 @@ Space
 
 A *space* -- 'tester' in the example -- is a container.
 
-When Tarantool is being used to store data, there
-is always at least one space. There can be many spaces.
-Each space has a unique name specified by the user.
-Each space has a unique numeric identifier which can
-be specified by the user but usually is assigned
-automatically by Tarantool. Spaces always
-contain one tuple set and one or more indexes.
+When Tarantool is being used to store data, there is always at least one space.
+There can be many spaces. Each space has a unique name specified by the user.
+Each space has a unique numeric identifier which can be specified by the user
+but usually is assigned automatically by Tarantool. Spaces always contain one
+tuple set and one or more indexes.
 
 ---------
 Tuple Set
@@ -62,15 +60,12 @@ A *tuple set* -- 'tester' in the example -- is a group of tuples.
 There is always one tuple set in a space. The identifier of a tuple set is the
 same as the space name -- 'tester' in the example.
 
-A tuple fills the same role as a “row” or a “record”,
-and the components of a tuple (which we call “fields”)
-fill the same role as a “row column” or “record field”,
-except that: the fields of a tuple can be composite
-structures, such as arrays or maps and don't need to have names.
-That's why there was no need to pre-define the tuple set
-when creating the space, and that's why each tuple can
-have a different number of elements.
-Tuples are stored as `MsgPack`_ arrays.
+A tuple fills the same role as a “row” or a “record”, and the components of a
+tuple (which we call “fields”) fill the same role as a “row column” or “record
+field”, except that: the fields of a tuple can be composite structures, such as
+arrays or maps and don't need to have names. That's why there was no need to
+pre-define the tuple set when creating the space, and that's why each tuple can
+have a different number of elements. Tuples are stored as `MsgPack`_ arrays.
 
 .. _MsgPack: https://en.wikipedia.org/wiki/MessagePack
 
@@ -90,33 +85,30 @@ Index
 
 An *index* -- 'primary' in the example -- is a group of key values and pointers.
 
-In order for a tuple set to be useful, there must always
-be at least one index in a space. There can be many.
-As with spaces, the user can and should specify the index name,
-and let Tarantool come up with a unique numeric identifier
-(the "index id").
-In our example there is one index and its name is “primary”.
+In order for a tuple set to be useful, there must always be at least one index
+in a space. There can be many. As with spaces, the user can and should specify
+the index name, and let Tarantool come up with a unique numeric identifier
+(the "index id"). In our example there is one index and its name is “primary”.
 
-An index may be *multi-part*, that is, the user can declare
-that an index key value is taken from two or more fields
-in the tuple, in any order. An index may be *unique*, that is,
-the user can declare that it would be illegal to have the
-same key value twice. An index may have *one of four types*:
-HASH which is fastest and uses the least memory but must
-be unique, TREE which allows partial-key searching and ordered
-results, BITSET which can be good for searches that contain
-'=' and multiple ANDed conditions, and RTREE for spatial coordinates.
-The first index is called the “*primary key*” index and it must be unique;
-all other indexes are called “secondary” indexes.
+An index may be *multi-part*, that is, the user can declare that an index key
+value is taken from two or more fields in the tuple, in any order. An index may
+be *unique*, that is, the user can declare that it would be illegal to have the
+same key value twice. An index may have *one of four types*: HASH which is
+fastest and uses the least memory but must be unique, TREE which allows
+partial-key searching and ordered results, BITSET which can be good for searches
+that contain '=' and multiple ANDed conditions, and RTREE for spatial coordinates.
+The first index is called the “*primary key*” index and it must be unique; all
+other indexes are called “secondary” indexes.
 
-An index definition may include identifiers of tuple fields
-and their expected types. The allowed types for indexed fields are
-NUM (unsigned integer between 0 and 18,446,744,073,709,551,615),
-or INT (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807),
-or NUMBER (unsigned integer or signed integer or floating-point value),
-or STR (string, any sequence of octets),
-or SCALAR (boolean or number or string),
-or ARRAY (a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`).
+An index definition may include identifiers of tuple fields and their expected
+types. The allowed types for indexed fields are:
+
+* ``unsigned`` (unsigned integer between 0 and 18,446,744,073,709,551,615)
+* ``integer`` (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807)
+* ``number`` (unsigned integer or signed integer or floating-point value)
+* ``string`` (string, any sequence of octets)
+* ``scalar`` (boolean or number or string)
+* ``array`` (a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`)
 
 Take our example, which has the request:
 
@@ -161,27 +153,16 @@ Tarantool can work with numbers, strings, booleans, tables, and userdata.
 .. _table: http://www.lua.org/pil/2.5.html
 .. _userdata: http://www.lua.org/pil/28.1.html
 
-In Lua a *number* is double-precision floating-point,
-but Tarantool allows both integer and floating-point values.
-Tarantool will try to store a number as floating-point if
-the value contains a decimal point or is very large (greater than 100 billion = 1e14),
-otherwise Tarantool will store it as an integer.
-To ensure that even very large numbers will be treated as
-integers, use the :ref:`tonumber64 <other-tonumber64>`
-function, or the LL (Long Long) suffix, or the ULL
-(Unsigned Long Long) suffix. Here are examples of numbers
-using regular notation, exponential notation, the ULL suffix,
-and the tonumber64 function:
--55,  -2.7e+20, 100000000000000ULL, tonumber64('18446744073709551615').
-
-For database storage Tarantool uses MsgPack rules.
-Storage is variable-length, so the smallest number
-requires only one byte but the largest number requires nine bytes.
-When a field has a 'NUM' index, all values must be unsigned
-integers between 0 and 18,446,744,073,709,551,615.
-
-A *string* is a variable-length sequence of bytes,
-usually represented with alphanumeric characters inside single quotes.
+In Lua a *number* is double-precision floating-point, but Tarantool allows both
+integer and floating-point values. Tarantool will try to store a number as
+floating-point if the value contains a decimal point or is very large (greater
+than 100 billion = 1e14), otherwise Tarantool will store it as an integer. To
+ensure that even very large numbers will be treated as integers, use the
+:ref:`tonumber64 <other-tonumber64>` function, or the ``LL`` (Long Long) suffix,
+or the ``ULL`` (Unsigned Long Long) suffix. Here are examples of numbers using
+regular notation, exponential notation, the ULL suffix, and the tonumber64
+function: ``-55``, ``-2.7e+20``, ``100000000000000ULL``,
+``tonumber64('18446744073709551615')``.
 
 For database storage Tarantool uses MsgPack rules. Storage is variable-length,
 so the smallest number requires only one byte but the largest number requires
@@ -212,16 +193,15 @@ For more tuple examples see :ref:`box.tuple <box_tuple>`.
 Operations
 ----------
 
-The basic operations are: the five data-change operations
-(insert, update, upsert, delete, replace), and the data-retrieval
-operation (select). There are also minor operations like
-“ping” which can only be used with the binary protocol.
-Also, there are :ref:`index iterator <box_index-index_pairs>` operations, which can only
-be used with Lua code. (Index iterators are for traversing
-indexes one key at a time, taking advantage of features
-that are specific to an index type, for example evaluating
-Boolean expressions when traversing BITSET indexes, or
-going in descending order when traversing TREE indexes.)
+The basic operations are: the five data-change operations (``insert``, ``update``,
+``upsert``, ``delete``, ``replace``), and the data-retrieval operation (``select``).
+There are also minor operations like “ping” which can only be used with the
+binary protocol. Also, there are :ref:`index iterator <box_index-index_pairs>`
+operations, which can only be used with Lua code. (Index iterators are for
+traversing indexes one key at a time, taking advantage of features that are
+specific to an index type, for example evaluating Boolean expressions when
+traversing BITSET indexes, or going in descending order when traversing TREE
+indexes.)
 
 Six examples of basic operations:
 
@@ -272,55 +252,57 @@ which, for those who know SQL, is equivalent to a statement like
 
    UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[[1]" = 3
 
-**STEP #1**: if this is happening on a remote client,
-then the client parses the statement and changes
-it to a binary-protocol instruction which has already
-been checked, and which the server can understand without
-needing to parse everything again. The client ships a packet to the server.
+1. if this is happening on a remote client, then the client parses the statement
+   and changes it to a binary-protocol instruction which has already been
+   checked, and which the server can understand without needing to parse
+   everything again. The client ships a packet to the server.
 
-**STEP #2**: the server's “transaction processor” thread uses
-the primary-key index on field[1] to find the location
-of the tuple in memory. It determines that the tuple can
-be updated (not much can go wrong when you're merely
-changing an unindexed field value to something shorter).
+2. the server's “transaction processor” thread uses the primary-key index on
+   field[1] to find the location of the tuple in memory. It determines that the
+   tuple can be updated (not much can go wrong when you're merely changing an
+   unindexed field value to something shorter).
 
-**STEP #3**: the transaction processor thread sends a message
-to the write-ahead logging (WAL) thread.
+3. the transaction processor thread sends a message to the write-ahead logging
+   (WAL) thread.
 
-At this point a *yield* takes place. To know the significance
-of that -- and it's quite significant -- you have to know a few
-facts and a few new words.
+At this point a *yield* takes place. To know the significance of that -- and
+it's quite significant -- you have to know a few facts and a few new words.
 
-**FACT #1**: there is only one transaction processor thread.
-Some people are used to the idea that there can be multiple
-threads operating on the database, with (say) thread #1
-reading row #x while thread#2 writes row#y. With Tarantool
-no such thing ever happens. Only the transaction processor
-thread can access the database, and there is only one
-transaction processor thread for each instance of the server.
+.. admonition:: FACT 1:
+    :class: FACT
 
-**FACT #2**: the transaction processor thread can handle many *fibers*.
-A fiber is a set of computer instructions that may contain
-"yield" signals. The transaction processor thread will execute
-all computer instructions until a yield, then switch to execute
-the instructions of a different fiber. Thus (say) the thread reads
-row#x for the sake of fiber#1, then writes row#y for the sake of fiber#2.
+    there is only one transaction processor thread. Some people are used to the
+    idea that there can be multiple threads operating on the database, with
+    (say) thread #1 reading row #x while thread#2 writes row#y. With Tarantool
+    no such thing ever happens. Only the transaction processor thread can access
+    the database, and there is only one transaction processor thread for each
+    instance of the server.
+
+.. admonition:: FACT 2:
+    :class: FACT
+
+    the transaction processor thread can handle many *fibers*. A fiber is a set
+    of computer instructions that may contain "yield" signals. The transaction
+    processor thread will execute all computer instructions until a yield, then
+    switch to execute the instructions of a different fiber. Thus (say) the
+    thread reads row#x for the sake of fiber#1, then writes row#y for the sake
+    of fiber#2.
 
 .. _index-yields_must_happen:
+.. admonition:: FACT 3:
+    :class: FACT
 
-**FACT #3**: yields must happen, otherwise the transaction processor
-thread would stick permanently on the same fiber.
-There are :ref:`implicit yields <atomic-the_implicit_yield_rules>`: every data-change operation
-or network-access causes an implicit yield, and every
-statement that goes through the tarantool client causes
-an implicit yield. And there are explicit yields:
-in a Lua function one can and should add “yield” statements
-to prevent hogging. This is called *cooperative multitasking*.
+    yields must happen, otherwise the transaction processor thread would stick
+    permanently on the same fiber. There are :ref:`implicit yields <atomic-the_implicit_yield_rules>`:
+    every data-change operation or network-access causes an implicit yield, and
+    every statement that goes through the tarantool client causes an implicit
+    yield. And there are explicit yields: in a Lua function one can and should
+    add “yield” statements to prevent hogging. This is called *cooperative multitasking*.
 
-Since all data-change operations end with an implicit yield
-and an implicit commit, and since no data-change operation
-can change more than one tuple, there is no need for any locking.
-Consider, for example, a Lua function that does three Tarantool operations:
+Since all data-change operations end with an implicit yield and an implicit
+commit, and since no data-change operation can change more than one tuple, there
+is no need for any locking. Consider, for example, a Lua function that does
+three Tarantool operations:
 
 .. code-block:: lua
 
@@ -360,29 +342,27 @@ The client/server protocol is open and documented. See this
 Saving To Disk
 --------------
 
-Tarantool maintains a set of write-ahead log (WAL) files.
-There is a separate thread -- the WAL writer -- which catches all
-requests that can change a database, such as box.schema.create or
-box.space.insert. Ordinarily the WAL writer writes the request,
-along with administrative fields and flags, to a WAL file immediately.
-This ensures data persistence, because, even if an in-memory database
-is lost when the power goes off, Tarantool recovers it automatically
-when it starts up again, by reading the WAL files and redoing the requests
-(this is called the "recovery process").
-Users can change the timing of the WAL writer,
-or turn it off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
+Tarantool maintains a set of write-ahead log (WAL) files. There is a separate
+thread -- the WAL writer -- which catches all requests that can change a
+database, such as ``box.schema.create`` or ``box.space.insert``. Ordinarily the
+WAL writer writes the request, along with administrative fields and flags, to a
+WAL file immediately. This ensures data persistence, because, even if an
+in-memory database is lost when the power goes off, Tarantool recovers it
+automatically when it starts up again, by reading the WAL files and redoing the
+requests (this is called the "recovery process").
+Users can change the timing of the WAL writer, or turn it off, by setting
+:ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
 
-Tarantool also maintains a set of snapshot files.
-A snapshot file is an on-disk copy of the entire data set for a given moment.
-Instead of reading every WAL file since the databases were created,
-the recovery process can load the latest snapshot and then read only
-the WAL files that were produced after the snapshot was made.
-A snapshot can be made even if there is no WAL file.
-Some snapshots are automatic, or users can make them at any time
-with the :ref:`box.snapshot() <admin-snapshot>` request.
+Tarantool also maintains a set of snapshot files. A snapshot file is an on-disk
+copy of the entire data set for a given moment. Instead of reading every WAL
+file since the databases were created, the recovery process can load the latest
+snapshot and then read only the WAL files that were produced after the snapshot
+was made. A snapshot can be made even if there is no WAL file. Some snapshots
+are automatic, or users can make them at any time with the
+:ref:`box.snapshot() <admin-snapshot>` request.
 
-Details about the WAL writer and the recovery process
-are in the :ref:`Internals <b_internals>` section.
+Details about the WAL writer and the recovery process are in the
+:ref:`Internals <b_internals>` section.
 
 -----------------
 Data manipulation
@@ -448,24 +428,21 @@ Then, there are seven *parameter variations*:
     tarantool> variable = {1}
     tarantool> box.space.tester:select(variable)
 
-The primary-key value is enclosed in braces, and if
-it was a multi-part primary key then the value would be
-multi-part, for example ``...select{1,2,3}``. The braces
-can be enclosed inside parentheses — ``...select({...})`` — which
-are optional unless it is necessary to pass something
-besides the primary-key value, as in example #5.
-Literal values such as 1 (a scalar value) or {1} (a Lua table
-value) may be replaced by variable names, as in examples
-#6 and #7. Although there are special cases where braces
-can be omitted, they are preferable because they signal
-"Lua table". Examples and descriptions in this manual
-have the "{1}" form; however, this too is a matter of
-user preference and all the variations exist in the wild.
+The primary-key value is enclosed in braces, and if it was a multi-part primary
+key then the value would be multi-part, for example ``...select{1,2,3}``. The
+braces can be enclosed inside parentheses — ``...select({...})`` — which are
+optional unless it is necessary to pass something besides the primary-key value,
+as in example #5. Literal values such as 1 (a scalar value) or {1} (a Lua table
+value) may be replaced by variable names, as in examples #6 and #7. Although
+there are special cases where braces can be omitted, they are preferable because
+they signal "Lua table". Examples and descriptions in this manual have the "{1}"
+form; however, this too is a matter of user preference and all the variations
+exist in the wild.
 
-All the data-manipulation functions operate on tuple sets but,
-since primary keys are unique, the number of tuples in the
-tuple set is always 0 or 1. The only exception is ``box.space...select``,
-which may accept either a primary-key value or a secondary-key value.
+All the data-manipulation functions operate on tuple sets but, since primary
+keys are unique, the number of tuples in the tuple set is always 0 or 1. The
+only exception is ``box.space...select``, which may accept either a primary-key
+value or a secondary-key value.
 
 ----------------
 Index operations
@@ -475,15 +452,25 @@ Index operations are automatic: if a data-manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple. Therefore the user
 only needs to know how and why to define.
 
-The simple index-creation operation which has been illustrated before is |br|
-:samp:`box.space.{space-name}:create_index('{index-name}')` |br|
+The simple index-creation operation which has been illustrated before is
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    :samp:`box.space.{space-name}:create_index('{index-name}')`
+
 By default, this creates a unique "tree" index on the first field of all tuples
 (often called "Field#1"), which is assumed to be numeric.
 
 These variations exist:
 
-1. An indexed field may be a string rather than a number. |br|
-   :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {parts = {1, 'string'}})` |br|
+1. An indexed field may be a string rather than a number.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {parts = {1, 'string'}})`
+
    For an ordinary index, the most common data types are 'unsigned' = any
    non-negative integer, or 'string' = any series of bytes. Numbers are
    ordered according to their point on the number line -- so 2345 is greater
@@ -493,20 +480,35 @@ These variations exist:
 
    For details about other index types see :ref:`create_index <box_space-create_index>`.
 
-2. There may be more than one field. |br|
-   :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {
-   parts = {3, 'unsigned', 2, 'string'}
-   })` |br|
+2. There may be more than one field.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', {
+           parts = {3, 'unsigned', 2, 'string'}
+       })`
+
    For an ordinary index, the maximum number of parts is 255. The specification
    of each part consists of a field number and a type.
 
-3. The index does not have to be unique. |br|
-   :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', { unique = false })` |br|
+3. The index does not have to be unique.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       box.space.*space-name*:create_index('*index-name*', { unique = false })
+
    The first index of a tuple set must be unique, but other indexes ("secondary"
    indexes) may be non-unique.
 
-4. The index does not have to be a tree. |br|
-   :extsamp:`box.space.{*{space-name}*}:create_index('{*{index-name}*}', { type = 'hash' })` |br|
+4. The index does not have to be a tree.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       box.space.*space-name*:create_index('*index-name*', { type = 'hash' })
+
    The two ordinary index types are 'tree' which is the default, and 'hash'
    which must be unique and which may be faster or smaller. The third type is
    'bitset' which is not unique and which works best for combinations of binary
@@ -516,16 +518,26 @@ These variations exist:
 The existence of indexes does not affect the syntax of data-change requests, but
 does cause select requests to have more variety.
 
-The simple select request which has been illustrated before is: |br|
-:extsamp:`box.space.{*{space-name}*}:select({*{value}*})` |br|
+The simple select request which has been illustrated before is:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    :extsamp:`box.space.{*{space-name}*}:select({*{value}*})`
+
 By default, this looks for a single tuple
 via the first index. Since the first index is always unique,
 the maximum number of returned tuples will be: one.
 
 These variations exist:
 
-1. The search can use comparisons other than equality. |br|
-   :extsamp:`box.space.{*{space-name}*}:select(value, {iterator = 'GT'})` |br|
+1. The search can use comparisons other than equality.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       :extsamp:`box.space.{*{space-name}*}:select(value, {iterator = 'GT'})`
+
    The comparison operators are LT, LE, EQ, REQ, GE, GT for "less than", "less
    than or equal", "equal", "reversed equal", "greater than or equal", "greater
    than" respectively.
@@ -535,21 +547,54 @@ These variations exist:
    in descending order by key when the comparison operator is LT or LE or REQ,
    otherwise in ascending order.
 
-2. The search can use a secondary index. |br|
-   :extsamp:`box.space.{*{space-name}*}.index.{*{index-name}*}:select(value)` |br|
+2. The search can use a secondary index.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       :extsamp:`box.space.{*{space-name}*}.index.{*{index-name}*}:select(value)`
+
    For a primary-key search, it is optional to specify an index name. For a
    secondary-key search, it is mandatory.
 
-3. The search may be for some or all key parts. |br|
-   Suppose an index has two parts: {1,'NUM', 2, 'STR'}. |br|
-   Suppose the space has three tuples: {1, 'A'},{1, 'B'},{2, ''}. |br|
-   The search can be for all fields, using a table for the value: |br|
-   :extsamp:`box.space.{*{space-name}*}:select({1, 'A'})` |br|
-   or the search can be for one field, using a table or a scalar: |br|
-   :extsamp:`box.space.{*{space-name}*}:select(1)` |br|
-   in the second case, the result will be two tuples:
-   {1, 'A'} and {1, 'B'}. It's even possible to specify zero
-   fields, causing all three tuples to be
+3.
+   The search may be for some or all key parts.
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+        -- Suppose an index has two parts
+        :samp:`tarantool> box.space.{space-name}.index.{index-name}.parts`
+        ---
+        - - type: unsigned
+            fieldno: 1
+          - type: string
+            fieldno: 2
+        ...
+        -- Suppose the space has three tuples
+        :samp:`box.space.{space-name}:select()`
+        ---
+        - - [1, 'A']
+          - [1, 'B']
+          - [2, '']
+        ...
+
+   The search can be for all fields, using a table for the value:
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       :extsamp:`box.space.{*{space-name}*}:select({1, 'A'})`
+
+   or the search can be for one field, using a table or a scalar:
+
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       :samp:`box.space.{space-name}:select(1)`
+
+   in the second case, the result will be two tuples: ``{1, 'A'}`` and ``{1, 'B'}``.
+   It's even possible to specify zero fields, causing all three tuples to be
    returned.
 
 **Examples:**

@@ -141,32 +141,38 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
 .. _box_schema-user_grant:
 
-.. function:: box.schema.user.grant(user-name, privilege, object-type, object-name [,option])
+.. function:: box.schema.user.grant(user-name, priveleges, object-type, object-name[, {options} ])
+              box.schema.user.grant(user-name, priveleges, 'universe'[, nil, {options} ])
+              box.schema.user.grant(user-name, role-name[, nil, nil, {options} ])
 
     Grant :ref:`privileges <authentication-privileges>` to a user.
 
-    :param string user-name: the name of the user
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function'
-    :param string object-name: the name of a function or space
-    :param bool option: {if_not_exists=true} or {if_not_exists=false}
+    :param string   user-name: the name of the user
+    :param string  priveleges: 'read' or 'write' or 'execute' or a combination,
+    :param string object-type: 'space' or 'function'.
+    :param string object-name: name of object to grant permissions to
+    :param string   role-name: name of role to grant to user.
+    :param table      options: ``grantor``, ``if_not_exists``
 
-    The user must exist, and the object must exist.
-    If 'function','object-name' is specified, then a _func tuple with that object-name must exist.
+    If :samp:`'function','{object-name}'` is specified, then a _func tuple with
+    that object-name must exist.
 
-    Variation: instead of ``object-type, object-name`` say 'universe' which
+    **Variation:** instead of ``object-type, object-name`` say 'universe' which
     means 'all object-types and all objects'.
 
-    Variation: instead of ``privilege, object-type, object-name`` say
+    **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
-    **Examples:**
+    **Example:**
 
-        box.schema.user.grant('Lena', 'read,write', 'space', 'tester') |br|
-        box.schema.user.grant('Lena', 'execute', 'function', 'f') |br|
-        box.schema.user.grant('X', 'read', 'space', 'Y', {if_not_exists=true}) |br|
-        box.schema.user.grant('Lena', 'Accountant') |br|
-        box.schema.user.grant('Lena', 'read,write,execute', 'universe') |br|
+    .. code-block:: lua
+
+        box.schema.user.grant('Lena', 'read', 'space', 'tester')
+        box.schema.user.grant('Lena', 'execute', 'function', 'f')
+        box.schema.user.grant('Lena', 'read,write', 'universe')
+        box.schema.user.grant('Lena', 'Accountant')
+        box.schema.user.grant('Lena', 'read,write,execute', 'universe')
+        box.schema.user.grant('X', 'read', 'universe', nil, {if_not_exists=true}))
 
 .. function:: box.schema.user.revoke(user-name, privilege, object-type, object-name)
 
@@ -180,17 +186,20 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     The user must exist, and the object must exist,
     but it is not an error if the user does not have the privilege.
 
-    Variation: instead of ``object-type, object-name`` say 'universe'
+    **Variation:** instead of ``object-type, object-name`` say 'universe'
     which means 'all object-types and all objects'.
 
-    Variation: instead of ``privilege, object-type, object-name`` say
+    **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
-    **Examples:**
+    **Example:**
 
-        box.schema.user.revoke('Lena', 'read', 'space', 'tester') |br|
-        box.schema.user.revoke('Lena', 'execute', 'function', 'f') |br|
-        box.schema.user.revoke('Lena', 'read,write', 'universe') |br|
+    .. code-block:: lua
+
+        box.schema.user.revoke('Lena', 'read', 'space', 'tester')
+        box.schema.user.revoke('Lena', 'execute', 'function', 'f')
+        box.schema.user.revoke('Lena', 'read,write', 'universe')
+        box.schema.user.revoke('Lena', 'Accountant')
 
 .. function:: box.schema.user.password(password)
 
@@ -200,6 +209,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     :rtype: string
 
     **Example:**
+
+    .. code-block:: lua
 
         box.schema.user.password('ЛЕНА')
 
@@ -215,7 +226,9 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     :param string user-name: user-name
     :param string password: password
 
-    **Examples:**
+    **Example:**
+
+    .. code-block:: lua
 
         box.schema.user.passwd('ЛЕНА')
         box.schema.user.passwd('Lena', 'ЛЕНА')
@@ -230,9 +243,11 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
                              will be for the user who is
                              currently logged in.
 
-    **Examples:**
+    **Example:**
 
-        box.schema.user.info() |br|
+    .. code-block:: lua
+
+        box.schema.user.info()
         box.schema.user.info('Lena')
 
 .. function:: box.schema.role.create(role-name [, {options} ])
@@ -247,9 +262,11 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     :return: nil
 
-    **Examples:**
+    **Example:**
 
-        box.schema.role.create('Accountant') |br|
+    .. code-block:: lua
+
+        box.schema.role.create('Accountant')
         box.schema.role.create('Accountant', {if_not_exists = false})
 
 .. function:: box.schema.role.drop(role-name)
@@ -262,6 +279,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     **Example:**
 
+    .. code-block:: lua
+
         box.schema.role.drop('Accountant')
 
 .. function:: box.schema.role.exists(role-name)
@@ -272,6 +291,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     :rtype: bool
 
     **Example:**
+
+    .. code-block:: lua
 
         box.schema.role.exists('Accountant')
 
@@ -287,18 +308,20 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     The role must exist, and the object must exist.
 
-    Variation: instead of ``object-type, object-name`` say 'universe'
+    **Variation:** instead of ``object-type, object-name`` say 'universe'
     which means 'all object-types and all objects'.
 
-    Variation: instead of ``privilege, object-type, object-name`` say
+    **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` -- to grant a role to a role.
 
-    **Examples:**
+    **Example:**
 
-        box.schema.role.grant('Accountant', 'read', 'space', 'tester') |br|
-        box.schema.role.grant('Accountant', 'execute', 'function', 'f') |br|
-        box.schema.role.grant('Accountant', 'read,write', 'universe') |br|
-        box.schema.role.grant('public', 'Accountant') |br|
+    .. code-block:: lua
+
+        box.schema.role.grant('Accountant', 'read', 'space', 'tester')
+        box.schema.role.grant('Accountant', 'execute', 'function', 'f')
+        box.schema.role.grant('Accountant', 'read,write', 'universe')
+        box.schema.role.grant('public', 'Accountant')
         box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})
 
 .. function:: box.schema.role.revoke(user-name, privilege, object-type, object-name)
@@ -313,17 +336,19 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     The role must exist, and the object must exist,
     but it is not an error if the role does not have the privilege.
 
-    Variation: instead of ``object-type, object-name`` say 'universe'
+    **Variation:** instead of ``object-type, object-name`` say 'universe'
     which means 'all object-types and all objects'.
 
-    Variation: instead of ``privilege, object-type, object-name`` say
+    **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name``.
 
-    **Examples:**
+    **Example:**
 
-        box.schema.role.revoke('Accountant', 'read', 'space', 'tester') |br|
-        box.schema.role.revoke('Accountant', 'execute', 'function', 'f') |br|
-        box.schema.role.revoke('Accountant', 'read,write', 'universe') |br|
+    .. code-block:: lua
+
+        box.schema.role.revoke('Accountant', 'read', 'space', 'tester')
+        box.schema.role.revoke('Accountant', 'execute', 'function', 'f')
+        box.schema.role.revoke('Accountant', 'read,write', 'universe')
         box.schema.role.revoke('public', 'Accountant')
 
 .. function:: box.schema.role.info([role-name])
@@ -333,6 +358,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     :param string role-name: the name of the role.
 
     **Example:**
+
+    .. code-block:: lua
 
         box.schema.role.info('Accountant')
 
@@ -353,11 +380,13 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     :return: nil
 
-    **Examples:**
+    **Example:**
 
-        box.schema.func.create('calculate') |br|
-        box.schema.func.create('calculate', {if_not_exists = false}) |br|
-        box.schema.func.create('calculate', {setuid = false}) |br|
+    .. code-block:: lua
+
+        box.schema.func.create('calculate')
+        box.schema.func.create('calculate', {if_not_exists = false})
+        box.schema.func.create('calculate', {setuid = false})
         box.schema.func.create('calculate', {language = 'LUA'})
 
 .. _box_schema-func_drop:
@@ -372,6 +401,8 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     **Example:**
 
+    .. code-block:: lua
+
         box.schema.func.drop('calculate')
 
 .. function:: box.schema.func.exists(func-name)
@@ -382,5 +413,7 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     :rtype: bool
 
     **Example:**
+
+    .. code-block:: lua
 
         box.schema.func.exists('calculate')
