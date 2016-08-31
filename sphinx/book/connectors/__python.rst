@@ -2,8 +2,8 @@
                             Python
 =====================================================================
 
-Here is a complete Python program that inserts :code:`[99999,'Value','Value']` into
-space :code:`examples` via the high-level Python API.
+Here is a complete Python program that inserts ``[99999,'Value','Value']`` into
+space ``examples`` via the high-level Python API.
 
 .. code-block:: python
 
@@ -14,19 +14,21 @@ space :code:`examples` via the high-level Python API.
     result = c.insert("examples",(99999,'Value', 'Value'))
     print result
 
-To prepare, paste the code into a file named example.py and install
-tarantool-python with either :code:`pip install tarantool\>0.4` to install
-in :code:`/usr` (requires **root** privilege) or :code:`pip install tarantool\>0.4 --user`
-to install in :code:`~` i.e. user's default directory. Before trying to run,
-check that the server is listening and that examples exists, as :ref:`described earlier <index-connector_setting>`.
-To run the program, say :code:`python example.py`. The program will connect
-to the server, will send the request, and will not throw an exception if
+To prepare, paste the code into a file named :file:`example.py` and install
+the ``tarantool-python`` connector with either :samp:`pip install tarantool\>0.4`
+to install in :file:`/usr` (requires **root** privilege) or
+:samp:`pip install tarantool\>0.4 --user` to install in :file:`~` i.e. user's
+default directory. Before trying to run, check that the server is listening at
+``localhost:3301`` and that the space ``examples`` exists, as
+:ref:`described earlier <index-connector_setting>`.
+To run the program, say :samp:`python example.py`. The program will connect
+to the server, will send the request, and will not throw any exception if
 all went well. If the tuple already exists, the program will throw
-:code:`tarantool.error.DatabaseError: (3, "Duplicate key exists in unique index 'primary' in space 'examples'")`.
+``tarantool.error.DatabaseError: (3, "Duplicate key exists in unique index 'primary' in space 'examples'")``.
 
 The example program only shows one request and does not show all that's
-necessary for good practice. For that, see http://github.com/tarantool/tarantool-python.
-For an example of a Python API for `Queue managers on Tarantool`_, see
-https://github.com/tarantool/tarantool-queue-python.
-
-.. _Queue managers on Tarantool: https://github.com/tarantool/queue
+necessary for good practice. For that, please see
+`tarantool-python project at GitHub <http://github.com/tarantool/tarantool-python>`_.
+For an example of using Python API with
+`queue managers for Tarantool <https://github.com/tarantool/queue>`_, see
+`queue-python project at GitHub <https://github.com/tarantool/queue-python>`_.

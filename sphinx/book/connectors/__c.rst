@@ -2,8 +2,6 @@
                             C
 =====================================================================
 
-:c:func:`tarantoolc:tnt_connect`
-
 Here follow two examples of using Tarantool's high-level C API.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,14 +63,15 @@ To compile and link the program, say:
     $ gcc -o example example.c -ltarantool
 
 Before trying to run,
-check that the server is listening and that the space :code:`examples` exists, as 
+check that the server is listening at ``localhost:3301`` and that the space
+``examples`` exists, as 
 :ref:`described earlier <index-connector_setting>`.
-To run the program, say :code:`./example`. The program will connect
+To run the program, say :samp:`./example`. The program will connect
 to the server, and will send the request.
 If Tarantool is not running on localhost with listen address = 3301, the program
 will print “Connection refused”.
 If the insert fails, the program will print "Insert failed" and an error number
-(see all error codes in the file 
+(see all error codes in the source file 
 `/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_).
 
 Here are notes corresponding to comments in the example program.
@@ -84,8 +83,8 @@ Here are notes corresponding to comments in the example program.
     struct tnt_stream *tnt = tnt_net(NULL);
     tnt_set(tnt, TNT_OPT_URI, "localhost:3301");
 
-In this program, the stream will be named :code:`tnt`.
-Before connecting on the :code:`tnt` stream, some options may have to be set.
+In this program, the stream will be named ``tnt``.
+Before connecting on the ``tnt`` stream, some options may have to be set.
 The most important option is TNT_OPT_URI.
 In this program, the URI is ``localhost:3301``, since that is where the
 Tarantool server is supposed to be listening.
@@ -115,7 +114,7 @@ Function description:
 
 The connection might fail for a variety of reasons, such as:
 the server is not running, or the URI contains an invalid password.
-If the connect fails, the return value will be -1.
+If the connection fails, the return value will be -1.
 
 **MAKE REQUEST:** Most requests require passing a structured value, such as
 the contents of a tuple.
@@ -151,8 +150,8 @@ requests in the box library.
 
 In this program, the choice is to do an INSERT request, so
 the program passes the ``tnt_stream`` that was used for connection
-(:code:`tnt`) and the stream that was set up with :c:func:`tarantoolc:tnt_object_format`
-(:code:`tuple`).
+(``tnt``) and the ``tnt_stream`` that was set up with
+:c:func:`tarantoolc:tnt_object_format` (``tuple``).
 
 Function description:
 
@@ -189,8 +188,8 @@ Function description:
     void tnt_reply_free(struct tnt_reply \*r)
 
 **TEARDOWN:** When a session ends, the connection that was made with
-:c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that were made in the setup
-should be destroyed.
+:c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that were
+made in the setup should be destroyed.
 
 .. code-block:: c
 
@@ -210,10 +209,11 @@ Function description:
                          Example 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here is a complete C program that selects, using index key :code:`[99999]`, from
-space :code:`examples` via the high-level C API.
+Here is a complete C program that selects, using index key ``[99999]``, from
+space ``examples`` via the high-level C API.
 To display the results, the program uses functions in the
-`MsgPuck`_ library which allow decoding of `MessagePack`_  arrays.
+`MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library which allow decoding of
+`MessagePack <https://en.wikipedia.org/wiki/MessagePack>`_  arrays.
 
 .. code-block:: c
 
@@ -282,7 +282,7 @@ To display the results, the program uses functions in the
         tnt_stream_free(tnt);
     }
 
-Similarly to the first example, paste the code into a file named 
+Similarly to the first example, paste the code into a file named
 :file:`example2.c`.
 
 To compile and link the program, say:
@@ -291,11 +291,9 @@ To compile and link the program, say:
 
     $ gcc -o example2 example2.c -ltarantool
 
-To run the program, say :code:`./example2`.
+To run the program, say :samp:`./example2`.
 
 The two example programs only show a few requests and do not show all that's
-necessary for good practice. See more in the ``tarantool-c`` documentation at 
-http://github.com/tarantool/tarantool-c.
+necessary for good practice. See more in the
+`tarantool-c documentation at GitHub <http://github.com/tarantool/tarantool-c>`_.
 
-.. _MsgPuck: http://rtsisyk.github.io/msgpuck/
-.. _MessagePack: https://en.wikipedia.org/wiki/MessagePack

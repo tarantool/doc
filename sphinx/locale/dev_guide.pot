@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 21:14+0300\n"
+"POT-Creation-Date: 2016-08-31 13:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../dev_guide/box_protocol.rst:36
-msgid "IProto Protocol"
+msgid "Tarantool's binary protocol"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:40
@@ -75,7 +75,7 @@ msgid "Overview"
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:75
-msgid "IPROTO is a binary request/response protocol."
+msgid "Tarantool's binary protocol is a binary request/response protocol."
 msgstr ""
 
 #: ../dev_guide/box_protocol.rst:79
@@ -773,7 +773,7 @@ msgid "cd ~/tarantool-doc/www/output\n"
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:108
-msgid "Open your browser and enter ``127.0.0.1:8000`` into the address box. If your local documentation build is valid, the default version (English multi-page) will be displayed in the browser."
+msgid "Open your browser and enter ``127.0.0.1:8000/doc`` into the address box. If your local documentation build is valid, the default version (English multi-page) will be displayed in the browser."
 msgstr ""
 
 #: ../dev_guide/building_documentation.rst:112

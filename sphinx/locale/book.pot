@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 21:14+0300\n"
+"POT-Creation-Date: 2016-08-31 13:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3686,35 +3686,43 @@ msgid "Conclusion: parts of the standard test suite use C stored procedures, and
 msgstr ""
 
 #: ../book/app/g_changes.rst:28
-msgid "Appendix G. Some significant changes in version 1.7"
+msgid "Appendix G. Version-specific changes"
 msgstr ""
 
 #: ../book/app/g_changes.rst:30
-msgid "The disk-based storge engine, which was called \"sophia\" or \"phia\" in earlier versions, is superseded by the \"vinyl\" storage engine."
+msgid "This appendix summarizes significant changes introduced in specific versions of Tarantool."
 msgstr ""
 
 #: ../book/app/g_changes.rst:33
-msgid "There are new types for indexed fields."
+msgid "For smaller feature changes and bug fixes, see closed `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_ at GitHub."
 msgstr ""
 
-#: ../book/app/g_changes.rst:35
-msgid "The LuaJIT version is updated."
+#: ../book/app/g_changes.rst:39
+msgid "Changes in Tarantool version 1.7"
 msgstr ""
 
-#: ../book/app/g_changes.rst:37
-msgid "Automatic replication cluster bootstrap (to make it easier to configure a new replication cluster) is supported."
-msgstr ""
-
-#: ../book/app/g_changes.rst:40
-msgid "The space_object:inc() function is removed."
-msgstr ""
-
-#: ../book/app/g_changes.rst:42
-msgid "The space_object:dec() function is removed."
+#: ../book/app/g_changes.rst:41
+msgid "The disk-based storge engine, which was called `sophia` or `phia` in earlier versions, is superseded by the `vinyl` storage engine."
 msgstr ""
 
 #: ../book/app/g_changes.rst:44
-msgid "Smaller feature changes and bug fixes can be seeen by looking at github.com closed milestones_."
+msgid "There are new types for indexed fields."
+msgstr ""
+
+#: ../book/app/g_changes.rst:46
+msgid "The LuaJIT version is updated."
+msgstr ""
+
+#: ../book/app/g_changes.rst:48
+msgid "Automatic replication cluster bootstrap (to make it easier to configure a new replication cluster) is supported."
+msgstr ""
+
+#: ../book/app/g_changes.rst:51
+msgid "The ``space_object:inc()`` function is removed."
+msgstr ""
+
+#: ../book/app/g_changes.rst:53
+msgid "The ``space_object:dec()`` function is removed."
 msgstr ""
 
 #: ../book/box/admin.rst:28
@@ -4995,7 +5003,8 @@ msgid "the tuple or tuples that match the field values."
 msgstr ""
 
 #: ../book/box/box_index.rst:441
-msgid "tuple set as a Lua table"
+#: ../book/box/box_space.rst:305
+msgid "array of tuples"
 msgstr ""
 
 #: ../book/box/box_index.rst:445
@@ -5123,7 +5132,6 @@ msgstr ""
 #: ../book/box/box_index.rst:724
 #: ../book/box/box_index.rst:741
 #: ../book/box/box_space.rst:276
-#: ../book/box/box_space.rst:305
 #: ../book/box/box_space.rst:374
 #: ../book/box/box_space.rst:455
 #: ../book/box/box_space.rst:514
@@ -9238,30 +9246,26 @@ msgid "Configuration parameters"
 msgstr ""
 
 #: ../book/configuration/index.rst:193
-msgid "Configuration parameters have the form:"
+msgid "Configuration parameters have the form: |br| :extsamp:`{**{box.cfg}**}{[{*{key = value}*} [, {*{key = value ...}*}]]}`"
 msgstr ""
 
-#: ../book/configuration/index.rst:198
-msgid "box.cfg{ *key = value* [, *key = value* ...]]"
-msgstr ""
-
-#: ../book/configuration/index.rst:200
+#: ../book/configuration/index.rst:196
 msgid "Since ``box.cfg`` may contain many configuration parameters and since some of the parameters (such as directory addresses) are semi-permanent, it's best to keep ``box.cfg`` in a Lua file. Typically this Lua file is the initialization file which is specified on the tarantool command line."
 msgstr ""
 
-#: ../book/configuration/index.rst:205
+#: ../book/configuration/index.rst:201
 msgid "Most configuration parameters are for allocating resources, opening ports, and specifying database behavior. All parameters are optional. A few parameters are dynamic, that is, they can be changed at runtime by calling ``box.cfg{}`` a second time."
 msgstr ""
 
-#: ../book/configuration/index.rst:210
+#: ../book/configuration/index.rst:206
 msgid "To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a particular parameter, for example the listen address, say ``box.cfg.listen``."
 msgstr ""
 
-#: ../book/configuration/index.rst:213
+#: ../book/configuration/index.rst:209
 msgid "The following sections describe all parameters for basic operation, for storage, for binary logging and snapshots, for replication, for networking, and for logging."
 msgstr ""
 
-#: ../book/configuration/index.rst:218
+#: ../book/configuration/index.rst:214
 msgid "Basic parameters"
 msgstr ""
 
@@ -9365,7 +9369,7 @@ msgstr ""
 msgid "A directory where database working files will be stored. The server switches to work_dir with :manpage:`chdir(2)` after start. Can be relative to the current directory. If not specified, defaults to the current directory. Other directory parameters may be relative to work_dir, for example |br| :codenormal:`box.cfg{work_dir='/home/user/A',wal_dir='B',snap_dir='C'}` |br| will put xlog files in /home/user/A/B, snapshot files in /home/user/A/C, and all other files or subdirectories in /home/user/A."
 msgstr ""
 
-#: ../book/configuration/index.rst:224
+#: ../book/configuration/index.rst:220
 msgid "Configuring the storage"
 msgstr ""
 
@@ -9405,7 +9409,7 @@ msgstr ""
 msgid "The default vinyl configuration can be changed with"
 msgstr ""
 
-#: ../book/configuration/cfg_storage.rst:438
+#: ../book/configuration/cfg_storage.rst:434
 msgid "vinyl = {\n"
 "  run_age_wm = *number*,\n"
 "  run_age_period = *number of seconds*,\n"
@@ -9425,7 +9429,7 @@ msgstr ""
 msgid "Default values are:"
 msgstr ""
 
-#: ../book/configuration/cfg_storage.rst:455
+#: ../book/configuration/cfg_storage.rst:451
 msgid "vinyl = {\n"
 "  run_age_wm = 0,\n"
 "  run_age_period = 0,\n"
@@ -9437,7 +9441,7 @@ msgid "vinyl = {\n"
 "}"
 msgstr ""
 
-#: ../book/configuration/index.rst:232
+#: ../book/configuration/index.rst:228
 msgid "Snapshot daemon"
 msgstr ""
 
@@ -9480,7 +9484,7 @@ msgstr ""
 msgid "Type: integer |br| Default: 6 |br| Dynamic: yes |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:238
+#: ../book/configuration/index.rst:234
 msgid "Binary logging and snapshots"
 msgstr ""
 
@@ -9550,7 +9554,7 @@ msgstr ""
 msgid "Type: float |br| Default: 2 |br| Dynamic: no |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:244
+#: ../book/configuration/index.rst:240
 #: ../book/replication/index.rst:30
 msgid "Replication"
 msgstr ""
@@ -9575,7 +9579,7 @@ msgstr ""
 msgid "Type: string |br| Default: null |br| Dynamic: **yes** |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:250
+#: ../book/configuration/index.rst:246
 msgid "Networking"
 msgstr ""
 
@@ -9595,7 +9599,7 @@ msgstr ""
 msgid "Type: integer |br| Default: 16320 |br| Dynamic: **yes** |br|"
 msgstr ""
 
-#: ../book/configuration/index.rst:256
+#: ../book/configuration/index.rst:252
 msgid "Logging"
 msgstr ""
 
@@ -9727,7 +9731,7 @@ msgstr ""
 msgid "On Terminal #2: use ``mv`` so the log file is now named `Log_file.bak`. The result of this is: the next log message will go to `Log_file.bak`. |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:850
+#: ../book/configuration/cfg_logging.rst:846
 msgid "mv Log_file Log_file.bak"
 msgstr ""
 
@@ -9743,7 +9747,7 @@ msgstr ""
 msgid "On Terminal #2: use ``ps`` to find the process ID of the Tarantool server. |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:863
+#: ../book/configuration/cfg_logging.rst:859
 msgid "ps -A | grep tarantool"
 msgstr ""
 
@@ -9751,7 +9755,7 @@ msgstr ""
 msgid "On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool server. The result of this is: Tarantool will open `Log_file` again, and the next log message will go to `Log_file`. (The same effect could be accomplished by executing log.rotate() on the server.) |br|"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:873
+#: ../book/configuration/cfg_logging.rst:869
 msgid "kill -HUP *process_id*"
 msgstr ""
 
@@ -9767,7 +9771,7 @@ msgstr ""
 msgid "On Terminal #2: use ``less`` to examine files. `Log_file.bak` will have these lines, except that the date and time will depend on when the example is done:"
 msgstr ""
 
-#: ../book/configuration/cfg_logging.rst:887
+#: ../book/configuration/cfg_logging.rst:883
 msgid "2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`\n"
 "2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`"
 msgstr ""
@@ -9776,32 +9780,32 @@ msgstr ""
 msgid "and `Log_file` will have"
 msgstr ""
 
-#: ../internal padding after book/configuration/cfg_logging.rst:895
+#: ../internal padding after book/configuration/cfg_logging.rst:891
 msgid "log file has been reopened\n"
 "2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3"
 msgstr ""
 
-#: ../book/configuration/index.rst:264
+#: ../book/configuration/index.rst:260
 msgid "Local hot standby"
 msgstr ""
 
-#: ../book/configuration/index.rst:266
+#: ../book/configuration/index.rst:262
 msgid "Local hot standby is a feature which provides a simple form of failover without replication. To initiate it, start a second instance of the Tarantool server on the same computer with the same :ref:`box.cfg <box_introspection-box_cfg>` configuration settings - including the same directories and same non-null URIs. A warning should appear with a message like"
 msgstr ""
 
-#: ../book/configuration/index.rst:272
+#: ../book/configuration/index.rst:268
 msgid "W> primary: [URI] is already in use, will retry binding after [n] seconds"
 msgstr ""
 
-#: ../book/configuration/index.rst:276
+#: ../book/configuration/index.rst:272
 msgid "This is fine. It means that the second instance is ready to take over if the first instance goes down."
 msgstr ""
 
-#: ../book/configuration/index.rst:279
+#: ../book/configuration/index.rst:275
 msgid "The expectation is that there will be two instances of the server using the same configuration. The first one to start will be the \"primary\" instance. The second one to start will be the \"standby\" instance. The standby instance will initialize and will try to connect on listen address, but will fail because the primary instance has already taken it. So the standby instance goes into a loop, reading the write ahead log which the primary instance is writing (so the two instances are always in synch), and trying to connect on the port. If the primary instance goes down for any reason, the port will become free so the standby instance will succeed in connecting, and will become the primary instance. Thus there is no noticeable downtime if the primary instance goes down."
 msgstr ""
 
-#: ../book/configuration/index.rst:291
+#: ../book/configuration/index.rst:287
 msgid "If this local_hot_standby feature is being used, then wal_mode should not be equal to \"none\"."
 msgstr ""
 
@@ -9818,135 +9822,147 @@ msgid "Protocol"
 msgstr ""
 
 #: ../book/connectors/index.rst:38
-msgid "Tarantool protocol was designed with a focus on asynchronous I/O and easy integration with proxies. Each client request starts with a variable-length binary header, containing request id, request type, server id, log sequence number, and so on."
+msgid "Tarantool's binary protocol was designed with a focus on asynchronous I/O and easy integration with proxies. Each client request starts with a variable-length binary header, containing request id, request type, server id, log sequence number, and so on."
 msgstr ""
 
-#: ../book/connectors/index.rst:42
+#: ../book/connectors/index.rst:43
 msgid "The mandatory length, present in request header simplifies client or proxy I/O. A response to a request is sent to the client as soon as it is ready. It always carries in its header the same type and id as in the request. The id makes it possible to match a request to a response, even if the latter arrived out of order."
 msgstr ""
 
-#: ../book/connectors/index.rst:47
-msgid "Unless implementing a client driver, one needn't concern oneself with the complications of the binary protocol. Language-specific drivers provide a friendly way to store domain language data structures in Tarantool. A complete description of the binary protocol is maintained in annotated Backus-Naur form in the source tree: please see :ref:`iproto protocol <box_protocol-iproto_protocol>`."
+#: ../book/connectors/index.rst:49
+msgid "Unless implementing a client driver, you needn't concern yourself with the complications of the binary protocol. Language-specific drivers provide a friendly way to store domain language data structures in Tarantool. A complete description of the binary protocol is maintained in annotated Backus-Naur form in the source tree: please see the page about :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`."
 msgstr ""
 
-#: ../book/connectors/index.rst:55
+#: ../book/connectors/index.rst:58
 msgid "Packet example"
 msgstr ""
 
-#: ../book/connectors/index.rst:57
-msgid "The Tarantool API exists so that a client program can send a request packet to the server, and receive a response. Here is an example of a what the client would send for :code:`box.space[513]:insert{'A', 'BB'}`. The BNF description of the components is in file :ref:`iproto protocol <box_protocol-iproto_protocol>`."
+#: ../book/connectors/index.rst:60
+msgid "The Tarantool API exists so that a client program can send a request packet to the server, and receive a response. Here is an example of a what the client would send for :samp:`box.space[513]:insert{'A', 'BB'}`. The BNF description of the components is on the page about :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`."
 msgstr ""
 
-#: ../book/connectors/index.rst:72
+#: ../book/connectors/index.rst:76
 msgid "Component"
 msgstr ""
 
-#: ../book/connectors/index.rst:72
+#: ../book/connectors/index.rst:76
 msgid "Byte #0"
 msgstr ""
 
-#: ../book/connectors/index.rst:72
+#: ../book/connectors/index.rst:76
 msgid "Byte #1"
 msgstr ""
 
-#: ../book/connectors/index.rst:72
+#: ../book/connectors/index.rst:76
 msgid "Byte #2"
 msgstr ""
 
-#: ../book/connectors/index.rst:72
+#: ../book/connectors/index.rst:76
 msgid "Byte #3"
 msgstr ""
 
-#: ../book/connectors/index.rst:74
+#: ../book/connectors/index.rst:78
 msgid "code for insert"
 msgstr ""
 
-#: ../book/connectors/index.rst:74
 #: ../book/connectors/index.rst:78
+#: ../book/connectors/index.rst:82
 msgid "02"
 msgstr ""
 
-#: ../book/connectors/index.rst:76
+#: ../book/connectors/index.rst:80
 msgid "rest of header"
 msgstr ""
 
-#: ../book/connectors/index.rst:76
-#: ../book/connectors/index.rst:76
-#: ../book/connectors/index.rst:76
-#: ../book/connectors/index.rst:76
+#: ../book/connectors/index.rst:80
+#: ../book/connectors/index.rst:80
+#: ../book/connectors/index.rst:80
+#: ../book/connectors/index.rst:80
 msgid "..."
 msgstr ""
 
-#: ../book/connectors/index.rst:78
+#: ../book/connectors/index.rst:82
 msgid "2-digit number: space id"
 msgstr ""
 
-#: ../book/connectors/index.rst:78
+#: ../book/connectors/index.rst:82
 msgid "cd"
 msgstr ""
 
-#: ../book/connectors/index.rst:78
+#: ../book/connectors/index.rst:82
 msgid "01"
 msgstr ""
 
-#: ../book/connectors/index.rst:80
+#: ../book/connectors/index.rst:84
 msgid "code for tuple"
 msgstr ""
 
-#: ../book/connectors/index.rst:80
+#: ../book/connectors/index.rst:84
 msgid "21"
 msgstr ""
 
-#: ../book/connectors/index.rst:82
+#: ../book/connectors/index.rst:86
 msgid "1-digit number: field count = 2"
 msgstr ""
 
-#: ../book/connectors/index.rst:82
+#: ../book/connectors/index.rst:86
 msgid "92"
 msgstr ""
 
-#: ../book/connectors/index.rst:84
+#: ../book/connectors/index.rst:88
 msgid "1-character string: field[1]"
 msgstr ""
 
-#: ../book/connectors/index.rst:84
+#: ../book/connectors/index.rst:88
 msgid "a1"
 msgstr ""
 
-#: ../book/connectors/index.rst:84
+#: ../book/connectors/index.rst:88
 msgid "41"
 msgstr ""
 
-#: ../book/connectors/index.rst:86
+#: ../book/connectors/index.rst:90
 msgid "2-character string: field[2]"
 msgstr ""
 
-#: ../book/connectors/index.rst:86
+#: ../book/connectors/index.rst:90
 msgid "a2"
 msgstr ""
 
-#: ../book/connectors/index.rst:86
-#: ../book/connectors/index.rst:86
+#: ../book/connectors/index.rst:90
+#: ../book/connectors/index.rst:90
 msgid "42"
 msgstr ""
 
-#: ../book/connectors/index.rst:89
-msgid "Now, one could send that packet to the tarantool server, and interpret the response (:ref:`iproto protocol <box_protocol-iproto_protocol>` has a description of the packet format for responses as well as requests). But it would be easier, and less error-prone, if one could invoke a routine that formats the packet according to typed parameters. Something like :code:`response=tarantool_routine(\"insert\",513,\"A\",\"B\");`. And that is why APIs exist for drivers for Perl, Python, PHP, and so on."
+#: ../book/connectors/index.rst:93
+msgid "Now, you could send that packet to the Tarantool server, and interpret the response (the page about :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>` has a description of the packet format for responses as well as requests). But it would be easier, and less error-prone, if you could invoke a routine that formats the packet according to typed parameters. Something like :samp:`response=tarantool_routine(\"insert\",513,\"A\",\"B\");`. And that is why APIs exist for drivers for Perl, Python, PHP, and so on."
 msgstr ""
 
-#: ../book/connectors/index.rst:100
+#: ../book/connectors/index.rst:106
 msgid "Setting up the server for connector examples"
 msgstr ""
 
-#: ../book/connectors/index.rst:102
-msgid "This chapter has examples that show how to connect to the Tarantool server via the Perl, PHP, Python, and C connectors. The examples contain hard code that will work if and only if the server (tarantool) is running on localhost (127.0.0.1) and is listening on port 3301 (:code:`box.cfg.listen = '3301'`) and space 'examples' has id = 999 (:code:`box.space.examples.id = 999`), and space 'examples' has a primary-key index for a numeric field (:code:`box.space[999].index[0].parts[1].type = \"unsigned\"`) and user 'guest' has privileges for reading and writing."
+#: ../book/connectors/index.rst:108
+msgid "This chapter has examples that show how to connect to the Tarantool server via the Perl, PHP, Python, and C connectors. The examples contain hard code that will work if and only if the following conditions are met:"
 msgstr ""
 
-#: ../book/connectors/index.rst:110
+#: ../book/connectors/index.rst:112
+msgid "the server (tarantool) is running on localhost (127.0.0.1) and is listening on port 3301 (:samp:`box.cfg.listen = '3301'`),"
+msgstr ""
+
+#: ../book/connectors/index.rst:115
+msgid "space ``examples`` has id = 999 (:samp:`box.space.examples.id = 999`) and has a primary-key index for a numeric field (:samp:`box.space[999].index[0].parts[1].type = \"unsigned\"`),"
+msgstr ""
+
+#: ../book/connectors/index.rst:119
+msgid "user 'guest' has privileges for reading and writing."
+msgstr ""
+
+#: ../book/connectors/index.rst:121
 msgid "It is easy to meet all the conditions by starting the server and executing this script:"
 msgstr ""
 
-#: ../book/connectors/index.rst:113
+#: ../book/connectors/index.rst:124
 msgid "box.cfg{listen=3301}\n"
 "box.schema.space.create('examples',{id=999})\n"
 "box.space.examples:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})\n"
@@ -9967,7 +9983,7 @@ msgid "Go"
 msgstr ""
 
 #: ../book/connectors/__go.rst:5
-msgid "Please see https://github.com/mialinx/go-tarantool-1.6."
+msgid "Please see https://github.com/mialinx/go-tarantool."
 msgstr ""
 
 #: ../book/connectors/__r.rst:3
@@ -9983,10 +9999,10 @@ msgid "Perl"
 msgstr ""
 
 #: ../book/connectors/__perl.rst:5
-msgid "The most commonly used Perl driver is `DR::Tarantool`_. It is not supplied as part of the Tarantool repository; it must be installed separately. The most common way to install it is with `CPAN, the Comprehensive Perl Archive Network`_. `DR::Tarantool`_ requires other modules which should be installed first. For example, on Ubuntu, the installation could look like this:"
+msgid "The most commonly used Perl driver is `DR::Tarantool <http://search.cpan.org/~unera/DR-Tarantool/>`_. It is not supplied as part of the Tarantool repository; it must be installed separately. The most common way to install it is with `CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`_. ``DR::Tarantool`` requires other modules which should be installed first. For example, on Ubuntu, the installation could look like this:"
 msgstr ""
 
-#: ../book/connectors/__perl.rst:11
+#: ../book/connectors/__perl.rst:13
 msgid "$ sudo cpan install AnyEvent\n"
 "$ sudo cpan install Devel::GlobalDestruction\n"
 "$ sudo cpan install Coro\n"
@@ -9997,11 +10013,11 @@ msgid "$ sudo cpan install AnyEvent\n"
 "$ sudo cpan install DR::Tarantool"
 msgstr ""
 
-#: ../book/connectors/__perl.rst:22
-msgid "Here is a complete Perl program that inserts [99999,'BB'] into space[999] via the Perl API. Before trying to run, check that the server is listening and that :code:`examples` exists, as :ref:`described earlier <index-connector_setting>`. To run, paste the code into a file named example.pl and say :code:`perl example.pl`. The program will connect using an application-specific definition of the space. The program will open a socket connection with the tarantool server at localhost:3301, then send an INSERT request, then — if all is well — end without displaying any messages. If tarantool is not running on localhost with listen address = 3301, the program will print “Connection refused”."
+#: ../book/connectors/__perl.rst:24
+msgid "Here is a complete Perl program that inserts ``[99999,'BB']`` into ``space[999]`` via the Perl API. Before trying to run, check that the server is listening at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`. To run, paste the code into a file named :file:`example.pl` and say :samp:`perl example.pl`. The program will connect using an application-specific definition of the space. The program will open a socket connection with the Tarantool server at ``localhost:3301``, then send an INSERT request, then — if all is well — end without displaying any messages. If Tarantool is not running on ``localhost`` with listen port = 3301, the program will print “Connection refused”."
 msgstr ""
 
-#: ../book/connectors/__perl.rst:32
+#: ../book/connectors/__perl.rst:36
 msgid "#!/usr/bin/perl\n"
 "use DR::Tarantool ':constant', 'tarantool';\n"
 "use DR::Tarantool ':all';\n"
@@ -10025,12 +10041,12 @@ msgid "#!/usr/bin/perl\n"
 "$tnt->insert('examples' => [ 99999, 'BB' ]);"
 msgstr ""
 
-#: ../book/connectors/__perl.rst:56
+#: ../book/connectors/__perl.rst:60
 msgid "The example program uses field type names 'STR' and 'NUM' instead of 'string' and 'unsigned', due to a temporary Perl limitation."
 msgstr ""
 
-#: ../book/connectors/__perl.rst:59
-msgid "The example program only shows one command and does not show all that's necessary for good practice. For that, please see `DR::Tarantool`_ CPAN repository."
+#: ../book/connectors/__perl.rst:63
+msgid "The example program only shows one request and does not show all that's necessary for good practice. For that, please see `DR::Tarantool CPAN repository <http://search.cpan.org/~unera/DR-Tarantool/>`_."
 msgstr ""
 
 #: ../book/connectors/__php.rst:3
@@ -10038,10 +10054,10 @@ msgid "PHP"
 msgstr ""
 
 #: ../book/connectors/__php.rst:5
-msgid "The PHP driver is `tarantool-php`_. It is not supplied as part of the Tarantool repository; it must be installed separately. It can be installed with git. It requires other modules which should be installed first. For example, on Ubuntu, the installation could look like this:"
+msgid "The PHP driver is `tarantool-php <https://github.com/tarantool/tarantool-php>`_. It is not supplied as part of the Tarantool repository; it must be installed separately. It can be installed with :program:`git`. It requires other modules which should be installed first. For example, on Ubuntu, the installation could look like this:"
 msgstr ""
 
-#: ../book/connectors/__php.rst:10
+#: ../book/connectors/__php.rst:11
 msgid "$ sudo apt-get install php5-cli\n"
 "$ sudo apt-get install php5-dev\n"
 "$ sudo apt-get install php-pear\n"
@@ -10054,15 +10070,15 @@ msgid "$ sudo apt-get install php5-cli\n"
 "$ # make install is optional"
 msgstr ""
 
-#: ../book/connectors/__php.rst:24
-msgid "At this point there is a file named :code:`~/tarantool-php/modules/tarantool.so`. PHP will only find it if the PHP initialization file :code:`php.ini` contains a line like :code:`extension=./tarantool.so`, or if PHP is started with the option :code:`-d extension=~/tarantool-php/modules/tarantool.so`."
+#: ../book/connectors/__php.rst:25
+msgid "At this point there is a file named :file:`~/tarantool-php/modules/tarantool.so`. PHP will only find it if the PHP initialization file :file:`php.ini` contains a line like :samp:`extension=./tarantool.so`, or if PHP is started with the option :samp:`-d extension=~/tarantool-php/modules/tarantool.so`."
 msgstr ""
 
-#: ../book/connectors/__php.rst:29
-msgid "Here is a complete PHP program that inserts [99999,'BB'] into a space named 'examples' via the PHP API. Before trying to run, check that the server is listening and that :code:`examples` exists, as :ref:`described earlier <index-connector_setting>`. To run, paste the code into a file named example.php and say :code:`php -d extension=~/tarantool-php/modules/tarantool.so example.php`. The program will open a socket connection with the tarantool server at localhost:3301, then send an INSERT request, then — if all is well — print \"Insert succeeded\". If the tuple already exists, the program will print “Duplicate key exists in unique index 'primary' in space 'examples'”."
+#: ../book/connectors/__php.rst:30
+msgid "Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named ``examples`` via the PHP API. Before trying to run, check that the server is listening at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`. To run, paste the code into a file named :file:`example.php` and say :samp:`php -d extension=~/tarantool-php/modules/tarantool.so example.php`. The program will open a socket connection with the Tarantool server at ``localhost:3301``, then send an INSERT request, then — if all is well — print \"Insert succeeded\". If the tuple already exists, the program will print “Duplicate key exists in unique index 'primary' in space 'examples'”."
 msgstr ""
 
-#: ../book/connectors/__php.rst:37
+#: ../book/connectors/__php.rst:41
 msgid "<?php\n"
 "$tarantool = new Tarantool('localhost', 3301);\n"
 "\n"
@@ -10074,8 +10090,8 @@ msgid "<?php\n"
 "}"
 msgstr ""
 
-#: ../book/connectors/__php.rst:49
-msgid "The example program only shows one command and does not show all that's necessary for good practice. For that, please see `tarantool-php`_ project at GitHub."
+#: ../book/connectors/__php.rst:53
+msgid "The example program only shows one request and does not show all that's necessary for good practice. For that, please see `tarantool-php project at GitHub <https://github.com/tarantool/tarantool-php>`_."
 msgstr ""
 
 #: ../book/connectors/__python.rst:3
@@ -10083,7 +10099,7 @@ msgid "Python"
 msgstr ""
 
 #: ../book/connectors/__python.rst:5
-msgid "Here is a complete Python program that inserts :code:`[99999,'Value','Value']` into space :code:`examples` via the high-level Python API."
+msgid "Here is a complete Python program that inserts ``[99999,'Value','Value']`` into space ``examples`` via the high-level Python API."
 msgstr ""
 
 #: ../book/connectors/__python.rst:8
@@ -10096,11 +10112,11 @@ msgid "#!/usr/bin/python\n"
 msgstr ""
 
 #: ../book/connectors/__python.rst:17
-msgid "To prepare, paste the code into a file named example.py and install tarantool-python with either :code:`pip install tarantool\\>0.4` to install in :code:`/usr` (requires **root** privilege) or :code:`pip install tarantool\\>0.4 --user` to install in :code:`~` i.e. user's default directory. Before trying to run, check that the server is listening and that examples exists, as :ref:`described earlier <index-connector_setting>`. To run the program, say :code:`python example.py`. The program will connect to the server, will send the request, and will not throw an exception if all went well. If the tuple already exists, the program will throw :code:`tarantool.error.DatabaseError: (3, \"Duplicate key exists in unique index 'primary' in space 'examples'\")`."
+msgid "To prepare, paste the code into a file named :file:`example.py` and install the ``tarantool-python`` connector with either :samp:`pip install tarantool\\>0.4` to install in :file:`/usr` (requires **root** privilege) or :samp:`pip install tarantool\\>0.4 --user` to install in :file:`~` i.e. user's default directory. Before trying to run, check that the server is listening at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`. To run the program, say :samp:`python example.py`. The program will connect to the server, will send the request, and will not throw any exception if all went well. If the tuple already exists, the program will throw ``tarantool.error.DatabaseError: (3, \"Duplicate key exists in unique index 'primary' in space 'examples'\")``."
 msgstr ""
 
-#: ../book/connectors/__python.rst:27
-msgid "The example program only shows one request and does not show all that's necessary for good practice. For that, see http://github.com/tarantool/tarantool-python. For an example of a Python API for `Queue managers on Tarantool`_, see https://github.com/tarantool/tarantool-queue-python."
+#: ../book/connectors/__python.rst:29
+msgid "The example program only shows one request and does not show all that's necessary for good practice. For that, please see `tarantool-python project at GitHub <http://github.com/tarantool/tarantool-python>`_. For an example of using Python API with `queue managers for Tarantool <https://github.com/tarantool/queue>`_, see `queue-python project at GitHub <https://github.com/tarantool/queue-python>`_."
 msgstr ""
 
 #: ../book/connectors/__c.rst:3
@@ -10108,22 +10124,18 @@ msgid "C"
 msgstr ""
 
 #: ../book/connectors/__c.rst:5
-msgid ":c:func:`tarantoolc:tnt_connect`"
-msgstr ""
-
-#: ../book/connectors/__c.rst:7
 msgid "Here follow two examples of using Tarantool's high-level C API."
 msgstr ""
 
-#: ../book/connectors/__c.rst:11
+#: ../book/connectors/__c.rst:9
 msgid "Example 1"
 msgstr ""
 
-#: ../book/connectors/__c.rst:13
+#: ../book/connectors/__c.rst:11
 msgid "Here is a complete C program that inserts :code:`[99999,'B']` into space :code:`examples` via the high-level C API."
 msgstr ""
 
-#: ../book/connectors/__c.rst:16
+#: ../book/connectors/__c.rst:14
 msgid "#include <stdio.h>\n"
 "#include <stdlib.h>\n"
 "\n"
@@ -10153,11 +10165,11 @@ msgid "#include <stdio.h>\n"
 "}"
 msgstr ""
 
-#: ../book/connectors/__c.rst:46
+#: ../book/connectors/__c.rst:44
 msgid "Paste the code into a file named :file:`example.c` and install ``tarantool-c``. One way to install ``tarantool-c`` (using Ubuntu) is:"
 msgstr ""
 
-#: ../book/connectors/__c.rst:49
+#: ../book/connectors/__c.rst:47
 msgid "$ git clone git://github.com/tarantool/tarantool-c.git ~/tarantool-c\n"
 "$ cd ~/tarantool-c\n"
 "$ git submodule init\n"
@@ -10167,100 +10179,100 @@ msgid "$ git clone git://github.com/tarantool/tarantool-c.git ~/tarantool-c\n"
 "$ make install"
 msgstr ""
 
-#: ../book/connectors/__c.rst:59
+#: ../book/connectors/__c.rst:57
 #: ../book/connectors/__c.rst:288
 msgid "To compile and link the program, say:"
 msgstr ""
 
-#: ../book/connectors/__c.rst:61
+#: ../book/connectors/__c.rst:59
 msgid "$ # sometimes this is necessary:\n"
 "$ export LD_LIBRARY_PATH=/usr/local/lib\n"
 "$ gcc -o example example.c -ltarantool"
 msgstr ""
 
-#: ../book/connectors/__c.rst:67
-msgid "Before trying to run, check that the server is listening and that the space :code:`examples` exists, as :ref:`described earlier <index-connector_setting>`. To run the program, say :code:`./example`. The program will connect to the server, and will send the request. If Tarantool is not running on localhost with listen address = 3301, the program will print “Connection refused”. If the insert fails, the program will print \"Insert failed\" and an error number (see all error codes in the file `/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_)."
+#: ../book/connectors/__c.rst:65
+msgid "Before trying to run, check that the server is listening at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`. To run the program, say :samp:`./example`. The program will connect to the server, and will send the request. If Tarantool is not running on localhost with listen address = 3301, the program will print “Connection refused”. If the insert fails, the program will print \"Insert failed\" and an error number (see all error codes in the source file `/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_)."
 msgstr ""
 
-#: ../book/connectors/__c.rst:78
+#: ../book/connectors/__c.rst:77
 msgid "Here are notes corresponding to comments in the example program."
 msgstr ""
 
-#: ../book/connectors/__c.rst:80
+#: ../book/connectors/__c.rst:79
 msgid "**SETUP:** The setup begins by creating a stream."
 msgstr ""
 
-#: ../book/connectors/__c.rst:82
+#: ../book/connectors/__c.rst:81
 msgid "struct tnt_stream *tnt = tnt_net(NULL);\n"
 "tnt_set(tnt, TNT_OPT_URI, \"localhost:3301\");"
 msgstr ""
 
-#: ../book/connectors/__c.rst:87
-msgid "In this program, the stream will be named :code:`tnt`. Before connecting on the :code:`tnt` stream, some options may have to be set. The most important option is TNT_OPT_URI. In this program, the URI is ``localhost:3301``, since that is where the Tarantool server is supposed to be listening."
+#: ../book/connectors/__c.rst:86
+msgid "In this program, the stream will be named ``tnt``. Before connecting on the ``tnt`` stream, some options may have to be set. The most important option is TNT_OPT_URI. In this program, the URI is ``localhost:3301``, since that is where the Tarantool server is supposed to be listening."
 msgstr ""
 
-#: ../book/connectors/__c.rst:93
-#: ../book/connectors/__c.rst:109
-#: ../book/connectors/__c.rst:137
-#: ../book/connectors/__c.rst:157
-#: ../book/connectors/__c.rst:182
-#: ../book/connectors/__c.rst:201
+#: ../book/connectors/__c.rst:92
+#: ../book/connectors/__c.rst:108
+#: ../book/connectors/__c.rst:136
+#: ../book/connectors/__c.rst:156
+#: ../book/connectors/__c.rst:181
+#: ../book/connectors/__c.rst:200
 msgid "Function description:"
 msgstr ""
 
-#: ../book/connectors/__c.rst:409
+#: ../book/connectors/__c.rst:425
 msgid "`struct tnt_stream *tnt_net(struct tnt_stream *s)`\n"
 "`int tnt_set(struct tnt_stream *s, int option, variant option-value)`"
 msgstr ""
 
-#: ../book/connectors/__c.rst:101
+#: ../book/connectors/__c.rst:100
 msgid "**CONNECT:** Now that the stream named ``tnt`` exists and is associated with a URI, this example program can connect to the server."
 msgstr ""
 
-#: ../book/connectors/__c.rst:104
+#: ../book/connectors/__c.rst:103
 msgid "if (tnt_connect(tnt) < 0)\n"
 "   { printf(\"Connection refused\\n\"); exit(-1); }"
 msgstr ""
 
-#: ../book/connectors/__c.rst:425
+#: ../book/connectors/__c.rst:441
 msgid "int tnt_connect(struct tnt_stream \\*s)"
 msgstr ""
 
-#: ../book/connectors/__c.rst:116
-msgid "The connection might fail for a variety of reasons, such as: the server is not running, or the URI contains an invalid password. If the connect fails, the return value will be -1."
+#: ../book/connectors/__c.rst:115
+msgid "The connection might fail for a variety of reasons, such as: the server is not running, or the URI contains an invalid password. If the connection fails, the return value will be -1."
 msgstr ""
 
-#: ../book/connectors/__c.rst:120
+#: ../book/connectors/__c.rst:119
 msgid "**MAKE REQUEST:** Most requests require passing a structured value, such as the contents of a tuple."
 msgstr ""
 
-#: ../book/connectors/__c.rst:123
+#: ../book/connectors/__c.rst:122
 msgid "struct tnt_stream *tuple = tnt_object(NULL);\n"
 "tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");"
 msgstr ""
 
-#: ../book/connectors/__c.rst:128
+#: ../book/connectors/__c.rst:127
 msgid "In this program, the request will be an INSERT, and the tuple contents will be an integer and a string. This is a simple serial set of values, that is, there are no sub-structures or arrays. Therefore it is easy in this case to format what will be passed using the same sort of arguments that one would use with a C ``printf()`` function: ``%d`` for the integer, ``%s`` for the string, then the integer value, then a pointer to the string value."
 msgstr ""
 
-#: ../book/connectors/__c.rst:453
+#: ../book/connectors/__c.rst:469
 msgid "ssize_t tnt_object_format(struct tnt_stream \\*s, const char \\*fmt, ...)"
 msgstr ""
 
-#: ../book/connectors/__c.rst:144
+#: ../book/connectors/__c.rst:143
 msgid "**SEND REQUEST:** The database-manipulation requests are analogous to the requests in the box library."
 msgstr ""
 
-#: ../book/connectors/__c.rst:147
+#: ../book/connectors/__c.rst:146
 msgid "tnt_insert(tnt, 999, tuple);\n"
 "tnt_flush(tnt);"
 msgstr ""
 
-#: ../book/connectors/__c.rst:152
-msgid "In this program, the choice is to do an INSERT request, so the program passes the ``tnt_stream`` that was used for connection (:code:`tnt`) and the stream that was set up with :c:func:`tarantoolc:tnt_object_format` (:code:`tuple`)."
+#: ../book/connectors/__c.rst:151
+msgid "In this program, the choice is to do an INSERT request, so the program passes the ``tnt_stream`` that was used for connection (``tnt``) and the ``tnt_stream`` that was set up with :c:func:`tarantoolc:tnt_object_format` (``tuple``)."
 msgstr ""
 
-#: ../book/connectors/__c.rst:473
+#: ../book/connectors/__c.rst:489
 msgid "ssize_t tnt_insert(struct tnt_stream \\*s, uint32_t space, struct tnt_stream \\*tuple)\n"
 "ssize_t tnt_replace(struct tnt_stream \\*s, uint32_t space, struct tnt_stream \\*tuple)\n"
 "ssize_t tnt_select(struct tnt_stream \\*s, uint32_t space, uint32_t index,\n"
@@ -10270,48 +10282,48 @@ msgid "ssize_t tnt_insert(struct tnt_stream \\*s, uint32_t space, struct tnt_str
 "                   struct tnt_stream \\*key, struct tnt_stream \\*ops)"
 msgstr ""
 
-#: ../book/connectors/__c.rst:170
+#: ../book/connectors/__c.rst:169
 msgid "**GET REPLY:** For most requests, the client will receive a reply containing some indication whether the result was successful, and a set of tuples."
 msgstr ""
 
-#: ../book/connectors/__c.rst:173
+#: ../book/connectors/__c.rst:172
 msgid "struct tnt_reply reply;  tnt_reply_init(&reply);\n"
 "tnt->read_reply(tnt, &reply);\n"
 "if (reply.code != 0)\n"
 "   { printf(\"Insert failed %lu.\\n\", reply.code); }"
 msgstr ""
 
-#: ../book/connectors/__c.rst:180
+#: ../book/connectors/__c.rst:179
 msgid "This program checks for success but does not decode the rest of the reply."
 msgstr ""
 
-#: ../book/connectors/__c.rst:498
+#: ../book/connectors/__c.rst:514
 msgid "struct tnt_reply \\*tnt_reply_init(struct tnt_reply \\*r)\n"
 "tnt->read_reply(struct tnt_stream \\*s, struct tnt_reply \\*r)\n"
 "void tnt_reply_free(struct tnt_reply \\*r)"
 msgstr ""
 
-#: ../book/connectors/__c.rst:191
+#: ../book/connectors/__c.rst:190
 msgid "**TEARDOWN:** When a session ends, the connection that was made with :c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that were made in the setup should be destroyed."
 msgstr ""
 
-#: ../book/connectors/__c.rst:195
+#: ../book/connectors/__c.rst:194
 msgid "tnt_close(tnt);\n"
 "tnt_stream_free(tuple);\n"
 "tnt_stream_free(tnt);"
 msgstr ""
 
-#: ../book/connectors/__c.rst:517
+#: ../book/connectors/__c.rst:533
 msgid "void tnt_close(struct tnt_stream \\*s)\n"
 "void tnt_stream_free(struct tnt_stream \\*s)"
 msgstr ""
 
-#: ../book/connectors/__c.rst:211
+#: ../book/connectors/__c.rst:210
 msgid "Example 2"
 msgstr ""
 
-#: ../book/connectors/__c.rst:213
-msgid "Here is a complete C program that selects, using index key :code:`[99999]`, from space :code:`examples` via the high-level C API. To display the results, the program uses functions in the `MsgPuck`_ library which allow decoding of `MessagePack`_  arrays."
+#: ../book/connectors/__c.rst:212
+msgid "Here is a complete C program that selects, using index key ``[99999]``, from space ``examples`` via the high-level C API. To display the results, the program uses functions in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library which allow decoding of `MessagePack <https://en.wikipedia.org/wiki/MessagePack>`_  arrays."
 msgstr ""
 
 #: ../book/connectors/__c.rst:218
@@ -10390,26 +10402,26 @@ msgid "$ gcc -o example2 example2.c -ltarantool"
 msgstr ""
 
 #: ../book/connectors/__c.rst:294
-msgid "To run the program, say :code:`./example2`."
+msgid "To run the program, say :samp:`./example2`."
 msgstr ""
 
 #: ../book/connectors/__c.rst:296
-msgid "The two example programs only show a few requests and do not show all that's necessary for good practice. See more in the ``tarantool-c`` documentation at http://github.com/tarantool/tarantool-c."
+msgid "The two example programs only show a few requests and do not show all that's necessary for good practice. See more in the `tarantool-c documentation at GitHub <http://github.com/tarantool/tarantool-c>`_."
 msgstr ""
 
 #: ../book/connectors/__results.rst:4
 msgid "Interpreting function return values"
 msgstr ""
 
-#: ../book/connectors/__results.rst:7
-msgid "For all Connectors, calling a function via Tarantool causes a return in MsgPack format. If the function is called using the connector's API, some conversions may occur. All scalar values are returned as tuples (with a MsgPack type-identifier followed by a value); all non-scalar values are returned as a group of tuples (with a MsgPack array-identifier followed by the scalar values). If the function is called via the binary protocol command layer -- \"eval\" -- rather than via the connector's API, no conversions occur."
+#: ../book/connectors/__results.rst:6
+msgid "For all connectors, calling a function via Tarantool causes a return in the MsgPack format. If the function is called using the connector's API, some conversions may occur. All scalar values are returned as tuples (with a MsgPack type-identifier followed by a value); all non-scalar values are returned as a group of tuples (with a MsgPack array-identifier followed by the scalar values). If the function is called via the binary protocol command layer -- \"eval\" -- rather than via the connector's API, no conversions occur."
 msgstr ""
 
-#: ../book/connectors/__results.rst:15
-msgid "In the following example, a Lua function will be created. Since it will be accessed externally by a 'guest' user, a ``grant`` of an execute privilege will be necessary. The function returns an empty array, a scalar string, two booleans, and a short integer. The values are the ones described in the msgpack section in the table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`."
+#: ../book/connectors/__results.rst:14
+msgid "In the following example, a Lua function will be created. Since it will be accessed externally by a 'guest' user, a ``grant`` of an execute privilege will be necessary. The function returns an empty array, a scalar string, two booleans, and a short integer. The values are the ones described in the table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`."
 msgstr ""
 
-#: ../book/connectors/__results.rst:21
+#: ../book/connectors/__results.rst:20
 msgid "tarantool> box.cfg{listen=3301}\n"
 "2016-03-03 18:45:52.802 [27381] main/101/interactive I> ready to accept requests\n"
 "---\n"
@@ -10425,11 +10437,11 @@ msgid "tarantool> box.cfg{listen=3301}\n"
 "..."
 msgstr ""
 
-#: ../book/connectors/__results.rst:37
+#: ../book/connectors/__results.rst:36
 msgid "Here is a C program which calls the function. Although C is being used for the example, the result would be precisely the same if the calling program was written in Perl, PHP, Python, Go, or Java."
 msgstr ""
 
-#: ../book/connectors/__results.rst:41
+#: ../book/connectors/__results.rst:40
 msgid "#include <stdio.h>\n"
 "#include <stdlib.h>\n"
 "#include <tarantool/tarantool.h>\n"
@@ -10469,8 +10481,16 @@ msgid "#include <stdio.h>\n"
 "}"
 msgstr ""
 
-#: ../book/connectors/__results.rst:81
-msgid "When this program is executed, it will print: |br| :codenormal:`dd 0 0 0 5 90 91 a1 61 91 c2 91 c3 91 7f` |br| The first five bytes -- :codenormal:`dd 0 0 0 5` -- are the msgpack encoding for \"32-bit array header with value 5\" (see the msgpack Specification_ page). The rest are as described in the Common Types and MsgPack Encodings table."
+#: ../book/connectors/__results.rst:80
+msgid "When this program is executed, it will print:"
+msgstr ""
+
+#: ../book/connectors/__results.rst:82
+msgid "dd 0 0 0 5 90 91 a1 61 91 c2 91 c3 91 7f"
+msgstr ""
+
+#: ../book/connectors/__results.rst:86
+msgid "The first five bytes -- ``dd 0 0 0 5`` -- are the MsgPack encoding for \"32-bit array header with value 5\" (see `MsgPack specification <http://github.com/msgpack/msgpack/blob/master/spec.md>`_). The rest are as described in the table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`."
 msgstr ""
 
 #: ../book/index.rst:30
@@ -10498,42 +10518,54 @@ msgid "Chapter 3 \"Database\" is about the Tarantool NoSQL DBMS. If the only int
 msgstr ""
 
 #: ../book/intro.rst:53
-msgid "Chapter 5 \"Configuration reference\" and Chapter 6 \"Server administration\" are primarily for administrators; however, every user should know something about how the server is configured, so the section about box.cfg is not skippable. Chapter 7 \"Connectors\" is strictly for users who are connecting from a different language such as C or Perl or Python -- other users will find no immediate need for this chapter. Chapter 8 \"Modules\" shows how to install modules (libraries) and how to create new ones in Lua or C."
+msgid "Chapter 5 \"Configuration reference\" and Chapter 6 \"Server administration\" are primarily for administrators; however, every user should know something about how the server is configured, so the section about box.cfg is not skippable."
 msgstr ""
 
-#: ../book/intro.rst:62
+#: ../book/intro.rst:57
+msgid "Chapter 7 \"Connectors\" is strictly for users who are connecting from a different language such as C or Perl or Python -- other users will find no immediate need for this chapter."
+msgstr ""
+
+#: ../book/intro.rst:61
+msgid "Chapter 8 \"Modules\" shows how to install modules (libraries) and how to create new ones in Lua or C."
+msgstr ""
+
+#: ../book/intro.rst:64
 msgid "The first two Appendices, A and B, contain reference information about Tarantool's code errors, internal file formats and internal processes (recovery and replication)."
 msgstr ""
 
-#: ../book/intro.rst:66
+#: ../book/intro.rst:68
 msgid "The three long tutorials in Appendix C -- \"Insert one million tuples with a Lua stored procedure\", \"Sum a JSON field for all tuples\" and \"Indexed Pattern Search\" -- start slowly and contain commentary that is especially aimed at users who may not consider themselves experts at either Lua or NoSQL database management."
 msgstr ""
 
-#: ../book/intro.rst:71
+#: ../book/intro.rst:73
 msgid "Appendix D \"Vinyl\" provides details about Tarantool's disk storage engine named `vinyl`."
 msgstr ""
 
-#: ../book/intro.rst:74
+#: ../book/intro.rst:76
 msgid "Appendix E \"Cookbook\" shows some code contributions for common or difficult tasks."
 msgstr ""
 
-#: ../book/intro.rst:76
+#: ../book/intro.rst:78
 msgid "Appendix F has one long tutorial: \"C stored procedures\"."
 msgstr ""
 
-#: ../book/intro.rst:78
-msgid "For experienced users, there are also Reference documents plus a Developer Guide, and an extensive set of comments in the source code."
+#: ../book/intro.rst:80
+msgid "Appendix G \"Version-specific changes\" summarizes significant changes introduced in newer Tarantool versions."
 msgstr ""
 
 #: ../book/intro.rst:83
+msgid "For experienced users, there are also Reference documents plus a Developer Guide, and an extensive set of comments in the source code."
+msgstr ""
+
+#: ../book/intro.rst:88
 msgid "Getting in touch with the Tarantool community"
 msgstr ""
 
-#: ../book/intro.rst:85
+#: ../book/intro.rst:90
 msgid "Please report bugs or make feature requests at http://github.com/tarantool/tarantool/issues."
 msgstr ""
 
-#: ../book/intro.rst:87
+#: ../book/intro.rst:92
 msgid "You can contact developers directly in `telegram <http://telegram.me/tarantool>`_ or in a Tarantool discussion group (`English <https://groups.google.com/forum/#!forum/tarantool>`_ or `Russian <https://googlegroups.com/group/tarantool-ru>`_)."
 msgstr ""
 

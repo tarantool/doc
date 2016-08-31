@@ -1,4 +1,4 @@
-:title: IProto protocol
+:title: Tarantool's binary protocol
 :slug: box-protocol
 :save_as: doc/box-protocol.html
 :url: doc/box-protocol.html
@@ -7,7 +7,7 @@
 .. _box_protocol-iproto_protocol:
 
 --------------------------------------------------------------------------------
-                               IProto Protocol
+                        Tarantool's binary protocol
 --------------------------------------------------------------------------------
 
 ================================================================================
@@ -47,7 +47,7 @@ MsgPack data types:
                                     Overview
 ================================================================================
 
-IPROTO is a binary request/response protocol.
+Tarantool's binary protocol is a binary request/response protocol.
 
 ================================================================================
                                  Greeting Packet

@@ -3,10 +3,9 @@
          Interpreting function return values
 =====================================================================
 
-
-For all Connectors, calling a function via Tarantool causes a return in MsgPack
-format. If the function is called using the connector's API, some conversions
-may occur. All scalar values are returned as tuples (with a MsgPack
+For all connectors, calling a function via Tarantool causes a return in the
+MsgPack format. If the function is called using the connector's API, some
+conversions may occur. All scalar values are returned as tuples (with a MsgPack
 type-identifier followed by a value); all non-scalar values are returned as a
 group of tuples (with a MsgPack array-identifier followed by the scalar values).
 If the function is called via the binary protocol command layer -- "eval" --
@@ -15,8 +14,8 @@ rather than via the connector's API, no conversions occur.
 In the following example, a Lua function will be created. Since it will be
 accessed externally by a 'guest' user, a ``grant`` of an execute privilege will
 be necessary. The function returns an empty array, a scalar string, two booleans,
-and a short integer. The values are the ones described in the msgpack section in
-the table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`.
+and a short integer. The values are the ones described in the table
+:ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`.
 
 .. code-block:: tarantoolsession
 
@@ -78,10 +77,14 @@ written in Perl, PHP, Python, Go, or Java.
      tnt_stream_free(tnt);
   }
 
-When this program is executed, it will print: |br|
-:codenormal:`dd 0 0 0 5 90 91 a1 61 91 c2 91 c3 91 7f` |br|
-The first five bytes -- :codenormal:`dd 0 0 0 5` -- are the msgpack encoding
-for "32-bit array header with value 5" (see the msgpack Specification_ page).
-The rest are as described in the Common Types and MsgPack Encodings table.
+When this program is executed, it will print:
 
-.. _Specification: http://github.com/msgpack/msgpack/blob/master/spec.md
+.. code-block:: console
+
+  dd 0 0 0 5 90 91 a1 61 91 c2 91 c3 91 7f
+
+The first five bytes -- ``dd 0 0 0 5`` -- are the MsgPack encoding for
+"32-bit array header with value 5" (see 
+`MsgPack specification <http://github.com/msgpack/msgpack/blob/master/spec.md>`_).
+The rest are as described in the 
+table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`.

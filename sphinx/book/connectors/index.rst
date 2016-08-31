@@ -10,20 +10,23 @@ This chapter documents APIs for various programming languages.
                             Protocol
 =====================================================================
 
-Tarantool protocol was designed with a focus on asynchronous I/O and easy integration
-with proxies. Each client request starts with a variable-length binary header,
-containing request id, request type, server id, log sequence number, and so on.
+Tarantool's binary protocol was designed with a focus on asynchronous I/O and
+easy integration with proxies. Each client request starts with a variable-length
+binary header, containing request id, request type, server id, log sequence
+number, and so on.
 
 The mandatory length, present in request header simplifies client or proxy I/O.
 A response to a request is sent to the client as soon as it is ready. It always
 carries in its header the same type and id as in the request. The id makes it
-possible to match a request to a response, even if the latter arrived out of order.
+possible to match a request to a response, even if the latter arrived out of
+order.
 
-Unless implementing a client driver, one needn't concern oneself with the
+Unless implementing a client driver, you needn't concern yourself with the
 complications of the binary protocol. Language-specific drivers provide a
 friendly way to store domain language data structures in Tarantool. A complete
 description of the binary protocol is maintained in annotated Backus-Naur form
-in the source tree: please see :ref:`iproto protocol <box_protocol-iproto_protocol>`.
+in the source tree: please see the page about
+:ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`.
 
 ====================================================================
                           Packet example
@@ -31,8 +34,9 @@ in the source tree: please see :ref:`iproto protocol <box_protocol-iproto_protoc
 
 The Tarantool API exists so that a client program can send a request packet to
 the server, and receive a response. Here is an example of a what the client
-would send for :code:`box.space[513]:insert{'A', 'BB'}`. The BNF description of the
-components is in file :ref:`iproto protocol <box_protocol-iproto_protocol>`.
+would send for :samp:`box.space[513]:insert{'A', 'BB'}`. The BNF description of
+the components is on the page about
+:ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`.
 
 .. _Language-specific drivers: `Connectors`_
 
@@ -61,12 +65,14 @@ components is in file :ref:`iproto protocol <box_protocol-iproto_protocol>`.
         | 2-character string: field[2]    |   a2    |   42    |   42    |         |
         +---------------------------------+---------+---------+---------+---------+
 
-Now, one could send that packet to the tarantool server, and interpret the response
-(:ref:`iproto protocol <box_protocol-iproto_protocol>` has a description of the packet format for responses as
-well as requests). But it would be easier, and less error-prone, if one could invoke
-a routine that formats the packet according to typed parameters. Something like
-:code:`response=tarantool_routine("insert",513,"A","B");`. And that is why APIs exist for
-drivers for Perl, Python, PHP, and so on.
+Now, you could send that packet to the Tarantool server, and interpret the
+response (the page about
+:ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>` has a
+description of the packet format for responses as well as requests). But it
+would be easier, and less error-prone, if you could invoke a routine that
+formats the packet according to typed parameters. Something like
+:samp:`response=tarantool_routine("insert",513,"A","B");`. And that is why APIs
+exist for drivers for Perl, Python, PHP, and so on.
 
 .. _index-connector_setting:
 
@@ -75,12 +81,17 @@ drivers for Perl, Python, PHP, and so on.
 ====================================================================
 
 This chapter has examples that show how to connect to the Tarantool server via
-the Perl, PHP, Python, and C connectors. The examples contain hard code that will
-work if and only if the server (tarantool) is running on localhost (127.0.0.1)
-and is listening on port 3301 (:code:`box.cfg.listen = '3301'`) and space 'examples'
-has id = 999 (:code:`box.space.examples.id = 999`), and space 'examples' has a
-primary-key index for a numeric field (:code:`box.space[999].index[0].parts[1].type
-= "unsigned"`) and user 'guest' has privileges for reading and writing.
+the Perl, PHP, Python, and C connectors. The examples contain hard code that
+will work if and only if the following conditions are met:
+
+* the server (tarantool) is running on localhost (127.0.0.1) and is listening on
+  port 3301 (:samp:`box.cfg.listen = '3301'`),
+  
+* space ``examples`` has id = 999 (:samp:`box.space.examples.id = 999`) and has
+  a primary-key index for a numeric field
+  (:samp:`box.space[999].index[0].parts[1].type = "unsigned"`),
+
+* user 'guest' has privileges for reading and writing.
 
 It is easy to meet all the conditions by starting the server and executing this
 script:
