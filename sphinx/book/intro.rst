@@ -28,9 +28,11 @@ can be regarded as reference material.
 Chapter 5 "Configuration reference" and Chapter 6 "Server administration"
 are primarily for administrators; however, every user should know something
 about how the server is configured, so the section about box.cfg is not skippable.
+
 Chapter 7 "Connectors" is strictly for users who are connecting from a different
 language such as C or Perl or Python -- other users will find no immediate need
 for this chapter.
+
 Chapter 8 "Modules" shows how to install modules (libraries)
 and how to create new ones in Lua or C.
 
@@ -49,6 +51,9 @@ engine named `vinyl`.
 Appendix E "Cookbook" shows some code contributions for common or difficult tasks.
 
 Appendix F has one long tutorial: "C stored procedures".
+
+Appendix G "Version-specific changes" summarizes significant changes introduced
+in newer Tarantool versions.
 
 For experienced users, there are also Reference documents plus a Developer Guide,
 and an extensive set of comments in the source code.
