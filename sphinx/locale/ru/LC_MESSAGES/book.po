@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-31 13:53+0300\n"
-"PO-Revision-Date: 2016-08-31 14:00+0300\n"
+"PO-Revision-Date: 2016-09-01 11:55+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -5617,44 +5617,53 @@ msgid ""
 "This appendix summarizes significant changes introduced in specific versions of "
 "Tarantool."
 msgstr ""
+"Здесь собрана информация о существенных изменениях, которые произошли в "
+"конкретных версиях Tarantool'а."
 
 #: ../book/app/g_changes.rst:33
 msgid ""
 "For smaller feature changes and bug fixes, see closed `milestones <https://"
 "github.com/tarantool/tarantool/milestones?state=closed>`_ at GitHub."
 msgstr ""
+"Более мелкие изменения и исправления дефектов указаны в отчетах о `выпущенных "
+"стабильных релизах (milestone = closed) <https://github.com/tarantool/tarantool/"
+"milestones?state=closed>`_ на GitHub."
 
 #: ../book/app/g_changes.rst:39
 msgid "Changes in Tarantool version 1.7"
-msgstr ""
+msgstr "Изменения в версии Tarantool 1.7"
 
 #: ../book/app/g_changes.rst:41
 msgid ""
 "The disk-based storge engine, which was called `sophia` or `phia` in earlier "
 "versions, is superseded by the `vinyl` storage engine."
 msgstr ""
+"Дисковый движок, который в более ранних версиях Tarantool'а назывался `sophia` и "
+"`phia`, заменен новым движком под названием `vinyl`."
 
 #: ../book/app/g_changes.rst:44
 msgid "There are new types for indexed fields."
-msgstr ""
+msgstr "Добавлены новые типы индексируемых полей."
 
 #: ../book/app/g_changes.rst:46
 msgid "The LuaJIT version is updated."
-msgstr ""
+msgstr "Обновлена версия LuaJIT."
 
 #: ../book/app/g_changes.rst:48
 msgid ""
 "Automatic replication cluster bootstrap (to make it easier to configure a new "
 "replication cluster) is supported."
 msgstr ""
+"У кластера репликации появилась возможность самонастройки, что существенно "
+"упрощает настройку нового кластера."
 
 #: ../book/app/g_changes.rst:51
 msgid "The ``space_object:inc()`` function is removed."
-msgstr ""
+msgstr "Функция ``space_object:inc()`` объявлена устаревшей."
 
 #: ../book/app/g_changes.rst:53
 msgid "The ``space_object:dec()`` function is removed."
-msgstr ""
+msgstr "Функция ``space_object:dec()`` объявлена устаревшей."
 
 #: ../book/box/admin.rst:28
 msgid "Administrative requests"
@@ -12879,11 +12888,12 @@ msgid ""
 msgstr ""
 "Номер версии составлен по стандартной схеме из 3 частей: ``<major>-<minor>-"
 "<patch>``, где ``<major>`` изменяется очень редко, ``<minor>`` увеличивается на "
-"каждый milestone и свидетельствует о возможных несовместимостях с предыдущими "
-"версиями, а ``<patch>`` указывает количество релизов с доработками с момента "
-"текущего milestone'а. Для сборок, не предназначенных для релиза, здесь могут "
-"быть добавлены также номер и SHA1-код коммита, которые указывают, насколько "
-"сильно текущая сборка отличается от предыдущего релиза."
+"каждый стабильный релиз (milestone) и свидетельствует о возможных "
+"несовместимостях с предыдущими версиями, а ``<patch>`` указывает количество "
+"релизов с доработками с момента текущего стабильного релиза (milestone'а). Для "
+"сборок, не предназначенных для релиза, здесь могут быть добавлены также номер и "
+"SHA1-код коммита, которые указывают, насколько сильно текущая сборка отличается "
+"от предыдущего релиза."
 
 #: ../book/configuration/index.rst:83
 msgid ""
@@ -15619,7 +15629,7 @@ msgid ""
 msgstr ""
 "Три длинных учебных примера в Приложении C — \"Вставка 1 млн кортежей с помощью "
 "хранимой процедуры на языке Lua\", \"Подсчет суммы по JSON-полям во всех кортежах"
-"\" и \"Индексированный поиск по шаблонам\"-- предназначены для пользователей, "
+"\" и \"Индексированный поиск по шаблонам\" — предназначены для пользователей, "
 "которые еще плохо знакомы с языком Lua или NoSQL СУБД."
 
 #: ../book/intro.rst:73
@@ -15651,7 +15661,7 @@ msgid ""
 "Appendix G \"Version-specific changes\" summarizes significant changes "
 "introduced in newer Tarantool versions."
 msgstr ""
-"В Приложении G \"Версионные изменения\" приводится список серьезных изменений "
+"В Приложении G \"Версионные изменения\" приводится список существенных изменений "
 "для конкретных версий Tarantool'а."
 
 #: ../book/intro.rst:83
