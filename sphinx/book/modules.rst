@@ -162,7 +162,7 @@ prefix), then use :program:`ls` to examine it:
    -rwxr-xr-x 1 roman roman 7272 Jun  3 16:51 mycmodule.so
 
 Tarantool's developers recommend using Tarantool's
-`CMake scripts <https://github.com/tarantool/http>`_
+`CMake scripts <https://github.com/tarantool/modulekit>`_
 which will handle some of the build steps automatically.
 
 The requests to load, examine and call look like this:
@@ -197,6 +197,9 @@ Creating a mixed Lua/C module locally
 (3) Load the C module from your Lua code using
     :samp:`require('myfunmodule.internal')` and then wrap or use it.
 
+For a sample of a mixed Lua/C module, see
+`"tarantool/http" repository at GitHub <https://github.com/tarantool/http>`_.
+
 ===========================
 Tips for special situations
 ===========================
@@ -230,8 +233,8 @@ Tips for special situations
      al/lib/lua/5.1/loadall.so
      ...
 
-  (Remember to substitute question-marks with `modulename` when calling
-  :extsamp:`require('{*{modulename}*}')`.)
+  Question-marks stand for the module name that was specified earlier when
+  saying :extsamp:`require('{*{modulename}*}')`.
 
 * To see the internal state from within a Lua module, use :samp:`state`
   and create a local variable inside the scope of the file:
@@ -246,9 +249,6 @@ Tips for special situations
       end
       return exports
 
-* Notice that Lua examples in this manual use local variables.
-  Use global variables with caution, since the module's users
+* Notice that Lua examples in this manual use *local* variables.
+  Use *global* variables with caution, since the module's users
   may be unaware of them.
-
-* For a sample of a mixed Lua/C module, see
-  `"tarantool/http" repository at GitHub <https://github.com/tarantool/http>`_.
