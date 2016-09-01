@@ -84,7 +84,7 @@ For example:
 
     luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib
 
-See also :ref:`Modules, LuaRocks, and requiring modules <modules-modules_luarocks_and_requiring_modules>`.
+See also :ref:`Modules <modules>`.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub
@@ -439,7 +439,7 @@ For example:
 
     luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib
 
-See also :ref:`Modules, LuaRocks, and requiring modules <modules-modules_luarocks_and_requiring_modules>`.
+See also :ref:`Modules <modules>`.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub

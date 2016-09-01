@@ -4,54 +4,74 @@
                              Modules
 -------------------------------------------------------------------------------
 
-.. _modules-modules_luarocks_and_requiring_modules:
-
-=====================================================================
-       Modules, LuaRocks, and requiring modules
-=====================================================================
-
-To extend Tarantool there are modules,
-which in Lua are also called "rocks".
+To extend Tarantool, there are modules which in Lua are also called "rocks".
 Users who are unfamiliar with Lua modules may benefit from following
-the Lua-Modules-Tutorial_
+the `Lua modules tutorial <http://lua-users.org/wiki/ModulesTutorial>`_
 before reading this section.
 
-**Install a module**
+=============================
+Installing an existing module
+=============================
 
-The modules that come from Tarantool developers and community contributors are
-on rocks.tarantool.org_. Some of them
+Modules that come from Tarantool developers and community contributors are
+available at `rocks.tarantool.org <http://rocks.tarantool.org>`_. Some of them
 -- :ref:`expirationd <expirationd-module>`,
 :ref:`mysql <dbms_modules-mysql-example>`,
 :ref:`postgresql <dbms_modules-postgresql-example>`,
 :ref:`shard <shard-module>` --
 are discussed elsewhere in this manual.
 
-Step 1: Install LuaRocks.
-A general description for installing LuaRocks on a Unix system is in
-the LuaRocks-Quick-Start-Guide_.
-For example on Ubuntu one could say: |br|
-:codenormal:`$` :codebold:`sudo apt-get install luarocks`
+**Step 1:** Install LuaRocks.
+A general description of installing LuaRocks on a Unix system is given in
+the `LuaRocks Quick Start Guide <http://luarocks.org/#quick-start>`_.
+For example, on Ubuntu you could say:
 
-Step 2: Add the Tarantool repository to the list of rocks servers.
-This is done by putting rocks.tarantool.org in the .luarocks/config.lua file: |br|
-:codenormal:`$` :codebold:`mkdir ~/.luarocks` |br|
-:codenormal:`$` :codebold:`echo "rocks_servers = {[[http://rocks.tarantool.org/]]}" >> ~/.luarocks/config.lua` |br|
+.. code-block:: console
 
-Once these steps are complete, the repositories can be searched with |br|
-:codenormal:`$` :codebold:`luarocks search` :codeitalic:`module-name` |br|
-and new modules can be added to the local repository with |br|
-:codenormal:`$` :codebold:`luarocks install` :codeitalic:`module-name` :codenormal:`--local` |br|
-and any module can be loaded for Tarantool with |br|
-:codenormal:`tarantool>` :codeitalic:`local-name` :codenormal:`=` :codebold:`require('`:codeitalic:`module-name`:codenormal:`')` |br|
-... and that is why the examples in the manual's Modules section often begin with `require` requests.
-See rocks_ on github.com/tarantool for more examples
-and information about contributing.
+   $ sudo apt-get install luarocks
 
-========================================
-Example: making a new Lua module locally
-========================================
+**Step 2:** Add the Tarantool repository to the list of rocks servers.
+This is done by putting `rocks.tarantool.org <http://rocks.tarantool.org>`_ in
+the :file:`.luarocks/config.lua` file:
 
-In this example, create a new Lua file named `mymodule.lua`,
+.. code-block:: console
+
+   $ mkdir ~/.luarocks
+   $ echo "rocks_servers = {[[http://rocks.tarantool.org/]]}" >> ~/.luarocks/config.lua
+
+Once these steps are complete, you can:
+
+* search the repositories with
+
+  .. cssclass:: highlight
+  .. parsed-literal::
+
+     $ luarocks search *module-name*
+       
+* add new modules to the local repository with
+
+  .. cssclass:: highlight
+  .. parsed-literal::
+
+     $ luarocks install *module-name* --local
+   
+* load any module for Tarantool with
+
+  .. cssclass:: highlight
+  .. parsed-literal::
+
+     tarantool> *local-name* = require('*module-name*')
+   
+... and that is why examples in this manual often begin with ``require`` requests.
+
+See `"tarantool/rocks" repository at GitHub <https://github.com/tarantool/rocks>`_
+for more examples and information about contributing.
+
+=================================
+Creating a new Lua module locally
+=================================
+
+As an example, let's create a new Lua file named :file:`mymodule.lua`,
 containing a named function which will be exported.
 Then, in Tarantool: load, examine, and call.
 
@@ -66,35 +86,40 @@ The Lua file should look like this:
     end
     return exports
 
-The requests to load and examine and call look like this: |br|
-:codenormal:`tarantool>`:codebold:`mymodule = require('mymodule')` |br|
-:codenormal:`>---` |br|
-:codenormal:`>...` |br|
-|br|
-:codenormal:`tarantool>`:codebold:`mymodule` |br|
-:codenormal:`---` |br|
-:codenormal:`>- myfun: 'function: 0x405edf20'` |br|
-:codenormal:`>...` |br|
-:codenormal:`tarantool>`:codebold:`mymodule.myfun(os.getenv('USER'))` |br|
-:codenormal:`Hello world` |br|
-:codenormal:`>---` |br|
-:codenormal:`>...`
+The requests to load, examine and call look like this:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+   tarantool> **mymodule = require('mymodule')**
+   ---
+   ...
+ 
+   tarantool> **mymodule**
+   ---
+   - myfun: 'function: 0x405edf20'
+   ...
+   
+   tarantool> **mymodule.myfun(os.getenv('USER'))**
+   Hello world
+   ---
+   ...
 
 .. _modules-example_c:
 
-==========================================
-Example: making a new C/C++ module locally
-==========================================
+===================================
+Creating a new C/C++ module locally
+===================================
 
-In this example, create a new C file named `mycmodule.c`,
+As an example, let's create a new C file named :file:`mycmodule.c`,
 containing a named function which will be exported.
 Then, in Tarantool: load, examine, and call.
 
-Prerequisite: install `tarantool-dev` first.
+Prerequisite: install ``tarantool-dev`` first.
 
 The C file should look like this:
 
-.. code-block:: none
+.. code-block:: c
 
     /* mycmodule - a simple Tarantool module */
     #include <lua.h>
@@ -126,89 +151,104 @@ The C file should look like this:
         return 1;
     }
 
-Use :codenormal:`gcc` to compile the code for a shared library (without a "lib" prefix),
-then use :codenormal:`ls` to examine it: |br|
+Use :program:`gcc` to compile the code for a shared library (without a "lib"
+prefix), then use :program:`ls` to examine it:
 
-:codenormal:`$` :codebold:`gcc mycmodule.c -shared -fPIC -I/usr/include/tarantool -o mycmodule.so` |br|
-:codenormal:`$` :codebold:`ls mycmodule.so -l` |br|
-:codenormal:`-rwxr-xr-x 1 roman roman 7272 Jun  3 16:51 mycmodule.so`
+.. cssclass:: highlight
+.. parsed-literal::
 
+   $ **gcc mycmodule.c -shared -fPIC -I/usr/include/tarantool -o mycmodule.so**
+   $ **ls mycmodule.so -l**
+   -rwxr-xr-x 1 roman roman 7272 Jun  3 16:51 mycmodule.so
 
-
-Tarantool's developers recommend use of Tarantool's CMake-scripts_
+Tarantool's developers recommend using Tarantool's
+`CMake scripts <https://github.com/tarantool/http>`_
 which will handle some of the build steps automatically.
 
-The requests to load and examine and call look like this: |br|
-:codenormal:`tarantool>`:codebold:`myсmodule = require('myсmodule')` |br|
-:codenormal:`---` |br|
-:codenormal:`...` |br|
-:codenormal:`tarantool>`:codebold:`myсmodule` |br|
-:codenormal:`---` |br|
-:codenormal:`- myfun: 'function: 0x4100ec98'` |br|
-:codenormal:`...` |br|
-:codenormal:`tarantool>`:codebold:`mycmodule.myfun(os.getenv('USER'))` |br|
-:codenormal:`---` |br|
-:codenormal:`- Hello, world` |br|
-:codenormal:`...` |br|
+The requests to load, examine and call look like this:
 
-One can also make modules with C++, provided that the code does not throw exceptions.
+.. cssclass:: highlight
+.. parsed-literal::
 
+   tarantool> **myсmodule = require('myсmodule')**
+   ---
+   ...
+   tarantool> **myсmodule**
+   ---
+   - myfun: 'function: 0x4100ec98'
+   ...
+   tarantool> **mycmodule.myfun(os.getenv('USER'))**
+   ---
+   - Hello, world
+   ...
 
-**Tips for special situations**
+You can also create modules with C++, provided that the code does not throw
+exceptions.
 
-Lua caches all loaded modules in the :code:`package.loaded` table.
-To reload a module from disk, set its key to `nil`: |br|
-:codenormal:`tarantool>` :codebold:`package.loaded['`:codeitalic:`modulename`:codebold:`'] = nil`
+=====================================
+Creating a mixed Lua/C module locally
+=====================================
 
-Use ``package.path`` to search for ``.lua`` modules, and use
-``package.cpath`` to search for C binary modules. |br|
-:codenormal:`tarantool>`:codebold:`package.path` |br|
-:codenormal:`---` |br|
-:codenormal:`- ./?.lua;./?/init.lua;/home/roman/.luarocks/share/lua/5.1/?.lua;/home/roman/.luarocks/share/lua/5.1/?/init.lua;/home/roman/.luarocks/share/lua/?.lua;/home/roman/.luarocks/share/lua/?/init.lua;/usr/share/tarantool/?.lua;/usr/share/tarantool/?/init.lua;./?.lua;/usr/local/share/luajit-2.0.3/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua` |br|
-:codenormal:`...`
-:codenormal:`tarantool>`:codebold:`package.cpath` |br|
-:codenormal:`---` |br|
-:codenormal:`- ./?.so;/home/roman/.luarocks/lib/lua/5.1/?.so;/home/roman/.luarocks/lib/lua/?.so;/usr/lib/tarantool/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so` |br|
-:codenormal:`...` |br|
-Substitute question-mark with :code:`modulename` when calling
-:code:`require('modulename')`.
+(1) Create a Lua module and name it as you like, say ``myfunmodule``.
 
+(2) Create a C module (submodule) and name it ``myfunmodule.internal`` or
+    something like that.
 
-To see the internal state from within a Lua module, use `state`
-and create a local variable inside the scope of the file:
+(3) Load the C module from your Lua code using
+    :samp:`require('myfunmodule.internal')` and then wrap or use it.
 
-.. code-block:: none
+===========================
+Tips for special situations
+===========================
 
-    -- mymodule
-    local exports = {}
-    local state = {}
-    exports.myfun = function()
-        state.x = 42 -- use state
-    end
-    return exports
+* Lua caches all loaded modules in the ``package.loaded`` table.
+  To reload a module from disk, set its key to `nil`:
 
-Notice that the Lua examples use local variables.
-Use global variables with caution, since the module's users
-may be unaware of them.
+  .. cssclass:: highlight
+  .. parsed-literal::
 
-To see a sample Lua + C module, go to http_ on github.com/tarantool.
+     tarantool> package.loaded['*modulename*'] = nil
+   
+* Use ``package.path`` to search for :file:`.lua` modules, and use
+  ``package.cpath`` to search for C binary modules.
 
-==================
-Mixed Lua/C module
-==================
+  .. cssclass:: highlight
+  .. parsed-literal::
 
-* Create a Lua module, say `myfunmodule`.
-* Create C module and name it `myfunmodule.internal` or something like
-  that (submodule).
-* Load C module from Lua code using `require('myfunmodule.internal')` and then
-  wrap or use it.
+     tarantool> **package.path**
+     ---
+     - ./?.lua;./?/init.lua;/home/roman/.luarocks/share/lua/5.1/?.lua;/home/roma
+     n/.luarocks/share/lua/5.1/?/init.lua;/home/roman/.luarocks/share/lua/?.lua;
+     /home/roman/.luarocks/share/lua/?/init.lua;/usr/share/tarantool/?.lua;/usr/
+     share/tarantool/?/init.lua;./?.lua;/usr/local/share/luajit-2.0.3/?.lua;/usr
+     /local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua
+     ...
+     tarantool> **package.cpath**
+     ---
+     - ./?.so;/home/roman/.luarocks/lib/lua/5.1/?.so;/home/roman/.luarocks/lib/l
+     ua/?.so;/usr/lib/tarantool/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/loc
+     al/lib/lua/5.1/loadall.so
+     ...
 
-.. _rocks.tarantool.org: http://rocks.tarantool.org
-.. _LuaRocks-Quick-Start-Guide: http://luarocks.org/#quick-start
-.. _Lua-Modules-Tutorial: http://lua-users.org/wiki/ModulesTutorial
-.. _LuaRocks: http://rocks.tarantool.org
-.. _CMake-scripts: https://github.com/tarantool/http
-.. _http: https://github.com/tarantool/http
-.. _rocks: github.com/tarantool/rocks <https://github.com/tarantool/rocks
+  (Remember to substitute question-marks with `modulename` when calling
+  :extsamp:`require('{*{modulename}*}')`.)
 
+* To see the internal state from within a Lua module, use :samp:`state`
+  and create a local variable inside the scope of the file:
 
+  .. code-block:: lua
+
+      -- mymodule
+      local exports = {}
+      local state = {}
+      exports.myfun = function()
+          state.x = 42 -- use state
+      end
+      return exports
+
+* Notice that Lua examples in this manual use local variables.
+  Use global variables with caution, since the module's users
+  may be unaware of them.
+
+* For a sample of a mixed Lua/C module, see
+  `"tarantool/http" repository at GitHub <https://github.com/tarantool/http>`_.
