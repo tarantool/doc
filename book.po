@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-01 17:05+0300\n"
-"PO-Revision-Date: 2016-09-01 17:12+0300\n"
+"POT-Creation-Date: 2016-09-01 15:45+0300\n"
+"PO-Revision-Date: 2016-09-01 16:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15738,8 +15738,8 @@ msgid ""
 "#quick-start>`_. For example, on Ubuntu you could say:"
 msgstr ""
 "**Шаг 1:** Установите LuaRocks. Общее описание того, как установить LuaRocks в "
-"Unix-системе, приводится в `кратком руководстве по LuaRocks <http://luarocks.org/"
-"#quick-start>`_. Например, установить LuaRocks в Ubuntu можно следующей командой:"
+"Unix-системе, приводится в `Кратком руководстве по LuaRocks <http://luarocks.org/"
+"#quick-start>`_. Например, в Ubuntu установить LuaRocks можно следующей командой:"
 
 #: ../book/modules.rst:54
 msgid "$ sudo apt-get install luarocks"
@@ -15975,11 +15975,11 @@ msgstr ""
 #: ../book/modules.rst:189
 msgid ""
 "Tarantool's developers recommend using Tarantool's `CMake scripts <https://"
-"github.com/tarantool/modulekit>`_ which will handle some of the build steps "
+"github.com/tarantool/http>`_ which will handle some of the build steps "
 "automatically."
 msgstr ""
-"Для автоматизации сборки рекомендуется использовать `CMake-скрипты для "
-"Tarantool'а <https://github.com/tarantool/modulekit>`_."
+"Для автоматизации некоторых этапов сборки рекомендуется использовать `CMake-"
+"скрипты для Tarantool'а <https://github.com/tarantool/modulekit>`_."
 
 #: ../book/modules.rst:198
 msgid ""
@@ -16040,19 +16040,11 @@ msgstr ""
 "internal')`, а затем сделайте для него обертку или вызывайте его функции "
 "напрямую."
 
-#: ../book/modules.rst:225
-msgid ""
-"For a sample of a mixed Lua/C module, see `\"tarantool/http\" repository at "
-"GitHub <https://github.com/tarantool/http>`_."
-msgstr ""
-"Примеры модулей на смеси языков Lua/C можно посмотреть в `репозитории "
-"\"tarantool/http\" на GitHub <https://github.com/tarantool/http>`_."
-
-#: ../book/modules.rst:230
+#: ../book/modules.rst:227
 msgid "Tips for special situations"
 msgstr "Примечания для особых случаев"
 
-#: ../book/modules.rst:232
+#: ../book/modules.rst:229
 msgid ""
 "Lua caches all loaded modules in the ``package.loaded`` table. To reload a "
 "module from disk, set its key to `nil`:"
@@ -16061,7 +16053,7 @@ msgstr ""
 "Чтобы перегрузить какой-либо модуль с диска, укажите для его ключа значение "
 "`nil`:"
 
-#: ../book/modules.rst:240
+#: ../book/modules.rst:237
 msgid ""
 "Use ``package.path`` to search for :file:`.lua` modules, and use ``package."
 "cpath`` to search for C binary modules."
@@ -16069,23 +16061,23 @@ msgstr ""
 "Для поиска :file:`.lua`-модулей используйте команду ``package.path``, а для "
 "поиска бинарных модулей на C используйте команду ``package.cpath``."
 
-#: ../book/modules.rst:261
+#: ../book/modules.rst:258
 msgid ""
-"Question-marks stand for the module name that was specified earlier when saying :"
-"extsamp:`require('{*{modulename}*}')`."
+"(Remember to substitute question-marks with `modulename` when calling :extsamp:"
+"`require('{*{modulename}*}')`.)"
 msgstr ""
-"Знаки вопроса стоят вместо имени модуля, которое было указано ранее при вызове :"
-"extsamp:`require('{*{имя_модуля}*}')`."
+"(При вызове :extsamp:`require('{*{имя_модуля}*}')` укажите имя модуля вместо "
+"знаков вопроса.)"
 
-#: ../book/modules.rst:264
+#: ../book/modules.rst:261
 msgid ""
 "To see the internal state from within a Lua module, use :samp:`state` and create "
 "a local variable inside the scope of the file:"
 msgstr ""
-"Для просмотра внутреннего состояния прямо изнутри Lua-модуля используйте :samp:"
+"Для просмотра внутреннего состояния функций из Lua-модуля используйте :samp:"
 "`state` и соответствующую локальную переменную в рамках модуля:"
 
-#: ../book/modules.rst:267
+#: ../book/modules.rst:264
 msgid ""
 "-- mymodule\n"
 "local exports = {}\n"
@@ -16103,15 +16095,23 @@ msgstr ""
 "end\n"
 "return exports"
 
-#: ../book/modules.rst:277
+#: ../book/modules.rst:274
 msgid ""
-"Notice that Lua examples in this manual use *local* variables. Use *global* "
+"Notice that Lua examples in this manual use local variables. Use global "
 "variables with caution, since the module's users may be unaware of them."
 msgstr ""
 "Обратите внимание, что в текущей документации в примерах Lua-кода используются "
 "*локальные* переменные. Будьте аккуратны, если в своих модулях вы будете "
 "использовать *глобальные* переменные, поскольку пользователи ваших модулей могут "
 "не знать об этих переменных."
+
+#: ../book/modules.rst:278
+msgid ""
+"For a sample of a mixed Lua/C module, see `\"tarantool/http\" repository at "
+"GitHub <https://github.com/tarantool/http>`_."
+msgstr ""
+"Примеры модулей на смеси языков Lua/C можно посмотреть в `репозитории "
+"\"tarantool/http\" на GitHub <https://github.com/tarantool/http>`_."
 
 #: ../book/replication/index.rst:32
 msgid ""

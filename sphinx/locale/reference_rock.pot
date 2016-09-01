@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-31 13:53+0300\n"
+"POT-Creation-Date: 2016-09-01 17:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../reference_rock/dbms.rst:112
 #: ../reference_rock/dbms.rst:467
-msgid "See also :ref:`Modules, LuaRocks, and requiring modules <modules-modules_luarocks_and_requiring_modules>`."
+msgid "See also :ref:`Modules <modules>`."
 msgstr ""
 
 #: ../reference_rock/dbms.rst:116
