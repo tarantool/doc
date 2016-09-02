@@ -1575,7 +1575,7 @@ div.b-rock-list-item-ico {
 .header-logo {
     height: 80px;
     width: 100%;
-    background: url('/theme/tarantool_infinity_logo.png') center no-repeat;
+    background: url('/theme/tarantool_infinity_logo.svg') center no-repeat;
 }
 
 .papers a:hover {
