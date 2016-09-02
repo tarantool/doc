@@ -7,10 +7,10 @@ html {
     -webkit-font-smoothing:antialiased;
 }
 body {
-    font-family:Arial, Tahoma, Verdana;
+    font-family: "Helvetica Neue", Arial, Tahoma, Verdana;
     font-size:1em;
     font-style:normal;
-    font-weight:normal;
+    font-weight: 300;
     color: #262626;
     position:relative;
     height:100%;
