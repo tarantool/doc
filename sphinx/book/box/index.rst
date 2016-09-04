@@ -319,10 +319,8 @@ the tuple that was just updated.
 Note re storage engine: vinyl handles yields differently, see
 :ref:`differences between memtx and vinyl <vinyl_diff>`.
 
-.. NOTE:: Note re multi-request transactions
-
-    there is a way to delay yields, see
-    :ref:`Atomic execution <atomic-atomic_execution>`.
+Note re multi-request transactions: there is a way to delay yields,
+see :ref:`Atomic execution <atomic-atomic_execution>`.
 
 Since locks don't exist, and disk writes only involve the write-ahead log,
 transactions are usually fast. Also the Tarantool server may not be using up all
