@@ -80,7 +80,7 @@ of types. The identifier of a field is the field's number, base 1. For example
 
 When Tarantool returns a tuple value, it surrounds strings with single quotes,
 separates fields with commas, and encloses the tuple inside square brackets.
-For example: ``[ 3, 'length', 93 ]``.
+For example: ``[3, 'length', 93]``.
 
 .. _index-box_index:
 
@@ -91,7 +91,7 @@ Index
 An *index* -- 'primary' in the example -- is a group of key values and pointers.
 
 In order for a tuple set to be useful, there must always
-be at least one index in a space. There can be many.
+be at least one index in a space. There can be many indexes.
 As with spaces, the user can and should specify the index name,
 and let Tarantool come up with a unique numeric identifier
 (the "index id").
@@ -111,10 +111,10 @@ all other indexes are called “secondary” indexes.
 
 An index definition may include identifiers of tuple fields
 and their expected types. The allowed types for indexed fields are
-NUM (unsigned integer between 0 and 18,446,744,073,709,551,615),
-or INT (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807),
+UNSIGNED (unsigned integer between 0 and 18,446,744,073,709,551,615),
+or INTEGER (signed integer between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807),
 or NUMBER (unsigned integer or signed integer or floating-point value),
-or STR (string, any sequence of octets),
+or STRING (string, any sequence of octets),
 or SCALAR (boolean or number or string),
 or ARRAY (a series of numbers for use with :ref:`RTREE indexes <box_index-rtree>`).
 
@@ -177,7 +177,7 @@ and the tonumber64 function:
 For database storage Tarantool uses MsgPack rules.
 Storage is variable-length, so the smallest number
 requires only one byte but the largest number requires nine bytes.
-When a field has a 'NUM' index, all values must be unsigned
+When a field has an 'unsigned' index, all values must be unsigned
 integers between 0 and 18,446,744,073,709,551,615.
 
 A *string* is a variable-length sequence of bytes,
@@ -294,7 +294,7 @@ facts and a few new words.
 **FACT #1**: there is only one transaction processor thread.
 Some people are used to the idea that there can be multiple
 threads operating on the database, with (say) thread #1
-reading row #x while thread#2 writes row#y. With Tarantool
+reading row #x while thread#2 writes row #y. With Tarantool
 no such thing ever happens. Only the transaction processor
 thread can access the database, and there is only one
 transaction processor thread for each instance of the server.
@@ -304,7 +304,7 @@ A fiber is a set of computer instructions that may contain
 "yield" signals. The transaction processor thread will execute
 all computer instructions until a yield, then switch to execute
 the instructions of a different fiber. Thus (say) the thread reads
-row#x for the sake of fiber#1, then writes row#y for the sake of fiber#2.
+row #x for the sake of fiber #1, then writes row #y for the sake of fiber #2.
 
 .. _index-yields_must_happen:
 
@@ -541,7 +541,7 @@ These variations exist:
    secondary-key search, it is mandatory.
 
 3. The search may be for some or all key parts. |br|
-   Suppose an index has two parts: {1,'NUM', 2, 'STR'}. |br|
+   Suppose an index has two parts: {1,'unsigned', 2, 'string'}. |br|
    Suppose the space has three tuples: {1, 'A'},{1, 'B'},{2, ''}. |br|
    The search can be for all fields, using a table for the value: |br|
    :extsamp:`box.space.{*{space-name}*}:select({1, 'A'})` |br|

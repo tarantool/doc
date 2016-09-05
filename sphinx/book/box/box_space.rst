@@ -101,6 +101,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`box.space._cluster             | .(Metadata) List of clusters    |
         | <box_space-cluster>`                 |                                 |
         +--------------------------------------+---------------------------------+
+        | :ref:`box.space._func                | .(Metadata) List of function    |
+        | <box_space-func>`                    | tuples                          |
+        +--------------------------------------+---------------------------------+
 
 
 
@@ -431,8 +434,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Possible errors: If a different tuple with the same unique-key
         value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This
-        will only happen if there is a secondary index. By default
-        secondary indexes are unique.)
+        will only happen if there is a unique secondary index.)
 
         **Complexity Factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
@@ -507,16 +509,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Example:**
 
-        Assume that the initial state of the database is ``tester`` that has
-        one tuple set and one primary key whose type is ``unsigned``.
+        Assume that initially there is a space named ``tester``
+        with a primary-key index whose type is ``unsigned``.
         There is one tuple, with ``field[1]`` = ``999`` and ``field[2]`` = ``'A'``.
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update(999, {{'=', 2, 'B'}})
-
+        In the update: |br|
+        ``box.space.tester:update(999, {{'=', 2, 'B'}})`` |br|
         The first argument is ``tester``, that is, the affected space is ``tester``.
         The second argument is ``999``, that is, the affected tuple is identified by
         primary key value = 999.
@@ -526,46 +524,30 @@ A list of all ``box.space`` functions follows, then comes a list of all
         The fifth argument is ``'B'``, that is, ``field[2]`` contents change to ``'B'``.
         Therefore, after this update, ``field[1]`` = ``999`` and ``field[2]`` = ``'B'``.
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{'=', 2, 'B'}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{'=', 2, 'B'}})`` |br|
         the arguments are the same, except that the key is passed as a Lua table
         (inside braces). This is unnecessary when the primary key has only one
         field, but would be necessary if the primary key had more than one field.
         Therefore, after this update, ``field[1]`` = ``999`` and ``field[2]`` = ``'B'`` (no change).
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{'=', 3, 1}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{'=', 3, 1}})`` |br|
         the arguments are the same, except that the fourth argument is ``3``,
         that is, the affected field is ``field[3]``. It is okay that, until now,
         ``field[3]`` has not existed. It gets added. Therefore, after this update,
         ``field[1]`` = ``999``, ``field[2]`` = ``'B'``, ``field[3]`` = ``1``.
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{'+', 3, 1}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{'+', 3, 1}})`` |br|
         the arguments are the same, except that the third argument is ``'+'``,
         that is, the operation is addition rather than assignment. Since
         ``field[3]`` previously contained ``1``, this means we're adding ``1``
         to ``1``. Therefore, after this update, ``field[1]`` = ``999``,
         ``field[2]`` = ``'B'``, ``field[3]`` = ``2``.
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{'|', 3, 1}, {'=', 2, 'C'}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{'|', 3, 1}, {'=', 2, 'C'}})`` |br|
         the idea is to modify two fields at once. The formats are ``'|'`` and
         ``=``, that is, there are two operations, OR and assignment. The fourth
         and fifth arguments mean that ``field[3]`` gets OR'ed with ``1``. The
@@ -573,33 +555,21 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'C'``,
         ``field[3]`` = ``3``.
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{'#', 2, 1}, {'-', 2, 3}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{'#', 2, 1}, {'-', 2, 3}})`` |br|
         The idea is to delete ``field[2]``, then subtract ``3`` from ``field[3]``.
         But after the delete, there is a renumbering, so ``field[3]`` becomes
         ``field[2]``` before we subtract ``3`` from it, and that's why the
         seventh argument is ``2``, not ``3``. Therefore, after this update,
         ``field[1]`` = ``999``, ``field[2]`` = ``0``.
 
-        In the update:
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{'=', 2, 'XYZ'}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{'=', 2, 'XYZ'}})`` |br|
         we're making a long string so that splice will work in the next example.
         Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'XYZ'``.
 
-        In the update
-
-        .. code-block:: lua
-
-            box.space.tester:update({999}, {{':', 2, 2, 1, '!!'}})
-
+        In the update: |br|
+        ``box.space.tester:update({999}, {{':', 2, 2, 1, '!!'}})`` |br|
         The third argument is ``':'``, that is, this is the example of splice.
         The fourth argument is ``2`` because the change will occur in ``field[2]``.
         The fifth argument is 2 because deletion will begin with the second byte.
@@ -946,7 +916,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _space
 
     ``_space`` is a system tuple set. Its tuples contain these fields: ``id``,
-    ``uid``, ``space-name``, ``engine``, ``field_count``, ``temporary``, ``format``.
+    ``owner`` (= id of user who owns the space),
+    ``name``, ``engine``, ``field_count``,
+    ``flags`` (e.g. temporary), ``format``.
     These fields are established by :ref:`space.create() <box_schema-space_create>`.
 
     **Example:**
@@ -1004,6 +976,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. code-block:: tarantoolsession
 
         tarantool> box.schema.space.create('TM', {
+                 >   id = 12345,
                  >   format = {
                  >     [1] = {["name"] = "field_1"},
                  >     [2] = {["type"] = "unsigned"}
@@ -1013,16 +986,16 @@ A list of all ``box.space`` functions follows, then comes a list of all
         - index: []
           on_replace: 'function: 0x41c67338'
           temporary: false
-          id: 522
+          id: 12345
           engine: memtx
           enabled: false
           name: TM
           field_count: 0
         - created
         ...
-        tarantool> box.space._space:select(522)
+        tarantool> box.space._space:select(12345)
         ---
-        - - [522, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
+        - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
         ...
 
 .. _box_space-index:
@@ -1030,8 +1003,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _index
 
     ``_index`` is a system tuple set. Its tuples contain these fields:
-    ``space-id index-id index-name index-type is-index-unique
-    [tuple-field-no, tuple-field-type ...]``.
+    ``id`` (= id of space), ``iid`` (= index number within space),
+    ``name``, ``type``, ``opts`` (e.g. unique option),
+    [``tuple-field-no``, ``tuple-field-type`` ...].
 
     The following function will display all fields in all tuples of ``_index``:
     (notice that the fifth field gets special treatment as a map value and
@@ -1127,6 +1101,13 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     ``_cluster`` is a system tuple set
     for support of the :ref:`replication feature <index-box_replication>`.
+
+.. _box_space-func:
+
+.. data:: _func
+
+    ``_func`` is a system tuple set
+    with function tuples made by :ref:`box.schema.func.create <box_schema-func_create>`.
 
 =============================================================================
           Example: use box.space functions to read _space tuples

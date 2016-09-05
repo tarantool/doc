@@ -52,8 +52,6 @@ for spaces, users, roles, and function tuples.
         | format        | field names+types              | table   | (blank)             |
         +---------------+--------------------------------+---------+---------------------+
 
-    :param num space-id: the numeric identifier established by box.schema.space.create
-
     There are five :ref:`syntax variations <index-object_reference>` for object references targeting
     space objects, for example :samp:`box.schema.space.drop({space-id})`
     will drop a space. However, the common approach is to use functions
@@ -81,6 +79,9 @@ for spaces, users, roles, and function tuples.
     tarantool> s = box.schema.space.create('space55', {
              >   if_not_exists = true
              > })
+    ---
+    ...
+
 
 For an illustration with the ``format`` clause, see
 :ref:`box.space._space <box_space-space>` example.
@@ -102,7 +103,7 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
 
     :return: nil
 
-    **Example:**
+    **Examples:**
 
     .. code-block:: lua
 
@@ -119,7 +120,7 @@ available for insert, select, and all the other :ref:`box.space <box_space>` fun
     :param string user-name: the name of the user
     :param table options: ``if_exists``
 
-    **Example:**
+    **Examples:**
 
     .. code-block:: lua
 
