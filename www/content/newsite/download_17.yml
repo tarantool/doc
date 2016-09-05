@@ -356,13 +356,15 @@ blocks :
     - - "Building from source"
       - format : rst
         content: |
-          Visit the Tarantool repository at GitHub to download the latest
-          source files for version `1.7`_.
-
+          To get the latest source files for version 1.7, you can
+          clone or download them from the Tarantool repository at `GitHub`_, or
+          download them as a `tarball`_.
+            
           Please consult with the Tarantool documentation for 
           `build-from-source`_ instructions on your system.
 
-          .. _1.7:    http://github.com/tarantool/tarantool/tree/1.7
+          .. _GitHub:    http://github.com/tarantool/tarantool/tree/1.7
+          .. _tarball:   http://download.tarantool.org/tarantool/1.7/src/
           .. _build-from-source: http://tarantool.org/doc/book/user_guide_getting_started.html#downloading-and-installing-a-binary-package
 
   gimemore :
