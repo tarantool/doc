@@ -997,40 +997,38 @@ For example, :file:`/usr/share/tarantool/myapp.lua`:
 .. code-block:: lua
 
     local function start()
-    -- Initial version
-    box.once("myapp:.1.0", function()
-    box.schema.space.create("somedata")
-    box.space.somedata:create_index("primary")
-    ...
-    end
+      -- Initial version
+      box.once("myapp:.1.0", function()
+      box.schema.space.create("somedata")
+      box.space.somedata:create_index("primary")
+      ...
 
-    -- migration code from 1.0 to 1.1
-    box.once("myapp:.v1.1", function()
-    box.space.somedata.index.primary:alter(...)
-    ...
-    end
+      -- migration code from 1.0 to 1.1
+      box.once("myapp:.v1.1", function()
+      box.space.somedata.index.primary:alter(...)
+      ...
 
-    -- migration code from 1.1 to 1.2
-    box.once("myapp:.v1.2", function()
-    box.space.somedata.space:alter(...)
-    box.space.somedata:insert(...)
-    ...
+      -- migration code from 1.1 to 1.2
+      box.once("myapp:.v1.2", function()
+      box.space.somedata.space:alter(...)
+      box.space.somedata:insert(...)
+      ...
     end
 
     -- start some background fibers if you need
 
     local function stop()
-    -- stop all background fibers and cleanup resources
+      -- stop all background fibers and cleanup resources
     end
 
     local function api_for_call(xxx)
-    -- do some business
+      -- do some business
     end
 
     return {
-    start = start;
-    stop = stop;
-    api_for_call = api_for_call;
+      start = start;
+      stop = stop;
+      api_for_call = api_for_call;
     }
 
 This file is maintained by the application's developers. On its side,
@@ -1050,17 +1048,17 @@ For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:
     #!/usr/bin/env tarantool
 
     box.cfg {
-    listen = 3301;
+      listen = 3301;
     }
 
     if myapp ~= nil then
-    -- hot code reload using tarantoolctl or dofile()
+      -- hot code reload using tarantoolctl or dofile()
 
-    -- unload old application
-    myapp.stop()
-    -- clear cache for loaded modules and dependencies
-    package.loaded['myapp'] = nil
-    package.loaded['somedep'] = nil; -- dependency of 'myapp'
+      -- unload old application
+      myapp.stop()
+      -- clear cache for loaded modules and dependencies
+      package.loaded['myapp'] = nil
+      package.loaded['somedep'] = nil; -- dependency of 'myapp'
     end
 
     -- load a new version of app and all dependencies
