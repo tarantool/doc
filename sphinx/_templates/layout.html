@@ -27,14 +27,27 @@
 {% block content %}
   <section class="b-lightgray_block b-documentation_top b-clearbox p-documentation_in">
     <div class="b-block-wrapper">
-      <h2 class="b-section-title b-ellipsis" title="{{ title | cleantitle }}">
-        {{ title | cleantitle }}
+      <h2
+      {% if main_page %}
+        class="b-section-title b-ellipsis"
+      {% else         %}
+        class="b-section-title b-ellipsis toggle-navigation"
+      {% endif        %}
+        title="{{ title | cleantitle }}">
+          {{ title | cleantitle }}
       </h2>
       {{- language_selector() -}}
     </div>
   </section>
-  {% if not main_page %}
-    <div class="b-cols_content b-clearbox b-doc-{{ pagename }}">
+  {% if main_page %}
+    <section class="b-block b-documentation">
+      <div class="b-block-wrapper">
+         {% include "searchbox.html" %}
+        {{ content_pane }}
+      </div>
+    </section>
+  {% else %}
+    <div class="b-cols_content b-clearbox">
       <div class="b-cols_content_left">
         {% include "searchbox.html" %}
         {{ toctree(maxdepth=2) }}
@@ -43,21 +56,14 @@
         <div class="b-cols_content_right-slot">
           {{- breadcrumbs() -}}
           {{  content_pane   }}
-          {{  disqus()       }}
+          {% if pagename not in ["search", "genindex", "modindex"] %}
+          {{    disqus()     }}
+          {% endif %}
           {{- navbar(False) -}}
         </div>
       </div>
     </div>
-  {% else %}
-    <section class="b-block b-documentation">
-      <div class="b-block-wrapper">
-         {% include "searchbox.html" %}
-        {{ content_pane }}
-      </div>
-    </section>
   {% endif %}
-  <script>
-  </script>
 {% endblock content %}
 
 {# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}

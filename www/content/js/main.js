@@ -18,7 +18,6 @@
 })(jQuery);
 
 $(function() {
-
 	$('input[data-placeholder], textarea[data-placeholder]').plcholder();
 
 	var drop_item = '.b-path-list-item-url';
@@ -83,4 +82,9 @@ $(function() {
 		return false;
 	});
 
+  $("ul.b-menu a").each(function() {
+    if $(this).attr('href') === window.location.pathname {
+      $(this).addClass("p-active");
+    }
+  });
 });

@@ -122,8 +122,40 @@ $(document).ready(function () {
       $(table).empty().remove();
     }
   );
-  $("dl.function").each(
-  );
+
+  if (!String.prototype.startsWith) {
+    Object.defineProperty(String.prototype, 'startsWith', {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: function(searchString, position) {
+          position = position || 0;
+          return this.lastIndexOf(searchString, position) === position;
+        }
+    });
+  }
+
+  $(function() {
+    $("ul.b-menu a").each(function() {
+      if (($(this).attr('href') === window.location.pathname) ||
+          ($(this).attr('href').startsWith("/doc/") &&
+           window.location.pathname.startsWith("/doc/")) ||
+          ($(this).attr('href').startsWith("/download") &&
+           window.location.pathname.startsWith("/download"))) {
+        $(this).addClass("p-active");
+      }
+    });
+  });
+
+  $(function() {
+    $(".b-header-search input").focusin(function() {
+      $(this).attr("placeholder", "Search this manual");
+    });
+    $(".b-header-search input").focusout(function() {
+      $(this).attr("placeholder", "");
+    });
+    $(".b-doc-search .b-header-search input").focus();
+  });
 });
 
 // vim: syntax=javascript ts=2 sts=2 sw=2 expandtab

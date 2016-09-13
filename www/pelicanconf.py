@@ -52,6 +52,8 @@ STATIC_PATHS = [
     'js/filesize.min.js',
     'js/highcharts_base.js',
     'js/jquery.min.js',
+    'js/menu.js',
+    'js/mobile_menu.js',
     'terms.docx',
     'license.docx',
     '.nojekyll',
