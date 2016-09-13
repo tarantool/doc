@@ -65,21 +65,27 @@ file and the WAL .xlog files), then starting replication again - the replica
 will then catch up with the master by retrieving all the master's tuples.
 Again, this procedure works only if the master's WAL files are present.
 
-NOTE:
-Replication parameters are "dynamic", which allows the replica to become
-a master and vice versa with the help of the :ref:`box.cfg <box_introspection-box_cfg>` statement.
+.. NOTE::
 
-NOTE:
-The replica does not inherit the master's configuration parameters, such
-as the ones that cause the :ref:`snapshot daemon <book_cfg_snapshot_daemon>` to run on the master.
-To get the same behavior, one would have to set the relevant parameters explicitly
-so that they are the same on both master and replica.
+    Replication parameters are "dynamic", which allows the replica to become
+    a master and vice versa with the help of the
+    :ref:`box.cfg <box_introspection-box_cfg>` statement.
 
-NOTE:
-Replication requires privileges. Privileges for accessing spaces could be granted directly
-to the user who will start the replica. However, it is more usual to
-grant privileges for accessing spaces to a :ref:`role <authentication-rep_role>`, and then grant the
-role to the user who will start the replica.
+.. NOTE::
+
+    The replica does not inherit the master's configuration parameters, such
+    as the ones that cause the :ref:`snapshot daemon <book_cfg_snapshot_daemon>`
+    to run on the master. To get the same behavior, one would have to set the
+    relevant parameters explicitly so that they are the same on both master and
+    replica.
+
+.. NOTE::
+
+    Replication requires privileges. Privileges for accessing spaces could be
+    granted directly to the user who will start the replica. However, it is more
+    usual to grant privileges for accessing spaces to a
+    :ref:`role <authentication-rep_role>`, and then grant the role to the user
+    who will start the replica.
 
 =====================================================================
                 Recovering from a degraded state
