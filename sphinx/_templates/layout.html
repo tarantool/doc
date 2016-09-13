@@ -3,9 +3,13 @@
 {% from 'elements.html' import breadcrumbs       with context %}
 {% from 'elements.html' import navbar            with context %}
 {% from 'elements.html' import language_selector with context %}
+{% from 'elements.html' import disqus            with context %}
 
 {% set page = {"slug": "documentation"} %}
-{% set script_files = script_files + ['_static/jquery.pin.min.js', '_static/headers.js'] %}
+{% set script_files = script_files + [
+        '_static/jquery.pin.min.js',
+        '_static/headers.js'
+] %}
 {% set css_files = ['_static/sphinx_design.css'] + css_files %}
 
 {% set main_page = title in ["Documentation", "Документация"] %}
@@ -39,6 +43,7 @@
         <div class="b-cols_content_right-slot">
           {{- breadcrumbs() -}}
           {{  content_pane   }}
+          {{  disqus()       }}
           {{- navbar(False) -}}
         </div>
       </div>
@@ -46,11 +51,13 @@
   {% else %}
     <section class="b-block b-documentation">
       <div class="b-block-wrapper">
-        {% include "searchbox.html" %}
+         {% include "searchbox.html" %}
         {{ content_pane }}
       </div>
     </section>
   {% endif %}
+  <script>
+  </script>
 {% endblock content %}
 
 {# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}

@@ -12,14 +12,14 @@ sys.path.insert(0, os.path.abspath('..'))
 master_doc = 'index'
 
 extensions = [
+    'sphinx.ext.todo',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',
     'ext.TapLexer',
     'ext.TarantoolSessionLexer',
-    'sphinx.ext.todo',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.intersphinx',
 ]
 primary_domain = 'lua'
 templates_path = ['../_templates']
@@ -96,6 +96,7 @@ rst_prolog = """
 """
 
 rst_epilog = """
+
 .. |br| raw:: html
 
     <br />
