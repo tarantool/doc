@@ -12,18 +12,18 @@ This will ensure that you have the same build of the same version that the
 developers have. That makes analysis easier if later you need to report a problem,
 and avoids subtle problems that might happen if you used different tools or
 different parameters when building from source. The section about binaries is
-“:ref:`user_guide_getting_started-downloading_and_installing_a_binary_package`”.
+“:ref:`user_guide_getting_started-downloading_and_installing_a_binary_package` ”.
 
 For development, you will want to download a source package and make the binary
 by yourself using a C/C++ compiler and common tools. Although this is a bit harder,
 it gives more control. And the source packages include additional files, for example
-the Tarantool test suite. The section about source is “:ref:`building_from_source`”.
+the Tarantool test suite. The section about source is “:ref:`building_from_source` ”.
 
 If the installation has already been done, then you should try it out. So we've
 provided some instructions that you can use to make a temporary “sandbox”. In a
 few minutes you can start the server and type in some database-manipulation
 statements. The section about the sandbox is
-“:ref:`user_guide_getting_started-first_database`”.
+“:ref:`user_guide_getting_started-first_database` ”.
 
 .. _user_guide_getting_started-downloading_and_installing_a_binary_package:
 
@@ -54,6 +54,8 @@ are over.
 
     $ mkdir ~/tarantool_sandbox
     $ cd ~/tarantool_sandbox
+
+Here is how to create a simple test database after installing.
 
 Start the server. The server name is tarantool.
 
@@ -121,9 +123,9 @@ database try this:
 
 .. code-block:: tarantoolsession
 
-    tarantool> t = s:insert{1}
-    tarantool> t = s:insert{2, 'Music'}
-    tarantool> t = s:insert{3, 'Length', 93}
+    tarantool> t = s:insert({1})
+    tarantool> t = s:insert({2, 'Music'})
+    tarantool> t = s:insert({3, 'Length', 93})
 
 To select a tuple from the first space of the database, using the first defined
 key, try this:
@@ -171,11 +173,13 @@ Now, to prepare for the example in the next section, try this:
 In the previous section the first request was with ``box.cfg{listen = 3301}``.
 The ``listen`` value can be any form of URI (uniform resource identifier);
 in this case it's just a local port: port 3301. It's possible to send requests
-to the listen URI via: |br|
-(a) telnet, |br|
-(b) a connector (which will be the subject of the ":ref:`index-box_connectors`" chapter), |br|
-(c) another instance of Tarantool via the :ref:`console module <console-module>`, |br|
-(d) ``tarantoolctl connect``.
+to the listen URI via:
+
+a. telnet,
+b. a connector (which will be the subject of the ":ref:`index-box_connectors`"
+   chapter),
+c. another instance of Tarantool via the :ref:`console module <console-module>`,
+d. ``tarantoolctl connect``.
 
 Let's try (d).
 
@@ -183,14 +187,22 @@ Switch to another terminal. On Linux, for example, this means starting another
 instance of a Bash shell. There is no need to use cd to switch to the
 ``~/tarantool_sandbox`` directory.
 
-Start the tarantoolctl utility: |br|
-:extsamp:`$ {**{tarantoolctl connect '3301'}**}`
+Start the tarantoolctl utility:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    :extsamp:`$ {**{tarantoolctl connect '3301'}**}`
 
 This means "use the :ref:`tarantoolctl connect utility <administration-tarantoolctl_connect>`
 to connect to the Tarantool server that's listening on ``localhost:3301``."
 
-Try this request: |br|
-:extsamp:`tarantool> {**{box.space.tester:select{2}}**}`
+Try this request:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    tarantool> {**{box.space.tester:select{2}}**}
 
 This means "send a request to that Tarantool server, and display the result".
 The result in this case is one of the tuples that was inserted earlier. Your
@@ -214,6 +226,6 @@ tarantool (an alternative): :ref:`os.exit() <os-exit>`. To stop tarantool (from
 another terminal): ``sudo pkill -f tarantool``. To destroy the test:
 ``rm -r ~/tarantool_sandbox``.
 
-To review... If you followed all the instructions in this chapter, then so
+**To review...** If you followed all the instructions in this chapter, then so
 far you have: installed Tarantool from either a binary or a source repository,
 started up the Tarantool server, inserted and selected tuples.
