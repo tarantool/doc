@@ -22,9 +22,9 @@ file is based on the log sequence number of the first record in the file, plus
 an extension ``.xlog``.
 
 Apart from a log sequence number and the data change request (its format is the
-same as in the binary protocol and is described in `doc/dev_guide/box-protocol.html`_),
+same as in :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`),
 each WAL record contains a header, some metadata, and then the data formatted
-according to `msgpack`_ rules. For example this is what the WAL file looks like
+according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules. For example this is what the WAL file looks like
 after the first INSERT request ("s:insert({1})") for the introductory sandbox
 exercise ":ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>` “.
 On the left are the hexadecimal bytes that one would see with:
@@ -266,6 +266,3 @@ The following temporary limitations apply for version 1.7:
 * The maximum number of entries in the _cluster space is 32. Tuples for
   out-of-date replicas are not automatically re-used, so if this 32-replica
   limit is reached, users may have to reorganize the _cluster space manually.
-
-.. _MsgPack: https://en.wikipedia.org/wiki/MessagePack
-.. _doc/dev_guide/box-protocol.html: http://tarantool.org/doc/dev_guide/box-protocol.html
