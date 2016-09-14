@@ -56,7 +56,7 @@ on the Internet.
    * `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
    * `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6
    * `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1b5
-   * `six <https://pypi.python.org/pypi/six)>`_ version 1.8.0
+   * `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
 
    On Ubuntu, you can get the modules from the repository:
 
