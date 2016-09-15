@@ -1,13 +1,18 @@
--------------------------------------------------------------------------------
-                        Server administration
--------------------------------------------------------------------------------
+********************************************************************************
+Server administration
+********************************************************************************
+
+This chapter includes the following sections:
+
+.. contents::
+    :local:
 
 Typical server administration tasks include starting and stopping the server,
 reloading configuration, taking snapshots, log rotation.
 
-=====================================================================
-                        Server signal handling
-=====================================================================
+================================================================================
+Server signal handling
+================================================================================
 
 The server processes these signals during the main thread event loop:
 
@@ -36,9 +41,9 @@ long-running procedure which prevents return to the main thread event loop.
 
 .. _administration-proctitle:
 
-=====================================================================
-                        Process title
-=====================================================================
+================================================================================
+Process title
+================================================================================
 
 Linux and FreeBSD operating systems allow a running process to modify its title,
 which otherwise contains the program name. Tarantool uses this feature to help
@@ -74,9 +79,9 @@ For example:
 
 .. _administration-using_tarantool_as_a_client:
 
-=====================================================================
-                        Using tarantool as a client
-=====================================================================
+================================================================================
+Using tarantool as a client
+================================================================================
 
 .. program:: tarantool
 
@@ -91,18 +96,18 @@ short notes and examples. Other client programs may have similar options and
 request syntaxes. Some of the information in this section is duplicated in the
 chapter :ref:`Configuration reference <index-book_cfg>`.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Conventions used in this section
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Conventions used in this section
+--------------------------------------------------------------------------------
 
 Tokens are character sequences which are treated as syntactic units within
 requests. Square brackets [ and ] enclose optional syntax. Three dots in a
 row ... mean the preceding tokens may be repeated. A vertical bar | means
 the preceding and following tokens are mutually exclusive alternatives.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
     Options when starting client from the command line
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
 
 General form:
 
@@ -137,9 +142,9 @@ option):
     Example: :samp:`tarantool --version`.
     The program stops after displaying the version.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      Tokens, requests, and special key combinations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Tokens, requests, and special key combinations
+--------------------------------------------------------------------------------
 
 Procedure identifiers are: Any sequence of letters, digits, or underscores
 which is legal according to the rules for Lua identifiers. Procedure
@@ -167,9 +172,9 @@ spaces are not necessary around single-byte tokens or string literals.
 
 .. _administration-setting_delimiter:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        Requests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Requests
+--------------------------------------------------------------------------------
 
 Generally requests are entered following the prompt in interactive mode while
 :program:`tarantool` is running. (A prompt will be the word 'tarantool' and a
@@ -244,9 +249,9 @@ Explanatory notes about what Tarantool displayed in the above example:
 
 .. _administration-tarantoolctl:
 
-=====================================================================
-                        Utility tarantoolctl
-=====================================================================
+================================================================================
+Utility tarantoolctl
+================================================================================
 
 .. program:: tarantoolctl
 
@@ -263,9 +268,9 @@ and checking status.
 The use of :program:`tarantoolctl` as a client is described in a separate section,
 :ref:`tarantoolctl connect <administration-tarantoolctl_connect>`.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Configuration for tarantoolctl
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Configuration for tarantoolctl
+--------------------------------------------------------------------------------
 
 The :program:`tarantoolctl` script will look for a configuration file
 in the current directory (:file:`$PWD/.tarantoolctl`).
@@ -323,9 +328,9 @@ The settings in the above script are:
     examples in this section the application name ``my_app`` will be used, and
     its source will have to be in :samp:`{instance_dir}/my_app.lua`.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Commands for tarantoolctl
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Commands for tarantoolctl
+--------------------------------------------------------------------------------
 
 The command format is :samp:`tarantoolctl {operation} {application_name}`, where
 operation is one of: start, stop, enter, logrotate, status, eval. Thus ...
@@ -354,9 +359,9 @@ operation is one of: start, stop, enter, logrotate, status, eval. Thus ...
 
     Execute code from *<scriptname>* on an instance of application
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     Typical code snippets for tarantoolctl
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Typical code snippets for tarantoolctl
+--------------------------------------------------------------------------------
 
 A user can check whether ``my_app`` is running with these lines:
 
@@ -391,9 +396,9 @@ A user can set up a further configuration file for log rotation, like this:
         endscript
     }
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      A detailed example for tarantoolctl
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+A detailed example for tarantoolctl
+--------------------------------------------------------------------------------
 
 The example's objective is: make a temporary directory where
 :program:`tarantoolctl` can start a long-running application and monitor it.
@@ -494,9 +499,9 @@ and ...
 
 .. _administration-tarantoolctl_connect:
 
-=====================================================================
-                        Utility tarantoolctl connect
-=====================================================================
+================================================================================
+Utility tarantoolctl connect
+================================================================================
 
 The :program:`tarantoolctl connect` utility is a client program.
 Use it to connect to a Tarantool server and pass requests.
@@ -532,7 +537,7 @@ will be activated whenever :program:`tarantoolctl connect` starts or ends.
 .. _administration-admin_ports:
 
 ====================================================================
-            Admin ports
+Administrative ports
 ====================================================================
 
 "Admin port", "admin console", and "text protocol" all
@@ -606,18 +611,29 @@ and does include the words "Lua console". Therefore it is
 clear that this is a successful connection to an admin
 port, and admin requests can now be entered on this terminal.
 
+=====================================================================
+Administrative requests
+=====================================================================
+
+.. include:: admin.rst
 
 =====================================================================
-            System-specific administration notes
+Server introspection
 =====================================================================
 
-This section will contain information about issue or features which exist
+.. include:: box/box_introspection.rst
+
+=====================================================================
+System-specific administration notes
+=====================================================================
+
+This section will contain information about issues or features which exist
 on some platforms but not others - for example, on certain versions of a
 particular Linux distribution.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           Debian GNU/Linux and Ubuntu
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Debian GNU/Linux and Ubuntu
+--------------------------------------------------------------------------------
 
 Setting up an instance:
 
@@ -643,49 +659,49 @@ Starting/stopping one instance:
 
     $ service tarantool-instance-name start/stop
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                 Fedora, RHEL, CentOS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Fedora, RHEL, CentOS
+--------------------------------------------------------------------------------
 
 There are no known permanent issues. For transient issues, go to
 http://github.com/tarantool/tarantool/issues and enter "RHEL" or
 "CentOS" or "Fedora" or "Red Hat" in the search box.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                       FreeBSD
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+FreeBSD
+--------------------------------------------------------------------------------
 
 There are no known permanent issues. For transient issues, go to
 http://github.com/tarantool/tarantool/issues and enter "FreeBSD"
 in the search box.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                       Mac OS X
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Mac OS X
+--------------------------------------------------------------------------------
 
 There are no known permanent issues. For transient issues, go to
 http://github.com/tarantool/tarantool/issues and enter "OS X" in
 the search box.
 
-=====================================================================
-                     Notes for systemd users
-=====================================================================
+================================================================================
+Notes for systemd users
+================================================================================
 
 Tarantool fully supports :program:`systemd` for managing instances and
 supervising database daemons.
   
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                     Instance management
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Instance management
+--------------------------------------------------------------------------------
 
 Tarantool was designed to have multiple running instances of Tarantool
 on the same machine. Use
 :samp:`systemctl {start|stop|restart|status} tarantool@${MYAPP}`
 to manage your databases and Lua applications.
 
-******************************************************
-                 Creating instances
-******************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Simply put your Lua configuration to
 :file:`/etc/tarantool/instances.available/${MYAPP}.lua`:
@@ -700,9 +716,9 @@ Simply put your Lua configuration to
 Another starting point could be the :file:`example.lua` script that ships with
 Tarantool and defines all options.
 
-******************************************************
-                Starting instances
-******************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Starting instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :samp:`systemctl start tarantool@${MYAPP}` to start ``${MYAPP}`` instance:
 
@@ -717,9 +733,9 @@ Use :samp:`systemctl start tarantool@${MYAPP}` to start ``${MYAPP}`` instance:
 Use :samp:`systemctl enable tarantool@${MYAPP}` to enable ``${MYAPP}`` instance
 for auto-load during system startup.
 
-******************************************************
-               Monitoring instances
-******************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Monitoring instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :samp:`systemctl status tarantool@${MYAPP}` to check information about
 ``${MYAPP}`` instance:
@@ -749,9 +765,9 @@ Use :samp:`journalctl -u tarantool@${MYAPP}` to check the boot log:
     Jan 21 21:17:47 localhost.localdomain tarantoolctl[5969]: /usr/bin/tarantoolctl: Starting instance...
     Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server
 
-******************************************************
-                Attaching to instances
-******************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Attaching to instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can attach to a running Tarantool instance and evaluate some Lua code using
 the :program:`tarantoolctl` utility:
@@ -768,9 +784,9 @@ the :program:`tarantoolctl` utility:
     ...
     unix/:/var/run/tarantool/example.control>
 
-******************************************************
-                    Checking logs
-******************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Checking logs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tarantool logs important events to :file:`/var/log/tarantool/${MYAPP}.log`.
 
@@ -806,9 +822,9 @@ Log rotation is enabled by default if you have :program:`logrotate` installed.
 Please configure :file:`/etc/logrotate.d/tarantool` to change the default
 behavior.
 
-******************************************************
-                  Stopping instances
-******************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Stopping instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :samp:`systemctl stop tarantool@${MYAPP}` to see information about the running
 ``${MYAPP}`` instance.
@@ -817,9 +833,9 @@ Use :samp:`systemctl stop tarantool@${MYAPP}` to see information about the runni
 
     $ systemctl stop tarantool@example
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                Daemon supervision
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Daemon supervision
+--------------------------------------------------------------------------------
 
 All instances are automatically restarted by :program:`systemd` in case of failure.
 
@@ -858,9 +874,9 @@ Finally, let's check the boot logs:
     Jan 21 21:09:45 localhost.localdomain tarantoolctl[5910]: /usr/bin/tarantoolctl: Starting instance...
     Jan 21 21:09:45 localhost.localdomain systemd[1]: Started Tarantool Database Server.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               Customizing the service file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Customizing the service file
+--------------------------------------------------------------------------------
 
 Please don't modify the :file:`tarantool@.service` file in-place, because it will be
 overwritten during package upgrades. It is recommended to copy this file to
@@ -869,9 +885,9 @@ you can create a directory named :file:`unit.d/` within :file:`/etc/systemd/syst
 put there a drop-in file :file:`name.conf` that only changes the required settings.
 Please see ``systemd.unit(5)`` manual page for additional information.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                      Debugging
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Debugging
+--------------------------------------------------------------------------------
 
 :program:`coredumpctl` automatically saves core dumps and stack traces in case
 of a crash. Here is how it works:
@@ -966,9 +982,9 @@ Symbol names are present in stack traces even if you don't have the
 For additional information, please refer to the documentation provided with your
 Linux distribution.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                     Precautions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------------------------------
+Precautions
+--------------------------------------------------------------------------------
 
 * Please don't use ``tarantoolctl {start,stop,restart}`` to control instances
   started by :program:`systemd`. It is still possible to use
@@ -985,9 +1001,89 @@ Linux distribution.
   tracker (https://github.com/tarantool/tarantool/issues/) rather than to your
   Linux distribution.
 
-=====================================================================
-             Updating Tarantool in production
-=====================================================================
+================================================================================
+Replication
+================================================================================
+
+.. include:: replication.rst
+
+================================================================================
+Backups
+================================================================================
+
+The exact procedure for backing up a database depends on:
+how up-to-date the database must be,
+how frequently backups must be taken,
+whether it is okay to disrupt other users,
+and whether the procedure should be optimized for size (saving disk space)
+or for speed (saving time).
+So there is a spectrum of possible policies, ranging from cold-and-simple
+to hot-and-difficult.
+
+--------------------------------------------------------------------------------
+Cold backup
+--------------------------------------------------------------------------------
+
+In essence:
+The last snapshot file is a backup of the entire database;
+and the WAL files that are made after the last snapshot are incremental backups.
+Therefore taking a backup is a matter of copying the snapshot and WAL files.
+
+(1) Prevent all users from writing to the database. This can be done by
+    shutting down the server, or by saying
+    ``box.cfg{read_only=true}`` and then ensuring that all earlier
+    writes are complete (:program:`fsync` can be used for this purpose).
+(2) If this is a backup of the whole database, say
+    :samp:`box.snapshot()`.
+(3) Use :program:`tar` to make a (possibly compressed) copy of the
+    latest :file:`.snap` and :file:`.xlog` files on the
+    :ref:`snap_dir <cfg_basic-snap_dir>` and
+    :ref:`wal_dir <cfg_basic-wal_dir>` directories.
+(4) If there is a security policy, encrypt the tar file.
+(5) Copy the tar file to a safe place.
+
+... Later, restoring the database is a matter of taking the
+tar file and putting its contents back in the ``snap_dir`` and ``wal_dir``
+directories.
+
+--------------------------------------------------------------------------------
+Continuous remote backup
+--------------------------------------------------------------------------------
+
+In essence: :ref:`replication <index-box_replication>`
+is useful for backup as well as for load balancing.
+Therefore taking a backup is a matter of ensuring that any given
+replica is up to date, and doing a cold backup on it.
+Since all the other replicas continue to operate, this is not a
+cold backup from the end user's point of view. This could be
+done on a regular basis, with a cron job or with a Tarantool fiber.
+
+--------------------------------------------------------------------------------
+Hot backup
+--------------------------------------------------------------------------------
+
+In essence:
+The logged changes done since the last cold backup must be
+secured, while the system is running.
+
+For this purpose you need a "file copy" utility that will
+do the copying remotely and continuously, copying only the
+parts of a file that are changing. One such utility is
+`rsync <https://en.wikipedia.org/wiki/rsync>`_.
+
+Alternatively, you need an ordinary file copy utility,
+but there should be frequent production of new snapshot files or
+new WAL files as changes occur, so that only the new files need to be copied.
+
+Note re storage engine: vinyl databases require additional steps.
+
+================================================================================
+Updates/upgrades
+================================================================================
+
+--------------------------------------------------------------------------------
+Updating Tarantool in production
+--------------------------------------------------------------------------------
 
 First, put your application's business logic in a Tarantool-Lua module that
 exports its functions for CALL.
@@ -1092,73 +1188,9 @@ Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions.
 In the case of ``tarantool-http``, there is no need to start the binary protocol
 at all.
 
-=====================================================================
-       Backups
-=====================================================================
-
-The exact procedure for backing up a database depends on:
-how up-to-date the database must be,
-how frequently backups must be taken,
-whether it is okay to disrupt other users,
-and whether the procedure should be optimized for size (saving disk space)
-or for speed (saving time).
-So there is a spectrum of possible policies, ranging from cold-and-simple
-to hot-and-difficult.
-
-**Cold backup**
-
-In essence:
-The last snapshot file is a backup of the entire database;
-and the WAL files that are made after the last snapshot are incremental backups.
-Therefore taking a backup is a matter of copying the snapshot and WAL files.
-
-(1) Prevent all users from writing to the database. This can be done by
-    shutting down the server, or by saying
-    ``box.cfg{read_only=true}`` and then ensuring that all earlier
-    writes are complete (:program:`fsync` can be used for this purpose).
-(2) If this is a backup of the whole database, say
-    :samp:`box.snapshot()`.
-(3) Use :program:`tar` to make a (possibly compressed) copy of the
-    latest :file:`.snap` and :file:`.xlog` files on the
-    :ref:`snap_dir <cfg_basic-snap_dir>` and
-    :ref:`wal_dir <cfg_basic-wal_dir>` directories.
-(4) If there is a security policy, encrypt the tar file.
-(5) Copy the tar file to a safe place.
-
-... Later, restoring the database is a matter of taking the
-tar file and putting its contents back in the ``snap_dir`` and ``wal_dir``
-directories.
-
-**Continuous remote backup**
-
-In essence: :ref:`replication <index-box_replication>`
-is useful for backup as well as for load balancing.
-Therefore taking a backup is a matter of ensuring that any given
-replica is up to date, and doing a cold backup on it.
-Since all the other replicas continue to operate, this is not a
-cold backup from the end user's point of view. This could be
-done on a regular basis, with a cron job or with a Tarantool fiber.
-
-**Hot backup**
-
-In essence:
-The logged changes done since the last cold backup must be
-secured, while the system is running.
-
-For this purpose you need a "file copy" utility that will
-do the copying remotely and continuously, copying only the
-parts of a file that are changing. One such utility is
-`rsync <https://en.wikipedia.org/wiki/rsync>`_.
-
-Alternatively, you need an ordinary file copy utility,
-but there should be frequent production of new snapshot files or
-new WAL files as changes occur, so that only the new files need to be copied.
-
-Note re storage engine: vinyl databases require additional steps.
-
-=====================================================================
-       Upgrades
-=====================================================================
+--------------------------------------------------------------------------------
+Upgrading a Tarantool database
+--------------------------------------------------------------------------------
 
 This information applies for users who created databases with older
 versions of the Tarantool server, and have now installed a newer version.

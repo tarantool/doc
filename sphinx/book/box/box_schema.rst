@@ -60,35 +60,32 @@ for spaces, users, roles, and function tuples.
 
     Note re storage engine: vinyl does not support temporary spaces.
 
-=================================================
-                    Example
-=================================================
+    **Example**
 
-.. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-    tarantool> s = box.schema.space.create('space55')
-    ---
-    ...
-    tarantool> s = box.schema.space.create('space55', {
-             >   id = 555,
-             >   temporary = false
-             > })
-    ---
-    - error: Space 'space55' already exists
-    ...
-    tarantool> s = box.schema.space.create('space55', {
-             >   if_not_exists = true
-             > })
-    ---
-    ...
+       tarantool> s = box.schema.space.create('space55')
+       ---
+       ...
+       tarantool> s = box.schema.space.create('space55', {
+                >   id = 555,
+                >   temporary = false
+                > })
+       ---
+       - error: Space 'space55' already exists
+       ...
+       tarantool> s = box.schema.space.create('space55', {
+                >   if_not_exists = true
+                > })
+       ---
+       ...
 
+    For an illustration with the ``format`` clause, see
+    :ref:`box.space._space <box_space-space>` example.
 
-For an illustration with the ``format`` clause, see
-:ref:`box.space._space <box_space-space>` example.
-
-After a space is created, usually the next step is to
-:ref:`create an index <box_space-create_index>` for it, and then it is
-available for insert, select, and all the other :ref:`box.space <box_space>` functions.
+    After a space is created, usually the next step is to
+    :ref:`create an index <box_space-create_index>` for it, and then it is
+    available for insert, select, and all the other :ref:`box.space <box_space>` functions.
 
 
 .. function:: box.schema.user.create(user-name [, {options} ])

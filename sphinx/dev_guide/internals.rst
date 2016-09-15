@@ -1,32 +1,24 @@
 .. _b_internals:
 
--------------------------------------------------------------------------------
-                            Appendix B. Internals
--------------------------------------------------------------------------------
-
-This section is for advanced users or users who wish to
-know more about how the Tarantool program works. The
-discussion here is technical but generalized.
-The ultimate authority is the code.
-
-========================================
+--------------------------------------------------------------------------------
 Data persistence and the WAL file format
-========================================
+--------------------------------------------------------------------------------
 
 To maintain data persistence, Tarantool writes each data change request (INSERT,
 UPDATE, DELETE, REPLACE) into a write-ahead log (WAL) file in the
 :ref:`wal_dir <cfg_basic-wal_dir>` directory. A new WAL file is created for every
-:ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>` records. Each data change request gets
-assigned a continuously growing 64-bit log sequence number. The name of the WAL
-file is based on the log sequence number of the first record in the file, plus
-an extension ``.xlog``.
+:ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>` records.
+Each data change request gets assigned a continuously growing 64-bit log sequence
+number. The name of the WAL file is based on the log sequence number of the first
+record in the file, plus an extension ``.xlog``.
 
 Apart from a log sequence number and the data change request (its format is the
 same as in :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`),
 each WAL record contains a header, some metadata, and then the data formatted
-according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules. For example this is what the WAL file looks like
-after the first INSERT request ("s:insert({1})") for the introductory sandbox
-exercise ":ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>` “.
+according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules.
+For example this is what the WAL file looks like after the first INSERT request
+("s:insert({1})") for the introductory sandbox exercise
+":ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>` “.
 On the left are the hexadecimal bytes that one would see with:
 
 .. code-block:: console
@@ -95,7 +87,8 @@ with UPDATEs and DELETEs, remains unaffected by disk load.
 
 The WAL writer employs a number of durability modes, as defined in configuration
 variable :ref:`wal_mode <index-wal_mode>`. It is possible to turn the write-ahead
-log completely off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to *none*. Even
+log completely off, by setting
+:ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to *none*. Even
 without the write-ahead log it's still possible to take a persistent copy of the
 entire data set with the :ref:`box.snapshot() <admin-snapshot>` request.
 
@@ -103,9 +96,9 @@ An .xlog file always contains changes based on the primary key.
 Even if the client requested an update or delete using
 a secondary key, the record in the .xlog file will contain the primary key.
 
-========================
+--------------------------------------------------------------------------------
 The snapshot file format
-========================
+--------------------------------------------------------------------------------
 
 The format of a snapshot .snap file is nearly the same as the format of a WAL .xlog file.
 However, the snapshot header differs: it contains the server's global unique identifier
@@ -121,9 +114,9 @@ that were created by users.
 
 Secondarily, the .snap file's records are ordered by primary key within space id.
 
-====================
-The Recovery Process
-====================
+--------------------------------------------------------------------------------
+The recovery process
+--------------------------------------------------------------------------------
 
 The recovery process begins when box.cfg{} happens for the
 first time after the Tarantool server starts.
@@ -143,7 +136,8 @@ as the snapshot file.)
 Step 1
     Read the configuration parameters in the ``box.cfg{}`` request.
     Parameters which affect recovery may include :ref:`work_dir <cfg_basic-work_dir>`,
-    :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`snap_dir <cfg_basic-snap_dir>`, :ref:`vinyl_dir <cfg_basic-vinyl_dir>`,
+    :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`snap_dir <cfg_basic-snap_dir>`,
+    :ref:`vinyl_dir <cfg_basic-vinyl_dir>`,
     :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error>`,
     and :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error>`.
 
@@ -171,7 +165,8 @@ Step 2
     Find the WAL file that was made at the time of, or after, the snapshot file.
     Read its log entries until the log-entry LSN is greater than the LSN of the
     snapshot, or greater than the LSN of the vinyl checkpoint. This is the
-    recovery process's "start position"; it matches the current state of the engines.
+    recovery process's "start position"; it matches the current state of the
+    engines.
 
 Step 3
     Redo the log entries, from the start position to the end of the WAL. The
@@ -182,16 +177,17 @@ Step 4
 
 .. _b_internals-replication:
 
-===============================
-Server Startup With Replication
-===============================
+--------------------------------------------------------------------------------
+Server startup with replication
+--------------------------------------------------------------------------------
 
 In addition to the recovery process described above, the server must take
 additional steps and precautions if :ref:`replication <index-box_replication>` is
 enabled.
 
 Once again the startup procedure is initiated by the ``box.cfg{}`` request.
-One of the box.cfg parameters may be :ref:`replication_source <cfg_replication-replication_source>`. We will
+One of the box.cfg parameters may be
+:ref:`replication_source <cfg_replication-replication_source>`. We will
 refer to this server, which is starting up due to box.cfg, as the "local" server
 to distinguish it from the other servers in a cluster, which we will refer to as
 "distant" servers.

@@ -1,11 +1,10 @@
 -------------------------------------------------------------------------------
-                             Overview
+Overview
 -------------------------------------------------------------------------------
 
 ===============================================================================
-          An Application Server Together With A Database Manager
+An application server together with a database manager
 ===============================================================================
-
 
 Tarantool is a Lua application server integrated with a database management system.
 It has a "fiber" model which means that many Tarantool applications can run simultaneously on
@@ -49,7 +48,7 @@ hundred thousand transactions per second on a laptop, scalable upwards or outwar
 server farms.
 
 ===============================================================================
-                                Database Features
+Database features
 ===============================================================================
 
 Tarantool can run without it, but "The Box" -- the DBMS server --
@@ -111,7 +110,6 @@ Tarantool supports **asynchronous replication**, locally or to remote hosts.
 The replication architecture can be **master-master**, that is, many nodes may
 both handle the loads and receive what others have handled, for the same data
 sets.
-
 
 .. _BSD license: http://www.gnu.org/licenses/license-list.html#ModifiedBSD
 .. _Mail.Ru: http://api.mail.ru

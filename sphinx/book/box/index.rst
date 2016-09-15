@@ -1,15 +1,20 @@
 .. _database-chapter:
 
 *******************************************************************************
-                              Database
+Database
 *******************************************************************************
 
-This chapter describes how Tarantool stores values and what operations with data
-it supports.
+This chapter includes the following sections:
 
-===================
-Document data model
-===================
+.. contents::
+    :local:
+
+================================================================================
+Data model
+================================================================================
+
+This section describes how Tarantool stores values and what operations with data
+it supports.
 
 If you tried out the
 :ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>`
@@ -39,9 +44,9 @@ exercise from the last chapter, then your database looks like this:
    | +----------------------------------------+ |
    +--------------------------------------------+
 
------
+--------------------------------------------------------------------------------
 Space
------
+--------------------------------------------------------------------------------
 
 A *space* -- 'tester' in the example -- is a container.
 
@@ -51,9 +56,9 @@ Each space has a unique numeric identifier which can be specified by the user
 but usually is assigned automatically by Tarantool. Spaces always contain one
 tuple set and one or more indexes.
 
----------
+--------------------------------------------------------------------------------
 Tuple set
----------
+--------------------------------------------------------------------------------
 
 A *tuple set* -- 'tester' in the example -- is a group of tuples.
 
@@ -79,9 +84,9 @@ For example: ``[3, 'length', 93]``.
 
 .. _index-box_index:
 
------
+--------------------------------------------------------------------------------
 Index
------
+--------------------------------------------------------------------------------
 
 An *index* -- 'primary' in the example -- is a group of key values and pointers.
 
@@ -124,9 +129,9 @@ It is possible to add, drop, or alter the definitions at runtime, with some
 restrictions. The syntax details for defining spaces and indexes are in section
 :ref:`The box library <index-box_library>`.
 
-----------
+--------------------------------------------------------------------------------
 Data types
-----------
+--------------------------------------------------------------------------------
 
 Tarantool can work with numbers, strings, booleans, tables, and userdata.
 
@@ -189,9 +194,9 @@ Some of the data types may be used in :ref:`indexed fields <details_about_index_
 
 For more tuple examples see :ref:`box.tuple <box_tuple>`.
 
-----------
+--------------------------------------------------------------------------------
 Operations
-----------
+--------------------------------------------------------------------------------
 
 The basic operations are: the five data-change operations (``insert``, ``update``,
 ``upsert``, ``delete``, ``replace``), and the data-retrieval operation (``select``).
@@ -340,9 +345,9 @@ functionality one must use a
 The client/server protocol is open and documented. See this
 :ref:`annotated BNF <box_protocol-iproto_protocol>`.
 
---------------
-Saving to disk
---------------
+--------------------------------------------------------------------------------
+Persistence
+--------------------------------------------------------------------------------
 
 Tarantool maintains a set of write-ahead log (WAL) files. There is a separate
 thread -- the WAL writer -- which catches all requests that can change a
@@ -366,9 +371,9 @@ are automatic, or users can make them at any time with the
 Details about the WAL writer and the recovery process are in the
 :ref:`Internals <b_internals>` section.
 
------------------
+--------------------------------------------------------------------------------
 Data manipulation
------------------
+--------------------------------------------------------------------------------
 
 The basic *data-manipulation* requests are: ``insert``, ``replace``, ``update``,
 ``upsert``, ``delete``, ``select``. All of them are part of the ``box`` library.
@@ -446,9 +451,9 @@ keys are unique, the number of tuples in the tuple set is always 0 or 1. The
 only exception is ``box.space...select``, which may accept either a primary-key
 value or a secondary-key value.
 
-----------------
+--------------------------------------------------------------------------------
 Index operations
-----------------
+--------------------------------------------------------------------------------
 
 Index operations are automatic: if a data-manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple. Therefore the user
@@ -653,17 +658,13 @@ These variations exist:
 
 .. _index-box_library:
 
----------------
+================================================================================
 The box library
----------------
+================================================================================
 
-As well as executing Lua chunks or defining their own functions, users can exploit
-the Tarantool server's storage functionality with the ``box library`` and
+As well as executing Lua chunks or defining their own functions, you can exploit
+the Tarantool server's storage functionality with the ``box`` library and
 its submodules.
-
-=====================================================================
-                     Submodules of the box library
-=====================================================================
 
 The contents of the ``box`` library can be inspected at runtime
 with ``box``, with no arguments. The submodules inside the box library are:
@@ -674,10 +675,9 @@ members as well as functions. The functions allow data definition (create
 alter drop), data manipulation (insert delete update upsert select replace), and
 introspection (inspecting contents of spaces, accessing server configuration).
 
-
 .. container:: table
 
-    **Complexity Factors that may affect data
+    **Complexity factors that may affect data
     manipulation functions in the box library**
 
     .. rst-class:: left-align-column-1
@@ -713,48 +713,37 @@ introspection (inspecting contents of spaces, accessing server configuration).
     |                   | is more important than all the others.                   |
     +-------------------+----------------------------------------------------------+
 
-In the discussion of each data-manipulation function there will be a note about
-which Complexity Factors might affect the function's resource usage.
+In the discussion of each data-manipulation function, there will be a note about
+which complexity factors might affect the function's resource usage.
 
-.. _index-two_storage_engines:
+================================================================================
+Transaction control
+================================================================================
 
-=====================================================================
-            The two storage engines: memtx and vinyl
-=====================================================================
+.. include:: atomic.rst
 
-A storage engine is a set of very-low-level routines which actually store and
-retrieve tuple values. Tarantool offers a choice of two storage engines: memtx
-(the in-memory storage engine) and vinyl (the on-disk storage engine).
-To specify that the engine should be vinyl, add a clause: ``engine = 'vinyl'``.
-The manual concentrates on memtx because it is the default and has been around
-longer. But vinyl is a working key-value engine and will especially appeal to
-users who like to see data go directly to disk, so that recovery time might be
-shorter and database size might be larger. For architectural explanations and
-benchmarks, see Appendix D: :ref:`vinyl <index-vinyl>`.
-On the other hand, vinyl lacks some functions and
-options that are available with memtx. Where that is the case, the relevant
-description will contain a note beginning with the words
-"Note re storage engine". The end of this chapter has coverage
-for all :ref:`the differences between memtx and vinyl <vinyl_diff>`.
+================================================================================
+Access control
+================================================================================
 
-=====================================================================
-                        Library reference
-=====================================================================
+.. include:: authentication.rst
 
-.. toctree::
-    :maxdepth: 1
+================================================================================
+Triggers
+================================================================================
 
-    box_schema
-    box_space
-    box_index
-    box_session
-    box_tuple
-    box_introspection
-    admin
-    atomic
-    authentication
-    triggers
-    limitations
-    vinyl_diff
+.. include:: triggers.rst
 
+================================================================================
+Limitations
+================================================================================
 
+.. include:: limitations.rst
+
+.. _index-vinyl:
+
+================================================================================
+Vinyl storage engine
+================================================================================
+
+.. include:: vinyl.rst

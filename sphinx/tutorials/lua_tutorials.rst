@@ -1,18 +1,16 @@
+.. _lua_tutorials:
 
--------------------------------------------------------------------------------
-                        Appendix C. Lua tutorials
--------------------------------------------------------------------------------
+Here are three tutorials on using Lua stored procedures with Tarantool:
 
-There are three tutorials:
-:ref:`Insert one million tuples with a Lua stored procedure <c_lua_tutorial-insert_one_million_tuples>`,
-:ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`,
-:ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`.
+* :ref:`Insert one million tuples with a Lua stored procedure <c_lua_tutorial-insert_one_million_tuples>`,
+* :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`,
+* :ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`.
 
 .. _c_lua_tutorial-insert_one_million_tuples:
 
-=====================================================================
-       Insert one million tuples with a Lua stored procedure
-=====================================================================
+--------------------------------------------------------------------------------
+Insert one million tuples with a Lua stored procedure
+--------------------------------------------------------------------------------
 
 This is an exercise assignment: “Insert one million tuples. Each tuple should
 have a constantly-increasing numeric primary-key field and a random alphabetic
@@ -28,17 +26,17 @@ But for better understanding, follow the comments and the links, which point to
 the Lua manual or to elsewhere in this Tarantool manual. To further enhance
 learning, type the statements in with the tarantool client while reading along.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        Configure
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We are going to use the "tarantool_sandbox" that was created in section
 :ref:`first database <user_guide_getting_started-first_database>`. So there is a single space, and a numeric primary key,
 and a running tarantool server which also serves as a client.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        Delimiter
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Delimiter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In earlier versions of Tarantool, multi-line functions had to be
 enclosed within "delimiters". They are no longer necessary, and
@@ -47,9 +45,9 @@ supported. Users who wish to use delimiters, or users of
 older versions of Tarantool, should check the syntax description for
 :ref:`declaring a delimiter <administration-setting_delimiter>` before proceeding.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           Create a function that returns a string
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a function that returns a string
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will start by making a function that returns a fixed string, “Hello world”.
 
@@ -94,9 +92,9 @@ The screen now looks like this:
     ...
     tarantool> 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- Create a function that calls another function and sets a variable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a function that calls another function and sets a variable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that ``string_function`` exists, we can invoke it from another
 function.
@@ -140,9 +138,9 @@ The screen now looks like this:
     ...
     tarantool> 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   Modify the function so it returns a one-letter random string
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify the function so it returns a one-letter random string
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that it's a bit clearer how to make a variable, we can change
 ``string_function()`` so that, instead of returning a fixed literal
@@ -198,9 +196,9 @@ The screen now looks like this:
 produces random numbers. But for the illustration purposes it won't matter
 what the random string values are.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   Modify the function so it returns a ten-letter random string
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify the function so it returns a ten-letter random string
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that it's clear how to produce one-letter random strings, we can reach our
 goal of producing a ten-letter string by concatenating ten one-letter strings,
@@ -253,10 +251,9 @@ The screen now looks like this:
     ...
     tarantool> 
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           Make a tuple out of a number and a string
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Make a tuple out of a number and a string
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that it's clear how to make a 10-letter random string, it's possible to
 make a tuple that contains a number and a 10-letter random string, by invoking
@@ -296,9 +293,9 @@ The screen now looks like this:
     ...
     tarantool> 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     Modify main_function to insert a tuple into the database
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Modify main_function to insert a tuple into the database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that it's clear how to make a tuple that contains a number and a 10-letter
 random string, the only trick remaining is putting that tuple into tester.
@@ -358,7 +355,7 @@ The screen now looks like this:
     tarantool> 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- Modify main_function to insert a million tuples into the database
+Modify main_function to insert a million tuples into the database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that it's clear how to insert one tuple into the database, it's no big deal
@@ -479,9 +476,9 @@ running the test, one can reduce the elapsed time to 4 seconds.
 
 .. _c_lua_tutorial-sum_a_json_field:
 
-=====================================================================
-                  Sum a JSON field for all tuples
-=====================================================================
+--------------------------------------------------------------------------------
+Tutorial: Sum a JSON field for all tuples
+--------------------------------------------------------------------------------
 
 This is an exercise assignment: “Assume that inside every tuple there is a
 string formatted as JSON. Inside that string there is a JSON numeric field.
@@ -606,20 +603,22 @@ contain a "yield" instruction if the count of tuples is huge.
 
 .. _c_lua_tutorial-indexed_pattern_search:
 
-=====================================================================
-       Indexed Pattern Search
-=====================================================================
+--------------------------------------------------------------------------------
+Indexed pattern search
+--------------------------------------------------------------------------------
 
 Here is a generic function which takes a field identifier
 and a search pattern, and returns all tuples that match. |br|
 * The field must be the first field of a TREE index. |br|
-* The function will use `Lua pattern matching <http://www.lua.org/manual/5.2/manual.html#6.4.1>`_,
+* The function will use `Lua pattern matching
+<http://www.lua.org/manual/5.2/manual.html#6.4.1>`_,
 which allows "magic characters" in regular expressions. |br|
 * The initial characters in the pattern, as far as the
 first magic character, will be used as an index search key.
 For each tuple that is found via the index, there will be
 a match of the whole pattern. |br|
-* To be :ref:`cooperative <atomic-cooperative_multitasking>`, the function should yield after every
+* To be :ref:`cooperative <atomic-cooperative_multitasking>`,
+the function should yield after every
 10 tuples, unless there is a reason to delay yielding. |br|
 With this function, we can take advantage of Tarantool's indexes
 for speed, and take advantage of Lua's pattern matching for flexibility.
@@ -812,23 +811,32 @@ will happen again with a new value for the index search key.
 
 EXAMPLE:
 
-Start tarantool, cut and paste the code for function indexed_pattern_search,
-and try the following: |br|
-:codebold:`box.space.t:drop()` |br|
-:codebold:`box.schema.space.create('t')` |br|
-:codebold:`box.space.t:create_index('primary',{})` |br|
-:codebold:`box.space.t:create_index('secondary',{unique=false,parts={2,'string',3,'string'}})` |br|
-:codebold:`box.space.t:insert{1,'A','a'}` |br|
-:codebold:`box.space.t:insert{2,'AB',''}` |br|
-:codebold:`box.space.t:insert{3,'ABC','a'}` |br|
-:codebold:`box.space.t:insert{4,'ABCD',''}` |br|
-:codebold:`box.space.t:insert{5,'ABCDE','a'}` |br|
-:codebold:`box.space.t:insert{6,'ABCDE',''}` |br|
-:codebold:`box.space.t:insert{7,'ABCDEF','a'}` |br|
-:codebold:`box.space.t:insert{8,'ABCDF',''}` |br|
-:codebold:`indexed_pattern_search("t", 2, "ABC.E.")` |br|
-The result will be: |br|
-:codenormal:`tarantool>` :codebold:`indexed_pattern_search("t", 2, "ABC.E.")` |br|
-:codenormal:`---` |br|
-:codenormal:`- - [7, 'ABCDEF', 'a']` |br|
-:codenormal:`...` |br|
+Start Tarantool, cut and paste the code for function ``indexed_pattern_search``,
+and try the following:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    box.space.t:drop()
+    box.schema.space.create('t')
+    box.space.t:create_index('primary',{})
+    box.space.t:create_index('secondary',{unique=false,parts={2,'string',3,'string'}})
+    box.space.t:insert{1,'A','a'}
+    box.space.t:insert{2,'AB',''}
+    box.space.t:insert{3,'ABC','a'}
+    box.space.t:insert{4,'ABCD',''}
+    box.space.t:insert{5,'ABCDE','a'}
+    box.space.t:insert{6,'ABCDE',''}
+    box.space.t:insert{7,'ABCDEF','a'}
+    box.space.t:insert{8,'ABCDF',''}
+    indexed_pattern_search("t", 2, "ABC.E.")
+
+The result will be:
+
+.. cssclass:: highlight
+.. parsed-literal::
+
+    tarantool> **indexed_pattern_search("t", 2, "ABC.E.")**
+    ---
+    - - [7, 'ABCDEF', 'a']
+    ...

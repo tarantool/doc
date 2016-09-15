@@ -1,8 +1,6 @@
--------------------------------------------------------------------------------
-                        Appendix E. Cookbook
--------------------------------------------------------------------------------
+.. cookbook:
 
-These are contributions of Lua programs for some frequent or tricky situations.
+Here are contributions of Lua programs for some frequent or tricky situations.
 
 Any of the programs can be executed by copying the code into a .lua file,
 and then entering :samp:`chmod +x ./{program-name}.lua`

@@ -1,18 +1,14 @@
-:title: Tarantool's binary protocol
-:slug: box-protocol
-:save_as: doc/box-protocol.html
-:url: doc/box-protocol.html
-:template: documentation_rst
-
 .. _box_protocol-iproto_protocol:
 
 --------------------------------------------------------------------------------
-                        Tarantool's binary protocol
+Tarantool's binary protocol
 --------------------------------------------------------------------------------
 
-================================================================================
-                              Notion in diagrams
-================================================================================
+Tarantool's binary protocol is a binary request/response protocol.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Notion in diagrams
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: none
 
@@ -42,16 +38,9 @@ MsgPack data types:
 * **MP_FIXSTR** - Fixed size string
 * **MP_OBJECT** - Any MsgPack object
 
-
-================================================================================
-                                    Overview
-================================================================================
-
-Tarantool's binary protocol is a binary request/response protocol.
-
-================================================================================
-                                 Greeting Packet
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Greeting packet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: none
 
@@ -75,9 +64,9 @@ line ending with newline character ('\\n'). The first line contains the server
 version and protocol type. The second line contains up to 44 bytes of base64-encoded
 random string, to use in authentication packet, and ends with up to 23 spaces.
 
-================================================================================
-                         Unified packet structure
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unified packet structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once a greeting is read, the protocol becomes pure request/response and features
 a complete access to Tarantool functionality, including:
@@ -171,9 +160,9 @@ the header, then it'll be checked.
 
 .. _box_protocol-authentication:
 
-================================================================================
-                            Authentication
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Authentication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When a client connects to the server, the server responds with a 128-byte
 text greeting message. Part of the greeting is base-64 encoded session salt -
@@ -216,9 +205,9 @@ and password, encrypted according to the specified mechanism. Authentication in
 Tarantool is optional, if no authentication is performed, session user is 'guest'.
 The server responds to authentication packet with a standard response with 0 tuples.
 
-================================================================================
-                                  Requests
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * SELECT: CODE - 0x01
   Find tuples matching the search pattern
@@ -431,10 +420,9 @@ It's an error to specify an argument of a type that differs from expected type.
           It's not possible to change with update operations a part of the primary
           key (this is validated before performing upsert).
 
-
-================================================================================
-                         Response packet structure
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Response packet structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We'll show whole packets here:
 
@@ -477,9 +465,9 @@ Convenience macros which define hexadecimal constants for return codes
 can be found in `src/box/errcode.h
 <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_
 
-================================================================================
-                         Replication packet structure
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Replication packet structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: none
 
@@ -556,9 +544,9 @@ can be found in `src/box/errcode.h
     Then you must process every query that'll came through other masters.
     Every request between masters will have Additional LSN and SERVER_ID.
 
-================================================================================
-                                XLOG / SNAP
-================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+XLOG / SNAP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 XLOG and SNAP have the same format. They start with:
 

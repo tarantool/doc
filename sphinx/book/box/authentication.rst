@@ -1,9 +1,5 @@
 .. _authentication:
 
--------------------------------------------------------------------------------
-                              Access control
--------------------------------------------------------------------------------
-
 Understanding the details of security is primarily an issue for administrators,
 but ordinary users should at least skim this section so that they will have an
 idea of how Tarantool makes it possible for administrators to prevent
@@ -17,9 +13,9 @@ space where privileges are stored. Whenever a user tries to do an operation,
 there is a check whether the user has the privilege to do the operation
 ("access control").
 
-===========================================================
-                        Passwords
-===========================================================
+--------------------------------------------------------------------------------
+Passwords
+--------------------------------------------------------------------------------
 
 Each user may have a password. The password is any alphanumeric string.
 Administrators should advise users to choose long unobvious passwords, but it
@@ -52,9 +48,9 @@ determined long-term attacks, so passwords should be guarded and changed occasio
 
 .. _authentication-users:
 
-===========================================================
-                Users and the _user space
-===========================================================
+--------------------------------------------------------------------------------
+Users and the _user space
+--------------------------------------------------------------------------------
 
 The fields in the _user space are:
 
@@ -177,9 +173,9 @@ tuple in the _user space, and then drops the user.
 
 .. _authentication-privileges:
 
-===========================================================
-               Privileges and the _priv space
-===========================================================
+--------------------------------------------------------------------------------
+Privileges and the _priv space
+--------------------------------------------------------------------------------
 
 The fields in the _priv space are:
 
@@ -191,7 +187,6 @@ The fields in the _priv space are:
   combination such as "read,write,execute".
 
 The function for granting a privilege is:
-
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -247,9 +242,9 @@ privilege to read from a space named ``space55``, and then took the privilege aw
 
 .. _authentication-funcs:
 
-===========================================================
-                Functions and the _func space
-===========================================================
+--------------------------------------------------------------------------------
+Functions and the _func space
+--------------------------------------------------------------------------------
 
 The fields in the _func space are:
 
@@ -309,7 +304,6 @@ The function for checking whether a _func tuple exists is:
 
     box.schema.func.exists(*function-name*)
 
-
 In the following example, a function named 'f7' is created, then it is put in
 the _func space, then it is used in a ``box.schema.user.grant`` function,
 then it is dropped:
@@ -334,9 +328,9 @@ then it is dropped:
     ---
     ...
 
-===========================================================
-             ``box.session`` and security
-===========================================================
+--------------------------------------------------------------------------------
+box.session and security
+--------------------------------------------------------------------------------
 
 After a connection has taken place, the user has access to a "session" object
 which has several functions. The ones which are of interest for security
@@ -377,9 +371,9 @@ and later a guest user, who wishes to see the payroll, might say:
 
 .. _authentication-roles:
 
-===========================================================
-                         Roles
-===========================================================
+--------------------------------------------------------------------------------
+Roles
+--------------------------------------------------------------------------------
 
 A role is a container for privileges which can be granted to regular users.
 Instead of granting and revoking individual privileges, one can put all the
@@ -445,9 +439,9 @@ grant 'read' on space 't' to every user that will ever exist is:
 predefined role, named 'replication', can be assigned by the 'admin' user to
 users who need to use replication features.
 
-================================================================
-        Example showing a role within a role
-================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example showing a role within a role
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this example, a new user named U1 will insert a new tuple into a new space
 named T, and will succeed even though user U1 has no direct privilege to do

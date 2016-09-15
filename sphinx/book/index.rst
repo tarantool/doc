@@ -1,7 +1,7 @@
 .. _user_guide:
 
 -------------------------------------------------------------------------------
-                              User Guide
+User's Guide
 -------------------------------------------------------------------------------
 
 .. toctree::
@@ -11,17 +11,11 @@
     intro
     user_guide_getting_started
     box/index
-    replication/index
+    app_server
     configuration/index
     administration
     connectors/index
-    modules
     app/a_errcodes
-    app/b_internals
-    app/c_lua_tutorial
-    app/d_vinyl/index
-    app/e_cookbook
-    app/f_c_tutorial
     app/g_changes
 
 

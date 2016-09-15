@@ -1,9 +1,5 @@
 .. _triggers-box_triggers:
 
--------------------------------------------------------------------------------
-                            Triggers
--------------------------------------------------------------------------------
-
 Triggers, also known as callbacks, are functions which the server executes when
 certain events happen. Currently the main types of triggers are `connection triggers`_,
 which are executed when a session begins or ends, and `replace triggers`_ which are
@@ -37,9 +33,9 @@ All triggers have the following characteristics:
   the names of a new trigger function and an old trigger function to one of the
   "on `event-name` ..." functions.
 
-===========================================================
-                    Connection triggers
-===========================================================
+--------------------------------------------------------------------------------
+Connection triggers
+--------------------------------------------------------------------------------
 
 .. function:: box.session.on_connect(trigger-function [, old-trigger-function-name])
 
@@ -91,7 +87,7 @@ All triggers have the following characteristics:
         tarantool> box.session.on_disconnect(f)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Example
+Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After the following series of requests, the server will write a message
@@ -123,9 +119,9 @@ Here is what might appear in the log file in a typical installation:
 
 .. _triggers-authentication_triggers:
 
-===========================================================
-                    Authentication triggers
-===========================================================
+--------------------------------------------------------------------------------
+Authentication triggers
+--------------------------------------------------------------------------------
 
 .. function:: box.session.on_auth(trigger-function [, old-trigger-function-name])
 
@@ -162,10 +158,9 @@ Here is what might appear in the log file in a typical installation:
                  > end
         tarantool> box.session.on_auth(f)
 
-
-===========================================================
-                    Replace triggers
-===========================================================
+--------------------------------------------------------------------------------
+Replace triggers
+--------------------------------------------------------------------------------
 
 .. module:: box.space
 
@@ -207,9 +202,8 @@ Here is what might appear in the log file in a typical installation:
 
             tarantool> box.space.X:run_triggers(false)
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Example
+Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following series of requests will create a space, create an index, create
@@ -232,7 +226,7 @@ is executed once after each insert.
     tarantool> replace_counter
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Another Example
+Another example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following series of requests will associate an existing function named F
@@ -248,9 +242,9 @@ each trigger by replacing with ``nil``.
     tarantool> box.space.T:on_replace(nil, F)
     tarantool> box.space.T:on_replace(nil, F)
 
-===========================================================
-                    Getting a list of triggers
-===========================================================
+--------------------------------------------------------------------------------
+Getting a list of triggers
+--------------------------------------------------------------------------------
 
 The code :code:`on_connect()` -- with no arguments --
 returns a table of all connect-trigger functions;

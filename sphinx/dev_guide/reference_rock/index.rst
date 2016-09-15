@@ -1,75 +1,16 @@
-.. _modules:
+--------------------------------------------------------------------------------
+Lua rocks reference
+--------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------
-                             Modules
--------------------------------------------------------------------------------
+.. _develop_modules:
 
-To extend Tarantool, there are modules which in Lua are also called "rocks".
-Users who are unfamiliar with Lua modules may benefit from following
-the `Lua modules tutorial <http://lua-users.org/wiki/ModulesTutorial>`_
-before reading this section.
+A module (or "rock" in Lua) is an optional library which enhances Tarantool
+functionality. For basic information about modules/rocks, see the section
+:ref:`Application server <app_server>` in User's Guide.
 
-=============================
-Installing an existing module
-=============================
-
-Modules that come from Tarantool developers and community contributors are
-available at `rocks.tarantool.org <http://rocks.tarantool.org>`_. Some of them
--- :ref:`expirationd <expirationd-module>`,
-:ref:`mysql <dbms_modules-mysql-example>`,
-:ref:`postgresql <dbms_modules-postgresql-example>`,
-:ref:`shard <shard-module>` --
-are discussed elsewhere in this manual.
-
-**Step 1:** Install LuaRocks.
-A general description of installing LuaRocks on a Unix system is given in
-the `LuaRocks Quick Start Guide <http://luarocks.org/#quick-start>`_.
-For example, on Ubuntu you could say:
-
-.. code-block:: console
-
-   $ sudo apt-get install luarocks
-
-**Step 2:** Add the Tarantool repository to the list of rocks servers.
-This is done by putting `rocks.tarantool.org <http://rocks.tarantool.org>`_ in
-the :file:`.luarocks/config.lua` file:
-
-.. code-block:: console
-
-   $ mkdir ~/.luarocks
-   $ echo "rocks_servers = {[[http://rocks.tarantool.org/]]}" >> ~/.luarocks/config.lua
-
-Once these steps are complete, you can:
-
-* search the repositories with
-
-  .. cssclass:: highlight
-  .. parsed-literal::
-
-     $ luarocks search *module-name*
-       
-* add new modules to the local repository with
-
-  .. cssclass:: highlight
-  .. parsed-literal::
-
-     $ luarocks install *module-name* --local
-   
-* load any module for Tarantool with
-
-  .. cssclass:: highlight
-  .. parsed-literal::
-
-     tarantool> *local-name* = require('*module-name*')
-   
-... and that is why examples in this manual often begin with ``require`` requests.
-
-See `"tarantool/rocks" repository at GitHub <https://github.com/tarantool/rocks>`_
-for more examples and information about contributing.
-
-=================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a new Lua module locally
-=================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As an example, let's create a new Lua file named :file:`mymodule.lua`,
 containing a named function which will be exported.
@@ -107,9 +48,9 @@ The requests to load, examine and call look like this:
 
 .. _modules-example_c:
 
-===================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a new C/C++ module locally
-===================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As an example, let's create a new C file named :file:`mycmodule.c`,
 containing a named function which will be exported.
@@ -185,9 +126,9 @@ The requests to load, examine and call look like this:
 You can also create modules with C++, provided that the code does not throw
 exceptions.
 
-=====================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a mixed Lua/C module locally
-=====================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (1) Create a Lua module and name it as you like, say ``myfunmodule``.
 
@@ -200,9 +141,9 @@ Creating a mixed Lua/C module locally
 For a sample of a mixed Lua/C module, see
 `"tarantool/http" repository at GitHub <https://github.com/tarantool/http>`_.
 
-===========================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Tips for special situations
-===========================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Lua caches all loaded modules in the ``package.loaded`` table.
   To reload a module from disk, set its key to `nil`:
@@ -252,3 +193,16 @@ Tips for special situations
 * Notice that Lua examples in this manual use *local* variables.
   Use *global* variables with caution, since the module's users
   may be unaware of them.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+List of third-party modules for Tarantool
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+    :maxdepth: 2
+
+    dbms
+    expirationd
+    shard
+    tdb
+

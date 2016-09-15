@@ -1,7 +1,3 @@
--------------------------------------------------------------------------------
-                            Administrative requests
--------------------------------------------------------------------------------
-
 To learn which functions are considered to be administrative, type ``help()``.
 A reference description also follows below:
 

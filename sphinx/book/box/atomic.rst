@@ -1,19 +1,14 @@
 .. _atomic-atomic_execution:
 
--------------------------------------------------------------------------------
-                            Atomic execution
--------------------------------------------------------------------------------
-
-In several places in this manual it's been noted that Lua processes occur in
+In several places in this manual, it's been noted that Lua processes occur in
 fibers on a single thread. That is why there can be a guarantee of execution
 atomicity. That requires emphasis.
 
-
 .. _atomic-cooperative_multitasking:
 
-===========================================================
-            Cooperative multitasking environment
-===========================================================
+--------------------------------------------------------------------------------
+Cooperative multitasking environment
+--------------------------------------------------------------------------------
 
 Tarantool uses cooperative multitasking: unless a running fiber deliberately
 yields control, it is not preempted by some other fiber. But a running fiber
@@ -95,9 +90,9 @@ It is not safe to access tuple sets that are defined with ``{engine='vinyl'}``
 and also access tuple sets that are defined with ``{engine='memtx'}``,
 in the same transaction.
 
-===========================================================
-                         Example
-===========================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Assuming that in tuple set 'tester' there are tuples in which the third field
 represents a positive dollar amount ... Start a transaction, withdraw from tuple#1,
@@ -121,9 +116,9 @@ deposit in tuple#2, and end the transaction, making its effects permanent.
 
 .. _atomic-the_implicit_yield_rules:
 
-===========================================================
-            The Implicit Yield Rules
-===========================================================
+--------------------------------------------------------------------------------
+Implicit yields
+--------------------------------------------------------------------------------
 
 The only explicit yield requests are :ref:`fiber.sleep() <fiber-sleep>` and
 :ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields

@@ -1,15 +1,12 @@
--------------------------------------------------------------------------------
-                        Appendix F. C tutorial
--------------------------------------------------------------------------------
 
-There is one C tutorial:
+Here is one C tutorial:
 :ref:`C stored procedures <f_c_tutorial-c_stored_procedures>`.
 
 .. _f_c_tutorial-c_stored_procedures:
 
-=====================================================================
-       C stored procedures
-=====================================================================
+--------------------------------------------------------------------------------
+C stored procedures
+--------------------------------------------------------------------------------
 
 Tarantool can call C code with :ref:`modules <modules-example_c>`,
 or with :ref:`ffi <e_cookbook-ffi_printf>`,
