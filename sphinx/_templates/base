@@ -1,9 +1,15 @@
 {% import "menu" as menu with context %}
 
-{% set script_files = script_files + ['/js/menu.js', '/js/mobile_menu.js']    %}
+{% set script_files = script_files + [
+  '/js/menu.js',
+  '/js/mobile_menu.js'
+] %}
 
-{% set css_files = ['/theme/design.css', '/theme/pygmentize.css'] + css_files %}
-{% set css_files = ['/theme/font-awesome.min.css', ] + css_files              %}
+{% set css_files = [
+  '/theme/font-awesome.min.css',
+  '/theme/design.css',
+  '/theme/pygmentize.css'
+] + css_files %}
 
 <!doctype html>
 <html>
@@ -69,6 +75,7 @@
   <!-- FOOTER > -->
   {{ menu.i_footer() }}
   <!-- < FOOTER -->
+  <div id="mobile-checker"></div>
   </body>
 </html>
 

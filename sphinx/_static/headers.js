@@ -156,6 +156,41 @@ $(document).ready(function () {
     });
     $(".b-doc-search .b-header-search input").focus();
   });
+
+  $().ready(function() {
+    var mcdisp = $("#mobile-checker").css("display");
+    console.log(mcdisp);
+    if ($("#mobile-checker").css("display") != "none") {
+      console.log("is_not_mobile")
+      function apply_accordion(selector) {
+        $(selector).accordion({
+            icons: {"header":"icon icon-plus", "activeHeader":"icon icon-minus"},
+            heightStyle: "content",
+            collapsible: true,
+            animate: 400,
+            event: "mouseover",
+        })
+        $(selector + ">a.ui-state-active").mouseover()
+      }
+      apply_accordion(".b-cols_content_left li.toctree-l6:has(ul li)");
+      apply_accordion(".b-cols_content_left li.toctree-l5:has(ul li)");
+      apply_accordion(".b-cols_content_left li.toctree-l4:has(ul li)");
+      apply_accordion(".b-cols_content_left li.toctree-l3:has(ul li)");
+      apply_accordion(".b-cols_content_left li.toctree-l2:has(ul li)");
+      apply_accordion(".b-cols_content_left li.toctree-l1:has(ul li)");
+      $(".b-cols_content_left a.current").each(function() {
+        $(this).mouseover()
+        $(this).parents("ul.current").prev().mouseover();
+      })
+      $(".b-cols_content_left li:has(.icon)>a").each(function() {
+        $(this).css("margin-left", "-14px");
+      })
+    } else {
+      console.log("is_mobile")
+      $(".b-cols_content_left li.toctree-l2 ul").remove()
+      $(".b-cols_content_left li.toctree-l1:not(.current) ul").remove()
+    }
+  });
 });
 
 // vim: syntax=javascript ts=2 sts=2 sw=2 expandtab

@@ -8,9 +8,12 @@
 {% set page = {"slug": "documentation"} %}
 {% set script_files = script_files + [
         '_static/jquery.pin.min.js',
-        '_static/headers.js'
+        '_static/headers.js',
+        '_static/jquery-ui.min.js'
 ] %}
-{% set css_files = ['_static/sphinx_design.css'] + css_files %}
+{% set css_files = [
+      '_static/sphinx_design.css',
+] + css_files %}
 
 {% set main_page = title in ["Documentation", "Документация"] %}
 {#% set main_page = main_page or builder == "singlehtml" %#}
@@ -19,6 +22,8 @@
   <article class="b-article">
     {% if not main_page %}
       {{ toctree(maxdepth=2, collapse=false) }}
+      {# toctree(maxdepth=-1, collapse=false, includehidden=true, prune=false) #}
+      {# mastertoctree #}
     {% endif %}
     {% block body %} {% endblock %}
   </article>
@@ -42,7 +47,7 @@
   {% if main_page %}
     <section class="b-block b-documentation">
       <div class="b-block-wrapper">
-         {% include "searchbox.html" %}
+        {% include "searchbox.html" %}
         {{ content_pane }}
       </div>
     </section>
@@ -50,7 +55,7 @@
     <div class="b-cols_content b-clearbox">
       <div class="b-cols_content_left">
         {% include "searchbox.html" %}
-        {{ toctree(maxdepth=2) }}
+        {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
       </div>
       <div class="b-cols_content_right">
         <div class="b-cols_content_right-slot">
