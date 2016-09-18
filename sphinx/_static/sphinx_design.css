@@ -1058,3 +1058,12 @@ table.docutils {
 @media screen and (max-width: 992px) {
     #mobile-checker { display: none !important; }
 }
+
+dd {
+    margin: 10px !important;
+}
+
+.headerlink .fa-link {
+    visibility: visible;
+}
+

@@ -2431,3 +2431,16 @@ ul.b-social_block a:hover {
 .no-margin {
     margin: 0 !important;
 }
+
+@media screen and (max-width: 992px) {
+    .b-menu_mobile__wrapper .b-header_menu li {
+        border-top: 1px solid black;
+    }
+    .b-menu_mobile__wrapper .b-header_menu li:last-child {
+        border-bottom: 1px solid black;
+    }
+    .b-menu_mobile__wrapper .b-header_menu li.p-active {
+        border-top: 0px solid black;
+    }
+}
+
