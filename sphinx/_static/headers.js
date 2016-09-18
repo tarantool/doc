@@ -96,8 +96,6 @@ $(document).ready(function () {
     admonition_icon("fa-hand-o-up")
   );
 
-  /* Pin left menu - bad design, need to redo */
-  $(".b-cols_content_left").pin({containerSelector: ".b-cols_content"});
 
   /* Move all rparams from table */
   $("table.docutils.field-list").each(
@@ -158,9 +156,9 @@ $(document).ready(function () {
   });
 
   $().ready(function() {
-    var mcdisp = $("#mobile-checker").css("display");
-    console.log(mcdisp);
-    if ($("#mobile-checker").css("display") != "none") {
+    var is_mobile = $("#mobile-checker").css("display") == "none";
+
+    if (!is_mobile) {
       console.log("is_not_mobile")
       function apply_accordion(selector) {
         $(selector).accordion({
@@ -186,9 +184,10 @@ $(document).ready(function () {
         $(this).css("margin-left", "-14px");
       })
     } else {
-      console.log("is_mobile")
       $(".b-cols_content_left li.toctree-l2 ul").remove()
       $(".b-cols_content_left li.toctree-l1:not(.current) ul").remove()
+      /* Pin left menu - bad design, need to redo */
+      $(".b-cols_content_left").pin({containerSelector: ".b-cols_content"});
     }
   });
 });

@@ -1584,8 +1584,6 @@ ul.b-social_block a:hover {
     color:#808080;
 }
 
-#mobile-checker { display: inline; }
-
 /* Responsive design section */
 
 .stacktable { width: 100%; }
@@ -1607,8 +1605,6 @@ ul.b-social_block a:hover {
 }
 
 @media screen and (max-width: 992px) {
-    #mobile-checker { display: none !important; }
-
     .b-content {
         margin-top: 40px;
     }
