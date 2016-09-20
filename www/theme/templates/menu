@@ -34,9 +34,11 @@
           {{ i_menu() }}
         </nav>
       </div>
+      {#
       <div class="b-menu__close">
         <!-- empty -->
       </div>
+      #}
     </div>
     <div class="b-header-wrapper">
       <nav class="b-header_menu">

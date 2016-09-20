@@ -38,25 +38,19 @@
 
 $(function() {
     var burger_button = '.b-burger-button';
-    var menu__close = '.b-menu__close';
     var menu_mobile = '.b-menu_mobile';
     var toggle_navigation = '.toggle-navigation';
-    var doc_menu = '.pin-wrapper';
+    var doc_menu = '.b-menu-toc';
 
-    $(burger_button).on('click', function() {
+    $(burger_button).on('click', function(event) {
+        event.stopPropagation();
         $(menu_mobile).toggleClass('active');
     });
 
-    $(menu__close).on('click', function() {
-        $(menu_mobile).removeClass('active');
-    });
-
-    $(toggle_navigation).on('click', function() {
+    $(toggle_navigation).on('click', function(event) {
+        event.stopPropagation();
         $(this).toggleClass('active');
         $(doc_menu).toggleClass('active');
-    });
-    $(doc_menu).on('click', function() {
-        $(this).removeClass('active');
     });
 });
 

@@ -7,9 +7,8 @@
 
 {% set page = {"slug": "documentation"} %}
 {% set script_files = script_files + [
-        '_static/jquery.pin.min.js',
         '_static/headers.js',
-        '_static/jquery-ui.min.js'
+        '_static/jquery.sticky-kit.min.js'
 ] %}
 {% set css_files = [
       '_static/sphinx_design.css',
@@ -54,8 +53,10 @@
   {% else %}
     <div class="b-cols_content b-clearbox">
       <div class="b-cols_content_left">
-        {% include "searchbox.html" %}
-        {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
+        <div class="b-menu-toc">
+          {% include "searchbox.html" %}
+          {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
+        </div>
       </div>
       <div class="b-cols_content_right">
         <div class="b-cols_content_right-slot">
