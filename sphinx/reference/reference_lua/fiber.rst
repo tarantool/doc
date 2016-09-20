@@ -343,7 +343,7 @@ recommended.
 
         Local storage within the fiber. The storage can contain any number of
         named values, subject to memory limitations. Naming may be done with
-        :samp:`{fiber_object}.storage.{name}` or :samp:`fiber_object}.storage['{name}'].`
+        :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].`
         or with a number :samp:`{fiber_object}.storage[{number}]`.
         Values may be either numbers or strings. The storage is garbage-collected
         when :samp:`{fiber_object}:cancel()` happens.
