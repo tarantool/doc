@@ -1,8 +1,8 @@
 .. _user_guide_getting_started:
 
--------------------------------------------------------------------------------
-                        Getting started
--------------------------------------------------------------------------------
+===============================================================================
+Getting started
+===============================================================================
 
 This chapter shows how to download, how to install, and how to start Tarantool
 for the first time.
@@ -29,9 +29,9 @@ statements. The section about the sandbox is
 
 .. _user_guide_getting_started-downloading_and_installing_a_binary_package:
 
-=====================================================================
-            Downloading and installing a binary package
-=====================================================================
+-------------------------------------------------------------------------------
+Downloading and installing a binary package
+-------------------------------------------------------------------------------
 
 Binary packages for two Tarantool versions -- for the stable 1.6 and the latest
 1.7 -- are provided at http://tarantool.org/download.html. An automatic build
@@ -43,9 +43,9 @@ at http://tarantool.org/download.html.
 
 .. _user_guide_getting_started-first_database:
 
-=====================================================================
-        Starting Tarantool and making your first database
-=====================================================================
+-------------------------------------------------------------------------------
+Starting Tarantool and making your first database
+-------------------------------------------------------------------------------
 
 Here is how to create a simple test database after installing.
 
@@ -168,9 +168,9 @@ Now, to prepare for the example in the next section, try this:
 
     tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
-=====================================================================
-                       Connecting remotely
-=====================================================================
+-------------------------------------------------------------------------------
+Connecting remotely
+-------------------------------------------------------------------------------
 
 In the previous section the first request was with ``box.cfg{listen = 3301}``.
 The ``listen`` value can be any form of URI (uniform resource identifier);
