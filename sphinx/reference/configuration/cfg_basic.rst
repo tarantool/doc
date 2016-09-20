@@ -51,8 +51,8 @@
     occur from remote clients that do not use the :ref:`“admin port” <administration-admin_ports>`.
     Connections made with :samp:`listen={URI}` are sometimes called "binary protocol" or "primary port" connections.
 
-    A typical value is 3301. The listen parameter may also be set for
-    :ref:`local hot standby <book_cfg_local_hot_standby>`.
+    A typical value is 3301. The listen parameter may also be set for 
+    local hot standby.
 
     .. NOTE::
 

@@ -12,18 +12,20 @@ This will ensure that you have the same build of the same version that the
 developers have. That makes analysis easier if later you need to report a problem,
 and avoids subtle problems that might happen if you used different tools or
 different parameters when building from source. The section about binaries is
-“:ref:`user_guide_getting_started-downloading_and_installing_a_binary_package` ”.
+":ref:`user_guide_getting_started-downloading_and_installing_a_binary_package`".
 
 For development, you will want to download a source package and make the binary
 by yourself using a C/C++ compiler and common tools. Although this is a bit harder,
 it gives more control. And the source packages include additional files, for example
-the Tarantool test suite. The section about source is “:ref:`building_from_source` ”.
+the Tarantool test suite. The section about source is
+":ref:`Building from source <building_from_source>`" in
+:ref:`Contributor's Guide <contrib_guide>`.
 
 If the installation has already been done, then you should try it out. So we've
 provided some instructions that you can use to make a temporary “sandbox”. In a
 few minutes you can start the server and type in some database-manipulation
 statements. The section about the sandbox is
-“:ref:`user_guide_getting_started-first_database` ”.
+":ref:`user_guide_getting_started-first_database`".
 
 .. _user_guide_getting_started-downloading_and_installing_a_binary_package:
 

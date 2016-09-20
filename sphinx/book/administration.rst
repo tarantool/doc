@@ -2,80 +2,8 @@
 Server administration
 ********************************************************************************
 
-This chapter includes the following sections:
-
-.. contents::
-    :local:
-
 Typical server administration tasks include starting and stopping the server,
 reloading configuration, taking snapshots, log rotation.
-
-================================================================================
-Server signal handling
-================================================================================
-
-The server processes these signals during the main thread event loop:
-
-.. glossary::
-
-    SIGHUP
-        may cause log file rotation, see
-        :ref:`the example in section "Logging" <cfg_logging-logging_example>`.
-
-    SIGUSR1
-        may cause saving of a snapshot, see the description of
-        :ref:`box.snapshot <admin-snapshot>`.
-
-    SIGTERM
-        may cause graceful shutdown (information will be saved first).
-
-    SIGINT
-        (also known as keyboard interrupt) may cause graceful shutdown.
-
-    SIGKILL
-        causes shutdown.
-
-Other signals will result in behavior defined by the operating system. Signals
-other than SIGKILL may be ignored, especially if the server is executing a
-long-running procedure which prevents return to the main thread event loop.
-
-.. _administration-proctitle:
-
-================================================================================
-Process title
-================================================================================
-
-Linux and FreeBSD operating systems allow a running process to modify its title,
-which otherwise contains the program name. Tarantool uses this feature to help
-meet the needs of system administration, such as figuring out what services are
-running on a host, their status, and so on.
-
-A Tarantool server's process title has these components:
-
-:extsamp:`{**{program_name}**} [{**{initialization_file_name}**}] {**{<role_name>}**} [{**{custom_proc_title}**}]`
-
-* **program_name** is typically "tarantool".
-* **initialization_file_name** is the name of an
-  :ref:`initialization file <index-init_label>`, if one was specified.
-* **role_name** is:
-
-  - "running" (ordinary node "ready to accept requests"),
-  - "loading" (ordinary node recovering from old snap and wal files),
-  - "orphan" (not in a cluster),
-  - "hot_standby" (see section :ref:`local hot standby <book_cfg_local_hot_standby>`), or
-  - "dumper" + process-id (saving a snapshot).
-
-* **custom_proc_title** is taken from the
-  :ref:`custom_proc_title <cfg_basic-custom_proc_title>` configuration parameter,
-  if one was specified.
-
-For example:
-
-.. code-block:: console
-
-    $ ps -AF | grep tarantool
-    1000     17337 16716  1 91362  6916   0 11:07 pts/5    00:00:13 tarantool script.lua <running>
-
 
 .. _administration-using_tarantool_as_a_client:
 
@@ -106,7 +34,7 @@ row ... mean the preceding tokens may be repeated. A vertical bar | means
 the preceding and following tokens are mutually exclusive alternatives.
 
 --------------------------------------------------------------------------------
-    Options when starting client from the command line
+Options when starting client from the command line
 --------------------------------------------------------------------------------
 
 General form:
@@ -255,9 +183,10 @@ Utility tarantoolctl
 
 .. program:: tarantoolctl
 
-With :program:`tarantoolctl` you can say: "start an instance of the Tarantool
+With :program:`tarantoolctl`, you can say: "start an instance of the Tarantool
 server which runs a single user-written Lua program, allocating disk resources
 specifically for that program, via a standardized deployment method."
+
 If Tarantool was installed with Debian or
 Red Hat installation packages, the script is 
 in :file:`/usr/bin/tarantoolctl` or :file:`/usr/local/bin/tarantoolctl`.
@@ -265,8 +194,9 @@ The script handles such things as:
 starting, stopping, rotating logs, logging in to the application's console,
 and checking status.
 
-The use of :program:`tarantoolctl` as a client is described in a separate section,
-:ref:`tarantoolctl connect <administration-tarantoolctl_connect>`.
+Also, you can use :program:`tarantoolctl`
+:ref:`as a client <administration-tarantoolctl_connect>` to connect to another
+instance of Tarantool server and pass requests.
 
 --------------------------------------------------------------------------------
 Configuration for tarantoolctl
@@ -359,6 +289,10 @@ operation is one of: start, stop, enter, logrotate, status, eval. Thus ...
 
     Execute code from *<scriptname>* on an instance of application
 
+.. option:: connect <URI>
+
+    Connect to a Tarantool server running at the specified :ref:`URI <index-uri>`
+
 --------------------------------------------------------------------------------
 Typical code snippets for tarantoolctl
 --------------------------------------------------------------------------------
@@ -400,7 +334,7 @@ A user can set up a further configuration file for log rotation, like this:
 A detailed example for tarantoolctl
 --------------------------------------------------------------------------------
 
-The example's objective is: make a temporary directory where
+The example's objective is to make a temporary directory where
 :program:`tarantoolctl` can start a long-running application and monitor it.
 
 The assumptions are: the root password is known, the computer is only being used
@@ -499,40 +433,23 @@ and ...
 
 .. _administration-tarantoolctl_connect:
 
-================================================================================
-Utility tarantoolctl connect
-================================================================================
-
-The :program:`tarantoolctl connect` utility is a client program.
-Use it to connect to a Tarantool server and pass requests.
-
-To invoke the utility, say:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-   tarantoolctl connect *URI*
-   
-and the format of a URI is described :ref:`in the URI section <index-uri>`.
-
-Example:
+--------------------------------------------------------------------------------
+An example for tarantoolctl connect
+--------------------------------------------------------------------------------
 
 .. code-block:: console
 
     $ tarantoolctl connect username:password@127.0.0.1:3306
 
-There are alternatives to :program:`tarantoolctl connect` -- you can use
-the :ref:`console module <console-module>` or the
-:ref:`net.box module <net_box-module>` from a Tarantool server.
-Also you can write your client programs with any of the
-Connectors. However, most of the examples in this manual illustrate
-usage with either :program:`tarantoolctl connect` or with
-:ref:`using the Tarantool server as a client <administration-using_tarantool_as_a_client>`.
+.. NOTE::
 
-Statements about :ref:`console.connect() <console-connect>` behavior are
-usually applicable for :program:`tarantoolctl connect` as well.
-For example, an :ref:`authentication trigger <triggers-authentication_triggers>`
-will be activated whenever :program:`tarantoolctl connect` starts or ends.
+   There are alternatives to :program:`tarantoolctl connect` -- you can use
+   the :ref:`console module <console-module>` or the
+   :ref:`net.box module <net_box-module>` from a Tarantool server.
+   Also, you can write your client programs with any of the
+   Connectors. However, most of the examples in this manual illustrate
+   usage with either :program:`tarantoolctl connect` or with
+   :ref:`using the Tarantool server as a client <administration-using_tarantool_as_a_client>`.
 
 .. _administration-admin_ports:
 
@@ -622,6 +539,282 @@ Server introspection
 =====================================================================
 
 .. include:: box/box_introspection.rst
+
+================================================================================
+Replication
+================================================================================
+
+.. include:: replication.rst
+
+================================================================================
+Backups
+================================================================================
+
+The exact procedure for backing up a database depends on:
+how up-to-date the database must be,
+how frequently backups must be taken,
+whether it is okay to disrupt other users,
+and whether the procedure should be optimized for size (saving disk space)
+or for speed (saving time).
+So there is a spectrum of possible policies, ranging from cold-and-simple
+to hot-and-difficult.
+
+--------------------------------------------------------------------------------
+Cold backup
+--------------------------------------------------------------------------------
+
+In essence:
+The last snapshot file is a backup of the entire database;
+and the WAL files that are made after the last snapshot are incremental backups.
+Therefore taking a backup is a matter of copying the snapshot and WAL files.
+
+(1) Prevent all users from writing to the database. This can be done by
+    shutting down the server, or by saying
+    ``box.cfg{read_only=true}`` and then ensuring that all earlier
+    writes are complete (:program:`fsync` can be used for this purpose).
+(2) If this is a backup of the whole database, say
+    :samp:`box.snapshot()`.
+(3) Use :program:`tar` to make a (possibly compressed) copy of the
+    latest :file:`.snap` and :file:`.xlog` files on the
+    :ref:`snap_dir <cfg_basic-snap_dir>` and
+    :ref:`wal_dir <cfg_basic-wal_dir>` directories.
+(4) If there is a security policy, encrypt the tar file.
+(5) Copy the tar file to a safe place.
+
+... Later, restoring the database is a matter of taking the
+tar file and putting its contents back in the ``snap_dir`` and ``wal_dir``
+directories.
+
+--------------------------------------------------------------------------------
+Continuous remote backup
+--------------------------------------------------------------------------------
+
+In essence: :ref:`replication <index-box_replication>`
+is useful for backup as well as for load balancing.
+Therefore taking a backup is a matter of ensuring that any given
+replica is up to date, and doing a cold backup on it.
+Since all the other replicas continue to operate, this is not a
+cold backup from the end user's point of view. This could be
+done on a regular basis, with a cron job or with a Tarantool fiber.
+
+--------------------------------------------------------------------------------
+Hot backup
+--------------------------------------------------------------------------------
+
+In essence:
+The logged changes done since the last cold backup must be
+secured, while the system is running.
+
+For this purpose you need a "file copy" utility that will
+do the copying remotely and continuously, copying only the
+parts of a file that are changing. One such utility is
+`rsync <https://en.wikipedia.org/wiki/rsync>`_.
+
+Alternatively, you need an ordinary file copy utility,
+but there should be frequent production of new snapshot files or
+new WAL files as changes occur, so that only the new files need to be copied.
+
+Note re storage engine: vinyl databases require additional steps.
+
+================================================================================
+Updates/upgrades
+================================================================================
+
+--------------------------------------------------------------------------------
+Updating Tarantool in production
+--------------------------------------------------------------------------------
+
+First, put your application's business logic in a Tarantool-Lua module that
+exports its functions for CALL.
+
+For example, :file:`/usr/share/tarantool/myapp.lua`:
+
+.. code-block:: lua
+
+    local function start()
+      -- Initial version
+      box.once("myapp:.1.0", function()
+      box.schema.space.create("somedata")
+      box.space.somedata:create_index("primary")
+      ...
+
+      -- migration code from 1.0 to 1.1
+      box.once("myapp:.v1.1", function()
+      box.space.somedata.index.primary:alter(...)
+      ...
+
+      -- migration code from 1.1 to 1.2
+      box.once("myapp:.v1.2", function()
+      box.space.somedata.space:alter(...)
+      box.space.somedata:insert(...)
+      ...
+    end
+
+    -- start some background fibers if you need
+
+    local function stop()
+      -- stop all background fibers and cleanup resources
+    end
+
+    local function api_for_call(xxx)
+      -- do some business
+    end
+
+    return {
+      start = start;
+      stop = stop;
+      api_for_call = api_for_call;
+    }
+
+This file is maintained by the application's developers. On its side,
+Tarantool Team provides templates for you to
+`assemble deb/rpm packages <https://github.com/tarantool/modulekit>`_
+and utilities to quickly
+`assemble packages for specific platforms <https://github.com/tarantool/build>`_.
+If needed, you can split applications into standalone files and/or modules.
+
+Second, put an initialization script to the
+:file:`/etc/tarantool/instances.available` directory.
+
+For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:
+
+.. code-block:: lua
+
+    #!/usr/bin/env tarantool
+
+    box.cfg {
+      listen = 3301;
+    }
+
+    if myapp ~= nil then
+      -- hot code reload using tarantoolctl or dofile()
+
+      -- unload old application
+      myapp.stop()
+      -- clear cache for loaded modules and dependencies
+      package.loaded['myapp'] = nil
+      package.loaded['somedep'] = nil; -- dependency of 'myapp'
+    end
+
+    -- load a new version of app and all dependencies
+    myapp = require('myapp').start({some app options controlled by sysadmins})
+
+
+As a more detailed example, you can take the :file:`example.lua` script that
+ships with Tarantool and defines all configuration options.
+
+This initialization script is actually a configuration file and should be
+maintained by system administrators, while developers only provide a template.
+
+
+Now update your app file in :file:`/usr/share/tarantool`. Replace your
+application file (for example, :file:`/usr/share/tarantool/myapp.lua`) and
+manually reload the :file:`myappcfg.lua` initialization script using
+:program:`tarantoolctl`:
+
+.. code-block:: console
+
+    $ tarantoolctl eval /etc/tarantool/instance.enabled/myappcfg.lua
+
+After that, you need to manually flush the cache of ``package.loaded`` modules.
+
+For deb/rpm packages, you can add the ``tarantoolctl eval`` instruction directly
+into Tarantool's specification in :file:`RPM.spec` and the
+:file:`/debian` directory.
+
+Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions.
+
+In the case of ``tarantool-http``, there is no need to start the binary protocol
+at all.
+
+--------------------------------------------------------------------------------
+Upgrading a Tarantool database
+--------------------------------------------------------------------------------
+
+This information applies for users who created databases with older
+versions of the Tarantool server, and have now installed a newer version.
+The request to make in this case is: :samp:`box.schema.upgrade()`.
+
+For example, here is what happens when one runs :samp:`box.schema.upgrade()`
+with a database that was created in early 2015. Only a small part of the output
+is shown.
+
+.. code-block:: tarantoolsession
+
+   tarantool> box.schema.upgrade()
+   alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
+   alter space _schema set options to {}
+   create view _vindex...
+   grant read access to 'public' role for _vindex view
+   set schema version to 1.7.0
+   ---
+   ...
+
+================================================================================
+Server signal handling
+================================================================================
+
+The server processes these signals during the main thread event loop:
+
+.. glossary::
+
+    SIGHUP
+        may cause log file rotation, see
+        :ref:`the example in section "Logging" <cfg_logging-logging_example>`.
+
+    SIGUSR1
+        may cause saving of a snapshot, see the description of
+        :ref:`box.snapshot <admin-snapshot>`.
+
+    SIGTERM
+        may cause graceful shutdown (information will be saved first).
+
+    SIGINT
+        (also known as keyboard interrupt) may cause graceful shutdown.
+
+    SIGKILL
+        causes shutdown.
+
+Other signals will result in behavior defined by the operating system. Signals
+other than SIGKILL may be ignored, especially if the server is executing a
+long-running procedure which prevents return to the main thread event loop.
+
+.. _administration-proctitle:
+
+================================================================================
+Process title
+================================================================================
+
+Linux and FreeBSD operating systems allow a running process to modify its title,
+which otherwise contains the program name. Tarantool uses this feature to help
+meet the needs of system administration, such as figuring out what services are
+running on a host, their status, and so on.
+
+A Tarantool server's process title has these components:
+
+:extsamp:`{**{program_name}**} [{**{initialization_file_name}**}] {**{<role_name>}**} [{**{custom_proc_title}**}]`
+
+* **program_name** is typically "tarantool".
+* **initialization_file_name** is the name of an
+  :ref:`initialization file <index-init_label>`, if one was specified.
+* **role_name** is:
+
+  - "running" (ordinary node "ready to accept requests"),
+  - "loading" (ordinary node recovering from old snap and wal files),
+  - "orphan" (not in a cluster),
+  - "hot_standby", or
+  - "dumper" + process-id (saving a snapshot).
+
+* **custom_proc_title** is taken from the
+  :ref:`custom_proc_title <cfg_basic-custom_proc_title>` configuration parameter,
+  if one was specified.
+
+For example:
+
+.. code-block:: console
+
+    $ ps -AF | grep tarantool
+    1000     17337 16716  1 91362  6916   0 11:07 pts/5    00:00:13 tarantool script.lua <running>
 
 =====================================================================
 System-specific administration notes
@@ -1000,213 +1193,3 @@ Precautions
   (http://tarantool.org). Please file tickets directly to the upstream's bug
   tracker (https://github.com/tarantool/tarantool/issues/) rather than to your
   Linux distribution.
-
-================================================================================
-Replication
-================================================================================
-
-.. include:: replication.rst
-
-================================================================================
-Backups
-================================================================================
-
-The exact procedure for backing up a database depends on:
-how up-to-date the database must be,
-how frequently backups must be taken,
-whether it is okay to disrupt other users,
-and whether the procedure should be optimized for size (saving disk space)
-or for speed (saving time).
-So there is a spectrum of possible policies, ranging from cold-and-simple
-to hot-and-difficult.
-
---------------------------------------------------------------------------------
-Cold backup
---------------------------------------------------------------------------------
-
-In essence:
-The last snapshot file is a backup of the entire database;
-and the WAL files that are made after the last snapshot are incremental backups.
-Therefore taking a backup is a matter of copying the snapshot and WAL files.
-
-(1) Prevent all users from writing to the database. This can be done by
-    shutting down the server, or by saying
-    ``box.cfg{read_only=true}`` and then ensuring that all earlier
-    writes are complete (:program:`fsync` can be used for this purpose).
-(2) If this is a backup of the whole database, say
-    :samp:`box.snapshot()`.
-(3) Use :program:`tar` to make a (possibly compressed) copy of the
-    latest :file:`.snap` and :file:`.xlog` files on the
-    :ref:`snap_dir <cfg_basic-snap_dir>` and
-    :ref:`wal_dir <cfg_basic-wal_dir>` directories.
-(4) If there is a security policy, encrypt the tar file.
-(5) Copy the tar file to a safe place.
-
-... Later, restoring the database is a matter of taking the
-tar file and putting its contents back in the ``snap_dir`` and ``wal_dir``
-directories.
-
---------------------------------------------------------------------------------
-Continuous remote backup
---------------------------------------------------------------------------------
-
-In essence: :ref:`replication <index-box_replication>`
-is useful for backup as well as for load balancing.
-Therefore taking a backup is a matter of ensuring that any given
-replica is up to date, and doing a cold backup on it.
-Since all the other replicas continue to operate, this is not a
-cold backup from the end user's point of view. This could be
-done on a regular basis, with a cron job or with a Tarantool fiber.
-
---------------------------------------------------------------------------------
-Hot backup
---------------------------------------------------------------------------------
-
-In essence:
-The logged changes done since the last cold backup must be
-secured, while the system is running.
-
-For this purpose you need a "file copy" utility that will
-do the copying remotely and continuously, copying only the
-parts of a file that are changing. One such utility is
-`rsync <https://en.wikipedia.org/wiki/rsync>`_.
-
-Alternatively, you need an ordinary file copy utility,
-but there should be frequent production of new snapshot files or
-new WAL files as changes occur, so that only the new files need to be copied.
-
-Note re storage engine: vinyl databases require additional steps.
-
-================================================================================
-Updates/upgrades
-================================================================================
-
---------------------------------------------------------------------------------
-Updating Tarantool in production
---------------------------------------------------------------------------------
-
-First, put your application's business logic in a Tarantool-Lua module that
-exports its functions for CALL.
-
-For example, :file:`/usr/share/tarantool/myapp.lua`:
-
-.. code-block:: lua
-
-    local function start()
-      -- Initial version
-      box.once("myapp:.1.0", function()
-      box.schema.space.create("somedata")
-      box.space.somedata:create_index("primary")
-      ...
-
-      -- migration code from 1.0 to 1.1
-      box.once("myapp:.v1.1", function()
-      box.space.somedata.index.primary:alter(...)
-      ...
-
-      -- migration code from 1.1 to 1.2
-      box.once("myapp:.v1.2", function()
-      box.space.somedata.space:alter(...)
-      box.space.somedata:insert(...)
-      ...
-    end
-
-    -- start some background fibers if you need
-
-    local function stop()
-      -- stop all background fibers and cleanup resources
-    end
-
-    local function api_for_call(xxx)
-      -- do some business
-    end
-
-    return {
-      start = start;
-      stop = stop;
-      api_for_call = api_for_call;
-    }
-
-This file is maintained by the application's developers. On its side,
-Tarantool Team provides templates for you to
-`assemble deb/rpm packages <https://github.com/tarantool/modulekit>`_
-and utilities to quickly
-`assemble packages for specific platforms <https://github.com/tarantool/build>`_.
-If needed, you can split applications into standalone files and/or modules.
-
-Second, put an initialization script to the
-:file:`/etc/tarantool/instances.available` directory.
-
-For example, :file:`/etc/tarantool/instances.available/myappcfg.lua`:
-
-.. code-block:: lua
-
-    #!/usr/bin/env tarantool
-
-    box.cfg {
-      listen = 3301;
-    }
-
-    if myapp ~= nil then
-      -- hot code reload using tarantoolctl or dofile()
-
-      -- unload old application
-      myapp.stop()
-      -- clear cache for loaded modules and dependencies
-      package.loaded['myapp'] = nil
-      package.loaded['somedep'] = nil; -- dependency of 'myapp'
-    end
-
-    -- load a new version of app and all dependencies
-    myapp = require('myapp').start({some app options controlled by sysadmins})
-
-
-As a more detailed example, you can take the :file:`example.lua` script that
-ships with Tarantool and defines all configuration options.
-
-This initialization script is actually a configuration file and should be
-maintained by system administrators, while developers only provide a template.
-
-
-Now update your app file in :file:`/usr/share/tarantool`. Replace your
-application file (for example, :file:`/usr/share/tarantool/myapp.lua`) and
-manually reload the :file:`myappcfg.lua` initialization script using
-:program:`tarantoolctl`:
-
-.. code-block:: console
-
-    $ tarantoolctl eval /etc/tarantool/instance.enabled/myappcfg.lua
-
-After that, you need to manually flush the cache of ``package.loaded`` modules.
-
-For deb/rpm packages, you can add the ``tarantoolctl eval`` instruction directly
-into Tarantool's specification in :file:`RPM.spec` and the
-:file:`/debian` directory.
-
-Finally, clients make a CALL to ``myapp.api_for_call`` and other API functions.
-
-In the case of ``tarantool-http``, there is no need to start the binary protocol
-at all.
-
---------------------------------------------------------------------------------
-Upgrading a Tarantool database
---------------------------------------------------------------------------------
-
-This information applies for users who created databases with older
-versions of the Tarantool server, and have now installed a newer version.
-The request to make in this case is: :samp:`box.schema.upgrade()`.
-
-For example, here is what happens when one runs :samp:`box.schema.upgrade()`
-with a database that was created in early 2015. Only a small part of the output
-is shown.
-
-.. code-block:: tarantoolsession
-
-   tarantool> box.schema.upgrade()
-   alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
-   alter space _schema set options to {}
-   create view _vindex...
-   grant read access to 'public' role for _vindex view
-   set schema version to 1.7.0
-   ---
-   ...

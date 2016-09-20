@@ -1,16 +1,13 @@
 .. _index-book_cfg:
 
--------------------------------------------------------------------------------
-                        Configuration reference
--------------------------------------------------------------------------------
+================================================================================
+Configuration reference
+================================================================================
 
-This chapter provides a reference of options which can be set on the command
-line or in an initialization file.
+This reference covers all options and parameters which can be set for Tarantool
+on the command line or in an initialization file.
 
-.. contents::
-    :local:
-
-Tarantool is started by entering the command:
+Tarantool is started by entering the following command:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -21,9 +18,9 @@ Tarantool is started by entering the command:
     # OR
     $ **tarantool** *lua-initialization-file* **[** *arguments* **]**
 
-=====================================================================
-                        Command options
-=====================================================================
+--------------------------------------------------------------------------------
+Command options
+--------------------------------------------------------------------------------
 
 .. option:: -h, --help
 
@@ -68,9 +65,9 @@ Tarantool is started by entering the command:
 
 .. _index-uri:
 
-=====================================================================
-                                URI
-=====================================================================
+--------------------------------------------------------------------------------
+URI
+--------------------------------------------------------------------------------
 
 Some configuration parameters and some functions depend on a URI, or
 "Universal Resource Identifier". The URI string format is similar to the
@@ -108,9 +105,9 @@ A method for parsing URIs is illustrated in :ref:`Appendix E: Cookbook <e_cookbo
 
 .. _index-init_label:
 
-=====================================================================
-                       Initialization file
-=====================================================================
+--------------------------------------------------------------------------------
+Initialization file
+--------------------------------------------------------------------------------
 
 If the command to start Tarantool includes :codeitalic:`lua-initialization-file`, then
 Tarantool begins by invoking the Lua program in the file, which by convention
@@ -161,9 +158,9 @@ initialization is complete, one can use :ref:`console.start() <console-start>`.
 .. _index-wal_mode:
 .. _index-snapshot daemon:
 
-=====================================================================
-                Configuration parameters
-=====================================================================
+--------------------------------------------------------------------------------
+Configuration parameters
+--------------------------------------------------------------------------------
 
 Configuration parameters have the form: |br|
 :extsamp:`{**{box.cfg}**}{[{*{key = value}*} [, {*{key = value ...}*}]]}`
@@ -185,13 +182,13 @@ The following sections describe all parameters for basic operation, for storage,
 for binary logging and snapshots, for replication, for networking, and for logging.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                 Basic parameters
+Basic parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_basic.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                 Configuring the storage
+Configuring the storage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_storage.rst
@@ -199,65 +196,31 @@ for binary logging and snapshots, for replication, for networking, and for loggi
 .. _book_cfg_snapshot_daemon:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    Snapshot daemon
+Snapshot daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_snapshot_daemon.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Binary logging and snapshots
+Binary logging and snapshots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_binary_logging_snapshots.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    Replication
+Replication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_replication.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                       Networking
+Networking
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_networking.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                         Logging
+Logging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_logging.rst
-
-.. _book_cfg_local_hot_standby:
-
-=====================================================================
-                         Local hot standby
-=====================================================================
-
-Local hot standby is a feature which provides a simple form of failover without
-replication. To initiate it, start a second instance of the Tarantool server on
-the same computer with the same :ref:`box.cfg <box_introspection-box_cfg>` configuration settings -
-including the same directories and same non-null URIs. A warning should appear with a
-message like
-
-.. code-block:: none
-
-    W> primary: [URI] is already in use, will retry binding after [n] seconds
-
-This is fine. It means that the second instance is ready to take over if the
-first instance goes down.
-
-The expectation is that there will be two instances of the server using the
-same configuration. The first one to start will be the "primary" instance.
-The second one to start will be the "standby" instance. The standby instance
-will initialize and will try to connect on listen address,
-but will fail because the primary instance has already taken it. So the
-standby instance goes into a loop, reading the write ahead log which the
-primary instance is writing (so the two instances are always in synch),
-and trying to connect on the port. If the primary instance goes down for any
-reason, the port will become free so the standby instance will succeed in
-connecting, and will become the primary instance. Thus there is no noticeable
-downtime if the primary instance goes down.
-
-If this local_hot_standby feature is being used, then wal_mode should
-not be equal to "none".

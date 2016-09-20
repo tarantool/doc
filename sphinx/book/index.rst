@@ -12,7 +12,6 @@ User's Guide
     user_guide_getting_started
     box/index
     app_server
-    configuration/index
     administration
     connectors/index
     app/a_errcodes

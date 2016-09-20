@@ -1,5 +1,9 @@
 .. _lua_tutorials:
 
+================================================================================
+Lua tutorials
+================================================================================
+
 Here are three tutorials on using Lua stored procedures with Tarantool:
 
 * :ref:`Insert one million tuples with a Lua stored procedure <c_lua_tutorial-insert_one_million_tuples>`,

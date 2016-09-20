@@ -12,5 +12,6 @@ Documentation
     tutorials/index.rst
     book/index.rst
     dev_guide/index.rst
+    reference/index.rst
 
 * :ref:`genindex`

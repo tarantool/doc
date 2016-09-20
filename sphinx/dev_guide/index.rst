@@ -1,12 +1,14 @@
+.. _contrib_guide:
+
 ********************************************************************************
-Developer's Guide
+Contributor's Guide
 ********************************************************************************
 
 .. toctree::
     :maxdepth: 2
     :numbered:
     
-    api_reference_index
+    reference_capi/index
     internals_index
     build_contribute_index
     guidelines_index

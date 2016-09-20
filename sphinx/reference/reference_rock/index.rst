@@ -1,10 +1,14 @@
 ================================================================================
-Modules and API reference
+Rocks reference
 ================================================================================
 
+This reference covers third-party Lua modules for Tarantool.
+
 .. toctree::
-    :maxdepth: 1
-    
-    reference_lua/index
-    reference_rock/index
-    reference_capi/index
+    :maxdepth: 2
+
+    dbms
+    expirationd
+    shard
+    tdb
+
