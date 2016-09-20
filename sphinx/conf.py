@@ -37,7 +37,18 @@ exclude_patterns = [
     'book/connectors/__*',
     'book/replication/*_1.rst',
     'book/replication/*_2.rst',
-    'book/configuration/cfg_*'
+    'book/configuration/cfg_*',
+    'book/admin.rst',
+#    'book/box/box_introspection.rst',
+    'book/replication.rst',
+    'book/cookbook.rst',
+    'book/box/atomic.rst',
+    'book/box/authentication.rst',
+#    'book/box/triggers.rst',
+    'book/box/limitation.rst',
+    'book/box/vinyl.rst',
+    'dev_guide/box_protocol.rst',
+    'dev_guide/internals.rst'
 ]
 
 pygments_style = 'sphinx'

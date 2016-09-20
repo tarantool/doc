@@ -49,7 +49,7 @@ General form:
     $ **tarantool** *lua-initialization-file* **[** *arguments* **]**
 
 Here *lua-initialization-file* can be any script containing code for initializing.
-Effect: The code in the file is executed during startup. Example: :samp:`init.lua`. 
+Effect: The code in the file is executed during startup. Example: :samp:`init.lua`.
 |br| Notes: If a script is used, there will be no prompt. The script should contain
 configuration information including :samp:`box.cfg{...listen=...}` or
 :samp:`box.listen(...)` so that a separate program can connect to the server via

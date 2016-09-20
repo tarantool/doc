@@ -1,17 +1,16 @@
-    
-    
 
-    The snapshot daemon is a fiber which is constantly running.
-    At intervals, it may make new snapshot (.snap) files and
-    then may remove old snapshot files. If the snapshot daemon
-    removes an old snapshot file, it will also remove any
-    write-ahead log (.xlog) files that are older than the
-    snapshot file and contain information that is present in
-    the snapshot file.
+The snapshot daemon is a fiber which is constantly running.
+At intervals, it may make new snapshot (.snap) files and
+then may remove old snapshot files. If the snapshot daemon
+removes an old snapshot file, it will also remove any
+write-ahead log (.xlog) files that are older than the
+snapshot file and contain information that is present in
+the snapshot file.
 
-    The :ref:`snapshot_period <cfg_snapshot_daemon-snapshot_period>` and :ref:`snapshot_count <cfg_snapshot_daemon-snapshot_count>`
-    configuration settings determine how long the intervals are,
-    and how many snapshots should exist before removals occur.
+The :ref:`snapshot_period <cfg_snapshot_daemon-snapshot_period>` and
+:ref:`snapshot_count <cfg_snapshot_daemon-snapshot_count>`
+configuration settings determine how long the intervals are,
+and how many snapshots should exist before removals occur.
 
 .. _cfg_snapshot_daemon-snapshot_period:
 

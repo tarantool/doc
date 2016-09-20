@@ -21,4 +21,3 @@ introspection (inspecting contents of spaces, accessing server configuration).
     /book/box/box_tuple
     /book/box/box_introspection
     /book/box/triggers
-    
