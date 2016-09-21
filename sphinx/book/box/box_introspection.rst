@@ -7,9 +7,9 @@ Submodule `box.cfg`
 .. module:: box.cfg
 
 The ``box.cfg`` submodule is for administrators to specify all the server
-configuration parameters; the full description of the parameters is in
-section :ref:`book-cfg <index-book_cfg>`. Use ``box.cfg`` without braces to get read-only
-access to those parameters.
+configuration parameters (see "Configuration reference" for
+:ref:`a complete description of all configuration parameters <box_cfg_params>`).
+Use ``box.cfg`` without braces to get read-only access to those parameters.
 
 **Example:**
 

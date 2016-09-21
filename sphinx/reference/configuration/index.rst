@@ -158,6 +158,8 @@ initialization is complete, one can use :ref:`console.start() <console-start>`.
 .. _index-wal_mode:
 .. _index-snapshot daemon:
 
+.. _box_cfg_params:
+
 --------------------------------------------------------------------------------
 Configuration parameters
 --------------------------------------------------------------------------------

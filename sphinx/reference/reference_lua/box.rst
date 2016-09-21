@@ -19,5 +19,7 @@ introspection (inspecting contents of spaces, accessing server configuration).
     /book/box/box_index
     /book/box/box_session
     /book/box/box_tuple
-    /book/box/box_introspection
-    /book/box/triggers
+    
+.. // removed, now only in "User Guide > 5. Server administration":  
+.. // /book/box/box_introspection
+.. // /book/box/triggers

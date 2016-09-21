@@ -1,9 +1,12 @@
+.. _triggers:
 .. _triggers-box_triggers:
 
-Triggers, also known as callbacks, are functions which the server executes when
-certain events happen. Currently the main types of triggers are `connection triggers`_,
-which are executed when a session begins or ends, and `replace triggers`_ which are
-for database events.
+*Triggers*, also known as *callbacks*, are functions which the server executes
+when certain events happen. Currently the main types of triggers are
+:ref:`connection triggers <triggers-connection_triggers>`,
+which are executed when a session begins or ends, and
+:ref:`replace triggers <triggers-replace_triggers>`,
+which are for database events.
 
 All triggers have the following characteristics:
 
@@ -32,6 +35,8 @@ All triggers have the following characteristics:
 * They are `replaceable`. The request to "redefine a trigger" consists of passing
   the names of a new trigger function and an old trigger function to one of the
   "on `event-name` ..." functions.
+
+.. _triggers-connection_triggers:
 
 --------------------------------------------------------------------------------
 Connection triggers
@@ -158,6 +163,8 @@ Authentication triggers
                  > end
         tarantool> box.session.on_auth(f)
 
+.. _triggers-replace_triggers:
+
 --------------------------------------------------------------------------------
 Replace triggers
 --------------------------------------------------------------------------------
@@ -242,20 +249,25 @@ each trigger by replacing with ``nil``.
     tarantool> box.space.T:on_replace(nil, F)
     tarantool> box.space.T:on_replace(nil, F)
 
+.. _triggers-getting_a_list_of_triggers:
+
 --------------------------------------------------------------------------------
 Getting a list of triggers
 --------------------------------------------------------------------------------
 
-The code :code:`on_connect()` -- with no arguments --
-returns a table of all connect-trigger functions;
-:code:`on_auth()` returns all authentication-trigger functions;
-:code:`on_disconnect()` returns all disconnect-trigger functions;
-:code:`on_replace()` returns all replace-trigger functions.
-In the following example a user finds that there are
+You can use:
+
+* :code:`on_connect()` -- with no arguments --
+  to return a table of all connect-trigger functions;
+* :code:`on_auth()` to return all authentication-trigger functions;
+* :code:`on_disconnect()` to return all disconnect-trigger functions;
+* :code:`on_replace()` to return all replace-trigger functions.
+
+In the following example, we find that there are
 three functions associated with :code:`on_connect`
-triggers, and executes the third function, which happens to
+triggers, and execute the third function, which happens to
 contain the line "print('function #3')".
-Then it deletes the third trigger.
+Then we delete the third trigger.
 
 .. code-block:: tarantoolsession
 
