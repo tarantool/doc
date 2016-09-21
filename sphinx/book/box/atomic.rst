@@ -36,7 +36,7 @@ some of the box calls, including the data-change requests
 :ref:`box.space...delete <box_space-delete>`, will usually cause yielding;
 however, :ref:`box.space...select <box_space-select>` will not. A fuller
 description will appear in section
-:ref:`The Implicit Yield Rules <atomic-the_implicit_yield_rules>`.
+:ref:`Implicit yields <atomic-the_implicit_yield_rules>`.
 
 Note re storage engine: vinyl has different rules:
 insert or update or delete will very rarely cause

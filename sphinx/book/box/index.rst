@@ -121,8 +121,8 @@ contain an unsigned integer.
 
 Space definitions and index definitions are stored permanently in system spaces.
 It is possible to add, drop, or alter the definitions at runtime, with some
-restrictions. The syntax details for defining spaces and indexes are in section
-:ref:`The box library <index-box_library>`.
+restrictions. See syntax details for defining spaces and indexes in
+:ref:`reference on Tarantool's "box" module <index-box_library>`.
 
 --------------------------------------------------------------------------------
 Data types
@@ -321,8 +321,8 @@ Note re storage engine: vinyl handles yields differently, see
 
 .. NOTE:: Note re multi-request transactions
 
-    there is a way to delay yields, see
-    :ref:`Atomic execution <atomic-atomic_execution>`.
+    There is a way to delay yields. Read about execution atomicity
+    in section :ref:`Transaction control <transaction_control>`.
 
 Since locks don't exist, and disk writes only involve the write-ahead log,
 transactions are usually fast. Also the Tarantool server may not be using up all
@@ -445,6 +445,47 @@ All the data-manipulation functions operate on tuple sets but, since primary
 keys are unique, the number of tuples in the tuple set is always 0 or 1. The
 only exception is ``box.space...select``, which may accept either a primary-key
 value or a secondary-key value.
+
+
+.. container:: table
+
+    **Complexity factors that may affect data-manipulation functions**
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+
+    +-------------------+----------------------------------------------------------+
+    | Index size        | The number of index keys is the same as the number       |
+    |                   | of tuples in the data set. For a TREE index, if          |
+    |                   | there are more keys then the lookup time will be         |
+    |                   | greater, although of course the effect is not            |
+    |                   | linear. For a HASH index, if there are more keys         |
+    |                   | then there is more RAM use, but the number of            |
+    |                   | low-level steps tends to remain constant.                |
+    +-------------------+----------------------------------------------------------+
+    | Index type        | Typically a HASH index is faster than a TREE index       |
+    |                   | if the number of tuples in the tuple set is greater      |
+    |                   | than one.                                                |
+    +-------------------+----------------------------------------------------------+
+    | Number of indexes | Ordinarily only one index is accessed to retrieve        |
+    | accessed          | one tuple. But to update the tuple, there must be N      |
+    |                   | accesses if the tuple set has N different indexes.       |
+    +-------------------+----------------------------------------------------------+
+    | Number of tuples  | A few requests, for example select, can retrieve         |
+    | accessed          | multiple tuples. This factor is usually less             |
+    |                   | important than the others.                               |
+    +-------------------+----------------------------------------------------------+
+    | WAL settings      | The important setting for the write-ahead log is         |
+    |                   | :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. |
+    |                   | If the setting causes no writing or                      |
+    |                   | delayed writing, this factor is unimportant. If the      |
+    |                   | setting causes every data-change request to wait         |
+    |                   | for writing to finish on a slow device, this factor      |
+    |                   | is more important than all the others.                   |
+    +-------------------+----------------------------------------------------------+
+
+In the discussion of each data-manipulation function, there will be a note about
+which complexity factors might affect the function's resource usage.
 
 --------------------------------------------------------------------------------
 Index operations
@@ -651,65 +692,7 @@ These variations exist:
 
   Searches on RTREE indexes can be for GT, GE, LT, LE, OVERLAPS, or NEIGHBOR.
 
-.. _index-box_library:
-
-================================================================================
-The box library
-================================================================================
-
-As well as executing Lua chunks or defining their own functions, you can exploit
-the Tarantool server's storage functionality with the ``box`` library and
-its submodules.
-
-The contents of the ``box`` library can be inspected at runtime
-with ``box``, with no arguments. The submodules inside the box library are:
-``box.schema``, ``box.tuple``, ``box.space``, ``box.index``,
-``box.cfg``, ``box.info``, ``box.slab``, ``box.stat``.
-Every submodule contains one or more Lua functions. A few submodules contain
-members as well as functions. The functions allow data definition (create
-alter drop), data manipulation (insert delete update upsert select replace), and
-introspection (inspecting contents of spaces, accessing server configuration).
-
-.. container:: table
-
-    **Complexity factors that may affect data
-    manipulation functions in the box library**
-
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-
-    +-------------------+----------------------------------------------------------+
-    | Index size        | The number of index keys is the same as the number       |
-    |                   | of tuples in the data set. For a TREE index, if          |
-    |                   | there are more keys then the lookup time will be         |
-    |                   | greater, although of course the effect is not            |
-    |                   | linear. For a HASH index, if there are more keys         |
-    |                   | then there is more RAM use, but the number of            |
-    |                   | low-level steps tends to remain constant.                |
-    +-------------------+----------------------------------------------------------+
-    | Index type        | Typically a HASH index is faster than a TREE index       |
-    |                   | if the number of tuples in the tuple set is greater      |
-    |                   | than one.                                                |
-    +-------------------+----------------------------------------------------------+
-    | Number of indexes | Ordinarily only one index is accessed to retrieve        |
-    | accessed          | one tuple. But to update the tuple, there must be N      |
-    |                   | accesses if the tuple set has N different indexes.       |
-    +-------------------+----------------------------------------------------------+
-    | Number of tuples  | A few requests, for example select, can retrieve         |
-    | accessed          | multiple tuples. This factor is usually less             |
-    |                   | important than the others.                               |
-    +-------------------+----------------------------------------------------------+
-    | WAL settings      | The important setting for the write-ahead log is         |
-    |                   | :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. |
-    |                   | If the setting causes no writing or                      |
-    |                   | delayed writing, this factor is unimportant. If the      |
-    |                   | setting causes every data-change request to wait         |
-    |                   | for writing to finish on a slow device, this factor      |
-    |                   | is more important than all the others.                   |
-    +-------------------+----------------------------------------------------------+
-
-In the discussion of each data-manipulation function, there will be a note about
-which complexity factors might affect the function's resource usage.
+.. _transaction_control:
 
 ================================================================================
 Transaction control

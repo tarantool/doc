@@ -1,6 +1,11 @@
+.. _index-box_library:
+
 -------------------------------------------------------------------------------
                                 Module `box`
 -------------------------------------------------------------------------------
+
+As well as executing Lua chunks or defining their own functions, you can exploit
+Tarantool's storage functionality with the ``box`` module and its submodules.
 
 The contents of the ``box`` library can be inspected at runtime
 with ``box``, with no arguments. The submodules inside the box library are:
@@ -20,6 +25,6 @@ introspection (inspecting contents of spaces, accessing server configuration).
     /book/box/box_session
     /book/box/box_tuple
     
-.. // removed, now only in "User Guide > 5. Server administration":  
+.. // moved to "User Guide > 5. Server administration":  
 .. // /book/box/box_introspection
 .. // /book/box/triggers
