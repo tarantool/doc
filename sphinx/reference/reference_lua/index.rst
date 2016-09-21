@@ -1,5 +1,5 @@
 ================================================================================
-Library reference
+Built-in library reference
 ================================================================================
 
 This reference covers Tarantool's built-in Lua modules.
