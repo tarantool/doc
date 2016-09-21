@@ -1,5 +1,7 @@
+.. _error_codes:
+
 -------------------------------------------------------------------------------
-                        Appendix A. List of error codes
+Database error codes
 -------------------------------------------------------------------------------
 
 In the current version of the binary protocol, error message, which is normally

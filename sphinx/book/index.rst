@@ -14,8 +14,7 @@ User's Guide
     app_server
     administration
     connectors/index
-    app/a_errcodes
-    app/g_changes
+    changes
 
 
 

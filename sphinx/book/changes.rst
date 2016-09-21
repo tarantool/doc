@@ -1,17 +1,19 @@
---------------------------------------------------------------------------------
-Appendix B. Version-specific changes
---------------------------------------------------------------------------------
+.. _version_changes:
 
-This appendix summarizes significant changes introduced in specific versions of
+********************************************************************************
+Version-specific changes
+********************************************************************************
+
+This chapter summarizes significant changes introduced in specific versions of
 Tarantool.
 
 For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Changes in Tarantool version 1.7
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================================================================
+Changes in Tarantool version 1.7
+================================================================================
 
 The disk-based storge engine, which was called `sophia` or `phia`
 in earlier versions, is superseded by the `vinyl` storage engine.
