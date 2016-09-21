@@ -27,13 +27,11 @@ This reference covers Tarantool's built-in Lua modules.
     fiber_ipc
     fio
     fun
-    jit
     json
     log
     msgpack
     net_box
     box_once
-    os
     pickle
     socket
     strict
