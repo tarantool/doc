@@ -105,6 +105,11 @@ other Lua object. Use object-oriented syntax, for example
                     Example
 =================================================
 
+This example should give a rough idea of what some
+functions for fibers should look like. It's assumed
+that the functions would be referenced in
+:ref:`fiber.create() <fiber-create>`.
+
 .. code-block:: lua
 
     fiber = require('fiber')
