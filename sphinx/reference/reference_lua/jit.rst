@@ -91,8 +91,10 @@ and in general providing information about what LuaJIT does with Lua code.
     For a list of available options, read `the source code of v.lua`_.
 
 
-.. _the source code of bc.lua: https://github.com/tarantool/luajit/blob/tarantool-1.7/src/jit/bc.lua
-.. _the source code of dis_x86.lua: https://github.com/tarantool/luajit/blob/tarantool-1.7/src/jit/dis_x86.lua
-.. _the source code of dis_x64.lua: https://github.com/tarantool/luajit/blob/tarantool-1.7/src/jit/dis_x64.lua
-.. _the source code of dump.lua: https://github.com/tarantool/luajit/blob/tarantool-1.7/src/jit/dump.lua
-.. _the source code of v.lua: https://github.com/tarantool/luajit/blob/tarantool-1.7/src/jit/v.lua
+.. _the source code of bc.lua: https://github.com/tarantool/luajit/tree/tarantool-1.6/src/jit/bc.lua
+.. _the source code of dis_x86.lua: https://github.com/tarantool/luajit/tree/tarantool-1.6/src/jit/dis_x86.lua
+.. _the source code of dis_x64.lua: https://github.com/tarantool/luajit/tree/tarantool-1.6/src/jit/dis_x64.lua
+.. _the source code of dump.lua: https://github.com/tarantool/luajit/tree/tarantool-1.6/src/jit/dump.lua
+.. _the source code of v.lua: https://github.com/tarantool/luajit/tree/tarantool-1.6/src/jit/v.lua
+
+
