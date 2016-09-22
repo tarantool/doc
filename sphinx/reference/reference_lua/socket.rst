@@ -115,12 +115,13 @@ the function invocations will look like ``sock:function_name(...)``.
 
 .. _socket-tcp_connect:
 
-.. function:: tcp_connect(host[, port])
+.. function:: tcp_connect(host[, port[, timeout]])
 
     Connect a socket to a remote host.
 
     :param string host: URL or IP address
     :param number port: port number
+    :param number timeout: timeout
     :return: a connected socket, if no error.
     :rtype: userdata
 
