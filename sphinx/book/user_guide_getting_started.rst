@@ -229,5 +229,5 @@ another terminal): ``sudo pkill -f tarantool``. To destroy the test:
 ``rm -r ~/tarantool_sandbox``.
 
 **To review...** If you followed all the instructions in this chapter, then so
-far you have: installed Tarantool from either a binary or a source repository,
+far you have: installed Tarantool from a binary repository,
 started up the Tarantool server, inserted and selected tuples.
