@@ -44,7 +44,8 @@ FAQ
         +---------+--------------------------------------------------------------------------------------+
         | Q: |br| | Who is developing Tarantool? |br|                                                    |
         | A: |br| | There is an engineering team employed by Mail.Ru -- check out our commit             |
-        |         | logs on github.com/tarantool. The development is fully open. Most of the             |
+        |         | logs on `github.com/tarantool <http://github.com/tarantool/>`_.                      |
+        |         | The development is fully open. Most of the                                           |
         |         | connectors' authors, and the maintainers for different distributions,                |
         |         | come from the wider community.                                                       |
         +---------+--------------------------------------------------------------------------------------+
