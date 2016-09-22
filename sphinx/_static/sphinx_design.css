@@ -1067,3 +1067,9 @@ dd {
     visibility: visible;
 }
 
+.headerlink i:hover {
+    cursor: pointer;
+}
+.b-menu-toc i:hover {
+    cursor: pointer
+}
