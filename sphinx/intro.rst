@@ -94,13 +94,13 @@ Searches are possible via **secondary index keys** as well as primary keys.
 
 **Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems, 
 log-structured merge trees and classical B-trees. All data is organized
-into **runs**. Each run is represented by a file on disk. Run 
+into **ranges**. Each range is represented by a file on disk. Range
 size is a configuration option and normally is around 64MB. Each 
-run is a collection of pages, serving different purposes. Pages 
-in a fully merged run contain non-overlapping ranges of keys. A run
+range is a collection of pages, serving different purposes. Pages 
+in a fully merged range contain non-overlapping ranges of keys. A range
 can be partially merged if there were a lot of changes in its key range
 recently. In that case some pages represent new keys and values in the
-run. The disk-based storage engine is append only: new data never overwrites
+range. The disk-based storage engine is append only: new data never overwrites
 old data. The disk-based storage engine is named :ref:`vinyl <index-vinyl>`.
 
 Tarantool supports **multi-part index keys**. The possible index types are HASH,
