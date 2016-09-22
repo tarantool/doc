@@ -17,7 +17,8 @@ or you can skip the download and *connect to the online Tarantool server*
 running on the web at http://try.tarantool.org.
 Either way, as the first tryout, you can follow the introductory example
 "Starting Tarantool and making your first database"
-from the second part of Chapter 2. If you want more hands-on experience,
+from :ref:`the second part of Chapter 2 <user_guide_getting_started-first_database>`.
+If you want more hands-on experience,
 proceed to the :ref:`"Tutorials" <tutorials>` part after you are through
 with Chapter 2.
 
