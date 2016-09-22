@@ -1,3 +1,4 @@
+/* register global replication tab function */
 window['register_replication_tab'] = function (id) {
     $(document).on({
         click: function(event) {
@@ -75,6 +76,7 @@ $(document).ready(function () {
     }
   );
 
+  /* Base admonition function */
   function admonition_icon(name) {
     return function(i, el) {
       var icon = $('<i class="fa"></i>').addClass(name);
@@ -122,6 +124,7 @@ $(document).ready(function () {
     }
   );
 
+  /* startsWith string prototype (for JS before ECMAScript6) */
   if (!String.prototype.startsWith) {
     Object.defineProperty(String.prototype, 'startsWith', {
         enumerable: false,
@@ -134,6 +137,7 @@ $(document).ready(function () {
     });
   }
 
+  /* menu active selection */
   $(function() {
     $("ul.b-menu a").each(function() {
       if (($(this).attr('href') === window.location.pathname) ||
@@ -146,6 +150,7 @@ $(document).ready(function () {
     });
   });
 
+  /* Search additions for sphinx */
   $(function() {
     $(".b-header-search input").focusin(function() {
       $(this).attr("placeholder", "Search this manual");
@@ -156,16 +161,10 @@ $(document).ready(function () {
     $(".b-doc-search .b-header-search input").focus();
   });
 
-  $("html").click(function() {
-    $(".b-menu-toc").removeClass("active");
-    $(".toggle-navigation").removeClass("active");
-  });
-
-  $("b-cols_content_left").click(function() {
-    event.stopPropagation();
-  });
-
+  /* Recursive sliding menu with plus/minus icons for toggling */
   function toggle_recursive() {
+    var is_mobile = ($("#mobile-checker").css("display") == "none");
+
     var menu = $(this)
     if (menu.is('li')) {
       var ul = menu.children("ul");
@@ -173,46 +172,71 @@ $(document).ready(function () {
       if (ul.length > 0) {
         var link = menu.children("a");
         link.css("position", "relative").css("left", "-12px").before(
-          $('<i class="fa fa-minus-square-o fa-1"></i>')
+          $('<i class="fa fa-plus-square-o fa-1"></i>')
         );
         link.siblings("i").click(function(event) {
-          event.stopPropagation();
+          if (is_mobile) {
+            event.stopPropagation();
+          }
           menu.children("ul").slideToggle();
           $(this).toggleClass("fa-plus-square-o").toggleClass("fa-minus-square-o");
           $(".b-cols_content_left").trigger("sticky_kit:stick")
           $(".b-cols_content_left").trigger("sticky_kit:recalc")
           $(".b-cols_content_left").trigger("sticky_kit:unstick")
-        }).css("position", "relative").css("left", "-17px").click();
+        }).css("position", "relative").css("left", "-17px");
         ul.children("li").each(toggle_recursive);
+        menu.children("ul").css('display', 'none');
       }
     }
   }
 
+  /* Some hacks for sliding TOC and pinned left menu */
+  $(window).load(function() {
+    var is_mobile = ($("#mobile-checker").css("display") == "none");
+
+    $(".b-cols_content_left").each(function() {
+      // console.log("cols-left ready");
+      $(this).css('display', 'none');
+
+      if (is_mobile) {
+        $(this).find("li.toctree-l3 ul").remove()
+        $(this).find("li.toctree-l2:not(.current) ul").remove()
+      }
+      $(this).find("li.toctree-l1").each(toggle_recursive)
+      $(this).find("a.current").each(function() {
+        $(this).siblings("i").click();
+        $(this).parents("ul.current").prev().siblings("i").click();
+      });
+
+      $(this).css('display', 'block');
+
+      $(this).find("a").click(function() {
+        $(".b-menu-toc").removeClass('active');
+        $(".toggle-navigation").removeClass('active');
+      });
+
+      $(this).stick_in_parent({
+        parent: ".b-cols_content",
+        spacer: false
+      });
+
+      $(this).trigger("sticky_kit:stick");
+      $(this).trigger("sticky_kit:recalc");
+      $(this).trigger("sticky_kit:unstick");
+    }).click(function() {
+      if (is_mobile) {
+        event.stopPropagation();
+      }
+    });
+  });
+
   $(function() {
-    var is_mobile = $("#mobile-checker").css("display") == "none";
-
-    if (is_mobile) {
-      $(".b-cols_content_left li.toctree-l3 ul").remove()
-      $(".b-cols_content_left li.toctree-l2:not(.current) ul").remove()
-    }
-    $(".b-cols_content_left li.toctree-l1").each(toggle_recursive)
-    $(".b-cols_content_left a.current").each(function() {
-      $(this).siblings("i").click();
-      $(this).parents("ul.current").prev().siblings("i").click();
-    });
-    $(".b-cols_content_left a").click(function() {
-      $(".b-menu-toc").removeClass('active');
-      $(".toggle-navigation").removeClass('active');
-    });
-
-    $(".b-cols_content_left").stick_in_parent({
-      parent: ".b-cols_content",
-      spacer: false
-    });
-
-    $(".b-cols_content_left").trigger("sticky_kit:stick");
-    $(".b-cols_content_left").trigger("sticky_kit:recalc");
-    $(".b-cols_content_left").trigger("sticky_kit:unstick");
+      if ($('thead').length) {
+          $('thead').parents('table').cardtable();
+      }
+      if ($('#details-about-index-field-types').length) {
+          $('#details-about-index-field-types table').stacktable();
+      }
   });
 });
 
