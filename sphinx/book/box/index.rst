@@ -94,7 +94,7 @@ An index may be *multi-part*, that is, the user can declare that an index key
 value is taken from two or more fields in the tuple, in any order. An index may
 be *unique*, that is, the user can declare that it would be illegal to have the
 same key value twice. An index may have *one of four types*: HASH which is
-fastest and uses the least memory but must be unique, TREE which allows
+fast and is best for exact-equality searches with unique keys, TREE which allows
 partial-key searching and ordered results, BITSET which can be good for searches
 that contain '=' and multiple ANDed conditions, and RTREE for spatial coordinates.
 The first index is called the “*primary key*” index and it must be unique; all
@@ -553,7 +553,7 @@ These variations exist:
        box.space.*space-name*:create_index('*index-name*', { type = 'hash' })
 
    The two ordinary index types are 'tree' which is the default, and 'hash'
-   which must be unique and which may be faster or smaller. The third type is
+   which must be unique and which may be faster. The third type is
    'bitset' which is not unique and which works best for combinations of binary
    values. The fourth type is 'rtree' which is not unique and which works with arrays,
    instead of 'string' or 'unsigned' values.
