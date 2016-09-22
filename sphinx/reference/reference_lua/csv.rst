@@ -156,7 +156,8 @@ The possible options which can be passed to csv functions are:
 .. function:: iterate(input, {options})
 
     Form a Lua iterator function for going through CSV records
-    one field at a time.
+    one field at a time. Use of an iterator is strongly recommended
+    if the amount of data is large (ten or more megabytes).
 
     :param table csv-table: a table which can be formatted according to the CSV rules.
     :param table options: see :ref:`above <csv-options>`
