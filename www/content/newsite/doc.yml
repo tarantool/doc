@@ -1,0 +1,131 @@
+---
+title   : "Tarantool - Documentation"
+slug    : "doc"
+save_as : "doc.html"
+template: "doc"
+blocks :
+  top :
+    title : "Tarantool manual"
+    content:
+      format : rst
+      content: |
+        Here is a **complete Tarantool manual**.
+        It embraces all aspects of using Tarantool:
+        from introductory information and excercises for beginners —
+        to advanced instructions and detailed references
+        for power users and contributors.
+        
+        A single-page version of this manual is available `here`_.
+        
+        .. _here: https://tarantool.org/doc/singlehtml.html
+        
+  topiclist :
+    - - "Overview"
+      - format : rst
+        content: |
+          `An application server together with a database manager`_
+          
+          `Database features`_
+
+          .. _An application server together with a database manager: https://tarantool.org/doc/intro.html#an-application-server-together-with-a-database-manager  
+          .. _Database features: https://tarantool.org/doc/intro.html#database-features
+  
+    - - "FAQ"
+      - format : rst
+        content: |
+          `FAQ`_
+          
+          .. _FAQ: https://tarantool.org/doc/faq.html
+                      
+    - - "Tutorials"
+      - format : rst
+        content: |
+          `Lua tutorials`_
+          
+          `C tutorial`_
+          
+          .. _Lua tutorials: https://tarantool.org/doc/tutorials/lua_tutorials.html
+          .. _C tutorial: https://tarantool.org/doc/tutorials/c_tutorial.html
+  
+    - - "User's Guide"
+      - format : rst
+        content: |
+          `Preface`_
+          
+          `Getting started`_
+          
+          `Database`_
+          
+          `Application server`_
+          
+          `Server administration`_
+          
+          `Connectors`_
+          
+          `Version-specific changes`_
+          
+          .. _Preface: https://tarantool.org/doc/book/intro.html
+          .. _Getting started: https://tarantool.org/doc/book/user_guide_getting_started.html
+          .. _Database: https://tarantool.org/doc/book/box/index.html
+          .. _Application server: https://tarantool.org/doc/book/app_server.html
+          .. _Server administration: https://tarantool.org/doc/book/administration.html      
+          .. _Connectors: https://tarantool.org/doc/book/connectors/index.html
+          .. _Version-specific changes: https://tarantool.org/doc/book/changes.html
+                      
+    - - "Reference"
+      - format : rst
+        content: |
+          `Built-in library reference`_
+
+          `Rocks reference`_
+
+          `Configuration reference`_
+
+          .. _Built-in library reference: https://tarantool.org/doc/reference/reference_lua/index.html
+          .. _Rocks reference: https://tarantool.org/doc/reference/reference_rock/index.html
+          .. _Configuration reference: https://tarantool.org/doc/reference/configuration/index.html
+
+    - - "Contributor's Guide"
+      - format : rst
+        content: |
+          `C API reference`_
+          
+          `Internals`_
+          
+          `Build and contribute`_
+          
+          `Guidelines`_
+          
+          .. _C API reference: https://tarantool.org/doc/dev_guide/reference_capi/index.html
+          .. _Internals: https://tarantool.org/doc/dev_guide/internals_index.html
+          .. _Build and contribute: https://tarantool.org/doc/dev_guide/build_contribute_index.html
+          .. _Guidelines: https://tarantool.org/doc/dev_guide/guidelines_index.html
+          
+  gimemore :
+    title : "Other sources"
+    content:
+      format : rst
+      content: |
+        Here are other sources — besides the manual — where you can get more
+        information about Tarantool.
+        
+  gimemorelist:
+    - - "Discussion boards"
+      - format : rst
+        content: |
+          `English`_
+          
+          `Russian`_
+          
+          .. _English: https://groups.google.com/forum/#!forum/tarantool
+          .. _Russian: https://googlegroups.com/group/tarantool-ru
+
+    - - "Telegram chat"
+      - format : rst
+        content: |
+          tl;dr? ;-) Feel free to ask your question in our `telegram chat`_.
+          
+          .. _telegram chat: http://telegram.me/tarantool
+          
+...
+# vim: ts=2 expandtab syntax=yaml

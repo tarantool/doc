@@ -2,7 +2,7 @@
 {% set i_links = [
   ("Overview", "/"),
   ("Try", "http://try.tarantool.org"),
-  ("Documentation", "/doc/"),
+  ("Documentation", "/doc.html"),
   ("Download", "/download.html"),
   ("Careers", "/careers.html"),
   ("Rocks", "http://rocks.tarantool.org")
