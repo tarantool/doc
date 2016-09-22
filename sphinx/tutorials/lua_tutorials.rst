@@ -481,7 +481,7 @@ running the test, one can reduce the elapsed time to 4 seconds.
 .. _c_lua_tutorial-sum_a_json_field:
 
 --------------------------------------------------------------------------------
-Tutorial: Sum a JSON field for all tuples
+Sum a JSON field for all tuples
 --------------------------------------------------------------------------------
 
 This is an exercise assignment: “Assume that inside every tuple there is a

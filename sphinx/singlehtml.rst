@@ -7,8 +7,8 @@ Documentation
 .. toctree::
     :maxdepth: 2
 
+    whats_new.rst
     intro.rst
-    faq.rst
     tutorials/index.rst
     book/index.rst
     reference/index.rst

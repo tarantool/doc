@@ -32,8 +32,8 @@ administrators.
 are connecting from a different language such as C or Perl or Python — other
 users will find no immediate need for this chapter.
 
-:ref:`Chapter 7 "Version-specific changes" <version_changes>` summarizes
-significant changes introduced in newer Tarantool versions.
+:ref:`Chapter 7 "FAQ" <faq>` gives answers to some frequently asked questions
+about Tarantool.
 
 For experienced users, there are also :ref:`Reference <reference>` materials,
 a :ref:`Contributor's Guide <contrib_guide>` and an extensive set of comments

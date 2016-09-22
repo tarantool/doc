@@ -20,6 +20,13 @@ blocks :
         .. _here: https://tarantool.org/doc/singlehtml.html
         
   topiclist :
+    - - "What's new?"
+      - format : rst
+        content: |
+          `What's new in Tarantool 1.7?`_
+          
+          .. _What's new in Tarantool 1.7?: https://tarantool.org/doc/whats_new.html
+                      
     - - "Overview"
       - format : rst
         content: |
@@ -30,13 +37,6 @@ blocks :
           .. _An application server together with a database manager: https://tarantool.org/doc/intro.html#an-application-server-together-with-a-database-manager  
           .. _Database features: https://tarantool.org/doc/intro.html#database-features
   
-    - - "FAQ"
-      - format : rst
-        content: |
-          `FAQ`_
-          
-          .. _FAQ: https://tarantool.org/doc/faq.html
-                      
     - - "Tutorials"
       - format : rst
         content: |
@@ -62,7 +62,7 @@ blocks :
           
           `Connectors`_
           
-          `Version-specific changes`_
+          `FAQ`_
           
           .. _Preface: https://tarantool.org/doc/book/intro.html
           .. _Getting started: https://tarantool.org/doc/book/user_guide_getting_started.html
@@ -70,7 +70,7 @@ blocks :
           .. _Application server: https://tarantool.org/doc/book/app_server.html
           .. _Server administration: https://tarantool.org/doc/book/administration.html      
           .. _Connectors: https://tarantool.org/doc/book/connectors/index.html
-          .. _Version-specific changes: https://tarantool.org/doc/book/changes.html
+          .. _FAQ: https://tarantool.org/doc/book/faq.html
                       
     - - "Reference"
       - format : rst

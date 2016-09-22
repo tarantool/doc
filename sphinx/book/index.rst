@@ -14,7 +14,7 @@ User's Guide
     app_server
     administration
     connectors/index
-    changes
+    faq
 
 
 
