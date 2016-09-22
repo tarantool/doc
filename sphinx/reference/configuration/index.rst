@@ -101,7 +101,7 @@ In certain circumstances a Unix domain socket may be used
 where a URI is expected, for example "unix/:/tmp/unix_domain_socket.sock" or
 simply "/tmp/unix_domain_socket.sock".
 
-A method for parsing URIs is illustrated in :ref:`Appendix E: Cookbook <e_cookbook-uri_parse>`.
+A method for parsing URIs is illustrated in :ref:`Cookbook recipes <cookbook-uri>`.
 
 .. _index-init_label:
 

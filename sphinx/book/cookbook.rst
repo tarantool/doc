@@ -12,6 +12,8 @@ execution path.
 
 Use freely.
 
+.. _cookbook-hello_world:
+
 **hello_world.lua**
 
 The standard example of a simple program.
@@ -21,6 +23,8 @@ The standard example of a simple program.
     #!/usr/bin/env tarantool
 
     print('Hello, World!')
+
+.. _cookbook-console-start:
 
 **console_start.lua**
 
@@ -45,6 +49,8 @@ Then use :ref:`console.start() <console-start>` to start interactive mode.
 
     require('console').start()
 
+.. _cookbook-fio_read:
+
 **fio_read.lua**
 
 Use the :ref:`fio module <fio-module>` to open, read, and close a file.
@@ -62,6 +68,8 @@ Use the :ref:`fio module <fio-module>` to open, read, and close a file.
     local data = f:read(4096)
     f:close()
     print(data)
+
+.. _cookbook-fio_write:
 
 **fio_write.lua**
 
@@ -81,7 +89,7 @@ Use the :ref:`fio module <fio-module>` to open, write, and close a file.
     f:write("Hello\n");
     f:close()
 
-.. _e_cookbook-ffi_printf:
+.. _cookbook-ffi_printf:
 
 **ffi_printf.lua**
 
@@ -98,6 +106,8 @@ Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built
     ]]
 
     ffi.C.printf("Hello, %s\n", os.getenv("USER"));
+
+.. _cookbook-ffi_gettimeofday:
 
 **ffi_gettimeofday.lua**
 
@@ -125,6 +135,7 @@ Tarantool's :ref:`clock module <clock-module>`.
         return tonumber(timeval_buf.tv_sec * 1000 + (timeval_buf.tv_usec / 1000))
     end
 
+.. _cookbook-ffi_zlib:
 
 **ffi_zlib.lua**
 
@@ -172,6 +183,7 @@ Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C libra
     local txt2 = uncompress(c, #txt)
     assert(txt2 == txt)
 
+.. _cookbook-ffi_meta:
 
 **ffi_meta.lua**
 
@@ -205,6 +217,8 @@ a metatable).
     local b = a + point(0.5, 8)
     print(#b)        --> 12.5
 
+.. _cookbook-print_arrays:
+
 **print_arrays.lua**
 
 Create Lua tables, and print them.
@@ -225,6 +239,8 @@ The display will look like:
     map = { k1 = 'v1', k2 = 'v2', k3 = 'v3' }
     for k, v in pairs(map) do print(k, v) end
 
+.. _cookbook-count_array:
+
 **count_array.lua**
 
 Use the '#' operator to get the number of items in an array-like Lua table.
@@ -236,6 +252,8 @@ This operation has O(log(N)) complexity.
 
     array = { 1, 2, 3}
     print(#array)
+
+.. _cookbook-count_array_with_nils:
 
 **count_array_with_nils.lua**
 
@@ -263,6 +281,8 @@ also misbehave when "nils" are present.
     for k,v in pairs(t) do if k > max then max = k end end
     print(max)
 
+.. _cookbook-count_array_with_nulls:
+
 **count_array_with_nulls.lua**
 
 Use explicit ``NULL`` values to avoid the problems caused by Lua's
@@ -289,6 +309,8 @@ the correct value: 10.
     for k,v in pairs(t) do if k > max then max = k end end
     print(max)
 
+.. _cookbook-count_map:
+
 **count_map.lua**
 
 Get the number of elements in a map-like table.
@@ -301,6 +323,8 @@ Get the number of elements in a map-like table.
     local size = 0
     for _ in pairs(map) do size = size + 1; end
     print(size)
+
+.. _cookbook-swap:
 
 **swap.lua**
 
@@ -315,7 +339,7 @@ Use a Lua peculiarity to swap two variables without needing a third variable.
     x, y = y, x
     print(x, y)
 
-.. _e_cookbook-uri_parse:
+.. _cookbook-uri:
 
 **uri.lua**
 
@@ -335,6 +359,8 @@ Use built-in function :code:`uri_parse` to see what is in a `URI <configuration-
     print('r.service=',r.service)
     print('r.fragment=',r.fragment)
     print('r.host=',r.host)
+
+.. _cookbook-class:
 
 **class.lua**
 
@@ -372,6 +398,8 @@ Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable
     print(object:somemethod())
     print(object.data)
 
+.. _cookbook-garbage:
+
 **garbage.lua**
 
 Force Lua `garbage collection <https://www.lua.org/manual/5.1/manual.html#2.10>`_
@@ -382,6 +410,8 @@ with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pd
     #!/usr/bin/env tarantool
 
     collectgarbage('collect')
+
+.. _cookbook-fiber_producer_and_consumer:
 
 **fiber_producer_and_consumer.lua**
 
@@ -440,6 +470,7 @@ to control the number of simultaneous tasks waiting for processing.
     start()
     print('started')
 
+.. _cookbook-socket_tcpconnect:
 
 **socket_tcpconnect.lua**
 
@@ -461,6 +492,7 @@ Display the connection details and the result of a GET request.
     print(s:read('\r\n'))
     print(s:read('\r\n'))
 
+.. _cookbook-socket_tcp_echo:
 
 **socket_tcp_echo.lua**
 
@@ -491,6 +523,8 @@ with each client getting a separate fiber.
 
     local server, addr = require('socket').tcp_server('localhost', 3311, handler)
 
+.. _cookbook-getaddrinfo:
+
 **getaddrinfo.lua**
 
 Use :ref:`socket.getaddrinfo() <socket-getaddrinfo>` to perform
@@ -516,6 +550,8 @@ before trying to connect to the first available address.
     print('type=',s[2].type)
     print('protocol=',s[2].protocol)
     print('port=',s[2].port)
+
+.. _cookbook-socket_udp_echo:
 
 **socket_udp_echo.lua**
 
@@ -593,6 +629,8 @@ look something like this ...
 
     require('console').start()
 
+.. _cookbook-http_get:
+
 **http_get.lua**
 
 Use the `http`_ `rock`_ (which must first be installed)
@@ -612,6 +650,8 @@ to get data via HTTP.
     local data = json.decode(r.body)
     print('Oakland wind speed: ', data.wind.speed)
 
+.. _cookbook-http_send:
+
 **http_send.lua**
 
 Use the `http`_ `rock`_ (which must first be installed)
@@ -630,6 +670,8 @@ to send data via HTTP.
         print 'Success'
     end
 
+.. _cookbook-http_server:
+
 **http_server.lua**
 
 Use the `http`_ `rock`_ (which must first be installed)
@@ -647,6 +689,8 @@ to turn Tarantool into a web server.
     server:route({ path = '/' }, handler)
     server:start()
     -- connect to localhost:8080 and see json
+
+.. _cookbook-generate_html:
 
 **http_generate_html.lua**
 
