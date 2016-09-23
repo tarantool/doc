@@ -25,6 +25,7 @@ This reference covers Tarantool's built-in Lua modules.
     box_error
     fiber
     fiber_ipc
+    fiber_cond
     fio
     fun
     json
