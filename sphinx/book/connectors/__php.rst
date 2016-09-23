@@ -2,7 +2,8 @@
                             PHP
 =====================================================================
 
-The PHP driver is `tarantool-php <https://github.com/tarantool/tarantool-php>`_.
+The most commonly used PHP driver is
+`tarantool-php <https://github.com/tarantool/tarantool-php>`_.
 It is not supplied as part of the Tarantool repository; it must be installed
 separately. It can be installed with :program:`git`. It requires other modules
 which should be installed first. For example, on Ubuntu, the installation could
@@ -52,4 +53,11 @@ The program will open a socket connection with the Tarantool server at
 
 The example program only shows one request and does not show all that's
 necessary for good practice. For that, please see
-`tarantool-php project at GitHub <https://github.com/tarantool/tarantool-php>`_.
+`tarantool/tarantool-php <https://github.com/tarantool/tarantool-php>`_
+project at GitHub.
+
+Besides, you can use an alternative PHP driver from
+another GitHub project: it includes a *client*
+(see `tarantool-php/client <https://github.com/tarantool-php/client>`_)
+and a *wrapper* for that client
+(see `tarantool-php/mapper <https://github.com/tarantool-php/mapper>`_).
