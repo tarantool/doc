@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-22 21:33+0300\n"
+"POT-Creation-Date: 2016-09-23 12:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2570,29 +2570,29 @@ msgstr ""
 msgid "Use freely."
 msgstr ""
 
-#: ../book/cookbook.rst:15
+#: ../book/cookbook.rst:17
 msgid "**hello_world.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:17
+#: ../book/cookbook.rst:19
 msgid "The standard example of a simple program."
 msgstr ""
 
-#: ../book/cookbook.rst:19
+#: ../book/cookbook.rst:21
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "print('Hello, World!')"
 msgstr ""
 
-#: ../book/cookbook.rst:25
+#: ../book/cookbook.rst:29
 msgid "**console_start.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:27
+#: ../book/cookbook.rst:31
 msgid "Use :ref:`box.once() <box-once>` to initialize a database (creating spaces) if this is the first time the server has been run. Then use :ref:`console.start() <console-start>` to start interactive mode."
 msgstr ""
 
-#: ../book/cookbook.rst:31
+#: ../book/cookbook.rst:35
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "-- Configure database\n"
@@ -2609,15 +2609,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "require('console').start()"
 msgstr ""
 
-#: ../book/cookbook.rst:48
+#: ../book/cookbook.rst:54
 msgid "**fio_read.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:50
+#: ../book/cookbook.rst:56
 msgid "Use the :ref:`fio module <fio-module>` to open, read, and close a file."
 msgstr ""
 
-#: ../book/cookbook.rst:52
+#: ../book/cookbook.rst:58
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local fio = require('fio')\n"
@@ -2631,15 +2631,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(data)"
 msgstr ""
 
-#: ../book/cookbook.rst:66
+#: ../book/cookbook.rst:74
 msgid "**fio_write.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:68
+#: ../book/cookbook.rst:76
 msgid "Use the :ref:`fio module <fio-module>` to open, write, and close a file."
 msgstr ""
 
-#: ../book/cookbook.rst:70
+#: ../book/cookbook.rst:78
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local fio = require('fio')\n"
@@ -2653,15 +2653,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "f:close()"
 msgstr ""
 
-#: ../book/cookbook.rst:86
+#: ../book/cookbook.rst:94
 msgid "**ffi_printf.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:88
+#: ../book/cookbook.rst:96
 msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built-in function: printf(). (For help understanding ffi, see the `FFI tutorial <http://luajit.org/ext_ffi_tutorial.html>`_.)"
 msgstr ""
 
-#: ../book/cookbook.rst:91
+#: ../book/cookbook.rst:99
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local ffi = require('ffi')\n"
@@ -2672,15 +2672,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "ffi.C.printf(\"Hello, %s\\n\", os.getenv(\"USER\"));"
 msgstr ""
 
-#: ../book/cookbook.rst:102
+#: ../book/cookbook.rst:112
 msgid "**ffi_gettimeofday.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:104
+#: ../book/cookbook.rst:114
 msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C function: gettimeofday(). This delivers time with millisecond precision, unlike the time function in Tarantool's :ref:`clock module <clock-module>`."
 msgstr ""
 
-#: ../book/cookbook.rst:108
+#: ../book/cookbook.rst:118
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local ffi = require('ffi')\n"
@@ -2700,15 +2700,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "end"
 msgstr ""
 
-#: ../book/cookbook.rst:129
+#: ../book/cookbook.rst:140
 msgid "**ffi_zlib.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:131
+#: ../book/cookbook.rst:142
 msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C library function. (For help understanding ffi, see the `FFI tutorial <http://luajit.org/ext_ffi_tutorial.html>`_.)"
 msgstr ""
 
-#: ../book/cookbook.rst:134
+#: ../book/cookbook.rst:145
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local ffi = require(\"ffi\")\n"
@@ -2749,15 +2749,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "assert(txt2 == txt)"
 msgstr ""
 
-#: ../book/cookbook.rst:176
+#: ../book/cookbook.rst:188
 msgid "**ffi_meta.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:178
+#: ../book/cookbook.rst:190
 msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to access a C object via a metamethod (a method which is defined with a metatable)."
 msgstr ""
 
-#: ../book/cookbook.rst:182
+#: ../book/cookbook.rst:194
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local ffi = require(\"ffi\")\n"
@@ -2783,15 +2783,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(#b)        --> 12.5"
 msgstr ""
 
-#: ../book/cookbook.rst:208
+#: ../book/cookbook.rst:222
 msgid "**print_arrays.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:210
+#: ../book/cookbook.rst:224
 msgid "Create Lua tables, and print them. Notice that for the 'array' table the iterator function is ipairs(), while for the 'map' table the iterator function is pairs(). (`ipairs()` is faster than `pairs()`, but pairs() is recommended for map-like tables or mixed tables.) The display will look like: \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana | k3 v3 | k1 v1 | k2 v2\"."
 msgstr ""
 
-#: ../book/cookbook.rst:218
+#: ../book/cookbook.rst:232
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "array = { 'Apple', 'Orange', 'Grapefruit', 'Banana'}\n"
@@ -2801,30 +2801,30 @@ msgid "#!/usr/bin/env tarantool\n"
 "for k, v in pairs(map) do print(k, v) end"
 msgstr ""
 
-#: ../book/cookbook.rst:228
+#: ../book/cookbook.rst:244
 msgid "**count_array.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:230
+#: ../book/cookbook.rst:246
 msgid "Use the '#' operator to get the number of items in an array-like Lua table. This operation has O(log(N)) complexity."
 msgstr ""
 
-#: ../book/cookbook.rst:233
+#: ../book/cookbook.rst:249
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "array = { 1, 2, 3}\n"
 "print(#array)"
 msgstr ""
 
-#: ../book/cookbook.rst:240
+#: ../book/cookbook.rst:258
 msgid "**count_array_with_nils.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:242
+#: ../book/cookbook.rst:260
 msgid "Missing elements in arrays, which Lua treats a \"nil\"s, cause the simple \"#\" operator to deliver improper results. The \"print(#t)\" instruction will print \"4\"; the \"print(counter)\" instruction will print \"3\"; the \"print(max)\" instruction will print \"10\". Other table functions, such as table.sort(), will also misbehave when \"nils\" are present."
 msgstr ""
 
-#: ../book/cookbook.rst:250
+#: ../book/cookbook.rst:268
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local t = {}\n"
@@ -2840,15 +2840,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(max)"
 msgstr ""
 
-#: ../book/cookbook.rst:266
+#: ../book/cookbook.rst:286
 msgid "**count_array_with_nulls.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:268
+#: ../book/cookbook.rst:288
 msgid "Use explicit ``NULL`` values to avoid the problems caused by Lua's nil == missing value behavior. Although :code:`json.NULL == nil` is :code:`true`, all the print instructions in this program will print the correct value: 10."
 msgstr ""
 
-#: ../book/cookbook.rst:273
+#: ../book/cookbook.rst:293
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local json = require('json')\n"
@@ -2867,15 +2867,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(max)"
 msgstr ""
 
-#: ../book/cookbook.rst:292
+#: ../book/cookbook.rst:314
 msgid "**count_map.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:294
+#: ../book/cookbook.rst:316
 msgid "Get the number of elements in a map-like table."
 msgstr ""
 
-#: ../book/cookbook.rst:296
+#: ../book/cookbook.rst:318
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local map = { a = 10, b = 15, c = 20 }\n"
@@ -2884,15 +2884,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(size)"
 msgstr ""
 
-#: ../book/cookbook.rst:305
+#: ../book/cookbook.rst:329
 msgid "**swap.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:307
+#: ../book/cookbook.rst:331
 msgid "Use a Lua peculiarity to swap two variables without needing a third variable."
 msgstr ""
 
-#: ../book/cookbook.rst:309
+#: ../book/cookbook.rst:333
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local x = 1\n"
@@ -2901,15 +2901,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(x, y)"
 msgstr ""
 
-#: ../book/cookbook.rst:320
+#: ../book/cookbook.rst:344
 msgid "**uri.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:322
+#: ../book/cookbook.rst:346
 msgid "Use built-in function :code:`uri_parse` to see what is in a `URI <configuration-uri>`:"
 msgstr ""
 
-#: ../book/cookbook.rst:324
+#: ../book/cookbook.rst:348
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local uri = require('uri')\n"
@@ -2924,15 +2924,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print('r.host=',r.host)"
 msgstr ""
 
-#: ../book/cookbook.rst:339
+#: ../book/cookbook.rst:365
 msgid "**class.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:341
+#: ../book/cookbook.rst:367
 msgid "Create a class, create a metatable for the class, create an instance of the class. Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable <http://lua-users.org/wiki/LuaClassesWithMetatable>`_."
 msgstr ""
 
-#: ../book/cookbook.rst:345
+#: ../book/cookbook.rst:371
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "-- define class objects\n"
@@ -2962,29 +2962,29 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(object.data)"
 msgstr ""
 
-#: ../book/cookbook.rst:375
+#: ../book/cookbook.rst:403
 msgid "**garbage.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:377
+#: ../book/cookbook.rst:405
 msgid "Force Lua `garbage collection <https://www.lua.org/manual/5.1/manual.html#2.10>`_ with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_."
 msgstr ""
 
-#: ../book/cookbook.rst:380
+#: ../book/cookbook.rst:408
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "collectgarbage('collect')"
 msgstr ""
 
-#: ../book/cookbook.rst:386
+#: ../book/cookbook.rst:416
 msgid "**fiber_producer_and_consumer.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:388
+#: ../book/cookbook.rst:418
 msgid "Start one fiber for producer and one fiber for consumer. Use :ref:`fiber.channel() <fiber_ipc-channel>` to exchange data and synchronize. One can tweak the channel size (:code:`ch_size` in the program code) to control the number of simultaneous tasks waiting for processing."
 msgstr ""
 
-#: ../book/cookbook.rst:393
+#: ../book/cookbook.rst:423
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local fiber = require('fiber')\n"
@@ -3034,15 +3034,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print('started')"
 msgstr ""
 
-#: ../book/cookbook.rst:444
+#: ../book/cookbook.rst:475
 msgid "**socket_tcpconnect.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:446
+#: ../book/cookbook.rst:477
 msgid "Use :ref:`socket.tcp_connect() <socket-tcp_connect>` to connect to a remote host via TCP. Display the connection details and the result of a GET request."
 msgstr ""
 
-#: ../book/cookbook.rst:450
+#: ../book/cookbook.rst:481
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local s = require('socket').tcp_connect('google.com', 80)\n"
@@ -3056,15 +3056,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print(s:read('\\r\\n'))"
 msgstr ""
 
-#: ../book/cookbook.rst:465
+#: ../book/cookbook.rst:497
 msgid "**socket_tcp_echo.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:467
+#: ../book/cookbook.rst:499
 msgid "Use :ref:`socket.tcp_connect() <socket-tcp_connect>` to set up a simple TCP server, by creating a function that handles requests and echos them, and passing the function to :ref:`socket.tcp_server() <socket-tcp_server>`. This program has been used to test with 100,000 clients, with each client getting a separate fiber."
 msgstr ""
 
-#: ../book/cookbook.rst:475
+#: ../book/cookbook.rst:507
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local function handler(s, peer)\n"
@@ -3083,15 +3083,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "local server, addr = require('socket').tcp_server('localhost', 3311, handler)"
 msgstr ""
 
-#: ../book/cookbook.rst:494
+#: ../book/cookbook.rst:528
 msgid "**getaddrinfo.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:496
+#: ../book/cookbook.rst:530
 msgid "Use :ref:`socket.getaddrinfo() <socket-getaddrinfo>` to perform non-blocking DNS resolution, getting both the AF_INET6 and AF_INET information for 'google.com'. This technique is not always necessary for tcp connections because :ref:`socket.tcp_connect() <socket-tcp_connect>` performs `socket.getaddrinfo` under the hood, before trying to connect to the first available address."
 msgstr ""
 
-#: ../book/cookbook.rst:504
+#: ../book/cookbook.rst:538
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local s = require('socket').getaddrinfo('google.com', 'http', { type = 'SOCK_STREAM' })\n"
@@ -3107,15 +3107,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print('port=',s[2].port)"
 msgstr ""
 
-#: ../book/cookbook.rst:520
+#: ../book/cookbook.rst:556
 msgid "**socket_udp_echo.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:522
+#: ../book/cookbook.rst:558
 msgid "Tarantool does not currently have a `udp_server` function, therefore socket_udp_echo.lua is more complicated than socket_tcp_echo.lua. It can be implemented with sockets and fibers."
 msgstr ""
 
-#: ../book/cookbook.rst:527
+#: ../book/cookbook.rst:563
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local socket = require('socket')\n"
@@ -3164,11 +3164,11 @@ msgid "#!/usr/bin/env tarantool\n"
 "end"
 msgstr ""
 
-#: ../book/cookbook.rst:576
+#: ../book/cookbook.rst:612
 msgid "A function for a client that connects to this server could look something like this ..."
 msgstr ""
 
-#: ../book/cookbook.rst:579
+#: ../book/cookbook.rst:615
 msgid "local function handler(s, peer, msg)\n"
 "    -- You don't have to wait until socket is ready to send UDP\n"
 "    -- s:writable()\n"
@@ -3185,15 +3185,15 @@ msgid "local function handler(s, peer, msg)\n"
 "require('console').start()"
 msgstr ""
 
-#: ../book/cookbook.rst:596
+#: ../book/cookbook.rst:634
 msgid "**http_get.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:598
+#: ../book/cookbook.rst:636
 msgid "Use the `http`_ `rock`_ (which must first be installed) to get data via HTTP."
 msgstr ""
 
-#: ../book/cookbook.rst:601
+#: ../book/cookbook.rst:639
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local http_client = require('http.client')\n"
@@ -3207,15 +3207,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "print('Oakland wind speed: ', data.wind.speed)"
 msgstr ""
 
-#: ../book/cookbook.rst:615
+#: ../book/cookbook.rst:655
 msgid "**http_send.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:617
+#: ../book/cookbook.rst:657
 msgid "Use the `http`_ `rock`_ (which must first be installed) to send data via HTTP."
 msgstr ""
 
-#: ../book/cookbook.rst:620
+#: ../book/cookbook.rst:660
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local http_client = require('http.client')\n"
@@ -3228,15 +3228,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "end"
 msgstr ""
 
-#: ../book/cookbook.rst:633
+#: ../book/cookbook.rst:675
 msgid "**http_server.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:635
+#: ../book/cookbook.rst:677
 msgid "Use the `http`_ `rock`_ (which must first be installed) to turn Tarantool into a web server."
 msgstr ""
 
-#: ../book/cookbook.rst:638
+#: ../book/cookbook.rst:680
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local function handler(self)\n"
@@ -3249,15 +3249,15 @@ msgid "#!/usr/bin/env tarantool\n"
 "-- connect to localhost:8080 and see json"
 msgstr ""
 
-#: ../book/cookbook.rst:651
+#: ../book/cookbook.rst:695
 msgid "**http_generate_html.lua**"
 msgstr ""
 
-#: ../book/cookbook.rst:653
+#: ../book/cookbook.rst:697
 msgid "Use the `http`_ `rock` (which must first be installed) to generate HTML pages from templates. The `http`_ `rock`_ has a fairly simple template engine which allows execution of regular Lua code inside text blocks (like PHP). Therefore there is no need to learn new languages in order to write templates."
 msgstr ""
 
-#: ../book/cookbook.rst:659
+#: ../book/cookbook.rst:703
 msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "local function handler(self)\n"
@@ -3270,11 +3270,11 @@ msgid "#!/usr/bin/env tarantool\n"
 "server:start()"
 msgstr ""
 
-#: ../book/cookbook.rst:672
+#: ../book/cookbook.rst:716
 msgid "An \"HTML\" file for this server, including Lua, could look like this (it would produce \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana\")."
 msgstr ""
 
-#: ../book/cookbook.rst:675
+#: ../book/cookbook.rst:719
 msgid "<html>\n"
 "<body>\n"
 "    <table border=\"1\">\n"
@@ -6603,7 +6603,7 @@ msgid "In order for a tuple set to be useful, there must always be at least one 
 msgstr ""
 
 #: ../book/box/index.rst:118
-msgid "An index may be *multi-part*, that is, the user can declare that an index key value is taken from two or more fields in the tuple, in any order. An index may be *unique*, that is, the user can declare that it would be illegal to have the same key value twice. An index may have *one of four types*: HASH which is fastest and uses the least memory but must be unique, TREE which allows partial-key searching and ordered results, BITSET which can be good for searches that contain '=' and multiple ANDed conditions, and RTREE for spatial coordinates. The first index is called the “*primary key*” index and it must be unique; all other indexes are called “secondary” indexes."
+msgid "An index may be *multi-part*, that is, the user can declare that an index key value is taken from two or more fields in the tuple, in any order. An index may be *unique*, that is, the user can declare that it would be illegal to have the same key value twice. An index may have *one of four types*: HASH which is fast and is best for exact-equality searches with unique keys, TREE which allows partial-key searching and ordered results, BITSET which can be good for searches that contain '=' and multiple ANDed conditions, and RTREE for spatial coordinates. The first index is called the “*primary key*” index and it must be unique; all other indexes are called “secondary” indexes."
 msgstr ""
 
 #: ../book/box/index.rst:128
@@ -7095,7 +7095,7 @@ msgid "The index does not have to be a tree."
 msgstr ""
 
 #: ../book/box/index.rst:580
-msgid "The two ordinary index types are 'tree' which is the default, and 'hash' which must be unique and which may be faster or smaller. The third type is 'bitset' which is not unique and which works best for combinations of binary values. The fourth type is 'rtree' which is not unique and which works with arrays, instead of 'string' or 'unsigned' values."
+msgid "The two ordinary index types are 'tree' which is the default, and 'hash' which must be unique and which may be faster. The third type is 'bitset' which is not unique and which works best for combinations of binary values. The fourth type is 'rtree' which is not unique and which works with arrays, instead of 'string' or 'unsigned' values."
 msgstr ""
 
 #: ../book/box/index.rst:586
@@ -9351,8 +9351,8 @@ msgstr ""
 #: ../book/faq.rst:53
 #: ../book/faq.rst:64
 #: ../book/faq.rst:70
-#: ../book/faq.rst:76
-#: ../book/faq.rst:81
+#: ../book/faq.rst:77
+#: ../book/faq.rst:82
 msgid "Q: |br| A: |br|"
 msgstr ""
 
@@ -9373,14 +9373,14 @@ msgid "What are your development plans? |br| We continuously improve server perf
 msgstr ""
 
 #: ../book/faq.rst:70
-msgid "Who is developing Tarantool? |br| There is an engineering team employed by Mail.Ru -- check out our commit logs on github.com/tarantool. The development is fully open. Most of the connectors' authors, and the maintainers for different distributions, come from the wider community."
+msgid "Who is developing Tarantool? |br| There is an engineering team employed by Mail.Ru -- check out our commit logs on `github.com/tarantool <http://github.com/tarantool/>`_. The development is fully open. Most of the connectors' authors, and the maintainers for different distributions, come from the wider community."
 msgstr ""
 
-#: ../book/faq.rst:76
+#: ../book/faq.rst:77
 msgid "How serious is Mail.Ru about Tarantool? |br| Tarantool is an open source project, distributed under a BSD license, so it does not depend on any one sponsor. However, it is an integral part of the Mail.Ru backbone, so it gets a lot of support from Mail.Ru."
 msgstr ""
 
-#: ../book/faq.rst:81
+#: ../book/faq.rst:82
 msgid "Are there problems associated with being an in-memory server? |br| The principal storage engine is designed for RAM plus persistent storage. It is immune to data loss because there is a write-ahead log. Its memory-allocation and compression techniques ensure there is no waste. And if Tarantool runs out of memory, then it will stop accepting updates until more memory is available, but will continue to handle read and delete requests without difficulty. However, for databases which are much larger than the available RAM space, Tarantool has a second storage engine which is only limited by the available disk space."
 msgstr ""
 
@@ -9401,38 +9401,38 @@ msgid "How to read the documentation"
 msgstr ""
 
 #: ../book/intro.rst:38
-msgid "To get started, you can either *download the whole Tarantool package* as described in the first part of :ref:`Chapter 2 \"Getting Started\" <user_guide_getting_started>`, or you can skip the download and *connect to the online Tarantool server* running on the web at http://try.tarantool.org. Either way, as the first tryout, you can follow the introductory example \"Starting Tarantool and making your first database\" from the second part of Chapter 2. If you want more hands-on experience, proceed to the :ref:`\"Tutorials\" <tutorials>` part after you are through with Chapter 2."
+msgid "To get started, you can either *download the whole Tarantool package* as described in the first part of :ref:`Chapter 2 \"Getting Started\" <user_guide_getting_started>`, or you can skip the download and *connect to the online Tarantool server* running on the web at http://try.tarantool.org. Either way, as the first tryout, you can follow the introductory example \"Starting Tarantool and making your first database\" from :ref:`the second part of Chapter 2 <user_guide_getting_started-first_database>`. If you want more hands-on experience, proceed to the :ref:`\"Tutorials\" <tutorials>` part after you are through with Chapter 2."
 msgstr ""
 
-#: ../book/intro.rst:49
+#: ../book/intro.rst:50
 msgid ":ref:`Chapter 3 \"Database\" <database-chapter>` is about using Tarantool as a NoSQL DBMS, whereas :ref:`Chapter 4 \"Application server\" <app_server>` is about using Tarantool as an application server."
 msgstr ""
 
-#: ../book/intro.rst:53
+#: ../book/intro.rst:54
 msgid ":ref:`Chapter 5 \"Server administration\" <server_admin>` is primarily for administrators."
 msgstr ""
 
-#: ../book/intro.rst:56
+#: ../book/intro.rst:57
 msgid ":ref:`Chapter 6 \"Connectors\" <index-box_connectors>` is strictly for users who are connecting from a different language such as C or Perl or Python — other users will find no immediate need for this chapter."
 msgstr ""
 
-#: ../book/intro.rst:60
+#: ../book/intro.rst:61
 msgid ":ref:`Chapter 7 \"FAQ\" <faq>` gives answers to some frequently asked questions about Tarantool."
 msgstr ""
 
-#: ../book/intro.rst:63
+#: ../book/intro.rst:64
 msgid "For experienced users, there are also :ref:`Reference <reference>` materials, a :ref:`Contributor's Guide <contrib_guide>` and an extensive set of comments in the source code."
 msgstr ""
 
-#: ../book/intro.rst:69
+#: ../book/intro.rst:70
 msgid "Getting in touch with the Tarantool community"
 msgstr ""
 
-#: ../book/intro.rst:71
+#: ../book/intro.rst:72
 msgid "Please report bugs or make feature requests at http://github.com/tarantool/tarantool/issues."
 msgstr ""
 
-#: ../book/intro.rst:73
+#: ../book/intro.rst:74
 msgid "You can contact developers directly in `telegram <http://telegram.me/tarantool>`_ or in a Tarantool discussion group (`English <https://groups.google.com/forum/#!forum/tarantool>`_ or `Russian <https://googlegroups.com/group/tarantool-ru>`_)."
 msgstr ""
 
@@ -9676,6 +9676,6 @@ msgid "You can repeat ``box.space...:insert{}`` and ``box.space...:select{}`` in
 msgstr ""
 
 #: ../book/user_guide_getting_started.rst:256
-msgid "**To review...** If you followed all the instructions in this chapter, then so far you have: installed Tarantool from either a binary or a source repository, started up the Tarantool server, inserted and selected tuples."
+msgid "**To review...** If you followed all the instructions in this chapter, then so far you have: installed Tarantool from a binary repository, started up the Tarantool server, inserted and selected tuples."
 msgstr ""
 

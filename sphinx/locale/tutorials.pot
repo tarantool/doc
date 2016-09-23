@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-22 21:33+0300\n"
+"POT-Creation-Date: 2016-09-23 12:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgid "C stored procedures"
 msgstr ""
 
 #: ../tutorials/c_tutorial.rst:39
-msgid "Tarantool can call C code with :ref:`modules <modules-example_c>`, or with :ref:`ffi <e_cookbook-ffi_printf>`, or with C stored procedures. This tutorial only is about the third option, C stored procedures. In fact the routines are always \"C functions\" but the phrase \"stored procedure\" is commonly used for historical reasons."
+msgid "Tarantool can call C code with :ref:`modules <modules-example_c>`, or with :ref:`ffi <cookbook-ffi_printf>`, or with C stored procedures. This tutorial only is about the third option, C stored procedures. In fact the routines are always \"C functions\" but the phrase \"stored procedure\" is commonly used for historical reasons."
 msgstr ""
 
 #: ../tutorials/c_tutorial.rst:46

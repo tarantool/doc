@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-22 21:33+0300\n"
+"POT-Creation-Date: 2016-09-23 12:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -705,7 +705,7 @@ msgstr ""
 #: ../reference/reference_lua/fiber_ipc.rst:131
 #: ../reference/reference_lua/log.rst:66
 #: ../reference/reference_lua/msgpack.rst:65
-#: ../reference/reference_lua/socket.rst:540
+#: ../reference/reference_lua/socket.rst:541
 #: ../reference/reference_lua/tap.rst:202
 #: ../reference/reference_lua/uuid.rst:135
 #: ../reference/reference_lua/yaml.rst:61
@@ -743,7 +743,7 @@ msgid "In certain circumstances a Unix domain socket may be used where a URI is 
 msgstr ""
 
 #: ../reference/configuration/index.rst:129
-msgid "A method for parsing URIs is illustrated in :ref:`Appendix E: Cookbook <e_cookbook-uri_parse>`."
+msgid "A method for parsing URIs is illustrated in :ref:`Cookbook recipes <cookbook-uri>`."
 msgstr ""
 
 #: ../reference/configuration/index.rst:135
@@ -911,7 +911,7 @@ msgstr ""
 #: ../reference/reference_lua/crypto.rst:93
 #: ../reference/reference_lua/csv.rst:70
 #: ../reference/reference_lua/csv.rst:149
-#: ../reference/reference_lua/csv.rst:191
+#: ../reference/reference_lua/csv.rst:192
 #: ../reference/reference_lua/fiber.rst:88
 #: ../reference/reference_lua/fiber.rst:112
 #: ../reference/reference_lua/fiber.rst:132
@@ -981,11 +981,11 @@ msgstr ""
 #: ../reference/reference_lua/pickle.rst:89
 #: ../reference/reference_lua/pickle.rst:134
 #: ../reference/reference_lua/socket.rst:135
-#: ../reference/reference_lua/socket.rst:152
-#: ../reference/reference_lua/socket.rst:169
-#: ../reference/reference_lua/socket.rst:197
-#: ../reference/reference_lua/socket.rst:231
-#: ../reference/reference_lua/socket.rst:378
+#: ../reference/reference_lua/socket.rst:153
+#: ../reference/reference_lua/socket.rst:170
+#: ../reference/reference_lua/socket.rst:198
+#: ../reference/reference_lua/socket.rst:232
+#: ../reference/reference_lua/socket.rst:379
 #: ../reference/reference_lua/strict.rst:41
 #: ../reference/reference_lua/tap.rst:93
 #: ../reference/reference_lua/tap.rst:135
@@ -1152,7 +1152,7 @@ msgid "The time that a function takes within a processor. This function uses clo
 msgstr ""
 
 #: ../reference/reference_lua/clock.rst:122
-#: ../reference/reference_lua/socket.rst:226
+#: ../reference/reference_lua/socket.rst:227
 msgid "Parameters:"
 msgstr ""
 
@@ -1177,9 +1177,9 @@ msgstr ""
 #: ../reference/reference_lua/json.rst:84
 #: ../reference/reference_lua/msgpack.rst:55
 #: ../reference/reference_lua/pickle.rst:132
-#: ../reference/reference_lua/socket.rst:167
-#: ../reference/reference_lua/socket.rst:522
-#: ../reference/reference_lua/socket.rst:534
+#: ../reference/reference_lua/socket.rst:168
+#: ../reference/reference_lua/socket.rst:523
+#: ../reference/reference_lua/socket.rst:535
 #: ../reference/reference_lua/yaml.rst:51
 msgid "table"
 msgstr ""
@@ -1526,7 +1526,7 @@ msgid "a string, or any object which has a read() method, formatted according to
 msgstr ""
 
 #: ../reference/reference_lua/csv.rst:66
-#: ../reference/reference_lua/csv.rst:187
+#: ../reference/reference_lua/csv.rst:188
 msgid "see :ref:`above <csv-options>`"
 msgstr ""
 
@@ -1605,7 +1605,7 @@ msgid "Get table input from ``csv-table`` and return a CSV-formatted string as o
 msgstr ""
 
 #: ../reference/reference_lua/csv.rst:143
-#: ../reference/reference_lua/csv.rst:186
+#: ../reference/reference_lua/csv.rst:187
 msgid "a table which can be formatted according to the CSV rules."
 msgstr ""
 
@@ -1658,22 +1658,22 @@ msgid "tarantool> csv_table = csv.load('a,b,c')\n"
 msgstr ""
 
 #: ../reference/reference_lua/csv.rst:183
-msgid "Form a Lua iterator function for going through CSV records one field at a time."
-msgstr ""
-
-#: ../reference/reference_lua/csv.rst:188
-msgid "Lua iterator function"
+msgid "Form a Lua iterator function for going through CSV records one field at a time. Use of an iterator is strongly recommended if the amount of data is large (ten or more megabytes)."
 msgstr ""
 
 #: ../reference/reference_lua/csv.rst:189
+msgid "Lua iterator function"
+msgstr ""
+
+#: ../reference/reference_lua/csv.rst:190
 msgid "iterator function"
 msgstr ""
 
-#: ../reference/reference_lua/csv.rst:193
+#: ../reference/reference_lua/csv.rst:194
 msgid ":ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load() <csv-load>` and :ref:`csv.dump() <csv-dump>`. To illustrate that, here is a function which is the same as the :ref:`csv.load() <csv-load>` function, as seen in `the Tarantool source code`_."
 msgstr ""
 
-#: ../reference/reference_lua/csv.rst:197
+#: ../reference/reference_lua/csv.rst:198
 msgid "tarantool> load = function(readable, opts)\n"
 "         >   opts = opts or {}\n"
 "         >   local result = {}\n"
@@ -2060,9 +2060,9 @@ msgstr ""
 #: ../reference/reference_lua/fio.rst:353
 #: ../reference/reference_lua/net_box.rst:75
 #: ../reference/reference_lua/socket.rst:133
-#: ../reference/reference_lua/socket.rst:150
-#: ../reference/reference_lua/socket.rst:321
-#: ../reference/reference_lua/socket.rst:347
+#: ../reference/reference_lua/socket.rst:151
+#: ../reference/reference_lua/socket.rst:322
+#: ../reference/reference_lua/socket.rst:348
 #: ../reference/reference_lua/tap.rst:47
 msgid "userdata"
 msgstr ""
@@ -2152,8 +2152,8 @@ msgstr ""
 #: ../reference/reference_lua/json.rst:46
 #: ../reference/reference_lua/msgpack.rst:43
 #: ../reference/reference_lua/pickle.rst:85
-#: ../reference/reference_lua/socket.rst:268
-#: ../reference/reference_lua/socket.rst:299
+#: ../reference/reference_lua/socket.rst:269
+#: ../reference/reference_lua/socket.rst:300
 #: ../reference/reference_lua/yaml.rst:43
 msgid "string"
 msgstr ""
@@ -2233,8 +2233,8 @@ msgstr ""
 #: ../reference/reference_lua/fiber_ipc.rst:99
 #: ../reference/reference_lua/fio.rst:110
 #: ../reference/reference_lua/fio.rst:469
-#: ../reference/reference_lua/socket.rst:248
-#: ../reference/reference_lua/socket.rst:362
+#: ../reference/reference_lua/socket.rst:249
+#: ../reference/reference_lua/socket.rst:363
 msgid "number"
 msgstr ""
 
@@ -2486,9 +2486,9 @@ msgstr ""
 #: ../reference/reference_lua/net_box.rst:91
 #: ../reference/reference_lua/net_box.rst:105
 #: ../reference/reference_lua/net_box.rst:118
-#: ../reference/reference_lua/socket.rst:229
-#: ../reference/reference_lua/socket.rst:399
-#: ../reference/reference_lua/socket.rst:410
+#: ../reference/reference_lua/socket.rst:230
+#: ../reference/reference_lua/socket.rst:400
+#: ../reference/reference_lua/socket.rst:411
 #: ../reference/reference_lua/tap.rst:91
 #: ../reference/reference_lua/tap.rst:123
 #: ../reference/reference_lua/tap.rst:154
@@ -2556,6 +2556,10 @@ msgid "true if the specified channel is already closed. Otherwise false."
 msgstr ""
 
 #: ../reference/reference_lua/fiber_ipc.rst:133
+msgid "This example should give a rough idea of what some functions for fibers should look like. It's assumed that the functions would be referenced in :ref:`fiber.create() <fiber-create>`."
+msgstr ""
+
+#: ../reference/reference_lua/fiber_ipc.rst:138
 msgid "fiber = require('fiber')\n"
 "channel = fiber.channel(10)\n"
 "function consumer_fiber()\n"
@@ -2781,7 +2785,7 @@ msgstr ""
 #: ../reference/reference_lua/fio.rst:189
 #: ../reference/reference_lua/fio.rst:355
 #: ../reference/reference_lua/fio.rst:471
-#: ../reference/reference_lua/socket.rst:349
+#: ../reference/reference_lua/socket.rst:350
 msgid "Possible errors: nil."
 msgstr ""
 
@@ -4495,28 +4499,32 @@ msgid "port number"
 msgstr ""
 
 #: ../reference/reference_lua/socket.rst:149
+msgid "timeout"
+msgstr ""
+
+#: ../reference/reference_lua/socket.rst:150
 msgid "a connected socket, if no error."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:154
+#: ../reference/reference_lua/socket.rst:155
 msgid "tcp_connect('127.0.0.1', 3301)"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:162
+#: ../reference/reference_lua/socket.rst:163
 msgid "The ``socket.getaddrinfo()`` function is useful for finding information about a remote site so that the correct arguments for ``sock:sysconnect()`` can be passed."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:166
-#: ../reference/reference_lua/socket.rst:521
-#: ../reference/reference_lua/socket.rst:533
+#: ../reference/reference_lua/socket.rst:167
+#: ../reference/reference_lua/socket.rst:522
+#: ../reference/reference_lua/socket.rst:534
 msgid "A table containing these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:171
+#: ../reference/reference_lua/socket.rst:172
 msgid "``socket.getaddrinfo('tarantool.org', 'http')`` will return variable information such as"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:174
+#: ../reference/reference_lua/socket.rst:175
 msgid "---\n"
 "- - host: 188.93.56.70\n"
 "    family: AF_INET\n"
@@ -4531,190 +4539,190 @@ msgid "---\n"
 "..."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:193
+#: ../reference/reference_lua/socket.rst:194
 msgid "The ``socket.tcp_server()`` function makes Tarantool act as a server that can accept connections. Usually the same objective is accomplished with ``box.cfg{listen=...)``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:199
+#: ../reference/reference_lua/socket.rst:200
 msgid "socket.tcp_server('localhost', 3302, function () end)"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:209
+#: ../reference/reference_lua/socket.rst:210
 msgid "Connect an existing socket to a remote host. The argument values are the same as in tcp_connect(). The host must be an IP address."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:216
+#: ../reference/reference_lua/socket.rst:217
 msgid "Either:"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:215
+#: ../reference/reference_lua/socket.rst:216
 msgid "host - a string representation of an IPv4 address or an IPv6 address;"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:217
+#: ../reference/reference_lua/socket.rst:218
 msgid "port - a number."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:219
-#: ../reference/reference_lua/socket.rst:226
+#: ../reference/reference_lua/socket.rst:220
+#: ../reference/reference_lua/socket.rst:227
 msgid "Or:"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:219
+#: ../reference/reference_lua/socket.rst:220
 msgid "host - a string containing \"unix/\";"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:220
+#: ../reference/reference_lua/socket.rst:221
 msgid "port - a string containing a path to a unix socket."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:222
+#: ../reference/reference_lua/socket.rst:223
 msgid "host - a number, 0 (zero), meaning \"all local interfaces\";"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:224
+#: ../reference/reference_lua/socket.rst:225
 msgid "port - a number. If a port number is 0 (zero), the socket will be bound to a random local port."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:228
+#: ../reference/reference_lua/socket.rst:229
 msgid "the socket object value may change if sysconnect() succeeds."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:233
+#: ../reference/reference_lua/socket.rst:234
 msgid "socket = require('socket')\n"
 "sock = socket('AF_INET', 'SOCK_STREAM', 'tcp')\n"
 "sock:sysconnect(0, 3301)"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:244
+#: ../reference/reference_lua/socket.rst:245
 msgid "Send data over a connected socket."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:247
-#: ../reference/reference_lua/socket.rst:361
+#: ../reference/reference_lua/socket.rst:248
+#: ../reference/reference_lua/socket.rst:362
 msgid "the number of bytes sent."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:250
+#: ../reference/reference_lua/socket.rst:251
 msgid "Possible errors: nil on error."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:256
+#: ../reference/reference_lua/socket.rst:257
 msgid "Write as much as possible data to the socket buffer if non-blocking. Rarely used. For details see `this description`_."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:263
+#: ../reference/reference_lua/socket.rst:264
 msgid "Read ``size`` bytes from a connected socket. An internal read-ahead buffer is used to reduce the cost of this call."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:267
+#: ../reference/reference_lua/socket.rst:268
 msgid "a string of the requested length on success."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:270
+#: ../reference/reference_lua/socket.rst:271
 msgid "Possible errors: On error, returns an empty string, followed by status, errno, errstr. In case the writing side has closed its end, returns the remainder read from the socket (possibly an empty string), followed by \"eof\" status."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:283
+#: ../reference/reference_lua/socket.rst:284
 msgid "Read from a connected socket until some condition is true, and return the bytes that were read. Reading goes on until ``limit`` bytes have been read, or a delimiter has been read, or a timeout has expired."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:288
+#: ../reference/reference_lua/socket.rst:289
 msgid "maximum number of bytes to read for example 50 means \"stop after 50 bytes\""
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:290
+#: ../reference/reference_lua/socket.rst:291
 msgid "separator for example '?' means \"stop after a question mark\""
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:292
+#: ../reference/reference_lua/socket.rst:293
 msgid "maximum number of seconds to wait for example 50 means \"stop after 50 seconds\"."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:295
+#: ../reference/reference_lua/socket.rst:296
 msgid "an empty string if there is nothing more to read, or a nil value if error, or a string up to ``limit`` bytes long, which may include the bytes that matched the ``delimiter`` expression."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:305
+#: ../reference/reference_lua/socket.rst:306
 msgid "Return all available data from the socket buffer if non-blocking. Rarely used. For details see `this description`_."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:312
+#: ../reference/reference_lua/socket.rst:313
 msgid "Bind a socket to the given host/port. A UDP socket after binding can be used to receive data (see :ref:`socket_object.recvfrom <socket-recvfrom>`). A TCP socket can be used to accept new connections, after it has been put in listen mode."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:320
+#: ../reference/reference_lua/socket.rst:321
 msgid "a socket object on success"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:323
+#: ../reference/reference_lua/socket.rst:324
 msgid "Possible errors: Returns nil, status, errno, errstr on error."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:329
+#: ../reference/reference_lua/socket.rst:330
 msgid "Start listening for incoming connections."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:331
+#: ../reference/reference_lua/socket.rst:332
 msgid "On Linux the listen ``backlog`` backlog may be from /proc/sys/net/core/somaxconn, on BSD the backlog may be ``SOMAXCONN``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:335
+#: ../reference/reference_lua/socket.rst:336
 msgid "true for success, false for error."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:336
+#: ../reference/reference_lua/socket.rst:337
 msgid "boolean."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:342
+#: ../reference/reference_lua/socket.rst:343
 msgid "Accept a new client connection and create a new connected socket. It is good practice to set the socket's blocking mode explicitly after accepting."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:346
+#: ../reference/reference_lua/socket.rst:347
 msgid "new socket if success."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:355
+#: ../reference/reference_lua/socket.rst:356
 msgid "Send a message on a UDP socket to a specified host."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:364
-#: ../reference/reference_lua/socket.rst:376
+#: ../reference/reference_lua/socket.rst:365
+#: ../reference/reference_lua/socket.rst:377
 msgid "Possible errors: on error, returns status, errno, errstr."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:370
+#: ../reference/reference_lua/socket.rst:371
 msgid "Receive a message on a UDP socket."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:373
+#: ../reference/reference_lua/socket.rst:374
 msgid "message, a table containing \"host\", \"family\" and \"port\" fields."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:374
+#: ../reference/reference_lua/socket.rst:375
 msgid "string, table"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:380
+#: ../reference/reference_lua/socket.rst:381
 msgid "After ``message_content, message_sender = recvfrom(1)`` the value of ``message_content`` might be a string containing 'X' and the value of ``message_sender`` might be a table containing"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:384
+#: ../reference/reference_lua/socket.rst:385
 msgid "message_sender.host = '18.44.0.1'\n"
 "message_sender.family = 'AF_INET'\n"
 "message_sender.port = 43065"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:394
+#: ../reference/reference_lua/socket.rst:395
 msgid "Shutdown a reading end, a writing end, or both ends of a socket."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:396
+#: ../reference/reference_lua/socket.rst:397
 msgid "socket.SHUT_RD, socket.SHUT_WR, or socket.SHUT_RDWR."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:398
+#: ../reference/reference_lua/socket.rst:399
 #: ../reference/reference_lua/tap.rst:90
 #: ../reference/reference_lua/tap.rst:122
 #: ../reference/reference_lua/tap.rst:153
@@ -4724,203 +4732,203 @@ msgstr ""
 msgid "true or false."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:405
+#: ../reference/reference_lua/socket.rst:406
 msgid "Close (destroy) a socket. A closed socket should not be used any more. A socket is closed automatically when its userdata is garbage collected by Lua."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:408
+#: ../reference/reference_lua/socket.rst:409
 msgid "true on success, false on error. For example, if sock is already closed, sock:close() returns false."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:417
+#: ../reference/reference_lua/socket.rst:418
 msgid "Retrieve information about the last error that occurred on a socket, if any. Errors do not cause throwing of exceptions so these functions are usually necessary."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:420
+#: ../reference/reference_lua/socket.rst:421
 msgid "result for ``sock:errno()``, result for ``sock:error()``. If there is no error, then ``sock:errno()`` will return 0 and ``sock:error()``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:422
+#: ../reference/reference_lua/socket.rst:423
 msgid "number, string"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:428
+#: ../reference/reference_lua/socket.rst:429
 msgid "Set socket flags. The argument values are the same as in the `Linux getsockopt(2) man page <http://man7.org/linux/man-pages/man2/setsockopt.2.html>`_. The ones that Tarantool accepts are:"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:432
+#: ../reference/reference_lua/socket.rst:433
 msgid "SO_ACCEPTCONN"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:433
+#: ../reference/reference_lua/socket.rst:434
 msgid "SO_BINDTODEVICE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:434
+#: ../reference/reference_lua/socket.rst:435
 msgid "SO_BROADCAST"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:435
+#: ../reference/reference_lua/socket.rst:436
 msgid "SO_DEBUG"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:436
+#: ../reference/reference_lua/socket.rst:437
 msgid "SO_DOMAIN"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:437
+#: ../reference/reference_lua/socket.rst:438
 msgid "SO_ERROR"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:438
+#: ../reference/reference_lua/socket.rst:439
 msgid "SO_DONTROUTE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:439
+#: ../reference/reference_lua/socket.rst:440
 msgid "SO_KEEPALIVE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:440
+#: ../reference/reference_lua/socket.rst:441
 msgid "SO_MARK"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:441
+#: ../reference/reference_lua/socket.rst:442
 msgid "SO_OOBINLINE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:442
+#: ../reference/reference_lua/socket.rst:443
 msgid "SO_PASSCRED"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:443
+#: ../reference/reference_lua/socket.rst:444
 msgid "SO_PEERCRED"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:444
+#: ../reference/reference_lua/socket.rst:445
 msgid "SO_PRIORITY"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:445
+#: ../reference/reference_lua/socket.rst:446
 msgid "SO_PROTOCOL"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:446
+#: ../reference/reference_lua/socket.rst:447
 msgid "SO_RCVBUF"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:447
+#: ../reference/reference_lua/socket.rst:448
 msgid "SO_RCVBUFFORCE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:448
+#: ../reference/reference_lua/socket.rst:449
 msgid "SO_RCVLOWAT"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:449
+#: ../reference/reference_lua/socket.rst:450
 msgid "SO_SNDLOWAT"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:450
+#: ../reference/reference_lua/socket.rst:451
 msgid "SO_RCVTIMEO"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:451
+#: ../reference/reference_lua/socket.rst:452
 msgid "SO_SNDTIMEO"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:452
+#: ../reference/reference_lua/socket.rst:453
 msgid "SO_REUSEADDR"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:453
+#: ../reference/reference_lua/socket.rst:454
 msgid "SO_SNDBUF"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:454
+#: ../reference/reference_lua/socket.rst:455
 msgid "SO_SNDBUFFORCE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:455
+#: ../reference/reference_lua/socket.rst:456
 msgid "SO_TIMESTAMP"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:456
+#: ../reference/reference_lua/socket.rst:457
 msgid "SO_TYPE"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:458
+#: ../reference/reference_lua/socket.rst:459
 msgid "Setting SO_LINGER is done with ``sock:linger(active)``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:464
+#: ../reference/reference_lua/socket.rst:465
 msgid "Get socket flags. For a list of possible flags see ``sock:setsockopt()``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:470
+#: ../reference/reference_lua/socket.rst:471
 msgid "Set or clear the SO_LINGER flag. For a description of the flag, see the `Linux man page <http://man7.org/linux/man-pages/man1/loginctl.1.html>`_."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:475
+#: ../reference/reference_lua/socket.rst:476
 msgid "new active and timeout values."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:481
+#: ../reference/reference_lua/socket.rst:482
 msgid "``sock:nonblock()`` returns the current flag value."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:482
+#: ../reference/reference_lua/socket.rst:483
 msgid "``sock:nonblock(false)`` sets the flag to false and returns false."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:483
+#: ../reference/reference_lua/socket.rst:484
 msgid "``sock:nonblock(true)`` sets the flag to true and returns true."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:485
+#: ../reference/reference_lua/socket.rst:486
 msgid "This function may be useful before invoking a function which might otherwise block indefinitely."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:492
+#: ../reference/reference_lua/socket.rst:493
 msgid "Wait until something is readable, or until a timeout value expires."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:494
+#: ../reference/reference_lua/socket.rst:495
 msgid "true if the socket is now readable, false if timeout expired;"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:500
+#: ../reference/reference_lua/socket.rst:501
 msgid "Wait until something is writable, or until a timeout value expires."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:502
+#: ../reference/reference_lua/socket.rst:503
 msgid "true if the socket is now writable, false if timeout expired;"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:508
+#: ../reference/reference_lua/socket.rst:509
 msgid "Wait until something is either readable or writable, or until a timeout value expires."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:510
+#: ../reference/reference_lua/socket.rst:511
 msgid "'R' if the socket is now readable, 'W' if the socket is now writable, 'RW' if the socket is now both readable and writable, '' (empty string) if timeout expired;"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:516
+#: ../reference/reference_lua/socket.rst:517
 msgid "The ``sock:name()`` function is used to get information about the near side of the connection. If a socket was bound to ``xyz.com:45``, then ``sock:name`` will return information about ``[host:xyz.com, port:45]``. The equivalent POSIX function is ``getsockname()``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:528
+#: ../reference/reference_lua/socket.rst:529
 msgid "The ``sock:peer()`` function is used to get information about the far side of a connection. If a TCP connection has been made to a distant host ``tarantool.org:80``, ``sock:peer()`` will return information about ``[host:tarantool.org, port:80]``. The equivalent POSIX function is ``getpeername()``."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:544
+#: ../reference/reference_lua/socket.rst:545
 msgid "Use of a TCP socket over the Internet"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:546
+#: ../reference/reference_lua/socket.rst:547
 msgid "In this example a connection is made over the internet between the Tarantool server and tarantool.org, then an HTTP \"head\" message is sent, and a response is received: \"``HTTP/1.1 200 OK``\". This is not a useful way to communicate with this particular site, but shows that the system works."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:551
+#: ../reference/reference_lua/socket.rst:552
 msgid "tarantool> socket = require('socket')\n"
 "---\n"
 "...\n"
@@ -4949,15 +4957,15 @@ msgid "tarantool> socket = require('socket')\n"
 "..."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:582
+#: ../reference/reference_lua/socket.rst:583
 msgid "Use of a UDP socket on localhost"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:584
+#: ../reference/reference_lua/socket.rst:585
 msgid "Here is an example with datagrams. Set up two connections on 127.0.0.1 (localhost): ``sock_1`` and ``sock_2``. Using ``sock_2``, send a message to ``sock_1``. Using ``sock_1``, receive a message. Display the received message. Close both connections. |br| This is not a useful way for a computer to communicate with itself, but shows that the system works."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:590
+#: ../reference/reference_lua/socket.rst:591
 msgid "tarantool> socket = require('socket')\n"
 "---\n"
 "...\n"
@@ -4992,23 +5000,23 @@ msgid "tarantool> socket = require('socket')\n"
 "..."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:627
+#: ../reference/reference_lua/socket.rst:628
 msgid "Use tcp_server to accept file contents sent with socat"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:629
+#: ../reference/reference_lua/socket.rst:630
 msgid "Here is an example of the tcp_server function, reading strings from the client and printing them. On the client side, the Linux socat utility will be used to ship a whole file for the tcp_server function to read."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:634
+#: ../reference/reference_lua/socket.rst:635
 msgid "Start two shells. The first shell will be the server. The second shell will be the client."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:637
+#: ../reference/reference_lua/socket.rst:638
 msgid "On the first shell, start Tarantool and say:"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:639
+#: ../reference/reference_lua/socket.rst:640
 msgid "box.cfg{}\n"
 "socket = require('socket')\n"
 "socket.tcp_server('0.0.0.0', 3302, function(s)\n"
@@ -5023,23 +5031,23 @@ msgid "box.cfg{}\n"
 "  end)"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:654
+#: ../reference/reference_lua/socket.rst:655
 msgid "The above code means: use `tcp_server()` to wait for a connection from any host on port 3302. When it happens, enter a loop that reads on the socket and prints what it reads. The \"delimiter\" for the read function is \"\\\\n\" so each `read()` will read a string as far as the next line feed, including the line feed."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:661
+#: ../reference/reference_lua/socket.rst:662
 msgid "On the second shell, create a file that contains a few lines. The contents don't matter. Suppose the first line contains A, the second line contains B, the third line contains C. Call this file \"tmp.txt\"."
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:666
+#: ../reference/reference_lua/socket.rst:667
 msgid "On the second shell, use the socat utility to ship the tmp.txt file to the server's host and port:"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:669
+#: ../reference/reference_lua/socket.rst:670
 msgid "$ socat TCP:localhost:3302 ./tmp.txt"
 msgstr ""
 
-#: ../reference/reference_lua/socket.rst:673
+#: ../reference/reference_lua/socket.rst:674
 msgid "Now watch what happens on the first shell. The strings \"A\", \"B\", \"C\" are printed."
 msgstr ""
 
