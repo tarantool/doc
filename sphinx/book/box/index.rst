@@ -364,7 +364,7 @@ are automatic, or users can make them at any time with the
 :ref:`box.snapshot() <admin-snapshot>` request.
 
 Details about the WAL writer and the recovery process are in the
-:ref:`Internals <b_internals>` section.
+:ref:`Internals <internals>` section.
 
 --------------------------------------------------------------------------------
 Data manipulation

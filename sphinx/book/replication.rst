@@ -95,7 +95,7 @@ degraded state requires a human inspection.
 
 However, once a master failure is detected, the recovery is simple: declare
 that the replica is now the new master, by saying
-:codenormal:`box.cfg{... listen=`:codeitalic:`URI <index-uri>`:codenormal:`}`.
+:codenormal:`box.cfg{... listen=`:codeitalic:`URI`:codenormal:`}`.
 Then, if there are updates on the old master that were not propagated before
 the old master went down, they would have to be re-applied manually.
 
@@ -152,9 +152,8 @@ Monitoring a replica's actions
 
 In :ref:`box.info <box_introspection-box_info>` there is a ``box.info.replication.status`` field:
 "off", "stopped", "connecting", "auth", "follow", or "disconnected". |br|
-If a replica's status is "follow", then there will be two more fields: |br|
-``box.info.replication.idle`` = the number of seconds the replica has been idle, |br|
-``box.info.replication.lag`` = the number of seconds the replica is behind the master.
+If a replica's status is "follow", then there will be more fields --
+the list is in the section :ref:`Submodule box.info <box_introspection-box_info>`.
 
 In the :ref:`log <log>` there is a record of replication activity.
 If a primary server is started with:
@@ -294,7 +293,7 @@ parameter will always have to have the long form |br|
 
 Q: What if advanced users want to understand better how it all works? |br|
 A: See the description of server startup with replication in the
-:ref:`Internals <b_internals-replication>` appendix.
+:ref:`Internals <internals-replication>` section.
 
 --------------------------------------------------------------------------------
 Hands-on replication tutorial

@@ -25,6 +25,8 @@ Use ``box.cfg`` without braces to get read-only access to those parameters.
       <...>
     ...
 
+.. _box_introspection-box_info:
+
 --------------------------------------------------------------------------------
 Submodule `box.info`
 --------------------------------------------------------------------------------
@@ -32,17 +34,36 @@ Submodule `box.info`
 .. module:: box.info
 
 The ``box.info`` submodule provides access to information about server variables.
-Some important ones:
 
-* **server.uuid** holds the unique identifier of the server. This value is also
+* **server.lsn** Log Sequence Number for the latest entry in the WAL.
+* **server.ro**  True if the server is in "read_only" mode
+  (same as :ref:`read_only <cfg_basic-read_only>` in box.cfg).
+* **server.uuid** The unique identifier of this server,
+  as stored in the database. This value is also
   in the :ref:`box.space._cluster <box_space-cluster>` system space.
-* **pid** is the process ID of the server. This value is also shown by the
-  :ref:`tarantool <tarantool-build>` module.
-* **version** is the Tarantool version. This value is also shown by
+* **server.id** The number of this server within a cluster.
+* **version** Tarantool version. This value is also shown by
   :ref:`tarantool --version <index-tarantool_version>`.
-* **uptime** is the number of seconds since the server started.
+* **status** Usually this is 'running', but it can be 'loading', 'orphan', or 'hot_standby'.
+* **vclock** Same as replication.vclock.
+* **pid** Process ID. This value is also shown by the
+  :ref:`tarantool <tarantool-build>` module.
+  This value is also shown by the Linux "ps -A" command.
+* **cluster.uuid** UUID of the cluster. Every server in a cluster will have the same cluster.uuid value.
+  This value is also in the :ref:`box.space._schema <box_space-schema>` system space.
+* **vinyl()** Returns runtime statistics for the vinyl storage engine.
+* **replication.lag** Number of seconds that the replica is behind the master.
+* **replication.status** Usually this is 'follow', but it can be
+  'off', 'stopped', 'connecting', 'auth', or 'disconnected'.
+* **replication.idle** Number of seconds that the server has been idle.
+* **replication.vclock** See the :ref:`discussion of "vector clock" <internals-vector>` in the Internals section.
+* **replication.uuid** The unique identifier of a master to which this server is connected.
+* **replication.uptime** Number of seconds since the server started.
+  This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`.
 
-.. _box_introspection-box_info:
+The replication fields are blank unless the server is a :ref:`replica <index-box_replication>`.
+The replication fields are in an array if the server is a replica for more than one master.
+
 
 .. function:: box.info()
 
@@ -65,7 +86,7 @@ Some important ones:
             ro: false
             uuid: a2684219-b2b1-4334-88ab-50b0722283fd
             id: 1
-          version: 1.7.0-1216-g73f7154
+          version: 1.7.1-435-g6ba8500
           pid: 12932
           status: running
           vclock:
@@ -88,7 +109,7 @@ Some important ones:
         ...
         tarantool> box.info.version
         ---
-        - 1.7.0-66-g9093daa
+        - 1.7.1-435-g6ba8500
         ...
 
 --------------------------------------------------------------------------------

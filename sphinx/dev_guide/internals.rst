@@ -1,4 +1,4 @@
-.. _b_internals:
+.. _internals:
 
 --------------------------------------------------------------------------------
 Data persistence and the WAL file format
@@ -175,7 +175,7 @@ Step 3
 Step 4
     For the memtx engine, re-create all secondary indexes.
 
-.. _b_internals-replication:
+.. _internals-replication:
 
 --------------------------------------------------------------------------------
 Server startup with replication
@@ -239,6 +239,8 @@ handshake". When a distant server receives an on-connect handshake: |br|
 In the end ... the local server knows what cluster it belongs to, the distant
 server knows that the local server is a member of the cluster, and both servers
 have the same database contents.
+
+.. _internals-vector:
 
 *If there is a snapshot file and replication source is not empty*: |br|
 first the local server goes through the recovery process described in the
