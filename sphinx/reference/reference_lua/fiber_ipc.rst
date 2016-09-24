@@ -36,10 +36,10 @@ other Lua object. Use object-oriented syntax, for example
         Send a message using a channel. If the channel is full,
         ``channel:put()`` blocks until there is a free slot in the channel.
 
-        :param lua_object message:
-        :param timeout:
-        :return: If timeout is provided, and the channel doesn't become empty for
-                the duration of the timeout, ``channel:put()`` returns false.
+        :param lua_object message: string
+        :param timeout: number
+        :return: If timeout is provided, and there is no free slot in the channel
+                for the duration of the timeout, ``channel:put()`` returns false.
                 Otherwise it returns true.
         :rtype:  boolean
 
@@ -54,10 +54,11 @@ other Lua object. Use object-oriented syntax, for example
         Fetch a message from a channel. If the channel is empty,
         ``channel:get()`` blocks until there is a message.
 
-        :param timeout:
-        :return: the value placed on the channel by an earlier
-                ``channel:put()``.
-        :rtype:  lua_object
+        :param timeout: number
+        :return: the message placed on the channel by ``channel:put()``.
+                If timeout is provided, and there is no message in the channel
+                for the duration of the timeout, ``channel:get()`` returns nil.
+        :rtype:  string
 
     .. method:: is_empty()
 
