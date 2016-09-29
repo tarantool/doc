@@ -14,7 +14,9 @@ Use freely.
 
 .. _cookbook-hello_world:
 
-**hello_world.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hello_world.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The standard example of a simple program.
 
@@ -26,7 +28,9 @@ The standard example of a simple program.
 
 .. _cookbook-console-start:
 
-**console_start.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+console_start.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :ref:`box.once() <box-once>` to initialize a database
 (creating spaces) if this is the first time the server has been run.
@@ -51,7 +55,9 @@ Then use :ref:`console.start() <console-start>` to start interactive mode.
 
 .. _cookbook-fio_read:
 
-**fio_read.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fio_read.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the :ref:`fio module <fio-module>` to open, read, and close a file.
 
@@ -71,7 +77,9 @@ Use the :ref:`fio module <fio-module>` to open, read, and close a file.
 
 .. _cookbook-fio_write:
 
-**fio_write.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fio_write.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the :ref:`fio module <fio-module>` to open, write, and close a file.
 
@@ -91,7 +99,9 @@ Use the :ref:`fio module <fio-module>` to open, write, and close a file.
 
 .. _cookbook-ffi_printf:
 
-**ffi_printf.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ffi_printf.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built-in function: printf().
 (For help understanding ffi, see the `FFI tutorial <http://luajit.org/ext_ffi_tutorial.html>`_.)
@@ -109,7 +119,9 @@ Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built
 
 .. _cookbook-ffi_gettimeofday:
 
-**ffi_gettimeofday.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ffi_gettimeofday.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C function: gettimeofday().
 This delivers time with millisecond precision, unlike the time function in
@@ -137,7 +149,9 @@ Tarantool's :ref:`clock module <clock-module>`.
 
 .. _cookbook-ffi_zlib:
 
-**ffi_zlib.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ffi_zlib.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C library function.
 (For help understanding ffi, see the `FFI tutorial <http://luajit.org/ext_ffi_tutorial.html>`_.)
@@ -185,7 +199,9 @@ Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C libra
 
 .. _cookbook-ffi_meta:
 
-**ffi_meta.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ffi_meta.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to
 access a C object via a metamethod (a method which is defined with
@@ -219,7 +235,9 @@ a metatable).
 
 .. _cookbook-print_arrays:
 
-**print_arrays.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+print_arrays.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create Lua tables, and print them.
 Notice that for the 'array' table the iterator function
@@ -241,7 +259,9 @@ The display will look like:
 
 .. _cookbook-count_array:
 
-**count_array.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+count_array.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the '#' operator to get the number of items in an array-like Lua table.
 This operation has O(log(N)) complexity.
@@ -255,7 +275,9 @@ This operation has O(log(N)) complexity.
 
 .. _cookbook-count_array_with_nils:
 
-**count_array_with_nils.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+count_array_with_nils.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Missing elements in arrays, which Lua treats a "nil"s,
 cause the simple "#" operator to deliver improper results.
@@ -283,7 +305,9 @@ also misbehave when "nils" are present.
 
 .. _cookbook-count_array_with_nulls:
 
-**count_array_with_nulls.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+count_array_with_nulls.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use explicit ``NULL`` values to avoid the problems caused by Lua's
 nil == missing value behavior. Although :code:`json.NULL == nil` is
@@ -311,7 +335,9 @@ the correct value: 10.
 
 .. _cookbook-count_map:
 
-**count_map.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+count_map.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Get the number of elements in a map-like table.
 
@@ -326,7 +352,9 @@ Get the number of elements in a map-like table.
 
 .. _cookbook-swap:
 
-**swap.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+swap.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use a Lua peculiarity to swap two variables without needing a third variable.
 
@@ -341,7 +369,9 @@ Use a Lua peculiarity to swap two variables without needing a third variable.
 
 .. _cookbook-uri:
 
-**uri.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+uri.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use built-in function :code:`uri_parse` to see what is in a `URI <configuration-uri>`:
 
@@ -362,7 +392,9 @@ Use built-in function :code:`uri_parse` to see what is in a `URI <configuration-
 
 .. _cookbook-class:
 
-**class.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create a class, create a metatable for the class, create an instance of the class.
 Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable
@@ -400,7 +432,9 @@ Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable
 
 .. _cookbook-garbage:
 
-**garbage.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+garbage.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Force Lua `garbage collection <https://www.lua.org/manual/5.1/manual.html#2.10>`_
 with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_.
@@ -413,7 +447,9 @@ with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pd
 
 .. _cookbook-fiber_producer_and_consumer:
 
-**fiber_producer_and_consumer.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fiber_producer_and_consumer.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Start one fiber for producer and one fiber for consumer.
 Use :ref:`fiber.channel() <fiber_ipc-channel>` to exchange data and synchronize.
@@ -472,7 +508,9 @@ to control the number of simultaneous tasks waiting for processing.
 
 .. _cookbook-socket_tcpconnect:
 
-**socket_tcpconnect.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+socket_tcpconnect.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :ref:`socket.tcp_connect() <socket-tcp_connect>`
 to connect to a remote host via TCP.
@@ -494,7 +532,9 @@ Display the connection details and the result of a GET request.
 
 .. _cookbook-socket_tcp_echo:
 
-**socket_tcp_echo.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+socket_tcp_echo.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :ref:`socket.tcp_connect() <socket-tcp_connect>`
 to set up a simple TCP server, by creating
@@ -525,7 +565,9 @@ with each client getting a separate fiber.
 
 .. _cookbook-getaddrinfo:
 
-**getaddrinfo.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+getaddrinfo.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use :ref:`socket.getaddrinfo() <socket-getaddrinfo>` to perform
 non-blocking DNS resolution, getting both the AF_INET6 and AF_INET
@@ -553,7 +595,9 @@ before trying to connect to the first available address.
 
 .. _cookbook-socket_udp_echo:
 
-**socket_udp_echo.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+socket_udp_echo.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tarantool does not currently have a `udp_server` function,
 therefore socket_udp_echo.lua is more complicated than
@@ -631,7 +675,9 @@ look something like this ...
 
 .. _cookbook-http_get:
 
-**http_get.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+http_get.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `http`_ `rock`_ (which must first be installed)
 to get data via HTTP.
@@ -652,7 +698,9 @@ to get data via HTTP.
 
 .. _cookbook-http_send:
 
-**http_send.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+http_send.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `http`_ `rock`_ (which must first be installed)
 to send data via HTTP.
@@ -672,7 +720,9 @@ to send data via HTTP.
 
 .. _cookbook-http_server:
 
-**http_server.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+http_server.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `http`_ `rock`_ (which must first be installed)
 to turn Tarantool into a web server.
@@ -692,7 +742,9 @@ to turn Tarantool into a web server.
 
 .. _cookbook-generate_html:
 
-**http_generate_html.lua**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+http_generate_html.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the `http`_ `rock` (which must first be installed)
 to generate HTML pages from templates.
