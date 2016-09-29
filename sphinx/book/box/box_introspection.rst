@@ -112,6 +112,8 @@ The replication fields are in an array if the server is a replica for more than 
         - 1.7.1-435-g6ba8500
         ...
 
+.. _box_introspection-box_slab:
+
 --------------------------------------------------------------------------------
 Submodule `box.slab`
 --------------------------------------------------------------------------------
