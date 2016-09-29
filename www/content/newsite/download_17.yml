@@ -291,12 +291,12 @@ blocks :
     - - "Snappy package"
       - format : rst
         content: |
-          You can install Tarantool 1.7.2 (Alpha) from a Snappy package:
+          You can install Tarantool 1.7.2 (Beta) from a Snappy package:
 
           .. code-block:: bash
-          
-            $ snap install tarantool --channel=edge          
-          
+
+            $ snap install tarantool --channel=beta
+
           Snaps are universal Linux packages which can be installed across
           a range of Linux distributions. 
 
