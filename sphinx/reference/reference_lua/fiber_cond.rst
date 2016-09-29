@@ -73,7 +73,7 @@ until the condition variable changes.
 
 On terminal #2, say
 
-.. code-block:: note
+.. code-block:: none
 
     tarantoolctl connect '3301'
     cond:signal()
