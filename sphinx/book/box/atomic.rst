@@ -159,7 +159,7 @@ Despite their resemblance to implicit yield requests,
 cause implicit yield.
 Despite their resemblance to functions of the fio module,
 functions of the standard Lua module
-`os <http://www.lua.org/manual/5.1/manual.html#5.8>`
+`os <http://www.lua.org/manual/5.1/manual.html#5.8>`_
 do not cause implicit yield.
 Despite its resemblance to commit, :ref:`rollback <atomic-box_rollback>` does
 not enable yields.
