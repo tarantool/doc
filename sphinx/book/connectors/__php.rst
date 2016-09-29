@@ -40,5 +40,5 @@ project at GitHub.
 Besides, you can use an alternative PHP driver from
 another GitHub project: it includes a *client*
 (see `tarantool-php/client <https://github.com/tarantool-php/client>`_)
-and a *wrapper* for that client
+and a *mapper* for that client
 (see `tarantool-php/mapper <https://github.com/tarantool-php/mapper>`_).
