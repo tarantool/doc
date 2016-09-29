@@ -5,28 +5,9 @@
 The most commonly used PHP driver is
 `tarantool-php <https://github.com/tarantool/tarantool-php>`_.
 It is not supplied as part of the Tarantool repository; it must be installed
-separately. It can be installed with :program:`git`. It requires other modules
-which should be installed first. For example, on Ubuntu, the installation could
-look like this:
-
-.. code-block:: console
-
-    $ sudo apt-get install php5-cli
-    $ sudo apt-get install php5-dev
-    $ sudo apt-get install php-pear
-    $ cd ~
-    $ git clone https://github.com/tarantool/tarantool-php.git
-    $ cd tarantool-php
-    $ phpize
-    $ ./configure
-    $ make
-    $ # make install is optional
-
-
-At this point there is a file named :file:`~/tarantool-php/modules/tarantool.so`.
-PHP will only find it if the PHP initialization file :file:`php.ini` contains a
-line like :samp:`extension=./tarantool.so`, or if PHP is started with the option
-:samp:`-d extension=~/tarantool-php/modules/tarantool.so`.
+separately, for example with :program:`git`. See
+:ref:`installation instructions <https://github.com/tarantool/tarantool-php/blob/master/#installing-and-building>`_.
+in the driver's :file:`README` file.
 
 Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named
 ``examples`` via the PHP API. Before trying to run, check that the server is
