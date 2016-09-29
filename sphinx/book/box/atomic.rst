@@ -156,8 +156,11 @@ earlier implicit yield requests.
 
 Despite their resemblance to implicit yield requests,
 :ref:`truncate <box_space-truncate>` and :ref:`drop <box_space-drop>` do not
-cause implicit yield. Despite their resemblance to functions of the fio module,
-functions of the :ref:`os <os-module>` module do not cause implicit yield.
+cause implicit yield.
+Despite their resemblance to functions of the fio module,
+functions of the standard Lua module
+`os <http://www.lua.org/manual/5.1/manual.html#5.8>`
+do not cause implicit yield.
 Despite its resemblance to commit, :ref:`rollback <atomic-box_rollback>` does
 not enable yields.
 

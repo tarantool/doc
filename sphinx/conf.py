@@ -48,7 +48,9 @@ exclude_patterns = [
     'book/box/limitation.rst',
     'book/box/vinyl.rst',
     'dev_guide/box_protocol.rst',
-    'dev_guide/internals.rst'
+    'dev_guide/internals.rst',
+    'reference/reference_lua/jit.rst',
+    'reference/reference_lua/os.rst'
 ]
 
 pygments_style = 'sphinx'

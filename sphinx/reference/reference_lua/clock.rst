@@ -31,7 +31,8 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
         clock = require('clock')
         print(clock.time() / (365*24*60*60))
 
-    See also :ref:`fiber.time64 <fiber-time64>` and :ref:`os.clock() <os-clock>`.
+    See also :ref:`fiber.time64 <fiber-time64>` and the standard Lua function
+    `os.clock <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_.
 
 .. function:: monotonic()
               monotonic64()

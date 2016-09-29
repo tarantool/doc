@@ -177,27 +177,27 @@ The ``listen`` value can be any form of URI (uniform resource identifier);
 in this case it's just a local port: port 3301. It's possible to send requests
 to the listen URI via:
 
-a. telnet,
-b. a connector (which will be the subject of the ":ref:`index-box_connectors`"
+1. telnet,
+2. a connector (which will be the subject of the ":ref:`index-box_connectors`"
    chapter),
-c. another instance of Tarantool via the :ref:`console module <console-module>`,
-d. ``tarantoolctl connect``.
+3. another instance of Tarantool via the :ref:`console module <console-module>`,
+4. ``tarantoolctl connect``.
 
-Let's try (d).
+Let's try (4).
 
 Switch to another terminal. On Linux, for example, this means starting another
 instance of a Bash shell. There is no need to use cd to switch to the
 ``~/tarantool_sandbox`` directory.
 
-Start the tarantoolctl utility:
+Start the ``tarantoolctl`` utility:
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     :extsamp:`$ {**{tarantoolctl connect '3301'}**}`
 
-This means "use the :ref:`tarantoolctl connect utility <administration-tarantoolctl_connect>`
-to connect to the Tarantool server that's listening on ``localhost:3301``."
+This means "use :ref:`tarantoolctl connect <administration-tarantoolctl_connect>`
+to connect to the Tarantool server that's listening on ``localhost:3301``".
 
 Try this request:
 
@@ -222,11 +222,16 @@ terminal screen should now look like this:
     localhost:3301> 
 
 You can repeat ``box.space...:insert{}`` and ``box.space...:select{}``
-indefinitely, on either Tarantool instance. When the testing is over: To drop
-the space: ``s:drop()``. To stop tarantoolctl: Ctrl+C or Ctrl+D. To stop
-tarantool (an alternative): :ref:`os.exit() <os-exit>`. To stop tarantool (from
-another terminal): ``sudo pkill -f tarantool``. To destroy the test:
-``rm -r ~/tarantool_sandbox``.
+indefinitely, on either Tarantool instance.
+
+When the testing is over:
+
+* To drop the space: ``s:drop()``
+* To stop ``tarantoolctl``: Ctrl+C or Ctrl+D
+* To stop Tarantool (an alternative): the standard Lua function
+  `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
+* To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``
+* To destroy the test: ``rm -r ~/tarantool_sandbox``
 
 **To review...** If you followed all the instructions in this chapter, then so
 far you have: installed Tarantool from a binary repository,
