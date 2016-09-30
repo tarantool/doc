@@ -7,7 +7,7 @@ Tarantool's binary protocol
 Tarantool's binary protocol is a binary request/response protocol.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Notion in diagrams
+Notation in diagrams
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: none
@@ -16,7 +16,7 @@ Notion in diagrams
     +----+
     |    | - X bytes
     +----+
-     TYPE - type of MsgPack value (if it is MsgPack object)
+     TYPE - type of MsgPack value (if it is a MsgPack object)
 
     +====+
     |    | - Variable size MsgPack object
@@ -58,11 +58,11 @@ Greeting packet
     +---------------------+----------------+
     64                  107              127
 
-The server begins the dialogue by sending a fixed-size (128 bytes) text greeting
-to the client. The greeting always contains two 64 byte lines of ASCII text, each
-line ending with newline character ('\\n'). The first line contains the server
+The server begins the dialogue by sending a fixed-size (128-byte) text greeting
+to the client. The greeting always contains two 64-byte lines of ASCII text, each
+line ending with a newline character ('\\n'). The first line contains the server
 version and protocol type. The second line contains up to 44 bytes of base64-encoded
-random string, to use in authentication packet, and ends with up to 23 spaces.
+random string, to use in the authentication packet, and ends with up to 23 spaces.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Unified packet structure
@@ -78,11 +78,11 @@ a complete access to Tarantool functionality, including:
 For data structuring and encoding, the protocol uses msgpack data format, see
 http://msgpack.org
 
-Tarantool protocol mandates use of a few integer constants serving as keys in
+The Tarantool protocol mandates use of a few integer constants serving as keys in
 maps used in the protocol. These constants are defined in `src/box/iproto_constants.h
 <https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_
 
-Let's list them here too:
+We list them here too:
 
 .. code-block:: none
 
@@ -113,10 +113,11 @@ Let's list them here too:
     <replace> ::= 0x03
     <update>  ::= 0x04
     <delete>  ::= 0x05
-    <call>    ::= 0x06
+    <call_16> ::= 0x06
     <auth>    ::= 0x07
     <eval>    ::= 0x08
     <upsert>  ::= 0x09
+    <call>    ::= 0x0a
     -- Admin command codes
     <ping>    ::= 0x40
 
@@ -151,12 +152,12 @@ Both :code:`<header>` and :code:`<body>` are msgpack maps:
     +================+================+=====================+
                               MP_MAP
 
-They only differ in the allowed set of keys and values, the key defines the type
-of value that follows. If a body has no keys, entire msgpack map for the body
-may be missing. Such is the case, for example, in <ping> request. ``schema_id``
-may be absent in request's header, that means that there'll be no version
+They only differ in the allowed set of keys and values. The key defines the type
+of value that follows. If a body has no keys, the entire msgpack map for the body
+may be missing. Such is the case, for example, for a <ping> request. ``schema_id``
+may be absent in the request's header, meaning that there will be no version
 checking, but it must be present in the response. If ``schema_id`` is sent in
-the header, then it'll be checked.
+the header, then it will be checked.
 
 .. _box_protocol-authentication:
 
@@ -344,12 +345,12 @@ It's an error to specify an argument of a type that differs from expected type.
                               MP_MAP
 
 
-* CALL: CODE - 0x06
+* CALL_16: CODE - 0x06
   Call a stored function
 
 .. code-block:: none
 
-    CALL BODY:
+    CALL_16 BODY:
 
     +=======================+==================+
     |                       |                  |
@@ -420,11 +421,27 @@ It's an error to specify an argument of a type that differs from expected type.
           It's not possible to change with update operations a part of the primary
           key (this is validated before performing upsert).
 
+* CALL: CODE - 0x0a
+  Similar to CALL_16, but -- like EVAL, CALL returns a list of values, unconverted
+
+.. code-block:: none
+
+    CALL BODY:
+
+    +=======================+==================+
+    |                       |                  |
+    |   0x22: FUNCTION_NAME |   0x21: TUPLE    |
+    | MP_INT: MP_STRING     | MP_INT: MP_ARRAY |
+    |                       |                  |
+    +=======================+==================+
+                        MP_MAP
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Response packet structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We'll show whole packets here:
+We will show whole packets here:
 
 .. code-block:: none
 
@@ -458,8 +475,8 @@ EVAL command returns arbitrary `MP_ARRAY` with arbitrary MsgPack values.
 
     Where 0xXXX is ERRCODE.
 
-Error message is present in the response only if there is an error :code:`<error>`
-expects as value a msgpack string
+An error message is present in the response only if there is an error; :code:`<error>`
+expects as value a msgpack string.
 
 Convenience macros which define hexadecimal constants for return codes
 can be found in `src/box/errcode.h
