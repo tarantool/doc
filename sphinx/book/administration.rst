@@ -1195,3 +1195,50 @@ Precautions
   (http://tarantool.org). Please file tickets directly to the upstream's bug
   tracker (https://github.com/tarantool/tarantool/issues/) rather than to your
   Linux distribution.
+
+--------------------------------------------------------------------------------
+Limitations
+--------------------------------------------------------------------------------
+
+These limitations exist due to decisions by packagers
+to support systemd alongside sysvinit.
+
+``/etc/init.d/tarantool start`` under systemd,
+or ``systemctl start tarantool`` (without an @instance argument),
+will start only those instances which were enabled before reboot
+or before the last time that systemd was reloaded with ``systemctl daemon-reload``.
+
+(``systemctl start tarantool``, without an @instance argument,
+is provided only for interoperability with sysvinit scripts.
+Please use ``systemctl start tarantool@instance`` instead.)
+
+``/etc/init.d/tarantool stop`` under systemd,
+or ``systemctl tarantool stop`` (without an @instance argument),
+will do nothing.
+
+Starting with Tarantool version 1.7.1.42, a new version of
+tarantool-common is required.
+(tarantool-common is a downloadable package which provides
+scripts to work with tarantool configuration and log files.)
+An attempt to upgrade tarantool-common will cause restart of all instances.
+
+--------------------------------------------------------------------------------
+sysvinit -> systemd conversion
+--------------------------------------------------------------------------------
+
+These instructions apply only for Debian/Ubuntu distros
+where both sysvinit and systemd exist.
+
+Install new systemd-enabled packages.
+
+#For each instancename in /etc/tarantool/instances.enabled/: |br|
+#To enable the instance to be automatically loaded by systemd: |br|
+``systemctl enable tarantool@instancename``
+
+#The following command does nothing but is recommended for consistency: |br|
+``/etc/init.d/tarantool stop``
+
+#Disable sysvinit-compatible wrappers: |br|
+``systemctl disable tarantool; update-rc.d tarantool remove``
+
+
