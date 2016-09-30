@@ -15,29 +15,11 @@ If you tried out the
 :ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>`
 exercise from the last chapter, then your database looks like this:
 
-.. code-block:: none
+.. image:: data_model.png
+    :align: center
+    :alt: data_model.png
 
-   +--------------------------------------------+
-   |                                            |
-   | SPACE 'tester'                             |
-   | +----------------------------------------+ |
-   | |                                        | |
-   | | TUPLE SET 'tester'                     | |
-   | | +-----------------------------------+  | |
-   | | | Tuple: [ 1 ]                      |  | |
-   | | | Tuple: [ 2, 'Music' ]             |  | |
-   | | | Tuple: [ 3, 'length', 93 ]        |  | |
-   | | +-----------------------------------+  | |
-   | |                                        | |
-   | | INDEX 'primary'                        | |
-   | | +-----------------------------------+  | |
-   | | | Key: 1                            |  | |
-   | | | Key: 2                            |  | |
-   | | | Key: 3                            |  | |
-   | | +-----------------------------------+  | |
-   | |                                        | |
-   | +----------------------------------------+ |
-   +--------------------------------------------+
+Here follow the descriptions of basic concepts.
 
 --------------------------------------------------------------------------------
 Space
