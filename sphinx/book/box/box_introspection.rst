@@ -86,7 +86,7 @@ The replication fields are in an array if the server is a replica for more than 
             ro: false
             uuid: a2684219-b2b1-4334-88ab-50b0722283fd
             id: 1
-          version: 1.7.1-435-g6ba8500
+          version: 1.7.2-435-g6ba8500
           pid: 12932
           status: running
           vclock:
@@ -109,7 +109,7 @@ The replication fields are in an array if the server is a replica for more than 
         ...
         tarantool> box.info.version
         ---
-        - 1.7.1-435-g6ba8500
+        - 1.7.2-435-g6ba8500
         ...
 
 .. _box_introspection-box_slab:
