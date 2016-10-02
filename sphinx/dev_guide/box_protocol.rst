@@ -327,7 +327,7 @@ Requests
                              MP_ARRAY
 
 
-It's an error to specify an argument of a type that differs from expected type.
+It is an error to specify an argument of a type that differs from the expected type.
 
 * DELETE: CODE - 0x05
   Delete a tuple
@@ -346,7 +346,7 @@ It's an error to specify an argument of a type that differs from expected type.
 
 
 * CALL_16: CODE - 0x06
-  Call a stored function
+  Call a stored function, returning an array of tuples. This is deprecated; CALL (0x0a) is recommended instead.
 
 .. code-block:: none
 

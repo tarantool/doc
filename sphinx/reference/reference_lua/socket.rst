@@ -82,6 +82,9 @@ are ``errno``, ``error``.
     +----------------+---------------------------------------------------------------+
     |    ""          | :ref:`socket_object:wait() <socket-wait>`                     |
     +----------------+---------------------------------------------------------------+
+    |    ""          | :ref:`socket.iowait() <socket-iowait>`                        |
+    +----------------+---------------------------------------------------------------+
+
 
 Typically a socket session will begin with the setup functions, will set one
 or more flags, will have a loop with sending and receiving functions, will
@@ -508,6 +511,26 @@ the function invocations will look like ``sock:function_name(...)``.
 
         :return: A table containing these fields: "host", "family", "type", "protocol", "port".
         :rtype:  table
+
+.. _socket-iowait:
+
+.. function:: iowait(fd, read-or-write-flags, [timeout])
+
+    The ``socket.iowait()`` function is used to wait until read-or-write activity
+    occurs for a file descriptor.
+
+    :param fd: file descriptor
+    :param read-or-write-flags: 'R' or 1 = read, 'W' or 2 = write, 'RW' or 3 = read|write.
+    :param timeout: number of seconds to wait
+
+    If the fd parameter is nil, then there will be a sleep until the timeout.
+    If the timeout parameter is nil or unspecified, then timeout is infinite.
+
+    :return: Activity that occurred ('R' or 'W' or 'RW' or 1 or 2 or 3).
+    If the timeout period goes by without any reading or writing, the
+    return is an error = ETIMEDOUT.
+
+    Example: ``socket.iowait(sock:fd(), 'r', 1.11)``
 
 .. _this description: https://github.com/tarantool/tarantool/wiki/sockets%201.6
 
