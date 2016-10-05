@@ -526,7 +526,7 @@ the function invocations will look like ``sock:function_name(...)``.
     If the fd parameter is nil, then there will be a sleep until the timeout.
     If the timeout parameter is nil or unspecified, then timeout is infinite.
 
-    :return: Activity that occurred ('R' or 'W' or 'RW' or 1 or 2 or 3).
+    Ordinarily the return value is the activity that occurred ('R' or 'W' or 'RW' or 1 or 2 or 3).
     If the timeout period goes by without any reading or writing, the
     return is an error = ETIMEDOUT.
 
@@ -544,7 +544,8 @@ the function invocations will look like ``sock:function_name(...)``.
 
 In this example a connection is made over the internet between the Tarantool
 server and tarantool.org, then an HTTP "head" message is sent, and a response
-is received: "``HTTP/1.1 200 OK``". This is not a useful way to communicate
+is received: "``HTTP/1.1 200 OK``" or something else if the site has moved.
+This is not a useful way to communicate
 with this particular site, but shows that the system works.
 
 .. code-block:: tarantoolsession
@@ -563,13 +564,13 @@ with this particular site, but shows that the system works.
     ---
     - null
     ...
-    tarantool> sock:send("HEAD / HTTP/1.0rnHost: tarantool.orgrnrn")
+    tarantool> sock:send("HEAD / HTTP/1.0\r\nHost: tarantool.org\r\n\r\n")
     ---
-    - true
+    - 40
     ...
     tarantool> sock:read(17)
     ---
-    - "HTTP/1.1 200 OKrn"
+    - HTTP/1.1 302 Move
     ...
     tarantool> sock:close()
     ---
