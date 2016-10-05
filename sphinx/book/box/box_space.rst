@@ -774,7 +774,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: truncate()
 
-        Deletes all tuples. .
+        Deletes all tuples.
 
         Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
 
@@ -787,8 +787,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             Note that ``truncate`` must be called only by the user who created
             the space OR under a `setuid` function created by that user. Read
             more about `setuid` functions :ref:`here <authentication-funcs>`
-
-        Note re storage engine: vinyl does not support ``truncate()``.
 
         **Example:**
 
@@ -809,8 +807,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Insert a new tuple using an auto-increment primary key. The space specified
         by space_object must have an ``unsigned`` or ``integer`` or ``numeric`` primary key index of type ``TREE``. The
         primary-key field will be incremented before the insert.
-
-        Note re storage engine: vinyl does not support ``auto_increment()``.
 
         Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
         :codeitalic:`field-value(s)` (type = Lua table or scalar) = tuple's fields, other than the primary-key field.

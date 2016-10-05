@@ -47,15 +47,15 @@ have been noted elsewhere in sentences that begin with the words
 * With memtx, :ref:`create_index <box_space-create_index>` can be done at any time. |br|
   With vinyl, secondary indexes must be created before tuples are inserted.
 
-* With memtx, for index searches, ``nil`` is considered to be equal to any scalar. |br|
-  With vinyl, ``nil`` or missing parts are not allowed.
+* With memtx, for index searches, ``nil`` may be allowed within a search key. |br|
+  With vinyl, ``nil`` is only allowed at the end of a search key.
 
 * With memtx, temporary spaces are supported. |br|
   With vinyl, they are not.
 
 * With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>`
-  and :ref:`random() <box_index-random>` and :ref:`auto_increment() <box_space-auto_increment>`
-  and :ref:`truncate() <box_space-truncate>` functions are supported. |br|
+  and :ref:`random() <box_index-random>`
+  functions are supported. |br|
   With vinyl, they are not.
 
 * With memtx, the :ref:`count() <box_index-count>` function takes a constant

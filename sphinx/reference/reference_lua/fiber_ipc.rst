@@ -27,7 +27,7 @@ other Lua object. Use object-oriented syntax, for example
                          that might be pending at any given time.
 
     :return: new channel.
-    :rtype:  userdata
+    :rtype:  userdata, possibly including the string "channel ...".
 
 .. class:: channel_object
 

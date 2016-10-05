@@ -120,6 +120,7 @@ server, and allows one Tarantool server to start listening on an :ref:`admin por
 .. function:: ac([true|false])
 
    Set the auto-completion flag. If auto-completion is `true`,
-   and the user is using tarantool as a client, then hitting
+   and the user is using tarantool as a client
+   or the user is using tarantool via console.connect(), then hitting
    the TAB key may cause tarantool to complete a word automatically.
    The default auto-completion value is `true`.
