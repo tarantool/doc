@@ -72,7 +72,7 @@ html_copy_source = True
 html_use_index = True
 html_show_sphinx = False
 html_show_copyright = False
-html_use_smartypants = False
+html_use_smartypants = True
 
 # Tarantool custom roles
 # Tarantool has extended Sphinx so that there are four new roles:
