@@ -56,6 +56,8 @@ STATIC_PATHS = [
     'js/mobile_menu.js',
     'terms.docx',
     'license.docx',
+    'terms_eng.docx',
+    'license_eng.docx',
     '.nojekyll',
     'CNAME'
 ]
