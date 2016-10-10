@@ -281,12 +281,19 @@ tr.field td p {
     width:960px;
     margin:0 auto;
     padding:0 0 30px 0;
+    position:relative;
 }
 .b-cols_content_left {
-    position:relative;
-    float:left;
-    width:295px;
-    padding:15px 0 0 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 295px;
+    padding: 15px 15px 0 700px;
+    margin-left: -700px;
+    overflow: auto;
+}
+.b-cols_content_left_stuck {
+    position: fixed !important;
 }
 .b-cols_content_right {
     float:right;
