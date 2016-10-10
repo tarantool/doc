@@ -180,9 +180,6 @@ $(document).ready(function () {
           }
           menu.children("ul").slideToggle();
           $(this).toggleClass("fa-plus-square-o").toggleClass("fa-minus-square-o");
-          $(".b-cols_content_left").trigger("sticky_kit:stick")
-          $(".b-cols_content_left").trigger("sticky_kit:recalc")
-          $(".b-cols_content_left").trigger("sticky_kit:unstick")
         }).css("position", "relative").css("left", "-17px");
         ul.children("li").each(toggle_recursive);
         menu.children("ul").css('display', 'none');
@@ -215,14 +212,6 @@ $(document).ready(function () {
         $(".toggle-navigation").removeClass('active');
       });
 
-      $(this).stick_in_parent({
-        parent: ".b-cols_content",
-        spacer: false
-      });
-
-      $(this).trigger("sticky_kit:stick");
-      $(this).trigger("sticky_kit:recalc");
-      $(this).trigger("sticky_kit:unstick");
     }).click(function() {
       if (is_mobile) {
         event.stopPropagation();
