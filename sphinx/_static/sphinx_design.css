@@ -697,8 +697,8 @@ table.border-0-column-2 td {
 
 .b-doc-language_selector-item-url {
     display:inline-block;
-    background:#ececec;
-    color:#404040;
+    background: #404040;
+    color: #ffffff;
     font-size:14px;
     padding: 3px 8px 5px 8px;
     -webkit-border-radius: 4px;
@@ -713,8 +713,8 @@ table.border-0-column-2 td {
 
 .b-doc-language_selector-item-url.p-active {
     pointer-events: none;
-    background: #404040;
-    color: #ffffff;
+    background:#ececec;
+    color:#404040;
 }
 
 .b-page_over-head,
