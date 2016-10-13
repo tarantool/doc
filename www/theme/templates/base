@@ -26,22 +26,20 @@
     {% include "script" ignore missing %}
   </head>
   <body class="p-main">
-    <div class="b-scrollview">
-      <div class="b-wrapper">
-        <!-- HEADER > -->
-        {{ menu.i_header() }}
-        <!-- < HEADER -->
+    <div class="b-wrapper">
+      <!-- HEADER > -->
+      {{ menu.i_header() }}
+      <!-- < HEADER -->
 
-        <div class="b-content b-clearbox">
-          {% block content %}
-          {% endblock content %}
-        </div>
+      <div class="b-content b-clearbox">
+        {% block content %}
+        {% endblock content %}
       </div>
-
-      <!-- FOOTER > -->
-      {{ menu.i_footer() }}
-      <!-- < FOOTER -->
     </div>
+
+  <!-- FOOTER > -->
+  {{ menu.i_footer() }}
+  <!-- < FOOTER -->
   </body>
 </html>
 

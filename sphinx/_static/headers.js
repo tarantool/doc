@@ -212,47 +212,7 @@ $(document).ready(function () {
         $(".toggle-navigation").removeClass('active');
       });
 
-      var b_scroll_view = $('.b-scrollview');
-      var b_cols_content = $('.b-cols_content');
-      var b_footer = $('.b-footer');
-      var b_cols_content_left = $('.b-cols_content_left');
-
-      /* disable page scrolling while mouse is in TOC */
-      b_cols_content_left.mouseenter(function() {
-        b_scroll_view.css('overflow', 'hidden');
-      }).mouseleave(function() {
-        b_scroll_view.css('overflow', '');
-      });
-
-      function layout_tok() {
-        var scroll_top = b_scroll_view.scrollTop();
-        var window_h = $(window).height();
-        var y1 = b_cols_content.offset().top;
-        var y2 = b_footer.offset().top;
-        var target = b_cols_content_left;
-        if ($(window).width() < 992) {
-          target.removeClass('b-cols_content_left_stuck');
-          target.css('max-height', '');
-          return;
-        }
-        /* adjust max-height s.t. it matches the portion of TOC clipped
-         * by viewport*/
-        var max_height = Math.min(window_h, y2);
-        if (y1 >= 0) {
-          max_height = Math.min(max_height, window_h - y1, y2 - y1);
-          target.removeClass('b-cols_content_left_stuck');
-        } else {
-          target.addClass('b-cols_content_left_stuck');
-        }
-        /* -15 to compensate for padding-top */
-        target.css('max-height', Math.floor(max_height - 15) + 'px');
-      }
-
-      b_scroll_view.scroll(layout_tok);
-      $(window).resize(layout_tok);
-      layout_tok();
-
-    }).click(function(event) {
+    }).click(function() {
       if (is_mobile) {
         event.stopPropagation();
       }
