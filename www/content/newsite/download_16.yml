@@ -14,6 +14,12 @@ blocks :
         builds provided on this site.
 
         All published releases are available at `<http://tarantool.org/dist/1.6>`_
+        
+        Hosting is powered by |packagecloud|.
+        
+        .. |packagecloud| image:: packagecloud.png
+           :height: 12
+           :width: 89
   binarylist :
     - - "Ubuntu"
       - format : rst
