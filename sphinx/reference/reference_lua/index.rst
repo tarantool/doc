@@ -22,6 +22,7 @@ This reference covers Tarantool's built-in Lua modules.
     crypto
     csv
     digest
+    errno
     box_error
     fiber
     fiber_ipc
