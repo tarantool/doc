@@ -15,11 +15,11 @@ blocks :
 
         All published releases are available at `<http://tarantool.org/dist/1.6>`_
         
-        Hosting is powered by |packagecloud|.
+        (Hosting is powered by |packagecloud| `packagecloud <http://packagecloud.io>`_.)
         
-        .. |packagecloud| image:: packagecloud.png
-           :height: 12
-           :width: 89
+        .. |packagecloud| image:: theme/packagecloud.png
+           :height: 13
+           :width: 16
   binarylist :
     - - "Ubuntu"
       - format : rst
