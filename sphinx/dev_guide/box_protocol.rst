@@ -565,31 +565,22 @@ Replication packet structure
 XLOG / SNAP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-XLOG and SNAP have the same format. They start with:
+XLOG and SNAP files have nearly the same format. The header looks like:
 
 .. code-block:: none
 
-    SNAP\n
-    0.12\n
-    Server: e6eda543-eda7-4a82-8bf4-7ddd442a9275\n
-    VClock: {1: 0}\n
-    \n
-    ...
-
-So, **Header** of an SNAP/XLOG consists of:
-
-.. code-block:: none
-
-    <format>\n
-    <format_version>\n
-    Server: <server_uuid>\n
-    VClock: <vclock_map>\n
+    <type>\n                  SNAP\n or XLOG\n
+    <version>\n               currently 0.13\n
+    Server: <server_uuid>\n   where UUID is a 36-byte string
+    VClock: <vclock_map>\n    e.g. {1: 0}\n
     \n
 
-
-There are two markers: tuple beginning - **0xd5ba0bab** and EOF marker -
-**0xd510aded**. So, next, between **Header** and EOF marker there's data with
-the following schema:
+After the file header come the data tuples.
+Tuples begin with a row marker ``0xd5ba0bab`` and
+the last tuple may be followed by an EOF marker
+``0xd510aded``. 
+Thus, between the file header and the EOF marker, there
+may be data tuples that have this form:
 
 .. code-block:: none
 
@@ -607,3 +598,5 @@ the following schema:
     |            | |                                   |
     +============+ +===================================+
         MP_MAP                     MP_MAP
+
+See the example in the following section.

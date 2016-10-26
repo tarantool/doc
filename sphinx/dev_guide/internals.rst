@@ -4,45 +4,50 @@
 Data persistence and the WAL file format
 --------------------------------------------------------------------------------
 
-To maintain data persistence, Tarantool writes each data change request (INSERT,
-UPDATE, DELETE, REPLACE) into a write-ahead log (WAL) file in the
+To maintain data persistence, Tarantool writes each data change request (insert,
+update, delete, replace, upsert) into a write-ahead log (WAL) file in the
 :ref:`wal_dir <cfg_basic-wal_dir>` directory. A new WAL file is created for every
 :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>` records.
 Each data change request gets assigned a continuously growing 64-bit log sequence
 number. The name of the WAL file is based on the log sequence number of the first
 record in the file, plus an extension ``.xlog``.
 
-Apart from a log sequence number and the data change request (its format is the
-same as in :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`),
+Apart from a log sequence number and the data change request (formatted as in
+:ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`),
 each WAL record contains a header, some metadata, and then the data formatted
 according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules.
 For example this is what the WAL file looks like after the first INSERT request
 ("s:insert({1})") for the introductory sandbox exercise
-":ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>` “.
-On the left are the hexadecimal bytes that one would see with:
-
-.. code-block:: console
-
-    $ hexdump 00000000000000000000.xlog
-
+":ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>`“.
+On the left are the hexadecimal bytes that one would see with: |br|
+``$ hexdump 00000000000000000000.xlog`` |br|
 and on the right are comments.
 
 .. code-block:: none
 
    Hex dump of WAL file       Comment
    --------------------       -------
-   58 4c 4f 47 0a             File header: "XLOG\n"
-   30 2e 31 32 0a             File header: "0.12\n" = version
-   ...                        (not shown = more header + tuples for system spaces)
-   d5 ba 0b ab                Magic row marker always = 0xab0bbad5 if version 0.12
-   19 00                      Length, not including length of header, = 25 bytes
-   ce 16 a4 38 6f             Record header: previous crc32, current crc32,
-   a7 cc 73 7f 00 00 66 39
+   58 4c 4f 47 0a             "XLOG\n"
+   30 2e 31 33 0a             "0.13\n" = version
+   53 65 72 76 65 72 3a 20    "Server: "
+   38 62 66 32 32 33 65 30 2d [Server UUID]\n
+   36 39 31 34 2d 34 62 35 35
+   2d 39 34 64 32 2d 64 32 62
+   36 64 30 39 62 30 31 39 36
+   0a
+   56 43 6c 6f 63 6b 3a 20    "Vclock: "
+   7b 7d                      "{}" = vclock value, initially blank
+   ...                        (not shown = tuples for system spaces)
+   d5 ba 0b ab                Magic row marker always = 0xab0bbad5
+   19                         Length, not including length of header, = 25 bytes
+   00                           Record header: previous crc32
+   ce 8c 3e d6 70               Record header: current crc32
+   a7 cc 73 7f 00 00 66 39      Record header: padding
    84                         msgpack code meaning "Map of 4 elements" follows
    00 02                         element#1: tag=request type, value=0x02=IPROTO_INSERT
    02 01                         element#2: tag=server id, value=0x01
    03 04                         element#3: tag=lsn, value=0x04
-   04 cb 41 d4 e2 2f 62 fd d5 d4 element#4: tag=timestamp, value=an 8-byte "Double"
+   04 cb 41 d4 e2 2f 62 fd d5 d4 element#4: tag=timestamp, value=an 8-byte "Float64"
    82                         msgpack code meaning "map of 2 elements" follows
    10 cd 02 00                   element#1: tag=space id, value=512, big byte first
    21 91 01                      element#2: tag=tuple, value=1-element fixed array={1}

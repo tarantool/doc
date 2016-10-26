@@ -148,7 +148,7 @@ Modify the function so it returns a one-letter random string
 
 Now that it's a bit clearer how to make a variable, we can change
 ``string_function()`` so that, instead of returning a fixed literal
-'Hello world", it returns a random letter between 'A' and 'Z'.
+"Hello world", it returns a random letter between 'A' and 'Z'.
 
 .. code-block:: lua
 
