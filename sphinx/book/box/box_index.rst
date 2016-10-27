@@ -60,10 +60,12 @@ API is a direct binding to corresponding methods of index objects of type
 
     .. _box_index-index_pairs:
 
-    .. method:: pairs(bitset-value | search-value, iterator-type)
+    .. method:: pairs([search-key-value [, iterator-type]])
 
-        This method provides iteration support within an index.
-        The :codeitalic:`bitset-value` or :codeitalic:`search-value` parameter
+        Search for a tuple or a set of tuples via the given index,
+        and allow iterating over one tuple at a time.
+
+        The :codeitalic:`search-key-value` parameter
         specifies what must match within the index.
         The :codeitalic:`iterator-type`
         parameter specifies the rule for matching and ordering. Different index types support
@@ -86,25 +88,24 @@ API is a direct binding to corresponding methods of index objects of type
         The tutorial :ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`
         shows one way that iterators and yields can be used together.
 
-        Parameters:
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        :samp:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
+        which may be multi-part; :samp:`{iterator-type}` = as defined in tables below.
+        The default iterator type is 'EQ'.
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
-        * :samp:`{bitset-value} | {search-value...}` = what to search for
-        * :samp:`{iterator-type}` = as defined in tables below.
+        Return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop
+        or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_.
 
-        :return: this method returns an iterator closure, i.e. a function which can
-                be used to get the next value on each invocation
-        :rtype:  function, tuple
+        Possible errors: No such space; wrong type;
+        Selected iteration type is not supported for the index type;
+        or search-key-value is not supported for the iteration type.
 
-        Possible errors: Selected iteration type is not supported for the index type,
-        or search value is not supported for the iteration type.
+        Complexity Factors: Index size, Index type; Number of tuples accessed.
 
-        Complexity Factors: Index size, Index type, Number of tuples accessed.
-
-        A search-value can be a number (for example ``1234``), a string
+        A search-key-value can be a number (for example ``1234``), a string
         (for example ``'abcd'``),
         or a table of numbers and strings (for example ``{1234, 'abcd'}``).
-        Each part of a search-value will be compared to each part of an index key.
+        Each part of a search-key-value will be compared to each part of an index key.
 
         .. container:: table
 

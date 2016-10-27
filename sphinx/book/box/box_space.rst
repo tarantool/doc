@@ -267,18 +267,18 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-select:
 
-    .. method:: select(key)
+    .. method:: select([search-key-value])
 
         Search for a tuple or a set of tuples in the given space.
 
         Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
-        :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index key,
+        :codeitalic:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
         which may be multi-part.
 
-        :return: the tuples whose primary-key fields are equal to the passed
-                 field-values. If the number of passed field-values is less
+        :return: the tuples whose primary-key fields are equal to the fields of the passed
+                 search-key-value. If the number of passed fields is less
                  than the number of fields in the primary key, then only the
-                 passed field-values are compared, so ``select{1,2}`` will match
+                 passed fields are compared, so ``select{1,2}`` will match
                  a tuple whose primary key is ``{1,2,3}``.
         :rtype:  array of tuples
 
@@ -834,14 +834,27 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-pairs:
 
-    .. method:: pairs()
+    .. method:: pairs([search-key-value [, iterator-type]])
 
-        A helper function to prepare for iterating over all tuples in a space.
+        Search for a tuple or a set of tuples in the given space,
+        and allow iterating over one tuple at a time.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        :codeitalic:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
+        which may be multi-part;
+        :samp:`{iterator-type}` = see :ref:`index_object:pairs <box_index-index_pairs>`.
 
-        :return: function which can be used in a for/end loop. Within the loop, a value is returned for each iteration.
-        :rtype:  function, tuple
+        Return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end
+        loop or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_.
+
+        Possible errors: No such space; wrong type.
+
+        Complexity Factors: Index size, Index type.
+
+        For examples of complex ``pairs`` requests, where one can specify which
+        index to search and what condition to use (for example "greater than"
+        instead of "equal to"), see the later section
+        :ref:`index_object:pairs <box_index-index_pairs>`.
 
         **Example:**
 
