@@ -130,9 +130,9 @@ the function invocations will look like ``sock:function_name(...)``.
 
     **Example:**
 
-    .. code-block:: lua
+    .. code-block:: none
 
-        tcp_connect('127.0.0.1', 3301)
+        socket.tcp_connect('127.0.0.1', 3301)
 
 .. _socket-getaddrinfo:
 
@@ -167,17 +167,25 @@ the function invocations will look like ``sock:function_name(...)``.
 
 .. _socket-tcp_server:
 
-.. function:: tcp_server(host, port, handler-function)
+.. function:: tcp_server(host, port, handler-function [, timeout])
 
     The ``socket.tcp_server()`` function makes Tarantool act as a server that
     can accept connections. Usually the same objective
-    is accomplished with ``box.cfg{listen=...)``.
+    is accomplished with :ref:`box.cfg{listen=...} <cfg_basic-listen>`.
 
-    **Example:**
+    Parameters: ``host`` = (string) host name or IP;
+    ``port`` = (integer) host port, may be 0;
+    ``handler-function`` = (function or table containing function)
+    what to execute when a connection occurs;
+    ``timeout`` = (integer) number of seconds to wait before timing out.
 
-    .. code-block:: lua
+    The handler-function parameter may be a function name (for example ``function_55``)
+    a function declaration (for example ``function () print('!') end``),
+    or a table including handler = function (for example ``{handler=function_55, name='A'}``).
 
-        socket.tcp_server('localhost', 3302, function () end)
+    Example:
+
+    ``socket.tcp_server('localhost', 3302, function () end)``
 
 .. class:: socket_object
 
