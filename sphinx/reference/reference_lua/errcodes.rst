@@ -4,10 +4,10 @@
 Database error codes
 -------------------------------------------------------------------------------
 
-In the current version of the binary protocol, error message, which is normally
-more descriptive than error code, is not present in server response. The actual
+In the current version of the binary protocol, error messages, which are normally
+more descriptive than error codes, are not present in server responses. The actual
 message may contain a file name, a detailed reason or operating system error code.
-All such messages, however, are logged in the error log. Below follow only general
+All such messages, however, are logged in the error log. Below are general
 descriptions of some popular codes. A complete list of errors can be found in file
 `errcode.h`_ in the source tree.
 
@@ -57,3 +57,41 @@ descriptions of some popular codes. A complete list of errors can be found in fi
         | ER_TUPLE_FOUND    | A duplicate key exists in a unique                     |
         |                   | index.                                                 |
         +-------------------+--------------------------------------------------------+
+
+-------------------------------------------------------------------------------
+Handling errors
+-------------------------------------------------------------------------------
+
+Here are some procedures that can make Lua functions more
+robust when there are errors, particularly database errors.
+
+1. Invoke with pcall.
+
+   Take advantage of Lua's mechanisms for
+   `"Error handling and exceptions" <http://www.lua.org/pil/8.4.html>`_,
+   particularly ``pcall``. That is, instead of simply invoking with |br|
+   :samp:`box.space.{space-name}:{function-name}()` |br|
+   say |br|
+   :samp:`if pcall(box.space.{space-name}:{function-name}() ...`
+
+   See the tutorial :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`
+   to see how pcall can fit in an application.
+   
+2. Examine and raise with box.error.
+
+   To make a new error and pass it on, the box.error module
+   provides :ref:`box.error(code, errtext [, errtext ...]) <box_error-error>`.
+
+   To find the last error, the box.error module
+   provides :ref:`box.error.last() <box_error-last>`.
+   (There is also a way to find the text of the last operating-system
+   error for certain functions -- :ref:`errno.strerror([code]) <errno-strerror>`.)
+
+3. Log.
+
+   Put messages in a log using the :ref:`log module <log>`.
+
+   And filter messages that are automatically generated, with the
+   :ref:`logger <cfg_logging-logger>` configuration parameter.
+
+

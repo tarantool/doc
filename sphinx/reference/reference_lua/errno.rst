@@ -14,6 +14,8 @@ or within a Lua program, in association with a
 module whose functions can return operating-system errors,
 such as :ref:`fio <fio-module>`.
 
+.. _errno-strerror:
+
 .. function:: strerror([code])
 
     Return a string, given an error number.

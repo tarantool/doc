@@ -22,6 +22,8 @@ be presented to the client as :errcode:`ER_PROC_LUA`.
     When called without arguments, ``box.error()`` re-throws whatever the last
     error was.
 
+.. _box_error-error:
+
 .. function:: box.error(code, errtext [, errtext ...])
 
     Emulate a request error, with text based on one of the pre-defined Tarantool
@@ -59,6 +61,8 @@ be presented to the client as :errcode:`ER_PROC_LUA`.
         ---
         - error: A access denied for user 'B' to function 'C'
         ...
+
+.. _box_error-last:
 
 .. function:: box.error.last()
 
