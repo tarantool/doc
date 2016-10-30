@@ -62,6 +62,8 @@ takes a series of non-MsgPack values and encodes them.
     - [20, null, 20]
     ...
 
+.. _msgpack-serialize:
+
 The MsgPack output structure can be specified with ``__serialize``:
 
 * ``__serialize = "seq" or "sequence"`` for an array

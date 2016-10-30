@@ -74,6 +74,12 @@ robust when there are errors, particularly database errors.
    say |br|
    :samp:`if pcall(box.space.{space-name}:{function-name}() ...`
 
+   For some Tarantool box functions, pcall also returns error details
+   including a file-name and line-number within Tarantool's source code.
+   This can be seen by unpacking. For example: |br|
+   ``x, y = pcall(function() box.schema.space.create('') end)`` |br|
+   ``y:unpack()``
+
    See the tutorial :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`
    to see how pcall can fit in an application.
    
