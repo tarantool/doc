@@ -25,7 +25,7 @@ The possible options which can be passed to csv functions are:
 
 * :samp:`delimiter = {string}` -- single-byte character to designate end-of-field, default = comma
 * :samp:`quote_char = {string}` -- single-byte character to designate encloser of string, default = quote mark
-* :samp:`chunk-size = {number}` -- number of characters to read at once (usually for file-IO efficiency), default = 4096
+* :samp:`chunk_size = {number}` -- number of characters to read at once (usually for file-IO efficiency), default = 4096
 * :samp:`skip_head_lines = {number}` -- number of lines to skip at the start (usually for a header), default 0
 
 .. _csv-load:
