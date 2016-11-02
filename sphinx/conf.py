@@ -50,7 +50,8 @@ exclude_patterns = [
     'dev_guide/box_protocol.rst',
     'dev_guide/internals.rst',
     'reference/reference_lua/jit.rst',
-    'reference/reference_lua/os.rst'
+    'reference/reference_lua/os.rst',
+    'reference/reference_lua/net_box_1.6.rst'
 ]
 
 pygments_style = 'sphinx'

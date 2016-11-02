@@ -540,7 +540,18 @@ Administrative requests
 Server introspection
 =====================================================================
 
-.. include:: box/box_introspection.rst
+For server introspection, use the reports provided by functions in the following
+submodules:
+
+* :ref:`box.cfg <box_introspection-box_cfg>` submodule
+  (check and specify all configuration parameters for the Tarantool server)
+* :ref:`box.slab <box_introspection-box_slab>` submodule
+  (monitor the total use and fragmentation of memory allocated for storing
+  data in Tarantool)
+* :ref:`box.info <box_introspection-box_info>` submodule
+  (introspect Tarantool's server variables)
+* :ref:`box.stat <box_introspection-box_stat>` submodule
+  (introspect Tarantool's request and network statistics)
 
 ================================================================================
 Replication
