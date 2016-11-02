@@ -272,7 +272,7 @@ the function invocations will look like ``sock:function_name(...)``.
         Reading goes on until ``limit`` bytes have been read, or a delimiter
         has been read, or a timeout has expired.
 
-        :param integer    limit: maximum number of bytes to read for
+        :param integer    limit: maximum number of bytes to read, for
                                  example 50 means "stop after 50 bytes"
         :param string delimiter: separator for example
                                  '?' means "stop after a question mark"
@@ -289,8 +289,17 @@ the function invocations will look like ``sock:function_name(...)``.
 
     .. method:: sysread(size)
 
-        Return all available data from the socket buffer if non-blocking.
-        Rarely used. For details see `this description`_.
+        Return data from the socket buffer if non-blocking.
+        In case the socket is blocking, ``sysread()`` can block the calling process.
+        Rarely used. For details, see also
+        `this description <https://github.com/tarantool/tarantool/wiki/sockets%201.6>`_.
+        
+        :param integer size: maximum number of bytes to read, for
+                             example 50 means "stop after 50 bytes"
+        
+        :return: an empty string if there is nothing more to read, or a nil
+                 value if error, or a string up to ``size`` bytes long.
+        :rtype:  string
 
     .. _socket-bind:
 
@@ -540,10 +549,8 @@ the function invocations will look like ``sock:function_name(...)``.
 
     Example: ``socket.iowait(sock:fd(), 'r', 1.11)``
 
-.. _this description: https://github.com/tarantool/tarantool/wiki/sockets%201.6
-
 =================================================
-                    Example
+                    Examples
 =================================================
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
