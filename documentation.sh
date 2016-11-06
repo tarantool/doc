@@ -3,12 +3,12 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="staging"
 TARGET_BRANCH="gh-pages"
-OUTPUT_PATH="$TRAVIS_BUILD_DIR/www/output/"
+OUTPUT_PATH="$TRAVIS_BUILD_DIR/output/"
 COMMIT_AUTHOR_EMAIL="${COMMIT_AUTHOR_EMAIL:-build@tarantool.org}"
 
 function doCompile {
     cmake .
-    make all
+    make all copy-static
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just

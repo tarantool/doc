@@ -2,8 +2,11 @@ CMakeCache.txt
 CMakeFiles
 Makefile
 cmake_install.cmake
-sphinx/locale/ru/LC_MESSAGES/*.mo
+locale/ru/LC_MESSAGES/*.mo
 .DS_Store
-sphinx/_html_ru_build/
-sphinx/_single_ru_build/
+_*_build/
 deploy_key
+.venv
+output
+*.pyc
+_theme/tarantool/static/design.css.map

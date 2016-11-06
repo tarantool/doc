@@ -1,8 +1,22 @@
 language: generic # don't install any environment
+sudo: true
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
+      - lua5.1
+      - liblua5.1-0-dev
+
 install:
-    - pip install sphinx==1.4.4 pelican BeautifulSoup sphinx-intl PyYAML --user
+  - cmake --version
+  - pip install -r requirements.txt --upgrade --user
+
 script: bash ./documentation.sh
+
 env:
   global:
     - ENCRYPTION_LABEL: "cc37864fc395"
-

@@ -1,0 +1,62 @@
+.b-job-top {
+    .b-section-title {
+        margin: 0 0 17px 0;
+        float: left;
+    }
+    .b-block-wrapper {
+        padding: 20px 0 21px 0;
+    }
+}
+
+.b-job-background {
+    background:url('images/background-job.jpg') center 50%;
+    .b-job-opacity {
+        opacity: 0.9;
+        margin-top: 5%;
+    }
+}
+
+.b-button-container {
+    float: right;
+}
+
+#tarantool-careers {
+    .b-job {
+        p {
+            font-size: 14px;
+            line-height: 1.6em;
+            margin-bottom: 16px;
+        }
+        p.b-section-title {
+            font-size: 22px;
+            font-weight: normal;
+        }
+        .dropdown-list-item-content ul {
+            list-style-type: disc;
+            padding-bottom: 22px;
+            margin: 0px;
+            &>li {
+                padding-bottom: 12px;
+            }
+            &>li:last-child {
+                padding-bottom: 0px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .b-job-top .b-block-wrapper {
+        padding: 20px 25px 30px;
+    }
+    section.b-job:not(:first-of-type):not(:nth-of-type(2)) .b-block-wrapper {
+        padding-top: 0;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .b-job-top .b-block-wrapper {
+        padding: 20px 15px 30px;
+    }
+}

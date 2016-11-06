@@ -1,0 +1,187 @@
+{% set language_list = [
+  (
+  _("En"), "/en/doc/", "en"),
+  (_("Ru"), "/ru/doc/", "ru")
+] %}
+
+{% macro convert_path_i18n(tolang) %}
+  {% if tolang == "ru" %}
+    {{ pathto('ru/' + pagename + file_suffix, True) }}
+  {% else %}
+    {{ pathto('en/' + pagename + file_suffix, True) }}
+  {% endif %}
+{% endmacro %}
+
+{% macro language_selector() %}
+  <div class="b-doc-language_selector">
+    <ul class="b-doc-language_selector-list">
+    {% for lang in language_list %}
+      <li class="b-doc-language_selector-item">
+      {% if language == lang[2] %}
+        <a href="#" class="b-doc-language_selector-item-url p-active"> {{ lang[0] }} </a>
+      {% else %}
+        <a href="{{ convert_path_i18n(lang[2]) }}"
+           class="b-doc-language_selector-item-url"> {{ lang[0] }} </a>
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro breadcrumbs() %}
+  <div class="b-page_header">
+    <ul class="b-path-list">
+      <li class="b-path-list-item">
+        <a href="{{ pathto("doc/index") }}"
+           class="b-path-list-item-url">
+          {{ _("Documentation") }}
+        </a>
+      </li>
+      {% for elem in parents %}
+        <li class="b-path-list-item">
+          <a href="{{ elem.link|e }}"
+             class="b-path-list-item-url b-ellipsis">
+            {{ elem.title }}
+          </a>
+        </li>
+      {% endfor %}
+      {% if title %}
+      <li class="b-path-list-item">
+        <div title="{{ title }}" class="b-path_current b-ellipsis">
+          {{ title }}
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro navbar(head=True) %}
+  {% if next and prev %}
+    {% if head %}
+      <div class="b-page_over-head">
+    {% else %}
+      <div class="b-page_over-tail">
+    {% endif %}
+    {% if prev %}
+      <div class="b-page_over-prev">
+        <a href="{{ prev.link | e }}"
+           class="b-prev b-ellipsis"
+           title="{{ prev.title | e }}">{{ prev.title }}</a>
+      </div>
+    {% endif %}
+    <div class="b-page_over-lang">
+      <ul class="b-page_over-lang-list">
+        <li class="b-page_over-lang-item">
+          <a href="{{ pathto('_sources/' + sourcename, true) | e }}"
+             class="b-page_over-lang-url"> {{ _("Source") }} </a>
+        </li>
+      </ul>
+    </div>
+    {% if next %}
+      <div class="b-page_over-next">
+        <a href="{{ next.link|e }}"
+           class="b-next b-ellipsis"
+           title="{{ next.title | e }}">{{ next.title }}</a>
+      </div>
+    {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro disqus() %}
+  <div id="disqus_thread"></div>
+  <script>
+    // DON'T EDIT
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//tarantooldb.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+{% endmacro %}
+
+{# Modify i_links to add records to site #}
+{% if not wp_local %}
+  {% set i_links = [
+    ("Overview",      "https://tarantool.org/{{ language }}/",              "index"),
+    ("Try",           "https://tarantool.org/{{ language }}/try.html",      "try"),
+    ("Documentation", "https://tarantool.org/{{ language }}/doc.html",      "doc"),
+    ("Download",      "https://tarantool.org/{{ language }}/download.html", "download"),
+    ("Careers",       "https://tarantool.org/{{ language }}/careers.html",  "careers"),
+    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",    "rocks")
+  ] %}
+{% else %}
+  {% set i_links = [
+    ("Overview",      pathto("index"),    "index"),
+    ("Try",           pathto("try"),      "try"),
+    ("Documentation", pathto("doc"),      "doc"),
+    ("Download",      pathto("download"), "download"),
+    ("Careers",       pathto("careers"),  "careers"),
+    ("Rocks",         pathto("rocks"),    "rocks")
+  ] %}
+{% endif %}
+
+{% macro i_menu() %}
+  <ul class="b-menu">
+    {% for item in i_links %}
+      {% if item[2] == pagename %}
+      <li class="b-menu-item p-active">
+      {% elif pagename is documentation and item[2] == "doc" %}
+      <li class="b-menu-item p-active">
+      {% else %}
+      <li class="b-menu-item">
+      {% endif %}
+        <a href="{{ item[1] }}" class="b-menu-item-url">{{ item[0] }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro i_header() %}
+  <header class="b-header">
+    <div class="b-header_menu_mobile">
+      <div class="b-burger-button">
+        <span></span>
+      </div>
+      <form role="search" class="b-header-search" action="{{ pathto('search') }}" method="get">
+        <input name="q" type="search">
+      </form>
+    </div>
+    <div class="b-menu_mobile">
+      <div class="b-menu_mobile__wrapper">
+        <nav class="b-header_menu">
+          {{ i_menu() }}
+        </nav>
+      </div>
+    </div>
+    <div class="b-header-wrapper">
+      <nav class="b-header_menu">
+        {{ i_menu() }}
+      </nav>
+    </div>
+  </header>
+{% endmacro %}
+
+{% macro i_footer() %}
+<footer class="b-footer">
+  <div class="b-footer-wrapper">
+    <nav class="b-footer_menu">
+      {{ i_menu() }}
+      <div class="b-footer-other">
+        <a href="http://15.tarantool.org">1.5 web site and downloads</a>
+      </div>
+    </nav>
+  </div>
+</footer>
+{% endmacro %}
+
+{# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}

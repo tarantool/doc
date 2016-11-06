@@ -1,0 +1,110 @@
+{% from 'elements.html' import i_header          with context %}
+{% from 'elements.html' import i_footer          with context %}
+
+{% set page = {"slug": "documentation"} %}
+{% set script_files = script_files + [
+    '_static/js/menu.js',
+    '_static/js/mobile_menu.js',
+    '_static/js/stacktable.min.js',
+    '_static/js/headers.js',
+    '_static/js/dropdown.js',
+    '_static/js/jquery.sticky-kit.min.js'
+] %}
+{% set css_files = [
+    '_static/design.css',
+] + css_files %}
+
+{#% set favicon %}
+  <link rel="icon" type="image/png" sizes="16x16" href="/theme/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/theme/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/theme/favicon/favicon-96x96.png">
+{% endset %#}
+
+{% set favicon %}
+  <link rel="icon" type="image/png" sizes="16x16" href={{ pathto("_static/favicon/favicon-16x16.png", 1) }}>
+  <link rel="icon" type="image/png" sizes="32x32" href={{ pathto("_static/favicon/favicon-32x32.png", 1) }}>
+  <link rel="icon" type="image/png" sizes="96x96" href={{ pathto("_static/favicon/favicon-96x96.png", 1) }}>
+{% endset %}
+
+{% set is_website  = website.get(pagename, False) %}
+{% set is_mainpage = title in ["Documentation", "Документация"] %}
+
+{% set body_suffix = "" if is_website else " b-doc-%s" % pagename %}
+{% set body_class = "p-main" if (is_mainpage or is_website) else "p-cols_design" %}
+{#% set body_class = "%s%s" % (body_class, body_suffix) %#}
+{% set body_class = body_class + body_suffix %}
+
+
+{% set header_suffix = "" if is_mainpage or is_website else "toggle-navigation" %}
+{% set header_class = "b-section-title b-ellipsis " + header_suffix %}
+{#% if is_mainpage or is_website %}
+  {% set header_class = %}
+{% else %}
+{% endif %#}
+
+{% set content_pane %}
+  <article class="b-article">
+    {#% if is_mainpage %} {{ toctree(maxdepth=2, collapse=false) }} {% endif %#}
+    {{ body }}
+  </article>
+{% endset %}
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {{ favicon }}
+    <title>{{ title | striptags }}</title>
+    {%- for scriptfile in script_files %}
+      <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+    {%- endfor %}
+    {%- for cssfile in css_files %}
+      <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}">
+    {%- endfor %}
+
+    {% block extrahead %}
+    <!--[if lt IE 9]>
+      <script src="/js/ie8.js"></script>
+      <link rel="stylesheet" href="/theme/ie8.css" />
+    <![endif]-->
+    {% include "script" ignore missing %}
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:       '{{ url_root }}',
+        VERSION:        '{{ release|e }}',
+        COLLAPSE_INDEX:  false,
+        FILE_SUFFIX:    '{{ '' if no_search_suffix else file_suffix }}',
+        HAS_SOURCE:      {{ has_source | lower }}
+      };
+      {# Uncomment this, to enable disqus everywhere #}
+      {# var disqus_developer = 1;                   #}
+      var disqus_config = function () {
+          this.page.identifier = "{{ pagename }}";
+          this.language        = "{{ language }}"
+      };
+    </script>
+    {% endblock extrahead %}
+
+  </head>
+  <body class="{{ body_class }}">
+    <div class="b-wrapper">
+      <!-- HEADER > -->
+      {{ i_header() }}
+      <!-- < HEADER -->
+
+      <div class="b-content b-clearbox">
+        {% block body %}
+        {% endblock %}
+      </div>
+    </div>
+    <!-- FOOTER > -->
+    {{ i_footer() }}
+    <!-- < FOOTER -->
+    <div id="mobile-checker"></div>
+  </body>
+</html>
+
+{# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}

@@ -1,0 +1,89 @@
+@import (reference) "mixins";
+
+@dropdown-open : data-uri('data:image/png;base64', 'icons/dropdown-open.png');
+@dropdown-close: data-uri('data:image/png;base64', 'icons/dropdown-close.png');
+
+// dropdown-list:
+//   * dropdown-list-item ->
+//     -> dropdown-list-item-url
+//     -> dropdown-list-item-content
+//   * ...
+
+.dropdown-list-item-content {
+    .transition-ease();
+}
+
+.dropdown-list {
+    margin:     0;
+    padding:    0;
+    display:    block;
+    list-style: none;
+    border-top: 1px solid #e5e5e5;
+
+    .dropdown-list-item {
+        color:         #404040;
+        padding:       14px 0;
+        font-size:     18px;
+        border-bottom: 1px solid #e5e5e5;
+        .b-example-code {
+            margin-left: 14px;
+        }
+    }
+}
+
+.dropdown-list-item-content {
+    color:         #404040;
+    filter:        alpha(opacity=0);
+    height:        0px;
+    opacity:       0;
+    overflow:      hidden;
+    font-size:     14px;
+    padding-left:  17px;
+    padding-right: 40px;
+    .transition-ease();
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    ul {
+        padding-left: 18px;
+    }
+    &.dropdown-open {
+        filter:         alpha(opacity=100);
+        height:         auto;
+        opacity:        1;
+        padding-top:    17px;
+        padding-bottom: 12px;
+    }
+}
+
+.dropdown-list-item-url {
+    color:           inherit;
+    display:         block;
+    text-decoration: none;
+    &.dropdown-close {
+        background-image: @dropdown-close;
+    }
+    &.dropdown-open {
+        color:            #168de2;
+        background-image: @dropdown-open;
+    }
+    &.dropdown-close,
+    &.dropdown-open {
+        padding-right:       40px;
+        background-repeat:   no-repeat;
+        background-position: 100% 50%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .dropdown-list-item {
+        font-size: 16px;
+        padding: 11px 0;
+    }
+    .dropdown-list-item-content.dropdown-open {
+        padding: 25px 0 15px;
+    }
+}
