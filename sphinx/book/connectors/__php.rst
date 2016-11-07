@@ -6,7 +6,7 @@ The most commonly used PHP driver is
 `tarantool-php <https://github.com/tarantool/tarantool-php>`_.
 It is not supplied as part of the Tarantool repository; it must be installed
 separately, for example with :program:`git`. See
-:ref:`installation instructions <https://github.com/tarantool/tarantool-php/blob/master/#installing-and-building>`_.
+`installation instructions <https://github.com/tarantool/tarantool-php#installing-and-building>`_
 in the driver's :file:`README` file.
 
 Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named
