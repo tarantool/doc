@@ -110,6 +110,12 @@ script:
 
 .. include:: __r.rst
 
+=====================================================================
+                            Erlang
+=====================================================================
+
+See `Erlang tarantool driver <https://github.com/stofel/taran>`_.
+
 .. include:: __perl.rst
 
 .. include:: __php.rst
