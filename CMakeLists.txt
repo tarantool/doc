@@ -52,9 +52,17 @@ set(SPHINX_OUTPUT_DIR              "${CMAKE_CURRENT_BINARY_DIR}/output")
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/en/")
 set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/ru/")
 
-add_custom_target(update-submodules ALL
+add_custom_target(update-submodules ALL COMMENT "Update submodules")
+add_custom_command(TARGET update-submodules PRE_BUILD
     COMMAND git submodule update --init --recursive
-    COMMENT "Update submodules before building docs"
+)
+add_custom_command(TARGET update-submodules PRE_BUILD
+    COMMAND git fetch
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/rocks"
+)
+add_custom_command(TARGET update-submodules PRE_BUILD
+    COMMAND git checkout gh-pages
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/rocks"
 )
 add_custom_target(sphinx-html ALL
     COMMAND "${SPHINX_EXECUTABLE}"
