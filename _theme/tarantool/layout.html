@@ -2,7 +2,10 @@
 {% from 'elements.html' import i_footer          with context %}
 
 {% set page = {"slug": "documentation"} %}
-{% set script_files = script_files + [
+{% set script_files = [
+    '_static/js/jquery.min.js',
+    '_static/js/underscore.min.js',
+    '_static/js/doctools.js',
     '_static/js/menu.js',
     '_static/js/mobile_menu.js',
     '_static/js/stacktable.min.js',
