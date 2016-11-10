@@ -50,16 +50,22 @@
 
 .b-block-gray {
     background: #262626;
-    color:      #FFF;
+    color:      #FFFFFF;
 }
 
 .b-block-lightgray {
     background: #404040;
-    color:      #FFF;
+    color:      #FFFFFF;
+}
+
+.b-block-black {
+    background: #000000;
+    color:      #FFFFFF;
 }
 
 .b-block,
 .b-block-lightgray,
+.b-block-black,
 .b-block-gray {
     position: relative;
 }
@@ -395,6 +401,26 @@ img.align-center {
     }
     i:hover {
         cursor: pointer;
+    }
+}
+
+.b-404 {
+    text-align: center;
+    font-size: 32px;
+    .b-section-title {
+        font-size: 64px
+    }
+    /* max-height: ~"calc(100vh - 150px)"; */
+    img {
+        padding: 50 0px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    p {
+        padding-bottom: 50px;
+        &:last-child {
+            padding-bottom: 0px;
+        }
     }
 }
 

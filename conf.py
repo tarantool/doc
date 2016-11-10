@@ -63,6 +63,7 @@ exclude_patterns = [
     '_downloads/license_eng.docx',
     '_downloads/terms.docx',
     '_downloads/terms_eng.docx',
+    'images'
 #     'doc'
 ]
 
@@ -87,6 +88,7 @@ html_context = {
         'doc'        : True,
         'try'        : True,
         'rocks'      : True,
+        '404'        : True
     },
     'wp_local': True
 }

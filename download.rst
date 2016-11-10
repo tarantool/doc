@@ -377,7 +377,7 @@ Tarantool - Downloads
           - Lua-resty driver,      `<https://github.com/perusio/lua-resty-tarantool>`_
           - Nginx Upstream module, `<https://github.com/tarantool/nginx_upstream_module>`_
 
-.. |packagecloud| image:: packagecloud.png
+.. |packagecloud| image:: /images/packagecloud.png
     :height: 1em
     :target: https://packagecloud.io/
 
