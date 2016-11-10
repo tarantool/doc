@@ -48,7 +48,7 @@ def visit_wp_section_node(self, node):
         titlecls = ' '.join(node.titlecls)
         self.body.append(self.starttag(node, 'h2', CLASS=titlecls))
         self.body.append(node.title)
-        self.body.append('\n</h2>\n')
+        self.body.append('</h2>\n')
 
 def depart_wp_section_node(self, node):
     if not node.careers:

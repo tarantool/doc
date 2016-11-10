@@ -88,7 +88,12 @@ html_context = {
         'doc'        : True,
         'try'        : True,
         'rocks'      : True,
-        '404'        : True
+        # Helper webpages
+        '404'        : True,
+        # Internal webpages
+        'genindex'   : True,
+        'modindex'   : True,
+        'search'     : True
     },
     'wp_local': True
 }

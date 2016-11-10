@@ -12,14 +12,7 @@ class WebPageHTTPRequestHandler(SimpleHTTPRequestHandler):
 
     def send_not_found(self):
         self.log_error("code '404', message 'File not found'")
-        # self.send_response(404)
-        # self.send_header('Connection', 'close')
-        # self.send_header("Content-type", 'text/html; charset=UTF-8')
-        # self.end_headers()
-        # with open(self.translate_path('/en/404.html'), 'r') as f:
-        #     self.copyfile(f, self.wfile)
-        # return None
-
+        # Redirect (301) to 404 page and 200 code
         self.send_response(301)
         parts = urlparse.urlsplit(self.path)
         new_parts = (parts[0], parts[1], '/en/404.html', '', '')
@@ -27,6 +20,14 @@ class WebPageHTTPRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("Location", new_url)
         self.end_headers()
         return None
+        # Answer with 404 page and 404 code
+        # self.send_response(404)
+        # self.send_header('Connection', 'close')
+        # self.send_header("Content-type", 'text/html; charset=UTF-8')
+        # self.end_headers()
+        # with open(self.translate_path('/en/404.html'), 'r') as f:
+        #     self.copyfile(f, self.wfile)
+        # return None
 
     def find_correct_path(self):
         ## Check basic path
