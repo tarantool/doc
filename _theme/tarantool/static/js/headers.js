@@ -143,7 +143,11 @@ $(document).ready(function () {
       var has_ul = (ul.length > 0);
       if (ul.length > 0) {
         var link = menu.children("a");
-        link.css("position", "relative").css("left", "-12px").before(
+        // link.css("position", "relative").css("left", "-12px").before(
+        link.css({
+          "position": "relative",
+          "left": "-12px",
+        }).before(
           $('<i class="fa fa-plus-square-o fa-1"></i>')
         );
         link.siblings("i").click(function(event) {
@@ -155,7 +159,12 @@ $(document).ready(function () {
           $(".b-cols_content_left").trigger("sticky_kit:stick")
           $(".b-cols_content_left").trigger("sticky_kit:recalc")
           $(".b-cols_content_left").trigger("sticky_kit:unstick")
-        }).css("position", "relative").css("left", "-17px");
+        // }).css("position", "relative").css("left", "-17px");
+        }).css({
+          "position": "relative",
+          "left": "-17px",
+          "vertical-align": "middle"
+        });
         ul.children("li").each(toggle_recursive);
         menu.children("ul").css('display', 'none');
       }
@@ -176,7 +185,7 @@ $(document).ready(function () {
       }
       $(this).find("li.toctree-l1").each(toggle_recursive).find("a").each(function() {
         var before = $(this).text();
-        var after = before.replace(/[\d.]* (.*)/, '$1');
+        var after = before.replace(/^[\d.]* (.*)/, '$1');
         $(this).text(after)
       })
       $(this).find("a.current").each(function() {

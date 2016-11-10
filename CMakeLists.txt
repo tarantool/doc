@@ -142,7 +142,7 @@ add_custom_target(sphinx-linkcheck
 )
 
 add_custom_target(sphinx-webserver
-    COMMAND screen -dmS sphinx-webserver python -m SimpleHTTPServer 8000
+    COMMAND screen -dmS sphinx-webserver python ${CMAKE_CURRENT_SOURCE_DIR}/ext/WebPageServer.py 8000
     WORKING_DIRECTORY ${SPHINX_OUTPUT_DIR})
 
 set(STATIC_FILES

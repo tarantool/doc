@@ -17,12 +17,6 @@
     '_static/design.css',
 ] + css_files %}
 
-{#% set favicon %}
-  <link rel="icon" type="image/png" sizes="16x16" href="/theme/favicon/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/theme/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/theme/favicon/favicon-96x96.png">
-{% endset %#}
-
 {% set favicon %}
   <link rel="icon" type="image/png" sizes="16x16" href={{ pathto("_static/favicon/favicon-16x16.png", 1) }}>
   <link rel="icon" type="image/png" sizes="32x32" href={{ pathto("_static/favicon/favicon-32x32.png", 1) }}>
