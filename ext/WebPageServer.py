@@ -12,18 +12,25 @@ class WebPageHTTPRequestHandler(SimpleHTTPRequestHandler):
 
     def send_not_found(self):
         self.log_error("code '404', message 'File not found'")
-        self.send_response(404)
-        self.send_header('Connection', 'close')
-        self.send_header("Content-type", 'text/html; charset=UTF-8')
+        # self.send_response(404)
+        # self.send_header('Connection', 'close')
+        # self.send_header("Content-type", 'text/html; charset=UTF-8')
+        # self.end_headers()
+        # with open(self.translate_path('/en/404.html'), 'r') as f:
+        #     self.copyfile(f, self.wfile)
+        # return None
+
+        self.send_response(301)
+        parts = urlparse.urlsplit(self.path)
+        new_parts = (parts[0], parts[1], '/en/404.html', '', '')
+        new_url = urlparse.urlunsplit(new_parts)
+        self.send_header("Location", new_url)
         self.end_headers()
-        with open(self.translate_path('/en/404.html'), 'r') as f:
-            self.copyfile(f, self.wfile)
         return None
 
     def find_correct_path(self):
         ## Check basic path
         path = self.translate_path(self.path)
-        # print >>sys.stderr, "first: ", self.path, path
         if os.path.exists(path):
             return path
         ## Fallback to /en/...
@@ -35,7 +42,6 @@ class WebPageHTTPRequestHandler(SimpleHTTPRequestHandler):
         new_parts = (parts[0], parts[1], new_url, parts[3], parts[4])
         new_url = urlparse.urlunsplit(new_parts)
         path = self.translate_path(new_url)
-        # print >>sys.stderr, "second: ", new_url, path
         if os.path.exists(path):
             return path
         ## Fallback to 404
