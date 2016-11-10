@@ -42,7 +42,7 @@ exclude_patterns = [
     'doc/book/connectors/__*',
     'doc/book/replication/*_1.rst',
     'doc/book/replication/*_2.rst',
-    'doc/book/configuration/cfg_*',
+    'doc/reference/configuration/cfg_*',
     'doc/book/admin.rst',
     'doc/book/box/box_introspection.rst',
     'doc/book/replication.rst',
@@ -89,11 +89,11 @@ html_context = {
         'try'        : True,
         'rocks'      : True,
         # Helper webpages
-        '404'        : True,
+        '404'          : True,
         # Internal webpages
-        'genindex'   : True,
-        'modindex'   : True,
-        'search'     : True
+        'genindex'     : True,
+        'lua-modindex' : True,
+        'search'       : True
     },
     'wp_local': True
 }
