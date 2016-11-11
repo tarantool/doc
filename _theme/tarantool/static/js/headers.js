@@ -146,7 +146,7 @@ $(document).ready(function () {
         // link.css("position", "relative").css("left", "-12px").before(
         link.css({
           "position": "relative",
-          "left": "-12px",
+          "left": "-13px",
         }).before(
           $('<i class="fa fa-plus-square-o fa-1"></i>')
         );
@@ -183,6 +183,7 @@ $(document).ready(function () {
         $(this).find("li.toctree-l3 ul").remove()
         $(this).find("li.toctree-l2:not(.current) ul").remove()
       }
+      /* delete numbers from left toc */
       $(this).find("li.toctree-l1").each(toggle_recursive).find("a").each(function() {
         var before = $(this).text();
         var after = before.replace(/^[\d.]* (.*)/, '$1');

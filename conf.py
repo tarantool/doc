@@ -42,7 +42,6 @@ exclude_patterns = [
     'doc/book/connectors/__*',
     'doc/book/replication/*_1.rst',
     'doc/book/replication/*_2.rst',
-    'doc/reference/configuration/cfg_*',
     'doc/book/admin.rst',
     'doc/book/box/box_introspection.rst',
     'doc/book/replication.rst',
@@ -54,6 +53,7 @@ exclude_patterns = [
     'doc/book/box/vinyl.rst',
     'doc/dev_guide/box_protocol.rst',
     'doc/dev_guide/internals.rst',
+    'doc/reference/configuration/cfg_*',
     'doc/reference/reference_lua/jit.rst',
     'doc/reference/reference_lua/os.rst',
     'doc/reference/reference_lua/net_box_1.6.rst',
@@ -74,6 +74,8 @@ html_theme_options   = {}
 html_static_path     = ['../_static']
 html_show_sphinx     = False
 html_show_copyright  = False
+html_domain_indices  = False
+html_use_modindex    = False
 html_use_index       = True
 html_use_smartypants = True
 html_compact_lists   = True

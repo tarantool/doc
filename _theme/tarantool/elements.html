@@ -6,9 +6,9 @@
 
 {% macro convert_path_i18n(tolang) %}
   {% if tolang == "ru" %}
-    {{ pathto('ru/' + pagename + file_suffix, True) }}
+    {{ pathto('../ru/' + pagename + file_suffix, True) }}
   {% else %}
-    {{ pathto('en/' + pagename + file_suffix, True) }}
+    {{ pathto('../en/' + pagename + file_suffix, True) }}
   {% endif %}
 {% endmacro %}
 

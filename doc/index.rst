@@ -1,6 +1,6 @@
 .. include:: singlehtml.rst
 
-.. //* :ref:`genindex`
+* :ref:`genindex`
 
 .. NOTE::
 
