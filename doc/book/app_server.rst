@@ -142,7 +142,7 @@ The C file should look like this:
     #include <lua.h>
     #include <lauxlib.h>
     #include <lualib.h>
-    #include <tarantool.h>
+    #include <tarantool/module.h>
     static int
     myfun(lua_State *L)
     {
