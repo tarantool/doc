@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-16 19:16+0300\n"
+"POT-Creation-Date: 2016-11-11 17:16+0300\n"
 "PO-Revision-Date: 2016-06-07 13:44+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,17 +16,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ../singlehtml.rst:5
-msgid "Documentation"
-msgstr "Документация"
-
-#: ../singlehtml.rst:18
-msgid ":ref:`genindex`"
+#: ../index.rst:33
+msgid "Tarantool - Index"
 msgstr ""
 
-#: ../index.rst:30
+#: ../index.rst:40
+msgid "<hidden>"
+msgstr ""
+
+#: ../index.rst:44
+msgid "Get your data in RAM. Get compute close to data. Enjoy the performance."
+msgstr ""
+
+#: ../index.rst
+msgid "A drop-in **replacement for Lua 5.1**, based on LuaJIT 2.1;"
+msgstr ""
+
+#: ../index.rst
+msgid "simply use #!/usr/bin/tarantool instead of #!/usr/bin/lua in your script"
+msgstr ""
+
+#: ../index.rst:67
+msgid "**Lua packages** for non-blocking I/O, fibers and HTTP"
+msgstr ""
+
+#: ../index.rst:68
+msgid "**indexes**: `secondary indexes`_, `range queries`_, `index iterators`_"
+msgstr ""
+
+#: ../index.rst:69
+msgid "**transactions**: `ACID transactions`_"
+msgstr ""
+
+#: ../index.rst:70
 msgid ""
-"For one page HTML documentation, please, use `this link "
-"</doc/singlehtml.html>`_."
-msgstr "Одностраничная документация доступна по `этой ссылке <singlehtml.html>`_."
+"**replication**: asynchronous `master-slave`_ and `master-master`_ "
+"replication"
+msgstr ""
+
+#: ../index.rst:71
+msgid "**query language**: `server-side scripting and stored procedures`_"
+msgstr ""
+
+#: ../index.rst:72
+msgid "**security**: `authentication and access control`_"
+msgstr ""
+
+#: ../index.rst:78
+msgid ""
+"Terms and conditions of all commercial services are available upon "
+"request, please send an inquiry to support@tarantool.org."
+msgstr ""
+
+#: ../index.rst:80
+msgid ""
+"We offer 24x7 business support at very moderate pricing, along with "
+"consulting, implementation and training."
+msgstr ""
+
+#: ../index.rst:82
+msgid ""
+"**Our support is conducted by real software engineers of the Tarantool "
+"core engine!**"
+msgstr ""
+
+#: ../index.rst:84
+msgid ""
+"All Tarantool users can get help on support@tarantool.org and "
+"`tarantool@groups.google.com "
+"<https://groups.google.com/forum/#!forum/tarantool>`_."
+msgstr ""
+
+#: ../index.rst:86
+msgid ""
+"If you need immediate help, try to ping Tarantool maintainers on "
+"`telegram <http://telegram.me/tarantool>`_."
+msgstr ""
+
+#~ msgid "Documentation"
+#~ msgstr "Документация"
+
+#~ msgid ":ref:`genindex`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "For one page HTML documentation, please,"
+#~ " use `this link </doc/singlehtml.html>`_."
+#~ msgstr ""
+#~ "Одностраничная документация доступна по `этой"
+#~ " ссылке <singlehtml.html>`_."
 
