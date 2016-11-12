@@ -235,7 +235,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
           |                  | integers between          | vinyl TREE indexes                    | -1 |br|           |
           |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
           |                  | 18446744073709551615,     |                                       | '' |br|           |
-          |                  | single-precision floating |                                       | '俄國'            |
+          |                  | single-precision floating |                                       | 'ру'              |
           |                  | point numbers,            |                                       |                   |
           |                  | double-precision floating |                                       |                   |
           |                  | point numbers, strings    |                                       |                   |

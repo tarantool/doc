@@ -3,8 +3,6 @@ execfile('../conf.py')
 
 master_doc = 'doc/singlehtml'
 
-# html_theme_options['nosidebar'] = True
-
 exclude_patterns += [
-        '../index'
+        '*.rst',
 ]

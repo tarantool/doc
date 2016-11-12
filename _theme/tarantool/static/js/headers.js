@@ -53,6 +53,17 @@ $(document).ready(function () {
     }
   );
 
+  if ($(".b-doc-doc_singlehtml").length) {
+    $("a").each(function(i, el) {
+      var link = $(el).attr('href');
+      console.log(link)
+      if (link) {
+        link = link.replace(/^doc\/singlehtml\.html/, '');
+        $(el).attr("href", link);
+      }
+    })
+  }
+
   /* Add anchor before every function name. Also, add divs for good wrapping */
   $('h2, h3, h4, h5, h6').each(
     function(i, el) {

@@ -82,20 +82,20 @@ html_compact_lists   = True
 
 html_context = {
     'website': {
-        'index'      : True,
-        'download'   : True,
-        'download_16': True,
-        'careers'    : True,
-        'benchmark'  : True,
-        'doc'        : True,
-        'try'        : True,
-        'rocks'      : True,
+        'index'       : True,
+        'download'    : True,
+        'download_16' : True,
+        'careers'     : True,
+        'benchmark'   : True,
+        'doc'         : True,
+        'try'         : True,
+        'rocks'       : True,
         # Helper webpages
-        '404'          : True,
+        '404'            : True,
         # Internal webpages
-        'genindex'     : True,
-        'lua-modindex' : True,
-        'search'       : True
+        'genindex'       : True,
+        'lua-modindex'   : True,
+        'search'         : True,
     },
     'wp_local': True
 }
@@ -141,6 +141,11 @@ rst_prolog = """
 intersphinx_mapping = {
     'tarantoolc': ('http://tarantool.github.io/tarantool-c/', None)
 }
+
+latex_elements = {
+        'fontenc': r'\usepackage[T1,T2A]{fontenc}'
+}
+
 
 intersphinx_cache_limit = 0
 

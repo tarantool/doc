@@ -7,6 +7,7 @@ set(CMAKE_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_INCLUDE_PATH}
 
 include(FindOptionalPackage)
 include(FindPackageMessage)
+include(FindLatex)
 
 include(cmake/FindSphinx.cmake)
 find_package(Sphinx REQUIRED)
@@ -45,9 +46,14 @@ find_package_message(TARANTOOL_VERSION
 
 set(SPHINX_BUILD_SINGLEHTML_DIR    "${CMAKE_CURRENT_BINARY_DIR}/_single_build/")
 set(SPHINX_BUILD_HTML_DIR          "${CMAKE_CURRENT_BINARY_DIR}/_html_build/")
-set(SPHINX_BUILD_LOCALE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/_locale_build/")
+set(SPHINX_BUILD_LATEX_DIR       "${CMAKE_CURRENT_BINARY_DIR}/_latex_build/")
+
 set(SPHINX_BUILD_SINGLEHTML_RU_DIR "${CMAKE_CURRENT_BINARY_DIR}/_single_ru_build/")
 set(SPHINX_BUILD_HTML_RU_DIR       "${CMAKE_CURRENT_BINARY_DIR}/_html_ru_build/")
+set(SPHINX_BUILD_LATEX_RU_DIR       "${CMAKE_CURRENT_BINARY_DIR}/_latex_ru_build/")
+
+set(SPHINX_BUILD_LOCALE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/_locale_build/")
+
 set(SPHINX_OUTPUT_DIR              "${CMAKE_CURRENT_BINARY_DIR}/output")
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/en/")
 set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/ru/")
@@ -81,7 +87,7 @@ add_custom_target(sphinx-singlehtml ALL
         -d "${SPHINX_BUILD_SINGLEHTML_DIR}"
         -c singlehtml/
         "${CMAKE_CURRENT_SOURCE_DIR}"
-        "${SPHINX_EN_HTML_DIR}/doc"
+        "${SPHINX_EN_HTML_DIR}"
         doc/singlehtml.rst
     COMMENT "Building HTML documentation with Sphinx"
     DEPENDS update-submodules
@@ -105,7 +111,7 @@ add_custom_target(sphinx-singlehtml-ru ALL
         -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
         -c singlehtml/
         "${CMAKE_CURRENT_SOURCE_DIR}"
-        "${SPHINX_RU_HTML_DIR}/doc"
+        "${SPHINX_RU_HTML_DIR}"
         doc/singlehtml.rst
         -Dlanguage=ru
     COMMENT "Building HTML documentation with Sphinx"
@@ -134,12 +140,54 @@ add_custom_target(sphinx-update-po
 add_custom_target(sphinx-linkcheck
     COMMAND "${SPHINX_EXECUTABLE}"
         -b linkcheck
-        -d "${SPHINX_BUILD_LOCALE_DIR}"
+        -d "${SPHINX_BUILD_HTML_DIR}"
         -c html
         "${CMAKE_CURRENT_SOURCE_DIR}"
         "${SPHINX_BUILD_HTML_DIR}"
     COMMENT "Linkcheck filter"
 )
+
+if (LATEX_FOUND)
+    add_custom_target(sphinx-pdf-ru ALL COMMENT "PDF generation")
+    add_custom_command(TARGET sphinx-pdf-ru
+        COMMAND "${SPHINX_EXECUTABLE}"
+            -b latex
+            -d "${SPHINX_BUILD_LATEX_RU_DIR}"
+            -c singlehtml
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${SPHINX_BUILD_LATEX_RU_DIR}"
+            -Dlanguage=ru
+    )
+    add_custom_command(TARGET sphinx-pdf-ru
+        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex
+        WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_RU_DIR}
+    )
+    add_custom_command(TARGET sphinx-pdf-ru
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_RU_HTML_DIR}/doc/)
+    add_custom_command(TARGET sphinx-pdf-ru
+        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_RU_DIR}/Tarantool.pdf
+                                         ${SPHINX_RU_HTML_DIR}/doc/)
+
+    add_custom_target(sphinx-pdf ALL COMMENT "PDF generation")
+    add_custom_command(TARGET sphinx-pdf
+        COMMAND "${SPHINX_EXECUTABLE}"
+            -b latex
+            -d "${SPHINX_BUILD_LATEX_DIR}"
+            -c singlehtml
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${SPHINX_BUILD_LATEX_DIR}"
+    )
+
+    add_custom_command(TARGET sphinx-pdf
+        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex
+        WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_DIR}
+    )
+    add_custom_command(TARGET sphinx-pdf
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_EN_HTML_DIR}/doc/)
+    add_custom_command(TARGET sphinx-pdf
+        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_DIR}/Tarantool.pdf
+                                         ${SPHINX_EN_HTML_DIR}/doc/)
+endif()
 
 add_custom_target(sphinx-webserver
     COMMAND screen -dmS sphinx-webserver python ${CMAKE_CURRENT_SOURCE_DIR}/ext/WebPageServer.py 8000
@@ -155,8 +203,7 @@ set(STATIC_FILES
     _downloads/terms_eng.docx
 )
 
-add_custom_target(copy-static ALL
-    COMMENT "Copy static files")
+add_custom_target(copy-static ALL COMMENT "Copy static files")
 foreach(FILE_PATH ${STATIC_FILES})
     get_filename_component(FILE_DIR ${FILE_PATH} DIRECTORY)
     add_custom_command(TARGET copy-static PRE_BUILD

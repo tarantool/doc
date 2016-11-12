@@ -9,6 +9,7 @@ import re
 from docutils import nodes, utils
 from docutils.parsers.rst import roles
 
+from sphinx.builders.latex import LaTeXBuilder
 from sphinx.builders.linkcheck import CheckExternalLinksBuilder
 
 import xml.etree.ElementTree as ET
@@ -20,7 +21,8 @@ def add_jinja_filters(app):
     def is_documentation(x):
         # print(x, x.startswith('doc/'))
         return x.startswith('doc/') or x == 'doc'
-    app.builder.templates.environment.tests['documentation'] = is_documentation
+    if not isinstance(app.builder, (CheckExternalLinksBuilder, LaTeXBuilder)):
+        app.builder.templates.environment.tests['documentation'] = is_documentation
 
 _emphtext_re = re.compile('({\*{.+?}\*}|{\*\*{.+?}\*\*})')
 
@@ -52,8 +54,7 @@ def setup(app):
     '''
     Adds extra jinja filters.
     '''
-    if not isinstance(app.builder, CheckExternalLinksBuilder):
-        app.connect("builder-inited", add_jinja_filters)
+    app.connect("builder-inited", add_jinja_filters)
     app.add_object_type('confval', 'confval', objname='configuration value',
                         indextemplate='pair: %s; configuration value')
     app.add_object_type('errcode', 'errcode', objname='error code value',

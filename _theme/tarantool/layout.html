@@ -22,24 +22,23 @@
 {% endset %}
 
 {% set is_website  = website.get(pagename, False) %}
-{% set is_mainpage = title in ["Documentation", "Документация"] %}
+{% set is_mainpage = pagename in ["doc/index", "doc/singlehtml"] %}
 
-{% set body_suffix = "" if is_website else " b-doc-%s" % pagename %}
+{% set pagename_stripped = pagename | replace("/", "_") %}
+{% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}
 {% set body_class = "p-main" if (is_mainpage or is_website) else "p-cols_design" %}
-{#% set body_class = "%s%s" % (body_class, body_suffix) %#}
 {% set body_class = body_class + body_suffix %}
-
 
 {% set header_suffix = "" if is_mainpage or is_website else "toggle-navigation" %}
 {% set header_class = "b-section-title b-ellipsis " + header_suffix %}
-{#% if is_mainpage or is_website %}
-  {% set header_class = %}
-{% else %}
-{% endif %#}
 
 {% set content_pane %}
   <article class="b-article">
-    {#% if is_mainpage %} {{ toctree(maxdepth=2, collapse=false) }} {% endif %#}
+    {% if pagename == "doc/singlehtml" %}
+      <div class="toctree-wrapper compound">
+        {{ toctree(maxdepth=2, collapse=false) }}
+      </div>
+    {% endif %}
     {{ body }}
   </article>
 {% endset %}

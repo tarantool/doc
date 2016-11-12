@@ -2,5 +2,5 @@
 execfile('../conf.py')
 
 exclude_patterns += [
-        '../singlehtml'
+        'doc/singlehtml.rst'
 ]

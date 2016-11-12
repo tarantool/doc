@@ -34,9 +34,11 @@ dropped. Now only the binary protocol is supported.
 
 The diagram below shows possible connection states and transitions:
 
-.. image:: net_states.svg
-    :align: center
-    :alt: net_states.svg
+.. ifconfig:: builder not in ('latex', )
+
+    .. image:: net_states.svg
+        :align: center
+        :alt: net_states.svg
 
 .. module:: net_box
 

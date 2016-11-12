@@ -13,7 +13,8 @@ Tarantool - Documentation
     -- to advanced instructions and detailed references for power users and
     contributors.
 
-    A single-page version of this manual is available `here`_.
+    | A single-page version of this manual is available `here <doc/singlehtml.html>`_.
+    | A pdf version of this manual is available `here <doc/Tarantool.pdf>`_.
 
 .. wp_section::
     :class: b-block b-downloads
@@ -77,7 +78,6 @@ Tarantool - Documentation
 
           tl;dr? ;-) Feel free to ask your question in our `telegram chat`_.
 
-.. _here: doc/singlehtml.html
 .. _What's new in Tarantool 1.7?: doc/whats_new.html
 .. _An application server together with a database manager: doc/intro.html#an-application-server-together-with-a-database-manager
 .. _Database features: doc/intro.html#database-features

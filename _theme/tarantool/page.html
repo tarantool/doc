@@ -3,10 +3,6 @@
 {% from 'elements.html' import breadcrumbs       with context %}
 {% from 'elements.html' import navbar            with context %}
 {% from 'elements.html' import language_selector with context %}
-{#% from 'elements.html' import disqus            with context %#}
-
-{% set is_website  = website.get(pagename, False) %}
-{% set is_mainpage = title in ["Documentation", "Документация"] %}
 
 {% block body %}
   {% if not is_website %}
@@ -36,7 +32,6 @@
             {{- breadcrumbs() -}}
             {{  content_pane   }}
             {% if pagename not in ["search", "genindex", "modindex"] %}
-            {#{   disqus()    }#}
             {% endif %}
             {{- navbar(False) -}}
           </div>
