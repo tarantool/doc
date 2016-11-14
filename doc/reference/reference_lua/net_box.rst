@@ -14,11 +14,11 @@ You can call the following methods:
 
 * ``require('net.box')`` to get a ``net.box`` object
   (named ``net_box`` for examples in this section),
-* ``net_box.new()`` to connect and get a connection object
+* ``net_box.connect()`` to connect and get a connection object
   (named ``conn`` for examples in this section),
 * other ``net.box()`` routines, passing ``conn:``, to execute requests on
   a remote box,
-* :ref:`conn:close <socket-close>` to disconnect.
+* ``conn:close`` to disconnect.
 
 All ``net.box`` methods are fiber-safe, that is, it is safe to share and use the
 same connection object across multiple concurrent fibers. In fact, it's perhaps
@@ -40,10 +40,30 @@ The diagram below shows possible connection states and transitions:
         :align: center
         :alt: net_states.svg
 
+On this diagram:
+
+* The state machine starts in the 'initial' state.
+
+* ``net_box.connect()`` method changes the state to 'connecting' and spawns a worker fiber.
+  
+* If authentication and schema upload are required, it's possible later on to re-enter 
+  the 'fetch_schema' state from 'active' if a request fails due to a schema version
+  mismatch error, so schema reload is triggered.
+
+* ``conn.close()`` method sets the state to 'closed' and kills the worker.
+  If the transport is already in the 'error' state, ``close()`` does nothing.
+
 .. module:: net_box
 
+.. function:: connect(URI [, {option[s]}])
 .. function:: new(URI [, {option[s]}])
 
+    .. note::
+    
+       The names ``connect()`` and ``new()`` are synonymous with the only
+       difference that ``connect()`` is the preferred name, while ``new()`` is
+       retained for backward compatibility.
+    
     Create a new connection. The connection is established on demand, at the
     time of the first request. It can be re-established automatically after a
     disconnect (see ``reconnect_after`` option below).
@@ -52,7 +72,7 @@ The diagram below shows possible connection states and transitions:
 
     For a local Tarantool server, there is a pre-created always-established
     connection object named :samp:`{net_box}.self`. Its purpose is to make polymorphic
-    use of the ``net_box`` API easier. Therefore :samp:`conn = {net_box}.new('localhost:3301')`
+    use of the ``net_box`` API easier. Therefore :samp:`conn = {net_box}.connect('localhost:3301')`
     can be replaced by :samp:`conn = {net_box}.self`. However, there is an important
     difference between the embedded connection and a remote one. With the
     embedded connection, requests which do not modify data do not yield.
@@ -94,9 +114,9 @@ The diagram below shows possible connection states and transitions:
 
     .. code-block:: lua
 
-        conn = net_box.new('localhost:3301')
-        conn = net_box.new('127.0.0.1:3302', {wait_connected = false})
-        conn = net_box.new('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
+        conn = net_box.connect('localhost:3301')
+        conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
+        conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
         
 .. class:: conn
 
@@ -313,7 +333,7 @@ And here starts the example:
              >     table.insert(ta, '(  (maybe box.cfg{...listen="3301"...} was not stated)')
              >     table.insert(ta, '(  (so connect will fail)')
              >   end
-             >   conn = net_box.new('127.0.0.1:3301')
+             >   conn = net_box.connect('127.0.0.1:3301')
              >   conn.space.tester:delete{800}
              >   table.insert(ta, 'conn delete done on tester.')
              >   conn.space.tester:insert{800, 'data'}
