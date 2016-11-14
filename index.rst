@@ -37,11 +37,14 @@ Tarantool - Index
       | simply use #!/usr/bin/tarantool instead of #!/usr/bin/lua in your
         script
     * **Lua packages** for non-blocking I/O, fibers and HTTP
-    * **indexes**: `secondary indexes`_, `range queries`_, `index iterators`_
-    * **transactions**: `ACID transactions`_
-    * **replication**: asynchronous `master-slave`_ and `master-master`_ replication
-    * **query language**: `server-side scripting and stored procedures`_
-    * **security**: `authentication and access control`_
+    * **indexes**:  :ref:`secondary indexes <box_index>`,
+      :ref:`range queries <box_index>`, :ref:`index iterators <box_index>`
+    * **transactions**: :ref:`ACID transactions <transaction_control>`
+    * **replication**: asynchronous :ref:`master-slave <index-box_replication>`
+      and :ref:`master-master <index-box_replication>` replication
+    * **query language**: :ref:`server-side scripting and stored procedures
+      <lua_tutorials>`
+    * **security**: :ref:`authentication and access control <authentication>`
 
 .. wp_section::
     :class: b-block-gray b-support
@@ -192,14 +195,14 @@ Tarantool - Index
                     </a>
                     <a href="http://stackoverflow.com/questions/tagged/tarantool">
                         <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                        <i class="fa fa-stack-overflow fa-stack-1x"></i>
+                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                            <i class="fa fa-stack-overflow fa-stack-1x"></i>
                         </span>
                     </a>
                     <a href="https://twitter.com/kostja_osipov">
                         <span class="fa-stack fa-lg">
-                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                        <i class="fa fa-twitter fa-stack-1x"></i>
+                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x"></i>
                         </span>
                     </a>
                 </ul>
@@ -214,35 +217,35 @@ Tarantool - Index
 
         <div class="b-cols">
             <div class="b-cols-item">
-            <a href="http://mail.ru" class="b-cust_logo i-mailru"></a>
+                <a href="http://mail.ru" class="b-cust_logo i-mailru"></a>
             </div>
             <div class="b-cols-item-empty">&nbsp;</div>
             <div class="b-cols-item">
-            <a href="http://badoo.com" class="b-cust_logo i-badoo"></a>
+                <a href="http://badoo.com" class="b-cust_logo i-badoo"></a>
             </div>
             <div class="b-cols-item-empty">&nbsp;</div>
             <div class="b-cols-item">
-            <a href="http://avito.ru" class="b-cust_logo i-avito"></a>
+                <a href="http://avito.ru" class="b-cust_logo i-avito"></a>
             </div>
             <div class="b-cols-item-empty">&nbsp;</div>
             <div class="b-cols-item">
-            <a href="http://qiwi.ru" class="b-cust_logo i-qiwi"></a>
+                <a href="http://qiwi.ru" class="b-cust_logo i-qiwi"></a>
             </div>
             <div class="b-cols-item-empty">&nbsp;</div>
             <div class="b-cols-item">
-            <a href="http://wallarm.com" class="b-cust_logo i-wallarm"></a>
+                <a href="http://wallarm.com" class="b-cust_logo i-wallarm"></a>
             </div>
         </div>
 
-.. _secondary indexes: http://tarantool.org/doc/book/box/box_index.html
-.. _range queries: http://tarantool.org/doc/book/box/box_index.html
-.. _index iterators: http://tarantool.org/doc/book/box/box_index.html
+.. _secondary indexes: doc/book/box/box_index.html
+.. _range queries: doc/book/box/box_index.html
+.. _index iterators: doc/book/box/box_index.html
 
-.. _ACID transactions: http://tarantool.org/doc/book/box/atomic.html
+.. _ACID transactions: doc/book/box/index.html?highlight=transactions#transaction-control
 
-.. _master-slave: http://tarantool.org/doc/book/replication/index.html
-.. _master-master: http://tarantool.org/doc/book/replication/index.html
+.. _master-slave:
+.. _master-master: doc/book/administration.html#replication
 
-.. _server-side scripting and stored procedures: http://tarantool.org/doc/book/app/c_lua_tutorial.html
+.. _server-side scripting and stored procedures: doc/tutorials/lua_tutorials.html
 
-.. _authentication and access control: http://tarantool.org/doc/book/box/authentication.html
+.. _authentication and access control: doc/book/box/index.html#access-control

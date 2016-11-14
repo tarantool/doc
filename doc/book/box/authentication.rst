@@ -1,4 +1,3 @@
-.. _authentication:
 
 Understanding the details of security is primarily an issue for administrators,
 but ordinary users should at least skim this section so that they will have an
