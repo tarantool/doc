@@ -58,31 +58,26 @@
     .. parsed-literal::
 
         vinyl = {
-          run_age_wm = *number*,
-          run_age_period = *number of seconds*,
-          memory_limit = *number of gigabytes*,
+          memory_limit = *number*,
           compact_wm = *number*,
           threads = *number*,
-          run_age = *number*,
-          run_prio = *number*,
         }
+
+    ``memory_limit`` |br|
+    Type: integer. Default = 1. Dynamic: no |br|
+    The maximum number of in-memory bytes that vinyl uses.
+
+    ``compact_wm`` |br|
+    Type: integer. Default: 2. Dynamic: no |br|
+    The "compaction watermark". If the number of runs
+    becomes greater than compact_wm, then compaction occurs.
+
+    ``threads`` |br|
+    Type: integer. Default = 1. Dynamic: no |br|
+    The maximum number of threads that vinyl can use for some
+    concurrent operations, such as I/O and compression.
 
     This method may change in the future.
-
-    Default values are:
-
-    .. cssclass:: highlight
-    .. parsed-literal::
-
-        vinyl = {
-          run_age_wm = 0,
-          run_age_period = 0,
-          memory_limit = 1,
-          compact_wm = 2,
-          threads = 5,
-          run_age = 0,
-          run_prio = 2,
-        }
 
 .. _LZ4 algorithm: https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29
 .. _ZStandard algorithm: http://zstd.net
