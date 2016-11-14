@@ -7,10 +7,10 @@ set(CMAKE_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_INCLUDE_PATH}
 
 include(FindOptionalPackage)
 include(FindPackageMessage)
-include(FindLatex)
 
 include(cmake/FindSphinx.cmake)
 find_package(Sphinx REQUIRED)
+find_package(LATEX)
 
 # Get version
 set (PACKAGE_VERSION "")
