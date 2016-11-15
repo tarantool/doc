@@ -175,7 +175,7 @@ Replace triggers
 
     .. function:: on_replace(trigger-function [, old-trigger-function-name])
 
-        Create a "``replace trigger``". The ``function-name`` will be executed whenever
+        Create a "``replace trigger``". The ``trigger-function`` will be executed whenever
         a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()`` or ``delete()`` happens to a
         tuple in ``<space-name>``.
 
@@ -193,6 +193,20 @@ Replace triggers
                      >   x = x + 1
                      > end
             tarantool> box.space.X:on_replace(f)
+
+        The ``trigger-function`` can have two parameters: old tuple, new tuple.
+        For example, the following code causes nil to be printed when the
+        insert request is processed, and causes [1, 'Hi'] to be printed when
+        the delete request is processed:
+
+        .. code-block:: none
+
+            box.schema.space.create('space_1')
+            box.space.space_1:create_index('space_1_index',{})
+            function on_replace_function (old, new) print(old) end
+            box.space.space_1:on_replace(on_replace_function)
+            box.space.space_1:insert{1,'Hi'}
+            box.space.space_1:delete{1}
 
     .. function:: run_triggers(true|false)
 
