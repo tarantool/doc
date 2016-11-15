@@ -29,9 +29,6 @@ the overhead of system calls and increases the overall server performance. There
 are, however, cases when a single connection is not enough — for example, when it's
 necessary to prioritize requests or to use different authentication IDs.
 
-Since Tarantool 1.7.2, support for the Lua console protocol in ``net.box`` was
-dropped. Now only the binary protocol is supported.
-
 The diagram below shows possible connection states and transitions:
 
 .. ifconfig:: builder not in ('latex', )
@@ -104,9 +101,15 @@ On this diagram:
       It will be removed in the next major release.
       All programming language drivers will be gradually changed to use the new CALL.
       To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.
+      
+    * `console`: depending on the option's value, the connection supports different methods
+      (as if instances of different classes were returned). With ``console = true``, you can use
+      ``conn`` methods ``close()``, ``is_connected()``, ``wait_state()``, ``eval()`` (in this case, both
+      binary and Lua console network protocols are supported). With ``console = false`` (default), you can
+      also use ``conn`` database methods (in this case, only the binary protocol is supported).
 
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
-    :param options: possible options are `wait_connected`, `reconnect_after` and `call_16`
+    :param options: possible options are `wait_connected`, `reconnect_after`, `call_16` and `console`
     :return: conn object
     :rtype:  userdata
 
