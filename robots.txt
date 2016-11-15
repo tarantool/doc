@@ -1,2 +1,5 @@
 User-Agent: *
 Disallow: /dist
+Disallow: /doc/_sources
+Disallow: /en/doc/_sources
+Disallow: /ru/doc/_sources
