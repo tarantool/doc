@@ -17,7 +17,7 @@ at GitHub.
 What's new in Tarantool 1.7?
 ================================================================================
 
-The disk-based storge engine, which was called `sophia` or `phia`
+The disk-based storage engine, which was called `sophia` or `phia`
 in earlier versions, is superseded by the `vinyl` storage engine.
 
 There are new types for indexed fields.
