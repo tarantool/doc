@@ -6,18 +6,14 @@
 
 .. module:: os
 
-The os module contains the functions
-:ref:`execute() <os-execute>`,
-:ref:`rename() <os-rename>`,
-:ref:`getenv() <os-getenv>`,
-:ref:`remove() <os-remove>`,
-:ref:`date() <os-date>`,
-:ref:`exit() <os-exit>`,
-:ref:`time() <os-time>`,
-:ref:`clock() <os-clock>`,
-:ref:`tmpname() <os-tmpname>`.
+The os module contains the functions :ref:`execute() <os-execute>`,
+:ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`,
+:ref:`remove() <os-remove>`, :ref:`date() <os-date>`,
+:ref:`exit() <os-exit>`, :ref:`time() <os-time>`,
+:ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`.
 Most of these functions are described in the Lua manual
-Chapter 22 `The Operating System Library <https://www.lua.org/pil/contents.html#22>`_.
+Chapter 22 `The Operating System Library
+<https://www.lua.org/pil/contents.html#22>`_.
 
 .. _os-execute:
 

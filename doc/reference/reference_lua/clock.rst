@@ -4,10 +4,10 @@
                             Module `clock`
 -------------------------------------------------------------------------------
 
-The ``clock`` module returns time values derived from
-the Posix / C CLOCK_GETTIME_ function or equivalent.
-Most functions in the module return a number of seconds;
-functions whose names end in "64" return a 64-bit number of nanoseconds.
+The ``clock`` module returns time values derived from the Posix / C
+CLOCK_GETTIME_ function or equivalent. Most functions in the module return a
+number of seconds; functions whose names end in "64" return a 64-bit number of
+nanoseconds.
 
 .. module:: clock
 
@@ -17,8 +17,8 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
               realtime64()
 
     The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME).
-    This is the best function for knowing what the official time is,
-    as determined by the system administrator.
+    This is the best function for knowing what the official time is, as
+    determined by the system administrator.
 
     :return: seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted.
     :rtype: number or number64
@@ -40,7 +40,8 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
     The monotonic time. Derived from C function clock_gettime(CLOCK_MONOTONIC).
     Monotonic time is similar to wall clock time but is not affected by changes
     to or from daylight saving time, or by changes done by a user.
-    This is the best function to use with benchmarks that need to calculate elapsed time.
+    This is the best function to use with benchmarks that need to calculate
+    elapsed time.
 
     :return: seconds or nanoseconds since the last time that the computer was booted.
     :rtype: number or number64
@@ -56,9 +57,10 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
 .. function:: proc()
               proc64()
 
-    The processor time. Derived from C function clock_gettime(CLOCK_PROCESS_CPUTIME_ID).
-    This is the best function to use with benchmarks that need to calculate
-    how much time has been spent within a CPU.
+    The processor time. Derived from C function
+    ``clock_gettime(CLOCK_PROCESS_CPUTIME_ID)``. This is the best function to
+    use with benchmarks that need to calculate how much time has been spent
+    within a CPU.
 
     :return: seconds or nanoseconds since processor start.
     :rtype: number or number64
@@ -74,9 +76,10 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
 .. function:: thread()
               thread64()
 
-    The thread time. Derived from C function clock_gettime(CLOCK_THREAD_CPUTIME_ID).
-    This is the best function to use with benchmarks that need to calculate
-    how much time has been spent within a thread within a CPU.
+    The thread time. Derived from C function
+    ``clock_gettime(CLOCK_THREAD_CPUTIME_ID)``. This is the best function to use
+    with benchmarks that need to calculate how much time has been spent within a
+    thread within a CPU.
 
     :return: seconds or nanoseconds since thread start.
     :rtype: number or number64
@@ -89,19 +92,19 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
         clock = require('clock')
         print(clock.thread64())
 
-.. function:: bench(function [, function parameters ...])
+.. function:: bench(function[, ...])
 
-    The time that a function takes within a processor.
-    This function uses clock.proc(), therefore it calculates elapsed CPU time.
-    Therefore it is not useful for showing actual elapsed time.
+    The time that a function takes within a processor. This function uses
+    ``clock.proc()``, therefore it calculates elapsed CPU time. Therefore it is
+    not useful for showing actual elapsed time.
 
     Parameters:
 
-    * :samp:`{function}` = function or function reference;
-    * :samp:`{function parameters}` = whatever values are required by the function.
+    :param function function: function or function reference
+    :param               ...: whatever values are required by the function.
 
-    :return: table. first element = seconds of CPU time; second element = whatever the function returns.
-    :rtype: table
+    :return: **table**. first element - seconds of CPU time, second element -
+             whatever the function returns.
 
     **Example:**
 
@@ -116,6 +119,6 @@ functions whose names end in "64" return a 64-bit number of nanoseconds.
           fiber.sleep(param)
           return 88
         end
-        clock.bench(f,10)
+        clock.bench(f, 10)
 
 .. _CLOCK_GETTIME: http://pubs.opengroup.org/onlinepubs/9699919799/functions/clock_getres.html

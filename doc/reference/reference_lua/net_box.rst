@@ -6,18 +6,18 @@ Module `net.box`
 
 The ``net.box`` module contains connectors to remote database systems. One
 variant, to be discussed later, is connecting to MySQL or MariaDB or PostgreSQL
-(see :ref:`SQL DBMS modules <dbms_modules>` reference).
-The other variant, which is discussed in this section, is connecting to Tarantool
-servers via a network using the built-in ``net.box`` module.
+(see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
+is discussed in this section, is connecting to Tarantool servers via a network
+using the built-in ``net.box`` module.
 
 You can call the following methods:
 
-* ``require('net.box')`` to get a ``net.box`` object
-  (named ``net_box`` for examples in this section),
-* ``net_box.connect()`` to connect and get a connection object
-  (named ``conn`` for examples in this section),
-* other ``net.box()`` routines, passing ``conn:``, to execute requests on
-  a remote box,
+* ``require('net.box')`` to get a ``net.box`` object (named ``net_box`` for
+  examples in this section),
+* ``net_box.connect()`` to connect and get a connection object (named ``conn``
+  for examples in this section),
+* other ``net.box()`` routines, passing ``conn:``, to execute requests on a
+  remote box,
 * ``conn:close`` to disconnect.
 
 All ``net.box`` methods are fiber-safe, that is, it is safe to share and use the
@@ -26,8 +26,8 @@ the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
 the overhead of system calls and increases the overall server performance. There
-are, however, cases when a single connection is not enough — for example, when it's
-necessary to prioritize requests or to use different authentication IDs.
+are, however, cases when a single connection is not enough — for example, when
+it's necessary to prioritize requests or to use different authentication IDs.
 
 The diagram below shows possible connection states and transitions:
 
@@ -40,76 +40,86 @@ The diagram below shows possible connection states and transitions:
 On this diagram:
 
 * The state machine starts in the 'initial' state.
-
-* ``net_box.connect()`` method changes the state to 'connecting' and spawns a worker fiber.
-  
-* If authentication and schema upload are required, it's possible later on to re-enter 
-  the 'fetch_schema' state from 'active' if a request fails due to a schema version
-  mismatch error, so schema reload is triggered.
-
+* ``net_box.connect()`` method changes the state to 'connecting' and spawns a
+  worker fiber.
+* If authentication and schema upload are required, it's possible later on to
+  re-enter the 'fetch_schema' state from 'active' if a request fails due to a
+  schema version mismatch error, so schema reload is triggered.
 * ``conn.close()`` method sets the state to 'closed' and kills the worker.
   If the transport is already in the 'error' state, ``close()`` does nothing.
 
 .. module:: net_box
 
 .. function:: connect(URI [, {option[s]}])
-.. function:: new(URI [, {option[s]}])
+              new(URI [, {option[s]}])
 
-    .. note::
-    
+    .. NOTE::
+
        The names ``connect()`` and ``new()`` are synonymous with the only
        difference that ``connect()`` is the preferred name, while ``new()`` is
        retained for backward compatibility.
-    
+
     Create a new connection. The connection is established on demand, at the
     time of the first request. It can be re-established automatically after a
-    disconnect (see ``reconnect_after`` option below).
-    The returned ``conn`` object supports methods for making remote requests,
-    such as select, update or delete.
+    disconnect (see ``reconnect_after`` option below). The returned ``conn``
+    object supports methods for making remote requests, such as select, update
+    or delete.
 
     For a local Tarantool server, there is a pre-created always-established
-    connection object named :samp:`{net_box}.self`. Its purpose is to make polymorphic
-    use of the ``net_box`` API easier. Therefore :samp:`conn = {net_box}.connect('localhost:3301')`
-    can be replaced by :samp:`conn = {net_box}.self`. However, there is an important
-    difference between the embedded connection and a remote one. With the
-    embedded connection, requests which do not modify data do not yield.
-    When using a remote connection, due to :ref:`the implicit rules <atomic-the_implicit_yield_rules>`
-    any request can yield, and database state may have changed by the time it regains control.
-    
+    connection object named :samp:`{net_box}.self`. Its purpose is to make
+    polymorphic use of the ``net_box`` API easier. Therefore
+    :samp:`conn = {net_box}.connect('localhost:3301')` can be replaced by
+    :samp:`conn = {net_box}.self`. However, there is an important difference
+    between the embedded connection and a remote one. With the embedded
+    connection, requests which do not modify data do not yield. When using a
+    remote connection, due to :ref:`the implicit rules
+    <atomic-the_implicit_yield_rules>` any request can yield, and database state
+    may have changed by the time it regains control.
+
     Possible options:
-    
-    * `wait_connected`: by default, connection creation is blocked until the connection is established,
-      but passing ``wait_connected=false`` makes it return immediately. Also, passing a timeout
-      makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 secs). |br|
-      Note: In the presence of ``reconnect_after``, ``wait_connected`` ignores transient failures.
-      The wait completes once the connection is established or is closed explicitly.
-      
+
+    * `wait_connected`: by default, connection creation is blocked until the
+      connection is established, but passing ``wait_connected=false`` makes it
+      return immediately. Also, passing a timeout makes it wait before returning
+      (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 secs).
+
+      .. NOTE::
+
+          In the presence of ``reconnect_after``, ``wait_connected`` ignores
+          transient failures. The wait completes once the connection is
+          established or is closed explicitly.
+
     * `reconnect_after`: a ``net.box`` instance automatically reconnects
       any time the connection is broken or if a connection attempt fails.
-      This makes transient network failures become transparent to the application.
-      Reconnect happens automatically in the background, so queries/requests that
-      suffered due to connectivity loss are transparently retried.
-      The number of retries is unlimited, connection attempts are done over the
-      specified timeout (e.g. ``reconnect_after=5`` for 5 secs).
-      Once a connection is explicitly closed (or garbage-collected), reconnects stop.
-      
-    * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new 
-      binary protocol command for CALL, which is not backward compatible with previous versions.
-      The new CALL no longer restricts a function to returning an array of tuples
-      and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing).
-      The old CALL is left intact for backward compatibility.
-      It will be removed in the next major release.
-      All programming language drivers will be gradually changed to use the new CALL.
-      To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.
-      
-    * `console`: depending on the option's value, the connection supports different methods
-      (as if instances of different classes were returned). With ``console = true``, you can use
-      ``conn`` methods ``close()``, ``is_connected()``, ``wait_state()``, ``eval()`` (in this case, both
-      binary and Lua console network protocols are supported). With ``console = false`` (default), you can
-      also use ``conn`` database methods (in this case, only the binary protocol is supported).
+      This makes transient network failures become transparent to the
+      application. Reconnect happens automatically in the background, so
+      queries/requests that suffered due to connectivity loss are transparently
+      retried. The number of retries is unlimited, connection attempts are done
+      over the specified timeout (e.g. ``reconnect_after=5`` for 5 secs). Once a
+      connection is explicitly closed (or garbage-collected), reconnects stop.
 
-    :param string URI: the :ref:`URI <index-uri>` of the target for the connection
-    :param options: possible options are `wait_connected`, `reconnect_after`, `call_16` and `console`
+    * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a
+      new binary protocol command for CALL, which is not backward compatible
+      with previous versions. The new CALL no longer restricts a function to
+      returning an array of tuples and allows returning an arbitrary
+      MsgPack/JSON result, including scalars, nil and void (nothing). The old
+      CALL is left intact for backward compatibility. It will be removed in the
+      next major release. All programming language drivers will be gradually
+      changed to use the new CALL. To connect to a Tarantool instance that uses
+      the old CALL, specify ``call_16=true``.
+
+    * `console`: depending on the option's value, the connection supports
+      different methods (as if instances of different classes were returned).
+      With ``console = true``, you can use ``conn`` methods ``close()``,
+      ``is_connected()``, ``wait_state()``, ``eval()`` (in this case, both
+      binary and Lua console network protocols are supported). With
+      ``console = false`` (default), you can also use ``conn`` database methods
+      (in this case, only the binary protocol is supported).
+
+    :param string URI: the :ref:`URI <index-uri>` of the target for the
+                       connection
+    :param options: possible options are ``wait_connected``,
+                    ``reconnect_after``, ``call_16`` and ``console``
     :return: conn object
     :rtype:  userdata
 
@@ -120,7 +130,7 @@ On this diagram:
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
-        
+
 .. class:: conn
 
     .. method:: ping()
@@ -169,7 +179,8 @@ On this diagram:
 
         :param string states: target states
         :param number timeout: in seconds
-        :return: true when a target state is reached, false on timeout or connection closure
+        :return: true when a target state is reached, false on timeout or
+                 connection closure
         :rtype:  boolean
 
         **Example:**
@@ -178,10 +189,10 @@ On this diagram:
 
             -- wait infinitely for 'active' state:
             conn:wait_state('active')
-            
+
             -- wait for 1.5 secs at most:
             conn:wait_state('active', 1.5)
-            
+
             -- wait infinitely for either `active` or `fetch_schema` state:
             conn:wait_state({active=true, fetch_schema=true})
 
@@ -189,10 +200,11 @@ On this diagram:
 
         Close a connection.
 
-        Connection objects are garbage collected just like any other objects in Lua, so
-        an explicit destruction is not mandatory. However, since close() is a system
-        call, it is good programming practice to close a connection explicitly when it
-        is no longer needed, to avoid lengthy stalls of the garbage collector.
+        Connection objects are garbage collected just like any other objects in
+        Lua, so an explicit destruction is not mandatory. However, since
+        ``close()`` is a system call, it is good programming practice to close
+        a connection explicitly when it is no longer needed, to avoid lengthy
+        stalls of the garbage collector.
 
         **Example:**
 
@@ -202,17 +214,19 @@ On this diagram:
 
     .. method:: conn.space.<space-name>:select{field-value, ...}
 
-        :samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
+        :samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call
+        equivalent of the local call
+        :samp:`box.space.{space-name}:select`:code:`{...}`.
 
         .. NOTE::
 
-            Due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>`
-            a local :samp:`box.space.{space-name}:select`:code:`{...}` does
-            not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
+            Due to :ref:`the implicit yield rules
+            <atomic-the_implicit_yield_rules>` a local
+            :samp:`box.space.{space-name}:select`:code:`{...}` does not yield,
+            but a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
             call does yield, so global variables or database tuples data may
-            change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
-            occurs.
+            change when a remote
+            :samp:`conn.space.{space-name}:select`:code:`{...}` occurs.
 
     .. method:: conn.space.<space-name>:get{field-value, ...}
 
@@ -221,28 +235,28 @@ On this diagram:
 
     .. method:: conn.space.<space-name>:insert{field-value, ...}
 
-        :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:insert(...)`.
+        :samp:`conn.space.{space-name}:insert(...)` is the remote-call
+        equivalent of the local call :samp:`box.space.{space-name}:insert(...)`.
 
     .. method:: conn.space.<space-name>:replace{field-value, ...}
 
-        :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:replace(...)`.
+        :samp:`conn.space.{space-name}:replace(...)` is the remote-call
+        equivalent of the local call :samp:`box.space.{space-name}:replace(...)`.
 
     .. method:: conn.space.<space-name>:update{field-value, ...}
 
-        :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:update(...)`.
+        :samp:`conn.space.{space-name}:update(...)` is the remote-call
+        equivalent of the local call :samp:`box.space.{space-name}:update(...)`.
 
     .. method:: conn.space.<space-name>:upsert{field-value, ...}
 
-        :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:upsert(...)`.
+        :samp:`conn.space.{space-name}:upsert(...)` is the remote-call
+        equivalent of the local call :samp:`box.space.{space-name}:upsert(...)`.
 
     .. method:: conn.space.<space-name>:delete{field-value, ...}
 
-        :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:delete(...)`.
+        :samp:`conn.space.{space-name}:delete(...)` is the remote-call
+        equivalent of the local call :samp:`box.space.{space-name}:delete(...)`.
 
     .. _net_box-call:
 
@@ -285,15 +299,15 @@ On this diagram:
 
             conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})
 
-        All remote calls support execution timeouts. Using a wrapper object makes
-        the remote connection API compatible with the local one, removing the need
-        for a separate ``timeout`` argument, which the local version would ignore. Once
-        a request is sent, it cannot be revoked from the remote server even if a
-        timeout expires: the timeout expiration only aborts the wait for the remote
-        server response, not the request itself.
+        All remote calls support execution timeouts. Using a wrapper object
+        makes the remote connection API compatible with the local one, removing
+        the need for a separate ``timeout`` argument, which the local version
+        would ignore. Once a request is sent, it cannot be revoked from the
+        remote server even if a timeout expires: the timeout expiration only
+        aborts the wait for the remote server response, not the request itself.
 
 ============================================================================
-Example
+                                Example
 ============================================================================
 
 This example shows the use of most of the ``net.box`` methods.

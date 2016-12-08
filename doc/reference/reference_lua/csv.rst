@@ -23,10 +23,14 @@ The default formatting rules are:
 
 The possible options which can be passed to csv functions are:
 
-* :samp:`delimiter = {string}` -- single-byte character to designate end-of-field, default = comma
-* :samp:`quote_char = {string}` -- single-byte character to designate encloser of string, default = quote mark
-* :samp:`chunk_size = {number}` -- number of characters to read at once (usually for file-IO efficiency), default = 4096
-* :samp:`skip_head_lines = {number}` -- number of lines to skip at the start (usually for a header), default 0
+* :samp:`delimiter = {string}` (default: comma) -- single-byte character to
+  designate end-of-field
+* :samp:`quote_char = {string}` (default: quote mark) -- single-byte character
+  to designate encloser of string
+* :samp:`chunk_size = {number}` (default: 4096) -- number of characters to read
+  at once (usually for file-IO efficiency)
+* :samp:`skip_head_lines = {number}` (default: 0) -- number of lines to skip at
+  the start (usually for a header)
 
 .. _csv-load:
 
@@ -44,7 +48,8 @@ The possible options which can be passed to csv functions are:
 
     **Example:**
 
-    Readable string has 3 fields, field#2 has comma and space so use quote marks:
+    Readable string has 3 fields, field#2 has comma and space so use quote
+    marks:
 
     .. code-block:: tarantoolsession
 
@@ -78,9 +83,9 @@ The possible options which can be passed to csv functions are:
             - c,d
         ...
 
-    Readable file :file:`./file.csv` contains two CSV records.
-    Explanation of fio is in section :ref:`fio <fio-section>`.
-    Source CSV file and example respectively:
+    Readable file :file:`./file.csv` contains two CSV records. Explanation of
+    ``fio`` is in section :ref:`fio <fio-section>`. Source CSV file and example
+    respectively:
 
     .. code-block:: tarantoolsession
 
@@ -109,15 +114,17 @@ The possible options which can be passed to csv functions are:
 
 .. function:: dump(csv-table[, options, writable])
 
-    Get table input from ``csv-table`` and return a CSV-formatted string as output.
-    Or, get table input from ``csv-table`` and put the output in ``writable``.
-    Usually :samp:`{options}` is not specified.
-    Usually ``writable``, if specified, is a file opened for writing.
-    :ref:`csv.dump() <csv-dump>` is the reverse of :ref:`csv.load() <csv-load>`.
+    Get table input from ``csv-table`` and return a CSV-formatted string as
+    output. Or, get table input from ``csv-table`` and put the output in
+    ``writable``. Usually :samp:`{options}` is not specified. Usually
+    ``writable``, if specified, is a file opened for writing. :ref:`csv.dump()
+    <csv-dump>` is the reverse of :ref:`csv.load() <csv-load>`.
 
-    :param table csv-table: a table which can be formatted according to the CSV rules.
-    :param table options: optional. see :ref:`above <csv-options>`
-    :param object writable: any object which has a write() method
+    :param table csv-table: a table which can be formatted according to the CSV
+                            rules.
+    :param table   options: optional. see :ref:`above <csv-options>`
+    :param object writable: any object which has a ``write()`` method
+
     :return: dumped_value
     :rtype:  string, which is written to ``writable`` if specified
 
@@ -155,20 +162,23 @@ The possible options which can be passed to csv functions are:
 
 .. function:: iterate(input, {options})
 
-    Form a Lua iterator function for going through CSV records
-    one field at a time. Use of an iterator is strongly recommended
-    if the amount of data is large (ten or more megabytes).
+    Form a Lua iterator function for going through CSV records one field at a
+    time. Use of an iterator is strongly recommended if the amount of data is
+    large (ten or more megabytes).
 
-    :param table csv-table: a table which can be formatted according to the CSV rules.
-    :param table options: see :ref:`above <csv-options>`
+    :param table csv-table: a table which can be formatted according to the CSV
+                            rules.
+    :param table   options: see :ref:`above <csv-options>`
+
     :return: Lua iterator function
     :rtype:  iterator function
 
     **Example:**
 
-    :ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load() <csv-load>` and :ref:`csv.dump() <csv-dump>`.
-    To illustrate that, here is a function which is the same as the :ref:`csv.load() <csv-load>`
-    function, as seen in `the Tarantool source code`_.
+    :ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load()
+    <csv-load>` and :ref:`csv.dump() <csv-dump>`. To illustrate that, here is a
+    function which is the same as the :ref:`csv.load() <csv-load>` function, as
+    seen in `the Tarantool source code`_.
 
     .. code-block:: tarantoolsession
 

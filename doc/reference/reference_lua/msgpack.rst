@@ -22,18 +22,18 @@ takes a series of non-MsgPack values and encodes them.
     Convert a MsgPack string to a Lua object.
 
     :param string: a string formatted as MsgPack.
-    :return: 
 
     * the original contents formatted as a Lua table;
     * the number of bytes that were decoded.
 
-    :rtype: table
+    :rtype: lua object
 
 .. _msgpack-null:
 
 .. data:: NULL
 
-    A value comparable to Lua "nil" which may be useful as a placeholder in a tuple.
+    A value comparable to Lua "nil" which may be useful as a placeholder in a
+    tuple.
 
 =================================================
                     Example
