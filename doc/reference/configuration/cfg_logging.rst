@@ -1,3 +1,8 @@
+* :ref:`log_level <cfg_logging-log_level>`
+* :ref:`logger <cfg_logging-logger>`
+* :ref:`logger_nonblock <cfg_logging-logger_nonblock>`
+* :ref:`too_long_threshold <cfg_logging-too_long_threshold>`
+
 .. _cfg_logging-log_level:
 
 .. confval:: log_level
@@ -13,12 +18,12 @@
 
     By setting log_level, one can enable logging of all classes below
     or equal to the given level. Tarantool prints its logs to the standard
-    error stream by default, but this can be changed with the :ref:`logger <cfg_logging-logger>`
-    configuration parameter.
+    error stream by default, but this can be changed with the :ref:`logger
+    <cfg_logging-logger>` configuration parameter.
 
-    Type: integer |br|
-    Default: 5 |br|
-    Dynamic: **yes** |br|
+    | Type: integer
+    | Default: 5
+    | Dynamic: **yes**
 
 .. _cfg_logging-logger:
 
@@ -82,12 +87,12 @@
     The ``facility`` setting is currently ignored but will be used in the future.
 
     When logging to a file, tarantool reopens the log on SIGHUP. When log is
-    a program, its pid is saved in the :ref:`log.logger_pid <log-logger_pid>` variable. You need
-    to send it a signal to rotate logs.
+    a program, its pid is saved in the :ref:`log.logger_pid <log-logger_pid>`
+    variable. You need to send it a signal to rotate logs.
 
-    Type: string |br|
-    Default: null |br|
-    Dynamic: no |br|
+    | Type: string
+    | Default: null
+    | Dynamic: no
 
 .. _cfg_logging-logger_nonblock:
 
@@ -95,37 +100,37 @@
 
     If ``logger_nonblock`` equals true, Tarantool does not block on the log
     file descriptor when it’s not ready for write, and drops the message
-    instead. If :ref:`log_level <cfg_logging-log_level>` is high, and a lot of messages go to the
-    log file, setting ``logger_nonblock`` to true may improve logging
-    performance at the cost of some log messages getting lost.
+    instead. If :ref:`log_level <cfg_logging-log_level>` is high, and a lot of
+    messages go to the log file, setting ``logger_nonblock`` to true may improve
+    logging performance at the cost of some log messages getting lost.
 
-    Type: boolean |br|
-    Default: true |br|
-    Dynamic: no |br|
+    | Type: boolean
+    | Default: true
+    | Dynamic: no
 
 .. _cfg_logging-too_long_threshold:
 
 .. confval:: too_long_threshold
 
     If processing a request takes longer than the given value (in seconds),
-    warn about it in the log. Has effect only if :ref:`log_level <cfg_logging-log_level>` is
-    more than or equal to 4 (WARNING).
+    warn about it in the log. Has effect only if :ref:`log_level
+    <cfg_logging-log_level>` is more than or equal to 4 (WARNING).
 
-    Type: float |br|
-    Default: 0.5 |br|
-    Dynamic: **yes** |br|
+    | Type: float
+    | Default: 0.5
+    | Dynamic: **yes**
 
 .. _cfg_logging-logging_example:
 
 **Logging example:**
 
-This will illustrate how "rotation" works, that is, what happens when
-the server is writing to a log and signals are used when archiving it.
+This will illustrate how "rotation" works, that is, what happens when the server
+is writing to a log and signals are used when archiving it.
 
 Start with two terminal shells, Terminal #1 and Terminal #2.
 
-On Terminal #1: start an interactive Tarantool session, then say the logging will
-go to `Log_file`, then put a message "Log Line #1" in the log file:
+On Terminal #1: start an interactive Tarantool session, then say the logging
+will go to `Log_file`, then put a message "Log Line #1" in the log file:
 
 .. code-block:: lua
 
@@ -134,20 +139,20 @@ go to `Log_file`, then put a message "Log Line #1" in the log file:
     log.info('Log Line #1')
 
 On Terminal #2: use ``mv`` so the log file is now named `Log_file.bak`.
-The result of this is: the next log message will go to `Log_file.bak`. |br|
+The result of this is: the next log message will go to `Log_file.bak`.
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     mv Log_file Log_file.bak
 
-On Terminal #1: put a message "Log Line #2" in the log file. |br|
+On Terminal #1: put a message "Log Line #2" in the log file.
 
 .. code-block:: lua
 
     log.info('Log Line #2')
 
-On Terminal #2: use ``ps`` to find the process ID of the Tarantool server. |br|
+On Terminal #2: use ``ps`` to find the process ID of the Tarantool server.
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -157,7 +162,7 @@ On Terminal #2: use ``ps`` to find the process ID of the Tarantool server. |br|
 On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool server.
 The result of this is: Tarantool will open `Log_file` again, and
 the next log message will go to `Log_file`.
-(The same effect could be accomplished by executing log.rotate() on the server.) |br|
+(The same effect could be accomplished by executing log.rotate() on the server.)
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -186,4 +191,3 @@ and `Log_file` will have
 
     log file has been reopened
     2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3
-
