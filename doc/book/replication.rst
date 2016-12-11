@@ -80,7 +80,7 @@ Again, this procedure works only if the master's WAL files are present.
     Replication requires privileges. Privileges for accessing spaces could be
     granted directly to the user who will start the replica. However, it is more
     usual to grant privileges for accessing spaces to a
-    :ref:`role <authentication-rep_role>`, and then grant the role to the user
+    :ref:`role <authentication-roles>`, and then grant the role to the user
     who will start the replica.
 
 --------------------------------------------------------------------------------
@@ -286,7 +286,7 @@ with the master by contacting it again (just say
 Q: What if replication causes security concerns? |br|
 A: Prevent unauthorized replication sources by associating a password with
 every user that has access privileges for the relevant spaces, and every
-user that has a replication :ref:`role <authentication-rep_role>`. That way,
+user that has a replication :ref:`role <authentication-roles>`. That way,
 the :ref:`URI <index-uri>` for the :ref:`replication_source <cfg_replication-replication_source>`
 parameter will always have to have the long form |br|
 ``replication_source='username:password@host:port'``

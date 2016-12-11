@@ -39,7 +39,7 @@ Tarantool - Index
     * **Lua packages** for non-blocking I/O, fibers and HTTP
     * **indexes**:  :ref:`secondary indexes <box_index>`,
       :ref:`range queries <box_index>`, :ref:`index iterators <box_index>`
-    * **transactions**: :ref:`ACID transactions <transaction_control>`
+    * **transactions**: :ref:`ACID transactions <atomic-atomic_execution>`
     * **replication**: asynchronous :ref:`master-slave <index-box_replication>`
       and :ref:`master-master <index-box_replication>` replication
     * **query language**: :ref:`server-side scripting and stored procedures

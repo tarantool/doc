@@ -1,372 +1,199 @@
+.. _authentication:
 
-Understanding the details of security is primarily an issue for administrators,
-but ordinary users should at least skim this section so that they will have an
-idea of how Tarantool makes it possible for administrators to prevent
-unauthorized access to the database and to certain functions.
+================================================================================
+Access control
+================================================================================
 
-Briefly: there is a method to guarantee with password checks that users really
-are who they say they are ("authentication"). There is a _user space where user
-names and password-hashes are stored. There are functions for saying that
-certain users are allowed to do certain things ("privileges"). There is a _priv
-space where privileges are stored. Whenever a user tries to do an operation,
-there is a check whether the user has the privilege to do the operation
-("access control").
+Understanding security details is primarily an issue for administrators.
+Meanwhile, ordinary users should at least skim this section to get an idea
+of how Tarantool makes it possible for administrators to prevent unauthorized
+access to the database and to certain functions.
+
+In a nutshell:
+
+* There is a method to guarantee with password checks that users really are
+  who they say they are (“authentication”).
+
+* There is a :ref:`_user <box_space-user>` system space, where usernames and
+  password-hashes are stored.
+
+* There are functions for saying that certain users are allowed to do certain
+  things (“privileges”).
+
+* There is a :ref:`_priv <box_space-priv>` system space, where privileges are
+  stored. Whenever a user tries to do an operation, there is a check whether
+  the user has the privilege to do the operation (“access control”).
+
+Further on, we explain all of this in more detail.
+
+.. _authentication-users:
+
+--------------------------------------------------------------------------------
+Users
+--------------------------------------------------------------------------------
+
+There is a notion of the **current user** in any program working with Tarantool,
+local or remote.
+If a remote connection is using the
+:ref:`binary protocol <administration-admin_ports>`,
+the current user, by default, is '**guest**'.
+If the connection is using the :ref:`text protocol <administration-admin_ports>`,
+its current user is '**admin**'.
+When executing a :ref:`Lua initialization script <index-init_label>`,
+Tarantool’s current user is also ‘admin’.
+
+The current user can be changed:
+
+* For a binary protocol connection -- with AUTH protocol command, supported
+  by most clients;
+
+* For a text protocol connection and in a Lua initialization script --
+  with :ref:`box.session.su <box_session-su>`;
+
+* For a stored function invoked with CALL command over the binary protocol -- 
+  with :ref:`SETUID <box_schema-func_create>` property enabled for the function,
+  which makes Tarantool temporarily replace the current user with the
+  function’s creator, with all creator's privileges, during function execution.
+
+.. _authentication-passwords:
 
 --------------------------------------------------------------------------------
 Passwords
 --------------------------------------------------------------------------------
 
-Each user may have a password. The password is any alphanumeric string.
-Administrators should advise users to choose long unobvious passwords, but it
-is ultimately up to the users to choose or change their own passwords.
+Each user may have a **password**. The password is any alphanumeric string.
 
-Tarantool passwords are stored in the _user space with a `Cryptographic hash function`_
-so that, if the password is 'x', the stored hashed-password is a long string
-like '``lL3OvhkIPOKh+Vn9Avlkx69M/Ck=``'. When a client connects to a Tarantool
-server, the server sends a random `Salt Value`_ which the client must mix with the
-hashed-password before sending to the server. Thus the original value 'x' is
-never stored anywhere except in the user's head, and the hashed value is never
-passed down a network wire except when mixed with a random salt. This system
-prevents malicious onlookers from finding passwords by snooping in the log
-files or snooping on the wire. It is the same system that `MySQL introduced
-several years ago`_ which has proved adequate for medium-security installations.
-Nevertheless administrators should warn users that no system is foolproof against
-determined long-term attacks, so passwords should be guarded and changed occasionally.
+Tarantool passwords are stored in the :ref:`_user <box_space-user>`
+system space with a
+`cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_
+so that, if the password is ‘x’, the stored hash-password is a long string
+like ‘lL3OvhkIPOKh+Vn9Avlkx69M/Ck=‘.
+When a client connects to a Tarantool server, the server sends a random
+`salt value <https://en.wikipedia.org/wiki/Salt_%28cryptography%29>`_
+which the client must mix with the hashed-password before sending
+to the server. Thus the original value ‘x’ is never stored anywhere except
+in the user’s head, and the hashed value is never passed down a network wire
+except when mixed with a random salt.
+
+.. NOTE::
+   
+   For more details of the password hashing algorithm (e.g. for the purpose of writing
+   a new client application), read the
+   `scramble.h <https://github.com/tarantool/tarantool/blob/1.7/src/scramble.h>`_
+   header file.
+
+This system prevents malicious onlookers from finding passwords by snooping
+in the log files or snooping on the wire. It is the same system that
+`MySQL introduced several years ago <http://dev.mysql.com/doc/refman/5.7/en/password-hashing.html>`_,
+which has proved adequate for medium-security installations.
+Nevertheless, administrators should warn users that no system
+is foolproof against determined long-term attacks, so passwords should be
+guarded and changed occasionally. Administrators should also advise users to
+choose long unobvious passwords, but it is ultimately up to the users to choose
+or change their own passwords.
+
+There are two functions for managing passwords in Tarantool: 
+:ref:`box.schema.user.password() <box_schema-user_password>` for changing
+a user's password and :ref:`box.schema.user.passwd() <box_schema-user_passwd>`
+for getting a hash-password.
+
+.. _authentication-owners_privileges:
+
+--------------------------------------------------------------------------------
+Owners and privileges
+--------------------------------------------------------------------------------
+
+In Tarantool, all objects are organized into a hierarchy of ownership.
+The **owner** of every object is its creator. The creator of the initial database
+state (we call it ‘universe’) --  including the database itself,
+the system spaces, the users -- is ‘admin’.
+
+An object's owner can share some rights on the object by **granting privileges**
+to other users. The following privileges are implemented:
+
+* Read an object,
+* Write, i.e. modify contents of an object,
+* Execute, i.e. use an object (if the privilege makes sense for the object;
+  for example, spaces can not be "executed", but functions can).
 
 .. NOTE::
 
-    To get the hash-password of a string 'X', say
-    ``box.schema.user.password('X')``. To see more about the details of the
-    algorithm for the purpose of writing a new client application, read the
-    `scramble.h`_ header file.
+   Currently, "drop" and "grant" privileges can not be granted to other users.
+   This possibility will be added in future versions of Tarantool.
 
-.. _Cryptographic hash function: https://en.wikipedia.org/wiki/Cryptographic_hash
-.. _Salt Value: https://en.wikipedia.org/wiki/Salt_%28cryptography%29
-.. _MySQL introduced several years ago: http://dev.mysql.com/doc/refman/4.1/en/password-hashing.html
-.. _scramble.h: https://github.com/tarantool/tarantool/blob/1.7/src/scramble.h
+This is how the privilege system works under the hood. To be able to create
+objects, a user needs to have write access to Tarantool's system spaces.
+The 'admin' user, who is at the top of the hierarchy and who is the ultimate
+source of privileges, shares write access to a system space
+(e.g. :ref:`_space <box_space-space>`) with some users. Now the users can
+insert data into the system space (e.g. creating new spaces) and themselves
+become creators/definers of new objects. For the objects they created, the users
+can in turn share privileges with other users.
 
-.. _authentication-users:
+This is why only an object's owner can drop the object, but not other
+ordinary users. Meanwhile, 'admin' can drop any object or delete any other user,
+because 'admin' is the creator and ultimate owner of them all.
 
---------------------------------------------------------------------------------
-Users and the _user space
---------------------------------------------------------------------------------
+The syntax of all
+:ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
+commands in Tarantool follows this basic idea.
 
-The fields in the _user space are:
+* Their first argument is "who gets" or "who is revoked" a grant.
 
-* the numeric id of the tuple
-* the numeric id of the tuple's creator
-* the user name
-* the type
-* optional password
+* Their second argument is the type of privilege granted, or a list of privileges.
 
-There are four special tuples in the _user space: 'guest', 'admin', 'public', and 'replication'.
+* Their third argument is the object type on which the privilege is granted.
 
-.. container:: table
+* Their fourth and optional argument is the object name (‘universe' has no name,
+  because there is only one ‘universe’, but you need to specify names for
+  functions/users/spaces/etc).
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: right-align-column-2
-    .. rst-class:: left-align-column-3
-    .. rst-class:: left-align-column-4
+**Example #1**
 
-    +-------------+----+------+--------------------------------------------------------+
-    | Name        | ID | Type | Description                                            |
-    +=============+====+======+========================================================+
-    | guest       | 0  | user | Default when connecting remotely. Usually an untrusted |
-    |             |    |      | user with few privileges.                              |
-    +-------------+----+------+--------------------------------------------------------+
-    | admin       | 1  | user | Default when using ``tarantool`` as a console. Usually |
-    |             |    |      | an administrative user with all privileges.            |
-    +-------------+----+------+--------------------------------------------------------+
-    | public      | 2  | role | Not a user in the usual sense. Described later in      |
-    |             |    |      | section `Roles`_.                                      |
-    +-------------+----+------+--------------------------------------------------------+
-    | replication | 3  | role | Not a user in the usual sense. Described later in      |
-    |             |    |      | section `Roles`_.                                      |
-    +-------------+----+------+--------------------------------------------------------+
+Here we disable all privileges and run Tarantool in the ‘no-privilege’ mode.
 
+.. code-block:: lua_tarantool
 
-To select a row from the _user space, use ``box.space._user:select``. For
-example, here is what happens with a select for user id = 0, which is the
-'guest' user, which by default has no password:
+    box.schema.user.grant(‘guest’, ‘read,write,execute’, ‘universe’)
 
-.. code-block:: tarantoolsession
+**Example #2**
 
-    tarantool> box.space._user:select{0}
-    ---
-    - - [0, 1, 'guest', 'user']
-    ...
+Here we create a Lua function that will be executed under the user id of its creator,
+even if called by another user.
 
-To change tuples in the _user space, do not use ordinary ``box.space``
-functions for insert or update or delete - the _user space is special so
-there are special functions which have appropriate error checking.
+First, we create two spaces ('u' and 'i') and grant a no-password user ('internal')
+full access to them. Then we define a function ('read_and_modify') and the
+no-password user becomes this function's creator. Finally, we grant another user
+('public_user') access to execute Lua functions created by the no-password user.
 
-To create a new user, say:
+.. code-block:: lua_tarantool
 
-.. cssclass:: highlight
-.. parsed-literal::
+   box.schema.space.create('u')
+   box.schema.space.create('i')
+   box.schema.space.u:create_index('pk')
+   box.schema.space.i:create_index('pk')
 
-    box.schema.user.create(*user-name*)
-    box.schema.user.create(*user-name*, {if_not_exists = true})
-    box.schema.user.create(*user-name*, {password = *password*}).
+   box.schema.user.create(‘internal’)
 
-The :samp:`password={password}` specification is good because in a :ref:`URI <index-uri>` (Uniform Resource Identifier) it is
-usually illegal to include a user-name without a password.
+   box.schema.user.grant('internal', 'read,write', 'space', 'u')
+   box.schema.user.grant('internal', 'read,write', 'space', 'i')
 
-To change the user's password, say:
+   function read_and_modify(key)
+     local u = box.space.u
+     local i = box.space.i
+     local fiber = require('fiber')
+     local t = u:get{key}
+     if t ~= nil
+	   u:put{key, box.session.uid()}
+	   i:put{key, fiber.time()}
+     end
+   end
 
-.. cssclass:: highlight
-.. parsed-literal::
-
-    -- To change the current user's password
-    box.schema.user.passwd(*password*)
-
-    -- To change a different user's password
-    box.schema.user.passwd(*user-name*, *password*)
-
-(Usually it is only the admin user who can change a different user's password.)
-
-To drop a user, say:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.user.drop(*user-name*).
-
-To check whether a user exists, say:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.user.exists(*user-name*)
-
-which returns true or false.
-
-To find what privileges a user has, say:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.user.info(*user-name*)
-
-**Example:**
-
-Here is a session which creates a new user with a strong password, selects a
-tuple in the _user space, and then drops the user.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$'})
-    ---
-    ...
-    tarantool> box.space._user.index.name:select{'JeanMartin'}
-    ---
-    - - [17, 1, 'JeanMartin', 'user', {'chap-sha1': 't3xjUpQdrt857O+YRvGbMY5py8Q='}]
-    ...
-    tarantool> box.schema.user.drop('JeanMartin')
-    ---
-    ...
-
-.. NOTE::
-
-    The maximum number of users is 32.
-
-.. _authentication-privileges:
-
---------------------------------------------------------------------------------
-Privileges and the _priv space
---------------------------------------------------------------------------------
-
-The fields in the _priv space are:
-
-* the numeric id of the user who gave the privilege ("grantor_id"),
-* the numeric id of the user who received the privilege ("grantee_id"),
-* the type of object - "space" or "function" or "universe",
-* the numeric id of the object,
-* the type of operation - "read" = 1, or "write" = 2, or "execute" = 4, or a
-  combination such as "read,write,execute".
-
-The function for granting a privilege is:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.user.grant(*grantee*, *operation*, *object-type*, *object-name*[, *options*])
-    -- OR
-    box.schema.user.grant(*grantee*, *operation*, 'universe' [, nil, *options*])
-
-where 'universe' means 'all objects', and the optional grant-option can be:
-
-* :samp:`grantor={grantor_name_or_id}` - string or number, for custom grantor
-* :samp:`if_not_exists=true|false` - bool, do not throw error if user already has the privilege
-
-The function for revoking a privilege is:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.user.revoke(*grantee*, *operation*, *object-type*, *object-name*[, *options*])
-    box.schema.user.revoke(*grantee*, *operation*, 'universe'[, nil, *options*])
-
-where 'universe' means 'all objects', and the optional grant-option can be:
-
-* :samp:`if_not_exists=true|false` - bool, do not throw error if user already lacks the privilege
-
-For example, here is a session where the admin user gave the guest user the
-privilege to read from a space named ``space55``, and then took the privilege away:
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.schema.user.grant('guest', 'read', 'space', 'space55')
-    ---
-    ...
-    tarantool> box.schema.user.revoke('guest', 'read', 'space', 'space55')
-    ---
-    ...
-
-.. NOTE::
-
-    Generally privileges are granted or revoked by the owner of the object
-    (the user who created it), or by the 'admin' user.
-    Before dropping any objects or users, steps should be taken to ensure
-    that all their associated privileges have been revoked.
-
-.. NOTE::
-
-    Only the 'admin' user can grant privileges for the 'universe'.
-
-.. NOTE::
-
-   Only the creator of a space can drop, alter, or truncate the space.
-   Only the creator of a user can change a different user's password.
-
-.. _authentication-funcs:
-
---------------------------------------------------------------------------------
-Functions and the _func space
---------------------------------------------------------------------------------
-
-The fields in the _func space are:
-
-* the numeric function id, a number,
-* the function name
-* flag
-* possibly a language name.
-
-The _func space does not include the function's body. One continues to
-create Lua functions in the usual way, by saying
-":samp:`function {function_name} () ... end`", without adding anything in the
-_func space. The _func space only exists for storing function tuples so
-that their names can be used within grant/revoke functions.
-
-The function for creating a _func tuple is:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.func.create(*function-name* [, *options*])
-
-The possible options are:
-
-* :samp:`if_not_exists = {true|false}` - default = false,
-* :samp:`setuid = {true|false}` - default = false,
-* :samp:`language = {'LUA'|'C'}` - default = 'LUA'.
-
-**Example:**
-
-.. code-block:: lua
-
-    box.schema.func.create('f', {language = 'C', setuid = false})
-
-Specifying :code:`if_not_exists=false` would cause ``error: Function '...' already
-exists`` if the _func tuple already exists.
-
-Specifying :code:`setuid=true` would cause the setuid flag (the fourth field in
-the _func tuple) to have a value meaning "true", and the effect of that is that
-the function's caller is treated as the function's creator, with full privileges.
-The setuid behavior does not apply for users who connect via :code:`console.connect`.
-
-Specifying :code:`language='C'` would cause the language field (the fifth field
-in the _func tuple) to have a value 'C', which means the function was written in
-C. Tarantool functions are normally written in Lua but can be written in C as well.
-
-The function for dropping a _func tuple is:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.func.drop(*function-name*)
-
-The function for checking whether a _func tuple exists is:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.schema.func.exists(*function-name*)
-
-In the following example, a function named 'f7' is created, then it is put in
-the _func space, then it is used in a ``box.schema.user.grant`` function,
-then it is dropped:
-
-.. code-block:: tarantoolsession
-
-    tarantool> function f7()
-             >   box.session.uid()
-             > end
-    ---
-    ...
-    tarantool> box.schema.func.create('f7')
-    ---
-    ...
-    tarantool> box.schema.user.grant('guest', 'execute', 'function', 'f7')
-    ---
-    ...
-    tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
-    ---
-    ...
-    tarantool> box.schema.func.drop('f7')
-    ---
-    ...
-
---------------------------------------------------------------------------------
-box.session and security
---------------------------------------------------------------------------------
-
-After a connection has taken place, the user has access to a "session" object
-which has several functions. The ones which are of interest for security
-purposes are:
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    box.session.uid()         -- returns the id of the current user
-    box.session.user()        -- returns the name of the current user
-    box.session.su(*user-name*) -- allows changing current user to 'user-name'
-
-If a user types requests directly on the Tarantool server in its
-:ref:`interactive mode <administration-using_tarantool_as_a_client>`,
-or if a user connects to the :ref:`admin port <administration-admin_ports>`,
-then the user by default is 'admin' and has many privileges.
-If a user connects from an application program via one of the :ref:`connectors <index-box_connectors>`, then
-the user by default is 'guest' and has few privileges. Typically an admin user
-will set up and configure objects, then grant privileges to appropriate non-admin
-users. Typically a guest user will use ``box.session.su()`` to change into a non-generic
-user to whom admin has granted more than the default privileges. For example,
-admin might say:
-
-.. _connectors: :doc:`../connectors/index`
-
-.. code-block:: lua
-
-    box.space._user:insert{123456,0,'manager','user'}
-    box.schema.user.grant('manager', 'read', 'space', '_space')
-    box.schema.user.grant('manager', 'read', 'space', 'payroll')
-
-and later a guest user, who wishes to see the payroll, might say:
-
-.. code-block:: lua
-
-    box.session.su('manager')
-    box.space.payroll:select{'Jones'}
+   box.session.su('internal')
+   box.schema.func.create('read_and_modify', {setuid= true})
+   box.session.su('admin')
+   box.schema.user.create('public_user', {password = 'secret'})
+   box.schema.user.grant('public_user', 'execute', 'function', 'read_and_modify')
 
 .. _authentication-roles:
 
@@ -374,96 +201,65 @@ and later a guest user, who wishes to see the payroll, might say:
 Roles
 --------------------------------------------------------------------------------
 
-A role is a container for privileges which can be granted to regular users.
-Instead of granting and revoking individual privileges, one can put all the
-privileges in a role and then grant or revoke the role. Role information is
-in the _user space but the third field - the type field - is 'role' rather
-than 'user'.
+A **role** is a container for privileges which can be granted to regular users.
+Instead of granting or revoking individual privileges, you can put all the
+privileges in a role and then grant or revoke the role.
 
-.. _authentication-rep_role:
+Role information is stored in the :ref:`_user <box_space-user>` space, but
+the third field in the tuple -- the type field -- is ‘role’ rather than ‘user’.
 
-If a role R1 is granted a privilege X, and user U1 is granted a privilege
-"role R1", then user U1 in effect has privilege X. Then if a role R2 is
-granted a privilege Y, and role R1 is granted a privilege "role R2",
-then user U1 in effect has both privilege X and privilege Y. In other words,
-a user gets all the privileges that are granted to a user's roles, directly
-or indirectly.
+An important feature in role management is that roles can be **nested**.
+For example, role R1 can be granted a privilege "role R2", so users with the
+role R1 will subsequently get all privileges from both roles R1 and R2.
+In other words, a user gets all the privileges that are granted to a user’s
+roles, directly or indirectly.
 
-.. module:: box.schema.role
+**Example**
 
-.. function:: create(role-name [, {if_not_exists=true} ] )
+.. code-block:: lua_tarantool
 
-    Create a new role.
+   -- This example will work for a user with many privileges, such as 'admin'
+   -- Create space T with a primary index
+   box.schema.space.create('T')
+   box.space.T:create_index('primary', {})
+   -- Create user U1 so that later we can change the current user to U1
+   box.schema.user.create('U1')
+   -- Create two roles, R1 and R2
+   box.schema.role.create('R1')
+   box.schema.role.create('R2')
+   -- Grant role R2 to role R1 and role R1 to user U1 (order doesn't matter)
+   box.schema.role.grant('R1', 'execute', 'role', 'R2')
+   box.schema.user.grant('U1', 'execute', 'role', 'R1')
+   -- Grant read/write privileges for space T to role R2
+   -- (but not to role R1 and not to user U1)
+   box.schema.role.grant('R2', 'read,write', 'space', 'T')
+   -- Change the current user to user U1
+   box.session.su('U1')
+   -- An insertion to space T will now succeed because, due to nested roles,
+   -- user U1 has write privilege on space T
+   box.space.T:insert{1}
 
-.. function:: grant(role-name, privilege)
+For details about Tarantool functions related to role management, see
+reference on :ref:`box.schema <box_schema>` submodule.
 
-    Put a privilege in a role.
+.. _authentication-sessions:
 
-.. function:: revoke(role-name, privilege)
+--------------------------------------------------------------------------------
+Sessions and security
+--------------------------------------------------------------------------------
 
-    Take a privilege out of a role.
+A **session** is the state of a connection to Tarantool. It contains:
 
-.. function:: drop(role-name)
+* an integer id identifying the connection,
+* the :ref:`current user <authentication-users>` associated with the connection,
+* text description of the connected peer, and
+* session local state, such as Lua variables and functions.
 
-    Drop a role.
+In Tarantool, a single session can execute multiple concurrent transactions.
+Each transaction is identified by a unique integer id, which can be queried
+at start of the transaction using :ref:`box.session.sync() <box_session-sync>`.
 
-.. function:: grant(role-name, 'execute', 'role', role-name)
+.. NOTE::
 
-    Grant a role to a role.
-
-.. function:: revoke(role-name, 'execute', 'role', role-name)
-
-    Revoke a role from a role.
-
-.. function:: exists(role-name)
-
-    Check whether a role exists.
-    Returns (type = boolean) true if role-name identifies a role, otherwise false.
-
-.. module:: box.schema.user
-
-.. function:: grant(user-name, 'execute', 'role', role-name)
-
-    Grant a role to a user.
-
-.. function:: revoke(user-name, 'execute', 'role', role-name)
-
-    Revoke a role from a user.
-
-There are two predefined roles. The first predefined role, named 'public', is
-automatically assigned to new users when they are created with
-:samp:`box.schema.user.create({user-name})` - Therefore a convenient way to
-grant 'read' on space 't' to every user that will ever exist is:
-:code:`box.schema.role.grant('public','read','space','t')`. The second
-predefined role, named 'replication', can be assigned by the 'admin' user to
-users who need to use replication features.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example showing a role within a role
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In this example, a new user named U1 will insert a new tuple into a new space
-named T, and will succeed even though user U1 has no direct privilege to do
-such an insert -- that privilege is inherited from role R1, which in turn
-inherits from role R2.
-
-.. code-block:: lua
-
-    -- This example will work for a user with many privileges, such as 'admin'
-    box.schema.space.create('T')
-    box.space.T:create_index('primary', {})
-    -- Create a user U1 so that later it's possible to say box.session.su('U1')
-    box.schema.user.create('U1')
-    -- Create two roles, R1 and R2
-    box.schema.role.create('R1')
-    box.schema.role.create('R2')
-    -- Grant role R2 to role R1 and role R1 to U1 (order doesn't matter)
-    box.schema.role.grant('R1', 'execute', 'role', 'R2')
-    box.schema.user.grant('U1', 'execute', 'role', 'R1')
-    -- Grant read and execute privileges to R2 (but not to R1 and not to U1)
-    box.schema.role.grant('R2', 'read,write', 'space', 'T')
-    box.schema.role.grant('R2', 'execute', 'universe')
-    -- Use box.session.su to say "now become user U1"
-    box.session.su('U1')
-    -- Next insert succeeds because U1 in effect has write privilege on T
-    box.space.T:insert{1}
+   To track all connects and disconnects, you can use
+   :ref:`connection and authentication triggers <triggers>`.

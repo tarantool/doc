@@ -1,301 +1,93 @@
 .. _triggers:
 .. _triggers-box_triggers:
 
-*Triggers*, also known as *callbacks*, are functions which the server executes
-when certain events happen. Currently the main types of triggers are
-:ref:`connection triggers <triggers-connection_triggers>`,
-which are executed when a session begins or ends, and
-:ref:`replace triggers <triggers-replace_triggers>`,
-which are for database events.
+================================================================================
+Triggers
+================================================================================
+
+**Triggers**, also known as **callbacks**, are functions which the server
+executes when certain events happen.
+
+There are three types of triggers in Tarantool:
+
+* :ref:`connection triggers <box_session-on_connect>`, which are executed
+  when a session begins or ends, 
+
+* :ref:`authentication triggers <box_session-on_auth>`, which are
+  executed during authentication, and
+
+* :ref:`replace triggers <box_session-on_replace>`, which are for database
+  events.
+
+All of them are implemented as functions in Tarantool built-in libraries.
 
 All triggers have the following characteristics:
 
-* They associate a `function` with an `event`. The request to "define a trigger"
-  consists of passing the name of the trigger's function to one of the
-  ":samp:`on_{event-name}()`" functions: :code:`on_connect()`, :code:`on_auth()`,
-  :code:`on_disconnect()`, or :code:`on_replace()`.
-* They are `defined by any user`. There are no privilege requirements for defining
-  triggers.
-* They are called `after` the event. They are not called if the event ends
-  prematurely due to an error. (Exception: :code:`on_auth()` is called before the event.)
-* They are in `server memory`. They are not stored in the database. Triggers
-  disappear when the server is shut down. If there is a requirement to make
-  them permanent, then the function definitions and trigger settings should
-  be part of an initialization script.
-* They have `low overhead`. If a trigger is not defined, then the overhead is
-  minimal: merely a pointer dereference and check. If a trigger is defined,
+* Triggers associate a function with an event.
+  The request to "define a trigger" implies passing the name of the
+  trigger’s function to one of the "on_event-name()" functions from the
+  :ref:`box.session <box_session>` submodule: 
+  :ref:`on_connect() <box_session-on_connect>`,
+  :ref:`on_auth() <box_session-on_auth>`, 
+  :ref:`on_disconnect() <box_session-on_disconnect>`, or 
+  :ref:`on_replace() <box_session-on_replace>`.
+
+* Triggers are defined only by the 'admin' user.
+
+* Triggers are stored in the server's memory, not in the database.
+  So, triggers disappear when the server is shut down.
+  To make them permanent, put function definitions and trigger settings
+  into Tarantool's :ref:`initialization script <index-init_label>`.
+
+* Triggers have low overhead. If a trigger is not defined, then the overhead
+  is minimal: merely a pointer dereference and check. If a trigger is defined,
   then its overhead is equivalent to the overhead of calling a stored procedure.
-* They can be `multiple` for one event. Triggers are executed in the reverse
-  order that they were defined in.
-* They must work `within the event context`. If the function contains requests
-  which normally could not occur immediately after the event but before the
-  return from the event, effects are undefined. For example, putting
-  ``os.exit()`` or ``box.rollback()`` in a trigger function would be bringing in requests
-  outside the event context.
-* They are `replaceable`. The request to "redefine a trigger" consists of passing
-  the names of a new trigger function and an old trigger function to one of the
-  "on `event-name` ..." functions.
 
-.. _triggers-connection_triggers:
+* There can be multiple triggers for one event. In this case, triggers are
+  executed in the reverse order that they were defined in.
 
---------------------------------------------------------------------------------
-Connection triggers
---------------------------------------------------------------------------------
+* Triggers must work within the event context. However, effects are undefined
+  if a function contains requests which normally could not occur immediately
+  after the event, but only before the return from the event. For example, putting
+  `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or 
+  :ref:`box.rollback() <box-rollback>` in a trigger function would be
+  bringing in requests outside the event context.
 
-.. function:: box.session.on_connect(trigger-function [, old-trigger-function-name])
+* Triggers are replaceable. The request to "redefine a trigger" implies
+  passing the names of a new trigger function and an old trigger function
+  to one of the "on_event-name()" functions.
 
-    Define a trigger for execution when a new session is created due to an event
-    such as :ref:`console.connect <console-connect>`. The trigger function will be the first thing
-    executed after a new session is created. If the trigger fails by raising an
-    error, the error is sent to the client and the connection is closed.
+To get a list of triggers, you can use:
 
-    :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-    :return: nil or function list
+* on_connect() – with no arguments – to return a table of all connect-trigger functions;
+* on_auth() to return all authentication-trigger functions;
+* on_disconnect() to return all disconnect-trigger functions;
+* on_replace() to return all replace-trigger functions.
 
-    If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
+**Example**
 
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> function f ()
-                 >   x = x + 1
-                 > end
-        tarantool> box.session.on_connect(f)
-
-    .. WARNING::
-
-        If a trigger always results in an error, it may become impossible to
-        connect to the server to reset it.
-
-.. function:: box.session.on_disconnect(trigger-function [, old-trigger-function-name])
-
-    Define a trigger for execution after a client has disconnected. If the trigger
-    function causes an error, the error is logged but otherwise is ignored. The
-    trigger is invoked while the session associated with the client still exists
-    and can access session properties, such as box.session.id.
-
-    :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-    :return: nil or function list
-
-    If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> function f ()
-                 >   x = x + 1
-                 > end
-        tarantool> box.session.on_disconnect(f)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-After the following series of requests, the server will write a message
-using the :ref:`log <log>` module whenever any user connects or disconnects.
+Here we log connect and disconnect events into Tarantool server log.
 
 .. code-block:: lua_tarantool
 
-    function log_connect ()
-      local log = require('log')
-      local m = 'Connection. user=' .. box.session.user() .. ' id=' .. box.session.id()
-      log.info(m)
-    end
-    function log_disconnect ()
-      local log = require('log')
-      local m = 'Disconnection. user=' .. box.session.user() .. ' id=' .. box.session.id()
-      log.info(m)
-    end
-    box.session.on_connect(log_connect)
-    box.session.on_disconnect(log_disconnect)
+   log = require('log')
 
-Here is what might appear in the log file in a typical installation:
+   function on_connect_impl()
+     log.info("connected "..box.session.peer()..", sid "..box.session.id())
+   end
 
-.. code-block:: lua
+   function on_disconnect_impl()
+     log.info("disconnected, sid "..box.session.id())
+   end
 
-    2014-12-15 13:21:34.444 [11360] main/103/iproto I>
-        Connection. user=guest id=3
-    2014-12-15 13:22:19.289 [11360] main/103/iproto I>
-        Disconnection. user=guest id=3
+   function on_auth_impl(user)
+     log.info("authenticated sid "..box.session.id().." as "..user)
+   end
 
-.. _triggers-authentication_triggers:
+   function on_connect() pcall(on_connect_impl) end
+   function on_disconnect() pcall(on_disconnect_impl) end
+   function on_auth(user) pcall(on_auth_impl, user) end
 
---------------------------------------------------------------------------------
-Authentication triggers
---------------------------------------------------------------------------------
-
-.. function:: box.session.on_auth(trigger-function [, old-trigger-function-name])
-
-    Define a trigger for execution during authentication.
-
-    The on_auth trigger function is invoked in these circumstances:
-    (1) The :ref:`console.connect <console-connect>` function includes an authentication check for all users except 'guest';
-    for this case the on_auth trigger function is invoked after the on_connect trigger function,
-    if and only if the connection has succeeded so far.
-    (2) The binary protocol has a separate :ref:`authentication packet <box_protocol-authentication>` --
-    for this case, connection and authentication are considered to be separate steps.
-
-    Unlike other trigger types, on_auth trigger functions are invoked `before`
-    the event. Therefore a trigger function like :code:`function auth_function () v = box.session.user(); end`
-    will set :code:`v` to "guest", the user name before the authentication is done.
-    To get the user name after the authentication is done, use the special syntax:
-    :code:`function auth_function (user_name) v = user_name; end`
-
-    If the trigger fails by raising an
-    error, the error is sent to the client and the connection is closed.
-
-    :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-    :return: nil
-
-    If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> function f ()
-                 >   x = x + 1
-                 > end
-        tarantool> box.session.on_auth(f)
-
-.. _triggers-replace_triggers:
-
---------------------------------------------------------------------------------
-Replace triggers
---------------------------------------------------------------------------------
-
-.. module:: box.space
-
-.. class:: space_object
-
-    .. function:: on_replace(trigger-function [, old-trigger-function-name])
-
-        Create a "``replace trigger``". The ``trigger-function`` will be executed whenever
-        a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()`` or ``delete()`` happens to a
-        tuple in ``<space-name>``.
-
-        :param function trigger-function: function which will become the trigger function
-        :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-        :return: nil or function list
-
-        If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> function f ()
-                     >   x = x + 1
-                     > end
-            tarantool> box.space.X:on_replace(f)
-
-        The ``trigger-function`` can have two parameters: old tuple, new tuple.
-        For example, the following code causes nil to be printed when the
-        insert request is processed, and causes [1, 'Hi'] to be printed when
-        the delete request is processed:
-
-        .. code-block:: none
-
-            box.schema.space.create('space_1')
-            box.space.space_1:create_index('space_1_index',{})
-            function on_replace_function (old, new) print(old) end
-            box.space.space_1:on_replace(on_replace_function)
-            box.space.space_1:insert{1,'Hi'}
-            box.space.space_1:delete{1}
-
-    .. function:: run_triggers(true|false)
-
-        At the time that a trigger is defined, it is automatically enabled - that
-        is, it will be executed. Replace triggers can be disabled with
-        :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with
-        :samp:`box.space.{space-name}:run_triggers(true)`.
-
-        :return: nil
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.X:run_triggers(false)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The following series of requests will create a space, create an index, create
-a function which increments a counter, create a trigger, do two inserts, drop
-the space, and display the counter value - which is 2, because the function
-is executed once after each insert.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s = box.schema.space.create('space53')
-    tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
-    tarantool> function replace_trigger()
-             >   replace_counter = replace_counter + 1
-             > end
-    tarantool> s:on_replace(replace_trigger)
-    tarantool> replace_counter = 0
-    tarantool> t = s:insert{1, 'First replace'}
-    tarantool> t = s:insert{2, 'Second replace'}
-    tarantool> s:drop()
-    tarantool> replace_counter
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Another example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The following series of requests will associate an existing function named F
-with an existing space named T, associate the function a second time with the
-same space (so it will be called twice), disable all triggers of T, and delete
-each trigger by replacing with ``nil``.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.T:on_replace(F)
-    tarantool> box.space.T:on_replace(F)
-    tarantool> box.space.T:run_triggers(false)
-    tarantool> box.space.T:on_replace(nil, F)
-    tarantool> box.space.T:on_replace(nil, F)
-
-.. _triggers-getting_a_list_of_triggers:
-
---------------------------------------------------------------------------------
-Getting a list of triggers
---------------------------------------------------------------------------------
-
-You can use:
-
-* :code:`on_connect()` -- with no arguments --
-  to return a table of all connect-trigger functions;
-* :code:`on_auth()` to return all authentication-trigger functions;
-* :code:`on_disconnect()` to return all disconnect-trigger functions;
-* :code:`on_replace()` to return all replace-trigger functions.
-
-In the following example, we find that there are
-three functions associated with :code:`on_connect`
-triggers, and execute the third function, which happens to
-contain the line "print('function #3')".
-Then we delete the third trigger.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.session.on_connect()
-    ---
-    - - 'function: 0x416ab6f8'
-      - 'function: 0x416ab6f8'
-      - 'function: 0x416ad800'
-    ...
-
-    tarantool> box.session.on_connect()[3]()
-    function #3
-    ---
-    ...
-    tarantool> box.session.on_connect(nil, box.session.on_connect()[3])
-    ---
-    ...
+   box.session.on_connect(on_connect)
+   box.session.on_disconnect(on_disconnect)
+   box.session.on_auth(on_auth)

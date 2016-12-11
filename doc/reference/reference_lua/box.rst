@@ -22,6 +22,7 @@ with ``box``, with no arguments. The submodules inside the box library are:
     ../../book/box/box_slab
     ../../book/box/box_info
     ../../book/box/box_stat
+    ../../book/box/box_txn_management
 
 .. // moved to "User Guide > 5. Server administration":  
 .. // /book/box/triggers

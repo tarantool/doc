@@ -1,8 +1,76 @@
 .. _atomic-atomic_execution:
 
-In several places in this manual, it's been noted that Lua processes occur in
-fibers on a single thread. That is why there can be a guarantee of execution
-atomicity. That requires emphasis.
+================================================================================
+Transaction control
+================================================================================
+
+Transactions in Tarantool occur in **fibers** on a single **thread**.
+That is why Tarantool has a guarantee of execution atomicity.
+That requires emphasis.
+
+.. _atomic-threads_fibers_yields:
+
+--------------------------------------------------------------------------------
+Threads, fibers and yields
+--------------------------------------------------------------------------------
+
+How does Tarantool process a basic operation? As an example, let's take this query:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:update({3}, {{'=', 2, 'size'}, {'=', 3, 0}})
+
+This is equivalent to an SQL statement like:
+
+.. code-block:: SQL
+
+   UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[[1]" = 3
+
+This query will be processed with three operating system **threads**:
+
+1. If we issue the query on a remote client, then the **network thread** on
+   the server side receives the query, parses the statement and changes it
+   to a server executable message which has already been checked, and which
+   the server can understand without parsing everything again.
+
+2. The network thread ships this message to the server's
+   **"transaction processor" thread** using a lock-free message bus.
+   Lua programs execute directly in the transaction processor thread,
+   and do not require parsing and preparation.
+
+   The server's transaction processor thread uses the primary-key index on
+   field[1] to find the location of the tuple. It determines that the tuple
+   can be updated (not much can go wrong when you're merely changing an
+   unindexed field value to something shorter).
+
+3. The transaction processor thread sends a message to the
+   **write-ahead logging (WAL) thread** to commit the transaction.
+   When done, the WAL thread replies with a COMMIT or ROLLBACK result,
+   which is returned to the client.
+
+Notice that there is only one transaction processor thread in Tarantool.
+Some people are used to the idea that there can be multiple threads operating
+on the database, with (say) thread #1 reading row #x, while thread #2 writes
+row #y. With Tarantool, no such thing ever happens.
+Only the transaction processor thread can access the database, and there is
+only one transaction processor thread for each instance of the server.
+
+Like any other Tarantool thread, the transaction processor thread can handle
+many **fibers**. A fiber is a set of computer instructions that may contain
+"**yield**" signals. The transaction processor thread will execute all computer
+instructions until a yield, then switch to execute the instructions of a
+different fiber. Thus (say) the thread reads row #x for the sake of fiber #1,
+then writes row #y for the sake of fiber #2.
+
+Yields must happen, otherwise the transaction processor thread would stick
+permanently on the same fiber. There are two types of yields:
+
+* :ref:`implicit yields <atomic-implicit-yields>`: every data-change operation
+  or network-access causes an implicit yield, and every statement that goes
+  through the Tarantool client causes an implicit yield.
+
+* explicit yields: in a Lua function, you can (and should) add “yield”
+  statements to prevent hogging. This is called **cooperative multitasking**.
 
 .. _atomic-cooperative_multitasking:
 
@@ -10,93 +78,99 @@ atomicity. That requires emphasis.
 Cooperative multitasking environment
 --------------------------------------------------------------------------------
 
-Tarantool uses cooperative multitasking: unless a running fiber deliberately
-yields control, it is not preempted by some other fiber. But a running fiber
-will deliberately yield when it encounters a "yield point": an explicit
-`yield()` request, or an implicit yield due to an operating-system call. Any
-system call which can block will be performed asynchronously, and any running
-fiber which must wait for a system call will be preempted so that another
-ready-to-run fiber takes its place and becomes the new running fiber. This model
-makes all programmatic locks unnecessary: cooperative multitasking ensures that
-there will be no concurrency around a resource, no race conditions, and
-no memory consistency issues.
+Cooperative multitasking means: unless a running fiber deliberately yields
+control, it is not preempted by some other fiber. But a running fiber will
+deliberately yield when it encounters a “yield point”: a transaction commit,
+an operating system call, or an explicit ``yield()`` request. Any system call
+which can block will be performed asynchronously, and any running fiber
+which must wait for a system call will be preempted, so that another
+ready-to-run fiber takes its place and becomes the new running fiber.
+
+This model makes all programmatic locks unnecessary: cooperative multitasking
+ensures that there will be no concurrency around a resource, no race conditions,
+and no memory consistency issues.
 
 When requests are small, for example simple UPDATE or INSERT or DELETE or SELECT,
 fiber scheduling is fair: it takes only a little time to process the request,
 schedule a disk write, and yield to a fiber serving the next client.
 
 However, a function might perform complex computations or might be written in
-such a way that yields do not occur for a long time. This can lead to unfair
-scheduling, when a single client throttles the rest of the system, or to
-apparent stalls in request processing. Avoiding this situation is the
-responsibility of the function's author. For the default memtx storage engine
-some of the box calls, including the data-change requests
-:ref:`box.space...insert <box_space-insert>` or
-:ref:`box.space...update <box_space-update>` or
-:ref:`box.space...delete <box_space-delete>`, will usually cause yielding;
-however, :ref:`box.space...select <box_space-select>` will not. A fuller
-description will appear in section
-:ref:`Implicit yields <atomic-the_implicit_yield_rules>`.
+such a way that yields do not occur for a long time. This can lead to
+unfair scheduling, when a single client throttles the rest of the system, or to
+apparent stalls in request processing. Avoiding this situation is
+the responsibility of the function’s author.
 
-Note re storage engine: vinyl has different rules:
-insert or update or delete will very rarely cause
-a yield, but select can cause a yield.
+.. _atomic-transactions:
+
+--------------------------------------------------------------------------------
+Transactions
+--------------------------------------------------------------------------------
 
 In the absence of transactions, any function that contains yield points may see
-changes in the database state caused by fibers that preempt. Then the only safe
-atomic functions for memtx databases would be functions which contain only one
-database request, or functions which contain a select request followed by a
-data-change request.
+changes in the database state caused by fibers that preempt.
+Multi-statement transactions exist to provide isolation: each transaction sees
+a consistent database state and commits all its changes atomically.
+At commit time, a yield happens and all transaction changes are written to the
+write ahead log in a single batch.
 
-At this point an objection could arise: "It's good that a single data-change
-request will commit and yield, but surely there are times when multiple
-data-change requests must happen without yielding." The standard example is the
-money-transfer, where $1 is withdrawn from account #1 and deposited into
-account #2. If something interrupted after the withdrawal, then the institution
-would be out of balance. For such cases, the ``begin ... commit|rollback``
-block was designed.
+To implement isolation, Tarantool uses a simple optimistic scheduler:
+the first transaction to commit wins. If a concurrent active transaction
+has read a value modified by a committed transaction, it is aborted.
 
-.. _atomic-box_begin:
+The cooperative scheduler ensures that, in absence of yields,
+a multi-statement transaction is not preempted and hence is never aborted.
+Therefore, understanding yields is essential to writing abort-free code.
 
-.. function:: box.begin()
+.. note::
 
-    Begin the transaction. Disable implicit yields until the transaction ends.
-    Signal that writes to the write-ahead log will be deferred until the transaction ends.
-    In effect the fiber which executes ``box.begin()`` is starting an "active
-    multi-request transaction", blocking all other fibers.
+   You can’t mix storage engines in a transaction today.
 
-.. _atomic-box_commit:
+.. _atomic-implicit-yields:
 
-.. function:: box.commit()
+--------------------------------------------------------------------------------
+Implicit yields
+--------------------------------------------------------------------------------
 
-    End the transaction, and make all its data-change
-    operations permanent.
+The only explicit yield requests in Tarantool are :ref:`fiber.sleep() <fiber-sleep>`
+and :ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields
+because Tarantool is designed to avoid blocking.
 
-.. _atomic-box_rollback:
+Database operations usually do not yield, but it depends on the engine:
 
-.. function:: box.rollback()
+* In memtx, reads or writes do not require I/O and do not yield.
 
-    End the transaction, but cancel all its data-change
-    operations. An explicit call to functions outside ``box.space`` that always
-    yield, such as ``fiber.yield`` or ``fiber.sleep``, will have the same effect.
+* In vinyl, not all data is in memory, and SELECT often incurs a disc I/O,
+  and therefore yields, while a write may stall waiting for memory to free up,
+  thus also causing a yield.
 
-The **requests in a transaction must be sent to the server as a single block**.
-It is not enough to enclose them between ``begin`` and ``commit`` or ``rollback``.
-To ensure they are sent as a single block: put them in a function, or put them all
-on one line, or use a delimiter so that multi-line requests are handled together.
+In the "autocommit" mode, all data change operations are followed by an automatic
+commit, which yields. So does an explicit commit of a multi-statement transaction,
+:ref:`box.commit() <box-commit>`.
 
-**All database operations in a transaction should use the same storage engine**.
-It is not safe to access tuple sets that are defined with ``{engine='vinyl'}``
-and also access tuple sets that are defined with ``{engine='memtx'}``,
-in the same transaction.
+Many functions in modules :ref:`fio <fio-section>`, :ref:`net_box <net_box-module>`,
+:ref:`console <console-module>` and :ref:`socket <socket-module>`
+(the "os" and "network" requests) yield.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Example #1**
 
-Assuming that in tuple set 'tester' there are tuples in which the third field
-represents a positive dollar amount ... Start a transaction, withdraw from tuple#1,
-deposit in tuple#2, and end the transaction, making its effects permanent.
+* Engine = memtx |br|
+  ``select() insert()`` has one yield, at the end of insertion, caused by
+  implicit commit; ``select()`` has nothing to write to WAL and so does not yield.
+
+* Engine = vinyl |br|
+  ``select() insert()`` has between one and three yields, since ``select()``
+  may yield if the data is not in cache, ``insert()`` may yield waiting for
+  available memory, and there is an implicit yield at commit.
+
+* The sequence ``begin() insert() insert() commit()`` yields only at commit
+  if the engine is memtx, and can yield up to 3 times if the engine is vinyl.
+
+**Example #2**
+
+Assume that in space ‘tester’ there are tuples in which the third field
+represents a positive dollar amount. Let's start a transaction, withdraw
+from tuple#1, deposit in tuple#2, and end the transaction, making its
+effects permanent.
 
 .. code-block:: tarantoolsession
 
@@ -114,76 +188,28 @@ deposit in tuple#2, and end the transaction, making its effects permanent.
     - "ok"
     ...
 
-.. _atomic-the_implicit_yield_rules:
+If :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` = ‘none’, then
+implicit yielding at commit time does not take place, because there are
+no writes to the WAL.
 
---------------------------------------------------------------------------------
-Implicit yields
---------------------------------------------------------------------------------
+If a task is interactive -- sending requests to the server and receiving responses --
+then it involves network IO, and therefore there is an implicit yield, even if the
+request that is sent to the server is not itself an implicit yield request.
+Therefore, the sequence:
 
-The only explicit yield requests are :ref:`fiber.sleep() <fiber-sleep>` and
-:ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields
-because Tarantool is designed to avoid blocking.
+   .. cssclass:: highlight
+   .. parsed-literal::
+   
+      select
+      select
+      select
 
-The implicit yield requests are: :ref:`insert <box_space-insert>`
-:ref:`replace <box_space-replace>` :ref:`update <box_space-update>`
-:ref:`upsert <box_space-upsert>` :ref:`delete <box_space-delete>` (the
-"data-change" requests), and functions in module :ref:`fio <fio-section>`,
-:ref:`net_box <net_box-module>`, :ref:`console <console-module>`, or
-:ref:`socket <socket-module>` (the "os" and "network" requests).
-
-Note re storage engine: vinyl causes :ref:`select <box_space-select>`
-to be an implicit yield request, but data-change requests may not be.
-
-The yield occurs just before a blocking syscall, such as a write to the
-Write-Ahead Log (WAL) or a network message reception.
-
-Implicit yield requests are disabled by :ref:`box.begin <atomic-box_begin>`,
-and enabled again by :ref:`commit <atomic-box_commit>`. Therefore the sequence
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    begin
-    implicit yield request #1
-    implicit yield request #2
-    implicit yield request #3
-    commit
-
-will not cause implicit yield until the commit occurs (specifically: just before
-the writes to the WAL, which are delayed until commit time). The commit request
-is not itself an implicit yield request, it only enables yields caused by
-earlier implicit yield requests.
-
-Despite their resemblance to implicit yield requests,
-:ref:`truncate <box_space-truncate>` and :ref:`drop <box_space-drop>` do not
-cause implicit yield.
-Despite their resemblance to functions of the fio module,
-functions of the standard Lua module
-`os <http://www.lua.org/manual/5.1/manual.html#5.8>`_
-do not cause implicit yield.
-Despite its resemblance to commit, :ref:`rollback <atomic-box_rollback>` does
-not enable yields.
-
-If :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` = 'none', then
-implicit yielding is disabled, because there are no writes to the WAL.
-
-If a task is interactive -- sending requests to the server and receiving
-responses -- then it involves network IO, and therefore there is an implicit
-yield, even if the request that is sent to the server is not itself an implicit
-yield request. Therefore the sequence
-
-.. cssclass:: highlight
-.. parsed-literal::
-
-    select
-    select
-    select
-
-causes blocking if it is inside a function or Lua program being executed on the
-server, but causes yielding if it is done as a series of transmissions from a
-client, including a client which operates via telnet, via one of the connectors,
-or via the MySQL and PostgreSQL rocks, or via the interactive mode when
-:ref:`"Using tarantool as a client" <administration-using_tarantool_as_a_client>`.
+causes blocking (in memtx), if it is inside a function or Lua program being
+executed on the server, but causes yielding (in both memtx and vinyl) if it
+is done as a series of transmissions from a client, including a client which
+operates via telnet, via one of the connectors, or via the MySQL and PostgreSQL
+rocks, or via the interactive mode when
+:ref:`using Tarantool as a client <administration-using_tarantool_as_a_client>`.
 
 After a fiber has yielded and then has regained control, it immediately issues
 :ref:`testcancel <fiber-testcancel>`.

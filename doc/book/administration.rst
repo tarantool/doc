@@ -10,7 +10,7 @@ reloading configuration, taking snapshots, log rotation.
 .. _administration-using_tarantool_as_a_client:
 
 ================================================================================
-Using tarantool as a client
+Using Tarantool as a client
 ================================================================================
 
 .. program:: tarantool

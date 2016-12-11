@@ -71,6 +71,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:pairs()           | Prepare for iterating           |
         | <box_space-pairs>`                   |                                 |
         +--------------------------------------+---------------------------------+
+        |:ref:`space_object:on_replace()       | Create a replace trigger        |
+        |<box_space-on_replace>`               |                                 |
+        +--------------------------------------+---------------------------------+
+        |:ref:`space_object:run_triggers()     | Enable/disable a replace        |
+        |<box_space-run_triggers>`             | trigger                         |
+        +--------------------------------------+---------------------------------+
         | :ref:`space_object.id                | .Numeric identifier of space    |
         | <box_space-id>`                      |                                 |
         +--------------------------------------+---------------------------------+
@@ -115,12 +121,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: create_index(index-name [, {options} ])
 
-        Create an index. It is mandatory to create an index for a tuple set
+        Create an index. It is mandatory to create an index for a space
         before trying to insert tuples into it, or select tuples from it. The
         first created index, which will be used as the primary-key index, must be
         unique.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`index_name` (type = string) = name of index, which should not be a number
         and should not contain special characters;
         :codeitalic:`options`.
@@ -157,7 +163,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             |               |                    | 'scalar'}                   |                     |
             +---------------+--------------------+-----------------------------+---------------------+
 
-        Possible errors: too many parts. Index '...' already exists. Primary key must be unique.
+        **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
 
         Note re storage engine: vinyl supports only the TREE index type,
         and vinyl secondary indexes must be created before tuples are inserted.
@@ -247,13 +253,13 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Insert a tuple into a space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`tuple` (type = Lua table or tuple) = tuple to be inserted.
 
         :return: the inserted tuple
         :rtype:  tuple
 
-        Possible errors: If a tuple with the same unique-key value already exists,
+        **Possible errors:** If a tuple with the same unique-key value already exists,
         returns :errcode:`ER_TUPLE_FOUND`.
 
         **Example:**
@@ -271,7 +277,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Search for a tuple or a set of tuples in the given space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
         which may be multi-part.
 
@@ -282,9 +288,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
                  a tuple whose primary key is ``{1,2,3}``.
         :rtype:  array of tuples
 
-        Possible errors: No such space; wrong type.
+        **Possible errors:** No such space; wrong type.
 
-        **Complexity Factors:** Index size, Index type.
+        **Complexity factors:** Index size, Index type.
 
         **Example:**
 
@@ -344,22 +350,22 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Search for a tuple in the given space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index
         key, which may be multi-part.
 
         :return: the tuple whose index key matches :codeitalic:`key`, or null.
         :rtype:  tuple
 
-        Possible errors: If space_object does not exist.
+        **Possible errors:** If space_object does not exist.
 
-        **Complexity Factors:** Index size, Index type,
+        **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
 
         The ``box.space...select`` function returns a set
         of tuples as a Lua table; the ``box.space...get``
         function returns at most a single tuple. And it is possible to get
-        the first tuple in a tuple set by appending ``[1]``.
+        the first tuple in a space by appending ``[1]``.
         Therefore ``box.space.tester:get{1}`` has the same
         effect as ``box.space.tester:select{1}[1]``,
         if exactly one tuple is found.
@@ -376,13 +382,13 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Drop a space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :return: nil
 
-        Possible errors: If space_object does not exist.
+        **Possible errors:** If ``space_object`` does not exist.
 
-        **Complexity Factors:** Index size, Index type,
+        **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
 
         **Example:**
@@ -397,12 +403,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Rename a space.
 
-        Parameters::samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters::samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`space-name` (type = string) = new name for space.
 
         :return: nil
 
-        Possible errors: space_object does not exist.
+        **Possible errors:** ``space_object`` does not exist.
 
         **Example:**
 
@@ -426,17 +432,17 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ``box.space...:put()`` have the same effect; the latter is sometimes used
         to show that the effect is the converse of ``box.space...:get()``.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`tuple` (type = Lua table or tuple) = tuple to be inserted.
 
         :return: the inserted tuple.
         :rtype:  tuple
 
-        Possible errors: If a different tuple with the same unique-key
+        **Possible errors:** If a different tuple with the same unique-key
         value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This
         will only happen if there is a unique secondary index.)
 
-        **Complexity Factors:** Index size, Index type,
+        **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
 
         **Example:**
@@ -478,7 +484,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         For ``!`` and ``=`` operations the field number can be ``-1``, meaning the last field in the tuple.
 
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`key` (type = Lua table or scalar) = primary-key field values, must be passed as a Lua
         table if key is multi-part;
         :codeitalic:`{operator, field_no, value}` (type = table): a group of arguments for each
@@ -490,9 +496,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :return: the updated tuple.
         :rtype:  tuple
 
-        Possible errors: it is illegal to modify a primary-key field.
+        **Possible errors:** it is illegal to modify a primary-key field.
 
-        **Complexity Factors:** Index size, Index type, number of indexes accessed, WAL
+        **Complexity factors:** Index size, Index type, number of indexes accessed, WAL
         settings.
 
         Thus, in the instruction:
@@ -593,7 +599,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         error checks before returning -- this is a design feature which
         enhances throughput but requires more caution on the part of the user.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :samp:`{tuple_value}` (type = Lua table or scalar) =
         field values, must be passed as a Lua table;
         :codeitalic:`{operator, field_no, value}` (type = Lua table) = a group of arguments for each
@@ -604,7 +610,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         :return: null.
 
-        Possible errors: it is illegal to modify a primary-key field.
+        **Possible errors:** it is illegal to modify a primary-key field.
         It is illegal to use upsert with a space that has a unique secondary index.
 
         **Complexity factors:** Index size, Index type, number of indexes accessed, WAL
@@ -622,14 +628,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Delete a tuple identified by a primary key.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`
         :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index
         key, which may be multi-part.
 
         :return: the deleted tuple
         :rtype:  tuple
 
-        **Complexity Factors:** Index size, Index type
+        **Complexity factors:** Index size, Index type
 
         Note re storage engine: vinyl will return ``nil``, rather than the deleted tuple.
 
@@ -659,7 +665,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ``box.space.tester:insert{0}`` and ``box.space[800]:insert{0}``
         are equivalent requests.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         **Example:**
 
@@ -677,7 +683,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Whether or not this space is enabled.
         The value is ``false`` if the space has no index.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
     .. _box_space-field_count:
 
@@ -697,7 +703,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         The default value is ``0``, which means there is no required field count.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         **Example:**
 
@@ -714,7 +720,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :ref:`box.index <box_index>` with methods to search tuples and iterate over them in
         predefined order.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :rtype: table
 
@@ -735,7 +741,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: count([key], [iterator])
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the primary index
         key, which may be multi-part; :codeitalic:`iterator` = comparison method.
 
@@ -754,7 +760,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: len()
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :return: Number of tuples in the space.
 
@@ -776,9 +782,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Deletes all tuples.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`.
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
-        **Complexity Factors:** Index size, Index type, Number of tuples accessed.
+        **Complexity factors:** Index size, Index type, Number of tuples accessed.
 
         :return: nil
 
@@ -786,7 +792,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             Note that ``truncate`` must be called only by the user who created
             the space OR under a `setuid` function created by that user. Read
-            more about `setuid` functions :ref:`here <authentication-funcs>`
+            more about `setuid` functions in reference on
+            :ref:`box.schema.func.create() <box_schema-func_create>`.
 
         **Example:**
 
@@ -808,16 +815,16 @@ A list of all ``box.space`` functions follows, then comes a list of all
         by space_object must have an ``unsigned`` or ``integer`` or ``numeric`` primary key index of type ``TREE``. The
         primary-key field will be incremented before the insert.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`field-value(s)` (type = Lua table or scalar) = tuple's fields, other than the primary-key field.
 
         :return: the inserted tuple.
         :rtype:  tuple
 
-        **Complexity Factors:** Index size, Index type,
+        **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
 
-        Possible errors: index has wrong type or primary-key indexed field is not a number.
+        **Possible errors:** index has wrong type or primary-key indexed field is not a number.
 
         **Example:**
 
@@ -839,7 +846,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Search for a tuple or a set of tuples in the given space,
         and allow iterating over one tuple at a time.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
         which may be multi-part;
         :samp:`{iterator-type}` = see :ref:`index_object:pairs <box_index-index_pairs>`.
@@ -847,9 +854,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end
         loop or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_.
 
-        Possible errors: No such space; wrong type.
+        **Possible errors:** No such space; wrong type.
 
-        Complexity Factors: Index size, Index type.
+        **Complexity factors:** Index size, Index type.
 
         For examples of complex ``pairs`` requests, where one can specify which
         index to search and what condition to use (for example "greater than"
@@ -885,12 +892,121 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - Hello my Lua world
             ...
 
+    .. _box_space-on_replace:
+
+    .. method:: on_replace(trigger-function [, old-trigger-function-name])
+
+        Create a "replace trigger". The ``trigger-function`` will be executed whenever
+        a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()`` or ``delete()`` happens to a
+        tuple in ``<space-name>``.
+
+        :param function trigger-function: function which will become the trigger function
+        :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
+        :return: nil or function list
+
+        If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
+
+        **Example #1:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> function f ()
+                     >   x = x + 1
+                     > end
+            tarantool> box.space.X:on_replace(f)
+
+        The ``trigger-function`` can have two parameters: old tuple, new tuple.
+        For example, the following code causes nil to be printed when the
+        insert request is processed, and causes [1, 'Hi'] to be printed when
+        the delete request is processed:
+
+        .. code-block:: none
+
+            box.schema.space.create('space_1')
+            box.space.space_1:create_index('space_1_index',{})
+            function on_replace_function (old, new) print(old) end
+            box.space.space_1:on_replace(on_replace_function)
+            box.space.space_1:insert{1,'Hi'}
+            box.space.space_1:delete{1}
+
+        **Example #2:**
+
+        The following series of requests will create a space, create an index, create
+        a function which increments a counter, create a trigger, do two inserts, drop
+        the space, and display the counter value - which is 2, because the function
+        is executed once after each insert.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> s = box.schema.space.create('space53')
+            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
+            tarantool> function replace_trigger()
+                     >   replace_counter = replace_counter + 1
+                     > end
+            tarantool> s:on_replace(replace_trigger)
+            tarantool> replace_counter = 0
+            tarantool> t = s:insert{1, 'First replace'}
+            tarantool> t = s:insert{2, 'Second replace'}
+            tarantool> s:drop()
+            tarantool> replace_counter
+
+    .. _box_space-run_triggers:
+
+    .. method:: run_triggers(true|false)
+
+        At the time that a trigger is defined, it is automatically enabled - that
+        is, it will be executed. Replace triggers can be disabled with
+        :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with
+        :samp:`box.space.{space-name}:run_triggers(true)`.
+
+        :return: nil
+
+        **Example #1:**
+
+        The following series of requests will associate an existing function named F
+        with an existing space named T, associate the function a second time with the
+        same space (so it will be called twice), disable all triggers of T, and delete
+        each trigger by replacing with ``nil``.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.T:on_replace(F)
+            tarantool> box.space.T:on_replace(F)
+            tarantool> box.space.T:run_triggers(false)
+            tarantool> box.space.T:on_replace(nil, F)
+            tarantool> box.space.T:on_replace(nil, F)
+
+        **Example #2:**
+        
+        The following series of requests will create a space, create an index, create
+        a function which increments a counter, create a trigger, do two inserts, drop
+        the space, and display the counter value -- which is 2, because the function
+        is executed once after each insert.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> s = box.schema.space.create('space53')
+            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
+            tarantool> function replace_trigger()
+                     >  replace_counter = replace_counter + 1
+                     > end
+            tarantool> s:on_replace(replace_trigger)
+            tarantool> replace_counter = 0
+            tarantool> t = s:insert{1, 'First replace'}
+            tarantool> t = s:insert{2, 'Second replace'}
+            tarantool> s:drop()
+            tarantool> replace_counter
+
 .. _box_space-schema:
 
 .. data:: _schema
 
-    ``_schema`` is a system tuple set. Its single tuple contains these fields:
-    ``'version', major-version-number, minor-version-number``.
+    ``_schema`` is a system space. 
+    
+    The single tuple in this space contains the following fields:
+    * ``version``,
+    * ``major-version-number``,
+    * ``minor-version-number``.
 
     **Example:**
 
@@ -928,13 +1044,18 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
 .. data:: _space
 
-    ``_space`` is a system tuple set. Its tuples contain these fields: ``id``,
-    ``owner`` (= id of user who owns the space),
-    ``name``, ``engine``, ``field_count``,
-    ``flags`` (e.g. temporary), ``format``.
+    ``_space`` is a system space.
+    
+    Tuples in this space contain the following fields:
+    
+    * ``id``,
+    * ``owner`` (= id of user who owns the space),
+    * ``name``, ``engine``, ``field_count``,
+    * ``flags`` (e.g. temporary), ``format``.
+    
     These fields are established by :ref:`space.create() <box_schema-space_create>`.
 
-    **Example:**
+    **Example #1:**
 
     The following function will display all simple fields in all tuples of ``_space``.
 
@@ -978,11 +1099,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
           - '514 1 archive memtx 0  '
         ...
 
-    **Example:**
+    **Example #2:**
 
     The following requests will create a space using
-    ``box.schema.space.create`` with a ``format`` clause.
-    Then it retrieves the _space tuple for the new space.
+    ``box.schema.space.create()`` with a ``format`` clause.
+    Then it retrieves the ``_space`` tuple for the new space.
     This illustrates the typical use of the ``format`` clause,
     it shows the recommended names and data types for the fields.
 
@@ -1015,10 +1136,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
 .. data:: _index
 
-    ``_index`` is a system tuple set. Its tuples contain these fields:
-    ``id`` (= id of space), ``iid`` (= index number within space),
-    ``name``, ``type``, ``opts`` (e.g. unique option),
-    [``tuple-field-no``, ``tuple-field-type`` ...].
+    ``_index`` is a system space.
+    
+    Tuples in this space contain the following fields:
+    * ``id`` (= id of space),
+    * ``iid`` (= index number within space),
+    * ``name``,
+    * ``type``,
+    * ``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` ...].
 
     The following function will display all fields in all tuples of ``_index``:
     (notice that the fifth field gets special treatment as a map value and
@@ -1098,30 +1223,228 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
 .. data:: _user
 
-    ``_user`` is a system tuple set for
-    support of the :ref:`authorization feature <authentication>`.
+    ``_user`` is a system space where usernames and password hashes are stored.
+    
+    Tuples in this space contain the following fields:
+    
+    * the numeric id of the tuple ("id"),
+    * the numeric id of the tuple’s creator,
+    * the name,
+    * the type: 'user' or 'role',
+    * optional password.
 
+    There are four special tuples in the ``_user`` space: 'guest', 'admin',
+    'public' and 'replication'.
+    
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: right-align-column-2
+        .. rst-class:: left-align-column-3
+        .. rst-class:: left-align-column-4
+
+        +-------------+----+------+---------------------------------------------------------+
+        | Name        | ID | Type | Description                                             |
+        +=============+====+======+=========================================================+
+        | guest       | 0  | user | Default user when connecting remotely.                  |
+        |             |    |      | Usually an untrusted user with few privileges.          |
+        +-------------+----+------+---------------------------------------------------------+
+        | admin       | 1  | user | Default user when using Tarantool as a console.         |
+        |             |    |      | Usually an administrative user with all privileges.     |
+        +-------------+----+------+---------------------------------------------------------+
+        | public      | 2  | role | Pre-defined :ref:`role <authentication-roles>`,         |
+        |             |    |      | automatically assigned to new users when they are       |
+        |             |    |      | created with                                            |
+        |             |    |      | ``box.schema.user.create(user-name)``.                  |
+        |             |    |      | Therefore, a convenient way to grant 'read' on space    |
+        |             |    |      | 't' to every user that will ever exist is with          |
+        |             |    |      | ``box.schema.role.grant('public','read','space','t')``. |
+        +-------------+----+------+---------------------------------------------------------+
+        | replication | 3  | role | Pre-defined :ref:`role <authentication-roles>`,         |
+        |             |    |      | assigned by the 'admin' user to users who need to use   |
+        |             |    |      | :ref:`replication <index-box_replication>` features.    |
+        +-------------+----+------+---------------------------------------------------------+    
+    
+    To select a row from the ``_user`` space, use ``box.space._user:select()``.
+    For example, here is what happens with a select for user id = 0, which is
+    the 'guest' user, which by default has no password:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.space._user:select{0}
+        ---
+        - - [0, 1, 'guest', 'user']
+        ...
+
+    .. WARNING::
+    
+       To change tuples in the ``_user`` space, do not use ordinary ``box.space``
+       functions for insert or update or delete. The ``_user`` space is special,
+       so there are special functions which have appropriate error checking.
+
+    To create a new user, use :ref:`box.schema.user.create() <box_schema-user_create>`:
+
+    .. cssclass:: highlight
+    .. parsed-literal::
+
+        box.schema.user.create(*user-name*)
+        box.schema.user.create(*user-name*, {if_not_exists = true})
+        box.schema.user.create(*user-name*, {password = *password*})
+
+    To change the user's password, use :ref:`box.schema.user.password() <box_schema-user_password>`:
+
+    .. cssclass:: highlight
+    .. parsed-literal::
+
+        -- To change the current user's password
+        box.schema.user.passwd(*password*)
+
+        -- To change a different user's password
+        -- (usually only 'admin' can do it)
+        box.schema.user.passwd(*user-name*, *password*)
+
+
+    To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:
+
+    .. cssclass:: highlight
+    .. parsed-literal::
+
+        box.schema.user.drop(*user-name*)
+
+    To check whether a user exists, use :ref:`box.schema.user.exists() <box_schema-user_exists>`,
+    which returns ``true`` or ``false``:
+
+    .. cssclass:: highlight
+    .. parsed-literal::
+
+        box.schema.user.exists(*user-name*)
+
+    To find what privileges a user has, use :ref:`box.schema.user.info() <box_schema-user_info>`:
+
+    .. cssclass:: highlight
+    .. parsed-literal::
+
+        box.schema.user.info(*user-name*)
+
+    .. NOTE::
+
+        The maximum number of users is 32.
+    
+    **Example:**
+
+    Here is a session which creates a new user with a strong password, selects a
+    tuple in the ``_user`` space, and then drops the user.
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$'})
+        ---
+        ...
+        tarantool> box.space._user.index.name:select{'JeanMartin'}
+        ---
+        - - [17, 1, 'JeanMartin', 'user', {'chap-sha1': 't3xjUpQdrt857O+YRvGbMY5py8Q='}]
+        ...
+        tarantool> box.schema.user.drop('JeanMartin')
+        ---
+        ...
+    
 .. _box_space-priv:
 
 .. data:: _priv
 
-    ``_priv`` is a system tuple set for
-    support of the :ref:`authorization feature <authentication>`.
+    ``_priv`` is a system space where :ref:`privileges <authentication-owners_privileges>`
+    are stored.
+    
+    Tuples in this space contain the following fields:
+    
+    * the numeric id of the user who gave the privilege ("grantor_id"),
+    * the numeric id of the user who received the privilege ("grantee_id"),
+    * the type of object: 'space', 'function' or 'universe',
+    * the numeric id of the object,
+    * the type of operation: "read" = 1, "write" = 2, "execute" = 4, or
+      a combination such as "read,write,execute".
+
+    You can:
+
+    * Grant a privilege with :ref:`box.schema.user.grant() <box_schema-user_grant>`.
+    * Revoke a privilege with :ref:`box.schema.user.revoke() <box_schema-user_revoke>`.
+
+    .. NOTE::
+    
+       * Generally, privileges are granted or revoked by the owner of the object
+         (the user who created it), or by the 'admin' user.
+         
+       * Before dropping any objects or users, make sure that all their associated
+         privileges have been revoked.
+         
+       * Only the 'admin' user can grant privileges for the 'universe'.
+       
+       * Except the 'admin' user, only the creator of a space can drop, alter, or
+         truncate the space.
+
+       * Except the 'admin' user, only the creator of a user can change a different
+         user’s password.
 
 .. _box_space-cluster:
 
 .. data:: _cluster
 
-    ``_cluster`` is a system tuple set
+    ``_cluster`` is a system space
     for support of the :ref:`replication feature <index-box_replication>`.
 
 .. _box_space-func:
 
 .. data:: _func
 
-    ``_func`` is a system tuple set
-    with function tuples made by :ref:`box.schema.func.create <box_schema-func_create>`.
+    ``_func`` is a system space with function tuples made by
+    :ref:`box.schema.func.create() <box_schema-func_create>`.
+    
+    Tuples in this space contain the following fields:
+    
+    * the numeric function id, a number,
+    * the function name,
+    * flag,
+    * a language name (optional): 'LUA' (default) or 'C'.
 
+    The ``_func`` space does not include the function’s body.
+    You continue to create Lua functions in the usual way, by saying
+    ``function function_name () ... end``, without adding anything
+    in the ``_func`` space. The ``_func`` space only exists for storing
+    function tuples so that their names can be used within grant/revoke
+    functions.
+
+   You can:
+   
+   * Create a ``_func`` tuple with
+     :ref:`box.schema.func.create() <box_schema-func_create>`,
+   * Drop a ``_func`` tuple with
+     :ref:`box.schema.func.drop() <box_schema-func_drop>`,
+   * Check whether a ``_func`` tuple exists with
+     :ref:`box.schema.func.exists() <box_schema-func_exists>`.
+
+   **Example:**
+
+   In the following example, we create a function named ‘f7’, put it into
+   Tarantool's ``_func`` space and grant 'execute' privilege for this function
+   to 'guest' user.
+
+   .. code-block:: tarantoolsession
+    
+      tarantool> function f7()
+               >  box.session.uid()
+               > end
+      ---
+      ...
+      tarantool> box.schema.func.create('f7')
+      ---
+      ...
+      tarantool> box.schema.user.grant('guest', 'execute', 'function', 'f7')
+      ---
+      ...
+      tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
+      ---
+      ...
+      
 =============================================================================
           Example: use box.space functions to read _space tuples
 =============================================================================
@@ -1130,7 +1453,7 @@ This function will illustrate how to look at all the spaces, and for each
 display: approximately how many tuples it contains, and the first field of
 its first tuple. The function uses Tarantool ``box.space`` functions ``len()``
 and ``pairs()``. The iteration through the spaces is coded as a scan of the
-``_space`` system tuple set, which contains metadata. The third field in
+``_space`` system space, which contains metadata. The third field in
 ``_space`` contains the space name, so the key instruction
 ``space_name = v[3]`` means ``space_name`` is the ``space_name`` field in
 the tuple of ``_space`` that we've just fetched with ``pairs()``. The function
@@ -1234,6 +1557,4 @@ And here is what happens when one executes the `for` loop: |br|
 :codenormal:`field_count,num` |br|
 :codenormal:`flags,str` |br|
 :codenormal:`format,*`
-
-
 

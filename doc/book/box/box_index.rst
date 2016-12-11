@@ -20,7 +20,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`.
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :rtype: boolean
 
@@ -30,7 +30,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`.
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
 
     .. data:: parts
 
@@ -38,7 +38,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`.
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :rtype: table
 
@@ -79,7 +79,7 @@ API is a direct binding to corresponding methods of index objects of type
         iterator in Tarantool does not own a consistent read view. Instead, each
         procedure is granted exclusive access to all tuples and spaces until
         there is a "context switch": which may happen due to
-        :ref:`the-implicit-yield-rules <atomic-the_implicit_yield_rules>`,
+        :ref:`the implicit yield rules <atomic-implicit-yields>`,
         or by an
         explicit call to :ref:`fiber.yield <fiber-yield>`. When the execution flow returns
         to the yielded procedure, the data set could have changed significantly.
@@ -88,7 +88,7 @@ API is a direct binding to corresponding methods of index objects of type
         The tutorial :ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`
         shows one way that iterators and yields can be used together.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :samp:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
         which may be multi-part; :samp:`{iterator-type}` = as defined in tables below.
         The default iterator type is 'EQ'.
@@ -96,11 +96,11 @@ API is a direct binding to corresponding methods of index objects of type
         Return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop
         or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_.
 
-        Possible errors: No such space; wrong type;
+        **Possible errors:** No such space; wrong type;
         Selected iteration type is not supported for the index type;
         or search-key-value is not supported for the iteration type.
 
-        Complexity Factors: Index size, Index type; Number of tuples accessed.
+        **Complexity factors:** Index size, Index type; Number of tuples accessed.
 
         A search-key-value can be a number (for example ``1234``), a string
         (for example ``'abcd'``),
@@ -406,7 +406,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`search-key` = values to be matched against the index key;
         * :samp:`option(s)` any or all of
             * :samp:`iterator = {iterator-type}`,
@@ -540,16 +540,16 @@ API is a direct binding to corresponding methods of index objects of type
 
         Search for a tuple via the given index, as described :ref:`earlier <box_index-note>`.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <index-object_reference>`;
+        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
         :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index key,
         which may be multi-part.
 
         :return: the tuple whose index-key fields are equal to the passed key values.
         :rtype:  tuple
 
-        Possible errors: No such index; wrong type; more than one tuple matches.
+        **Possible errors:** No such index; wrong type; more than one tuple matches.
 
-        Complexity Factors: Index size, Index type.
+        **Complexity factors:** Index size, Index type.
         See also :ref:`space_object:get() <box_space-get>`.
 
         **Example:**
@@ -569,7 +569,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`key-value`.
 
         :return: the tuple for the first key in the index. If optional
@@ -577,9 +577,9 @@ API is a direct binding to corresponding methods of index objects of type
                 is greater than or equal to ``key-value``.
         :rtype:  tuple
 
-        Possible errors: index is not of type 'TREE'.
+        **Possible errors:** index is not of type 'TREE'.
 
-        Complexity Factors: Index size, Index type.
+        **Complexity factors:** Index size, Index type.
 
         **Example:**
 
@@ -598,7 +598,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`key-value`.
 
         :return: the tuple for the last key in the index. If optional ``key-value``
@@ -606,9 +606,9 @@ API is a direct binding to corresponding methods of index objects of type
                 ``key-value``.
         :rtype:  tuple
 
-        Possible errors: index is not of type 'TREE'.
+        **Possible errors:** index is not of type 'TREE'.
 
-        Complexity Factors: Index size, Index type.
+        **Complexity factors:** Index size, Index type.
 
         **Example:**
 
@@ -629,13 +629,13 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`random-value` (type = number) = an arbitrary non-negative integer.
 
         :return: the tuple for the random key in the index.
         :rtype:  tuple
 
-        Complexity Factors: Index size, Index type.
+        **Complexity factors:** Index size, Index type.
 
         Note re storage engine: vinyl does not support ``random()``.
 
@@ -657,7 +657,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`{key-value}` (type = Lua table or scalar) =
           the value which must match the key(s) in the specified index. The type
           may be a list of field-values, or a tuple containing only the
@@ -690,7 +690,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`{key}` (type = Lua table or scalar) = key to be matched against
           the index key;
         * :samp:`{operator, field_no, value}` (type = Lua table) = update
@@ -709,7 +709,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`key` (type = Lua table or scalar) = key to be matched against
           the index key.
 
@@ -726,13 +726,13 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`{options}` = options list, same as the options list for
           :ref:`create_index <box_space-create_index>`.
 
         :return: nil
 
-        Possible errors: Index does not exist, or
+        **Possible errors:** Index does not exist, or
         the first index cannot be changed to {unique = false}, or
         the alter function is only applicable for the memtx storage engine.
 
@@ -746,6 +746,8 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             ...
 
+    .. _box_index-drop:
+
     .. method:: drop()
 
         Drop an index. Dropping a primary-key index has
@@ -753,11 +755,11 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`.
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :return: nil.
 
-        Possible errors: Index does not exist, or a primary-key index cannot
+        **Possible errors:** Index does not exist, or a primary-key index cannot
         be dropped while a secondary-key index exists.
 
         **Example:**
@@ -774,12 +776,12 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`;
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
         * :samp:`{index-name}` (type = string) = new name for index.
 
         :return: nil
 
-        Possible errors: index_object does not exist.
+        **Possible errors:** index_object does not exist.
 
         **Example:**
 
@@ -789,7 +791,7 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             ...
 
-        Complexity Factors: Index size, Index type, Number of tuples accessed.
+        **Complexity factors:** Index size, Index type, Number of tuples accessed.
 
     .. method:: bsize()
 
@@ -797,7 +799,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <index-object_reference>`.
+        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :return: number of bytes
         :rtype: number

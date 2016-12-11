@@ -91,7 +91,7 @@ or more flags, will have a loop with sending and receiving functions, will
 end with the teardown functions -- as an example at the end of this section
 will show. Throughout, there may be error-checking and waiting functions for
 synchronization. To prevent a fiber containing socket functions from "blocking"
-other fibers, the :ref:`implicit yield rules <atomic-the_implicit_yield_rules>`
+other fibers, the :ref:`implicit yield rules <atomic-implicit-yields>`
 will cause a yield so that other processes
 may take over, as is the norm for cooperative multitasking.
 

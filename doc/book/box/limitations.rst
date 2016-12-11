@@ -1,10 +1,15 @@
 .. _limitations_fields_in_index:
 
+================================================================================
+Limitations
+================================================================================
+
 **Number of parts in an index**
 
     For TREE or HASH indexes, the maximum
     is 255 (``box.schema.INDEX_PART_MAX``). For RTREE indexes, the
-    maximum is 1 but the field is an ARRAY. For BITSET indexes, the maximum is 1. 
+    maximum is 1 but the field is an ARRAY of up to 20 dimensions.
+    For BITSET indexes, the maximum is 1. 
 
 .. _limitations_indexes_in_space:
 
@@ -16,20 +21,30 @@
 
 **Number of fields in a tuple**
 
-    The theoretical maximum is 2147483647 (``box.schema.FIELD_MAX``). The
+    The theoretical maximum is 2,147,483,647 (``box.schema.FIELD_MAX``). The
     practical maximum is whatever is specified by the space's
     :ref:`field_count <box_space-field_count>`
-    member, or the maximum tuple length.
+    member, or the maximal tuple length.
 
 .. _limitations_bytes_in_tuple:
 
 **Number of bytes in a tuple**
 
-    By default the value of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>`
-    is 1048576, and the maximum tuple length is approximately one quarter of that:
-    approximately 262,000 bytes. To increase it, when starting the server,
-    specify a larger value. For example
-    :code:`box.cfg{slab_alloc_maximal=2*1048576}`.
+    The maximal number of bytes in a tuple is roughly equal to 
+    :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (with a metadata
+    overhead of about 20 bytes per tuple, which is added on top of useful bytes).
+    By default, the value of ``slab_alloc_maximal`` is 1,048,576. To increase it,
+    specify a larger value when starting the server.
+    For example, ``box.cfg{slab_alloc_maximal=2*1048576}``.
+
+.. _limitations_slab_size:
+
+**Slab size**
+
+    The maximal size of an allocatable memory unit (slab) is equal to one quarter
+    of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (by default,
+    approximately 262,000 bytes). To see memory usage statistics broken down by
+    slab size, use :ref:`box.slab.stats() <box_slab_stats>`.
 
 .. _limitations_bytes_in_index_key:
 
@@ -44,7 +59,7 @@
 
 **Number of spaces**
 
-    The theoretical maximum is 2147483647 (``box.schema.SPACE_MAX``).
+    The theoretical maximum is 65,000 (``box.schema.SPACE_MAX``).
 
 .. _limitations_number_of_connections:
 
@@ -85,10 +100,3 @@
 **Number of replicas in a cluster**
 
     32 (``box.schema.REPLICA_MAX``).
-
-.. _limitations_vinyl:
-
-For additional limitations which apply only to the vinyl
-storage engine, see section
-:ref:`Differences between memtx and vinyl <vinyl_diff>`.
-

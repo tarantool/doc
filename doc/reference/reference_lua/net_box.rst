@@ -73,7 +73,7 @@ On this diagram:
     can be replaced by :samp:`conn = {net_box}.self`. However, there is an important
     difference between the embedded connection and a remote one. With the
     embedded connection, requests which do not modify data do not yield.
-    When using a remote connection, due to :ref:`the implicit rules <atomic-the_implicit_yield_rules>`
+    When using a remote connection, due to :ref:`the implicit rules <atomic-implicit-yields>`
     any request can yield, and database state may have changed by the time it regains control.
     
     Possible options:
@@ -207,7 +207,7 @@ On this diagram:
 
         .. NOTE::
 
-            Due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>`
+            Due to :ref:`the implicit yield rules <atomic-implicit-yields>`
             a local :samp:`box.space.{space-name}:select`:code:`{...}` does
             not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
             call does yield, so global variables or database tuples data may
@@ -264,8 +264,8 @@ On this diagram:
 
         :samp:`conn:eval({Lua-string})` evaluates and executes the expression
         in Lua-string, which may be any statement or series of statements.
-        An :ref:`execute privilege <authentication-privileges>` is required; if
-        the user does not have it, an administrator may grant it with
+        An :ref:`execute privilege <authentication-owners_privileges>` is required;
+        if the user does not have it, an administrator may grant it with
         :samp:`box.schema.user.grant({username}, 'execute', 'universe')`.
 
         **Example:**
