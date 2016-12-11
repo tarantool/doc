@@ -71,6 +71,39 @@ Tarantool - Index
             <div class="b-cols-item">
                 <ul class="b-news-list">
                     <li class="b-news-list-item">
+                        <div class="b-date"><span>17 Nov</span>2016</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/7SWxYx"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                Asynchronous processing with in-memory databases or how to handle one million transactions per second on a single CPU core
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>17 Oct</span>2016</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/E6IAl8"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                How to avoid latency spikes and memory consumption spikes during snapshotting in an in-memory database
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>12 Oct</span>2016</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/B8MO54"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                What an in-memory database is and how it persists data efficiently
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
                         <div class="b-date"><span>21 Apr</span>2016</div>
                         <h3 class="b-news-list-item-title">
                             <a href="https://goo.gl/36T92c"
@@ -162,30 +195,13 @@ Tarantool - Index
             </div>
             <div class="b-cols-item_empty">&nbsp;</div>
             <div class="b-cols-item">
-                <iframe id="twitter-widget-0" scrolling="no"
-                        frameborder="0" allowtransparency="true"
-                        allowfullscreen="true"
-                        class="twitter-timeline
-                                twitter-timeline-rendered"
-                        style="position: absolute; visibility: hidden;
-                                display: block; width: 0px; height: 0px;
-                                padding: 0px; border: none;">
-                </iframe>
                 <a class="twitter-timeline"
                     href="https://twitter.com/hashtag/tarantool"
+                    data-height="800px"
                     data-widget-id="560794185742442496"
                     data-twitter-extracted-i1476714939503250886="true">
                     #tarantool Tweets
                 </a>
-                <script>
-                !function(d,s,id){
-                var js,fjs=d.getElementsByTagName(s)[0],
-                p=/^http:/.test(d.location)?'http':'https';
-                if(!d.getElementById(id)){js=d.createElement(s);
-                js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
-                fjs.parentNode.insertBefore(js,fjs);}
-                }(document,"script","twitter-wjs");
-                </script>
                 <ul class="b-social_block">
                     <a href="https://www.facebook.com/TarantoolDatabase/">
                         <span class="fa-stack fa-lg">
