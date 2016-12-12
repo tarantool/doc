@@ -1,5 +1,5 @@
-    :ref:`io_collect_interval <cfg_networking-io_collect_interval>`, |br|
-    :ref:`readahead <cfg_networking-readahead>`  |br|
+* :ref:`io_collect_interval <cfg_networking-io_collect_interval>`,
+* :ref:`readahead <cfg_networking-readahead>`
 
 .. _cfg_networking-io_collect_interval:
 
@@ -10,9 +10,9 @@
     the number of client connections is large, but requests are not so frequent
     (for example, each connection issues just a handful of requests per second).
 
-    Type: float |br|
-    Default: null |br|
-    Dynamic: **yes** |br|
+    | Type: float
+    | Default: null
+    | Dynamic: **yes**
 
 .. _cfg_networking-readahead:
 
@@ -27,6 +27,6 @@
     should be increased. If batched request processing is not used, it’s prudent
     to leave this setting at its default.
 
-    Type: integer |br|
-    Default: 16320 |br|
-    Dynamic: **yes** |br|
+    | Type: integer
+    | Default: 16320
+    | Dynamic: **yes**

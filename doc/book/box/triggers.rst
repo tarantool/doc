@@ -16,7 +16,7 @@ There are three types of triggers in Tarantool:
 * :ref:`authentication triggers <box_session-on_auth>`, which are
   executed during authentication, and
 
-* :ref:`replace triggers <box_session-on_replace>`, which are for database
+* :ref:`replace triggers <box_space-on_replace>`, which are for database
   events.
 
 All of them are implemented as functions in Tarantool built-in libraries.
@@ -30,7 +30,7 @@ All triggers have the following characteristics:
   :ref:`on_connect() <box_session-on_connect>`,
   :ref:`on_auth() <box_session-on_auth>`, 
   :ref:`on_disconnect() <box_session-on_disconnect>`, or 
-  :ref:`on_replace() <box_session-on_replace>`.
+  :ref:`on_replace() <box_space-on_replace>`.
 
 * Triggers are defined only by the 'admin' user.
 

@@ -5,8 +5,8 @@
 -------------------------------------------------------------------------------
 
 The json module provides JSON manipulation routines. It is based on the
-`Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please read
-`the official documentation`_.
+`Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please
+read `the official documentation`_.
 
 .. module:: json
 
@@ -82,7 +82,8 @@ The json module provides JSON manipulation routines. It is based on the
 
 .. data:: NULL
 
-    A value comparable to Lua "nil" which may be useful as a placeholder in a tuple.
+    A value comparable to Lua "nil" which may be useful as a placeholder in a
+    tuple.
 
     **Example:**
 
@@ -113,7 +114,8 @@ The JSON output structure can be specified with ``__serialize``:
 * ``__serialize="seq"`` for an array
 * ``__serialize="map"`` for a map
 
-Serializing 'A' and 'B' with different ``__serialize`` values causes different results:
+Serializing 'A' and 'B' with different ``__serialize`` values causes different
+results:
 
 .. code-block:: tarantoolsession
 
@@ -144,10 +146,12 @@ Serializing 'A' and 'B' with different ``__serialize`` values causes different r
 There are configuration settings which affect the way that Tarantool encodes
 invalid numbers or types. They are all boolean ``true``/``false`` values
 
-* ``cfg.encode_invalid_numbers`` - allow nan and inf (default is true)
-* ``cfg.encode_use_tostring`` - use tostring for unrecognizable types (default is false)
-* ``cfg.encode_invalid_as_nil`` - use null for all unrecognizable types (default is false)
-* ``cfg.encode_load_metatables`` - load metatables (default is false)
+* ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
+* ``cfg.encode_use_tostring`` (default is false) -- use tostring for
+  unrecognizable types
+* ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
+  unrecognizable types
+* ``cfg.encode_load_metatables`` (default is false) -- load metatables
 
 For example, the following code will interpret 0/0 (which is "not a number")
 and 1/0 (which is "infinity") as special values rather than nulls or errors:
@@ -169,9 +173,8 @@ The result of the json.encode request will look like this:
     - '[1,nan,inf,2]
     ...
 
-The same configuration settings exist for json, for
-:ref:`MsgPack <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
->>>>>>> Fix every NOTE to be highlighted on site + JSON cfg rewritten
+The same configuration settings exist for json, for :ref:`MsgPack
+<msgpack-module>`, and for :ref:`YAML <yaml-module>`.
 
 .. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
 .. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html

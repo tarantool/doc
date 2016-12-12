@@ -5,7 +5,8 @@
 The tap module streamlines the testing of other modules. It allows writing of
 tests in the `TAP protocol`_. The results from the tests can be parsed by
 standard TAP-analyzers so they can be passed to utilities such as `prove`_. Thus
-one can run tests and then use the results for statistics, decision-making, and so on.
+one can run tests and then use the results for statistics, decision-making, and
+so on.
 
 .. module:: tap
 
@@ -14,8 +15,8 @@ one can run tests and then use the results for statistics, decision-making, and 
     Initialize.
 
     The result of ``tap.test`` is an object, which will be called taptest
-    in the rest of this discussion, which is necessary for
-    ``taptest:plan()`` and all the other methods.
+    in the rest of this discussion, which is necessary for ``taptest:plan()``
+    and all the other methods.
 
     :param string test-name: an arbitrary name to give for the test outputs.
     :return: taptest

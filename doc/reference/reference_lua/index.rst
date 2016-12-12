@@ -7,9 +7,8 @@ This reference covers Tarantool's built-in Lua modules.
 .. NOTE::
 
    Some functions in these modules are analogs to functions from
-   `standard Lua libraries <http://www.lua.org/manual/>`_.
-   For better results, we recommend using functions from Tarantool's built-in
-   modules. 
+   `standard Lua libraries <http://www.lua.org/manual/>`_. For better results,
+   we recommend using functions from Tarantool's built-in modules.
 
 .. toctree::
     :maxdepth: 1
@@ -26,7 +25,6 @@ This reference covers Tarantool's built-in Lua modules.
     box_error
     fiber
     fiber_ipc
-    fiber_cond
     fio
     fun
     json

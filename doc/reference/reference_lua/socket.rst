@@ -293,10 +293,10 @@ the function invocations will look like ``sock:function_name(...)``.
         In case the socket is blocking, ``sysread()`` can block the calling process.
         Rarely used. For details, see also
         `this description <https://github.com/tarantool/tarantool/wiki/sockets%201.6>`_.
-        
+
         :param integer size: maximum number of bytes to read, for
                              example 50 means "stop after 50 bytes"
-        
+
         :return: an empty string if there is nothing more to read, or a nil
                  value if error, or a string up to ``size`` bytes long.
         :rtype:  string

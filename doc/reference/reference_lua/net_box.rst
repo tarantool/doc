@@ -6,9 +6,9 @@ Module `net.box`
 
 The ``net.box`` module contains connectors to remote database systems. One
 variant, to be discussed later, is connecting to MySQL or MariaDB or PostgreSQL
-(see :ref:`SQL DBMS modules <dbms_modules>` reference).
-The other variant, which is discussed in this section, is connecting to Tarantool
-servers via a network using the built-in ``net.box`` module.
+(see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
+is discussed in this section, is connecting to Tarantool servers via a network
+using the built-in ``net.box`` module.
 
 You can call the following methods:
 
@@ -55,7 +55,7 @@ On this diagram:
 .. function:: connect(URI [, {option[s]}])
 .. function:: new(URI [, {option[s]}])
 
-    .. note::
+    .. NOTE::
     
        The names ``connect()`` and ``new()`` are synonymous with the only
        difference that ``connect()`` is the preferred name, while ``new()`` is
@@ -68,21 +68,27 @@ On this diagram:
     such as select, update or delete.
 
     For a local Tarantool server, there is a pre-created always-established
-    connection object named :samp:`{net_box}.self`. Its purpose is to make polymorphic
-    use of the ``net_box`` API easier. Therefore :samp:`conn = {net_box}.connect('localhost:3301')`
-    can be replaced by :samp:`conn = {net_box}.self`. However, there is an important
-    difference between the embedded connection and a remote one. With the
-    embedded connection, requests which do not modify data do not yield.
-    When using a remote connection, due to :ref:`the implicit rules <atomic-implicit-yields>`
-    any request can yield, and database state may have changed by the time it regains control.
+    connection object named :samp:`{net_box}.self`. Its purpose is to make
+    polymorphic use of the ``net_box`` API easier. Therefore
+    :samp:`conn = {net_box}.connect('localhost:3301')`
+    can be replaced by :samp:`conn = {net_box}.self`. However, there is an
+    important difference between the embedded connection and a remote one.
+    With the embedded connection, requests which do not modify data do not yield.
+    When using a remote connection, due to
+    :ref:`the implicit rules <atomic-implicit-yields>`
+    any request can yield, and database state may have changed by the time it
+    regains control.
     
     Possible options:
     
     * `wait_connected`: by default, connection creation is blocked until the connection is established,
       but passing ``wait_connected=false`` makes it return immediately. Also, passing a timeout
-      makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 secs). |br|
-      Note: In the presence of ``reconnect_after``, ``wait_connected`` ignores transient failures.
-      The wait completes once the connection is established or is closed explicitly.
+      makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 secs).
+      
+      .. NOTE::
+      
+         In the presence of ``reconnect_after``, ``wait_connected`` ignores transient failures.
+         The wait completes once the connection is established or is closed explicitly.
       
     * `reconnect_after`: a ``net.box`` instance automatically reconnects
       any time the connection is broken or if a connection attempt fails.

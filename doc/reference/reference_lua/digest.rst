@@ -225,8 +225,8 @@ set, and ``password_check()`` which requires input of a password.
     - 'OK'
     ...
 
-If a later user calls the ``password_check()`` function and enters
-the wrong password, the result is an error.
+If a later user calls the ``password_check()`` function and enters the wrong
+password, the result is an error.
 
 .. code-block:: tarantoolsession
 
