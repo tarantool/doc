@@ -11,7 +11,7 @@ file format is in section :ref:`Data persistence and the WAL file format
 
 .. module:: xlog
 
-.. _box_index-index_pairs:
+.. _xlog-pairs:
 
 .. method:: pairs([file-name])
 
