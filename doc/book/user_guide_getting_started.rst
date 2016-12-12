@@ -125,9 +125,9 @@ database try this:
 
 .. code-block:: tarantoolsession
 
-    tarantool> t = s:insert({1})
-    tarantool> t = s:insert({2, 'Music'})
-    tarantool> t = s:insert({3, 'Length', 93})
+    tarantool> t = s:insert({1, 'Roxette'})
+    tarantool> t = s:insert({2, 'Scorpions', 2015})
+    tarantool> t = s:insert({3, 'Ace of Base', 1993})
 
 To select a tuple from the first space of the database, using the first defined
 key, try this:
@@ -147,13 +147,13 @@ Your terminal screen should now look like this:
     tarantool>s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
     ---
     ...
-    tarantool> t = s:insert{1}
+    tarantool> t = s:insert{1, 'Roxette'}
     ---
     ...
-    tarantool> t = s:insert{2, 'Music'}
+    tarantool> t = s:insert{2, 'Scorpions', 2015}
     ---
     ...
-    tarantool> t = s:insert{3, 'Length', 93}
+    tarantool> t = s:insert{3, 'Ace of Base', 1993}
     ---
     ...
     tarantool> s:select{3}
@@ -216,7 +216,7 @@ terminal screen should now look like this:
     /usr/local/bin/tarantoolctl: connected to localhost:3301
     localhost:3301> box.space.tester:select{2}
     ---
-    - - [2, 'Music']
+    - - [2, 'Scorpions', 2015]
     ...
 
     localhost:3301> 
@@ -233,6 +233,6 @@ When the testing is over:
 * To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``
 * To destroy the test: ``rm -r ~/tarantool_sandbox``
 
-**To review...** If you followed all the instructions in this chapter, then so
+If you followed all the instructions in this chapter, then so
 far you have: installed Tarantool from a binary repository,
 started up the Tarantool server, inserted and selected tuples.
