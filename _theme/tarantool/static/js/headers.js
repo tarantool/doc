@@ -112,23 +112,28 @@ $(document).ready(function () {
   $("table.docutils.field-list").each(
     function(i, table) {
       $(table).find("tr").each(function(i, el) {
-        /* name of parameter */
+        // name of parameter
         var left = $(el).children("th.field-name");
         if (left.html() == "Rtype:") {
           left.html("Return type:");
+        } else if (left.html() != 'Parameters:' && left.html() != 'Параметры:') {
+          return;
         }
         left = $("<div />").addClass("b-doc-param_left").html(
           $("<p />").html(left.html())
         );
-        /* body of parameter */
+        // body of parameter
         var right = $(el).children("td.field-body");
         right = $("<div />").addClass("b-doc-param_right").html(right.html());
-        /* result of (l + r) */
+        // result of (l + r)
         var pane = $("<div />").addClass("b-doc-param").append([left, right]);
         // return pane
         $(table).before(pane);
+        $(el).remove();
       })
-      $(table).empty().remove();
+      if ($(table).find("tr").length == 0) {
+        $(table).remove();
+      }
     }
   );
 

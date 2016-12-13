@@ -12,8 +12,8 @@ This chapter contains the following sections:
 .. toctree::
    :maxdepth: 2
    :numbered: 0
-       
-   data_model   
+
+   data_model
    atomic
    authentication
    triggers

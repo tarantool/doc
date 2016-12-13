@@ -12,8 +12,6 @@ If you tried out the
 exercise from "Getting Started", then your database looks like this:
 
 .. image:: data_model.svg
-    :align: left
-    :alt: data_model.svg
 
 .. _index-box_space:
 

@@ -197,12 +197,12 @@ then it involves network IO, and therefore there is an implicit yield, even if t
 request that is sent to the server is not itself an implicit yield request.
 Therefore, the sequence:
 
-   .. cssclass:: highlight
-   .. parsed-literal::
-   
-      select
-      select
-      select
+.. cssclass:: highlight
+.. parsed-literal::
+
+   select
+   select
+   select
 
 causes blocking (in memtx), if it is inside a function or Lua program being
 executed on the server, but causes yielding (in both memtx and vinyl) if it

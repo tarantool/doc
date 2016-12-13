@@ -197,9 +197,11 @@ th.field-name {
     font-weight: normal;
 }
 
+/*
 table.docutils.field-list {
     font-size: 13px;
 }
+*/
 
 div.table tbody {
     vertical-align: middle;

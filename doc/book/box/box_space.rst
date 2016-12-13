@@ -24,7 +24,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | Name                                 | Use                             |
         +======================================+=================================+
         | :ref:`space_object:create_index()    | Create an index                 |
-        | <box_space-create_index>`            |                                 | 
+        | <box_space-create_index>`            |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:insert()          | Insert a tuple                  |
         | <box_space-insert>`                  |                                 |
@@ -920,7 +920,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         insert request is processed, and causes [1, 'Hi'] to be printed when
         the delete request is processed:
 
-        .. code-block:: none
+        .. code-block:: lua
 
             box.schema.space.create('space_1')
             box.space.space_1:create_index('space_1_index',{})
@@ -977,7 +977,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> box.space.T:on_replace(nil, F)
 
         **Example #2:**
-        
+
         The following series of requests will create a space, create an index, create
         a function which increments a counter, create a trigger, do two inserts, drop
         the space, and display the counter value -- which is 2, because the function
@@ -1001,8 +1001,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
 .. data:: _schema
 
-    ``_schema`` is a system space. 
-    
+    ``_schema`` is a system space.
+
     The single tuple in this space contains the following fields:
     * ``version``,
     * ``major-version-number``,
@@ -1045,14 +1045,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _space
 
     ``_space`` is a system space.
-    
+
     Tuples in this space contain the following fields:
-    
+
     * ``id``,
     * ``owner`` (= id of user who owns the space),
     * ``name``, ``engine``, ``field_count``,
     * ``flags`` (e.g. temporary), ``format``.
-    
+
     These fields are established by :ref:`space.create() <box_schema-space_create>`.
 
     **Example #1:**
@@ -1137,7 +1137,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _index
 
     ``_index`` is a system space.
-    
+
     Tuples in this space contain the following fields:
     * ``id`` (= id of space),
     * ``iid`` (= index number within space),
@@ -1224,9 +1224,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _user
 
     ``_user`` is a system space where usernames and password hashes are stored.
-    
+
     Tuples in this space contain the following fields:
-    
+
     * the numeric id of the tuple ("id"),
     * the numeric id of the tuple’s creator,
     * the name,
@@ -1235,7 +1235,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     There are four special tuples in the ``_user`` space: 'guest', 'admin',
     'public' and 'replication'.
-    
+
     .. container:: table
 
         .. rst-class:: left-align-column-1
@@ -1263,8 +1263,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | replication | 3  | role | Pre-defined :ref:`role <authentication-roles>`,         |
         |             |    |      | assigned by the 'admin' user to users who need to use   |
         |             |    |      | :ref:`replication <index-box_replication>` features.    |
-        +-------------+----+------+---------------------------------------------------------+    
-    
+        +-------------+----+------+---------------------------------------------------------+
+
     To select a row from the ``_user`` space, use ``box.space._user:select()``.
     For example, here is what happens with a select for user id = 0, which is
     the 'guest' user, which by default has no password:
@@ -1277,7 +1277,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ...
 
     .. WARNING::
-    
+
        To change tuples in the ``_user`` space, do not use ordinary ``box.space``
        functions for insert or update or delete. The ``_user`` space is special,
        so there are special functions which have appropriate error checking.
@@ -1329,7 +1329,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. NOTE::
 
         The maximum number of users is 32.
-    
+
     **Example:**
 
     Here is a session which creates a new user with a strong password, selects a
@@ -1347,16 +1347,16 @@ A list of all ``box.space`` functions follows, then comes a list of all
         tarantool> box.schema.user.drop('JeanMartin')
         ---
         ...
-    
+
 .. _box_space-priv:
 
 .. data:: _priv
 
     ``_priv`` is a system space where :ref:`privileges <authentication-owners_privileges>`
     are stored.
-    
+
     Tuples in this space contain the following fields:
-    
+
     * the numeric id of the user who gave the privilege ("grantor_id"),
     * the numeric id of the user who received the privilege ("grantee_id"),
     * the type of object: 'space', 'function' or 'universe',
@@ -1370,15 +1370,15 @@ A list of all ``box.space`` functions follows, then comes a list of all
     * Revoke a privilege with :ref:`box.schema.user.revoke() <box_schema-user_revoke>`.
 
     .. NOTE::
-    
+
        * Generally, privileges are granted or revoked by the owner of the object
          (the user who created it), or by the 'admin' user.
-         
+
        * Before dropping any objects or users, make sure that all their associated
          privileges have been revoked.
-         
+
        * Only the 'admin' user can grant privileges for the 'universe'.
-       
+
        * Except the 'admin' user, only the creator of a space can drop, alter, or
          truncate the space.
 
@@ -1398,9 +1398,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     ``_func`` is a system space with function tuples made by
     :ref:`box.schema.func.create() <box_schema-func_create>`.
-    
+
     Tuples in this space contain the following fields:
-    
+
     * the numeric function id, a number,
     * the function name,
     * flag,
@@ -1414,7 +1414,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     functions.
 
    You can:
-   
+
    * Create a ``_func`` tuple with
      :ref:`box.schema.func.create() <box_schema-func_create>`,
    * Drop a ``_func`` tuple with
@@ -1429,7 +1429,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
    to 'guest' user.
 
    .. code-block:: tarantoolsession
-    
+
       tarantool> function f7()
                >  box.session.uid()
                > end
@@ -1444,7 +1444,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
       tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
       ---
       ...
-      
+
 =============================================================================
           Example: use box.space functions to read _space tuples
 =============================================================================
@@ -1514,47 +1514,49 @@ To begin: how can one select the _space tuple that describes _space?
 
 A simple way is to look at the constants in box.schema,
 which tell us that there is an item named SPACE_ID == 288,
-so these statements will retrieve the correct tuple: |br|
-:codenormal:`box.space._space:select{288}` |br|
-or |br|
-:codenormal:`box.space._space:select{box.schema.SPACE_ID}` |br|
+so these statements will retrieve the correct tuple:
+
+| ``box.space._space:select{ 288 }``
+| or
+| ``box.space._space:select{ box.schema.SPACE_ID }``
 
 Another way is to look at the tuples in box.space._index,
 which tell us that there is a secondary index named 'name' for space
-number 288, so this statement also will retrieve the correct tuple: |br|
-:codenormal:`box.space._space.index.name:select{'_space'}`
+number 288, so this statement also will retrieve the correct tuple:
 
-However, the retrieved tuple is not easy to read: |br|
-:codenormal:`tarantool>` :codebold:`box.space._space.index.name:select{'_space'}` |br|
-:codenormal:`---` |br|
-:codenormal:`- - [280, 1, '_space', 'memtx', 0, '', [{'name': 'id',` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`'type': 'num'}, {'name': 'owner','type': 'num'},` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`{'name': 'name','type': 'str'}, {'name': 'engine',` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`'type': 'str'},{'name': 'field_count', 'type': 'num'},` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`{'name': 'flags','type': 'str'}, {'name': 'format',` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`'type': '*'}]]` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`...`
+``box.space._space.index.name:select{ '_space' }``
 
-It looks disorganized because field number 7
-has been formatted with recommended names and data types.
-How can one get those specific sub-fields?
-Since it's visible that field number 7 is an array of maps,
-this `for` loop will do the organizing: |br|
-:codenormal:`local tuple_of_space, field_name, field_type` |br|
-:codenormal:`tuple_of_space = box.space._space.index.name:select{'_space'}[1]` |br|
-:codenormal:`for i = 1, #tuple_of_space[7], 1` |br|
-:codenormal:`do` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`field_name = tuple_of_space[7][i]['name']` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`field_type = tuple_of_space[7][i]['type']` |br|
-|nbsp| |nbsp| |nbsp| :codenormal:`print(field_name .. ',' ..field_type)` |br|
-:codenormal:`end`
+However, the retrieved tuple is not easy to read:
 
-And here is what happens when one executes the `for` loop: |br|
-:codenormal:`id,num` |br|
-:codenormal:`owner,num` |br|
-:codenormal:`name,str` |br|
-:codenormal:`engine,str` |br|
-:codenormal:`field_count,num` |br|
-:codenormal:`flags,str` |br|
-:codenormal:`format,*`
+.. code-block:: tarantoolsession
 
+    tarantool> box.space._space.index.name:select{'_space'}
+    ---
+    - - [280, 1, '_space', 'memtx', 0, {}, [{'name': 'id', 'type': 'num'}, {'name': 'owner',
+            'type': 'num'}, {'name': 'name', 'type': 'str'}, {'name': 'engine', 'type': 'str'},
+          {'name': 'field_count', 'type': 'num'}, {'name': 'flags', 'type': 'str'}, {
+            'name': 'format', 'type': '*'}]]
+    ...
+
+It looks disorganized because field number 7 has been formatted with recommended
+names and data types. How can one get those specific sub-fields? Since it's
+visible that field number 7 is an array of maps, this `for` loop will do the
+organizing:
+
+.. code-block:: tarantoolsession
+
+    tarantool> do
+             >   local tuple_of_space = box.space._space.index.name:get{'_space'}
+             >   for _, field in ipairs(tuple_of_space[7]) do
+             >     print(field.name .. ', ' .. field.type)
+             >   end
+             > end
+    id, num
+    owner, num
+    name, str
+    engine, str
+    field_count, num
+    flags, str
+    format, *
+    ---
+    ...
