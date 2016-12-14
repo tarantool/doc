@@ -28,6 +28,12 @@ Tarantool - Documentation
 .. wp_section::
     :class: b-block b-downloads
 
+    .. ifconfig:: language == 'ru'
+
+        .. NOTE::
+
+            Документация находится в процессе перевода.
+
     .. ddlist::
 
         * What's new?

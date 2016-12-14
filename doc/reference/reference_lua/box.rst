@@ -24,7 +24,7 @@ with ``box``, with no arguments. The submodules inside the box library are:
     ../../book/box/box_stat
     ../../book/box/box_txn_management
 
-.. // moved to "User Guide > 5. Server administration":  
+.. // moved to "User Guide > 5. Server administration":
 .. // /book/box/triggers
 
 Every submodule contains one or more Lua functions. A few submodules contain
