@@ -152,7 +152,7 @@ Tarantool - Downloads
 
         * RHEL 6 and CentOS 6
 
-          We maintain an always up-to-date package repository for RHEL 7
+          We maintain an always up-to-date package repository for RHEL 6
           derivatives. You may need to enable the `EPEL`_ repository for
           some packages.
 
