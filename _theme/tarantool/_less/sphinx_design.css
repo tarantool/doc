@@ -149,36 +149,6 @@ tr.field td p {
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAEAAAAAARAQMAAABnOfukAAAABlBMVEUAAAD19fWydBufAAAAAXRSTlMAQObYZgAAADZJREFUaN7t0gEBAAAIAiD/n7YBTRA2kO4InwDruiMIgAAIgAAIgAAIsK47ggAIgAAIgAAIwAHksoxHlAvP9AAAAABJRU5ErkJggg==') 50% -0px repeat-y;
 }
 
-div.admonition {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px 0;
-}
-
-div.admonition.note {
-    background: rgb(223,223,223);
-}
-
-div.admonition.warning {
-    background: rgb(255,228,228);
-}
-
-div.admonition.fact {
-    background: rgb(255,255,204);
-}
-
-p.admonition-title {
-    font-size: 16px;
-    font-weight: bold;
-    padding: 0 0 10px 0;
-}
-
-p.admonition-title .fa {
-    margin: 0 10px 0 0;
-}
-
 .descname {
     font-weight: 600;
 }
