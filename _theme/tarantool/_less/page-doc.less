@@ -4,6 +4,24 @@
     padding-bottom: 20px;
 }
 
+dl.class, dl.type, dl.enum {
+    .b-doc-flink_right {
+        background: cornsilk;
+    }
+}
+
+dl.function, dl.varfunc {
+    .b-doc-flink_right {
+        background: aliceblue;
+    }
+}
+
+dl.data, dl.enumerator {
+    .b-doc-flink_right {
+        background: linen;
+    }
+}
+
 .b-article {
     h1 {
         font-size: 22px;
@@ -279,6 +297,44 @@ div.toctree-wrapper {
         padding: 0 0 0.75em 0;
         .fa {
             margin: 0 10px 0 0;
+        }
+    }
+}
+
+.b-doc-flink {
+    display: table;
+
+    .b-doc-flink_left {
+        vertical-align: middle;
+        display: table-cell;
+        width:   1.5em;
+        padding-right: 0.25em
+    }
+
+    .b-doc-flink_right {
+        width: 100%;
+        font-size: 14px;
+        display: table-cell;
+        padding: 0.5em 0px 0.5em 0.75em;
+        em, code, span, big {
+            font-size: inherit;
+        }
+    }
+}
+
+.b-doc-hlink {
+    display: table;
+
+    .b-doc-hlink_left {
+        vertical-align: middle;
+        display: table-cell;
+        width:   25px;
+    }
+
+    .b-doc-hlink_right {
+        display: table-cell;
+        em, code, span, big {
+            font-size: inherit;
         }
     }
 }

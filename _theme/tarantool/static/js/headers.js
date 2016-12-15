@@ -70,7 +70,7 @@ $(document).ready(function () {
       var icon = '<i class="fa fa-link"></i>';
       var hll = '<div class="b-doc-hlink_left"></div>';
       var hlr = '<div class="b-doc-hlink_right"></div>'
-      var hlp = '<div class="b-doc-hlink></div>">'
+      var hlp = '<div class="b-doc-hlink"></div>'
       var hlink = $(el).find(".headerlink");
       var hlink_id = hlink.attr("href");
       if (typeof(hlink_id) != 'undefined') {
@@ -116,7 +116,8 @@ $(document).ready(function () {
         var left = $(el).children("th.field-name");
         if (left.html() == "Rtype:") {
           left.html("Return type:");
-        } else if (left.html() != 'Parameters:' && left.html() != 'Параметры:') {
+        } else if (left.html() != 'Parameters:' && left.html() != 'Параметры:' &&
+                   left.html() != 'Return:') {
           return;
         }
         left = $("<div />").addClass("b-doc-param_left").html(

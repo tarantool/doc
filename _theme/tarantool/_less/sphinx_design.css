@@ -622,47 +622,6 @@ dt[id ^= "_CPP"         ] dd  {
     margin-start: 20px;
 }
 
-.b-doc-flink {
-    display: table;
-}
-
-.b-doc-flink_left {
-    display: table-cell;
-    width:   25px;
-}
-
-.b-doc-flink_right {
-    font-size: 14px;
-    display: table-cell;
-}
-
-.b-doc-flink_right em,
-.b-doc-flink_right code,
-.b-doc-flink_right span,
-.b-doc-flink_right big {
-    font-size: inherit;
-}
-
-.b-doc-hlink {
-    display: table;
-}
-
-.b-doc-hlink_left {
-    display: table-cell;
-    width:   25px;
-}
-
-.b-doc-hlink_right {
-    display: table-cell;
-}
-
-.b-doc-hlink_right em,
-.b-doc-hlink_right code,
-.b-doc-hlink_right span,
-.b-doc-hlink_right big {
-    font-size: inherit;
-}
-
 .b-doc-param {
     padding: 0 0 10px 0;
 }
