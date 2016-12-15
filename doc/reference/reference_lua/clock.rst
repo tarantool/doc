@@ -98,8 +98,6 @@ nanoseconds.
     ``clock.proc()``, therefore it calculates elapsed CPU time. Therefore it is
     not useful for showing actual elapsed time.
 
-    Parameters:
-
     :param function function: function or function reference
     :param               ...: whatever values are required by the function.
 

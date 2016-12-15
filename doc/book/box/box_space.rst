@@ -119,17 +119,18 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-create_index:
 
-    .. method:: create_index(index-name [, {options} ])
+    .. method:: create_index(index-name [, options ])
 
         Create an index. It is mandatory to create an index for a space
         before trying to insert tuples into it, or select tuples from it. The
         first created index, which will be used as the primary-key index, must be
         unique.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`index_name` (type = string) = name of index, which should not be a number
-        and should not contain special characters;
-        :codeitalic:`options`.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param string index_name: name of index, which should not be a number
+                                  and should not contain special characters
+        :param table     options:
 
         :return: index object
         :rtype:  index_object
@@ -179,73 +180,79 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _details_about_index_field_types:
 
-        Details about index field types: |br|
-        The six index field types (unsigned | string | integer | number | array | scalar)
-        differ depending on what values are allowed, and what index types are allowed. |br|
-        **unsigned**: unsigned integers between 0 and 18446744073709551615, about 18 quintillion.
-        May also be called 'uint' or 'num', but 'num' is deprecated.
-        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
-        **string**: any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`.
-        May also be called 'str'.
-        Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. |br|
-        **integer**: integers between -9223372036854775808 and 18446744073709551615.
-        May also be called 'int'.
-        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
-        **number**: integers between -9223372036854775808 and 18446744073709551615,
-        single-precision floating point numbers, or double-precision floating point numbers.
-        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. |br|
-        **array**: array of integers between -9223372036854775808 and 9223372036854775807.
-        Legal in memtx RTREE indexes. |br|
-        **scalar**: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615,
-        or single-precision floating point numbers, or double-precison floating-point numbers,
-        or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings.
-        Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes.
+    | Details about index field types:
+    | The six index field types (unsigned | string | integer | number |
+      array | scalar) differ depending on what values are allowed, and
+      what index types are allowed.
 
-        .. container:: table
+    * **unsigned**: unsigned integers between 0 and 18446744073709551615,
+      about 18 quintillion. May also be called 'uint' or 'num', but 'num'
+      is deprecated. Legal in memtx TREE or HASH indexes, and in vinyl TREE
+      indexes.
+    * **string**: any set of octets, up to the :ref:`maximum length
+      <limitations_bytes_in_index_key>`. May also be called 'str'. Legal in
+      memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes.
+    * **integer**: integers between -9223372036854775808 and 18446744073709551615.
+      May also be called 'int'. Legal in memtx TREE or HASH indexes, and in
+      vinyl TREE indexes.
+    * **number**: integers between -9223372036854775808 and 18446744073709551615,
+      single-precision floating point numbers, or double-precision floating
+      point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
+      indexes.
+    * **array**: array of integers between -9223372036854775808 and
+      9223372036854775807. Legal in memtx RTREE indexes.
+    * **scalar**: booleans (true or false), or integers between
+      -9223372036854775808 and 18446744073709551615, or single-precision
+      floating point numbers, or double-precison floating-point numbers, or
+      strings. When there is a mix of types, the key order is: booleans, then
+      numbers, then strings. Legal in memtx TREE or HASH indexes, and in vinyl
+      TREE indexes.
 
-          **Index field types to use in create_index**
+    .. container:: table
 
-          .. rst-class:: left-align-column-1
-          .. rst-class:: left-align-column-2
-          .. rst-class:: left-align-column-3
-          .. rst-class:: left-align-column-4
-          .. rst-class:: top-align-column-1
+        **Index field types to use in create_index**
 
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          | Index field type | What can be in it         | Where is it legal                     | Examples          |
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          | **unsigned**     | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
-          |                  | 18446744073709551615      | indexes, |br|                         |                   |
-          |                  |                           | vinyl TREE indexes                    |                   |
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          |  **string**      | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
-          |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'  |
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          |  **integer**     | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
-          |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                   |
-          |                  | 18446744073709551615      |                                       |                   |
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          | **number**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
-          |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|          |
-          |                  | 18446744073709551615,     |                                       | 1.447e+44         |
-          |                  | single-precision          |                                       |                   |
-          |                  | floating point numbers,   |                                       |                   |
-          |                  | double-precision          |                                       |                   |
-          |                  | floating point numbers    |                                       |                   |
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
-          |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
-          |                  | 9223372036854775807       |                                       |                   |
-          +------------------+---------------------------+---------------------------------------+-------------------+
-          | **scalar**       | booleans (true or false), | memtx TREE or HASH indexes, |br|      | true |br|         |
-          |                  | integers between          | vinyl TREE indexes                    | -1 |br|           |
-          |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
-          |                  | 18446744073709551615,     |                                       | '' |br|           |
-          |                  | single-precision floating |                                       | 'ру'              |
-          |                  | point numbers,            |                                       |                   |
-          |                  | double-precision floating |                                       |                   |
-          |                  | point numbers, strings    |                                       |                   |
-          +------------------+---------------------------+---------------------------------------+-------------------+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+        .. rst-class:: left-align-column-3
+        .. rst-class:: left-align-column-4
+        .. rst-class:: top-align-column-1
+
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        | Index field type | What can be in it         | Where is it legal                     | Examples          |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        | **unsigned**     | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
+        |                  | 18446744073709551615      | indexes, |br|                         |                   |
+        |                  |                           | vinyl TREE indexes                    |                   |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        |  **string**      | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
+        |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'  |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        |  **integer**     | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
+        |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                   |
+        |                  | 18446744073709551615      |                                       |                   |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        | **number**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
+        |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|          |
+        |                  | 18446744073709551615,     |                                       | 1.447e+44         |
+        |                  | single-precision          |                                       |                   |
+        |                  | floating point numbers,   |                                       |                   |
+        |                  | double-precision          |                                       |                   |
+        |                  | floating point numbers    |                                       |                   |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
+        |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
+        |                  | 9223372036854775807       |                                       |                   |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        | **scalar**       | booleans (true or false), | memtx TREE or HASH indexes, |br|      | true |br|         |
+        |                  | integers between          | vinyl TREE indexes                    | -1 |br|           |
+        |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
+        |                  | 18446744073709551615,     |                                       | '' |br|           |
+        |                  | single-precision floating |                                       | 'ру'              |
+        |                  | point numbers,            |                                       |                   |
+        |                  | double-precision floating |                                       |                   |
+        |                  | point numbers, strings    |                                       |                   |
+        +------------------+---------------------------+---------------------------------------+-------------------+
 
     .. _box_space-insert:
 
@@ -253,8 +260,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Insert a tuple into a space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`tuple` (type = Lua table or tuple) = tuple to be inserted.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param tuple/table         tuple: tuple to be inserted.
 
         :return: the inserted tuple
         :rtype:  tuple
@@ -273,13 +281,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-select:
 
-    .. method:: select([search-key-value])
+    .. method:: select([key])
 
         Search for a tuple or a set of tuples in the given space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
-        which may be multi-part.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table          key: value to be matched against the index
+                                          key, which may be multi-part.
 
         :return: the tuples whose primary-key fields are equal to the fields of the passed
                  search-key-value. If the number of passed fields is less
@@ -350,9 +359,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Search for a tuple in the given space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index
-        key, which may be multi-part.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table          key: value to be matched against the index
+                                          key, which may be multi-part.
 
         :return: the tuple whose index key matches :codeitalic:`key`, or null.
         :rtype:  tuple
@@ -382,7 +392,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Drop a space.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
 
         :return: nil
 
@@ -403,8 +414,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Rename a space.
 
-        Parameters::samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`space-name` (type = string) = new name for space.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param string space-name: new name for space
 
         :return: nil
 
@@ -424,7 +436,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. _box_space-replace:
 
     .. method:: replace(tuple)
-                  put(tuple)
+                put(tuple)
 
         Insert a tuple into a space. If a tuple with the same primary key already
         exists, ``box.space...:replace()`` replaces the existing tuple with a new
@@ -432,8 +444,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ``box.space...:put()`` have the same effect; the latter is sometimes used
         to show that the effect is the converse of ``box.space...:get()``.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`tuple` (type = Lua table or tuple) = tuple to be inserted.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table/tuple tuple: tuple to be inserted
 
         :return: the inserted tuple.
         :rtype:  tuple
@@ -475,31 +488,34 @@ A list of all ``box.space`` functions follows, then comes a list of all
             * ``-`` for subtraction (values must be numeric)
             * ``&`` for bitwise AND (values must be unsigned numeric)
             * ``|`` for bitwise OR (values must be unsigned numeric)
-            * ``^`` for bitwise :abbr:`XOR(exclusive OR)` (values must be unsigned numeric)
+            * ``^`` for bitwise :abbr:`XOR(exclusive OR)` (values must be
+              unsigned numeric)
             * ``:`` for string splice
             * ``!`` for insertion
             * ``#`` for deletion
             * ``=`` for assignment
 
-        For ``!`` and ``=`` operations the field number can be ``-1``, meaning the last field in the tuple.
+        For ``!`` and ``=`` operations the field number can be ``-1``, meaning
+        the last field in the tuple.
 
-
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`key` (type = Lua table or scalar) = primary-key field values, must be passed as a Lua
-        table if key is multi-part;
-        :codeitalic:`{operator, field_no, value}` (type = table): a group of arguments for each
-        operation, indicating what the operation is, what field the
-        operation will apply to, and what value will be applied. The
-        field number can be negative, meaning the position from the end of
-        tuple (#tuple + negative field number + 1).
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: primary-key field values, must be passed as a
+                                 Lua table if key is multi-part
+        :param string  operator: operation type represented in string
+        :param number  field_no: what field the operation will apply to. The
+                                 field number can be negative, meaning the
+                                 position from the end of tuple.
+                                 (#tuple + negative field number + 1)
+        :param lua_value  value: what value will be applied
 
         :return: the updated tuple.
         :rtype:  tuple
 
         **Possible errors:** it is illegal to modify a primary-key field.
 
-        **Complexity factors:** Index size, Index type, number of indexes accessed, WAL
-        settings.
+        **Complexity factors:** Index size, Index type, number of indexes
+        accessed, WAL settings.
 
         Thus, in the instruction:
 
@@ -507,17 +523,17 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             s:update(44, {{'+', 1, 55 }, {'=', 3, 'x'}})
 
-        the primary-key value is ``44``, the operators are ``'+'`` and ``'='`` meaning
-        *add a value to a field and then assign a value to a field*, the first
-        affected field is field ``1`` and the value which will be added to it is
-        ``55``, the second affected field is field ``3`` and the value which will be
-        assigned to it is ``'x'``.
+        the primary-key value is ``44``, the operators are ``'+'`` and ``'='``
+        meaning *add a value to a field and then assign a value to a field*, the
+        first affected field is field ``1`` and the value which will be added to
+        it is ``55``, the second affected field is field ``3`` and the value
+        which will be assigned to it is ``'x'``.
 
         **Example:**
 
-        Assume that initially there is a space named ``tester``
-        with a primary-key index whose type is ``unsigned``.
-        There is one tuple, with ``field[1]`` = ``999`` and ``field[2]`` = ``'A'``.
+        Assume that initially there is a space named ``tester`` with a
+        primary-key index whose type is ``unsigned``. There is one tuple, with
+        ``field[1]`` = ``999`` and ``field[2]`` = ``'A'``.
 
         In the update: |br|
         ``box.space.tester:update(999, {{'=', 2, 'B'}})`` |br|
@@ -599,28 +615,30 @@ A list of all ``box.space`` functions follows, then comes a list of all
         error checks before returning -- this is a design feature which
         enhances throughput but requires more caution on the part of the user.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :samp:`{tuple_value}` (type = Lua table or scalar) =
-        field values, must be passed as a Lua table;
-        :codeitalic:`{operator, field_no, value}` (type = Lua table) = a group of arguments for each
-        operation, indicating what the operation is, what field the
-        operation will apply to, and what value will be applied. The
-        field number can be negative, meaning the position from the end of
-        the tuple (#tuple + negative field number + 1).
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table/tuple tuple: default tuple to be inserted, if analogue
+                                  isn't found
+        :param string   operator: operation type represented in string
+        :param number   field_no: what field the operation will apply to. The
+                                  field number can be negative, meaning the
+                                  position from the end of tuple.
+                                  (#tuple + negative field number + 1)
+        :param lua_value   value: what value will be applied
 
-        :return: null.
+        :return: null
 
-        **Possible errors:** it is illegal to modify a primary-key field.
-        It is illegal to use upsert with a space that has a unique secondary index.
+        **Possible errors:** it is illegal to modify a primary-key field. It is
+        illegal to use upsert with a space that has a unique secondary index.
 
-        **Complexity factors:** Index size, Index type, number of indexes accessed, WAL
-        settings.
+        **Complexity factors:** Index size, Index type, number of indexes
+        accessed, WAL settings.
 
         **Example:**
 
-            .. code-block:: lua
+        .. code-block:: lua
 
-                box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})
+            box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})
 
     .. _box_space-delete:
 
@@ -628,16 +646,19 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Delete a tuple identified by a primary key.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`
-        :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index
-        key, which may be multi-part.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: primary-key field values, must be passed as a
+                                 Lua table if key is multi-part
 
         :return: the deleted tuple
         :rtype:  tuple
 
         **Complexity factors:** Index size, Index type
 
-        Note re storage engine: vinyl will return ``nil``, rather than the deleted tuple.
+        .. NOTE:: Note re storage engine:
+
+            vinyl will return ``nil``, rather than the deleted tuple.
 
         **Example:**
 
@@ -665,8 +686,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ``box.space.tester:insert{0}`` and ``box.space[800]:insert{0}``
         are equivalent requests.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -682,8 +701,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Whether or not this space is enabled.
         The value is ``false`` if the space has no index.
-
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
     .. _box_space-field_count:
 
@@ -703,8 +720,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         The default value is ``0``, which means there is no required field count.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -719,8 +734,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         A container for all defined indexes. There is a Lua object of type
         :ref:`box.index <box_index>` with methods to search tuples and iterate over them in
         predefined order.
-
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :rtype: table
 
@@ -741,9 +754,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: count([key], [iterator])
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the primary index
-        key, which may be multi-part; :codeitalic:`iterator` = comparison method.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: primary-key field values, must be passed as a
+                                 Lua table if key is multi-part
+        :param iterator: comparison method
 
         :return: Number of tuples.
 
@@ -760,7 +775,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: len()
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
 
         :return: Number of tuples in the space.
 
@@ -773,8 +789,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 2
             ...
 
-        Note re storage engine: vinyl does not support ``len()``.  One possible workaround is to
-        say ``#select(...)``.
+        .. NOTE:: re storage engine
+
+            vinyl does not support ``len()``.  One possible workaround is to say
+            ``#select(...)``.
 
     .. _box_space-truncate:
 
@@ -782,7 +800,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Deletes all tuples.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
 
         **Complexity factors:** Index size, Index type, Number of tuples accessed.
 
@@ -809,14 +828,17 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-auto_increment:
 
-    .. method:: auto_increment{field-value [, field-value ...]}
+    .. method:: auto_increment(tuple)
 
-        Insert a new tuple using an auto-increment primary key. The space specified
-        by space_object must have an ``unsigned`` or ``integer`` or ``numeric`` primary key index of type ``TREE``. The
-        primary-key field will be incremented before the insert.
+        Insert a new tuple using an auto-increment primary key. The space
+        specified by space_object must have an ``unsigned`` or ``integer`` or
+        ``numeric`` primary key index of type ``TREE``. The primary-key field
+        will be incremented before the insert.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`field-value(s)` (type = Lua table or scalar) = tuple's fields, other than the primary-key field.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table/tuple         tuple: tuple's fields, other than the
+                                          primary-key field
 
         :return: the inserted tuple.
         :rtype:  tuple
@@ -841,18 +863,21 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-pairs:
 
-    .. method:: pairs([search-key-value [, iterator-type]])
+    .. method:: pairs([key [, iterator]])
 
         Search for a tuple or a set of tuples in the given space,
         and allow iterating over one tuple at a time.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
-        which may be multi-part;
-        :samp:`{iterator-type}` = see :ref:`index_object:pairs <box_index-index_pairs>`.
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: value to be matched against the index key,
+                                 which may be multi-part
+        :param         iterator: see :ref:`index_object:pairs
+                                 <box_index-index_pairs>
 
-        Return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end
-        loop or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_.
+        :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
+                 used in a for/end loop or with `totable()
+                 <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
 
         **Possible errors:** No such space; wrong type.
 
@@ -860,8 +885,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         For examples of complex ``pairs`` requests, where one can specify which
         index to search and what condition to use (for example "greater than"
-        instead of "equal to"), see the later section
-        :ref:`index_object:pairs <box_index-index_pairs>`.
+        instead of "equal to"), see the later section :ref:`index_object:pairs
+        <box_index-index_pairs>`.
 
         **Example:**
 
@@ -894,17 +919,21 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _box_space-on_replace:
 
-    .. method:: on_replace(trigger-function [, old-trigger-function-name])
+    .. method:: on_replace(trigger-function [, old-trigger-function])
 
-        Create a "replace trigger". The ``trigger-function`` will be executed whenever
-        a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()`` or ``delete()`` happens to a
-        tuple in ``<space-name>``.
+        Create a "replace trigger". The ``trigger-function`` will be executed
+        whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()``
+        or ``delete()`` happens to a tuple in ``<space-name>``.
 
-        :param function trigger-function: function which will become the trigger function
-        :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
+        :param function     trigger-function: function which will become the
+                                              trigger function
+        :param function old-trigger-function: existing trigger function which
+                                              will be replaced by
+                                              trigger-function
         :return: nil or function list
 
-        If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
+        If the parameters are (nil, old-trigger-function-name), then the old
+        trigger is deleted.
 
         **Example #1:**
 
@@ -916,9 +945,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> box.space.X:on_replace(f)
 
         The ``trigger-function`` can have two parameters: old tuple, new tuple.
-        For example, the following code causes nil to be printed when the
-        insert request is processed, and causes [1, 'Hi'] to be printed when
-        the delete request is processed:
+        For example, the following code causes nil to be printed when the insert
+        request is processed, and causes [1, 'Hi'] to be printed when the delete
+        request is processed:
 
         .. code-block:: lua
 
@@ -931,10 +960,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Example #2:**
 
-        The following series of requests will create a space, create an index, create
-        a function which increments a counter, create a trigger, do two inserts, drop
-        the space, and display the counter value - which is 2, because the function
-        is executed once after each insert.
+        The following series of requests will create a space, create an index,
+        create a function which increments a counter, create a trigger, do two
+        inserts, drop the space, and display the counter value - which is 2,
+        because the function is executed once after each insert.
 
         .. code-block:: tarantoolsession
 
@@ -954,8 +983,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: run_triggers(true|false)
 
-        At the time that a trigger is defined, it is automatically enabled - that
-        is, it will be executed. Replace triggers can be disabled with
+        At the time that a trigger is defined, it is automatically enabled -
+        that is, it will be executed. Replace triggers can be disabled with
         :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with
         :samp:`box.space.{space-name}:run_triggers(true)`.
 
@@ -1053,13 +1082,15 @@ A list of all ``box.space`` functions follows, then comes a list of all
     * ``name``, ``engine``, ``field_count``,
     * ``flags`` (e.g. temporary), ``format``.
 
-    These fields are established by :ref:`space.create() <box_schema-space_create>`.
+    These fields are established by :ref:`space.create()
+    <box_schema-space_create>`.
 
     **Example #1:**
 
-    The following function will display all simple fields in all tuples of ``_space``.
+    The following function will display all simple fields in all tuples of
+    ``_space``.
 
-    .. code-block:: lua_tarantool
+    .. code-block:: lua
 
         function example()
           local ta = {}
@@ -1102,10 +1133,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
     **Example #2:**
 
     The following requests will create a space using
-    ``box.schema.space.create()`` with a ``format`` clause.
-    Then it retrieves the ``_space`` tuple for the new space.
-    This illustrates the typical use of the ``format`` clause,
-    it shows the recommended names and data types for the fields.
+    ``box.schema.space.create()`` with a ``format`` clause. Then it retrieves
+    the ``_space`` tuple for the new space. This illustrates the typical use of
+    the ``format`` clause, it shows the recommended names and data types for the
+    fields.
 
     .. code-block:: tarantoolsession
 

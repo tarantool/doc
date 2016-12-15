@@ -18,27 +18,15 @@ API is a direct binding to corresponding methods of index objects of type
 
         True if the index is unique, false if the index is not unique.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
-
         :rtype: boolean
 
     .. data:: type
 
         Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
-
     .. data:: parts
 
         An array describing index key fields.
-
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
 
         :rtype: table
 
@@ -60,79 +48,82 @@ API is a direct binding to corresponding methods of index objects of type
 
     .. _box_index-index_pairs:
 
-    .. method:: pairs([search-key-value [, iterator-type]])
+    .. method:: pairs([key [, iterator-type]])
 
         Search for a tuple or a set of tuples via the given index,
         and allow iterating over one tuple at a time.
 
-        The :codeitalic:`search-key-value` parameter
-        specifies what must match within the index.
-        The :codeitalic:`iterator-type`
-        parameter specifies the rule for matching and ordering. Different index types support
-        different iterators. For example, a TREE index maintains a
-        strict order of keys and can return all tuples in ascending or descending
-        order, starting from the specified key. Other index types, however, do not
-        support ordering.
+        The :samp:`{key}` parameter specifies what must match within the index.
+        The :samp:`{iterator}` parameter specifies the rule for matching and
+        ordering. Different index types support different iterators. For
+        example, a TREE index maintains a strict order of keys and can return
+        all tuples in ascending or descending order, starting from the specified
+        key. Other index types, however, do not support ordering.
 
-        To understand consistency of tuples returned by an iterator, it's essential
-        to know the principles of the Tarantool transaction processing subsystem. An
-        iterator in Tarantool does not own a consistent read view. Instead, each
-        procedure is granted exclusive access to all tuples and spaces until
-        there is a "context switch": which may happen due to
-        :ref:`the implicit yield rules <atomic-implicit-yields>`,
-        or by an
-        explicit call to :ref:`fiber.yield <fiber-yield>`. When the execution flow returns
-        to the yielded procedure, the data set could have changed significantly.
-        Iteration, resumed after a yield point, does not preserve the read view,
-        but continues with the new content of the database.
-        The tutorial :ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`
-        shows one way that iterators and yields can be used together.
+        To understand consistency of tuples returned by an iterator, it's
+        essential to know the principles of the Tarantool transaction processing
+        subsystem. An iterator in Tarantool does not own a consistent read view.
+        Instead, each procedure is granted exclusive access to all tuples and
+        spaces until there is a "context switch": which may happen due to
+        :ref:`the implicit yield rules <atomic-implicit-yields>`, or by an
+        explicit call to :ref:`fiber.yield <fiber-yield>`. When the execution
+        flow returns to the yielded procedure, the data set could have changed
+        significantly. Iteration, resumed after a yield point, does not preserve
+        the read view, but continues with the new content of the database. The
+        tutorial :ref:`Indexed pattern search
+        <c_lua_tutorial-indexed_pattern_search>` shows one way that iterators
+        and yields can be used together.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :samp:`search-key-value` (type = Lua table or scalar) = value to be matched against the index key,
-        which may be multi-part; :samp:`{iterator-type}` = as defined in tables below.
-        The default iterator type is 'EQ'.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table key: value to be matched against the index key,
+                                 which may be multi-part
+        :param iterator: as defined in tables below. The default iterator type
+                         is 'EQ'
 
-        Return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop
-        or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_.
 
-        **Possible errors:** No such space; wrong type;
-        Selected iteration type is not supported for the index type;
-        or search-key-value is not supported for the iteration type.
+        :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
+                 used in a for/end loop or with `totable()
+                 <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
 
-        **Complexity factors:** Index size, Index type; Number of tuples accessed.
+        **Possible errors:** No such space; wrong type; Selected iteration type
+        is not supported for the index type; or key is not supported for the
+        iteration type.
+
+        **Complexity factors:** Index size, Index type; Number of tuples
+        accessed.
 
         A search-key-value can be a number (for example ``1234``), a string
-        (for example ``'abcd'``),
-        or a table of numbers and strings (for example ``{1234, 'abcd'}``).
-        Each part of a search-key-value will be compared to each part of an index key.
+        (for example ``'abcd'``), or a table of numbers and strings (for example
+        ``{1234, 'abcd'}``). Each part of a key will be compared to each part of
+        an index key.
+
+        **Iterator types for TREE indexes**
+
+        .. NOTE::
+
+            Formally the logic for TREE index searches is: |br|
+            comparison-operator is = or >= or > or <= or < depending on
+            iterator-type
+
+            .. cssclass:: highlight
+            .. parsed-literal::
+
+                for i = 1 to number-of-parts-of-search-value
+                    if (search-value-part[i] is ``nil`` and <comparison-operator> is "=") or
+                        (search-value-part[i] <comparison-operator> index-key-part[i] is true) then
+                            comparison-result[i] is true
+                    endif
+
+            if all comparison-results are true, then search-value "matches"
+            index key.
+
+            Notice how, according to this logic, regardless what the index-key-part
+            contains, the comparison-result for equality is always true when a
+            search-value-part is ``nil`` or is missing. This behavior of
+            searches with nil is subject to change.
 
         .. container:: table
-
-            **Iterator types for TREE indexes**
-
-            .. NOTE::
-
-                Formally the logic for TREE index searches is: |br|
-                comparison-operator is = or >= or > or <= or < depending on
-                iterator-type
-
-                .. cssclass:: highlight
-                .. parsed-literal::
-
-                    for i = 1 to number-of-parts-of-search-value
-                        if (search-value-part[i] is ``nil`` and <comparison-operator> is "=") or
-                           (search-value-part[i] <comparison-operator> index-key-part[i] is true) then
-                               comparison-result[i] is true
-                        endif
-
-                if all comparison-results are true, then search-value "matches"
-                index key.
-
-                Notice how, according to this logic, regardless what the index-key-part
-                contains, the comparison-result for equality is always true when a
-                search-value-part is ``nil`` or is missing. This behavior of
-                searches with nil is subject to change.
 
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
@@ -367,13 +358,13 @@ API is a direct binding to corresponding methods of index objects of type
         first two letters are not 'XY'.
 
         .. code-block:: lua
-        
+
             for tuple in
             box.space.t.index.primary:pairs("XY",{iterator = "GE"}) do
               if (string.sub(tuple[1], 1, 2) ~= "XY") then break end
               print(tuple)
             end
-    
+
         **Third Example of index pairs():**
 
         This Lua code finds all the tuples whose primary key values are
@@ -404,14 +395,13 @@ API is a direct binding to corresponding methods of index objects of type
         maximum number of tuples to return) and the offset (that is, which
         tuple to start with in the list).
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`search-key` = values to be matched against the index key;
-        * :samp:`option(s)` any or all of
-            * :samp:`iterator = {iterator-type}`,
-            * :samp:`limit = {maximum-number-of-tuples}`,
-            * :samp:`offset = {start-tuple-number}`.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table      key: values to be matched against the index key
+        :param table/nil     options: none, any or all of next parameters
+        :param      options.iterator: type of iterator
+        :param number  options.limit: maximum number of tuples
+        :param number options.offset: start tuple number
 
         :return: the tuple or tuples that match the field values.
         :rtype:  array of tuples
@@ -540,9 +530,9 @@ API is a direct binding to corresponding methods of index objects of type
 
         Search for a tuple via the given index, as described :ref:`earlier <box_index-note>`.
 
-        Parameters: :samp:`{space_object}` = an :ref:`object reference <app_server-object_reference>`;
-        :codeitalic:`key` (type = Lua table or scalar) = key to be matched against the index key,
-        which may be multi-part.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table      key: values to be matched against the index key
 
         :return: the tuple whose index-key fields are equal to the passed key values.
         :rtype:  tuple
@@ -563,18 +553,17 @@ API is a direct binding to corresponding methods of index objects of type
 
     .. _box_index-min:
 
-    .. method:: min([key-value])
+    .. method:: min([key])
 
         Find the minimum value in the specified index.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`key-value`.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table      key: values to be matched against the index key
 
         :return: the tuple for the first key in the index. If optional
-                ``key-value`` is supplied, returns the first key which
-                is greater than or equal to ``key-value``.
+                 ``key-value`` is supplied, returns the first key which
+                 is greater than or equal to ``key-value``.
         :rtype:  tuple
 
         **Possible errors:** index is not of type 'TREE'.
@@ -592,18 +581,17 @@ API is a direct binding to corresponding methods of index objects of type
 
     .. _box_index-max:
 
-    .. method:: max([key-value])
+    .. method:: max([key])
 
         Find the maximum value in the specified index.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`key-value`.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table      key: values to be matched against the index key
 
         :return: the tuple for the last key in the index. If optional ``key-value``
-                is supplied, returns the last key which is less than or equal to
-                ``key-value``.
+                 is supplied, returns the last key which is less than or equal to
+                 ``key-value``.
         :rtype:  tuple
 
         **Possible errors:** index is not of type 'TREE'.
@@ -621,23 +609,25 @@ API is a direct binding to corresponding methods of index objects of type
 
     .. _box_index-random:
 
-    .. method:: random(random-value)
+    .. method:: random(seed)
 
-        Find a random value in the specified index. This method is useful when it's
-        important to get insight into data distribution in an index without having
-        to iterate over the entire data set.
+        Find a random value in the specified index. This method is useful when
+        it's important to get insight into data distribution in an index without
+        having to iterate over the entire data set.
 
-        Parameters:
 
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`random-value` (type = number) = an arbitrary non-negative integer.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param number seed: an arbitrary non-negative integer
 
         :return: the tuple for the random key in the index.
         :rtype:  tuple
 
         **Complexity factors:** Index size, Index type.
 
-        Note re storage engine: vinyl does not support ``random()``.
+        .. NOTE:: re storage engine
+
+            vinyl does not support ``random()``.
 
         **Example:**
 
@@ -655,17 +645,13 @@ API is a direct binding to corresponding methods of index objects of type
         Iterate over an index, counting the number of
         tuples which match the key-value.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`{key-value}` (type = Lua table or scalar) =
-          the value which must match the key(s) in the specified index. The type
-          may be a list of field-values, or a tuple containing only the
-          field-values;  :codeitalic:`iterator` = comparison method.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table key: values to be matched against the index key
+        :param         iterator: comparison method
 
         :return: the number of matching index keys.
         :rtype:  number
-
 
         **Example:**
 
@@ -688,13 +674,15 @@ API is a direct binding to corresponding methods of index objects of type
         but key is searched in this index instead of primary key.
         This index ought to be unique.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`{key}` (type = Lua table or scalar) = key to be matched against
-          the index key;
-        * :samp:`{operator, field_no, value}` (type = Lua table) = update
-          operations (see: :ref:`box.space...update() <box_space-update>`).
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table key: values to be matched against the index key
+        :param string  operator: operation type represented in string
+        :param number  field_no: what field the operation will apply to. The
+                                 field number can be negative, meaning the
+                                 position from the end of tuple.
+                                 (#tuple + negative field number + 1)
+        :param lua_value  value: what value will be applied
 
         :return: the updated tuple.
         :rtype:  tuple
@@ -707,16 +695,16 @@ API is a direct binding to corresponding methods of index objects of type
         searched in this index instead of in the primary-key index. This index
         ought to be unique.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`key` (type = Lua table or scalar) = key to be matched against
-          the index key.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param scalar/table key: values to be matched against the index key
 
         :return: the deleted tuple.
         :rtype:  tuple
 
-        Note re storage engine: vinyl will return nil, rather than the deleted tuple.
+        .. NOTE:: re storage engine
+
+            vinyl will return nil, rather than the deleted tuple.
 
     .. _box_index-alter:
 
@@ -724,11 +712,10 @@ API is a direct binding to corresponding methods of index objects of type
 
         Alter an index.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`{options}` = options list, same as the options list for
-          :ref:`create_index <box_space-create_index>`.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param table options: options list, same as the options list for
+                              :ref:`create_index <box_space-create_index>`
 
         :return: nil
 
@@ -736,7 +723,9 @@ API is a direct binding to corresponding methods of index objects of type
         the first index cannot be changed to {unique = false}, or
         the alter function is only applicable for the memtx storage engine.
 
-        Note re storage engine: vinyl does not support ``alter()``.
+        .. NOTE:: re storage engine
+
+            vinyl does not support ``alter()``.
 
         **Example:**
 
@@ -753,9 +742,8 @@ API is a direct binding to corresponding methods of index objects of type
         Drop an index. Dropping a primary-key index has
         a side effect: all tuples are deleted.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
 
         :return: nil.
 
@@ -774,10 +762,9 @@ API is a direct binding to corresponding methods of index objects of type
 
         Rename an index.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`;
-        * :samp:`{index-name}` (type = string) = new name for index.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param string index-name: new name for index
 
         :return: nil
 
@@ -797,9 +784,8 @@ API is a direct binding to corresponding methods of index objects of type
 
         Return the total number of bytes taken by the index.
 
-        Parameters:
-
-        * :samp:`{index_object}` = an :ref:`object reference <app_server-object_reference>`.
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
 
         :return: number of bytes
         :rtype: number
@@ -877,18 +863,15 @@ Lua functions `os.date()`_ and `string.sub()`_.
               Example showing a user-defined iterator
 =================================================================
 
-Here is an example that shows how to build one's own iterator.
-The ``paged_iter`` function is an "iterator function", which will only be
-understood by programmers who have read the Lua
-manual section
-`Iterators and Closures <https://www.lua.org/pil/7.1.html>`_.
-It does paginated retrievals, that is, it returns 10
-tuples at a time from a table named "t", whose
-primary key was defined with 
-:codenormal:`create_index('primary',{parts={1,'string'}})`.
+Here is an example that shows how to build one's own iterator. The
+``paged_iter`` function is an "iterator function", which will only be understood
+by programmers who have read the Lua manual section `Iterators and Closures
+<https://www.lua.org/pil/7.1.html>`_. It does paginated retrievals, that is, it
+returns 10 tuples at a time from a table named "t", whose primary key was
+defined with ``create_index('primary',{parts={1,'string'}})``.
 
 .. code-block:: lua
-    
+
     function paged_iter(search_key, tuples_per_page)
       local iterator_string = "GE"
       return function ()
@@ -900,22 +883,21 @@ primary key was defined with
       return page
       end
     end
-    
-Programmers who use ``paged_iter`` do not need to know
-why it works, they only need to know that, if they
-call it within a loop, they will get 10 tuples
-at a time until there are no more tuples. In this
-example the tuples are merely printed, a page at a time.
-But it should be simple to change the functionality,
-for example by yielding after each retrieval, or
-by breaking when the tuples fail to match some
-additional criteria.
+
+Programmers who use ``paged_iter`` do not need to know why it works, they only
+need to know that, if they call it within a loop, they will get 10 tuples at a
+time until there are no more tuples. In this example the tuples are merely
+printed, a page at a time. But it should be simple to change the functionality,
+for example by yielding after each retrieval, or by breaking when the tuples
+fail to match some additional criteria.
 
 .. code-block:: lua
 
     for page in paged_iter("X", 10) do
       print("New Page. Number Of Tuples = " .. #page)
-      for i=1,#page,1 do print(page[i]) end
+      for i = 1, #page, 1 do
+        print(page[i])
+      end
     end
 
 .. _box_index-rtree:
@@ -924,12 +906,13 @@ additional criteria.
          Submodule `box.index` with index type = RTREE for spatial searches
 =============================================================================
 
-The :ref:`box.index <box_index>` submodule may be used for spatial searches if the index type
-is RTREE. There are operations for searching *rectangles* (geometric objects
-with 4 corners and 4 sides) and *boxes* (geometric objects with more than 4
-corners and more than 4 sides, sometimes called hyperrectangles). This manual
-uses the term *rectangle-or-box* for the whole class of objects that includes both
-rectangles and boxes. Only rectangles will be illustrated.
+The :ref:`box.index <box_index>` submodule may be used for spatial searches if
+the index type is RTREE. There are operations for searching *rectangles*
+(geometric objects with 4 corners and 4 sides) and *boxes* (geometric objects
+with more than 4 corners and more than 4 sides, sometimes called
+hyperrectangles). This manual uses the term *rectangle-or-box* for the whole
+class of objects that includes both rectangles and boxes. Only rectangles will
+be illustrated.
 
 Rectangles are described according to their X-axis (horizontal axis) and Y-axis
 (vertical axis) coordinates in a grid of arbitrary size. Here is a picture of
@@ -1019,8 +1002,8 @@ NEIGHBOR iterator always returns all tuples, and the first returned tuple will
 be {3,5,9,10} ("Rectangle#2" in the picture) because it is the closest neighbor
 of {1,2,3,4} ("Rectangle#1" in the picture).
 
-Now let us create a space and index for cuboids, which are rectangle-or-boxes that have
-6 corners and 6 sides.
+Now let us create a space and index for cuboids, which are rectangle-or-boxes
+that have 6 corners and 6 sides.
 
 .. code-block:: tarantoolsession
 
@@ -1033,17 +1016,18 @@ Now let us create a space and index for cuboids, which are rectangle-or-boxes th
              >   parts = {2, 'ARRAY'}
              > })
 
-The additional field here is ``dimension=3``. The default dimension is 2, which is
-why it didn't need to be specified for the examples of rectangle. The maximum dimension
-is 20. Now for insertions and selections there will usually be 6 coordinates. For example:
+The additional field here is ``dimension=3``. The default dimension is 2, which
+is why it didn't need to be specified for the examples of rectangle. The maximum
+dimension is 20. Now for insertions and selections there will usually be 6
+coordinates. For example:
 
 .. code-block:: tarantoolsession
 
     tarantool> s:insert{1, {0, 3, 0, 3, 0, 3}}
     tarantool> r:select({1, 2, 1, 2, 1, 2}, {iterator = box.index.GT})
 
-Now let us create a space and index for Manhattan-style spatial objects, which are rectangle-or-boxes that have
-a different way to calculate neighbors.
+Now let us create a space and index for Manhattan-style spatial objects, which
+are rectangle-or-boxes that have a different way to calculate neighbors.
 
 .. code-block:: tarantoolsession
 
@@ -1056,10 +1040,11 @@ a different way to calculate neighbors.
              >   parts = {2, 'ARRAY'}
              > })
 
-The additional field here is ``distance='manhattan'``.
-The default distance calculator is 'euclid', which is the straightforward as-the-crow-flies method.
-The optional distance calculator is 'manhattan', which can be a more appropriate method
-if one is following the lines of a grid rather than traveling in a straight line.
+The additional field here is ``distance='manhattan'``. The default distance
+calculator is 'euclid', which is the straightforward as-the-crow-flies method.
+The optional distance calculator is 'manhattan', which can be a more appropriate
+method if one is following the lines of a grid rather than traveling in a
+straight line.
 
 .. code-block:: tarantoolsession
 

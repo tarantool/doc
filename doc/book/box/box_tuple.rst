@@ -244,34 +244,38 @@ and conversion to a Lua table.
             - Fld#1Fld#2Fld#3Fld#4Fld#5
             ...
 
-    .. method:: update({{format, field_number, value}, ...})
+    .. method:: update({{operator, field_no, value}, ...})
 
         Update a tuple.
 
         This function updates a tuple which is not in a space. Compare the function
-        :code:`box.space.`:samp:`{space-name}`:code:`:update{`:samp:`{key}, {format},` :code:`{`:samp:`{field_number}, {value}`:code:`}...)`,
+        :extsamp:`box.space.{*{space-name}*}:update({*{key}*}, {{{*{format}*}, {*{field_no}*}, {*{value}*}}, ...})`
         which updates a tuple in a space.
 
-        Parameters: briefly: ``format`` indicates the type of update operation such as '``=``'
-        for 'assign new value', ``field_number`` indicates the field number to change such
-        as 2 for field number 2, ``value`` indicates the string which operates on the field such
-        as 'B' for a new assignable value = 'B'.
+        For details: see the description for ``operator``, ``field_no``, and
+        ``value`` in the section :ref:`box.space.space-name:update{key, format,
+        {field_number, value}...) <box_space-update>`.
 
-        For details: see the description for ``format``, ``field_number``, and ``value`` in
-        the section :ref:`box.space.space-name:update{key, format, {field_number, value}...) <box_space-update>`.
+        :param string  operator: operation type represented in string (e.g.
+                                 '``=``' for 'assign new value')
+        :param number  field_no: what field the operation will apply to. The
+                                 field number can be negative, meaning the
+                                 position from the end of tuple.
+                                 (#tuple + negative field number + 1)
+        :param lua_value  value: what value will be applied
 
         :return: new tuple
         :rtype:  tuple
 
-        In the following example, a tuple named ``t`` is created and then its second field is
-        updated to equal 'B'.
+        In the following example, a tuple named ``t`` is created and then its
+        second field is updated to equal 'B'.
 
         .. code-block:: tarantoolsession
 
             tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
             ---
             ...
-            tarantool> t:update({{'=',2,'B'}})
+            tarantool> t:update({{'=', 2, 'B'}})
             ---
             - ['Fld#1', 'B', 'Fld#3', 'Fld#4', 'Fld#5']
             ...
@@ -280,8 +284,8 @@ and conversion to a Lua table.
                         Example
 ===========================================================
 
-This function will illustrate how to convert tuples to/from Lua tables and
-lists of scalars:
+This function will illustrate how to convert tuples to/from Lua tables and lists
+of scalars:
 
 .. code-block:: lua
 

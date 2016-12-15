@@ -173,15 +173,17 @@ the function invocations will look like ``sock:function_name(...)``.
     can accept connections. Usually the same objective
     is accomplished with :ref:`box.cfg{listen=...} <cfg_basic-listen>`.
 
-    Parameters: ``host`` = (string) host name or IP;
-    ``port`` = (integer) host port, may be 0;
-    ``handler-function`` = (function or table containing function)
-    what to execute when a connection occurs;
-    ``timeout`` = (integer) number of seconds to wait before timing out.
+    :param string         host: host name or IP
+    :param number         port: host port, may be 0
+    :param function/table handler: what to execute when a connection
+                                   occurs
+    :param number         timeout: number of seconds to wait before
+                                   timing out
 
-    The handler-function parameter may be a function name (for example ``function_55``)
-    a function declaration (for example ``function () print('!') end``),
-    or a table including handler = function (for example ``{handler=function_55, name='A'}``).
+    The handler-function parameter may be a function name (for example
+    ``function_55``), a function declaration (for example
+    ``function () print('!') end``), or a table including handler = function
+    (for example ``{handler=function_55, name='A'}``).
 
     Example:
 
@@ -198,18 +200,18 @@ the function invocations will look like ``sock:function_name(...)``.
         The host must be an IP address.
 
         Parameters:
-            * Either:
-               * host - a string representation of an IPv4 address
-                 or an IPv6 address;
-               * port - a number.
-            * Or:
-               * host - a string containing "unix/";
-               * port - a string containing a path to a unix socket.
-            * Or:
-               * host - a number, 0 (zero), meaning "all local
-                 interfaces";
-               * port - a number. If a port number is 0 (zero),
-                 the socket will be bound to a random local port.
+          * Either:
+             * host - a string representation of an IPv4 address
+               or an IPv6 address;
+             * port - a number.
+          * Or:
+             * host - a string containing "unix/";
+             * port - a string containing a path to a unix socket.
+          * Or:
+             * host - a number, 0 (zero), meaning "all local
+               interfaces";
+             * port - a number. If a port number is 0 (zero),
+               the socket will be bound to a random local port.
 
 
         :return: the socket object value may change if sysconnect() succeeds.
