@@ -13,9 +13,9 @@ source code is available in file
 A list of all ``box.space`` functions follows, then comes a list of all
 ``box.space`` members.
 
-    .. container:: table
+    **The functions and members of box.space**
 
-        **The functions and members of box.space**
+    .. container:: table
 
         .. rst-class:: left-align-column-1
         .. rst-class:: left-align-column-2
@@ -111,8 +111,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | <box_space-func>`                    | tuples                          |
         +--------------------------------------+---------------------------------+
 
-
-
 .. module:: box.space
 
 .. class:: space_object
@@ -166,8 +164,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
 
-        Note re storage engine: vinyl supports only the TREE index type,
-        and vinyl secondary indexes must be created before tuples are inserted.
+        .. NOTE::
+
+            | Note re storage engine:
+            | vinyl supports only the TREE index type, and vinyl secondary
+              indexes must be created before tuples are inserted.
 
         .. code-block:: tarantoolsession
 
@@ -180,10 +181,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. _details_about_index_field_types:
 
-    | Details about index field types:
-    | The six index field types (unsigned | string | integer | number |
-      array | scalar) differ depending on what values are allowed, and
-      what index types are allowed.
+    Details about index field types:
+
+    The six index field types (unsigned | string | integer | number |
+    array | scalar) differ depending on what values are allowed, and
+    what index types are allowed.
 
     * **unsigned**: unsigned integers between 0 and 18446744073709551615,
       about 18 quintillion. May also be called 'uint' or 'num', but 'num'
@@ -267,8 +269,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :return: the inserted tuple
         :rtype:  tuple
 
-        **Possible errors:** If a tuple with the same unique-key value already exists,
-        returns :errcode:`ER_TUPLE_FOUND`.
+        **Possible errors:** If a tuple with the same unique-key value already
+        exists, returns :errcode:`ER_TUPLE_FOUND`.
 
         **Example:**
 
@@ -290,11 +292,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :param scalar/table          key: value to be matched against the index
                                           key, which may be multi-part.
 
-        :return: the tuples whose primary-key fields are equal to the fields of the passed
-                 search-key-value. If the number of passed fields is less
-                 than the number of fields in the primary key, then only the
-                 passed fields are compared, so ``select{1,2}`` will match
-                 a tuple whose primary key is ``{1,2,3}``.
+        :return: the tuples whose primary-key fields are equal to the fields of
+                 the passed key. If the number of passed fields is less than the
+                 number of fields in the primary key, then only the passed
+                 fields are compared, so ``select{1,2}`` will match a tuple
+                 whose primary key is ``{1,2,3}``.
         :rtype:  array of tuples
 
         **Possible errors:** No such space; wrong type.
@@ -350,8 +352,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         For examples of complex ``select`` requests, where one can specify which
         index to search and what condition to use (for example "greater than"
-        instead of "equal to") and how many tuples to return, see the later section
-        :ref:`index_object:select <box_index-select>`.
+        instead of "equal to") and how many tuples to return, see the later
+        section :ref:`index_object:select <box_index-select>`.
 
     .. _box_space-get:
 
@@ -364,21 +366,19 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :param scalar/table          key: value to be matched against the index
                                           key, which may be multi-part.
 
-        :return: the tuple whose index key matches :codeitalic:`key`, or null.
+        :return: the tuple whose index key matches ``key``, or ``nil``.
         :rtype:  tuple
 
         **Possible errors:** If space_object does not exist.
 
-        **Complexity factors:** Index size, Index type,
-        Number of indexes accessed, WAL settings.
+        **Complexity factors:** Index size, Index type, Number of indexes
+        accessed, WAL settings.
 
-        The ``box.space...select`` function returns a set
-        of tuples as a Lua table; the ``box.space...get``
-        function returns at most a single tuple. And it is possible to get
-        the first tuple in a space by appending ``[1]``.
-        Therefore ``box.space.tester:get{1}`` has the same
-        effect as ``box.space.tester:select{1}[1]``,
-        if exactly one tuple is found.
+        The ``box.space...select`` function returns a set of tuples as a Lua
+        table; the ``box.space...get`` function returns at most a single tuple.
+        And it is possible to get the first tuple in a space by appending
+        ``[1]``. Therefore ``box.space.tester:get{1}`` has the same effect as
+        ``box.space.tester:select{1}[1]``, if exactly one tuple is found.
 
         **Example:**
 
@@ -656,9 +656,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Complexity factors:** Index size, Index type
 
-        .. NOTE:: Note re storage engine:
+        .. NOTE::
 
-            vinyl will return ``nil``, rather than the deleted tuple.
+            | Note re storage engine:
+            | vinyl will return ``nil``, rather than the deleted tuple.
 
         **Example:**
 
@@ -789,10 +790,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 2
             ...
 
-        .. NOTE:: re storage engine
+        .. NOTE::
 
-            vinyl does not support ``len()``.  One possible workaround is to say
-            ``#select(...)``.
+            | Note re storage engine:
+            | vinyl does not support ``len()``.  One possible workaround is to
+              say ``#select(...)``.
 
     .. _box_space-truncate:
 
@@ -865,15 +867,15 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: pairs([key [, iterator]])
 
-        Search for a tuple or a set of tuples in the given space,
-        and allow iterating over one tuple at a time.
+        Search for a tuple or a set of tuples in the given space, and allow
+        iterating over one tuple at a time.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param scalar/table key: value to be matched against the index key,
                                  which may be multi-part
         :param         iterator: see :ref:`index_object:pairs
-                                 <box_index-index_pairs>
+                                 <box_index-index_pairs>`
 
         :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
                  used in a for/end loop or with `totable()

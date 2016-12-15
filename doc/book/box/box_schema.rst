@@ -58,7 +58,11 @@ for spaces, users, roles, and function tuples.
     attached to the space objects, for example
     :ref:`space_object:drop() <box_space-drop>`.
 
-    Note re storage engine: vinyl does not support temporary spaces.
+    .. NOTE::
+
+        | Note re storage engine:
+        | vinyl does not support temporary spaces.
+
 
     **Example**
 
@@ -93,18 +97,18 @@ for spaces, users, roles, and function tuples.
 
     Create a user.
     For explanation of how Tarantool maintains user data, see
-    section :ref:`Users<authentication-users>` and reference on 
+    section :ref:`Users<authentication-users>` and reference on
     :ref:`_user <box_space-user>` space.
-    
+
     The possible options are:
-    
+
     * ``if_not_exists`` = ``true|false`` (default = ``true``) - bool, where
       ``false`` is for throwing no error if the user already exists,
 
     * ``password`` (default = '') - string; the ``password`` = *password*
       specification is good because in a :ref:`URI <index-uri>`
       (Uniform Resource Identifier) it is usually illegal to include a
-      user-name without a password.  
+      user-name without a password.
 
     .. NOTE::
 
@@ -185,9 +189,9 @@ for spaces, users, roles, and function tuples.
 
     **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
-    
+
     The possible options are:
-    
+
     * ``grantor`` = *grantor_name_or_id* -- string or number, for custom grantor,
     * ``if_not_exists`` = ``true|false`` (default = ``true``) - bool, where ``false``
       is for throwing no error if user already has the privilege.
@@ -239,11 +243,11 @@ for spaces, users, roles, and function tuples.
 .. function:: box.schema.user.password(password)
 
     Return a hash of a user's password. For explanation of how Tarantool maintains
-    passwords, see section :ref:`Passwords <authentication-passwords>` and reference on 
+    passwords, see section :ref:`Passwords <authentication-passwords>` and reference on
     :ref:`_user <box_space-user>` space.
-    
+
     .. NOTE::
-    
+
        * If a non-'guest' user has no password, it’s **impossible** to connect to Tarantool
          using this user. The user is regarded as “internal” only, not usable from a remote
          connection. Such users can be useful if they have defined some procedures with the
@@ -257,7 +261,7 @@ for spaces, users, roles, and function tuples.
          a password to establish a binary connection. It is, however, possible to change the
          current user to ‘guest’ by providing the AUTH packet with no password at all or an
          empty password. This feature is useful for connection pools, which want to reuse a
-         connection for a different user without re-establishing it. 
+         connection for a different user without re-establishing it.
 
     :param string password: password
     :rtype: string
@@ -448,19 +452,19 @@ for spaces, users, roles, and function tuples.
     box.schema.func.create must be done first.
     For explanation of how Tarantool maintains function data, see
     reference on :ref:`_func <box_space-func>` space.
-    
+
     The possible options are:
 
     * ``if_not_exists`` = ``true|false`` (default = ``false``) - with ``false`` to cause
       error: ``Function '...' already exists`` if the ``_func`` tuple already exists.
-      
+
     * ``setuid`` = ``true|false`` (default = false) - with ``true`` to make Tarantool
       treat the function’s caller as the function’s creator, with full privileges.
       Remember that SETUID works only over the
       :ref:`binary protocol <administration-admin_ports>`.
       SETUID doesn't work if you invoke a function via text console or
       inside a Lua script.
-      
+
     * ``language`` = 'LUA'|'C' (default = ‘LUA’).
 
     :param string func-name: name of function, which should not be a number

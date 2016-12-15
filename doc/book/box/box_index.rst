@@ -625,9 +625,10 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Complexity factors:** Index size, Index type.
 
-        .. NOTE:: re storage engine
+        .. NOTE::
 
-            vinyl does not support ``random()``.
+            | Note re storage engine:
+            | vinyl does not support ``random()``.
 
         **Example:**
 
@@ -702,9 +703,10 @@ API is a direct binding to corresponding methods of index objects of type
         :return: the deleted tuple.
         :rtype:  tuple
 
-        .. NOTE:: re storage engine
+        .. NOTE::
 
-            vinyl will return nil, rather than the deleted tuple.
+            | Note re storage engine:
+            | vinyl will return `nil`, rather than the deleted tuple.
 
     .. _box_index-alter:
 
@@ -723,9 +725,10 @@ API is a direct binding to corresponding methods of index objects of type
         the first index cannot be changed to {unique = false}, or
         the alter function is only applicable for the memtx storage engine.
 
-        .. NOTE:: re storage engine
+        .. NOTE::
 
-            vinyl does not support ``alter()``.
+            | Note re storage engine:
+            | vinyl does not support ``alter()``.
 
         **Example:**
 

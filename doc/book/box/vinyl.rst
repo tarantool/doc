@@ -41,29 +41,28 @@ Here are behavior differences which affect programmers. All of these differences
 have been noted elsewhere in sentences that begin with the words
 "Note re storage engine: vinyl".
 
-* With memtx, the index type can be TREE or HASH or RTREE or BITSET. |br|
-  With vinyl, the only index type is TREE.
+* | With memtx, the index type can be TREE or HASH or RTREE or BITSET.
+  | With vinyl, the only index type is TREE.
 
-* With memtx, :ref:`create_index <box_space-create_index>` can be done at any time. |br|
-  With vinyl, secondary indexes must be created before tuples are inserted.
+* | With memtx, :ref:`create_index <box_space-create_index>` can be done at any time.
+  | With vinyl, secondary indexes must be created before tuples are inserted.
 
-* With memtx, for index searches, ``nil`` may be allowed within a search key. |br|
-  With vinyl, ``nil`` is only allowed at the end of a search key.
+* | With memtx, for index searches, ``nil`` may be allowed within a search key.
+  | With vinyl, ``nil`` is only allowed at the end of a search key.
 
-* With memtx, temporary spaces are supported. |br|
-  With vinyl, they are not.
+* | With memtx, temporary spaces are supported.
+  | With vinyl, they are not.
 
-* With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>`
-  and :ref:`random() <box_index-random>`
-  functions are supported. |br|
-  With vinyl, they are not.
+* | With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>`
+    and :ref:`random() <box_index-random>` functions are supported.
+  | With vinyl, they are not.
 
-* With memtx, the :ref:`count() <box_index-count>` function takes a constant
-  amount of time. |br|
-  With vinyl, it takes a variable amount of time depending on index size.
+* | With memtx, the :ref:`count() <box_index-count>` function takes a constant
+    amount of time.
+  | With vinyl, it takes a variable amount of time depending on index size.
 
-* With memtx, delete will return deleted tuple, if any. |br|
-  With vinyl, delete will always return nil.
+* | With memtx, delete will return deleted tuple, if any.
+  | With vinyl, delete will always return nil.
 
 It was explained :ref:`earlier <index-yields_must_happen>` that memtx does not
 "yield" on a select request, it yields only on data-change requests. However,

@@ -121,7 +121,7 @@ and conversion to a Lua table.
             ...
 
     .. method:: find([field-number, ] search-value)
-                  findall([field-number, ] search-value)
+                findall([field-number, ] search-value)
 
         If ``t`` is a tuple instance, ``t:find(search-value)`` will return the
         number of the first field in ``t`` that matches the search value,
