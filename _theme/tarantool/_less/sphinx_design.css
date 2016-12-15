@@ -610,18 +610,6 @@ table.border-0-column-2 td {
 
 /**/
 
-dt[id ^= "lua-object"   ] dd,
-dt[id ^= "lua-function" ] dd,
-dt[id ^= "lua-varfunc"  ] dd,
-dt[id ^= "lua-data"     ] dd,
-dt[id ^= "lua-объект"   ] dd,
-dt[id ^= "lua-функция"  ] dd,
-dt[id ^= "lua-данные"   ] dd,
-dt[id ^= "c."           ] dd,
-dt[id ^= "_CPP"         ] dd  {
-    margin-start: 20px;
-}
-
 .b-doc-param {
     padding: 0 0 10px 0;
 }

@@ -31,9 +31,10 @@ window['register_replication_tab'] = function (id) {
 $(document).ready(function () {
   /* Add anchor before every function name. Also, add divs for good wrapping */
   $(''.concat(
-    "[id^='lua-object'], [id^='lua-function'], [id^='lua-data'],       ",
-    "[id^='lua-объект'], [id^='lua-функция'],  [id^='lua-данные'],     ",
-    "[id^='c.'], [id^='_CPP'], [id^='lua-varfunc']"
+    "[id^='lua-object'  ], [id^='lua-function'], [id^='lua-data'],    ",
+    "[id^='lua-объект'  ], [id^='lua-функция'],  [id^='lua-данные'],  ",
+    "[id^='lua-operator'], [id^='lua-оператор'], [id^='lua-varfunc'], ",
+    "[id^='c.'], [id^='_CPP']"
   )).each(
     function(i, el) {
       var icon = '<i class="fa fa-link"></i>';
