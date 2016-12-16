@@ -5,19 +5,19 @@
 }
 
 dl.class, dl.type, dl.enum {
-    .b-doc-flink_right {
+    &>dt>.b-doc-flink>.b-doc-flink_right {
         background: cornsilk;
     }
 }
 
-dl.function, dl.varfunc {
-    .b-doc-flink_right {
+dl.function, dl.varfunc, dl.method, dl.macro, dl.operator {
+    &>dt>.b-doc-flink>.b-doc-flink_right {
         background: aliceblue;
     }
 }
 
 dl.data, dl.enumerator {
-    .b-doc-flink_right {
+    &>dt>.b-doc-flink>.b-doc-flink_right {
         background: linen;
     }
 }
@@ -43,10 +43,8 @@ dl.data, dl.enumerator {
         }
     }
 
-    [id ^= "lua-object"  ], [id ^= "lua-function"], [id ^= "lua-varfunc"],
-    [id ^= "lua-data"    ], [id ^= "lua-объект"  ], [id ^= "lua-функция"],
-    [id ^= "lua-данные"  ], [id ^= "c."          ], [id ^= "_CPP"       ],
-    [id ^= 'lua-operator'], [id ^= 'lua-оператор'],
+    dl.function>dt, dl.data>dt, dl.class>dt, dl.varfunc>dt, dl.method>dt,
+    dl.type>dt, dl.enum>dt, dl.enumerator>dt, dl.macro>dt, dl.operator>dt,
     h2, h3, h4, h5, h6 {
         margin-left: -25px;
         &:hover .headerlink {
@@ -54,11 +52,8 @@ dl.data, dl.enumerator {
         }
     }
 
-    [id ^= "lua-object"   ], [id ^= "lua-function" ],
-    [id ^= "lua-varfunc"  ], [id ^= "lua-data"     ],
-    [id ^= "lua-объект"   ], [id ^= "lua-функция"  ],
-    [id ^= "lua-данные"   ], [id ^= "c."           ],
-    [id ^= "_CPP"         ]  {
+    dl.function>dt, dl.data>dt, dl.class>dt, dl.varfunc>dt, dl.method>dt,
+    dl.type>dt, dl.enum>dt, dl.enumerator>dt, dl.macro>dt, dl.operator>dt {
         margin-bottom: 10px;
 
         & dd {

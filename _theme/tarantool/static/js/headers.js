@@ -31,28 +31,27 @@ window['register_replication_tab'] = function (id) {
 $(document).ready(function () {
   /* Add anchor before every function name. Also, add divs for good wrapping */
   $(''.concat(
-    "[id^='lua-object'  ], [id^='lua-function'], [id^='lua-data'],    ",
-    "[id^='lua-объект'  ], [id^='lua-функция'],  [id^='lua-данные'],  ",
-    "[id^='lua-operator'], [id^='lua-оператор'], [id^='lua-varfunc'], ",
-    "[id^='c.'], [id^='_CPP']"
-  )).each(
-    function(i, el) {
+    "dl.function>dt, dl.data>dt, dl.class>dt, dl.varfunc>dt, dl.method>dt, ",
+    "dl.type>dt, dl.enum>dt, dl.enumerator>dt, dl.macro>dt, dl.operator>dt"
+  )).each(function(i, el) {
       var icon = '<i class="fa fa-link"></i>';
       var hll = '<div class="b-doc-flink_left"></div>';
       var hlr = '<div class="b-doc-flink_right"></div>'
       var hlp = '<div class="b-doc-flink"></div>'
       var hlink = $(el).find(".headerlink");
       var hlink_id = hlink.attr("href");
+      $(hlink).remove();
+      var lpane = $("");
       if (typeof(hlink_id) != 'undefined') {
-        $(hlink).remove();
-        var lpane = $("<a />").addClass("headerlink").attr("href", hlink_id);
+        lpane = $("<a />").addClass("headerlink").attr("href", hlink_id);
         lpane = lpane.html(icon).wrap(hll).parent();
-        var rpane = $(el).clone().wrapInner(hlr);
-        var pane = rpane.prepend(lpane).wrapInner(hlp);
-        $(el).replaceWith(pane);
+      } else {
+        lpane = $(hll);
       }
-    }
-  );
+      var rpane = $(el).clone().wrapInner(hlr);
+      var pane = rpane.prepend(lpane).wrapInner(hlp);
+      $(el).replaceWith(pane);
+  })
 
   if ($(".b-doc-doc_singlehtml").length) {
     $("a").each(function(i, el) {
