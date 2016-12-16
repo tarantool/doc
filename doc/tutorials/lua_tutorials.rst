@@ -384,7 +384,7 @@ wrinkle that we add here is a timing function.
     'insert done in ' .. end_time - start_time .. ' seconds'
 
 The standard Lua function 
-`os.clock() <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`
+`os.clock() <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_
 will return the number of CPU seconds since the
 start. Therefore, by getting start_time = number of seconds just before the
 inserting, and then getting end_time = number of seconds just after the
