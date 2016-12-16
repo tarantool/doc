@@ -73,11 +73,6 @@
 }
 .b-page_header .b-path-list {
     margin-bottom: -3px;
-    white-space: nowrap;
-    overflow: visible;
-    height: 1.75em;
-    vertical-align: middle;
-
 }
 .b-search_result-list-item {
     padding:0 0 31px 0;
@@ -624,6 +619,12 @@
         padding: 10px;
         font-size: 14px;
         text-align: left;
+    }
+    .b-page_header .b-path-list {
+        white-space: nowrap;
+        overflow: visible;
+        height: 1.75em;
+        vertical-align: middle;
     }
 }
 
