@@ -230,7 +230,7 @@ password, the result is an error.
 
 .. code-block:: tarantoolsession
 
-    tarantool> password_insert('Secret Password')
+    tarantool> password_check('Secret Password')
     ---
     - 'Password is not valid'
     ...
