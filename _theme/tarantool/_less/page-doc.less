@@ -331,7 +331,10 @@ div.toctree-wrapper {
             font-size: 18px;
         }
         p {
-            padding-bottom: 25px;
+            padding-bottom: 0.75em;
+            &:last-child {
+                padding-bottom: 0;
+            }
         }
     }
     .b-block-wrapper {
@@ -342,15 +345,17 @@ div.toctree-wrapper {
             margin: 0 0 50px;
         }
         li.toctree-l1>a {
-            font-size: 16px;
-            line-height: 20px;
+            &>a {
+                font-size: 16px;
+                line-height: 20px;
+            }
+            &>ul {
+                padding: 0 0 0 20px;
+                margin: 10px 0 0;
+            }
         }
         .toctree-l2 a {
             font-size: 14px;
-        }
-        li.toctree-l1>ul {
-            padding: 0 0 0 20px;
-            margin: 10px 0 0;
         }
         .current li.toctree-l1,
         .toctree-wrapper li.toctree-l1 {

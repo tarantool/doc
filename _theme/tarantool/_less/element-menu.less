@@ -1,0 +1,139 @@
+@import (reference) "mixins";
+
+.b-menu {
+    .block-list();
+}
+@media screen and (min-width: 993px) {
+    .b-header_menu_mobile,
+    .b-menu_mobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .b-menu_mobile {
+        display: none;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        /* height: 100%; */
+        &.active {
+            display: block;
+            z-index: 5;
+        }
+    }
+    .b-menu_mobile__wrapper {
+        padding: 0px 0px 15px;
+        width: 334px;
+        height: calc(100vh - 40px);
+        position: absolute;
+        top: 40px;
+        left: 0;
+        background: #eaeaea /*url(mobile-logo.svg) 28px 5px no-repeat*/ ;
+        background-size: 96px 31px;
+        /* padding: 80px 0px 15px; */
+        /* height: 100vh */;
+        /* top: 0 */;
+        /* left: -334px; */
+        .b-header_menu {
+            height: calc(100% - 80px - 50px);
+            overflow: auto;
+            .b-menu {
+                height: auto;
+            }
+            li {
+                margin: 0;
+                display: block;
+                width: 100%;
+                border-top: 1px solid black;
+                li {
+                    &:last-child {
+                        border-bottom: 1px solid black;
+                    }
+                    &.p-active {
+                        border-top: 0px solid black;
+                    }
+                    a {
+                        font-size: 21px;
+                        line-height: 24px;
+                        padding: 9px 27px 13px;
+                        width: calc(100% - 54px);
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .b-burger-button {
+        float: left;
+        width: 23px;
+        height: 15px;
+        margin-top: 13px;
+        line-height: 40px;
+        cursor: pointer;
+        .b-burger-button {
+            span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                position: relative;
+                top: 7px;
+                background-color: #212121;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    display: block;
+                    height: 2px;
+                    width: 100%;
+                    background-color: #212121;
+                    top: -6px;
+                    transition: 0.2s;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    display: block;
+                    height: 2px;
+                    width: 100%;
+                    background-color: #212121;
+                    bottom: -6px;
+                    transition: 0.2s;
+                }
+            }
+            &.active {
+                span {
+                    transform: rotate(180deg);
+                    background: transparent;
+                    &:before {
+                        top: 0;
+                        transform: rotate(225deg);
+                    }
+                    &:after {
+                        top: 0;
+                        transform: rotate(315deg);
+                    }
+
+                }
+            }
+        }
+    }
+
+    .b-menu__close {
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: url(x.png) center no-repeat;
+        position: absolute;
+        top: 13px;
+        right: 28px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .b-menu_mobile__wrapper {
+        width: 100%;
+    }
+}

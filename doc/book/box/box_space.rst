@@ -71,43 +71,43 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:pairs()           | Prepare for iterating           |
         | <box_space-pairs>`                   |                                 |
         +--------------------------------------+---------------------------------+
-        |:ref:`space_object:on_replace()       | Create a replace trigger        |
-        |<box_space-on_replace>`               |                                 |
+        | :ref:`space_object:on_replace()      | Create a replace trigger        |
+        | <box_space-on_replace>`              |                                 |
         +--------------------------------------+---------------------------------+
-        |:ref:`space_object:run_triggers()     | Enable/disable a replace        |
-        |<box_space-run_triggers>`             | trigger                         |
+        | :ref:`space_object:run_triggers()    | Enable/disable a replace        |
+        | <box_space-run_triggers>`            | trigger                         |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object.id                | .Numeric identifier of space    |
+        | :ref:`space_object.id                | Numeric identifier of space     |
         | <box_space-id>`                      |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object.enabled           | .Flag, true if space is enabled |
+        | :ref:`space_object.enabled           | Flag, true if space is enabled  |
         | <box_space-enabled>`                 |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object.field_count       | .Required number of fields      |
+        | :ref:`space_object.field_count       | Required number of fields       |
         | <box_space-field_count>`             |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object.index             | .Container of space's indexes   |
+        | :ref:`space_object.index             | Container of space's indexes    |
         | <box_space-field_count>`             |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._schema              | .(Metadata) List of schemas     |
+        | :ref:`box.space._schema              | (Metadata) List of schemas      |
         | <box_space-schema>`                  |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._space               | .(Metadata) List of spaces      |
+        | :ref:`box.space._space               | (Metadata) List of spaces       |
         | <box_space-space>`                   |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._index               | .(Metadata) List of indexes     |
+        | :ref:`box.space._index               | (Metadata) List of indexes      |
         | <box_space-index>`                   |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._user                | .(Metadata) List of users       |
+        | :ref:`box.space._user                | (Metadata) List of users        |
         | <box_space-user>`                    |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._priv                | .(Metadata) List of privileges  |
+        | :ref:`box.space._priv                | (Metadata) List of privileges   |
         | <box_space-priv>`                    |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._cluster             | .(Metadata) List of clusters    |
+        | :ref:`box.space._cluster             | (Metadata) List of clusters     |
         | <box_space-cluster>`                 |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._func                | .(Metadata) List of function    |
+        | :ref:`box.space._func                | (Metadata) List of function     |
         | <box_space-func>`                    | tuples                          |
         +--------------------------------------+---------------------------------+
 

@@ -633,6 +633,13 @@ table.border-0-column-2 td {
     margin: 0;
 }
 
+@media screen and (max-width: 768px) {
+    .b-doc-param_left p,
+    .b-doc-param_right {
+        font-size: inherit;
+    }
+}
+
 ul.search {
     padding: 0 0 0 20px;
     margin:  0 0 16px 0;
@@ -645,7 +652,7 @@ ul.search {
 [class|=highlight],
 .highlight {
     margin-top: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 0.75em;
 }
 
 .highlight .highlight {
