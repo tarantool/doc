@@ -39,6 +39,15 @@
         {{ toctree(maxdepth=2, collapse=false) }}
       </div>
     {% endif %}
+    {% if not is_website and language == "ru" %}
+      <div class="admonition note">
+        <p class="first admonition-title">Замечание</p>
+        <p class="last">
+          Документация находится в процессе перевода и может
+          отставать от Английской версии
+        </p>
+      </div>
+    {% endif %}
     {{ body }}
   </article>
 {% endset %}
@@ -113,4 +122,4 @@
   </body>
 </html>
 
-{# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}
+{# vim: syntax=jinja ts=2 sts=2 sw=2 expandtab #}
