@@ -37,6 +37,7 @@ MsgPack data types:
 * **MP_STRING** - String
 * **MP_FIXSTR** - Fixed size string
 * **MP_OBJECT** - Any MsgPack object
+* **MP_BIN** - MsgPack binary format
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Greeting packet
@@ -194,7 +195,7 @@ schemas.
     |                  |        +-------------+-----------+ |
     |  (KEY)           | (TUPLE)|  len == 9   | len == 20 | |
     |   0x23:USERNAME  |   0x21:| "chap-sha1" |  SCRAMBLE | |
-    | MP_INT:MP_STRING | MP_INT:|  MP_STRING  | MP_STRING | |
+    | MP_INT:MP_STRING | MP_INT:|  MP_STRING  |  MP_BIN   | |
     |                  |        +-------------+-----------+ |
     |                  |                   MP_ARRAY         |
     +==================+====================================+
