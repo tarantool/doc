@@ -45,11 +45,6 @@ Tarantool - Documentation
           - `An application server together with a database manager`_
           - `Database features`_
 
-        * Tutorials
-
-          - `Lua tutorials`_
-          - `C tutorial`_
-
         * User's Guide
 
           - `Preface`_
@@ -64,6 +59,11 @@ Tarantool - Documentation
           - `Built-in library reference`_
           - `Rocks reference`_
           - `Configuration reference`_
+
+        * Tutorials
+
+          - `Lua tutorials`_
+          - `C tutorial`_
 
         * Contributor's Guide
 

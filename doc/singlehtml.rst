@@ -9,7 +9,7 @@ Documentation
 
     whats_new
     intro
-    tutorials/index
     book/index
     reference/index
+    tutorials/index
     dev_guide/index
