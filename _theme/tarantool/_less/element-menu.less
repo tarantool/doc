@@ -27,7 +27,7 @@
     .b-menu_mobile__wrapper {
         padding: 0px 0px 15px;
         width: 334px;
-        height: calc(100vh - 40px);
+        height: ~"calc(100vh - 40px)";
         position: absolute;
         top: 40px;
         left: 0;
@@ -38,7 +38,7 @@
         /* top: 0 */;
         /* left: -334px; */
         .b-header_menu {
-            height: calc(100% - 80px - 50px);
+            /* height: ~"calc(100% - 80px - 50px)"; */
             overflow: auto;
             .b-menu {
                 height: auto;
@@ -59,7 +59,7 @@
                         font-size: 21px;
                         line-height: 24px;
                         padding: 9px 27px 13px;
-                        width: calc(100% - 54px);
+                        width: ~"calc(100% - 54px)";
                         display: block;
                     }
                 }
@@ -73,49 +73,47 @@
         margin-top: 13px;
         line-height: 40px;
         cursor: pointer;
-        .b-burger-button {
-            span {
+        span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            position: relative;
+            top: 7px;
+            background-color: #212121;
+            &:before {
+                content: '';
+                position: absolute;
                 display: block;
-                width: 100%;
                 height: 2px;
-                position: relative;
-                top: 7px;
+                width: 100%;
                 background-color: #212121;
+                top: -6px;
+                transition: 0.2s;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                height: 2px;
+                width: 100%;
+                background-color: #212121;
+                bottom: -6px;
+                transition: 0.2s;
+            }
+        }
+        &.active {
+            span {
+                transform: rotate(180deg);
+                background: transparent;
                 &:before {
-                    content: '';
-                    position: absolute;
-                    display: block;
-                    height: 2px;
-                    width: 100%;
-                    background-color: #212121;
-                    top: -6px;
-                    transition: 0.2s;
+                    top: 0;
+                    transform: rotate(225deg);
                 }
                 &:after {
-                    content: '';
-                    position: absolute;
-                    display: block;
-                    height: 2px;
-                    width: 100%;
-                    background-color: #212121;
-                    bottom: -6px;
-                    transition: 0.2s;
+                    top: 0;
+                    transform: rotate(315deg);
                 }
-            }
-            &.active {
-                span {
-                    transform: rotate(180deg);
-                    background: transparent;
-                    &:before {
-                        top: 0;
-                        transform: rotate(225deg);
-                    }
-                    &:after {
-                        top: 0;
-                        transform: rotate(315deg);
-                    }
 
-                }
             }
         }
     }
