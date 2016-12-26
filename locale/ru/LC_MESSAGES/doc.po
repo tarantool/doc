@@ -18867,6 +18867,10 @@ msgstr ""
 msgid "**MP_OBJECT** - Any MsgPack object"
 msgstr ""
 
+#: ../doc/dev_guide/box_protocol.rst:40
+msgid "**MP_BIN** - MsgPack binary format"
+msgstr ""
+
 #: ../doc/dev_guide/box_protocol.rst:43
 msgid "Greeting packet"
 msgstr ""
@@ -19055,7 +19059,7 @@ msgid ""
 "|                  |        +-------------+-----------+ |\n"
 "|  (KEY)           | (TUPLE)|  len == 9   | len == 20 | |\n"
 "|   0x23:USERNAME  |   0x21:| \"chap-sha1\" |  SCRAMBLE | |\n"
-"| MP_INT:MP_STRING | MP_INT:|  MP_STRING  | MP_STRING | |\n"
+"| MP_INT:MP_STRING | MP_INT:|  MP_STRING  |    MP_BIN   | |\n"
 "|                  |        +-------------+-----------+ |\n"
 "|                  |                   MP_ARRAY         |\n"
 "+==================+====================================+\n"
