@@ -154,7 +154,7 @@ Here we disable all privileges and run Tarantool in the ‘no-privilege’ mode.
 
 .. code-block:: lua_tarantool
 
-    box.schema.user.grant(‘guest’, ‘read,write,execute’, ‘universe’)
+    box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
 **Example #2**
 
