@@ -17,8 +17,6 @@ Tarantool - Downloads (1.6)
     compilation parameters and environment, it is recommended that
     production systems use the builds provided on this site.
 
-    All published releases are available at `<http://tarantool.org/dist/1.6>`_
-
     Hosting is powered by |packagecloud|.
 
 .. wp_section::
