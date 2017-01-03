@@ -30,3 +30,5 @@ to configure a new replication cluster) is supported.
 The ``space_object:inc()`` function is removed.
 
 The ``space_object:dec()`` function is removed.
+
+The ``box.coredump()`` function is removed, for an alternative see :ref:`Generating a core file <administration-core>`.

@@ -62,7 +62,3 @@ A reference description also follows below:
     in automation: a signal provides no way to find out whether the snapshot
     was taken successfully or not.
 
-.. function:: coredump()
-
-    Fork and dump a core. Since Tarantool stores all tuples in memory, it can
-    take some time. Mainly useful for debugging.
