@@ -50,22 +50,24 @@ The replication fields are in an array if the server is a replica for more than 
     **Example:**
 
     .. code-block:: tarantoolsession
-
+        
         tarantool> box.info()
         ---
         - server:
-            lsn: 158
+            lsn: 0
             ro: false
-            uuid: a2684219-b2b1-4334-88ab-50b0722283fd
+            uuid: 25684d65-636e-44cd-ab5d-4bb38d9b4411
             id: 1
-          version: 1.7.2-435-g6ba8500
-          pid: 12932
+          version: 1.7.3-28-g75ec202
           status: running
-          vclock:
-          - 158
-          replication:
-            status: off
-          uptime: 908
+          vclock: {}
+          pid: 8228
+          cluster:
+            uuid: e17aac30-e85a-40be-ad4a-9bf4c1f9ed43
+            signature: 0
+          vinyl: []
+          replication: {}
+          uptime: 15
         ...
         tarantool> box.info.pid
         ---
@@ -81,6 +83,6 @@ The replication fields are in an array if the server is a replica for more than 
         ...
         tarantool> box.info.version
         ---
-        - 1.7.2-435-g6ba8500
+        - 1.7.3-28-g75ec202
         ...
 
