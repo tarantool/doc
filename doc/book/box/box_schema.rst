@@ -11,7 +11,7 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-space_create:
 
-.. function:: box.schema.space.create(space-name [, {options} ])
+.. function:: box.schema.space.create(space-name [, {options}])
 
     Create a space.
 
@@ -93,7 +93,7 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-user_create:
 
-.. function:: box.schema.user.create(user-name [, {options} ])
+.. function:: box.schema.user.create(user-name [, {options}])
 
     Create a user.
     For explanation of how Tarantool maintains user data, see
@@ -102,8 +102,8 @@ for spaces, users, roles, and function tuples.
 
     The possible options are:
 
-    * ``if_not_exists`` = ``true|false`` (default = ``true``) - bool, where
-      ``false`` is for throwing no error if the user already exists,
+    * ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
+      ``true`` means there should be no error if the user already exists,
 
     * ``password`` (default = '') - string; the ``password`` = *password*
       specification is good because in a :ref:`URI <index-uri>`
@@ -130,7 +130,7 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-user_drop:
 
-.. function:: box.schema.user.drop(user-name [, {options} ])
+.. function:: box.schema.user.drop(user-name [, {options}])
 
     Drop a user.
     For explanation of how Tarantool maintains user data, see
@@ -138,7 +138,8 @@ for spaces, users, roles, and function tuples.
     :ref:`_user <box_space-user>` space.
 
     :param string user-name: the name of the user
-    :param table options: ``if_exists``
+    :param table options: ``if_exists`` = ``true|false`` (default = ``false``) - boolean;
+                          ``true`` means there should be no error if the user does not exist.
 
     **Examples:**
 
@@ -193,8 +194,8 @@ for spaces, users, roles, and function tuples.
     The possible options are:
 
     * ``grantor`` = *grantor_name_or_id* -- string or number, for custom grantor,
-    * ``if_not_exists`` = ``true|false`` (default = ``true``) - bool, where ``false``
-      is for throwing no error if user already has the privilege.
+    * ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
+      ``true`` means there should be no error if the user already has the privilege.
 
     **Example:**
 
@@ -317,7 +318,7 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-role_create:
 
-.. function:: box.schema.role.create(role-name [, {options} ])
+.. function:: box.schema.role.create(role-name [, {options}])
 
     Create a role.
     For explanation of how Tarantool maintains role data, see
@@ -325,7 +326,9 @@ for spaces, users, roles, and function tuples.
 
     :param string role-name: name of role, which should not be a number
                              and should not contain special characters
-    :param table options: ``if_not_exists``
+    :param table options: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
+                          ``true`` means there should be no error if the
+                          role already exists
 
     :return: nil
 
@@ -338,13 +341,15 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-role_drop:
 
-.. function:: box.schema.role.drop(role-name)
+.. function:: box.schema.role.drop(role-name [, {options}])
 
     Drop a role.
     For explanation of how Tarantool maintains role data, see
     section :ref:`Roles <authentication-roles>`.
 
     :param string role-name: the name of the role
+    :param table options: ``if_exists`` = ``true|false`` (default = ``false``) - boolean;
+                          ``true`` means there should be no error if the role does not exist.
 
     **Example:**
 
@@ -379,7 +384,9 @@ for spaces, users, roles, and function tuples.
     :param string privilege: 'read' or 'write' or 'execute' or a combination
     :param string object-type: 'space' or 'function'
     :param string object-name: the name of a function or space
-    :param bool option: {if_not_exists=true} or {if_not_exists=false}
+    :param table option: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
+                         ``true`` means there should be no error if the role already
+                         has the privilege
 
     The role must exist, and the object must exist.
 
@@ -444,7 +451,7 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-func_create:
 
-.. function:: box.schema.func.create(func-name [, {options} ])
+.. function:: box.schema.func.create(func-name [, {options}])
 
     Create a function tuple.
     This does not create the function itself -- that is done with Lua --
@@ -455,8 +462,8 @@ for spaces, users, roles, and function tuples.
 
     The possible options are:
 
-    * ``if_not_exists`` = ``true|false`` (default = ``false``) - with ``false`` to cause
-      error: ``Function '...' already exists`` if the ``_func`` tuple already exists.
+    * ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
+      ``true`` means there should be no error if the ``_func`` tuple already exists.
 
     * ``setuid`` = ``true|false`` (default = false) - with ``true`` to make Tarantool
       treat the function’s caller as the function’s creator, with full privileges.
@@ -484,13 +491,15 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-func_drop:
 
-.. function:: box.schema.func.drop(func-name)
+.. function:: box.schema.func.drop(func-name [, {options}])
 
     Drop a function tuple.
     For explanation of how Tarantool maintains function data, see
     reference on :ref:`_func space <box_space-func>`.
 
     :param string func-name: the name of the function
+    :param table options: ``if_exists`` = ``true|false`` (default = ``false``) - boolean;
+                          ``true`` means there should be no error if the _func tuple does not exist.
 
     **Example:**
 
