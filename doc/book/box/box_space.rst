@@ -161,6 +161,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
             |               |                    | 'number' or 'array' or      |                     |
             |               |                    | 'scalar'}                   |                     |
             +---------------+--------------------+-----------------------------+---------------------+
+            | dimension     | affects RTREE only | number                      | 2                   |
+            +---------------+--------------------+-----------------------------+---------------------+
+            | distance      | affects RTREE only | string ('euclid' or         | 'euclid'            |
+            |               |                    | 'manhattan')                |                     |
+            +---------------+--------------------+-----------------------------+---------------------+
 
         **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
 

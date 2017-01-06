@@ -1019,7 +1019,7 @@ that have 6 corners and 6 sides.
              >   parts = {2, 'ARRAY'}
              > })
 
-The additional field here is ``dimension=3``. The default dimension is 2, which
+The additional option here is ``dimension=3``. The default dimension is 2, which
 is why it didn't need to be specified for the examples of rectangle. The maximum
 dimension is 20. Now for insertions and selections there will usually be 6
 coordinates. For example:
@@ -1043,7 +1043,7 @@ are rectangle-or-boxes that have a different way to calculate neighbors.
              >   parts = {2, 'ARRAY'}
              > })
 
-The additional field here is ``distance='manhattan'``. The default distance
+The additional option here is ``distance='manhattan'``. The default distance
 calculator is 'euclid', which is the straightforward as-the-crow-flies method.
 The optional distance calculator is 'manhattan', which can be a more appropriate
 method if one is following the lines of a grid rather than traveling in a
