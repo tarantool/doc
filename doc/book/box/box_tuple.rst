@@ -99,7 +99,7 @@ and conversion to a Lua table.
             - 13
             ...
 
-    .. operator:: tuple_object[field-number]
+    tuple-value[field-number]
 
         If ``t`` is a tuple instance, ``t[field-number]`` will return the field
         numbered field-number in the tuple. The first field is ``t[1]``.
@@ -212,6 +212,30 @@ and conversion to a Lua table.
             - Fld#5
             ...
 
+    .. method:: totable([start-field-number [, end-field-number]])
+
+        If ``t`` is a tuple instance, ``t:totable()`` will return all fields,
+        ``t:totable(1)`` will return all fields starting with field number 1,
+        ``t:totable(1,5)`` will return all fields between field number 1 and field number 5.
+        It is preferable to use ``t:totable()`` rather than ``t:unpack()``.
+
+        :return: field(s) from the tuple
+        :rtype:  lua-table
+
+        In the following example, a tuple named ``t`` is created, then all
+        its fields are selected, then the result is returned.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
+            ---
+            ...
+            tarantool> t:totable()
+            ---
+            - ['Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5']
+            ...
+
+
     .. method:: pairs()
 
         In Lua, ``lua-table-value:pairs()`` is a method which returns:
@@ -291,6 +315,7 @@ of scalars:
 
     tuple = box.tuple.new({scalar1, scalar2, ... scalar_n}) -- scalars to tuple
     lua_table = {tuple:unpack()}                            -- tuple to Lua table
+    lua_table = tuple:totable()                             -- tuple to Lua table
     scalar1, scalar2, ... scalar_n = tuple:unpack()         -- tuple to scalars
     tuple = box.tuple.new(lua_table)                        -- Lua table to tuple
 
@@ -305,9 +330,9 @@ and display how many bytes remain in the tuple. The function uses Tarantool
       local tuple1, tuple2, lua_table_1, scalar1, scalar2, scalar3, field_number
       local luatable1 = {}
       tuple1 = box.tuple.new({'a', 'b', 'c'})
-      luatable1 = {tuple1:unpack()}
+      luatable1 = tuple1:totable()
       scalar1, scalar2, scalar3 = tuple1:unpack()
-      tuple2 = box.tuple.new(luatable1)
+      tuple2 = box.tuple.new(luatable1[1],luatable1[2],luatable1[3])
       field_number = tuple2:find('b')
       tuple2 = tuple2:transform(field_number, 1)
       return 'tuple2 = ' , tuple2 , ' # of bytes = ' , tuple2:bsize()
