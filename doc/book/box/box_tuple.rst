@@ -99,7 +99,7 @@ and conversion to a Lua table.
             - 13
             ...
 
-    tuple-value[field-number]
+    .. operator:: tuple_object[field-number]
 
         If ``t`` is a tuple instance, ``t[field-number]`` will return the field
         numbered field-number in the tuple. The first field is ``t[1]``.

@@ -803,14 +803,21 @@ For example, the Tarantool developers may request one for a bug report.
 First make sure core dumps are enabled on the system (this may require some
 study of the system settings and administrative privileges).
 
-Find out the process id of the server. This is the value in `box.info.pid`.
-It can also be found with utilities such as "ps -A | grep tarantool".
-We will refer to this process id as $PID.
+Find out the process id of the server. This is the value in ``box.info.pid``.
+It can also be found with utilities such as ``ps -A | grep tarantool``.
+We will refer to this process id as ``$PID``.
 
-Either run the debugger |br|
-``gdb -batch -ex "generate-core-file" -p $PID`` |br|
-or stop the server with a SIGABRT signal |br|
-``kill -SIGABRT $PID``
+Either run the debugger:
+
+.. code-block:: console
+
+   gdb -batch -ex "generate-core-file" -p $PID
+
+or stop the server with a SIGABRT signal:
+
+.. code-block:: console
+
+   kill -SIGABRT $PID
 
 Since Tarantool stores tuples in memory, core files may be large.
 
