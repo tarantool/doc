@@ -209,6 +209,55 @@ Binary logging and snapshots
 
 .. include:: cfg_binary_logging_snapshots.rst
 
+.. _index-hot_standby:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Hot standby
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. confval:: hot_standby
+
+    Whether to start the server in **hot standby** mode.
+    Hot standby is a feature which provides a simple form of failover without
+    replication.
+
+    | Type: boolean
+    | Default: false
+    | Dynamic: no
+
+    The expectation is that there will be two instances of the server using the
+    same configuration. The first one to start will be the "primary" instance.
+    The second one to start will be the "standby" instance.
+
+    To initiate the standby instance, start a second instance of the Tarantool server on
+    the same computer with the same :ref:`box.cfg <box_introspection-box_cfg>` configuration settings -
+    including the same directories and same non-null URIs -- and with the
+    additional parameter `hot_standby=true`. If :ref:`warnings <cfg_logging-log_level>` are enabled,
+    expect to see a warning ending with the words "W> Entering hot standby mode".
+    This is fine. It means that the standby instance is ready to take over if the
+    primary instance goes down.
+
+    The standby instance will initialize and will try to connect on listen address,
+    but will fail because the primary instance has made a lock on
+    :ref:`snap_dir <cfg_basic-snap_dir>`. So the
+    standby instance goes into a loop, reading the write ahead log which the
+    primary instance is writing (so the two instances are always in synch),
+    and trying to connect on the port. If the primary instance goes down for any
+    reason, the lock will be released so the standby instance will succeed in
+    connecting, and will become the primary instance. If warnings are enabled,
+    expect to see a warning ending ending with the words ""I> ready to accept requests".
+
+    Thus there is no noticeable downtime if the primary instance goes down.
+
+    Do not depend on the hot standby feature if
+    :ref:`wal_dir_rescan_delay = a large number <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`;
+    it is designed so that the loop repeats every wal_dir_rescan_delay seconds.
+    Do not depend on the hot standby feature if :ref:`wal_mode='none' <cfg_binary_logging_snapshots-wal_mode>`;
+    it is designed to work with wal_mode='write' or wal_mode='fsync'.
+    Do not depend on the hot standby feature
+    for spaces created with :ref:`engine='vinyl' <box_schema-space_create>`;
+    it is designed to work for spaces created with engine='memtx'.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

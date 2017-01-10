@@ -71,8 +71,7 @@
     :samp:`listen = {URI}` are sometimes called "binary protocol" or
     "primary port" connections.
 
-    A typical value is 3301. The listen parameter may also be set for local hot
-    standby.
+    A typical value is 3301.
 
     .. NOTE::
 

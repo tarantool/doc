@@ -76,7 +76,7 @@
 
     Number of seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
-    files for the sake of replication or local hot standby.
+    files for the sake of replication or :ref:`hot standby <index-hot_standby>`.
 
     | Type: float
     | Default: 2
