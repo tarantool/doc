@@ -75,7 +75,7 @@ permanently on the same fiber. There are two types of yields:
 .. _atomic-cooperative_multitasking:
 
 --------------------------------------------------------------------------------
-Cooperative multitasking environment
+Cooperative multitasking
 --------------------------------------------------------------------------------
 
 Cooperative multitasking means: unless a running fiber deliberately yields
