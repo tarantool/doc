@@ -351,6 +351,7 @@ Tarantool - Downloads (1.6)
           - Nginx Upstream module, `<https://github.com/tarantool/nginx_upstream_module>`_
           - C# driver,             `<https://github.com/progaudi/tarantool-csharp>`_
           - C# driver,             `<https://github.com/donmikel/tarantool-net>`_
+          - Swift driver and stored procedures, `<https://github.com/tris-foundation/tarantool>`_
 
 .. |packagecloud| image:: /images/packagecloud.png
     :height: 1em
