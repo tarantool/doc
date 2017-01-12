@@ -51,6 +51,7 @@ Tarantool - Documentation
           - `Database`_
           - `Application server`_
           - `Server administration`_
+          - `Replication`_
           - `Connectors`_
           - `FAQ`_
 
@@ -103,6 +104,7 @@ Tarantool - Documentation
 .. _Database: doc/book/box/index.html
 .. _Application server: doc/book/app_server.html
 .. _Server administration: doc/book/administration.html
+.. _Replication: doc/book/replication/index.html
 .. _Connectors: doc/book/connectors/index.html
 .. _FAQ: doc/book/faq.html
 .. _Built-in library reference: doc/reference/reference_lua/index.html

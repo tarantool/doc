@@ -44,7 +44,6 @@ exclude_patterns = [
     'doc/book/replication/*_2.rst',
     'doc/book/admin.rst',
     'doc/book/box/box_introspection.rst',
-    'doc/book/replication.rst',
     'doc/book/cookbook.rst',
     'doc/book/box/vinyl.rst',
     'doc/dev_guide/box_protocol.rst',

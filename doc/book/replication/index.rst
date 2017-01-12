@@ -1,5 +1,9 @@
 .. _index-box_replication:
 
+--------------------------------------------------------------------------------
+Replication
+--------------------------------------------------------------------------------
+
 Replication allows multiple Tarantool servers to work on copies of the same
 databases. The databases are kept in synch because each server can communicate
 its changes to all the other servers. Servers which share the same databases
@@ -11,9 +15,9 @@ make the original data-change requests, set up the replica servers which
 copy data-change requests from masters, and establish procedures for
 recovery from a degraded state.
 
---------------------------------------------------------------------------------
+=====================================================================
 Replication architecture
---------------------------------------------------------------------------------
+=====================================================================
 
 A replica gets all updates from the master by continuously fetching and
 applying its write-ahead log (WAL). Each record in the WAL represents a
@@ -27,9 +31,9 @@ log events for actual data-change requests, performed by the Lua code, are
 written to the log. This ensures that possible non-determinism of Lua does
 not cause replication to go out of sync.
 
---------------------------------------------------------------------------------
+=====================================================================
 Setting up a master
---------------------------------------------------------------------------------
+=====================================================================
 
 To prepare the master for connections from the replica, it's only necessary
 to include ":ref:`listen <cfg_basic-listen>`" in the initial ``box.cfg`` request,
@@ -37,9 +41,9 @@ for example ``box.cfg{listen=3301}``. A master with enabled "listen" URI can acc
 connections from as many replicas as necessary on that URI. Each replica
 has its own :ref:`replication state <index-monitoring_replica_actions>`.
 
---------------------------------------------------------------------------------
+=====================================================================
 Setting up a replica
---------------------------------------------------------------------------------
+=====================================================================
 
 A server requires a valid snapshot (.snap) file. A snapshot file is created
 for a server the first time that ``box.cfg`` occurs for it. If this first
@@ -83,9 +87,9 @@ Again, this procedure works only if the master's WAL files are present.
     :ref:`role <authentication-roles>`, and then grant the role to the user
     who will start the replica.
 
---------------------------------------------------------------------------------
+=====================================================================
 Recovering from a degraded state
---------------------------------------------------------------------------------
+=====================================================================
 
 "Degraded state" is a situation when the master becomes unavailable - due to
 hardware or network failure, or due to a programming bug. There is no automatic
@@ -99,9 +103,9 @@ that the replica is now the new master, by saying
 Then, if there are updates on the old master that were not propagated before
 the old master went down, they would have to be re-applied manually.
 
---------------------------------------------------------------------------------
+=====================================================================
 Quick startup of a new simple two-server cluster
---------------------------------------------------------------------------------
+=====================================================================
 
 Step 1. Start the first server thus:
 
@@ -146,9 +150,9 @@ the additional parameter :ref:`read_only = true <cfg_basic-read_only>`.
 
 .. _index-monitoring_replica_actions:
 
---------------------------------------------------------------------------------
+=====================================================================
 Monitoring a replica's actions
---------------------------------------------------------------------------------
+=====================================================================
 
 In :ref:`box.info <box_introspection-box_info>` there is a ``box.info.replication.status`` field:
 "off", "stopped", "connecting", "auth", "follow", or "disconnected". |br|
@@ -172,9 +176,9 @@ when a replica connects or disconnects.
 
 .. _index-preventing_duplicate_actions:
 
---------------------------------------------------------------------------------
+=====================================================================
 Preventing duplicate actions
---------------------------------------------------------------------------------
+=====================================================================
 
 Suppose that the replica tries to do something that the master has already done.
 For example: |br|
@@ -198,9 +202,9 @@ which is executed via ``box.once()``. For example:
     end
     box.once('space_creator', f)
 
---------------------------------------------------------------------------------
+=====================================================================
 Master-master replication
---------------------------------------------------------------------------------
+=====================================================================
 
 In the simple master-replica configuration, the master's changes are seen by
 the replica, but not vice versa, because the master was specified as the sole
@@ -228,9 +232,9 @@ involve a long interval because replication is asynchronous), and one of
 the operations is ``delete`` or ``replace``, there is a possibility that
 servers will end up with different contents.
 
---------------------------------------------------------------------------------
+=====================================================================
 All the "What If?" questions
---------------------------------------------------------------------------------
+=====================================================================
 
 .. container:: faq
 
@@ -302,9 +306,9 @@ All the "What If?" questions
     :A: See the description of server startup with replication in the
         :ref:`Internals <internals-replication>` section.
 
---------------------------------------------------------------------------------
+=====================================================================
 Hands-on replication tutorial
---------------------------------------------------------------------------------
+=====================================================================
 
 After following the steps here, an administrator will have experience creating
 a cluster and adding a replica.
@@ -385,12 +389,12 @@ Now the screen looks like this: (except that UUID values are always different):
         .. container:: b-documentation_tab
             :name: terminal-2-1
 
-            .. include:: replication/1_1.rst
+            .. include:: 1_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-2-2
 
-            .. include:: replication/1_2.rst
+            .. include:: 1_2.rst
 
 On the second shell, which we'll call Terminal #2, execute these commands:
 
@@ -436,12 +440,12 @@ on Terminal #1, because both servers are in the same cluster.
         .. container:: b-documentation_tab
             :name: terminal-3-1
 
-            .. include:: replication/2_1.rst
+            .. include:: 2_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-3-2
 
-            .. include:: replication/2_2.rst
+            .. include:: 2_2.rst
 
 On Terminal #1, execute these requests:
 
@@ -475,12 +479,12 @@ Now the screen looks like this:
         .. container:: b-documentation_tab
             :name: terminal-4-1
 
-            .. include:: replication/3_1.rst
+            .. include:: 3_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-4-2
 
-            .. include:: replication/3_2.rst
+            .. include:: 3_2.rst
 
 The creation and insertion were successful on Terminal #1. Nothing has happened
 on Terminal #2.
@@ -517,12 +521,12 @@ Now the screen looks like this (remember to click on the "Terminal #2" tab when 
         .. container:: b-documentation_tab
             :name: terminal-5-1
 
-            .. include:: replication/4_1.rst
+            .. include:: 4_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-5-2
 
-            .. include:: replication/4_2.rst
+            .. include:: 4_2.rst
 
 The selection and insertion were successful on Terminal #2. Nothing has
 happened on Terminal #1.
@@ -561,12 +565,12 @@ similar sizes because they both contain the same tuples.
         .. container:: b-documentation_tab
             :name: terminal-6-1
 
-            .. include:: replication/5_1.rst
+            .. include:: 5_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-6-2
 
-            .. include:: replication/5_2.rst
+            .. include:: 5_2.rst
 
 On Terminal #2, ignore the error messages,
 and execute these requests:
@@ -601,12 +605,12 @@ messages):
         .. container:: b-documentation_tab
             :name: terminal-7-1
 
-            .. include:: replication/6_1.rst
+            .. include:: 6_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-7-2
 
-            .. include:: replication/6_2.rst
+            .. include:: 6_2.rst
 
 Terminal #2 has done a select and an insert, even though Terminal #1 is down.
 
@@ -642,12 +646,12 @@ Now the screen looks like this:
         .. container:: b-documentation_tab
             :name: terminal-8-1
 
-            .. include:: replication/7_1.rst
+            .. include:: 7_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-8-2
 
-            .. include:: replication/7_2.rst
+            .. include:: 7_2.rst
 
 The master has reconnected to the cluster, and has NOT found what the replica
 wrote while the master was away. That is not a surprise -- the replica has not
@@ -686,12 +690,12 @@ The screen now looks like this:
         .. container:: b-documentation_tab
             :name: terminal-9-1
 
-            .. include:: replication/8_1.rst
+            .. include:: 8_1.rst
 
         .. container:: b-documentation_tab
             :name: terminal-9-2
 
-            .. include:: replication/8_2.rst
+            .. include:: 8_2.rst
 
     .. raw:: html
 

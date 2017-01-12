@@ -13,6 +13,7 @@ User's Guide
     box/index
     app_server
     administration
+    replication/index
     connectors/index
     faq
 
