@@ -7,22 +7,24 @@
 As well as executing Lua chunks or defining their own functions, you can exploit
 Tarantool's storage functionality with the ``box`` module and its submodules.
 
-The contents of the ``box`` library can be inspected at runtime
-with ``box``, with no arguments. The submodules inside the box library are:
+The contents of the ``box`` module can be inspected at runtime
+with ``box``, with no arguments. The ``box`` module contains:
 
 .. toctree::
     :maxdepth: 1
 
-    ../../book/box/box_schema
-    ../../book/box/box_space
-    ../../book/box/box_index
-    ../../book/box/box_session
-    ../../book/box/box_tuple
     ../../book/box/box_cfg
-    ../../book/box/box_slab
+    ../../book/box/box_index
     ../../book/box/box_info
+    box_once
+    ../../book/box/box_schema
+    ../../book/box/box_session
+    ../../book/box/box_slab
+    ../../book/box/box_space
     ../../book/box/box_stat
+    ../../book/box/box_tuple
     ../../book/box/box_txn_management
+
 
 .. // moved to "User Guide > 5. Server administration":
 .. // /book/box/triggers
