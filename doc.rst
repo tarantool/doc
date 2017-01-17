@@ -48,6 +48,7 @@ Tarantool - Documentation
         * User's Guide
 
           - `Preface`_
+          - `Getting started`_
           - `Database`_
           - `Application server`_
           - `Server administration`_
