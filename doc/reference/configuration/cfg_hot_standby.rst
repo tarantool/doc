@@ -27,7 +27,7 @@
     If the primary instance goes down for any reason, the lock will be released.
     in this case, the standby instance will succeed in taking the lock,
     will connect on listen address and will become the primary instance.
-    Expect to see a warning ending with the words
+    Expect to see a notification ending with the words
     ``I> ready to accept requests``.
 
     Thus there is no noticeable downtime if the primary instance goes down.
