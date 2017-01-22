@@ -10,7 +10,15 @@ Tarantool supports file input/output with an API that is similar to POSIX
 syscalls. All operations are performed asynchronously. Multiple fibers can
 access the same file simultaneously.
 
+The fio module contains functions for
+:ref:`common pathname manipulations <fio-pathname>`,
+functions for :ref:`common file manipulations <fio-file>`,
+and constants which are the same as POSIX flag values
+(for example ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY).
+
 .. module:: fio
+
+.. _fio-pathname:
 
 =================================================
          Common pathname manipulations
@@ -71,6 +79,8 @@ access the same file simultaneously.
         - 'path/to/'
         ...
 
+.. _fio-file:
+
 =================================================
             Common file manipulations
 =================================================
@@ -103,6 +113,17 @@ access the same file simultaneously.
     :return: fields which describe the file's block size, creation time, size,
              and other attributes.
     :rtype:  table
+
+    Additionally, the result of ``fio.stat('file-name')`` will include methods
+    equivalent to POSIX macros:        
+    ``is_blk()`` = POSIX macro S_ISBLK, 
+    ``is_chr()`` = POSIX macro S_ISCHR, 
+    ``is_dir()`` = POSIX macro S_ISDIR, 
+    ``is_fifo()`` = POSIX macro S_ISFIFO, 
+    ``is_link()`` = POSIX macro S_ISLINK, 
+    ``is_reg()`` = POSIX macro S_ISREG, 
+    ``is_sock()`` = POSIX macro S_ISSOCK.
+    For example, ``fio.stat('/'):is_dir()`` will return true.
 
     **Example:**
 
