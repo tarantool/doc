@@ -96,3 +96,129 @@ Tarantool - Careers
               .. wp_button::
                   :link: https://corp.mail.ru/ru/jobs/vacancy/839/
                   :title: На русском
+
+        * Account Executive
+
+          We're looking for talented Account Executives who will be responsible
+          for prospecting and closing new business deals within an assigned
+          territory.
+
+          Tarantool is a fast NoSQL in-memory database and an application
+          server. It is open-source and free of use under the BSD license.
+          Tarantool is applicable for a vast variety of use cases like online
+          transaction processing, online analytics, anti-fraud systems,
+          advertisement, classifieds, online bidding systems, online front-ends,
+          the Internet of Things.
+
+          The way we’re making money is 24x7 professional support, consulting
+          and customer solutions on top of Tarantool. In case of the IoT, our
+          solutions may include software and hardware components.
+
+          You can also read more about Tarantool `here <https://tarantool.io>`_
+          and `here <https://docs.google.com/document/d/1IKbbpFAlU4XR1_9Alr0CFlROGiPgDz7B-i03vhStaEQ/edit>`_.
+
+          Tarantool is backed by Mail.Ru Group, one of the leading Internet
+          businesses in the world. You can read more about the company
+          `here <https://corp.mail.ru/en/>`_.
+
+          **Responsibilities:**
+
+          * Meet and exceed individual monthly, quarterly and annual sales goals
+          * Drive subscription renewals
+          * Cultivate sales through outbound prospecting and inbound leads
+          * Manage order processing and day-to-day customer requests
+
+          **Requirements:**
+
+          * 1+ years of experience in Sales; database or software preferred
+          * Demonstrated history of consistent goal achievement in a highly
+            competitive environment (top 10% performer)
+          * Energetic, upbeat, entrepreneurial, tenacious team player
+          * Excellent verbal and written communication skills
+          * Experience working within a quota and commission structure
+          * Familiarity with database, web server, and open source technology a
+            plus
+
+          .. container:: b-button_container
+
+              .. wp_button::
+                  :class: b-email
+                  :link: mailto:job@tarantool.org
+                  :title: Email us
+
+              .. wp_button::
+                  :link: https://www.linkedin.com/jobs/view/260050567/
+                  :title: Link to LinkedIn
+
+        * Senior Technical Evangelist
+
+           **If you have:**
+
+           * strong software engineering skills
+           * good understanding of TCP/IP networking and Linux
+           * ability to make a benchmark of databases from ground up (from
+             setting systems up, through writing all the code, to publishing
+             an article and speaking on a conference)
+           * fluency in English (ability to speak with people, understand them,
+             speak at conferences, speak with customers f2f, write and publish
+             articles)
+           * some usage experience with Tarantool (either in production or in
+             testing environment) and clearly understand why it is better than
+             the others
+
+           **And if you're up to:**
+
+           * be an evangelist for Tarantool
+           * be writing technical articles about Tarantool
+           * make frequent business trips all over the world (at this point
+             we're talking primarily about the USA)
+           * be applying for and speaking on technical conferences
+           * be evangelizing the product at conference expo zones, talking with
+             people, helping them understand how they can benefit with Tarantool
+           * be making various benchmarks of Tarantool with respect to other
+             databases
+           * be attracting people's attention to Tarantool by creating &
+             publishing materials on Facebook and other media
+           * be making all possible and impossible efforts to get Tarantool more
+             visible by the technical community
+
+           then we welcome you on board right now!
+
+           **Probably, you want to know about us:**
+
+           * we're Mail.Ru Group, the 6th biggest Internet business globally
+           * more specifically, we're a team of Tarantool which is the database
+             management system that we're developing
+           * this database is a corner stone of Mail.Ru Group as it is used in
+             many of our services like email, cloud, games, advertising and many
+             more
+           * the main thing about Tarantool is that it is, firstly, one of those
+             rare databases that have an application server on board, and
+             secondly, faster, much faster, than any other open sourced database
+             system (we have plenty of benchmarks on that and you'll be getting
+             us much more)
+           * Tarantool is widely used outside of Mail.Ru Group, e.g. by Badoo,
+             Avito, Qiwi, VimpelCom (Beeline) and many others
+           * our current mission on Tarantool is to make it the most popular
+             database system in the world
+
+           **Now, what we offer:**
+
+           * work in Moscow in a highly technological 27-story skyscraper near
+             Airport metro station
+           * free coffee, tea, cookies, fresh juice, gym, health insurance,
+             underground parking garage and many more perks
+           * more than competitive salary
+           * business trips to the USA
+
+          .. container:: b-button_container
+
+              .. wp_button::
+                  :class: b-email
+                  :link: mailto:job@tarantool.org
+                  :title: Email us
+
+              .. wp_button::
+                  :link: https://hh.ru/vacancy/18449475
+                  :title: Link to HeadHunter
+

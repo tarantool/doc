@@ -67,7 +67,7 @@ add_custom_command(TARGET update-submodules PRE_BUILD
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/rocks"
 )
 add_custom_command(TARGET update-submodules PRE_BUILD
-    COMMAND git checkout gh-pages
+    COMMAND git checkout origin/gh-pages
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/rocks"
 )
 add_custom_target(sphinx-html ALL
