@@ -9,7 +9,7 @@
 The ``errno`` module provides:
 
 * a function :ref:`strerror() <errno-strerror>`,
-* a function :ref:`errno() <errno-errno>`, and
+* an operator :ref:`errno() <errno-errno>`, and
 * a `metatable <https://www.lua.org/pil/13.html>`_ with constant error names.
 
 The ``errno`` module is typically used
@@ -18,7 +18,7 @@ functions can return operating-system errors, such as :ref:`fio <fio-module>`.
 
 .. _errno-errno:
 
-.. function:: errno()
+.. operator:: errno()
 
     Return an error number for the last operating-system-related function, or 0.
     To invoke it, simply say ``errno()``, without the module name.
