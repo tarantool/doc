@@ -10,11 +10,12 @@ Tarantool supports file input/output with an API that is similar to POSIX
 syscalls. All operations are performed asynchronously. Multiple fibers can
 access the same file simultaneously.
 
-The fio module contains functions for
-:ref:`common pathname manipulations <fio-pathname>`,
-functions for :ref:`common file manipulations <fio-file>`,
-and constants which are the same as POSIX flag values
-(for example ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY).
+The ``fio`` module contains:
+
+* functions for :ref:`common pathname manipulations <fio-pathname>`,
+* functions for :ref:`common file manipulations <fio-file>`, and
+* :ref:`constants <fio-c>` which are the same as POSIX flag values (for example
+  ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY).
 
 .. module:: fio
 
@@ -116,13 +117,15 @@ and constants which are the same as POSIX flag values
 
     Additionally, the result of ``fio.stat('file-name')`` will include methods
     equivalent to POSIX macros:        
-    ``is_blk()`` = POSIX macro S_ISBLK, 
-    ``is_chr()`` = POSIX macro S_ISCHR, 
-    ``is_dir()`` = POSIX macro S_ISDIR, 
-    ``is_fifo()`` = POSIX macro S_ISFIFO, 
-    ``is_link()`` = POSIX macro S_ISLINK, 
-    ``is_reg()`` = POSIX macro S_ISREG, 
-    ``is_sock()`` = POSIX macro S_ISSOCK.
+
+    * ``is_blk()`` = POSIX macro S_ISBLK, 
+    * ``is_chr()`` = POSIX macro S_ISCHR, 
+    * ``is_dir()`` = POSIX macro S_ISDIR, 
+    * ``is_fifo()`` = POSIX macro S_ISFIFO, 
+    * ``is_link()`` = POSIX macro S_ISLINK, 
+    * ``is_reg()`` = POSIX macro S_ISREG, 
+    * ``is_sock()`` = POSIX macro S_ISSOCK.
+
     For example, ``fio.stat('/'):is_dir()`` will return true.
 
     **Example:**
@@ -526,3 +529,44 @@ and constants which are the same as POSIX flag values
             ---
             - true
             ...
+
+.. _fio-c:
+
+=================================================
+         FIO constants
+=================================================
+
+.. data:: c
+
+    Table with constants which are the same as POSIX flag values on the
+    target platform (see ``man 2 stat``).
+    
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.c
+        ---
+        - seek:
+            SEEK_SET: 0
+            SEEK_END: 2
+            SEEK_CUR: 1
+          mode:
+            S_IWGRP: 16
+            S_IXGRP: 8
+            S_IROTH: 4
+            S_IXOTH: 1
+            S_IRUSR: 256
+            S_IXUSR: 64
+            S_IRWXU: 448
+            S_IRWXG: 56
+            S_IWOTH: 2
+            S_IRWXO: 7
+            S_IWUSR: 128
+            S_IRGRP: 32
+          flag:
+            O_EXCL: 2048
+            O_NONBLOCK: 4
+            O_RDONLY: 0
+            <...>
+        ...
