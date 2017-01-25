@@ -6,7 +6,9 @@
 
 .. function:: tonumber64(value)
 
-    Convert a string or a Lua number to a 64-bit integer. The result can be
+    Convert a string or a Lua number to a 64-bit integer.
+    The input value can be expressed in decimal, binary (for example 0b1010),
+    or hexadecimal (for example -0xffff). The result can be
     used in arithmetic, and the arithmetic will be 64-bit integer arithmetic
     rather than floating-point arithmetic. (Operations on an unconverted Lua
     number use floating-point arithmetic.) The ``tonumber64()`` function is
