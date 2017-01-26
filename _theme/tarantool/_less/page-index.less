@@ -38,25 +38,21 @@
         flex-wrap: wrap;
 
         a {
-            margin: 5px 15px;
+            margin:  5px 15px;
+            padding: 10px 25px;
 
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-right: 25px;
             border-radius: 4px;
             text-decoration: blink;
             font-size: 0.9em;
             font-family: 'helvetica-b';
             height: auto;
             &.b-button-github {
-                background-color: white;
-                padding-left: 25px;
+                background-color: #ffffff;
                 color: #262626;
             }
             &.b-button-download {
-                background-color: #FF272C;
-                padding-left: 25px;
-                color: white;
+                background-color: #ff272c;
+                color: #ffffff;
             }
         }
     }
@@ -84,6 +80,12 @@
         padding:   0 0 15px 0;
         font-size: 16px;
     }
+}
+
+.b-cols {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
 }
 
 .b-cols {
