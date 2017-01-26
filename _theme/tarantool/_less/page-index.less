@@ -17,10 +17,29 @@
 }
 
 .b-mainhead {
+    .header-logo {
+        overflow:    hidden;
+        text-indent: 100%;
+        white-space: nowrap;
+        height: 80px;
+        width: 100%;
+        background: url('images/logo-tarantool-inf.svg') center no-repeat;
+    }
+    .header-title {
+        font-size:  24px;
+        text-align: center;
+    }
     .header-buttons {
         text-align: center;
         margin: 25px;
+
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
         a {
+            margin: 5px 15px;
+
             padding-top: 10px;
             padding-bottom: 10px;
             padding-right: 25px;
@@ -33,27 +52,13 @@
                 background-color: white;
                 padding-left: 25px;
                 color: #262626;
-                margin-left: 10px;
             }
             &.b-button-download {
                 background-color: #FF272C;
                 padding-left: 25px;
                 color: white;
-                margin-right: 10px;
             }
         }
-    }
-    .header-logo {
-        overflow:    hidden;
-        text-indent: 100%;
-        white-space: nowrap;
-        height: 80px;
-        width: 100%;
-        background: url('images/logo-tarantool-inf.svg') center no-repeat;
-    }
-    .header-title {
-        font-size:  24px;
-        text-align: center;
     }
 }
 
@@ -323,9 +328,6 @@
         }
     }
     .b-mainhead {
-        .header-buttons {
-            margin-bottom: 45px;
-        }
         .header-title {
             font-size: 18px;
             line-height: 20px;
@@ -425,17 +427,6 @@
         }
         .header-title {
             max-width: 230px;
-        }
-        .header-buttons {
-            max-width: 180px;
-            margin:  20px auto 0;
-            overflow: hidden;
-            a {
-                display: inline-block;
-            }
-            a:last-child {
-                margin-top: 10px;
-            }
         }
     }
     .b-support {
