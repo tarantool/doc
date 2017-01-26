@@ -9,3 +9,12 @@ $(function() {
     }
   });
 });
+
+$(function() {
+    $(".b-search-btn").click(function() {
+        $(".b-header_menu-bottom").toggleClass('p-active');
+        $(".b-header_menu-bottom input").focus();
+
+        $(this).toggleClass('p-active');
+    })
+});

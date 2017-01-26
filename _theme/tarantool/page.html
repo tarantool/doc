@@ -9,13 +9,11 @@
     <section class="b-block-lightgray b-documentation_top b-clearbox p-documentation_in">
       <div class="b-block-wrapper">
         <h2 class="{{ header_class }}" title="{{ title }}"> {{ title }} </h2>
-        {{- language_selector() -}}
       </div>
     </section>
     {% if is_mainpage %}
       <section class="b-block b-documentation">
         <div class="b-block-wrapper">
-          {% include "searchbox.html" %}
           {{ content_pane }}
         </div>
       </section>
@@ -23,7 +21,6 @@
       <div class="b-cols_content b-clearbox">
         <div class="b-cols_content_left">
           <div class="b-menu-toc">
-            {% include "searchbox.html" %}
             {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
           </div>
         </div>

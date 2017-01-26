@@ -1,6 +1,5 @@
 {% set language_list = [
-  (
-  _("En"), "/en/doc/", "en"),
+  (_("En"), "/en/doc/", "en"),
   (_("Ru"), "/ru/doc/", "ru")
 ] %}
 
@@ -13,7 +12,6 @@
 {% endmacro %}
 
 {% macro language_selector() %}
-  <div class="b-doc-language_selector">
     <ul class="b-doc-language_selector-list">
     {% for lang in language_list %}
       <li class="b-doc-language_selector-item">
@@ -26,7 +24,6 @@
       </li>
     {% endfor %}
     </ul>
-  </div>
 {% endmacro %}
 
 {% macro breadcrumbs() %}
@@ -152,7 +149,8 @@
       <div class="b-burger-button">
         <span></span>
       </div>
-      <form role="search" class="b-header-search" action="{{ pathto('search') }}" method="get">
+      <form role="search" class="b-header-search"
+            action="{{ pathto('search') }}" method="get">
         <input name="q" type="search">
       </form>
     </div>
@@ -165,7 +163,19 @@
     </div>
     <div class="b-header-wrapper">
       <nav class="b-header_menu">
-        {{ i_menu() }}
+        <div class="b-header_menu-top">
+          {{ i_menu()         }}
+          <div class="b-header_menu-top-ctl">
+            {{ language_selector() }}
+            <button class="b-search-btn"> <i class="fa fa-search fa-2x"></i> </button>
+          </div>
+        </div>
+        <div class="b-header_menu-bottom">
+          <form role="search" class="b-header_menu-search" action="{{ pathto('search') }}" method="get">
+            <input name="q" type="search" class="b-header_menu-search-text" placeholder="Search">
+            <input class="b-header_menu-search-but" type="submit" value="Search">
+          </form>
+        </div>
       </nav>
     </div>
   </header>

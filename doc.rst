@@ -16,15 +16,6 @@ Tarantool - Documentation
     | A single-page version of this manual is available `here <doc/singlehtml.html>`_.
     | A pdf version of this manual is available `here <doc/Tarantool.pdf>`_.
 
-    .. raw:: html
-
-        <form id="searchbox" role="search" class="search b-search" action="search.html" method="get">
-          <input class="b-search-text" name="q" type="text"/ placeholder="Search the manual">
-          <input class="b-search-but" type="submit" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
-        </form>
-
 .. wp_section::
     :class: b-block b-downloads
 

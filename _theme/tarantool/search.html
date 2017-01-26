@@ -26,27 +26,22 @@
   <div class="b-block-wrapper">
     <h1 class="b-section-title" id="search-documentation">{{ _('Search') }}</h1>
     <div class="b-two-cols">
-      <div class="b-two-cols-left">
-        <div id="fallback" class="admonition warning">
-          <script type="text/javascript">$('#fallback').hide();</script>
-          <p>
-            {% trans %}
-            Please activate JavaScript to enable the search functionality.
-            {% endtrans %}
-          </p>
-        </div>
+      <div id="fallback" class="admonition warning">
+        <script type="text/javascript">$('#fallback').hide();</script>
         <p>
           {% trans %}
-          From here you can search these documents. Enter your search words into
-          the box below and click "search". Note that the search function will
-          automatically search for all of the words. Pages containing fewer words
-          won't appear in the result list.
+          Please activate JavaScript to enable the search functionality.
           {% endtrans %}
         </p>
       </div>
-      <div class="b-two-cols-right">
-        {% include "searchbox.html" %}
-      </div>
+      <p>
+        {% trans %}
+        From here you can search these documents. Enter your search words into
+        the box below and click "search". Note that the search function will
+        automatically search for all of the words. Pages containing fewer words
+        won't appear in the result list.
+        {% endtrans %}
+      </p>
     </div>
   </div>
 </section>
