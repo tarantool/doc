@@ -31,7 +31,7 @@
         position: absolute;
         top: 40px;
         left: 0;
-        background: #eaeaea /*url(mobile-logo.svg) 28px 5px no-repeat*/ ;
+        background: #eaeaea; /* url(mobile-logo.svg) 28px 5px no-repeat; */
         background-size: 96px 31px;
         /* padding: 80px 0px 15px; */
         /* height: 100vh */;
@@ -42,27 +42,36 @@
             overflow: auto;
             .b-menu {
                 height: auto;
-            }
-            li {
-                margin: 0;
-                display: block;
-                width: 100%;
-                border-top: 1px solid black;
+
                 li {
-                    &:last-child {
-                        border-bottom: 1px solid black;
+                    text-align: center;
+                    margin: 0;
+                    display: block;
+                    width: 100%;
+                    /* border-top: 1px solid black; */
+                    /*
+                    li {
+                        &:last-child {
+                            border-bottom: 1px solid black;
+                        }
+                        &.p-active {
+                            border-top: 0px solid black;
+                        }
+                        a {
+                            font-size: 21px;
+                            line-height: 24px;
+                            padding: 9px 27px 13px;
+                            width: ~"calc(100% - 54px)";
+                            display: block;
+                        }
                     }
-                    &.p-active {
-                        border-top: 0px solid black;
-                    }
-                    a {
-                        font-size: 21px;
-                        line-height: 24px;
-                        padding: 9px 27px 13px;
-                        width: ~"calc(100% - 54px)";
-                        display: block;
-                    }
+                    */
                 }
+            }
+            .b-doc-language_selector-list {
+                align-self: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
         }
     }
