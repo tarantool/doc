@@ -109,23 +109,23 @@
 {# Modify i_links to add records to site #}
 {% if not wp_local %}
   {% set i_links = [
-    ("Overview",      "https://tarantool.org/{{ language }}/",              "index"),
-    ("Try",           "https://tarantool.org/{{ language }}/try.html",      "try"),
-    ("Documentation", "https://tarantool.org/{{ language }}/doc.html",      "doc"),
+    ("Main",          "https://tarantool.org/{{ language }}/",              "index"   ),
+    ("Try",           "https://tarantool.org/{{ language }}/try.html",      "try"     ),
+    ("Documentation", "https://tarantool.org/{{ language }}/doc.html",      "doc"     ),
     ("Download",      "https://tarantool.org/{{ language }}/download.html", "download"),
-    ("Careers",       "https://tarantool.org/{{ language }}/careers.html",  "careers"),
-    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",    "rocks"),
-    ("Cloud",         "https://tarantool.io/",                              "cloud")
+    ("Cloud",         "https://tarantool.io/",                              "cloud"   ),
+    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",    "rocks"   ),
+    ("Careers",       "https://tarantool.org/{{ language }}/careers.html",  "careers" ),
   ] %}
 {% else %}
   {% set i_links = [
-    ("Overview",      pathto("index"),         "index"),
-    ("Try",           pathto("try"),           "try"),
-    ("Documentation", pathto("doc"),           "doc"),
+    ("Main",          pathto("index"),         "index"   ),
+    ("Try",           pathto("try"),           "try"     ),
+    ("Documentation", pathto("doc"),           "doc"     ),
     ("Download",      pathto("download"),      "download"),
-    ("Careers",       pathto("careers"),       "careers"),
-    ("Rocks",         pathto("rocks"),         "rocks"),
-    ("Cloud",         "https://tarantool.io/", "cloud")
+    ("Cloud",         "https://tarantool.io/", "cloud"   ),
+    ("Rocks",         pathto("rocks"),         "rocks"   ),
+    ("Careers",       pathto("careers"),       "careers" ),
   ] %}
 {% endif %}
 
@@ -136,6 +136,8 @@
       <li class="b-menu-item p-active">
       {% elif pagename is documentation and item[2] == "doc" %}
       <li class="b-menu-item p-active">
+      {% elif item[2] == "cloud" %}
+      <li class="b-menu-item p-cloud">
       {% else %}
       <li class="b-menu-item">
       {% endif %}
@@ -170,13 +172,16 @@
           {{ i_menu()         }}
           <div class="b-header_menu-top-ctl">
             {{ language_selector() }}
-            <button class="b-search-btn"> <i class="fa fa-search fa-2x"></i> </button>
+            <a class="b-search-btn" href="#">
+              <i class="fa fa-search"></i>
+            </a>
           </div>
         </div>
         <div class="b-header_menu-bottom">
           <form role="search" class="b-header_menu-search" action="{{ pathto('search') }}" method="get">
-            <input name="q" type="search" class="b-header_menu-search-text" placeholder="Search">
-            <input class="b-header_menu-search-but" type="submit" value="Search">
+            <input name="q" type="search" class="b-header_menu-search-text"
+                   placeholder="Search Tarantool.org web site and documentation">
+            <input class="b-header_menu-search-but" type="submit" value="Go">
           </form>
         </div>
       </nav>

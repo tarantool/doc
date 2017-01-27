@@ -11,28 +11,28 @@
 @logo-mobile:   data-uri("data:image/svg+xml;base64", "logo/logo-mobile.svg");
 
 .i-boxdown {
-    width:12px;
-    height:15px;
+    width:  12px;
+    height: 15px;
     background-image: @icon-boxdown;
 }
 .i-folder {
-    width:14px;
-    height:12px;
+    width:  14px;
+    height: 12px;
     background-image: @icon-folder;
 }
 .i-latest {
-    width:12px;
-    height:12px;
+    width:  12px;
+    height: 12px;
     background-image: @icon-latest;
 }
 .i-project {
-    width:13px;
-    height:13px;
+    width:  13px;
+    height: 13px;
     background-image: @icon-project;
 }
 .i-download {
-    width:15px;
-    height:15px;
+    width:  15px;
+    height: 15px;
     background-image: @icon-download;
 }
 
@@ -50,17 +50,17 @@
 
 .b-block-gray {
     background: #262626;
-    color:      #FFFFFF;
+    color:      #ffffff;
 }
 
 .b-block-lightgray {
     background: #404040;
-    color:      #FFFFFF;
+    color:      #ffffff;
 }
 
 .b-block-black {
     background: #000000;
-    color:      #FFFFFF;
+    color:      #ffffff;
 }
 
 .b-block,
@@ -91,7 +91,7 @@
     display: block;
 }
 .b-header {
-    background: #FFF;
+    background: #ffffff;
 }
 .b-header-wrapper,
 .b-footer-wrapper {
@@ -108,7 +108,7 @@
     height:     46px;
     margin:     -46px auto 0 auto;
     font-size:  12px;
-    background: #FFF;
+    background: #ffffff;
 
     a { text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -123,6 +123,7 @@
             .b-menu {
                 height:  auto;
                 display: inline;
+
                 .b-menu-item {
                     padding-right:35px;
                 }
@@ -167,7 +168,7 @@
 .b-button {
     .transition-ease();
     border-radius:   9px;
-    color:           #FFF;
+    color:           #ffffff;
     border:          0;
     cursor:          pointer;
     height:          25px;
@@ -183,7 +184,7 @@
         font-size: 14px;
     }
     &:hover {
-        color:      #FFF;
+        color:      #ffffff;
         background: #2296e9;
     }
     &.b-email {
@@ -195,7 +196,7 @@
     .block-list();
     display:inline-block;
     border:1px solid #168de2;
-    background:#FFF;
+    background:#ffffff;
     border-radius: 6px;
     font-size:0;
 
@@ -204,14 +205,16 @@
         font-size:16px;
         color:#262626;
         border-right:1px solid #168de2;
-        &:last-child {
-            border:0;
-        }
+
         &:first-child .b-switcher-item-url {
             border-radius: 4px 0 0 4px;
         };
-        &:last-child .b-switcher-item-url {
-            border-radius: 0 4px 4px 0;
+        &:last-child {
+            border: 0;
+
+            .b-switcher-item-url {
+                border-radius: 0 4px 4px 0;
+            }
         }
     }
     .b-switcher-item-url {
@@ -226,7 +229,7 @@
             background: #e7f3fc;
         }
         &.p-active {
-            color:      #FFF;
+            color:      #ffffff;
             background: #168de2;
         }
     }
@@ -253,14 +256,17 @@
         .b-menu-item {
             &.p-active {
                 .transition-ease();
-                background:#168de2;
+                background: #168de2;
                 .b-menu-item-url {
-                    color:#FFF;
+                    color: #ffffff;
+                }
+                &:hover {
+                    background: #168de2;
                 }
             }
             &:hover {
                 .transition-ease();
-                background:#e7f3fc;
+                background: #e7f3fc;
             }
             .b-menu-item-url {
                 height:    21px;
@@ -287,19 +293,22 @@
 
         .menu-default();
 
+        .p-cloud {
+            a {
+                color: #ff4646;
+                &:hover { background: #ffeeee; }
+            }
+        }
         .b-header_menu-top-ctl {
             display:         flex;
             flex-direction:  row;
             justify-content: space-between;
-            width:           150px;
+            flex:            0 0 150px;
 
             .b-search-btn {
-                background: #ffffff;
-                width: 50%;
-                margin:  3px  0px 3px  5px;
-                padding: 9px  0px 9px 17px;
-                outline: none;
-                border:  none;
+                margin:    7px auto 8px;
+                color:     #000000;
+                font-size: 25px;
             }
             .b-doc-language_selector-list {
                 .b-doc-language_selector-item {
@@ -338,10 +347,10 @@
                 -webkit-appearance: none;
             }
             .b-header_menu-search-but {
+                border:       none;
+                margin:       0;
                 background:   #ffffff;
                 color:        #3366bb;
-                border:       none;
-                margin:       0px;
                 &:hover {
                     background: #e7f3fc;
                 }
