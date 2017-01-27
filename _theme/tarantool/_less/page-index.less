@@ -6,7 +6,6 @@
     width:  @width;
     height: @height;
     &:after, &:before {
-        /* background-image: data-uri("data:image/png;base64", @imgpath); */
         background-image: url(@imgpath)
     }
 }
@@ -189,18 +188,36 @@
     }
 }
 
+.b-customers-bar {
+    display:         flex;
+    flex-flow:       row wrap;
+    justify-content: space-around;
+    align-items:     stretch;
+}
+
+.i-avito    { .customer-icon(132px, 37px, "images/logo_avito.png");    }
+.i-badoo    { .customer-icon(130px, 37px, "images/logo_badoo.png");    }
+.i-mailru   { .customer-icon(126px, 39px, "images/logo_mailru.png");   }
+.i-sberbank { .customer-icon(153px, 29px, "images/logo_sberbank.png"); }
+.i-qiwi     { .customer-icon(120px, 60px, "images/logo_qiwi.png");     }
+.i-wallarm  { .customer-icon(130px, 63px, "images/logo_wallarm.png");  }
+.i-yota     { .customer-icon(130px, 63px, "images/logo_yota.png");     }
+
 .b-customers {
     .b-block-wrapper {
         padding-bottom: 41px;
     }
     .b-section-title {
-        margin-bottom: 53px;
+        margin-bottom:  1em;
     }
-    .b-cols-item {
-        width:          1%;
+    .b-customers-bar-item {
         vertical-align: middle;
+        flex:        1 0 200px;
+        padding-top:      20px;
+        padding-bottom:   20px;
+        text-align:     center;
     }
-    .b-cust_logo {
+    .b-customer_logo {
         .transition-ease();
         display:inline-block;
         position:relative;
@@ -312,14 +329,6 @@
     height: 393px;
 }
 
-.i-mailru   { .customer-icon(126px, 39px, "images/logo_mailru.png");   }
-.i-badoo    { .customer-icon(130px, 37px, "images/logo_badoo.png");    }
-.i-sberbank { .customer-icon(153px, 29px, "images/logo_sberbank.png"); }
-.i-avito    { .customer-icon(132px, 37px, "images/logo_avito.png");    }
-.i-qiwi     { .customer-icon(120px, 60px, "images/logo_qiwi.png");     }
-.i-wallarm  { .customer-icon(130px, 63px, "images/logo_wallarm.png");
-    margin-bottom: 36px;
-}
 
 @media screen and (max-width: 992px) {
     .b-mainhead {
