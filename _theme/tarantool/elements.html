@@ -114,16 +114,18 @@
     ("Documentation", "https://tarantool.org/{{ language }}/doc.html",      "doc"),
     ("Download",      "https://tarantool.org/{{ language }}/download.html", "download"),
     ("Careers",       "https://tarantool.org/{{ language }}/careers.html",  "careers"),
-    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",    "rocks")
+    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",    "rocks"),
+    ("Cloud",         "https://tarantool.io/",                              "cloud")
   ] %}
 {% else %}
   {% set i_links = [
-    ("Overview",      pathto("index"),    "index"),
-    ("Try",           pathto("try"),      "try"),
-    ("Documentation", pathto("doc"),      "doc"),
-    ("Download",      pathto("download"), "download"),
-    ("Careers",       pathto("careers"),  "careers"),
-    ("Rocks",         pathto("rocks"),    "rocks")
+    ("Overview",      pathto("index"),         "index"),
+    ("Try",           pathto("try"),           "try"),
+    ("Documentation", pathto("doc"),           "doc"),
+    ("Download",      pathto("download"),      "download"),
+    ("Careers",       pathto("careers"),       "careers"),
+    ("Rocks",         pathto("rocks"),         "rocks"),
+    ("Cloud",         "https://tarantool.io/", "cloud")
   ] %}
 {% endif %}
 
