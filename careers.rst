@@ -222,3 +222,141 @@ Tarantool - Careers
                   :link: https://hh.ru/vacancy/18449475
                   :title: Link to HeadHunter
 
+        * Solution Engineer
+
+          Tarantool is an open-source DBMS and application server developed at
+          Mail.Ru Group. The project is built and maintained (testing,
+          documentation, benchmarks, builds) by the Tarantool team alone.
+          Sometimes we contribute to other related open-source projects (LuaJIT,
+          libev). Tarantool developers give talks at top IT conferences (both in
+          Russia and abroad), regularly publish specialized articles, hold
+          workshops and even author a technology podcast (devopsdeflope.ru).
+
+          Apart from our involvement in the open-source community, we’ve started
+          selling Tarantool-based solutions to other companies. We’re looking
+          for a skilled developer who’ll work on key objectives in this field.
+
+          **Responsibilities:**
+
+          * work with Tarantool’s strategic partners;
+          * create technical and design specifications;
+          * develop Tarantool-based end-user solutions from scratch;
+          * cover developed solutions with tests (full test automation);
+          * integrate developed solutions into our clients’ projects;
+          * walk each client through all stages of operational acceptance
+            testing;
+          * deploy project to production;
+          * work with the open-source community (project’s full source code is
+            available on github.com).
+
+          **Requirements:**
+
+          * good knowledge of any modern scripting language (Python, Go,
+            Node.js, Lua and so on);
+          * interest in and eagerness to develop high-load projects;
+          * 3+ years of experience of commercial software development;
+          * experience designing and developing a REST API;
+          * ability to see projects through to the end.
+
+          **Will be a plus:**
+
+          * experience using NoSQL databases in production;
+          * experience working with message queues in production;
+          * Lua/Tarantool developing experience;
+          * participation in any open source project;
+          * advanced English;
+          * basic knowledge of JavaScript and experience with any of these
+            technologies: jQuery, AngularJS, Backbone.js, React;
+          * any experience with C/C++ (most team members are C/C++ developers).
+
+          **What we offer:**
+
+          * **comfortable work environment:** large open-space office,
+            sound-absorbing panels, tens of conference rooms, extra monitors,
+            powerful hardware and MacBooks, if needed;
+          * **tasty food:** the office has a restaurant offering breakfasts and
+            lunches, and two kitchenettes on each floor, where you can always
+            find some fruit, berries, tea, coffee, Coca-Cola and, sure enough,
+            cookies;
+          * **leisure with pleasure:** spacious lounge zone, massage chairs,
+            fresh juice bar, swings, cosy corners with comforters and pillows
+            for rest, video game consoles, cinema;
+          * **comprehensive healthcare coverage:** great voluntary medical
+            insurance from day one that includes dental care and even massage;
+          * **keeping fit:** the office has free gym (with all necessary
+            equipment and, of course, shower rooms), tennis tables and
+            even a soccer field;
+          * **great location:** the office is situated within a five-minute’s
+            walk from the Airport metro station. Those who get to work by car
+            can use our 5-story underground parking. And yes, we do have free
+            spots there;
+          * **professional development:** our office often hosts seminars,
+            training sessions and various developer events: Moscow.pm,
+            CocoaHeads Moscow, UX Wednesday and the like. It goes without
+            saying that we send our employees to external professional events
+            as well.
+
+          We’ll be happy to review your application and, given mutual interest,
+          make you a very tempting offer.
+
+          .. container:: b-button_container
+
+              .. wp_button::
+                  :class: b-email
+                  :link: mailto:job@tarantool.org
+                  :title: Email us
+
+              .. wp_button::
+                  :link: https://corp.mail.ru/ru/jobs/vacancy/1867/
+                  :title: На русском
+
+        * Certified Tarantool Developer
+
+          We at Mail.Ru Group are developing a database management system called
+          Tarantool. It’s one of the world’s fastest in-memory databases used both
+          internally at Mail.Ru Group and externally at companies like Beeline,
+          QIWI, Avito and Badoo.
+
+          We assist Tarantool’s external partners in finding and certifying
+          developers. A certified developer can work for one of our partners
+          either full time or on a piecework basis.
+
+          The certificate is issued following a successful in-person interview,
+          based on an undisclosed scoring system.
+
+          The procedure is completely free. The certificate is valid for one year
+          from the issuance date. Being a certified Tarantool developer gives you
+          a chance to get hired by one of our partners, either by directly
+          contacting them or through our assistance. Some of our partners are
+          currently willing to employ such specialists. After receiving the
+          certificate, you may ask us to negotiate, on your behalf, your desired
+          salary or hourly rate with a prospective employer. We’ll recommend that
+          our partner pay you a specified amount. This process is totally free and
+          transparent.
+
+          **Requirements:**
+
+          * 3+ years of commercial experience developing in any programming
+            language;
+          * familiarity with SQL and NoSQL data storage and processing
+            technologies;
+          * (not necessarily commercial) experience using Tarantool.
+
+          **Will be a plus:**
+
+          * experience with high-load services
+
+          **What we offer:**
+
+          * full-/part-time employment with one of our partners
+
+          .. container:: b-button_container
+
+              .. wp_button::
+                  :class: b-email
+                  :link: mailto:job@tarantool.org
+                  :title: Email us
+
+              .. wp_button::
+                  :link: https://corp.mail.ru/ru/jobs/vacancy/1609/
+                  :title: На русском
