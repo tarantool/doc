@@ -141,7 +141,7 @@ $(document).ready(function () {
   /* Search additions for sphinx */
   $(function() {
     $(".b-header-search input").focusin(function() {
-      $(this).attr("placeholder", "Search this manual");
+      $(this).attr("placeholder", "Search tarantool.org web site and documentation");
     });
     $(".b-header-search input").focusout(function() {
       $(this).attr("placeholder", "");
