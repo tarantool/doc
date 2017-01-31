@@ -8,8 +8,8 @@ Tarantool - Documentation
     :title: Tarantool manual
     :class: b-block-lightgray b-downloads-top
 
-    Here is a **complete Tarantool manual**. It embraces all aspects of using
-    Tarantool: from introductory information and excercises for beginners
+    Here is a **complete manual for Tarantool 1.7**. It embraces all aspects of
+    using Tarantool: from introductory information and excercises for beginners
     -- to advanced instructions and detailed references for power users and
     contributors.
 
@@ -23,7 +23,8 @@ Tarantool - Documentation
 
         .. NOTE::
 
-            Документация находится в процессе перевода.
+            Документация находится в процессе перевода и может
+            отставать от английской версии.
 
     .. ddlist::
 
