@@ -18,11 +18,15 @@ Apart from a log sequence number and the data change request (formatted as in
 :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`),
 each WAL record contains a header, some metadata, and then the data formatted
 according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules.
-For example this is what the WAL file looks like after the first INSERT request
-("s:insert({1})") for the introductory sandbox exercise
-":ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>`“.
-On the left are the hexadecimal bytes that one would see with: |br|
-``$ hexdump 00000000000000000000.xlog`` |br|
+For example, this is what the WAL file looks like after the first INSERT request
+("s:insert({1})") for the sandbox database created in our
+:ref:`"Getting started" exercises <getting_started>`.
+On the left are the hexadecimal bytes that you would see with:
+
+.. code-block:: console
+
+   $ hexdump 00000000000000000000.xlog
+   
 and on the right are comments.
 
 .. code-block:: none

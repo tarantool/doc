@@ -34,9 +34,10 @@ learning, type the statements in with the tarantool client while reading along.
 Configure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to use the "tarantool_sandbox" that was created in section
-:ref:`first database <user_guide_getting_started-first_database>`. So there is a single space, and a numeric primary key,
-and a running tarantool server which also serves as a client.
+We are going to use the Tarantool sandbox that was created our
+:ref:`"Getting started" exercises <getting_started>`.
+So there is a single space, and a numeric primary key,
+and a running Tarantool server which also serves as a client.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Delimiter
@@ -568,8 +569,8 @@ there was an attempt to add it to the sum. By first checking
 the database is in perfect shape can skip this kind of thing.
 
 And the function is complete. Time to test it. Starting with an empty database,
-defined the same way as the sandbox database that was introduced in
-:ref:`first database <user_guide_getting_started-first_database>`,
+defined the same way as the sandbox database in our
+:ref:`"Getting started" exercises <getting_started>`,
 
 .. code-block:: lua
 

@@ -10,17 +10,14 @@ if needed.
 How to read the documentation
 -------------------------------------------------------------------------------
 
-To get started, you can either *download the whole Tarantool package*
-as described in the first part of 
-:ref:`Chapter 2 "Getting Started" <user_guide_getting_started>`,
-or you can skip the download and *connect to the online Tarantool server*
-running on the web at http://try.tarantool.org.
-Either way, as the first tryout, you can follow the introductory example
-"Starting Tarantool and making your first database"
-from :ref:`the second part of Chapter 2 <user_guide_getting_started-first_database>`.
-If you want more hands-on experience,
-proceed to the :ref:`"Tutorials" <tutorials>` part after you are through
-with Chapter 2.
+To get started, you can install and launch Tarantool using
+:ref:`a Docker container <getting_started-using_docker>`,
+:ref:`a binary package <getting_started-using_binary>`,
+or the online Tarantool server at http://try.tarantool.org.
+Either way, as the first tryout, you can follow the introductory exercises
+from :ref:`Chapter 2 "Getting started" <getting_started>`.
+If you want more hands-on experience, proceed to :ref:`Tutorials <tutorials>`
+after you are through with Chapter 2.
 
 :ref:`Chapter 3 "Database" <database-chapter>` is about using Tarantool
 as a NoSQL DBMS, whereas :ref:`Chapter 4 "Application server" <app_server>`

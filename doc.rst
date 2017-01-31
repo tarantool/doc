@@ -92,7 +92,7 @@ Tarantool - Documentation
 .. _Lua tutorials: doc/tutorials/lua_tutorials.html
 .. _C tutorial: doc/tutorials/c_tutorial.html
 .. _Preface: doc/book/intro.html
-.. _Getting started: doc/book/user_guide_getting_started.html
+.. _Getting started: doc/book/getting_started/index.html
 .. _Database: doc/book/box/index.html
 .. _Application server: doc/book/app_server.html
 .. _Server administration: doc/book/administration.html

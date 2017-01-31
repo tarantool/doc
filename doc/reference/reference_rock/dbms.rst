@@ -52,10 +52,11 @@ statement to the server and receive results, including multiple result sets.
          Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Check the instructions for :ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>`
-that apply for the environment where tarantool was installed. In addition to
+Check the instructions for
+`downloading and installing a binary package <http://tarantool.org/download.html>`_
+that apply for the environment where Tarantool was installed. In addition to
 installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add
-the line
+the line:
 
 .. code-block:: bash
 
@@ -407,8 +408,8 @@ any PostgreSQL statement to the server and receive results.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Check the instructions for
-:ref:`Downloading and installing a binary package <user_guide_getting_started-downloading_and_installing_a_binary_package>`
-that apply for the environment where tarantool was installed. In addition to
+`downloading and installing a binary package <http://tarantool.org/download.html>`_
+that apply for the environment where Tarantool was installed. In addition to
 installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add
 the line:
 

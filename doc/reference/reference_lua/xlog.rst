@@ -26,9 +26,8 @@ file format is in section :ref:`Data persistence and the WAL file format
     **Example:**
 
     This will read the first write-ahead-log (WAL) file that was created in the
-    :ref:`wal_dir <cfg_basic-wal_dir>` directory by the introductory sandbox
-    exercise ":ref:`Starting Tarantool and making your first database
-    <user_guide_getting_started-first_database>`“.
+    :ref:`wal_dir <cfg_basic-wal_dir>` directory 
+    in our :ref:`"Getting started" exercises <getting_started>`.
 
     Each result from ``pairs()`` is formatted with MsgPack so its structure can
     be specified with :ref:`__serialize <msgpack-serialize>`.

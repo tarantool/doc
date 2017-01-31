@@ -9,7 +9,7 @@ User's Guide
     :numbered:
 
     intro
-    user_guide_getting_started
+    getting_started/index
     box/index
     app_server
     administration

@@ -7,9 +7,9 @@ Data model
 This section describes how Tarantool stores values and what operations with data
 it supports.
 
-If you tried out the 
-:ref:`Starting Tarantool and making your first database <user_guide_getting_started-first_database>`
-exercise from "Getting Started", then your database looks like this:
+If you tried to create a database as suggested in our
+:ref:`"Getting started" exercises <getting_started>`,
+then your test database now looks like this:
 
 .. image:: data_model.svg
 
@@ -294,6 +294,8 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | the key order is: booleans,      |                      |                    |
     |                            | then numbers, then strings.      |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
+
+.. _index-box_persistence:
 
 --------------------------------------------------------------------------------
 Persistence
