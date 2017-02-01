@@ -9,7 +9,7 @@ Tarantool - Documentation
     :class: b-block-lightgray b-downloads-top
 
     Here is a **complete manual for Tarantool 1.7**. It embraces all aspects of
-    using Tarantool: from introductory information and excercises for beginners
+    using Tarantool: from introductory information and exercises for beginners
     -- to advanced instructions and detailed references for power users and
     contributors.
 
