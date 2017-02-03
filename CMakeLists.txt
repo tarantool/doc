@@ -201,6 +201,7 @@ set(STATIC_FILES
     _downloads/license_eng.docx
     _downloads/terms.docx
     _downloads/terms_eng.docx
+    _downloads/tdv.pdf
 )
 
 add_custom_target(copy-static ALL COMMENT "Copy static files")
