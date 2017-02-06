@@ -69,8 +69,8 @@ error number, the associated error string, and the error name.
     ---
     ...
 
-And here are all possible error names stored in the ``errno`` metatable (output
-abridged):
+To see all possible error names stored in the ``errno`` metatable, say
+``getmetatable(errno)`` (output abridged):
 
 .. code-block:: tarantoolsession
 
@@ -91,3 +91,4 @@ abridged):
      EDESTADDRREQ: 89
      ...
    ...
+
