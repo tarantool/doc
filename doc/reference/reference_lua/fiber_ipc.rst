@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 
 The ``fiber-ipc`` submodule allows sending and receiving messages between
-different processes and has synchronization mechanism for fibers, similar to
+different processes and has a synchronization mechanism for fibers, similar to
 "Condition Variables" and similar to operating-system functions such as
 ``pthread_cond_wait()`` plus ``pthread_cond_signal()``.
 The words "different processes" in this context mean different connections,
@@ -35,9 +35,9 @@ wake up a single fiber that has executed ``cond:wait()``. Call
 
     Create a new communication channel.
 
-    :param int capacity: positive integer as great as the maximum number of
-                         slots (spaces for ``get`` or ``put`` messages)
-                         that might be pending at any given time.
+    :param int capacity: the maximum number of slots (spaces for
+                         ``channel:put`` messages) that can be in use at once.
+                         The default is 0.
 
     :return: new channel.
     :rtype:  userdata, possibly including the string "channel ...".
@@ -47,76 +47,78 @@ wake up a single fiber that has executed ``cond:wait()``. Call
     .. method:: put(message[, timeout])
 
         Send a message using a channel. If the channel is full,
-        ``channel:put()`` blocks until there is a free slot in the channel.
+        ``channel:put()`` waits until there is a free slot in the channel.
 
-        :param lua_object message: string
-        :param timeout: number
-        :return: If timeout is provided, and there is no free slot in the
-                 channel for the duration of the timeout, ``channel:put()``
-                 returns false. Otherwise it returns true.
+        :param lua-value message: what will be sent, usually a string or number or table
+        :param number timeout: maximum number of seconds to wait for a slot to become free
+        :return: If timeout is specified, and there is no free slot in the
+                 channel for the duration of the timeout, then the return value
+                 is ``false``. If the channel is closed, then the return value is ``false``.
+                 Otherwise, the return value is ``true``, indicating success.
         :rtype:  boolean
 
     .. method:: close()
 
-        Close the channel. All waiters in the channel will be woken up. All
-        following ``channel:put()`` or ``channel:get()`` operations will return
-        an error (``nil``).
+        Close the channel. All waiters in the channel will stop waiting. All
+        following ``channel:get()`` operations will return ``nil``, and all
+        following ``channel:put()`` operations will return ``false``.
 
     .. method:: get([timeout])
 
-        Fetch a message from a channel. If the channel is empty,
-        ``channel:get()`` blocks until there is a message.
+        Fetch and remove a message from a channel. If the channel is empty,
+        ``channel:get()`` waits for a message.
 
-        :param timeout: number
-        :return: the message placed on the channel by ``channel:put()``. If
-                 timeout is provided, and there is no message in the channel
-                 for the duration of the timeout, ``channel:get()`` returns nil.
-        :rtype:  string
+        :param number timeout: maximum number of seconds to wait for a message
+        :return: If timeout is specified, and there is no message in the
+                 channel for the duration of the timeout, then the return
+                 value is ``nil``. If the channel is closed, then the
+                 return value is ``nil``. Otherwise, the return value is
+                 the message placed on the channel by ``channel:put()``.
+        :rtype:  usually string or number or table, as determined by ``channel:put``
 
     .. method:: is_empty()
 
-        Check whether the specified channel is empty (has no messages).
+        Check whether the channel is empty (has no messages).
 
-        :return: true if the specified channel is empty
+        :return: ``true`` if the channel is empty. Otherwise ``false``.
         :rtype:  boolean
 
     .. method:: count()
 
-        Find out how many messages are on the channel. The answer is 0 if the
-        channel is empty.
+        Find out how many messages are in the channel.
 
         :return: the number of messages.
         :rtype:  number
 
     .. method:: is_full()
 
-        Check whether the specified channel is full.
+        Check whether the channel is full.
 
-        :return: true if the specified channel is full (has no room for a new
-                 message).
+        :return: ``true`` if the channel is full (the number of messages
+                 in the channel equals the number of slots so there is no room for a new
+                 message). Otherwise ``false``.
         :rtype:  boolean
 
     .. method:: has_readers()
 
-        Check whether the specified channel is empty and has readers waiting for
-        a message (because they have issued ``channel:get()`` and then blocked).
+        Check whether readers are waiting for a message because they
+        have issued ``channel:get()`` and the channel is empty.
 
-        :return: true if blocked users are waiting. Otherwise false.
+        :return: ``true`` if readers are waiting. Otherwise ``false``.
         :rtype:  boolean
 
     .. method:: has_writers()
 
-        Check whether the specified channel is full and has writers waiting
-        (because they have issued ``channel:put()`` and then blocked due to lack
-        of room).
+        Check whether writers are waiting
+        because they have issued ``channel:put()`` and the channel is full.
 
-        :return: true if blocked users are waiting. Otherwise false.
+        :return: ``true`` if writers are waiting. Otherwise ``false``.
         :rtype:  boolean
 
     .. method:: is_closed()
 
-        :return: true if the specified channel is already closed. Otherwise
-                 false.
+        :return: ``true`` if the channel is already closed. Otherwise
+                 ``false``.
         :rtype:  boolean
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
