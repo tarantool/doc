@@ -5,7 +5,7 @@ stage("Build")
     node {
         checkout scm
 
-        docker.image('tarantool/build:centos7').inside() {
+        docker.image('tarantool/build:centos7').inside('--user root:root') {
             sh "sudo yum -y install lua-devel"
             sh "sudo pip install -r requirements.txt --upgrade"
             sh "cmake3 ."
