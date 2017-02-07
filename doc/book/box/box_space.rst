@@ -1303,7 +1303,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         |             |    |      | :ref:`replication <index-box_replication>` features.    |
         +-------------+----+------+---------------------------------------------------------+
 
-    To select a row from the ``_user`` space, use ``box.space._user:select()``.
+    To select a tuple from the ``_user`` space, use ``box.space._user:select()``.
     For example, here is what happens with a select for user id = 0, which is
     the 'guest' user, which by default has no password:
 
