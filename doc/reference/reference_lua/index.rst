@@ -31,6 +31,7 @@ This reference covers Tarantool's built-in Lua modules.
     log
     msgpack
     net_box
+    osmodule
     pickle
     socket
     strict
