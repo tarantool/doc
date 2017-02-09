@@ -31,25 +31,47 @@ for spaces, users, roles, and function tuples.
         .. rst-class:: left-align-column-3
         .. rst-class:: left-align-column-4
 
-        +---------------+--------------------------------+---------+---------------------+
-        | Name          | Effect                         | Type    | Default             |
-        +===============+================================+=========+=====================+
-        | temporary     | space is temporary             | boolean | false               |
-        +---------------+--------------------------------+---------+---------------------+
-        | id            | unique identifier              | number  | last space's id, +1 |
-        +---------------+--------------------------------+---------+---------------------+
-        | field_count   | fixed field count              | number  | 0 i.e. not fixed    |
-        +---------------+--------------------------------+---------+---------------------+
-        | if_not_exists | no error if                    | boolean | false               |
-        |               | duplicate name                 |         |                     |
-        +---------------+--------------------------------+---------+---------------------+
-        | engine        | storage engine =               | string  | 'memtx'             |
-        |               | 'memtx' or 'vinyl'             |         |                     |
-        +---------------+--------------------------------+---------+---------------------+
-        | user          | user name                      | string  | current user's name |
-        +---------------+--------------------------------+---------+---------------------+
-        | format        | field names+types              | table   | (blank)             |
-        +---------------+--------------------------------+---------+---------------------+
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | Name          | Effect                                          | Type    | Default             |
+        +===============+=================================================+=========+=====================+
+        | temporary     | space contents are temporary:                   | boolean | false               |
+        |               | changes are not stored in the                   |         |                     |
+        |               | :ref:`write-ahead log <internals-wal>`          |         |                     |
+        |               | and there is no                                 |         |                     |
+        |               | :ref:`replication <index-box_replication>`.     |         |                     |
+        |               | Note re storage engine: vinyl does not          |         |                     |
+        |               | support temporary spaces.                       |         |                     |
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | id            | unique identifier:                              | number  | last space's id, +1 |
+        |               | users can refer to spaces with                  |         |                     |
+        |               | the id instead of the name                      |         |                     |
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | field_count   | fixed count of fields:                          | number  | 0 i.e. not fixed    |
+        |               | for example if                                  |         |                     |
+        |               | field_count=5, it is illegal                    |         |                     |
+        |               | to insert a tuple with fewer                    |         |                     |
+        |               | than or more than 5 fields                      |         |                     | 
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | if_not_exists | create space only if a space                    | boolean | false               |
+        |               | with the same name does not                     |         |                     |
+        |               | exist already, otherwise do                     |         |                     |
+        |               | nothing but do not cause an                     |         |                     |
+        |               | error                                           |         |                     |
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | engine        | storage engine:                                 | string  | 'memtx'             |
+        |               | 'memtx' or 'vinyl'                              |         |                     |
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | user          | name of the user who is considered to be        | string  | current user's name |
+        |               | the space's                                     |         |                     |
+        |               | :ref:`owner <authentication-owners_privileges>` |         |                     |
+        |               | for authorization purposes                      |         |                     |
+        +---------------+-------------------------------------------------+---------+---------------------+
+        | format        | field names and types:                          | table   | (blank)             |
+        |               | For an illustration with the                    |         |                     |
+        |               | ``format`` option, see the                      |         |                     |
+        |               | :ref:`box.space._space <box_space-space>`       |         |                     |
+        |               | example.                                        |         |                     |
+        +---------------+-------------------------------------------------+---------+---------------------+
 
     There are three :ref:`syntax variations <app_server-object_reference>`
     for object references targeting space objects, for example
@@ -57,12 +79,6 @@ for spaces, users, roles, and function tuples.
     will drop a space. However, the common approach is to use functions
     attached to the space objects, for example
     :ref:`space_object:drop() <box_space-drop>`.
-
-    .. NOTE::
-
-        | Note re storage engine:
-        | vinyl does not support temporary spaces.
-
 
     **Example**
 
@@ -83,9 +99,6 @@ for spaces, users, roles, and function tuples.
                 > })
        ---
        ...
-
-    For an illustration with the ``format`` clause, see
-    :ref:`box.space._space <box_space-space>` example.
 
     After a space is created, usually the next step is to
     :ref:`create an index <box_space-create_index>` for it, and then it is

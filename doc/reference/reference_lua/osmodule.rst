@@ -10,7 +10,11 @@ The os module contains the functions :ref:`execute() <os-execute>`,
 :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`,
 :ref:`remove() <os-remove>`, :ref:`date() <os-date>`,
 :ref:`exit() <os-exit>`, :ref:`time() <os-time>`,
-:ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`.
+:ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`,
+:ref:`environ() <os-environ>`,
+:ref:`setenv() <os-setenv>`,
+:ref:`setlocale() <os-setlocale>`,
+:ref:`difftime() <os-difftime>`.
 Most of these functions are described in the Lua manual
 Chapter 22 `The Operating System Library
 <https://www.lua.org/pil/contents.html#22>`_.
@@ -165,4 +169,65 @@ Chapter 22 `The Operating System Library
         tarantool> os.tmpname()
         ---
         - /tmp/lua_7SW1m2
+        ...
+
+.. _os-environ:
+
+.. function:: environ()
+
+    Return a table containing all environment variables.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> os.environ()['TERM']..os.environ()['SHELL']
+        ---
+        - xterm/bin/bash
+        ...
+
+.. _os-setenv:
+
+.. function:: setenv(variable-name, variable-value)
+
+    Set an environment variable.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> os.setenv('VERSION','99')
+        ---
+        -
+        ...
+
+.. _os-setlocale:
+
+.. function:: setlocale([new-locale-string])
+
+    Change the locale. If new-locale-string is
+    not specified, return the current locale.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> require('string').sub(os.setlocale(),1,20)
+        ---
+        - LC_CTYPE=en_US.UTF-8
+        ...
+
+.. _os-difftime:
+
+.. function:: difftime(time1, time2)
+
+    Return the number of seconds between two times.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> os.difftime(os.time() - 0)
+        ---
+        - 1486594859
         ...

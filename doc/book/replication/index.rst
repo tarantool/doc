@@ -31,6 +31,9 @@ log events for actual data-change requests, performed by the Lua code, are
 written to the log. This ensures that possible non-determinism of Lua does
 not cause replication to go out of sync.
 
+A change to a temporary space is not written to the write-ahead log,
+and therefore is not replicated.
+
 =====================================================================
 Setting up a master
 =====================================================================

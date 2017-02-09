@@ -104,7 +104,7 @@ Owners and privileges
 --------------------------------------------------------------------------------
 
 In Tarantool, all objects are organized into a hierarchy of ownership.
-The **owner** of every object is its creator. The creator of the initial database
+Ordinarily the **owner** of every object is its creator. The creator of the initial database
 state (we call it ‘universe’) --  including the database itself,
 the system spaces, the users -- is ‘admin’.
 
