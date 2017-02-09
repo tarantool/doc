@@ -50,24 +50,25 @@ client connection.
 
 .. _box_session-su:
 
-.. function:: su(user-name [, function-name])
+.. function:: su(user-name [, function-to-execute])
 
     Change Tarantool's :ref:`current user <authentication-users>` --
     this is analogous to the Unix command ``su``.
 
-    Or, if function-name is specified, change Tarantool's :ref:`current user <authentication-users>`
+    Or, if function-to-execute is specified,
+    change Tarantool's :ref:`current user <authentication-users>`
     temporarily while executing the function --
     this is analogous to the Unix command ``sudo``.
 
     :param string user-name: name of a target user
-    :param function-name: name of a function. Additional parameters may be
-                          interpreted as parameters of the named function.
+    :param function-to-execute: name of a function, or definition of a function.
+                                Additional parameters may be passed to
+                                ``box.session.su``, they will be interpreted
+                                as parameters of function-to-execute.
 
     **Example**
 
     .. code-block:: tarantoolsession
-
-        tarantool> box.session.peer(box.session.id())
 
         tarantool> function f(a) return box.session.user() .. a end
         ---
@@ -77,6 +78,13 @@ client connection.
         ---
         - guest-xxx
         ...
+
+        tarantool> box.session.su('guest',function(...) return ... end,1,2)
+        ---
+        - 1
+        - 2
+        ...
+
    
 .. _box_session-storage:
 
