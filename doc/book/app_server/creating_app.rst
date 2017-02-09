@@ -726,7 +726,7 @@ We take a standard
 where we define an upstream with our Tarantool backend running (this is another
 Docker container, see details below):
 
-.. code-block:: none
+.. code-block:: nginx
 
    upstream tnt {
          server pserver:3301 max_fails=1 fail_timeout=60s;
@@ -737,7 +737,7 @@ and add some Tarantool-specific parameters (see descriptions in the upstream
 module's `README <https://github.com/tarantool/nginx_upstream_module#directives>`_
 file):
 
-.. code-block:: none
+.. code-block:: nginx
 
    server {
      server_name tnt_test;
