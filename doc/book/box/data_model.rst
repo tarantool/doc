@@ -121,7 +121,7 @@ in TREE indexes may be non-unique.
   (for details, see reference on :ref:`box.space <box_space>` submodule).
   
   You can add, drop, or alter the definitions at runtime, with some restrictions.
-  See syntax details in reference on :ref:`box <index-box_library>` module.
+  See syntax details in reference on :ref:`box <box-module>` module.
 
 .. _index-box_data-types:
 

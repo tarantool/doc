@@ -162,7 +162,7 @@ In :ref:`box.info <box_introspection-box_info>` there is a ``box.info.replicatio
 If a replica's status is "follow", then there will be more fields --
 the list is in the section :ref:`Submodule box.info <box_introspection-box_info>`.
 
-In the :ref:`log <log>` there is a record of replication activity.
+In the :ref:`log <log-module>` there is a record of replication activity.
 If a primary server is started with:
 
 .. cssclass:: highlight

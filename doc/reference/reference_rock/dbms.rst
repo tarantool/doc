@@ -85,8 +85,6 @@ For example:
 
     luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib
 
-See also :ref:`Modules <modules>`.
-
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -439,8 +437,6 @@ For example:
 .. code-block:: bash
 
     luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib
-
-See also :ref:`Modules <modules>`.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub

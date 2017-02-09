@@ -95,7 +95,7 @@ errors, particularly database errors.
 
 3. Log.
 
-   Put messages in a log using the :ref:`log module <log>`.
+   Put messages in a log using the :ref:`log module <log-module>`.
 
    And filter messages that are automatically generated, with the :ref:`logger
    <cfg_logging-logger>` configuration parameter.

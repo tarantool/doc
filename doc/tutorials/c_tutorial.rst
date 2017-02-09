@@ -11,7 +11,7 @@ Here is one C tutorial:
 C stored procedures
 --------------------------------------------------------------------------------
 
-Tarantool can call C code with :ref:`modules <modules-example_c>`,
+Tarantool can call C code with :ref:`modules <app_server-modules>`,
 or with :ref:`ffi <cookbook-ffi_printf>`,
 or with C stored procedures.
 This tutorial only is about the third option, C stored procedures.
