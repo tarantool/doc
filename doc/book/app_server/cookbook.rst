@@ -1,14 +1,23 @@
-.. cookbook:
+.. _cookbook:
+
+--------------------------------------------------------------------------------
+Cookbook recipes
+--------------------------------------------------------------------------------
 
 Here are contributions of Lua programs for some frequent or tricky situations.
 
-Any of the programs can be executed by copying the code into a .lua file,
+You can execute any of these programs by copying the code into a ``.lua`` file,
 and then entering :samp:`chmod +x ./{program-name}.lua`
 and :samp:`./{program-name}.lua` on the terminal.
-As is usual for Tarantool/Lua programs, the first line is a "hashbang" |br|
-#!/usr/bin/env tarantool |br|
-This runs the Tarantool Lua application server, which should be on the
-execution path.
+
+The first line is a "hashbang":
+
+.. code-block:: lua
+
+   #!/usr/bin/env tarantool
+
+This runs  Tarantool Lua application server, which should be on the execution
+path.
 
 Use freely.
 

@@ -1,3 +1,5 @@
+.. _cfg_logging:
+
 * :ref:`log_level <cfg_logging-log_level>`
 * :ref:`logger <cfg_logging-logger>`
 * :ref:`logger_nonblock <cfg_logging-logger_nonblock>`

@@ -30,7 +30,7 @@ for your OS.
 To start a fully functional Tarantool instance, run a container with minimal
 options:
 
-.. code-block:: none
+.. code-block:: bash
 
    $ docker run \
      --name mytarantool \
@@ -65,7 +65,7 @@ Attaching to Tarantool
 
 To attach to Tarantool that runs inside the container, say:
 
-.. code-block:: console
+.. code-block:: bash
 
    $ docker exec -i -t mytarantool console
 
@@ -154,7 +154,7 @@ Stopping a container
 
 When the testing is over, stop the container politely:
 
-.. code-block:: console
+.. code-block:: bash
 
    $ docker stop mytarantool
 

@@ -95,7 +95,7 @@ Tarantool - Documentation
 .. _Preface: doc/book/intro.html
 .. _Getting started: doc/book/getting_started/index.html
 .. _Database: doc/book/box/index.html
-.. _Application server: doc/book/app_server.html
+.. _Application server: doc/book/app_server/index.html
 .. _Server administration: doc/book/administration.html
 .. _Replication: doc/book/replication/index.html
 .. _Connectors: doc/book/connectors/index.html

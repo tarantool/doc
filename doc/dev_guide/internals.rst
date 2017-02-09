@@ -125,6 +125,8 @@ that were created by users.
 
 Secondarily, the .snap file's records are ordered by primary key within space id.
 
+.. _internals-recovery_process:
+
 --------------------------------------------------------------------------------
 The recovery process
 --------------------------------------------------------------------------------
