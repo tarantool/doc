@@ -6,7 +6,7 @@
 
 .. module:: os
 
-The os module contains the functions :ref:`execute() <os-execute>`,
+The ``os`` module contains the functions :ref:`execute() <os-execute>`,
 :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`,
 :ref:`remove() <os-remove>`, :ref:`date() <os-date>`,
 :ref:`exit() <os-exit>`, :ref:`time() <os-time>`,
