@@ -30,7 +30,7 @@ section of this documentation.
 
 1. Use ``git`` to download the latest source code of this documentation from the
    GitHub repository ``tarantool/doc``, branch 1.7. For example, to download to a local
-   directory named `~/tarantool-doc`:
+   directory named ``~/tarantool-doc``:
 
    .. code-block:: bash
 
@@ -57,22 +57,22 @@ section of this documentation.
      make sphinx-singlehtml     # one-page English version
      make sphinx-html-ru        # multi-page Russian version
      make sphinx-singlehtml-ru  # one-page Russian version
-     make all                   # all versions -- not recommended
+     make all                   # all versions plus the entire web-site
 
-   Documentation will be created in subdirectories of `/output`:
+   Documentation will be created in subdirectories of ``/output``:
    
-   * `/output/en` (files of the English version)
-   * `/output/ru` (files of the Russian version)
+   * ``/output/en`` (files of the English version)
+   * ``/output/ru`` (files of the Russian version)
    
-   The entry point for each version is the `index.html` file in the appropriate
+   The entry point for each version is the ``index.html`` file in the appropriate
    directory.
 
 4. Set up a web-server.
 
-   Run the following command to set up a web-server. Tthe example below is for
+   Run the following command to set up a web-server. The example below is for
    Ubuntu, but the procedure is similar for other supported operating systems.
    Make sure to run it from the documentation output folder,
-   `output/en` or `output/ru`, as in the example below:
+   ``output/en`` or ``output/ru``, as in the example below:
 
    .. code-block:: bash
 
@@ -80,17 +80,18 @@ section of this documentation.
      python -m SimpleHTTPServer 8000
 
 5. Open your browser and enter ``127.0.0.1:8000/doc`` into the address box. If
-   your local documentation build is valid, the manual
-   will appear in the browser.
+   your local documentation build is valid, the manual will appear in the browser.
 
 6. To contribute to documentation, use the ``.rst`` format for drafting and
-   submit your updates as "Pull Requests" via GitHub.
+   submit your updates as a
+   `pull request <https://help.github.com/articles/creating-a-pull-request/>`_
+   via GitHub.
 
    To comply with the writing and formatting style, use the
    :ref:`guidelines <documentation_guidelines>` provided in the documentation,
    common sense and existing documents.
 
-   Notes:
+.. NOTE::
    
    * If you suggest creating a new documentation section (a whole new
      page), it has to be saved to the relevant section at GitHub.
