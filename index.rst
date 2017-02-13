@@ -232,12 +232,13 @@ Tarantool - Index
     .. raw:: html
 
         <div class="b-customers-bar">
-            <div class="b-customers-bar-item"> <a href="http://mail.ru"     class="b-customer_logo i-mailru" ></a> </div>
-            <div class="b-customers-bar-item"> <a href="http://badoo.com"   class="b-customer_logo i-badoo"  ></a> </div>
-            <div class="b-customers-bar-item"> <a href="http://avito.ru"    class="b-customer_logo i-avito"  ></a> </div>
-            <div class="b-customers-bar-item"> <a href="http://qiwi.ru"     class="b-customer_logo i-qiwi"   ></a> </div>
-            <div class="b-customers-bar-item"> <a href="http://wallarm.com" class="b-customer_logo i-wallarm"></a> </div>
-            <div class="b-customers-bar-item"> <a href="http://yota.com"    class="b-customer_logo i-yota"   ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://avito.ru"      class="b-customer_logo i-avito"     ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://badoo.com"     class="b-customer_logo i-badoo"     ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://mail.ru"       class="b-customer_logo i-mailru"    ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://qiwi.ru"       class="b-customer_logo i-qiwi"      ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://vimpelcom.com" class="b-customer_logo i-vimpelcom" ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://wallarm.com"   class="b-customer_logo i-wallarm"   ></a> </div>
+            <div class="b-customers-bar-item"> <a href="http://yota.com"      class="b-customer_logo i-yota"      ></a> </div>
         </div>
 
 .. _secondary indexes: doc/book/box/box_index.html

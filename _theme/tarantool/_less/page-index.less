@@ -2,14 +2,6 @@
 
 @lightbulb-icon: data-uri("data:image/png;base64", 'icons/lightbulb.png');
 
-.customer-icon(@width, @height, @imgpath) {
-    width:  @width;
-    height: @height;
-    &:after, &:before {
-        background-image: url(@imgpath)
-    }
-}
-
 .b-section-title {
     font-size:32px;
     margin:0 0 24px 0;
@@ -195,13 +187,24 @@
     align-items:     stretch;
 }
 
-.i-avito    { .customer-icon(132px, 37px, "images/logo_avito.png");    }
-.i-badoo    { .customer-icon(130px, 37px, "images/logo_badoo.png");    }
-.i-mailru   { .customer-icon(126px, 39px, "images/logo_mailru.png");   }
-.i-sberbank { .customer-icon(153px, 29px, "images/logo_sberbank.png"); }
-.i-qiwi     { .customer-icon(120px, 60px, "images/logo_qiwi.png");     }
-.i-wallarm  { .customer-icon(130px, 63px, "images/logo_wallarm.png");  }
-.i-yota     { .customer-icon(130px, 63px, "images/logo_yota.png");     }
+.customer-icon(@width, @height, @imgpath) {
+    width:  @width;
+    height: @height;
+    &:after, &:before {
+        background-image: url(@imgpath);
+        background-size:  @width;
+    }
+}
+
+.i-sberbank  { .customer-icon(153px, 29px, "images/logo_sberbank.png"); }
+
+.i-avito     { .customer-icon(150px, 53px, "images/logo-avito.svg");     }
+.i-badoo     { .customer-icon(150px, 55px, "images/logo-badoo.svg");     }
+.i-mailru    { .customer-icon(150px, 57px, "images/logo-mailru.svg");    }
+.i-qiwi      { .customer-icon(150px, 58px, "images/logo-qiwi.svg");      }
+.i-vimpelcom { .customer-icon(150px, 41px, "images/logo-vimpelcom.svg"); }
+.i-wallarm   { .customer-icon(150px, 81px, "images/logo-wallarm.svg");   }
+.i-yota      { .customer-icon(150px, 53px, "images/logo-yota.svg");      }
 
 .b-customers {
     .b-block-wrapper {
@@ -213,9 +216,11 @@
     .b-customers-bar-item {
         vertical-align: middle;
         flex:        1 0 200px;
-        padding-top:      20px;
-        padding-bottom:   20px;
+        padding-top:       5px;
+        padding-bottom:    5px;
         text-align:     center;
+        align-items:    center;
+        align-self:     center;
     }
     .b-customer_logo {
         .transition-ease();
