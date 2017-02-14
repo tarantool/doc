@@ -215,7 +215,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
       numbers, then strings. Legal in memtx TREE or HASH indexes, and in vinyl
       TREE indexes.
 
-    .. container:: table
+    .. container:: table stackcolumn
 
         **Index field types to use in create_index**
 

@@ -217,29 +217,11 @@ $(document).ready(function () {
         $(".b-menu-toc").removeClass('active');
         $(".toggle-navigation").removeClass('active');
       });
-
-      // $(this).stick_in_parent({
-      //   parent: ".b-cols_content",
-      //   spacer: false
-      // });
-      //
-      // $(this).trigger("sticky_kit:stick");
-      // $(this).trigger("sticky_kit:recalc");
-      // $(this).trigger("sticky_kit:unstick");
     }).click(function() {
       if (is_mobile) {
         event.stopPropagation();
       }
     });
-  });
-
-  $(function() {
-      if ($('thead').length) {
-          $('thead').parents('table').cardtable();
-      }
-      if ($('#details-about-index-field-types').length) {
-          $('#details-about-index-field-types table').stacktable();
-      }
   });
 });
 
