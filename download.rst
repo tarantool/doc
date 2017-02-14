@@ -17,6 +17,8 @@ Tarantool - Downloads
     compilation parameters and environment, it is recommended that
     production systems use the builds provided on this site.
 
+    We're building packages for x86_64 platform only.
+
     Hosting is powered by |packagecloud|.
 
 .. wp_section::
