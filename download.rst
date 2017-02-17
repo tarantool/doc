@@ -1,8 +1,8 @@
 :orphan:
 
----------------------
-Tarantool - Downloads
----------------------
+---------------------------
+Tarantool - Downloads (1.7)
+---------------------------
 
 .. wp_section::
     :class: b-block-gray b-downloads-versionlist

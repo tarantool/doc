@@ -26,6 +26,12 @@ Tarantool - Downloads (1.6)
 
     .. ddlist::
 
+        * Docker Hub
+
+          Tarantool images are available at `Docker Hub`_.
+
+          .. _Docker Hub: https://hub.docker.com/r/tarantool/tarantool/
+
         * Ubuntu
 
           We maintain an always up-to-date Ubuntu package repository.
@@ -306,12 +312,6 @@ Tarantool - Downloads (1.6)
           Tarantool images are available at `Microsoft Azure`_.
 
           .. _Microsoft Azure: https://azure.microsoft.com/en-us/marketplace/partners/my-com/tarantool/
-
-        * Docker Hub
-
-          Tarantool images are available at `Docker Hub`_.
-
-          .. _Docker Hub: https://hub.docker.com/r/tarantool/tarantool/
 
         * Building from source
 
