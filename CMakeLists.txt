@@ -89,7 +89,7 @@ add_custom_target(sphinx-singlehtml ALL
         "${CMAKE_CURRENT_SOURCE_DIR}"
         "${SPHINX_EN_HTML_DIR}"
         doc/singlehtml.rst
-    COMMENT "Building HTML documentation with Sphinx"
+    COMMENT "Building HTML single-page documentation with Sphinx"
     DEPENDS update-submodules
 )
 
@@ -101,7 +101,7 @@ add_custom_target(sphinx-html-ru ALL
         "${CMAKE_CURRENT_SOURCE_DIR}"
         "${SPHINX_RU_HTML_DIR}"
         -Dlanguage=ru
-    COMMENT "Building HTML documentation with Sphinx"
+    COMMENT "Building Russian HTML documentation with Sphinx"
     DEPENDS update-submodules
 )
 
@@ -114,7 +114,7 @@ add_custom_target(sphinx-singlehtml-ru ALL
         "${SPHINX_RU_HTML_DIR}"
         doc/singlehtml.rst
         -Dlanguage=ru
-    COMMENT "Building HTML documentation with Sphinx"
+    COMMENT "Building Russian HTML single-page documentation with Sphinx"
     DEPENDS update-submodules
 )
 
@@ -148,7 +148,7 @@ add_custom_target(sphinx-linkcheck
 )
 
 if (LATEX_FOUND)
-    add_custom_target(sphinx-pdf-ru ALL COMMENT "PDF generation")
+    add_custom_target(sphinx-pdf-ru COMMENT "PDF generation")
     add_custom_command(TARGET sphinx-pdf-ru
         COMMAND "${SPHINX_EXECUTABLE}"
             -b latex
@@ -168,7 +168,7 @@ if (LATEX_FOUND)
         COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_RU_DIR}/Tarantool.pdf
                                          ${SPHINX_RU_HTML_DIR}/doc/)
 
-    add_custom_target(sphinx-pdf ALL COMMENT "PDF generation")
+    add_custom_target(sphinx-pdf COMMENT "PDF generation")
     add_custom_command(TARGET sphinx-pdf
         COMMAND "${SPHINX_EXECUTABLE}"
             -b latex

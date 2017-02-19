@@ -26,7 +26,7 @@ extensions = [
     'ext.WebPageSection',
     'ext.WebPageButtons',
     'ext.WebPageRocks',
-    'ext.WebPageMaps'
+    'ext.WebPageMap'
 ]
 primary_domain = 'lua'
 source_suffix = '.rst'
@@ -63,11 +63,12 @@ exclude_patterns = [
 #     'doc'
 ]
 
+base_url = "https://tarantool.org/"
 # -- Options for HTML output ----------------------------------------------
 html_theme           = 'tarantool'
 html_theme_path      = ['../_theme']
 html_theme_options   = {
-    'base_url': "https://tarantool.org/"
+    'base_url': base_url
 }
 html_static_path     = ['../_static']
 html_show_sphinx     = False
@@ -78,6 +79,7 @@ html_use_index       = True
 html_use_smartypants = True
 html_compact_lists   = True
 html_copy_source     = False
+html_use_opensearch  = base_url
 
 html_context = {
     'website': {

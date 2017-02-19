@@ -8,7 +8,8 @@ import xml.etree.ElementTree as ET
 def add_html_link(app, pagename, templatename, context, doctree):
     """As each page is built, collect page names for the sitemap"""
     base_url = app.config['html_theme_options'].get('base_url', '')
-    if not base_url or context.get('meta', {}).get('nositemap', False):
+    if not base_url or not context.get('meta', None) or \
+            context['meta'].get('nositemap', False):
         return
     entry = {}
 
@@ -25,8 +26,8 @@ def add_html_link(app, pagename, templatename, context, doctree):
     #     entry['lastmod'] = time.strftime("%Y-%m-%dT%H:%M:%S+00:00",
     #                                      time.gmtime(filetime))
 
-    entry['priority']    = context.get('meta', {}).get('priority',   '0.5')
-    entry['changefreq']  = context.get('meta', {}).get('changefreq', 'weekly')
+    entry['priority']    = context['meta'].get('priority',   '0.5')
+    entry['changefreq']  = context['meta'].get('changefreq', 'weekly')
 
     app.sitemap_links.append(entry)
 #
