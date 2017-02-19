@@ -1,5 +1,18 @@
 User-Agent: *
+
 Disallow: /dist
 Disallow: /doc/_sources
 Disallow: /en/doc/_sources
 Disallow: /ru/doc/_sources
+
+Disallow: /benchmark.html
+Disallow: /en/benchmark.html
+Disallow: /ru/benchmark.html
+Disallow: /404.html
+Disallow: /en/404.html
+Disallow: /ru/404.html
+
+Host: https://tarantool.org
+
+Sitemap: https://tarantool.org/en/sitemap.xml
+Sitemap: https://tarantool.org/ru/sitemap.xml

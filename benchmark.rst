@@ -1,4 +1,5 @@
 :orphan:
+:nositemap:
 
 -----------------------------
 Tarantool - Benchmarks (YCSB)

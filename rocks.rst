@@ -1,4 +1,5 @@
 :orphan:
+:priority: 0.91
 
 -----------------
 Tarantool - Rocks

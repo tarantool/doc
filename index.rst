@@ -1,4 +1,5 @@
 :orphan:
+:priority: 1
 
 -----------------
 Tarantool - Index

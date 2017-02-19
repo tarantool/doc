@@ -25,7 +25,8 @@ extensions = [
     'ext.DropdownList',
     'ext.WebPageSection',
     'ext.WebPageButtons',
-    'ext.WebPageRocks'
+    'ext.WebPageRocks',
+    'ext.WebPageMaps'
 ]
 primary_domain = 'lua'
 source_suffix = '.rst'
@@ -65,7 +66,9 @@ exclude_patterns = [
 # -- Options for HTML output ----------------------------------------------
 html_theme           = 'tarantool'
 html_theme_path      = ['../_theme']
-html_theme_options   = {}
+html_theme_options   = {
+    'base_url': "https://tarantool.org/"
+}
 html_static_path     = ['../_static']
 html_show_sphinx     = False
 html_show_copyright  = False
@@ -74,6 +77,7 @@ html_use_modindex    = False
 html_use_index       = True
 html_use_smartypants = True
 html_compact_lists   = True
+html_copy_source     = False
 
 html_context = {
     'website': {
@@ -138,9 +142,8 @@ intersphinx_mapping = {
 }
 
 latex_elements = {
-        'fontenc': r'\usepackage[T1,T2A]{fontenc}'
+    'fontenc': r'\usepackage[T1,T2A]{fontenc}'
 }
-
 
 intersphinx_cache_limit = 0
 
