@@ -22,6 +22,31 @@
   <link rel="icon" type="image/png" sizes="192x192" href={{ pathto("_static/favicon/favicon-192x192.png", 1) }}>
 {% endset %}
 
+{% set canonical_url = [
+  use_opensearch,
+  language,
+  '/',
+  pathto(pagename, 1),
+  '.html'
+] | join('')
+%}
+{% set opengraph %}
+  {% set canonical_url = [
+    use_opensearch, language, '/', pathto(pagename, 1), '.html'
+  ] | join('') %}
+  {% set logo_url = [
+    use_opensearch, language, '/', pathto('tarantool.png', 1)
+  ] | join('') %}
+
+  <meta property="og:title"       content="{{ title }}">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="{{ canonical_url }}">
+  <meta property="og:image"       content="{{ logo_url }}">
+  {% if pagename not in ['index'] %}
+  <meta property="og:description" content="Get your data in RAM. Get compute close to data. Enjoy the performance.">
+  {% endif %}
+{% endset %}
+
 {% set is_website  = website.get(pagename, False) %}
 {% set is_mainpage = pagename in ["doc/index", "doc/singlehtml"] %}
 
@@ -64,7 +89,8 @@
     <link rel="search" type="application/opensearchdescription+xml"
           title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
           href="{{ pathto('_static/opensearch.xml', 1) }}"/>
-    {{ favicon }}
+    {{  favicon  }}
+    {{ opengraph }}
     <title>{{ title | striptags }}</title>
     {%- for scriptfile in script_files %}
       <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
