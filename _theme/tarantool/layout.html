@@ -35,7 +35,7 @@
     use_opensearch, language, '/', pathto(pagename, 1), '.html'
   ] | join('') %}
   {% set logo_url = [
-    use_opensearch, language, '/', pathto('tarantool.png', 1)
+    use_opensearch, language, '/_static/images/tarantool.png')
   ] | join('') %}
 
   <meta property="og:title"       content="{{ title }}">
