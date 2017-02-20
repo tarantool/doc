@@ -16,16 +16,16 @@
     '_static/design.css',
 ] + css_files %}
 
-{% set favicon %}
-  <link rel="icon" type="image/png" sizes="16x16"   href={{ abspath("_static/favicon/favicon-16x16.png"  ) }}>
-  <link rel="icon" type="image/png" sizes="32x32"   href={{ abspath("_static/favicon/favicon-32x32.png"  ) }}>
-  <link rel="icon" type="image/png" sizes="96x96"   href={{ abspath("_static/favicon/favicon-96x96.png"  ) }}>
-  <link rel="icon" type="image/png" sizes="192x192" href={{ abspath("_static/favicon/favicon-192x192.png") }}>
-{% endset %}
+{% set favicon -%}
+  <link rel="icon" type="image/png" sizes="16x16"   href="{{ abspath("_static/favicon/favicon-16x16.png"  ) }}">
+  <link rel="icon" type="image/png" sizes="32x32"   href="{{ abspath("_static/favicon/favicon-32x32.png"  ) }}">
+  <link rel="icon" type="image/png" sizes="96x96"   href="{{ abspath("_static/favicon/favicon-96x96.png"  ) }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ abspath("_static/favicon/favicon-192x192.png") }}">
+{%- endset %}
 
-{% set opengraph %}
+{% set opengraph -%}
   {% set canonical_url = [
-    use_opensearch, language, '/', abspath(pagename), '.html'
+    use_opensearch, language, '/', pagename, file_suffix
   ] | join('') %}
   {% set logo_url = [
     use_opensearch, language, '/_static/images/tarantool.png'
@@ -35,10 +35,10 @@
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="{{ canonical_url }}">
   <meta property="og:image"       content="{{ logo_url }}">
-  {% if pagename not in ['index'] %}
+  {% if pagename not in ['index'] -%}
   <meta property="og:description" content="Get your data in RAM. Get compute close to data. Enjoy the performance.">
-  {% endif %}
-{% endset %}
+  {%- endif %}
+{%- endset %}
 
 {% set is_website  = website.get(pagename, False) %}
 {% set is_mainpage = pagename in ["doc/index", "doc/singlehtml"] %}

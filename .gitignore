@@ -10,3 +10,4 @@ deploy_key
 output
 *.pyc
 _theme/tarantool/static/design.css.map
+.*.swp

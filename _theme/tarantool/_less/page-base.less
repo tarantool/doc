@@ -10,7 +10,7 @@
 
 /* @logo-mobile:   data-uri("data:image/svg+xml;base64", "logo/logo-mobile.svg"); */
 @logo-mobile:   url("images/logo-mobile.svg");
-
+@image-404:     url("images/404.gif");
 .i-boxdown {
     width:  12px;
     height: 15px;
@@ -420,19 +420,21 @@
     text-align: center;
     font-size: 2em;
     .b-section-title {
-        font-size: 4em
+        font-size: 4em;
+        line-height: initial;
     }
     /* max-height: ~"calc(100vh - 150px)"; */
-    img {
-        padding: 50 0px;
-        max-width: 100%;
-        max-height: 100%;
-    }
     p, .line-block {
         padding-bottom: 50px;
         &:last-child {
             padding-bottom: 0px;
         }
+    }
+    .i-404 {
+        content: @image-404;
+        padding: 50 0px;
+        max-width: 100%;
+        max-height: 100%;
     }
 }
 

@@ -3,9 +3,9 @@
   (_("Ru"), "/ru/doc/", "ru")
 ] %}
 
-{% macro abspath(path) %}
+{%- macro abspath(path) -%}
   {{ [ "/", language, "/", path ] | join('') }}
-{% endmacro %}
+{%- endmacro -%}
 
 {% set canonical_url = [
   use_opensearch,
@@ -16,13 +16,13 @@
 ] | join('')
 %}
 
-{% macro convert_path_i18n(tolang) %}
-  {% if tolang == "ru" %}
+{%- macro convert_path_i18n(tolang) -%}
+  {%- if tolang == "ru" -%}
     {{ pathto('../ru/' + pagename + file_suffix, True) }}
-  {% else %}
+  {%- else -%}
     {{ pathto('../en/' + pagename + file_suffix, True) }}
-  {% endif %}
-{% endmacro %}
+  {%- endif -%}
+{%- endmacro -%}
 
 {% macro language_selector() %}
     <ul class="b-doc-language_selector-list">
