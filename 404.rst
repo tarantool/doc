@@ -12,7 +12,8 @@ Tarantool - 404
     .. image:: /images/404.gif
         :target: ./
 
-    ZOMG w cnat fnid paeg yu'r lkuign fer.
+    | ZOMG soemthng treilb happen.
+    | w cnat fnid paeg yu'r lkuign fer.
 
-    Try to use our `search </search.html>`_ or `tell us
-    <https://github.com/tarantool/doc/issues>`_ about it. We need it.
+    Try to use our `search </en/search.html>`_ or `tell us
+    <https://github.com/tarantool/doc/issues>`_ about it.

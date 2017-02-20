@@ -1,9 +1,9 @@
 :orphan:
 :priority: 1
 
------------------
-Tarantool - Index
------------------
+-----------------------------------------------------------------------------------
+Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performance.
+-----------------------------------------------------------------------------------
 
 .. wp_section::
     :class: b-block-gray b-mainhead
