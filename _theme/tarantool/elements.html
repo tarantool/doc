@@ -3,6 +3,19 @@
   (_("Ru"), "/ru/doc/", "ru")
 ] %}
 
+{% macro abspath(path) %}
+  {{ [ "/", language, "/", path ] | join('') }}
+{% endmacro %}
+
+{% set canonical_url = [
+  use_opensearch,
+  language,
+  '/',
+  pathto(pagename, 1),
+  '.html'
+] | join('')
+%}
+
 {% macro convert_path_i18n(tolang) %}
   {% if tolang == "ru" %}
     {{ pathto('../ru/' + pagename + file_suffix, True) }}
@@ -119,13 +132,13 @@
   ] %}
 {% else %}
   {% set i_links = [
-    ("Main",          pathto("index"),         "index"   ),
-    ("Try",           pathto("try"),           "try"     ),
-    ("Documentation", pathto("doc"),           "doc"     ),
-    ("Download",      pathto("download"),      "download"),
-    ("Cloud",         "https://tarantool.io/", "cloud"   ),
-    ("Rocks",         pathto("rocks"),         "rocks"   ),
-    ("Careers",       pathto("careers"),       "careers" ),
+    ("Main",          abspath("index.html"),         "index"   ),
+    ("Try",           abspath("try.html"),           "try"     ),
+    ("Documentation", abspath("doc.html"),           "doc"     ),
+    ("Download",      abspath("download.html"),      "download"),
+    ("Cloud",         "https://tarantool.io/",       "cloud"   ),
+    ("Rocks",         abspath("rocks.html"),         "rocks"   ),
+    ("Careers",       abspath("careers.html"),       "careers" ),
   ] %}
 {% endif %}
 

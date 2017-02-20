@@ -1,5 +1,6 @@
-{% from 'elements.html' import i_header          with context %}
-{% from 'elements.html' import i_footer          with context %}
+{% from 'elements.html' import i_header with context %}
+{% from 'elements.html' import i_footer with context %}
+{% from 'elements.html' import abspath  with context %}
 
 {% set page = {"slug": "documentation"} %}
 {% set script_files = script_files + [
@@ -16,26 +17,18 @@
 ] + css_files %}
 
 {% set favicon %}
-  <link rel="icon" type="image/png" sizes="16x16"   href={{ pathto("_static/favicon/favicon-16x16.png",   1) }}>
-  <link rel="icon" type="image/png" sizes="32x32"   href={{ pathto("_static/favicon/favicon-32x32.png",   1) }}>
-  <link rel="icon" type="image/png" sizes="96x96"   href={{ pathto("_static/favicon/favicon-96x96.png",   1) }}>
-  <link rel="icon" type="image/png" sizes="192x192" href={{ pathto("_static/favicon/favicon-192x192.png", 1) }}>
+  <link rel="icon" type="image/png" sizes="16x16"   href={{ abspath("_static/favicon/favicon-16x16.png"  ) }}>
+  <link rel="icon" type="image/png" sizes="32x32"   href={{ abspath("_static/favicon/favicon-32x32.png"  ) }}>
+  <link rel="icon" type="image/png" sizes="96x96"   href={{ abspath("_static/favicon/favicon-96x96.png"  ) }}>
+  <link rel="icon" type="image/png" sizes="192x192" href={{ abspath("_static/favicon/favicon-192x192.png") }}>
 {% endset %}
 
-{% set canonical_url = [
-  use_opensearch,
-  language,
-  '/',
-  pathto(pagename, 1),
-  '.html'
-] | join('')
-%}
 {% set opengraph %}
   {% set canonical_url = [
-    use_opensearch, language, '/', pathto(pagename, 1), '.html'
+    use_opensearch, language, '/', abspath(pagename), '.html'
   ] | join('') %}
   {% set logo_url = [
-    use_opensearch, language, '/_static/images/tarantool.png')
+    use_opensearch, language, '/_static/images/tarantool.png'
   ] | join('') %}
 
   <meta property="og:title"       content="{{ title }}">
@@ -93,10 +86,10 @@
     {{ opengraph }}
     <title>{{ title | striptags }}</title>
     {%- for scriptfile in script_files %}
-      <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+      <script type="text/javascript" src="{{ abspath(scriptfile) }}"></script>
     {%- endfor %}
     {%- for cssfile in css_files %}
-      <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}">
+      <link rel="stylesheet" href="{{ abspath(cssfile) }}">
     {%- endfor %}
 
     {% block extrahead %}
