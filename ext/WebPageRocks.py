@@ -64,7 +64,8 @@ class WebPageRocksDirectives(Directive):
         zip_manifest_path = None
         if os.path.exists(manifest_path + '.zip'):
             zip_manifest_path = manifest_path + '.zip'
-        return (name, manifest_path, zip_manifest_path)
+        return (name, os.path.basename(manifest_path),
+                      os.path.basename(zip_manifest_path))
 
     def run(self):
         rocks_repo = self.options.get('path', None)
