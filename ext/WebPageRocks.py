@@ -23,6 +23,7 @@ class WebPageRocksDirectives(Directive):
     }
 
     def process_rockspec(self, rsname):
+        print('Processing %s rockspec' % os.path.basename(rsname))
         source = None
         rock_def = {}
         try:
@@ -47,6 +48,8 @@ class WebPageRocksDirectives(Directive):
         return rock
 
     def process_manifest(self, manifest_path):
+        manifest_name = os.path.basename(manifest_path)
+        print('Processing %s manifest' % manifest_name)
         if manifest_path.endswith('.zip'):
             return None
         version = ''
