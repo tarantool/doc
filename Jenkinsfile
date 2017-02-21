@@ -9,7 +9,7 @@ stage("Build")
             sh "sudo yum -y install lua-devel"
             sh "sudo pip install -r requirements.txt --upgrade"
             sh "cmake3 ."
-            sh "make"
+            sh "VERBOSE=1 make"
 
         }
 
