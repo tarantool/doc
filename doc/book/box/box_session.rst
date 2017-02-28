@@ -48,6 +48,14 @@ client connection.
 
     :rtype:  number
 
+.. _box_session-user:
+
+.. function:: user()
+
+    :return: the name of the :ref:`current user <authentication-users>`
+
+    :rtype:  string
+
 .. _box_session-su:
 
 .. function:: su(user-name [, function-to-execute])

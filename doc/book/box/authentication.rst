@@ -32,15 +32,17 @@ Further on, we explain all of this in more detail.
 Users
 --------------------------------------------------------------------------------
 
-There is a notion of the **current user** in any program working with Tarantool,
+There is a **current user** for any program working with Tarantool,
 local or remote.
 If a remote connection is using the
 :ref:`binary protocol <administration-admin_ports>`,
 the current user, by default, is '**guest**'.
 If the connection is using the :ref:`text protocol <administration-admin_ports>`,
-its current user is '**admin**'.
+the current user is '**admin**'.
 When executing a :ref:`Lua initialization script <index-init_label>`,
-Tarantool’s current user is also ‘admin’.
+the current user is also ‘admin’.
+
+The current user name can be found with :ref:`box.session.user() <box_session-user>`.
 
 The current user can be changed:
 
