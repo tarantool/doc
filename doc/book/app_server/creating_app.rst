@@ -907,9 +907,9 @@ an HTTP request to create a pokémon, made two catch requests, requested the map
    pokemon_pclient_1 exited with code 0
 
 Congratulations! Here's the end point of our walk-through. As further reading,
-see more about `creating <http://lua-users.org/wiki/ModulesTutorial>`_ and
-`publishing <https://github.com/tarantool/rocks/blob/gh-pages/README.md#contributing>`_
-modules.
+see more about :ref:`installing <app_server-installing_module>` and
+:ref:`contributing <app_server-contributing_module>` a module.
 
 See also reference on :ref:`Tarantool modules <built_in_modules>` and
-:ref:`C API <index-c_api_reference>`.
+:ref:`C API <index-c_api_reference>`, and don't miss our
+:ref:`Lua cookbook recipes <cookbook>`.

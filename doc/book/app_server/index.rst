@@ -15,4 +15,6 @@ This chapter contains the following sections:
 
    launching_app
    creating_app
+   installing_module
+   contributing_module
    cookbook
