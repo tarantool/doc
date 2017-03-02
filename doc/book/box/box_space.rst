@@ -1039,42 +1039,33 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     ``_schema`` is a system space.
 
-    The single tuple in this space contains the following fields:
-    * ``version``,
-    * ``major-version-number``,
-    * ``minor-version-number``.
+    This space contains the following tuples:
+
+    * ``version`` tuple with version information for this Tarantool instance,
+    * ``cluster`` tuple with the instance's cluster ID,
+    * ``max_id`` tuple with the maximal space ID,
+    * ``once...`` tuples that correspond to specific
+      :ref:`box.once() <box-once>` blocks from the instance's
+      :ref:`initialization file <index-init_label>`.
+      The first field in these tuples contains the ``key`` value from the
+      corresponding ``box.once()`` block prefixed with 'once' (e.g. `oncehello`),
+      so you can easily find a tuple that corresponds to a specific
+      ``box.once()`` block.
 
     **Example:**
 
-    The following function will display all fields in all tuples of ``_schema``:
-
-    .. code-block:: lua
-
-        function example()
-          local ta = {}
-          local i, line
-          for k, v in box.space._schema:pairs() do
-            i = 1
-            line = ''
-            while i <= #v do
-              line = line .. v[i] .. ' '
-              i = i + 1
-            end
-            table.insert(ta, line)
-          end
-          return ta
-        end
-
-    Here is what ``example()`` returns in a typical installation:
+    Here is what ``_schema`` contains in a typical installation (notice the
+    tuples for two ``box.once()`` blocks, ``'oncebye'`` and ``'oncehello'``):
 
     .. code-block:: tarantoolsession
 
-        tarantool> example()
-        ---
-        - - 'cluster 1ec4e1f8-8f1b-4304-bb22-6c47ce0cf9c6 '
-          - 'max_id 520 '
-          - 'version 1 7 0 '
-        ...
+       tarantool> box.space._schema:select{}
+       ---
+       - - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']
+       - ['max_id', 512]
+       - ['oncebye']
+       - ['oncehello']
+       - ['version', 1, 7, 2]
 
 .. _box_space-space:
 
@@ -1177,85 +1168,36 @@ A list of all ``box.space`` functions follows, then comes a list of all
     ``_index`` is a system space.
 
     Tuples in this space contain the following fields:
+    
     * ``id`` (= id of space),
     * ``iid`` (= index number within space),
     * ``name``,
     * ``type``,
     * ``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` ...].
 
-    The following function will display all fields in all tuples of ``_index``:
-    (notice that the fifth field gets special treatment as a map value and
-    the sixth or later fields get special treatment as arrays):
-
-    .. code-block:: lua
-
-        function example()
-          local ta = {}
-          local i, line, value
-          for k, v in box.space._index:pairs() do
-            i = 1
-            line = ''
-             while v[i] ~= nil do
-              if i < 5 then
-                value = v[i]
-                end
-              if i == 5 then
-                if v[i].unique == true then
-                  value = 'true'
-                  end
-                end
-              if i > 5 then
-                value = v[i][1][1] .. ' ' .. v[i][1][2]
-                end
-              line = line .. value .. ' '
-              i = i + 1
-            end
-            table.insert(ta, line)
-            end
-          return ta
-        end
-
-    Here is what ``example()`` returns in a typical installation:
+    Here is what ``_index`` contains in a typical installation:
 
     .. code-block:: tarantoolsession
 
-        tarantool> example()
-        ---
-        - - '272 0 primary tree true 0 str '
-          - '280 0 primary tree true 0 num '
-          - '280 1 owner tree tree 1 num '
-          - '280 2 name tree true 2 str '
-          - '281 0 primary tree true 0 num '
-          - '281 1 owner tree tree 1 num '
-          - '281 2 name tree true 2 str '
-          - '288 0 primary tree true 0 num '
-          - '288 2 name tree true 0 num '
-          - '289 0 primary tree true 0 num '
-          - '289 2 name tree true 0 num '
-          - '296 0 primary tree true 0 num '
-          - '296 1 owner tree tree 1 num '
-          - '296 2 name tree true 2 str '
-          - '297 0 primary tree true 0 num '
-          - '297 1 owner tree tree 1 num '
-          - '297 2 name tree true 2 str '
-          - '304 0 primary tree true 0 num '
-          - '304 1 owner tree tree 1 num '
-          - '304 2 name tree true 2 str '
-          - '305 0 primary tree true 0 num '
-          - '305 1 owner tree tree 1 num '
-          - '305 2 name tree true 2 str '
-          - '312 0 primary tree true 1 num '
-          - '312 1 owner tree tree 0 num '
-          - '312 2 object tree tree 2 str '
-          - '313 0 primary tree true 1 num '
-          - '313 1 owner tree tree 0 num '
-          - '313 2 object tree tree 2 str '
-          - '320 0 primary tree true 0 num '
-          - '320 1 uuid tree true 1 str '
-          - '512 0 primary tree true 0 num '
-          - '513 0 primary tree true 0 num '
-          - '516 0 primary tree true 0 STR '
-        ...
+       tarantool> box.space._index:select{}
+       ---
+       - - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'string']]]
+       - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
+       - [280, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
+       - [280, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+       - [281, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
+       - [281, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
+       - [281, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+       - [288, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
+       - [288, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
+       - [289, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
+       - [289, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
+       - [296, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
+       - [296, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
+       - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+     
+       ---
+       ...
 
 .. _box_space-user:
 
