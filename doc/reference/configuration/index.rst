@@ -5,7 +5,7 @@ Configuration reference
 ================================================================================
 
 This reference covers all options and parameters which can be set for Tarantool
-on the command line or in an initialization file.
+on the command line or in an :ref:`initialization file <index-init_label>`.
 
 Tarantool is started by entering the following command:
 

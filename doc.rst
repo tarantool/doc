@@ -51,7 +51,7 @@ Tarantool - Documentation
 
         * Reference
 
-          - `Built-in library reference`_
+          - `Built-in modules reference`_
           - `Rocks reference`_
           - `Configuration reference`_
 
@@ -101,7 +101,7 @@ Tarantool - Documentation
 .. _Replication: doc/book/replication/index.html
 .. _Connectors: doc/book/connectors/index.html
 .. _FAQ: doc/book/faq.html
-.. _Built-in library reference: doc/reference/reference_lua/index.html
+.. _Built-in modules reference: doc/reference/reference_lua/index.html
 .. _Rocks reference: doc/reference/reference_rock/index.html
 .. _Configuration reference: doc/reference/configuration/index.html
 .. _C API reference: doc/dev_guide/reference_capi/index.html
