@@ -132,18 +132,20 @@ client connection.
 
 .. _box_session-on_connect:
 
-.. function:: box.session.on_connect(trigger-function [, old-trigger-function-name])
+.. function:: box.session.on_connect(trigger-function [, old-trigger-function])
 
     Define a trigger for execution when a new session is created due to an event
     such as :ref:`console.connect <console-connect>`. The trigger function will be the first thing
-    executed after a new session is created. If the trigger fails by raising an
+    executed after a new session is created. If the trigger execution fails and raises an
     error, the error is sent to the client and the connection is closed.
 
     :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-    :return: nil or function list
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
 
-    If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
+    If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
     **Example**
 
@@ -161,7 +163,7 @@ client connection.
 
 .. _box_session-on_disconnect:
 
-.. function:: box.session.on_disconnect(trigger-function [, old-trigger-function-name])
+.. function:: box.session.on_disconnect(trigger-function [, old-trigger-function])
 
     Define a trigger for execution after a client has disconnected. If the trigger
     function causes an error, the error is logged but otherwise is ignored. The
@@ -169,10 +171,12 @@ client connection.
     and can access session properties, such as box.session.id.
 
     :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-    :return: nil or function list
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
 
-    If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
+    If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
     **Example #1**
 
@@ -216,7 +220,7 @@ client connection.
 
 .. _box_session-on_auth:
 
-.. function:: box.session.on_auth(trigger-function [, old-trigger-function-name])
+.. function:: box.session.on_auth(trigger-function [, old-trigger-function])
 
     Define a trigger for execution during authentication.
 
@@ -240,10 +244,12 @@ client connection.
     If the trigger fails by raising an error, the error is sent to the client and the connection is closed.
 
     :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function-name: existing trigger function which will be replaced by trigger-function
-    :return: nil
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
 
-    If the parameters are (nil, old-trigger-function-name), then the old trigger is deleted.
+    If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
     **Example**
 

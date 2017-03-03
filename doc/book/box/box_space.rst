@@ -937,10 +937,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :param function old-trigger-function: existing trigger function which
                                               will be replaced by
                                               trigger-function
-        :return: nil or function list
+        :return: nil or function pointer
 
-        If the parameters are (nil, old-trigger-function-name), then the old
+        If the parameters are (nil, old-trigger-function), then the old
         trigger is deleted.
+        Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
         **Example #1:**
 
@@ -997,7 +998,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         :return: nil
 
-        **Example #1:**
+        **Example:**
 
         The following series of requests will associate an existing function named F
         with an existing space named T, associate the function a second time with the
@@ -1012,26 +1013,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> box.space.T:on_replace(nil, F)
             tarantool> box.space.T:on_replace(nil, F)
 
-        **Example #2:**
-
-        The following series of requests will create a space, create an index, create
-        a function which increments a counter, create a trigger, do two inserts, drop
-        the space, and display the counter value -- which is 2, because the function
-        is executed once after each insert.
-
-        .. code-block:: tarantoolsession
-
-            tarantool> s = box.schema.space.create('space53')
-            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
-            tarantool> function replace_trigger()
-                     >  replace_counter = replace_counter + 1
-                     > end
-            tarantool> s:on_replace(replace_trigger)
-            tarantool> replace_counter = 0
-            tarantool> t = s:insert{1, 'First replace'}
-            tarantool> t = s:insert{2, 'Second replace'}
-            tarantool> s:drop()
-            tarantool> replace_counter
 
 .. _box_space-schema:
 

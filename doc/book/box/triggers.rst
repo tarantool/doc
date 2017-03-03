@@ -19,29 +19,26 @@ There are three types of triggers in Tarantool:
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
   events.
 
-All of them are implemented as functions in Tarantool built-in libraries.
-
 All triggers have the following characteristics:
 
 * Triggers associate a function with an event.
-  The request to "define a trigger" implies passing the name of the
-  trigger’s function to one of the "on_event-name()" functions from the
-  :ref:`box.session <box_session>` submodule: 
-  :ref:`on_connect() <box_session-on_connect>`,
-  :ref:`on_auth() <box_session-on_auth>`, 
-  :ref:`on_disconnect() <box_session-on_disconnect>`, or 
-  :ref:`on_replace() <box_space-on_replace>`.
+  The request to "define a trigger" implies passing the
+  trigger’s function to one of the "on_event-name()" functions:
+  :ref:`box.session.on_connect() <box_session-on_connect>`,
+  :ref:`box.session.on_auth() <box_session-on_auth>`, 
+  :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or 
+  :ref:`space_object:on_replace() <box_space-on_replace>`.
 
 * Triggers are defined only by the 'admin' user.
 
 * Triggers are stored in the server's memory, not in the database.
-  So, triggers disappear when the server is shut down.
+  Therefore triggers disappear when the server is shut down.
   To make them permanent, put function definitions and trigger settings
   into Tarantool's :ref:`initialization script <index-init_label>`.
 
 * Triggers have low overhead. If a trigger is not defined, then the overhead
   is minimal: merely a pointer dereference and check. If a trigger is defined,
-  then its overhead is equivalent to the overhead of calling a stored procedure.
+  then its overhead is equivalent to the overhead of calling a function.
 
 * There can be multiple triggers for one event. In this case, triggers are
   executed in the reverse order that they were defined in.
@@ -54,8 +51,16 @@ All triggers have the following characteristics:
   bringing in requests outside the event context.
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
-  passing the names of a new trigger function and an old trigger function
+  passing a new trigger function and an old trigger function
   to one of the "on_event-name()" functions.
+
+* The "on_event_name()" functions all have parameters which are function
+  pointers, and they all return function pointers. Remember that a Lua
+  function definition such as "function f() x = x + 1 end" is the same
+  as "f = function () x = x + 1 end" -- in both cases ``f`` gets a function pointer.
+  And "trigger = box.session.on_connect(f)" is the same as
+  "trigger = box.session.on_connect(function () x = x + 1 end)" -- in both cases
+  ``trigger`` gets the function pointer which was passed.
 
 To get a list of triggers, you can use:
 
