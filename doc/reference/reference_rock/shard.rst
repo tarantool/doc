@@ -7,8 +7,8 @@
 .. module:: shard
 
 With sharding, the tuples of a tuple set are distributed to multiple nodes,
-with a Tarantool database server on each node. With this arrangement,
-each server is handling only a subset of the total data,
+with a Tarantool database server instance on each node. With this arrangement,
+each instance is handling only a subset of the total data,
 so larger loads can be handled by simply adding more computers to a network.
 
 The Tarantool shard module has facilities for creating shards,
@@ -27,21 +27,36 @@ First some terminology:
         keys. The specific hash function that the shard module uses is
         :ref:`digest.guava <digest-guava>` in the :codeitalic:`digest` module.
 
+    **Instance**
+        A currently-running in-memory copy of the Tarantool server, sometimes
+        called a "server instance". Usually each shard is associated with one
+        instance, or, if both sharding and replicating are going on, each shard
+        is associated with one replica set.
+
     **Queue**
         A temporary list of recent update requests. Sometimes called "batching".
         Since updates to a sharded database can be slow, it may speed up
         throughput to send requests to a queue rather than wait for the update
-        to finish on ever node. The shard module has functions for adding
+        to finish on every node. The shard module has functions for adding
         requests to the queue, which it will process without further intervention.
         Queuing is optional.
 
     **Redundancy**
-        The number of replicas in each shard.
+        The number of replicated data copies in each shard.
 
     **Replica**
+        An instance which is part of a replica set.
+
+    **Replica set**
+        Often a single shard is associated with a single instance;
+        however, often the shard is replicated. When a shard is replicated,
+        the multiple instances ("replicas"), which handle the shard's
+        replicated data, are a "replica set".
+
+    **Replicated data**
         A complete copy of the data. The shard module handles both sharding
-        and replication. One shard can contain one or more replicas.
-        When a write occurs, the write is attempted on every replica in turn.
+        and replication. One shard can contain one or more replicated data copies.
+        When a write occurs, the write is attempted on every replicated data copy in turn.
         The shard module does not use the built-in replication feature.
 
     **Shard**
@@ -53,17 +68,18 @@ First some terminology:
     **Zone**
         A physical location where the nodes are closely connected, with
         the same security and backup and access points. The simplest example
-        of a zone is a single computer with a single tarantool-server instance.
-        A shard's replicas should be in different zones.
+        of a zone is a single computer with a single Tarantool-server instance.
+        A shard's replicated data copies should be in different zones.
 
 The shard package is distributed separately from the main tarantool package.
 To acquire it, do a separate install. For example on Ubuntu say:
 
 .. code-block:: bash
 
-    sudo apt-get install tarantool-shard tarantool-pool
+    sudo apt-get install tarantool-shard
 
-Or, download from github tarantool/shard and compile as described in the README.
+Or, download from github tarantool/shard and tarantool/connpool
+and use the Lua files as described in the README.
 Then, before using the module, say ``shard = require('shard')``
 
 The most important function is:
@@ -84,15 +100,15 @@ The shard-configuration is a table with these fields:
   (distinguishable from the 'listen' port specified by box.cfg)
 
 Possible Errors: Redundancy should not be greater than the number of servers;
-the servers must be alive; two replicas of the same shard should not be in the
-same zone.
+the servers must be alive; two replicated data copies of the same shard
+should not be in the same zone.
 
 =====================================================================
           Example: shard.init syntax for one shard
 =====================================================================
 
-The number of replicas per shard (redundancy) is 3.
-The number of servers is 3.
+The number of replicated data copies per shard (redundancy) is 3.
+The number of instances is 3.
 The shard module will conclude that there is only one shard.
 
 .. code-block:: tarantoolsession
@@ -118,8 +134,8 @@ The shard module will conclude that there is only one shard.
            Example: shard.init syntax for three shards
 =====================================================================
 
-This describes three shards. Each shard has two replicas. Since the number of
-servers is 7, and the number of replicas per shard is 2, and dividing 7 / 2
+This describes three shards. Each shard has two replicated data copies. Since the number of
+servers is 7, and the number of replicated data copies per shard is 2, and dividing 7 / 2
 leaves a remainder of 1, one of the servers will not be used. This is not
 necessarily an error, because perhaps one of the servers in the list is not alive.
 
@@ -179,7 +195,7 @@ maintenance-related functions, are on `the shard section of github`_.
              Example: Shard, Minimal Configuration
 =====================================================================
 
-There is only one shard, and that shard contains only one replica. So this isn't
+There is only one shard, and that shard contains only one replicated data copy. So this isn't
 illustrating the features of either replication or sharding, it's only
 illustrating what the syntax is, and what the messages look like, that anyone
 could duplicate in a minute or two with the magic of cut-and-paste.
@@ -245,7 +261,7 @@ and shard.tester, should look approximately like this:
                  Example: Shard, Scaling Out
 =====================================================================
 
-There are two shards, and each shard contains one replica. This requires two
+There are two shards, and each shard contains one replicated data copy. This requires two
 nodes. In real life the two nodes would be two computers, but for this
 illustration the requirement is merely: start two shells, which we'll call
 Terminal#1 and Terminal #2.

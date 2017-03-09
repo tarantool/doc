@@ -37,7 +37,7 @@ Configure
 We are going to use the Tarantool sandbox that was created our
 :ref:`"Getting started" exercises <getting_started>`.
 So there is a single space, and a numeric primary key,
-and a running Tarantool server which also serves as a client.
+and a running Tarantool server instance which also serves as a client.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Delimiter
@@ -115,7 +115,7 @@ function.
 We begin by declaring a variable "``string_value``". The word "``local``"
 means that string_value appears only in ``main_function``. If we didn't use
 "``local``" then ``string_value`` would be visible everywhere - even by other
-users using other clients connected to this server! Sometimes that's a very
+users using other clients connected to this server instance! Sometimes that's a very
 desirable feature for inter-client communication, but not this time.
 
 Then we assign a value to ``string_value``, namely, the result of

@@ -104,7 +104,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`box.space._priv                | (Metadata) List of privileges   |
         | <box_space-priv>`                    |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._cluster             | (Metadata) List of clusters     |
+        | :ref:`box.space._cluster             | (Metadata) List of replica sets |
         | <box_space-cluster>`                 |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`box.space._func                | (Metadata) List of function     |
@@ -1023,7 +1023,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     This space contains the following tuples:
 
     * ``version`` tuple with version information for this Tarantool instance,
-    * ``cluster`` tuple with the instance's cluster ID,
+    * ``cluster`` tuple with the instance's replica set ID,
     * ``max_id`` tuple with the maximal space ID,
     * ``once...`` tuples that correspond to specific
       :ref:`box.once() <box-once>` blocks from the instance's

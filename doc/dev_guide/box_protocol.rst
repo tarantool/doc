@@ -59,9 +59,9 @@ Greeting packet
     +---------------------+----------------+
     64                  107              127
 
-The server begins the dialogue by sending a fixed-size (128-byte) text greeting
+The server instance begins the dialogue by sending a fixed-size (128-byte) text greeting
 to the client. The greeting always contains two 64-byte lines of ASCII text, each
-line ending with a newline character ('\\n'). The first line contains the server
+line ending with a newline character ('\\n'). The first line contains the instance
 version and protocol type. The second line contains up to 44 bytes of base64-encoded
 random string, to use in the authentication packet, and ends with up to 23 spaces.
 
@@ -166,7 +166,7 @@ the header, then it will be checked.
 Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a client connects to the server, the server responds with a 128-byte
+When a client connects to the server instance, the instance responds with a 128-byte
 text greeting message. Part of the greeting is base-64 encoded session salt -
 a random string which can be used for authentication. The length of decoded
 salt (44 bytes) exceeds the amount necessary to sign the authentication
@@ -205,7 +205,7 @@ schemas.
 authentication mechanism ("chap-sha1" is the only supported mechanism right now)
 and password, encrypted according to the specified mechanism. Authentication in
 Tarantool is optional, if no authentication is performed, session user is 'guest'.
-The server responds to authentication packet with a standard response with 0 tuples.
+The instance responds to authentication packet with a standard response with 0 tuples.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Requests
@@ -518,7 +518,7 @@ Replication packet structure
     +================+================+===================++-------+
                    MP_MAP                                   MP_MAP
 
-    Then server, which we connect to, will send last SNAP file by, simply,
+    Then instance, which we connect to, will send last SNAP file by, simply,
     creating a number of INSERTs (with additional LSN and ServerID)
     (don't reply). Then it'll send a vclock's MP_MAP and close a socket.
 

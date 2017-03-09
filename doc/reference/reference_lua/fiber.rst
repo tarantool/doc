@@ -273,7 +273,7 @@ recommended.
 
     .. method:: name(name)
 
-        Change the fiber name. By default the Tarantool server's
+        Change the fiber name. By default a Tarantool server's
         interactive-mode fiber is named 'interactive' and new
         fibers created due to :ref:`fiber.create <fiber-create>` are named 'lua'.
         Giving fibers distinct names makes it easier to

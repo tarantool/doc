@@ -31,8 +31,8 @@ All triggers have the following characteristics:
 
 * Triggers are defined only by the 'admin' user.
 
-* Triggers are stored in the server's memory, not in the database.
-  Therefore triggers disappear when the server is shut down.
+* Triggers are stored in the Tarantool instance's memory, not in the database.
+  Therefore triggers disappear when the instance is shut down.
   To make them permanent, put function definitions and trigger settings
   into Tarantool's :ref:`initialization script <index-init_label>`.
 

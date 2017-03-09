@@ -16,7 +16,7 @@ may be called a "driver".
 Tarantool supplies DBMS connector modules with the module manager for Lua,
 LuaRocks. So the connector modules may be called "rocks".
 
-The Tarantool rocks allow for connecting to an SQL server and executing SQL
+The Tarantool rocks allow for connecting to SQL servers and executing SQL
 statements the same way that a MySQL or PostgreSQL client does. The SQL
 statements are visible as Lua methods. Thus Tarantool can serve as a "MySQL Lua
 Connector" or "PostgreSQL Lua Connector", which would be useful even if that was
@@ -45,8 +45,8 @@ is libmysqlclient.so or a similar name. One can use ``find`` or ``whereis`` to
 see what directories these files are installed in.
 
 It will be necessary to install Tarantool's MySQL driver shared library, load
-it, and use it to connect to a MySQL server. After that, one can pass any MySQL
-statement to the server and receive results, including multiple result sets.
+it, and use it to connect to a MySQL server instance. After that, one can pass any MySQL
+statement to the server instance and receive results, including multiple result sets.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          Installation
@@ -250,7 +250,7 @@ README.md file at `github.com/tarantool/mysql`_.
 
 The example was run on an Ubuntu 12.04 ("precise") machine where tarantool had
 been installed in a /usr subdirectory, and a copy of MySQL had been installed
-on ~/mysql-5.5. The mysqld server is already running on the local host 127.0.0.1.
+on ~/mysql-5.5. The mysqld server instance is already running on the local host 127.0.0.1.
 
 .. code-block:: console
 
@@ -326,7 +326,7 @@ on ~/mysql-5.5. The mysqld server is already running on the local host 127.0.0.1
     $ # home directory for the machine that's used for this test.)
     $ cd /home/pgulutzan/tarantool_sandbox
 
-    $ # Start the Tarantool server. Do not use a Lua initialization file.
+    $ # Start the Tarantool server instance. Do not use a Lua initialization file.
 
     $ tarantool
     tarantool: version 1.7.0-222-g48b98bb
@@ -344,7 +344,7 @@ reply "error" for the call to "require()".
     ---
     ...
 
-Create a Lua function that will connect to the MySQL server, (using some factory
+Create a Lua function that will connect to the MySQL server instance, (using some factory
 default values for the port and user and password), retrieve one row, and
 display the row. For explanations of the statement types used here, read the
 Lua tutorial earlier in the Tarantool user manual.
@@ -398,8 +398,8 @@ driver. One can use ``find`` or ``whereis`` to see what directories
 PostgreSQL files are installed in.
 
 It will be necessary to install Tarantool's PostgreSQL driver shared library,
-load it, and use it to connect to a PostgreSQL server. After that, one can pass
-any PostgreSQL statement to the server and receive results.
+load it, and use it to connect to a PostgreSQL server instance. After that, one can pass
+any PostgreSQL statement to the server instance and receive results.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          Installation
@@ -592,7 +592,7 @@ README.md file at `github.com/tarantool/pg`_.
 
 The example was run on an Ubuntu 12.04 ("precise") machine where tarantool had
 been installed in a /usr subdirectory, and a copy of PostgreSQL had been installed
-on /usr. The PostgreSQL server is already running on the local host 127.0.0.1.
+on /usr. The PostgreSQL server instance is already running on the local host 127.0.0.1.
 
 .. code-block:: console
 
@@ -661,7 +661,7 @@ on /usr. The PostgreSQL server is already running on the local host 127.0.0.1.
     $ # home directory for the machine that's used for this test.)
     cd $HOME/tarantool_sandbox
 
-    $ # Start the Tarantool server. Do not use a Lua initialization file.
+    $ # Start the Tarantool server instance. Do not use a Lua initialization file.
 
     $ tarantool
     tarantool: version 1.7.0-412-g803b15c
@@ -679,7 +679,7 @@ reply "error" for the call to "require()".
     ---
     ...
 
-Create a Lua function that will connect to the PostgreSQL server, (using some
+Create a Lua function that will connect to a PostgreSQL server, (using some
 factory default values for the port and user and password), retrieve one row,
 and display the row. For explanations of the statement types used here, read the
 Lua tutorial earlier in the Tarantool user manual.

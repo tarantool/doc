@@ -34,7 +34,7 @@ Limitations
     :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (with a metadata
     overhead of about 20 bytes per tuple, which is added on top of useful bytes).
     By default, the value of ``slab_alloc_maximal`` is 1,048,576. To increase it,
-    specify a larger value when starting the server.
+    specify a larger value when starting the Tarantool instance.
     For example, ``box.cfg{slab_alloc_maximal=2*1048576}``.
 
 .. _limitations_slab_size:
@@ -97,6 +97,6 @@ Limitations
 
 .. _limitations_replicas:
 
-**Number of replicas in a cluster**
+**Number of replicas in a replica set**
 
     32 (``box.schema.REPLICA_MAX``).

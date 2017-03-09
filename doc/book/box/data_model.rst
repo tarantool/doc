@@ -303,7 +303,7 @@ Persistence
 
 In Tarantool, updates to the database are recorded in the so-called
 **write ahead log (WAL)** files. This ensures data persistence.
-When a power outage occurs or the server is killed incidentally,
+When a power outage occurs or the Tarantool instance is killed incidentally,
 the in-memory database is lost. In this situation, WAL files are used
 to restore the data. Namely, Tarantool reads the WAL files and redoes
 the requests (this is called the "recovery process"). You can change

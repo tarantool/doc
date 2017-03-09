@@ -19,7 +19,7 @@ for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_
 Starting Tarantool
 --------------------------------------------------------------------------------
 
-To start the Tarantool server, say this:
+To start a Tarantool instance, say this:
 
 .. code-block:: console
 
@@ -56,7 +56,7 @@ are over):
    $ mkdir ~/tarantool_sandbox
    $ cd ~/tarantool_sandbox
 
-To start Tarantool's database module and make the server accept TCP requests
+To start Tarantool's database module and make the instance accept TCP requests
 on port 3001, say this:
 
 .. code-block:: tarantoolsession
@@ -143,7 +143,7 @@ Start the ``tarantoolctl`` utility:
 
    $ tarantoolctl connect '3301'
 
-This means "use ``tarantoolctl connect`` to connect to the Tarantool server
+This means "use ``tarantoolctl connect`` to connect to the Tarantool instance
 that’s listening on ``localhost:3301``".
 
 Try this request:
@@ -152,7 +152,7 @@ Try this request:
 
    tarantool> {{box.space.tester:select{2}}}
 
-This means "send a request to that Tarantool server, and display the result".
+This means "send a request to that Tarantool instance, and display the result".
 The result in this case is one of the tuples that was inserted earlier.
 Your terminal screen should now look like this:
 

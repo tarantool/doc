@@ -18,11 +18,11 @@ To prepare, paste the code into a file named :file:`example.py` and install
 the ``tarantool-python`` connector with either :samp:`pip install tarantool\>0.4`
 to install in :file:`/usr` (requires **root** privilege) or
 :samp:`pip install tarantool\>0.4 --user` to install in :file:`~` i.e. user's
-default directory. Before trying to run, check that the server is listening at
+default directory. Before trying to run, check that the server instance is listening at
 ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`.
 To run the program, say :samp:`python example.py`. The program will connect
-to the server, will send the request, and will not throw any exception if
+to the Tarantool server, will send the request, and will not throw any exception if
 all went well. If the tuple already exists, the program will throw
 ``tarantool.error.DatabaseError: (3, "Duplicate key exists in unique index 'primary' in space 'examples'")``.
 

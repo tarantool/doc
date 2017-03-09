@@ -21,7 +21,8 @@ descriptions of some popular codes. A complete list of errors can be found in fi
     .. rst-class:: left-align-column-2
 
     +-------------------+--------------------------------------------------------+
-    | ER_NONMASTER      | Can't modify data on a replication slave.              |
+    | ER_NONMASTER      | (In replication) A server instance cannot modify data  |
+    |                   | unless it is a master.                                 |
     +-------------------+--------------------------------------------------------+
     | ER_ILLEGAL_PARAMS | Illegal parameters. Malformed protocol                 |
     |                   | message.                                               |

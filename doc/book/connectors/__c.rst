@@ -63,11 +63,11 @@ To compile and link the program, say:
     $ gcc -o example example.c -ltarantool
 
 Before trying to run,
-check that the server is listening at ``localhost:3301`` and that the space
+check that a server instance is listening at ``localhost:3301`` and that the space
 ``examples`` exists, as 
 :ref:`described earlier <index-connector_setting>`.
 To run the program, say :samp:`./example`. The program will connect
-to the server, and will send the request.
+to the Tarantool instance, and will send the request.
 If Tarantool is not running on localhost with listen address = 3301, the program
 will print “Connection refused”.
 If the insert fails, the program will print "Insert failed" and an error number
@@ -87,7 +87,7 @@ In this program, the stream will be named ``tnt``.
 Before connecting on the ``tnt`` stream, some options may have to be set.
 The most important option is TNT_OPT_URI.
 In this program, the URI is ``localhost:3301``, since that is where the
-Tarantool server is supposed to be listening.
+Tarantool instance is supposed to be listening.
 
 Function description:
 
@@ -98,7 +98,7 @@ Function description:
     `int tnt_set(struct tnt_stream *s, int option, variant option-value)`
 
 **CONNECT:** Now that the stream named ``tnt`` exists and is associated with a
-URI, this example program can connect to the server.
+URI, this example program can connect to a server.
 
 .. code-block:: c
 

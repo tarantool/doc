@@ -4,8 +4,8 @@
                                    Module `console`
 -------------------------------------------------------------------------------
 
-The console module allows one Tarantool server to access another Tarantool
-server, and allows one Tarantool server to start listening on an :ref:`admin port <administration-admin_ports>`.
+The console module allows one Tarantool instance to access another Tarantool
+instance, and allows one Tarantool instance to start listening on an :ref:`admin port <administration-admin_ports>`.
 
 .. module:: console
 
@@ -13,32 +13,32 @@ server, and allows one Tarantool server to start listening on an :ref:`admin por
 
 .. function:: connect(uri)
 
-    Connect to the server at :ref:`URI <index-uri>`, change the prompt from
+    Connect to the instance at :ref:`URI <index-uri>`, change the prompt from
     '``tarantool>``' to ':samp:`{uri}>`', and act henceforth as a client
     until the user ends the session or types ``control-D``.
 
-    The console.connect function allows one Tarantool server, in interactive
-    mode, to access another Tarantool server. Subsequent requests will appear
+    The console.connect function allows one Tarantool instance, in interactive
+    mode, to access another Tarantool instance. Subsequent requests will appear
     to be handled locally, but in reality the requests are being sent to the
-    remote server and the local server is acting as a client. Once connection
+    remote instance and the local instance is acting as a client. Once connection
     is successful, the prompt will change and subsequent requests are sent to,
-    and executed on, the remote server. Results are displayed on the local
-    server. To return to local mode, enter ``control-D``.
+    and executed on, the remote instance. Results are displayed on the local
+    instance. To return to local mode, enter ``control-D``.
 
-    If the Tarantool server at :samp:`uri` requires authentication, the
+    If the Tarantool instance at :samp:`uri` requires authentication, the
     connection might look something like:
     ``console.connect('admin:secretpassword@distanthost.com:3301')``.
 
     There are no restrictions on the types of requests that can be entered,
     except those which are due to privilege restrictions -- by default the
-    login to the remote server is done with user name = 'guest'. The remote
-    server could allow for this by granting at least one privilege:
+    login to the remote instance is done with user name = 'guest'. The remote
+    instance could allow for this by granting at least one privilege:
     ``box.schema.user.grant('guest','execute','universe')``.
 
-    :param string uri: the URI of the remote server
+    :param string uri: the URI of the remote instance
     :return: nil
 
-    Possible errors: the connection will fail if the target Tarantool server
+    Possible errors: the connection will fail if the target Tarantool instance
     was not initiated with ``box.cfg{listen=...}``.
 
     **Example:**
@@ -51,7 +51,7 @@ server, and allows one Tarantool server to start listening on an :ref:`admin por
         tarantool> console.connect('198.18.44.44:3301')
         ---
         ...
-        198.18.44.44:3301> -- prompt is telling us that server is remote
+        198.18.44.44:3301> -- prompt is telling us that instance is remote
 
 .. _console-listen:
 
@@ -64,7 +64,7 @@ server, and allows one Tarantool server to start listening on an :ref:`admin por
     "administrative" or simply :ref:`"admin port" <administration-admin_ports>`.
     The listening is usually over a local host with a Unix domain socket.
 
-    :param string uri: the URI of the local server
+    :param string uri: the URI of the local instance
 
     The "admin" address is the URI to listen on. It has no default value, so it
     must be specified if connections will occur via an admin port. The parameter
@@ -100,7 +100,7 @@ server, and allows one Tarantool server to start listening on an :ref:`admin por
     **Example:**
 
     A special use of ``console.start()`` is with :ref:`initialization files
-    <index-init_label>`. Normally, if one starts the tarantool server with
+    <index-init_label>`. Normally, if one starts the Tarantool instance with
     :samp:`tarantool {initialization file}` there is no console. This can be
     remedied by adding these lines at the end of the initialization file:
 

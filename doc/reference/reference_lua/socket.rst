@@ -559,8 +559,8 @@ the function invocations will look like ``sock:function_name(...)``.
  Use of a TCP socket over the Internet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this example a connection is made over the internet between the Tarantool
-server and tarantool.org, then an HTTP "head" message is sent, and a response
+In this example a connection is made over the internet between a Tarantool
+instance and tarantool.org, then an HTTP "head" message is sent, and a response
 is received: "``HTTP/1.1 200 OK``" or something else if the site has moved.
 This is not a useful way to communicate
 with this particular site, but shows that the system works.
@@ -648,7 +648,7 @@ strings from the client and printing them. On the client
 side, the Linux socat utility will be used to ship a
 whole file for the tcp_server function to read.
 
-Start two shells. The first shell will be the server.
+Start two shells. The first shell will be a server instance.
 The second shell will be the client.
 
 On the first shell, start Tarantool and say:
@@ -681,7 +681,7 @@ contains A, the second line contains B, the third line
 contains C. Call this file "tmp.txt".
 
 On the second shell, use the socat utility to ship the
-tmp.txt file to the server's host and port:
+tmp.txt file to the server instance's host and port:
 
 .. code-block:: console
 

@@ -22,13 +22,13 @@ example, on Ubuntu, the installation could look like this:
     $ sudo cpan install DR::Tarantool
 
 Here is a complete Perl program that inserts ``[99999,'BB']`` into ``space[999]``
-via the Perl API. Before trying to run, check that the server is listening at 
+via the Perl API. Before trying to run, check that the server instance is listening at 
 ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`.
 To run, paste the code into a file named :file:`example.pl` and say
 :samp:`perl example.pl`. The program will connect using an application-specific
 definition of the space. The program will open a socket connection with the
-Tarantool server at ``localhost:3301``, then send an INSERT request, then — if
+Tarantool instance at ``localhost:3301``, then send an INSERT request, then — if
 all is well — end without displaying any messages. If Tarantool is not running
 on ``localhost`` with listen port = 3301, the program will print “Connection
 refused”.

@@ -47,7 +47,7 @@ in Tarantool can be written in Lua (rocks), C or C++.
 Modules are good for two things:
 
 * easier **code management** (reuse, packaging, versioning), and
-* hot **code reload** without server restart.
+* hot **code reload** without restarting the Tarantool instance.
  
 Technically, a module is a file with source code that exports its functions in
 an API. For example, here is a Lua module named ``mymodule.lua`` that exports
@@ -632,7 +632,7 @@ and simulate a couple of player requests.
 
 To launch our microservice, we put both ``pokemon.lua`` module and ``game.lua``
 application in the current directory, install all external modules, and launch
-the Tarantool server running our ``game.lua`` application (this example is for
+the Tarantool instance running our ``game.lua`` application (this example is for
 Ubuntu):
 
 .. code-block:: console

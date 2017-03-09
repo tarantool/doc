@@ -64,7 +64,7 @@ Tarantool processes requests atomically: a change is either accepted and recorde
 in the WAL, or discarded completely. Let's clarify how this happens, using the
 REPLACE request as an example:
 
-1. The server attempts to locate the original tuple by primary key. If found, a
+1. The server instance attempts to locate the original tuple by primary key. If found, a
    reference to the tuple is retained for later use.
 
 2. The new tuple is validated. If for example it does not contain an indexed
@@ -74,7 +74,7 @@ REPLACE request as an example:
 3. The new tuple replaces the old tuple in all existing indexes.
 
 4. A message is sent to WAL writer running in a separate thread, requesting that
-   the change be recorded in the WAL. The server switches to work on the next
+   the change be recorded in the WAL. The instance switches to work on the next
    request until the write is acknowledged.
 
 5. On success, a confirmation is sent to the client. On failure, a rollback
@@ -114,7 +114,7 @@ The snapshot file format
 --------------------------------------------------------------------------------
 
 The format of a snapshot .snap file is nearly the same as the format of a WAL .xlog file.
-However, the snapshot header differs: it contains the server's global unique identifier
+However, the snapshot header differs: it contains the instance's global unique identifier
 and the snapshot file's position in history, relative to earlier snapshot files.
 Also, the content differs: an .xlog file may contain records for any data-change
 requests (inserts, updates, upserts, and deletes), a .snap file may only contain records
@@ -134,10 +134,10 @@ The recovery process
 --------------------------------------------------------------------------------
 
 The recovery process begins when box.cfg{} happens for the
-first time after the Tarantool server starts.
+first time after the Tarantool server instance starts.
 
 The recovery process must recover the databases
-as of the moment when the server was last shut down. For this it may
+as of the moment when the instance was last shut down. For this it may
 use the latest snapshot file and any WAL files that were written
 after the snapshot. One complicating factor is that Tarantool
 has two engines -- the memtx data must be reconstructed entirely
@@ -203,79 +203,79 @@ enabled.
 Once again the startup procedure is initiated by the ``box.cfg{}`` request.
 One of the box.cfg parameters may be
 :ref:`replication_source <cfg_replication-replication_source>`. We will
-refer to this server, which is starting up due to box.cfg, as the "local" server
-to distinguish it from the other servers in a cluster, which we will refer to as
-"distant" servers.
+refer to this replica, which is starting up due to box.cfg, as the "local" replica
+to distinguish it from the other replicas in a replica set, which we will refer to as
+"distant" replicas.
 
 *If there is no snapshot .snap file and replication_source is empty*: |br|
-then the local server assumes it is an unreplicated "standalone" server, or is
-the first server of a new replication cluster. It will generate new UUIDs for
-itself and for the cluster. The server UUID is stored in the _cluster space; the
-cluster UUID is stored in the _schema space. Since a snapshot contains all the
-data in all the spaces, that means the local server's snapshot will contain the
-server UUID and the cluster UUID. Therefore, when the local server restarts on
+then the local replica assumes it is an unreplicated "standalone" instance, or is
+the first replica of a new replica set. It will generate new UUIDs for
+itself and for the replica set. The replica UUID is stored in the _cluster space; the
+replica set UUID is stored in the _schema space. Since a snapshot contains all the
+data in all the spaces, that means the local replica's snapshot will contain the
+replica UUID and the replica set UUID. Therefore, when the local replica restarts on
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
 *If there is no snapshot .snap file and replication_source is not empty
-and the _cluster space contains no other server UUIDs*: |br|
-then the local server assumes it is not a standalone server, but is not yet part
-of a cluster. It must now join the cluster. It will send its server UUID to the
-first distant server which is listed in replication_source, which will act as a
-master. This is called the "join request". When a distant server receives a join
+and the _cluster space contains no other replica UUIDs*: |br|
+then the local replica assumes it is not a standalone instance, but is not yet part
+of a replica set. It must now join the replica set. It will send its replica UUID to the
+first distant replica which is listed in replication_source, which will act as a
+master. This is called the "join request". When a distant replica receives a join
 request, it will send back:
 
-(1) the distant server's cluster UUID,
-(2) the contents of the distant server's .snap file. |br|
-    When the local server receives this information, it puts the cluster UUID in
-    its _schema space, puts the distant server's UUID and connection information
+(1) the distant replica's replica set UUID,
+(2) the contents of the distant replica's .snap file. |br|
+    When the local replica receives this information, it puts the replica set UUID in
+    its _schema space, puts the distant replica's UUID and connection information
     in its _cluster space, and makes a snapshot containing all the data sent by
-    the distant server. Then, if the local server has data in its WAL .xlog
-    files, it sends that data to the distant server. The distant server will
-    receive this and update its own copy of the data, and add the local server's
+    the distant replica. Then, if the local replica has data in its WAL .xlog
+    files, it sends that data to the distant replica. The distant replica will
+    receive this and update its own copy of the data, and add the local replica's
     UUID to its _cluster space.
 
 *If there is no snapshot .snap file and replication_source is not empty
-and the _cluster space contains other server UUIDs*: |br|
-then the local server assumes it is not a standalone server, and is already part
-of a cluster. It will send its server UUID and cluster UUID to all the distant
-servers which are listed in replication_source. This is called the "on-connect
-handshake". When a distant server receives an on-connect handshake: |br|
+and the _cluster space contains other replica UUIDs*: |br|
+then the local replica assumes it is not a standalone instance, and is already part
+of a replica set. It will send its replica UUID and replica set UUID to all the distant
+replicas which are listed in replication_source. This is called the "on-connect
+handshake". When a distant replica receives an on-connect handshake: |br|
 
-(1) the distant server compares its own copy of the cluster UUID to the one in
+(1) the distant replica compares its own copy of the replica set UUID to the one in
     the on-connect handshake. If there is no match, then the handshake fails and
-    the local server will display an error.
-(2) the distant server looks for a record of the connecting instance in its
+    the local replica will display an error.
+(2) the distant replica looks for a record of the connecting instance in its
     _cluster space. If there is none, then the handshake fails. |br|
-    Otherwise the handshake is successful. The distant server will read any new
+    Otherwise the handshake is successful. The distant replica will read any new
     information from its own .snap and .xlog files, and send the new requests to
-    the local server.
+    the local replica.
 
-In the end ... the local server knows what cluster it belongs to, the distant
-server knows that the local server is a member of the cluster, and both servers
+In the end ... the local replica knows what replica set it belongs to, the distant
+replica knows that the local replica is a member of the replica set, and both replicas
 have the same database contents.
 
 .. _internals-vector:
 
 *If there is a snapshot file and replication source is not empty*: |br|
-first the local server goes through the recovery process described in the
+first the local replica goes through the recovery process described in the
 previous section, using its own .snap and .xlog files. Then it sends a
-"subscribe" request to all the other servers of the cluster. The subscribe
+"subscribe" request to all the other replicas of the replica set. The subscribe
 request contains the server vector clock. The vector clock has a collection of
-pairs 'server id, lsn' for every server in the _cluster system space. Each
-distant server, upon receiving a subscribe request, will read its .xlog files'
-requests and send them to the local server if (lsn of .xlog file request) is
+pairs 'server id, lsn' for every replica in the _cluster system space. Each
+distant replica, upon receiving a subscribe request, will read its .xlog files'
+requests and send them to the local replica if (lsn of .xlog file request) is
 greater than (lsn of the vector clock in the subscribe request). After all the
-other servers of the cluster have responded to the local server's subscribe
-request, the server startup is complete.
+other replicas of the replica set have responded to the local replica's subscribe
+request, the replica startup is complete.
 
 The following temporary limitations apply for version 1.7:
 
-* The URIs in replication_source should all be in the same order on all servers.
+* The URIs in replication_source should all be in the same order on all replicas.
   This is not mandatory but is an aid to consistency.
-* The servers of a cluster should be started up at slightly different times.
-  This is not mandatory but prevents a situation where each server is waiting
-  for the other server to be ready.
+* The replicas of a replica set should be started up at slightly different times.
+  This is not mandatory but prevents a situation where each replica is waiting
+  for the other replica to be ready.
 * The maximum number of entries in the _cluster space is 32. Tuples for
   out-of-date replicas are not automatically re-used, so if this 32-replica
   limit is reached, users may have to reorganize the _cluster space manually.

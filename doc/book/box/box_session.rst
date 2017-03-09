@@ -25,14 +25,14 @@ client connection.
 .. function:: peer(id)
 
     This function works only if there is a peer, that is,
-    if a connection has been made to a separate server.
+    if a connection has been made to a separate Tarantool instance.
 
     :return: The host address and port of the session peer,
              for example "127.0.0.1:55457".
              If the session exists but there is no connection to a
-             separate server, the return is null.
-             The command is executed on the server,
-             so the "local name" is the server's host
+             separate instance, the return is null.
+             The command is executed on the server instance,
+             so the "local name" is the server instance's host
              and port, and the "peer name" is the client's host
              and port.
     :rtype:  string
@@ -159,7 +159,7 @@ client connection.
     .. WARNING::
 
         If a trigger always results in an error, it may become impossible to
-        connect to the server to reset it.
+        connect to a server to reset it.
 
 .. _box_session-on_disconnect:
 
@@ -189,7 +189,7 @@ client connection.
 
     **Example #2**
 
-    After the following series of requests, the server will write a message
+    After the following series of requests, a Tarantool instance will write a message
     using the :ref:`log <log-module>` module whenever any user connects or disconnects.
 
     .. code-block:: lua_tarantool

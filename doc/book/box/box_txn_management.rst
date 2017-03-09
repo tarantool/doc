@@ -12,7 +12,7 @@ Observe the following rules when working with transactions:
 .. admonition:: Rule #1
     :class: FACT
 
-    The requests in a transaction must be sent to the server as a single block.
+    The requests in a transaction must be sent to a server as a single block.
     It is not enough to enclose them between begin and commit or rollback.
     To ensure they are sent as a single block: put them in a function, or put
     them all on one line, or use a delimiter so that multi-line requests

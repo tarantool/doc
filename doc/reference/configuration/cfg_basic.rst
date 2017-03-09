@@ -97,7 +97,7 @@
 
 .. confval:: read_only
 
-    Put the server in read-only mode. After this, any requests that try to
+    Put the server instance in read-only mode. After this, any requests that try to
     change data will fail with error :errcode:`ER_READONLY`.
 
     | Type: boolean
@@ -156,7 +156,7 @@
 
 .. confval:: work_dir
 
-    | A directory where database working files will be stored. The server
+    | A directory where database working files will be stored. The server instance
       switches to work_dir with :manpage:`chdir(2)` after start. Can be
       relative to the current directory. If not specified, defaults to
       the current directory. Other directory parameters may be relative to

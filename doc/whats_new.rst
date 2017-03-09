@@ -24,8 +24,8 @@ There are new types for indexed fields.
 
 The LuaJIT version is updated.
 
-Automatic replication cluster bootstrap (to make it easier
-to configure a new replication cluster) is supported.
+Automatic replica set bootstrap (to make it easier
+to configure a new replica set) is supported.
 
 The ``space_object:inc()`` function is removed.
 

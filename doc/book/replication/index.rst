@@ -4,14 +4,14 @@
 Replication
 --------------------------------------------------------------------------------
 
-Replication allows multiple Tarantool servers to work on copies of the same
-databases. The databases are kept in synch because each server can communicate
-its changes to all the other servers. Servers which share the same databases
-are a "cluster". Each server in a cluster also has a numeric identifier which
-is unique within the cluster, known as the "server id".
+Replication allows multiple Tarantool instances to work on copies of the same
+databases. The databases are kept in synch because each instance can communicate
+its changes to all the other instances. A pack of instances which share the same databases
+are a "replica set". Each instance in a replica set also has a numeric identifier which
+is unique within the replica set, known as the "instance id" or "instance id".
 
-To set up replication, it's necessary to set up the master servers which
-make the original data-change requests, set up the replica servers which
+To set up replication, it's necessary to set up the master instances which
+make the original data-change requests, set up the replica instances which
 copy data-change requests from masters, and establish procedures for
 recovery from a degraded state.
 
@@ -48,17 +48,17 @@ has its own :ref:`replication state <index-monitoring_replica_actions>`.
 Setting up a replica
 =====================================================================
 
-A server requires a valid snapshot (.snap) file. A snapshot file is created
-for a server the first time that ``box.cfg`` occurs for it. If this first
+An instance requires a valid snapshot (.snap) file. A snapshot file is created
+for a instance the first time that ``box.cfg`` occurs for it. If this first
 ``box.cfg`` request occurs without a "replication source" clause, then the
-server is a master and starts its own new cluster with a new unique UUID.
+instance is a master and starts its own new replica set with a new unique UUID.
 If this first ``box.cfg`` request occurs with a "replication source" clause,
-then the server is a replica and its snapshot file, along with the cluster
+then the instance is a replica and its snapshot file, along with the replica-set
 information, is constructed from the write-ahead logs of the master.
 Therefore, to start replication, specify :ref:`replication_source <cfg_replication-replication_source>`
 in a ``box.cfg`` request. When a replica contacts a master for the first time,
-it becomes part of a cluster. On subsequent occasions, it should always contact
-a master in the same cluster.
+it becomes part of a replica set. On subsequent occasions, it should always contact
+a master in the same replica set.
 
 Once connected to the master, the replica requests all changes that happened
 after the latest local LSN. It is therefore necessary to keep WAL files on
@@ -107,10 +107,10 @@ Then, if there are updates on the old master that were not propagated before
 the old master went down, they would have to be re-applied manually.
 
 =====================================================================
-Quick startup of a new simple two-server cluster
+Quick startup of a new simple two-instance replica set
 =====================================================================
 
-Step 1. Start the first server thus:
+Step 1. Start the first instance thus:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -120,15 +120,15 @@ Step 1. Start the first server thus:
     box.schema.user.grant('guest', 'read,write,execute', 'universe')
     box.snapshot()
 
-... Now a new cluster exists.
+... Now a new replica set exists.
 
-Step 2. Check where the second server's files will go by looking at its
+Step 2. Check where the second instance's files will go by looking at its
 directories (:ref:`snap_dir <cfg_basic-snap_dir>` for snapshot files, :ref:`wal_dir <cfg_basic-wal_dir>` for .xlog files).
-They must be empty - when the second server joins for the first time, it
+They must be empty - when the second instance joins for the first time, it
 has to be working with a clean state so that the initial copy of the first
-server's databases can happen without conflicts.
+instance's databases can happen without conflicts.
 
-Step 3. Start the second server thus:
+Step 3. Start the second instance thus:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -138,13 +138,13 @@ Step 3. Start the second server thus:
       replication_source = *uri#1*
     }
 
-... where ``uri#1`` = the :ref:`URI <index-uri>` that the first server is listening on.
+... where ``uri#1`` = the :ref:`URI <index-uri>` that the first instance is listening on.
 
 That's all.
 
-In this configuration, the first server is the "master" and the second server
+In this configuration, the first instance is the "master" and the second instance
 is the "replica". Henceforth every change that happens on the master will be
-visible on the replica. A simple two-server cluster with the master on one
+visible on the replica. A simple two-instance replica set with the master on one
 computer and the replica on a different computer is very common and provides
 two benefits: FAILOVER (because if the master goes down then the replica can
 take over), or LOAD BALANCING (because clients can connect to either the master
@@ -163,7 +163,7 @@ If a replica's status is "follow", then there will be more fields --
 the list is in the section :ref:`Submodule box.info <box_introspection-box_info>`.
 
 In the :ref:`log <log-module>` there is a record of replication activity.
-If a primary server is started with:
+If a primary instance is started with:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -214,7 +214,7 @@ the replica, but not vice versa, because the master was specified as the sole
 replication source. In the master-master configuration,
 also sometimes called multi-master configuration,
 it's possible to go both ways.
-Starting with the simple configuration, the first server has to say:
+Starting with the simple configuration, the first instance has to say:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -224,16 +224,16 @@ Starting with the simple configuration, the first server has to say:
 This request can be performed at any time --
 :ref:`replication_source <cfg_replication-replication_source>` is a dynamic parameter.
 
-In this configuration, both servers are "masters" and both servers are
-"replicas". Henceforth every change that happens on either server will
+In this configuration, both instances are "masters" and both instances are
+"replicas". Henceforth every change that happens on either instance will
 be visible on the other. The failover benefit is still present, and the
 load-balancing benefit is enhanced (because clients can connect to either
-server for data-change requests as well as select requests).
+instance for data-change requests as well as select requests).
 
 If two operations for the same tuple take place "concurrently" (which can
 involve a long interval because replication is asynchronous), and one of
 the operations is ``delete`` or ``replace``, there is a possibility that
-servers will end up with different contents.
+instances will end up with different contents.
 
 =====================================================================
 All the "What If?" questions
@@ -241,10 +241,10 @@ All the "What If?" questions
 
 .. container:: faq
 
-    :Q: What if there are more than two servers with master-master?
-    :A: On each server, specify the :ref:`replication_source
+    :Q: What if there are more than two instances with master-master?
+    :A: On each instance, specify the :ref:`replication_source
         <cfg_replication-replication_source>` for all the others. For example,
-        server #3 would have a request:
+        instance #3 would have a request:
 
         .. cssclass:: highlight
         .. parsed-literal::
@@ -252,22 +252,22 @@ All the "What If?" questions
             box.cfg{ replication_source = {*uri1*}, {*uri2*} }
 
 
-    :Q: What if a server should be taken out of the cluster?
+    :Q: What if an instance should be taken out of the replica set?
     :A: For a replica, run ``box.cfg{}`` again specifying a blank replication
         source: ``box.cfg{replication_source=''}``
 
-    :Q: What if a server leaves the cluster?
-    :A: The other servers carry on. If the wayward server rejoins, it will
-        receive all the updates that the other servers made while it was away.
+    :Q: What if an instance leaves the replica set?
+    :A: The other instances carry on. If the wayward instance rejoins, it will
+        receive all the updates that the other instances made while it was away.
 
-    :Q: What if two servers both change the same tuple?
-    :A: The last changer wins. For example, suppose that server#1 changes the
-        tuple, then server#2 changes the tuple. In that case server#2's change
-        overrides whatever server#1 did. In order to keep track of who came
+    :Q: What if two instances both change the same tuple?
+    :A: The last changer wins. For example, suppose that instance#1 changes the
+        tuple, then instance#2 changes the tuple. In that case instance#2's change
+        overrides whatever instance#1 did. In order to keep track of who came
         last, Tarantool implements a `vector clock
         <https://en.wikipedia.org/wiki/Vector_clock>`_.
 
-    :Q: What if two servers both insert the same tuple?
+    :Q: What if two instances both insert the same tuple?
     :A: If a master tries to insert a tuple which a replica has inserted
         already, this is an example of a severe error. Replication stops.
         It will have to be restarted manually.
@@ -277,23 +277,23 @@ All the "What If?" questions
         lost. The replica must now become independent, which can be done by
         saying ``box.cfg{replication_source=''}``.
 
-    :Q: What if it's necessary to know what cluster a server is in?
-    :A: The identification of the cluster is a UUID which is generated when the
+    :Q: What if it's necessary to know what replica set an instance is in?
+    :A: The identification of the replica set is a UUID which is generated when the
         first master starts for the first time. This UUID is stored in a tuple
         of the :ref:`box.space._schema <box_space-schema>` system space. So to
         see it, say: ``box.space._schema:select{'cluster'}``
 
-    :Q: What if it's necessary to know what other servers belong in the cluster?
-    :A: The universal identification of a server is a UUID in
-        ``box.info.server.uuid``. The ordinal identification of a server within
-        a cluster is a number in ``box.info.server.id``. To see all the servers
-        in the cluster, say: ``box.space._cluster:select{}``. This will return a
-        table with all {server.id, server.uuid} tuples for every server that has
-        ever joined the cluster.
+    :Q: What if it's necessary to know what other instances belong in the replica set?
+    :A: The universal identification of an instance is a UUID in
+        ``box.info.server.uuid``. The ordinal identification of an instance within
+        a replica set is a number in ``box.info.server.id``. To see all the instances
+        in the replica set, say: ``box.space._cluster:select{}``. This will return a
+        table with all {server.id, server.uuid} tuples for every instance that has
+        ever joined the replica set.
 
-    :Q: What if one of the server's files is corrupted or deleted?
-    :A: Stop the server, destroy all the database files (the ones with extension
-        "snap" or "xlog" or ".inprogress"), restart the server, and catch up
+    :Q: What if one of the instance's files is corrupted or deleted?
+    :A: Stop the instance, destroy all the database files (the ones with extension
+        "snap" or "xlog" or ".inprogress"), restart the instance, and catch up
         with the master by contacting it again (just say
         ``box.cfg{...replication_source=...}``).
 
@@ -306,7 +306,7 @@ All the "What If?" questions
         the long form ``replication_source='username:password@host:port'``
 
     :Q: What if advanced users want to understand better how it all works?
-    :A: See the description of server startup with replication in the
+    :A: See the description of instance startup with replication in the
         :ref:`Internals <internals-replication>` section.
 
 =====================================================================
@@ -314,7 +314,7 @@ Hands-on replication tutorial
 =====================================================================
 
 After following the steps here, an administrator will have experience creating
-a cluster and adding a replica.
+a replica set and adding a replica.
 
 Start two shells. Put them side by side on the screen. (This manual has a tabbed
 display showing "Terminal #1". Click the "Terminal #2" tab to switch to the
@@ -367,7 +367,7 @@ On the first shell, which we'll call Terminal #1, execute these commands:
     tarantool> box.schema.user.grant('replicator','execute','role','replication')
     tarantool> box.space._cluster:select({0}, {iterator = 'GE'})
 
-The result is that a new cluster is set up, and the server's UUID is displayed.
+The result is that a new replica set is configured, and the instance's UUID is displayed.
 Now the screen looks like this: (except that UUID values are always different):
 
 .. container:: b-block-wrapper_doc
@@ -419,7 +419,7 @@ confirming that the replica has connected and that the WAL contents have
 been shipped to the replica. Messages appear on Terminal #2 showing that
 replication is starting. Also on Terminal#2 the _cluster UUID values are
 displayed, and one of them is the same as the _cluster UUID value that was displayed
-on Terminal #1, because both servers are in the same cluster.
+on Terminal #1, because both instances are in the same replica set.
 
 .. container:: b-block-wrapper_doc
 
@@ -543,7 +543,7 @@ On Terminal #1, execute these Tarantool requests and shell commands:
     $ ls -l ~/tarantool_test_node_2
 
 Now Tarantool #1 is stopped. Messages appear on Terminal #2 announcing that fact.
-The ``ls -l`` commands show that both servers have made snapshots, which have
+The ``ls -l`` commands show that both instances have made snapshots, which have
 similar sizes because they both contain the same tuples.
 
 .. container:: b-block-wrapper_doc
@@ -656,7 +656,7 @@ Now the screen looks like this:
 
             .. include:: 7_2.rst
 
-The master has reconnected to the cluster, and has NOT found what the replica
+The master has reconnected to the replica set, and has NOT found what the replica
 wrote while the master was away. That is not a surprise -- the replica has not
 been asked to act as a replication source.
 
@@ -714,8 +714,8 @@ The screen now looks like this:
             register_replication_tab(9);
         </script>
 
-This shows that the two servers are once again in synch, and that each server
-sees what the other server wrote.
+This shows that the two instances are once again in synch, and that each instance
+sees what the other instance wrote.
 
 To clean up, say "``os.exit()``" on both Terminal #1 and Terminal #2, and then
 on either terminal say:

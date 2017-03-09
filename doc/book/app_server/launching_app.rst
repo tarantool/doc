@@ -158,7 +158,7 @@ session’s process list:
      PID TTY       	TIME CMD
    41608 ttys001	0:00.47 tarantool myapp.lua <running>
  
-But the Tarantool server will stop if we close the current terminal window.
+But the Tarantool instance will stop if we close the current terminal window.
 To detach Tarantool and our application from the terminal window, we can launch
 it in the **daemon mode**. To do so, we add some parameters to ``box.cfg{}``:
 

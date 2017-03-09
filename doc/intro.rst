@@ -8,7 +8,7 @@ An application server together with a database manager
 
 Tarantool is a Lua application server integrated with a database management system.
 It has a "fiber" model which means that many Tarantool applications can run simultaneously on
-a single thread, while the Tarantool server itself can run multiple threads for input-output
+a single thread, while each instance of the Tarantool server itself can run multiple threads for input-output
 and background maintenance. It incorporates the LuaJIT -- "Just In Time" -- Lua compiler,
 Lua libraries for most common applications, and the Tarantool Database Server which
 is an established NoSQL DBMS. Thus Tarantool serves all the purposes that have made node.js
@@ -77,7 +77,7 @@ The logging subsystem supports group commit.
 random-access memory, and therefore has very low read latency.
 It also keeps persistent copies of the data in non-volatile storage,
 such as disk, when users request "snapshots".
-If a server stops and the random-access memory is lost,
+If an instance of the server stops and the random-access memory is lost,
 then restarts, it reads the latest snapshot
 and then replays the transactions that are in the log --
 therefore no data is lost.
@@ -87,9 +87,9 @@ concurrency primitives, such as mutexes, Tarantool uses cooperative multitasking
 handle thousands of connections simultaneously. There is a fixed number of
 independent execution threads. The threads do not share state. Instead they
 exchange data using low-overhead message queues. While this approach limits the
-number of cores that the server will use, it removes competition for the memory
+number of cores that the instance will use, it removes competition for the memory
 bus and ensures peak scalability of memory access and network throughput. CPU
-utilization of a typical highly-loaded Tarantool server is under 10%.
+utilization of a typical highly-loaded Tarantool instance is under 10%.
 Searches are possible via **secondary index keys** as well as primary keys.
 
 **Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems, 

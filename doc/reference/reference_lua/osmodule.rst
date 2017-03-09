@@ -117,7 +117,7 @@ Chapter 22 `The Operating System Library
 
 .. function:: exit()
 
-    Exit the program. If this is done on the server, then the server stops.
+    Exit the program. If this is done on a server instance, then the instance stops.
 
     **Example:**
 

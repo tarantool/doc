@@ -12,7 +12,7 @@ This chapter documents APIs for various programming languages.
 
 Tarantool's binary protocol was designed with a focus on asynchronous I/O and
 easy integration with proxies. Each client request starts with a variable-length
-binary header, containing request id, request type, server id, log sequence
+binary header, containing request id, request type, instance id, log sequence
 number, and so on.
 
 The mandatory length, present in request header simplifies client or proxy I/O.
@@ -33,7 +33,7 @@ in the source tree: please see the page about
 ====================================================================
 
 The Tarantool API exists so that a client program can send a request packet to
-the server, and receive a response. Here is an example of a what the client
+a server instance, and receive a response. Here is an example of a what the client
 would send for ``box.space[513]:insert{'A', 'BB'}``. The BNF description of
 the components is on the page about
 :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`.
@@ -65,7 +65,7 @@ the components is on the page about
         | 2-character string: field[2]    |   a2    |   42    |   42    |         |
         +---------------------------------+---------+---------+---------+---------+
 
-Now, you could send that packet to the Tarantool server, and interpret the
+Now, you could send that packet to the Tarantool instance, and interpret the
 response (the page about
 :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>` has a
 description of the packet format for responses as well as requests). But it
@@ -80,11 +80,11 @@ exist for drivers for Perl, Python, PHP, and so on.
           Setting up the server for connector examples
 ====================================================================
 
-This chapter has examples that show how to connect to the Tarantool server via
+This chapter has examples that show how to connect to a Tarantool instance via
 the Perl, PHP, Python, node.js, and C connectors. The examples contain hard code that
 will work if and only if the following conditions are met:
 
-* the server (tarantool) is running on localhost (127.0.0.1) and is listening on
+* the Tarantool instance (tarantool) is running on localhost (127.0.0.1) and is listening on
   port 3301 (``box.cfg.listen = '3301'``),
 
 * space ``examples`` has id = 999 (``box.space.examples.id = 999``) and has
@@ -93,7 +93,7 @@ will work if and only if the following conditions are met:
 
 * user 'guest' has privileges for reading and writing.
 
-It is easy to meet all the conditions by starting the server and executing this
+It is easy to meet all the conditions by starting the instance and executing this
 script:
 
 .. code-block:: lua

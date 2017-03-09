@@ -52,13 +52,13 @@ A reference description also follows below:
         ...
 
     Taking a snapshot does not cause the server to start a new write-ahead log.
-    Once a snapshot is taken, old WALs can be deleted as long as all replicas
-    are up to date. But the WAL which was current at the time ``box.snapshot()``
+    Once a snapshot is taken, old WALs can be deleted as long as all replicated
+    data is up to date. But the WAL which was current at the time ``box.snapshot()``
     started must be kept for recovery, since it still contains log records
     written after the start of ``box.snapshot()``.
 
-    An alternative way to save a snapshot is to send the server SIGUSR1 UNIX
-    signal. While this approach could be handy, it is not recommended for use
+    An alternative way to save a snapshot is to send a SIGUSR1 signal to the instance.
+    While this approach could be handy, it is not recommended for use
     in automation: a signal provides no way to find out whether the snapshot
     was taken successfully or not.
 

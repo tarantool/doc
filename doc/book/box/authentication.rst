@@ -70,10 +70,10 @@ system space with a
 `cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_
 so that, if the password is ‘x’, the stored hash-password is a long string
 like ‘lL3OvhkIPOKh+Vn9Avlkx69M/Ck=‘.
-When a client connects to a Tarantool server, the server sends a random
+When a client connects to a Tarantool instance, the instance sends a random
 `salt value <https://en.wikipedia.org/wiki/Salt_%28cryptography%29>`_
 which the client must mix with the hashed-password before sending
-to the server. Thus the original value ‘x’ is never stored anywhere except
+to the instance. Thus the original value ‘x’ is never stored anywhere except
 in the user’s head, and the hashed value is never passed down a network wire
 except when mixed with a random salt.
 

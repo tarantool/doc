@@ -127,7 +127,7 @@
 **Logging example:**
 
 This will illustrate how "rotation" works, that is, what happens when the server
-is writing to a log and signals are used when archiving it.
+instance is writing to a log and signals are used when archiving it.
 
 Start with two terminal shells, Terminal #1 and Terminal #2.
 
@@ -154,17 +154,17 @@ On Terminal #1: put a message "Log Line #2" in the log file.
 
     log.info('Log Line #2')
 
-On Terminal #2: use ``ps`` to find the process ID of the Tarantool server.
+On Terminal #2: use ``ps`` to find the process ID of the Tarantool instance.
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     ps -A | grep tarantool
 
-On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool server.
+On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance.
 The result of this is: Tarantool will open `Log_file` again, and
 the next log message will go to `Log_file`.
-(The same effect could be accomplished by executing log.rotate() on the server.)
+(The same effect could be accomplished by executing log.rotate() on the instance.)
 
 .. cssclass:: highlight
 .. parsed-literal::

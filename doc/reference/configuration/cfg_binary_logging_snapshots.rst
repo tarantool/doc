@@ -10,7 +10,7 @@
 .. confval:: panic_on_snap_error
 
     If there is an error while reading the snapshot file
-    (at server start), abort.
+    (at server instance start), abort.
 
     | Type: boolean
     | Default: true
@@ -21,7 +21,7 @@
 .. confval:: panic_on_wal_error
 
     If there is an error while reading a write-ahead log
-    file (at server start or to relay to a replica), abort.
+    file (at server instance start or to relay to a replica), abort.
 
     | Type: boolean
     | Default: true

@@ -4,7 +4,7 @@
 Server administration
 ********************************************************************************
 
-Typical server administration tasks include starting and stopping the server,
+Typical server administration tasks include starting and stopping instances of the server,
 reloading configuration, taking snapshots, log rotation.
 
 .. _administration-using_tarantool_as_a_client:
@@ -250,7 +250,7 @@ The settings in the above script are:
     add ":samp:`/{instance-name}.log`" to the name.
 
 ``username``
-    The user that runs the Tarantool server. This is the operating-system
+    The user that runs the Tarantool instance. This is the operating-system
     user name rather than the Tarantool-client user name.
 
 ``instance_dir``
@@ -293,7 +293,7 @@ operation is one of: start, stop, enter, logrotate, status, eval. Thus ...
 
 .. option:: connect <URI>
 
-    Connect to a Tarantool server running at the specified :ref:`URI <index-uri>`
+    Connect to a Tarantool instance running at the specified :ref:`URI <index-uri>`
 
 --------------------------------------------------------------------------------
 Typical code snippets for tarantoolctl
@@ -410,7 +410,7 @@ any. Then ...
 .. code-block:: tarantoolsession
 
     $ cd /tarantool_test
-    $ # assume that 'tarantool' invokes the tarantool server
+    $ # assume that 'tarantool' invokes a Tarantool instance
     $ sudo tarantool
     tarantool> box.cfg{}
     tarantool> console = require('console')
@@ -469,7 +469,7 @@ all refer to a different thing: a connection which is set up
 with :ref:`box.cfg{listen=...} <cfg_basic-listen>` for entry of requests by
 anyone.
 
-Ordinary connections to the Tarantool server should go via a binary port. 
+Ordinary connections to the Tarantool instance should go via a binary port. 
 But admin ports are useful for special cases involving security.
 
 When you connect to an admin port:
@@ -540,11 +540,11 @@ Administrative requests
 Server introspection
 =====================================================================
 
-For server introspection, use the reports provided by functions in the following
+For server instance introspection, use the reports provided by functions in the following
 submodules:
 
 * :ref:`box.cfg <box_introspection-box_cfg>` submodule
-  (check and specify all configuration parameters for the Tarantool server)
+  (check and specify all configuration parameters for the Tarantool instance)
 * :ref:`box.slab <box_introspection-box_slab>` submodule
   (monitor the total use and fragmentation of memory allocated for storing
   data in Tarantool)
@@ -576,7 +576,7 @@ and the WAL files that are made after the last snapshot are incremental backups.
 Therefore taking a backup is a matter of copying the snapshot and WAL files.
 
 (1) Prevent all users from writing to the database. This can be done by
-    shutting down the server, or by saying
+    shutting down the instance, or by saying
     ``box.cfg{read_only=true}`` and then ensuring that all earlier
     writes are complete (:program:`fsync` can be used for this purpose).
 (2) If this is a backup of the whole database, say
@@ -599,7 +599,7 @@ Continuous remote backup
 In essence: :ref:`replication <index-box_replication>`
 is useful for backup as well as for load balancing.
 Therefore taking a backup is a matter of ensuring that any given
-replica is up to date, and doing a cold backup on it.
+replica has an up-to-date copy of the data, and doing a cold backup on that.
 Since all the other replicas continue to operate, this is not a
 cold backup from the end user's point of view. This could be
 done on a regular basis, with a cron job or with a Tarantool fiber.
@@ -783,7 +783,7 @@ The server processes these signals during the main thread event loop:
         causes shutdown.
 
 Other signals will result in behavior defined by the operating system. Signals
-other than SIGKILL may be ignored, especially if the server is executing a
+other than SIGKILL may be ignored, especially if the instance is executing a
 long-running procedure which prevents return to the main thread event loop.
 
 .. _administration-core:
@@ -797,7 +797,7 @@ For example, the Tarantool developers may request one for a bug report.
 First make sure core dumps are enabled on the system (this may require some
 study of the system settings and administrative privileges).
 
-Find out the process id of the server. This is the value in ``box.info.pid``.
+Find out the process id of the instance. This is the value in ``box.info.pid``.
 It can also be found with utilities such as ``ps -A | grep tarantool``.
 We will refer to this process id as ``$PID``.
 
@@ -807,7 +807,7 @@ Either run the debugger:
 
    gdb -batch -ex "generate-core-file" -p $PID
 
-or stop the server with a SIGABRT signal:
+or stop the instance with a SIGABRT signal:
 
 .. code-block:: console
 
@@ -826,7 +826,7 @@ which otherwise contains the program name. Tarantool uses this feature to help
 meet the needs of system administration, such as figuring out what services are
 running on a host, their status, and so on.
 
-A Tarantool server's process title has these components:
+A Tarantool instance's process title has these components:
 
 :extsamp:`{**{program_name}**} [{**{initialization_file_name}**}] {**{<role_name>}**} [{**{custom_proc_title}**}]`
 

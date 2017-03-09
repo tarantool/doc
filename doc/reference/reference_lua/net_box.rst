@@ -7,7 +7,7 @@ Module `net.box`
 The ``net.box`` module contains connectors to remote database systems. One
 variant, to be discussed later, is connecting to MySQL or MariaDB or PostgreSQL
 (see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
-is discussed in this section, is connecting to Tarantool servers via a network
+is discussed in this section, is connecting to Tarantool server instances via a network
 using the built-in ``net.box`` module.
 
 You can call the following methods:
@@ -306,7 +306,7 @@ This example shows the use of most of the ``net.box`` methods.
 
 The sandbox configuration for this example assumes that:
 
-* the Tarantool server is running on ``localhost 127.0.0.1:3301``,
+* the Tarantool instance is running on ``localhost 127.0.0.1:3301``,
 * there is a space named ``tester`` with a numeric primary key and with a tuple
   that contains a key value = 800,
 * the current user has read, write and execute privileges.

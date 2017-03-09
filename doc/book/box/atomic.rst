@@ -31,14 +31,14 @@ This query will be processed with three operating system **threads**:
 1. If we issue the query on a remote client, then the **network thread** on
    the server side receives the query, parses the statement and changes it
    to a server executable message which has already been checked, and which
-   the server can understand without parsing everything again.
+   the server instance can understand without parsing everything again.
 
-2. The network thread ships this message to the server's
+2. The network thread ships this message to the instance's
    **"transaction processor" thread** using a lock-free message bus.
    Lua programs execute directly in the transaction processor thread,
    and do not require parsing and preparation.
 
-   The server's transaction processor thread uses the primary-key index on
+   The instance's transaction processor thread uses the primary-key index on
    field[1] to find the location of the tuple. It determines that the tuple
    can be updated (not much can go wrong when you're merely changing an
    unindexed field value to something shorter).
@@ -53,7 +53,7 @@ Some people are used to the idea that there can be multiple threads operating
 on the database, with (say) thread #1 reading row #x, while thread #2 writes
 row #y. With Tarantool, no such thing ever happens.
 Only the transaction processor thread can access the database, and there is
-only one transaction processor thread for each instance of the server.
+only one transaction processor thread for each Tarantool instance.
 
 Like any other Tarantool thread, the transaction processor thread can handle
 many **fibers**. A fiber is a set of computer instructions that may contain
@@ -205,7 +205,7 @@ Therefore, the sequence:
    select
 
 causes blocking (in memtx), if it is inside a function or Lua program being
-executed on the server, but causes yielding (in both memtx and vinyl) if it
+executed on the server instance, but causes yielding (in both memtx and vinyl) if it
 is done as a series of transmissions from a client, including a client which
 operates via telnet, via one of the connectors, or via the MySQL and PostgreSQL
 rocks, or via the interactive mode when

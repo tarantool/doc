@@ -15,12 +15,12 @@ installed:
     npm install tarantool-driver --global
 
 Here is a complete node.js program that inserts ``[99999,'BB']`` into
-``space[999]`` via the node.js API. Before trying to run, check that the server
+``space[999]`` via the node.js API. Before trying to run, check that the server instance
 is listening at ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`. To run, paste the code into
 a file named :file:`example.rs` and say ``node example.rs``. The program will
 connect using an application-specific definition of the space. The program will
-open a socket connection with the Tarantool server at ``localhost:3301``, then
+open a socket connection with the Tarantool instance at ``localhost:3301``, then
 send an INSERT request, then — if all is well — end after saying "Insert
 succeeded". If Tarantool is not running on ``localhost`` with listen port =
 3301, the program will print “Connect failed”. If user ``guest`` does not have
