@@ -793,7 +793,8 @@ Generating a core file
 ================================================================================
 
 On rare occasions it may be necessary to generate a core file from the server.
-For example, the Tarantool developers may request one for a bug report.
+For example, the Tarantool developers may request one for a
+:ref:`bug report <administration-how-to-write-a-bug-report>`.
 First make sure core dumps are enabled on the system (this may require some
 study of the system settings and administrative privileges).
 
@@ -1274,5 +1275,130 @@ Install new systemd-enabled packages.
 
 #Disable sysvinit-compatible wrappers: |br|
 ``systemctl disable tarantool; update-rc.d tarantool remove``
+
+.. _administration-how-to-write-a-bug-report:
+
+================================================================================
+How to write a bug report
+================================================================================
+
+If it's a bug, you're doing us a favor
+by taking the time to tell us about it. To make sure that we
+repay you with a prompt and satisfactory result, you can help
+us by following some simple steps. Well, usually they're simple.
+
+Go to the github issues site. 
+If the problem is with the Tarantool server, go to
+`https://github.com/tarantool/tarantool/issues <https://github.com/tarantool/tarantool/issues>`_.
+If the problem is with the Tarantool manual, go to
+`https://github.com/tarantool/doc/issues <https://github.com/tarantool/doc/issues>`_.
+
+Look at the current list of bugs to see whether someone
+has already reported this or a similar problem.
+
+Click "New Issue".
+
+Fill in the Title field. Usually this should be a synopsis
+and contain specific unique information. For example,
+instead of "I can't get certain information", say
+"box.space.x:delete() didn't report what was deleted".
+
+Fill in the Description field. This normally should
+be in English, but we accept Russian. If you think it might
+make a difference, include: your operating system
+name and version, the Tarantool name and version,
+and any unusual details about your machine and its configuration.
+Then say what you did, and what Tarantool did.
+Usually this involves stating all the steps needed
+to reproduce, and an explanation why this differs
+from expected behavior according to our manual,
+but you can skip whatever is unnecessary or obvious.
+If this is a feature request or if it affects a
+special category of user, be sure to mention that.
+
+Optionally, click on the word "Labels" on the right of
+the screen, to see a list of categories. Usually
+the category is filled in by the the Tarantool team,
+but if you know it in advance you can fill it in yourself.
+
+Click on the words "Attach files by dragging & dropping,
+selecting them , or pasting from the clipboard." -- but
+only if the Description isn't enough to reproduce the
+problem. Files should not contain data that's not needed
+to reproduce the problem, and should not contain anything
+confidential. Sometimes a log file produced with
+Tarantool's logger has been useful.
+
+Click "Submit new issue".
+
+Watch for a response.
+Usually within one or two workdays a Tarantool team
+member will write an acknowledgment, or some questions,
+or suggestions for a workaround.
+
+--------------------------------------------------------------------------------
+Core dumps and stack traces
+--------------------------------------------------------------------------------
+
+If a bug is severe and is hard to reproduce, the
+developers may ask for files which show what
+execution path Tarantool was following when
+things went wrong.
+
+Be sure in advance that a core dump will be
+generated if a crash happens. In Linux, this
+might mean that you need to say "ulimit -c unlimited",
+but there are many other reasons why a core
+dump will not be produced, as explained by
+`"man 5 core" <https://linux.die.net/man/5/core>`_.
+Often core dumps are not allowed by default
+because core dumps can be large; however, if
+you make sure to get rid of them, that's not
+a problem.
+
+Be sure you know in advance what directory
+core dumps would be written to, and be sure that that
+directory is writable.
+
+Be sure in advance that a core dump will include
+stack trace information. If you use a binary
+distribution, this is automatic. If you build
+from source, you will not get good information
+if you pass -DCMAKE_BUILD_TYPE=Release to CMake.
+
+Tarantool will make a core dump if it receives
+a SIGSEGV or SIGFPE or SIGABRT or SIGQUIT signal.
+This is automatic if Tarantool
+crashes. Otherwise you can send the signal yourself
+to a running program, thus: |br|
+Find out the process id with "ps -A | grep tarantool". |br|
+Kill the process with "kill -SIGSEGV [process id]". |br|
+This is also explained in the section
+`Generating a core file <administration-core>`_.
+
+Core dump files can be very large and
+usually the Tarantool team won't want you to
+send the whole file -- they'll only need a
+"stack trace" or "backtrace". To produce one, say
+``gdb -se "tarantool" -ex "bt full" -ex "thread apply all bt" --batch -c core > /tmp/tarantool_trace.txt``
+(replacing "tarantool" with the path to the Tarantool executable,
+and replacing "core" with the path to the core file,
+and replacing "/tmp/tarantool_trace.txt" with whatever path name
+you prefer).
+
+If the /tmp/tarantool_trace.txt result file is small, add it in the "Description" field
+or in a comment. If the result is large, upload it -- follow the github instruction
+"Attach files ..." as stated earlier.
+
+Occasionally you will find that tarantool_trace.txt
+contains output without debug symbols -- the lines
+will contain "??" instead of names. If this happens,
+check the instructions on these Tarantool wiki pages:
+`"How to debug core dump of stripped tarantool"
+<https://github.com/tarantool/tarantool/wiki/How-to-debug-core-dump-of-stripped-tarantool>`_
+and
+`How to debug core from different OS"
+<https://github.com/tarantool/tarantool/wiki/How-to-debug-core-from-different-OS>`_.
+
 
 
