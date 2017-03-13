@@ -74,9 +74,8 @@ to monitor the total memory usage and memory fragmentation.
       * ``arena_used_ratio`` = ``arena_used`` / ``arena_size``;
       * ``items_used`` is the *efficient* amount of memory (omitting allocated, but
         currently free slabs) used only for tuples, no indexes;
-      * ``quota_used`` is the percentage of
-        :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>` that is already
-        distributed to the slab allocator;
+      * ``quota_used`` is the amount of memory that is already distributed to
+        the slab allocator;
       * ``arena_size`` is the *total* memory used for tuples and indexes together
         (including allocated, but currently free slabs);
       * ``arena_used`` is the *efficient* memory used for storing tuples and indexes
