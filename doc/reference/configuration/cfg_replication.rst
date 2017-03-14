@@ -1,30 +1,49 @@
-* :ref:`replication_source <cfg_replication-replication_source>`
+Up-to-date parameters:
 
-.. _cfg_replication-replication_source:
+* :ref:`replication <cfg_replication-replication>`
 
-.. confval:: replication_source
+Deprecated parameters:
 
-    If replication_source is not an empty string, the instance is considered to be
+* :ref:`replication_source <cfg_replication-replication_source_deprecated>`
+
+.. _cfg_replication-replication:
+
+.. confval:: replication
+
+    If ``replication`` is not an empty string, the instance is considered to be
     a Tarantool :ref:`replica <index-box_replication>`. The replica will
-    try to connect to the master which replication_source specifies with a
+    try to connect to the master specified in ``replication`` with a
     :ref:`URI <index-uri>` (Universal Resource Identifier), for example
     :samp:`{konstantin}:{secret_password}@{tarantool.org}:{3301}`.
 
     | If there is more than one replication source in a replica set, specify an
       array of URIs, for example
-    | :extsamp:`box.cfg{ replication_source = { {*{'uri1'}*}, {*{'uri2'}*} } }`
+    | :extsamp:`box.cfg{ replication = { {*{'uri1'}*}, {*{'uri2'}*} } }`
 
-    If one of the URIs is "self" -- that is, if one of the URIs is for the same
-    instance that ``box.cfg{}`` is being executed on -- then it is ignored. Thus
-    it is possible to use the same ``replication_source`` specification on
+    If one of the URIs is "self" -- that is, if one of the URIs is for the
+    instance where ``box.cfg{}`` is being executed on -- then it is ignored.
+    Thus it is possible to use the same ``replication`` specification on
     multiple servers.
 
     The default user name is ‘guest’. A replica does not accept
     data-change requests on the :ref:`listen <cfg_basic-listen>` port.
-    The replication_source parameter is dynamic, that is, to enter master
-    mode, simply set ``replication_source`` to an empty string and issue
-    :extsamp:`box.cfg{ replication_source = {*{new-value}*} }`.
+    The ``replication`` parameter is dynamic, that is, to enter master
+    mode, simply set ``replication`` to an empty string and issue
+    :extsamp:`box.cfg{ replication = {*{new-value}*} }`.
 
     | Type: string
     | Default: null
     | Dynamic: **yes**
+
+*********************
+Deprecated parameters
+*********************
+
+.. _cfg_replication-replication_source_deprecated:
+
+.. confval:: replication_source
+
+    **Deprecated since 1.7.3** in favor of
+    :ref:`replication <cfg_replication-replication>`.
+    The parameter was only renamed,
+    while the type, values and semantics remained intact.

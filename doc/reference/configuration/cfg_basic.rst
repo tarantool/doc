@@ -1,20 +1,26 @@
+Up-to-date parameters:
+
 * :ref:`background <cfg_basic-background>`
 * :ref:`coredump <cfg_basic-coredump>`
 * :ref:`custom_proc_title <cfg_basic-custom_proc_title>`
 * :ref:`listen <cfg_basic-listen>`
+* :ref:`memtx_dir <cfg_basic-memtx_dir>`
 * :ref:`pid_file <cfg_basic-pid_file>`
 * :ref:`read_only <cfg_basic-read_only>`
-* :ref:`snap_dir <cfg_basic-snap_dir>`
 * :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
 
+Deprecated parameters:
+
+* :ref:`snap_dir <cfg_basic-snap_dir_deprecated>`
+
 .. _cfg_basic-background:
 
 .. confval:: background
 
-    Run the server as a background task. The :ref:`logger <cfg_logging-logger>`
+    Run the server as a background task. The :ref:`log <cfg_logging-log>`
     and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for
     this to work.
 
@@ -82,6 +88,18 @@
     | Default: null
     | Dynamic: yes
 
+.. _cfg_basic-memtx_dir:
+
+.. confval:: memtx_dir
+
+    A directory where memtx stores snapshot (.snap) files. Can be relative to
+    :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to
+    ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`.
+
+    | Type: string
+    | Default: "."
+    | Dynamic: no
+
 .. _cfg_basic-pid_file:
 
 .. confval:: pid_file
@@ -103,18 +121,6 @@
     | Type: boolean
     | Default: false
     | Dynamic: yes
-
-.. _cfg_basic-snap_dir:
-
-.. confval:: snap_dir
-
-    A directory where snapshot (.snap) files will be stored. Can be relative to
-    :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to
-    ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`.
-
-    | Type: string
-    | Default: "."
-    | Dynamic: no
 
 .. _cfg_basic-vinyl_dir:
 
@@ -144,7 +150,7 @@
 
     A directory where write-ahead log (.xlog) files are stored. Can be relative
     to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and
-    :ref:`snap_dir <cfg_basic-snap_dir>` are specified with different values, so
+    :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so
     that write-ahead log files and snapshot files can be stored on different
     disks. If not specified, defaults to ``work_dir``.
 
@@ -161,10 +167,23 @@
       relative to the current directory. If not specified, defaults to
       the current directory. Other directory parameters may be relative to
       ``work_dir``, for example:
-    | ``box.cfg{ work_dir = '/home/user/A', wal_dir = 'B', snap_dir = 'C' }``
+    | ``box.cfg{ work_dir = '/home/user/A', wal_dir = 'B', memtx_dir = 'C' }``
     | will put xlog files in /home/user/A/B, snapshot files in /home/user/A/C,
       and all other files or subdirectories in /home/user/A.
 
     | Type: string
     | Default: null
     | Dynamic: no
+
+*********************
+Deprecated parameters
+*********************
+
+.. _cfg_basic-snap_dir_deprecated:
+
+.. confval:: snap_dir
+
+    **Deprecated since 1.7.3** in favor of
+    :ref:`memtx_dir <cfg_basic-memtx_dir>`.
+    The parameter was only renamed,
+    while the type, values and semantics remained intact.

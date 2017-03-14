@@ -28,7 +28,7 @@ descriptions of some popular codes. A complete list of errors can be found in fi
     |                   | message.                                               |
     +-------------------+--------------------------------------------------------+
     | ER_MEMORY_ISSUE   | Out of memory:                                         |
-    |                   | :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>` |
+    |                   | :ref:`memtx_memory <cfg_storage-memtx_memory>`         |
     |                   | limit has been reached.                                |
     +-------------------+--------------------------------------------------------+
     | ER_WAL_IO         | Failed to write to disk. May mean: failed              |
@@ -98,7 +98,7 @@ errors, particularly database errors.
 
    Put messages in a log using the :ref:`log module <log-module>`.
 
-   And filter messages that are automatically generated, with the :ref:`logger
-   <cfg_logging-logger>` configuration parameter.
+   And filter messages that are automatically generated, with the
+   :ref:`log <cfg_logging-log>` configuration parameter.
 
 

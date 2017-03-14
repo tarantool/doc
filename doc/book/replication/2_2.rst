@@ -9,7 +9,7 @@
     type 'help' for interactive help
     tarantool> box.cfg{
              >   listen = 3302,
-             >   replication_source = 'replicator:password@localhost:3301'
+             >   replication = 'replicator:password@localhost:3301'
              > }
     <...>
     <...> [11243] main/101/interactive I> mapping 1073741824 bytes for tuple arena...

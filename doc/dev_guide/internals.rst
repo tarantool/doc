@@ -121,9 +121,9 @@ requests (inserts, updates, upserts, and deletes), a .snap file may only contain
 of inserts to memtx spaces.
 
 Primarily, the .snap file's records are ordered by space id. Therefore the records of
-system spaces, such as _schema and _space and _index and _func and _priv and _cluster,
-will be at the start of the .snap file, before the records of any spaces
-that were created by users.
+system spaces -- such as ``_schema``, ``_space``, ``_index``, ``_func``, ``_priv``
+and ``_cluster`` -- will be at the start of the .snap file, before the records of
+any spaces that were created by users.
 
 Secondarily, the .snap file's records are ordered by primary key within space id.
 
@@ -151,43 +151,42 @@ as the snapshot file.)
 Step 1
     Read the configuration parameters in the ``box.cfg{}`` request.
     Parameters which affect recovery may include :ref:`work_dir <cfg_basic-work_dir>`,
-    :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`snap_dir <cfg_basic-snap_dir>`,
-    :ref:`vinyl_dir <cfg_basic-vinyl_dir>`,
-    :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error>`,
-    and :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error>`.
+    :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`memtx_dir <cfg_basic-memtx_dir>`,
+    :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
+    and :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
 
 Step 2
     Find the latest snapshot file. Use its data to reconstruct the in-memory
     databases. Instruct the vinyl engine to recover to the latest checkpoint.
 
-There are actually two variations of the reconstruction procedure for the memtx
-databases, depending whether the recovery process is "default".
+    There are actually two variations of the reconstruction procedure for memtx
+    databases, depending whether the recovery process is "default".
 
-If it is default (``panic_on_snap_error`` is ``true`` and ``panic_on_wal_error``
-is ``true``), memtx can read data in the snapshot with all indexes disabled.
-First, all tuples are read into memory. Then, primary keys are built in bulk,
-taking advantage of the fact that the data is already sorted by primary key
-within each space.
+    If the recovery is default (``force_recovery`` is ``false``),
+    memtx can read data in the snapshot with all indexes disabled.
+    First, all tuples are read into memory. Then, primary keys are built in bulk,
+    taking advantage of the fact that the data is already sorted by primary key
+    within each space.
 
-If it is not default (``panic_on_snap_error`` is ``false`` or ``panic_on_wal_error``
-is ``false``), Tarantool performs additional checking. Indexes are enabled at
-the start, and tuples are added one by one. This means that any unique-key
-constraint violations will be caught, and any duplicates will be skipped.
-Normally there will be no constraint violations or duplicates, so these checks
-are only made if an error has occurred.
+    If the recovery is non-default (``force_recovery`` is ``true``),
+    Tarantool performs additional checking. Indexes are enabled at
+    the start, and tuples are added one by one. This means that any unique-key
+    constraint violations will be caught, and any duplicates will be skipped.
+    Normally there will be no constraint violations or duplicates, so these checks
+    are only made if an error has occurred.
 
-Step 2
+Step 3
     Find the WAL file that was made at the time of, or after, the snapshot file.
     Read its log entries until the log-entry LSN is greater than the LSN of the
     snapshot, or greater than the LSN of the vinyl checkpoint. This is the
     recovery process's "start position"; it matches the current state of the
     engines.
 
-Step 3
+Step 4
     Redo the log entries, from the start position to the end of the WAL. The
     engine skips a redo instruction if it is older than the engine's checkpoint.
 
-Step 4
+Step 5
     For the memtx engine, re-create all secondary indexes.
 
 .. _internals-replication:
@@ -201,52 +200,52 @@ additional steps and precautions if :ref:`replication <index-box_replication>` i
 enabled.
 
 Once again the startup procedure is initiated by the ``box.cfg{}`` request.
-One of the box.cfg parameters may be
-:ref:`replication_source <cfg_replication-replication_source>`. We will
-refer to this replica, which is starting up due to box.cfg, as the "local" replica
-to distinguish it from the other replicas in a replica set, which we will refer to as
-"distant" replicas.
+One of the ``box.cfg`` parameters may be
+:ref:`replication <cfg_replication-replication>` that specifies replication
+source(-s). We will refer to this replica, which is starting up due to ``box.cfg``,
+as the "local" replica to distinguish it from the other replicas in a replica set,
+which we will refer to as "distant" replicas.
 
-*If there is no snapshot .snap file and replication_source is empty*: |br|
+*If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
-itself and for the replica set. The replica UUID is stored in the _cluster space; the
-replica set UUID is stored in the _schema space. Since a snapshot contains all the
+itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
+replica set UUID is stored in the ``_schema`` space. Since a snapshot contains all the
 data in all the spaces, that means the local replica's snapshot will contain the
 replica UUID and the replica set UUID. Therefore, when the local replica restarts on
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
-*If there is no snapshot .snap file and replication_source is not empty
-and the _cluster space contains no other replica UUIDs*: |br|
+*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+and the ``_cluster`` space contains no other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, but is not yet part
 of a replica set. It must now join the replica set. It will send its replica UUID to the
-first distant replica which is listed in replication_source, which will act as a
+first distant replica which is listed in ``replication`` and which will act as a
 master. This is called the "join request". When a distant replica receives a join
 request, it will send back:
 
 (1) the distant replica's replica set UUID,
 (2) the contents of the distant replica's .snap file. |br|
     When the local replica receives this information, it puts the replica set UUID in
-    its _schema space, puts the distant replica's UUID and connection information
-    in its _cluster space, and makes a snapshot containing all the data sent by
+    its ``_schema`` space, puts the distant replica's UUID and connection information
+    in its ``_cluster`` space, and makes a snapshot containing all the data sent by
     the distant replica. Then, if the local replica has data in its WAL .xlog
     files, it sends that data to the distant replica. The distant replica will
     receive this and update its own copy of the data, and add the local replica's
-    UUID to its _cluster space.
+    UUID to its ``_cluster`` space.
 
-*If there is no snapshot .snap file and replication_source is not empty
-and the _cluster space contains other replica UUIDs*: |br|
+*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+and the ``_cluster`` space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant
-replicas which are listed in replication_source. This is called the "on-connect
+replicas which are listed in ``replication``. This is called the "on-connect
 handshake". When a distant replica receives an on-connect handshake: |br|
 
 (1) the distant replica compares its own copy of the replica set UUID to the one in
     the on-connect handshake. If there is no match, then the handshake fails and
     the local replica will display an error.
 (2) the distant replica looks for a record of the connecting instance in its
-    _cluster space. If there is none, then the handshake fails. |br|
+    ``_cluster`` space. If there is none, then the handshake fails. |br|
     Otherwise the handshake is successful. The distant replica will read any new
     information from its own .snap and .xlog files, and send the new requests to
     the local replica.
@@ -262,7 +261,7 @@ first the local replica goes through the recovery process described in the
 previous section, using its own .snap and .xlog files. Then it sends a
 "subscribe" request to all the other replicas of the replica set. The subscribe
 request contains the server vector clock. The vector clock has a collection of
-pairs 'server id, lsn' for every replica in the _cluster system space. Each
+pairs 'server id, lsn' for every replica in the ``_cluster`` system space. Each
 distant replica, upon receiving a subscribe request, will read its .xlog files'
 requests and send them to the local replica if (lsn of .xlog file request) is
 greater than (lsn of the vector clock in the subscribe request). After all the
@@ -271,11 +270,11 @@ request, the replica startup is complete.
 
 The following temporary limitations apply for version 1.7:
 
-* The URIs in replication_source should all be in the same order on all replicas.
+* The URIs in the ``replication`` parameter should all be in the same order on all replicas.
   This is not mandatory but is an aid to consistency.
 * The replicas of a replica set should be started up at slightly different times.
   This is not mandatory but prevents a situation where each replica is waiting
   for the other replica to be ready.
-* The maximum number of entries in the _cluster space is 32. Tuples for
+* The maximum number of entries in the ``_cluster`` space is 32. Tuples for
   out-of-date replicas are not automatically re-used, so if this 32-replica
-  limit is reached, users may have to reorganize the _cluster space manually.
+  limit is reached, users may have to reorganize the ``_cluster`` space manually.

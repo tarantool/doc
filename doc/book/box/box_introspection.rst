@@ -17,10 +17,10 @@ Use ``box.cfg`` without braces to get read-only access to those parameters.
 
     tarantool> box.cfg
     ---
-    - snapshot_count: 6
+    - checkpoint_count: 6
       too_long_threshold: 0.5
       slab_alloc_factor: 1.1
-      slab_alloc_maximal: 1048576
+      memtx_max_tuple_size: 1048576
       background: false
       <...>
     ...
@@ -126,13 +126,16 @@ to monitor the total memory use and memory fragmentation.
 
 The display of slabs is broken down by the slab size -- 64-byte, 136-byte,
 and so on. The example omits the slabs which are empty. The example display
-is saying that: there are 16 items stored in the 64-byte slab (and 16*64=102
-so bytes_used = 1024); there is 1 item stored in the 136-byte slab
-(and 136*1=136 so bytes_used = 136); the arena_used value is the total of all
-the bytes_used values (1024+136 = 1160); the arena_size value is the arena_used
-value plus the total of all the bytes_free values (1160+4193200+4194088 = 8388448).
-The arena_size and arena_used values are the amount of the % of
-:ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>` that is already distributed to the slab allocator.
+is saying that:
+* there are 16 items stored in the 64-byte slab (and 16*64=102 so bytes_used = 1024);
+* there is 1 item stored in the 136-byte slab (and 136*1=136 so bytes_used = 136);
+* the ``arena_used`` value is the total of all the bytes_used values (1024+136 = 1160);
+* the ``arena_size`` value is the ``arena_used`` value plus the total of all the
+  bytes_free values (1160+4193200+4194088 = 8388448).
+
+The ``arena_size`` and ``arena_used`` values are the amount of the % of
+:ref:`memtx_memory <cfg_storage-memtx_memory>` that is already distributed to the
+slab allocator.
 
 **Example:**
 

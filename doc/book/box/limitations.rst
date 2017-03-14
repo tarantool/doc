@@ -31,18 +31,18 @@ Limitations
 **Number of bytes in a tuple**
 
     The maximal number of bytes in a tuple is roughly equal to 
-    :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (with a metadata
+    :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (with a metadata
     overhead of about 20 bytes per tuple, which is added on top of useful bytes).
-    By default, the value of ``slab_alloc_maximal`` is 1,048,576. To increase it,
+    By default, the value of ``memtx_max_tuple_size`` is 1,048,576. To increase it,
     specify a larger value when starting the Tarantool instance.
-    For example, ``box.cfg{slab_alloc_maximal=2*1048576}``.
+    For example, ``box.cfg{memtx_max_tuple_size=2*1048576}``.
 
 .. _limitations_slab_size:
 
 **Slab size**
 
     The maximal size of an allocatable memory unit (slab) is equal to one quarter
-    of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (by default,
+    of :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (by default,
     approximately 262,000 bytes). To see memory usage statistics broken down by
     slab size, use :ref:`box.slab.stats() <box_slab_stats>`.
 
@@ -73,7 +73,7 @@ Limitations
 **Space size**
 
     The total maximum size for all spaces is in effect set by
-    :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`, which in turn
+    :ref:`memtx_memory <cfg_storage-memtx_memory>`, which in turn
     is limited by the total available memory.
 
 .. _limitations_update_ops:

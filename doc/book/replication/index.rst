@@ -55,10 +55,11 @@ instance is a master and starts its own new replica set with a new unique UUID.
 If this first ``box.cfg`` request occurs with a "replication source" clause,
 then the instance is a replica and its snapshot file, along with the replica-set
 information, is constructed from the write-ahead logs of the master.
-Therefore, to start replication, specify :ref:`replication_source <cfg_replication-replication_source>`
-in a ``box.cfg`` request. When a replica contacts a master for the first time,
-it becomes part of a replica set. On subsequent occasions, it should always contact
-a master in the same replica set.
+Therefore, to start replication, specify the replication source in the
+:ref:`replication <cfg_replication-replication>` parameter of a ``box.cfg``
+request. When a replica contacts a master for the first time, it becomes part of
+a replica set. On subsequent occasions, it should always contact a master in the
+same replica set.
 
 Once connected to the master, the replica requests all changes that happened
 after the latest local LSN. It is therefore necessary to keep WAL files on
@@ -123,7 +124,8 @@ Step 1. Start the first instance thus:
 ... Now a new replica set exists.
 
 Step 2. Check where the second instance's files will go by looking at its
-directories (:ref:`snap_dir <cfg_basic-snap_dir>` for snapshot files, :ref:`wal_dir <cfg_basic-wal_dir>` for .xlog files).
+directories (:ref:`memtx_dir <cfg_basic-memtx_dir>` for snapshot files,
+:ref:`wal_dir <cfg_basic-wal_dir>` for .xlog files).
 They must be empty - when the second instance joins for the first time, it
 has to be working with a clean state so that the initial copy of the first
 instance's databases can happen without conflicts.
@@ -135,7 +137,7 @@ Step 3. Start the second instance thus:
 
     box.cfg{
       listen = *uri#2*,
-      replication_source = *uri#1*
+      replication = *uri#1*
     }
 
 ... where ``uri#1`` = the :ref:`URI <index-uri>` that the first instance is listening on.
@@ -219,10 +221,10 @@ Starting with the simple configuration, the first instance has to say:
 .. cssclass:: highlight
 .. parsed-literal::
 
-    box.cfg{ replication_source = *uri#2* }
+    box.cfg{ replication = *uri#2* }
 
 This request can be performed at any time --
-:ref:`replication_source <cfg_replication-replication_source>` is a dynamic parameter.
+:ref:`replication <cfg_replication-replication>` is a dynamic parameter.
 
 In this configuration, both instances are "masters" and both instances are
 "replicas". Henceforth every change that happens on either instance will
@@ -242,19 +244,19 @@ All the "What If?" questions
 .. container:: faq
 
     :Q: What if there are more than two instances with master-master?
-    :A: On each instance, specify the :ref:`replication_source
-        <cfg_replication-replication_source>` for all the others. For example,
+    :A: On each instance, specify the :ref:`replication source
+        <cfg_replication-replication>` for all the others. For example,
         instance #3 would have a request:
 
         .. cssclass:: highlight
         .. parsed-literal::
 
-            box.cfg{ replication_source = {*uri1*}, {*uri2*} }
+            box.cfg{ replication = {*uri1*}, {*uri2*} }
 
 
     :Q: What if an instance should be taken out of the replica set?
     :A: For a replica, run ``box.cfg{}`` again specifying a blank replication
-        source: ``box.cfg{replication_source=''}``
+        source: ``box.cfg{replication=''}``
 
     :Q: What if an instance leaves the replica set?
     :A: The other instances carry on. If the wayward instance rejoins, it will
@@ -275,7 +277,7 @@ All the "What If?" questions
     :Q: What if a master disappears and the replica must take over?
     :A: A message will appear on the replica stating that the connection is
         lost. The replica must now become independent, which can be done by
-        saying ``box.cfg{replication_source=''}``.
+        saying ``box.cfg{replication=''}``.
 
     :Q: What if it's necessary to know what replica set an instance is in?
     :A: The identification of the replica set is a UUID which is generated when the
@@ -295,15 +297,15 @@ All the "What If?" questions
     :A: Stop the instance, destroy all the database files (the ones with extension
         "snap" or "xlog" or ".inprogress"), restart the instance, and catch up
         with the master by contacting it again (just say
-        ``box.cfg{...replication_source=...}``).
+        ``box.cfg{...replication=...}``).
 
     :Q: What if replication causes security concerns?
     :A: Prevent unauthorized replication sources by associating a password with
         every user that has access privileges for the relevant spaces, and every
         user that has a replication :ref:`role <authentication-roles>`. That
-        way, the :ref:`URI <index-uri>` for the :ref:`replication_source
-        <cfg_replication-replication_source>` parameter will always have to have
-        the long form ``replication_source='username:password@host:port'``
+        way, the :ref:`URI <index-uri>` for the :ref:`replication
+        <cfg_replication-replication>` parameter will always have to have
+        the long form ``replication='username:password@host:port'``
 
     :Q: What if advanced users want to understand better how it all works?
     :A: See the description of instance startup with replication in the
@@ -410,7 +412,7 @@ On the second shell, which we'll call Terminal #2, execute these commands:
     $ ~/tarantool/src/tarantool
     tarantool> box.cfg{
              >   listen = 3302,
-             >   replication_source = 'replicator:password@localhost:3301'
+             >   replication = 'replicator:password@localhost:3301'
              > }
     tarantool> box.space._cluster:select({0}, {iterator = 'GE'})
 
@@ -500,7 +502,8 @@ On Terminal #2, execute these requests:
     tarantool> s:select({1}, {iterator = 'GE'})
     tarantool> s:insert{2, 'Tuple inserted on Terminal #2'}
 
-Now the screen looks like this (remember to click on the "Terminal #2" tab when looking at Terminal #2 results):
+Now the screen looks like this (remember to click on the "Terminal #2" tab when
+looking at Terminal #2 results):
 
 .. container:: b-block-wrapper_doc
 
@@ -665,7 +668,7 @@ On Terminal #1, say:
 .. code-block:: tarantoolsession
 
     tarantool> box.cfg{
-             >   replication_source = 'replicator:password@localhost:3302'
+             >   replication = 'replicator:password@localhost:3302'
              > }
     tarantool> box.space.tester:select({0}, {iterator = 'GE'})
 

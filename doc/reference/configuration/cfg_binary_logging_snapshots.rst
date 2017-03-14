@@ -1,31 +1,27 @@
-* :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error>`,
-* :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error>`,
+Up-to-date parameters:
+
+* :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`,
 * :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`,
 * :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`,
 * :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`,
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
 
-.. _cfg_binary_logging_snapshots-panic_on_snap_error:
+Deprecated parameters:
 
-.. confval:: panic_on_snap_error
+* :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error_deprecated>`,
+* :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error_deprecated>`
 
-    If there is an error while reading the snapshot file
-    (at server instance start), abort.
+.. _cfg_binary_logging_snapshots-force_recovery:
+
+.. confval:: force_recovery
+
+    If there is an error while reading a snapshot file
+    (at server instance start) or a write-ahead log file
+    (at server instance start or to relay to a replica), abort.
 
     | Type: boolean
-    | Default: true
+    | Default: false
     | Dynamic: no
-
-.. _cfg_binary_logging_snapshots-panic_on_wal_error:
-
-.. confval:: panic_on_wal_error
-
-    If there is an error while reading a write-ahead log
-    file (at server instance start or to relay to a replica), abort.
-
-    | Type: boolean
-    | Default: true
-    | Dynamic: yes
 
 .. _cfg_binary_logging_snapshots-rows_per_wal:
 
@@ -47,7 +43,8 @@
     Reduce the throttling effect of :ref:`box.snapshot <admin-snapshot>` on
     INSERT/UPDATE/DELETE performance by setting a limit on how many
     megabytes per second it can write to disk. The same can be
-    achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and :ref:`snap_dir <cfg_basic-snap_dir>`
+    achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and
+    :ref:`memtx_dir <cfg_basic-memtx_dir>`
     locations and moving snapshots to a separate disk.
 
     | Type: float
@@ -81,3 +78,32 @@
     | Type: float
     | Default: 2
     | Dynamic: no
+
+*********************
+Deprecated parameters
+*********************
+
+.. _cfg_binary_logging_snapshots-panic_on_snap_error_deprecated:
+
+.. confval:: panic_on_snap_error
+
+    **Deprecated since 1.7.3** in favor of
+    :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
+
+    If there is an error while reading a snapshot file
+    (at server instance start), abort.
+
+    | Type: boolean
+    | Default: true
+    | Dynamic: no
+
+.. _cfg_binary_logging_snapshots-panic_on_wal_error_deprecated:
+
+.. confval:: panic_on_wal_error
+
+    **Deprecated since 1.7.3** in favor of
+    :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
+
+    | Type: boolean
+    | Default: true
+    | Dynamic: yes

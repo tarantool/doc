@@ -1,9 +1,16 @@
 .. _cfg_logging:
 
+Up-to-date parameters:
+
 * :ref:`log_level <cfg_logging-log_level>`
-* :ref:`logger <cfg_logging-logger>`
-* :ref:`logger_nonblock <cfg_logging-logger_nonblock>`
+* :ref:`log <cfg_logging-log>`
+* :ref:`log_nonblock <cfg_logging-log_nonblock>`
 * :ref:`too_long_threshold <cfg_logging-too_long_threshold>`
+
+Deprecated parameters:
+
+* :ref:`logger <cfg_logging-logger_deprecated>`
+* :ref:`logger_nonblock <cfg_logging-logger_nonblock_deprecated>`
 
 .. _cfg_logging-log_level:
 
@@ -20,44 +27,44 @@
 
     By setting log_level, one can enable logging of all classes below
     or equal to the given level. Tarantool prints its logs to the standard
-    error stream by default, but this can be changed with the :ref:`logger
-    <cfg_logging-logger>` configuration parameter.
+    error stream by default, but this can be changed with the
+    :ref:`log <cfg_logging-log>` configuration parameter.
 
     | Type: integer
     | Default: 5
     | Dynamic: **yes**
 
-.. _cfg_logging-logger:
+.. _cfg_logging-log:
 
-.. confval:: logger
+.. confval:: log
 
-    By default, the log is sent to the standard error stream (``stderr``). If
-    ``logger`` is specified, the log is sent to a file, or to a pipe, or to
-    the system logger.
+    By default, Tarantool sends the log to the standard error stream
+    (``stderr``). If ``log`` is specified, Tarantool sends the log to a file,
+    or to a pipe, or to the system logger.
 
     Example setting:
 
     .. code-block:: lua
 
-        box.cfg{logger = 'tarantool.log'}
+        box.cfg{log = 'tarantool.log'}
         -- or
-        box.cfg{logger = 'file: tarantool.log'}
+        box.cfg{log = 'file: tarantool.log'}
 
     This will open the file ``tarantool.log`` for output on the server’s default
-    directory. If the ``logger`` string has no prefix or has the prefix "file:",
+    directory. If the ``log`` string has no prefix or has the prefix "file:",
     then the string is interpreted as a file path.
 
     Example setting:
 
     .. code-block:: lua
 
-        box.cfg{logger = '| cronolog tarantool.log'}
+        box.cfg{log = '| cronolog tarantool.log'}
         -- or
-        box.cfg{logger = 'pipe: cronolog tarantool.log'}'
+        box.cfg{log = 'pipe: cronolog tarantool.log'}'
 
     This will start the program ``cronolog`` when the server starts, and
     will send all log messages to the standard input (``stdin``) of cronolog.
-    If the ``logger`` string begins with '|' or has the prefix "pipe:",
+    If the ``log`` string begins with '|' or has the prefix "pipe:",
     then the string is interpreted as a Unix
     `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
@@ -65,13 +72,13 @@
 
     .. code-block:: lua
 
-        box.cfg{logger = 'syslog:identity=tarantool'}
+        box.cfg{log = 'syslog:identity=tarantool'}
         -- or
-        box.cfg{logger = 'syslog:facility=user'}
+        box.cfg{log = 'syslog:facility=user'}
         -- or
-        box.cfg{logger = 'syslog:identity=tarantool,facility=user'}
+        box.cfg{log = 'syslog:identity=tarantool,facility=user'}
 
-    If the ``logger`` string has the prefix "syslog:", then the string is
+    If the ``log`` string has the prefix "syslog:", then the string is
     interpreted as a message for the
     `syslogd <http://www.rfc-base.org/txt/rfc-5424.txt>`_ program which normally
     is running in the background of any Unix-like platform. One can optionally
@@ -88,7 +95,7 @@
 
     The ``facility`` setting is currently ignored but will be used in the future.
 
-    When logging to a file, tarantool reopens the log on SIGHUP. When log is
+    When logging to a file, Tarantool reopens the log on SIGHUP. When log is
     a program, its pid is saved in the :ref:`log.logger_pid <log-logger_pid>`
     variable. You need to send it a signal to rotate logs.
 
@@ -96,14 +103,14 @@
     | Default: null
     | Dynamic: no
 
-.. _cfg_logging-logger_nonblock:
+.. _cfg_logging-log_nonblock:
 
-.. confval:: logger_nonblock
+.. confval:: log_nonblock
 
-    If ``logger_nonblock`` equals true, Tarantool does not block on the log
+    If ``log_nonblock`` equals true, Tarantool does not block on the log
     file descriptor when it’s not ready for write, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and a lot of
-    messages go to the log file, setting ``logger_nonblock`` to true may improve
+    messages go to the log file, setting ``log_nonblock`` to true may improve
     logging performance at the cost of some log messages getting lost.
 
     | Type: boolean
@@ -122,9 +129,33 @@
     | Default: 0.5
     | Dynamic: **yes**
 
+*********************
+Deprecated parameters
+*********************
+
+.. _cfg_logging-logger_deprecated:
+
+.. confval:: logger
+
+    **Deprecated since 1.7.3** in favor of
+    :ref:`log <cfg_logging-log>`.
+    The parameter was only renamed,
+    while the type, values and semantics remained intact.
+    
+.. _cfg_logging-logger_nonblock_deprecated:
+
+.. confval:: logger_nonblock
+
+    **Deprecated since 1.7.3** in favor of
+    :ref:`log_nonblock <cfg_logging-log_nonblock>`.
+    The parameter was only renamed,
+    while the type, values and semantics remained intact.
+
 .. _cfg_logging-logging_example:
 
-**Logging example:**
+*********************
+Logging example
+*********************
 
 This will illustrate how "rotation" works, that is, what happens when the server
 instance is writing to a log and signals are used when archiving it.
@@ -136,7 +167,7 @@ will go to `Log_file`, then put a message "Log Line #1" in the log file:
 
 .. code-block:: lua
 
-    box.cfg{logger='Log_file'}
+    box.cfg{log='Log_file'}
     log = require('log')
     log.info('Log Line #1')
 

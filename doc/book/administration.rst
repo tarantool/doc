@@ -220,9 +220,9 @@ settings, would look like this:
     default_cfg = {
         pid_file   = "/var/run/tarantool",
         wal_dir    = "/var/lib/tarantool",
-        snap_dir   = "/var/lib/tarantool",
-        vinyl_dir = "/var/lib/tarantool",
-        logger     = "/var/log/tarantool",
+        memtx_dir  = "/var/lib/tarantool",
+        vinyl_dir  = "/var/lib/tarantool",
+        log     = "/var/log/tarantool",
         username   = "tarantool",
     }
     instance_dir = "/etc/tarantool/instances.enabled"
@@ -237,7 +237,7 @@ The settings in the above script are:
     The directory for the write-ahead :file:`*.xlog` files. The
     script will add ":samp:`/{instance-name}`" to the directory-name.
 
-``snap_dir``
+``memtx_dir``
     The directory for the snapshot :file:`*.snap` files. The script
     will add ":samp:`/{instance-name}`" to the directory-name.
 
@@ -245,7 +245,7 @@ The settings in the above script are:
     The directory for the vinyl-storage-engine files. The script
     will add ":samp:`/vinyl/{instance-name}`" to the directory-name.
 
-``logger``
+``log``
     The place where the application log will go. The script will
     add ":samp:`/{instance-name}.log`" to the name.
 
@@ -357,12 +357,12 @@ be:
 .. code-block:: lua
 
     default_cfg = {
-        pid_file = "/tarantool_test/my_app.pid",
-        wal_dir = "/tarantool_test",
-        snap_dir = "/tarantool_test",
+        pid_file  = "/tarantool_test/my_app.pid",
+        wal_dir   = "/tarantool_test",
+        memtx_dir = "/tarantool_test",
         vinyl_dir = "/tarantool_test",
-        logger = "/tarantool_test/log",
-        username = "tarantool",
+        log       = "/tarantool_test/log",
+        username  = "tarantool",
     }
     instance_dir = "/tarantool_test"
 
@@ -583,13 +583,13 @@ Therefore taking a backup is a matter of copying the snapshot and WAL files.
     :samp:`box.snapshot()`.
 (3) Use :program:`tar` to make a (possibly compressed) copy of the
     latest :file:`.snap` and :file:`.xlog` files on the
-    :ref:`snap_dir <cfg_basic-snap_dir>` and
+    :ref:`memtx_dir <cfg_basic-memtx_dir>` and
     :ref:`wal_dir <cfg_basic-wal_dir>` directories.
 (4) If there is a security policy, encrypt the tar file.
 (5) Copy the tar file to a safe place.
 
 ... Later, restoring the database is a matter of taking the
-tar file and putting its contents back in the ``snap_dir`` and ``wal_dir``
+tar file and putting its contents back in the ``memtx_dir`` and ``wal_dir``
 directories.
 
 --------------------------------------------------------------------------------

@@ -164,7 +164,7 @@ it in the **daemon mode**. To do so, we add some parameters to ``box.cfg{}``:
 
 * :ref:`background <cfg_basic-background>` = ``true`` that actually tells
   Tarantool to work as a daemon service,
-* :ref:`logger <cfg_logging-logger>` = ``'dir-name'`` that tells the Tarantool
+* :ref:`log <cfg_logging-log>` = ``'dir-name'`` that tells the Tarantool
   daemon where to store its log file (other log settings are available in
   Tarantool :ref:`log <log-module>` module), and
 * :ref:`pid_file <cfg_basic-pid_file>` = ``'file-name'`` that tells the
