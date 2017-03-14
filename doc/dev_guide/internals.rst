@@ -160,15 +160,15 @@ Step 2
     databases. Instruct the vinyl engine to recover to the latest checkpoint.
 
     There are actually two variations of the reconstruction procedure for memtx
-    databases, depending whether the recovery process is "default".
+    databases, depending on whether the recovery process is "default".
 
-    If the recovery is default (``force_recovery`` is ``false``),
+    If the recovery process is default (``force_recovery`` is ``false``),
     memtx can read data in the snapshot with all indexes disabled.
     First, all tuples are read into memory. Then, primary keys are built in bulk,
     taking advantage of the fact that the data is already sorted by primary key
     within each space.
 
-    If the recovery is non-default (``force_recovery`` is ``true``),
+    If the recovery process is non-default (``force_recovery`` is ``true``),
     Tarantool performs additional checking. Indexes are enabled at
     the start, and tuples are added one by one. This means that any unique-key
     constraint violations will be caught, and any duplicates will be skipped.
