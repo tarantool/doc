@@ -1,7 +1,6 @@
 Up-to-date parameters:
 
 * :ref:`background <cfg_basic-background>`
-* :ref:`coredump <cfg_basic-coredump>`
 * :ref:`custom_proc_title <cfg_basic-custom_proc_title>`
 * :ref:`listen <cfg_basic-listen>`
 * :ref:`memtx_dir <cfg_basic-memtx_dir>`
@@ -14,6 +13,7 @@ Up-to-date parameters:
 
 Deprecated parameters:
 
+* :ref:`coredump <cfg_basic-coredump_deprecated>`
 * :ref:`snap_dir <cfg_basic-snap_dir_deprecated>`
 
 .. _cfg_basic-background:
@@ -23,16 +23,6 @@ Deprecated parameters:
     Run the server as a background task. The :ref:`log <cfg_logging-log>`
     and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for
     this to work.
-
-    | Type: boolean
-    | Default: false
-    | Dynamic: no
-
-.. _cfg_basic-coredump:
-
-.. confval:: coredump
-
-    Deprecated. Do not use.
 
     | Type: boolean
     | Default: false
@@ -179,6 +169,16 @@ Deprecated parameters:
 Deprecated parameters
 *********************
 
+.. _cfg_basic-coredump_deprecated:
+
+.. confval:: coredump
+
+    **Deprecated**, do not use.
+
+    | Type: boolean
+    | Default: false
+    | Dynamic: no
+    
 .. _cfg_basic-snap_dir_deprecated:
 
 .. confval:: snap_dir
