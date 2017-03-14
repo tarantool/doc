@@ -71,6 +71,74 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
         <div class="b-cols p-2col">
             <div class="b-cols-item">
                 <ul class="b-news-list">
+
+
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>20 Feb</span>2017</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/W84NIu"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                Mail.Ru Group, IBS and Mellanox Announce Private Cloud Solution Based on Tarantool DBMS
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">mail.ru</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>15 Feb</span>2017</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/fIOTse"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                Tarantool IIoT, DBMS for Industrial Internet of Things, Released
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">mail.ru</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>03 Feb</span>2017</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/o4hUiB"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                Engineering Principles of Tarantool
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">github.io</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>16 Jan</span>2017</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/jxFPqH"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                Master-Master Replication and Scaling of an Application between Each of the IoT Devices and the Cloud
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">highscalability.com</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>02 Jan</span>2017</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/tpZIid"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                Efficient storage: how we went down from 50 PB to 32 PB
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">highscalability.com</span>
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="b-news-list-item">
+                        <div class="b-date"><span>20 Dec</span>2016</div>
+                        <h3 class="b-news-list-item-title">
+                            <a href="https://goo.gl/ORirm6"
+                               class="b-news-list-item-title-url"
+                               target="_blank">
+                                When and why I use an in-memory database or a traditional database management system
+                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
+                            </a>
+                        </h3>
+                    </li>
                     <li class="b-news-list-item">
                         <div class="b-date"><span>17 Nov</span>2016</div>
                         <h3 class="b-news-list-item-title">
@@ -100,94 +168,6 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
                                class="b-news-list-item-title-url"
                                target="_blank">
                                 What an in-memory database is and how it persists data efficiently
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>21 Apr</span>2016</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/36T92c"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                Heavy workloads: our use cases of Tarantool
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>06 Mar</span>2016</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/xaJ07B"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                DBMS as an application server
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>17 Feb</span>2016</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/oZrYGy"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                Building Nginx And Tarantool Based Services
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">highscalability.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>19 Feb</span>2016</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/j2oEKg"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                Asyncio Tarantool Queue, get in the queue
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>07 Apr</span>2016</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/PqvhfE"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                Asynchronous work with Tarantool in Python
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>23 Mar</span>2016</div>
-                            <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/IxXnSt"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                How we implemented the video player in Mail.Ru Cloud
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>30 Dec</span>2015</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/qCT2g3"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                How to choose an in-memory NoSQL solution: performance measuring
-                                <span class="b-news-list-item-title-url-alt b-ellipsis">highscalability.com</span>
-                            </a>
-                        </h3>
-                    </li>
-                    <li class="b-news-list-item">
-                        <div class="b-date"><span>05 Apr</span>2016</div>
-                        <h3 class="b-news-list-item-title">
-                            <a href="https://goo.gl/iiak67"
-                               class="b-news-list-item-title-url"
-                               target="_blank">
-                                User profile system
                                 <span class="b-news-list-item-title-url-alt b-ellipsis">medium.com</span>
                             </a>
                         </h3>
