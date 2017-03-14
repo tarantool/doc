@@ -815,7 +815,7 @@ requests rather than calling Lua functions:
    }
    
    function request(method, body, id)
-       local resp = http:sync_request(
+       local resp = http:request(
            method, URI, body
        )
        if id ~= nil then
