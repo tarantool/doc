@@ -177,7 +177,7 @@ For example:
    box.cfg {
       listen = 3301
       background = true,
-      logger = '1.log',
+      log = '1.log',
       pid_file = '1.pid'
    }
 

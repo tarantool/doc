@@ -38,9 +38,6 @@ The ``hot_standby`` configuration option is added.
 
 Configuration parameters revised:
 
-* Vinyl configuration is now set with standalone parameters instead of nested
-  parameters under ``vinyl`` section.
-
 * Parameters renamed:
 
   * ``slab_alloc_arena`` (in gigabytes) to ``memtx_memory`` (in bytes),
@@ -48,15 +45,14 @@ Configuration parameters revised:
   * ``slab_alloc_maximal`` to ``memtx_max_tuple_size``,
   * ``replication_source`` to ``replication``,
   * ``snap_dir`` to ``memtx_dir``,
-  * ``logger`` -> ``log``,
+  * ``logger`` to ``log``,
   * ``logger_nonblock`` to ``log_nonblock``,
   * ``snapshot_count`` to ``checkpoint_count``,
   * ``snapshot_period`` to ``checkpoint_interval``,
   * ``panic_on_wal_error`` and ``panic_on_snap_error`` united under
     ``force_recovery``.
 
-* You can still use deprecated parameters (except vinyl configuration) for both
-  initial and runtime configuration, but Tarantool will display a warning.
-
-* You can specify both deprecated and up-to-date parameters, provided that their
-  values are harmonized. If not, Tarantool will display an error.
+* Until Tarantool 1.8, you can use :ref:`deprecated parameters <cfg_deprecated>`
+  for both initial and runtime configuration, but Tarantool will display a warning.
+  Also, you can specify both deprecated and up-to-date parameters, provided
+  that their values are harmonized. If not, Tarantool will display an error.

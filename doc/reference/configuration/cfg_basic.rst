@@ -1,5 +1,3 @@
-Up-to-date parameters:
-
 * :ref:`background <cfg_basic-background>`
 * :ref:`custom_proc_title <cfg_basic-custom_proc_title>`
 * :ref:`listen <cfg_basic-listen>`
@@ -10,11 +8,6 @@ Up-to-date parameters:
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
-
-Deprecated parameters:
-
-* :ref:`coredump <cfg_basic-coredump_deprecated>`
-* :ref:`snap_dir <cfg_basic-snap_dir_deprecated>`
 
 .. _cfg_basic-background:
 
@@ -152,38 +145,23 @@ Deprecated parameters:
 
 .. confval:: work_dir
 
-    | A directory where database working files will be stored. The server instance
-      switches to work_dir with :manpage:`chdir(2)` after start. Can be
-      relative to the current directory. If not specified, defaults to
-      the current directory. Other directory parameters may be relative to
-      ``work_dir``, for example:
-    | ``box.cfg{ work_dir = '/home/user/A', wal_dir = 'B', memtx_dir = 'C' }``
-    | will put xlog files in /home/user/A/B, snapshot files in /home/user/A/C,
-      and all other files or subdirectories in /home/user/A.
+    A directory where database working files will be stored. The server instance
+    switches to ``work_dir`` with :manpage:`chdir(2)` after start. Can be
+    relative to the current directory. If not specified, defaults to
+    the current directory. Other directory parameters may be relative to
+    ``work_dir``, for example:
+    
+    .. code-block:: lua
+    
+        box.cfg{
+            work_dir = '/home/user/A',
+            wal_dir = 'B',
+            memtx_dir = 'C'
+        }
+          
+    will put xlog files in ``/home/user/A/B``, snapshot files in ``/home/user/A/C``,
+    and all other files or subdirectories in ``/home/user/A``.
 
     | Type: string
     | Default: null
     | Dynamic: no
-
-*********************
-Deprecated parameters
-*********************
-
-.. _cfg_basic-coredump_deprecated:
-
-.. confval:: coredump
-
-    **Deprecated**, do not use.
-
-    | Type: boolean
-    | Default: false
-    | Dynamic: no
-    
-.. _cfg_basic-snap_dir_deprecated:
-
-.. confval:: snap_dir
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`memtx_dir <cfg_basic-memtx_dir>`.
-    The parameter was only renamed,
-    while the type, values and semantics remained intact.

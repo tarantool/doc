@@ -1,12 +1,5 @@
-Up-to-date parameters:
-
 * :ref:`checkpoint_count <cfg_snapshot_daemon-checkpoint_count>`
 * :ref:`checkpoint_interval <cfg_snapshot_daemon-checkpoint_interval>`
-
-Deprecated parameters:
-
-* :ref:`snapshot_count <cfg_snapshot_daemon-snapshot_count_deprecated>`
-* :ref:`snapshot_period <cfg_snapshot_daemon-snapshot_period_deprecated>`
 
 The snapshot daemon is a fiber which is constantly running. At intervals, it may
 make new snapshot (.snap) files and then may remove old snapshot files. If the
@@ -29,8 +22,14 @@ exist before removals occur.
     call :ref:`box.snapshot <admin-snapshot>` every ``checkpoint_interval``
     seconds, creating a new snapshot file each time.
 
-    For example: ``box.cfg{checkpoint_interval=3600}`` will cause the snapshot
-    daemon to create a new database snapshot once per hour.
+    For example:
+
+    .. code-block:: lua
+
+        box.cfg{checkpoint_interval=3600}
+        
+    will cause the snapshot daemon to create a new database snapshot once
+    per hour.
 
     | Type: integer
     | Default: 0 (disabled)
@@ -59,25 +58,3 @@ exist before removals occur.
     | Type: integer
     | Default: 6
     | Dynamic: yes
-
-*********************
-Deprecated parameters
-*********************
-
-.. _cfg_snapshot_daemon-snapshot_period_deprecated:
-
-.. confval:: snapshot_period
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`checkpoint_interval <cfg_snapshot_daemon-checkpoint_interval>`.
-    The parameter was only renamed,
-    while the type, values and semantics remained intact.
-
-.. _cfg_snapshot_daemon-snapshot_count_deprecated:
-
-.. confval:: snapshot_count
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`checkpoint_count <cfg_snapshot_daemon-checkpoint_count>`.
-    The parameter was only renamed,
-    while the type, values and semantics remained intact.

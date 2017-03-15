@@ -164,7 +164,8 @@ initialization is complete, one can use :ref:`console.start() <console-start>`.
 Configuration parameters
 --------------------------------------------------------------------------------
 
-Configuration parameters have the form: |br|
+Configuration parameters have the form:
+
 :extsamp:`{**{box.cfg}**}{[{*{key = value}*} [, {*{key = value ...}*}]]}`
 
 Since ``box.cfg`` may contain many configuration parameters and since some of the
@@ -234,3 +235,9 @@ Logging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_logging.rst
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Deprecated parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: cfg_deprecated.rst

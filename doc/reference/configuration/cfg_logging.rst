@@ -1,16 +1,9 @@
 .. _cfg_logging:
 
-Up-to-date parameters:
-
 * :ref:`log_level <cfg_logging-log_level>`
 * :ref:`log <cfg_logging-log>`
 * :ref:`log_nonblock <cfg_logging-log_nonblock>`
 * :ref:`too_long_threshold <cfg_logging-too_long_threshold>`
-
-Deprecated parameters:
-
-* :ref:`logger <cfg_logging-logger_deprecated>`
-* :ref:`logger_nonblock <cfg_logging-logger_nonblock_deprecated>`
 
 .. _cfg_logging-log_level:
 
@@ -128,28 +121,6 @@ Deprecated parameters:
     | Type: float
     | Default: 0.5
     | Dynamic: **yes**
-
-*********************
-Deprecated parameters
-*********************
-
-.. _cfg_logging-logger_deprecated:
-
-.. confval:: logger
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`log <cfg_logging-log>`.
-    The parameter was only renamed,
-    while the type, values and semantics remained intact.
-    
-.. _cfg_logging-logger_nonblock_deprecated:
-
-.. confval:: logger_nonblock
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`log_nonblock <cfg_logging-log_nonblock>`.
-    The parameter was only renamed,
-    while the type, values and semantics remained intact.
 
 .. _cfg_logging-logging_example:
 

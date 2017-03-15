@@ -1,15 +1,8 @@
-Up-to-date parameters:
-
 * :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`,
 * :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`,
 * :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`,
 * :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`,
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
-
-Deprecated parameters:
-
-* :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error_deprecated>`,
-* :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error_deprecated>`
 
 .. _cfg_binary_logging_snapshots-force_recovery:
 
@@ -78,32 +71,3 @@ Deprecated parameters:
     | Type: float
     | Default: 2
     | Dynamic: no
-
-*********************
-Deprecated parameters
-*********************
-
-.. _cfg_binary_logging_snapshots-panic_on_snap_error_deprecated:
-
-.. confval:: panic_on_snap_error
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
-
-    If there is an error while reading a snapshot file
-    (at server instance start), abort.
-
-    | Type: boolean
-    | Default: true
-    | Dynamic: no
-
-.. _cfg_binary_logging_snapshots-panic_on_wal_error_deprecated:
-
-.. confval:: panic_on_wal_error
-
-    **Deprecated since 1.7.3** in favor of
-    :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
-
-    | Type: boolean
-    | Default: true
-    | Dynamic: yes
