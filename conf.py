@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
 
-master_doc = 'doc/index'
+master_doc = 'doc/1.7/index'
 # master_doc = 'index'
 
 extensions = [
@@ -40,19 +40,19 @@ version = '.'.join(release.split('.')[0:2])
 
 exclude_patterns = [
     '_build',
-    'doc/book/connectors/__*',
-    'doc/book/replication/*_1.rst',
-    'doc/book/replication/*_2.rst',
-    'doc/book/admin.rst',
-    'doc/book/box/box_introspection.rst',
-    'doc/book/cookbook.rst',
-    'doc/book/box/vinyl.rst',
-    'doc/dev_guide/box_protocol.rst',
-    'doc/dev_guide/internals.rst',
-    'doc/reference/configuration/cfg_*',
-    'doc/reference/reference_lua/jit.rst',
-    'doc/reference/reference_lua/os.rst',
-    'doc/reference/reference_lua/net_box_1.6.rst',
+    'doc/1.7/book/connectors/__*',
+    'doc/1.7/book/replication/*_1.rst',
+    'doc/1.7/book/replication/*_2.rst',
+    'doc/1.7/book/admin.rst',
+    'doc/1.7/book/box/box_introspection.rst',
+    'doc/1.7/book/cookbook.rst',
+    'doc/1.7/book/box/vinyl.rst',
+    'doc/1.7/dev_guide/box_protocol.rst',
+    'doc/1.7/dev_guide/internals.rst',
+    'doc/1.7/reference/configuration/cfg_*',
+    'doc/1.7/reference/reference_lua/jit.rst',
+    'doc/1.7/reference/reference_lua/os.rst',
+    'doc/1.7/reference/reference_lua/net_box_1.6.rst',
     'CNAME',
     'robots.txt',
     '_downloads/license.docx',
@@ -60,7 +60,6 @@ exclude_patterns = [
     '_downloads/terms.docx',
     '_downloads/terms_eng.docx',
     'images'
-#     'doc'
 ]
 
 base_url = "https://tarantool.org/"
@@ -88,9 +87,9 @@ html_context = {
         'download_16' : True,
         'careers'     : True,
         'benchmark'   : True,
-        'doc'         : True,
         'try'         : True,
         'rocks'       : True,
+        'doc/' + version + '/index' : True,
         # Helper webpages
         '404'            : True,
         # Internal webpages
@@ -98,7 +97,8 @@ html_context = {
         'lua-modindex'   : True,
         'search'         : True,
     },
-    'wp_local': True
+    'wp_local': True,
+    'versions': ['1.7', '1.8'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:

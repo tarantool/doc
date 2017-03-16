@@ -11,10 +11,10 @@ $(function() {
         $(doc_menu   ).removeClass('active');
         $(toggle_navigation).removeClass('active');
         if ($(menu_mobile).hasClass('active')) {
-            console.log("adding stop-scroll")
+            // console.log("adding stop-scroll")
             $("body").addClass('stop-scroll');
         } else {
-            console.log("removing stop-scroll")
+            // console.log("removing stop-scroll")
             $("body").removeClass('stop-scroll');
         }
     });

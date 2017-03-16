@@ -2,7 +2,7 @@ all:
 	lessc --source-map --source-map-less-inline --strict-imports \
 		  --autoprefix="last 3 versions" \
 		  design.less design.css
-	cleancss --s1 design.css > design.min.css
+	cleancss -O2 design.css > design.min.css
 	mv design.min.css design.css
 	mv design.css** ../static/
 

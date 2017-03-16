@@ -27,8 +27,17 @@ window['register_replication_tab'] = function (id) {
     });
 }
 
+$(function() {
+  /* Fix for singlehtml and bad links path */
+  if ($('[class$="singlehtml"]').length) {
+    $("a[href]").each(function(i, el) {
+        $(el).attr("href", $(el).attr("href").replace(/^doc\/[\d.]+/singlehtml\.html/, ''));
+    })
+  }
 
-$(document).ready(function () {
+});
+
+$(function () {
   /* Add anchor before every function name. Also, add divs for good wrapping */
   $(''.concat(
     "dl.function>dt, dl.data>dt, dl.class>dt, dl.varfunc>dt, dl.method>dt, ",
@@ -52,17 +61,6 @@ $(document).ready(function () {
       var pane = rpane.prepend(lpane).wrapInner(hlp);
       $(el).replaceWith(pane);
   })
-
-  if ($(".b-doc-doc_singlehtml").length) {
-    $("a").each(function(i, el) {
-      var link = $(el).attr('href');
-      console.log(link)
-      if (link) {
-        link = link.replace(/^doc\/singlehtml\.html/, '');
-        $(el).attr("href", link);
-      }
-    })
-  }
 
   /* Add anchor before every function name. Also, add divs for good wrapping */
   $('h2, h3, h4, h5, h6').each(
@@ -92,20 +90,10 @@ $(document).ready(function () {
     }
   }
 
-  /* Add icon to NOTES */
-  $(".admonition.note p.first.admonition-title").each(
-    admonition_icon("fa-comments-o")
-  );
-
-  /* Add icon to WARNINGS */
-  $(".admonition.warning p.first.admonition-title").each(
-    admonition_icon("fa-exclamation-triangle")
-  );
-
-  /* Add icon to FACTS */
-  $(".admonition.fact p.first.admonition-title").each(
-    admonition_icon("fa-hand-o-up")
-  );
+  /* Add icon to NOTES, WARNINGS, FACTS */
+  $(".admonition.note    p.first.admonition-title").each(admonition_icon("fa-comments-o"          ));
+  $(".admonition.warning p.first.admonition-title").each(admonition_icon("fa-exclamation-triangle"));
+  $(".admonition.fact    p.first.admonition-title").each(admonition_icon("fa-hand-o-up"           ));
 
 
   /* Move all rparams from table */
@@ -173,10 +161,6 @@ $(document).ready(function () {
           }
           menu.children("ul").slideToggle();
           $(this).toggleClass("fa-plus-square-o").toggleClass("fa-minus-square-o");
-          // $(".b-cols_content_left").trigger("sticky_kit:stick")
-          // $(".b-cols_content_left").trigger("sticky_kit:recalc")
-          // $(".b-cols_content_left").trigger("sticky_kit:unstick")
-        // }).css("position", "relative").css("left", "-17px");
         }).css({
           "position": "relative",
           "left": "-17px",

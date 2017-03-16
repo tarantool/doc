@@ -55,7 +55,7 @@ field of a tuple.
 Tuples in Tarantool are stored as
 `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays.
 
-When Tarantool returns a tuple value in console, it uses the 
+When Tarantool returns a tuple value in console, it uses the
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ format,
 for example: ``[3, 'Ace of Base', 1993]``.
 
@@ -119,7 +119,7 @@ in TREE indexes may be non-unique.
   Space definitions and index definitions are stored permanently in Tarantool's
   system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>`
   (for details, see reference on :ref:`box.space <box_space>` submodule).
-  
+
   You can add, drop, or alter the definitions at runtime, with some restrictions.
   See syntax details in reference on :ref:`box <box-module>` module.
 
@@ -179,8 +179,8 @@ In Lua, a **nil** type has only one possible value, also called *nil*
 YAML format).
 Nils may be compared to values of any types with == (is-equal)
 or ~= (is-not-equal), but other operations will not work.
-Nils may not be used in Lua tables; the workaround is to use 
-`msgpack.NULL <https://tarantool.org/doc/reference/reference_lua/msgpack.html#msgpack-null>`_.
+Nils may not be used in Lua tables; the workaround is to use
+:ref:`msgpack.NULL <msgpack-null>`
 
 A **boolean** is either ``true`` or ``false``.
 
@@ -208,8 +208,8 @@ the ULL suffix and the ``tonumber64`` function:
 Lua **tables** with string keys are stored as MsgPack maps;
 Lua tables with integer keys starting with 1 -- as MsgPack arrays.
 Nils may not be used in Lua tables; the workaround is to use
-`msgpack.NULL <https://tarantool.org/doc/reference/reference_lua/msgpack.html#msgpack-null>`_.
- 
+:ref:`msgpack.NULL <msgpack-null>`
+
 A **tuple** is a light reference to a MsgPack array stored in the database.
 It is a special type (cdata) to avoid conversion to a Lua table on retrieval.
 A few functions may return tables with multiple tuples. For more tuple examples,
@@ -242,7 +242,7 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     .. rst-class:: left-align-column-3
     .. rst-class:: left-align-column-4
     .. rst-class:: top-align-column-1
-              
+
     +----------------------------+----------------------------------+----------------------+--------------------+
     | Indexed field type         | MsgPack data type |br|           | Index type           | Examples           |
     |                            | (and possible values)            |                      |                    |
@@ -357,7 +357,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 * INSERT: Add a new tuple to space 'tester'.
 
   The first field, field[1], will be 999 (MsgPack type is `integer`).
-  
+
   The second field, field[2], will be 'Taranto' (MsgPack type is `string`).
 
   .. code-block:: tarantoolsession
@@ -365,16 +365,16 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
      tarantool> box.space.tester:insert{999, 'Taranto'}
 
 * UPDATE: Update the tuple, changing field field[2].
-  
+
   The clause "{999}", which has the value to look up in the index of the tuple's
   primary-key field, is mandatory, because ``update()`` requests must always have
   a clause that specifies a unique key, which in this case is field[1].
-  
+
   The clause "{{'=', 2, 'Tarantino'}}" specifies that assignment will happen to
   field[2] with the new value.
 
   .. code-block:: tarantoolsession
-  
+
      tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})
 
 * UPSERT: Upsert the tuple, changing field field[2] again.
@@ -388,14 +388,14 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
   .. code-block:: tarantoolsession
 
      tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})
-     
+
 * REPLACE: Replace the tuple, adding a new field.
 
   This is also possible with the ``update()`` request, but the ``update()``
   request is usually more complicated.
 
   .. code-block:: tarantoolsession
-  
+
      tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}
 
 * SELECT: Retrieve the tuple.
@@ -403,14 +403,14 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
   The clause "{999}" is still mandatory, although it does not have to mention the primary key.
 
   .. code-block:: tarantoolsession
-  
+
      tarantool> box.space.tester:select{999}
 * DELETE: Delete the tuple.
 
   In this example, we identify the primary-key field.
 
   .. code-block:: tarantoolsession
-  
+
      tarantool> box.space.tester:delete{999}
 
 All the functions operate on tuples and accept only unique key values. So,
@@ -422,7 +422,7 @@ value or a secondary-key value.
 
 .. NOTE::
 
-   Besides Lua, you can use 
+   Besides Lua, you can use
    :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`.
    The client server protocol is open and documented.
    See this :ref:`annotated BNF <box_protocol-iproto_protocol>`.
@@ -463,11 +463,11 @@ The following SELECT variations exist:
 
        :extsamp:`box.space.{*{space-name}*}:select(value, {iterator = 'GT'})`
 
-   The comparison operators are LT, LE, EQ, REQ, GE, GT 
+   The comparison operators are LT, LE, EQ, REQ, GE, GT
    (for "less than", "less than or equal", "equal", "reversed equal",
    "greater than or equal", "greater than" respectively).
    Comparisons make sense if and only if the index type is ‘TREE'.
-   
+
    This type of search may return more than one tuple; if so, the tuples will be
    in descending order by key when the comparison operator is LT or LE or REQ,
    otherwise in ascending order.
@@ -519,8 +519,8 @@ The following SELECT variations exist:
 
    In the second case, the result will be two tuples:
    ``{1, 'A'}`` and ``{1, 'B'}``.
-   
-   You can specify even zero fields, causing all three tuples to be 
+
+   You can specify even zero fields, causing all three tuples to be
    returned. (Notice that partial key searches are available only in TREE indexes.)
 
 **Examples**
@@ -617,7 +617,7 @@ resource usage of each function.
     |                   | accesses if secondary index fields are unchanged by      |
     |                   | the update. So, this complexity factor applies only to   |
     |                   | memtx, since it always makes a full-tuple copy on every  |
-    |                   | update.                                                  |    
+    |                   | update.                                                  |
     +-------------------+----------------------------------------------------------+
     | Number of tuples  | A few requests, for example SELECT, can retrieve         |
     | accessed          | multiple tuples. This factor is usually less             |

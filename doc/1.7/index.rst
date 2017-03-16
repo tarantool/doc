@@ -5,6 +5,13 @@
 Tarantool - Documentation
 -------------------------
 
+.. include:: singlehtml.rst
+
+.. wp_section::
+    :class: b-block-gray b-downloads-versionlist
+
+    Available version: 1.7 / `1.8 <../1.8/index.html>`_
+
 .. wp_section::
     :title: Tarantool manual
     :class: b-block-lightgray b-downloads-top
@@ -14,8 +21,8 @@ Tarantool - Documentation
     -- to advanced instructions and detailed references for power users and
     contributors.
 
-    | A single-page version of this manual is available `here <doc/singlehtml.html>`_.
-    | A pdf version of this manual is available `here <doc/Tarantool.pdf>`_.
+    | A single-page version of this manual is available `here <singlehtml.html>`_.
+    | A pdf version of this manual is available `here <Tarantool.pdf>`_.
 
 .. wp_section::
     :class: b-block b-downloads
@@ -88,26 +95,26 @@ Tarantool - Documentation
 
           tl;dr? ;-) Feel free to ask your question in our `telegram chat`_.
 
-.. _What's new in Tarantool 1.7?: doc/whats_new.html
-.. _An application server together with a database manager: doc/intro.html#an-application-server-together-with-a-database-manager
-.. _Database features: doc/intro.html#database-features
-.. _Lua tutorials: doc/tutorials/lua_tutorials.html
-.. _C tutorial: doc/tutorials/c_tutorial.html
-.. _Preface: doc/book/intro.html
-.. _Getting started: doc/book/getting_started/index.html
-.. _Database: doc/book/box/index.html
-.. _Application server: doc/book/app_server/index.html
-.. _Server administration: doc/book/administration.html
-.. _Replication: doc/book/replication/index.html
-.. _Connectors: doc/book/connectors/index.html
-.. _FAQ: doc/book/faq.html
-.. _Built-in modules reference: doc/reference/reference_lua/index.html
-.. _Rocks reference: doc/reference/reference_rock/index.html
-.. _Configuration reference: doc/reference/configuration/index.html
-.. _C API reference: doc/dev_guide/reference_capi/index.html
-.. _Internals: doc/dev_guide/internals_index.html
-.. _Build and contribute: doc/dev_guide/build_contribute_index.html
-.. _Guidelines: doc/dev_guide/guidelines_index.html
+.. _What's new in Tarantool 1.7?: doc/1.7/whats_new.html
+.. _An application server together with a database manager: doc/1.7/intro.html#an-application-server-together-with-a-database-manager
+.. _Database features: doc/1.7/intro.html#database-features
+.. _Lua tutorials: doc/1.7/tutorials/lua_tutorials.html
+.. _C tutorial: doc/1.7/tutorials/c_tutorial.html
+.. _Preface: doc/1.7/book/intro.html
+.. _Getting started: doc/1.7/book/getting_started/index.html
+.. _Database: doc/1.7/book/box/index.html
+.. _Application server: doc/1.7/book/app_server/index.html
+.. _Server administration: doc/1.7/book/administration.html
+.. _Replication: doc/1.7/book/replication/index.html
+.. _Connectors: doc/1.7/book/connectors/index.html
+.. _FAQ: doc/1.7/book/faq.html
+.. _Built-in modules reference: doc/1.7/reference/reference_lua/index.html
+.. _Rocks reference: doc/1.7/reference/reference_rock/index.html
+.. _Configuration reference: doc/1.7/reference/configuration/index.html
+.. _C API reference: doc/1.7/dev_guide/reference_capi/index.html
+.. _Internals: doc/1.7/dev_guide/internals_index.html
+.. _Build and contribute: doc/1.7/dev_guide/build_contribute_index.html
+.. _Guidelines: doc/1.7/dev_guide/guidelines_index.html
 
 .. _English: https://groups.google.com/forum/#!forum/tarantool
 .. _Russian: https://googlegroups.com/group/tarantool-ru

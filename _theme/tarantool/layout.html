@@ -6,6 +6,7 @@
 {% set script_files = script_files + [
     '_static/searchtools.js',
     '_static/js/stacktable.min.js',
+    '_static/js/main.js',
     '_static/js/menu.js',
     '_static/js/mobile_menu.js',
     '_static/js/headers.js',
@@ -41,7 +42,7 @@
 {%- endset %}
 
 {% set is_website  = website.get(pagename, False) %}
-{% set is_mainpage = pagename in ["doc/index", "doc/singlehtml"] %}
+{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
 {% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}
@@ -53,7 +54,7 @@
 
 {% set content_pane %}
   <article class="b-article">
-    {% if pagename == "doc/singlehtml" %}
+    {% if pagename == "doc/1.7/singlehtml" %}
       <div class="toctree-wrapper compound">
         {{ toctree(maxdepth=2, collapse=false) }}
       </div>
@@ -144,4 +145,4 @@
   </body>
 </html>
 
-{# vim: syntax=jinja ts=2 sts=2 sw=2 expandtab #}
+{# vim: set syntax=jinja ts=2 sts=2 sw=2 expandtab : #}

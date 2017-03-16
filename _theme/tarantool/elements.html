@@ -1,6 +1,6 @@
 {% set language_list = [
-  (_("En"), "/en/doc/", "en"),
-  (_("Ru"), "/ru/doc/", "ru")
+  ("En", "/en/doc/{{ version }}", "en"),
+  ("Ru", "/ru/doc/{{ version }}", "ru"),
 ] %}
 
 {%- macro abspath(path) -%}
@@ -15,6 +15,16 @@
   '.html'
 ] | join('')
 %}
+
+{%- macro convert_path_version(toversion) -%}
+  {%- if toversion == version -%}
+    {{ pathto("doc/" + version +  "/index") }}
+  {%- else -%}
+    {%- set lr = pathto("/" + pagename + file_suffix, True)
+               | replace(version, toversion) -%}
+    {{ abspath(lr.split("/", 1)[1]) }}
+  {%- endif -%}
+{%- endmacro -%}
 
 {%- macro convert_path_i18n(tolang) -%}
   {%- if tolang == "ru" -%}
@@ -43,10 +53,23 @@
   <div class="b-page_header">
     <ul class="b-path-list">
       <li class="b-path-list-item">
-        <a href="{{ pathto("doc/index") }}"
-           class="b-path-list-item-url">
-          {{ _("1.7") }}
-        </a>
+        <div class="b-path-list-drop-wrapper">
+          <a href="{{ convert_path_version(version) }}"
+            class="b-path-list-item-url">
+            {{ version }}
+          </a>
+          <i class="b-path-list-item-icon fa p-drop-close"></i>
+        </div>
+        <ul class="b-path-list-drop">
+        {% for elem in versions %}
+          {% if elem != version %}
+            <li class="b-path-list-drop-item">
+              <a href="{{ convert_path_version(elem) }}"
+                 class="b-path-list-drop-item-url"> {{ elem }} </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
       </li>
       {% for elem in parents %}
         <li class="b-path-list-item">
@@ -122,23 +145,23 @@
 {# Modify i_links to add records to site #}
 {% if not wp_local %}
   {% set i_links = [
-    ("Main",          "https://tarantool.org/{{ language }}/",              "index"   ),
-    ("Try",           "https://tarantool.org/{{ language }}/try.html",      "try"     ),
-    ("Documentation", "https://tarantool.org/{{ language }}/doc.html",      "doc"     ),
-    ("Download",      "https://tarantool.org/{{ language }}/download.html", "download"),
-    ("Cloud",         "https://tarantool.io/",                              "cloud"   ),
-    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",    "rocks"   ),
-    ("Careers",       "https://tarantool.org/{{ language }}/careers.html",  "careers" ),
+    ("Main",          "https://tarantool.org/{{ language }}/",                             "index"   ),
+    ("Try",           "https://tarantool.org/{{ language }}/try.html",                     "try"     ),
+    ("Documentation", "https://tarantool.org/{{ language }}/doc/{{ version }}/index.html", "doc"     ),
+    ("Download",      "https://tarantool.org/{{ language }}/download.html",                "download"),
+    ("Cloud",         "https://tarantool.io/",                                             "cloud"   ),
+    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",                   "rocks"   ),
+    ("Careers",       "https://tarantool.org/{{ language }}/careers.html",                 "careers" ),
   ] %}
 {% else %}
   {% set i_links = [
-    ("Main",          abspath("index.html"),         "index"   ),
-    ("Try",           abspath("try.html"),           "try"     ),
-    ("Documentation", abspath("doc.html"),           "doc"     ),
-    ("Download",      abspath("download.html"),      "download"),
-    ("Cloud",         "https://tarantool.io/",       "cloud"   ),
-    ("Rocks",         abspath("rocks.html"),         "rocks"   ),
-    ("Careers",       abspath("careers.html"),       "careers" ),
+    ("Main",          abspath("index.html"),                     "index"   ),
+    ("Try",           abspath("try.html"),                       "try"     ),
+    ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
+    ("Download",      abspath("download.html"),                  "download"),
+    ("Cloud",         "https://tarantool.io/",                   "cloud"   ),
+    ("Rocks",         abspath("rocks.html"),                     "rocks"   ),
+    ("Careers",       abspath("careers.html"),                   "careers" ),
   ] %}
 {% endif %}
 
@@ -182,7 +205,7 @@
     <div class="b-header-wrapper">
       <nav class="b-header_menu">
         <div class="b-header_menu-top">
-          {{ i_menu()         }}
+          {{ i_menu() }}
           <div class="b-header_menu-top-ctl">
             {{ language_selector() }}
             <a class="b-search-btn" href="#">
@@ -215,4 +238,4 @@
 </footer>
 {% endmacro %}
 
-{# vim: syntax=htmldjango ts=2 sts=2 sw=2 expandtab #}
+{# vim: set syntax=jinja ts=2 sts=2 sw=2 expandtab : #}
