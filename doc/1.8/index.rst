@@ -10,7 +10,7 @@ Tarantool - Documentation
 .. wp_section::
     :class: b-block-gray b-downloads-versionlist
 
-    Available version: 1.7 / `1.8 <../1.8/index.html>`_
+    Available version: `1.7 <../1.7/index.html>`_ / 1.8
 
 .. wp_section::
     :title: Tarantool manual

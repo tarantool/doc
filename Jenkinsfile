@@ -21,7 +21,10 @@ stage("Build") {
             sh "chmod 700 ~/.ssh"
             sh "ssh-keyscan $SERVER > ~/.ssh/known_hosts"
             sh "chmod 600 ~/.ssh/*"
-            sh "rsync -Pav output/* $USER@$SERVER:$DEST_DIR"
+            sh "rsync -Pav output/en/doc/1.8/ " +
+               "$USER@$SERVER:$DEST_DIR/en/doc/1.8"
+            sh "rsync -Pav output/ru/doc/1.8/ " +
+               "$USER@$SERVER:$DEST_DIR/ru/doc/1.8"
         }
     }
 }

@@ -42,7 +42,7 @@
 {%- endset %}
 
 {% set is_website  = website.get(pagename, False) %}
-{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml"] %}
+{% set is_mainpage = pagename in ["doc/1.8/index", "doc/1.8/singlehtml"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
 {% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}
@@ -54,7 +54,7 @@
 
 {% set content_pane %}
   <article class="b-article">
-    {% if pagename == "doc/1.7/singlehtml" %}
+    {% if pagename == "doc/1.8/singlehtml" %}
       <div class="toctree-wrapper compound">
         {{ toctree(maxdepth=2, collapse=false) }}
       </div>
