@@ -95,26 +95,26 @@ Tarantool - Documentation
 
           tl;dr? ;-) Feel free to ask your question in our `telegram chat`_.
 
-.. _What's new in Tarantool 1.7?: doc/1.7/whats_new.html
-.. _An application server together with a database manager: doc/1.7/intro.html#an-application-server-together-with-a-database-manager
-.. _Database features: doc/1.7/intro.html#database-features
-.. _Lua tutorials: doc/1.7/tutorials/lua_tutorials.html
-.. _C tutorial: doc/1.7/tutorials/c_tutorial.html
-.. _Preface: doc/1.7/book/intro.html
-.. _Getting started: doc/1.7/book/getting_started/index.html
-.. _Database: doc/1.7/book/box/index.html
-.. _Application server: doc/1.7/book/app_server/index.html
-.. _Server administration: doc/1.7/book/administration.html
-.. _Replication: doc/1.7/book/replication/index.html
-.. _Connectors: doc/1.7/book/connectors/index.html
-.. _FAQ: doc/1.7/book/faq.html
-.. _Built-in modules reference: doc/1.7/reference/reference_lua/index.html
-.. _Rocks reference: doc/1.7/reference/reference_rock/index.html
-.. _Configuration reference: doc/1.7/reference/configuration/index.html
-.. _C API reference: doc/1.7/dev_guide/reference_capi/index.html
-.. _Internals: doc/1.7/dev_guide/internals_index.html
-.. _Build and contribute: doc/1.7/dev_guide/build_contribute_index.html
-.. _Guidelines: doc/1.7/dev_guide/guidelines_index.html
+.. _What's new in Tarantool 1.7?: whats_new.html
+.. _An application server together with a database manager: intro.html#an-application-server-together-with-a-database-manager
+.. _Database features: intro.html#database-features
+.. _Lua tutorials: tutorials/lua_tutorials.html
+.. _C tutorial: tutorials/c_tutorial.html
+.. _Preface: book/intro.html
+.. _Getting started: book/getting_started/index.html
+.. _Database: book/box/index.html
+.. _Application server: book/app_server/index.html
+.. _Server administration: book/administration.html
+.. _Replication: book/replication/index.html
+.. _Connectors: book/connectors/index.html
+.. _FAQ: book/faq.html
+.. _Built-in modules reference: reference/reference_lua/index.html
+.. _Rocks reference: reference/reference_rock/index.html
+.. _Configuration reference: reference/configuration/index.html
+.. _C API reference: dev_guide/reference_capi/index.html
+.. _Internals: dev_guide/internals_index.html
+.. _Build and contribute: dev_guide/build_contribute_index.html
+.. _Guidelines: dev_guide/guidelines_index.html
 
 .. _English: https://groups.google.com/forum/#!forum/tarantool
 .. _Russian: https://googlegroups.com/group/tarantool-ru

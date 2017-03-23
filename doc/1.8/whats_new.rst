@@ -31,6 +31,8 @@ The ``space_object:inc()`` function is removed.
 
 The ``space_object:dec()`` function is removed.
 
+The ``space_object:bsize()`` function is added.
+
 The ``box.coredump()`` function is removed, for an alternative see
 :ref:`Generating a core file <administration-core>`.
 
