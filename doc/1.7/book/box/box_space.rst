@@ -62,6 +62,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:len()             | Get count of tuples             |
         | <box_space-len>`                     |                                 |
         +--------------------------------------+---------------------------------+
+        | :ref:`space_object:bsize()           | Get count of bytes              |
+        | <box_space-bsize>`                   |                                 |
+        +--------------------------------------+---------------------------------+
         | :ref:`space_object:truncate()        | Delete all tuples               |
         | <box_space-truncate>`                |                                 |
         +--------------------------------------+---------------------------------+
@@ -800,6 +803,30 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | Note re storage engine:
             | vinyl does not support ``len()``.  One possible workaround is to
               say ``#select(...)``.
+
+    .. _box_space-bsize:
+
+    .. method:: bsize()
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+
+        :return: Number of bytes in the space.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester:bsize()
+            ---
+            - 22
+            ...
+
+        .. NOTE::
+
+            | Note re storage engine:
+            | vinyl does not support ``bsize()``.
+
 
     .. _box_space-truncate:
 
