@@ -31,7 +31,7 @@ $(function() {
   /* Fix for singlehtml and bad links path */
   if ($('[class$="singlehtml"]').length) {
     $("a[href]").each(function(i, el) {
-        $(el).attr("href", $(el).attr("href").replace(/^doc\/[\d.]+/singlehtml\.html/, ''));
+        $(el).attr("href", $(el).attr("href").replace(/^doc\/[\d.]+\/singlehtml\.html/, ''));
     })
   }
 
