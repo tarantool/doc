@@ -1,11 +1,9 @@
 :orphan:
 :priority: 0.95
 
--------------------------
-Tarantool - Documentation
--------------------------
-
-.. include:: singlehtml.rst
+-------------------------------------------------------------------------------
+                           Tarantool - Documentation
+-------------------------------------------------------------------------------
 
 .. wp_section::
     :class: b-block-gray b-downloads-versionlist
@@ -25,7 +23,7 @@ Tarantool - Documentation
     | A pdf version of this manual is available `here <Tarantool.pdf>`_.
 
 .. wp_section::
-    :class: b-block b-downloads
+    :class: b-block b-documentation-toc
 
     .. ifconfig:: language == 'ru'
 
@@ -34,45 +32,7 @@ Tarantool - Documentation
             Документация находится в процессе перевода и может
             отставать от английской версии.
 
-    .. ddlist::
-
-        * What's new?
-
-          - `What's new in Tarantool 1.7?`_
-
-        * Overview
-
-          - `An application server together with a database manager`_
-          - `Database features`_
-
-        * User's Guide
-
-          - `Preface`_
-          - `Getting started`_
-          - `Database`_
-          - `Application server`_
-          - `Server administration`_
-          - `Replication`_
-          - `Connectors`_
-          - `FAQ`_
-
-        * Reference
-
-          - `Built-in modules reference`_
-          - `Rocks reference`_
-          - `Configuration reference`_
-
-        * Tutorials
-
-          - `Lua tutorials`_
-          - `C tutorial`_
-
-        * Contributor's Guide
-
-          - `C API reference`_
-          - `Internals`_
-          - `Build and contribute`_
-          - `Guidelines`_
+    .. include:: singlehtml.rst
 
 .. wp_section::
     :title: Other sources
@@ -94,27 +54,6 @@ Tarantool - Documentation
         * Telegram chat
 
           tl;dr? ;-) Feel free to ask your question in our `telegram chat`_.
-
-.. _What's new in Tarantool 1.7?: whats_new.html
-.. _An application server together with a database manager: intro.html#an-application-server-together-with-a-database-manager
-.. _Database features: intro.html#database-features
-.. _Lua tutorials: tutorials/lua_tutorials.html
-.. _C tutorial: tutorials/c_tutorial.html
-.. _Preface: book/intro.html
-.. _Getting started: book/getting_started/index.html
-.. _Database: book/box/index.html
-.. _Application server: book/app_server/index.html
-.. _Server administration: book/administration.html
-.. _Replication: book/replication/index.html
-.. _Connectors: book/connectors/index.html
-.. _FAQ: book/faq.html
-.. _Built-in modules reference: reference/reference_lua/index.html
-.. _Rocks reference: reference/reference_rock/index.html
-.. _Configuration reference: reference/configuration/index.html
-.. _C API reference: dev_guide/reference_capi/index.html
-.. _Internals: dev_guide/internals_index.html
-.. _Build and contribute: dev_guide/build_contribute_index.html
-.. _Guidelines: dev_guide/guidelines_index.html
 
 .. _English: https://groups.google.com/forum/#!forum/tarantool
 .. _Russian: https://googlegroups.com/group/tarantool-ru
