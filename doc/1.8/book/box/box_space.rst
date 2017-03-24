@@ -23,20 +23,41 @@ A list of all ``box.space`` functions follows, then comes a list of all
         +--------------------------------------+---------------------------------+
         | Name                                 | Use                             |
         +======================================+=================================+
+        | :ref:`space_object:auto_increment()  | Generate key + Insert a tuple   |
+        | <box_space-auto_increment>`          |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:bsize()           | Get count of bytes              |
+        | <box_space-bsize>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:count()           | Get count of tuples             |
+        | <box_space-count>`                   |                                 |
+        +--------------------------------------+---------------------------------+
         | :ref:`space_object:create_index()    | Create an index                 |
         | <box_space-create_index>`            |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:insert()          | Insert a tuple                  |
-        | <box_space-insert>`                  |                                 |
+        | :ref:`space_object:delete()          | Delete a tuple                  |
+        | <box_space-delete>`                  |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:select()          | Select one or more tuples       |
-        | <box_space-select>`                  |                                 |
+        | :ref:`space_object:drop()            | Destroy a space                 |
+        | <box_space-drop>`                    |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:get()             | Select a tuple                  |
         | <box_space-get>`                     |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:drop()            | Destroy a space                 |
-        | <box_space-drop>`                    |                                 |
+        | :ref:`space_object:insert()          | Insert a tuple                  |
+        | <box_space-insert>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:len()             | Get count of tuples             |
+        | <box_space-len>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:on_replace()      | Create a replace trigger        |
+        | <box_space-on_replace>`              |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:pairs()           | Prepare for iterating           |
+        | <box_space-pairs>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:put()             | Insert or replace a tuple       |
+        | <box_space-replace>`                 |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:rename()          | Rename a space                  |
         | <box_space-rename>`                  |                                 |
@@ -44,8 +65,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:replace()         | Insert or replace a tuple       |
         | <box_space-replace>`                 |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:put()             | Insert or replace a tuple       |
-        | <box_space-replace>`                 |                                 |
+        | :ref:`space_object:run_triggers()    | Enable/disable a replace        |
+        | <box_space-run_triggers>`            | trigger                         |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:select()          | Select one or more tuples       |
+        | <box_space-select>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:truncate()        | Delete all tuples               |
+        | <box_space-truncate>`                |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:update()          | Update a tuple                  |
         | <box_space-update>`                  |                                 |
@@ -53,59 +80,17 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:upsert()          | Update a tuple                  |
         | <box_space-upsert>`                  |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:delete()          | Delete a tuple                  |
-        | <box_space-delete>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:count()           | Get count of tuples             |
-        | <box_space-count>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:len()             | Get count of tuples             |
-        | <box_space-len>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:bsize()           | Get count of bytes              |
-        | <box_space-bsize>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:truncate()        | Delete all tuples               |
-        | <box_space-truncate>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:auto_increment()  | Generate key + Insert a tuple   |
-        | <box_space-auto_increment>`          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:pairs()           | Prepare for iterating           |
-        | <box_space-pairs>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:on_replace()      | Create a replace trigger        |
-        | <box_space-on_replace>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:run_triggers()    | Enable/disable a replace        |
-        | <box_space-run_triggers>`            | trigger                         |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object.id                | Numeric identifier of space     |
-        | <box_space-id>`                      |                                 |
-        +--------------------------------------+---------------------------------+
         | :ref:`space_object.enabled           | Flag, true if space is enabled  |
         | <box_space-enabled>`                 |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object.field_count       | Required number of fields       |
         | <box_space-field_count>`             |                                 |
         +--------------------------------------+---------------------------------+
+        | :ref:`space_object.id                | Numeric identifier of space     |
+        | <box_space-id>`                      |                                 |
+        +--------------------------------------+---------------------------------+
         | :ref:`space_object.index             | Container of space's indexes    |
         | <box_space-field_count>`             |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._schema              | (Metadata) List of schemas      |
-        | <box_space-schema>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._space               | (Metadata) List of spaces       |
-        | <box_space-space>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._index               | (Metadata) List of indexes      |
-        | <box_space-index>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._user                | (Metadata) List of users        |
-        | <box_space-user>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._priv                | (Metadata) List of privileges   |
-        | <box_space-priv>`                    |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`box.space._cluster             | (Metadata) List of replica sets |
         | <box_space-cluster>`                 |                                 |
@@ -113,10 +98,104 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`box.space._func                | (Metadata) List of function     |
         | <box_space-func>`                    | tuples                          |
         +--------------------------------------+---------------------------------+
+        | :ref:`box.space._index               | (Metadata) List of indexes      |
+        | <box_space-index>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._priv                | (Metadata) List of privileges   |
+        | <box_space-priv>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._schema              | (Metadata) List of schemas      |
+        | <box_space-schema>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._space               | (Metadata) List of spaces       |
+        | <box_space-space>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._user                | (Metadata) List of users        |
+        | <box_space-user>`                    |                                 |
+        +--------------------------------------+---------------------------------+
 
 .. module:: box.space
 
 .. class:: space_object
+
+    .. _box_space-auto_increment:
+
+    .. method:: auto_increment(tuple)
+
+        Insert a new tuple using an auto-increment primary key. The space
+        specified by space_object must have an ``unsigned`` or ``integer`` or
+        ``numeric`` primary key index of type ``TREE``. The primary-key field
+        will be incremented before the insert.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table/tuple         tuple: tuple's fields, other than the
+                                          primary-key field
+
+        :return: the inserted tuple.
+        :rtype:  tuple
+
+        **Complexity factors:** Index size, Index type,
+        Number of indexes accessed, WAL settings.
+
+        **Possible errors:** index has wrong type or primary-key indexed field is not a number.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}
+            ---
+            - [1, 'Fld#1', 'Fld#2']
+            ...
+            tarantool> box.space.tester:auto_increment{'Fld#3'}
+            ---
+            - [2, 'Fld#3']
+            ...
+
+    .. _box_space-bsize:
+
+    .. method:: bsize()
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+
+        :return: Number of bytes in the space.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester:bsize()
+            ---
+            - 22
+            ...
+
+        Note re storage engine:
+        vinyl does not support ``bsize()``.
+
+
+
+    .. _box_space-count:
+
+    .. method:: count([key], [iterator])
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: primary-key field values, must be passed as a
+                                 Lua table if key is multi-part
+        :param iterator: comparison method
+
+        :return: Number of tuples.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester:count(2, {iterator='GE'})
+            ---
+            - 1
+            ...
 
     .. _box_space-create_index:
 
@@ -171,12 +250,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             +---------------+--------------------+-----------------------------+---------------------+
 
         **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
-
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl supports only the TREE index type, and vinyl secondary
-              indexes must be created before tuples are inserted.
 
         .. code-block:: tarantoolsession
 
@@ -264,6 +337,102 @@ A list of all ``box.space`` functions follows, then comes a list of all
         |                  | point numbers, strings    |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
 
+        Note re storage engine: vinyl supports only the TREE index type, and vinyl secondary
+        indexes must be created before tuples are inserted.
+
+
+    .. _box_space-delete:
+
+    .. method:: delete(key)
+
+        Delete a tuple identified by a primary key.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: primary-key field values, must be passed as a
+                                 Lua table if key is multi-part
+
+        :return: the deleted tuple
+        :rtype:  tuple
+
+        **Complexity factors:** Index size, Index type
+
+        .. NOTE::
+
+            | Note re storage engine:
+            | vinyl will return ``nil``, rather than the deleted tuple.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester:delete(1)
+            ---
+            - [1, 'My first tuple']
+            ...
+            tarantool> box.space.tester:delete(1)
+            ---
+            ...
+            tarantool> box.space.tester:delete('a')
+            ---
+            - error: 'Supplied key type of part 0 does not match index part type:
+              expected unsigned'
+            ...
+
+    .. _box_space-drop:
+
+    .. method:: drop()
+
+        Drop a space.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+
+        :return: nil
+
+        **Possible errors:** If ``space_object`` does not exist.
+
+        **Complexity factors:** Index size, Index type,
+        Number of indexes accessed, WAL settings.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            box.space.space_that_does_not_exist:drop()
+
+    .. _box_space-get:
+
+    .. method:: get(key)
+
+        Search for a tuple in the given space.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table          key: value to be matched against the index
+                                          key, which may be multi-part.
+
+        :return: the tuple whose index key matches ``key``, or ``nil``.
+        :rtype:  tuple
+
+        **Possible errors:** If space_object does not exist.
+
+        **Complexity factors:** Index size, Index type, Number of indexes
+        accessed, WAL settings.
+
+        The ``box.space...select`` function returns a set of tuples as a Lua
+        table; the ``box.space...get`` function returns at most a single tuple.
+        And it is possible to get the first tuple in a space by appending
+        ``[1]``. Therefore ``box.space.tester:get{1}`` has the same effect as
+        ``box.space.tester:select{1}[1]``, if exactly one tuple is found.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            box.space.tester:get{1}
+
+
     .. _box_space-insert:
 
     .. method:: insert(tuple)
@@ -288,6 +457,230 @@ A list of all ``box.space`` functions follows, then comes a list of all
             ---
             - [5000, 'tuple number five thousand']
             ...
+
+    .. _box_space-len:
+
+    .. method:: len()
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+
+        :return: Number of tuples in the space.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester:len()
+            ---
+            - 2
+            ...
+
+        Note re storage engine: vinyl does not support ``len()``.
+        One possible workaround is to say ``#select(...)``.
+
+
+    .. _box_space-on_replace:
+
+    .. method:: on_replace(trigger-function [, old-trigger-function])
+
+        Create a "replace trigger". The ``trigger-function`` will be executed
+        whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()``
+        or ``delete()`` happens to a tuple in ``<space-name>``.
+
+        :param function     trigger-function: function which will become the
+                                              trigger function
+        :param function old-trigger-function: existing trigger function which
+                                              will be replaced by
+                                              trigger-function
+        :return: nil or function pointer
+
+        If the parameters are (nil, old-trigger-function), then the old
+        trigger is deleted.
+        Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+
+        **Example #1:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> function f ()
+                     >   x = x + 1
+                     > end
+            tarantool> box.space.X:on_replace(f)
+
+        The ``trigger-function`` can have two parameters: old tuple, new tuple.
+        For example, the following code causes nil to be printed when the insert
+        request is processed, and causes [1, 'Hi'] to be printed when the delete
+        request is processed:
+
+        .. code-block:: lua
+
+            box.schema.space.create('space_1')
+            box.space.space_1:create_index('space_1_index',{})
+            function on_replace_function (old, new) print(old) end
+            box.space.space_1:on_replace(on_replace_function)
+            box.space.space_1:insert{1,'Hi'}
+            box.space.space_1:delete{1}
+
+        **Example #2:**
+
+        The following series of requests will create a space, create an index,
+        create a function which increments a counter, create a trigger, do two
+        inserts, drop the space, and display the counter value - which is 2,
+        because the function is executed once after each insert.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> s = box.schema.space.create('space53')
+            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
+            tarantool> function replace_trigger()
+                     >   replace_counter = replace_counter + 1
+                     > end
+            tarantool> s:on_replace(replace_trigger)
+            tarantool> replace_counter = 0
+            tarantool> t = s:insert{1, 'First replace'}
+            tarantool> t = s:insert{2, 'Second replace'}
+            tarantool> s:drop()
+            tarantool> replace_counter
+
+    .. _box_space-pairs:
+
+    .. method:: pairs([key [, iterator]])
+
+        Search for a tuple or a set of tuples in the given space, and allow
+        iterating over one tuple at a time.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param scalar/table key: value to be matched against the index key,
+                                 which may be multi-part
+        :param         iterator: see :ref:`index_object:pairs
+                                 <box_index-index_pairs>`
+
+        :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
+                 used in a for/end loop or with `totable()
+                 <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
+
+        **Possible errors:** No such space; wrong type.
+
+        **Complexity factors:** Index size, Index type.
+
+        For examples of complex ``pairs`` requests, where one can specify which
+        index to search and what condition to use (for example "greater than"
+        instead of "equal to"), see the later section :ref:`index_object:pairs
+        <box_index-index_pairs>`.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> s = box.schema.space.create('space33')
+            ---
+            ...
+            tarantool> -- index 'X' has default parts {1, 'unsigned'}
+            tarantool> s:create_index('X', {})
+            ---
+            ...
+            tarantool> s:insert{0, 'Hello my '}, s:insert{1, 'Lua world'}
+            ---
+            - [0, 'Hello my ']
+            - [1, 'Lua world']
+            ...
+            tarantool> tmp = ''
+            ---
+            ...
+            tarantool> for k, v in s:pairs() do
+                     >   tmp = tmp .. v[2]
+                     > end
+            ---
+            ...
+            tarantool> tmp
+            ---
+            - Hello my Lua world
+            ...
+
+    .. _box_space-rename:
+
+    .. method:: rename(space-name)
+
+        Rename a space.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param string space-name: new name for space
+
+        :return: nil
+
+        **Possible errors:** ``space_object`` does not exist.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.space55:rename('space56')
+            ---
+            ...
+            tarantool> box.space.space56:rename('space55')
+            ---
+            ...
+
+    .. _box_space-replace:
+
+    .. method:: replace(tuple)
+                put(tuple)
+
+        Insert a tuple into a space. If a tuple with the same primary key already
+        exists, ``box.space...:replace()`` replaces the existing tuple with a new
+        one. The syntax variants ``box.space...:replace()`` and
+        ``box.space...:put()`` have the same effect; the latter is sometimes used
+        to show that the effect is the converse of ``box.space...:get()``.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table/tuple tuple: tuple to be inserted
+
+        :return: the inserted tuple.
+        :rtype:  tuple
+
+        **Possible errors:** If a different tuple with the same unique-key
+        value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This
+        will only happen if there is a unique secondary index.)
+
+        **Complexity factors:** Index size, Index type,
+        Number of indexes accessed, WAL settings.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            box.space.tester:replace{5000, 'tuple number five thousand'}
+
+
+    .. _box_space-run_triggers:
+
+    .. method:: run_triggers(true|false)
+
+        At the time that a trigger is defined, it is automatically enabled -
+        that is, it will be executed. Replace triggers can be disabled with
+        :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with
+        :samp:`box.space.{space-name}:run_triggers(true)`.
+
+        :return: nil
+
+        **Example:**
+
+        The following series of requests will associate an existing function named F
+        with an existing space named T, associate the function a second time with the
+        same space (so it will be called twice), disable all triggers of T, and delete
+        each trigger by replacing with ``nil``.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.T:on_replace(F)
+            tarantool> box.space.T:on_replace(F)
+            tarantool> box.space.T:run_triggers(false)
+            tarantool> box.space.T:on_replace(nil, F)
+            tarantool> box.space.T:on_replace(nil, F)
 
     .. _box_space-select:
 
@@ -363,114 +756,37 @@ A list of all ``box.space`` functions follows, then comes a list of all
         instead of "equal to") and how many tuples to return, see the later
         section :ref:`index_object:select <box_index-select>`.
 
-    .. _box_space-get:
+    .. _box_space-truncate:
 
-    .. method:: get(key)
+    .. method:: truncate()
 
-        Search for a tuple in the given space.
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param scalar/table          key: value to be matched against the index
-                                          key, which may be multi-part.
-
-        :return: the tuple whose index key matches ``key``, or ``nil``.
-        :rtype:  tuple
-
-        **Possible errors:** If space_object does not exist.
-
-        **Complexity factors:** Index size, Index type, Number of indexes
-        accessed, WAL settings.
-
-        The ``box.space...select`` function returns a set of tuples as a Lua
-        table; the ``box.space...get`` function returns at most a single tuple.
-        And it is possible to get the first tuple in a space by appending
-        ``[1]``. Therefore ``box.space.tester:get{1}`` has the same effect as
-        ``box.space.tester:select{1}[1]``, if exactly one tuple is found.
-
-        **Example:**
-
-        .. code-block:: lua
-
-            box.space.tester:get{1}
-
-    .. _box_space-drop:
-
-    .. method:: drop()
-
-        Drop a space.
+        Deletes all tuples.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
+
+        **Complexity factors:** Index size, Index type, Number of tuples accessed.
 
         :return: nil
 
-        **Possible errors:** If ``space_object`` does not exist.
+        .. NOTE::
 
-        **Complexity factors:** Index size, Index type,
-        Number of indexes accessed, WAL settings.
-
-        **Example:**
-
-        .. code-block:: lua
-
-            box.space.space_that_does_not_exist:drop()
-
-    .. _box_space-rename:
-
-    .. method:: rename(space-name)
-
-        Rename a space.
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param string space-name: new name for space
-
-        :return: nil
-
-        **Possible errors:** ``space_object`` does not exist.
+            Note that ``truncate`` must be called only by the user who created
+            the space OR under a `setuid` function created by that user. Read
+            more about `setuid` functions in reference on
+            :ref:`box.schema.func.create() <box_schema-func_create>`.
 
         **Example:**
 
         .. code-block:: tarantoolsession
 
-            tarantool> box.space.space55:rename('space56')
+            tarantool> box.space.tester:truncate()
             ---
             ...
-            tarantool> box.space.space56:rename('space55')
+            tarantool> box.space.tester:len()
             ---
+            - 0
             ...
-
-    .. _box_space-replace:
-
-    .. method:: replace(tuple)
-                put(tuple)
-
-        Insert a tuple into a space. If a tuple with the same primary key already
-        exists, ``box.space...:replace()`` replaces the existing tuple with a new
-        one. The syntax variants ``box.space...:replace()`` and
-        ``box.space...:put()`` have the same effect; the latter is sometimes used
-        to show that the effect is the converse of ``box.space...:get()``.
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param table/tuple tuple: tuple to be inserted
-
-        :return: the inserted tuple.
-        :rtype:  tuple
-
-        **Possible errors:** If a different tuple with the same unique-key
-        value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This
-        will only happen if there is a unique secondary index.)
-
-        **Complexity factors:** Index size, Index type,
-        Number of indexes accessed, WAL settings.
-
-        **Example:**
-
-        .. code-block:: lua
-
-            box.space.tester:replace{5000, 'tuple number five thousand'}
 
     .. _box_space-update:
 
@@ -648,61 +964,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})
 
-    .. _box_space-delete:
 
-    .. method:: delete(key)
 
-        Delete a tuple identified by a primary key.
 
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param scalar/table key: primary-key field values, must be passed as a
-                                 Lua table if key is multi-part
 
-        :return: the deleted tuple
-        :rtype:  tuple
-
-        **Complexity factors:** Index size, Index type
-
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl will return ``nil``, rather than the deleted tuple.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.tester:delete(1)
-            ---
-            - [1, 'My first tuple']
-            ...
-            tarantool> box.space.tester:delete(1)
-            ---
-            ...
-            tarantool> box.space.tester:delete('a')
-            ---
-            - error: 'Supplied key type of part 0 does not match index part type:
-              expected unsigned'
-            ...
-
-    .. _box_space-id:
-
-    .. data:: id
-
-        Ordinal space number. Spaces can be referenced by either name or
-        number. Thus, if space ``tester`` has ``id = 800``, then
-        ``box.space.tester:insert{0}`` and ``box.space[800]:insert{0}``
-        are equivalent requests.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.tester.id
-            ---
-            - 512
-            ...
 
     .. _box_space-enabled:
 
@@ -738,6 +1003,25 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 0
             ...
 
+
+    .. _box_space-id:
+
+    .. data:: id
+
+        Ordinal space number. Spaces can be referenced by either name or
+        number. Thus, if space ``tester`` has ``id = 800``, then
+        ``box.space.tester:insert{0}`` and ``box.space[800]:insert{0}``
+        are equivalent requests.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.space.tester.id
+            ---
+            - 512
+            ...
+
     .. data:: index
 
         A container for all defined indexes. There is a Lua object of type
@@ -759,287 +1043,139 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - TREE
             ...
 
-    .. _box_space-count:
+.. _box_space-cluster:
+
+.. data:: _cluster
+
+    ``_cluster`` is a system space
+    for support of the :ref:`replication feature <index-box_replication>`.
+
+.. _box_space-func:
+
+.. data:: _func
+
+    ``_func`` is a system space with function tuples made by
+    :ref:`box.schema.func.create() <box_schema-func_create>`.
+
+    Tuples in this space contain the following fields:
+
+    * the numeric function id, a number,
+    * the function name,
+    * flag,
+    * a language name (optional): 'LUA' (default) or 'C'.
 
-    .. method:: count([key], [iterator])
+    The ``_func`` space does not include the function’s body.
+    You continue to create Lua functions in the usual way, by saying
+    ``function function_name () ... end``, without adding anything
+    in the ``_func`` space. The ``_func`` space only exists for storing
+    function tuples so that their names can be used within grant/revoke
+    functions.
 
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param scalar/table key: primary-key field values, must be passed as a
-                                 Lua table if key is multi-part
-        :param iterator: comparison method
+   You can:
 
-        :return: Number of tuples.
+   * Create a ``_func`` tuple with
+     :ref:`box.schema.func.create() <box_schema-func_create>`,
+   * Drop a ``_func`` tuple with
+     :ref:`box.schema.func.drop() <box_schema-func_drop>`,
+   * Check whether a ``_func`` tuple exists with
+     :ref:`box.schema.func.exists() <box_schema-func_exists>`.
 
-        **Example:**
+   **Example:**
 
-        .. code-block:: tarantoolsession
+   In the following example, we create a function named ‘f7’, put it into
+   Tarantool's ``_func`` space and grant 'execute' privilege for this function
+   to 'guest' user.
 
-            tarantool> box.space.tester:count(2, {iterator='GE'})
-            ---
-            - 1
-            ...
+   .. code-block:: tarantoolsession
 
-    .. _box_space-len:
+      tarantool> function f7()
+               >  box.session.uid()
+               > end
+      ---
+      ...
+      tarantool> box.schema.func.create('f7')
+      ---
+      ...
+      tarantool> box.schema.user.grant('guest', 'execute', 'function', 'f7')
+      ---
+      ...
+      tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
+      ---
+      ...
 
-    .. method:: len()
+.. _box_space-index:
 
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
+.. data:: _index
 
-        :return: Number of tuples in the space.
+    ``_index`` is a system space.
 
-        **Example:**
+    Tuples in this space contain the following fields:
+    
+    * ``id`` (= id of space),
+    * ``iid`` (= index number within space),
+    * ``name``,
+    * ``type``,
+    * ``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` ...].
 
-        .. code-block:: tarantoolsession
+    Here is what ``_index`` contains in a typical installation:
 
-            tarantool> box.space.tester:len()
-            ---
-            - 2
-            ...
+    .. code-block:: tarantoolsession
 
-        .. NOTE::
+       tarantool> box.space._index:select{}
+       ---
+       - - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'string']]]
+         - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
+         - [280, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
+         - [280, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+         - [281, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
+         - [281, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
+         - [281, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+         - [288, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
+         - [288, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
+         - [289, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
+         - [289, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
+         - [296, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
+         - [296, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
+         - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+       ---
+       ...
 
-            | Note re storage engine:
-            | vinyl does not support ``len()``.  One possible workaround is to
-              say ``#select(...)``.
+.. _box_space-priv:
 
-    .. _box_space-bsize:
+.. data:: _priv
 
-    .. method:: bsize()
+    ``_priv`` is a system space where :ref:`privileges <authentication-owners_privileges>`
+    are stored.
 
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
+    Tuples in this space contain the following fields:
 
-        :return: Number of bytes in the space.
+    * the numeric id of the user who gave the privilege ("grantor_id"),
+    * the numeric id of the user who received the privilege ("grantee_id"),
+    * the type of object: 'space', 'function' or 'universe',
+    * the numeric id of the object,
+    * the type of operation: "read" = 1, "write" = 2, "execute" = 4, or
+      a combination such as "read,write,execute".
 
-        **Example:**
+    You can:
 
-        .. code-block:: tarantoolsession
+    * Grant a privilege with :ref:`box.schema.user.grant() <box_schema-user_grant>`.
+    * Revoke a privilege with :ref:`box.schema.user.revoke() <box_schema-user_revoke>`.
 
-            tarantool> box.space.tester:bsize()
-            ---
-            - 22
-            ...
+    .. NOTE::
 
-        .. NOTE::
+       * Generally, privileges are granted or revoked by the owner of the object
+         (the user who created it), or by the 'admin' user.
 
-            | Note re storage engine:
-            | vinyl does not support ``bsize()``.
+       * Before dropping any objects or users, make sure that all their associated
+         privileges have been revoked.
 
+       * Only the 'admin' user can grant privileges for the 'universe'.
 
-    .. _box_space-truncate:
+       * Only the 'admin' user or the creator of a space can drop, alter, or
+         truncate the space.
 
-    .. method:: truncate()
-
-        Deletes all tuples.
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-
-        **Complexity factors:** Index size, Index type, Number of tuples accessed.
-
-        :return: nil
-
-        .. NOTE::
-
-            Note that ``truncate`` must be called only by the user who created
-            the space OR under a `setuid` function created by that user. Read
-            more about `setuid` functions in reference on
-            :ref:`box.schema.func.create() <box_schema-func_create>`.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.tester:truncate()
-            ---
-            ...
-            tarantool> box.space.tester:len()
-            ---
-            - 0
-            ...
-
-    .. _box_space-auto_increment:
-
-    .. method:: auto_increment(tuple)
-
-        Insert a new tuple using an auto-increment primary key. The space
-        specified by space_object must have an ``unsigned`` or ``integer`` or
-        ``numeric`` primary key index of type ``TREE``. The primary-key field
-        will be incremented before the insert.
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param table/tuple         tuple: tuple's fields, other than the
-                                          primary-key field
-
-        :return: the inserted tuple.
-        :rtype:  tuple
-
-        **Complexity factors:** Index size, Index type,
-        Number of indexes accessed, WAL settings.
-
-        **Possible errors:** index has wrong type or primary-key indexed field is not a number.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}
-            ---
-            - [1, 'Fld#1', 'Fld#2']
-            ...
-            tarantool> box.space.tester:auto_increment{'Fld#3'}
-            ---
-            - [2, 'Fld#3']
-            ...
-
-    .. _box_space-pairs:
-
-    .. method:: pairs([key [, iterator]])
-
-        Search for a tuple or a set of tuples in the given space, and allow
-        iterating over one tuple at a time.
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param scalar/table key: value to be matched against the index key,
-                                 which may be multi-part
-        :param         iterator: see :ref:`index_object:pairs
-                                 <box_index-index_pairs>`
-
-        :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
-                 used in a for/end loop or with `totable()
-                 <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
-
-        **Possible errors:** No such space; wrong type.
-
-        **Complexity factors:** Index size, Index type.
-
-        For examples of complex ``pairs`` requests, where one can specify which
-        index to search and what condition to use (for example "greater than"
-        instead of "equal to"), see the later section :ref:`index_object:pairs
-        <box_index-index_pairs>`.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> s = box.schema.space.create('space33')
-            ---
-            ...
-            tarantool> -- index 'X' has default parts {1, 'unsigned'}
-            tarantool> s:create_index('X', {})
-            ---
-            ...
-            tarantool> s:insert{0, 'Hello my '}, s:insert{1, 'Lua world'}
-            ---
-            - [0, 'Hello my ']
-            - [1, 'Lua world']
-            ...
-            tarantool> tmp = ''
-            ---
-            ...
-            tarantool> for k, v in s:pairs() do
-                     >   tmp = tmp .. v[2]
-                     > end
-            ---
-            ...
-            tarantool> tmp
-            ---
-            - Hello my Lua world
-            ...
-
-    .. _box_space-on_replace:
-
-    .. method:: on_replace(trigger-function [, old-trigger-function])
-
-        Create a "replace trigger". The ``trigger-function`` will be executed
-        whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()``
-        or ``delete()`` happens to a tuple in ``<space-name>``.
-
-        :param function     trigger-function: function which will become the
-                                              trigger function
-        :param function old-trigger-function: existing trigger function which
-                                              will be replaced by
-                                              trigger-function
-        :return: nil or function pointer
-
-        If the parameters are (nil, old-trigger-function), then the old
-        trigger is deleted.
-        Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
-
-        **Example #1:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> function f ()
-                     >   x = x + 1
-                     > end
-            tarantool> box.space.X:on_replace(f)
-
-        The ``trigger-function`` can have two parameters: old tuple, new tuple.
-        For example, the following code causes nil to be printed when the insert
-        request is processed, and causes [1, 'Hi'] to be printed when the delete
-        request is processed:
-
-        .. code-block:: lua
-
-            box.schema.space.create('space_1')
-            box.space.space_1:create_index('space_1_index',{})
-            function on_replace_function (old, new) print(old) end
-            box.space.space_1:on_replace(on_replace_function)
-            box.space.space_1:insert{1,'Hi'}
-            box.space.space_1:delete{1}
-
-        **Example #2:**
-
-        The following series of requests will create a space, create an index,
-        create a function which increments a counter, create a trigger, do two
-        inserts, drop the space, and display the counter value - which is 2,
-        because the function is executed once after each insert.
-
-        .. code-block:: tarantoolsession
-
-            tarantool> s = box.schema.space.create('space53')
-            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
-            tarantool> function replace_trigger()
-                     >   replace_counter = replace_counter + 1
-                     > end
-            tarantool> s:on_replace(replace_trigger)
-            tarantool> replace_counter = 0
-            tarantool> t = s:insert{1, 'First replace'}
-            tarantool> t = s:insert{2, 'Second replace'}
-            tarantool> s:drop()
-            tarantool> replace_counter
-
-    .. _box_space-run_triggers:
-
-    .. method:: run_triggers(true|false)
-
-        At the time that a trigger is defined, it is automatically enabled -
-        that is, it will be executed. Replace triggers can be disabled with
-        :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with
-        :samp:`box.space.{space-name}:run_triggers(true)`.
-
-        :return: nil
-
-        **Example:**
-
-        The following series of requests will associate an existing function named F
-        with an existing space named T, associate the function a second time with the
-        same space (so it will be called twice), disable all triggers of T, and delete
-        each trigger by replacing with ``nil``.
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.T:on_replace(F)
-            tarantool> box.space.T:on_replace(F)
-            tarantool> box.space.T:run_triggers(false)
-            tarantool> box.space.T:on_replace(nil, F)
-            tarantool> box.space.T:on_replace(nil, F)
-
+       * Only the 'admin' user or the creator of a user can change a different
+         user’s password.
 
 .. _box_space-schema:
 
@@ -1070,10 +1206,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
        tarantool> box.space._schema:select{}
        ---
        - - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']
-       - ['max_id', 512]
-       - ['oncebye']
-       - ['oncehello']
-       - ['version', 1, 7, 2]
+         - ['max_id', 512]
+         - ['oncebye']
+         - ['oncehello']
+         - ['version', 1, 7, 2]
 
 .. _box_space-space:
 
@@ -1168,44 +1304,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ---
         - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
         ...
-
-.. _box_space-index:
-
-.. data:: _index
-
-    ``_index`` is a system space.
-
-    Tuples in this space contain the following fields:
-    
-    * ``id`` (= id of space),
-    * ``iid`` (= index number within space),
-    * ``name``,
-    * ``type``,
-    * ``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` ...].
-
-    Here is what ``_index`` contains in a typical installation:
-
-    .. code-block:: tarantoolsession
-
-       tarantool> box.space._index:select{}
-       ---
-       - - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'string']]]
-       - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
-       - [280, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
-       - [280, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
-       - [281, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
-       - [281, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
-       - [281, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
-       - [288, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
-       - [288, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
-       - [289, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
-       - [289, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
-       - [296, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
-       - [296, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
-       - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
-     
-       ---
-       ...
 
 .. _box_space-user:
 
@@ -1336,102 +1434,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ---
         ...
 
-.. _box_space-priv:
-
-.. data:: _priv
-
-    ``_priv`` is a system space where :ref:`privileges <authentication-owners_privileges>`
-    are stored.
-
-    Tuples in this space contain the following fields:
-
-    * the numeric id of the user who gave the privilege ("grantor_id"),
-    * the numeric id of the user who received the privilege ("grantee_id"),
-    * the type of object: 'space', 'function' or 'universe',
-    * the numeric id of the object,
-    * the type of operation: "read" = 1, "write" = 2, "execute" = 4, or
-      a combination such as "read,write,execute".
-
-    You can:
-
-    * Grant a privilege with :ref:`box.schema.user.grant() <box_schema-user_grant>`.
-    * Revoke a privilege with :ref:`box.schema.user.revoke() <box_schema-user_revoke>`.
-
-    .. NOTE::
-
-       * Generally, privileges are granted or revoked by the owner of the object
-         (the user who created it), or by the 'admin' user.
-
-       * Before dropping any objects or users, make sure that all their associated
-         privileges have been revoked.
-
-       * Only the 'admin' user can grant privileges for the 'universe'.
-
-       * Except the 'admin' user, only the creator of a space can drop, alter, or
-         truncate the space.
-
-       * Except the 'admin' user, only the creator of a user can change a different
-         user’s password.
-
-.. _box_space-cluster:
-
-.. data:: _cluster
-
-    ``_cluster`` is a system space
-    for support of the :ref:`replication feature <index-box_replication>`.
-
-.. _box_space-func:
-
-.. data:: _func
-
-    ``_func`` is a system space with function tuples made by
-    :ref:`box.schema.func.create() <box_schema-func_create>`.
-
-    Tuples in this space contain the following fields:
-
-    * the numeric function id, a number,
-    * the function name,
-    * flag,
-    * a language name (optional): 'LUA' (default) or 'C'.
-
-    The ``_func`` space does not include the function’s body.
-    You continue to create Lua functions in the usual way, by saying
-    ``function function_name () ... end``, without adding anything
-    in the ``_func`` space. The ``_func`` space only exists for storing
-    function tuples so that their names can be used within grant/revoke
-    functions.
-
-   You can:
-
-   * Create a ``_func`` tuple with
-     :ref:`box.schema.func.create() <box_schema-func_create>`,
-   * Drop a ``_func`` tuple with
-     :ref:`box.schema.func.drop() <box_schema-func_drop>`,
-   * Check whether a ``_func`` tuple exists with
-     :ref:`box.schema.func.exists() <box_schema-func_exists>`.
-
-   **Example:**
-
-   In the following example, we create a function named ‘f7’, put it into
-   Tarantool's ``_func`` space and grant 'execute' privilege for this function
-   to 'guest' user.
-
-   .. code-block:: tarantoolsession
-
-      tarantool> function f7()
-               >  box.session.uid()
-               > end
-      ---
-      ...
-      tarantool> box.schema.func.create('f7')
-      ---
-      ...
-      tarantool> box.schema.user.grant('guest', 'execute', 'function', 'f7')
-      ---
-      ...
-      tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
-      ---
-      ...
 
 =============================================================================
           Example: use box.space functions to read _space tuples

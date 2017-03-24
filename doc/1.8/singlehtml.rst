@@ -1,27 +1,16 @@
-.. ifconfig:: builder in ('singlehtml', )
 
-    -------------------------------------------------------------------------------
-    Documentation
-    -------------------------------------------------------------------------------
+.. ifconfig:: builder == 'singlehtml'
 
-    .. toctree::
-        :maxdepth: 2
+    ---------------------------------------------------------------------------
+                           Tarantool - Documentation
+    ---------------------------------------------------------------------------
 
-        whats_new
-        intro
-        book/index
-        reference/index
-        tutorials/index
-        dev_guide/index
+.. toctree::
+    :maxdepth: 2
 
-.. ifconfig:: builder not in ('singlehtml', )
-
-    .. toctree::
-        :hidden:
-
-        whats_new
-        intro
-        book/index
-        reference/index
-        tutorials/index
-        dev_guide/index
+    whats_new
+    intro
+    book/index
+    reference/index
+    tutorials/index
+    dev_guide/index
