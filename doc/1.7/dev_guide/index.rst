@@ -6,8 +6,7 @@ Contributor's Guide
 
 .. toctree::
     :maxdepth: 2
-    :numbered:
-    
+
     reference_capi/index
     internals_index
     build_contribute_index

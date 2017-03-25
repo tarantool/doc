@@ -325,7 +325,6 @@ div.toctree-wrapper {
     }
 }
 
-// .b-documentation-toc .toctree-wrapper {
 #tarantool-documentation .toctree-wrapper {
     padding: 0px;
 
@@ -334,6 +333,10 @@ div.toctree-wrapper {
         display:         flex;
         flex-wrap:       wrap;
         justify-content: space-around;
+
+        li::before {
+            content: '';
+        }
 
         &>li {
             margin-bottom: 15px;
