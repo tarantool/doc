@@ -6,7 +6,6 @@ Tutorials
 
 .. toctree::
     :maxdepth: 2
-    :numbered:
-    
+
     lua_tutorials
     c_tutorial

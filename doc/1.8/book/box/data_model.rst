@@ -276,7 +276,9 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | -9223372036854775808 and         |                      | {3, 5, 9, 10}      |
     |                            | 9223372036854775807)             |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
-    | **scalar**                 | **boolean**                      | TREE or HASH         | true               |
+    | **scalar**                 | **null**                         | TREE or HASH         | msgpack.NULL       |
+    |                            |                                  |                      |                    |
+    |                            | **boolean**                      |                      | true               |
     |                            | (true or false)                  |                      |                    |
     |                            |                                  |                      | -1                 |
     |                            | **integer**                      |                      |                    |
@@ -289,10 +291,12 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | point number or double-precision |                      |                    |
     |                            | floating point number)           |                      |                    |
     |                            |                                  |                      |                    |
-    |                            | Note:                            |                      |                    |
-    |                            | When there is a mix of types,    |                      |                    |
-    |                            | the key order is: booleans,      |                      |                    |
-    |                            | then numbers, then strings.      |                      |                    |
+    |                            | **string** (any set of octets)   |                      |                    |
+    |                            |                                  |                      |                    |
+    |                            | Note: When there is a mix of     |                      |                    |
+    |                            | types, the key order is: null,   |                      |                    |
+    |                            | then booleans, then numbers,     |                      |                    |
+    |                            | then strings.                    |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
 
 .. _index-box_persistence:

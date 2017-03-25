@@ -6,7 +6,6 @@ User's Guide
 
 .. toctree::
     :maxdepth: 2
-    :numbered:
 
     intro
     getting_started/index
@@ -16,7 +15,3 @@ User's Guide
     replication/index
     connectors/index
     faq
-
-
-
-
