@@ -331,6 +331,7 @@ div.toctree-wrapper {
     &>ul {
         padding:         0px;
         display:         flex;
+        display:         -webkit-flex;
         flex-wrap:       wrap;
         justify-content: space-around;
 
@@ -343,8 +344,7 @@ div.toctree-wrapper {
             margin-top:    15px;
             border: 1px solid grey;
             padding: 25px;
-            min-width: 40%;
-            max-width: 40%;
+            width:     40%;
             border-radius: 15px;
             background: #ffffff;
             background: linear-gradient(to bottom left, #e8e8e8, #ffffff);
@@ -491,8 +491,7 @@ div.toctree-wrapper {
         margin-bottom: 0px;
 
         &>li {
-            min-width: 100%;
-            max-width: 100%;
+            width: 100%;
             margin-bottom: 10px;
             margin-top:    10px;
             padding-left:  0px;
