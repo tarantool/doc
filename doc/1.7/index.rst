@@ -8,16 +8,15 @@
 .. wp_section::
     :class: b-block-gray b-downloads-versionlist
 
-    Available version: 1.7 / `1.8 <../1.8/index.html>`_
+    Available versions: 1.7 / `1.8 <../1.8/index.html>`_
 
 .. wp_section::
-    :title: Tarantool manual
+    :title: Tarantool 1.7 manual
     :class: b-block-lightgray b-downloads-top
 
-    Here is a **complete manual for Tarantool 1.7**. It embraces all aspects of
-    using Tarantool: from introductory information and exercises for beginners
-    -- to advanced instructions and detailed references for power users and
-    contributors.
+    This manual embraces all aspects of using Tarantool: from introductory
+    information and exercises for beginners -- to advanced instructions and
+    detailed references for power users and contributors.
 
     | A single-page version of this manual is available `here <singlehtml.html>`_.
     | A pdf version of this manual is available `here <Tarantool.pdf>`_.
