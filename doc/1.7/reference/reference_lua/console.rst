@@ -5,7 +5,8 @@
 -------------------------------------------------------------------------------
 
 The console module allows one Tarantool instance to access another Tarantool
-instance, and allows one Tarantool instance to start listening on an :ref:`admin port <administration-admin_ports>`.
+instance, and allows one Tarantool instance to start listening on an
+:ref:`admin port <admin-security>`.
 
 .. module:: console
 
@@ -61,7 +62,7 @@ instance, and allows one Tarantool instance to start listening on an :ref:`admin
     requests is via the connection-information string, or URI, specified in
     ``box.cfg{listen=...}``. The alternative way of listening is via the URI
     specified in ``console.listen(...)``. This alternative way is called
-    "administrative" or simply :ref:`"admin port" <administration-admin_ports>`.
+    "administrative" or simply :ref:`"admin port" <admin-security>`.
     The listening is usually over a local host with a Unix domain socket.
 
     :param string uri: the URI of the local instance
@@ -114,6 +115,35 @@ instance, and allows one Tarantool instance to start listening on an :ref:`admin
 .. function:: ac([true|false])
 
    Set the auto-completion flag. If auto-completion is `true`, and the user is
-   using tarantool as a client or the user is using tarantool via
+   using Tarantool as a client or the user is using Tarantool via
    ``console.connect()``, then hitting the TAB key may cause tarantool to
    complete a word automatically. The default auto-completion value is `true`.
+
+.. _console-delimiter:
+
+.. function:: delimiter(marker)
+
+   Set a custom end-of-request marker for Tarantool console.
+   
+   The default end-of-request marker is a newline (line feed).
+   Custom markers are not necessary because Tarantool can tell when a multi-line
+   request has not ended (for example, if it sees that a function declaration
+   does not have an end keyword). Nonetheless for special needs, or for
+   entering multi-line requests in older Tarantool versions, you can change the
+   end-of-request marker. As a result, newline alone is not treated as
+   end of request.
+
+   To go back to normal mode, say: ``console.delimiter('')<marker>``
+   
+   :param string marker: a custom end-of-request marker for Tarantool console
+    
+   **Example:**
+
+   .. code-block:: none
+
+       console = require('console'); console.delimiter('!')
+       function f ()
+           statement_1 = 'a'
+           statement_2 = 'b'
+       end!
+       console.delimiter('')!

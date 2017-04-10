@@ -129,7 +129,7 @@ listen URI via:
 (1) ``telnet``,
 (2) a :ref:`connector <index-box_connectors>`,
 (3) another instance of Tarantool (using the :ref:`console <console-module>` module), or
-(4) :ref:`tarantoolctl <administration-tarantoolctl>` utility.
+(4) :ref:`tarantoolctl <tarantoolctl>` utility.
 
 Let’s try (4).
 

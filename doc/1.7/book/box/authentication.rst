@@ -34,10 +34,9 @@ Users
 
 There is a **current user** for any program working with Tarantool,
 local or remote.
-If a remote connection is using the
-:ref:`binary protocol <administration-admin_ports>`,
+If a remote connection is using a :ref:`binary port <admin-security>`,
 the current user, by default, is '**guest**'.
-If the connection is using the :ref:`text protocol <administration-admin_ports>`,
+If the connection is using an :ref:`admin-console port <admin-security>`,
 the current user is '**admin**'.
 When executing a :ref:`Lua initialization script <index-init_label>`,
 the current user is also ‘admin’.
@@ -46,13 +45,13 @@ The current user name can be found with :ref:`box.session.user() <box_session-us
 
 The current user can be changed:
 
-* For a binary protocol connection -- with AUTH protocol command, supported
+* For a binary port connection -- with AUTH protocol command, supported
   by most clients;
 
-* For a text protocol connection and in a Lua initialization script --
+* For an admin-console connection and in a Lua initialization script --
   with :ref:`box.session.su <box_session-su>`;
 
-* For a stored function invoked with CALL command over the binary protocol -- 
+* For a stored function invoked with CALL command over a binary port -- 
   with :ref:`SETUID <box_schema-func_create>` property enabled for the function,
   which makes Tarantool temporarily replace the current user with the
   function’s creator, with all creator's privileges, during function execution.

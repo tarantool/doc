@@ -103,7 +103,7 @@ variable :ref:`wal_mode <index-wal_mode>`. It is possible to turn the write-ahea
 log completely off, by setting
 :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to *none*. Even
 without the write-ahead log it's still possible to take a persistent copy of the
-entire data set with the :ref:`box.snapshot() <admin-snapshot>` request.
+entire data set with the :ref:`box.snapshot() <box-snapshot>` request.
 
 An .xlog file always contains changes based on the primary key.
 Even if the client requested an update or delete using

@@ -322,7 +322,7 @@ after the checkpoint file was made. After checkpointing, old WAL files can be
 removed to free up space.
 
 To force immediate creation of a checkpoint, you can use Tarantool's
-:ref:`box.snapshot() <admin-snapshot>` request. To enable automatic creation
+:ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation
 of checkpoint files, you can use Tarantool's
 :ref:`snapshot daemon <book_cfg_snapshot_daemon>`. The snapshot
 daemon sets intervals for forced checkpoints. It makes sure that the states

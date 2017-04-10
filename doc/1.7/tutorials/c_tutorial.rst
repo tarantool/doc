@@ -53,8 +53,9 @@ and msgpuck.h address is /usr/local/include/msgpuck/msgpuck.h,
 and they are not currently on the include path, say |br|
 :code:`export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck`
 
-Requests will be done using tarantool as a :ref:`client <administration-using_tarantool_as_a_client>`.
-Start tarantool, and enter these requests.
+Requests will be done using Tarantool as a
+:ref:`client <admin-using_tarantool_as_a_client>`.
+Start Tarantool, and enter these requests.
 
 .. code-block:: none
 

@@ -1,7 +1,8 @@
-To learn which functions are considered to be administrative, type ``help()``.
-A reference description also follows below:
+.. _box-snapshot:
 
-.. _admin-snapshot:
+-------------------------------------------------------------------------------
+                             Function `box.snapshot`
+-------------------------------------------------------------------------------
 
 .. function:: box.snapshot()
 

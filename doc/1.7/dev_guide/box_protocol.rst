@@ -361,6 +361,7 @@ It is an error to specify an argument of a type that differs from the expected t
     +=======================+==================+
                         MP_MAP
 
+.. _box_protocol-eval:
 
 * EVAL: CODE - 0x08
   Evaulate Lua expression

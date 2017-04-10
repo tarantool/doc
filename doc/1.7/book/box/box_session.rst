@@ -231,7 +231,7 @@ client connection.
         For this case, the ``on_auth`` trigger function is invoked after the ``on_connect``
         trigger function, if and only if the connection has succeeded so far.
     
-    (2) The :ref:`binary protocol <administration-admin_ports>` has a separate
+    (2) The :ref:`binary protocol <admin-security>` has a separate
         :ref:`authentication packet <box_protocol-authentication>`.
         For this case, connection and authentication are considered to be separate steps.
 
