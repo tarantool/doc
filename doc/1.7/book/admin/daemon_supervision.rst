@@ -47,8 +47,9 @@ long-running procedure which prevents return to the main thread event loop.
 Automatic instance restart
 --------------------------------------------------------------------------------
 
-``systemd`` automatically restarts all Tarantool instances in case of failure.
-To demonstrate it, let’s try to destroy an instance:
+On ``systemd``-enabled platforms, ``systemd`` automatically restarts all
+Tarantool instances in case of failure. To demonstrate it, let’s try to destroy
+an instance:
 
 .. code-block:: bash
 
@@ -89,25 +90,25 @@ Finally, let’s check the boot logs:
 Core dumps
 --------------------------------------------------------------------------------
 
-Tarantool makes a core dump if it receives any of these signals: SIGSEGV, SIGFPE,
-SIGABRT or SIGQUIT. This is automatic if Tarantool crashes. On systems with
-``systemd``, ``coredumpctl`` automatically saves core dumps and stack traces in
-case of a crash.
+Tarantool makes a core dump if it receives any of the following signals: SIGSEGV,
+SIGFPE, SIGABRT or SIGQUIT. This is automatic if Tarantool crashes.
 
-For this to work, make sure in advance that:
+On ``systemd``-enabled platforms, ``coredumpctl`` automatically saves core dumps
+and stack traces in case of a crash. Here is a general "how to" for how to
+enable core dumps on a Unix system:
 
-* Core dumps are enabled on the system. In Linux, you might need to say
-  ``ulimit -c unlimited``, but there are many other reasons why a core dump will
-  not be produced, as explained by "man 5 core". Often core dumps are not allowed
-  by default because core dumps can be large.
+1. Ensure session limits are configured to enable core dumps, i.e. say
+   ``ulimit -c unlimited``. Check  "man 5 core" for other reasons why a core
+   dump may not be produced. 
 
-* You know what directory core dumps would be written to, and be sure that that
-  directory is writable.
+2. Set a directory for writing core dumps to, and make sure that the directory
+   is writable. On Linux, the directory path is set in a kernel parameter
+   configurable via ``/proc/sys/kernel/core_pattern``.
 
-* A core dump will include stack trace information. If you use a binary
-  distribution, this is automatic. If you build Tarantool from source, you will
-  not get detailed information if you pass ``-DCMAKE_BUILD_TYPE=Release``
-  to CMake.
+3. Make sure that core dumps include stack trace information. If you use a
+   binary Tarantool distribution, this is automatic. If you build Tarantool
+   from source, you will not get detailed information if you pass
+   ``-DCMAKE_BUILD_TYPE=Release`` to CMake.
 
 To simulate a crash, you can execute an illegal command against a Tarantool
 instance:
@@ -116,13 +117,10 @@ instance:
 
    $ # !!! please never do this on a production system !!!
    $ tarantoolctl enter my_app
-   /bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
-   /bin/tarantoolctl: Connecting to /var/run/tarantool/my_app.control
-   /bin/tarantoolctl: connected to unix/:/var/run/tarantool/my_app.control
    unix/:/var/run/tarantool/my_app.control> require('ffi').cast('char *', 0)[0] = 48
    /bin/tarantoolctl: unix/:/var/run/tarantool/my_app.control: Remote host closed connection
 
-Alternatively, if you know the process id of the instance (here we refer to it
+Alternatively, if you know the process ID of the instance (here we refer to it
 as $PID), you can abort a Tarantool instance by running ``gdb`` debugger:
 
 .. code-block:: bash
@@ -145,7 +143,8 @@ or manually sending a SIGABRT signal:
 
    * say ``systemctl status tarantool@my_app|grep PID``.
 
-To see the latest crashes of the Tarantool daemon, say:
+On a ``systemd-enabled`` system, to see the latest crashes of the Tarantool
+daemon, say:
 
 .. code-block:: bash
 

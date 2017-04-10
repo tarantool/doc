@@ -35,7 +35,7 @@ You can attach to an instance's admin console and execute some Lua code using
 
 .. code-block:: bash
 
-   # for local instances:
+   $ # for local instances:
    $ tarantoolctl enter my_app
    /bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
    /bin/tarantoolctl: Connecting to /var/run/tarantool/my_app.control
@@ -46,7 +46,7 @@ You can attach to an instance's admin console and execute some Lua code using
    ...
    unix/:/var/run/tarantool/my_app.control>
    
-   # for local and remote instances:
+   $ # for local and remote instances:
    $ tarantoolctl connect username:password@127.0.0.1:3306
 
 You can also use ``tarantoolctl`` to execute Lua code on an instance without

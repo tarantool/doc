@@ -55,8 +55,8 @@ For example:
    Tarantool 1.7.3 (Lua console)
    type 'help' for interactive help
 
-In this example, the response does not include the word “binary” and does
-include the words “Lua console”. Therefore it is clear that this is a successful
+In this example, the response does not include the word "binary" and does
+include the words "Lua console". Therefore it is clear that this is a successful
 connection to a port for admin console, and you can now enter admin requests on
 this terminal.
 
@@ -74,5 +74,5 @@ privilege.
 
 Therefore, when ``ssh`` access to the machine is not available, creating a
 Tarantool user with global "EXECUTE" privilege and non-empty password can be
-used to provide a system administrator remote access to an instance.
+used to provide a system administrator **remote** access to an instance.
 

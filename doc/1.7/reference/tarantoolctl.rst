@@ -1,7 +1,7 @@
 .. _tarantoolctl:
 
 --------------------------------------------------------------------------------
-tarantoolctl
+Utility `tarantoolctl`
 --------------------------------------------------------------------------------
 
 ``tarantoolctl`` is a utility for administering Tarantool instances. It is
