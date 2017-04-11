@@ -389,7 +389,7 @@ Use built-in function :code:`uri_parse` to see what is in a `URI <configuration-
     #!/usr/bin/env tarantool
 
     local uri = require('uri')
-    local r= uri.parse("scheme://login:password@host:service:/path1/path2/path3?q1=v1&q2=v2#fragment")
+    local r= uri.parse("scheme://login:password@host:service/path1/path2/path3?q1=v1&q2=v2#fragment")
     print('r.password=',r.password)
     print('r.path=',r.path)
     print('r.scheme',r.scheme)
