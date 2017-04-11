@@ -54,7 +54,7 @@ the following command will start Tarantool without any application:
 
 .. code-block:: bash
 
-   # create a temporary container and run it the interactive mode
+   # create a temporary container and run it in interactive mode
    $ docker run --rm -t -i tarantool/tarantool
 
 To run Tarantool with our application, we can say:
