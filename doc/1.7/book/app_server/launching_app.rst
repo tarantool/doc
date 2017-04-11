@@ -34,10 +34,10 @@ in C or C++.
 Let's create and launch our first Lua application for Tarantool.
 Here's a simplest Lua application, the good old "Hello, world!":
  
-   .. code-block:: lua
+.. code-block:: lua
 
-      #!/usr/bin/env tarantool
-      print('Hello, world!')
+   #!/usr/bin/env tarantool
+   print('Hello, world!')
  
 We save it in a file (let it be ``myapp.lua`` in the current directory).
 
@@ -52,21 +52,21 @@ Launching in Docker
 If we run Tarantool in a :ref:`Docker container <getting_started-using_docker>`,
 the following command will start Tarantool without any application:
 
-   .. code-block:: bash
+.. code-block:: bash
 
-      # create a temporary container and run it the interactive mode
-      $ docker run --rm -t -i tarantool/tarantool
+   # create a temporary container and run it the interactive mode
+   $ docker run --rm -t -i tarantool/tarantool
 
 To run Tarantool with our application, we can say:
 
-   .. code-block:: bash
+.. code-block:: bash
 
-      # create a temporary container and 
-      # launch Tarantool with our application  
-      $ docker run --rm -t -i \
-                   -v `pwd`/myapp.lua:/opt/tarantool/myapp.lua \
-                   -v /data/dir/on/host:/var/lib/tarantool \
-                   tarantool/tarantool tarantool /opt/tarantool/myapp.lua
+   # create a temporary container and 
+   # launch Tarantool with our application  
+   $ docker run --rm -t -i \
+                -v `pwd`/myapp.lua:/opt/tarantool/myapp.lua \
+                -v /data/dir/on/host:/var/lib/tarantool \
+                tarantool/tarantool tarantool /opt/tarantool/myapp.lua
 
 Here two resources on the host get mounted in the container:
 
