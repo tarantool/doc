@@ -40,6 +40,7 @@ This reference covers Tarantool's built-in Lua modules.
     tap
     tarantool
     uuid
+    uri
     xlog
     yaml
     other
