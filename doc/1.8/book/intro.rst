@@ -23,7 +23,7 @@ after you are through with Chapter 2.
 as a NoSQL DBMS, whereas :ref:`Chapter 4 "Application server" <app_server>`
 is about using Tarantool as an application server.
 
-:ref:`Chapter 5 "Server administration" <server_admin>` is primarily for
+:ref:`Chapter 5 "Server administration" <admin>` is primarily for
 administrators.
 
 :ref:`Chapter 6 "Connectors" <index-box_connectors>` is strictly for users who
@@ -48,6 +48,13 @@ or in a Tarantool discussion group
 (`English <https://groups.google.com/forum/#!forum/tarantool>`_ or
 `Russian <https://googlegroups.com/group/tarantool-ru>`_).
 
+-------------------------------------------------------------------------------
+Conventions used in this manual
+-------------------------------------------------------------------------------
 
+Square brackets [ and ] enclose optional syntax.
 
+Two dots in a row .. mean the preceding tokens may be repeated.
 
+A vertical bar | means the preceding and following tokens are mutually exclusive
+alternatives.

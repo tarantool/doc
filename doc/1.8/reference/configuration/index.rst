@@ -101,7 +101,7 @@ In certain circumstances a Unix domain socket may be used
 where a URI is expected, for example "unix/:/tmp/unix_domain_socket.sock" or
 simply "/tmp/unix_domain_socket.sock".
 
-A method for parsing URIs is illustrated in :ref:`Cookbook recipes <cookbook-uri>`.
+A method for parsing URIs is illustrated in :ref:`Module uri <uri-parse>`.
 
 .. _index-init_label:
 
@@ -146,8 +146,8 @@ Then the screen might look like this:
     Starting  ARG
     ... main C> entering the event loop
 
-If one wishes to start an interactive session on the same terminal after
-initialization is complete, one can use :ref:`console.start() <console-start>`.
+If you wish to start an interactive session on the same terminal after
+initialization is complete, you can use :ref:`console.start() <console-start>`.
 
 .. _index-local_hot_standby:
 .. _index-replication_port:

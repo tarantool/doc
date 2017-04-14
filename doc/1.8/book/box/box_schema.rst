@@ -270,8 +270,8 @@ for spaces, users, roles, and function tuples.
          they can only invoke procedures.
 
        * For the 'guest' user, it’s impossible to set a password: that would be misleading,
-         since 'guest' is the default user on a newly-established connection over the
-         :ref:`binary protocol <administration-admin_ports>`, and Tarantool does not require
+         since 'guest' is the default user on a newly-established connection over a
+         :ref:`binary port <admin-security>`, and Tarantool does not require
          a password to establish a binary connection. It is, however, possible to change the
          current user to ‘guest’ by providing the AUTH packet with no password at all or an
          empty password. This feature is useful for connection pools, which want to reuse a
@@ -480,9 +480,9 @@ for spaces, users, roles, and function tuples.
 
     * ``setuid`` = ``true|false`` (default = false) - with ``true`` to make Tarantool
       treat the function’s caller as the function’s creator, with full privileges.
-      Remember that SETUID works only over the
-      :ref:`binary protocol <administration-admin_ports>`.
-      SETUID doesn't work if you invoke a function via text console or
+      Remember that SETUID works only over
+      :ref:`binary ports <admin-security>`.
+      SETUID doesn't work if you invoke a function via an admin console or
       inside a Lua script.
 
     * ``language`` = 'LUA'|'C' (default = ‘LUA’).

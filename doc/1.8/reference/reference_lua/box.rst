@@ -22,6 +22,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     ../../book/box/box_slab
     ../../book/box/box_space
     ../../book/box/box_stat
+    box_snapshot
     ../../book/box/box_tuple
     ../../book/box/box_txn_management
 

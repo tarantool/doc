@@ -98,7 +98,7 @@ html_context = {
         'search'         : True,
     },
     'wp_local': True,
-    'versions': ['1.7', '1.8'],
+    'versions': ['1.6', '1.7', '1.8'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:

@@ -209,7 +209,7 @@ executed on the server instance, but causes yielding (in both memtx and vinyl) i
 is done as a series of transmissions from a client, including a client which
 operates via telnet, via one of the connectors, or via the MySQL and PostgreSQL
 rocks, or via the interactive mode when
-:ref:`using Tarantool as a client <administration-using_tarantool_as_a_client>`.
+:ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`.
 
 After a fiber has yielded and then has regained control, it immediately issues
 :ref:`testcancel <fiber-testcancel>`.

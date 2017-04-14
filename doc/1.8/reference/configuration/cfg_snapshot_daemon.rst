@@ -19,7 +19,7 @@ exist before removals occur.
     The interval between actions by the snapshot daemon, in seconds. If
     ``checkpoint_interval`` is set to a value greater than zero, and there is
     activity which causes change to a database, then the snapshot daemon will
-    call :ref:`box.snapshot <admin-snapshot>` every ``checkpoint_interval``
+    call :ref:`box.snapshot <box-snapshot>` every ``checkpoint_interval``
     seconds, creating a new snapshot file each time.
 
     For example:

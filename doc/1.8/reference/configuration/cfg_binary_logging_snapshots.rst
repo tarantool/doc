@@ -33,7 +33,7 @@
 
 .. confval:: snap_io_rate_limit
 
-    Reduce the throttling effect of :ref:`box.snapshot <admin-snapshot>` on
+    Reduce the throttling effect of :ref:`box.snapshot <box-snapshot>` on
     INSERT/UPDATE/DELETE performance by setting a limit on how many
     megabytes per second it can write to disk. The same can be
     achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and

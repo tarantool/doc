@@ -48,7 +48,7 @@ enclosed within "delimiters". They are no longer necessary, and
 so they will not be used in this tutorial. However, they are still
 supported. Users who wish to use delimiters, or users of
 older versions of Tarantool, should check the syntax description for
-:ref:`declaring a delimiter <administration-setting_delimiter>` before proceeding.
+:ref:`declaring a delimiter <console-delimiter>` before proceeding.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Create a function that returns a string

@@ -25,8 +25,8 @@
 
 .. confval:: custom_proc_title
 
-    Add the given string to the server's :ref:`Process title
-    <administration-proctitle>` (what’s shown in the COMMAND column for
+    Add the given string to the server's process title
+    (what’s shown in the COMMAND column for
     ``ps -ef`` and ``top -c`` commands).
 
     For example, ordinarily :samp:`ps -ef` shows the Tarantool server process
@@ -56,9 +56,9 @@
     The read/write data port number or :ref:`URI <index-uri>` (Universal
     Resource Identifier) string. Has no default value, so **must be specified**
     if connections will occur from remote clients that do not use the
-    :ref:`“admin port” <administration-admin_ports>`. Connections made with
-    :samp:`listen = {URI}` are sometimes called "binary protocol" or
-    "primary port" connections.
+    :ref:`“admin port” <admin-security>`. Connections made with
+    :samp:`listen = {URI}` are called "binary port" or "binary protocol"
+    connections.
 
     A typical value is 3301.
 

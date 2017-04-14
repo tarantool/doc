@@ -100,29 +100,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Iterator types for TREE indexes**
 
-        .. NOTE::
-
-            Formally the logic for TREE index searches is: |br|
-            comparison-operator is = or >= or > or <= or < depending on
-            iterator-type
-
-            .. cssclass:: highlight
-            .. parsed-literal::
-
-                for i = 1 to number-of-parts-of-search-value
-                    if (search-value-part[i] is ``nil`` and <comparison-operator> is "=") or
-                        (search-value-part[i] <comparison-operator> index-key-part[i] is true) then
-                            comparison-result[i] is true
-                    endif
-
-            if all comparison-results are true, then search-value "matches"
-            index key.
-
-            Notice how, according to this logic, regardless what the index-key-part
-            contains, the comparison-result for equality is always true when a
-            search-value-part is ``nil`` or is missing. This behavior of
-            searches with nil is subject to change.
-
         .. container:: table
 
             .. rst-class:: left-align-column-1
@@ -174,6 +151,53 @@ API is a direct binding to corresponding methods of index objects of type
             |               |           | Tuples are returned in descending order by  |
             |               |           | index key.                                  |
             +---------------+-----------+---------------------------------------------+
+
+
+            Informally, we can state that searches with TREE indexes are
+            generally what users will find is intuitive, provided that there
+            are no nils and no missing parts. Formally, the logic is as follows.
+            A search key has zero or more parts, for example {}, {1,2,3},{1,nil,3}.
+            An index key has one or more parts, for example {1}, {1,2,3},{1,2,3}.
+            An search key may contain nil (but not msgpack.NULL, which is the wrong type).
+            An index key may not contain nil or msgpack.NULL, although a later version
+            of Tarantool will have different rules --  the behavior of searches with nil is subject to change.
+            Possible iterators are LT, LE, EQ, REQ, GE, GT.
+            A search key is said to "match" an index key if the following
+            statements, which are pseudocode for the comparison operation,
+            return TRUE.
+
+            .. cssclass:: highlight
+            .. parsed-literal::
+
+                If (number-of-search-key-parts > number-of-index-key-parts) return ERROR
+                If (number-of-search-key-parts == 0) return TRUE
+                for (i = 1; ; ++i)
+                {
+                  if (i > number-of-search-key-parts) OR (search-key-part[i] is nil)
+                  {
+                    if (iterator is LT or GT) return FALSE
+                    return TRUE
+                  }
+                  if (type of search-key-part[i] is not compatible with type of index-key-part[i])
+                  {
+                    return ERROR
+                  }
+                  if (search-key-part[i] == index-key-part[i])
+                  {
+                    if (iterator is LT or GT) return FALSE
+                    continue
+                  }
+                  if (search-key-part[i] > index-key-part[i])
+                  {
+                    if (iterator is EQ or REQ or LE or LT) return FALSE
+                    return TRUE
+                  }
+                  if (search-key-part[i] < index-key-part[i])
+                  {
+                    if (iterator is EQ or REQ or GE or GT) return FALSE
+                    return TRUE
+                  }
+                } 
 
 
             **Iterator types for HASH indexes**

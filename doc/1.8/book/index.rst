@@ -11,7 +11,7 @@ User's Guide
     getting_started/index
     box/index
     app_server/index
-    administration
+    admin/index
     replication/index
     connectors/index
     faq
