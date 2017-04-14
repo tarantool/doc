@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
 
-master_doc = 'doc/1.7/index'
+master_doc = 'doc/1.6/index'
 # master_doc = 'index'
 
 extensions = [
@@ -34,25 +34,25 @@ source_suffix = '.rst'
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "1.7.3"
+release = "1.6.9"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
 exclude_patterns = [
     '_build',
-    'doc/1.7/book/connectors/__*',
-    'doc/1.7/book/replication/*_1.rst',
-    'doc/1.7/book/replication/*_2.rst',
-    'doc/1.7/book/admin.rst',
-    'doc/1.7/book/box/box_introspection.rst',
-    'doc/1.7/book/cookbook.rst',
-    'doc/1.7/book/box/vinyl.rst',
-    'doc/1.7/dev_guide/box_protocol.rst',
-    'doc/1.7/dev_guide/internals.rst',
-    'doc/1.7/reference/configuration/cfg_*',
-    'doc/1.7/reference/reference_lua/jit.rst',
-    'doc/1.7/reference/reference_lua/os.rst',
-    'doc/1.7/reference/reference_lua/net_box_1.6.rst',
+    'doc/1.6/book/connectors/__*',
+    'doc/1.6/book/replication/*_1.rst',
+    'doc/1.6/book/replication/*_2.rst',
+    'doc/1.6/book/admin.rst',
+    'doc/1.6/book/box/box_introspection.rst',
+    'doc/1.6/book/cookbook.rst',
+    'doc/1.6/book/box/vinyl.rst',
+    'doc/1.6/dev_guide/box_protocol.rst',
+    'doc/1.6/dev_guide/internals.rst',
+    'doc/1.6/reference/configuration/cfg_*',
+    'doc/1.6/reference/reference_lua/jit.rst',
+    'doc/1.6/reference/reference_lua/os.rst',
+    'doc/1.6/reference/reference_lua/net_box_1.6.rst',
     'CNAME',
     'robots.txt',
     '_downloads/license.docx',
@@ -98,7 +98,7 @@ html_context = {
         'search'         : True,
     },
     'wp_local': True,
-    'versions': ['1.7', '1.8'],
+    'versions': ['1.6', '1.7', '1.8'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:
