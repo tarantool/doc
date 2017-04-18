@@ -509,15 +509,15 @@ Replication packet structure
 
     JOIN:
 
-    In the beginning you must send JOIN
-                             HEADER                          BODY
-    +================+================+===================++-------+
-    |                |                |    SERVER_UUID    ||       |
-    |   0x00: 0x41   |   0x01: SYNC   |   0x24: UUID      || EMPTY |
-    | MP_INT: MP_INT | MP_INT: MP_INT | MP_INT: MP_STRING ||       |
-    |                |                |                   ||       |
-    +================+================+===================++-------+
-                   MP_MAP                                   MP_MAP
+    In the beginning you must send initial JOIN
+                   HEADER                      BODY
+    +================+================++===================+
+    |                |                ||   SERVER_UUID     |
+    |   0x00: 0x41   |   0x01: SYNC   ||   0x24: UUID      |
+    | MP_INT: MP_INT | MP_INT: MP_INT || MP_INT: MP_STRING |
+    |                |                ||                   |
+    +================+================++===================+
+                   MP_MAP                     MP_MAP        
 
     Then instance, which we connect to, will send last SNAP file by, simply,
     creating a number of INSERTs (with additional LSN and ServerID)
