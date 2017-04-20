@@ -36,11 +36,11 @@ options:
      --name mytarantool \
      -d -p 3301:3301 \
      -v /data/dir/on/host:/var/lib/tarantool \
-     tarantool/tarantool:1.7
+     tarantool/tarantool:1.6
 
 This command runs a new container named 'mytarantool'.
-Docker starts it from an official image named 'tarantool/tarantool:1.7',
-with Tarantool version 1.7 and all external modules already installed.
+Docker starts it from an official image named 'tarantool/tarantool:1.6',
+with Tarantool version 1.6 and all external modules already installed.
 
 Tarantool will be accepting incoming connections on ``localhost:3301``.
 You may start using it as a key-value storage right away.

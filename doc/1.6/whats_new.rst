@@ -11,11 +11,27 @@ For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
 
+.. _whats_new_16:
+
+================================================================================
+What's new in Tarantool 1.6?
+================================================================================
+
+Tarantool 1.6 is no longer getting major new features,
+although it will be maintained.
+The developers are concentrating on Tarantool version 1.7.
+
+
 .. _whats_new_17:
 
 ================================================================================
 What's new in Tarantool 1.7?
 ================================================================================
+
+(This section is about a later version of Tarantool.
+Readers should be aware of what is coming, but not expect
+to see further discussion in this manual, which is for Tarantool 1.6.
+There is a separate manual for Tarantool 1.7.))
 
 The disk-based storage engine, which was called `sophia` or `phia`
 in earlier versions, is superseded by the `vinyl` storage engine.

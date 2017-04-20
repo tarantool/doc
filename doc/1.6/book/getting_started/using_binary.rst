@@ -7,8 +7,8 @@ Using a binary package
 For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
 You can choose from two Tarantool versions: the stable 1.6 and the latest 1.7.
-An automatic build system creates, tests and publishes 1.7 packages for every
-push into the 1.7 branch at
+An automatic build system creates, tests and publishes 1.6 packages for every
+push into the 1.6 branch at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
 To download and install the package that’s appropriate for your OS,
@@ -71,7 +71,7 @@ and the first :ref:`index <index-box_index>` (named 'primary'):
    tarantool> s = box.schema.space.create('tester')
    tarantool> s:create_index('primary', {
                  >  type = 'hash',
-                 >  parts = {1, 'unsigned'}
+                 >  parts = {1, 'NUM'}
                  > })
 
 Next, insert three :ref:`tuples <index-box_tuple>` (our name for "records")
@@ -99,7 +99,7 @@ The terminal screen now looks like this:
    2017-01-17 12:04:18.158 ... creating './00000000000000000000.xlog.inprogress'
    ---
    ...
-   tarantool>s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+   tarantool>s:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
    ---
    ...
    tarantool> t = s:insert{1, 'Roxette'}
@@ -116,6 +116,13 @@ The terminal screen now looks like this:
    - - [3, 'Length', 93]
    ...
    tarantool>
+
+Now, to prepare for the example in the next section, try this:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
+
 
 --------------------------------------------------------------------------------
 Connecting remotely
@@ -150,7 +157,7 @@ Try this request:
 
 .. code-block:: tarantoolsession
 
-   tarantool> {{box.space.tester:select{2}}}
+   tarantool> box.space.tester:select{2}
 
 This means "send a request to that Tarantool instance, and display the result".
 The result in this case is one of the tuples that was inserted earlier.
@@ -172,7 +179,7 @@ indefinitely, on either Tarantool instance.
 
 When the testing is over:
 
-* To drop the space: ``s:drop()``
+* To drop the space: ``s:drop()`` (do this on the terminal where tester was created)
 * To stop ``tarantoolctl``: Ctrl+C or Ctrl+D
 * To stop Tarantool (an alternative): the standard Lua function
   `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
