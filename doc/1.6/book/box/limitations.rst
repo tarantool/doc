@@ -9,7 +9,9 @@ Limitations
     For TREE or HASH indexes, the maximum
     is 255 (``box.schema.INDEX_PART_MAX``). For RTREE indexes, the
     maximum is 1 but the field is an ARRAY of up to 20 dimensions.
-    For BITSET indexes, the maximum is 1. 
+    For BITSET indexes, the maximum is 1.
+
+    Note re storage engine: sophia allows 8 parts in an index.
 
 .. _limitations_indexes_in_space:
 
@@ -17,6 +19,8 @@ Limitations
 
     128 (``box.schema.INDEX_MAX``).
 
+    Note re storage engine: sophia allows 1 index in a space.
+ 
 .. _limitations_fields_in_tuple:
 
 **Number of fields in a tuple**
@@ -30,19 +34,18 @@ Limitations
 
 **Number of bytes in a tuple**
 
-    The maximal number of bytes in a tuple is roughly equal to 
-    :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (with a metadata
-    overhead of about 20 bytes per tuple, which is added on top of useful bytes).
-    By default, the value of ``memtx_max_tuple_size`` is 1,048,576. To increase it,
-    specify a larger value when starting the Tarantool instance.
-    For example, ``box.cfg{memtx_max_tuple_size=2*1048576}``.
+    By default the value of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>`
+    is 1048576, and the maximum tuple length is approximately one quarter of that:
+    approximately 262,000 bytes. To increase it, when starting the server,
+    specify a larger value. For example
+    :code:`box.cfg{slab_alloc_maximal=2*1048576}`.
 
 .. _limitations_slab_size:
 
 **Slab size**
 
     The maximal size of an allocatable memory unit (slab) is equal to one quarter
-    of :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (by default,
+    of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (by default,
     approximately 262,000 bytes). To see memory usage statistics broken down by
     slab size, use :ref:`box.slab.stats() <box_slab_stats>`.
 
@@ -59,7 +62,7 @@ Limitations
 
 **Number of spaces**
 
-    The theoretical maximum is 65,000 (``box.schema.SPACE_MAX``).
+    The theoretical maximum is 2147483647 (``box.schema.SPACE_MAX``).
 
 .. _limitations_number_of_connections:
 
@@ -73,7 +76,7 @@ Limitations
 **Space size**
 
     The total maximum size for all spaces is in effect set by
-    :ref:`memtx_memory <cfg_storage-memtx_memory>`, which in turn
+    :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`, which in turn
     is limited by the total available memory.
 
 .. _limitations_update_ops:

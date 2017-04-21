@@ -11,7 +11,7 @@
     Available versions: 1.6 / `1.7 <../1.7/index.html>`_ / `1.8 <../1.8/index.html>`_
 
 .. wp_section::
-    :title: Tarantool 1.7 manual
+    :title: Tarantool 1.6 manual
     :class: b-block-lightgray b-downloads-top
 
     This manual embraces all aspects of using Tarantool: from introductory

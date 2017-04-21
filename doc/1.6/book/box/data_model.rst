@@ -26,7 +26,7 @@ Each space has a unique **name** specified by the user.
 Besides, each space has a unique **numeric identifier** which can be specified by
 the user, but usually is assigned automatically by Tarantool.
 Finally, a space always has an **engine**: *memtx* (default) -- in-memory engine,
-fast but limited in size, or *vinyl* -- on-disk engine for huge data sets.
+fast but limited in size, or *sophia* -- on-disk engine for huge data sets.
 
 A space is a container for :ref:`tuples <index-box_tuple>`.
 To be functional, it needs to have a :ref:`primary index <index-box_index>`.
@@ -95,7 +95,7 @@ field #1 of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+   tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
 
 The effect is that, for all tuples in space 'tester', field #1 must exist and
 must contain an unsigned integer.
@@ -107,7 +107,7 @@ of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, 'string'}})
+   tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, 'STR'}})
 
 The effect is that, for all tuples in space 'tester', field #2 must exist and
 must contain a string.
@@ -147,32 +147,28 @@ Lua vs MsgPack
     .. rst-class:: left-align-column-3
     .. rst-class:: left-align-column-4
 
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | Scalar / compound | MsgPack |nbsp| type  | Lua type                       | Example value              |
-    +===================+======================+================================+============================+
-    | scalar            | nil                  | "`nil`_"                       | msgpack.NULL               |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | boolean              | "`boolean`_"                   | true                       |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | string               | "`string`_"                    | 'A B C'                    |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | integer              | "`number`_"                    | 12345                      |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | double               | "`number`_"                    | 1,2345                     |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | map                  | "`table`_" (with string keys)  | table: 0x410f8b10          |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | array                | "`table`_" (with integer keys) | [1, 2, 3, 4, 5]            |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | array                | tuple ("`cdata`_")             | [12345, 'A B C']           |
-    +-------------------+----------------------+--------------------------------+----------------------------+
++--------------+-------------+----------------------------+------------------------+
+|  General type|Specific type|What Lua type()|would return|Example                 |
++==============+=============+============================+========================+
+|   scalar     |  number     |   "`number`_"              |      12345             |
++--------------+-------------+----------------------------+------------------------+
+|   scalar     |  string     |   "`string`_"              |       'A B C'          |
++--------------+-------------+----------------------------+------------------------+
+|   scalar     |  boolean    |   "`boolean`_"             |       true             |
++--------------+-------------+----------------------------+------------------------+
+|   scalar     |  nil        |   "`nil`_"                 |       nil              |
++--------------+-------------+----------------------------+------------------------+
+|   compound   |  Lua table  |   "`table`_"               |       table: 0x410f8b10|
++--------------+-------------+----------------------------+------------------------+
+|   compound   |  tuple      |   "`Userdata`_"            |       12345: {'A B C'} |
++--------------+-------------+----------------------------+------------------------+
 
-.. _nil: http://www.lua.org/pil/2.1.html
-.. _boolean: http://www.lua.org/pil/2.2.html
-.. _string: http://www.lua.org/pil/2.4.html
 .. _number: http://www.lua.org/pil/2.3.html
+.. _string: http://www.lua.org/pil/2.4.html
+.. _boolean: http://www.lua.org/pil/2.2.html
+.. _nil: http://www.lua.org/pil/2.1.html
 .. _table: http://www.lua.org/pil/2.5.html
-.. _cdata: http://luajit.org/ext_ffi.html#call
+.. _userdata: http://www.lua.org/pil/28.1.html
 
 In Lua, a **nil** type has only one possible value, also called *nil*
 (displayed as **null** on Tarantool's command line, since the output is in the
@@ -228,10 +224,10 @@ Indexed field types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Indexes restrict values which Tarantool's MsgPack may contain. This is why,
-for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’
-data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' index
-contains only *non-negative* integer values and an ‘integer’ index contains *all*
-integer values.
+for example, 'NUM' is a separate **indexed field type**, compared to ‘integer’
+data type in MsgPack: they both store ‘integer’ values, but a 'NUM' index
+contains either *real or integer values* and a MsgPack ‘integer’ contains
+only *integer* values.
 
 Here's how Tarantool indexed field types correspond to MsgPack data types.
 
@@ -247,20 +243,10 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     | Indexed field type         | MsgPack data type |br|           | Index type           | Examples           |
     |                            | (and possible values)            |                      |                    |
     +============================+==================================+======================+====================+
-    | **unsigned**               | **integer**                      | TREE, BITSET or HASH | 123456             |
-    | (may also be called ‘uint’ | (integer between 0 and           |                      |                    |
-    | or ‘num’, but ‘num’ is     | 18446744073709551615, i.e.       |                      |                    |
-    | deprecated)                | about 18 quintillion)            |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **integer**                | **integer**                      | TREE or HASH         | -2^63              |
-    | (may also be called ‘int’) | (integer between                 |                      |                    |
-    |                            | -9223372036854775808 and         |                      |                    |
-    |                            | 18446744073709551615)            |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **number**                 | **integer**                      | TREE or HASH         | 1.234              |
+    | **num**                    | **integer**                      | TREE or HASH         | 1.234              |
     |                            | (integer between                 |                      |                    |
-    |                            | -9223372036854775808 and         |                      | -44                |
-    |                            | 18446744073709551615)            |                      |                    |
+    |                            | 0 and                            |                      | -44                |
+    |                            | 9223372036854775807)             |                      |                    |
     |                            |                                  |                      | 1.447e+44          |
     |                            | **double**                       |                      |                    |
     |                            | (single-precision floating       |                      |                    |
@@ -273,30 +259,8 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     +----------------------------+----------------------------------+----------------------+--------------------+
     | **array**                  | **array**                        | RTREE                | {10, 11}           |
     |                            | (arrays of integers between      |                      |                    |
-    |                            | -9223372036854775808 and         |                      | {3, 5, 9, 10}      |
+    |                            | 0 and                            |                      | {3, 5, 9, 10}      |
     |                            | 9223372036854775807)             |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **scalar**                 | **null**                         | TREE or HASH         | msgpack.NULL       |
-    |                            |                                  |                      |                    |
-    |                            | **boolean**                      |                      | true               |
-    |                            | (true or false)                  |                      |                    |
-    |                            |                                  |                      | -1                 |
-    |                            | **integer**                      |                      |                    |
-    |                            | (integer between                 |                      | 1.234              |
-    |                            | -9223372036854775808 and         |                      |                    |
-    |                            | 18446744073709551615)            |                      | ‘’                 |
-    |                            |                                  |                      |                    |
-    |                            | **double**                       |                      | ‘ру’               |
-    |                            | (single-precision floating       |                      |                    |
-    |                            | point number or double-precision |                      |                    |
-    |                            | floating point number)           |                      |                    |
-    |                            |                                  |                      |                    |
-    |                            | **string** (any set of octets)   |                      |                    |
-    |                            |                                  |                      |                    |
-    |                            | Note: When there is a mix of     |                      |                    |
-    |                            | types, the key order is: null,   |                      |                    |
-    |                            | then booleans, then numbers,     |                      |                    |
-    |                            | then strings.                    |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
 
 .. _index-box_persistence:
@@ -326,7 +290,7 @@ To force immediate creation of a checkpoint, you can use Tarantool's
 of checkpoint files, you can use Tarantool's
 :ref:`snapshot daemon <book_cfg_snapshot_daemon>`. The snapshot
 daemon sets intervals for forced checkpoints. It makes sure that the states
-of both memtx and vinyl storage engines are synchronized and saved to disk,
+of both memtx and sophia storage engines are synchronized and saved to disk,
 and automatically removes old WAL files.
 
 Checkpoint files can be created even if there is no WAL file.
@@ -334,7 +298,7 @@ Checkpoint files can be created even if there is no WAL file.
 .. NOTE::
 
    | The memtx engine makes only forced checkpoints.
-   | The vinyl engine runs checkpointing in background at all times.
+   | The sophia engine runs checkpointing in background at all times.
 
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.
@@ -423,6 +387,7 @@ the number of tuples in the space is always 0 or 1, since the keys are unique.
 Functions ``insert()``, ``upsert()`` and ``replace()`` accept only primary-key values.
 Functions ``select()``, ``delete()`` and ``update()`` may accept either a primary-key
 value or a secondary-key value.
+
 
 .. NOTE::
 
@@ -535,7 +500,7 @@ The following SELECT variations exist:
 
       tarantool> box.schema.space.create('bitset_example')
       tarantool> box.space.bitset_example:create_index('primary')
-      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'unsigned'}})
+      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'NUM'}})
       tarantool> box.space.bitset_example:insert{1,1}
       tarantool> box.space.bitset_example:insert{2,4}
       tarantool> box.space.bitset_example:insert{3,7}

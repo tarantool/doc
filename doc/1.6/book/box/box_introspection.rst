@@ -134,7 +134,7 @@ is saying that:
   bytes_free values (1160+4193200+4194088 = 8388448).
 
 The ``arena_size`` and ``arena_used`` values are the amount of the % of
-:ref:`memtx_memory <cfg_storage-memtx_memory>` that is already distributed to the
+:ref:`memtx_memory <cfg_storage-slab_alloc_arena>` that is already distributed to the
 slab allocator.
 
 **Example:**

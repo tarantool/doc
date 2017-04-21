@@ -28,7 +28,7 @@ descriptions of some popular codes. A complete list of errors can be found in fi
     |                   | message.                                               |
     +-------------------+--------------------------------------------------------+
     | ER_MEMORY_ISSUE   | Out of memory:                                         |
-    |                   | :ref:`memtx_memory <cfg_storage-memtx_memory>`         |
+    |                   | :ref:`memtx_memory <cfg_storage-slab_alloc_arena>`     |
     |                   | limit has been reached.                                |
     +-------------------+--------------------------------------------------------+
     | ER_WAL_IO         | Failed to write to disk. May mean: failed              |

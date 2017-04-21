@@ -78,10 +78,10 @@ These parameters are deprecated since Tarantool version 1.7.4:
 
 .. _cfg_storage-slab_alloc_arena_deprecated:
 
-.. confval:: slab_alloc_arena
+.. confval:: slab_alloc_arena_deprecated
 
     **Deprecated** in favor of
-    :ref:`memtx_memory <cfg_storage-memtx_memory>`.
+    :ref:`memtx_memory <cfg_storage-slab_alloc_arena>`.
     
     How much memory Tarantool allocates to actually store tuples, **in gigabytes**.
     When the limit is reached, INSERT or UPDATE requests begin failing with
@@ -111,10 +111,10 @@ These parameters are deprecated since Tarantool version 1.7.4:
 
 .. _cfg_storage-slab_alloc_maximal_deprecated:
 
-.. confval:: slab_alloc_maximal
+.. confval:: slab_alloc_maximal_deprecated
 
     **Deprecated** in favor of
-    :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`.
+    :ref:`memtx_max_tuple_size <cfg_storage-slab_alloc_maximal>`.
     The parameter was only renamed,
     while the type, values and semantics remained intact.
 

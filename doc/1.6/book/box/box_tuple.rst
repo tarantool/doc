@@ -76,7 +76,7 @@ and conversion to a Lua table.
 
         If ``t`` is a tuple instance, ``t:bsize()`` will return the number of
         bytes in the tuple. With the memtx storage engine the default maximum
-        number is :ref:`one megabyte <cfg_storage-memtx_max_tuple_size>`. Every
+        number is :ref:`one megabyte <cfg_storage-slab_alloc_maximal>`. Every
         field has one or more "length" bytes preceding the actual contents, so
         ``bsize()`` returns a value which is slightly greater than the sum of
         the lengths of the contents.

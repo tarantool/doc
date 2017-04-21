@@ -1,5 +1,5 @@
-* :ref:`memtx_memory <cfg_storage-memtx_memory>`
-* :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`
+* :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`
+* :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>`
 * :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`
 * :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`
 * :ref:`vinyl_cache <cfg_storage-vinyl_cache>`
@@ -10,9 +10,9 @@
 * :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`
 * :ref:`vinyl_threads <cfg_storage-vinyl_threads>`
 
-.. _cfg_storage-memtx_memory:
+.. _cfg_storage-slab_alloc_arena:
 
-.. confval:: memtx_memory
+.. confval:: slab_alloc_arena
 
     How much memory Tarantool allocates to actually store tuples, in bytes.
     When the limit is reached, INSERT or UPDATE requests begin failing with
@@ -25,9 +25,9 @@
     | Default: 256 * 1024 * 1024 = 268435456
     | Dynamic: no
     
-.. _cfg_storage-memtx_max_tuple_size:
+.. _cfg_storage-slab_alloc_maximal:
 
-.. confval:: memtx_max_tuple_size
+.. confval:: slab_alloc_maximal
 
     Size of the largest allocation unit, in bytes. It can be increased if it
     is necessary to store large tuples.

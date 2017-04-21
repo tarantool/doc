@@ -27,7 +27,7 @@
        As long as there are any changes to the parent index memory through
        concurrent updates, there are going to be page splits, and therefore you
        need to have some extra free memory to run this command. 10% of
-       :ref:`memtx_memory <cfg_storage-memtx_memory>` is, on average, sufficient.
+       :ref:`memtx_memory <cfg_storage-slab_alloc_arena>` is, on average, sufficient.
        This statement waits until a snapshot is taken and returns operation result.
 
     .. NOTE::

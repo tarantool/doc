@@ -139,7 +139,7 @@ Database operations usually do not yield, but it depends on the engine:
 
 * In memtx, reads or writes do not require I/O and do not yield.
 
-* In vinyl, not all data is in memory, and SELECT often incurs a disc I/O,
+* In sophia, not all data is in memory, and SELECT often incurs a disc I/O,
   and therefore yields, while a write may stall waiting for memory to free up,
   thus also causing a yield.
 
@@ -157,13 +157,13 @@ Many functions in modules :ref:`fio <fio-section>`, :ref:`net_box <net_box-modul
   ``select() insert()`` has one yield, at the end of insertion, caused by
   implicit commit; ``select()`` has nothing to write to WAL and so does not yield.
 
-* *Engine = vinyl* |br|
+* *Engine = sophia* |br|
   ``select() insert()`` has between one and three yields, since ``select()``
   may yield if the data is not in cache, ``insert()`` may yield waiting for
   available memory, and there is an implicit yield at commit.
 
 * The sequence ``begin() insert() insert() commit()`` yields only at commit
-  if the engine is memtx, and can yield up to 3 times if the engine is vinyl.
+  if the engine is memtx, and can yield up to 3 times if the engine is sophia.
 
 **Example #2**
 
@@ -205,7 +205,7 @@ Therefore, the sequence:
    select
 
 causes blocking (in memtx), if it is inside a function or Lua program being
-executed on the server instance, but causes yielding (in both memtx and vinyl) if it
+executed on the server instance, but causes yielding (in both memtx and sophia) if it
 is done as a series of transmissions from a client, including a client which
 operates via telnet, via one of the connectors, or via the MySQL and PostgreSQL
 rocks, or via the interactive mode when
