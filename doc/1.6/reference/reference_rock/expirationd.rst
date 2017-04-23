@@ -86,7 +86,7 @@ expirationd through the test.
      expd = require('expirationd')
      box.cfg{}
      e = box.schema.space.create('expirationd_test')
-     e:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+     e:create_index('primary', {type = 'hash', parts = {1, 'num'}})
      e:replace{1, fiber.time() + 3}
      e:replace{2, fiber.time() + 30}
      function is_tuple_expired(args, tuple)

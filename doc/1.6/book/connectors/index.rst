@@ -89,7 +89,7 @@ will work if and only if the following conditions are met:
 
 * space ``examples`` has id = 999 (``box.space.examples.id = 999``) and has
   a primary-key index for a numeric field
-  (``box.space[999].index[0].parts[1].type = "unsigned"``),
+  (``box.space[999].index[0].parts[1].type = "num"``),
 
 * user 'guest' has privileges for reading and writing.
 
@@ -100,7 +100,7 @@ script:
 
     box.cfg{listen=3301}
     box.schema.space.create('examples',{id=999})
-    box.space.examples:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+    box.space.examples:create_index('primary', {type = 'hash', parts = {1, 'num'}})
     box.schema.user.grant('guest','read,write','space','examples')
     box.schema.user.grant('guest','read','space','_space')
 

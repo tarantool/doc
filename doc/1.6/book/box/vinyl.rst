@@ -6,29 +6,29 @@ retrieve tuple values. Tarantool offers a choice of two storage engines:
 * memtx (the in-memory storage engine) is the default and was the first to
   arrive.
 
-* vinyl (the on-disk storage engine) is a working key-value engine and will
+* sophia (the on-disk storage engine) is a working key-value engine and will
   especially appeal to users who like to see data go directly to disk, so that
   recovery time might be shorter and database size might be larger. On the other
-  hand, vinyl lacks some functions and options that are available with memtx.
+  hand, sophia lacks some functions and options that are available with memtx.
   Where that is the case, the relevant description in this manual will contain
   a note beginning with the words "Note re storage engine". See also a coverage
-  for all :ref:`the differences between memtx and vinyl <vinyl_diff>` further
+  for all :ref:`the differences between memtx and sophia <sophia_diff>` further
   on this page.
   
-To specify that the engine should be vinyl, add the clause ``engine = 'vinyl'``
+To specify that the engine should be sophia, add the clause ``engine = 'sophia'``
 when creating a space, for example:
-``space = box.schema.space.create('name', {engine='vinyl'})``.
+``space = box.schema.space.create('name', {engine='sophia'})``.
 
-.. _vinyl_diff:
+.. _sophia_diff:
 
 --------------------------------------------------------------------------------
-        Differences between memtx and vinyl storage engines
+        Differences between memtx and sophia storage engines
 --------------------------------------------------------------------------------
 
-The primary difference between memtx and vinyl is that memtx is an "in-memory"
-engine while vinyl is an "on-disk" engine. An in-memory storage engine is
+The primary difference between memtx and sophia is that memtx is an "in-memory"
+engine while sophia is an "on-disk" engine. An in-memory storage engine is
 generally faster, and the memtx engine is justifiably the default for Tarantool,
-but there are two situations where an on-disk engine such as vinyl would be
+but there are two situations where an on-disk engine such as sophia would be
 preferable:
 
 1. when the database is larger than the available memory and adding more
@@ -39,34 +39,34 @@ preferable:
 
 Here are behavior differences which affect programmers. All of these differences
 have been noted elsewhere in sentences that begin with the words
-"Note re storage engine: vinyl".
+"Note re storage engine: sophia".
 
 * | With memtx, the index type can be TREE or HASH or RTREE or BITSET.
-  | With vinyl, the only index type is TREE.
+  | With sophia, the only index type is TREE.
 
 * | With memtx, :ref:`create_index <box_space-create_index>` can be done at any time.
-  | With vinyl, secondary indexes must be created before tuples are inserted.
+  | With sophia, secondary indexes must be created before tuples are inserted.
 
 * | With memtx, for index searches, ``nil`` may be allowed within a search key.
-  | With vinyl, ``nil`` is only allowed at the end of a search key.
+  | With sophia, ``nil`` is only allowed at the end of a search key.
 
 * | With memtx, temporary spaces are supported.
-  | With vinyl, they are not.
+  | With sophia, they are not.
 
 * | With memtx, the :ref:`alter() <box_index-alter>` and :ref:`len() <box_space-len>`
     and :ref:`random() <box_index-random>` functions are supported.
-  | With vinyl, they are not.
+  | With sophia, they are not.
 
 * | With memtx, the :ref:`count() <box_index-count>` function takes a constant
     amount of time.
-  | With vinyl, it takes a variable amount of time depending on index size.
+  | With sophia, it takes a variable amount of time depending on index size.
 
 * | With memtx, delete will return deleted tuple, if any.
-  | With vinyl, delete will always return nil.
+  | With sophia, delete will always return nil.
 
 It was explained :ref:`earlier <index-yields_must_happen>` that memtx does not
 "yield" on a select request, it yields only on data-change requests. However,
-vinyl does yield on a select request, or on an equivalent such as ``get()`` or
+sophia does yield on a select request, or on an equivalent such as ``get()`` or
 ``pairs()``. This has significance for
 :ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
 
@@ -106,22 +106,22 @@ Vinyl features
 It is appropriate for databases that cannot fit in memory, where access via
 secondary keys is not required.
 
-In vinyl terminology:
+In sophia terminology:
 
 * There is one **Environment**.
-* An Environment has N **Databases** - a vinyl database is like a Tarantool `space`.
+* An Environment has N **Databases** - a sophia database is like a Tarantool `space`.
 * A Database has N **Ranges**.
 * A Range has one **Range File**.
 * A Range File has N **Runs**.
-* A Run has N **Regions** - a vinyl Region is like a B-tree `page`.
-* A Region has **keys** and **values** - a vinyl key-value is like a Tarantool `tuple`.
+* A Run has N **Regions** - a sophia Region is like a B-tree `page`.
+* A Region has **keys** and **values** - a sophia key-value is like a Tarantool `tuple`.
 
 A key and its associated value are together, so when one accesses a key one gets
-the whole tuple. In other words, in vinyl the data is stored in the index. There
+the whole tuple. In other words, in sophia the data is stored in the index. There
 are up to two in-memory copies of an index, as well as the copy in the Range File.
 
-For operations that insert or update tuples - called Set operations in vinyl -
-vinyl makes changes to in-memory copies of the index, and writes to Tarantool's
+For operations that insert or update tuples - called Set operations in sophia -
+sophia makes changes to in-memory copies of the index, and writes to Tarantool's
 Write-ahead Log. A scheduler assigns tasks to multiple background threads for
 transferring index data from memory to disk, and for reorganizing Runs. To
 support transactions, Set operations can be delayed until an explicit commit. If
@@ -131,7 +131,7 @@ method is `MVCC`_ and the isolation level is `Snapshot`_.
 .. _MVCC: https://en.wikipedia.org/wiki/Multiversion_concurrency_control
 .. _Snapshot: https://en.wikipedia.org/wiki/Snapshot_isolation
 
-Formally, in terms of disk accesses, vinyl has the following algorithmic complexity:
+Formally, in terms of disk accesses, sophia has the following algorithmic complexity:
 
 * **Set** - the worst case is O(*1*) append-only key writes to the Write-Ahead
   Log + in-memory Range index searches + in-memory index inserts
@@ -207,7 +207,7 @@ end of db file. The number of created Runs becomes large.
     :alt: i4.png
 
 There is a user-settable maximum number of Runs per Range. When the number of
-Runs reaches this maximum, the vinyl scheduler wakes a **Compaction Thread**
+Runs reaches this maximum, the sophia scheduler wakes a **Compaction Thread**
 for the db file. The Compaction Thread merges the keys in all the Runs, and
 creates one or more new db files.
 
@@ -240,7 +240,7 @@ a. an in-memory index with some keys in it,
 b. a Range File with several Runs,
 c. a Write-Ahead Log file recording the Set operations, in the order they happened.
 
-The number of Runs became too big, so the vinyl scheduler starts the
+The number of Runs became too big, so the sophia scheduler starts the
 Compaction Thread and creates two new Ranges.
 
 .. image:: vinyl/i7.png
@@ -250,7 +250,7 @@ Compaction Thread and creates two new Ranges.
 So, each of the two new Range Files contains half of the keys that were in the
 original Range. The Range's in-memory indexes are split in the same way.
 
-After the splitting, vinyl must take into account that: while the Compaction
+After the splitting, sophia must take into account that: while the Compaction
 was going on in the background, there might have been more Set operations taking
 place in parallel. These Set operations would have changed one of the in-memory
 indexes, and these changes too will be merged.
@@ -283,20 +283,20 @@ Database has four Ranges.
     :alt: i10.png
 
 The inserting is done. Now, because the words "memory" and "disk" have appeared
-in this explanation several times, here are a few words about how vinyl is
+in this explanation several times, here are a few words about how sophia is
 designed to use these resources most efficiently:
 
 * If there is more memory available, then Run Creation and Compaction will be
   less frequent, and there will be fewer disk accesses.
-* The best vinyl performance will occur if there is no setting of a memory limit,
+* The best sophia performance will occur if there is no setting of a memory limit,
   but this must be balanced against other considerations, such as requirements
   for the memtx storage engine. If there is a setting of a memory limit, the
-  vinyl scheduler will give priority to the Ranges that have the largest
+  sophia scheduler will give priority to the Ranges that have the largest
   in-memory indexes, so that the largest memory blocks are freed first.
-* To make the most of hard drives and Flash, vinyl will delay operations that
+* To make the most of hard drives and Flash, sophia will delay operations that
   require disk access (except the writing of the Write-ahead Log which is
   specially tunable), so that the accesses are done in large sequential blocks.
-* Overwriting does not occur; vinyl is an "append-only" engine.
+* Overwriting does not occur; sophia is an "append-only" engine.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Reading million keys
@@ -309,7 +309,7 @@ which was random.
     :align: center
     :alt: i12.png
 
-During the Get (search), vinyl first finds the correct Range by looking in the
+During the Get (search), sophia first finds the correct Range by looking in the
 Range Index. Then it searches the Range's first in-memory index, and/or the Range's
 second in-memory index, and/or each Run of the Range, starting from the end of
 the Range File.

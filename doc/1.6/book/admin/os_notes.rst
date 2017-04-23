@@ -37,7 +37,7 @@ Here is an example of ``tarantoolctl`` defaults on FreeBSD:
        pid_file   = "/var/run/tarantool", -- /var/run/tarantool/${INSTANCE}.pid
        wal_dir    = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}/
        snap_dir   = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
-       vinyl_dir = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
+       sophia_dir = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
        logger     = "/var/log/tarantool", -- /var/log/tarantool/${INSTANCE}.log
        username   = "tarantool",
    }

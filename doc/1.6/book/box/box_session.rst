@@ -44,7 +44,7 @@ client connection.
 .. function:: sync()
 
     :return: the value of the :code:`sync` integer constant used in the
-             `binary protocol <https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_.
+             `binary protocol <https://github.com/tarantool/tarantool/blob/1.6/src/box/iproto_constants.h>`_.
 
     :rtype:  number
 

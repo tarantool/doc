@@ -35,7 +35,7 @@ Command options
     .. code-block:: console
 
         $ ./tarantool --version
-        Tarantool 1.7.0-1216-g73f7154
+        Tarantool 1.6.9-1-g3a3f705
         Target: Linux-x86_64-Debug
         ...
 
@@ -136,7 +136,7 @@ Then the screen might look like this:
 
     $ export LISTEN_URI=3301
     $ ~/tarantool/src/tarantool script.lua ARG
-    ... main/101/script.lua C> version 1.7.0-1216-g73f7154
+    ... main/101/script.lua C> version 1.6.9-1216-g73f7154
     ... main/101/script.lua C> log level 5
     ... main/101/script.lua I> mapping 107374184 bytes for a shared arena...
     ... main/101/script.lua I> recovery start

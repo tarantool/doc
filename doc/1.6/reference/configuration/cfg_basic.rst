@@ -1,10 +1,10 @@
 * :ref:`background <cfg_basic-background>`
 * :ref:`custom_proc_title <cfg_basic-custom_proc_title>`
 * :ref:`listen <cfg_basic-listen>`
-* :ref:`memtx_dir <cfg_basic-memtx_dir>`
 * :ref:`pid_file <cfg_basic-pid_file>`
 * :ref:`read_only <cfg_basic-read_only>`
-* :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
+* :ref:`snap_dir <cfg_basic-snap_dir>`
+* :ref:`sophia_dir <cfg_basic-sophia_dir>`
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
@@ -13,7 +13,7 @@
 
 .. confval:: background
 
-    Run the server as a background task. The :ref:`log <cfg_logging-log>`
+    Run the server as a background task. The :ref:`log <cfg_logging-logger>`
     and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for
     this to work.
 
@@ -71,18 +71,6 @@
     | Default: null
     | Dynamic: yes
 
-.. _cfg_basic-memtx_dir:
-
-.. confval:: memtx_dir
-
-    A directory where memtx stores snapshot (.snap) files. Can be relative to
-    :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to
-    ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`.
-
-    | Type: string
-    | Default: "."
-    | Dynamic: no
-
 .. _cfg_basic-pid_file:
 
 .. confval:: pid_file
@@ -105,11 +93,24 @@
     | Default: false
     | Dynamic: yes
 
-.. _cfg_basic-vinyl_dir:
+.. _cfg_basic-snap_dir:
 
-.. confval:: vinyl_dir
+.. confval:: snap_dir
 
-    A directory where vinyl files or subdirectories will be stored. Can be
+    A directory where memtx stores snapshot (.snap) files. Can be relative to
+    :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to
+    ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`.
+
+    | Type: string
+    | Default: "."
+    | Dynamic: no
+
+
+.. _cfg_basic-sophia_dir:
+
+.. confval:: sophia_dir
+
+    A directory where sophia files or subdirectories will be stored. Can be
     relative to :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults
     to ``work_dir``.
 
@@ -133,7 +134,7 @@
 
     A directory where write-ahead log (.xlog) files are stored. Can be relative
     to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and
-    :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so
+    :ref:`snap_dir <cfg_basic-snap_dir>` are specified with different values, so
     that write-ahead log files and snapshot files can be stored on different
     disks. If not specified, defaults to ``work_dir``.
 
@@ -156,7 +157,7 @@
         box.cfg{
             work_dir = '/home/user/A',
             wal_dir = 'B',
-            memtx_dir = 'C'
+            snap_dir = 'C'
         }
           
     will put xlog files in ``/home/user/A/B``, snapshot files in ``/home/user/A/C``,

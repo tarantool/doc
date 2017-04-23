@@ -5,7 +5,7 @@
     $ cd ~/tarantool_test_node_1
     $ rm -R ./*
     $ ~/tarantool/src/tarantool
-    $ ~/tarantool/src/tarantool: version 1.7.0-1724-g033ed69
+    $ ~/tarantool/src/tarantool: version 1.6.9-1724-g033ed69
     type 'help' for interactive help
     tarantool> box.cfg{listen = 3301}
     <... ...>

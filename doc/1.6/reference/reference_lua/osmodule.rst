@@ -11,8 +11,6 @@ The ``os`` module contains the functions :ref:`execute() <os-execute>`,
 :ref:`remove() <os-remove>`, :ref:`date() <os-date>`,
 :ref:`exit() <os-exit>`, :ref:`time() <os-time>`,
 :ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`,
-:ref:`environ() <os-environ>`,
-:ref:`setenv() <os-setenv>`,
 :ref:`setlocale() <os-setlocale>`,
 :ref:`difftime() <os-difftime>`.
 Most of these functions are described in the Lua manual
@@ -169,36 +167,6 @@ Chapter 22 `The Operating System Library
         tarantool> os.tmpname()
         ---
         - /tmp/lua_7SW1m2
-        ...
-
-.. _os-environ:
-
-.. function:: environ()
-
-    Return a table containing all environment variables.
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> os.environ()['TERM']..os.environ()['SHELL']
-        ---
-        - xterm/bin/bash
-        ...
-
-.. _os-setenv:
-
-.. function:: setenv(variable-name, variable-value)
-
-    Set an environment variable.
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> os.setenv('VERSION','99')
-        ---
-        -
         ...
 
 .. _os-setlocale:

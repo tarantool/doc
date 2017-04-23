@@ -38,7 +38,7 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             - unique: true
               parts:
-              - type: unsigned
+              - type: NUM
                 fieldno: 1
               id: 0
               space_id: 513
@@ -126,6 +126,8 @@ API is a direct binding to corresponding methods of index objects of type
             |               |           | value, it matches.                          |
             |               |           | Tuples are returned in ascending order by   |
             |               |           | index key.                                  |
+            |               |           | Note re storage engine: sophia does not     |
+            |               |           | support REQ.                                |
             +---------------+-----------+---------------------------------------------+
             | box.index.GE  | search    | The comparison operator is '>=' (greater    |
             | or 'GE'       | value     | than or equal to).                          |
@@ -199,6 +201,7 @@ API is a direct binding to corresponding methods of index objects of type
                   }
                 } 
 
+            Note re storage engine: sophia does not allow search-value-parts to be ``nil`` or missing.
 
             **Iterator types for HASH indexes**
 
@@ -331,7 +334,7 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             ...
             tarantool> s:create_index('primary', {
-                     >   parts = {1, 'string', 2, 'string'}
+                     >   parts = {1, 'STR', 2, 'STR'}
                      > })
             ---
             ...
@@ -438,13 +441,13 @@ API is a direct binding to corresponding methods of index objects of type
             tarantool> sp = box.schema.space.create('tester')
             -- Create a unique index 'primary'
             -- which won't be needed for this example.
-            tarantool> sp:create_index('primary', {parts = {1, 'unsigned' }})
+            tarantool> sp:create_index('primary', {parts = {1, 'NUM' }})
             -- Create a non-unique index 'secondary'
             -- with an index on the second field.
             tarantool> sp:create_index('secondary', {
                      >   type = 'tree',
                      >   unique = false,
-                     >   parts = {2, 'string'}
+                     >   parts = {2, 'str'}
                      > })
             -- Insert three tuples, values in field[2]
             -- equal to 'X', 'Y', and 'Z'.
@@ -509,12 +512,12 @@ API is a direct binding to corresponding methods of index objects of type
 
             tarantool> s = box.schema.space.create('space_with_bitset')
             tarantool> s:create_index('primary_index', {
-                     >   parts = {1, 'string'},
+                     >   parts = {1, 'STR'},
                      >   unique = true,
                      >   type = 'TREE'
                      > })
             tarantool> s:create_index('bitset_index', {
-                     >   parts = {2, 'unsigned'},
+                     >   parts = {2, 'NUM'},
                      >   unique = false,
                      >   type = 'BITSET'
                      > })
@@ -594,6 +597,8 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Complexity factors:** Index size, Index type.
 
+        Note re storage engine: sophia does not support ``min()``.
+
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -621,6 +626,8 @@ API is a direct binding to corresponding methods of index objects of type
         **Possible errors:** index is not of type 'TREE'.
 
         **Complexity factors:** Index size, Index type.
+
+        Note re storage engine: sophia does not support ``max()``.
 
         **Example:**
 
@@ -652,7 +659,7 @@ API is a direct binding to corresponding methods of index objects of type
         .. NOTE::
 
             | Note re storage engine:
-            | vinyl does not support ``random()``.
+            | sophia does not support ``random()``.
 
         **Example:**
 
@@ -677,6 +684,9 @@ API is a direct binding to corresponding methods of index objects of type
 
         :return: the number of matching index keys.
         :rtype:  number
+
+        Note re storage engine: sophia does not support :codenormal:`count(...)`.
+        One possible workaround is to say :codenormal:`#select(...)`.
 
         **Example:**
 
@@ -730,7 +740,7 @@ API is a direct binding to corresponding methods of index objects of type
         .. NOTE::
 
             | Note re storage engine:
-            | vinyl will return `nil`, rather than the deleted tuple.
+            | sophia will return `nil`, rather than the deleted tuple.
 
     .. _box_index-alter:
 
@@ -752,7 +762,7 @@ API is a direct binding to corresponding methods of index objects of type
         .. NOTE::
 
             | Note re storage engine:
-            | vinyl does not support ``alter()``.
+            | sophia does not support ``alter()``.
 
         **Example:**
 
@@ -895,7 +905,7 @@ Here is an example that shows how to build one's own iterator. The
 by programmers who have read the Lua manual section `Iterators and Closures
 <https://www.lua.org/pil/7.1.html>`_. It does paginated retrievals, that is, it
 returns 10 tuples at a time from a table named "t", whose primary key was
-defined with ``create_index('primary',{parts={1,'string'}})``.
+defined with ``create_index('primary',{parts={1,'str'}})``.
 
 .. code-block:: lua
 
@@ -981,7 +991,7 @@ Now let us create a space and add an RTREE index.
     tarantool> s = box.schema.space.create('rectangles')
     tarantool> i = s:create_index('primary', {
              >   type = 'HASH',
-             >   parts = {1, 'unsigned'}
+             >   parts = {1, 'NUM'}
              > })
     tarantool> r = s:create_index('rtree', {
              >   type = 'RTREE',
@@ -1035,7 +1045,7 @@ that have 6 corners and 6 sides.
 .. code-block:: tarantoolsession
 
     tarantool> s = box.schema.space.create('R')
-    tarantool> i = s:create_index('primary', {parts = {1, 'unsigned'}})
+    tarantool> i = s:create_index('primary', {parts = {1, 'NUM'}})
     tarantool> r = s:create_index('S', {
              >   type = 'RTREE',
              >   unique = false,
@@ -1059,7 +1069,7 @@ are rectangle-or-boxes that have a different way to calculate neighbors.
 .. code-block:: tarantoolsession
 
     tarantool> s = box.schema.space.create('R')
-    tarantool> i = s:create_index('primary', {parts = {1, 'unsigned'}})
+    tarantool> i = s:create_index('primary', {parts = {1, 'NUM'}})
     tarantool> r = s:create_index('S', {
              >   type = 'RTREE',
              >   unique = false,

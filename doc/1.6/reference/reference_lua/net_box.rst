@@ -99,7 +99,7 @@ On this diagram:
       specified timeout (e.g. ``reconnect_after=5`` for 5 secs).
       Once a connection is explicitly closed (or garbage-collected), reconnects stop.
       
-    * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new 
+    * `call_16`: [not implemented, will be in 1.7.2] by default, ``net.box`` connections comply with a new 
       binary protocol command for CALL, which is not backward compatible with previous versions.
       The new CALL no longer restricts a function to returning an array of tuples
       and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing).
@@ -171,7 +171,7 @@ On this diagram:
 
     .. method:: wait_state(state[s][, timeout])
 
-        [since 1.7.2] Wait for a target state.
+        [not implemented, will be in 1.7.2] Wait for a target state.
 
         :param string states: target states
         :param number timeout: in seconds
@@ -318,7 +318,7 @@ Here are commands for a quick sandbox setup:
 
     box.cfg{listen = 3301}
     s = box.schema.space.create('tester')
-    s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+    s:create_index('primary', {type = 'hash', parts = {1, 'num'}})
     t = s:insert({800, 'TEST'})
     box.schema.user.grant('guest', 'read,write,execute', 'universe')
 

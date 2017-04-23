@@ -1,5 +1,5 @@
-* :ref:`checkpoint_count <cfg_snapshot_daemon-checkpoint_count>`
-* :ref:`checkpoint_interval <cfg_snapshot_daemon-checkpoint_interval>`
+* :ref:`snapshot_count <cfg_snapshot_daemon-snapshot_count>`
+* :ref:`snapshot_period <cfg_snapshot_daemon-snapshot_period>`
 
 The snapshot daemon is a fiber which is constantly running. At intervals, it may
 make new snapshot (.snap) files and then may remove old snapshot files. If the
@@ -7,26 +7,26 @@ snapshot daemon removes an old snapshot file, it will also remove any
 write-ahead log (.xlog) files that are older than the snapshot file and contain
 information that is present in the snapshot file.
 
-The :ref:`checkpoint_interval <cfg_snapshot_daemon-checkpoint_interval>` and
-:ref:`checkpoint_count <cfg_snapshot_daemon-checkpoint_count>` configuration
+The :ref:`snapshot_period <cfg_snapshot_daemon-snapshot_period>` and
+:ref:`snapshot_count <cfg_snapshot_daemon-snapshot_count>` configuration
 settings determine how long the intervals are, and how many snapshots should
 exist before removals occur.
 
-.. _cfg_snapshot_daemon-checkpoint_interval:
+.. _cfg_snapshot_daemon-snapshot_period:
 
-.. confval:: checkpoint_interval
+.. confval:: snapshot_period
 
     The interval between actions by the snapshot daemon, in seconds. If
-    ``checkpoint_interval`` is set to a value greater than zero, and there is
+    ``snapshot_period`` is set to a value greater than zero, and there is
     activity which causes change to a database, then the snapshot daemon will
-    call :ref:`box.snapshot <box-snapshot>` every ``checkpoint_interval``
+    call :ref:`box.snapshot <box-snapshot>` every ``snapshot_period``
     seconds, creating a new snapshot file each time.
 
     For example:
 
     .. code-block:: lua
 
-        box.cfg{checkpoint_interval=3600}
+        box.cfg{snapshot_period=3600}
         
     will cause the snapshot daemon to create a new database snapshot once
     per hour.
@@ -35,20 +35,20 @@ exist before removals occur.
     | Default: 0 (disabled)
     | Dynamic: yes
 
-.. _cfg_snapshot_daemon-checkpoint_count:
+.. _cfg_snapshot_daemon-snapshot_count:
 
-.. confval:: checkpoint_count
+.. confval:: snapshot_count
 
-    The maximum number of snapshots that may exist on the ``memtx_dir`` directory
-    before the snapshot daemon will remove old snapshots. If ``checkpoint_count``
+    The maximum number of snapshots that may exist on the ``snap_dir`` directory
+    before the snapshot daemon will remove old snapshots. If ``snapshot_count``
     equals zero, then the snapshot daemon does not remove old snapshots.
     For example:
 
     .. code-block:: lua
 
         box.cfg{
-            checkpoint_interval = 3600,
-            checkpoint_count  = 10
+            snapshot_period = 3600,
+            snapshot_count  = 10
         }
 
     will cause the snapshot daemon to create a new snapshot each hour until

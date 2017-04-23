@@ -99,7 +99,7 @@ on the Internet.
      pip install tarantool\>0.4 --user
 
 3. Use ``git`` to download the latest Tarantool source code from the
-   GitHub repository ``tarantool/tarantool``, branch 1.7. For example, to a
+   GitHub repository ``tarantool/tarantool``, branch 1.6. For example, to a
    local directory named `~/tarantool`:
   
    .. code-block:: bash
@@ -233,11 +233,11 @@ on the Internet.
 For your added convenience, we provide OS-specific README files with example
 scripts at GitHub:
 
-* `README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.7/README.FreeBSD>`_ for FreeBSD 10.1
+* `README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.6/README.FreeBSD>`_ for FreeBSD 10.1
 
-* `README.MacOSX <https://github.com/tarantool/tarantool/blob/1.7/README.MacOSX>`_ for Mac OS X `El Capitan`
+* `README.MacOSX <https://github.com/tarantool/tarantool/blob/1.6/README.MacOSX>`_ for Mac OS X `El Capitan`
 
-* `README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ for generic GNU/Linux
+* `README.md <https://github.com/tarantool/tarantool/blob/1.6/README.md>`_ for generic GNU/Linux
 
-These example scripts assume that the intent is to download from the 1.7
+These example scripts assume that the intent is to download from the 1.6
 branch, build the server and run tests after build.

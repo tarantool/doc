@@ -24,7 +24,7 @@ The ``box.info`` submodule provides access to information about server instance 
   This value is also shown by the Linux "ps -A" command.
 * **cluster.uuid** UUID of the cluster. Every replica in a replica set will have the same cluster.uuid value.
   This value is also in the :ref:`box.space._schema <box_space-schema>` system space.
-* **vinyl()** Returns runtime statistics for the vinyl storage engine.
+* **sophia()** Returns runtime statistics for the sophia storage engine.
 * **replication.lag** Number of seconds that the replica is behind the master.
 * **replication.status** Usually this is 'follow', but it can be
   'off', 'stopped', 'connecting', 'auth', or 'disconnected'.
@@ -58,14 +58,14 @@ The replication fields are in an array if the instance is a replica for more tha
             ro: false
             uuid: 25684d65-636e-44cd-ab5d-4bb38d9b4411
             id: 1
-          version: 1.7.3-28-g75ec202
+          version: 1.6.9-28-g75ec202
           status: running
           vclock: {}
           pid: 8228
           cluster:
             uuid: e17aac30-e85a-40be-ad4a-9bf4c1f9ed43
             signature: 0
-          vinyl: []
+          sophia: []
           replication: {}
           uptime: 15
         ...
@@ -83,6 +83,6 @@ The replication fields are in an array if the instance is a replica for more tha
         ...
         tarantool> box.info.version
         ---
-        - 1.7.3-28-g75ec202
+        - 1.6.9-28-g75ec202
         ...
 

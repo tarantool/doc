@@ -68,7 +68,7 @@ to monitor the total memory usage and memory fragmentation.
         (these are slabs used only for tuples, no indexes);
       * ``quota_size`` is the maximum amount of memory that the slab allocator
         can use for both tuples and indexes
-        (as configured in :ref:`memtx_memory <cfg_storage-slab_alloc_arena>`
+        (as configured in :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`
         parameter, e.g. the default is 1 gigabyte = 2^30 bytes = 1,073,741,824 bytes);
       * ``quota_used_ratio`` = ``quota_used`` / ``quota_size``;
       * ``arena_used_ratio`` = ``arena_used`` / ``arena_size``;

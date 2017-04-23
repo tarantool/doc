@@ -102,8 +102,8 @@ Most of the parameters are similar to those used by
    default_cfg = {
        pid_file  = "/var/run/tarantool",
        wal_dir   = "/var/lib/tarantool",
-       memtx_dir = "/var/lib/tarantool",
-       vinyl_dir = "/var/lib/tarantool",
+       snap_dir = "/var/lib/tarantool",
+       sophia_dir = "/var/lib/tarantool",
        log       = "/var/log/tarantool",
        username  = "tarantool",
    }
@@ -119,12 +119,12 @@ where:
   | Directory for write-ahead .xlog files; ``tarantoolctl`` will add
     "/instance_name" to the directory name.
 
-* | ``memtx_dir``
+* | ``snap_dir``
   | Directory for snapshot .snap files; ``tarantoolctl`` will add
     "/instance_name" to the directory name.
 
-* | ``vinyl_dir``
-  | Directory for vinyl files; ``tarantoolctl`` will add "/instance_name" to the
+* | ``sophia_dir``
+  | Directory for sophia files; ``tarantoolctl`` will add "/instance_name" to the
     directory name.
 
 * | ``log``
@@ -141,5 +141,5 @@ where:
     instance files in this directory, or create symbolic links.
 
 As a full-featured example, you can take
-`example.lua <https://github.com/tarantool/tarantool/blob/1.7/extra/dist/example.lua>`_
+`example.lua <https://github.com/tarantool/tarantool/blob/1.6/extra/dist/example.lua>`_
 script that ships with Tarantool and defines all configuration options.

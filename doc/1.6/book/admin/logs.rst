@@ -23,7 +23,7 @@ Then check the logs:
 .. code-block:: console
 
    $ tail /var/log/tarantool/my_app.log
-   2017-04-04 15:54:04.977 [29255] main/101/tarantoolctl C> version 1.7.3-382-g68ef3f6a9
+   2017-04-04 15:54:04.977 [29255] main/101/tarantoolctl C> version 1.6.9-382-g68ef3f6a9
    2017-04-04 15:54:04.977 [29255] main/101/tarantoolctl C> log level 5
    2017-04-04 15:54:04.978 [29255] main/101/tarantoolctl I> mapping 134217728 bytes for tuple arena...
    2017-04-04 15:54:04.985 [29255] iproto/101/main I> binary: bound to [::1]:3301
@@ -32,7 +32,7 @@ Then check the logs:
    2017-04-04 15:54:04.988 [29255] main/101/tarantoolctl I> ready to accept requests
    2017-04-04 15:54:04.988 [29255] main/105/snapshot_daemon I> started
    2017-04-04 15:54:04.988 [29255] main/105/snapshot_daemon I> scheduled the next snapshot at Tue Apr  4 17:43:16 2017
-   2017-04-04 15:54:04.988 [29255] main/101/tarantoolctl I> set 'checkpoint_interval' configuration option to 3600
+   2017-04-04 15:54:04.988 [29255] main/101/tarantoolctl I> set 'snapshot_period' configuration option to 3600
    2017-04-04 15:54:04.988 [29255] main/101/my_app I> Run console at unix/:/var/run/tarantool/my_app.control
    2017-04-04 15:54:04.989 [29255] main/106/console/unix/:/var/ I> started
    2017-04-04 15:54:04.989 [29255] main C> entering the event loop
@@ -69,7 +69,7 @@ files after they were moved by the program of your choice.
 .. NOTE::
 
    Tarantool can write its logs to a log file, ``syslog`` or a program specified
-   in the configuration file (see :ref:`log <cfg_logging-log>` parameter).
+   in the configuration file (see :ref:`logger <cfg_logging-logger>` parameter).
 
    By default, logs are written to a file as defined in ``tarantoolctl``
    defaults. ``tarantoolctl`` automatically detects if an instance is using

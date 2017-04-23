@@ -1,12 +1,12 @@
-* :ref:`replication <cfg_replication-replication>`
+* :ref:`replication <cfg_replication-replication_source>`
 
-.. _cfg_replication-replication:
+.. _cfg_replication-replication_source:
 
-.. confval:: replication
+.. confval:: replication_source
 
-    If ``replication`` is not an empty string, the instance is considered to be
+    If ``replication_source`` is not an empty string, the instance is considered to be
     a Tarantool :ref:`replica <index-box_replication>`. The replica will
-    try to connect to the master specified in ``replication`` with a
+    try to connect to the master specified in ``replication_source`` with a
     :ref:`URI <index-uri>` (Universal Resource Identifier), for example:
     
     :samp:`{konstantin}:{secret_password}@{tarantool.org}:{3301}`
@@ -23,10 +23,10 @@
 
     The default user name is ‘guest’. A replica does not accept
     data-change requests on the :ref:`listen <cfg_basic-listen>` port.
-    The ``replication`` parameter is dynamic, that is, to enter master
-    mode, simply set ``replication`` to an empty string and issue:
+    The ``replication_source`` parameter is dynamic, that is, to enter master
+    mode, simply set ``replication_source`` to an empty string and issue:
     
-    :extsamp:`box.cfg{ replication = {*{new-value}*} }`
+    :extsamp:`box.cfg{ replication_source = {*{new-value}*} }`
 
     | Type: string
     | Default: null

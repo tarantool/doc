@@ -1,8 +1,8 @@
 .. _cfg_logging:
 
 * :ref:`log_level <cfg_logging-log_level>`
-* :ref:`log <cfg_logging-log>`
-* :ref:`log_nonblock <cfg_logging-log_nonblock>`
+* :ref:`logger <cfg_logging-logger>`
+* :ref:`logger_nonblock <cfg_logging-logger_nonblock>`
 * :ref:`too_long_threshold <cfg_logging-too_long_threshold>`
 
 .. _cfg_logging-log_level:
@@ -21,39 +21,39 @@
     By setting log_level, one can enable logging of all classes below
     or equal to the given level. Tarantool prints its logs to the standard
     error stream by default, but this can be changed with the
-    :ref:`log <cfg_logging-log>` configuration parameter.
+    :ref:`log <cfg_logging-logger>` configuration parameter.
 
     | Type: integer
     | Default: 5
     | Dynamic: **yes**
 
-.. _cfg_logging-log:
+.. _cfg_logging-logger:
 
-.. confval:: log
+.. confval:: logger
 
     By default, Tarantool sends the log to the standard error stream
-    (``stderr``). If ``log`` is specified, Tarantool sends the log to a file,
+    (``stderr``). If ``logger`` is specified, Tarantool sends the log to a file,
     or to a pipe, or to the system logger.
 
     Example setting:
 
     .. code-block:: lua
 
-        box.cfg{log = 'tarantool.log'}
+        box.cfg{logger = 'tarantool.log'}
         -- or
-        box.cfg{log = 'file: tarantool.log'}
+        box.cfg{logger = 'file: tarantool.log'}
 
     This will open the file ``tarantool.log`` for output on the server’s default
-    directory. If the ``log`` string has no prefix or has the prefix "file:",
+    directory. If the ``logger`` string has no prefix or has the prefix "file:",
     then the string is interpreted as a file path.
 
     Example setting:
 
     .. code-block:: lua
 
-        box.cfg{log = '| cronolog tarantool.log'}
+        box.cfg{logger = '| cronolog tarantool.log'}
         -- or
-        box.cfg{log = 'pipe: cronolog tarantool.log'}'
+        box.cfg{logger = 'pipe: cronolog tarantool.log'}'
 
     This will start the program ``cronolog`` when the server starts, and
     will send all log messages to the standard input (``stdin``) of cronolog.
@@ -65,13 +65,13 @@
 
     .. code-block:: lua
 
-        box.cfg{log = 'syslog:identity=tarantool'}
+        box.cfg{logger = 'syslog:identity=tarantool'}
         -- or
-        box.cfg{log = 'syslog:facility=user'}
+        box.cfg{logger = 'syslog:facility=user'}
         -- or
-        box.cfg{log = 'syslog:identity=tarantool,facility=user'}
+        box.cfg{logger = 'syslog:identity=tarantool,facility=user'}
 
-    If the ``log`` string has the prefix "syslog:", then the string is
+    If the ``logger`` string has the prefix "syslog:", then the string is
     interpreted as a message for the
     `syslogd <http://www.rfc-base.org/txt/rfc-5424.txt>`_ program which normally
     is running in the background of any Unix-like platform. One can optionally
@@ -96,14 +96,14 @@
     | Default: null
     | Dynamic: no
 
-.. _cfg_logging-log_nonblock:
+.. _cfg_logging-logger_nonblock:
 
-.. confval:: log_nonblock
+.. confval:: logger_nonblock
 
-    If ``log_nonblock`` equals true, Tarantool does not block on the log
+    If ``logger_nonblock`` equals true, Tarantool does not block on the log
     file descriptor when it’s not ready for write, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and a lot of
-    messages go to the log file, setting ``log_nonblock`` to true may improve
+    messages go to the log file, setting ``logger_nonblock`` to true may improve
     logging performance at the cost of some log messages getting lost.
 
     | Type: boolean
@@ -138,7 +138,7 @@ will go to `Log_file`, then put a message "Log Line #1" in the log file:
 
 .. code-block:: lua
 
-    box.cfg{log='Log_file'}
+    box.cfg{logger='Log_file'}
     log = require('log')
     log.info('Log Line #1')
 

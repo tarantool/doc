@@ -126,7 +126,7 @@ of the script:
    box.once("bootstrap", function()
       box.schema.space.create('tweedledum')
       box.space.tweedledum:create_index('primary',
-          { type = 'TREE', parts = {1, 'unsigned'}})
+          { type = 'TREE', parts = {1, 'num'}})
    end)
 
 Now we launch our application in the same manner as before:
@@ -135,7 +135,7 @@ Now we launch our application in the same manner as before:
 
    $ tarantool myapp.lua
    Hello, world!
-   2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> version 1.7.2-146-g021d36b
+   2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> version 1.6.9-146-g021d36b
    2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> log level 5
    2016-12-19 16:07:14.251 [41436] main/101/myapp.lua I> mapping 1073741824 bytes for tuple arena...
    2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovery start
@@ -164,7 +164,7 @@ it in the **daemon mode**. To do so, we add some parameters to ``box.cfg{}``:
 
 * :ref:`background <cfg_basic-background>` = ``true`` that actually tells
   Tarantool to work as a daemon service,
-* :ref:`log <cfg_logging-log>` = ``'dir-name'`` that tells the Tarantool
+* :ref:`logger <cfg_logging-logger>` = ``'dir-name'`` that tells the Tarantool
   daemon where to store its log file (other log settings are available in
   Tarantool :ref:`log <log-module>` module), and
 * :ref:`pid_file <cfg_basic-pid_file>` = ``'file-name'`` that tells the
@@ -177,7 +177,7 @@ For example:
    box.cfg {
       listen = 3301
       background = true,
-      log = '1.log',
+      logger = '1.log',
       pid_file = '1.pid'
    }
 

@@ -39,7 +39,7 @@ for spaces, users, roles, and function tuples.
         |               | :ref:`write-ahead log <internals-wal>`          |         |                     |
         |               | and there is no                                 |         |                     |
         |               | :ref:`replication <index-box_replication>`.     |         |                     |
-        |               | Note re storage engine: vinyl does not          |         |                     |
+        |               | Note re storage engine: sophia does not         |         |                     |
         |               | support temporary spaces.                       |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | id            | unique identifier:                              | number  | last space's id, +1 |
@@ -59,7 +59,7 @@ for spaces, users, roles, and function tuples.
         |               | error                                           |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | engine        | storage engine:                                 | string  | 'memtx'             |
-        |               | 'memtx' or 'vinyl'                              |         |                     |
+        |               | 'memtx' or 'sophia'                             |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | user          | name of the user who is considered to be        | string  | current user's name |
         |               | the space's                                     |         |                     |
@@ -79,6 +79,8 @@ for spaces, users, roles, and function tuples.
     will drop a space. However, the common approach is to use functions
     attached to the space objects, for example
     :ref:`space_object:drop() <box_space-drop>`.
+
+    Note re storage engine: sophia does not support temporary spaces.
 
     **Example**
 
@@ -181,9 +183,9 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-user_grant:
 
-.. function:: box.schema.user.grant(user-name, priveleges, object-type, object-name[, {options} ])
-              box.schema.user.grant(user-name, priveleges, 'universe'[, nil, {options} ])
-              box.schema.user.grant(user-name, role-name[, nil, nil, {options} ])
+.. function:: box.schema.user.grant(user-name, priveleges, object-type, object-name)
+              box.schema.user.grant(user-name, priveleges, 'universe')
+              box.schema.user.grant(user-name, role-name)
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a user or
     to another role.
@@ -193,7 +195,6 @@ for spaces, users, roles, and function tuples.
     :param string object-type: 'space' or 'function'.
     :param string object-name: name of object to grant permissions to
     :param string   role-name: name of role to grant to user.
-    :param table      options: ``grantor``, ``if_not_exists``
 
     If :samp:`'function','{object-name}'` is specified, then a _func tuple with
     that object-name must exist.
@@ -204,12 +205,6 @@ for spaces, users, roles, and function tuples.
     **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
-    The possible options are:
-
-    * ``grantor`` = *grantor_name_or_id* -- string or number, for custom grantor,
-    * ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
-      ``true`` means there should be no error if the user already has the privilege.
-
     **Example:**
 
     .. code-block:: lua
@@ -219,7 +214,6 @@ for spaces, users, roles, and function tuples.
         box.schema.user.grant('Lena', 'read,write', 'universe')
         box.schema.user.grant('Lena', 'Accountant')
         box.schema.user.grant('Lena', 'read,write,execute', 'universe')
-        box.schema.user.grant('X', 'read', 'universe', nil, {if_not_exists=true}))
 
 .. _box_schema-user_revoke:
 
@@ -387,9 +381,9 @@ for spaces, users, roles, and function tuples.
 
 .. _box_schema-role_grant:
 
-.. function:: box.schema.role.grant(user-name, privilege, object-type, object-name [, option])
-              box.schema.role.grant(user-name, privilege, 'universe' [, nil, option])
-              box.schema.role.grant(role-name, role-name [, nil, nil, option])
+.. function:: box.schema.role.grant(user-name, privilege, object-type, object-name)
+              box.schema.role.grant(user-name, privilege, 'universe')
+              box.schema.role.grant(role-name, role-name)
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a role.
 
@@ -397,9 +391,6 @@ for spaces, users, roles, and function tuples.
     :param string privilege: 'read' or 'write' or 'execute' or a combination
     :param string object-type: 'space' or 'function'
     :param string object-name: the name of a function or space
-    :param table option: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
-                         ``true`` means there should be no error if the role already
-                         has the privilege
 
     The role must exist, and the object must exist.
 
@@ -417,7 +408,6 @@ for spaces, users, roles, and function tuples.
         box.schema.role.grant('Accountant', 'execute', 'function', 'f')
         box.schema.role.grant('Accountant', 'read,write', 'universe')
         box.schema.role.grant('public', 'Accountant')
-        box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})
 
 .. _box_schema-role_revoke:
 

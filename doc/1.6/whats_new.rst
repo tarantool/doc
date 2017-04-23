@@ -28,46 +28,46 @@ The developers are concentrating on Tarantool version 1.7.
 What's new in Tarantool 1.7?
 ================================================================================
 
-(This section is about a later version of Tarantool.
+This section is about a later version of Tarantool -- what will be in Tarantool 1.7.
 Readers should be aware of what is coming, but not expect
 to see further discussion in this manual, which is for Tarantool 1.6.
-There is a separate manual for Tarantool 1.7.))
+There is a separate manual for Tarantool 1.7.
 
-The disk-based storage engine, which was called `sophia` or `phia`
-in earlier versions, is superseded by the `vinyl` storage engine.
+The disk-based storage engine, which is called `sophia` in 1.6,
+will be superseded by the `vinyl` storage engine.
 
-There are new types for indexed fields.
+There will be new types for indexed fields.
 
-The LuaJIT version is updated.
+The LuaJIT version will be updated.
 
 Automatic replica set bootstrap (for easier configuration of a new replica set)
 is supported.
 
-The ``space_object:inc()`` function is removed.
+The ``space_object:inc()`` function will be removed.
 
-The ``space_object:dec()`` function is removed.
+The ``space_object:dec()`` function will be removed.
 
-The ``space_object:bsize()`` function is added.
+The ``space_object:bsize()`` function will be added.
 
-The ``box.coredump()`` function is removed, for an alternative see
+The ``box.coredump()`` function will be removed, for an alternative see
 :ref:`Core dumps <admin-core_dumps>`.
 
-The ``hot_standby`` configuration option is added.
+The ``hot_standby`` configuration option will be added.
 
 Configuration parameters revised:
 
 * Parameters renamed:
 
-  * ``slab_alloc_arena`` (in gigabytes) to ``memtx_memory`` (in bytes),
-  * ``slab_alloc_minimal`` to ``memtx_min_tuple_size``,
-  * ``slab_alloc_maximal`` to ``memtx_max_tuple_size``,
-  * ``replication_source`` to ``replication``,
-  * ``snap_dir`` to ``memtx_dir``,
-  * ``logger`` to ``log``,
-  * ``logger_nonblock`` to ``log_nonblock``,
-  * ``snapshot_count`` to ``checkpoint_count``,
-  * ``snapshot_period`` to ``checkpoint_interval``,
-  * ``panic_on_wal_error`` and ``panic_on_snap_error`` united under
+  * ``slab_alloc_arena`` (in gigabytes) will be renamed in 1.7 to ``memtx_memory`` (in bytes),
+  * ``slab_alloc_minimal`` will be renamed in 1.7 to ``memtx_min_tuple_size``,
+  * ``slab_alloc_maximal`` will be renamed in 1.7 to ``memtx_max_tuple_size``,
+  * ``replication_source`` will be renamed in 1.7 to ``replication``,
+  * ``snap_dir`` will be renamed in 1.7 to ``memtx_dir``,
+  * ``logger`` will be renamed in 1.7 to ``log``,
+  * ``logger_nonblock`` will be rename in 1.7 to ``log_nonblock``,
+  * ``snapshot_count`` will be renamed in 1.7 to ``checkpoint_count``,
+  * ``snapshot_period`` will be renamed in 1.7 to ``checkpoint_interval``,
+  * ``panic_on_wal_error`` and ``panic_on_snap_error`` will be united in 1.7 under
     ``force_recovery``.
 
 * Until Tarantool 1.8, you can use :ref:`deprecated parameters <cfg_deprecated>`

@@ -298,7 +298,7 @@ We'll be using functions from Tarantool built-in :ref:`box <box-module>` module:
   storing information about pokémons (we don't create a similar space for players,
   because we intend to only send/receive player information via API calls, so we
   needn't store it);
-* ``box.space.pokemons:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})``
+* ``box.space.pokemons:create_index('primary', {type = 'hash', parts = {1, 'num'}})``
   to create a primary HASH index by pokémon ID;
 * ``box.space.pokemons:create_index('status', {type = 'tree', parts = {2, 'str'}})``
   to create a secondary TREE index by pokémon status.
@@ -318,7 +318,7 @@ The implementation of ``start()`` method looks like this:
        box.once('init', function()
            box.schema.create_space('pokemons')
            box.space.pokemons:create_index(
-               "primary", {type = 'hash', parts = {1, 'unsigned'}}
+               "primary", {type = 'hash', parts = {1, 'num'}}
            )
            box.space.pokemons:create_index(
                "status", {type = "tree", parts = {2, 'str'}}
@@ -494,7 +494,7 @@ The complete implementation of ``start()`` now looks like this:
        box.once('init', function()
           box.schema.create_space('pokemons')
           box.space.pokemons:create_index(
-              "primary", {type = 'hash', parts = {1, 'unsigned'}}
+              "primary", {type = 'hash', parts = {1, 'num'}}
           )
           box.space.pokemons:create_index(
               "status", {type = "tree", parts = {2, 'str'}}
@@ -655,7 +655,7 @@ Pikachu is caught and temporarily inactive:
 .. code-block:: console
 
    $ tarantool game.lua
-   2017-01-09 20:19:24.605 [6282] main/101/game.lua C> version 1.7.3-43-gf5fa1e1
+   2017-01-09 20:19:24.605 [6282] main/101/game.lua C> version 1.6.9-43-gf5fa1e1
    2017-01-09 20:19:24.605 [6282] main/101/game.lua C> log level 5
    2017-01-09 20:19:24.605 [6282] main/101/game.lua I> mapping 1073741824 bytes for tuple arena...
    2017-01-09 20:19:24.609 [6282] main/101/game.lua I> initializing an empty data directory
@@ -765,7 +765,7 @@ file):
 
 Likewise, we put Tarantool server and all our game logic in a second Docker
 container based on the
-`official Tarantool 1.7 image <https://github.com/tarantool/docker>`_ (see
+`official Tarantool 1.6 image <https://github.com/tarantool/docker>`_ (see
 `src/Dockerfile <https://github.com/Sulverus/pokemon/blob/master/src/Dockerfile>`_)
 and set the container's default command to ``tarantool app.lua``.
 This is the backend.
@@ -872,7 +872,7 @@ use non-blocking I/O and are integrated with Tarantool cooperative scheduler.
 For module developers, Tarantool provides an :ref:`API <index-c_api_reference>`.
 
 For our HTTP test, we create a third container based on the
-`official Tarantool 1.7 image <https://github.com/tarantool/docker>`_ (see 
+`official Tarantool 1.6 image <https://github.com/tarantool/docker>`_ (see 
 `client/Dockerfile <https://github.com/Sulverus/pokemon/blob/master/client/Dockerfile>`_)
 and set the container's default command to ``tarantool client.lua``.
 

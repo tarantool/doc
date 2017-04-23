@@ -17,10 +17,10 @@ Use ``box.cfg`` without braces to get read-only access to those parameters.
 
     tarantool> box.cfg
     ---
-    - checkpoint_count: 6
+    - snapshot_count: 6
       too_long_threshold: 0.5
       slab_alloc_factor: 1.1
-      memtx_max_tuple_size: 1048576
+      slab_alloc_maximal: 1048576
       background: false
       <...>
     ...
@@ -51,7 +51,7 @@ The ``box.info`` submodule provides access to information about server instance 
   This value is also shown by the Linux "ps -A" command.
 * **cluster.uuid** UUID of the replica set. Every instance in a replica set will have the same cluster.uuid value.
   This value is also in the :ref:`box.space._schema <box_space-schema>` system space.
-* **vinyl()** Returns runtime statistics for the vinyl storage engine.
+* **sophia()** Returns runtime statistics for the sophia storage engine.
 * **replication.lag** Number of seconds that the replica is behind the master.
 * **replication.status** Usually this is 'follow', but it can be
   'off', 'stopped', 'connecting', 'auth', or 'disconnected'.
@@ -86,7 +86,7 @@ The replication fields are in an array if the instance is a replica for more tha
             ro: false
             uuid: a2684219-b2b1-4334-88ab-50b0722283fd
             id: 1
-          version: 1.7.2-435-g6ba8500
+          version: 1.6.9-435-g6ba8500
           pid: 12932
           status: running
           vclock:
@@ -109,7 +109,7 @@ The replication fields are in an array if the instance is a replica for more tha
         ...
         tarantool> box.info.version
         ---
-        - 1.7.2-435-g6ba8500
+        - 1.6.9-435-g6ba8500
         ...
 
 .. _box_introspection-box_slab:
@@ -134,7 +134,7 @@ is saying that:
   bytes_free values (1160+4193200+4194088 = 8388448).
 
 The ``arena_size`` and ``arena_used`` values are the amount of the % of
-:ref:`memtx_memory <cfg_storage-slab_alloc_arena>` that is already distributed to the
+:ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>` that is already distributed to the
 slab allocator.
 
 **Example:**

@@ -141,34 +141,37 @@ as of the moment when the instance was last shut down. For this it may
 use the latest snapshot file and any WAL files that were written
 after the snapshot. One complicating factor is that Tarantool
 has two engines -- the memtx data must be reconstructed entirely
-from the snapshot and the WAL files, while the vinyl data will
+from the snapshot and the WAL files, while the sophia data will
 be on disk but might require updating around the time of a checkpoint.
-(When a snapshot happens, Tarantool tells the vinyl engine to
+(When a snapshot happens, Tarantool tells the sophia engine to
 make a checkpoint, and the snapshot operation is rolled back if
-anything goes wrong, so vinyl's checkpoint is at least as fresh
+anything goes wrong, so sophia's checkpoint is at least as fresh
 as the snapshot file.)
 
 Step 1
     Read the configuration parameters in the ``box.cfg{}`` request.
     Parameters which affect recovery may include :ref:`work_dir <cfg_basic-work_dir>`,
-    :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`memtx_dir <cfg_basic-memtx_dir>`,
-    :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
-    and :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
+    :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`snap_dir <cfg_basic-snap_dir>`,
+    :ref:`sophia_dir <cfg_basic-sophia_dir>`,
+    and :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error>`.
+    and :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error>`.
 
 Step 2
     Find the latest snapshot file. Use its data to reconstruct the in-memory
-    databases. Instruct the vinyl engine to recover to the latest checkpoint.
+    databases. Instruct the sophia engine to recover to the latest checkpoint.
 
     There are actually two variations of the reconstruction procedure for memtx
     databases, depending on whether the recovery process is "default".
 
-    If the recovery process is default (``force_recovery`` is ``false``),
+    If the recovery process is default (``panic_on_snap_error`` is ``true``
+    and ``panic_on_wal_error`` is ``true``),
     memtx can read data in the snapshot with all indexes disabled.
     First, all tuples are read into memory. Then, primary keys are built in bulk,
     taking advantage of the fact that the data is already sorted by primary key
     within each space.
 
-    If the recovery process is non-default (``force_recovery`` is ``true``),
+    If the recovery process is non-default (``panic_on_snap_error`` is ``false``
+    or ``panic_on_wal_error`` is ``false``),
     Tarantool performs additional checking. Indexes are enabled at
     the start, and tuples are added one by one. This means that any unique-key
     constraint violations will be caught, and any duplicates will be skipped.
@@ -178,7 +181,7 @@ Step 2
 Step 3
     Find the WAL file that was made at the time of, or after, the snapshot file.
     Read its log entries until the log-entry LSN is greater than the LSN of the
-    snapshot, or greater than the LSN of the vinyl checkpoint. This is the
+    snapshot, or greater than the LSN of the sophia checkpoint. This is the
     recovery process's "start position"; it matches the current state of the
     engines.
 
@@ -201,12 +204,12 @@ enabled.
 
 Once again the startup procedure is initiated by the ``box.cfg{}`` request.
 One of the ``box.cfg`` parameters may be
-:ref:`replication <cfg_replication-replication>` that specifies replication
+:ref:`replication_source <cfg_replication-replication_source>` that specifies replication
 source(-s). We will refer to this replica, which is starting up due to ``box.cfg``,
 as the "local" replica to distinguish it from the other replicas in a replica set,
 which we will refer to as "distant" replicas.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
+*If there is no snapshot .snap file and the ``replication_source`` parameter is empty*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
 itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
@@ -216,7 +219,7 @@ replica UUID and the replica set UUID. Therefore, when the local replica restart
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*If there is no snapshot .snap file and the ``replication_source`` parameter is not empty
 and the ``_cluster`` space contains no other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, but is not yet part
 of a replica set. It must now join the replica set. It will send its replica UUID to the
@@ -234,7 +237,7 @@ request, it will send back:
     receive this and update its own copy of the data, and add the local replica's
     UUID to its ``_cluster`` space.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*If there is no snapshot .snap file and the ``replication_source`` parameter is not empty
 and the ``_cluster`` space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant
@@ -268,9 +271,9 @@ greater than (lsn of the vector clock in the subscribe request). After all the
 other replicas of the replica set have responded to the local replica's subscribe
 request, the replica startup is complete.
 
-The following temporary limitations apply for version 1.7:
+The following temporary limitations will apply for version 1.6:
 
-* The URIs in the ``replication`` parameter should all be in the same order on all replicas.
+* The URIs in the ``replication_source`` parameter should all be in the same order on all replicas.
   This is not mandatory but is an aid to consistency.
 * The replicas of a replica set should be started up at slightly different times.
   This is not mandatory but prevents a situation where each replica is waiting

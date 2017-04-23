@@ -1,3 +1,4 @@
+
 .. _box_space:
 
 -------------------------------------------------------------------------------
@@ -8,7 +9,7 @@ The ``box.space`` submodule has the data-manipulation functions ``select``,
 ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``.
 It also has members, such as id, and whether or not a space is enabled. Submodule
 source code is available in file
-`src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_.
+`src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.6/src/box/lua/schema.lua>`_.
 
 A list of all ``box.space`` functions follows, then comes a list of all
 ``box.space`` members.
@@ -26,14 +27,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:auto_increment()  | Generate key + Insert a tuple   |
         | <box_space-auto_increment>`          |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`space_object:bsize()           | Get count of bytes              |
-        | <box_space-bsize>`                   |                                 |
-        +--------------------------------------+---------------------------------+
         | :ref:`space_object:count()           | Get count of tuples             |
         | <box_space-count>`                   |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:create_index()    | Create an index                 |
         | <box_space-create_index>`            |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:dec()             | Decrement a tuple's counter     |
+        | <box_space-dec>`                     |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:delete()          | Delete a tuple                  |
         | <box_space-delete>`                  |                                 |
@@ -43,6 +44,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:get()             | Select a tuple                  |
         | <box_space-get>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`space_object:inc()             | Increment a tuple's counter     |
+        | <box_space-inc>`                     |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`space_object:insert()          | Insert a tuple                  |
         | <box_space-insert>`                  |                                 |
@@ -123,9 +127,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. method:: auto_increment(tuple)
 
         Insert a new tuple using an auto-increment primary key. The space
-        specified by space_object must have an ``unsigned`` or ``integer`` or
-        ``numeric`` primary key index of type ``TREE``. The primary-key field
+        specified by space_object must have a ``num``
+        primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
+        Note re storage engine: sophia does not support auto_increment.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
@@ -152,29 +157,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             ---
             - [2, 'Fld#3']
             ...
-
-    .. _box_space-bsize:
-
-    .. method:: bsize()
-
-        :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-
-        :return: Number of bytes in the space.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.tester:bsize()
-            ---
-            - 22
-            ...
-
-        Note re storage engine:
-        vinyl does not support ``bsize()``.
-
-
 
     .. _box_space-count:
 
@@ -238,10 +220,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | if_not_exists | no error if        | boolean                     | ``false``           |
             |               | duplicate name     |                             |                     |
             +---------------+--------------------+-----------------------------+---------------------+
-            | parts         | field-numbers  +   | {field_no, 'unsigned' or    | ``{1, 'unsigned'}`` |
-            |               | types              | 'string' or 'integer' or    |                     |
-            |               |                    | 'number' or 'array' or      |                     |
-            |               |                    | 'scalar'}                   |                     |
+            | parts         | field-numbers  +   | {field_no, 'NUM' or         | ``{1, 'NUM'}``      |
+            |               | types              | 'STR' or 'ARRAY')           |                     |
             +---------------+--------------------+-----------------------------+---------------------+
             | dimension     | affects RTREE only | number                      | 2                   |
             +---------------+--------------------+-----------------------------+---------------------+
@@ -251,12 +231,17 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
 
+        Note re storage engine: sophia supports only the TREE index type,
+        and supports only one index per space,
+        and supports only the unique = true option,
+        and requires that field numbers be in order starting with 1.
+
         .. code-block:: tarantoolsession
 
             tarantool> s = box.space.space55
             ---
             ...
-            tarantool> s:create_index('primary', {unique = true, parts = {1, 'unsigned', 2, 'string'}})
+            tarantool> s:create_index('primary', {unique = true, parts = {1, 'NUM', 2, 'STR'}})
             ---
             ...
 
@@ -264,33 +249,20 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     Details about index field types:
 
-    The six index field types (unsigned | string | integer | number |
-    array | scalar) differ depending on what values are allowed, and
+    The three index field types (NUM | STR | ARRAY)
+    differ depending on what values are allowed, and
     what index types are allowed.
 
-    * **unsigned**: unsigned integers between 0 and 18446744073709551615,
-      about 18 quintillion. May also be called 'uint' or 'num', but 'num'
-      is deprecated. Legal in memtx TREE or HASH indexes, and in vinyl TREE
+    * **NUM**: unsigned integers between 0 and 18446744073709551615,
+      about 18 quintillion. The name will be changed to 'unsigned'
+      in Tarantool version 1.7. Legal in memtx TREE or HASH indexes, and in sophia TREE
       indexes.
-    * **string**: any set of octets, up to the :ref:`maximum length
-      <limitations_bytes_in_index_key>`. May also be called 'str'. Legal in
-      memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes.
-    * **integer**: integers between -9223372036854775808 and 18446744073709551615.
-      May also be called 'int'. Legal in memtx TREE or HASH indexes, and in
-      vinyl TREE indexes.
-    * **number**: integers between -9223372036854775808 and 18446744073709551615,
-      single-precision floating point numbers, or double-precision floating
-      point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
-      indexes.
-    * **array**: array of integers between -9223372036854775808 and
+    * **STR**: any set of octets, up to the :ref:`maximum length
+      <limitations_bytes_in_index_key>`. The name will be changed to
+      'string' in Tarantool version 1.7. Legal in
+      memtx TREE or HASH or BITSET indexes, and in sophia TREE indexes.
+    * **ARRAY**: array of integers between -9223372036854775808 and
       9223372036854775807. Legal in memtx RTREE indexes.
-    * **scalar**: null (input with msgpack.NULL or yaml.NULL or json.NULL),
-      booleans (true or false), or integers between
-      -9223372036854775808 and 18446744073709551615, or single-precision
-      floating point numbers, or double-precison floating-point numbers, or
-      strings. When there is a mix of types, the key order is: null,
-      then booleans, then numbers, then strings. Legal in memtx TREE or
-      HASH indexes, and in vinyl TREE indexes.
 
     .. container:: table stackcolumn
 
@@ -305,43 +277,64 @@ A list of all ``box.space`` functions follows, then comes a list of all
         +------------------+---------------------------+---------------------------------------+-------------------+
         | Index field type | What can be in it         | Where is it legal                     | Examples          |
         +------------------+---------------------------+---------------------------------------+-------------------+
-        | **unsigned**     | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
+        | **NUM**          | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
         |                  | 18446744073709551615      | indexes, |br|                         |                   |
-        |                  |                           | vinyl TREE indexes                    |                   |
+        |                  |                           | sophia TREE indexes                   |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
-        |  **string**      | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
-        |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'  |
+        |  **STR**         | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
+        |                  | octets                    | sophia TREE indexes                   | '\\65 \\66 \\67'  |
         +------------------+---------------------------+---------------------------------------+-------------------+
-        |  **integer**     | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
-        |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                   |
-        |                  | 18446744073709551615      |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **number**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
-        |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|          |
-        |                  | 18446744073709551615,     |                                       | 1.447e+44         |
-        |                  | single-precision          |                                       |                   |
-        |                  | floating point numbers,   |                                       |                   |
-        |                  | double-precision          |                                       |                   |
-        |                  | floating point numbers    |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
+        | **ARRAY**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
         |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
         |                  | 9223372036854775807       |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
-        | **scalar**       | null,                     | memtx TREE or HASH indexes, |br|      | null |br|         |
-        |                  | booleans (true or false), | vinyl TREE indexes                    | true |br|         |
-        |                  | integers between          |                                       | -1 |br|           |
-        |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
-        |                  | 18446744073709551615,     |                                       | '' |br|           |
-        |                  | single-precision floating |                                       | 'ру'              |
-        |                  | point numbers,            |                                       |                   |
-        |                  | double-precision floating |                                       |                   |
-        |                  | point numbers, strings    |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
 
-        Note re storage engine: vinyl supports only the TREE index type, and vinyl secondary
+        Note re storage engine: sophia supports only the TREE index type, and sophia secondary
         indexes must be created before tuples are inserted.
 
+    .. _box_space-dec:
+
+    .. method:: dec{field-value [, field-value ...]}
+
+        Decrements a counter in a tuple whose primary key matches the
+        ``field-value(s)``. The field following the primary-key fields
+        will be the counter. If there is no tuple matching the
+        ``field-value(s)``, a new one is not inserted. If the counter value drops
+        to zero, the tuple is deleted.
+
+        Parameters: :samp:`{space_object}` = an object reference;
+        :codeitalic:`field-value(s)` (type = Lua table or scalar) = values which must match the primary key.
+
+        :return: the new counter value
+        :rtype:  number
+
+        **Complexity factors:** Index size, Index type, WAL settings.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> s = box.schema.space.create('space19')
+            ---
+            ...
+            tarantool> s:create_index('primary', {
+                     >   unique = true,
+                     >   parts = {1, 'NUM', 2, 'STR'}
+                     > })
+            ---
+            ...
+            tarantool> box.space.space19:insert{1, 'a', 1000}
+            ---
+            - [1, 'a', 1000]
+            ...
+            tarantool> box.space.space19:dec{1, 'a'}
+            ---
+            - 999
+            ...
+            tarantool> box.space.space19:dec{1, 'a'}
+            ---
+            - 998
+            ...
 
     .. _box_space-delete:
 
@@ -362,7 +355,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         .. NOTE::
 
             | Note re storage engine:
-            | vinyl will return ``nil``, rather than the deleted tuple.
+            | sophia will return ``nil``, rather than the deleted tuple.
 
         **Example:**
 
@@ -378,7 +371,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> box.space.tester:delete('a')
             ---
             - error: 'Supplied key type of part 0 does not match index part type:
-              expected unsigned'
+              expected num'
             ...
 
     .. _box_space-drop:
@@ -434,6 +427,46 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             box.space.tester:get{1}
 
+    .. _box_space-inc:
+
+    .. method:: inc{field-value [, field-value ...]}
+
+        Increments a counter in a tuple whose primary key matches the
+        field-value(s). The field following the primary-key fields
+        will be the counter. If there is no tuple matching the
+        ``field-value(s)``, a new one is inserted with initial counter
+        value set to ``1``.
+
+
+        Parameters: :samp:`{space_object}` = an object reference;
+        :codeitalic:`field-value(s)` (type = Lua table or scalar) = values which must match the primary key.
+
+        :return: the new counter value
+        :rtype:  number
+
+        **Complexity Factors:** Index size, Index type, WAL settings.
+
+        **Example:**
+
+        .. code-block:: tarantoolsession
+
+            tarantool> s = box.schema.space.create('forty_second_space')
+            ---
+            ...
+            tarantool> s:create_index('primary', {
+                     >   unique = true,
+                     >   parts = {1, 'NUM', 2, 'STR'}
+                     > })
+            ---
+            ...
+            tarantool> box.space.forty_second_space:inc{1, 'a'}
+            ---
+            - 1
+            ...
+            tarantool> box.space.forty_second_space:inc{1, 'a'}
+            ---
+            - 2
+            ...
 
     .. _box_space-insert:
 
@@ -450,6 +483,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Possible errors:** If a tuple with the same unique-key value already
         exists, returns :errcode:`ER_TUPLE_FOUND`.
+
+        Note re storage engine: sophia will return nil, rather than the inserted tuple.
 
         **Example:**
 
@@ -478,7 +513,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 2
             ...
 
-        Note re storage engine: vinyl does not support ``len()``.
+        Note re storage engine: sophia does not support ``len()``.
         One possible workaround is to say ``#select(...)``.
 
 
@@ -534,7 +569,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         .. code-block:: tarantoolsession
 
             tarantool> s = box.schema.space.create('space53')
-            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
+            tarantool> s:create_index('primary', {parts = {1, 'NUM'}})
             tarantool> function replace_trigger()
                      >   replace_counter = replace_counter + 1
                      > end
@@ -579,7 +614,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> s = box.schema.space.create('space33')
             ---
             ...
-            tarantool> -- index 'X' has default parts {1, 'unsigned'}
+            tarantool> -- index 'X' has default parts {1, 'NUM'}
             tarantool> s:create_index('X', {})
             ---
             ...
@@ -651,6 +686,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
         **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
 
+        Note re storage engine: sophia will return nil, rather than the inserted tuple.
+
         **Example:**
 
         .. code-block:: lua
@@ -713,7 +750,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             tarantool> s = box.schema.space.create('tmp', {temporary=true})
             ---
             ...
-            tarantool> s:create_index('primary',{parts = {1,'unsigned', 2, 'string'}})
+            tarantool> s:create_index('primary',{parts = {1,'NUM', 2, 'STR'}})
             ---
             ...
             tarantool> s:insert{1,'A'}
@@ -1125,20 +1162,20 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
        tarantool> box.space._index:select{}
        ---
-       - - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'string']]]
-         - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
-         - [280, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
-         - [280, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
-         - [281, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
-         - [281, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
-         - [281, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
-         - [288, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
-         - [288, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
-         - [289, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]
-         - [289, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]
-         - [296, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]
-         - [296, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]
-         - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
+       - - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'str']]]
+         - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'num']]]
+         - [280, 1, 'owner', 'tree', {'unique': false}, [[1, 'num']]]
+         - [280, 2, 'name', 'tree', {'unique': true}, [[2, 'str']]]
+         - [281, 0, 'primary', 'tree', {'unique': true}, [[0, 'num']]]
+         - [281, 1, 'owner', 'tree', {'unique': false}, [[1, 'num']]]
+         - [281, 2, 'name', 'tree', {'unique': true}, [[2, 'str']]]
+         - [288, 0, 'primary', 'tree', {'unique': true}, [[0, 'num'], [1, 'num']]]
+         - [288, 2, 'name', 'tree', {'unique': true}, [[0, 'num'], [2, 'str']]]
+         - [289, 0, 'primary', 'tree', {'unique': true}, [[0, 'num'], [1, 'num']]]
+         - [289, 2, 'name', 'tree', {'unique': true}, [[0, 'num'], [2, 'str']]]
+         - [296, 0, 'primary', 'tree', {'unique': true}, [[0, 'num']]]
+         - [296, 1, 'owner', 'tree', {'unique': false}, [[1, 'num']]]
+         - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'str']]]
        ---
        ...
 
@@ -1270,7 +1307,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
           - '313 1 _vpriv sysview 0  '
           - '320 1 _cluster memtx 0  '
           - '512 1 tester memtx 0  '
-          - '513 1 origin vinyl 0  '
+          - '513 1 origin sophia 0  '
           - '514 1 archive memtx 0  '
         ...
 
@@ -1288,7 +1325,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
                  >   id = 12345,
                  >   format = {
                  >     [1] = {["name"] = "field_1"},
-                 >     [2] = {["type"] = "unsigned"}
+                 >     [2] = {["type"] = "num"}
                  >   }
                  > })
         ---
@@ -1304,7 +1341,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ...
         tarantool> box.space._space:select(12345)
         ---
-        - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
+        - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'num'}]]
         ...
 
 .. _box_space-user:

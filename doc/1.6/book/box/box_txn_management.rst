@@ -22,7 +22,7 @@ Observe the following rules when working with transactions:
     :class: FACT
 
     All database operations in a transaction should use the same storage engine.
-    It is not safe to access tuple sets that are defined with ``{engine='vinyl'}``
+    It is not safe to access tuple sets that are defined with ``{engine='sophia'}``
     and also access tuple sets that are defined with ``{engine='memtx'}``,
     in the same transaction.
 

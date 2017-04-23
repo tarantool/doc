@@ -33,7 +33,7 @@ the tarantool module is recommended.
           -fno-gnu89-inline'
         compiler: /usr/bin/x86_64-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-g++
       uptime: 'function: 0x408668e0'
-      version: 1.7.0-66-g9093daa
+      version: 1.6.9-66-g9093daa
       pid: 'function: 0x40866900'
     ...
     tarantool> tarantool.pid()

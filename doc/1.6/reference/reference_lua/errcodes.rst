@@ -11,7 +11,7 @@ All such messages, however, are logged in the error log. Below are general
 descriptions of some popular codes. A complete list of errors can be found in file
 `errcode.h`_ in the source tree.
 
-.. _errcode.h: https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h
+.. _errcode.h: https://github.com/tarantool/tarantool/blob/1.6/src/box/errcode.h
 
 .. container:: table
 
@@ -28,7 +28,7 @@ descriptions of some popular codes. A complete list of errors can be found in fi
     |                   | message.                                               |
     +-------------------+--------------------------------------------------------+
     | ER_MEMORY_ISSUE   | Out of memory:                                         |
-    |                   | :ref:`memtx_memory <cfg_storage-slab_alloc_arena>`     |
+    |                   | :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>` |
     |                   | limit has been reached.                                |
     +-------------------+--------------------------------------------------------+
     | ER_WAL_IO         | Failed to write to disk. May mean: failed              |
@@ -99,6 +99,6 @@ errors, particularly database errors.
    Put messages in a log using the :ref:`log module <log-module>`.
 
    And filter messages that are automatically generated, with the
-   :ref:`log <cfg_logging-log>` configuration parameter.
+   :ref:`log <cfg_logging-logger>` configuration parameter.
 
 

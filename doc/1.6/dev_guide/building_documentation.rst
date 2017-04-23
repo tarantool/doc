@@ -29,7 +29,7 @@ See more details about installation in the :ref:`build-from-source <building_fro
 section of this documentation.
 
 1. Use ``git`` to download the latest source code of this documentation from the
-   GitHub repository ``tarantool/doc``, branch 1.7. For example, to download to a local
+   GitHub repository ``tarantool/doc``, branch 1.6. For example, to download to a local
    directory named ``~/tarantool-doc``:
 
    .. code-block:: bash

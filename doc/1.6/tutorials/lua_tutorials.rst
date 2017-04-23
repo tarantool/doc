@@ -577,7 +577,7 @@ defined the same way as the sandbox database in our
     -- if tester is left over from some previous test, destroy it
     box.space.tester:drop()
     box.schema.space.create('tester')
-    box.space.tester:create_index('primary', {parts = {1, 'unsigned'}})
+    box.space.tester:create_index('primary', {parts = {1, 'num'}})
 
 then add some tuples where the first field is a number and the second
 field is a string.
@@ -648,8 +648,7 @@ explanations that follow the code.
        if (box.space[space_name].index[i] == nil) then break end
        if (box.space[space_name].index[i].type == "TREE"
            and box.space[space_name].index[i].parts[1].fieldno == field_no
-           and (box.space[space_name].index[i].parts[1].type == "scalar"
-           or box.space[space_name].index[i].parts[1].type == "string")) then
+           and box.space[space_name].index[i].parts[1].type == "str") then
          index_no = i
          break
        end
@@ -734,7 +733,7 @@ The requirements are: |br|
 will not return strings in order by string value; |br|
 (b) field_no must be the first index part; |br|
 (c) the field must contain strings, because for other data types
-(such as "unsigned") pattern searches are not possible; |br|
+(such as "num") pattern searches are not possible; |br|
 If these requirements are not met by any index, then
 print an error message and return nil.
 
@@ -827,7 +826,7 @@ and try the following:
     box.space.t:drop()
     box.schema.space.create('t')
     box.space.t:create_index('primary',{})
-    box.space.t:create_index('secondary',{unique=false,parts={2,'string',3,'string'}})
+    box.space.t:create_index('secondary',{unique=false,parts={2,'str',3,'str'}})
     box.space.t:insert{1,'A','a'}
     box.space.t:insert{2,'AB',''}
     box.space.t:insert{3,'ABC','a'}

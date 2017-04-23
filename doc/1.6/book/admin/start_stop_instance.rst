@@ -114,7 +114,7 @@ First, we create a sandbox directory on the user's path:
        pid_file  = "/home/user/tarantool_test/my_app.pid",
        wal_dir   = "/home/user/tarantool_test",
        snap_dir  = "/home/user/tarantool_test",
-       vinyl_dir = "/home/user/tarantool_test",
+       sophia_dir = "/home/user/tarantool_test",
        log       = "/home/user/tarantool_test/log",
    }
    instance_dir = "/home/user/tarantool_test"
@@ -152,14 +152,14 @@ Let’s verify our instance file by starting it without ``tarantoolctl`` first:
 
    $ cd ~/tarantool_test
    $ tarantool my_app.lua
-   2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version 1.7.3-489-gd86e36d5b
+   2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version 1.6.9-489-gd86e36d5b
    2017-04-06 10:42:15.763 [54085] main/101/my_app.lua C> log level 5
    2017-04-06 10:42:15.764 [54085] main/101/my_app.lua I> mapping 268435456 bytes for tuple arena...
    2017-04-06 10:42:15.774 [54085] iproto/101/main I> binary: bound to [::]:3301
    2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an empty data directory
    2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
    2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done
-   2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> vinyl checkpoint done
+   2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> sophia checkpoint done
    2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept requests
    insert 1
    insert 2

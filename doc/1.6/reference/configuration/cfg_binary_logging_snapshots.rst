@@ -1,12 +1,24 @@
-* :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`,
+* :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error>`,
+* :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error>`,
 * :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`,
 * :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`,
 * :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`,
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
 
-.. _cfg_binary_logging_snapshots-force_recovery:
+.. _cfg_binary_logging_snapshots-panic_on_snap_error:
 
-.. confval:: force_recovery
+.. confval:: panic_on_snap_error
+
+    If there is an error while reading the snapshot file
+    (at server start), abort.
+
+    Type: boolean |br|
+    Default: true |br|
+    Dynamic: no |br|
+
+.. _cfg_binary_logging_snapshots-panic_on_wal_error:
+
+.. confval:: panic_on_wal_error
 
     If there is an error while reading a snapshot file
     (at server instance start) or a write-ahead log file
@@ -37,7 +49,7 @@
     INSERT/UPDATE/DELETE performance by setting a limit on how many
     megabytes per second it can write to disk. The same can be
     achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and
-    :ref:`memtx_dir <cfg_basic-memtx_dir>`
+    :ref:`snap_dir <cfg_basic-snap_dir>`
     locations and moving snapshots to a separate disk.
 
     | Type: float

@@ -20,6 +20,6 @@
     ---
     - [3, 'Another']
     ...
-    <...> [11243] main/105/applier/localhost:3301 I> connected to 1.7.0 at 127.0.0.1:3301
+    <...> [11243] main/105/applier/localhost:3301 I> connected to 1.6.9 at 127.0.0.1:3301
     <...> [11243] main/105/applier/localhost:3301 I> authenticated
 

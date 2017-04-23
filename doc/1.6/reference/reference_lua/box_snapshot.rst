@@ -7,7 +7,7 @@
 .. function:: box.snapshot()
 
     Take a snapshot of all data and store it in
-    :ref:`memtx_dir <cfg_basic-memtx_dir>`:samp:`/{<latest-lsn>}.snap`.
+    :ref:`snap_dir <cfg_basic-snap_dir>`:samp:`/{<latest-lsn>}.snap`.
     To take a snapshot, Tarantool first enters the delayed garbage collection
     mode for all data. In this mode, tuples which were allocated before the
     snapshot has started are not freed until the snapshot has finished. To
@@ -27,7 +27,7 @@
        As long as there are any changes to the parent index memory through
        concurrent updates, there are going to be page splits, and therefore you
        need to have some extra free memory to run this command. 10% of
-       :ref:`memtx_memory <cfg_storage-slab_alloc_arena>` is, on average, sufficient.
+       :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>` is, on average, sufficient.
        This statement waits until a snapshot is taken and returns operation result.
 
     .. NOTE::
@@ -47,7 +47,7 @@
 
         tarantool> box.info.version
         ---
-        - 1.7.0-1216-g73f7154
+        - 1.6.9-1216-g73f7154
         ...
         tarantool> box.snapshot()
         ---

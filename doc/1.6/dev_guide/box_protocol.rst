@@ -81,7 +81,7 @@ http://msgpack.org
 
 The Tarantool protocol mandates use of a few integer constants serving as keys in
 maps used in the protocol. These constants are defined in `src/box/iproto_constants.h
-<https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_
+<https://github.com/tarantool/tarantool/blob/1.6/src/box/iproto_constants.h>`_
 
 We list them here too:
 
@@ -482,7 +482,7 @@ expects as value a msgpack string.
 
 Convenience macros which define hexadecimal constants for return codes
 can be found in `src/box/errcode.h
-<https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_
+<https://github.com/tarantool/tarantool/blob/1.6/src/box/errcode.h>`_
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication packet structure

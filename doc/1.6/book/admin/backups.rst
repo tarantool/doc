@@ -24,7 +24,7 @@ that are made after the last snapshot are incremental backups. Therefore taking
 a backup is a matter of copying the snapshot and WAL files.
 
 1. Use ``tar`` to make a (possibly compressed) copy of the latest .snap and .xlog
-   files on the :ref:`memtx_dir <cfg_basic-memtx_dir>` and
+   files on the :ref:`snap_dir <cfg_basic-snap_dir>` and
    :ref:`wal_dir <cfg_basic-wal_dir>` directories.
 
 2. If there is a security policy, encrypt the .tar file.
@@ -32,29 +32,29 @@ a backup is a matter of copying the snapshot and WAL files.
 3. Copy the .tar file to a safe place.
 
 Later, restoring the database is a matter of taking the .tar file and putting
-its contents back in the memtx_dir and wal_dir directories.
+its contents back in the snap_dir and wal_dir directories.
 
-.. _admin-backups-hot_backup_vinyl_memtx:
+.. _admin-backups-hot_backup_sophia_memtx:
 
 --------------------------------------------------------------------------------
-Hot backup (vinyl/memtx)
+Hot backup (sophia/memtx)
 --------------------------------------------------------------------------------
 
-Vinyl files are stored in :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, and there is a
-subdirectory for each database space. Dump and compaction processes are append-only and
+Sophia stores its files in :ref:`sophia_dir <cfg_basic-sophia_dir>`, and creates a
+folder for each database space. Dump and compaction processes are append-only and
 create new files. Old files are garbage collected after each checkpoint.
 
-To take a backup, especially a backup that might contain both vinyl and memtx files:
+To take a mixed backup:
 
-1. Issue ``box.backup.begin()``. This will suspend
-   garbage collection till the next ``box.backup.stop()`` and will return a list
+1. Issue ``box.backup.begin()`` on the administrative console. This will suspend
+   garbage collection till the next ``box.backup.end()`` and will return a list
    of files to backup. 
 
 2. Copy the files from the list to a safe location. This will include memtx
-   snapshot files, vinyl run and index files, at a state consistent with the
+   snapshot files, sophia run and index files, at a state consistent with the
    last checkpoint.
 
-3. Resume garbage collection with ``box.backup.stop()``.
+3. Resume garbage collection with ``box.backup.end()``.
 
 .. _admin-backups-cont_remote_backup_memtx:
 

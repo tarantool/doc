@@ -32,7 +32,7 @@ Your actions:
    the load be handled by the replica (effective master).
 
 3. Set up a replacement for the crashed master on a spare host, with
-   :ref:`replication <cfg_replication-replication>` parameter set to replica
+   :ref:`replication_source <cfg_replication-replication_source>` parameter set to replica
    (effective master), so it begins to catch up with the new master’s state.
    The new instance should have :ref:`box.cfg.read_only <cfg_basic-read_only>`
    parameter set to *true*.
