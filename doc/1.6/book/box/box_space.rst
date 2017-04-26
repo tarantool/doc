@@ -130,7 +130,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         specified by space_object must have a ``num``
         primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
-        Note re storage engine: sophia does not support auto_increment.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
@@ -231,11 +230,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
 
-        Note re storage engine: sophia supports only the TREE index type,
-        and supports only one index per space,
-        and supports only the unique = true option,
-        and requires that field numbers be in order starting with 1.
-
         .. code-block:: tarantoolsession
 
             tarantool> s = box.space.space55
@@ -255,12 +249,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     * **NUM**: unsigned integers between 0 and 18446744073709551615,
       about 18 quintillion. The name will be changed to 'unsigned'
-      in Tarantool version 1.7. Legal in memtx TREE or HASH indexes, and in sophia TREE
-      indexes.
+      in Tarantool version 1.7. Legal in memtx TREE or HASH indexes.
     * **STR**: any set of octets, up to the :ref:`maximum length
       <limitations_bytes_in_index_key>`. The name will be changed to
       'string' in Tarantool version 1.7. Legal in
-      memtx TREE or HASH or BITSET indexes, and in sophia TREE indexes.
+      memtx TREE or HASH or BITSET indexes.
     * **ARRAY**: array of integers between -9223372036854775808 and
       9223372036854775807. Legal in memtx RTREE indexes.
 
@@ -279,18 +272,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
         +------------------+---------------------------+---------------------------------------+-------------------+
         | **NUM**          | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
         |                  | 18446744073709551615      | indexes, |br|                         |                   |
-        |                  |                           | sophia TREE indexes                   |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
         |  **STR**         | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
-        |                  | octets                    | sophia TREE indexes                   | '\\65 \\66 \\67'  |
+        |                  | octets                    |                                       | '\\65 \\66 \\67'  |
         +------------------+---------------------------+---------------------------------------+-------------------+
         | **ARRAY**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
         |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
         |                  | 9223372036854775807       |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
-
-        Note re storage engine: sophia supports only the TREE index type, and sophia secondary
-        indexes must be created before tuples are inserted.
 
     .. _box_space-dec:
 
@@ -351,11 +340,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :rtype:  tuple
 
         **Complexity factors:** Index size, Index type
-
-        .. NOTE::
-
-            | Note re storage engine:
-            | sophia will return ``nil``, rather than the deleted tuple.
 
         **Example:**
 
@@ -484,8 +468,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         **Possible errors:** If a tuple with the same unique-key value already
         exists, returns :errcode:`ER_TUPLE_FOUND`.
 
-        Note re storage engine: sophia will return nil, rather than the inserted tuple.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -512,10 +494,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
             ---
             - 2
             ...
-
-        Note re storage engine: sophia does not support ``len()``.
-        One possible workaround is to say ``#select(...)``.
-
 
     .. _box_space-on_replace:
 
@@ -685,8 +663,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
-
-        Note re storage engine: sophia will return nil, rather than the inserted tuple.
 
         **Example:**
 
@@ -1307,7 +1283,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
           - '313 1 _vpriv sysview 0  '
           - '320 1 _cluster memtx 0  '
           - '512 1 tester memtx 0  '
-          - '513 1 origin sophia 0  '
           - '514 1 archive memtx 0  '
         ...
 

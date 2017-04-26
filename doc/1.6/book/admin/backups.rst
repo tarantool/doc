@@ -37,21 +37,17 @@ its contents back in the snap_dir and wal_dir directories.
 .. _admin-backups-hot_backup_sophia_memtx:
 
 --------------------------------------------------------------------------------
-Hot backup (sophia/memtx)
+Hot backup (general idea)
 --------------------------------------------------------------------------------
 
-Sophia stores its files in :ref:`sophia_dir <cfg_basic-sophia_dir>`, and creates a
-folder for each database space. Dump and compaction processes are append-only and
-create new files. Old files are garbage collected after each checkpoint.
-
-To take a mixed backup:
+To take a backup, in general terms:
 
 1. Issue ``box.backup.begin()`` on the administrative console. This will suspend
    garbage collection till the next ``box.backup.end()`` and will return a list
    of files to backup. 
 
 2. Copy the files from the list to a safe location. This will include memtx
-   snapshot files, sophia run and index files, at a state consistent with the
+   snapshot files, at a state consistent with the
    last checkpoint.
 
 3. Resume garbage collection with ``box.backup.end()``.

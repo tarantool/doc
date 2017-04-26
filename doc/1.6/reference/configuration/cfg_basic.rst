@@ -4,7 +4,6 @@
 * :ref:`pid_file <cfg_basic-pid_file>`
 * :ref:`read_only <cfg_basic-read_only>`
 * :ref:`snap_dir <cfg_basic-snap_dir>`
-* :ref:`sophia_dir <cfg_basic-sophia_dir>`
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
@@ -20,6 +19,14 @@
     | Type: boolean
     | Default: false
     | Dynamic: no
+
+.. confval:: coredump
+
+    Deprecated. Do not use.
+
+    Type: boolean |br|
+    Default: false |br|
+    Dynamic: no |br|
 
 .. _cfg_basic-custom_proc_title:
 
@@ -100,19 +107,6 @@
     A directory where memtx stores snapshot (.snap) files. Can be relative to
     :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to
     ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`.
-
-    | Type: string
-    | Default: "."
-    | Dynamic: no
-
-
-.. _cfg_basic-sophia_dir:
-
-.. confval:: sophia_dir
-
-    A directory where sophia files or subdirectories will be stored. Can be
-    relative to :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults
-    to ``work_dir``.
 
     | Type: string
     | Default: "."

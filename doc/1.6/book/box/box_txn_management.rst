@@ -22,9 +22,8 @@ Observe the following rules when working with transactions:
     :class: FACT
 
     All database operations in a transaction should use the same storage engine.
-    It is not safe to access tuple sets that are defined with ``{engine='sophia'}``
-    and also access tuple sets that are defined with ``{engine='memtx'}``,
-    in the same transaction.
+    As of Tarantool 1.6.9 February 2017 this does not matter because the only engine is memtx.
+    However, in future there will be more storage engines.
 
 .. _box-begin:
  

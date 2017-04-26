@@ -40,7 +40,7 @@ necessary to prioritize requests or to use different authentication ids.
     can be replaced by :samp:`conn = {net_box}.self`. However, there is an important
     difference between the embedded connection and a remote one. With the
     embedded connection, requests which do not modify data do not yield.
-    When using a remote connection, due to :ref:`the implicit rules <atomic-the_implicit_yield_rules>`
+    When using a remote connection, due to :ref:`the implicit yield rules <atomic-implicit-yields>`
     any request can yield, and database
     state may have changed by the time it regains control.
 
@@ -121,7 +121,7 @@ necessary to prioritize requests or to use different authentication ids.
 
         .. NOTE::
 
-            due to :ref:`the implicit yield rules <atomic-the_implicit_yield_rules>`
+            due to :ref:`the implicit yield rules <atomic-implicit-yields>`
             a local :samp:`box.space.{space-name}:select`:code:`{...}` does
             not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
             call does yield, so global variables or database tuples data may

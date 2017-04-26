@@ -26,7 +26,7 @@ Each space has a unique **name** specified by the user.
 Besides, each space has a unique **numeric identifier** which can be specified by
 the user, but usually is assigned automatically by Tarantool.
 Finally, a space always has an **engine**: *memtx* (default) -- in-memory engine,
-fast but limited in size, or *sophia* -- on-disk engine for huge data sets.
+fast but limited in size.
 
 A space is a container for :ref:`tuples <index-box_tuple>`.
 To be functional, it needs to have a :ref:`primary index <index-box_index>`.
@@ -147,28 +147,30 @@ Lua vs MsgPack
     .. rst-class:: left-align-column-3
     .. rst-class:: left-align-column-4
 
-+--------------+-------------+----------------------------+------------------------+
-|  General type|Specific type|What Lua type()|would return|Example                 |
-+==============+=============+============================+========================+
-|   scalar     |  number     |   "`number`_"              |      12345             |
-+--------------+-------------+----------------------------+------------------------+
-|   scalar     |  string     |   "`string`_"              |       'A B C'          |
-+--------------+-------------+----------------------------+------------------------+
-|   scalar     |  boolean    |   "`boolean`_"             |       true             |
-+--------------+-------------+----------------------------+------------------------+
-|   scalar     |  nil        |   "`nil`_"                 |       nil              |
-+--------------+-------------+----------------------------+------------------------+
-|   compound   |  Lua table  |   "`table`_"               |       table: 0x410f8b10|
-+--------------+-------------+----------------------------+------------------------+
-|   compound   |  tuple      |   "`Userdata`_"            |       12345: {'A B C'} |
-+--------------+-------------+----------------------------+------------------------+
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | Scalar / compound | MsgPack |nbsp| type  | Lua type                       | Example value              |
+    +===================+======================+================================+============================+
+    | scalar            | nil                  | "`nil`_"                       | msgpack.NULL               |
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | scalar            | boolean              | "`boolean`_"                   | true                       |
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | scalar            | string               | "`string`_"                    | 'A B C'                    |
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | scalar            | number               | "`number`_"                    | 12345                      |
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | compound          | map                  | "`table`_" (with string keys)  | table: 0x410f8b10          |
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | compound          | array                | "`table`_" (with integer keys) | [1, 2, 3, 4, 5]            |
+    +-------------------+----------------------+--------------------------------+----------------------------+
+    | compound          | array                | tuple ("`cdata`_")             | [12345, 'A B C']           |
+    +-------------------+----------------------+--------------------------------+----------------------------+
 
-.. _number: http://www.lua.org/pil/2.3.html
-.. _string: http://www.lua.org/pil/2.4.html
-.. _boolean: http://www.lua.org/pil/2.2.html
 .. _nil: http://www.lua.org/pil/2.1.html
+.. _boolean: http://www.lua.org/pil/2.2.html
+.. _string: http://www.lua.org/pil/2.4.html
+.. _number: http://www.lua.org/pil/2.3.html
 .. _table: http://www.lua.org/pil/2.5.html
-.. _userdata: http://www.lua.org/pil/28.1.html
+.. _cdata: http://luajit.org/ext_ffi.html#call
 
 In Lua, a **nil** type has only one possible value, also called *nil*
 (displayed as **null** on Tarantool's command line, since the output is in the
@@ -289,8 +291,8 @@ To force immediate creation of a checkpoint, you can use Tarantool's
 :ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation
 of checkpoint files, you can use Tarantool's
 :ref:`snapshot daemon <book_cfg_snapshot_daemon>`. The snapshot
-daemon sets intervals for forced checkpoints. It makes sure that the states
-of both memtx and sophia storage engines are synchronized and saved to disk,
+daemon sets intervals for forced checkpoints. It makes sure that the state
+of the memtx engine is saved to disk,
 and automatically removes old WAL files.
 
 Checkpoint files can be created even if there is no WAL file.
@@ -298,7 +300,6 @@ Checkpoint files can be created even if there is no WAL file.
 .. NOTE::
 
    | The memtx engine makes only forced checkpoints.
-   | The sophia engine runs checkpointing in background at all times.
 
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.

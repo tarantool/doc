@@ -126,8 +126,6 @@ API is a direct binding to corresponding methods of index objects of type
             |               |           | value, it matches.                          |
             |               |           | Tuples are returned in ascending order by   |
             |               |           | index key.                                  |
-            |               |           | Note re storage engine: sophia does not     |
-            |               |           | support REQ.                                |
             +---------------+-----------+---------------------------------------------+
             | box.index.GE  | search    | The comparison operator is '>=' (greater    |
             | or 'GE'       | value     | than or equal to).                          |
@@ -200,8 +198,6 @@ API is a direct binding to corresponding methods of index objects of type
                     return TRUE
                   }
                 } 
-
-            Note re storage engine: sophia does not allow search-value-parts to be ``nil`` or missing.
 
             **Iterator types for HASH indexes**
 
@@ -597,8 +593,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Complexity factors:** Index size, Index type.
 
-        Note re storage engine: sophia does not support ``min()``.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -627,8 +621,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Complexity factors:** Index size, Index type.
 
-        Note re storage engine: sophia does not support ``max()``.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -656,11 +648,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Complexity factors:** Index size, Index type.
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | sophia does not support ``random()``.
-
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -684,9 +671,6 @@ API is a direct binding to corresponding methods of index objects of type
 
         :return: the number of matching index keys.
         :rtype:  number
-
-        Note re storage engine: sophia does not support :codenormal:`count(...)`.
-        One possible workaround is to say :codenormal:`#select(...)`.
 
         **Example:**
 
@@ -737,11 +721,6 @@ API is a direct binding to corresponding methods of index objects of type
         :return: the deleted tuple.
         :rtype:  tuple
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | sophia will return `nil`, rather than the deleted tuple.
-
     .. _box_index-alter:
 
     .. method:: alter({options})
@@ -758,11 +737,6 @@ API is a direct binding to corresponding methods of index objects of type
         **Possible errors:** Index does not exist, or
         the first index cannot be changed to {unique = false}, or
         the alter function is only applicable for the memtx storage engine.
-
-        .. NOTE::
-
-            | Note re storage engine:
-            | sophia does not support ``alter()``.
 
         **Example:**
 

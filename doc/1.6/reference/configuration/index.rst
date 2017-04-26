@@ -149,7 +149,6 @@ Then the screen might look like this:
 If you wish to start an interactive session on the same terminal after
 initialization is complete, you can use :ref:`console.start() <console-start>`.
 
-.. _index-local_hot_standby:
 .. _index-replication_port:
 .. _index-slab_alloc_arena:
 .. _index-replication_source:
@@ -210,14 +209,6 @@ Binary logging and snapshots
 
 .. include:: cfg_binary_logging_snapshots.rst
 
-.. _index-hot_standby:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Hot standby
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. include:: cfg_hot_standby.rst
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,8 +227,11 @@ Logging
 
 .. include:: cfg_logging.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Deprecated parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _index-local_hot_standby:
+.. _index-hot_standby:
 
-.. include:: cfg_deprecated.rst
+--------------------------------------------------------------------------------
+Local hot standby
+--------------------------------------------------------------------------------
+
+.. include:: cfg_hot_standby.rst

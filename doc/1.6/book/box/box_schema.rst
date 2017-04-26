@@ -39,8 +39,6 @@ for spaces, users, roles, and function tuples.
         |               | :ref:`write-ahead log <internals-wal>`          |         |                     |
         |               | and there is no                                 |         |                     |
         |               | :ref:`replication <index-box_replication>`.     |         |                     |
-        |               | Note re storage engine: sophia does not         |         |                     |
-        |               | support temporary spaces.                       |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | id            | unique identifier:                              | number  | last space's id, +1 |
         |               | users can refer to spaces with                  |         |                     |
@@ -59,7 +57,7 @@ for spaces, users, roles, and function tuples.
         |               | error                                           |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | engine        | storage engine:                                 | string  | 'memtx'             |
-        |               | 'memtx' or 'sophia'                             |         |                     |
+        |               | 'memtx'                                         |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | user          | name of the user who is considered to be        | string  | current user's name |
         |               | the space's                                     |         |                     |
@@ -79,8 +77,6 @@ for spaces, users, roles, and function tuples.
     will drop a space. However, the common approach is to use functions
     attached to the space objects, for example
     :ref:`space_object:drop() <box_space-drop>`.
-
-    Note re storage engine: sophia does not support temporary spaces.
 
     **Example**
 

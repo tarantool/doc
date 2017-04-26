@@ -64,10 +64,10 @@ a remote-procedure-invocation API.
 
 Tarantool's DBMS server uses the **storage engine** concept, where
 different sets of algorithms and data structures can be used for different
-situations. Two storage engines are built-in: an in-memory engine
-which has all the data and indexes in RAM, and a two-level B-tree engine
-for data sets whose size is 10 to 1000 times the amount of available RAM.
-All storage engines in Tarantool support transactions and
+situations. Currently a single storage engine is built-in: an in-memory engine
+which has all the data and indexes in RAM (in a later version there will be
+two-level B-tree engine for data sets whose size is 10 to 1000 times the amount of available RAM).
+All storage engines in Tarantool will support transactions and
 replication by using a common **write ahead log** (WAL). This ensures consistency
 and crash safety of the persistent state.
 Changes are not considered complete until the WAL is written.
@@ -91,17 +91,6 @@ number of cores that the instance will use, it removes competition for the memor
 bus and ensures peak scalability of memory access and network throughput. CPU
 utilization of a typical highly-loaded Tarantool instance is under 10%.
 Searches are possible via **secondary index keys** as well as primary keys.
-
-**Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems, 
-log-structured merge trees and classical B-trees. All data is organized
-into **ranges**. Each range is represented by a file on disk. Range
-size is a configuration option and normally is around 64MB. Each 
-range is a collection of pages, serving different purposes. Pages 
-in a fully merged range contain non-overlapping ranges of keys. A range
-can be partially merged if there were a lot of changes in its key range
-recently. In that case some pages represent new keys and values in the
-range. The disk-based storage engine is append only: new data never overwrites
-old data. The disk-based storage engine is named *sophia*.
 
 Tarantool supports **multi-part index keys**. The possible index types are HASH,
 TREE, BITSET, and RTREE.

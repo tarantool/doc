@@ -1,7 +1,6 @@
 * :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`
 * :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>`
 * :ref:`slab_alloc_minimal <cfg_storage-slab_alloc_minimal>`
-* :ref:`sophia <cfg_storage-sophia>`
 
 .. _cfg_storage-slab_alloc_arena:
 
@@ -54,48 +53,6 @@
     | Default: 16
     | Dynamic: no
 
-
-.. _cfg_storage-sophia:
-
-.. confval:: sophia
-
-    The default sophia configuration can be changed with
-
-    .. cssclass:: highlight
-    .. parsed-literal::
-
-        sophia = {
-          page_size = *number*,
-          memory_limit = *number*,
-          compression_key = *number*,
-          threads = *number*,
-          node_size = *number*,
-          compression = *enum*,
-        }
-
-    ``compression`` value may be one of:
-
-    * 'lz4' - `LZ4 algorithm`_
-    * 'zstd' - `Zstandard algorithm`_
-    * 'none' - value compression disabled
-
-    This method may change in the future.
-
-    Type: table |br|
-    Dynamic: no |br|
-    Default:
-
-        .. cssclass:: highlight
-        .. parsed-literal::
-
-            sophia = {
-                page_size = 131072,
-                memory_limit = 0,
-                compression_key = 0,
-                threads = 5,
-                node_size = 134217728,
-                compression = 'none'
-            }
 
 .. _LZ4 algorithm: https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29
 .. _ZStandard algorithm: http://zstd.net

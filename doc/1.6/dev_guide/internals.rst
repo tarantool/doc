@@ -139,26 +139,19 @@ first time after the Tarantool server instance starts.
 The recovery process must recover the databases
 as of the moment when the instance was last shut down. For this it may
 use the latest snapshot file and any WAL files that were written
-after the snapshot. One complicating factor is that Tarantool
-has two engines -- the memtx data must be reconstructed entirely
-from the snapshot and the WAL files, while the sophia data will
-be on disk but might require updating around the time of a checkpoint.
-(When a snapshot happens, Tarantool tells the sophia engine to
-make a checkpoint, and the snapshot operation is rolled back if
-anything goes wrong, so sophia's checkpoint is at least as fresh
-as the snapshot file.)
+after the snapshot. The memtx data must be reconstructed entirely
+from the snapshot and the WAL files.
 
 Step 1
     Read the configuration parameters in the ``box.cfg{}`` request.
     Parameters which affect recovery may include :ref:`work_dir <cfg_basic-work_dir>`,
     :ref:`wal_dir <cfg_basic-wal_dir>`, :ref:`snap_dir <cfg_basic-snap_dir>`,
-    :ref:`sophia_dir <cfg_basic-sophia_dir>`,
     and :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error>`.
     and :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error>`.
 
 Step 2
     Find the latest snapshot file. Use its data to reconstruct the in-memory
-    databases. Instruct the sophia engine to recover to the latest checkpoint.
+    databases.
 
     There are actually two variations of the reconstruction procedure for memtx
     databases, depending on whether the recovery process is "default".
@@ -181,9 +174,9 @@ Step 2
 Step 3
     Find the WAL file that was made at the time of, or after, the snapshot file.
     Read its log entries until the log-entry LSN is greater than the LSN of the
-    snapshot, or greater than the LSN of the sophia checkpoint. This is the
+    snapshot. This is the
     recovery process's "start position"; it matches the current state of the
-    engines.
+    engine.
 
 Step 4
     Redo the log entries, from the start position to the end of the WAL. The

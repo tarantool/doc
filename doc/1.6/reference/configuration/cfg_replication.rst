@@ -1,4 +1,4 @@
-* :ref:`replication <cfg_replication-replication_source>`
+* :ref:`replication_source <cfg_replication-replication_source>`
 
 .. _cfg_replication-replication_source:
 
@@ -14,7 +14,7 @@
     If there is more than one replication source in a replica set, specify an
     array of URIs, for example:
     
-    :extsamp:`box.cfg{ replication = { {*{'uri1'}*}, {*{'uri2'}*} } }`
+    :extsamp:`box.cfg{ replication_source = { {*{'uri1'}*}, {*{'uri2'}*} } }`
 
     If one of the URIs is "self" -- that is, if one of the URIs is for the
     instance where ``box.cfg{}`` is being executed on -- then it is ignored.

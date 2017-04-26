@@ -11,15 +11,11 @@ Limitations
     maximum is 1 but the field is an ARRAY of up to 20 dimensions.
     For BITSET indexes, the maximum is 1.
 
-    Note re storage engine: sophia allows 8 parts in an index.
-
 .. _limitations_indexes_in_space:
 
 **Number of indexes in a space**
 
     128 (``box.schema.INDEX_MAX``).
-
-    Note re storage engine: sophia allows 1 index in a space.
  
 .. _limitations_fields_in_tuple:
 
@@ -34,11 +30,12 @@ Limitations
 
 **Number of bytes in a tuple**
 
-    By default the value of :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>`
-    is 1048576, and the maximum tuple length is approximately one quarter of that:
-    approximately 262,000 bytes. To increase it, when starting the server,
-    specify a larger value. For example
-    :code:`box.cfg{slab_alloc_maximal=2*1048576}`.
+    The maximal number of bytes in a tuple is roughly equal to 
+    :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal>` (with a metadata
+    overhead of about 20 bytes per tuple, which is added on top of useful bytes).
+    By default, the value of ``slab_alloc_maximal`` is 1,048,576. To increase it,
+    specify a larger value when starting the Tarantool instance.
+    For example, ``box.cfg{slab_alloc_maximal=2*1048576}``.
 
 .. _limitations_slab_size:
 

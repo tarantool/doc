@@ -114,7 +114,6 @@ First, we create a sandbox directory on the user's path:
        pid_file  = "/home/user/tarantool_test/my_app.pid",
        wal_dir   = "/home/user/tarantool_test",
        snap_dir  = "/home/user/tarantool_test",
-       sophia_dir = "/home/user/tarantool_test",
        log       = "/home/user/tarantool_test/log",
    }
    instance_dir = "/home/user/tarantool_test"
@@ -159,7 +158,6 @@ Let’s verify our instance file by starting it without ``tarantoolctl`` first:
    2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an empty data directory
    2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
    2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done
-   2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> sophia checkpoint done
    2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept requests
    insert 1
    insert 2

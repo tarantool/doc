@@ -103,7 +103,6 @@ Most of the parameters are similar to those used by
        pid_file  = "/var/run/tarantool",
        wal_dir   = "/var/lib/tarantool",
        snap_dir = "/var/lib/tarantool",
-       sophia_dir = "/var/lib/tarantool",
        log       = "/var/log/tarantool",
        username  = "tarantool",
    }
@@ -122,10 +121,6 @@ where:
 * | ``snap_dir``
   | Directory for snapshot .snap files; ``tarantoolctl`` will add
     "/instance_name" to the directory name.
-
-* | ``sophia_dir``
-  | Directory for sophia files; ``tarantoolctl`` will add "/instance_name" to the
-    directory name.
 
 * | ``log``
   | The place where the application log will go; ``tarantoolctl`` will add
