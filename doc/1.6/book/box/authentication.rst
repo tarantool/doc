@@ -171,20 +171,21 @@ no-password user becomes this function's creator. Finally, we grant another user
 
    box.schema.space.create('u')
    box.schema.space.create('i')
-   box.schema.space.u:create_index('pk')
-   box.schema.space.i:create_index('pk')
+   box.space.u:create_index('pk')
+   box.space.i:create_index('pk')
 
-   box.schema.user.create(‘internal’)
+   box.schema.user.create('internal')
 
    box.schema.user.grant('internal', 'read,write', 'space', 'u')
    box.schema.user.grant('internal', 'read,write', 'space', 'i')
+   box.schema.user.grant('internal', 'read,write', 'space', '_func')
 
    function read_and_modify(key)
      local u = box.space.u
      local i = box.space.i
      local fiber = require('fiber')
      local t = u:get{key}
-     if t ~= nil
+     if t ~= nil then
 	   u:put{key, box.session.uid()}
 	   i:put{key, fiber.time()}
      end

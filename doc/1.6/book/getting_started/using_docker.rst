@@ -103,7 +103,7 @@ and the first :ref:`index <index-box_index>` (named 'primary'):
    tarantool.sock> s = box.schema.space.create('tester')
    tarantool.sock> s:create_index('primary', {
                  >  type = 'hash',
-                 >  parts = {1, 'unsigned'}
+                 >  parts = {1, 'NUM'}
                  > })
 
 Next, insert three :ref:`tuples <index-box_tuple>` (our name for "records")
@@ -130,7 +130,7 @@ The terminal screen now looks like this:
    2017-01-17 12:04:18.158 ... creating './00000000000000000000.xlog.inprogress'
    ---
    ...
-   tarantool.sock> s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+   tarantool.sock> s:create_index('primary', {type = 'hash', parts = {1, 'NUM'}})
    ---
    ...
    tarantool.sock> t = s:insert{1, 'Roxette'}
@@ -144,7 +144,7 @@ The terminal screen now looks like this:
    ...
    tarantool.sock> s:select{3}
    ---
-   - - [3, 'Length', 93]
+   - - [3, 'Ace of Base', 1993]
    ...
    tarantool.sock>
 

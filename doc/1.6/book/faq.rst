@@ -56,5 +56,5 @@ FAQ
         waste. And if Tarantool runs out of memory, then it will stop accepting
         updates until more memory is available, but will continue to handle read
         and delete requests without difficulty. However, for databases which are
-        much larger than the available RAM space, Tarantool has a second storage
+        much larger than the available RAM space, Tarantool 1.7 will have a second storage
         engine which is only limited by the available disk space.

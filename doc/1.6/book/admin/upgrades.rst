@@ -15,17 +15,16 @@ a newer version, make the request ``box.schema.upgrade()``. This updates
 Tarantool system spaces to match the currently installed version of Tarantool.
 
 For example, here is what happens when you run ``box.schema.upgrade()`` with a
-database created with Tarantool version 1.6.4 to version 1.7.2 (only a small
-part of the output is shown):
+database created in early 2015. only a small part of the output is shown.
 
 .. code-block:: tarantoolsession
 
    tarantool> box.schema.upgrade()
-   alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
+   alter index primary on _space set options to {"unique":true}, parts to [[0,"num"]]
    alter space _schema set options to {}
    create view _vindex...
    grant read access to 'public' role for _vindex view
-   set schema version to 1.7.0
+   set schema version to 1.6.9
    ---
    ...
 

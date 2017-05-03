@@ -107,11 +107,11 @@ of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, 'STR'}})
+   tarantool> i = s:create_index('secondary', {type = 'tree', unique = false, parts = {2, 'STR'}})
 
 The effect is that, for all tuples in space 'tester', field #2 must exist and
 must contain a string.
-The index type is 'tree', so values in field #2 must not be unique, because keys
+The index type is 'tree', and values in field #2 need not be unique, because keys
 in TREE indexes may be non-unique.
 
 .. NOTE::
@@ -255,8 +255,8 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | point number or double-precision |                      |                    |
     |                            | floating point number)           |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
-    | **string**                 | **string**                       | TREE or HASH         | ‘A B C’            |
-    | (may also be called ‘str’) | (any set of octets,              |                      |                    |
+    | **str**                    | **string**                       | TREE or HASH         | ‘A B C’            |
+    |                            | (any set of octets,              |                      |                    |
     |                            | up to the maximum length)        |                      | ‘\65 \66 \67’      |
     +----------------------------+----------------------------------+----------------------+--------------------+
     | **array**                  | **array**                        | RTREE                | {10, 11}           |
@@ -356,7 +356,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})
+     tarantool> box.space.tester:upsert({999,''}, {{'=', 2, 'Tarantism'}})
 
 * REPLACE: Replace the tuple, adding a new field.
 
@@ -383,12 +383,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
      tarantool> box.space.tester:delete{999}
 
 All the functions operate on tuples and accept only unique key values. So,
-the number of tuples in the space is always 0 or 1, since the keys are unique.
-
-Functions ``insert()``, ``upsert()`` and ``replace()`` accept only primary-key values.
-Functions ``select()``, ``delete()`` and ``update()`` may accept either a primary-key
-value or a secondary-key value.
-
+the number of tuples affected is always 0 or 1, since the keys are unique.
 
 .. NOTE::
 
@@ -460,9 +455,9 @@ The following SELECT variations exist:
         -- Suppose an index has two parts
         :samp:`tarantool> box.space.{space-name}.index.{index-name}.parts`
         ---
-        - - type: unsigned
+        - - type: NUM
             fieldno: 1
-          - type: string
+          - type: STR
             fieldno: 2
         ...
         -- Suppose the space has three tuples
@@ -583,11 +578,8 @@ resource usage of each function.
     | accessed          | one tuple. But to update the tuple, there must be N      |
     |                   | accesses if the space has N different indexes.           |
     |                   |                                                          |
-    |                   | Note re storage engine: Vinyl optimizes away such        |
-    |                   | accesses if secondary index fields are unchanged by      |
-    |                   | the update. So, this complexity factor applies only to   |
-    |                   | memtx, since it always makes a full-tuple copy on every  |
-    |                   | update.                                                  |
+    |                   | This complexity factor applies only to memtx,  since it  |
+    |                   | always makes a full-tuple copy update.                   |
     +-------------------+----------------------------------------------------------+
     | Number of tuples  | A few requests, for example SELECT, can retrieve         |
     | accessed          | multiple tuples. This factor is usually less             |

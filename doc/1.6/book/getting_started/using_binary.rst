@@ -13,7 +13,7 @@ push into the 1.6 branch at
 
 To download and install the package that’s appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided
-for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
+for your OS at Tarantool's `download page <https://tarantool.org/download_16.html>`_.
 
 --------------------------------------------------------------------------------
 Starting Tarantool
@@ -113,7 +113,7 @@ The terminal screen now looks like this:
    ...
    tarantool> s:select{3}
    ---
-   - - [3, 'Length', 93]
+   - - [3, 'Ace of Base', 1993]
    ...
    tarantool>
 
@@ -165,7 +165,7 @@ Your terminal screen should now look like this:
 
 .. code-block:: tarantoolsession
 
-   $ tarantoolctl connect 3301
+   $ tarantoolctl connect '3301'
    /usr/local/bin/tarantoolctl: connected to localhost:3301
    localhost:3301> box.space.tester:select{2}
    ---
