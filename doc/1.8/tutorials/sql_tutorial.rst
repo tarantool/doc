@@ -12,9 +12,6 @@ Tarantool 1.8.0. This feature currently includes:
   tables created in SQL are available after server restart, but triggers are not
   persistent yet. The limitations will be removed in future releases).
 
-.. image:: ../../../images/aster.svg
-    :align: center
-
 There are two ways to go through this tutorial:
 
 * read what we say the results are and take our word for it, or
