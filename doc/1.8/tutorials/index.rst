@@ -9,3 +9,4 @@ Tutorials
 
     lua_tutorials
     c_tutorial
+    sql_tutorial
