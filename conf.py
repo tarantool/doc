@@ -85,6 +85,7 @@ html_context = {
         'index'       : True,
         'download'    : True,
         'download_16' : True,
+        'download_18' : True,
         'careers'     : True,
         'benchmark'   : True,
         'try'         : True,
