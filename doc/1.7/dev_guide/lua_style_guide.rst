@@ -55,7 +55,8 @@ Zen of Python is good; understand it and use wisely:
 
       -- vim:ts=4 ss=4 sw=4 expandtab
 
-* No whitespaces at EOL, newline at end of file (?)
+* A file should ends w/ one newline symbol, but shouldn't ends w/ blank line
+  (two newline symbols).
 
 * Every do/while/for/if/function should indent 4 spaces.
 
@@ -168,25 +169,31 @@ Zen of Python is good; understand it and use wisely:
 
 * Using spaces:
 
-  - do not use a space after functions and after commas in arguments:
+  - one shouldn't use spaces between function name and opening round bracket,
+    but arguments must be splitted with one whitespace charachter
 
     .. code-block:: lua
 
-        function name(arg1, arg2, ...)
-        end
+        function name (arg1,arg2,...)
+        end -- bad
 
-  - use spaces after comments:
+        function name(arg1, arg2, ...)
+        end -- good
+
+  - use spaces after comment marker:
 
     .. code-block:: lua
 
         while true do -- inline comment
         -- comment
-        --[[ multiline
-        comment ]]--
         do_something()
         end
+        --[[
+          multiline
+          comment
+        ]]--
 
-  - surrounding operators:
+  - surrounding operators
 
     .. code-block:: lua
 
@@ -202,7 +209,7 @@ Zen of Python is good; understand it and use wisely:
         thing = 'string' .. 's'
         -- good
 
-  - use space after commas in tables:
+  - use space after commas in tables
 
     .. code-block:: lua
 
@@ -214,7 +221,38 @@ Zen of Python is good; understand it and use wisely:
         local thing = {1, 2, 3}
         -- good
 
-  - Add a line break after multiline blocks.
+  - use space in map definitions around equality sign and commas
+
+    .. code-block:: lua
+
+        return {1,2,3,4} -- bad
+        return {
+            key1 = val1,key2=val2
+        } -- bad
+
+        return {
+            1, 2, 3, 4
+            key1 = val1, key2 = val2,
+            key3 = vallll
+        } -- good
+
+    also, you may use alignment:
+
+    .. code-block:: lua
+
+        return {
+            long_key  = 'vaaaaalue',
+            key       = 'val',
+            something = 'even better'
+        }
+
+  - surround top-level function and class definitions with two blank lines.
+
+    Extra blank lines may be used (sparingly) to separate groups of related
+    functions. Blank lines may be omitted between a bunch of related one-liners
+    (e.g. a set of dummy implementations).
+
+    Use blank lines in functions, sparingly, to indicate logical sections:
 
     .. code-block:: lua
 
@@ -284,7 +322,7 @@ Always use prefix to avoid interception of names
   - ``s``/``str``/``string`` is for strings
   - ``c`` is for 1-char strings
   - ``f``/``func``/``cb`` are for functions
-  - ``status, <return_name>`` is what you get out of pcall
+  - ``status, <rv>..`` or ``ok, <rv>..`` is what you get out of pcall/xpcall
   - ``buf, sz`` is a (buffer, size) pair
   - ``<name>_p`` is for pointers
   - ``t0``.. is for timestamps
@@ -310,18 +348,16 @@ Avoid these kind of constructions:
 
 * <func>'<name>' (strongly avoid require'..')
 * ``function object:method() end`` (use ``functon object.method(self) end`` instead)
-* use comma separator in tables, instead ``;`` or anyone else
-* put comma at the end of line
-* do not use ``local func = function() .. end``, use ``local function func() end``
-  instead (except some very temporary closures (you should knew, that FNEW
-  [new function] instruction isn't JIT compiled in Lua).
+* do not use semicolon as table separator (only comma)
+* semicolons at the end of line (only to split multiple statements on one line)
+* try to avoid unnecessary function creation (closures/..)
 
 ===========================================================
                           Modules
 ===========================================================
 
 Don't start modules with license/authors/descriptions, you can write it in
-LICENSE/AUTHORS/README files, it's pretty enought.
+LICENSE/AUTHORS/README files, it's enough.
 For writing modules use one of two patterns (dont use ``modules()``):
 
 .. code-block:: lua
