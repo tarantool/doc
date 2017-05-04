@@ -5,14 +5,7 @@ SQL tutorial
 ================================================================================
 
 This tutorial is a demonstration of the SQL feature introduced in
-Tarantool 1.8.0. This feature currently includes:
-
-* Support for basic SQL structures.
-* Persistence for SQL operations. (With acceptable limitations, e.g. all
-  tables created in SQL are available after server restart, but triggers are not
-  persistent yet. The limitations will be removed in future releases).
-
-There are two ways to go through this tutorial:
+Tarantool 1.8.0. There are two ways to go through this tutorial:
 
 * read what we say the results are and take our word for it, or
 * copy and paste each section and see everything work with Tarantool 1.8.
