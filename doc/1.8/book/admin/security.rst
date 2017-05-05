@@ -14,7 +14,7 @@ Tarantool allows for two types of connections:
 
 * With :ref:`box.cfg{listen=...} <cfg_basic-listen>` parameter from ``box``
   module, you can set up a binary port for connections which read and write to
-  the database or invoke stored procedures. 
+  the database or invoke stored procedures.
 
 When you connect to an admin console:
 
@@ -52,7 +52,7 @@ For example:
    Trying 0.0.0.0...
    Connected to 0.
    Escape character is '^]'.
-   Tarantool 1.7.3 (Lua console)
+   Tarantool 1.8.0 (Lua console)
    type 'help' for interactive help
 
 In this example, the response does not include the word "binary" and does
@@ -63,7 +63,7 @@ this terminal.
 When you connect to a binary port:
 
 * The client-server protocol is :ref:`binary <box_protocol-iproto_protocol>`.
-* The user is automatically ':ref:`guest <authentication-users>`'. 
+* The user is automatically ':ref:`guest <authentication-users>`'.
 * To change the user, it’s necessary to authenticate.
 
 For ease of use, ``tarantoolctl connect`` command automatically detects the type

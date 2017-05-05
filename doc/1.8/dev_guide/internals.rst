@@ -28,7 +28,7 @@ On the left are the hexadecimal bytes that you would see with:
 .. code-block:: console
 
    $ hexdump 00000000000000000000.xlog
-   
+
 and on the right are comments.
 
 .. code-block:: none
@@ -206,7 +206,7 @@ source(-s). We will refer to this replica, which is starting up due to ``box.cfg
 as the "local" replica to distinguish it from the other replicas in a replica set,
 which we will refer to as "distant" replicas.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
+*#1. If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
 itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
@@ -216,7 +216,7 @@ replica UUID and the replica set UUID. Therefore, when the local replica restart
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*#2. If there is no snapshot .snap file and the ``replication`` parameter is not empty
 and the ``_cluster`` space contains no other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, but is not yet part
 of a replica set. It must now join the replica set. It will send its replica UUID to the
@@ -234,7 +234,7 @@ request, it will send back:
     receive this and update its own copy of the data, and add the local replica's
     UUID to its ``_cluster`` space.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*#3. If there is no snapshot .snap file and the ``replication`` parameter is not empty
 and the ``_cluster`` space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant
@@ -256,7 +256,7 @@ have the same database contents.
 
 .. _internals-vector:
 
-*If there is a snapshot file and replication source is not empty*: |br|
+*#4. If there is a snapshot file and replication source is not empty*: |br|
 first the local replica goes through the recovery process described in the
 previous section, using its own .snap and .xlog files. Then it sends a
 "subscribe" request to all the other replicas of the replica set. The subscribe
@@ -268,13 +268,10 @@ greater than (lsn of the vector clock in the subscribe request). After all the
 other replicas of the replica set have responded to the local replica's subscribe
 request, the replica startup is complete.
 
-The following temporary limitations apply for version 1.7:
+The following temporary limitations apply for versions 1.7 and 1.8:
 
 * The URIs in the ``replication`` parameter should all be in the same order on all replicas.
   This is not mandatory but is an aid to consistency.
-* The replicas of a replica set should be started up at slightly different times.
-  This is not mandatory but prevents a situation where each replica is waiting
-  for the other replica to be ready.
 * The maximum number of entries in the ``_cluster`` space is 32. Tuples for
   out-of-date replicas are not automatically re-used, so if this 32-replica
   limit is reached, users may have to reorganize the ``_cluster`` space manually.

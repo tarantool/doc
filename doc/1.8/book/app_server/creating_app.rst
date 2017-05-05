@@ -18,7 +18,7 @@ To stay within the walk-through format, let's narrow the original gameplay as
 follows. We have a map with pokémon spawn locations. Next, we have multiple
 players who can send catch-a-pokémon requests to the server (which runs our
 Tarantool microservice). The server replies whether the pokémon is caught or not,
-increases the player's pokémon counter if yes, and triggers the 
+increases the player's pokémon counter if yes, and triggers the
 respawn-a-pokémon method that spawns a new pokémon at the same location
 in a while.
 
@@ -43,12 +43,12 @@ A **module** (called "rock" in Lua) is an optional library which enhances
 Tarantool functionality. So, we can install our logic as a module in Tarantool
 and use it from any Tarantool application or module. Like applications, modules
 in Tarantool can be written in Lua (rocks), C or C++.
- 
+
 Modules are good for two things:
 
 * easier **code management** (reuse, packaging, versioning), and
 * hot **code reload** without restarting the Tarantool instance.
- 
+
 Technically, a module is a file with source code that exports its functions in
 an API. For example, here is a Lua module named ``mymodule.lua`` that exports
 one function named ``myfun``:
@@ -63,7 +63,7 @@ one function named ``myfun``:
 
 To launch the function ``myfun()`` -- from another module, from a Lua application,
 or from Tarantool itself, -- we need to save this module as a file, then load
-this module with the ``require()`` directive and call the exported function. 
+this module with the ``require()`` directive and call the exported function.
 
 For example, here's a Lua application that uses ``myfun()`` function from
 ``mymodule.lua`` module:
@@ -72,7 +72,7 @@ For example, here's a Lua application that uses ``myfun()`` function from
 
    -- loading the module
    local mymodule = require('mymodule')
-   
+
    -- calling myfun() from within test() function
    local test = function()
      mymodule.myfun()
@@ -87,7 +87,7 @@ to add this folder to ``package.path`` before any calls to ``require()``:
 
 .. code-block:: lua
 
-   package.path = 'scripts/?.lua;' .. package.path 
+   package.path = 'scripts/?.lua;' .. package.path
 
 For our microservice, a simple and convenient solution would be to put all
 methods in a Lua module (say ``pokemon.lua``) and to write a Lua application
@@ -127,7 +127,7 @@ document. In avro-schema terms, converting JSON documents to tuples is
 "flattening", and restoring the original documents is "unflattening".
 The usage is quite straightforward:
 
-(1) For each entity, we need to define a schema in 
+(1) For each entity, we need to define a schema in
     `Apache Avro schema <https://en.wikipedia.org/wiki/Apache_Avro>`_ syntax,
     where we list the entity's fields with their names and
     :ref:`Lua types <index-box_data-types>`.
@@ -190,7 +190,7 @@ And here's how we create and compile our entities at initialization:
 
    -- load avro-schema module with require()
    local avro = require('avro_schema')
-   
+
    -- create models
    local ok_m, pokemon = avro.create(schema.pokemon)
    local ok_p, player = avro.create(schema.player)
@@ -228,12 +228,12 @@ address functions or variables from within our module as ``self.func_name`` or
    local game = {
        -- a local variable
        num_players = 0,
-   
+
        -- a method that prints a local variable
        hello = function(self)
          print('Hello! Your player number is ' .. self.num_players .. '.')
        end,
-   
+
        -- a method that calls another method and returns a local variable
        sign_in = function(self)
          self.num_players = self.num_players + 1
@@ -291,7 +291,7 @@ persist it on disk whenever it's changed. This gives us one more benefit:
 quick startup in case of failure.
 Tarantool has a :ref:`smart algorithm <internals-recovery_process>` that quickly
 loads all data from disk into memory on startup, so the warm-up takes little time.
- 
+
 We'll be using functions from Tarantool built-in :ref:`box <box-module>` module:
 
 * ``box.schema.create_space('pokemons')`` to create a space named ``pokemon`` for
@@ -381,7 +381,7 @@ active status):
        if pokemon.status ~= self.state.ACTIVE then
            return false
        end
-       -- more catch logic to follow 
+       -- more catch logic to follow
        <...>
    end
 
@@ -464,7 +464,7 @@ By our gameplay, all caught pokémons are returned back to the map. We do this
 for all pokémons on the map every 60 seconds using ``respawn()`` method.
 We iterate through pokémons by status using Tarantool index iterator function
 :ref:`index:pairs <box_index-index_pairs>` and reset the statuses of all
-"caught" pokémons back to "active" using ``box.space.pokemons:update()``. 
+"caught" pokémons back to "active" using ``box.space.pokemons:update()``.
 
 .. code-block:: lua
 
@@ -500,7 +500,7 @@ The complete implementation of ``start()`` now looks like this:
               "status", {type = "tree", parts = {2, 'str'}}
           )
        end)
-   
+
        -- create models
        local ok_m, pokemon = avro.create(schema.pokemon)
        local ok_p, player = avro.create(schema.player)
@@ -545,7 +545,7 @@ fibers the following two advantages over threads:
 * Higher performance. Threads require more resources to preempt as they need to
   address the system kernel. Fibers are lighter and faster as they don't need to
   address the kernel to yield.
- 
+
 Yet fibers have some limitations as compared with threads, the main limitation
 being no multi-core mode. All fibers in an application belong to a single thread,
 so they all use the same CPU core as the parent thread. Meanwhile, this
@@ -666,13 +666,13 @@ Pikachu is caught and temporarily inactive:
    ---
    - {'id': 1, 'status': 'active', 'location': {'y': 2, 'x': 1}, 'name': 'Pikachu', 'chance': 99.1}
    ...
-   
+
    2017-01-09 20:19:24.789 [6282] main/101/game.lua I> Player 'Player1' caught 'Pikachu'
    true
    false
    --- []
    ...
-   
+
    2017-01-09 20:19:24.789 [6282] main C> entering the event loop
 
 --------------------------------------------------------------------------------
@@ -693,20 +693,20 @@ exports three of our game methods -- ``add_pokemon()``, ``map()`` and ``catch()`
    local game = require('pokemon')
    box.cfg{listen=3301}
    game:start()
-   
+
    -- add, map and catch functions exposed to REST API
    function add(request, pokemon)
        return {
            result=game:add_pokemon(pokemon)
        }
    end
-   
+
    function map(request)
        return {
            map=game:map()
        }
    end
-   
+
    function catch(request, pid, player)
        local id = tonumber(pid)
        if id == nil then
@@ -719,7 +719,7 @@ exports three of our game methods -- ``add_pokemon()``, ``map()`` and ``catch()`
 
 An easy way to configure and launch nginx would be to create a Docker container
 based on a `Docker image <https://hub.docker.com/r/tarantool/tarantool-nginx/>`_
-with nginx and the upstream module already installed (see 
+with nginx and the upstream module already installed (see
 `http/Dockerfile <https://github.com/Sulverus/pokemon/blob/master/http/Dockerfile>`_).
 We take a standard
 `nginx.conf <https://github.com/Sulverus/pokemon/blob/master/http/nginx.conf>`_,
@@ -741,13 +741,13 @@ file):
 
    server {
      server_name tnt_test;
-  
+
      listen 80 default deferred reuseport so_keepalive=on backlog=65535;
-  
+
      location = / {
          root /usr/local/nginx/html;
      }
-     
+
      location /api {
        # answers check infinity timeout
        tnt_read_timeout 60m;
@@ -765,7 +765,7 @@ file):
 
 Likewise, we put Tarantool server and all our game logic in a second Docker
 container based on the
-`official Tarantool 1.7 image <https://github.com/tarantool/docker>`_ (see
+`official Tarantool 1.8 image <https://github.com/tarantool/docker>`_ (see
 `src/Dockerfile <https://github.com/Sulverus/pokemon/blob/master/src/Dockerfile>`_)
 and set the container's default command to ``tarantool app.lua``.
 This is the backend.
@@ -785,7 +785,7 @@ requests rather than calling Lua functions:
    local json = require('json')
    local URI = os.getenv('SERVER_URI')
    local fiber = require('fiber')
-   
+
    local player1 = {
        name="Player1",
        id=1,
@@ -802,7 +802,7 @@ requests rather than calling Lua functions:
            y=40.456
        }
    }
-   
+
    local pokemon = {
        name="Pikachu",
        chance=99.1,
@@ -813,7 +813,7 @@ requests rather than calling Lua functions:
            y=2
        }
    }
-   
+
    function request(method, body, id)
        local resp = http:request(
            method, URI, body
@@ -842,18 +842,18 @@ requests rather than calling Lua functions:
    request('POST', '{"method": "add",
        "params": ['..json.encode(pokemon)..']}')
    request('GET', '')
-   
+
    fiber.create(catch, player1)
    fiber.create(catch, player2)
-   
+
    -- wait for players
    while #players ~= 2 do
        fiber.sleep(0.001)
    end
-   
+
    request('GET', '')
    os.exit()
-   
+
 When you run this script, you’ll notice that both players have equal chances to
 make the first attempt at catching the pokémon. In a classical Lua script,
 a networked call blocks the script until it’s finished, so the first catch
@@ -872,13 +872,13 @@ use non-blocking I/O and are integrated with Tarantool cooperative scheduler.
 For module developers, Tarantool provides an :ref:`API <index-c_api_reference>`.
 
 For our HTTP test, we create a third container based on the
-`official Tarantool 1.7 image <https://github.com/tarantool/docker>`_ (see 
+`official Tarantool 1.8 image <https://github.com/tarantool/docker>`_ (see
 `client/Dockerfile <https://github.com/Sulverus/pokemon/blob/master/client/Dockerfile>`_)
 and set the container's default command to ``tarantool client.lua``.
 
 .. image:: aster.svg
     :align: center
-    
+
 To run this test locally, download our `pokemon <https://github.com/Sulverus/pokemon>`_
 project from GitHub and say:
 

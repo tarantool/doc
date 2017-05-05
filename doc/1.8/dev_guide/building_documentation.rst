@@ -29,7 +29,7 @@ See more details about installation in the :ref:`build-from-source <building_fro
 section of this documentation.
 
 1. Use ``git`` to download the latest source code of this documentation from the
-   GitHub repository ``tarantool/doc``, branch 1.7. For example, to download to a local
+   GitHub repository ``tarantool/doc``, branch 1.8. For example, to download to a local
    directory named ``~/tarantool-doc``:
 
    .. code-block:: bash
@@ -39,7 +39,7 @@ section of this documentation.
 2. Use ``CMake`` to initiate the build.
 
    .. code-block:: bash
-   
+
      cd ~/tarantool-doc
      make clean         # unnecessary, added for good luck
      rm CMakeCache.txt  # unnecessary, added for good luck
@@ -47,7 +47,7 @@ section of this documentation.
 
 3. Build a local version of the documentation.
 
-   Run the ``make`` command with an appropriate option to specify which 
+   Run the ``make`` command with an appropriate option to specify which
    documentation version to build.
 
    .. code-block:: bash
@@ -60,10 +60,10 @@ section of this documentation.
      make all                   # all versions plus the entire web-site
 
    Documentation will be created in subdirectories of ``/output``:
-   
+
    * ``/output/en`` (files of the English version)
    * ``/output/ru`` (files of the Russian version)
-   
+
    The entry point for each version is the ``index.html`` file in the appropriate
    directory.
 
@@ -79,7 +79,7 @@ section of this documentation.
      cd ~/tarantool-doc/output/en
      python -m SimpleHTTPServer 8000
 
-5. Open your browser and enter ``127.0.0.1:8000/doc/1.7`` into the address box. If
+5. Open your browser and enter ``127.0.0.1:8000/doc/1.8`` into the address box. If
    your local documentation build is valid, the manual will appear in the browser.
 
 6. To contribute to documentation, use the ``.rst`` format for drafting and
@@ -92,12 +92,12 @@ section of this documentation.
    common sense and existing documents.
 
 .. NOTE::
-   
+
    * If you suggest creating a new documentation section (a whole new
      page), it has to be saved to the relevant section at GitHub.
-     
+
    * If you want to contribute to localizing this documentation (for example into
      Russian), add your translation strings to ``.po`` files stored in the
      corresponding locale directory (for example ``/locale/ru/LC_MESSAGES/``
-     for Russian). See more about localizing with Sphinx at 
+     for Russian). See more about localizing with Sphinx at
      http://www.sphinx-doc.org/en/stable/intl.html

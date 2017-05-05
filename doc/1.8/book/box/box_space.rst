@@ -8,7 +8,7 @@ The ``box.space`` submodule has the data-manipulation functions ``select``,
 ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``.
 It also has members, such as id, and whether or not a space is enabled. Submodule
 source code is available in file
-`src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_.
+`src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.8/src/box/lua/schema.lua>`_.
 
 A list of all ``box.space`` functions follows, then comes a list of all
 ``box.space`` members.
@@ -1112,7 +1112,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     ``_index`` is a system space.
 
     Tuples in this space contain the following fields:
-    
+
     * ``id`` (= id of space),
     * ``iid`` (= index number within space),
     * ``name``,

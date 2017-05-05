@@ -31,19 +31,19 @@ writing their own stored procedures.
 **Preparation**
 
 Check that these items exist on the computer: |br|
-* Tarantool 1.7 |br|
+* Tarantool 1.8 |br|
 * A gcc compiler, any modern version should work |br|
 * "module.h" |br|
 * "msgpuck.h" |br|
 
-The "module.h" file will exist if Tarantool 1.7 was installed from source.
+The "module.h" file will exist if Tarantool 1.8 was installed from source.
 Otherwise Tarantool's "developer" package must be installed.
 For example on Ubuntu say |br|
 :code:`sudo apt-get install tarantool-dev` |br|
 or on Fedora say |br|
 :code:`dnf -y install tarantool-devel`
 
-The "msgpuck.h" file will exist if Tarantool 1.7 was installed from source.
+The "msgpuck.h" file will exist if Tarantool 1.8 was installed from source.
 Otherwise the "msgpuck" package must be installed from
 `https://github.com/rtsisyk/msgpuck <https://github.com/rtsisyk/msgpuck>`_.
 

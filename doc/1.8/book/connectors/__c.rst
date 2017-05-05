@@ -64,15 +64,15 @@ To compile and link the program, say:
 
 Before trying to run,
 check that a server instance is listening at ``localhost:3301`` and that the space
-``examples`` exists, as 
+``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`.
 To run the program, say :samp:`./example`. The program will connect
 to the Tarantool instance, and will send the request.
 If Tarantool is not running on localhost with listen address = 3301, the program
 will print “Connection refused”.
 If the insert fails, the program will print "Insert failed" and an error number
-(see all error codes in the source file 
-`/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_).
+(see all error codes in the source file
+`/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.8/src/box/errcode.h>`_).
 
 Here are notes corresponding to comments in the example program.
 

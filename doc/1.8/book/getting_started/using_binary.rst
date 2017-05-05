@@ -6,9 +6,10 @@ Using a binary package
 
 For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
-You can choose from two Tarantool versions: the stable 1.6 and the latest 1.7.
-An automatic build system creates, tests and publishes 1.7 packages for every
-push into the 1.7 branch at
+You can choose from three Tarantool versions: the stable 1.6 or 1.7,
+or the latest 1.8.
+An automatic build system creates, tests and publishes 1.8 packages for every
+push into the 1.8 branch at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
 To download and install the package that’s appropriate for your OS,
@@ -164,7 +165,7 @@ Your terminal screen should now look like this:
    ---
    - - [2, 'Scorpions', 2015]
    ...
-   
+
    localhost:3301>
 
 You can repeat ``box.space...:insert{}`` and ``box.space...:select{}``

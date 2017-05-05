@@ -11,10 +11,10 @@ on the Internet.
 
 1. Get tools and libraries that will be necessary for building
    and testing.
-   
+
    The absolutely necessary ones are:
 
-   * A program for downloading source repositories. |br| 
+   * A program for downloading source repositories. |br|
      For all platforms, this is ``git``. It allows to download the latest
      complete set of source files from the Tarantool repository at GitHub.
 
@@ -23,10 +23,10 @@ on the Internet.
 
    * A program for managing the build process. |br| For all platforms, this is
      ``CMake``. The CMake version should be 2.8 or later.
-     
+
    * Command-line interpreter for Python-based code (namely, for Tarantool test
      suite). |br| For all platforms, this is ``python``. The Python version
-     should be greater than 2.6 -- preferably 2.7 -- and less than 3.0.  
+     should be greater than 2.6 -- preferably 2.7 -- and less than 3.0.
 
    Here are names of tools and libraries which may have to be installed in advance,
    using ``sudo apt-get`` (for Ubuntu), ``sudo yum install`` (for CentOS), or the
@@ -46,8 +46,8 @@ on the Internet.
 2. Set up Python modules for running the test suite.
 
    This step is optional. Python modules are not necessary for building Tarantool
-   itself, unless you intend to use the "Run the test suite" option in step 7. 
-   
+   itself, unless you intend to use the "Run the test suite" option in step 7.
+
    You need the following Python modules:
 
    * `pip <https://pypi.python.org/pypi/pip>`_, any version
@@ -99,11 +99,11 @@ on the Internet.
      pip install tarantool\>0.4 --user
 
 3. Use ``git`` to download the latest Tarantool source code from the
-   GitHub repository ``tarantool/tarantool``, branch 1.7. For example, to a
+   GitHub repository ``tarantool/tarantool``, branch 1.8. For example, to a
    local directory named `~/tarantool`:
-  
+
    .. code-block:: bash
-   
+
      git clone https://github.com/tarantool/tarantool.git ~/tarantool
 
 4. Use ``git`` again so that third-party contributions will be seen as well.
@@ -116,7 +116,7 @@ on the Internet.
    * ``liblz4`` (``liblz4-dev/lz4-devel`` package).
    * GNU ``bfd`` which is the part of GNU ``binutils``
      (``binutils-dev/binutils-devel`` package).
-   
+
    This step is only necessary once, the first time you do a download.
 
    .. code-block:: bash
@@ -128,9 +128,9 @@ on the Internet.
 
    On rare occasions, the submodules will need to be updated again with the
    command:
-   
+
    .. code-block:: bash
-     
+
      git submodule update --init --recursive
 
    Note: There is an alternative -- to say ``git clone --recursive`` earlier in
@@ -148,20 +148,20 @@ on the Internet.
 
    On some platforms, it may be necessary to specify the C and C++ versions,
    for example:
-   
+
    .. code-block:: bash
-      
+
      CC=gcc-4.8 CXX=g++-4.8 cmake .
-   
+
    The CMake option for specifying build type is :samp:`-DCMAKE_BUILD_TYPE={type}`,
    where :samp:`{type}` can be:
-   
+
    * ``Debug`` -- used by project maintainers
    * ``Release`` -- used only if the highest performance is required
    * ``RelWithDebInfo`` -- used for production, also provides debugging capabilities
 
-   The CMake option for hinting that the result will be distributed is 
-   :code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install`` 
+   The CMake option for hinting that the result will be distributed is
+   :code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install``
    will install tarantoolctl files in addition to tarantool files.
 
 6. Use ``make`` to complete the build.
@@ -233,11 +233,11 @@ on the Internet.
 For your added convenience, we provide OS-specific README files with example
 scripts at GitHub:
 
-* `README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.7/README.FreeBSD>`_ for FreeBSD 10.1
+* `README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.8/README.FreeBSD>`_ for FreeBSD 10.1
 
-* `README.MacOSX <https://github.com/tarantool/tarantool/blob/1.7/README.MacOSX>`_ for Mac OS X `El Capitan`
+* `README.MacOSX <https://github.com/tarantool/tarantool/blob/1.8/README.MacOSX>`_ for Mac OS X `El Capitan`
 
-* `README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ for generic GNU/Linux
+* `README.md <https://github.com/tarantool/tarantool/blob/1.8/README.md>`_ for generic GNU/Linux
 
-These example scripts assume that the intent is to download from the 1.7
+These example scripts assume that the intent is to download from the 1.8
 branch, build the server and run tests after build.

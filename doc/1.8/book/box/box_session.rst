@@ -44,7 +44,7 @@ client connection.
 .. function:: sync()
 
     :return: the value of the :code:`sync` integer constant used in the
-             `binary protocol <https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_.
+             `binary protocol <https://github.com/tarantool/tarantool/blob/1.8/src/box/iproto_constants.h>`_.
 
     :rtype:  number
 
@@ -93,7 +93,7 @@ client connection.
         - 2
         ...
 
-   
+
 .. _box_session-storage:
 
 .. data:: storage
@@ -225,12 +225,12 @@ client connection.
     Define a trigger for execution during authentication.
 
     The ``on_auth`` trigger function is invoked in these circumstances:
-    
+
     (1) The :ref:`console.connect <console-connect>` function includes an authentication check
         for all users except 'guest'.
         For this case, the ``on_auth`` trigger function is invoked after the ``on_connect``
         trigger function, if and only if the connection has succeeded so far.
-    
+
     (2) The :ref:`binary protocol <admin-security>` has a separate
         :ref:`authentication packet <box_protocol-authentication>`.
         For this case, connection and authentication are considered to be separate steps.

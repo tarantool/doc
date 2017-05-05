@@ -9,7 +9,7 @@ For each Tarantool instance, you need two files:
 * [Optional] An :ref:`application file <app_server-launching_app>` with
   instance-specific logic. Put this file into the ``/usr/share/tarantool/``
   directory.
- 
+
   For example, ``/usr/share/tarantool/my_app.lua`` (here we implement it as a
   :ref:`Lua module <app_server-modules>` that bootstraps the database and
   exports ``start()`` function for API calls):
@@ -29,7 +29,7 @@ For each Tarantool instance, you need two files:
 * An :ref:`instance file <admin-instance_file>` with
   instance-specific initialization logic and parameters. Put this file, or a
   symlink to it, into the ``/etc/tarantool/instances.enabled`` directory.
- 
+
   For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load
   ``my_app.lua`` module and make a call to ``start()`` function from that
   module):
@@ -141,5 +141,5 @@ where:
     instance files in this directory, or create symbolic links.
 
 As a full-featured example, you can take
-`example.lua <https://github.com/tarantool/tarantool/blob/1.7/extra/dist/example.lua>`_
+`example.lua <https://github.com/tarantool/tarantool/blob/1.8/extra/dist/example.lua>`_
 script that ships with Tarantool and defines all configuration options.

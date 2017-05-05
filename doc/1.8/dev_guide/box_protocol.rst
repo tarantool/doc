@@ -81,7 +81,7 @@ http://msgpack.org
 
 The Tarantool protocol mandates use of a few integer constants serving as keys in
 maps used in the protocol. These constants are defined in `src/box/iproto_constants.h
-<https://github.com/tarantool/tarantool/blob/1.7/src/box/iproto_constants.h>`_
+<https://github.com/tarantool/tarantool/blob/1.8/src/box/iproto_constants.h>`_
 
 We list them here too:
 
@@ -482,7 +482,7 @@ expects as value a msgpack string.
 
 Convenience macros which define hexadecimal constants for return codes
 can be found in `src/box/errcode.h
-<https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_
+<https://github.com/tarantool/tarantool/blob/1.8/src/box/errcode.h>`_
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication packet structure
@@ -517,7 +517,7 @@ Replication packet structure
     | MP_INT: MP_INT | MP_INT: MP_INT || MP_INT: MP_STRING |
     |                |                ||                   |
     +================+================++===================+
-                   MP_MAP                     MP_MAP        
+                   MP_MAP                     MP_MAP
 
     Then instance, which we connect to, will send last SNAP file by, simply,
     creating a number of INSERTs (with additional LSN and ServerID)
@@ -580,7 +580,7 @@ XLOG and SNAP files have nearly the same format. The header looks like:
 After the file header come the data tuples.
 Tuples begin with a row marker ``0xd5ba0bab`` and
 the last tuple may be followed by an EOF marker
-``0xd510aded``. 
+``0xd510aded``.
 Thus, between the file header and the EOF marker, there
 may be data tuples that have this form:
 

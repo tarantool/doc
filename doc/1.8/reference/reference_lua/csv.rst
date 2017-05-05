@@ -200,4 +200,4 @@ The possible options which can be passed to csv functions are:
         ...
 
 .. _escape sequences: http://www.lua.org/pil/2.4.html
-.. _the Tarantool source code: https://github.com/tarantool/tarantool/blob/1.7/src/lua/csv.lua
+.. _the Tarantool source code: https://github.com/tarantool/tarantool/blob/1.8/src/lua/csv.lua
