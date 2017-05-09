@@ -10,9 +10,8 @@ A common type, a hierarchical URI, looks like this: |br|
 [scheme:][//authority][path][?query][#fragment] |br|
 For example the string `'https://tarantool.org/x.html#y'`
 has three components: https is the scheme, tarantool.org/x.html is the path, and y is the fragment.
-Tarantool's URI module provides routines which
-convert URI strings into their components,
-or turn components into URI strings.
+Tarantool's URI module provides a routine which
+converts URI strings into their components.
 
 .. module:: uri
 
@@ -37,23 +36,6 @@ or turn components into URI strings.
         - host: x.html
           scheme: http
           fragment: y
-        ...
-
-.. _uri-format:
-
-.. function:: format(URI-components-table)
-
-    :param URI-components-table: a series of name:value pairs, one for each component
-    :returns: URI-string. Thus uri.format() is the reverse of uri.parse().
-    :rtype: string
-
-    **Example:**
-
-    .. code-block:: none
-
-        tarantool> uri.format({host = 'x.html', scheme = 'http', fragment = 'y'})
-        ---
-        - http://x.html#y
         ...
 
 .. _Universally unique identifier: https://en.wikipedia.org/wiki/Universally_unique_identifier

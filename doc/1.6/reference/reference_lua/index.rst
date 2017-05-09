@@ -41,7 +41,6 @@ This reference covers Tarantool's built-in Lua modules.
     tarantool
     uuid
     uri
-    xlog
     yaml
     other
     errcodes

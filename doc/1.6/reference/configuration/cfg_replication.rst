@@ -12,7 +12,7 @@
     :samp:`{konstantin}:{secret_password}@{tarantool.org}:{3301}`
 
     If there is more than one replication source in a replica set, specify an
-    array of URIs, for example:
+    array of URIs, for example: (replace 'uri' and 'uri2' in this example with valid URIs):
     
     :extsamp:`box.cfg{ replication_source = { {*{'uri1'}*}, {*{'uri2'}*} } }`
 

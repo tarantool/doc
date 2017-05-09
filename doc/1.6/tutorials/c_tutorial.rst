@@ -33,7 +33,7 @@ writing their own stored procedures.
 Check that these items exist on the computer: |br|
 * Tarantool 1.6 |br|
 * A gcc compiler, any modern version should work |br|
-* "module.h" |br|
+* "module.h" and files #included in it |br|
 * "msgpuck.h" |br|
 
 The "module.h" file will exist if Tarantool 1.6 was installed from source.

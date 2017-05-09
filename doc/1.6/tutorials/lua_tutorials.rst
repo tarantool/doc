@@ -648,7 +648,7 @@ explanations that follow the code.
        if (box.space[space_name].index[i] == nil) then break end
        if (box.space[space_name].index[i].type == "TREE"
            and box.space[space_name].index[i].parts[1].fieldno == field_no
-           and box.space[space_name].index[i].parts[1].type == "str") then
+           and box.space[space_name].index[i].parts[1].type == "STR") then
          index_no = i
          break
        end

@@ -25,7 +25,7 @@
     (at server instance start or to relay to a replica), abort.
 
     | Type: boolean
-    | Default: false
+    | Default: true
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-rows_per_wal:

@@ -105,7 +105,7 @@ The possible options which can be passed to csv functions are:
             - d
           - - a\\211\\128b
         ...
-        tarantool> f:close(nn)
+        tarantool> f:close()
         ---
         - true
         ...

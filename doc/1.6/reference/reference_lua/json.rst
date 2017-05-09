@@ -104,7 +104,7 @@ read `the official documentation`_.
           - b
         ...
         -- When json.NULL is assigned to a JSON field, the field is null
-        tarantool> json.encode({field2 = json.NULL, field1 = 'a', field3 = 'c'}
+        tarantool> json.encode({field2 = json.NULL, field1 = 'a', field3 = 'c'})
         ---
         - '{"field2":null,"field1":"a","field3":"c"}'
         ...
