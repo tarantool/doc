@@ -62,18 +62,13 @@ to monitor the total memory usage and memory fragmentation.
 
     :return:
       
-      * ``items_size`` is the *total* amount of memory (including allocated, but
-        currently free slabs) used only for tuples, no indexes;
       * ``items_used_ratio`` = ``items_used`` / ``slab_count`` * ``slab_size``
         (these are slabs used only for tuples, no indexes);
       * ``quota_size`` is the maximum amount of memory that the slab allocator
         can use for both tuples and indexes
         (as configured in :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena>`
         parameter, e.g. the default is 1 gigabyte = 2^30 bytes = 1,073,741,824 bytes);
-      * ``quota_used_ratio`` = ``quota_used`` / ``quota_size``;
       * ``arena_used_ratio`` = ``arena_used`` / ``arena_size``;
-      * ``items_used`` is the *efficient* amount of memory (omitting allocated, but
-        currently free slabs) used only for tuples, no indexes;
       * ``quota_used`` is the amount of memory that is already distributed to
         the slab allocator;
       * ``arena_size`` is the *total* memory used for tuples and indexes together
@@ -89,11 +84,8 @@ to monitor the total memory usage and memory fragmentation.
     
       tarantool> box.slab.info()
       ---
-      - items_size: 228128
-        items_used_ratio: 1.8%
+      - items_used_ratio: 1.8%
         quota_size: 1073741824
-        quota_used_ratio: 0.8%
-        arena_used_ratio: 43.2%
         items_used: 4208
         quota_used: 8388608
         arena_size: 2325176

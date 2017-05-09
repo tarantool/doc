@@ -40,8 +40,7 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
 
     .. code-block:: lua
 
-        crypto.cipher.aes192.cbc.encrypt('string', 'key', 'initialization')
-        crypto.cipher.aes256.ecb.decrypt('string', 'key', 'initialization')
+        crypto.cipher.aes128.cbc.encrypt('string','KEY-567890123456','INITIALIZATION-6')
 
 .. module:: crypto.digest
 
@@ -86,15 +85,6 @@ for the whole string 'AB', but it is faster to take what was computed before for
 
       crypto = require('crypto')
 
-      -- print aes-192 digest of 'AB', with one step, then incrementally
-      print(crypto.cipher.aes192.cbc.encrypt('AB', 'key'))
-      c = crypto.cipher.aes192.cbc.encrypt.new()
-      c:init()
-      c:update('A', 'key')
-      c:update('B', 'key')
-      print(c:result())
-      c:free()
-
       -- print sha-256 digest of 'AB', with one step, then incrementally
       print(crypto.digest.sha256('AB'))
       c = crypto.digest.sha256.new()
@@ -113,7 +103,7 @@ the ``crypto`` function will both produce the same result.
 
 .. code-block:: lua
 
-    crypto.cipher.aes256.cbc.encrypt('string', 'key') == digest.aes256cbc.encrypt('string', 'key')
+    crypto.cipher.aes256.cbc.encrypt(string, key) == digest.aes256cbc.encrypt(string, key)
     crypto.digest.md4('string') == digest.md4('string')
     crypto.digest.md5('string') == digest.md5('string')
     crypto.digest.sha('string') == digest.sha('string')

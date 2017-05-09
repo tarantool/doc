@@ -871,7 +871,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         **Example:**
 
         Assume that initially there is a space named ``tester`` with a
-        primary-key index whose type is ``unsigned``. There is one tuple, with
+        primary-key index whose type is ``num``. There is one tuple, with
         ``field[1]`` = ``999`` and ``field[2]`` = ``'A'``.
 
         In the update: |br|
@@ -1224,7 +1224,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
          - ['max_id', 512]
          - ['oncebye']
          - ['oncehello']
-         - ['version', 1, 7, 2]
+         - ['version', 1, 6, 8]
 
 .. _box_space-space:
 

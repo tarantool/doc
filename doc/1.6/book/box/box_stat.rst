@@ -17,8 +17,8 @@ requests since startup, broken down by request type and network events statistic
     ...
     tarantool> box.stat, box.stat.net
     ---
-    - net: []
-    - []
+    - net: &0 []
+    - *0
     ...
     tarantool> box.stat()
     ---

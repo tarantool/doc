@@ -28,7 +28,7 @@
         - ['max_id', 512]
         - ['oncebye']
         - ['oncehello']
-        - ['version', 1, 7, 2]
+        - ['version', 1, 6, 8]
       ...
       
       tarantool> box.space._schema:delete('oncehello')
