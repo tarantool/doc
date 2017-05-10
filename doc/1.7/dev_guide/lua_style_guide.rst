@@ -98,7 +98,7 @@ Zen of Python is good; understand it and use wisely:
       a = tonumber(a) + 5 -- 128
       -- good
 
-* Try to avoid multiple nested if's or conditions with common body:
+* Try to avoid multiple nested ``if``'s with common body:
 
   .. code-block:: lua
 
@@ -118,7 +118,7 @@ Zen of Python is good; understand it and use wisely:
       end
       -- bad
 
-* Avoid multiple concatenations in one parameter, use string.format instead:
+* Avoid multiple concatenations in one statement, use ``string.format`` instead:
 
   .. code-block:: lua
 
@@ -138,7 +138,7 @@ Zen of Python is good; understand it and use wisely:
       end
       -- best
 
-* ``and``/``or`` for default variable values or..
+* Use ``and``/``or`` for default variable values
 
   .. code-block:: lua
 
@@ -150,9 +150,9 @@ Zen of Python is good; understand it and use wisely:
         if input == nil then
             input = 'default_value'
         end
-    end -- ok, but excessary
+    end -- ok, but excessive
 
-* If's and simple cases:
+* ``if``'s and return statements:
 
   .. code-block:: lua
 
@@ -180,7 +180,7 @@ Zen of Python is good; understand it and use wisely:
         function name(arg1, arg2, ...)
         end -- good
 
-  - use spaces after comment marker:
+  - use space after comment marker
 
     .. code-block:: lua
 
@@ -246,13 +246,11 @@ Zen of Python is good; understand it and use wisely:
             something = 'even better'
         }
 
-  - surround top-level function and class definitions with two blank lines.
-
-    Extra blank lines may be used (sparingly) to separate groups of related
+  - extra blank lines may be used (sparingly) to separate groups of related
     functions. Blank lines may be omitted between a bunch of related one-liners
-    (e.g. a set of dummy implementations).
+    (e.g. a set of dummy implementations)
 
-    Use blank lines in functions, sparingly, to indicate logical sections:
+    use blank lines in function, sparingly, to indicate logical sections
 
     .. code-block:: lua
 
@@ -276,16 +274,15 @@ Zen of Python is good; understand it and use wisely:
         local wat = 7
         -- good
 
-  - Delete whitespaces at EOL (strongly forbidden. Use ``:s/\s\+$//gc`` in vim
+  - Delete whitespace at EOL (strongly forbidden. Use ``:s/\s\+$//gc`` in vim
     to delete them)
 
 ===========================================================
                    Avoid global variable
 ===========================================================
 
-Avoid global variables. Strongly avoid. Strongly-strongly avoid them. If you
-have and exceptional case, use ``_G`` variable to set it, add prefix or add
-table instead of prefix:
+You must avoid global variables. If you have an exceptional case, use ``_G``
+variable to set it, add prefix or add table instead of prefix:
 
 .. code-block:: lua
 
@@ -298,7 +295,7 @@ table instead of prefix:
     _G.modulename = {}
     _G.modulename.good_local_example = good_local_example -- better
 
-Always use prefix to avoid interception of names
+Always use prefix to avoid name clash
 
 ===========================================================
                            Naming
@@ -339,7 +336,8 @@ Always use prefix to avoid interception of names
                     Idioms and patterns
 ===========================================================
 
-Always use round brackets in call of functions except multiple cases:
+Always use round brackets in call of functions except multiple cases (common lua
+style idioms):
 
 * ``*.cfg{ }`` functions (``box.cfg``/``memcached.cfg``/..)
 * ``ffi.cdef[[ ]]`` function
@@ -357,8 +355,8 @@ Avoid these kind of constructions:
 ===========================================================
 
 Don't start modules with license/authors/descriptions, you can write it in
-LICENSE/AUTHORS/README files, it's enough.
-For writing modules use one of two patterns (dont use ``modules()``):
+LICENSE/AUTHORS/README files.
+For writing modules use one of the two patterns (dont use ``modules()``):
 
 .. code-block:: lua
 
@@ -392,27 +390,15 @@ or
     }
 
 ===========================================================
-                         Debugging
-===========================================================
-
-``print`` (or ``log.*``) is your only friend. There's an instruments like "``tdb``",
-but most cases ``print``'s are more than enough. Probably most problems can be
-found with prints and nothing else. Good logging for your application is a key
-for fast/best debugging (even on production).
-
-===========================================================
                          Commenting
 ===========================================================
 
 You should write code the way it shouldn't be described, but don't forget about
 commenting it. You shouldn't comment Lua syntax (assume that reader already
-knows Lua language). Try to tell about every these things:
+knows Lua language). Try to tell about functions/variable names/etc.
 
-- names of not obvious variables
-- functions
-- .. go on and on
-
-Multiline comments: use symmetrical (``--[[ ]]--``) instead of simple (``--[[ ]]``).
+Multiline comments: use matching (``--[[ ]]--``) instead of simple
+(``--[[ ]]``).
 
 Public function comments (??):
 
@@ -498,4 +484,4 @@ When you'll test your code output will be something like this:
     ok - checking, that tables are different
     ...
 
-It's pretty straightforward and beautiful output.
+
