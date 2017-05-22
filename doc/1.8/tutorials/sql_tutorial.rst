@@ -23,8 +23,9 @@ Starting up with a first table and SELECTs
 Initialize
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is the usual Tarantool configuration request.
-You can use Tarantool "NoSQL" for connecting and administrating.
+Requests will be done using Tarantool as a
+:ref:`client <admin-using_tarantool_as_a_client>`.
+Start Tarantool, and enter a usual Tarantool configuration request.
 
 .. code-block:: tarantoolsession
 
