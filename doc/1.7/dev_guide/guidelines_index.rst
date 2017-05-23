@@ -1,5 +1,5 @@
 ================================================================================
-Guidelines
+                                   Guidelines
 ================================================================================
 
 .. toctree::
@@ -9,4 +9,4 @@ Guidelines
     documentation_guidelines
     c_style_guide
     python_style_guide
-
+    lua_style_guide
