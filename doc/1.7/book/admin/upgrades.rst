@@ -51,7 +51,9 @@ under 1.7 for a while. It also renames a few configuration parameters, but old
 parameters are supported. The full list of breaking changes is available in
 `release notes for Tarantool 1.7 <https://github.com/tarantool/tarantool/releases>`_.
 
-To upgrade from Tarantool 1.6 to 1.7:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to upgrade from Tarantool 1.6 to 1.7
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Check with application developers whether application files need to be
    updated due to incompatible changes (see
@@ -60,7 +62,7 @@ To upgrade from Tarantool 1.6 to 1.7:
 
 2. Stop the Tarantool server.
 
-3. Make a copy of all data (see an appropriate hot backup procedure in 
+3. Make a copy of all data (see an appropriate hot backup procedure in
    :ref:`Backups <admin-backups>`) and the package from which the current (old)
    version was installed (for rollback purposes).
 
@@ -92,8 +94,8 @@ any cluster configuration: master-master or master-replica.
    cluster). See details in
    :ref:`Upgrading a Tarantool instance <admin-upgrades_instance>`.
 
-2. Verify installation on the replicas: 
-   
+2. Verify installation on the replicas:
+
    a. Start Tarantool.
 
    b. Attach to the master and start working as before.
