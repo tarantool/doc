@@ -347,7 +347,7 @@ The ``fio`` module contains:
                          combined by enclosing them in braces.
     :param number mode: Mode bits can be passed as a number or as string
                         constants, for example ''`S_IWUSR`". Mode bits
-                        are significant if flags include `O_CREATE` or
+                        are significant if flags include `O_CREAT` or
                         `O_TMPFILE`. Mode bits can be
                         combined by enclosing them in braces.
     :return: file handle (later - fh)
