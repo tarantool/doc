@@ -40,6 +40,12 @@ should have no or little trouble when upgrading from Tarantool 1.6 to 1.7, or
 from Tarantool 1.7 to 1.8. Meanwhile Tarantool 1.8 may have incompatible changes
 when migrating from Tarantool 1.6. to 1.8 directly.
 
+.. _admin-upgrades_instance_16_to_17:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to upgrade from Tarantool 1.6 to 1.7
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 This procedure is for upgrading a standalone Tarantool instance in production
 from 1.6.x to 1.7.x. Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
@@ -51,8 +57,6 @@ under 1.7 for a while. It also renames a few configuration parameters, but old
 parameters are supported. The full list of breaking changes is available in
 `release notes for Tarantool 1.7 <https://github.com/tarantool/tarantool/releases>`_.
 
-To upgrade from Tarantool 1.6 to 1.7:
-
 1. Check with application developers whether application files need to be
    updated due to incompatible changes (see
    `1.7 release notes <https://github.com/tarantool/tarantool/releases>`_).
@@ -60,7 +64,7 @@ To upgrade from Tarantool 1.6 to 1.7:
 
 2. Stop the Tarantool server.
 
-3. Make a copy of all data (see an appropriate hot backup procedure in 
+3. Make a copy of all data (see an appropriate hot backup procedure in
    :ref:`Backups <admin-backups>`) and the package from which the current (old)
    version was installed (for rollback purposes).
 
@@ -74,6 +78,32 @@ To upgrade from Tarantool 1.6 to 1.7:
 6. Update application files, if needed.
 
 7. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
+
+.. _admin-upgrades_instance_16_to_18:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to upgrade from Tarantool 1.6 to 1.8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The procedure is fully analogous to
+:ref:`upgrading from 1.7 to 1.8 <admin-upgrades_instance_16_to_17>`.
+
+.. _admin-upgrades_instance_17_to_18:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to upgrade from Tarantool 1.7 to 1.8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Stop the Tarantool server.
+
+2. Make a copy of all data (see an appropriate hot backup procedure in
+   :ref:`Backups <admin-backups>`) and the package from which the current (old)
+   version was installed (for rollback purposes).
+
+3. Update the Tarantool server. See installation instructions at Tarantool
+   `download page <http://tarantool.org/download.html>`_.
+
+4. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
 
 .. _admin-upgrades_replication_cluster:
 
@@ -92,8 +122,8 @@ any cluster configuration: master-master or master-replica.
    cluster). See details in
    :ref:`Upgrading a Tarantool instance <admin-upgrades_instance>`.
 
-2. Verify installation on the replicas: 
-   
+2. Verify installation on the replicas:
+
    a. Start Tarantool.
 
    b. Attach to the master and start working as before.
