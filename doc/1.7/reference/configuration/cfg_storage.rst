@@ -54,6 +54,7 @@
 
     Bloom filter false positive rate -- the suitable probability of the bloom
     filter to give a wrong result.
+    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: float
     | Default = 0.05
@@ -84,6 +85,7 @@
 .. confval:: vinyl_page_size
 
     Page size, in bytes. Page is a R/W unit for vinyl disk operations.
+    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
     | Default = 8 * 1024
@@ -94,6 +96,7 @@
 .. confval:: vinyl_range_size
 
     The maximal range size for vinyl, in bytes.
+    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
     | Default = 1024 * 1024 * 1024
@@ -105,6 +108,7 @@
 
     The maximal number of runs per level in vinyl LSM tree.
     If this number is exceeded, a new level is created.
+    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
     | Default = 2
@@ -115,6 +119,7 @@
 .. confval:: vinyl_run_size_ratio
 
     Ratio between the sizes of different levels in the LSM tree.
+    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
     
     | Type: float
     | Default = 3.5
