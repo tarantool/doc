@@ -117,6 +117,21 @@
     | Default: "."
     | Dynamic: no
 
+.. _cfg_basic-vinyl_timeout:
+
+.. confval:: vinyl_timeout
+
+    The vinyl storage engine has a scheduler which does compaction.
+    When vinyl is low on available memory, the compaction scheduler
+    may be unable to keep up with incoming update requests.
+    In that situation, queries may time out after vinyl_timeout seconds.
+    This should rarely occur, since normally vinyl 
+    would throttle inserts when it is running low on compaction bandwidth.
+
+    | Type: float
+    | Default: 60
+    | Dynamic: yes
+
 .. _cfg_basic-username:
 
 .. confval:: username
