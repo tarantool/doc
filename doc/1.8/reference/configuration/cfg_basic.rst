@@ -5,6 +5,7 @@
 * :ref:`pid_file <cfg_basic-pid_file>`
 * :ref:`read_only <cfg_basic-read_only>`
 * :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
+* :ref:`vinyl_timeout <cfg_basic-vinyl_timeout>`
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
@@ -117,6 +118,21 @@
     | Default: "."
     | Dynamic: no
 
+.. _cfg_basic-vinyl_timeout:
+
+.. confval:: vinyl_timeout
+
+    The vinyl storage engine has a scheduler which does compaction.
+    When vinyl is low on available memory, the compaction scheduler
+    may be unable to keep up with incoming update requests.
+    In that situation, queries may time out after ``vinyl_timeout`` seconds.
+    This should rarely occur, since normally vinyl
+    would throttle inserts when it is running low on compaction bandwidth.
+
+    | Type: float
+    | Default: 60
+    | Dynamic: yes
+
 .. _cfg_basic-username:
 
 .. confval:: username
@@ -150,15 +166,15 @@
     relative to the current directory. If not specified, defaults to
     the current directory. Other directory parameters may be relative to
     ``work_dir``, for example:
-    
+
     .. code-block:: lua
-    
+
         box.cfg{
             work_dir = '/home/user/A',
             wal_dir = 'B',
             memtx_dir = 'C'
         }
-          
+
     will put xlog files in ``/home/user/A/B``, snapshot files in ``/home/user/A/C``,
     and all other files or subdirectories in ``/home/user/A``.
 

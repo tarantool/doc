@@ -116,14 +116,14 @@ The ``fio`` module contains:
     :rtype:  table
 
     Additionally, the result of ``fio.stat('file-name')`` will include methods
-    equivalent to POSIX macros:        
+    equivalent to POSIX macros:
 
-    * ``is_blk()`` = POSIX macro S_ISBLK, 
-    * ``is_chr()`` = POSIX macro S_ISCHR, 
-    * ``is_dir()`` = POSIX macro S_ISDIR, 
-    * ``is_fifo()`` = POSIX macro S_ISFIFO, 
-    * ``is_link()`` = POSIX macro S_ISLINK, 
-    * ``is_reg()`` = POSIX macro S_ISREG, 
+    * ``is_blk()`` = POSIX macro S_ISBLK,
+    * ``is_chr()`` = POSIX macro S_ISCHR,
+    * ``is_dir()`` = POSIX macro S_ISDIR,
+    * ``is_fifo()`` = POSIX macro S_ISFIFO,
+    * ``is_link()`` = POSIX macro S_ISLINK,
+    * ``is_reg()`` = POSIX macro S_ISREG,
     * ``is_sock()`` = POSIX macro S_ISSOCK.
 
     For example, ``fio.stat('/'):is_dir()`` will return true.
@@ -347,7 +347,7 @@ The ``fio`` module contains:
                          combined by enclosing them in braces.
     :param number mode: Mode bits can be passed as a number or as string
                         constants, for example ''`S_IWUSR`". Mode bits
-                        are significant if flags include `O_CREATE` or
+                        are significant if flags include `O_CREAT` or
                         `O_TMPFILE`. Mode bits can be
                         combined by enclosing them in braces.
     :return: file handle (later - fh)
@@ -540,7 +540,7 @@ The ``fio`` module contains:
 
     Table with constants which are the same as POSIX flag values on the
     target platform (see ``man 2 stat``).
-    
+
     **Example:**
 
     .. code-block:: tarantoolsession
