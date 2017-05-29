@@ -224,49 +224,51 @@ A list of all ``box.space`` functions follows, then comes a list of all
             .. rst-class:: left-align-column-3
             .. rst-class:: left-align-column-4
 
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | Name                | Effect             | Type                        | Default                   |
-            +=====================+====================+=============================+===========================+
-            | type                | type of index      | string                      | 'TREE'                    |
-            |                     |                    | ('HASH' or 'TREE' or        |                           |
-            |                     |                    | 'BITSET' or 'RTREE')        |                           |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | id                  | unique identifier  | number                      | last index's id, +1       |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | unique              | index is unique    | boolean                     | ``true``                  |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | if_not_exists       | no error if        | boolean                     | ``false``                 |
-            |                     | duplicate name     |                             |                           |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | parts               | field-numbers  +   | {field_no, 'unsigned' or    | ``{1, 'unsigned'}``       |
-            |                     | types              | 'string' or 'integer' or    |                           |
-            |                     |                    | 'number' or 'array' or      |                           |
-            |                     |                    | 'scalar'}                   |                           |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | dimension           | affects RTREE only | number                      | 2                         |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | distance            | affects RTREE only | string ('euclid' or         | 'euclid'                  |
-            |                     |                    | 'manhattan')                |                           |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | bloom_fpr           | affects vinyl only | number                      | vinyl_bloom_fpr           |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | page_size           | affects vinyl only | number                      | vinyl_page_size           |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | range_size          | affects vinyl only | number                      | vinyl_range_size          |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | run_count_per_level | affects vinyl only | number                      | vinyl_run_count_per_level |
-            +---------------------+--------------------+-----------------------------+---------------------------+
-            | run_size_ratio      | affects vinyl only | number                      | vinyl_run_size_ratio      |
-            +---------------------+--------------------+-----------------------------+---------------------------+
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | Name                | Effect             | Type                        | Default                       |
+            +=====================+====================+=============================+===============================+
+            | type                | type of index      | string                      | 'TREE'                        |
+            |                     |                    | ('HASH' or 'TREE' or        |                               |
+            |                     |                    | 'BITSET' or 'RTREE')        |                               |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | id                  | unique identifier  | number                      | last index's id, +1           |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | unique              | index is unique    | boolean                     | ``true``                      |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | if_not_exists       | no error if        | boolean                     | ``false``                     |
+            |                     | duplicate name     |                             |                               |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | parts               | field-numbers  +   | {field_no, 'unsigned' or    | ``{1, 'unsigned'}``           |
+            |                     | types              | 'string' or 'integer' or    |                               |
+            |                     |                    | 'number' or 'array' or      |                               |
+            |                     |                    | 'scalar'}                   |                               |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | dimension           | affects RTREE only | number                      | 2                             |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | distance            | affects RTREE only | string ('euclid' or         | 'euclid'                      |
+            |                     |                    | 'manhattan')                |                               |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | bloom_fpr           | affects vinyl only | number                      | ``vinyl_bloom_fpr``           |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | page_size           | affects vinyl only | number                      | ``vinyl_page_size``           |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | range_size          | affects vinyl only | number                      | ``vinyl_range_size``          |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | run_count_per_level | affects vinyl only | number                      | ``vinyl_run_count_per_level`` |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
+            | run_size_ratio      | affects vinyl only | number                      | ``vinyl_run_size_ratio``      |
+            +---------------------+--------------------+-----------------------------+-------------------------------+
 
-        Note re storage engine: vinyl has extra options which by default are based on configuration parameters
+        Note re storage engine: vinyl has extra options which by default are
+        based on configuration parameters
         :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`,
         :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`,
         :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`,
         :ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`, and
         :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`
         -- see the description of those parameters.
-        The current values can be seen by selecting from box.space._index.
+        The current values can be seen by selecting from
+        :ref:`box.space._index <box_space-index>`.
 
         **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
 
@@ -1131,7 +1133,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     ``_index`` is a system space.
 
     Tuples in this space contain the following fields:
-    
+
     * ``id`` (= id of space),
     * ``iid`` (= index number within space),
     * ``name``,

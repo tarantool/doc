@@ -124,8 +124,8 @@
     The vinyl storage engine has a scheduler which does compaction.
     When vinyl is low on available memory, the compaction scheduler
     may be unable to keep up with incoming update requests.
-    In that situation, queries may time out after vinyl_timeout seconds.
-    This should rarely occur, since normally vinyl 
+    In that situation, queries may time out after ``vinyl_timeout`` seconds.
+    This should rarely occur, since normally vinyl
     would throttle inserts when it is running low on compaction bandwidth.
 
     | Type: float
@@ -165,15 +165,15 @@
     relative to the current directory. If not specified, defaults to
     the current directory. Other directory parameters may be relative to
     ``work_dir``, for example:
-    
+
     .. code-block:: lua
-    
+
         box.cfg{
             work_dir = '/home/user/A',
             wal_dir = 'B',
             memtx_dir = 'C'
         }
-          
+
     will put xlog files in ``/home/user/A/B``, snapshot files in ``/home/user/A/C``,
     and all other files or subdirectories in ``/home/user/A``.
 
