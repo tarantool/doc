@@ -5,6 +5,7 @@
 * :ref:`pid_file <cfg_basic-pid_file>`
 * :ref:`read_only <cfg_basic-read_only>`
 * :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
+* :ref:`vinyl_timeout <cfg_basic-vinyl_timeout>`
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
