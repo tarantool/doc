@@ -1125,7 +1125,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     ``_index`` is a system space.
 
     Tuples in this space contain the following fields:
-    
+
     * ``id`` (= id of space),
     * ``iid`` (= index number within space),
     * ``name``,
@@ -1323,7 +1323,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
 .. data:: _user
 
-    ``_user`` is a system space where usernames and password hashes are stored.
+    ``_user`` is a system space where user-names and password hashes are stored.
 
     Tuples in this space contain the following fields:
 

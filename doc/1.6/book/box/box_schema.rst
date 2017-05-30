@@ -48,7 +48,7 @@ for spaces, users, roles, and function tuples.
         |               | for example if                                  |         |                     |
         |               | field_count=5, it is illegal                    |         |                     |
         |               | to insert a tuple with fewer                    |         |                     |
-        |               | than or more than 5 fields                      |         |                     | 
+        |               | than or more than 5 fields                      |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+
         | if_not_exists | create space only if a space                    | boolean | false               |
         |               | with the same name does not                     |         |                     |
@@ -267,7 +267,7 @@ for spaces, users, roles, and function tuples.
          empty password. This feature is useful for connection pools, which want to reuse a
          connection for a different user without re-establishing it.
 
-    :param string password: password
+    :param string password: password to be hashed
     :rtype: string
 
     **Example:**
@@ -280,12 +280,14 @@ for spaces, users, roles, and function tuples.
 
 .. function:: box.schema.user.passwd([user-name,] password)
 
-    Associate a password with the user who is currently logged in.
+    Associate a password with the user who is currently logged in,
     or with another user.
+
     Users who wish to change their own passwords should
-    use ``box.schema.user.passwd(password)``.
+    use ``box.schema.user.passwd(password)`` syntax.
+
     Administrators who wish to change passwords of other users should
-    use ``box.schema.user.passwd(user-name, password)``.
+    use ``box.schema.user.passwd(user-name, password)`` syntax.
 
     :param string user-name: user-name
     :param string password: password
