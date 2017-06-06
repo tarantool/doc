@@ -24,7 +24,6 @@
             {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
           </div>
         </div>
-        <div class="b-cols_content_delimeter"> </div>
         <div class="b-cols_content_right">
           <div class="b-cols_content_right-slot">
             {{- breadcrumbs() -}}
@@ -37,6 +36,7 @@
       </div>
     {% endif %}
   {% else %}
+    {{- breadcrumbs(is_main_page=True) -}}
     {{ body }}
   {% endif %}
 {% endblock %}
