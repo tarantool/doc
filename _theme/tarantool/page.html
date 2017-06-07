@@ -36,7 +36,9 @@
       </div>
     {% endif %}
   {% else %}
-    {{- breadcrumbs(is_main_page=True) -}}
+    {% if is_mainpage %}
+      {{- breadcrumbs(is_main_page=is_mainpage) -}}
+    {% endif%}
     {{ body }}
   {% endif %}
 {% endblock %}
