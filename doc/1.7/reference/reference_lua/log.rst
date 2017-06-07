@@ -14,15 +14,16 @@ user-generated with the :samp:`log.{log_level}` function.
 .. function:: error(message)
               warn(message)
               info(message)
+              verbose(message)
               debug(message)
 
     Output a user-generated message to the :ref:`log file <cfg_logging-log>`,
     given log_level_function_name = ``error`` or ``warn`` or ``info`` or
-    ``debug``.
+    ``verbose`` or ``debug``.
 
     :param string message: The actual output will be a line containing the
                            current timestamp, a module name, 'E' or 'W' or
-                           'I' or 'D' or 'R' depending on
+                           'I' or 'V' or 'D' or 'R' depending on
                            ``log_level_function_name``, and ``message``.
                            Output will not occur if ``log_level_function_name``
                            is for a type greater than :ref:`log_level
