@@ -102,3 +102,33 @@ errors, particularly database errors.
    :ref:`log <cfg_logging-log>` configuration parameter.
 
 
+Generally, for Tarantool built-in functions which are designed to return objects:
+the result will be an object, or nil, or `a Lua error <https://www.lua.org/pil/8.3.html>`_.
+For example consider the :ref:`fio_read.lua <cookbook-fio_read>` program in our cookbook:
+
+.. code-block:: lua
+
+    #!/usr/bin/env tarantool
+
+    local fio = require('fio')
+    local errno = require('errno')
+    local f = fio.open('/tmp/xxxx.txt', {'O_RDONLY' })
+    if not f then
+        error("Failed to open file: "..errno.strerror())
+    end
+    local data = f:read(4096)
+    f:close()
+    print(data)
+
+After a function call that might fail, like fio.open() above,
+it is common to see syntax like ``if not f then ...``
+or ``if f == nil then ...``, which check
+for common failures. But if there had been a syntax
+error, for example fio.opex instead of fio.open, then
+there would have been a Lua error and f would not have
+been changed. If checking for such an obvious error
+had been a concern, the programmer would probably have
+used pcall().
+
+All functions in Tarantool modules should work this way,
+unless the manual explicitly says otherwise.
