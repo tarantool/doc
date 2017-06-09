@@ -15,7 +15,7 @@ where:
 
 * COMMAND is one of the following: start, stop, logrotate, status, enter,
   restart, eval, check, connect, cat, play.
-  
+
 * NAME is the name of an :ref:`instance file <admin-instance_file>`.
 
 * FILE is the path to some file (.lua, .xlog or .snap).
@@ -26,5 +26,5 @@ where:
 
 See also:
 
-* Detailed reference upon ``man tarantoolctl`` or ``tarantoolctl --help``. 
-* Usage examples in `Server administration <admin>` section.
+* Detailed reference upon ``man tarantoolctl`` or ``tarantoolctl --help``.
+* Usage examples in :ref:`Server administration <admin>` section.
