@@ -106,9 +106,14 @@
 
     :return: tuple format
 
+.. _c_api-tuple-box_tuple_field:
+
 .. c:function:: const char *box_tuple_field(const box_tuple_t *tuple, uint32_t field_id)
 
     Return the raw tuple field in MsgPack format.
+    The result is a pointer to raw MessagePack data which can be
+    decoded with mp_decode functions, for an example see the tutorial
+    program :ref:`read.c <f_c_tutorial-read>`.
 
     The buffer is valid until next call to box_tuple_* functions.
 
@@ -180,6 +185,9 @@
 
     Seek the tuple iterator.
 
+    The result is a pointer to raw MessagePack data which can be
+    decoded with mp_decode functions, for an example see the tutorial
+    program :ref:`read.c <f_c_tutorial-read>`.
     The returned buffer is valid until next call to box_tuple_* API.
     Requested field_no returned by next call to box_tuple_next(it).
 
@@ -199,6 +207,9 @@
 
     Return the next tuple field from tuple iterator.
 
+    The result is a pointer to raw MessagePack data which can be
+    decoded with mp_decode functions, for an example see the tutorial
+    program :ref:`read.c <f_c_tutorial-read>`.
     The returned buffer is valid until next call to box_tuple_* API.
 
     :param box_tuple_iterator_t* it:
