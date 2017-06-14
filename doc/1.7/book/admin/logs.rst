@@ -30,8 +30,6 @@ Then check the logs:
    2017-04-04 15:54:04.986 [29255] main/101/tarantoolctl I> recovery start
    2017-04-04 15:54:04.986 [29255] main/101/tarantoolctl I> recovering from `/var/lib/tarantool/my_app/00000000000000000000.snap'
    2017-04-04 15:54:04.988 [29255] main/101/tarantoolctl I> ready to accept requests
-   2017-04-04 15:54:04.988 [29255] main/105/snapshot_daemon I> started
-   2017-04-04 15:54:04.988 [29255] main/105/snapshot_daemon I> scheduled the next snapshot at Tue Apr  4 17:43:16 2017
    2017-04-04 15:54:04.988 [29255] main/101/tarantoolctl I> set 'checkpoint_interval' configuration option to 3600
    2017-04-04 15:54:04.988 [29255] main/101/my_app I> Run console at unix/:/var/run/tarantool/my_app.control
    2017-04-04 15:54:04.989 [29255] main/106/console/unix/:/var/ I> started

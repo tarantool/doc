@@ -8,7 +8,7 @@ The minimal fault-tolerant Tarantool configuration would be a replication cluste
 that includes a master and a replica, or two masters.
 
 The basic recommendation is to configure all Tarantool instances in a cluster to
-create :ref:`checkpoint files <index-box_persistence>` at a regular basis.
+create :ref:`snapshot files <index-box_persistence>` at a regular basis.
 
 Here follow action plans for typical crash scenarios.
 

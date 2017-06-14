@@ -13,8 +13,8 @@ These parameters are deprecated since Tarantool version 1.7.4:
 * :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal_deprecated>`
 * :ref:`slab_alloc_minimal <cfg_storage-slab_alloc_minimal_deprecated>`
 * :ref:`snap_dir <cfg_basic-snap_dir_deprecated>`
-* :ref:`snapshot_count <cfg_snapshot_daemon-snapshot_count_deprecated>`
-* :ref:`snapshot_period <cfg_snapshot_daemon-snapshot_period_deprecated>`
+* :ref:`snapshot_count <cfg_checkpoint_daemon-snapshot_count_deprecated>`
+* :ref:`snapshot_period <cfg_checkpoint_daemon-snapshot_period_deprecated>`
 
 .. _cfg_basic-coredump_deprecated:
 
@@ -135,20 +135,20 @@ These parameters are deprecated since Tarantool version 1.7.4:
     The parameter was only renamed,
     while the type, values and semantics remained intact.
 
-.. _cfg_snapshot_daemon-snapshot_period_deprecated:
+.. _cfg_checkpoint_daemon-snapshot_period_deprecated:
 
 .. confval:: snapshot_period
 
     **Deprecated** in favor of
-    :ref:`checkpoint_interval <cfg_snapshot_daemon-checkpoint_interval>`.
+    :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`.
     The parameter was only renamed,
     while the type, values and semantics remained intact.
 
-.. _cfg_snapshot_daemon-snapshot_count_deprecated:
+.. _cfg_checkpoint_daemon-snapshot_count_deprecated:
 
 .. confval:: snapshot_count
 
     **Deprecated** in favor of
-    :ref:`checkpoint_count <cfg_snapshot_daemon-checkpoint_count>`.
+    :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`.
     The parameter was only renamed,
     while the type, values and semantics remained intact.

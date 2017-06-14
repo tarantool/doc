@@ -314,27 +314,27 @@ the requests (this is called the "recovery process"). You can change
 the timing of the WAL writer, or turn it off, by setting
 :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
 
-Tarantool also maintains a set of **checkpoint files**. These files contain
+Tarantool also maintains a set of **snapshot files**. These files contain
 an on-disk copy of the entire data set for a given moment. Instead of reading
 every WAL file since the databases were created, the recovery process can load
-the latest checkpoint file and then read only those WAL files that were produced
-after the checkpoint file was made. After checkpointing, old WAL files can be
+the latest snapshot file and then read only those WAL files that were produced
+after the snapshot file was made. After checkpointing, old WAL files can be
 removed to free up space.
 
-To force immediate creation of a checkpoint, you can use Tarantool's
+To force immediate creation of a snapshot file, you can use Tarantool's
 :ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation
-of checkpoint files, you can use Tarantool's
-:ref:`snapshot daemon <book_cfg_snapshot_daemon>`. The snapshot
+of snapshot files, you can use Tarantool's
+:ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. The checkpoint
 daemon sets intervals for forced checkpoints. It makes sure that the states
 of both memtx and vinyl storage engines are synchronized and saved to disk,
 and automatically removes old WAL files.
 
-Checkpoint files can be created even if there is no WAL file.
+Snapshot files can be created even if there is no WAL file.
 
 .. NOTE::
 
    | The memtx engine makes only forced checkpoints.
-   | The vinyl engine runs checkpointing in background at all times.
+   | The vinyl engine runs checkpointing in the background at all times.
 
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.
