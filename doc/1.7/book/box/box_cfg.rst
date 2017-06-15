@@ -17,7 +17,7 @@ Use ``box.cfg`` without braces to get read-only access to those parameters.
 
     tarantool> box.cfg
     ---
-    - checkpoint_count: 6
+    - checkpoint_count: 2
       too_long_threshold: 0.5
       slab_alloc_factor: 1.1
       memtx_max_tuple_size: 1048576

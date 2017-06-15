@@ -4,7 +4,7 @@
 The checkpoint daemon is a fiber which is constantly running. At intervals, it may
 make new snapshot (.snap) files and then may remove old snapshot files. If the
 checkpoint daemon removes an old snapshot file, it will also remove any
-write-ahead log (.xlog) files that are older than the snapshot file and contain
+write-ahead log (.xlog) files which are older than the snapshot file and which contain
 information that is present in the snapshot file.
 
 The :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>` and
@@ -20,19 +20,20 @@ exist before removals occur.
     ``checkpoint_interval`` is set to a value greater than zero, and there is
     activity which causes change to a database, then the checkpoint daemon will
     call :ref:`box.snapshot <box-snapshot>` every ``checkpoint_interval``
-    seconds, creating a new snapshot file each time.
+    seconds, creating a new snapshot file each time. If ``checkpoint_interval``
+    is set to zero, then the checkpoint daemon is disabled.
 
     For example:
 
     .. code-block:: lua
 
-        box.cfg{checkpoint_interval=3600}
+        box.cfg{checkpoint_interval=60}
         
     will cause the checkpoint daemon to create a new database snapshot once
-    per hour.
+    per minute, if there is activity.
 
     | Type: integer
-    | Default: 0 (disabled)
+    | Default: 3600 (one hour)
     | Dynamic: yes
 
 .. _cfg_checkpoint_daemon-checkpoint_count:
@@ -56,5 +57,5 @@ exist before removals occur.
     (and any associated write-ahead-log files) after creating a new one.
 
     | Type: integer
-    | Default: 6
+    | Default: 2
     | Dynamic: yes
