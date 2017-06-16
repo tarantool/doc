@@ -290,7 +290,7 @@ removed to free up space.
 To force immediate creation of a checkpoint, you can use Tarantool's
 :ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation
 of checkpoint files, you can use Tarantool's
-:ref:`snapshot daemon <book_cfg_snapshot_daemon>`. The snapshot
+:ref:`checkpoint daemon <book_cfg_snapshot_daemon>`. The checkpoint
 daemon sets intervals for forced checkpoints. It makes sure that the state
 of the memtx engine is saved to disk,
 and automatically removes old WAL files.
@@ -299,7 +299,8 @@ Checkpoint files can be created even if there is no WAL file.
 
 .. NOTE::
 
-   | The memtx engine makes only forced checkpoints.
+   The memtx engine makes only regular checkpoints with the interval set in
+   :ref:`checkpoint daemon <book_cfg_snapshot_daemon>` configuration.
 
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.

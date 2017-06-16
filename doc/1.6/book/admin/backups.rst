@@ -8,7 +8,7 @@ Tarantool storage architecture is append-only: files are only appended to, and
 are never overwritten. Old files are removed by garbage collection after a
 checkpoint. You can configure the amount of past checkpoints preserved by garbage
 collection by configuring Tarantool
-:ref:`snapshot daemon <book_cfg_snapshot_daemon>`. Backups can be taken at any
+:ref:`checkpoint daemon <book_cfg_snapshot_daemon>`. Backups can be taken at any
 time, with minimal overhead on database performance.
 
 .. _admin-backups-hot_backup_memtx:
@@ -44,7 +44,7 @@ To take a backup, in general terms:
 
 1. Issue ``box.backup.begin()`` on the administrative console. This will suspend
    garbage collection till the next ``box.backup.end()`` and will return a list
-   of files to backup. 
+   of files to backup.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, at a state consistent with the
