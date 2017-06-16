@@ -5,7 +5,6 @@
                            Tarantool - Documentation
 -------------------------------------------------------------------------------
 
-
 .. wp_section::
     :title: Tarantool 1.7 manual
     :class: b-block-lightgray b-downloads-top documentation-main-page-title
