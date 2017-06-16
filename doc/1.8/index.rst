@@ -6,7 +6,7 @@
 -------------------------------------------------------------------------------
 
 .. wp_section::
-    :title: Tarantool 1.7 manual
+    :title: Tarantool 1.8 manual
     :class: b-block-lightgray b-downloads-top documentation-main-page-title
 
 .. wp_section::
