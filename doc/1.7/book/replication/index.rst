@@ -15,6 +15,8 @@ make the original data-change requests, set up the replica instances which
 copy data-change requests from masters, and establish procedures for
 recovery from a degraded state.
 
+.. _index-replication_architecture:
+
 =====================================================================
 Replication architecture
 =====================================================================
