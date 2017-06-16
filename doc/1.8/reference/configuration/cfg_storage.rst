@@ -120,7 +120,7 @@
 
     Ratio between the sizes of different levels in the LSM tree.
     This can be overridden by a :ref:`create_index <box_space-create_index>` option.
-
+    
     | Type: float
     | Default = 3.5
     | Dynamic: no

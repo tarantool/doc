@@ -149,6 +149,8 @@
 
     See also: :ref:`index_object.random<box_index-random>`
 
+.. _c_api-box_index-box_index_get:
+
 .. c:function:: int box_index_get(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
     Get a tuple from index by the key.

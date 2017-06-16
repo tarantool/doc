@@ -207,7 +207,8 @@ recommended.
 
     .. code-block:: tarantoolsession
 
-        tarantool> fiber.kill(fiber.id())
+
+        tarantool> fiber.kill(fiber.id()) -- kill self, may make program end
         ---
         - error: fiber is cancelled
         ...
@@ -334,7 +335,7 @@ recommended.
 
         .. code-block:: tarantoolsession
 
-            tarantool> fiber.self():cancel()
+            tarantool> fiber.self():cancel() -- kill self, may make program send
             ---
             - error: fiber is cancelled
             ...

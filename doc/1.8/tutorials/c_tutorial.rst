@@ -19,10 +19,11 @@ In fact the routines are always "C functions" but the phrase
 "stored procedure" is commonly used for historical reasons.
 
 In this tutorial, which can be followed by anyone with a Tarantool
-development package and a C compiler, there are three tasks.
+development package and a C compiler, there are four tasks.
 The first -- :code:`easy.c` -- prints "hello world".
 The second -- :code:`harder.c` -- decodes a passed parameter value.
-The third -- :code:`hardest.c` -- uses the C API to do DBMS work.
+The third -- :code:`hardest.c` -- uses the C API to do a DBMS insert.
+The fourth -- :code:`read.c` -- uses the C API to do a DBMS select.
 
 After following the instructions, and seeing that the results
 are what is described here, users should feel confident about
@@ -33,8 +34,9 @@ writing their own stored procedures.
 Check that these items exist on the computer: |br|
 * Tarantool 1.8 |br|
 * A gcc compiler, any modern version should work |br|
-* "module.h" |br|
+* "module.h" and files #included in it |br|
 * "msgpuck.h" |br|
+* "libmsgpuck.a" (only for some recent msgpuck versions) |br|
 
 The "module.h" file will exist if Tarantool 1.8 was installed from source.
 Otherwise Tarantool's "developer" package must be installed.
@@ -52,6 +54,15 @@ For example, if module.h address is /usr/local/include/tarantool/module.h,
 and msgpuck.h address is /usr/local/include/msgpuck/msgpuck.h,
 and they are not currently on the include path, say |br|
 :code:`export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck`
+
+The libmsgpuck.a static library is necessary with msgpuck versions
+produced after February 2017. If and only if you encounter linking
+problems when using the gcc statements in the examples for this tutorial, you should
+put libmsgpuck.a on the path (libmsgpuck.a is produced from both msgpuck
+and Tarantool source downloads so it should be easy to find). For
+example, instead of ":code:`gcc -shared -o harder.so -fPIC harder.c`"
+for the second example below, you will need to say
+":code:`gcc -shared -o harder.so -fPIC harder.c libmsgpuck.a`".
 
 Requests will be done using Tarantool as a
 :ref:`client <admin-using_tarantool_as_a_client>`.
@@ -250,11 +261,11 @@ Now go back to the client and execute these requests:
     box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')
     capi_connection:call('hardest')
 
-This time the C function is doing three things:
+This time the C function is doing three things: |br|
 (1) finding the numeric identifier of the "capi_test" space
 by calling box_space_id_by_name(); |br|
 (2) formatting a tuple using more msgpuck.h functions; |br|
-(3) inserting a row using box_insert.
+(3) inserting a tuple using box_insert.
 
 Now, still on the client, execute this request: |br|
 :code:`box.space.capi_test:select()`
@@ -274,11 +285,107 @@ Answer: the C API. The whole C API is documented :ref:`here <index-c_api_referen
 The function box_space_id_by_name() is documented :ref:`here <box-box_space_id_by_name>`.
 The function box_insert() is documented :ref:`here <box-box_insert>`.
 
-Conclusion: the long description of the C API is
+.. _f_c_tutorial-read:
+
+**read.c**
+
+Go back to the shell where the easy.c
+and the harder.c and the hardest.c programs were created.
+
+Create a file. Name it read.c. Put these 43 lines in it:
+
+.. code-block:: none
+
+    #include "module.h"
+    #include <msgpuck.h>
+    int read(box_function_ctx_t *ctx, const char *args, const char *args_end)
+    {
+      char tuple_buf[1024];      /* where the raw MsgPack tuple will be stored */
+      uint32_t space_id = box_space_id_by_name("capi_test", strlen("capi_test"));
+      uint32_t index_id = 0;     /* The number of the space's first index */
+      uint32_t key = 10000;      /* The key value that box_insert() used */
+      mp_encode_array(tuple_buf, 0); /* clear */
+      box_tuple_format_t *fmt = box_tuple_format_default();
+      box_tuple_t *tuple = box_tuple_new(fmt, tuple_buf, tuple_buf+512);
+      assert(tuple != NULL);
+      char key_buf[16];          /* Pass key_buf = encoded key = 1000 */
+      char *key_end = key_buf;
+      key_end = mp_encode_array(key_end, 1);
+      key_end = mp_encode_uint(key_end, key);
+      assert(key_end < key_buf + sizeof(key_buf));
+      /* Get the tuple. There's no box_select() but there's this. */
+      int r = box_index_get(space_id, index_id, key_buf, key_end, &tuple);
+      assert(r == 0);
+      assert(tuple != NULL);
+      /* Get each field of the tuple + display what you get. */
+      int field_no;             /* The first field number is 0. */
+      for (field_no = 0; field_no < 2; ++field_no)
+      {
+        const char *field = box_tuple_field(tuple, field_no);
+        assert(field != NULL);
+        assert(mp_typeof(*field) == MP_STR || mp_typeof(*field) == MP_UINT);
+        if (mp_typeof(*field) == MP_UINT)
+        {
+          uint32_t uint_value = mp_decode_uint(&field);
+          printf("uint value=%u.\n", uint_value);
+        }
+        else /* if (mp_typeof(*field) == MP_STR) */
+        {
+          const char *str_value;
+          uint32_t str_value_length;
+          str_value = mp_decode_str(&field, &str_value_length);
+          printf("string value=%.*s.\n", str_value_length, str_value);
+        }
+      }
+      return 0;
+    }
+
+Compile the program, producing a library file named read.so: |br|
+:code:`gcc -shared -o read.so -fPIC read.c`
+
+Now go back to the client and execute these requests:
+
+.. code-block:: none
+
+    box.schema.func.create('read', {language = "C"})
+    box.schema.user.grant('guest', 'execute', 'function', 'read')
+    box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')
+    capi_connection:call('read')
+
+This time the C function is doing four things: |br|
+(1) once again, finding the numeric identifier of the "capi_test" space
+by calling box_space_id_by_name(); |br|
+(2) formatting a search key = 10000 using more msgpuck.h functions; |br|
+(3) getting a tuple using box_index_get' |br|
+(4) going through the tuple's fields with box_tuple_get() and then
+decoding each field depending  on its type. In this case, since
+what we are getting is the tuple that we inserted with hardest.c,
+we know in advance that the type is either MP_UINT or MP_STR;
+however, it's very common to have a case statement here with one
+option for each possible type.
+
+The result of capi_connection:call('read') should look like this:
+
+.. code-block:: none
+
+    tarantool> capi_connection:call('read')
+    uint value=10000.
+    string value=String 2.
+    ---
+    - []
+    ...
+
+This proves that the read() function succeeded.
+Once again the important functions that start with `box` came from the C API.
+The function box_index_get() is documented :ref:`here <c_api-box_index-box_index_get>`.
+The function box_tuple_field() is documented :ref:`here <c_api-tuple-box_tuple_field>`.
+
+Conclusion: the long description of the whole C API is
 there for a good reason.
 All of the functions in it can be called from C functions
 which are called from Lua.
 So C "stored procedures" have full access to the database.
+
 
 **Cleaning up**
 

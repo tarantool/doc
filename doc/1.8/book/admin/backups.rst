@@ -7,8 +7,8 @@ Backups
 Tarantool storage architecture is append-only: files are only appended to, and
 are never overwritten. Old files are removed by garbage collection after a
 checkpoint. You can configure the amount of past checkpoints preserved by garbage
-collection by configuring Tarantool
-:ref:`snapshot daemon <book_cfg_snapshot_daemon>`. Backups can be taken at any
+collection by configuring Tarantool's
+:ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at any
 time, with minimal overhead on database performance.
 
 .. _admin-backups-hot_backup_memtx:

@@ -49,9 +49,16 @@
     </ul>
 {% endmacro %}
 
-{% macro breadcrumbs() %}
+{% macro breadcrumbs(is_main_page=False) %}
   <div class="b-page_header">
     <ul class="b-path-list">
+      {% if is_main_page %}
+      <li class="b-path-list-item">
+        <div title="Available versions" class="b-path_current b-ellipsis">
+          Available versions
+        </div>
+      </li>
+      {% endif %}
       <li class="b-path-list-item">
         <div class="b-path-list-drop-wrapper">
           <a href="{{ convert_path_version(version) }}"
@@ -79,7 +86,7 @@
           </a>
         </li>
       {% endfor %}
-      {% if title %}
+      {% if not is_main_page and title %}
       <li class="b-path-list-item">
         <div title="{{ title }}" class="b-path_current b-ellipsis">
           {{ title }}

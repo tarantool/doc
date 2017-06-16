@@ -383,7 +383,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         .. code-block:: lua
 
-            for tuple in
+            for _, tuple in
             box.space.t.index.primary:pairs("XY",{iterator = "GE"}) do
               if (string.sub(tuple[1], 1, 2) ~= "XY") then break end
               print(tuple)
@@ -403,7 +403,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         .. code-block:: lua
 
-            for tuple in
+            for _, tuple in
             box.space.t2.index.primary:pairs(1000,{iterator = "GE"}) do
               if (tuple[1] > 1999) then break end
               print(tuple)

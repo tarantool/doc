@@ -6,54 +6,50 @@
 -------------------------------------------------------------------------------
 
 .. wp_section::
-    :class: b-block-gray b-downloads-versionlist
-
-    Available versions: `1.6 <../1.6/index.html>`_ / `1.7 <../1.7/index.html>`_ / 1.8
-
-.. wp_section::
-    :title: Tarantool 1.8 manual
-    :class: b-block-lightgray b-downloads-top
-
-    This manual embraces all aspects of using Tarantool: from introductory
-    information and exercises for beginners -- to advanced instructions and
-    detailed references for power users and contributors.
-
-    | A single-page version of this manual is available `here <singlehtml.html>`_.
-    | A pdf version of this manual is available `here <Tarantool.pdf>`_.
+    :title: Tarantool 1.7 manual
+    :class: b-block-lightgray b-downloads-top documentation-main-page-title
 
 .. wp_section::
     :class: b-block b-documentation-toc
 
-    .. ifconfig:: language == 'ru'
+    .. container:: documentation-main-page
 
-        .. NOTE::
+        .. container:: start-menu
 
-            Документация находится в процессе перевода и может
-            отставать от английской версии.
+            - Versions of this manual
+                - `Single page <singlehtml.html>`_
+                - `PDF <Tarantool.pdf>`_
+            - Docs for other versions
+                - `Tarantool 1.8 <../1.8/index.html>`_
+                - `Tarantool 1.7 <../1.7/index.html>`_
+                - `Tarantool 1.6 <../1.6/index.html>`_
+            - Other sources
+                - Discussion boards
+                    - `English`_
+                    - `Russian`_
+                - `Telegram chat`_
 
-    .. include:: singlehtml.rst
+        .. container:: documentation-main-page-content
 
-.. wp_section::
-    :title: Other sources
-    :class: b-block-lightgray b-downloads-top
+            .. ifconfig:: language == 'ru'
 
-    Here are other sources -- besides the manual -- where you can get more
-    information about Tarantool.
+                .. NOTE::
 
-.. wp_section::
-    :class: b-block b-downloads
+                    Документация находится в процессе перевода и может
+                    отставать от английской версии.
 
-    .. ddlist::
+            .. wp_section::
 
-        * Discussion boards
+                This manual embraces all aspects of using Tarantool: from introductory
+                information and exercises for beginners -- to advanced instructions and
+                detailed references for power users and contributors.
 
-          - `English`_
-          - `Russian`_
+            .. wp_section::
+                :title: Parts of the documentation:
+                :class: doc-parts-title
 
-        * Telegram chat
-
-          tl;dr? ;-) Feel free to ask your question in our `telegram chat`_.
+            .. include:: singlehtml.rst
 
 .. _English: https://groups.google.com/forum/#!forum/tarantool
 .. _Russian: https://googlegroups.com/group/tarantool-ru
-.. _telegram chat: http://telegram.me/tarantool
+.. _Telegram chat: http://telegram.me/tarantool

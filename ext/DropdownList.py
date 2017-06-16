@@ -27,12 +27,14 @@ class DDListDirective(Directive):
                                                       nodes.enumerated_list)):
             self.severe("Error while processing ddlist directive")
         ddnode = ddlist()
-        for item in node[0]:
+        for id, item in enumerate(node[0]):
             new_item = ddlistitem()
             title = item.children.pop(0)
-            title_ref = nodes.reference('', '', internal=False, refuri='',
+            title_ref = nodes.reference('', '', internal=False,
+                                        refuri='#node%d' % id,
                                         classes=['dropdown-list-item-url',
-                                                 'dropdown-close'])
+                                                 'dropdown-close'],
+                                        ids=['node%d' % id])
             title_ref += title
 
             content = nodes.container('',  classes=['dropdown-list-item-content'])

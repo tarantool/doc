@@ -9,14 +9,15 @@
 
 .. confval:: log_level
 
-    How verbose the logging is. There are six log verbosity classes:
+    What level of detail the log will have. There are seven levels:
 
     * 1 – ``SYSERROR``
     * 2 – ``ERROR``
     * 3 – ``CRITICAL``
     * 4 – ``WARNING``
     * 5 – ``INFO``
-    * 6 – ``DEBUG``
+    * 6 – ``VERBOSE``
+    * 7 – ``DEBUG``
 
     By setting log_level, one can enable logging of all classes below
     or equal to the given level. Tarantool prints its logs to the standard
@@ -26,6 +27,11 @@
     | Type: integer
     | Default: 5
     | Dynamic: **yes**
+
+    Warning: prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
+    level 6. Starting with Tarantool 1.7.5 ``VERBOSE`` is level 6 and ``DEBUG`` is level 7.
+    ``VERBOSE`` is a new level for monitoring repetitive events which would cause
+    too much log writing if ``INFO`` were used instead.
 
 .. _cfg_logging-log:
 

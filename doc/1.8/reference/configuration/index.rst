@@ -156,7 +156,7 @@ initialization is complete, you can use :ref:`console.start() <console-start>`.
 .. _index-snap_dir:
 .. _index-wal_dir:
 .. _index-wal_mode:
-.. _index-snapshot daemon:
+.. _index-checkpoint daemon:
 
 .. _box_cfg_params:
 
@@ -196,7 +196,7 @@ Configuring the storage
 
 .. include:: cfg_storage.rst
 
-.. _book_cfg_snapshot_daemon:
+.. _book_cfg_checkpoint_daemon:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Snapshot daemon

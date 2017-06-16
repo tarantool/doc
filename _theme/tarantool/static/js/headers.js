@@ -177,9 +177,6 @@ $(function () {
     var is_mobile = ($("#mobile-checker").css("display") == "none");
 
     $(".b-cols_content_left").each(function() {
-      // console.log("cols-left ready");
-      $(this).css('display', 'none');
-
       if (is_mobile) {
         $(this).find("li.toctree-l3 ul").remove()
         $(this).find("li.toctree-l2:not(.current) ul").remove()
@@ -194,8 +191,6 @@ $(function () {
         $(this).siblings("i").click();
         $(this).parents("ul.current").prev().siblings("i").click();
       });
-
-      $(this).css('display', 'block');
 
       $(this).find("a").click(function() {
         $(".b-menu-toc").removeClass('active');

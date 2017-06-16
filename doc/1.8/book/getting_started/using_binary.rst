@@ -58,7 +58,7 @@ are over):
    $ cd ~/tarantool_sandbox
 
 To start Tarantool's database module and make the instance accept TCP requests
-on port 3001, say this:
+on port 3301, say this:
 
 .. code-block:: tarantoolsession
 
