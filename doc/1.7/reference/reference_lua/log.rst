@@ -45,12 +45,15 @@ user-generated with the :samp:`log.{log_level}` function.
 
 .. code-block:: tarantoolsession
 
-    $ ~/tarantool/src/tarantool
+    $ tarantool
     tarantool> box.cfg{log_level=3, logger='tarantool.txt'}
     tarantool> log = require('log')
     tarantool> log.error('Error')
     tarantool> log.info('Info %s', box.info.version)
     tarantool> os.exit()
+
+.. code-block:: tarantoolsession
+
     $ less tarantool.txt
 
 .. cssclass:: highlight
@@ -58,7 +61,6 @@ user-generated with the :samp:`log.{log_level}` function.
 
     2...0 [5257] main/101/interactive C> version 1.7.0-355-ga4f762d
     2...1 [5257] main/101/interactive C> log level 3
-    2...1 [5261] main/101/spawner C> initialized
     2...0 [5257] main/101/interactive [C]:-1 E> Error
 
 The 'Error' line is visible in tarantool.txt preceded by the letter E.

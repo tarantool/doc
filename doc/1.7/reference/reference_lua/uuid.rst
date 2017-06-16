@@ -123,7 +123,7 @@ The function that can determine whether a UUID is an all-zero value is:
     tarantool> uu = uuid()
     ---
     ...
-    tarantool> #uui:bin(), #uu:str(), type(uu), uu:isnil()
+    tarantool> #uu:bin(), #uu:str(), type(uu), uu:isnil()
     ---
     - 16
     - 36
