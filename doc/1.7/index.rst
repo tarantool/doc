@@ -40,7 +40,6 @@
                     отставать от английской версии.
 
             .. wp_section::
-                :title: Tarantool 1.7 manual
 
                 This manual embraces all aspects of using Tarantool: from introductory
                 information and exercises for beginners -- to advanced instructions and
