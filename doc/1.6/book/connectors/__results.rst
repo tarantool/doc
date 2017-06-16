@@ -45,35 +45,33 @@ written in Perl, PHP, Python, Go, or Java.
   #include <tarantool/tnt_net.h>
   #include <tarantool/tnt_opt.h>
   void main() {
-    struct tnt_stream *tnt = tnt_net(NULL);            /* SETUP */
+    struct tnt_stream *tnt = tnt_net(NULL);              /* SETUP */
     tnt_set(tnt, TNT_OPT_URI, "localhost:3301");
-     if (tnt_connect(tnt) < 0) {                        /* CONNECT */
+     if (tnt_connect(tnt) < 0) {                         /* CONNECT */
          printf("Connection refused\n");
          exit(-1);
      }
-     struct tnt_stream *tuple = tnt_object(NULL);       /* MAKE REQUEST */
-     struct tnt_stream *arg; arg = tnt_object(NULL);
+     struct tnt_stream *arg; arg = tnt_object(NULL);     /* MAKE REQUEST */
      tnt_object_add_array(arg, 0);
-     struct tnt_request *req1 = tnt_request_call(NULL); /* CALL function f() */
+     struct tnt_request *req1 = tnt_request_call(NULL);  /* CALL function f() */
      tnt_request_set_funcz(req1, "f");
-     tnt_request_set_tuple(req1, arg);
      uint64_t sync1 = tnt_request_compile(tnt, req1);
-     tnt_flush(tnt);                                    /* SEND REQUEST */
-     struct tnt_reply reply;  tnt_reply_init(&reply);   /* GET REPLY */
+     tnt_flush(tnt);                                     /* SEND REQUEST */
+     struct tnt_reply reply;  tnt_reply_init(&reply);    /* GET REPLY */
      tnt->read_reply(tnt, &reply);
      if (reply.code != 0) {
        printf("Call failed %lu.\n", reply.code);
        exit(-1);
      }
-     const unsigned char *p= (unsigned char*)reply.data;/* PRINT REPLY */
+     const unsigned char *p= (unsigned char*)reply.data; /* PRINT REPLY */
      while (p < (unsigned char *) reply.data_end)
      {
        printf("%x ", *p);
        ++p;
      }
      printf("\n");
-     tnt_close(tnt);                                    /* TEARDOWN */
-     tnt_stream_free(tuple);
+     tnt_close(tnt);                                     /* TEARDOWN */
+     tnt_stream_free(arg);
      tnt_stream_free(tnt);
   }
 
@@ -84,7 +82,7 @@ When this program is executed, it will print:
   dd 0 0 0 5 90 91 a1 61 91 c2 91 c3 91 7f
 
 The first five bytes -- ``dd 0 0 0 5`` -- are the MsgPack encoding for
-"32-bit array header with value 5" (see 
+"32-bit array header with value 5" (see
 `MsgPack specification <http://github.com/msgpack/msgpack/blob/master/spec.md>`_).
-The rest are as described in the 
+The rest are as described in the
 table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`.
