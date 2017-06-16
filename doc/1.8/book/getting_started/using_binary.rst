@@ -6,10 +6,10 @@ Using a binary package
 
 For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
-You can choose from three Tarantool versions: the stable 1.6 or 1.7,
+You can choose from three Tarantool versions: the stable 1.6 and 1.7,
 or the latest 1.8.
-An automatic build system creates, tests and publishes 1.8 packages for every
-push into the 1.8 branch at
+An automatic build system creates, tests and publishes packages for every
+push into a corresponding branch (`1.6`, `1.7` or `1.8`) at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
 To download and install the package that’s appropriate for your OS,
