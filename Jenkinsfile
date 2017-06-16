@@ -9,9 +9,7 @@ stage("Build") {
             userRemoteConfigs: scm.userRemoteConfigs
         ])
 
-        docker.image('packpack/packpack:ubuntu-xenial').inside('--user root:root') {
-            sh "sudo apt-get update && apt-get -y install pkg-config lua5.1-dev python-pip python-setuptools python-dev"
-            sh "sudo pip install -r requirements.txt --upgrade"
+        docker.image('tarantool/doc').inside('') {
             sh "cmake ."
             sh "VERBOSE=1 make sphinx-html sphinx-html-ru"
             sh "VERBOSE=1 make sphinx-singlehtml sphinx-singlehtml-ru"
