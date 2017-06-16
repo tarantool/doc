@@ -2,7 +2,12 @@
 
 stage("Build") {
     node {
-        checkout scm
+        checkout([
+            $class: 'GitSCM',
+            branches: scm.branches,
+            extensions: scm.extensions + [[$class: 'CleanBeforeCheckout']],
+            userRemoteConfigs: scm.userRemoteConfigs
+        ])
 
         docker.image('packpack/packpack:ubuntu-xenial').inside('--user root:root') {
             sh "sudo apt-get update && apt-get -y install pkg-config lua5.1-dev python-pip python-setuptools python-dev"
