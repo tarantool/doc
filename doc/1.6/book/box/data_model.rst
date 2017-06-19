@@ -299,7 +299,8 @@ Checkpoint files can be created even if there is no WAL file.
 
 .. NOTE::
 
-   | The memtx engine makes only forced checkpoints.
+     The memtx engine makes only regular checkpoints with the interval set in
+     :ref:`snapshot daemon <book_cfg_snapshot_daemon>` configuration.
 
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.
