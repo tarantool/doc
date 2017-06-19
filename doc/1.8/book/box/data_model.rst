@@ -333,8 +333,10 @@ Snapshot files can be created even if there is no WAL file.
 
 .. NOTE::
 
-   | The memtx engine makes only forced checkpoints.
-   | The vinyl engine runs checkpointing in the background at all times.
+     The memtx engine makes only regular checkpoints with the interval set in
+     :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>` configuration.
+
+     The vinyl engine runs checkpointing in the background at all times.
 
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.
