@@ -198,7 +198,7 @@ Configuring the storage
 .. _book_cfg_snapshot_daemon:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Checkpoint daemon
+Snapshot daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: cfg_snapshot_daemon.rst

@@ -21,9 +21,9 @@
     Since a snapshot is written sequentially, one can expect a very high write
     performance (averaging to 80MB/second on modern disks), which means an average
     database instance gets saved in a matter of minutes.
-
+    
     .. NOTE::
-
+    
        As long as there are any changes to the parent index memory through
        concurrent updates, there are going to be page splits, and therefore you
        need to have some extra free memory to run this command. 10% of
@@ -31,7 +31,7 @@
        This statement waits until a snapshot is taken and returns operation result.
 
     .. NOTE::
-
+    
        **Change notice:** Prior to Tarantool version 1.6.6, the snapshot process
        caused a fork, which could cause occasional latency spikes. Starting with
        Tarantool version 1.6.6, the snapshot process creates a consistent
@@ -39,7 +39,7 @@
 
        Although ``box.snapshot()`` does not cause a fork, there is a separate fiber
        which may produce snapshots at regular intervals -- see the discussion of
-       the :ref:`checkpoint daemon <book_cfg_snapshot_daemon>`.
+       the :ref:`snapshot daemon <book_cfg_snapshot_daemon>`.
 
     **Example:**
 

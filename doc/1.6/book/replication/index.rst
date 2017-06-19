@@ -78,7 +78,7 @@ Again, this procedure works only if the master's WAL files are present.
 .. NOTE::
 
     The replica does not inherit the master's configuration parameters, such
-    as the ones that cause the :ref:`checkpoint daemon <book_cfg_snapshot_daemon>`
+    as the ones that cause the :ref:`snapshot daemon <book_cfg_snapshot_daemon>`
     to run on the master. To get the same behavior, one would have to set the
     relevant parameters explicitly so that they are the same on both master and
     replica.
