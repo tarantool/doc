@@ -1,14 +1,14 @@
 :orphan:
-:priority: 0.99
+:priority: 0.1
 
 ---------------------------
-Tarantool - Downloads (1.8)
+Tarantool - Downloads (1.6)
 ---------------------------
 
 .. wp_section::
     :class: b-block-gray b-downloads-versionlist
 
-    Available versions: :doc:`1.6 (stable) <download_16>` / :doc:`1.7 (rc) <download>` / 1.8 (alpha)
+    Available versions: 1.6 (stable) / :doc:`1.7 (rc) <download>` / :doc:`1.8 (alpha) <download_18>`
 
 .. wp_section::
     :title: Binary downloads
@@ -48,7 +48,7 @@ Tarantool - Downloads (1.8)
 
           .. code-block:: bash
 
-              curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -
+              curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -
               release=`lsb_release -c -s`
 
               # install https download transport for APT
@@ -56,9 +56,9 @@ Tarantool - Downloads (1.8)
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF
-              deb http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main
-              deb-src http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main
+              sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF
+              deb http://download.tarantool.org/tarantool/1.6/ubuntu/ $release main
+              deb-src http://download.tarantool.org/tarantool/1.6/ubuntu/ $release main
               EOF
 
               # install
@@ -79,7 +79,7 @@ Tarantool - Downloads (1.8)
 
           .. code-block:: bash
 
-              curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -
+              curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -
               release=`lsb_release -c -s`
 
               # install https download transport for APT
@@ -87,9 +87,9 @@ Tarantool - Downloads (1.8)
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF
-              deb http://download.tarantool.org/tarantool/1.8/debian/ $release main
-              deb-src http://download.tarantool.org/tarantool/1.8/debian/ $release main
+              sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF
+              deb http://download.tarantool.org/tarantool/1.6/debian/ $release main
+              deb-src http://download.tarantool.org/tarantool/1.6/debian/ $release main
               EOF
 
               # install
@@ -104,7 +104,7 @@ Tarantool - Downloads (1.8)
 
           .. code-block:: bash
 
-              curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -
+              curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -
               release=`lsb_release -c -s`
 
               # install https download transport for APT
@@ -112,9 +112,9 @@ Tarantool - Downloads (1.8)
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF
-              deb https://packagecloud.io/tarantool/1_8/debian/ wheezy main
-              deb-src https://packagecloud.io/tarantool/1_8/debian/ wheezy main
+              sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF
+              deb https://packagecloud.io/tarantool/1_6/debian/ wheezy main
+              deb-src https://packagecloud.io/tarantool/1_6/debian/ wheezy main
               EOF
 
               # install
@@ -137,61 +137,107 @@ Tarantool - Downloads (1.8)
           .. code-block:: bash
 
               sudo rm -f /etc/yum.repos.d/*tarantool*.repo
-              sudo tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF
-              [tarantool_1_8]
+              sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF
+              [tarantool_1_6]
               name=Fedora-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\$releasever/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
+              baseurl=http://download.tarantool.org/tarantool/1.6/fedora/\$releasever/\$basearch/
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
               repo_gpgcheck=1
               gpgcheck=0
               enabled=1
 
-              [tarantool_1_8-source]
+              [tarantool_1_6-source]
               name=Fedora-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\$releasever/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
+              baseurl=http://download.tarantool.org/tarantool/1.6/fedora/\$releasever/SRPMS
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
               repo_gpgcheck=1
               gpgcheck=0
               EOF
 
-              sudo dnf -q makecache -y --disablerepo='*' --enablerepo='tarantool_1_8'
+              sudo dnf -q makecache -y --disablerepo='*' --enablerepo='tarantool_1_6'
               sudo dnf -y install tarantool
 
-        * RHEL/CentOS 6 and 7
+        * RHEL 6 and CentOS 6
 
-          We maintain an always up-to-date package repository for the
-          derivatives of RHEL 6 and 7.
+          We maintain an always up-to-date package repository for RHEL 6
+          derivatives. You may need to enable the `EPEL`_ repository for
+          some packages.
 
-          Copy and paste the script below to the *root* terminal prompt:
+          | In these instructions:
+          | ``$releasever`` (i.e. CentOS release version) must be 6, and
+          | ``$basearch`` (i.e. base architecture) must be either i386
+            or x86_64.
+
+          Copy and paste the script below to the terminal prompt:
 
           .. code-block:: bash
 
-              # Clean up yum cache
-              yum clean all
+              # Enable EPEL repository
+              sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+              sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo
+
               # Add Tarantool repository
-              rm -f /etc/yum.repos.d/*tarantool*.repo
-              tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF
-              [tarantool_1_8]
+              sudo rm -f /etc/yum.repos.d/*tarantool*.repo
+              sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF
+              [tarantool_1_6]
               name=EnterpriseLinux-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.8/el/\$releasever/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
+              baseurl=http://download.tarantool.org/tarantool/1.6/el/6/\$basearch/
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
               repo_gpgcheck=1
               gpgcheck=0
               enabled=1
 
-              [tarantool_1_8-source]
+              [tarantool_1_6-source]
               name=EnterpriseLinux-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.8/el/\$releasever/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
+              baseurl=http://download.tarantool.org/tarantool/1.6/el/6/SRPMS
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
               repo_gpgcheck=1
               gpgcheck=0
               EOF
 
               # Update metadata
-              yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_8'
+              sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6' --enablerepo='epel'
+
+              # Install tarantool
+              sudo yum -y install tarantool
+
+        * RHEL 7 and CentOS 7
+
+          We maintain an always up-to-date package repository for RHEL 7
+          derivatives.
+
+          | In these instructions,
+          | ``$releasever`` (i.e. CentOS release version) must be 7, and
+          | ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
+
+          Copy and paste the script below to the terminal prompt:
+
+          .. code-block:: bash
+
+              # Add Tarantool repository
+              sudo rm -f /etc/yum.repos.d/*tarantool*.repo
+              sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF
+              [tarantool_1_6]
+              name=EnterpriseLinux-\$releasever - Tarantool
+              baseurl=http://download.tarantool.org/tarantool/1.6/el/7/\$basearch/
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
+              repo_gpgcheck=1
+              gpgcheck=0
+              enabled=1
+
+              [tarantool_1_6-source]
+              name=EnterpriseLinux-\$releasever - Tarantool Sources
+              baseurl=http://download.tarantool.org/tarantool/1.6/el/7/SRPMS
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
+              repo_gpgcheck=1
+              gpgcheck=0
+              EOF
+
+              # Update metadata
+              sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6'
 
               # Install Tarantool
-              yum -y install tarantool
+              sudo yum -y install tarantool
 
         * Amazon Linux
 
@@ -204,58 +250,38 @@ Tarantool - Downloads (1.8)
           | ``$releasever`` (i.e. RHEL / CentOS release version) must be 6, and
           | ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
 
-          Copy and paste the script below to the *root* terminal prompt:
+          Copy and paste the script below to the terminal prompt:
 
           .. code-block:: bash
 
-              # Clean up yum cache
-              yum clean all
               # Enable EPEL repository
-              yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+              sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
               sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo
 
               # Add Tarantool repository
-              rm -f /etc/yum.repos.d/*tarantool*.repo
-              tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF
-              [tarantool_1_8]
+              sudo rm -f /etc/yum.repos.d/*tarantool*.repo
+              sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF
+              [tarantool_1_6]
               name=EnterpriseLinux-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.8/el/6/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
+              baseurl=http://download.tarantool.org/tarantool/1.6/el/6/\$basearch/
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
               repo_gpgcheck=1
               gpgcheck=0
               enabled=1
 
-              [tarantool_1_8-source]
+              [tarantool_1_6-source]
               name=EnterpriseLinux-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.8/el/6/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
+              baseurl=http://download.tarantool.org/tarantool/1.6/el/6/SRPMS
+              gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey
               repo_gpgcheck=1
               gpgcheck=0
               EOF
 
               # Update metadata
-              yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_8' --enablerepo='epel'
+              sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6' --enablerepo='epel'
 
               # Install Tarantool
-              yum -y install tarantool
-
-        * Snappy package
-
-          You can install Tarantool 1.8 (Beta) from a Snappy package:
-
-          .. code-block:: bash
-
-              $ snap install tarantool --channel=beta
-
-          Snaps are universal Linux packages which can be installed across
-          a range of Linux distributions.
-
-          Snappy package manager is already pre-installed on Ubuntu Xenial
-          and newer. For other distros, you may need to install ``snapd``.
-          See http://snapcraft.io/ for detailed instructions.
-
-          Note: initialization scripts, ``systemd`` units and
-          ``tarantoolctl`` utility are not included in Snappy packages.
+              sudo yum -y install tarantool
 
         * OS X
 
@@ -263,22 +289,11 @@ Tarantool - Downloads (1.8)
 
           .. code-block:: bash
 
-              $ brew install tarantool --HEAD
-              ==> Cloning https://github.com/tarantool/tarantool.git
-              Updating /Users/Me/Library/Caches/Homebrew/tarantool--git
-              ==> Checking out branch 1.8
-              Synchronizing submodule url for 'lib/msgpack-python'
-              Synchronizing submodule url for 'lib/tarantool-python'
-              ==> cmake . -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG
-                          -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG
-                          -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/HEAD
-                          -DCMAKE_BUILD_TYPE=Release
-                          -DCMAKE_FIND_FRAMEWORK=LAST
-                          -DCMAKE_VERBOSE_MAKEFILE=ON
-                          -Wno-dev -DCMAKE_INSTALL_MANDIR=/usr/share/man
-              ==> make
-              ==> make install
-              /usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds
+              $ brew install tarantool
+              ==> Downloading https://homebrew.bintray.com/bottles/tarantool-1.6.8-653.el_capitan.bottle.tar.gz
+              ######################################################################## 100.0%
+              ==> Pouring tarantool-1.6.8-653.el_capitan.bottle.tar.gz
+              /usr/local/Cellar/tarantool/1.6.8-653: 17 files, 2.2M
 
         * FreeBSD
 
@@ -301,13 +316,14 @@ Tarantool - Downloads (1.8)
 
         * Building from source
 
-          To get the latest source files for version 1.8, you can
+          To get the latest source files for version 1.6, you can
           clone or download them from the Tarantool repository at `GitHub`_,
           or download them as a `tarball`_.
 
           Please consult with the Tarantool documentation for
           :ref:`build-from-source <building_from_source>` instructions on
           your system.
+
 
 .. wp_section::
     :title: Connectors & Extras
@@ -344,9 +360,9 @@ Tarantool - Downloads (1.8)
     :height: 1em
     :target: https://packagecloud.io/
 
-.. _DR\:Tarantool:              http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
-.. _Maven repository:           http://github.com/tarantool/tarantool-java
+.. _DR\:Tarantool:    http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
+.. _Maven repository: http://github.com/tarantool/tarantool-java
 .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.8
-.. _tarball: http://download.tarantool.org/tarantool/1.8/src/
-.. _EPEL:    https://fedoraproject.org/wiki/EPEL
+.. _GitHub:    http://github.com/tarantool/tarantool/tree/1.6
+.. _tarball:   http://download.tarantool.org/tarantool/1.6/src/
+.. _EPEL: https://fedoraproject.org/wiki/EPEL
