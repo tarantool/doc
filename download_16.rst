@@ -8,7 +8,7 @@ Tarantool - Downloads (1.6)
 .. wp_section::
     :class: b-block-gray b-downloads-versionlist
 
-    Available versions: :doc:`1.6 (stable) <download_16>` / 1.7 (rc) / :doc:`1.8 (alpha) <download_18>`
+    Available versions: 1.6 (stable) / :doc:`1.7 (rc) <download>` / :doc:`1.8 (alpha) <download_18>`
 
 .. wp_section::
     :title: Binary downloads
