@@ -16,10 +16,10 @@
 
         .. container:: start-menu
 
-            - Versions of this manual
+            - Manual in other formats
                 - `Single page <singlehtml.html>`_
                 - `PDF <Tarantool.pdf>`_
-            - Docs for other versions
+            - Manual for other versions
                 - `Tarantool 1.8 <../1.8/index.html>`_
                 - `Tarantool 1.7 <../1.7/index.html>`_
                 - `Tarantool 1.6 <../1.6/index.html>`_
