@@ -2,16 +2,17 @@ $(function() {
     var doc_main_page_title = '.documentation-main-page-title';
     var b_block_wrapper = '.b-block-wrapper';
     var b_section_title = '.b-section-title';
-    var toggle_navigation = '.toggle-navigation';
+    var nav_button = "#start-menu-nav-button";
     var b_page_header = '.b-page_header';
     var doc_main_page_content = '.documentation-main-page-content';
     var start_menu = '.start-menu';
 
     if ($(doc_main_page_title)) {
       $(doc_main_page_title).find(b_section_title).addClass('toggle-navigation');
+      $(doc_main_page_title).find(b_section_title).attr('id', 'start-menu-nav-button');
     }
 
-    $(toggle_navigation).on('click', function(event) {
+    $(nav_button).on('click', function(event) {
         event.stopPropagation();
         if (!$(this).hasClass('active')) {
             $(this).addClass('active');
@@ -26,7 +27,7 @@ $(function() {
 
     $("body").click(function() {
         $(start_menu).removeClass("active");
-        $(toggle_navigation).removeClass("active");
+        $(nav_button).removeClass("active");
         $("body").removeClass('stop-scroll');
     });
 

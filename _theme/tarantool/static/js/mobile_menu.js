@@ -3,12 +3,14 @@ $(function() {
     var burger_button     = '.b-burger-button';
     var menu_mobile       = '.b-menu_mobile';
     var doc_menu          = '.b-menu-toc';
+    var b_cols_content_left = '.b-cols_content_left';
 
     $(burger_button).on('click', function(event) {
         // console.log("burger click");
         event.stopPropagation();
         $(menu_mobile).toggleClass('active');
         $(doc_menu   ).removeClass('active');
+        $(b_cols_content_left).removeClass('active');
         $(toggle_navigation).removeClass('active');
         if ($(menu_mobile).hasClass('active')) {
             // console.log("adding stop-scroll")
@@ -25,11 +27,13 @@ $(function() {
             // console.log("navigation click - on");
             $(this).addClass('active');
             $(doc_menu).addClass('active');
+            $(b_cols_content_left).addClass('active');
             $("body").addClass('stop-scroll');
         } else {
             // console.log("navigation click - off");
             $(this).removeClass('active');
             $(doc_menu).removeClass('active');
+            $(b_cols_content_left).removeClass('active');
             $("body").removeClass('stop-scroll');
         }
     });
@@ -37,6 +41,7 @@ $(function() {
     $("body").click(function() {
         // console.log("body click");
         $(doc_menu).removeClass("active");
+        $(b_cols_content_left).removeClass("active");
         $(toggle_navigation).removeClass("active");
         $(menu_mobile).removeClass("active");
         $("body").removeClass('stop-scroll');
