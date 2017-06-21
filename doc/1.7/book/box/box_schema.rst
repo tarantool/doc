@@ -38,7 +38,7 @@ for spaces, users, roles, and function tuples.
         |               | changes are not stored in the                   |         |                     |
         |               | :ref:`write-ahead log <internals-wal>`          |         |                     |
         |               | and there is no                                 |         |                     |
-        |               | :ref:`replication <index-box_replication>`.     |         |                     |
+        |               | :ref:`replication <replication>`.               |         |                     |
         |               | Note re storage engine: vinyl does not          |         |                     |
         |               | support temporary spaces.                       |         |                     |
         +---------------+-------------------------------------------------+---------+---------------------+

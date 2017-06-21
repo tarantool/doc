@@ -24,8 +24,7 @@ as a NoSQL DBMS, whereas :ref:`Chapter 4 "Application server" <app_server>`
 is about using Tarantool as an application server.
 
 :ref:`Chapter 5 "Server administration" <admin>` and
-:ref:`Chapter 6 "Replication" <index-box_replication>` are primarily for
-administrators.
+:ref:`Chapter 6 "Replication" <replication>` are primarily for administrators.
 
 :ref:`Chapter 7 "Connectors" <index-box_connectors>` is strictly for users who
 are connecting from a different language such as C or Perl or Python — other

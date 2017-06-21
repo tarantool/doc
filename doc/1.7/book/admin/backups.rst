@@ -48,7 +48,7 @@ To take a mixed backup:
 
 1. Issue ``box.backup.begin()`` on the administrative console. This will suspend
    garbage collection till the next ``box.backup.end()`` and will return a list
-   of files to backup. 
+   of files to backup.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the
@@ -62,7 +62,7 @@ To take a mixed backup:
 Continuous remote backup (memtx)
 --------------------------------------------------------------------------------
 
-The :ref:`replication <index-box_replication>` feature is useful for backup as
+The :ref:`replication <replication>` feature is useful for backup as
 well as for load balancing.
 
 Therefore taking a backup is a matter of ensuring that any given replica is

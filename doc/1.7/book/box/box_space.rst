@@ -1071,7 +1071,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 .. data:: _cluster
 
     ``_cluster`` is a system space
-    for support of the :ref:`replication feature <index-box_replication>`.
+    for support of the :ref:`replication feature <replication>`.
 
 .. _box_space-func:
 
@@ -1371,7 +1371,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         +-------------+----+------+---------------------------------------------------------+
         | replication | 3  | role | Pre-defined :ref:`role <authentication-roles>`,         |
         |             |    |      | assigned by the 'admin' user to users who need to use   |
-        |             |    |      | :ref:`replication <index-box_replication>` features.    |
+        |             |    |      | :ref:`replication <replication>` features.              |
         +-------------+----+------+---------------------------------------------------------+
 
     To select a tuple from the ``_user`` space, use ``box.space._user:select()``.

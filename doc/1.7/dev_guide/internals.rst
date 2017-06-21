@@ -28,7 +28,7 @@ On the left are the hexadecimal bytes that you would see with:
 .. code-block:: console
 
    $ hexdump 00000000000000000000.xlog
-   
+
 and on the right are comments.
 
 .. code-block:: none
@@ -196,8 +196,7 @@ Server startup with replication
 --------------------------------------------------------------------------------
 
 In addition to the recovery process described above, the server must take
-additional steps and precautions if :ref:`replication <index-box_replication>` is
-enabled.
+additional steps and precautions if :ref:`replication <replication>` is enabled.
 
 Once again the startup procedure is initiated by the ``box.cfg{}`` request.
 One of the ``box.cfg`` parameters may be
