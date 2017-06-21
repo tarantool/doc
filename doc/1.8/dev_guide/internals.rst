@@ -196,8 +196,7 @@ Server startup with replication
 --------------------------------------------------------------------------------
 
 In addition to the recovery process described above, the server must take
-additional steps and precautions if :ref:`replication <index-box_replication>` is
-enabled.
+additional steps and precautions if :ref:`replication <replication>` is enabled.
 
 Once again the startup procedure is initiated by the ``box.cfg{}`` request.
 One of the ``box.cfg`` parameters may be

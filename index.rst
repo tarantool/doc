@@ -41,8 +41,8 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
     * **indexes**:  :ref:`secondary indexes <box_index>`,
       :ref:`range queries <box_index>`, :ref:`index iterators <box_index>`
     * **transactions**: :ref:`ACID transactions <atomic-atomic_execution>`
-    * **replication**: asynchronous :ref:`master-slave <index-box_replication>`
-      and :ref:`master-master <index-box_replication>` replication
+    * **replication**: asynchronous :ref:`master-slave <replication>`
+      and :ref:`master-master <replication>` replication
     * **query language**: :ref:`server-side scripting and stored procedures
       <lua_tutorials>`
     * **security**: :ref:`authentication and access control <authentication>`

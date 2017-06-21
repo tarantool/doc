@@ -12,7 +12,7 @@ Exceptions: the checkpoint daemon will not delete a file
 if a backup is ongoing and the file has not been backed up
 (see :ref:`"Hot backup" <admin-backups-hot_backup_vinyl_memtx>`),
 or if replication is ongoing and the file has not been relayed to a replica
-(see :ref:`"Replication architecture" <index-replication_architecture>`),
+(see :ref:`"Replication architecture" <replication-architecture>`),
 or if a replica is connecting.
 
 The :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>` and
@@ -36,7 +36,7 @@ exist before deletions occur.
     .. code-block:: lua
 
         box.cfg{checkpoint_interval=60}
-        
+
     will cause the checkpoint daemon to create a new database snapshot once
     per minute, if there is activity.
 
