@@ -30,7 +30,7 @@ Here is an example of the master's instance file:
    }
    box.once("schema", function()
       box.schema.user.create('replicator', {password = 'password'})
-      box.schema.user.grant('replicator', 'replication’) -- grant replication role
+      box.schema.user.grant('replicator', 'replication') -- grant replication role
       box.schema.space.create("test")
       box.space.test:create_index("primary")
       print('box.once executed on master')
@@ -93,7 +93,7 @@ identical to the master's instance file.
    }
    box.once("schema", function()
       box.schema.user.create('replicator', {password = 'password'})
-      box.schema.user.grant('replicator', 'replication’) - grant replication role
+      box.schema.user.grant('replicator', 'replication') - grant replication role
       box.schema.space.create("test")
       box.space.test:create_index("primary")
       print('box.once executed on replica')
@@ -311,7 +311,7 @@ We re-use the master's instance file from the
    }
    box.once("schema", function()
       box.schema.user.create('replicator', {password = 'password'})
-      box.schema.user.grant('replicator', 'replication’) -- grant replication role
+      box.schema.user.grant('replicator', 'replication') -- grant replication role
       box.schema.space.create("test")
       box.space.test:create_index("primary")
       print('box.once executed on master #1')
