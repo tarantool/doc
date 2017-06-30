@@ -5,12 +5,9 @@ Recovering from a degraded state
 ================================================================================
 
 "Degraded state" is a situation when the master becomes unavailable -- due to
-hardware or network failure, or due to a programming bug. There is no automatic
-way for a replica to detect that the master is gone forever, since sources of
-failure and replication environments vary significantly. So the detection of
-degraded state requires an external observer.
+hardware or network failure, or due to a programming bug.
 
-.. image:: mm-degraded.svg
+.. image:: mr-degraded.svg
     :align: center
 
 In a master-replica set, if a master disappears, error messages appear on the
@@ -85,29 +82,23 @@ replicas stating that the connection is lost:
 
 To declare that one of the replicas must now take over as a new master:
 
-1. Say ``box.cfg{read_only=false, listen=URI}`` on the replica, and
+1. Make sure that the old master is gone for good:
+
+   * change network routing rules to avoid any more packets being delivered to
+     the master, or
+   * shut down the master instance, if you have access to the machine, or
+   * power off the container or the machine.
+
+2. Say ``box.cfg{read_only=false, listen=URI}`` on the replica, and
    ``box.cfg{replication=URI}`` on the other replicas in the set.
 
-2. If there are updates on the old master that were not propagated before the
+.. NOTE::
+
+   If there are updates on the old master that were not propagated before the
    old master went down,
    :ref:`re-apply them manually <admin-disaster_recovery-master_replica>` to the
    new master using ``tarantoolctl cat`` and ``tarantoolctl play`` commands.
 
-If any of a replica's .xlog/.snap/.run files are corrupted or deleted, you can
-"re-seed" the replica:
-
-1. Stop the replica and destroy all local database files (the ones with
-   extensions .xlog/.snap/.run/.inprogress).
-
-2. Delete the replica's record from the following locations:
-
-   a. ``replication`` parameter at all running instances in the replica set.
-   b. ``box.space._cluster`` on the master instance.
-
-   See section :ref:`Removing instances <replication-remove_instances>` for
-   details.
-
-3. Restart the replica with the same instance file to contact the master again.
-   The replica will then catch up with the master by retrieving all the master’s
-   tuples. Remember that this procedure works only if the master’s WAL files are
-   present.
+There is no automatic way for a replica to detect that the master is gone
+forever, since sources of failure and replication environments vary
+significantly. So the detection of degraded state requires an external observer.

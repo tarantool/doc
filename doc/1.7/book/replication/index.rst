@@ -20,3 +20,5 @@ This chapter includes the following sections:
    repl_remove_instances
    repl_monitoring
    repl_recover
+   repl_reseed
+   repl_duplicates
