@@ -9,3 +9,5 @@ Tutorials
 
     lua_tutorials
     c_tutorial
+    libslave
+
