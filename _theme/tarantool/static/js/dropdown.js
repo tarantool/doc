@@ -47,8 +47,38 @@ $(function() {
     }
     return false;
   });
+
+  $(function() {
+    console.log("opening tabs");
+    var hash = $(location).attr('hash');
+    console.log(hash);
+    if (hash.match('^#node')) {
+      console.log($(hash));
+      console.log($(hash).text());
+      $(hash).click();
+    }
+  });
+
 });
 
+var docker_platforms = ['os x', 'windows', 'centos', 'debian', 'fedora', 'ubuntu', 'aws', 'azure'];
+
+var tarantool_platforms = [
+  'ubuntu',
+  'jessie',
+  'stretch',
+  'wheezy',
+  'fedora',
+  'rhel 6',
+  'rhel 7',
+  'centos 6',
+  'centos 7',
+  'debian',
+  'amazon linux',
+  'os x',
+  'freebsd',
+  'microsoft azure'
+];
 function getOSName(os) {
   switch (os.name.toLowerCase()) {
     case 'mac os':
@@ -84,22 +114,3 @@ function getTabNameForOS(os) {
 
   return 'unknown';
 }
-
-var docker_platforms = ['os x', 'windows', 'centos', 'debian', 'fedora', 'ubuntu', 'aws', 'azure'];
-
-var tarantool_platforms = [
-  'ubuntu',
-  'jessie',
-  'stretch',
-  'wheezy',
-  'fedora',
-  'rhel 6',
-  'rhel 7',
-  'centos 6',
-  'centos 7',
-  'debian',
-  'amazon linux',
-  'os x',
-  'freebsd',
-  'microsoft azure'
-];

@@ -56,10 +56,10 @@ div.section>h1 {
 }
 
 .p-documentation_in .b-section-title {
-    margin:0 0 17px 0;
+    margin: 0;
 }
 .p-documentation_in .b-block-wrapper {
-    padding: 20px 0 21px 0;
+    padding: 20px 0;
 }
 
 .faq tr.field-even td {
@@ -125,28 +125,53 @@ tr.field td p {
 }
 
 .b-cols_content {
-    width:960px;
-    margin:0 auto;
-    padding:0 0 30px 0;
+    display: flex;
 }
 .b-cols_content_left {
-    position:relative;
-    float:left;
-    width:295px;
-    padding:15px 0 0 0;
+    min-width: 300px;
+    width: calc(50% - 400px);
+    padding: 15px 0 0 0;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAEAAAAAARAQMAAABnOfukAAAABlBMVEUAAAD19fWydBufAAAAAXRSTlMAQObYZgAAADZJREFUaN7t0gEBAAAIAiD/n7YBTRA2kO4InwDruiMIgAAIgAAIgAAIsK47ggAIgAAIgAAIwAHksoxHlAvP9AAAAABJRU5ErkJggg==');
+
+    display: flex;
+    flex-direction: row-reverse;
 }
 .b-cols_content_right {
-    float:right;
-    width:100%;
-    margin:0 0 0 -295px;
+    min-width: 600px;
+    max-width: 800px;
+    width: 800px;
+    padding: 0 18px 60px;
 }
 .b-cols_content_right-slot {
-    margin:0 0 0 340px;
-    padding:18px 0 0 0;
+    width: 100%;
+    padding: 18px 0 0 0;
 }
 
-.p-cols_design .b-wrapper {
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAEAAAAAARAQMAAABnOfukAAAABlBMVEUAAAD19fWydBufAAAAAXRSTlMAQObYZgAAADZJREFUaN7t0gEBAAAIAiD/n7YBTRA2kO4InwDruiMIgAAIgAAIgAAIsK47ggAIgAAIgAAIwAHksoxHlAvP9AAAAABJRU5ErkJggg==') 50% -0px repeat-y;
+@media screen and (max-width: 1400px) {
+  .p-documentation_in .b-block-wrapper {
+    margin-left: 300px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .b-cols_content_left {
+    display: none;
+  }
+
+  .b-cols_content_left.active {
+    display: block;
+    position: absolute;
+  }
+
+  .p-documentation_in .b-block-wrapper {
+    margin-left: 0;
+  }
+
+  .b-cols_content_right {
+    min-width: 0;
+    max-width: none;
+    width: auto;
+  }
 }
 
 .descname {
@@ -209,8 +234,7 @@ div.b-cols_content_left .b-search-text {
 }
 
 .b-documentation_top .b-section-title {
-    float: left;
-    max-width: 820px;
+    padding-left: 18px;
 }
 
 .b-documentation_top .b-search {
