@@ -160,7 +160,7 @@ dl.data, dl.enumerator {
         }
     }
     .b-menu-toc {
-        float: left;
+        max-width: 300px;
         position: relative;
         i:hover {
             cursor: pointer
@@ -170,7 +170,8 @@ dl.data, dl.enumerator {
             margin: 5px 0;
         }
         &>ul {
-            margin: 20px 0;
+            margin: 20px;
+            min-width: 260px;
         }
         li>i, li>a {
             display: table-cell;
@@ -220,14 +221,13 @@ div.toctree-wrapper {
     a {
         line-height: 1.05em;
     }
-    padding-bottom: 0.3em;
+    padding: 6px 0;
     &:last-child {
         padding-bottom: inherit;
     }
 }
 
 .container.faq {
-    /* font-size: 16px; */
     .field-odd {
         .field-name, .field-body {
             padding-bottom: 0.2em;
@@ -267,7 +267,6 @@ div.toctree-wrapper {
 }
 
 .admonition {
-    width: 100%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -363,6 +362,14 @@ div.toctree-wrapper {
     }
 }
 
+@media screen and (max-width: 1240px) {
+  .documentation-main-page-title {
+    .b-block-wrapper {
+      margin-left: 220px;
+    }
+  }
+}
+
 @media screen and (max-width: 992px) {
     .b-article {
         h1 {
@@ -408,7 +415,7 @@ div.toctree-wrapper {
             top: 0;
             width: 332px;
             max-width: 100%;
-            height: ~"calc(100% + 30px)" !important;
+            height: ~"calc(100vh - 90px)";
             z-index: 30;
             background-color: @left-menu-background-color;
             overflow: auto;
@@ -558,10 +565,11 @@ div.toctree-wrapper {
   padding: 0;
 
   .b-block-wrapper {
-    padding: 20px;
+    padding: 20px 0;
 
     h2 {
       margin: 0;
+      padding-left: 40px;
     }
   }
 }
@@ -574,7 +582,7 @@ div.toctree-wrapper {
 
 .documentation-main-page-content {
   max-width: 800px;
-  margin: 15px 0 0 40px;
+  margin: 15px 15px 0 40px;
 
   .b-path_current {
     color: #797979;
@@ -632,6 +640,17 @@ div.toctree-wrapper {
     }
   }
 
+  .documentation-main-page-title {
+    .b-block-wrapper {
+      margin-left: 0;
+      padding: 15px 25px;
+
+      h2 {
+        padding-left: 18px;
+      }
+    }
+  }
+
   .doc-parts-title .b-section-title {
     font-size: 18px;
   }
@@ -642,7 +661,7 @@ div.toctree-wrapper {
     left: 0; top: 0;
     width: 320px;
     max-width: 100%;
-    height: ~"calc(100vh - 100px)";
+    height: ~"calc(100vh - 90px)";
     z-index: 30;
     background-color: @left-menu-background-color;
     overflow: auto;
@@ -650,5 +669,10 @@ div.toctree-wrapper {
         display: block;
         padding-right: 15px;
     }
+  }
+
+  .documentation-main-page-content {
+    max-width: none;
+    margin: 15px 25px;
   }
 }

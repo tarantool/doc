@@ -30,39 +30,14 @@
     padding:20px 0 21px 0;
 }
 
-.b-documentation_top.p-documentation_in .b-block-wrapper {
-    width:941px;
-    padding-left:19px;
-}
+.b-documentation_top.p-documentation_in .b-block-wrapper {}
 .b-documentation_top .b-section-title {
     margin:0 0 17px 0;
 }
 .b-documentation_top.p-documentation_in .b-search {
     float:right;
 }
-.b-documentation_top.p-documentation_in .b-section-title {
-    float:left;
-}
-.b-cols_content {
-    width:960px;
-    margin:0 auto;
-    padding:0 0 30px 0;
-}
-.b-cols_content_left {
-    position:relative;
-    float:left;
-    width:295px;
-    padding:30px 0 0 0;
-}
-.b-cols_content_right {
-    float:right;
-    width:100%;
-    margin:0 0 0 -295px;
-}
-.b-cols_content_right-slot {
-    margin:0 0 0 340px;
-    padding:18px 0 0 0;
-}
+.b-documentation_top.p-documentation_in .b-section-title {}
 .b-page_header {
     padding:0 0 18px 0;
     margin:0 0 28px 0;
@@ -243,7 +218,7 @@
     .b-documentation_top.p-documentation_in .b-block-wrapper {
         width: 100%;
         box-sizing: border-box;
-        padding: 35px 25px 15px;
+        padding: 15px 25px;
         display: inline-block;
     }
     .b-documentation .b-search {
@@ -252,10 +227,7 @@
     .b-block-wrapper .simple .internal span {
         font-size: 14px
     }
-    .b-block-wrapper div.admonition.note {
-        padding: 20px 15px;
-        margin: 0;
-    }
+    .b-block-wrapper div.admonition.note {}
     .b-block-wrapper div.admonition p.last {
         color: #666;
         font-size: 14px;
@@ -327,9 +299,7 @@
     .headerlink .fa-link {
         visibility: hidden;
     }
-    div.b-page_header {
-        margin-bottom: 0;
-    }
+    div.b-page_header {}
     [class|="highlight"]{
         overflow: auto;
     }
@@ -348,7 +318,6 @@
 @media screen and (min-width: 769px) and (max-width: 992px) {
     div.b-cols_content_right {
         float: none;
-        width: 636px;
         margin: 0 auto;
     }
 }
@@ -374,13 +343,8 @@
     .b-documentation_top .b-block-wrapper {
         padding: 20px 15px 30px;
     }
-    .b-block-wrapper div.admonition.note {
-        padding: 15px 15px 40px;
-        margin: 0;
-    }
-    .b-documentation_top.p-documentation_in .b-block-wrapper {
-        padding: 25px 15px 5px;
-    }
+    .b-block-wrapper div.admonition.note {}
+    .b-documentation_top.p-documentation_in .b-block-wrapper {}
     div.b-cols_content_right {
         margin: 0;
         box-sizing: border-box;
