@@ -29,6 +29,7 @@ This reference covers Tarantool's built-in Lua modules.
     fiber_ipc
     fio
     fun
+    http
     json
     log
     msgpack

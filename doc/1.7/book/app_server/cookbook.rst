@@ -665,7 +665,7 @@ look something like this ...
 http_get.lua
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the `http`_ `rock`_ (which must first be installed)
+Use the :ref:`http module <http-module>`
 to get data via HTTP.
 
 .. code-block:: lua
@@ -688,7 +688,7 @@ to get data via HTTP.
 http_send.lua
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the `http`_ `rock`_ (which must first be installed)
+Use the :ref:`http module <http-module>`
 to send data via HTTP.
 
 .. code-block:: lua
