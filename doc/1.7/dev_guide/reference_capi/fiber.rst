@@ -4,11 +4,13 @@
 
 .. c:type:: struct fiber
 
-    Fiber - contains information about fiber
+    Fiber - contains information about fiber.
+
+.. c:type:: typedef int (*fiber_func)(va_list)
+
+    Function to run inside a fiber.
 
 .. c:function:: struct fiber *fiber_new(const char *name, fiber_func f)
-
-.. c:type:: typedef int (*fuber_func)(va_list)
 
     Create a new fiber.
 
@@ -23,11 +25,22 @@
 
     See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`
 
-.. c:function:: void fiber_yield(void)
+.. c:function:: struct fiber *fiber_new_ex(const char *name, const struct fiber_attr *fiber_attr, fiber_func f)
 
-    Return control to another fiber and wait until it'll be woken.
+    Create a new fiber with defined attributes.
 
-    See also: :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`
+    Can fail only if there is not enough memory for
+    the fiber structure or fiber stack.
+
+    The created fiber automatically returns itself
+    to the fiber cache if has a default stack size
+    when its "main" function completes.
+
+    :param: const char*                    name: string with fiber name
+    :param: const struct fiber_attr* fiber_attr: fiber attributes container
+    :param: fiber_func                        f: function to run inside the fiber
+
+    See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`
 
 .. _c_api-fiber-fiber_start:
 
@@ -37,6 +50,12 @@
 
     :param struct fiber* callee: fiber to start
     :param                  ...: arguments to start the fiber with
+
+.. c:function:: void fiber_yield(void)
+
+    Return control to another fiber and wait until it'll be woken.
+
+    See also: :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`
 
 .. _c_api-fiber-fiber_wakeup:
 
@@ -98,7 +117,7 @@
 
 .. _c_api-fiber-fiber_is_cancelled:
 
-.. c:function:: bool fiber_is_cancelled()
+.. c:function:: bool fiber_is_cancelled(void)
 
     Check current fiber for cancellation (it must be checked manually).
 
@@ -118,4 +137,45 @@
 
 .. c:function:: struct slab_cache *cord_slab_cache(void)
 
-    Return slab_cache suitable to use with ``tarantool/small`` library
+    Return ``slab_cache`` suitable to use with ``tarantool/small`` library
+
+.. c:function:: struct fiber *fiber_self(void)
+
+    Return the current fiber.
+
+.. c:type:: struct fiber_attr
+
+.. c:function:: void fiber_attr_new(void)
+
+    Create a new fiber attributes container and initialize it
+    with default parameters.
+
+    Can be used for creating many fibers: corresponding fibers
+    will not take ownership.
+
+.. c:function:: void fiber_attr_delete(struct fiber_attr *fiber_attr)
+
+    Delete the ``fiber_attr`` and free all allocated resources.
+    This is safe when fibers created with this attribute still exist.
+
+    :param struct fiber_attr* fiber_attribute: fiber attributes container
+
+.. c:function:: int fiber_attr_setstacksize(struct fiber_attr *fiber_attr, size_t stack_size)
+
+    Set the fiber's stack size in the fiber attributes container.
+
+    :param struct fiber_attr* fiber_attr: fiber attributes container
+    :param size_t             stack_size: stack size for new fibers (in bytes)
+
+    :return: 0 on success
+    :return: -1 on failure (if ``stack_size`` is smaller than the minimum
+             allowable fiber stack size)
+
+.. c:function:: size_t fiber_attr_getstacksize(struct fiber_attr *fiber_attr)
+
+    Get the fiber's stack size from the fiber attributes container.
+
+    :param struct fiber_attr* fiber_attr: fiber attributes container,
+                                          or NULL for default
+
+    :return: stack size (in bytes)

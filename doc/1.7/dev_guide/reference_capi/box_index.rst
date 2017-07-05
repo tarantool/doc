@@ -117,6 +117,11 @@
     :param box_iterator_t* iterator: an iterator returned by
                                      :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
 
+.. c:function:: int iterator_direction(enum iterator_type type)
+
+    Determine a direction of the given iterator type:
+    -1 for REQ, LT, LE, and +1 for all others.
+
 .. c:function:: ssize_t box_index_len(uint32_t space_id, uint32_t index_id)
 
     Return the number of element in the index.
@@ -218,3 +223,19 @@
     :return: 0 on success
 
     See also: :ref:`index_object.count()<box_index-count>`
+
+
+.. c:function:: const box_key_def_t *box_index_key_def(uint32_t space_id, uint32_t index_id)
+
+    Return :ref:`key definition <capi-tuple_key_def>` for an index
+
+    Returned object is valid until the next yield.
+
+    :param uint32_t space_id: space identifier
+    :param uint32_t index_id: index identifier
+
+    :return: key definition on success
+    :return: NULL on error
+
+    See also: :ref:`box_tuple_compare() <capi-tuple_box_tuple_compare>`,
+              :ref:`box_tuple_format_new() <capi-tuple_box_tuple_format_new>`

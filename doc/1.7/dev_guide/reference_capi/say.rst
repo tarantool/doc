@@ -20,6 +20,8 @@
 
     .. cpp:enumerator:: ::S_INFO
 
+    .. cpp:enumerator:: ::S_VERBOSE
+
     .. cpp:enumerator:: ::S_DEBUG
 
 .. c:macro:: say(level, format, ...)
@@ -36,6 +38,7 @@
              say_crit     (format, ...)
              say_warn     (format, ...)
              say_info     (format, ...)
+             say_verbose  (format, ...)
              say_debug    (format, ...)
              say_syserror (format, ...)
 

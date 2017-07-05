@@ -22,7 +22,7 @@
 
 .. c:function:: void *luaL_checkcdata(struct lua_State *L, int idx, uint32_t *ctypeid)
 
-    Checks whether the function argument ``idx`` is a cdata
+    Check whether the function argument ``idx`` is a cdata
 
     :param lua_State*      L: Lua State
     :param int           idx: stack index
@@ -34,7 +34,7 @@
 
 .. c:function:: void luaL_setcdatagc(struct lua_State *L, int idx)
 
-    Sets finalizer function on a cdata object.
+    Set finalizer function on a cdata object.
 
     Equivalent to call `ffi.gc(obj, function)`. Finalizer function must be on
     the top of the stack.
@@ -83,28 +83,66 @@
 
 .. c:function:: uint64_t luaL_checkuint64(struct lua_State *L, int idx)
 
-    Checks whether the argument idx is a uint64 or a convertable string and
+    Check whether the argument idx is a uint64 or a convertable string and
     returns this number.
 
     :throws: error if the argument can't be converted
 
 .. c:function:: uint64_t luaL_checkint64(struct lua_State *L, int idx)
 
-    Checks whether the argument idx is a int64 or a convertable string and
+    Check whether the argument idx is a int64 or a convertable string and
     returns this number.
 
     :throws: error if the argument can't be converted
 
 .. c:function:: uint64_t luaL_touint64(struct lua_State *L, int idx)
 
-    Checks whether the argument idx is a uint64 or a convertable string and
+    Check whether the argument idx is a uint64 or a convertable string and
     returns this number.
 
     :return: the converted number or 0 of argument can't be converted
 
 .. c:function:: int64_t luaL_toint64(struct lua_State *L, int idx)
 
-    Checks whether the argument idx is a int64 or a convertable string and
+    Check whether the argument idx is a int64 or a convertable string and
     returns this number.
 
     :return: the converted number or 0 of argument can't be converted
+
+.. c:function:: void luaT_pushtuple(struct lua_State *L, box_tuple_t *tuple)
+
+    Push a tuple onto the stack
+
+    :param lua_State*     L: Lua State
+
+    :throws: error on OOM
+
+    See also: :ref:`luaT_istuple <c_api-utils-luaT_istuple>`
+
+.. _c_api-utils-luaT_istuple:
+
+.. c:function:: box_tuple_t *luaT_istuple(struct lua_State *L, int idx)
+
+    Check whether ``idx`` is a tuple
+
+    :param lua_State*     L: Lua State
+    :param int          idx: the stack index
+
+    :return: non-NULL if ``idx`` is a tuple
+    :return: NULL if ``idx`` is not a tuple
+
+.. c:function:: int luaT_error(lua_State *L)
+
+    Re-throw the last Tarantool error as a Lua object
+
+    See also: `lua_error() <https://www.lua.org/manual/5.1/manual.html#lua_error>`_,
+             :ref:`box_error_last() <c_api-error-box_error_last>`.
+
+.. c:function:: int luaT_cpcall(lua_State *L, lua_CFunction func, void *ud)
+
+    Similar to `lua_cpcall() <https://www.lua.org/manual/5.1/manual.html#lua_cpcall>`_,
+    but with the proper support of Tarantool errors
+
+.. c:function:: lua_State *luaT_state(void)
+
+    Get the global Lua state used by Tarantool.
