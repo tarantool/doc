@@ -151,7 +151,7 @@ $(function () {
         // link.css("position", "relative").css("left", "-12px").before(
         link.css({
           "position": "relative",
-          "left": "-13px",
+          // "left": "-13px",
         }).before(
           $('<i class="fa fa-caret-right fa-1"></i>')
         );
@@ -162,8 +162,8 @@ $(function () {
           menu.children("ul").slideToggle();
           $(this).toggleClass("fa-caret-right").toggleClass("fa-caret-down");
         }).css({
-          "position": "relative",
-          "left": "-17px",
+          "position": "absolute",
+          "left": "-12px",
           "vertical-align": "middle",
           "color": "#797979"
         });
