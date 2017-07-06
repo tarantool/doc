@@ -71,9 +71,9 @@ and the first :ref:`index <index-box_index>` (named 'primary'):
 
    tarantool> s = box.schema.space.create('tester')
    tarantool> s:create_index('primary', {
-                 >  type = 'hash',
-                 >  parts = {1, 'NUM'}
-                 > })
+            >  type = 'hash',
+            >  parts = {1, 'NUM'}
+            > })
 
 Next, insert three :ref:`tuples <index-box_tuple>` (our name for "records")
 into the space:
