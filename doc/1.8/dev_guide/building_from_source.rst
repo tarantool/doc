@@ -40,6 +40,7 @@ on the Internet.
    * **python**                               # see above; for test suite
    * **libreadline-dev** or **libreadline6-dev** or **readline-devel**  # for interactive mode
    * **libssl-dev**                           # for `digest` module
+   * **libcurl4-gnutls-dev** or **libcurl4-openssl-dev** or **libcurl4-nss-dev** for `http` module
    * **autoconf**                             # optional, only in Mac OS scripts
    * **zlib1g** or **zlib**                   # optional, only in Mac OS scripts
 
