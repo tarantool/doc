@@ -155,7 +155,7 @@ Many functions in modules :ref:`fio <fio-section>`, :ref:`net_box <net_box-modul
 
 * *Engine = memtx* |br|
   ``select() insert()`` has one yield, at the end of insertion, caused by
-  implicit commit; ``select()`` has nothing to write to WAL and so does not yield.
+  implicit commit; ``select()`` has nothing to write to the WAL and so does not yield.
 
 * *Engine = vinyl* |br|
   ``select() insert()`` has between one and three yields, since ``select()``
