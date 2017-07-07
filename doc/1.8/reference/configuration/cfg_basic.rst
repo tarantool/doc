@@ -99,8 +99,13 @@
 
 .. confval:: read_only
 
-    Put the server instance in read-only mode. After this, any requests that try to
-    change data will fail with error :errcode:`ER_READONLY`.
+    Say ``box.cfg{read_only=true...}`` to put the server instance in read-only
+    mode. After this, any requests that try to change persistent data will fail with error
+    :errcode:`ER_READONLY`. Read-only mode should be used for master-replica
+    :ref:`replication <replication>`. Read-only mode does not affect data-change
+    requests for spaces defined as :ref:`temporary <box_schema-space_create>`.
+    Although read-only mode prevents the server from writing to the :ref:`WAL <internals-wal>`,
+    it does not prevent writing diagnostics with the :ref:`log module <log-module>`.
 
     | Type: boolean
     | Default: false

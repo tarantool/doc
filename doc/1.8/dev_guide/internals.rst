@@ -73,7 +73,7 @@ REPLACE request as an example:
 
 3. The new tuple replaces the old tuple in all existing indexes.
 
-4. A message is sent to WAL writer running in a separate thread, requesting that
+4. A message is sent to the WAL writer running in a separate thread, requesting that
    the change be recorded in the WAL. The instance switches to work on the next
    request until the write is acknowledged.
 

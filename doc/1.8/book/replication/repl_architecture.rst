@@ -18,21 +18,22 @@ A replica gets all updates from the master by continuously fetching and applying
 its write ahead log (**WAL**). Each record in the WAL represents a single
 Tarantool data-change request such as INSERT, UPDATE or DELETE, and is assigned
 a monotonically growing log sequence number (**LSN**). In essence, Tarantool
-replication is **row-based**: each data-change command is fully deterministic
+replication is **row-based**: each data-change request is fully deterministic
 and operates on a single tuple. However, unlike a classical row-based log, which
-contains entire copies of the changed rows, Tarantool WAL stores commands.
-For example, for UPDATE commands, it only stores the primary key of the row and
-update operations, to save space.
+contains entire copies of the changed rows, Tarantool's WAL contains copies of the requests.
+For example, for UPDATE requests, Tarantool only stores the primary key of the row and
+the update operations, to save space.
 
-Invocations of **stored programs** are not written to the WAL. Instead, log
-events for actual **data-change requests, performed by the Lua code**, are
-written to the log. This ensures that possible non-determinism of Lua does not
+Invocations of **stored programs** are not written to the WAL. Instead, records
+of the actual **data-change requests, performed by the Lua code**, are
+written to the WAL. This ensures that possible non-determinism of Lua does not
 cause replication to go out of sync.
 
-DDL operations on **temporary spaces**, such as creating/dropping, adding
-indexes, etc, are written to the WAL, since they are stored in non-temporary
+Data definition operations on **temporary spaces**, such as creating/dropping, adding
+indexes, truncating, etc., are written to the WAL, since information about
+temporary spaces is stored in non-temporary
 system spaces, such as :ref:`box.space._space <box_space-space>`. Data change
-operations on temporary spaces are not written to WAL and are not replicated.
+operations on temporary spaces are not written to the WAL and are not replicated.
 
 To create a valid initial state, to which WAL changes can be applied, every
 instance of a replica set requires a start set of
@@ -66,7 +67,7 @@ system space :ref:`box.space._schema <box_space-schema>`. For example:
    ...
 
 Additionally, each instance in a replica set is assigned its own UUID, when it
-joins the replica set. It is called **instance UUID** and is a globally unique
+joins the replica set. It is called an **instance UUID** and is a globally unique
 identifier. This UUID is used to ensure that instances do not join a different
 replica set, e.g. because of a configuration error. A unique instance identifier
 is also necessary to apply rows originating from different masters only once,
