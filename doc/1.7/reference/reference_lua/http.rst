@@ -40,7 +40,8 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
         :param string method: HTTP method, for example 'GET' or 'POST' or 'PUT'
         :param string url: location, for example 'https://tarantool.org/doc'
         :param string body: optional initial message, for example 'My text string!'
-        :param table opts: table of connection options, with any of these components:
+        :param table opts: table of connection options, with any of these
+         components:
 
           * ``timeout`` - number of seconds to wait for a curl API read request
             before timing out
@@ -78,24 +79,24 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
 
         The following "shortcuts" exist for requests:
 
-          * ``http_client:get(url, options)`` - shortcut for
-            ``http_client:request("GET", url, nil, opts)``
-          * ``http_client:post (url, body, options)`` - shortcut for
-            ``http_client:request("POST", url, body, opts)``
-          * ``http_client:put(url, body, options)`` - shortcut for
-            ``http_client:request("POST", url, body, opts)``
-          * ``http_client:patch(url, body, options)`` - shortcut for
-            ``http_client:request("PATCH", url, body, opts)``
-          * ``http_client:options(url, options)`` - shortcut for
-            ``http_client:request("OPTIONS", url, nil, opts)``
-          * ``http_client:head(url, options)`` - shortcut for
-            ``http_client:request("HEAD", url, nil, opts)``
-          * ``http_client:delete(url, options)`` - shortcut for
-            ``http_client:request("DELETE", url, nil, opts)``
-          * ``http_client:trace(url, options)`` - shortcut for
-            ``http_client:request("TRACE", url, nil, opts)``
-          * ``http_client:connect:(url, options)`` - shortcut for
-            ``http_client:request("CONNECT", url, nil, opts)``
+        * ``http_client:get(url, options)`` - shortcut for
+          ``http_client:request("GET", url, nil, opts)``
+        * ``http_client:post (url, body, options)`` - shortcut for
+          ``http_client:request("POST", url, body, opts)``
+        * ``http_client:put(url, body, options)`` - shortcut for
+          ``http_client:request("POST", url, body, opts)``
+        * ``http_client:patch(url, body, options)`` - shortcut for
+          ``http_client:request("PATCH", url, body, opts)``
+        * ``http_client:options(url, options)`` - shortcut for
+          ``http_client:request("OPTIONS", url, nil, opts)``
+        * ``http_client:head(url, options)`` - shortcut for
+          ``http_client:request("HEAD", url, nil, opts)``
+        * ``http_client:delete(url, options)`` - shortcut for
+          ``http_client:request("DELETE", url, nil, opts)``
+        * ``http_client:trace(url, options)`` - shortcut for
+          ``http_client:request("TRACE", url, nil, opts)``
+        * ``http_client:connect:(url, options)`` - shortcut for
+          ``http_client:request("CONNECT", url, nil, opts)``
 
     .. function:: stat()
 
