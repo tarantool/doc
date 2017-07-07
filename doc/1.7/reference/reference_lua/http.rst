@@ -8,7 +8,7 @@
 
 The ``http`` module, specifically the ``http.client`` submodule,
 provides the functionality of an HTTP client with support for HTTPS and keepalive.
-It uses routines in the `libcurl`_ library.
+It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
 
 .. _http-new:
 
@@ -18,7 +18,7 @@ It uses routines in the `libcurl`_ library.
 
     :param table options: the maximum number of entries in the connection cache.
 
-    :return: a new http.client instance
+    :return: a new HTTP client instance
     :rtype:  userdata
 
     **Example:**
@@ -33,7 +33,7 @@ It uses routines in the `libcurl`_ library.
 
     .. method:: request(method, url, body, opts)
 
-        If ``http_client`` is an http client instance, ``http_client:request()`` will
+        If ``http_client`` is an HTTP client instance, ``http_client:request()`` will
         perform an HTTP request and, if there is a successful connection,
         will return a table with connection information.
 
@@ -42,52 +42,80 @@ It uses routines in the `libcurl`_ library.
         :param string body: optional initial message, for example 'My text string!'
         :param table opts: table of connection options, with any of these components:
 
-            ``timeout`` - number of seconds to wait for a curl API read request before timing out |br|
-            ``ca_path`` - path to a directory holding one or more certificates to verify the peer with |br|
-            ``ca_file`` - path to an SSL certificate file to verify the peer with |br|
-            ``headers`` - table of HTTP headers |br|
-            ``keepalive_idle`` - delay, in seconds, that the operating system will wait while the connection is idle before sending keepalive probes. See also https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPALIVE.html |br|
-            ``keepalive_interval`` - the interval, in seconds, that the operating system will wait between sending keepalive probes. See also https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPALIVE.html |br|
-            ``low_speed_time`` - set the "low speed time" - the time that the transfer speed should be below the "low speed limit" for the library to consider it too slow and abort. See also https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html |br|
-            ``low_speed_limit`` - set the "low speed limit" - the average transfer speed in bytes per second that the transfer should be below during "low speed time" seconds for the library to consider it to be too slow and abort. See also https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html |br|
-            ``verbose`` - set on/off verbose mode
+          * ``timeout`` - number of seconds to wait for a curl API read request
+            before timing out
+          * ``ca_path`` - path to a directory holding one or more certificates to
+            verify the peer with
+          * ``ca_file`` - path to an SSL certificate file to verify the peer with
+          * ``headers`` - table of HTTP headers
+          * ``keepalive_idle`` - delay, in seconds, that the operating system
+            will wait while the connection is idle before sending keepalive
+            probes. See also
+            `CURLOPT_TCP_KEEPALIVE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPALIVE.html>`_
+          * ``keepalive_interval`` - the interval, in seconds, that the operating
+            system will wait between sending keepalive probes. See also
+            `CURLOPT_TCP_KEEPALIVE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPALIVE.html>`_
+          * ``low_speed_time`` - set the "low speed time" -- the time that the
+            transfer speed should be below the "low speed limit" for the library
+            to consider it too slow and abort. See also
+            `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_
+          * ``low_speed_limit`` - set the "low speed limit" -- the average
+            transfer speed in bytes per second that the transfer should be below
+            during "low speed time" seconds for the library to consider it to be
+            too slow and abort. See also
+            `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_
+          * ``verbose`` - set on/off verbose mode
 
         :return: connection information, with all of these components:
 
-            ``status`` - HTTP response status |br|
-            ``reason`` - HTTP response status text |br|
-            ``headers`` - a Lua table with normalized HTTP headers |br|
-            ``body`` - response body |br|
-            ``proto`` - protocol version
+          * ``status`` - HTTP response status
+          * ``reason`` - HTTP response status text
+          * ``headers`` - a Lua table with normalized HTTP headers
+          * ``body`` - response body
+          * ``proto`` - protocol version
 
         :rtype: table
 
-        The following "shortcuts" exist for requests: |br|
-        ``http_client:get(url, options)`` - shortcut for http_client:request("GET", url, nil, opts) |br|
-        ``http_client:post (url, body, options)`` - shortcut for http_client:request("POST", url, body, opts) |br|
-        ``http_client:put(url, body, options)`` - shortcut for http_client:request("POST", url, body, opts) |br|
-        ``http_client:patch(url, body, options)`` - shortcut for http_client:request("PATCH", url, body, opts) |br|
-        ``http_client:options(url, options)`` - shortcut for http_client:request("OPTIONS", url, nil, opts) |br|
-        ``http_client:head(url, options)`` - shortcut for http_client:request("HEAD", url, nil, opts) |br|
-        ``http_client:delete(url, options)`` - shortcut for http_client:request("DELETE", url, nil, opts) |br|
-        ``http_client:trace(url, options)`` - shortcut for http_client:request("TRACE", url, nil, opts) |br|
-        ``http_client:connect:(url, options)`` - shortcut for http_client:request("CONNECT", url, nil, opts) |br|
+        The following "shortcuts" exist for requests:
+
+          * ``http_client:get(url, options)`` - shortcut for
+            ``http_client:request("GET", url, nil, opts)``
+          * ``http_client:post (url, body, options)`` - shortcut for
+            ``http_client:request("POST", url, body, opts)``
+          * ``http_client:put(url, body, options)`` - shortcut for
+            ``http_client:request("POST", url, body, opts)``
+          * ``http_client:patch(url, body, options)`` - shortcut for
+            ``http_client:request("PATCH", url, body, opts)``
+          * ``http_client:options(url, options)`` - shortcut for
+            ``http_client:request("OPTIONS", url, nil, opts)``
+          * ``http_client:head(url, options)`` - shortcut for
+            ``http_client:request("HEAD", url, nil, opts)``
+          * ``http_client:delete(url, options)`` - shortcut for
+            ``http_client:request("DELETE", url, nil, opts)``
+          * ``http_client:trace(url, options)`` - shortcut for
+            ``http_client:request("TRACE", url, nil, opts)``
+          * ``http_client:connect:(url, options)`` - shortcut for
+            ``http_client:request("CONNECT", url, nil, opts)``
 
     .. function:: stat()
 
-        The ``http_client:stat()`` function returns a table with statistics: |br|
-        ``active_requests`` - number of currently executing requests |br|
-        ``sockets_added`` - total number of sockets added into an event loop |br|
-        ``sockets_deleted`` - total number of sockets sockets from an event loop |br|
-        ``total_requests`` - total number of requests |br|
-        ``http_200_responses`` - total number of requests which have returned code HTTP 200 |br|
-        ``http_other_responses`` - total number of requests which have not returned code HTTP 200 |br|
-        ``failed_requests`` - total number of requests which have failed including system errors, curl errors, and HTTP errors
+        The ``http_client:stat()`` function returns a table with statistics:
+
+        * ``active_requests`` - number of currently executing requests
+        * ``sockets_added`` - total number of sockets added into an event loop
+        * ``sockets_deleted`` - total number of sockets sockets from an event loop
+        * ``total_requests`` - total number of requests
+        * ``http_200_responses`` - total number of requests which have returned
+          code HTTP 200
+        * ``http_other_responses`` - total number of requests which have not
+          returned code HTTP 200
+        * ``failed_requests`` - total number of requests which have failed
+          including system errors, curl errors, and HTTP errors
 
     **Example:**
 
     Connect to an HTTP server, look at the size of the response for a 'GET' request,
-    and look at the statistics for the session. 
+    and look at the statistics for the session.
 
     .. code-block:: tarantoolsession
 
@@ -110,5 +138,3 @@ It uses routines in the `libcurl`_ library.
           http_other_responses: 0
           http_200_responses: 1
           sockets_added: 2
-
-.. _libcurl: https://curl.haxx.se/libcurl/
