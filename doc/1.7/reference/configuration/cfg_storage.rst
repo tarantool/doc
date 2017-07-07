@@ -8,7 +8,8 @@
 * :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`
 * :ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`
 * :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`
-* :ref:`vinyl_threads <cfg_storage-vinyl_threads>`
+* :ref:`vinyl_read_threads <cfg_storage-vinyl_read_threads>`
+* :ref:`vinyl_write_threads <cfg_storage-vinyl_write_threads>`
 
 .. _cfg_storage-memtx_memory:
 
@@ -125,15 +126,26 @@
     | Default = 3.5
     | Dynamic: no
 
-.. _cfg_storage-vinyl_threads:
+.. _cfg_storage-vinyl_read_threads:
 
-.. confval:: vinyl_threads
+.. confval:: vinyl_read_threads
 
-    The maximum number of threads that vinyl can use for some
+    The maximum number of read threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 
     | Type: integer
     | Default = 1
+    | Dynamic: no
+
+.. _cfg_storage-vinyl_write_threads:
+
+.. confval:: vinyl_write_threads
+
+    The maximum number of write threads that vinyl can use for some
+    concurrent operations, such as I/O and compression.
+
+    | Type: integer
+    | Default = 2
     | Dynamic: no
 
 .. _LZ4 algorithm: https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29
