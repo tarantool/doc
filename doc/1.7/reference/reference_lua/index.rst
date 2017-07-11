@@ -30,6 +30,7 @@ This reference covers Tarantool's built-in Lua modules.
     fio
     fun
     http
+    iconv
     json
     log
     msgpack
