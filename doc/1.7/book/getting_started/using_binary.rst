@@ -151,7 +151,7 @@ Try this request:
 
 .. code-block:: tarantoolsession
 
-   tarantool> {{box.space.tester:select{2}}}
+   tarantool> box.space.tester:select{2}
 
 This means "send a request to that Tarantool instance, and display the result".
 The result in this case is one of the tuples that was inserted earlier.

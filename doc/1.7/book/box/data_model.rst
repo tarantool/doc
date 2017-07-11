@@ -197,7 +197,7 @@ byte, then the encoding of the second byte, and so on, so '2345' is less than '5
 In Lua, a **number** is double-precision floating-point, but Tarantool allows both
 integer and floating-point values. Tarantool will try to store a Lua number as
 floating-point if the value contains a decimal point or is very large
-(greater than 100 billion = 1e14), otherwise Tarantool will store it as an integer.
+(greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer.
 To ensure that even very large numbers are stored as integers, use the
 :ref:`tonumber64 <other-tonumber64>` function, or the LL (Long Long) suffix,
 or the ULL (Unsigned Long Long) suffix.
