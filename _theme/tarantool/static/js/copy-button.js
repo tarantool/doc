@@ -25,6 +25,31 @@ $(document).ready(function() {
     div.each(function(index) {
         var jthis = $(this);
         if (jthis.find('.gp').length > 0) {
+            // add copy-pasteable version
+            jthis.find("pre").addClass('full');
+            var shortVersion = jthis.find("pre").clone();
+            shortVersion.find('.p-Indicator').nextUntil('.nn').remove();
+            shortVersion.find('.go, .gp, .gt, .nn, .c1, .no, .p-Indicator').remove();
+            shortVersion.find('.gt').nextUntil('.gp, .go').remove();
+            shortVersion.removeClass("full");
+            shortVersion.addClass("short");
+            shortVersion.hide();
+
+            shortVersion.find('span').each(function(i, v) {
+                if ($(v).text() === '') $(v).remove();
+            });
+
+            var html = shortVersion.html();
+            html = html.split('\n').map(function(v) {
+                if (/^\s*<span/.test(v)) return v;
+                else return v.trim();
+            }).filter(function(v) {
+                return v != '';
+            }).join('\n');
+            shortVersion.html(html);
+            jthis.prepend(shortVersion);
+
+            //add button
             var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
             button.css(button_styles)
             button.attr('title', hide_text);
@@ -44,17 +69,15 @@ $(document).ready(function() {
         var button = $(this);
         if (button.data('hidden') === 'false') {
             // hide the code output
-            button.next('pre').find('.p-Indicator').nextUntil('.nn').css('visibility', 'hidden');
-            button.parent().find('.go, .gp, .gt, .nn, .c1, .no, .p-Indicator').hide();
-            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
+            button.parent().find('.full').hide();
+            button.parent().find('.short').show();
             button.css('text-decoration', 'line-through');
             button.attr('title', show_text);
             button.data('hidden', 'true');
         } else {
             // show the code output
-            button.next('pre').find('.p-Indicator').nextUntil('.nn').css('visibility', 'visible');
-            button.parent().find('.go, .gp, .gt, .nn, .c1, .no, .p-Indicator').show();
-            button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
+            button.parent().find('.full').show();
+            button.parent().find('.short').hide();
             button.css('text-decoration', 'none');
             button.attr('title', hide_text);
             button.data('hidden', 'false');
