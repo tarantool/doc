@@ -113,8 +113,7 @@ sets.
 
 Tarantool supports **basic SQL structures** and
 **persistence for SQL operations** (with acceptable limitations). All tables
-created in SQL are available after server restart, but triggers are not
-persistent yet.
+created in SQL are available after server restart, triggers are persistent.
 
 .. _BSD license: http://www.gnu.org/licenses/license-list.html#ModifiedBSD
 .. _Mail.Ru: http://api.mail.ru
