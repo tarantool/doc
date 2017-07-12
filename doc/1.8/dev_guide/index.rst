@@ -8,6 +8,6 @@ Contributor's Guide
     :maxdepth: 2
 
     reference_capi/index
-    internals_index
+    internals/index
     build_contribute_index
     guidelines_index
