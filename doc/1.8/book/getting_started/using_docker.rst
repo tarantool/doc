@@ -144,7 +144,7 @@ The terminal screen now looks like this:
    ...
    tarantool.sock> s:select{3}
    ---
-   - - [3, 'Length', 93]
+   - - [3, 'Ace of Base', 1993]
    ...
    tarantool.sock>
 
