@@ -7,7 +7,7 @@ SQL protocol
 Tarantool's SQL protocol describes how to build SQL requests and parse responses
 using the common Tarantool's binary protocol.
 
-SQL special keys:
+Special SQL keys:
 
 .. code-block:: none
 
@@ -19,7 +19,7 @@ SQL special keys:
     <sql_info>      ::= 0x43
     <sql_row_count> ::= 0x44
 
-SQL special commands:
+Special SQL commands:
 
 .. code-block:: none
 
