@@ -1,10 +1,14 @@
 .. _box_protocol-iproto_protocol:
 
+.. _internals-box_protocol:
+
 --------------------------------------------------------------------------------
-Tarantool's binary protocol
+Binary protocol
 --------------------------------------------------------------------------------
 
-Tarantool's binary protocol is a binary request/response protocol.
+The binary protocol in Tarantool is a binary request/response protocol.
+
+.. _box_protocol-notation:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Notation in diagrams
