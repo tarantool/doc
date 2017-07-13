@@ -4,7 +4,8 @@
 SQL protocol
 --------------------------------------------------------------------------------
 
-Tarantool's SQL protocol describes how to build SQL requests and how to parse responses using the common Tarantool's binary protocol.
+Tarantool's SQL protocol describes how to build SQL requests and parse responses
+using the common Tarantool's binary protocol.
 
 SQL special keys:
 
@@ -25,10 +26,10 @@ SQL special commands:
     <execute> ::= 0x11
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Requests packet body
+Request packet body
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SQL request has type :code:`EXECUTE=11`.
+An SQL request has the type :code:`EXECUTE=11`.
 
 .. code-block:: none
 
@@ -41,8 +42,17 @@ The SQL request has type :code:`EXECUTE=11`.
     |                     |                               |
     +=====================+===============================+
 
-* **SQL_TEXT** is a single not empty SQL statement. For SQL syntax see https://sqlite.org/lang.html;
-* **SQL_BIND** is an optional array of bindings (parameters). Each parameter value is a scalar: number, string, binary, null. Parameter can be ordinal or named. Ordinal is encoded as a message pack scalar value (MP_UINT, INT, DOUBLE, FLOAT, STR, BIN, EXT, NIL). Named parameter is encoded as map with one string key - its name. For bindings syntax see https://sqlite.org/lang_expr.html#varparam.
+* **SQL_TEXT** is a single non-empty SQL statement.
+  For SQL syntax, see https://sqlite.org/lang.html
+* **SQL_BIND** is an optional array of bindings (parameters). Each parameter
+  value is a scalar: number, string, binary, null.
+
+  A parameter can be *ordinal* or *named*.
+  An ordinal parameter is encoded as a message pack scalar value (MP_UINT, INT,
+  DOUBLE, FLOAT, STR, BIN, EXT, NIL).
+  A named parameter is encoded as a map with one string key -- its name.
+  For bindings syntax, see https://sqlite.org/lang_expr.html#varparam
+
 Examples:
 
 * :code:`[100, 'abc', NULL, -345.6] = MP_ARRAY[ MP_UINT, MP_STR, MP_NIL, MP_DOUBLE ]`
@@ -52,8 +62,10 @@ Examples:
 Response packet body
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Body structure depends on which SQL request was sent.
-If the SQL request was SELECT then the response contains result rows and metadata about columns. Metadata of a column now contains only its name.
+Body structure depends on the type of the SQL request.
+
+If the SQL request was SELECT, the response contains result rows and
+metadata about columns. Metadata of a column now contains only its name.
 
 .. code-block:: none
 
@@ -73,7 +85,7 @@ If the SQL request was SELECT then the response contains result rows and metadat
     |                           |                   MP_ARRAY           |
     |                           |                                      |
     +===========================+======================================+
-    
+
 Example: request = :code:`SELECT col1, col2, col3 FROM test_space`
 response:
 
@@ -84,12 +96,17 @@ response:
         METADATA = [ { FIELD_NAME: 'col1' }, { FIELD_NAME: 'col2' }, { FIELD_NAME: 'col3' } ]
     }
 
-If the SQL request was not select, the BODY contains only SQL_INFO. The SQL_INFO is a map with one key - SQL_ROW_COUNT - it is the number of changed rows. For example, if the request was :code:`INSERT INTO test VALUES (1), (2), (3)` then the iproto body contains SQL_INFO map with SQL_ROW_COUNT = 3. SQL_ROW_COUNT can be 0 if the request was, for example, :code:`CREATE TABLE`.
+If the SQL request was not SELECT, the response body contains only SQL_INFO.
+The SQL_INFO is a map with one key -- SQL_ROW_COUNT -- which is the number of
+changed rows. For example, if the request was
+:code:`INSERT INTO test VALUES (1), (2), (3)`, the response body contains
+SQL_INFO map with SQL_ROW_COUNT = 3.
+Notice that SQL_ROW_COUNT can be 0, for example if the request was CREATE TABLE.
 
 .. code-block:: none
 
     EXECUTE NOT-SELECT RESPONSE BODY:
-    
+
     +========================================================+
     |                                                        |
     |   0x43: SQL_INFO                                       |
