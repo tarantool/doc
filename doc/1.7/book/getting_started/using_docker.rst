@@ -13,7 +13,7 @@ These images are the easiest way to install and use Tarantool.
 
 .. NOTE::
 
-    If you're new to Docker, we recommend going over 
+    If you're new to Docker, we recommend going over
     `this tutorial <https://docs.docker.com/engine/getstarted/step_one/>`_
     before proceeding with this chapter.
 
@@ -79,7 +79,7 @@ Tarantool displays a prompt:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> 
+   tarantool.sock>
 
 Now you can enter requests on the command line.
 
@@ -144,7 +144,7 @@ The terminal screen now looks like this:
    ...
    tarantool.sock> s:select{3}
    ---
-   - - [3, 'Length', 93]
+   - - [3, 'Ace of Base', 1993]
    ...
    tarantool.sock>
 
