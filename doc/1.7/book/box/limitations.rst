@@ -37,15 +37,6 @@ Limitations
     specify a larger value when starting the Tarantool instance.
     For example, ``box.cfg{memtx_max_tuple_size=2*1048576}``.
 
-.. _limitations_slab_size:
-
-**Slab size**
-
-    The maximal size of an allocatable memory unit (slab) is equal to one quarter
-    of :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (by default,
-    approximately 262,000 bytes). To see memory usage statistics broken down by
-    slab size, use :ref:`box.slab.stats() <box_slab_stats>`.
-
 .. _limitations_bytes_in_index_key:
 
 **Number of bytes in an index key**
