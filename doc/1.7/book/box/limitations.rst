@@ -93,7 +93,7 @@ Limitations
 
 **Length of an index name or space name or user name**
 
-    32 (``box.schema.NAME_MAX``).
+    64 (``box.schema.NAME_MAX``).
 
 .. _limitations_replicas:
 
