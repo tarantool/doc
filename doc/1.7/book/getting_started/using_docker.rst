@@ -148,6 +148,15 @@ The terminal screen now looks like this:
    ...
    tarantool.sock>
 
+To add another index on the second field, say:
+
+.. code-block:: tarantoolsession
+
+   tarantool.sock> s:create_index('secondary', {
+                 >  type = 'hash',
+                 >  parts = {2, 'string'}
+                 > })
+
 --------------------------------------------------------------------------------
 Stopping a container
 --------------------------------------------------------------------------------
