@@ -50,7 +50,8 @@ Limitations
 
 **Number of spaces**
 
-    The theoretical maximum is 65,000 (``box.schema.SPACE_MAX``).
+    The theoretical maximum is 2147483647 (``box.schema.SPACE_MAX``)
+    but the practical maximum is around 65,000.
 
 .. _limitations_number_of_connections:
 
@@ -78,13 +79,13 @@ Limitations
 
 **Number of users and roles**
 
-    32 (BOX_USER_MAX).
+    32 (``BOX_USER_MAX``).
 
 .. _limitations_length:
 
 **Length of an index name or space name or user name**
 
-    64 (``box.schema.NAME_MAX``).
+    65000 (``box.schema.NAME_MAX``).
 
 .. _limitations_replicas:
 
