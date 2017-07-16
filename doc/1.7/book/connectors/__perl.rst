@@ -3,23 +3,30 @@
 =====================================================================
 
 The most commonly used Perl driver is
-`DR::Tarantool <http://search.cpan.org/~unera/DR-Tarantool/>`_. It is not
+`tarantool-perl <https://github.com/tarantool/tarantool-perl>`_. It is not
 supplied as part of the Tarantool repository; it must be installed separately.
-The most common way to install it is with
-`CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`_.
-``DR::Tarantool`` requires other modules which should be installed first. For
-example, on Ubuntu, the installation could look like this:
+The most common way to install it is by cloning from github.
+To avoid minor warnings that may appear the first time tarantool-perl is
+installed, first install some other modules that tarantool-perl uses,
+with `CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`_.
+Thus:
 
 .. code-block:: console
 
-    $ sudo cpan install AnyEvent
-    $ sudo cpan install Devel::GlobalDestruction
-    $ sudo cpan install Coro
-    $ sudo cpan install Test::Pod
-    $ sudo cpan install Test::Spelling
-    $ sudo cpan install PAR::Dist
-    $ sudo cpan install List::MoreUtils
-    $ sudo cpan install DR::Tarantool
+    sudo cpan install AnyEvent
+    sudo cpan install Devel::GlobalDestruction
+
+Then to install tarantool-perl itself, say:
+
+.. code-block:: console
+
+    git clone https://github.com/tarantool/tarantool-perl.git tarantool-perl
+    cd tarantool-perl
+    git submodule init
+    git submodule update --recursive
+    perl Makefile.PL
+    make
+    sudo make install
 
 Here is a complete Perl program that inserts ``[99999,'BB']`` into ``space[999]``
 via the Perl API. Before trying to run, check that the server instance is listening at 
@@ -61,5 +68,5 @@ The example program uses field type names 'STR' and 'NUM'
 instead of 'string' and 'unsigned', due to a temporary Perl limitation.
 
 The example program only shows one request and does not show all that's
-necessary for good practice. For that, please see 
-`DR::Tarantool CPAN repository <http://search.cpan.org/~unera/DR-Tarantool/>`_.
+necessary for good practice. For that, please see the
+`tarantool-perl repository <https://github.com/tarantool/tarantool-perl>`_.
