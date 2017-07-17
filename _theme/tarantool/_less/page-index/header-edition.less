@@ -1,0 +1,101 @@
+@commercial-icon: url("images/commercial-icon.svg");
+@community-icon: url("images/community-icon.svg");
+@download-icon: url("images/download-icon.svg");
+@github-icon: url("images/github-icon.svg");
+
+.icon(@width, @height, @img) {
+  width:  @width;
+  height: @height;
+  background-image: @img;
+}
+
+.b-header-edition {
+  // display:-webkit-flex;
+  // display:-webkit-box;
+  // display:-moz-flex;
+  // display:-moz-box;
+  // display:-ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+  max-width: 232px;
+  width: 232px;
+  margin: 25px 0;
+
+  &__commercial-icon { .icon(162px, 109px, @commercial-icon); }
+  &__community-icon { .icon(162px, 109px, @community-icon); }
+  .download-icon {
+    .icon(20px, 20px, @download-icon);
+    margin: 0 8px;
+  }
+
+  .github-icon {
+    .icon(20px, 20px, @github-icon);
+    margin: 0 8px;
+  }
+
+  &__title {
+    font-size: 22px;
+    text-align: center;
+    color: #ffffff;
+    padding: 5px 0;
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    text-align: center;
+    opacity: 0.3;
+    color: #ffffff;
+    padding: 5px 0;
+  }
+
+  &__button {
+    width: 100%;
+    font-size: 20px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-decoration: none;
+    padding: 10px;
+    margin: 6px 0;
+    // display:-webkit-flex;
+    // display:-webkit-box;
+    // display:-moz-flex;
+    // display:-moz-box;
+    // display:-ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+
+    &.commercial {
+      background-color: #ff2e2f;
+      color: #ffffff;
+    }
+
+    &.community {
+      color: #ff2e2f;
+      background-color: #ffffff;
+    }
+  }
+
+  @media screen and (min-width: 568px) {
+    margin: 0 0;
+  }
+
+  @media @medium-screen {
+    max-width: 262px;
+    width: 262px;
+  }
+
+  @media @large-screen {
+    &__title {
+      font-size: 24px;
+    }
+
+    &__subtitle {
+      font-size: 20px;
+    }
+  }
+}
