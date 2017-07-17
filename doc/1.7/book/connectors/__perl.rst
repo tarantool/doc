@@ -5,31 +5,31 @@
 The most commonly used Perl driver is
 `tarantool-perl <https://github.com/tarantool/tarantool-perl>`_. It is not
 supplied as part of the Tarantool repository; it must be installed separately.
-The most common way to install it is by cloning from github.
-To avoid minor warnings that may appear the first time tarantool-perl is
-installed, first install some other modules that tarantool-perl uses,
-with `CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`_.
-Thus:
+The most common way to install it is by cloning from GitHub.
+
+To avoid minor warnings that may appear the first time ``tarantool-perl`` is
+installed, start with installing some other modules that ``tarantool-perl`` uses,
+with `CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`_:
 
 .. code-block:: console
 
-    sudo cpan install AnyEvent
-    sudo cpan install Devel::GlobalDestruction
+    $ sudo cpan install AnyEvent
+    $ sudo cpan install Devel::GlobalDestruction
 
-Then to install tarantool-perl itself, say:
+Then, to install ``tarantool-perl`` itself, say:
 
 .. code-block:: console
 
-    git clone https://github.com/tarantool/tarantool-perl.git tarantool-perl
-    cd tarantool-perl
-    git submodule init
-    git submodule update --recursive
-    perl Makefile.PL
-    make
-    sudo make install
+    $ git clone https://github.com/tarantool/tarantool-perl.git tarantool-perl
+    $ cd tarantool-perl
+    $ git submodule init
+    $ git submodule update --recursive
+    $ perl Makefile.PL
+    $ make
+    $ sudo make install
 
 Here is a complete Perl program that inserts ``[99999,'BB']`` into ``space[999]``
-via the Perl API. Before trying to run, check that the server instance is listening at 
+via the Perl API. Before trying to run, check that the server instance is listening at
 ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`.
 To run, paste the code into a file named :file:`example.pl` and say

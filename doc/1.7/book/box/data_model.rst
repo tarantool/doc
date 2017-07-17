@@ -223,9 +223,9 @@ see :ref:`box.tuple <box_tuple>`.
 
 Examples of insert requests with different data types:
 
-  .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-     tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}
+    tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}
     ---
     - [1, null, true, 'A B C', 12345, 1.2345]
     ...
