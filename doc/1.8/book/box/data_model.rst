@@ -158,9 +158,9 @@ Lua vs MsgPack
     +-------------------+----------------------+--------------------------------+----------------------------+
     | scalar            | integer              | "`number`_"                    | 12345                      |
     +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | double               | "`number`_"                    | 1,2345                     |
+    | scalar            | double               | "`number`_"                    | 1.2345                     |
     +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | map                  | "`table`_" (with string keys)  | table: 0x410f8b10          |
+    | compound          | map                  | "`table`_" (with string keys)  | {'a': 5, 'b': 6}           |
     +-------------------+----------------------+--------------------------------+----------------------------+
     | compound          | array                | "`table`_" (with integer keys) | [1, 2, 3, 4, 5]            |
     +-------------------+----------------------+--------------------------------+----------------------------+
@@ -221,6 +221,23 @@ see :ref:`box.tuple <box_tuple>`.
    So, for example, the smallest number requires only one byte, but the largest number
    requires nine bytes.
 
+Examples of insert requests with different data types:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}
+    ---
+    - [1, null, true, 'A B C', 12345, 1.2345]
+    ...
+    tarantool> box.space.K:insert{2,{['a']=5,['b']=6}}
+    ---
+    - [2, {'a': 5, 'b': 6}]
+    ...
+    tarantool> box.space.K:insert{3,{1,2,3,4,5}}
+    ---
+    - [3, [1, 2, 3, 4, 5]]
+    ...
+
 .. _index-box_indexed-field-types:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -272,9 +289,9 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | up to the maximum length)        |                      | ‘\65 \66 \67’      |
     +----------------------------+----------------------------------+----------------------+--------------------+
     | **array**                  | **array**                        | RTREE                | {10, 11}           |
-    |                            | (arrays of integers between      |                      |                    |
-    |                            | -9223372036854775808 and         |                      | {3, 5, 9, 10}      |
-    |                            | 9223372036854775807)             |                      |                    |
+    |                            | (list of numbers representing    |                      |                    |
+    |                            | points in a geometric figure)    |                      | {3, 5, 9, 10}      |
+    |                            |                                  |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
     | **scalar**                 | **null**                         | TREE or HASH         | msgpack.NULL       |
     |                            |                                  |                      |                    |

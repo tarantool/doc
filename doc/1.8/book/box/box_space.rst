@@ -303,8 +303,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
       single-precision floating point numbers, or double-precision floating
       point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
-    * **array**: array of integers between -9223372036854775808 and
-      9223372036854775807. Legal in memtx RTREE indexes.
+    * **array**: array of numbers. Legal in memtx RTREE indexes.
     * **scalar**: null (input with msgpack.NULL or yaml.NULL or json.NULL),
       booleans (true or false), or integers between
       -9223372036854775808 and 18446744073709551615, or single-precision

@@ -37,15 +37,6 @@ Limitations
     specify a larger value when starting the Tarantool instance.
     For example, ``box.cfg{memtx_max_tuple_size=2*1048576}``.
 
-.. _limitations_slab_size:
-
-**Slab size**
-
-    The maximal size of an allocatable memory unit (slab) is equal to one quarter
-    of :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (by default,
-    approximately 262,000 bytes). To see memory usage statistics broken down by
-    slab size, use :ref:`box.slab.stats() <box_slab_stats>`.
-
 .. _limitations_bytes_in_index_key:
 
 **Number of bytes in an index key**
@@ -59,7 +50,8 @@ Limitations
 
 **Number of spaces**
 
-    The theoretical maximum is 65,000 (``box.schema.SPACE_MAX``).
+    The theoretical maximum is 2147483647 (``box.schema.SPACE_MAX``)
+    but the practical maximum is around 65,000.
 
 .. _limitations_number_of_connections:
 
@@ -87,13 +79,13 @@ Limitations
 
 **Number of users and roles**
 
-    32 (BOX_USER_MAX).
+    32 (``BOX_USER_MAX``).
 
 .. _limitations_length:
 
 **Length of an index name or space name or user name**
 
-    32 (``box.schema.NAME_MAX``).
+    65000 (``box.schema.NAME_MAX``).
 
 .. _limitations_replicas:
 
