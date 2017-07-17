@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-                                 Submodule `fiber-ipc`
+                                 Module `fiber` fiber-ipc feature
 -------------------------------------------------------------------------------
 
-The ``fiber-ipc`` submodule allows sending and receiving messages between
+The ``fiber-ipc`` feature of the fiber module allows sending and receiving messages between
 different processes and has a synchronization mechanism for fibers, similar to
 "Condition Variables" and similar to operating-system functions such as
 ``pthread_cond_wait()`` plus ``pthread_cond_signal()``.
