@@ -23,7 +23,7 @@ Special SQL commands:
 
 .. code-block:: none
 
-    <execute> ::= 0x11
+    <execute> ::= 11
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Request packet body
