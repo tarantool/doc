@@ -44,7 +44,7 @@ This query will be processed with three operating system **threads**:
    unindexed field value to something shorter).
 
 3. The transaction processor thread sends a message to the
-   **write-ahead logging (WAL) thread** to commit the transaction.
+   :ref:`**write-ahead logging (WAL) thread** <internals-wal>` to commit the transaction.
    When done, the WAL thread replies with a COMMIT or ROLLBACK result,
    which is returned to the client.
 
@@ -56,7 +56,7 @@ Only the transaction processor thread can access the database, and there is
 only one transaction processor thread for each Tarantool instance.
 
 Like any other Tarantool thread, the transaction processor thread can handle
-many **fibers**. A fiber is a set of computer instructions that may contain
+many :ref:`**fibers** <fiber-module>`. A fiber is a set of computer instructions that may contain
 "**yield**" signals. The transaction processor thread will execute all computer
 instructions until a yield, then switch to execute the instructions of a
 different fiber. Thus (say) the thread reads row #x for the sake of fiber #1,
@@ -69,7 +69,7 @@ permanently on the same fiber. There are two types of yields:
   or network-access causes an implicit yield, and every statement that goes
   through the Tarantool client causes an implicit yield.
 
-* explicit yields: in a Lua function, you can (and should) add “yield”
+* explicit yields: in a Lua function, you can (and should) add :ref:`"yield" <fiber-yield>`
   statements to prevent hogging. This is called **cooperative multitasking**.
 
 .. _atomic-cooperative_multitasking:
@@ -81,7 +81,7 @@ Cooperative multitasking
 Cooperative multitasking means: unless a running fiber deliberately yields
 control, it is not preempted by some other fiber. But a running fiber will
 deliberately yield when it encounters a “yield point”: a transaction commit,
-an operating system call, or an explicit ``yield()`` request. Any system call
+an operating system call, or an explicit :ref:`"yield" <fiber-yield>` request. Any system call
 which can block will be performed asynchronously, and any running fiber
 which must wait for a system call will be preempted, so that another
 ready-to-run fiber takes its place and becomes the new running fiber.
@@ -110,8 +110,8 @@ In the absence of transactions, any function that contains yield points may see
 changes in the database state caused by fibers that preempt.
 Multi-statement transactions exist to provide isolation: each transaction sees
 a consistent database state and commits all its changes atomically.
-At commit time, a yield happens and all transaction changes are written to the
-write ahead log in a single batch.
+At :ref:`commit <box-commit>` time, a yield happens and all transaction changes are written to the
+:ref:`write ahead log <internals-wal>` in a single batch.
 
 To implement isolation, Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
@@ -207,8 +207,8 @@ Therefore, the sequence:
 causes blocking (in memtx), if it is inside a function or Lua program being
 executed on the server instance, but causes yielding (in both memtx and vinyl) if it
 is done as a series of transmissions from a client, including a client which
-operates via telnet, via one of the connectors, or via the MySQL and PostgreSQL
-rocks, or via the interactive mode when
+operates via telnet, via one of the connectors, or via the
+:ref:`MySQL and PostgreSQL rocks <dbms_modules>`, or via the interactive mode when
 :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`.
 
 After a fiber has yielded and then has regained control, it immediately issues

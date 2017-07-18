@@ -35,7 +35,7 @@ Submodule `box.info`
 
 The ``box.info`` submodule provides access to information about server instance variables.
 
-* **server.lsn** Log Sequence Number for the latest entry in the WAL.
+* **server.lsn** Log Sequence Number for the latest entry in the :ref:`WAL <internals-wal>`.
 * **server.ro**  True if the instance is in "read_only" mode
   (same as :ref:`read_only <cfg_basic-read_only>` in box.cfg).
 * **server.uuid** The unique identifier of this instance,
@@ -45,11 +45,11 @@ The ``box.info`` submodule provides access to information about server instance 
 * **version** Tarantool version. This value is also shown by
   :ref:`tarantool --version <index-tarantool_version>`.
 * **status** Usually this is 'running', but it can be 'loading', 'orphan', or 'hot_standby'.
-* **vclock** Same as replication.vclock.
+* **vclock** Same as :ref:`replication.vclock <internals-vector>`.
 * **pid** Process ID. This value is also shown by the
   :ref:`tarantool <tarantool-build>` module.
   This value is also shown by the Linux "ps -A" command.
-* **cluster.uuid** UUID of the replica set. Every instance in a replica set will have the same cluster.uuid value.
+* **cluster.uuid** UUID of the :ref:`replica set <replication-mechanism>`. Every instance in a replica set will have the same cluster.uuid value.
   This value is also in the :ref:`box.space._schema <box_space-schema>` system space.
 * **vinyl()** Returns runtime statistics for the vinyl storage engine.
 * **replication.lag** Number of seconds that the replica is behind the master.

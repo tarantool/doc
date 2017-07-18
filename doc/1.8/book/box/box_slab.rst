@@ -7,7 +7,7 @@ Submodule `box.slab`
 .. module:: box.slab
 
 The ``box.slab`` submodule provides access to slab allocator statistics. The
-slab allocator is the main allocator used to store tuples. This can be used
+slab allocator is the main allocator used to store :ref:`tuples <index-box_tuple>`. This can be used
 to monitor the total memory usage and memory fragmentation.
 
 .. _box_runtime_info:

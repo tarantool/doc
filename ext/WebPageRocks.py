@@ -52,23 +52,7 @@ class WebPageRocksDirectives(Directive):
         print('Processing %s manifest' % manifest_name)
         if manifest_path.endswith('.zip'):
             return None
-        version = ''
-        components = os.path.basename(manifest_path).split('-')
-        if len(components) > 2 or len(components) < 1 or \
-           components[0] != 'manifest':
-            return None
-        if len(components) == 1:
-            pass
-        elif components[1] in ('5.1', '5.2', '5.3'):
-            version = 'Lua %s ' % components[1]
-        elif components[1] in ('jit', 'luajit'):
-            version = 'LuaJIT '
-        name = version + 'manifest file'
-        zip_manifest_path = None
-        if os.path.exists(manifest_path + '.zip'):
-            zip_manifest_path = manifest_path + '.zip'
-        return (name, os.path.basename(manifest_path),
-                      os.path.basename(zip_manifest_path))
+        return ('manifest file', os.path.basename(manifest_path))
 
     def run(self):
         rocks_repo = self.options.get('path', None)
@@ -203,8 +187,6 @@ def depart_wp_rock_list_node(self, node):
         self.body.append('<a href="%s">%s</a>' % (
             get_rock_url(manifest[1]), manifest[0]
         ))
-        if manifest[2] is not None:
-            self.body.append(' (<a href="%s">zip</a>)' % get_rock_url(manifest[2]))
         self.body.append('</li>')
     self.body.append('</ul>')
 

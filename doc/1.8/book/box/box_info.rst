@@ -17,7 +17,7 @@ variables.
 * **vclock** corresponds to **replication.downstream.vclock** (see below).
 * **uptime** is the number of seconds since the instance started.
   This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`.
-* **lsn** corresponds to **replication.lsn** (see below).
+* **lsn** corresponds to **replication.lsn** (see below).                                               
 * **vinyl** returns runtime statistics for vinyl storage engine.
 * **cluster.uuid** is the UUID of the replica set.
   Every instance in a replica set will have the same ``cluster.uuid`` value.
@@ -49,25 +49,25 @@ set in regard to the current instance (see an example in the section
   uploaded by the instance.
 * **replication.upstream.status** is the replication status of the instance.
 
-  * ``auth`` means that the instance is getting authenticated to connect to a
+  * ``auth`` means that the instance is getting :ref:`authenticated <authentication>` to connect to a
     replication source.
   * ``connecting`` means that the instance is trying to connect to the
     replications source(s) listed
     in its :ref:`replication <cfg_replication-replication>` parameter.
   * ``disconnected`` means that the instance is not connected to the replica set
     (due to network problems, not replication errors).
-  * ``follow`` means that the instance's role is "replica" (read-only) and
+  * ``follow`` means that the instance's :ref:`role <replication-roles>` is "replica" (read-only) and
     replication is in progress.
   * ``running`` means the instance's role is "master" (non read-only) and
     replication is in progress.
   * ``stopped`` means that replication was stopped due to a replication error
-    (e.g. duplicate key).
+    (e.g. :ref:`duplicate key <error_codes>`).
 
 * **replication.upstream.idle** is the time (in seconds) since the instance
   received the last event from a master.
 * **replication.upstream.lag** is the time difference between the local time at
   the instance, recorded when the event was received, and the local time at
-  another master recorded when the event was written to the write ahead log on
+  another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on
   that master.
 
   Since ``lag`` calculation uses operating system clock from two different

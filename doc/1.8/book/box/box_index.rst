@@ -98,6 +98,8 @@ API is a direct binding to corresponding methods of index objects of type
         ``{1234, 'abcd'}``). Each part of a key will be compared to each part of
         an index key.
 
+        .. _box_index-iterator-types:
+
         **Iterator types for TREE indexes**
 
         .. container:: table
@@ -158,7 +160,7 @@ API is a direct binding to corresponding methods of index objects of type
             are no nils and no missing parts. Formally, the logic is as follows.
             A search key has zero or more parts, for example {}, {1,2,3},{1,nil,3}.
             An index key has one or more parts, for example {1}, {1,2,3},{1,2,3}.
-            An search key may contain nil (but not msgpack.NULL, which is the wrong type).
+            A search key may contain nil (but not msgpack.NULL, which is the wrong type).
             An index key may not contain nil or msgpack.NULL, although a later version
             of Tarantool will have different rules --  the behavior of searches with nil is subject to change.
             Possible iterators are LT, LE, EQ, REQ, GE, GT.
@@ -395,7 +397,7 @@ API is a direct binding to corresponding methods of index objects of type
         greater than or equal to 1000, and less than or equal to 1999
         (this type of request is sometimes called a "range search" or a "between search").
         The assumptions include that there is a one-part primary-key
-        TREE index on the first field, which must be a number. The iterator loop ensures
+        TREE index on the first field, which must be a :ref:`number <index-box_number>`. The iterator loop ensures
         that the search will return tuples where the first value
         is greater than or equal to 1000. The conditional statement
         within the loop ensures that the looping will stop when the

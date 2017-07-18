@@ -184,6 +184,8 @@ Nils may not be used in Lua tables; the workaround is to use
 
 A **boolean** is either ``true`` or ``false``.
 
+.. _index-box_string:
+
 A **string** is a variable-length sequence of bytes, usually represented with
 alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
 are treated as binary data, with no attempts to determine a string's
@@ -193,6 +195,8 @@ collation rules applied.
 (Example: numbers are ordered by their point on the number line, so 2345 is
 greater than 500; meanwhile, strings are ordered by the encoding of the first
 byte, then the encoding of the second byte, and so on, so '2345' is less than '500'.)
+
+.. _index-box_number:
 
 In Lua, a **number** is double-precision floating-point, but Tarantool allows both
 integer and floating-point values. Tarantool will try to store a Lua number as
@@ -323,7 +327,7 @@ Persistence
 --------------------------------------------------------------------------------
 
 In Tarantool, updates to the database are recorded in the so-called
-**write ahead log (WAL)** files. This ensures data persistence.
+:ref:`**write ahead log (WAL)** <internals-wal>` files. This ensures data persistence.
 When a power outage occurs or the Tarantool instance is killed incidentally,
 the in-memory database is lost. In this situation, WAL files are used
 to restore the data. Namely, Tarantool reads the WAL files and redoes
@@ -331,7 +335,7 @@ the requests (this is called the "recovery process"). You can change
 the timing of the WAL writer, or turn it off, by setting
 :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
 
-Tarantool also maintains a set of **snapshot files**. These files contain
+Tarantool also maintains a set of :ref:`**snapshot files** <internals-snapshot>`. These files contain
 an on-disk copy of the entire data set for a given moment. Instead of reading
 every WAL file since the databases were created, the recovery process can load
 the latest snapshot file and then read only those WAL files that were produced
@@ -377,7 +381,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
 **Examples**
 
-* INSERT: Add a new tuple to space 'tester'.
+* :ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'.
 
   The first field, field[1], will be 999 (MsgPack type is `integer`).
 
@@ -387,7 +391,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
      tarantool> box.space.tester:insert{999, 'Taranto'}
 
-* UPDATE: Update the tuple, changing field field[2].
+* :ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2].
 
   The clause "{999}", which has the value to look up in the index of the tuple's
   primary-key field, is mandatory, because ``update()`` requests must always have
@@ -400,7 +404,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
      tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})
 
-* UPSERT: Upsert the tuple, changing field field[2] again.
+* :ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2] again.
 
   The syntax of ``upsert()`` is similar to the syntax of ``update()``. However,
   the execution logic of these two requests is different.
@@ -412,7 +416,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
      tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})
 
-* REPLACE: Replace the tuple, adding a new field.
+* :ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field.
 
   This is also possible with the ``update()`` request, but the ``update()``
   request is usually more complicated.
@@ -421,14 +425,14 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
      tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}
 
-* SELECT: Retrieve the tuple.
+* :ref:`SELECT <box_space-select>`: Retrieve the tuple.
 
   The clause "{999}" is still mandatory, although it does not have to mention the primary key.
 
   .. code-block:: tarantoolsession
 
      tarantool> box.space.tester:select{999}
-* DELETE: Delete the tuple.
+* :ref:`DELETE <box_space-delete>`: Delete the tuple.
 
   In this example, we identify the primary-key field.
 
@@ -486,7 +490,7 @@ The following SELECT variations exist:
 
        :extsamp:`box.space.{*{space-name}*}:select(value, {iterator = 'GT'})`
 
-   The comparison operators are LT, LE, EQ, REQ, GE, GT
+   The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
    (for "less than", "less than or equal", "equal", "reversed equal",
    "greater than or equal", "greater than" respectively).
    Comparisons make sense if and only if the index type is ‘TREE'.
