@@ -49,7 +49,8 @@ from 1.6.x to 1.7.x. Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
 replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
-Tarantool 1.7 has an incompatible .snap and .xlog file format: 1.6 files are
+Tarantool 1.7 has an incompatible :ref:`.snap <internals-snapshot>` and :ref:`.xlog <internals-wal>`
+file format: 1.6 files are
 supported during upgrade, but you won’t be able to return to 1.6 after running
 under 1.7 for a while. It also renames a few configuration parameters, but old
 parameters are supported. The full list of breaking changes is available in
@@ -83,7 +84,7 @@ parameters are supported. The full list of breaking changes is available in
 Upgrading Tarantool in a replication cluster
 --------------------------------------------------------------------------------
 
-Tarantool 1.7 can work as a replica for Tarantool 1.6 and vice versa. Replicas
+Tarantool 1.7 can work as a :ref:`replica <replication-architecture>` for Tarantool 1.6 and vice versa. Replicas
 perform capability negotiation on handshake, and new 1.7 replication features
 are not used with 1.6 replicas. This allows upgrading clustered configurations.
 

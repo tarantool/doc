@@ -30,8 +30,8 @@ Observe the following rules when working with transactions:
  
 .. function:: box.begin()
 
-    Begin the transaction. Disable implicit yields until the transaction ends.
-    Signal that writes to the write-ahead log will be deferred until the transaction ends.
+    Begin the transaction. Disable :ref:`implicit yields <atomic-implicit-yields>` until the transaction ends.
+    Signal that writes to the :ref:`write-ahead log <internals-wal>` will be deferred until the transaction ends.
     In effect the fiber which executes ``box.begin()`` is starting an "active
     multi-request transaction", blocking all other fibers.
 

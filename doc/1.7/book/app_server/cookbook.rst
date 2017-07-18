@@ -288,7 +288,7 @@ This operation has O(log(N)) complexity.
 count_array_with_nils.lua
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Missing elements in arrays, which Lua treats a "nil"s,
+Missing elements in arrays, which Lua treats as "nil"s,
 cause the simple "#" operator to deliver improper results.
 The "print(#t)" instruction will print "4";
 the "print(counter)" instruction will print "3";

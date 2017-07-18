@@ -4,7 +4,8 @@
 Disaster recovery
 ================================================================================
 
-The minimal fault-tolerant Tarantool configuration would be a replication cluster
+The minimal fault-tolerant Tarantool configuration would be a
+:ref:`replication cluster<replication-topologies>`
 that includes a master and a replica, or two masters.
 
 The basic recommendation is to configure all Tarantool instances in a cluster to
@@ -44,7 +45,7 @@ transferred to the replica before crash. If you were able to salvage the master
 
 1. Find out the position of the crashed master, as reflected on the new master.
 
-   a. Find out instance UUID from the crashed master xlog:
+   a. Find out instance UUID from the crashed master :ref:`xlog <internals-wal>`:
 
       .. code-block:: bash
       
@@ -115,7 +116,7 @@ Your actions:
    checkpointing with ``box.backup.begin()``. Disabling the checkpointing is
    necessary to prevent automatic garbage collection of older checkpoints.
    
-2. Get the latest valid .snap file and use ``tarantoolctl cat`` command to
+2. Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tarantoolctl cat`` command to
    calculate at which lsn the data loss occurred.
 
 3. Start a new instance (instance#1) and use ``tarantoolctl play`` command to

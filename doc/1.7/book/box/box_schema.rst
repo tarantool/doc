@@ -483,7 +483,7 @@ for spaces, users, roles, and function tuples.
       treat the function’s caller as the function’s creator, with full privileges.
       Remember that SETUID works only over
       :ref:`binary ports <admin-security>`.
-      SETUID doesn't work if you invoke a function via an admin console or
+      SETUID doesn't work if you invoke a function via an :ref:`admin console <admin-security>` or
       inside a Lua script.
 
     * ``language`` = 'LUA'|'C' (default = ‘LUA’).

@@ -30,7 +30,7 @@ The interactive mode is used by ``tarantoolctl`` to implement "enter" and
 Executing code on an instance
 --------------------------------------------------------------------------------
 
-You can attach to an instance's admin console and execute some Lua code using
+You can attach to an instance's :ref:`admin console <admin-security>` and execute some Lua code using
 ``tarantoolctl``:
 
 .. code-block:: bash

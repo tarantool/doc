@@ -35,9 +35,9 @@ via the Perl API. Before trying to run, check that the server instance is listen
 To run, paste the code into a file named :file:`example.pl` and say
 :samp:`perl example.pl`. The program will connect using an application-specific
 definition of the space. The program will open a socket connection with the
-Tarantool instance at ``localhost:3301``, then send an INSERT request, then — if
+Tarantool instance at ``localhost:3301``, then send an :ref:`space_object:INSERT<box_space-insert>` request, then — if
 all is well — end without displaying any messages. If Tarantool is not running
-on ``localhost`` with listen port = 3301, the program will print “Connection
+on ``localhost`` with :ref:`listen<cfg_basic-listen>` port = 3301, the program will print “Connection
 refused”.
 
 .. code-block:: perl
@@ -65,7 +65,7 @@ refused”.
     $tnt->insert('examples' => [ 99999, 'BB' ]);
 
 The example program uses field type names 'STR' and 'NUM'
-instead of 'string' and 'unsigned', due to a temporary Perl limitation.
+instead of :ref:`'string' and 'unsigned'<box_space-create_index>`, due to a temporary Perl limitation.
 
 The example program only shows one request and does not show all that's
 necessary for good practice. For that, please see the
