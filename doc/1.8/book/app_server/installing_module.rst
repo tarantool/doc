@@ -7,22 +7,17 @@ Installing a module
 Modules in Lua and C that come from Tarantool developers and community
 contributors are available in the following locations:
 
-* Tarantool LuaRocks repository, and
+* Tarantool modules repository, and
 * Tarantool deb/rpm repositories.
- 
-.. NOTE::
-
-   As a current limitation, neither of these locations is available for Mac OS
-   users.
 
 .. _app_server-installing_module_luarocks:
 
 --------------------------------------------------------------------------------
-Installing a module from LuaRocks
+Installing a module from a repository
 --------------------------------------------------------------------------------
 
 See
-`README in tarantool/rocks repository <https://github.com/tarantool/rocks#installing-a-module-from-luarocks>`_
+`README in tarantool/rocks repository <https://github.com/tarantool/rocks#managing-modules-with-tarantool-174>`_
 for detailed instructions.
 
 .. _app_server-installing_module_debrpm:
@@ -31,20 +26,25 @@ for detailed instructions.
 Installing a module from deb/rpm
 --------------------------------------------------------------------------------
 
+.. NOTE::
+
+   As a current limitation, modules from deb/rpm are unavailable for Mac OS
+   users.
+
 Follow these steps:
 
 1. Install Tarantool as recommended on the
    `download page <http://tarantool.org/download.html>`_.
 
-2. Install the module you need. Look up the module's name on 
+2. Install the module you need. Look up the module's name on
    `Tarantool rocks page <http://tarantool.org/rocks.html>`_ and put the prefix
    "tarantool-" before the module name to avoid ambiguity:
- 
+
    .. code-block:: bash
 
       # for Ubuntu/Debian:
       $ sudo apt-get install tarantool-<module-name>
- 
+
       # for RHEL/CentOS/Amazon:
       $ sudo yum install tarantool-<module-name>
 
@@ -65,9 +65,9 @@ Once these steps are complete, you can:
 
 * search locally for installed modules using ``package.path`` (Lua) or
   ``package.cpath`` (C):
-  
+
   .. code-block:: bash
-  
+
      tarantool> package.path
      ---
      - ./?.lua;./?/init.lua; /usr/local/share/tarantool/?.lua;/usr/local/share/
@@ -75,7 +75,7 @@ Once these steps are complete, you can:
      t.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;/
      usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;
      ...
-     
+
      tarantool> package.cpath
      ---
      - ./?.so;/usr/local/lib/x86_64-linux-gnu/tarantool/?.so;/usr/lib/x86_64-li
@@ -83,7 +83,7 @@ Once these steps are complete, you can:
      -linux-gnu/lua/5.1/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/local/
      lib/lua/5.1/?.so;
      ...
-     
+
   .. NOTE::
 
      Question-marks stand for the module name that was specified earlier when
