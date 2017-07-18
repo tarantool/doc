@@ -64,28 +64,30 @@ Response packet body
 
 Body structure depends on the type of the SQL request.
 
-If the SQL request is SELECT, the response contains result rows and
-metadata for columns. Metadata for a single column contains only the column's
-name.
+If the SQL request is SELECT, the response contains:
+
+* metadata for columns (metadata for a single column contains only the column's
+  name) and
+* result rows.
 
 .. code-block:: none
 
     EXECUTE SELECT RESPONSE BODY:
                                   MAP
-    +===========================+======================================+
-    |                           |                                      |
-    |                           |     0x32: METADATA                   |
-    |                           | MP_ARRAY: array of maps:             |
-    |                           |           +~~~~~~~~~~~~~~~~~~~~~~~~+ |
-    |     0x30: DATA            |           | +~~~~~~~~~~~~~~~~~~~~+ | |
-    | MP_ARRAY: array of tuples |           | |   0x29: FIELD_NAME | | |
-    |                           |           | | MP_STR: field name | | |
-    |                           |           | +~~~~~~~~~~~~~~~~~~~~+ | |
-    |                           |           |        MP_MAP          | |
-    |                           |           +~~~~~~~~~~~~~~~~~~~~~~~~+ |
-    |                           |                   MP_ARRAY           |
-    |                           |                                      |
-    +===========================+======================================+
+    +======================================+===========================+
+    |                                      |                           |
+    |     0x32: METADATA                   |                           |
+    | MP_ARRAY: array of maps:             |                           |
+    |           +~~~~~~~~~~~~~~~~~~~~~~~~+ |                           |
+    |           | +~~~~~~~~~~~~~~~~~~~~+ | |     0x30: DATA            |
+    |           | |   0x29: FIELD_NAME | | | MP_ARRAY: array of tuples |
+    |           | | MP_STR: field name | | |                           |
+    |           | +~~~~~~~~~~~~~~~~~~~~+ | |                           |
+    |           |        MP_MAP          | |                           |
+    |           +~~~~~~~~~~~~~~~~~~~~~~~~+ |                           |
+    |                   MP_ARRAY           |                           |
+    |                                      |                           |
+    +======================================+===========================+
 
 **Example:**
 
@@ -96,8 +98,8 @@ Response:
 .. code-block:: none
 
     BODY = {
-        DATA = [ [1, 1, 1], [2, 2, 2], [3, 3, 3], ... ],
-        METADATA = [ { FIELD_NAME: 'col1' }, { FIELD_NAME: 'col2' }, { FIELD_NAME: 'col3' } ]
+        METADATA = [ { FIELD_NAME: 'col1' }, { FIELD_NAME: 'col2' }, { FIELD_NAME: 'col3' } ],
+        DATA = [ [1, 1, 1], [2, 2, 2], [3, 3, 3], ... ]
     }
 
 If the SQL request is not SELECT, the response body contains only SQL_INFO.
