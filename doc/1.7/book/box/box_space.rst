@@ -123,8 +123,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
     .. method:: auto_increment(tuple)
 
         Insert a new tuple using an auto-increment primary key. The space
-        specified by space_object must have an ``unsigned`` or ``integer`` or
-        ``numeric`` primary key index of type ``TREE``. The primary-key field
+        specified by space_object must have an
+        :ref:`**unsigned** or **integer** or **number** <index-box_indexed-field-types>`
+        primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
 
         :param space_object space_object: an :ref:`object reference
@@ -136,7 +137,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :rtype:  tuple
 
         **Complexity factors:** Index size, Index type,
-        Number of indexes accessed, WAL settings.
+        Number of indexes accessed, :ref:`WAL settings <cfg_binary_logging_snapshots-rows_per_wal>`.
 
         **Possible errors:** index has wrong type or primary-key indexed field is not a number.
 
@@ -201,7 +202,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: create_index(index-name [, options ])
 
-        Create an index. It is mandatory to create an index for a space
+        Create an :ref:`index <index-box_index>`. It is mandatory to create an index for a space
         before trying to insert tuples into it, or select tuples from it. The
         first created index, which will be used as the primary-key index, must be
         unique.
@@ -224,40 +225,39 @@ A list of all ``box.space`` functions follows, then comes a list of all
             .. rst-class:: left-align-column-3
             .. rst-class:: left-align-column-4
 
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | Name                | Effect             | Type                        | Default                       |
-            +=====================+====================+=============================+===============================+
-            | type                | type of index      | string                      | 'TREE'                        |
-            |                     |                    | ('HASH' or 'TREE' or        |                               |
-            |                     |                    | 'BITSET' or 'RTREE')        |                               |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | id                  | unique identifier  | number                      | last index's id, +1           |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | unique              | index is unique    | boolean                     | ``true``                      |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | if_not_exists       | no error if        | boolean                     | ``false``                     |
-            |                     | duplicate name     |                             |                               |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | parts               | field-numbers  +   | {field_no, 'unsigned' or    | ``{1, 'unsigned'}``           |
-            |                     | types              | 'string' or 'integer' or    |                               |
-            |                     |                    | 'number' or 'array' or      |                               |
-            |                     |                    | 'scalar'}                   |                               |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | dimension           | affects RTREE only | number                      | 2                             |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | distance            | affects RTREE only | string ('euclid' or         | 'euclid'                      |
-            |                     |                    | 'manhattan')                |                               |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | bloom_fpr           | affects vinyl only | number                      | ``vinyl_bloom_fpr``           |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | page_size           | affects vinyl only | number                      | ``vinyl_page_size``           |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | range_size          | affects vinyl only | number                      | ``vinyl_range_size``          |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | run_count_per_level | affects vinyl only | number                      | ``vinyl_run_count_per_level`` |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
-            | run_size_ratio      | affects vinyl only | number                      | ``vinyl_run_size_ratio``      |
-            +---------------------+--------------------+-----------------------------+-------------------------------+
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | Name                | Effect                                                | Type                             | Default                       |
+            +=====================+=======================================================+==================================+===============================+
+            | type                | type of index                                         | string                           | 'TREE'                        |
+            |                     |                                                       | ('HASH' or 'TREE' or             |                               |
+            |                     |                                                       | 'BITSET' or 'RTREE')             |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | id                  | unique identifier                                     | number                           | last index's id, +1           |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | unique              | index is unique                                       | boolean                          | ``true``                      |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | if_not_exists       | no error if duplicate name                            | boolean                          | ``false``                     |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | parts               | field-numbers  + types                                | {field_no, 'unsigned' or         | ``{1, 'unsigned'}``           |
+            |                     |                                                       | 'string' or 'integer' or         |                               |
+            |                     |                                                       | 'number' or 'array' or           |                               |
+            |                     |                                                       | 'scalar'}                        |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | distance            | affects RTREE only                                    | string ('euclid' or              | 'euclid'                      |
+            |                     |                                                       | 'manhattan')                     |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | bloom_fpr           | affects vinyl only                                    | number                           | ``vinyl_bloom_fpr``           |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | page_size           | affects vinyl only                                    | number                           | ``vinyl_page_size``           |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | range_size          | affects vinyl only                                    | number                           | ``vinyl_range_size``          |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | run_count_per_level | affects vinyl only                                    | number                           | ``vinyl_run_count_per_level`` |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | run_size_ratio      | affects vinyl only                                    | number                           | ``vinyl_run_size_ratio``      |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
         Note re storage engine: vinyl has extra options which by default are
         based on configuration parameters
@@ -303,7 +303,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
       single-precision floating point numbers, or double-precision floating
       point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
-    * **array**: array of numbers. Legal in memtx RTREE indexes.
+    * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
     * **scalar**: null (input with msgpack.NULL or yaml.NULL or json.NULL),
       booleans (true or false), or integers between
       -9223372036854775808 and 18446744073709551615, or single-precision
@@ -506,7 +506,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: on_replace(trigger-function [, old-trigger-function])
 
-        Create a "replace trigger". The ``trigger-function`` will be executed
+        Create a "replace :ref:`trigger <triggers>`". The ``trigger-function`` will be executed
         whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()``
         or ``delete()`` happens to a tuple in ``<space-name>``.
 
@@ -682,8 +682,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: run_triggers(true|false)
 
-        At the time that a trigger is defined, it is automatically enabled -
-        that is, it will be executed. Replace triggers can be disabled with
+        At the time that a :ref:`trigger <triggers>` is defined, it is automatically enabled -
+        that is, it will be executed. :ref:`Replace <box_space-on_replace>` triggers can be disabled with
         :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with
         :samp:`box.space.{space-name}:run_triggers(true)`.
 
@@ -927,7 +927,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         ``box.space.tester:update({999}, {{'#', 2, 1}, {'-', 2, 3}})`` |br|
         The idea is to delete ``field[2]``, then subtract ``3`` from ``field[3]``.
         But after the delete, there is a renumbering, so ``field[3]`` becomes
-        ``field[2]``` before we subtract ``3`` from it, and that's why the
+        ``field[2]`` before we subtract ``3`` from it, and that's why the
         seventh argument is ``2``, not ``3``. Therefore, after this update,
         ``field[1]`` = ``999``, ``field[2]`` = ``0``.
 
@@ -1090,7 +1090,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
     You continue to create Lua functions in the usual way, by saying
     ``function function_name () ... end``, without adding anything
     in the ``_func`` space. The ``_func`` space only exists for storing
-    function tuples so that their names can be used within grant/revoke
+    function tuples so that their names can be used within
+    :ref:`grant/revoke <authentication-owners_privileges>`
     functions.
 
    You can:
@@ -1191,7 +1192,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
        * Before dropping any objects or users, make sure that all their associated
          privileges have been revoked.
 
-       * Only the 'admin' user can grant privileges for the 'universe'.
+       * Only the :ref:`'admin' user <authentication-owners_privileges>`
+         can grant privileges for the 'universe'.
 
        * Only the 'admin' user or the creator of a space can drop, alter, or
          truncate the space.
@@ -1351,27 +1353,29 @@ A list of all ``box.space`` functions follows, then comes a list of all
         .. rst-class:: left-align-column-3
         .. rst-class:: left-align-column-4
 
-        +-------------+----+------+---------------------------------------------------------+
-        | Name        | ID | Type | Description                                             |
-        +=============+====+======+=========================================================+
-        | guest       | 0  | user | Default user when connecting remotely.                  |
-        |             |    |      | Usually an untrusted user with few privileges.          |
-        +-------------+----+------+---------------------------------------------------------+
-        | admin       | 1  | user | Default user when using Tarantool as a console.         |
-        |             |    |      | Usually an administrative user with all privileges.     |
-        +-------------+----+------+---------------------------------------------------------+
-        | public      | 2  | role | Pre-defined :ref:`role <authentication-roles>`,         |
-        |             |    |      | automatically assigned to new users when they are       |
-        |             |    |      | created with                                            |
-        |             |    |      | ``box.schema.user.create(user-name)``.                  |
-        |             |    |      | Therefore, a convenient way to grant 'read' on space    |
-        |             |    |      | 't' to every user that will ever exist is with          |
-        |             |    |      | ``box.schema.role.grant('public','read','space','t')``. |
-        +-------------+----+------+---------------------------------------------------------+
-        | replication | 3  | role | Pre-defined :ref:`role <authentication-roles>`,         |
-        |             |    |      | assigned by the 'admin' user to users who need to use   |
-        |             |    |      | :ref:`replication <replication>` features.              |
-        +-------------+----+------+---------------------------------------------------------+
+        +-------------+----+------+----------------------------------------------------------------+
+        | Name        | ID | Type | Description                                                    |
+        +=============+====+======+================================================================+
+        | guest       | 0  | user | Default user when connecting remotely.                         |
+        |             |    |      | Usually an untrusted user with few privileges.                 |
+        +-------------+----+------+----------------------------------------------------------------+
+        | admin       | 1  | user | Default user when using Tarantool as a console.                |
+        |             |    |      | Usually an                                                     |
+        |             |    |      | :ref:`administrative user <authentication-owners_privileges>`  |
+        |             |    |      | with all privileges.                                           |
+        +-------------+----+------+----------------------------------------------------------------+
+        | public      | 2  | role | Pre-defined :ref:`role <authentication-roles>`,                |
+        |             |    |      | automatically assigned to new users when they are              |
+        |             |    |      | created with                                                   |
+        |             |    |      | ``box.schema.user.create(user-name)``.                         |
+        |             |    |      | Therefore, a convenient way to grant 'read' on space           |
+        |             |    |      | 't' to every user that will ever exist is with                 |
+        |             |    |      | ``box.schema.role.grant('public','read','space','t')``.        |
+        +-------------+----+------+----------------------------------------------------------------+
+        | replication | 3  | role | Pre-defined :ref:`role <authentication-roles>`,                |
+        |             |    |      | assigned by the 'admin' user to users who need to use          |
+        |             |    |      | :ref:`replication <replication>` features.                     |
+        +-------------+----+------+----------------------------------------------------------------+
 
     To select a tuple from the ``_user`` space, use ``box.space._user:select()``.
     For example, here is what happens with a select for user id = 0, which is

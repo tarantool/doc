@@ -41,7 +41,7 @@ Here are behavior differences which affect programmers. All of these differences
 have been noted elsewhere in sentences that begin with the words
 "Note re storage engine: vinyl".
 
-* | With memtx, the index type can be TREE or HASH or RTREE or BITSET.
+* | With memtx, the index type can be TREE or HASH or :ref:`RTREE <box_index-rtree>` or BITSET.
   | With vinyl, the only index type is TREE.
 
 * | With memtx, :ref:`create_index <box_space-create_index>` can be done at any time.

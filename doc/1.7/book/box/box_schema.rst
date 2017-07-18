@@ -13,7 +13,7 @@ for spaces, users, roles, and function tuples.
 
 .. function:: box.schema.space.create(space-name [, {options}])
 
-    Create a space.
+    Create a :ref:`space <index-box_space>`.
 
     :param string space-name: name of space, which should not be a number
                                 and should not contain special characters
@@ -31,47 +31,46 @@ for spaces, users, roles, and function tuples.
         .. rst-class:: left-align-column-3
         .. rst-class:: left-align-column-4
 
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | Name          | Effect                                          | Type    | Default             |
-        +===============+=================================================+=========+=====================+
-        | temporary     | space contents are temporary:                   | boolean | false               |
-        |               | changes are not stored in the                   |         |                     |
-        |               | :ref:`write-ahead log <internals-wal>`          |         |                     |
-        |               | and there is no                                 |         |                     |
-        |               | :ref:`replication <replication>`.               |         |                     |
-        |               | Note re storage engine: vinyl does not          |         |                     |
-        |               | support temporary spaces.                       |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | id            | unique identifier:                              | number  | last space's id, +1 |
-        |               | users can refer to spaces with                  |         |                     |
-        |               | the id instead of the name                      |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | field_count   | fixed count of fields:                          | number  | 0 i.e. not fixed    |
-        |               | for example if                                  |         |                     |
-        |               | field_count=5, it is illegal                    |         |                     |
-        |               | to insert a tuple with fewer                    |         |                     |
-        |               | than or more than 5 fields                      |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | if_not_exists | create space only if a space                    | boolean | false               |
-        |               | with the same name does not                     |         |                     |
-        |               | exist already, otherwise do                     |         |                     |
-        |               | nothing but do not cause an                     |         |                     |
-        |               | error                                           |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | engine        | storage engine:                                 | string  | 'memtx'             |
-        |               | 'memtx' or 'vinyl'                              |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | user          | name of the user who is considered to be        | string  | current user's name |
-        |               | the space's                                     |         |                     |
-        |               | :ref:`owner <authentication-owners_privileges>` |         |                     |
-        |               | for authorization purposes                      |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
-        | format        | field names and types:                          | table   | (blank)             |
-        |               | For an illustration with the                    |         |                     |
-        |               | ``format`` option, see the                      |         |                     |
-        |               | :ref:`box.space._space <box_space-space>`       |         |                     |
-        |               | example.                                        |         |                     |
-        +---------------+-------------------------------------------------+---------+---------------------+
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | Name          | Effect                                             | Type    | Default             |
+        +===============+====================================================+=========+=====================+
+        | temporary     | space contents are temporary:                      | boolean | false               |
+        |               | changes are not stored in the                      |         |                     |
+        |               | :ref:`write-ahead log <internals-wal>`             |         |                     |
+        |               | and there is no                                    |         |                     |
+        |               | :ref:`replication <replication>`.                  |         |                     |
+        |               | Note re storage engine: vinyl                      |         |                     |
+        |               | does not support temporary spaces.                 |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | id            | unique identifier:                                 | number  | last space's id, +1 |
+        |               | users can refer to spaces with                     |         |                     |
+        |               | the id instead of the name                         |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | field_count   | fixed count of :ref:`fields <index-box_tuple>`:    | number  | 0 i.e. not fixed    |
+        |               | for example if                                     |         |                     |
+        |               | field_count=5, it is illegal                       |         |                     |
+        |               | to insert a tuple with fewer                       |         |                     |
+        |               | than or more than 5 fields                         |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | if_not_exists | create space only if a space                       | boolean | false               |
+        |               | with the same name does not                        |         |                     |
+        |               | exist already, otherwise do                        |         |                     |
+        |               | nothing but do not cause an                        |         |                     |
+        |               | error                                              |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | engine        | 'memtx' or 'vinyl'                                 | string  | 'memtx'             |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | user          | name of the user who is considered to be           | string  | current user's name |
+        |               | the space's                                        |         |                     |
+        |               | :ref:`owner <authentication-owners_privileges>`    |         |                     |
+        |               | for authorization purposes                         |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | format        | field names and types:                             | table   | (blank)             |
+        |               | For an illustration with the                       |         |                     |
+        |               | ``format`` option, see the                         |         |                     |
+        |               | :ref:`box.space._space <box_space-space>`          |         |                     |
+        |               | example.                                           |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
 
     There are three :ref:`syntax variations <app_server-object_reference>`
     for object references targeting space objects, for example
@@ -272,8 +271,8 @@ for spaces, users, roles, and function tuples.
        * For the 'guest' user, it’s impossible to set a password: that would be misleading,
          since 'guest' is the default user on a newly-established connection over a
          :ref:`binary port <admin-security>`, and Tarantool does not require
-         a password to establish a binary connection. It is, however, possible to change the
-         current user to ‘guest’ by providing the AUTH packet with no password at all or an
+         a password to establish a :ref:`binary connection <box_protocol-iproto_protocol>`. It is, however, possible to change the
+         current user to ‘guest’ by providing the :ref:`AUTH packet <box_protocol-authentication>` with no password at all or an
          empty password. This feature is useful for connection pools, which want to reuse a
          connection for a different user without re-establishing it.
 
@@ -313,7 +312,7 @@ for spaces, users, roles, and function tuples.
 
 .. function:: box.schema.user.info([user-name])
 
-    Return a description of a user's privileges.
+    Return a description of a user's :ref:`privileges <authentication-owners_privileges>`.
     For explanation of how Tarantool maintains user data, see
     section :ref:`Users <authentication-users>` and reference on
     :ref:`_user <box_space-user>` space.
@@ -468,7 +467,7 @@ for spaces, users, roles, and function tuples.
 
 .. function:: box.schema.func.create(func-name [, {options}])
 
-    Create a function tuple.
+    Create a function :ref:`tuple <index-box_tuple>`.
     This does not create the function itself -- that is done with Lua --
     but if it is necessary to grant privileges for a function,
     box.schema.func.create must be done first.
