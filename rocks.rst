@@ -9,12 +9,11 @@ Tarantool - Rocks
     :class: b-block-lightgray b-rocks
     :title: Available rocks
 
-    Add our LuaRocks repository with
+    To install a module, say:
 
     .. code-block:: bash
 
-        mkdir ~/.luarocks
-        echo "rocks_servers = { [[http://rocks.tarantool.org/]] }" >> ~/.luarocks/config.lua
+        $ tarantoolctl rocks install module-name
 
     The following modules are available:
 
