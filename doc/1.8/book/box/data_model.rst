@@ -327,7 +327,7 @@ Persistence
 --------------------------------------------------------------------------------
 
 In Tarantool, updates to the database are recorded in the so-called
-:ref:`**write ahead log (WAL)** <internals-wal>` files. This ensures data persistence.
+:ref:`write ahead log (WAL) <internals-wal>` files. This ensures data persistence.
 When a power outage occurs or the Tarantool instance is killed incidentally,
 the in-memory database is lost. In this situation, WAL files are used
 to restore the data. Namely, Tarantool reads the WAL files and redoes
@@ -335,12 +335,12 @@ the requests (this is called the "recovery process"). You can change
 the timing of the WAL writer, or turn it off, by setting
 :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
 
-Tarantool also maintains a set of :ref:`**snapshot files** <internals-snapshot>`. These files contain
-an on-disk copy of the entire data set for a given moment. Instead of reading
-every WAL file since the databases were created, the recovery process can load
-the latest snapshot file and then read only those WAL files that were produced
-after the snapshot file was made. After checkpointing, old WAL files can be
-removed to free up space.
+Tarantool also maintains a set of :ref:`snapshot files <internals-snapshot>`.
+These files contain an on-disk copy of the entire data set for a given moment.
+Instead of reading every WAL file since the databases were created, the recovery
+process can load the latest snapshot file and then read only those WAL files
+that were produced after the snapshot file was made. After checkpointing, old
+WAL files can be removed to free up space.
 
 To force immediate creation of a snapshot file, you can use Tarantool's
 :ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation
