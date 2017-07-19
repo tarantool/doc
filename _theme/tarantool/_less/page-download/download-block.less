@@ -1,0 +1,137 @@
+@os-installation-icon: url("images/os-installation-icon.svg");
+@folder-icon: url("images/folder-icon.svg");
+@docker-icon: url("images/docker-icon.svg");
+@rocks-icon: url("images/rocks-icon.svg");
+
+.icon(@width, @height, @img) {
+  min-width:  @width;
+  min-height: @height;
+  background-image: @img;
+  background-repeat: no-repeat;
+}
+
+.os-installation-icon { .icon(48px, 48px, @os-installation-icon); }
+.connectors-icon { .icon(46px, 41px, @folder-icon); }
+.docker-icon { .icon(62px, 41px, @docker-icon); }
+.rocks-icon { .icon(52px, 49px, @rocks-icon); }
+
+.b-download-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1f1e1e;
+  border-radius: 4px;
+  padding: 35px 15px 40px;
+  box-sizing: border-box;
+  margin-top: 10px;
+
+  &-icon-container {
+    min-width: 65px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-text-group {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+  }
+
+  &-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    color: #ffffff;
+    margin: 20px 0 15px;
+  }
+
+  &-description {
+    font-size: 18px;
+    line-height: 1.61;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  &-button {
+    font-size: 18px;
+    line-height: 1.39;
+    text-align: center;
+    color: @red-color;
+    margin-top: 15px;
+  }
+
+  @media @mobile-horizontal-screen {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 30px 30px 40px;
+
+    &-title,
+    &-description,
+    &-button {
+      text-align: left;
+    }
+
+    &-title {
+      margin: 0;
+    }
+
+    &-description {
+      margin: 8px 0 15px;
+    }
+
+    &-button {
+      margin: 0;
+    }
+
+    &-text-group {
+      margin-left: 30px;
+    }
+  }
+
+  @media @medium-screen {
+    flex-direction: column;
+    padding: 25px 25px 20px;
+    width: calc(~'50% - 5px');
+
+    &-text-group {
+      margin: 0;
+    }
+
+    &-title {
+      margin: 24px 0 10px;
+    }
+
+    &-description {
+      min-height: 174px;
+      margin: 0;
+    }
+
+    &-icon-container {
+      justify-content: flex-start;
+    }
+  }
+
+  @media @large-screen {
+    flex-direction: row;
+    padding: 25px;
+
+    &-text-group {
+      margin-left: 25px;
+    }
+
+    &-title {
+      margin: 0;
+    }
+
+    &-description {
+      margin-top: 10px;
+      min-height: 140px;
+    }
+
+    &-icon-container {
+      justify-content: center;
+    }
+  }
+}

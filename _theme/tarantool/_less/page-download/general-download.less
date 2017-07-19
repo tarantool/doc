@@ -1,0 +1,86 @@
+@tarantool-download-icon-big: url("images/tarantool-download-icon-big.svg");
+@tarantool-download-icon-small: url("images/tarantool-download-icon-small.svg");
+
+.icon(@width, @height, @img) {
+  min-width:  @width;
+  min-height: @height;
+  background-image: @img;
+  background-repeat: no-repeat;
+}
+
+.tarantool-download-icon {
+  .icon(62px, 53px, @tarantool-download-icon-small);
+
+  @media @medium-screen {
+    .icon(119px, 101px, @tarantool-download-icon-big);
+  }
+}
+
+.b-general-download {
+  background-color: #1f1e1e;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px 40px;
+
+  &-icon {}
+
+  &-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
+    margin: 20px 0 15px;
+
+    a {
+      text-decoration: none;
+      border-bottom: solid 2px @red-color;
+      color: @red-color;
+
+      &:hover {
+        color: @light-red-color;
+        border-color: @light-red-color;
+      }
+    }
+  }
+
+  &-description {
+    font-size: 18px;
+    line-height: 1.61;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  @media @mobile-horizontal-screen {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 30px 18px 70px;
+
+    &-text-group {
+      margin-left: 30px;
+    }
+
+    &-title,
+    &-description {
+      text-align: left;
+    }
+
+    &-title {
+      margin: 0 0 10px;
+    }
+  }
+
+  @media @medium-screen {
+    flex-direction: row-reverse;
+    padding: 30px 30px 40px;
+
+    &-text-group {
+      margin: 0 30px 0 0;
+    }
+  }
+
+  @media @large-screen {
+    padding: 40px 40px 50px;
+  }
+}

@@ -2,14 +2,8 @@
 @bg-lines-right: url("images/bg-lines-right.svg");
 
 .b-mainhead {
-  // display:-webkit-flex;
-  // display:-webkit-box;
-  // display:-moz-flex;
-  // display:-moz-box;
-  // display:-ms-flexbox;
   display: flex;
   justify-content: center;
-  -webkit-justify-content: center;
 
   .b-block-wrapper {
     width: auto;
@@ -28,14 +22,8 @@
   }
 
   &__header-editions {
-    // display:-webkit-flex;
-    // display:-webkit-box;
-    // display:-moz-flex;
-    // display:-moz-box;
-    // display:-ms-flexbox;
     display: flex;
     flex-direction: column;
-    -webkit-flex-direction: column;
     align-items: center;
 
     .delimiter-line {
@@ -44,7 +32,7 @@
     }
   }
 
-  @media screen and (min-width: 568px) {
+  @media @mobile-horizontal-screen {
     &__header-editions {
       flex-direction: row-reverse;
       justify-content: space-around;
