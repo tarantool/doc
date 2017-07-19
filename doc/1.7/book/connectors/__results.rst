@@ -12,7 +12,8 @@ If the function is called via the binary protocol command layer -- "eval" --
 rather than via the connector's API, no conversions occur.
 
 In the following example, a Lua function will be created. Since it will be
-accessed externally by a :ref:`'guest' user<box_space-user>`, a :ref:`**grant**<box_schema-user_grant>` of an execute privilege will
+accessed externally by a :ref:`'guest' user<box_space-user>`, a
+:ref:`grant <box_schema-user_grant>` of an execute privilege will
 be necessary. The function returns an empty array, a scalar string, two booleans,
 and a short integer. The values are the ones described in the table
 :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`.
