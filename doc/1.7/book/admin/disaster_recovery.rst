@@ -26,8 +26,8 @@ Problem: The master has crashed.
 Your actions:
 
 1. Ensure the master is stopped for good. For example, log in to the master
-   machine and use ``systemctl stop tarantool@<instance_name>``. 
-  
+   machine and use ``systemctl stop tarantool@<instance_name>``.
+
 2. Switch the replica to master mode by setting
    :ref:`box.cfg.read_only <cfg_basic-read_only>` parameter to *false* and let
    the load be handled by the replica (effective master).
@@ -48,36 +48,36 @@ transferred to the replica before crash. If you were able to salvage the master
    a. Find out instance UUID from the crashed master :ref:`xlog <internals-wal>`:
 
       .. code-block:: bash
-      
-         $ head -5 *.xlog | grep Instance   
+
+         $ head -5 *.xlog | grep Instance
          Instance: ed607cad-8b6d-48d8-ba0b-dae371b79155
 
    b. On the new master, use the UUID to find the position:
 
       .. code-block:: tarantoolsession
-      
+
          tarantool>box.info.vclock[box.space._cluster.index.uuid:select{'ed607cad-8b6d-48d8-ba0b-dae371b79155'}[1][1]]
          ---
          - 23425
          <...>
-      
+
 2. Play the records from the crashed .xlog to the new master, starting from the
    new master position:
-   
+
    a. Issue this request locally at the new master's machine to find out
       instance ID of the new master:
-   
+
       .. code-block:: tarantoolsession
-      
+
          tarantool> box.space._cluster:select{}
          ---
          - - [1, '88580b5c-4474-43ab-bd2b-2409a9af80d2']
          ...
-   
+
    b. Play the records to the new master:
 
       .. code-block:: tarantoolsession
-      
+
          $ tarantoolctl <new_master_uri> <xlog_file> play --from-lsn 23425 --replica 1
 
 .. _admin-disaster_recovery-master_master:
@@ -113,9 +113,9 @@ The following steps are applicable only to data in memtx storage engine.
 Your actions:
 
 1. Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable
-   checkpointing with ``box.backup.begin()``. Disabling the checkpointing is
+   checkpointing with ``box.backup.start()``. Disabling the checkpointing is
    necessary to prevent automatic garbage collection of older checkpoints.
-   
+
 2. Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tarantoolctl cat`` command to
    calculate at which lsn the data loss occurred.
 
