@@ -8,5 +8,5 @@ all:
 
 debug:
 	lessc --source-map --source-map-less-inline --strict-imports \
-		  --autoprefix="last 8 versions" \
+		  --autoprefix="last 2 versions" \
 		  design.less ../static/design.css

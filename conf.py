@@ -90,6 +90,8 @@ html_context = {
         'benchmark'   : True,
         'try'         : True,
         'rocks'       : True,
+        'download-page'       : True,
+        'download/os-instalation' : True,
         'doc/' + version + '/index' : True,
         # Helper webpages
         '404'            : True,
@@ -131,6 +133,9 @@ rst_prolog = """
 
 .. role:: codeblue
    :class: ccodeblue
+
+.. role:: currentversion
+   :class: current-version
 
 .. |nbsp| unicode:: 0xA0
 

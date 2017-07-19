@@ -1,0 +1,41 @@
+.p-download {
+  background-color: #262626;
+  font-family: 'Open Sans', sans-serif;
+
+  .b-block-wrapper {
+    width: auto;
+    padding: 0;
+    margin: 10px;
+  }
+
+  &-general {
+    display: flex;
+  }
+
+  &-blocks {
+    display: flex;
+
+    .b-block-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &-enterprise-downloads {
+    background-color: #1f1e1e;
+  }
+
+  @media @medium-screen {
+    .b-block-wrapper {
+      margin: 15px;
+    }
+  }
+
+  @media @large-screen {
+    .b-block-wrapper {
+      max-width: 950px;
+      margin: auto;
+    }
+  }
+}
