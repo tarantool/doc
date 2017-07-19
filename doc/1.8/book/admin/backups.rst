@@ -47,15 +47,15 @@ create new files. Old files are garbage collected after each checkpoint.
 
 To take a mixed backup:
 
-1. Issue ``box.backup.begin()`` on the :ref:`administrative console <admin-security>`. This will suspend
-   garbage collection till the next ``box.backup.end()`` and will return a list
+1. Issue ``box.backup.start()`` on the :ref:`administrative console <admin-security>`. This will suspend
+   garbage collection till the next ``box.backup.stop()`` and will return a list
    of files to backup.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the
    last checkpoint.
 
-3. Resume garbage collection with ``box.backup.end()``.
+3. Resume garbage collection with ``box.backup.stop()``.
 
 .. _admin-backups-cont_remote_backup_memtx:
 
