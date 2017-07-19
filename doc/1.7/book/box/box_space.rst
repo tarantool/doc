@@ -304,12 +304,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
       point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
     * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
-    * **scalar**: null (input with msgpack.NULL or yaml.NULL or json.NULL),
-      booleans (true or false), or integers between
+    * **scalar**: booleans (true or false), or integers between
       -9223372036854775808 and 18446744073709551615, or single-precision
       floating point numbers, or double-precison floating-point numbers, or
-      strings. When there is a mix of types, the key order is: null,
-      then booleans, then numbers, then strings. Legal in memtx TREE or
+      strings. When there is a mix of types, the key order is:
+      booleans, then numbers, then strings. Legal in memtx TREE or
       HASH indexes, and in vinyl TREE indexes.
 
     .. container:: table stackcolumn
@@ -348,9 +347,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
         |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
         |                  | 9223372036854775807       |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
-        | **scalar**       | null,                     | memtx TREE or HASH indexes, |br|      | null |br|         |
-        |                  | booleans (true or false), | vinyl TREE indexes                    | true |br|         |
-        |                  | integers between          |                                       | -1 |br|           |
+        | **scalar**       | booleans (true or false), | memtx TREE or HASH indexes, |br|      | true |br|         |
+        |                  | integers between          | vinyl TREE indexes                    | -1 |br|           |
         |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
         |                  | 18446744073709551615,     |                                       | '' |br|           |
         |                  | single-precision floating |                                       | 'ру'              |

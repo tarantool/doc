@@ -297,9 +297,7 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | points in a geometric figure)    |                      | {3, 5, 9, 10}      |
     |                            |                                  |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
-    | **scalar**                 | **null**                         | TREE or HASH         | msgpack.NULL       |
-    |                            |                                  |                      |                    |
-    |                            | **boolean**                      |                      | true               |
+    | **scalar**                 | **boolean**                      | TREE or HASH         | true               |
     |                            | (true or false)                  |                      |                    |
     |                            |                                  |                      | -1                 |
     |                            | **integer**                      |                      |                    |
@@ -315,8 +313,8 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | **string** (any set of octets)   |                      |                    |
     |                            |                                  |                      |                    |
     |                            | Note: When there is a mix of     |                      |                    |
-    |                            | types, the key order is: null,   |                      |                    |
-    |                            | then booleans, then numbers,     |                      |                    |
+    |                            | types, the key order is:         |                      |                    |
+    |                            | booleans, then numbers,          |                      |                    |
     |                            | then strings.                    |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
 
