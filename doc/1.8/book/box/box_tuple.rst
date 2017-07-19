@@ -7,9 +7,10 @@
 .. module:: box.tuple
 
 The ``box.tuple`` submodule provides read-only access for the ``tuple``
-userdata type. It allows, for a single tuple: selective retrieval of the field
+userdata type. It allows, for a single :ref:`tuple <index-box_tuple>`: selective retrieval of the field
 contents, retrieval of information about size, iteration over all the fields,
-and conversion to a Lua table.
+and conversion to a `Lua table <https://www.lua.org/pil/2.5.html>`_.
+
 
 .. _box_tuple-new:
 
@@ -238,7 +239,7 @@ and conversion to a Lua table.
 
     .. method:: pairs()
 
-        In Lua, ``lua-table-value:pairs()`` is a method which returns:
+        In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns:
         ``function``, ``lua-table-value``, ``nil``. Tarantool has extended
         this so that ``tuple-value:pairs()`` returns: ``function``,
         ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua

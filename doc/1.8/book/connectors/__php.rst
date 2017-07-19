@@ -11,12 +11,12 @@ in the driver's :file:`README` file.
 
 Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named
 ``examples`` via the PHP API. Before trying to run, check that the server instance is
-listening at ``localhost:3301`` and that the space ``examples`` exists, as
+:ref:`listening <cfg_basic-listen>` at ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`. To run, paste the code into
 a file named :file:`example.php` and say
 ``php -d extension=~/tarantool-php/modules/tarantool.so example.php``.
 The program will open a socket connection with the Tarantool instance at
-``localhost:3301``, then send an INSERT request, then — if all is well — print
+``localhost:3301``, then send an :ref:`INSERT<box_space-insert>` request, then — if all is well — print
 "Insert succeeded". If the tuple already exists, the program will print
 “Duplicate key exists in unique index 'primary' in space 'examples'”.
 

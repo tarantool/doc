@@ -29,7 +29,7 @@ All triggers have the following characteristics:
   :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or 
   :ref:`space_object:on_replace() <box_space-on_replace>`.
 
-* Triggers are defined only by the 'admin' user.
+* Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
 * Triggers are stored in the Tarantool instance's memory, not in the database.
   Therefore triggers disappear when the instance is shut down.

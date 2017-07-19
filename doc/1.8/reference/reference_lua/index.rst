@@ -26,7 +26,6 @@ This reference covers Tarantool's built-in Lua modules.
     errno
     box_error
     fiber
-    fiber_ipc
     fio
     fun
     http

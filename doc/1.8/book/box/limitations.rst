@@ -7,7 +7,7 @@ Limitations
 **Number of parts in an index**
 
     For TREE or HASH indexes, the maximum
-    is 255 (``box.schema.INDEX_PART_MAX``). For RTREE indexes, the
+    is 255 (``box.schema.INDEX_PART_MAX``). For ref:`RTREE <box_index-rtree>` indexes, the
     maximum is 1 but the field is an ARRAY of up to 20 dimensions.
     For BITSET indexes, the maximum is 1. 
 

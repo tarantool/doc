@@ -86,8 +86,8 @@ Here are notes corresponding to comments in the example program.
 In this program, the stream will be named ``tnt``.
 Before connecting on the ``tnt`` stream, some options may have to be set.
 The most important option is TNT_OPT_URI.
-In this program, the URI is ``localhost:3301``, since that is where the
-Tarantool instance is supposed to be listening.
+In this program, the :ref:`URI <index-uri>` is ``localhost:3301``, since that is where the
+Tarantool instance is supposed to be :ref:`listening <cfg_basic-listen>`.
 
 Function description:
 
@@ -98,7 +98,7 @@ Function description:
     `int tnt_set(struct tnt_stream *s, int option, variant option-value)`
 
 **CONNECT:** Now that the stream named ``tnt`` exists and is associated with a
-URI, this example program can connect to a server.
+URI, this example program can connect to a server instance.
 
 .. code-block:: c
 
@@ -113,7 +113,7 @@ Function description:
     int tnt_connect(struct tnt_stream \*s)
 
 The connection might fail for a variety of reasons, such as:
-the server is not running, or the URI contains an invalid password.
+the server is not running, or the URI contains an invalid :ref:`password<authentication-passwords>`.
 If the connection fails, the return value will be -1.
 
 **MAKE REQUEST:** Most requests require passing a structured value, such as
@@ -125,7 +125,7 @@ the contents of a tuple.
     tnt_object_format(tuple, "[%d%s]", 99999, "B");
 
 In this program, the request will
-be an INSERT, and the tuple contents will be an integer
+be an :ref:`INSERT<box_space-insert>`, and the tuple contents will be an integer
 and a string. This is a simple serial set of values, that
 is, there are no sub-structures or arrays. Therefore it
 is easy in this case to format what will be passed using

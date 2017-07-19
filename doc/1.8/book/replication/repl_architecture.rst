@@ -15,11 +15,12 @@ A pack of instances which operate on copies of the same databases make up a
 **replica**.
 
 A replica gets all updates from the master by continuously fetching and applying
-its write ahead log (**WAL**). Each record in the WAL represents a single
-Tarantool data-change request such as INSERT, UPDATE or DELETE, and is assigned
+its :ref:`write ahead log (**WAL**)<internals-wal>`. Each record in the WAL represents a single
+Tarantool data-change request such as :ref:`INSERT<box_space-insert>`,
+:ref:`UPDATE<box_space-update>` or :ref:`DELETE<box_space-delete>`, and is assigned
 a monotonically growing log sequence number (**LSN**). In essence, Tarantool
 replication is **row-based**: each data-change request is fully deterministic
-and operates on a single tuple. However, unlike a classical row-based log, which
+and operates on a single :ref:`tuple<index-box_tuple>`. However, unlike a classical row-based log, which
 contains entire copies of the changed rows, Tarantool's WAL contains copies of the requests.
 For example, for UPDATE requests, Tarantool only stores the primary key of the row and
 the update operations, to save space.

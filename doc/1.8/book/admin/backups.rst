@@ -19,7 +19,8 @@ Hot backup (memtx)
 
 This is a special case when there are only in-memory tables.
 
-The last snapshot file is a backup of the entire database; and the WAL files
+The last :ref:`snapshot file<index-box_persistence>` is a backup of the entire database;
+and the :ref:`WAL<internals-wal>` files
 that are made after the last snapshot are incremental backups. Therefore taking
 a backup is a matter of copying the snapshot and WAL files.
 
@@ -46,7 +47,7 @@ create new files. Old files are garbage collected after each checkpoint.
 
 To take a mixed backup:
 
-1. Issue ``box.backup.begin()`` on the administrative console. This will suspend
+1. Issue ``box.backup.begin()`` on the :ref:`administrative console <admin-security>`. This will suspend
    garbage collection till the next ``box.backup.end()`` and will return a list
    of files to backup.
 
