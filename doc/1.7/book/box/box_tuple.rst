@@ -76,8 +76,10 @@ and conversion to a `Lua table <https://www.lua.org/pil/2.5.html>`_.
     .. method:: bsize()
 
         If ``t`` is a tuple instance, ``t:bsize()`` will return the number of
-        bytes in the tuple. With the memtx storage engine the default maximum
-        number is :ref:`one megabyte <cfg_storage-memtx_max_tuple_size>`. Every
+        bytes in the tuple. With both the memtx storage engine and the vinyl
+        storage engine the default maximum is one megabyte
+        (:ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` or
+        :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`). Every
         field has one or more "length" bytes preceding the actual contents, so
         ``bsize()`` returns a value which is slightly greater than the sum of
         the lengths of the contents.

@@ -31,9 +31,12 @@ Limitations
 **Number of bytes in a tuple**
 
     The maximal number of bytes in a tuple is roughly equal to 
-    :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` (with a metadata
+    :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` or
+    :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`
+    (with a metadata
     overhead of about 20 bytes per tuple, which is added on top of useful bytes).
-    By default, the value of ``memtx_max_tuple_size`` is 1,048,576. To increase it,
+    By default, the value of either ``memtx_max_tuple_size`` or
+    ``vinyl_max_tuple_size`` is 1,048,576. To increase it,
     specify a larger value when starting the Tarantool instance.
     For example, ``box.cfg{memtx_max_tuple_size=2*1048576}``.
 

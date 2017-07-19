@@ -3,6 +3,7 @@
 * :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`
 * :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`
 * :ref:`vinyl_cache <cfg_storage-vinyl_cache>`
+* :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`
 * :ref:`vinyl_memory <cfg_storage-vinyl_memory>`
 * :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`
 * :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`
@@ -30,8 +31,10 @@
 
 .. confval:: memtx_max_tuple_size
 
-    Size of the largest allocation unit, in bytes. It can be increased if it
+    Size of the largest allocation unit, in bytes,
+    for the memtx storage engine. It can be increased if it
     is necessary to store large tuples.
+    See also: :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`.
 
     | Type: integer
     | Default: 1024 * 1024 = 1048576
@@ -69,6 +72,19 @@
 
     | Type: integer
     | Default = 128 * 1024 * 1024 = 134217728
+    | Dynamic: no
+
+.. _cfg_storage-vinyl_max_tuple_size:
+
+.. confval:: vinyl_max_tuple_size
+
+    Size of the largest allocation unit, in bytes,
+    for the vinyl storage engine. It can be increased if it
+    is necessary to store large tuples.
+    See also: :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`.
+
+    | Type: integer
+    | Default: 1024 * 1024 = 1048576
     | Dynamic: no
 
 .. _cfg_storage-vinyl_memory:
