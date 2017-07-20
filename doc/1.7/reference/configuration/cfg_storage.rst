@@ -17,11 +17,12 @@
 .. confval:: memtx_memory
 
     How much memory Tarantool allocates to actually store tuples, in bytes.
-    When the limit is reached, INSERT or UPDATE requests begin failing with
-    error :errcode:`ER_MEMORY_ISSUE`. While the server does not go beyond the
-    defined limit to allocate tuples, there is additional memory used to store
+    When the limit is reached, :ref:`INSERT <box_space-insert>` or
+    :ref:`UPDATE <box_space-insert>` requests begin failing with
+    error :errcode:`ER_MEMORY_ISSUE`. The server does not go beyond the
+    memtx_memory limit to allocate tuples, but there is additional memory used to store
     indexes and connection information. Depending on actual configuration and
-    workload, Tarantool can consume up to 20% more than the limit set here.
+    workload, Tarantool can consume up to 20% more than the memtx_memory limit.
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456
@@ -56,8 +57,9 @@
 
 .. confval:: vinyl_bloom_fpr
 
-    Bloom filter false positive rate -- the suitable probability of the bloom
-    filter to give a wrong result.
+    Bloom filter false positive rate -- the suitable probability of the
+    `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_
+    to give a wrong result.
     This can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: float
@@ -68,7 +70,7 @@
 
 .. confval:: vinyl_cache
 
-    The maximal cache size for vinyl, in bytes.
+    The maximal cache size for the vinyl storage engine, in bytes.
 
     | Type: integer
     | Default = 128 * 1024 * 1024 = 134217728
@@ -101,11 +103,11 @@
 
 .. confval:: vinyl_page_size
 
-    Page size, in bytes. Page is a R/W unit for vinyl disk operations.
-    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
+    Page size, in bytes. Page is a read/write unit for vinyl disk operations.
+    The vinyl_page_size setting can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
-    | Default = 8 * 1024
+    | Default = 8 * 1024 = 8192
     | Dynamic: no
 
 .. _cfg_storage-vinyl_range_size:
@@ -116,7 +118,7 @@
     This can be overridden by a :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
-    | Default = 1024 * 1024 * 1024
+    | Default = 1024 * 1024 * 1024 = 1073741824
     | Dynamic: no
 
 .. _cfg_storage-vinyl_run_count_per_level:

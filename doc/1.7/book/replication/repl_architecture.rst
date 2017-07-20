@@ -15,7 +15,7 @@ A pack of instances which operate on copies of the same databases make up a
 **replica**.
 
 A replica gets all updates from the master by continuously fetching and applying
-its :ref:`write ahead log (**WAL**)<internals-wal>`. Each record in the WAL represents a single
+its :ref:`write ahead log (WAL)<internals-wal>`. Each record in the WAL represents a single
 Tarantool data-change request such as :ref:`INSERT<box_space-insert>`,
 :ref:`UPDATE<box_space-update>` or :ref:`DELETE<box_space-delete>`, and is assigned
 a monotonically growing log sequence number (**LSN**). In essence, Tarantool

@@ -3,7 +3,7 @@
     Whether to start the server in **hot standby** mode.
     
     Hot standby is a feature which provides a simple form of failover without
-    replication.
+    :ref:`replication <replication>`.
     
     The expectation is that there will be two instances of the server using the
     same configuration. The first one to start will be the "primary" instance.
@@ -13,7 +13,7 @@
     server on the same computer with the same
     :ref:`box.cfg <box_introspection-box_cfg>` configuration settings --
     including the same directories and same non-null URIs -- and with the
-    additional parameter ``hot_standby = true``.
+    additional configuration setting ``hot_standby = true``.
     Expect to see a notification ending with the words ``I> Entering hot standby mode``.
     This is fine. It means that the standby instance is ready to take over if the
     primary instance goes down.
@@ -26,7 +26,7 @@
     and trying to take the lock.
     If the primary instance goes down for any reason, the lock will be released.
     in this case, the standby instance will succeed in taking the lock,
-    will connect on listen address and will become the primary instance.
+    will connect on the :ref:`listen <cfg_basic-listen>` address and will become the primary instance.
     Expect to see a notification ending with the words
     ``I> ready to accept requests``.
 

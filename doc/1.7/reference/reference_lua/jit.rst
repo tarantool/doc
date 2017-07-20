@@ -4,7 +4,7 @@
 
 .. module:: jit
 
-The ``jit`` module has functions for tracing the LuaJIT Just-In-Time compiler's
+The ``jit`` module has functions for tracing the `LuaJIT <http://luajit.org>`_ Just-In-Time compiler's
 progress, showing the byte-code or assembler output that the compiler produces,
 and in general providing information about what LuaJIT does with Lua code.
 

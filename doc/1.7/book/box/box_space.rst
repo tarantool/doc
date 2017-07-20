@@ -124,7 +124,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Insert a new tuple using an auto-increment primary key. The space
         specified by space_object must have an
-        :ref:`**unsigned** or **integer** or **number** <index-box_indexed-field-types>`
+        :ref:`'unsigned' or 'integer' or 'number' <index-box_indexed-field-types>`
         primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
 

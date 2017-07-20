@@ -8,8 +8,8 @@
 
 .. confval:: force_recovery
 
-    If there is an error while reading a snapshot file
-    (at server instance start) or a write-ahead log file
+    If there is an error while reading a :ref:`snapshot file<index-box_persistence>`
+    (at server instance start) or a :ref:`write-ahead log file<internals-wal>`
     (at server instance start or to relay to a replica), abort.
 
     | Type: boolean
@@ -51,7 +51,7 @@
     Specify fiber-WAL-disk synchronization mode as:
 
     * ``none``: write-ahead log is not maintained;
-    * ``write``: fibers wait for their data to be written to
+    * ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
       the write-ahead log (no :manpage:`fsync(2)`);
     * ``fsync``: fibers wait for their data, :manpage:`fsync(2)`
       follows each :manpage:`write(2)`;
@@ -66,7 +66,7 @@
 
     Number of seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
-    files for the sake of replication or :ref:`hot standby <index-hot_standby>`.
+    files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.
 
     | Type: float
     | Default: 2

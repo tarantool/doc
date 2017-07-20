@@ -19,7 +19,7 @@
     If one of the URIs is "self" -- that is, if one of the URIs is for the
     instance where ``box.cfg{}`` is being executed on -- then it is ignored.
     Thus it is possible to use the same ``replication`` specification on
-    multiple servers.
+    multiple server instances.
 
     The default user name is ‘guest’. A replica does not accept
     data-change requests on the :ref:`listen <cfg_basic-listen>` port.

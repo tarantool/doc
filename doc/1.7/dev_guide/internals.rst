@@ -60,6 +60,8 @@ and on the right are comments.
    10 cd 02 00                   element#1: tag=space id, value=512, big byte first
    21 91 01                      element#2: tag=tuple, value=1-element fixed array={1}
 
+A tool for reading .xlog files is Tarantool's :ref:`xlog module <xlog>`.
+
 Tarantool processes requests atomically: a change is either accepted and recorded
 in the WAL, or discarded completely. Let's clarify how this happens, using the
 REPLACE request as an example:

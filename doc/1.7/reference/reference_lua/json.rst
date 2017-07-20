@@ -78,6 +78,10 @@ read `the official documentation`_.
         - world
         ...
 
+    See the tutorial
+    :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`
+    to see how json.decode can fit in an application.
+
 .. _json-null:
 
 .. data:: NULL
