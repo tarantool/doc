@@ -58,6 +58,10 @@
 
         Space id of _cluster.
 
+    .. cpp:enumerator:: ::BOX_TRUNCATE_ID
+
+        Space id of _truncate.
+
     .. cpp:enumerator:: ::BOX_SYSTEM_ID_MAX
 
         End of reserved range of system spaces.

@@ -34,7 +34,7 @@
     .. cpp:enumerator:: ::ER_FIELD_TYPE
     .. cpp:enumerator:: ::ER_FIELD_TYPE_MISMATCH
     .. cpp:enumerator:: ::ER_SPLICE
-    .. cpp:enumerator:: ::ER_ARG_TYPE
+    .. cpp:enumerator:: ::ER_UPDATE_ARG_TYPE
     .. cpp:enumerator:: ::ER_TUPLE_IS_TOO_LONG
     .. cpp:enumerator:: ::ER_UNKNOWN_UPDATE_OP
     .. cpp:enumerator:: ::ER_UPDATE_FIELD
@@ -46,7 +46,7 @@
     .. cpp:enumerator:: ::ER_NO_SUCH_INDEX
     .. cpp:enumerator:: ::ER_NO_SUCH_SPACE
     .. cpp:enumerator:: ::ER_NO_SUCH_FIELD
-    .. cpp:enumerator:: ::ER_SPACE_FIELD_COUNT
+    .. cpp:enumerator:: ::ER_EXACT_FIELD_COUNT
     .. cpp:enumerator:: ::ER_INDEX_FIELD_COUNT
     .. cpp:enumerator:: ::ER_WAL_IO
     .. cpp:enumerator:: ::ER_MORE_THAN_ONE_TUPLE
@@ -68,14 +68,14 @@
     .. cpp:enumerator:: ::ER_NO_SUCH_ENGINE
     .. cpp:enumerator:: ::ER_RELOAD_CFG
     .. cpp:enumerator:: ::ER_CFG
-    .. cpp:enumerator:: ::ER_SOPHIA
-    .. cpp:enumerator:: ::ER_LOCAL_SERVER_IS_NOT_ACTIVE
-    .. cpp:enumerator:: ::ER_UNKNOWN_SERVER
-    .. cpp:enumerator:: ::ER_CLUSTER_ID_MISMATCH
+    .. cpp:enumerator:: ::ER_UNUSED60
+    .. cpp:enumerator:: ::ER_UNUSED61
+    .. cpp:enumerator:: ::ER_UNKNOWN_REPLICA
+    .. cpp:enumerator:: ::ER_REPLICASET_UUID_MISMATCH
     .. cpp:enumerator:: ::ER_INVALID_UUID
-    .. cpp:enumerator:: ::ER_CLUSTER_ID_IS_RO
-    .. cpp:enumerator:: ::ER_RESERVED66
-    .. cpp:enumerator:: ::ER_SERVER_ID_IS_RESERVED
+    .. cpp:enumerator:: ::ER_REPLICASET_UUID_IS_RO
+    .. cpp:enumerator:: ::ER_INSTANCE_UUID_MISMATCH
+    .. cpp:enumerator:: ::ER_REPLICA_ID_IS_RESERVED
     .. cpp:enumerator:: ::ER_INVALID_ORDER
     .. cpp:enumerator:: ::ER_MISSING_REQUEST_FIELD
     .. cpp:enumerator:: ::ER_IDENTIFIER
@@ -118,10 +118,34 @@
     .. cpp:enumerator:: ::ER_WRONG_INDEX_PARTS
     .. cpp:enumerator:: ::ER_WRONG_INDEX_OPTIONS
     .. cpp:enumerator:: ::ER_WRONG_SCHEMA_VERSION
-    .. cpp:enumerator:: ::ER_SLAB_ALLOC_MAX
+    .. cpp:enumerator:: ::ER_MEMTX_MAX_TUPLE_SIZE
     .. cpp:enumerator:: ::ER_WRONG_SPACE_OPTIONS
     .. cpp:enumerator:: ::ER_UNSUPPORTED_INDEX_FEATURE
     .. cpp:enumerator:: ::ER_VIEW_IS_RO
+    .. cpp:enumerator:: ::ER_UNUSED114
+    .. cpp:enumerator:: ::ER_SYSTEM
+    .. cpp:enumerator:: ::ER_LOADING
+    .. cpp:enumerator:: ::ER_CONNECTION_TO_SELF
+    .. cpp:enumerator:: ::ER_KEY_PART_IS_TOO_LONG
+    .. cpp:enumerator:: ::ER_COMPRESSION
+    .. cpp:enumerator:: ::ER_CHECKPOINT_IN_PROGRESS
+    .. cpp:enumerator:: ::ER_SUB_STMT_MAX
+    .. cpp:enumerator:: ::ER_COMMIT_IN_SUB_STMT
+    .. cpp:enumerator:: ::ER_ROLLBACK_IN_SUB_STMT
+    .. cpp:enumerator:: ::ER_DECOMPRESSION
+    .. cpp:enumerator:: ::ER_INVALID_XLOG_TYPE
+    .. cpp:enumerator:: ::ER_ALREADY_RUNNING
+    .. cpp:enumerator:: ::ER_INDEX_FIELD_COUNT_LIMIT
+    .. cpp:enumerator:: ::ER_LOCAL_INSTANCE_ID_IS_READ_ONLY
+    .. cpp:enumerator:: ::ER_BACKUP_IN_PROGRESS
+    .. cpp:enumerator:: ::ER_READ_VIEW_ABORTED
+    .. cpp:enumerator:: ::ER_INVALID_INDEX_FILE
+    .. cpp:enumerator:: ::ER_INVALID_RUN_FILE
+    .. cpp:enumerator:: ::ER_INVALID_VYLOG_FILE
+    .. cpp:enumerator:: ::ER_CHECKPOINT_ROLLBACK
+    .. cpp:enumerator:: ::ER_VY_QUOTA_TIMEOUT
+    .. cpp:enumerator:: ::ER_PARTIAL_KEY
+    .. cpp:enumerator:: ::ER_TRUNCATE_SYSTEM_SPACE
     .. cpp:enumerator:: ::box_error_code_MAX
 
 .. c:type:: box_error_t

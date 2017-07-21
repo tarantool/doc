@@ -123,6 +123,104 @@
     :return: NULL if i >= :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`
     :return: msgpack otherwise
 
+.. _capi-tuple_field_type:
+
+.. cpp:enum:: field_type
+
+    .. cpp:enumerator:: ::FIELD_TYPE_ANY
+    .. cpp:enumerator:: ::FIELD_TYPE_UNSIGNED
+    .. cpp:enumerator:: ::FIELD_TYPE_STRING
+    .. cpp:enumerator:: ::FIELD_TYPE_ARRAY
+    .. cpp:enumerator:: ::FIELD_TYPE_NUMBER
+    .. cpp:enumerator:: ::FIELD_TYPE_INTEGER
+    .. cpp:enumerator:: ::FIELD_TYPE_SCALAR
+    .. cpp:enumerator:: ::field_type_MAX
+
+    Possible data types for tuple fields.
+
+    Can't use STRS/ENUM macros for them,
+    since there is a mismatch between enum name (STRING) and type
+    name literal ("STR"). STR is already used as Objective C type.
+
+.. _capi-tuple_key_def:
+
+.. c:type:: typedef struct key_def box_key_def_t
+
+    Key definition
+
+.. c:function:: box_key_def_t *box_key_def_new(uint32_t *fields, uint32_t *types, uint32_t part_count)
+
+    Create key definition with the key fields with passed typed on passed positions.
+
+    May be used for tuple format creation and/or tuple comparison.
+
+    :param uint32_t*     fields: array with key field identifiers
+    :param uint32_t       types: array with key :ref:`field types <capi-tuple_field_type>`
+    :param uint32_t  part_count: the number of key fields
+
+    :return: key definition on success
+    :return: NULL on error
+
+.. c:function:: void box_key_def_delete(box_key_def_t *key_def)
+
+    Delete key definition
+
+    :param box_key_def_t* key_def: key definition to delete
+
+.. _capi-tuple_box_tuple_format_new:
+
+.. c:function:: box_tuple_format_t *box_tuple_format_new(struct key_def *keys, uint16_t key_count)
+
+    Return new in-memory tuple format based on passed key definitions
+
+    :param key_def       keys: array of keys defined for the format
+    :param uint16_t key_count: count of keys
+
+    :return: new tuple format on success
+    :return: NULL on error
+
+.. c:function:: void box_tuple_format_ref(box_tuple_format_t *format)
+
+    Increment tuple format ref count
+
+    :param box_tuple_format_t tuple_format: tuple format to ref
+
+.. c:function:: void box_tuple_format_unref(box_tuple_format_t *format)
+
+    Decrement tuple format ref count
+
+    :param box_tuple_format_t tuple_format: tuple format to unref
+
+.. _capi-tuple_box_tuple_compare:
+
+.. c:function:: int box_tuple_compare(const box_tuple_t *tuple_a, const box_tuple_t *tuple_b, const box_key_def_t *key_def)
+
+    Compare tuples using key definition
+
+    :param const box_tuple_t*   tuple_a: the first tuple
+    :param const box_tuple_t*   tuple_b: the second tuple
+    :param const box_key_def_t* key_def: key definition
+
+    :return: 0  if ``key_fields(tuple_a)`` == ``key_fields(tuple_b)``
+    :return: <0 if ``key_fields(tuple_a)`` < ``key_fields(tuple_b)``
+    :return: >0 if ``key_fields(tuple_a)`` > ``key_fields(tuple_b)``
+
+    See also: enum :ref:`field_type <capi-tuple_field_type>`
+
+.. c:function:: int box_tuple_compare_with_key(const box_tuple_t *tuple, const char *key, const box_key_def_t *key_def);
+
+    Compare a tuple with a key using key definition
+
+    :param const box_tuple_t*     tuple: tuple
+    :param const char*              key: key with MessagePack array header
+    :param const box_key_def_t* key_def: key definition
+
+    :return: 0  if ``key_fields(tuple)`` == ``parts(key)``
+    :return: <0 if ``key_fields(tuple)`` < ``parts(key)``
+    :return: >0 if ``key_fields(tuple)`` > ``parts(key)``
+
+    See also: enum :ref:`field_type <capi-tuple_field_type>`
+
 .. c:type:: box_tuple_iterator_t
 
     Tuple iterator
@@ -212,7 +310,7 @@
     program :ref:`read.c <f_c_tutorial-read>`.
     The returned buffer is valid until next call to box_tuple_* API.
 
-    :param box_tuple_iterator_t* it:
+    :param box_tuple_iterator_t* it: a tuple iterator
     :return: NULL if there are no more fields
     :return: MsgPack otherwise
 
