@@ -2,9 +2,9 @@
 * :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`
 
 The checkpoint daemon is a fiber which is constantly running. At intervals, it may
-make new snapshot (.snap) files and then may delete old snapshot files. If the
+make new :ref:`snapshot (.snap) files <index-box_persistence>` and then may delete old snapshot files. If the
 checkpoint daemon deletes an old snapshot file, then it will also delete any
-write-ahead log (.xlog) files which are older than the snapshot file and which contain
+:ref:`write-ahead log (.xlog) <internals-wal>` files which are older than the snapshot file and which contain
 information that is present in the snapshot file.
 It will also delete obsolete vinyl .run files.
 
@@ -48,7 +48,7 @@ exist before deletions occur.
 
 .. confval:: checkpoint_count
 
-    The maximum number of snapshots that may exist on the ``memtx_dir`` directory
+    The maximum number of snapshots that may exist on the  :ref:`memtx_dir <cfg_basic-memtx_dir>` directory
     before the checkpoint daemon will delete old snapshots. If ``checkpoint_count``
     equals zero, then the checkpoint daemon does not delete old snapshots.
     For example:

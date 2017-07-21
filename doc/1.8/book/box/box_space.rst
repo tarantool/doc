@@ -124,7 +124,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         Insert a new tuple using an auto-increment primary key. The space
         specified by space_object must have an
-        :ref:`**unsigned** or **integer** or **number** <index-box_indexed-field-types>`
+        :ref:`'unsigned' or 'integer' or 'number' <index-box_indexed-field-types>`
         primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
 
@@ -304,12 +304,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
       point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
     * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
-    * **scalar**: null (input with msgpack.NULL or yaml.NULL or json.NULL),
+    * **scalar**: null (input with ``msgpack.NULL`` or ``yaml.NULL`` or ``json.NULL``),
       booleans (true or false), or integers between
       -9223372036854775808 and 18446744073709551615, or single-precision
       floating point numbers, or double-precison floating-point numbers, or
-      strings. When there is a mix of types, the key order is: null,
-      then booleans, then numbers, then strings. Legal in memtx TREE or
+      strings. When there is a mix of types, the key order is: null, then
+      booleans, then numbers, then strings. Legal in memtx TREE or
       HASH indexes, and in vinyl TREE indexes.
 
     .. container:: table stackcolumn

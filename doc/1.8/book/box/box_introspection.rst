@@ -34,6 +34,7 @@ Submodule `box.info`
 .. module:: box.info
 
 The ``box.info`` submodule provides access to information about server instance variables.
+Some of this information is also available from the :ref:`tarantool module <tarantool-module>`.
 
 * **server.lsn** Log Sequence Number for the latest entry in the :ref:`WAL <internals-wal>`.
 * **server.ro**  True if the instance is in "read_only" mode

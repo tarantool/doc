@@ -9,7 +9,7 @@
 
 .. confval:: log_level
 
-    What level of detail the log will have. There are seven levels:
+    What level of detail the :ref:`log <admin-logs>` will have. There are seven levels:
 
     * 1 – ``SYSERROR``
     * 2 – ``ERROR``
@@ -61,7 +61,7 @@
         -- or
         box.cfg{log = 'pipe: cronolog tarantool.log'}'
 
-    This will start the program ``cronolog`` when the server starts, and
+    This will start the program `cronolog <https://linux.die.net/man/1/cronolog>`_ when the server starts, and
     will send all log messages to the standard input (``stdin``) of cronolog.
     If the ``log`` string begins with '|' or has the prefix "pipe:",
     then the string is interpreted as a Unix
@@ -94,7 +94,8 @@
 
     The ``facility`` setting is currently ignored but will be used in the future.
 
-    When logging to a file, Tarantool reopens the log on SIGHUP. When log is
+    When logging to a file, Tarantool reopens the log on `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
+    When log is
     a program, its pid is saved in the :ref:`log.logger_pid <log-logger_pid>`
     variable. You need to send it a signal to rotate logs.
 
@@ -108,7 +109,7 @@
 
     If ``log_nonblock`` equals true, Tarantool does not block on the log
     file descriptor when it’s not ready for write, and drops the message
-    instead. If :ref:`log_level <cfg_logging-log_level>` is high, and a lot of
+    instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
     messages go to the log file, setting ``log_nonblock`` to true may improve
     logging performance at the cost of some log messages getting lost.
 

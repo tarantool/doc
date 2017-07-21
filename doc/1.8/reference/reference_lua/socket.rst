@@ -93,7 +93,7 @@ will show. Throughout, there may be error-checking and waiting functions for
 synchronization. To prevent a fiber containing socket functions from "blocking"
 other fibers, the :ref:`implicit yield rules <atomic-implicit-yields>`
 will cause a yield so that other processes
-may take over, as is the norm for cooperative multitasking.
+may take over, as is the norm for :ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
 
 For all examples in this section the socket name will be sock and
 the function invocations will look like ``sock:function_name(...)``.
@@ -196,7 +196,7 @@ the function invocations will look like ``sock:function_name(...)``.
     .. method:: sysconnect(host, port)
 
         Connect an existing socket to a remote host. The argument values are the same as
-        in tcp_connect().
+        in :ref:`tcp_connect() <socket-tcp_connect>`.
         The host must be an IP address.
 
         Parameters:
@@ -242,7 +242,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
     .. method:: syswrite(size)
 
-        Write as much as possible data to the socket buffer if non-blocking.
+        Write as much data as possible to the socket buffer if non-blocking.
         Rarely used. For details see `this description`_.
 
     .. _socket-recv:

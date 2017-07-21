@@ -6,6 +6,8 @@
 
 The ``msgpack`` module takes strings in MsgPack_ format and decodes them, or
 takes a series of non-MsgPack values and encodes them.
+Tarantool makes heavy internal use of MsgPack because tuples in Tarantool
+are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays.
 
 .. module:: msgpack
 

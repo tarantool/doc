@@ -5,7 +5,8 @@
 -------------------------------------------------------------------------------
 
 The xlog module contains one function: ``pairs()``. It can be used to read
-Tarantool's snapshot files or write-ahead-log (WAL) files. A description of the
+Tarantool's :ref:`snapshot files<index-box_persistence>` or
+:ref:`write-ahead-log (WAL) <internals-wal>` files. A description of the
 file format is in section :ref:`Data persistence and the WAL file format
 <internals-data_persistence>`.
 
