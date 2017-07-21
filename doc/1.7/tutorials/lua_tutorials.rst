@@ -34,7 +34,7 @@ learning, type the statements in with the tarantool client while reading along.
 Configure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We are going to use the Tarantool sandbox that was created our
+We are going to use the Tarantool sandbox that was created for our
 :ref:`"Getting started" exercises <getting_started>`.
 So there is a single space, and a numeric primary key,
 and a running Tarantool server instance which also serves as a client.
@@ -336,7 +336,9 @@ a SELECT request.
     box.space.tester:select{1}
 
 For more about Tarantool insert and replace calls, see Tarantool manual section
-:ref:`Submodule box.space <box_space>`.
+:ref:`Submodule box.space <box_space>`,
+:ref:`space_object:insert() <box_space-insert>`, and
+:ref:`space_object:replace() <box_space-replace>`.
 
 The screen now looks like this:
 
@@ -606,7 +608,7 @@ Invoke the function with ``sum_json_field("Quantity")``.
 It works. We'll just leave, as exercises for future improvement, the possibility
 that the "hard coding" assumptions could be removed, that there might have to be
 an overflow check if some field values are huge, and that the function should
-contain a "yield" instruction if the count of tuples is huge.
+contain a :ref:`yield <atomic-threads_fibers_yields>` instruction if the count of tuples is huge.
 
 .. _c_lua_tutorial-indexed_pattern_search:
 
@@ -730,7 +732,7 @@ NOTE #1 "FIND AN APPROPRIATE INDEX" |br|
 The caller has passed space_name (a string) and field_no (a number).
 The requirements are: |br|
 (a) index type must be "TREE" because for other index types
-(HASH, BITSET, RTREE) a search with iterator=GE
+(HASH, BITSET, RTREE) a search with `iterator=GE <box_index-iterator-types>`
 will not return strings in order by string value; |br|
 (b) field_no must be the first index part; |br|
 (c) the field must contain strings, because for other data types
@@ -757,10 +759,10 @@ long search times.
 
 NOTE #3 -- "OUTER LOOP: INITIATE" |br|
 The function's job is to return a result set,
-just as box.space.select would. We will fill
+just as `box.space...select <box_space-select>` would. We will fill
 it within an outer loop that contains an inner
 loop. The outer loop's job is to execute the inner
-loop, and possibly yield, until the search ends.
+loop, and possibly :ref:`yield <atomic-threads_fibers_yields>`, until the search ends.
 The inner loop's job is to find tuples via the index, and put
 them in the result set if they match the pattern.
 
