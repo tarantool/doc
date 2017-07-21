@@ -87,7 +87,7 @@
 
 .. c:function:: int box_delete(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
-    Execute an DELETE request.
+    Execute a DELETE request.
 
     :param uint32_t    space_id: space identifier
     :param uint32_t    index_id: index identifier
@@ -144,3 +144,9 @@
     :return: 0 otherwise
 
     See also :ref:`space_object.upsert()<box_space-upsert>`
+
+.. c:function:: int box_truncate(uint32_t space_id)
+
+    Truncate space.
+
+    :param uint32_t space_id: space identifier

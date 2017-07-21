@@ -12,6 +12,8 @@
 
         WRITE event
 
+..  _c_api-coio-coio_wait:
+
 .. c:function:: int coio_wait(int fd, int event, double timeout)
 
     Wait until READ or WRITE event on socket (``fd``). Yields.
@@ -52,8 +54,16 @@
             // handle errors.
         ...
 
-
 .. c:function:: int coio_getaddrinfo(const char *host, const char *port, const struct addrinfo *hints, struct addrinfo **res, double timeout)
 
     Fiber-friendly version of :manpage:`getaddrinfo(3)`.
+
+.. c:function:: int coio_close(int fd)
+
+    Close the ``fd`` and wake any fiber blocked in
+    :ref:`coio_wait() <c_api-coio-coio_wait>` call on this ``fd``.
+
+    :param int fd: non-blocking socket file description
+
+    :return: the result of ``close(fd)``, see :manpage:`close(2)`
 
