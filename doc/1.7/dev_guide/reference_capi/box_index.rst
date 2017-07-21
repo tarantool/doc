@@ -88,7 +88,7 @@
     :param const char*     key: encode key in MsgPack Array format ([part1, part2, ...])
     :param const char* key_end: the end of encoded ``key``
 
-    :return: NULL on error (check :ref:box_error_last`c_api-error-box_error_last>`)
+    :return: NULL on error (check :ref:`box_error_last <c_api-error-box_error_last>`)
     :return: iterator otherwise
 
     See also :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`,
@@ -101,11 +101,11 @@
     Retrieve the next item from the ``iterator``.
 
     :param box_iterator_t* iterator: an iterator returned by
-                                     :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
+                                     :ref:`box_index_iterator <c_api-box_index-box_index_iterator>`
     :param box_tuple_t**     result: output argument. result a tuple or NULL if
                                      there is no more data.
 
-    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last <c_api-error-box_error_last>`)
     :return: 0 on success. The end of data is not an error.
 
 .. _c_api-box_index-box_iterator_free:
@@ -115,7 +115,7 @@
     Destroy and deallocate iterator.
 
     :param box_iterator_t* iterator: an iterator returned by
-                                     :ref:box_index_iterator`c_api-box_index-box_index_iterator>`
+                                     :ref:`box_index_iterator <c_api-box_index-box_index_iterator>`
 
 .. c:function:: int iterator_direction(enum iterator_type type)
 
@@ -129,7 +129,7 @@
     :param uint32_t space_id: space identifier
     :param uint32_t index_id: index identifier
 
-    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last <c_api-error-box_error_last>`)
     :return: >= 0 otherwise
 
 .. c:function:: ssize_t box_index_bsize(uint32_t space_id, uint32_t index_id)
@@ -139,7 +139,7 @@
     :param uint32_t space_id: space identifier
     :param uint32_t index_id: index identifier
 
-    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last <c_api-error-box_error_last>`)
     :return: >= 0 otherwise
 
 .. c:function:: int box_index_random(uint32_t space_id, uint32_t index_id, uint32_t rnd, box_tuple_t **result)
@@ -172,7 +172,7 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    :return: -1 on error (check :ref:box_error_last`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last <c_api-error-box_error_last>`)
     :return: 0 on success
 
     See also: ``index_object.get()``
@@ -188,7 +188,7 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    :return: -1 on error (check :ref:box_error_last()`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :return: 0 on success
 
     See also: :ref:`index_object.min()<box_index-min>`
@@ -204,7 +204,7 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    :return: -1 on error (check :ref:box_error_last()`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :return: 0 on success
 
     See also: :ref:`index_object.max()<box_index-max>`
@@ -219,7 +219,7 @@
     :param const char*     key: encode key in MsgPack Array format ([part1, part2, ...])
     :param const char* key_end: the end of encoded ``key``
 
-    :return: -1 on error (check :ref:box_error_last()`c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :return: 0 on success
 
     See also: :ref:`index_object.count()<box_index-count>`

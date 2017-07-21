@@ -36,9 +36,9 @@
     to the fiber cache if has a default stack size
     when its "main" function completes.
 
-    :param: const char*                    name: string with fiber name
-    :param: const struct fiber_attr* fiber_attr: fiber attributes container
-    :param: fiber_func                        f: function to run inside the fiber
+    :param const char*                    name: string with fiber name
+    :param const struct fiber_attr* fiber_attr: fiber attributes container
+    :param fiber_func                        f: function to run inside the fiber
 
     See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`
 
