@@ -4,7 +4,7 @@
                           Module `json`
 -------------------------------------------------------------------------------
 
-The json module provides JSON manipulation routines. It is based on the
+The ``json`` module provides JSON manipulation routines. It is based on the
 `Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please
 read `the official documentation`_.
 
@@ -80,7 +80,7 @@ read `the official documentation`_.
 
     See the tutorial
     :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`
-    to see how json.decode can fit in an application.
+    to see how ``json.decode()`` can fit in an application.
 
 .. _json-null:
 
@@ -168,7 +168,7 @@ and 1/0 (which is "infinity") as special values rather than nulls or errors:
     y = 1/0
     json.encode({1, x, y, 2})
 
-The result of the json.encode request will look like this:
+The result of the ``json.encode()`` request will look like this:
 
 .. code-block:: tarantoolsession
 

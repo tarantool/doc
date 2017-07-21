@@ -20,14 +20,15 @@
     When the limit is reached, :ref:`INSERT <box_space-insert>` or
     :ref:`UPDATE <box_space-insert>` requests begin failing with
     error :errcode:`ER_MEMORY_ISSUE`. The server does not go beyond the
-    memtx_memory limit to allocate tuples, but there is additional memory used to store
-    indexes and connection information. Depending on actual configuration and
-    workload, Tarantool can consume up to 20% more than the memtx_memory limit.
+    ``memtx_memory`` limit to allocate tuples, but there is additional memory
+    used to store indexes and connection information. Depending on actual
+    configuration and workload, Tarantool can consume up to 20% more than the
+    ``memtx_memory`` limit.
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456
     | Dynamic: no
-    
+
 .. _cfg_storage-memtx_max_tuple_size:
 
 .. confval:: memtx_max_tuple_size
@@ -60,7 +61,8 @@
     Bloom filter false positive rate -- the suitable probability of the
     `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_
     to give a wrong result.
-    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_bloom_fpr`` setting can be overridden by a
+    :ref:`create_index <box_space-create_index>` option.
 
     | Type: float
     | Default = 0.05
@@ -104,7 +106,8 @@
 .. confval:: vinyl_page_size
 
     Page size, in bytes. Page is a read/write unit for vinyl disk operations.
-    The vinyl_page_size setting can be overridden by a :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_page_size`` setting can be overridden by a
+    :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
     | Default = 8 * 1024 = 8192
@@ -115,7 +118,8 @@
 .. confval:: vinyl_range_size
 
     The maximal range size for vinyl, in bytes.
-    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_range_size`` setting can be overridden by a
+    :ref:`create_index <box_space-create_index>` option.
 
     | Type: integer
     | Default = 1024 * 1024 * 1024 = 1073741824
@@ -138,8 +142,9 @@
 .. confval:: vinyl_run_size_ratio
 
     Ratio between the sizes of different levels in the LSM tree.
-    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
-    
+    The ``vinyl_run_size_ratio`` setting can be overridden by a
+    :ref:`create_index <box_space-create_index>` option.
+
     | Type: float
     | Default = 3.5
     | Dynamic: no
