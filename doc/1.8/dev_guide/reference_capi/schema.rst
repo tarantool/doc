@@ -58,6 +58,10 @@
 
         Space id of _cluster.
 
+    .. cpp:enumerator:: ::BOX_TRIGGER_ID
+
+        Space id of _trigger.
+
     .. cpp:enumerator:: ::BOX_TRUNCATE_ID
 
         Space id of _truncate.
