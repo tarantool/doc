@@ -4,7 +4,7 @@
 
 .. c:type:: struct fiber
 
-    Fiber - contains information about fiber.
+    Fiber - contains information about a :ref:`fiber <atomic-threads_fibers_yields>`.
 
 .. c:type:: typedef int (*fiber_func)(va_list)
 
@@ -14,7 +14,7 @@
 
     Create a new fiber.
 
-    Takes a fiber from fiber cache, if it's not empty. Can fail only if there is
+    Takes a fiber from the fiber cache, if it's not empty. Can fail only if there is
     not enough memory for the fiber structure or fiber stack.
 
     The created fiber automatically returns itself to the fiber cache when its
@@ -64,6 +64,8 @@
     Interrupt a synchronous wait of a fiber
 
     :param struct fiber* f: fiber to be woken up
+
+.. _c_api-fiber-fiber_cancel:
 
 .. c:function:: void fiber_cancel(struct fiber *f)
 
@@ -179,3 +181,73 @@
                                           or NULL for default
 
     :return: stack size (in bytes)
+
+.. _c_api-fiber_cond:
+
+.. c:type:: struct fiber_cond
+
+    A conditional variable: a synchronization primitive that allow fibers in
+    Tarantool's :ref:`cooperative multitasking <atomic-cooperative_multitasking>`
+    environment to yield until some predicate is satisfied.
+
+    Fiber conditions have two basic operations -- "wait" and "signal", -- where
+    "wait" suspends the execution of a fiber (i.e. yields) until "signal" is
+    called.
+
+    Unlike ``pthread_cond``, ``fiber_cond`` doesn't require mutex/latch wrapping.
+
+.. c:function:: struct fiber_cond *fiber_cond_new(void)
+
+    Create a new conditional variable.
+
+.. c:function:: void fiber_cond_delete(struct fiber_cond *cond)
+
+    Delete the conditional variable.
+
+    Note: behavior is undefined if there are fibers waiting for the conditional
+    variable.
+
+    :param struct fiber_cond* cond: conditional variable to delete
+
+.. _c_api-fiber_cond_signal:
+
+.. c:function:: void fiber_cond_signal(struct fiber_cond *cond);
+
+    Wake up **one** (any) of the fibers waiting for the conditional variable.
+
+    Does nothing if no one is waiting.
+
+    :param struct fiber_cond* cond: conditional variable
+
+.. c:function:: void fiber_cond_broadcast(struct fiber_cond *cond);
+
+    Wake up **all** fibers waiting for the conditional variable.
+
+    Does nothing if no one is waiting.
+
+    :param struct fiber_cond* cond: conditional variable
+
+.. _c_api-fiber_cond_wait_timeout:
+
+.. c:function:: int fiber_cond_wait_timeout(struct fiber_cond *cond, double timeout)
+
+    Suspend the execution of the current fiber (i.e. yield) until
+    :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` is called.
+
+    Like ``pthread_cond``, ``fiber_cond`` can issue spurious wake ups caused by
+    explicit :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>` or
+    :ref:`fiber_cancel()<c_api-fiber-fiber_cancel>` calls. It is highly
+    recommended to wrap calls to this function into a loop and check the actual
+    predicate and :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>`
+    on every iteration.
+
+    :param struct fiber_cond* cond: conditional variable
+    :param struct double timeout: timeout in seconds
+
+    :return: 0 on :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` call or a
+             spurious wake up
+    :return: -1 on timeout, and the error code is set to 'TimedOut'
+
+.. c:function:: int fiber_cond_wait(struct fiber_cond *cond)
+
+    Shortcut for :ref:`fiber_cond_wait_timeout() <c_api-fiber_cond_wait_timeout>`.
