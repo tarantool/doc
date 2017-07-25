@@ -24,56 +24,46 @@ on the Internet.
    * A program for managing the build process. |br| For all platforms, this is
      ``CMake``. The CMake version should be 2.8 or later.
 
-   * Command-line interpreter for Python-based code (namely, for Tarantool test
-     suite). |br| For all platforms, this is ``python``. The Python version
-     should be greater than 2.6 -- preferably 2.7 -- and less than 3.0.
+   * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
+   * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
+   * `OpenSSL <https://www.openssl.org>`_ library, version 1.0.1+
+   * `cURL <https://curl.haxx.se/>`_ library, version 0.725+
+   * `LibYAML <http://pyyaml.org/wiki/LibYAML>`_ library, version 0.1.4+
 
-   Here are names of tools and libraries which may have to be installed in advance,
-   using ``sudo apt-get`` (for Ubuntu), ``sudo yum install`` (for CentOS), or the
-   equivalent on other platforms. Different platforms may use slightly different
-   names. Ignore the ones marked `optional, only in Mac OS scripts`
-   unless the platform is Mac OS.
+   * Python and modules. |br| Python interpreter is not necessary for building
+     Tarantool itself, unless you intend to use the "Run the test suite"
+     option in step 5. For all platforms, this is ``python``. The Python
+     version should be greater 2.7 -- and less than 3.0. You need the
+     following Python modules:
+      + `pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
+      + `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
+      + `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6
+      + `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1.2
+      + `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
 
-   * **gcc** and **g++**, or **clang** (see above)
-   * **git** (see above)
-   * **cmake** (see above)
-   * **python** (see above; for test suite)
-   * **libreadline-dev** or **libreadline6-dev** or **readline-devel**
-     (for interactive mode)
-   * **libssl-dev** (for :ref:`digest <digest>` module)
-   * **libcurl4-gnutls-dev** or **libcurl4-openssl-dev** or **libcurl4-nss-dev**
-     (for :ref:`http <http-module>` module)
-   * **autoconf** (optional, only in Mac OS scripts)
-   * **zlib1g** or **zlib** (optional, only in Mac OS scripts)
-
-2. Set up Python modules for running the test suite.
-
-   This step is optional. Python modules are not necessary for building Tarantool
-   itself, unless you intend to use the "Run the test suite" option in step 7.
-
-   You need the following Python modules:
-
-   * `pip <https://pypi.python.org/pypi/pip>`_, any version
-   * `dev <https://pypi.python.org/pypi/dev>`_, any version
-   * `pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
-   * `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
-   * `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6
-   * `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1b5
-   * `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
-
-   On Ubuntu, you can get the modules from the repository:
+   On Debian/Ubuntu distributions you can use the command below to install
+   all required dependencies:
 
    .. code-block:: bash
 
-     sudo apt-get install python-pip python-dev python-yaml <...>
+    apt install -y build-essential cmake coreutils sed \
+        libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
+        libcurl4-openssl-dev libunwind-dev \
+        python python-pip python-setuptools python-dev \
+        python-msgpack python-yaml python-argparse python-six python-gevent
 
-   On CentOS 6, you can likewise get the modules from the repository:
+   On RHEL/CentOS/Fedora distributions you can use the command below to install
+   all required dependencies:
 
    .. code-block:: bash
 
-     sudo yum install python26 python26-PyYAML <...>
+    yum install -y gcc gcc-c++ cmake coreutils sed \
+        readline-devel ncurses-devel libyaml-devel openssl-devel \
+        libcurl-devel libunwind-devel \
+        python python-pip python-setuptools python-devel \
+        python-msgpack python-yaml python-argparse python-six python-gevent
 
-   If some modules are not available on a repository,
+   If some Python modules are not available on a repository,
    it is best to set up the modules by getting a tarball and
    doing the setup with ``python setup.py``, thus:
 
@@ -99,35 +89,17 @@ on the Internet.
 
    .. code-block:: bash
 
-     pip install tarantool\>0.4 --user
+    pip install -r https://raw.githubusercontent.com/tarantool/test-run/master/requirements.txt --user
 
-3. Use ``git`` to download the latest Tarantool source code from the
+   This step is only necessary once, the first time you do a download.
+
+2. Use ``git`` to download the latest Tarantool source code from the
    GitHub repository ``tarantool/tarantool``, branch 1.7. For example, to a
    local directory named `~/tarantool`:
 
    .. code-block:: bash
 
-     git clone https://github.com/tarantool/tarantool.git ~/tarantool
-
-4. Use ``git`` again so that third-party contributions will be seen as well.
-
-   The build depends on the following external libraries:
-
-   * Readline development files (``libreadline-dev/readline-devel`` package).
-   * OpenSSL development files (``libssl-dev/openssl-devel`` package).
-   * ``libyaml`` (``libyaml-dev/libyaml-devel`` package).
-   * ``liblz4`` (``liblz4-dev/lz4-devel`` package).
-   * GNU ``bfd`` which is the part of GNU ``binutils``
-     (``binutils-dev/binutils-devel`` package).
-
-   This step is only necessary once, the first time you do a download.
-
-   .. code-block:: bash
-
-     cd ~/tarantool
-     git submodule init
-     git submodule update --recursive
-     cd ../
+     git clone --recursive https://github.com/tarantool/tarantool.git -b 1.7 ~/tarantool
 
    On rare occasions, the submodules will need to be updated again with the
    command:
@@ -136,11 +108,7 @@ on the Internet.
 
      git submodule update --init --recursive
 
-   Note: There is an alternative -- to say ``git clone --recursive`` earlier in
-   step 3, -- but we prefer the method above because it works with older
-   versions of ``git``.
-
-5. Use CMake to initiate the build.
+3. Use CMake to initiate the build.
 
    .. code-block:: bash
 
@@ -167,7 +135,7 @@ on the Internet.
    :code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install``
    will install tarantoolctl files in addition to tarantool files.
 
-6. Use ``make`` to complete the build.
+4. Use ``make`` to complete the build.
 
    .. code-block:: bash
 
@@ -179,7 +147,7 @@ on the Internet.
    the `/usr/local` directory and keep your system clean. However, it is
    possible to run the Tarantool executable without installation.
 
-7. Run the test suite.
+5. Run the test suite.
 
    This step is optional. Tarantool's developers always run the test suite
    before they publish new versions. You should run the test suite too, if you
@@ -219,13 +187,17 @@ on the Internet.
      rm ~/tarantool/bin/python
      rmdir ~/tarantool/bin
 
-8. Make an rpm package.
+6. Make RPM and Debian packages.
 
    This step is optional. It's only for people who want to redistribute
-   Tarantool. Package maintainers who want to build with ``rpmbuild`` should
-   consult the ``rpm-build`` instructions for the appropriate platform.
+   Tarantool. We highly recommend to use official packages from
+   `tarantool.org <https://tarantool.org/download.html>`_ web-site.
+   However, you can build RPM and Debian package using
+   `PackPack <https://github.com/packpack/packpack`_ or using
+   `dpkg-buildpackage` or `rpmbuild` tools. Please consult
+   `dpkg` or `rpmbuild` documentation for details.
 
-9. Verify your Tarantool installation.
+7. Verify your Tarantool installation.
 
    .. code-block:: bash
 
