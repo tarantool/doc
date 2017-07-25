@@ -2268,24 +2268,15 @@ div.toctree-wrapper > ul {
     font-size: 20px;
   }
 }
-.p-download {
-  background-color: #262626;
-  font-family: 'Open Sans', sans-serif;
-}
-.p-download .b-block-wrapper {
-  width: auto;
-  padding: 0;
-  margin: 10px;
-}
-.p-download-general {
+.p-download-mainpage-general {
   display: -ms-flexbox;
   display: flex;
 }
-.p-download-blocks {
+.p-download-mainpage-blocks {
   display: -ms-flexbox;
   display: flex;
 }
-.p-download-blocks .b-block-wrapper {
+.p-download-mainpage-blocks .b-block-wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -2293,8 +2284,16 @@ div.toctree-wrapper > ul {
   -ms-flex-pack: justify;
       justify-content: space-between;
 }
-.p-download-enterprise-downloads {
+.p-download-mainpage-enterprise-downloads {
   background-color: #1f1e1e;
+}
+.p-download {
+  background-color: #262626;
+}
+.p-download .b-block-wrapper {
+  width: auto;
+  padding: 0;
+  margin: 10px;
 }
 @media (min-width: 768px) {
   .p-download .b-block-wrapper {
@@ -2388,6 +2387,13 @@ div.toctree-wrapper > ul {
   text-align: center;
   color: #ff2e2f;
   margin-top: 15px;
+}
+.b-download-block-button a {
+  color: inherit;
+  text-decoration: none;
+}
+.b-download-block-button a:hover {
+  color: #fd4c4d;
 }
 @media (min-width: 568px) {
   .b-download-block {
@@ -2668,6 +2674,14 @@ div.toctree-wrapper > ul {
     margin-top: 0;
   }
 }
+.compass-icon {
+  width: 27px;
+  height: 27px;
+  min-width: 27px;
+  min-height: 27px;
+  background-image: url("images/compass-icon.svg");
+  background-repeat: no-repeat;
+}
 .b-download-header {
   display: -ms-flexbox;
   display: flex;
@@ -2676,6 +2690,7 @@ div.toctree-wrapper > ul {
   padding: 30px 0 50px;
 }
 .b-download-header-path {
+  display: none;
   font-size: 16px;
   text-align: left;
   color: #ffffff;
@@ -2697,6 +2712,118 @@ div.toctree-wrapper > ul {
 .b-download-header-versions .current-version {
   color: #ff2e2f;
 }
+@media (min-width: 768px) {
+  .b-download-header-menu-button {
+    display: none;
+  }
+}
+@media (min-width: 1280px) {
+  .b-download-header-path {
+    display: block;
+  }
+}
+.b-download-menu ul {
+  background-color: #1f1e1e;
+  list-style-type: none;
+  padding: 0;
+}
+.b-download-menu ul li {
+  padding: 15px;
+  color: #ff2e2f;
+  font-size: 20px;
+  border-bottom: solid 1px #262626;
+  cursor: pointer;
+}
+.b-download-menu ul li.active {
+  background-color: #161616;
+}
+.b-download-menu ul li a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+}
+.b-download-menu ul li a:hover {
+  color: #fd4c4d;
+}
+@media (min-width: 568px) {
+  .b-download-menu ul li {
+    padding: 15px 30px;
+  }
+}
+@media (min-width: 768px) {
+  .b-download-menu ul li {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+@media (min-width: 1280px) {
+  .b-download-menu ul li {
+    font-size: 20px;
+  }
+}
+.b-os-installation-menu {
+  diplay: none;
+}
+.b-os-installation-content {
+  font-size: 16px;
+  line-height: 1.63;
+  text-align: left;
+  color: #ffffff;
+}
+.b-os-installation-content .b-section-title {
+  font-size: 30px;
+  line-height: 1.23;
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+.b-os-installation-content code.docutils {
+  background: none;
+  border: none;
+  color: #ff2e2f;
+}
+@media (min-width: 768px) {
+  .b-os-installation-body {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .b-os-installation-menu {
+    display: block !important;
+    max-width: 200px;
+    min-width: 200px;
+    margin-right: 15px;
+  }
+  .b-os-installation-content {
+    width: calc(100% - 215px);
+  }
+  .b-os-installation-content .b-block-wrapper {
+    margin: 0 10px 0 0;
+  }
+}
+@media (min-width: 1024px) {
+  .b-os-installation-body {
+    max-width: 1024px;
+    margin: auto;
+  }
+}
+@media (min-width: 1280px) {
+  .b-os-installation-content {
+    font-size: 18px;
+    line-height: 1.56;
+    width: calc(100% - 260px);
+  }
+  .b-os-installation-content .b-section-title {
+    font-size: 42px;
+    line-height: 0.95;
+  }
+  .b-os-installation-body {
+    max-width: 1050px;
+  }
+  .b-os-installation-menu {
+    margin-right: 25px;
+    max-width: 260px;
+    min-width: 260px;
+  }
+}
 .highlight,
 .highlighttable {
   text-align: left;
@@ -2704,7 +2831,7 @@ div.toctree-wrapper > ul {
   margin: 5px 0px;
   font-size: 13px;
   color: #f8f8f2;
-  background: #0d0d0d;
+  background: #1f1e1e;
   padding: 10px;
   overflow-x: auto;
 }
@@ -3264,7 +3391,7 @@ div.toctree-wrapper > ul {
         display: none;
     }
     .b-block-wrapper .simple .internal span {
-        font-size: 14px
+        /*font-size: 14px*/
     }
     .b-block-wrapper div.admonition.note {}
     .b-block-wrapper div.admonition p.last {

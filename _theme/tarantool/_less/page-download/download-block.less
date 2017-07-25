@@ -1,15 +1,3 @@
-@os-installation-icon: url("images/os-installation-icon.svg");
-@folder-icon: url("images/folder-icon.svg");
-@docker-icon: url("images/docker-icon.svg");
-@rocks-icon: url("images/rocks-icon.svg");
-
-.icon(@width, @height, @img) {
-  min-width:  @width;
-  min-height: @height;
-  background-image: @img;
-  background-repeat: no-repeat;
-}
-
 .os-installation-icon { .icon(48px, 48px, @os-installation-icon); }
 .connectors-icon { .icon(46px, 41px, @folder-icon); }
 .docker-icon { .icon(62px, 41px, @docker-icon); }
@@ -60,6 +48,15 @@
     text-align: center;
     color: @red-color;
     margin-top: 15px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: @light-red-color;
+      }
+    }
   }
 
   @media @mobile-horizontal-screen {

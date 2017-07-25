@@ -1,9 +1,12 @@
+.compass-icon { .icon(27px, 27px, @compass-icon); }
+
 .b-download-header {
   display: flex;
   justify-content: space-between;
   padding: 30px 0 50px;
 
   &-path {
+    display: none;
     font-size: 16px;
     text-align: left;
     color: #ffffff;
@@ -27,6 +30,18 @@
 
     .current-version {
       color: @red-color;
+    }
+  }
+
+  @media @medium-screen {
+    &-menu-button {
+      display: none;
+    }
+  }
+
+  @media @xlarge-screen {
+    &-path {
+      display: block;
     }
   }
 }
