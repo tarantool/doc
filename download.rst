@@ -5,359 +5,167 @@
 Tarantool - Downloads (1.7)
 ---------------------------
 
-.. wp_section::
-    :class: b-block-gray b-downloads-versionlist
+.. container:: p-download p-download-mainpage
 
-    Available versions: :doc:`1.6 (stable) <download_16>` / 1.7 (rc) / :doc:`1.8 (alpha) <download_18>`
+    .. wp_section::
+        :class: p-download-header
 
-.. wp_section::
-    :title: Binary downloads
-    :class: b-block-lightgray b-downloads_top
+        .. container:: b-download-header
 
-    To simplify problem analysis and avoid various bugs induced by
-    compilation parameters and environment, it is recommended that
-    production systems use the builds provided on this site.
+            .. container:: b-download-header-path
 
-    We're building packages for x86_64 platform only.
+                Downloads >
 
-    Hosting is powered by |packagecloud|.
+            .. container:: b-download-header-versions
 
-.. wp_section::
-    :class: b-block b-downloads
+                Available versions: :doc:`1.6 (stable) <download_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <download_18>`
 
-    .. ddlist::
+    .. wp_section::
+        :class: p-download-mainpage-general
 
-        * Docker Hub
+        .. container:: b-general-download
 
-          Tarantool images are available at `Docker Hub`_.
+            .. raw:: html
 
-          .. _Docker Hub: https://hub.docker.com/r/tarantool/tarantool/
+                <div class="b-general-download-icon tarantool-download-icon"></div>
 
-        * Ubuntu
+            .. container:: b-general-download-text-group
 
-          We maintain an always up-to-date Ubuntu package repository.
-          At the moment, the repository contains builds for Ubuntu
-          "xenial", "wily", "trusty", "precise".
+                .. container:: b-general-download-title
 
-          In these instructions, ``$release`` is an environment variable which
-          will contain the Ubuntu version code (e.g. "precise").
+                    :doc:`Tarantool 1.6 Download <download>`
 
-          Copy and paste the script below to the terminal prompt (if you want
-          the version that comes with Ubuntu, start with the lines that follow
-          the '# install' comment):
+                .. container:: b-general-download-description
 
-          .. code-block:: bash
+                    Here is bunch of sources you can check out also you can Download them at oncere pre-installed
+                    so that you can get up and running quickly.
+                    Here is bunch of sources you can check out also you can Download them at once
 
-              curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -
-              release=`lsb_release -c -s`
+    .. wp_section::
+        :class: p-download-mainpage-blocks
 
-              # install https download transport for APT
-              sudo apt-get -y install apt-transport-https
+        .. container:: b-download-block
 
-              # append two lines to a list of source repositories
-              sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF
-              deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main
-              deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main
-              EOF
+            .. raw:: html
 
-              # install
-              sudo apt-get update
-              sudo apt-get -y install tarantool
+                <div class="b-download-block-icon-container">
+                    <i class="os-installation-icon"></i>
+                </div>
 
-        * Debian Stretch, Jessie and newer
+            .. container:: b-download-block-text-group
 
-          We maintain an always up-to-date Debian GNU/Linux
-          package repository. At the moment, the repository contains builds for
-          Debian "stretch" and "jessie". For Debian "wheezy", see personal
-          instructions on this page.
+                .. container:: b-download-block-title
 
-          In these instructions, ``$release`` is an environment variable which
-          will contain the Debian version code (e.g. "jessie").
+                    OS Installation
 
-          Copy and paste the script below to the terminal prompt:
+                .. container:: b-download-block-description
 
-          .. code-block:: bash
+                    There is some instructions how to install tarantool for your OS type.
+                    You can choose your OS type insde this card and see other inctructions.
 
-              curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -
-              release=`lsb_release -c -s`
+                .. _os-install:    
+                .. container:: b-download-block-button
 
-              # install https download transport for APT
-              sudo apt-get -y install apt-transport-https
+                    :doc:`Learn more → <download/os-installation/ubuntu>`
 
-              # append two lines to a list of source repositories
-              sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF
-              deb http://download.tarantool.org/tarantool/1.7/debian/ $release main
-              deb-src http://download.tarantool.org/tarantool/1.7/debian/ $release main
-              EOF
+        .. container:: b-download-block
 
-              # install
-              sudo apt-get update
-              sudo apt-get -y install tarantool
+            .. raw:: html
 
-        * Debian Wheezy
+                <div class="b-download-block-icon-container">
+                    <i class="connectors-icon"></i>
+                </div>
 
-          We maintain an always up-to-date package repository for Debian "wheezy".
+            .. container:: b-download-block-text-group
 
-          Copy and paste the script below to the terminal prompt:
+                .. container:: b-download-block-title
 
-          .. code-block:: bash
+                    Connectors
 
-              curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -
-              release=`lsb_release -c -s`
-
-              # install https download transport for APT
-              sudo apt-get -y install apt-transport-https
-
-              # append two lines to a list of source repositories
-              sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF
-              deb https://packagecloud.io/tarantool/1_7/debian/ wheezy main
-              deb-src https://packagecloud.io/tarantool/1_7/debian/ wheezy main
-              EOF
-
-              # install
-              sudo apt-get update
-              sudo apt-get -y install tarantool
-
-        * Fedora
-
-          We maintain an always up-to-date Fedora package repository. At the
-          moment, the repository contains builds for Fedora 23 and 24.
-
-          | In these instructions:
-          | ``$releasever`` (i.e. Fedora release version) must be 23 or 24
-            or rawhide, and
-          | ``$basearch`` (i.e. base architecture) must be either i386 or
-            x86_64.
-
-          Copy and paste the script below to the terminal prompt:
-
-          .. code-block:: bash
-
-              sudo rm -f /etc/yum.repos.d/*tarantool*.repo
-              sudo tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF
-              [tarantool_1_7]
-              name=Fedora-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.7/fedora/\$releasever/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              enabled=1
-
-              [tarantool_1_7-source]
-              name=Fedora-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.7/fedora/\$releasever/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              EOF
-
-              sudo dnf -q makecache -y --disablerepo='*' --enablerepo='tarantool_1_7'
-              sudo dnf -y install tarantool
-
-        * RHEL 6 and CentOS 6
-
-          We maintain an always up-to-date package repository for RHEL 6
-          derivatives. You may need to enable the `EPEL`_ repository for
-          some packages.
-
-          | In these instructions:
-          | ``$releasever`` (i.e. CentOS release version) must be 7, and
-          | ``$basearch`` (i.e. base architecture) must be either i386
-            or x86_64.
-
-          Copy and paste the script below to the *root* terminal prompt:
-
-          .. code-block:: bash
-
-              # Clean up yum cache
-              yum clean all
-              # Enable EPEL repository
-              yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-              sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo
-
-              # Add Tarantool repository
-              rm -f /etc/yum.repos.d/*tarantool*.repo
-              tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF
-              [tarantool_1_7]
-              name=EnterpriseLinux-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.7/el/6/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              enabled=1
-
-              [tarantool_1_7-source]
-              name=EnterpriseLinux-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.7/el/6/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              EOF
-
-              # Update metadata
-              yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7' --enablerepo='epel'
-
-              # Install tarantool
-              yum -y install tarantool
-
-        * RHEL 7 and CentOS 7
-
-          We maintain an always up-to-date package repository for RHEL 7
-          derivatives.
-
-          | In these instructions,
-          | ``$releasever`` (i.e. CentOS release version) must be 7, and
-          | ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
-
-          Copy and paste the script below to the *root* terminal prompt:
-
-          .. code-block:: bash
-
-              # Clean up yum cache
-              yum clean all
-              # Add Tarantool repository
-              rm -f /etc/yum.repos.d/*tarantool*.repo
-              tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF
-              [tarantool_1_7]
-              name=EnterpriseLinux-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.7/el/7/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              enabled=1
-
-              [tarantool_1_7-source]
-              name=EnterpriseLinux-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.7/el/7/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              EOF
-
-              # Update metadata
-              yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7'
-
-              # Install Tarantool
-              yum -y install tarantool
-
-        * Amazon Linux
-
-          Amazon Linux is based on RHEL 6 / CentOS 6.
-          We maintain an always up-to-date package repository for RHEL 6
-          derivatives. You may need to enable the `EPEL`_ repository for some
-          packages.
-
-          | In these instructions,
-          | ``$releasever`` (i.e. RHEL / CentOS release version) must be 6, and
-          | ``$basearch`` (i.e. base architecture) must be either i386 or x86_64.
-
-          Copy and paste the script below to the *root* terminal prompt:
-
-          .. code-block:: bash
-
-              # Clean up yum cache
-              yum clean all
-              # Enable EPEL repository
-              yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-              sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo
-
-              # Add Tarantool repository
-              rm -f /etc/yum.repos.d/*tarantool*.repo
-              tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF
-              [tarantool_1_7]
-              name=EnterpriseLinux-\$releasever - Tarantool
-              baseurl=http://download.tarantool.org/tarantool/1.7/el/6/\$basearch/
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              enabled=1
-
-              [tarantool_1_7-source]
-              name=EnterpriseLinux-\$releasever - Tarantool Sources
-              baseurl=http://download.tarantool.org/tarantool/1.7/el/6/SRPMS
-              gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey
-              repo_gpgcheck=1
-              gpgcheck=0
-              EOF
-
-              # Update metadata
-              yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7' --enablerepo='epel'
-
-              # Install Tarantool
-              yum -y install tarantool
-
-        * Snappy package
-
-          You can install Tarantool 1.7.2 (Beta) from a Snappy package:
-
-          .. code-block:: bash
-
-              $ snap install tarantool --channel=beta
-
-          Snaps are universal Linux packages which can be installed across
-          a range of Linux distributions.
-
-          Snappy package manager is already pre-installed on Ubuntu Xenial
-          and newer. For other distros, you may need to install ``snapd``.
-          See http://snapcraft.io/ for detailed instructions.
-
-          Note: initialization scripts, ``systemd`` units and
-          ``tarantoolctl`` utility are not included in Snappy packages.
-
-        * OS X
-
-          You can install Tarantool using ``homebrew``:
-
-          .. code-block:: bash
-
-              $ brew install tarantool --HEAD
-              ==> Cloning https://github.com/tarantool/tarantool.git
-              Updating /Users/Me/Library/Caches/Homebrew/tarantool--git
-              ==> Checking out branch 1.7
-              Synchronizing submodule url for 'lib/msgpack-python'
-              Synchronizing submodule url for 'lib/tarantool-python'
-              ==> cmake . -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG
-                          -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG
-                          -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/HEAD
-                          -DCMAKE_BUILD_TYPE=Release
-                          -DCMAKE_FIND_FRAMEWORK=LAST
-                          -DCMAKE_VERBOSE_MAKEFILE=ON
-                          -Wno-dev -DCMAKE_INSTALL_MANDIR=/usr/share/man
-              ==> make
-              ==> make install
-              /usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds
-
-        * FreeBSD
-
-          Tarantool is available from the FreeBSD Ports collection.
-
-          With your browser, go to the `FreeBSD Ports`_ page.
-          Enter the search term: `tarantool`.
-          Choose the package you want.
-
-          Also, look at the `Fresh Ports`_ page.
-
-          .. _FreeBSD Ports: http://www.freebsd.org/ports/index.html
-          .. _Fresh Ports: http://freshports.org/databases/tarantool
-
-        * Microsoft Azure
-
-          Tarantool images are available at `Microsoft Azure`_.
-
-          .. _Microsoft Azure: https://azure.microsoft.com/en-us/marketplace/partners/my-com/tarantool/
-
-        * Building from source
-
-          To get the latest source files for version 1.7, you can
-          clone or download them from the Tarantool repository at `GitHub`_,
-          or download them as a `tarball`_.
-
-          Please consult with the Tarantool documentation for
-          :ref:`build-from-source <building_from_source>` instructions on
-          your system.
+                .. container:: b-download-block-description
+
+                    If you’re looking for the latest version of a client driver, prefer rocks and gems to rpms and debs,
+                    or looking for an alternative, select a driver from a community-maintained list
+
+                .. container:: b-download-block-button
+
+                    :doc:`Learn more → <download/connectors>`
+
+        .. container:: b-download-block
+
+            .. raw:: html
+
+                <div class="b-download-block-icon-container">
+                    <i class="docker-icon"></i>
+                </div>
+
+            .. container:: b-download-block-text-group
+
+                .. container:: b-download-block-title
+
+                    Docker
+
+                .. container:: b-download-block-description
+
+                    Tarantool official docker images come with batteries on board:
+                    rocks, connectors, and perks are pre-installed so that you can get up and running quickly.
+
+                .. container:: b-download-block-button
+
+                    Learn more →
+
+        .. container:: b-download-block
+
+            .. raw:: html
+
+                <div class="b-download-block-icon-container">
+                    <i class="rocks-icon"></i>
+                </div>
+
+            .. container:: b-download-block-text-group
+
+                .. container:: b-download-block-title
+
+                    Rocks
+
+                .. container:: b-download-block-description
+
+                    An exhaustive list of all Tarantool modules, installable with luarocks or tarantoolctl.
+
+                .. container:: b-download-block-button
+
+                    Learn more →
+
+    .. container:: p-download-mainpage-enterprise-downloads
+
+        .. container:: b-enterprise-downloads
+
+            .. raw:: html
+
+                <div class="b-enterprise-downloads-icon enterprise-icon"></div>
+
+            .. container:: b-enterprise-downloads-text-group
+
+                .. container:: b-enterprise-downloads-title
+
+                    Enterprise downloads
+
+                .. container:: b-enterprise-downloads-description
+
+                    All tools and everything you need for critical deployments,
+                    make your work more comfortable and faster
+
+            .. container:: b-enterprise-downloads-buttons-container
+
+                .. wp_button::
+                    :class: b-enterprise-downloads-button
+                    :link: https://tarantool.io/unwired
+                    :title: Unwired IIOT
+
+                .. wp_button::
+                    :class: b-enterprise-downloads-button
+                    :link: https://tarantool.io/enterprise
+                    :title: Enterprise
 
 .. wp_section::
     :title: Connectors & Extras

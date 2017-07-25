@@ -216,7 +216,7 @@
         display: none;
     }
     .b-block-wrapper .simple .internal span {
-        font-size: 14px
+        /*font-size: 14px*/
     }
     .b-block-wrapper div.admonition.note {}
     .b-block-wrapper div.admonition p.last {
