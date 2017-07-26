@@ -93,7 +93,7 @@ identical to the master's instance file.
    }
    box.once("schema", function()
       box.schema.user.create('replicator', {password = 'password'})
-      box.schema.user.grant('replicator', 'replication') - grant replication role
+      box.schema.user.grant('replicator', 'replication') -- grant replication role
       box.schema.space.create("test")
       box.space.test:create_index("primary")
       print('box.once executed on replica')
