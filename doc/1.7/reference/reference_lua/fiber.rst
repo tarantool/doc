@@ -134,7 +134,7 @@ recommended.
 
 .. function:: sleep(time)
 
-    Yield control to the transaction processor thread and sleep for the specified number
+    Yield control to the scheduler and sleep for the specified number
     of seconds. Only the current fiber can be made to sleep.
 
     :param time: number of seconds to sleep.
@@ -151,7 +151,8 @@ recommended.
 
 .. function:: yield()
 
-    Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`.
+    Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`,
+    except that `fiber.sleep(0)` depends on a timer, `fiber.yield()` does not.
 
     **Example:**
 
