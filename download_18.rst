@@ -320,24 +320,25 @@ Tarantool - Downloads (1.8)
 
         * Connectors
 
-          - PHP PECL driver,       `<https://github.com/tarantool/tarantool-php>`_
-          - Pure PHP driver,       `<https://github.com/tarantool-php/client>`_
-          - Java driver,           `Maven repository`_ or `Java connector GitHub page`_
-          - Python driver,         `<http://pypi.python.org/pypi/tarantool>`_
-          - Python Gevent driver,  `<https://github.com/shveenkov/gtarantool>`_
-          - Python AIO driver,     `<https://github.com/shveenkov/aiotarantool>`_
-          - Ruby driver,           `<https://github.com/tarantool/tarantool-ruby>`_
-          - Perl driver,           `DR:Tarantool`_
-          - C connector            `<https://github.com/tarantool/tarantool-c>`_
-          - node.js driver,        `<https://github.com/KlonD90/node-tarantool-driver>`_
-          - Erlang driver,         `<https://github.com/umatomba/tara>`_
-          - Erlang driver,         `<https://github.com/stofel/taran>`_
-          - Go driver,             `<https://github.com/tarantool/go-tarantool>`_
-          - Lua-nginx driver,      `<https://github.com/ziontab/lua-nginx-tarantool>`_
-          - Lua-resty driver,      `<https://github.com/perusio/lua-resty-tarantool>`_
-          - Nginx Upstream module, `<https://github.com/tarantool/nginx_upstream_module>`_
-          - C# driver,             `<https://github.com/progaudi/tarantool-csharp>`_
-          - C# driver,             `<https://github.com/donmikel/tarantool-net>`_
+          - PHP PECL driver,           `<https://github.com/tarantool/tarantool-php>`_
+          - Pure PHP driver,           `<https://github.com/tarantool-php/client>`_
+          - Java driver,               `Maven repository`_ or `Java connector GitHub page`_
+          - Pure Python driver,        `<http://pypi.python.org/pypi/tarantool>`_
+          - Python Gevent driver,      `<https://github.com/shveenkov/gtarantool>`_
+          - Python 3.5 asyncio driver, `<https://github.com/igorcoding/asynctnt>`_
+          - Python 3.4 asyncio driver, `<https://github.com/shveenkov/aiotarantool>`_
+          - Ruby driver,               `<https://github.com/tarantool/tarantool-ruby>`_
+          - Perl driver,               `DR:Tarantool`_
+          - C connector                `<https://github.com/tarantool/tarantool-c>`_
+          - node.js driver,            `<https://github.com/KlonD90/node-tarantool-driver>`_
+          - Erlang driver,             `<https://github.com/umatomba/tara>`_
+          - Erlang driver,             `<https://github.com/stofel/taran>`_
+          - Go driver,                 `<https://github.com/tarantool/go-tarantool>`_
+          - Lua-nginx driver,          `<https://github.com/ziontab/lua-nginx-tarantool>`_
+          - Lua-resty driver,          `<https://github.com/perusio/lua-resty-tarantool>`_
+          - Nginx Upstream module,     `<https://github.com/tarantool/nginx_upstream_module>`_
+          - C# driver,                 `<https://github.com/progaudi/tarantool-csharp>`_
+          - C# driver,                 `<https://github.com/donmikel/tarantool-net>`_
           - Swift driver and stored procedures, `<https://github.com/tris-foundation/tarantool>`_
 
 .. |packagecloud| image:: /images/packagecloud.png
