@@ -92,7 +92,8 @@ html_context = {
         'rocks'       : True,
         'doc/' + version + '/index' : True,
         'download-page' : True,
-        'download/os-instalation' : True,
+        'download/os-instalation' : True, # FIXME Delete
+        'download/connectors' : True,
         # os installation pages
         'download/os-installation/amazon-linux' : True,
         'download/os-installation/building-from-source' : True,
@@ -150,6 +151,9 @@ rst_prolog = """
 
 .. role:: currentversion
    :class: current-version
+
+.. role:: specialtext
+   :class: special-text
 
 .. |nbsp| unicode:: 0xA0
 
