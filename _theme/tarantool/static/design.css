@@ -2026,24 +2026,18 @@ div.toctree-wrapper > ul {
   margin: 25px 0;
 }
 .b-header-edition__commercial-icon {
-  width: 162px;
-  height: 109px;
   min-width: 162px;
   min-height: 109px;
   background-image: url("images/commercial-icon.svg");
   background-repeat: no-repeat;
 }
 .b-header-edition__community-icon {
-  width: 162px;
-  height: 109px;
   min-width: 162px;
   min-height: 109px;
   background-image: url("images/community-icon.svg");
   background-repeat: no-repeat;
 }
 .b-header-edition .download-icon {
-  width: 20px;
-  height: 20px;
   min-width: 20px;
   min-height: 20px;
   background-image: url("images/download-icon.svg");
@@ -2051,8 +2045,6 @@ div.toctree-wrapper > ul {
   margin: 0 8px;
 }
 .b-header-edition .github-icon {
-  width: 20px;
-  height: 20px;
   min-width: 20px;
   min-height: 20px;
   background-image: url("images/github-icon.svg");
@@ -2119,56 +2111,42 @@ div.toctree-wrapper > ul {
   }
 }
 .indexes-icon {
-  width: 38px;
-  height: 28px;
   min-width: 38px;
   min-height: 28px;
   background-image: url("images/indexes-icon.svg");
   background-repeat: no-repeat;
 }
 .transactions-icon {
-  width: 33px;
-  height: 26px;
   min-width: 33px;
   min-height: 26px;
   background-image: url("images/transactions-icon.svg");
   background-repeat: no-repeat;
 }
 .product-icon {
-  width: 35px;
-  height: 35px;
   min-width: 35px;
   min-height: 35px;
   background-image: url("images/product-icon.svg");
   background-repeat: no-repeat;
 }
 .security-icon {
-  width: 29px;
-  height: 36px;
   min-width: 29px;
   min-height: 36px;
   background-image: url("images/lock-icon.svg");
   background-repeat: no-repeat;
 }
 .query-icon {
-  width: 36px;
-  height: 24px;
   min-width: 36px;
   min-height: 24px;
   background-image: url("images/query-icon.svg");
   background-repeat: no-repeat;
 }
 .replication-icon {
-  width: 46px;
-  height: 32px;
   min-width: 46px;
   min-height: 32px;
   background-image: url("images/replication-icon.svg");
   background-repeat: no-repeat;
 }
 .replacement-icon {
-  width: 41px;
-  height: 43px;
   min-width: 41px;
   min-height: 43px;
   background-image: url("images/replacement-icon.svg");
@@ -2307,32 +2285,24 @@ div.toctree-wrapper > ul {
   }
 }
 .os-installation-icon {
-  width: 48px;
-  height: 48px;
   min-width: 48px;
   min-height: 48px;
   background-image: url("images/os-installation-icon.svg");
   background-repeat: no-repeat;
 }
 .connectors-icon {
-  width: 46px;
-  height: 41px;
   min-width: 46px;
   min-height: 41px;
   background-image: url("images/folder-icon.svg");
   background-repeat: no-repeat;
 }
 .docker-icon {
-  width: 62px;
-  height: 41px;
   min-width: 62px;
   min-height: 41px;
   background-image: url("images/docker-icon.svg");
   background-repeat: no-repeat;
 }
 .rocks-icon {
-  width: 52px;
-  height: 49px;
   min-width: 52px;
   min-height: 49px;
   background-image: url("images/rocks-icon.svg");
@@ -2465,8 +2435,6 @@ div.toctree-wrapper > ul {
   }
 }
 .tarantool-download-icon {
-  width: 62px;
-  height: 53px;
   min-width: 62px;
   min-height: 53px;
   background-image: url("images/tarantool-download-icon-small.svg");
@@ -2474,8 +2442,6 @@ div.toctree-wrapper > ul {
 }
 @media (min-width: 768px) {
   .tarantool-download-icon {
-    width: 119px;
-    height: 101px;
     min-width: 119px;
     min-height: 101px;
     background-image: url("images/tarantool-download-icon-big.svg");
@@ -2550,8 +2516,6 @@ div.toctree-wrapper > ul {
   }
 }
 .enterprise-icon {
-  width: 114px;
-  height: 118px;
   min-width: 114px;
   min-height: 118px;
   background-image: url("images/enterprise-icon-small.svg");
@@ -2559,8 +2523,6 @@ div.toctree-wrapper > ul {
 }
 @media (min-width: 768px) {
   .enterprise-icon {
-    width: 183px;
-    height: 190px;
     min-width: 183px;
     min-height: 190px;
     background-image: url("images/enterprise-icon-big.svg");
@@ -2675,8 +2637,6 @@ div.toctree-wrapper > ul {
   }
 }
 .compass-icon {
-  width: 27px;
-  height: 27px;
   min-width: 27px;
   min-height: 27px;
   background-image: url("images/compass-icon.svg");
@@ -2726,6 +2686,7 @@ div.toctree-wrapper > ul {
   background-color: #1f1e1e;
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 .b-download-menu ul li {
   padding: 15px;
@@ -2781,6 +2742,14 @@ div.toctree-wrapper > ul {
   border: none;
   color: #ff2e2f;
 }
+.b-os-installation-content a {
+  color: #ff2e2f;
+  text-decoration: none;
+}
+.b-os-installation-content a:hover {
+  color: #fd4c4d;
+  text-decoration: none;
+}
 @media (min-width: 768px) {
   .b-os-installation-body {
     display: -ms-flexbox;
@@ -2823,6 +2792,211 @@ div.toctree-wrapper > ul {
     max-width: 260px;
     min-width: 260px;
   }
+}
+.star-icon {
+  min-width: 18px;
+  min-height: 18px;
+  background-image: url("images/star-icon.svg");
+  background-repeat: no-repeat;
+}
+.p-connectors-page-header .b-section-title {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.33;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.p-connectors-page-header-description {
+  font-size: 18px;
+  line-height: 1.78;
+  text-align: left;
+  color: #ffffff;
+}
+.p-connectors-page-header-description .colored {
+  color: #ff2e2f;
+}
+.p-connectors-page-body {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+}
+.p-connectors-page-menu {
+  display: none;
+}
+.p-connectors-page-menu ul {
+  height: 100%;
+}
+.p-connectors-page-content {
+  margin-right: 7px;
+}
+@media (min-width: 568px) {
+  .p-connectors-page-menu {
+    display: block;
+    max-width: 150px;
+    min-width: 150px;
+  }
+  .p-connectors-page-menu ul li {
+    padding: 15px;
+  }
+  .p-connectors-page-content {
+    margin: 0 10px;
+  }
+  .p-connectors-page-alphabetical-menu {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .p-connectors-page .b-block-wrapper {
+    max-width: 950px;
+    margin: auto;
+  }
+  .p-connectors-page-header-description {
+    font-size: 20px;
+    line-height: 1.8;
+  }
+  .p-connectors-page-menu {
+    max-width: 200px;
+    min-width: 200px;
+  }
+  .p-connectors-page-body {
+    max-width: 950px;
+    margin: 20px auto 0;
+  }
+}
+@media (min-width: 1024px) {
+  .p-connectors-page-header .b-section-title {
+    font-size: 42px;
+    line-height: 0.95;
+  }
+  .p-connectors-page-header-description {
+    font-size: 24px;
+    line-height: 1.58;
+  }
+  .p-connectors-page-menu {
+    max-width: 215px;
+    min-width: 215px;
+  }
+}
+.github-icon {
+  min-width: 20px;
+  min-height: 20px;
+  background-image: url("images/github-icon.svg");
+  background-repeat: no-repeat;
+}
+.b-connector {
+  margin-bottom: 10px;
+}
+.b-connector > p {
+  border-radius: 4px 4px 0 0;
+  background-color: #161616;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.67;
+  text-align: left;
+  color: #ffffff;
+  padding: 15px;
+}
+.b-connector > ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.b-connector li {
+  background-color: #1f1e1e;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  padding: 10px 15px 15px;
+  margin-top: 2px;
+}
+.b-connector li > p {
+  display: none;
+}
+.b-connector li > p.first {
+  display: block;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+  color: #ffffff;
+  width: 88%;
+  margin-right: 10px;
+}
+.b-connector li .b-connector-star-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  margin-top: 5px;
+}
+.b-connector li .b-connector-source-link {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background: none;
+  font-size: 16px;
+  color: #ff2e2f;
+  line-height: 1.25;
+  margin-top: 10px;
+  padding: 0;
+}
+.b-connector li .b-connector-source-link .github-icon {
+  margin-right: 5px;
+}
+.b-connector li .b-connector-source-link:hover {
+  color: #fd4c4d;
+  background: none;
+}
+.b-connector li .b-connector-owner {
+  font-size: 14px;
+  line-height: 1.43;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 15px;
+  width: 100%;
+}
+.b-connector li .b-connector-owner a {
+  color: inherit;
+  text-decoration: none;
+}
+.b-connector li .b-connector-owner a:hover {
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  .b-connector > p {
+    line-height: 1.25;
+  }
+  .b-connector li > p.first {
+    font-size: 16px;
+    line-height: 1.5;
+    width: 75%;
+  }
+  .b-connector li .b-connector-source-link {
+    width: 15%;
+    margin-top: 5px;
+  }
+}
+.b-alphabetical-menu ul {
+  width: 30px;
+  color: #ff2e2f;
+  font-size: 16px;
+  line-height: 1.19;
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.b-alphabetical-menu ul li {
+  color: inherit;
+  width: 100%;
+}
+.b-alphabetical-menu ul li a {
+  color: inherit;
+  text-decoration: none;
+}
+.b-alphabetical-menu ul li a:hover {
+  color: #fd4c4d;
 }
 .highlight,
 .highlighttable {
