@@ -26,11 +26,6 @@ for detailed instructions.
 Installing a module from deb/rpm
 --------------------------------------------------------------------------------
 
-.. NOTE::
-
-   As a current limitation, modules from deb/rpm are unavailable for Mac OS
-   users.
-
 Follow these steps:
 
 1. Install Tarantool as recommended on the

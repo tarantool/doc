@@ -108,7 +108,7 @@ Commands for managing Tarantool modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``tarantoolctl rocks install NAME``
-        Install a module.
+        Install a module in the current directory.
 
 ``tarantoolctl rocks remove NAME``
         Remove a module.
