@@ -84,8 +84,9 @@ html_use_opensearch  = base_url
 html_context = {
     'website': {
         'index'       : True,
-        'download'    : True,
-        'download_16' : True,
+        'download/download'    : True,
+        'download/download_16' : True,
+        'download/download_18' : True,
         'careers'     : True,
         'benchmark'   : True,
         'try'         : True,

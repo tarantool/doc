@@ -2076,6 +2076,8 @@ div.toctree-wrapper > ul {
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .b-header-edition__button.commercial {
   background-color: #ff2e2f;
@@ -2196,7 +2198,7 @@ div.toctree-wrapper > ul {
 }
 .b-feature__icon {
   min-width: 50px;
-  margin: 2px 10px 0 0;
+  margin: 7px 10px 0 0;
 }
 .b-feature-title {
   opacity: 0.5;
@@ -2275,7 +2277,7 @@ div.toctree-wrapper > ul {
 }
 @media (min-width: 768px) {
   .p-download .b-block-wrapper {
-    margin: 15px;
+    margin: 0 15px;
   }
 }
 @media (min-width: 1024px) {
@@ -2716,11 +2718,6 @@ div.toctree-wrapper > ul {
 .b-download-menu ul li a:hover {
   color: #fd4c4d;
 }
-@media (min-width: 568px) {
-  .b-download-menu ul li a {
-    padding: 15px 30px;
-  }
-}
 @media (min-width: 768px) {
   .b-download-menu ul li {
     font-size: 16px;
@@ -2782,8 +2779,11 @@ div.toctree-wrapper > ul {
 }
 @media (min-width: 1024px) {
   .b-os-installation-body {
-    max-width: 1024px;
+    max-width: 994px;
     margin: auto;
+  }
+  .b-os-installation-header .b-block-wrapper {
+    max-width: 994px;
   }
 }
 @media (min-width: 1280px) {
@@ -2797,7 +2797,10 @@ div.toctree-wrapper > ul {
     line-height: 0.95;
   }
   .b-os-installation-body {
-    max-width: 1050px;
+    max-width: 1020px;
+  }
+  .b-os-installation-header .b-block-wrapper {
+    max-width: 1020px;
   }
   .b-os-installation-menu {
     margin-right: 25px;
@@ -2846,9 +2849,6 @@ div.toctree-wrapper > ul {
     display: block;
     max-width: 150px;
     min-width: 150px;
-  }
-  .p-connectors-page-menu ul li {
-    padding: 15px;
   }
   .p-connectors-page-content {
     margin: 0 10px;

@@ -1,8 +1,8 @@
 :orphan:
-:priority: 0.99
+:priority: 0.1
 
 ---------------------------
-Tarantool - Downloads (1.7)
+Tarantool - Downloads (1.6)
 ---------------------------
 
 .. container:: p-download p-download-mainpage
@@ -20,7 +20,7 @@ Tarantool - Downloads (1.7)
 
                 Available versions:
 
-                :doc:`1.6 (stable) <download_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <download_18>`
+                :currentversion:`1.6 (stable)` :doc:`1.7 (rc) <download>` :doc:`1.8 (alpha) <download_18>`
 
     .. wp_section::
         :class: p-download-mainpage-general
@@ -68,7 +68,7 @@ Tarantool - Downloads (1.7)
                 .. _os-install:
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <download/os-installation/ubuntu>`
+                    :doc:`Learn more → <os-installation/os-x>`
 
         .. container:: b-download-block
 
@@ -91,7 +91,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <download/connectors>`
+                    :doc:`Learn more → <connectors>`
 
         .. container:: b-download-block
 
@@ -114,7 +114,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-button
 
-                    Learn more →
+                    `Learn more → <https://hub.docker.com/r/tarantool/tarantool/>`_
 
         .. container:: b-download-block
 
@@ -136,7 +136,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <download/rocks>`
+                    :doc:`Learn more → <rocks_16>`
 
     .. container:: p-download-mainpage-enterprise-downloads
 

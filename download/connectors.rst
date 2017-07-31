@@ -14,7 +14,7 @@ Tarantool - Connectors
 
             .. container:: b-download-header-path
 
-                Downloads >
+                Downloads > Connectors
 
             .. container:: b-download-header-versions
 
