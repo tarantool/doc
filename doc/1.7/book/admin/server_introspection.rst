@@ -167,7 +167,7 @@ Tarantool’s performance profile, which is helpful in troubleshooting these slo
 #. fiber.info()
 
 The simplest profiling method is to take advantage of Tarantool’s built-in functionality.
-:ref:`fiber.info() <fiber_info>` returns information about all running fibers with their corresponding C stack
+:ref:`fiber.info() <fiber-info>` returns information about all running fibers with their corresponding C stack
 traces. You can use this data to see how many fibers are running and which C functions are
 executed more often than others.
 
