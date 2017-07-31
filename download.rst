@@ -18,7 +18,9 @@ Tarantool - Downloads (1.7)
 
             .. container:: b-download-header-versions
 
-                Available versions: :doc:`1.6 (stable) <download_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <download_18>`
+                Available versions:
+
+                :doc:`1.6 (stable) <download_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <download_18>`
 
     .. wp_section::
         :class: p-download-mainpage-general
@@ -63,7 +65,7 @@ Tarantool - Downloads (1.7)
                     There is some instructions how to install tarantool for your OS type.
                     You can choose your OS type insde this card and see other inctructions.
 
-                .. _os-install:    
+                .. _os-install:
                 .. container:: b-download-block-button
 
                     :doc:`Learn more → <download/os-installation/ubuntu>`
@@ -134,7 +136,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-button
 
-                    Learn more →
+                    :doc:`Learn more → <download/rocks>`
 
     .. container:: p-download-mainpage-enterprise-downloads
 
@@ -166,37 +168,6 @@ Tarantool - Downloads (1.7)
                     :class: b-enterprise-downloads-button
                     :link: https://tarantool.io/enterprise
                     :title: Enterprise
-
-.. wp_section::
-    :title: Connectors & Extras
-    :class: b-block-lightgray b-downloads_top
-
-.. wp_section::
-    :class: b-block b-downloads
-
-    .. ddlist::
-
-        * Connectors
-
-          - PHP PECL driver,       `<https://github.com/tarantool/tarantool-php>`_
-          - Pure PHP driver,       `<https://github.com/tarantool-php/client>`_
-          - Java driver,           `Maven repository`_ or `Java connector GitHub page`_
-          - Python driver,         `<http://pypi.python.org/pypi/tarantool>`_
-          - Python Gevent driver,  `<https://github.com/shveenkov/gtarantool>`_
-          - Python AIO driver,     `<https://github.com/shveenkov/aiotarantool>`_
-          - Ruby driver,           `<https://github.com/tarantool/tarantool-ruby>`_
-          - Perl driver,           `DR:Tarantool`_
-          - C connector            `<https://github.com/tarantool/tarantool-c>`_
-          - node.js driver,        `<https://github.com/KlonD90/node-tarantool-driver>`_
-          - Erlang driver,         `<https://github.com/umatomba/tara>`_
-          - Erlang driver,         `<https://github.com/stofel/taran>`_
-          - Go driver,             `<https://github.com/tarantool/go-tarantool>`_
-          - Lua-nginx driver,      `<https://github.com/ziontab/lua-nginx-tarantool>`_
-          - Lua-resty driver,      `<https://github.com/perusio/lua-resty-tarantool>`_
-          - Nginx Upstream module, `<https://github.com/tarantool/nginx_upstream_module>`_
-          - C# driver,             `<https://github.com/progaudi/tarantool-csharp>`_
-          - C# driver,             `<https://github.com/donmikel/tarantool-net>`_
-          - Swift driver and stored procedures, `<https://github.com/tris-foundation/tarantool>`_
 
 .. |packagecloud| image:: /images/packagecloud.png
     :height: 1em

@@ -20,6 +20,8 @@ $(function() {
     console.log('CLICK');
 
     var os_name = getOSName(os);
+    console.log('OS NAME', os_name);
+
     var keys = Object.keys(os_installation_page_names);
 
     for (var i = 0; i < keys.length; i++) {

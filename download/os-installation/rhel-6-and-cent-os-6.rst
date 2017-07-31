@@ -62,3 +62,5 @@ Tarantool - RHEL 6 and CentOS 6
 
               # Install tarantool
               yum -y install tarantool
+
+.. _EPEL:    https://fedoraproject.org/wiki/EPEL

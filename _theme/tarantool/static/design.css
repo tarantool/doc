@@ -2271,7 +2271,7 @@ div.toctree-wrapper > ul {
 .p-download .b-block-wrapper {
   width: auto;
   padding: 0;
-  margin: 10px;
+  margin: 0 10px;
 }
 @media (min-width: 768px) {
   .p-download .b-block-wrapper {
@@ -2647,7 +2647,7 @@ div.toctree-wrapper > ul {
   display: flex;
   -ms-flex-pack: justify;
       justify-content: space-between;
-  padding: 30px 0 50px;
+  padding: 15px 0;
 }
 .b-download-header-path {
   display: none;
@@ -2657,8 +2657,14 @@ div.toctree-wrapper > ul {
 }
 .b-download-header-versions {
   font-size: 16px;
-  text-align: center;
   color: #ffffff;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.b-download-header-versions p:first-child {
+  margin-right: 10px;
 }
 .b-download-header-versions a {
   color: inherit;
@@ -2689,11 +2695,13 @@ div.toctree-wrapper > ul {
   margin: 0;
 }
 .b-download-menu ul li {
-  padding: 15px;
+  display: -ms-flexbox;
+  display: flex;
   color: #ff2e2f;
   font-size: 20px;
   border-bottom: solid 1px #262626;
   cursor: pointer;
+  padding: 0;
 }
 .b-download-menu ul li.active {
   background-color: #161616;
@@ -2702,18 +2710,22 @@ div.toctree-wrapper > ul {
   color: inherit;
   text-decoration: none;
   font-size: inherit;
+  padding: 15px 10px;
+  width: 100%;
 }
 .b-download-menu ul li a:hover {
   color: #fd4c4d;
 }
 @media (min-width: 568px) {
-  .b-download-menu ul li {
+  .b-download-menu ul li a {
     padding: 15px 30px;
   }
 }
 @media (min-width: 768px) {
   .b-download-menu ul li {
     font-size: 16px;
+  }
+  .b-download-menu ul li a {
     padding: 15px;
   }
 }
@@ -2997,6 +3009,131 @@ div.toctree-wrapper > ul {
 }
 .b-alphabetical-menu ul li a:hover {
   color: #fd4c4d;
+}
+.p-rocks-header {
+  font-size: 18px;
+  line-height: 1.78;
+  color: #ffffff;
+  margin-top: 10px;
+}
+.p-rocks-header .b-section-title {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.33;
+  color: #ffffff;
+}
+.p-rocks-header a {
+  color: #ff2e2f;
+}
+.p-rocks-header a:hover {
+  color: #fd4c4d;
+}
+.p-rocks-body {
+  display: -ms-flexbox;
+  display: flex;
+}
+.p-rocks-menu {
+  border-top: solid 1px #000000;
+}
+.p-rocks-content {
+  width: 100%;
+  margin: 0 15px 0 10px;
+}
+@media (min-width: 768px) {
+  .p-rocks-menu {
+    max-width: 260px;
+    min-width: 260px;
+    border: none;
+  }
+}
+@media (min-width: 1280px) {
+  .p-rocks-header {
+    font-size: 24px;
+    line-height: 1.33;
+  }
+  .p-rocks-header .b-section-title {
+    font-size: 42px;
+    line-height: 0.95;
+  }
+  .p-rocks-body {
+    max-width: 950px;
+    margin: auto;
+  }
+}
+.clock-icon {
+  min-width: 20px;
+  min-height: 20px;
+  background-image: url("images/clock-icon.svg");
+  background-repeat: no-repeat;
+}
+.b-rock {
+  margin-bottom: 30px;
+}
+.b-rock > p {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.67;
+  color: #ffffff;
+  padding: 0 0 15px 0;
+}
+.b-rock ul {
+  padding: 0;
+  margin: 0;
+}
+.b-rock ul li {
+  display: block;
+  background: #1f1e1e;
+  padding: 10px;
+  margin-top: 5px;
+}
+.b-rock ul li > p {
+  font-size: 18px;
+  line-height: 1.56;
+  color: #ffffff;
+  margin-top: 10px;
+}
+.b-rock ul li p {
+  padding: 0;
+}
+.b-rock ul li .b-rock-block-header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.78;
+  border-bottom: solid 1px rgba(151, 151, 151, 0.2);
+  padding-bottom: 5px;
+}
+.b-rock ul li .b-rock-block-header .special-text {
+  opacity: 0.5;
+  margin-left: 10px;
+  font-weight: normal;
+}
+.b-rock ul li .b-rock-block-header-source-link {
+  color: #ff2e2f;
+  background: none;
+  padding: 0;
+  text-decoration: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.b-rock ul li .b-rock-block-header-source-link:hover {
+  background: none;
+  color: #fd4c4d;
+}
+.b-rock ul li .b-rock-block-header-source-link span {
+  display: none;
+  margin-left: 5px;
+}
+@media (min-width: 568px) {
+  .b-rock ul li .b-rock-block-header-source-link span {
+    display: block;
+  }
 }
 .highlight,
 .highlighttable {

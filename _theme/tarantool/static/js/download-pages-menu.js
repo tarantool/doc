@@ -16,11 +16,11 @@ $(function() {
     if ($(elem).find('a').attr('href') === '#') $(elem).addClass('active');
   });
 
-  os_installation_menu.find('li').click(function(event) {
-    window.location.replace($(event.target).find('a').attr('href'));
-  });
-
-  connectors_page_menu.find('li').click(function(event) {
-    window.location.replace($(event.target).find('a').attr('href'));
-  });
+  // os_installation_menu.find('li').click(function(event) {
+  //   window.location.replace($(event.target).find('a').attr('href'));
+  // });
+  //
+  // connectors_page_menu.find('li').click(function(event) {
+  //   window.location.replace($(event.target).find('a').attr('href'));
+  // });
 });

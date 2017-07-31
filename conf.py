@@ -94,6 +94,9 @@ html_context = {
         'download-page' : True,
         'download/os-instalation' : True, # FIXME Delete
         'download/connectors' : True,
+        'download/rocks' : True,
+        'download/rocks_16' : True,
+        'download/rocks_18' : True,
         # os installation pages
         'download/os-installation/amazon-linux' : True,
         'download/os-installation/building-from-source' : True,
