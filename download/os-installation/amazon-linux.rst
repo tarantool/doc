@@ -62,3 +62,5 @@ Tarantool - Amazon Linux
 
               # Install Tarantool
               yum -y install tarantool
+
+.. _EPEL:    https://fedoraproject.org/wiki/EPEL

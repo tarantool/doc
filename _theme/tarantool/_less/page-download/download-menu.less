@@ -6,11 +6,12 @@
     margin: 0;
 
     li {
-      padding: 15px;
+      display: flex;
       color: @red-color;
       font-size: 20px;
       border-bottom: solid 1px #262626;
       cursor: pointer;
+      padding: 0;
 
       &.active {
         background-color: #161616;
@@ -20,6 +21,8 @@
         color: inherit;
         text-decoration: none;
         font-size: inherit;
+        padding: 15px 10px;
+        width: 100%;
 
         &:hover {
           color: @light-red-color;
@@ -28,19 +31,23 @@
     }
   }
 
-  @media @mobile-horizontal-screen {
-    ul {
-      li {
-        padding: 15px 30px;
-      }
-    }
-  }
+  // @media @mobile-horizontal-screen {
+  //   ul {
+  //     li {
+  //       a {
+  //         padding: 15px 30px;
+  //       }
+  //     }
+  //   }
+  // }
 
   @media @medium-screen {
     ul {
       li {
         font-size: 16px;
-        padding: 15px;
+        a {
+          padding: 15px;
+        }
       }
     }
   }
