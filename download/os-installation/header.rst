@@ -1,5 +1,5 @@
 .. wp_section::
-    :class: p-download-header
+    :class: p-download-header b-os-installation-header
 
     .. container:: b-download-header
 
@@ -11,7 +11,7 @@
 
             Available versions:
 
-            :doc:`1.6 (stable) <../../download_16>` :currentversion:`1.7 (rc)` :doc:`1.8 (alpha) <../../download_18>`
+            :doc:`1.6 (stable) <../download_16>` :currentversion:`1.7 (rc)` :doc:`1.8 (alpha) <../download_18>`
 
         .. raw:: html
 
