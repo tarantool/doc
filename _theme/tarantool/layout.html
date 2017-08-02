@@ -16,7 +16,8 @@
     '_static/js/documentation-main-page.js',
     '_static/js/copy-button.js',
     '_static/js/download-pages-menu.js',
-    '_static/js/rocks-page-menu.js'
+    '_static/js/rocks-page-menu.js',
+    '_static/js/version-switcher.js'
 ] %}
 {% set css_files = [
     '_static/design.css',
@@ -47,7 +48,7 @@
 {%- endset %}
 
 {% set is_website  = website.get(pagename, False) %}
-{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml"] %}
+{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
 {% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}

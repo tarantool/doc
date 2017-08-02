@@ -1,0 +1,63 @@
+.badge-icon { .icon(23px, 26px, @badge-icon); }
+
+.other-sources-menu {
+  padding: 0 30px 60px;
+  background: #efefef;
+  border-radius: 4px;
+
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f1e1e;
+    padding: 0;
+    margin: 15px 0 0;
+  }
+
+  ul {
+    padding: 0;
+    margin: 12px 0 0;
+    list-style-type: none;
+
+    li {
+      padding: 0;
+      margin-bottom: 10px;
+
+      a {
+        font-size: 16px;
+        line-height: 1.25;
+        color: #1f1e1e;
+        text-decoration: none;
+        border-bottom: solid 1px rgba(31, 30, 30, 0.4);
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  @media @mobile-horizontal-screen {
+    padding: 0 60px 60px 30px;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        margin: 0 30px 10px 0;
+      }
+    }
+  }
+
+  @media @medium-screen {
+    padding: 0 30px 60px;
+
+    ul {
+      display: block;
+
+      li {
+        margin: 0 0 10px;
+      }
+    }
+  }
+}
