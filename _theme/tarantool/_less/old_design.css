@@ -295,9 +295,9 @@
     [class|="highlight"]{
         overflow: auto;
     }
-    .b-doc-singlehtml .toctree-wrapper.compound {
+    /*.b-doc-singlehtml .toctree-wrapper.compound {
         overflow-x: hidden;
-    }
+    }*/
     .ccode, .ccodeb, .ccodei, .ccodebi {
         display: block;
         overflow: auto;

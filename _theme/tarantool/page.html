@@ -1,6 +1,7 @@
 {%- extends "layout.html" %}
 
 {% from 'elements.html' import breadcrumbs       with context %}
+{% from 'elements.html' import versionswitcher   with context %}
 {% from 'elements.html' import navbar            with context %}
 {% from 'elements.html' import language_selector with context %}
 
@@ -36,6 +37,9 @@
       </div>
     {% endif %}
   {% else %}
+    {% if is_mainpage %}
+      {{- versionswitcher() -}}
+    {% endif%}
     {{ body }}
   {% endif %}
 {% endblock %}
