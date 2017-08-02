@@ -8,9 +8,13 @@
 
 .. confval:: force_recovery
 
-    If there is an error while reading a :ref:`snapshot file<index-box_persistence>`
+    If ``force_recovery`` equals true, Tarantool tries to continue if there is
+    an error while reading a :ref:`snapshot file<index-box_persistence>`
     (at server instance start) or a :ref:`write-ahead log file<internals-wal>`
-    (at server instance start or to relay to a replica), abort.
+    (at server instance start or when applying an update at a replica): skips
+    invalid records, reads as much data as possible and re-builds the file.
+
+    Otherwise, Tarantool aborts recovery on read errors.
 
     | Type: boolean
     | Default: true
