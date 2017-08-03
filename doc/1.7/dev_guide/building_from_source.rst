@@ -102,8 +102,8 @@ on the Internet.
 
                  brew install cmake autoconf binutils zlib \
                       readline ncurses libyaml openssl curl libunwind-headers \
-					  && pip install python-daemon \
-					  msgpack-python pyyaml configargparse six gevent
+                      && pip install python-daemon \
+                      msgpack-python pyyaml configargparse six gevent
 
                Alternatively, download Apple's default Xcode toolset:
 
@@ -260,7 +260,7 @@ on the Internet.
    Tarantool. We highly recommend to use official packages from the
    `tarantool.org <https://tarantool.org/download.html>`_ web-site.
    However, you can build RPM and Debian packages using
-   `PackPack <https://github.com/packpack/packpack`_ or using the
+   `PackPack <https://github.com/packpack/packpack>`_ or using the
    `dpkg-buildpackage` or `rpmbuild` tools. Please consult
    `dpkg` or `rpmbuild` documentation for details.
 
