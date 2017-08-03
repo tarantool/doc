@@ -15,14 +15,14 @@ on the Internet.
    The absolutely necessary ones are:
 
    * A program for downloading source repositories. |br|
-     For all platforms, this is ``git``. It allows to download the latest
-     complete set of source files from the Tarantool repository at GitHub.
+     For all platforms, this is ``git``. It allows downloading the latest
+     complete set of source files from the Tarantool repository on GitHub.
 
    * A C/C++ compiler. |br| Ordinarily, this is ``gcc`` and ``g++`` version
-     4.6 or later. On Mac OS X, this is ``Clang`` version 3.2 or later.
+     4.6 or later. On Mac OS X, this is ``Clang`` version 3.2+.
 
    * A program for managing the build process. |br| For all platforms, this is
-     ``CMake``. The CMake version should be 2.8 or later.
+     ``CMake`` version 2.8+.
 
    * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
    * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
@@ -32,42 +32,105 @@ on the Internet.
 
    * Python and modules. |br| Python interpreter is not necessary for building
      Tarantool itself, unless you intend to use the "Run the test suite"
-     option in step 5. For all platforms, this is ``python``. The Python
-     version should be greater 2.7 -- and less than 3.0. You need the
-     following Python modules:
-      + `pyYAML <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
+     option in step 5. For all platforms, this is ``python`` version 2.7+
+     (but not 3.x). You need the following Python modules:
+      + `pyyaml <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
       + `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
       + `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6
       + `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1.2
       + `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
 
-   On Debian/Ubuntu distributions you can use the command below to install
-   all required dependencies:
+   To install all required dependencies, choose your OS:  
 
-   .. code-block:: bash
+   .. container:: b-block-wrapper_doc
 
-    apt install -y build-essential cmake coreutils sed \
-        libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
-        libcurl4-openssl-dev libunwind-dev \
-        python python-pip python-setuptools python-dev \
-        python-msgpack python-yaml python-argparse python-six python-gevent
+       .. container:: b-doc_catalog
+           :name: cat-1
 
-   On RHEL/CentOS/Fedora distributions you can use the command below to install
-   all required dependencies:
+           .. raw:: html
 
-   .. code-block:: bash
+               <ul class="b-tab_switcher">
+                   <li class="b-tab_switcher-item">
+                       <a href="#os-1-1" class="b-tab_switcher-item-url p-active">Debian/Ubuntu</a>
+                   </li>
+                   <li class="b-tab_switcher-item">
+                       <a href="#os-1-2" class="b-tab_switcher-item-url">RHEL/CentOS/Fedora</a>
+                   </li>
+                   <li class="b-tab_switcher-item">
+                       <a href="#os-1-3" class="b-tab_switcher-item-url">Mac OS X</a>
+                   </li>
+                   <li class="b-tab_switcher-item">
+                       <a href="#os-1-4" class="b-tab_switcher-item-url">FreeBSD</a>
+                   </li>
+               </ul>
 
-    yum install -y gcc gcc-c++ cmake coreutils sed \
-        readline-devel ncurses-devel libyaml-devel openssl-devel \
-        libcurl-devel libunwind-devel \
-        python python-pip python-setuptools python-devel \
-        python-msgpack python-yaml python-argparse python-six python-gevent
+       .. container:: b-documentation_tab_content
+           :name: cat-1-content
 
-   If some Python modules are not available on a repository,
+           .. container:: b-documentation_tab
+               :name: os-1-1
+
+               .. code-block:: console
+
+                 apt install -y build-essential cmake coreutils sed \
+                     libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
+                     libcurl4-openssl-dev libunwind-dev \
+                     python python-pip python-setuptools python-dev \
+                     python-msgpack python-yaml python-argparse python-six python-gevent
+
+           .. container:: b-documentation_tab
+               :name: os-1-2
+
+               .. code-block:: console
+
+                 yum install -y gcc gcc-c++ cmake coreutils sed \
+                     readline-devel ncurses-devel libyaml-devel openssl-devel \
+                     libcurl-devel libunwind-devel \
+                     python python-pip python-setuptools python-devel \
+                     python-msgpack python-yaml python-argparse python-six python-gevent
+
+           .. container:: b-documentation_tab
+               :name: os-1-3
+
+               .. NOTE::
+
+                 Instructions below are for OS X El Capitan.
+
+               Use Homebrew:
+
+               .. code-block:: console
+
+                 brew install cmake autoconf binutils zlib \
+                      readline ncurses libyaml openssl curl libunwind-headers \
+					  && pip install python-daemon \
+					  msgpack-python pyyaml configargparse six gevent
+
+               Alternatively, download Apple's default Xcode toolset:
+
+               .. code-block:: console
+
+                 xcode-select --install
+                 xcode-select -switch /Applications/Xcode.app/Contents/Developer
+			
+           .. container:: b-documentation_tab
+               :name: os-1-4
+
+               .. NOTE::
+
+                 Instructions below are for FreeBSD 10.1 (release).
+
+               .. code-block:: console
+
+                 pkg install -y sudo git cmake gmake gcc coreutils \
+                     readline ncurses libyaml openssl curl libunwind \
+                     python27 py27-pip py27-setuptools py27-daemon \
+                     py27-msgpack-python py27-yaml py27-argparse py27-six py27-gevent
+
+   If some Python modules are not available in a repository,
    it is best to set up the modules by getting a tarball and
-   doing the setup with ``python setup.py``, thus:
+   doing the setup with ``python setup.py`` like this:
 
-   .. code-block:: bash
+   .. code-block:: console
 
      # On some machines, this initial command may be necessary:
      # wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
@@ -81,36 +144,36 @@ on the Internet.
      cd PyYAML-3.10
      sudo python setup.py install
 
-   Finally, use Python :code:`pip` to bring in Python packages
+   Finally, use Python ``pip`` to bring in Python packages
    that may not be up-to-date in the distro repositories.
    (On CentOS 7, it will be necessary to install ``pip`` first,
    with :code:`sudo yum install epel-release` followed by
    :code:`sudo yum install python-pip`.)
 
-   .. code-block:: bash
+   .. code-block:: console
 
-    pip install -r https://raw.githubusercontent.com/tarantool/test-run/master/requirements.txt --user
+     pip install -r https://raw.githubusercontent.com/tarantool/test-run/master/requirements.txt --user
 
    This step is only necessary once, the first time you do a download.
 
 2. Use ``git`` to download the latest Tarantool source code from the
-   GitHub repository ``tarantool/tarantool``, branch 1.7. For example, to a
-   local directory named `~/tarantool`:
+   GitHub repository ``tarantool/tarantool``, branch 1.7, to a
+   local directory named `~/tarantool`, for example:
 
-   .. code-block:: bash
+   .. code-block:: console
 
      git clone --recursive https://github.com/tarantool/tarantool.git -b 1.7 ~/tarantool
 
-   On rare occasions, the submodules will need to be updated again with the
+   On rare occasions, the submodules need to be updated again with the
    command:
 
-   .. code-block:: bash
+   .. code-block:: console
 
      git submodule update --init --recursive
 
 3. Use CMake to initiate the build.
 
-   .. code-block:: bash
+   .. code-block:: console
 
      cd ~/tarantool
      make clean         # unnecessary, added for good luck
@@ -120,7 +183,7 @@ on the Internet.
    On some platforms, it may be necessary to specify the C and C++ versions,
    for example:
 
-   .. code-block:: bash
+   .. code-block:: console
 
      CC=gcc-4.8 CXX=g++-4.8 cmake .
 
@@ -137,14 +200,18 @@ on the Internet.
 
 4. Use ``make`` to complete the build.
 
-   .. code-block:: bash
+   .. NOTE::
+
+     For FreeBSD, use ``gmake`` instead.
+
+   .. code-block:: console
 
      make
 
-   This creates the 'tarantool' executable in the directory `src/`
+   This creates the 'tarantool' executable in the ``src/`` directory.
 
    Next, it's highly recommended to say ``make install`` to install Tarantool to
-   the `/usr/local` directory and keep your system clean. However, it is
+   the ``/usr/local`` directory and keep your system clean. However, it is
    possible to run the Tarantool executable without installation.
 
 5. Run the test suite.
@@ -154,15 +221,15 @@ on the Internet.
    make any changes in the code. Assuming you downloaded to ``~/tarantool``, the
    principal steps are:
 
-   .. code-block:: bash
+   .. code-block:: console
 
      # make a subdirectory named `bin`
      mkdir ~/tarantool/bin
-     # link python to bin (this may require superuser privilege)
+     # link Python to bin (this may require superuser privileges)
      ln /usr/bin/python ~/tarantool/bin/python
-     # get on the test subdirectory
+     # get to the test subdirectory
      cd ~/tarantool/test
-     # run tests using python
+     # run tests using Python
      PATH=~/tarantool/bin:$PATH ./test-run.py
 
    The output should contain reassuring reports, for example:
@@ -180,9 +247,9 @@ on the Internet.
      box/auth_access.test.lua                        [ pass ]
      ... etc.
 
-   To prevent later confusion, clean up what's in the `bin` subdirectory:
+   To prevent later confusion, clean up what's in the ``bin`` subdirectory:
 
-   .. code-block:: bash
+   .. code-block:: console
 
      rm ~/tarantool/bin/python
      rmdir ~/tarantool/bin
@@ -190,29 +257,21 @@ on the Internet.
 6. Make RPM and Debian packages.
 
    This step is optional. It's only for people who want to redistribute
-   Tarantool. We highly recommend to use official packages from
+   Tarantool. We highly recommend to use official packages from the
    `tarantool.org <https://tarantool.org/download.html>`_ web-site.
-   However, you can build RPM and Debian package using
-   `PackPack <https://github.com/packpack/packpack`_ or using
+   However, you can build RPM and Debian packages using
+   `PackPack <https://github.com/packpack/packpack`_ or using the
    `dpkg-buildpackage` or `rpmbuild` tools. Please consult
    `dpkg` or `rpmbuild` documentation for details.
 
 7. Verify your Tarantool installation.
 
-   .. code-block:: bash
+   .. code-block:: console
 
      tarantool $ ./src/tarantool
 
-   This will start Tarantool in the interactive mode.
+   This starts Tarantool in the interactive mode.
 
-For your added convenience, we provide OS-specific README files with example
-scripts at GitHub:
+See also:
 
-* `README.FreeBSD <https://github.com/tarantool/tarantool/blob/1.7/README.FreeBSD>`_ for FreeBSD 10.1
-
-* `README.MacOSX <https://github.com/tarantool/tarantool/blob/1.7/README.MacOSX>`_ for Mac OS X `El Capitan`
-
-* `README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_ for generic GNU/Linux
-
-These example scripts assume that the intent is to download from the 1.7
-branch, build the server and run tests after build.
+* `Tarantool README.md <https://github.com/tarantool/tarantool/blob/1.7/README.md>`_
