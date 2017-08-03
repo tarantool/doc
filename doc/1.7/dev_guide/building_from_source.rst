@@ -40,7 +40,7 @@ on the Internet.
       + `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1.2
       + `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
 
-   To install all required dependencies, choose your OS:  
+   To install all required dependencies, choose your OS:
 
    .. container:: b-block-wrapper_doc
 
@@ -70,6 +70,8 @@ on the Internet.
            .. container:: b-documentation_tab
                :name: os-1-1
 
+               For Debian/Ubuntu, say:
+
                .. code-block:: console
 
                  apt install -y build-essential cmake coreutils sed \
@@ -80,6 +82,8 @@ on the Internet.
 
            .. container:: b-documentation_tab
                :name: os-1-2
+
+               For RHEL/CentOS/Fedora, say:
 
                .. code-block:: console
 
@@ -96,7 +100,7 @@ on the Internet.
 
                  Instructions below are for OS X El Capitan.
 
-               Use Homebrew:
+               If you're using Homebrew as your package manager, say:
 
                .. code-block:: console
 
@@ -111,13 +115,15 @@ on the Internet.
 
                  xcode-select --install
                  xcode-select -switch /Applications/Xcode.app/Contents/Developer
-			
+
            .. container:: b-documentation_tab
                :name: os-1-4
 
                .. NOTE::
 
                  Instructions below are for FreeBSD 10.1 (release).
+
+               For FreeBSD, say:
 
                .. code-block:: console
 
