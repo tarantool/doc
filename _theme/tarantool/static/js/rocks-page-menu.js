@@ -4,6 +4,8 @@ $(function() {
   var rocks_header = $('#rocks-general-header');
   var rocks_body = $('#rocks-body');
 
+  console.log('ROCKS MENU SCRIPT', rocks_menu, rocks_body);
+
   var isOpened = true;
 
   if (button && rocks_menu) {

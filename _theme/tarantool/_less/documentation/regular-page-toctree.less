@@ -1,0 +1,135 @@
+.b-cols_content_left {
+  display: none;
+  background: #1f1e1e;
+  // padding: 15px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  .fa-caret-up,
+  .fa-caret-down {
+    font-size: 22px;
+    color: #ffffff;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    z-index: 10;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      list-style: none;
+      position: relative;
+    }
+  }
+
+  & > ul { // Depth: 1
+    padding: 15px;
+
+    & > li {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: #ffffff;
+        font-size: 20px;
+        text-decoration: none;
+      }
+    }
+  }
+
+  & > ul > li > ul { // Depth: 2
+    li {
+      a {
+        font-size: 16px;
+        display: block;
+        padding: 10px 22px 10px 15px;
+        border-left: solid 2px #979797;
+
+        &.current {
+          border-left: solid 2px @red-color;
+        }
+      }
+
+      .fa-caret-up,
+      .fa-caret-down {
+        top: 7px;
+      }
+
+      ul {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .path {
+    background: #343232;
+    width: 100%;
+    padding: 15px;
+    color: #ffffff;
+    box-sizing: border-box;
+
+    a {
+      font-size: 20px;
+      color: #ffffff;
+      text-decoration: none;
+      border-bottom: solid 1px rgba(255, 255, 255, 0.4);
+      margin: 0 8px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .path__current {
+    font-size: 20px;
+    color: @red-color;
+    border-bottom: solid 1px rgba(255, 46, 47, 0.6);
+    margin-left: 5px;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  @media @mobile-horizontal-screen {
+    & > ul {
+      padding: 15px 20px;
+    }
+
+    .path {
+      padding: 20px;
+    }
+  }
+
+  @media @medium-screen {
+    max-width: 568px;
+  }
+
+  @media @large-screen {
+    display: block;
+    min-width: 260px;
+    max-width: 260px;
+
+    & > ul {
+      padding: 10px 20px;
+    }
+
+    .path {
+      display: none;
+    }
+  }
+
+  @media @xlarge-screen {
+    min-width: 360px;
+    max-width: 360px;
+  }
+}

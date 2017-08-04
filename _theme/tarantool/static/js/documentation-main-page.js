@@ -1,4 +1,6 @@
 $(function() {
+    // FIXME Delete comments
+    
     // var doc_main_page_title = '.documentation-main-page-title';
     // var b_block_wrapper = '.b-block-wrapper';
     // var b_section_title = '.b-section-title';
