@@ -237,17 +237,17 @@
         right: 3px;
         top: 5px;
     }
-    .b-cols_content_left .search {
+    /*.b-cols_content_left .search {
         display: none;
-    }
+    }*/
     div.b-cols_content_right-slot {
         margin: 0;
     }
-    div.b-cols_content {
+    /*div.b-cols_content {
         width: 100%;
         position: relative;
         min-height: calc(100vh - 180px);
-    }
+    }*/
     .p-cols_design div.b-wrapper {
         background: 0;
     }
@@ -331,9 +331,9 @@
     a.b-next {
         max-width: 80px;
     }
-    .b-cols_content_left {
+    /*.b-cols_content_left {
         z-index: 30
-    }
+    }*/
 }
 
 .no-margin {

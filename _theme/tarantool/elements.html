@@ -53,26 +53,16 @@
     <div class="version-switcher">
       <h3 class="version-switcher-title">Version:</h3>
       <div class="version-switcher-wrapper">
-        <!-- <div class="b-path-list-drop-wrapper"> -->
         <div class="version-switcher-current">
-          <!-- <a href="{{ convert_path_version(version) }}"
-            class="b-path-list-item-url">
-            {{ version }}
-          </a> -->
           <a href="{{ convert_path_version(version) }}">
             {{ version }}
           </a>
-          <!-- <i class="b-path-list-item-icon fa p-drop-close"></i> -->
           <i class="version-switcher-item-icon fa fa-caret-down"></i>
         </div>
-        <!-- <ul class="b-path-list-drop"> -->
         <ul class="version-switcher-drop">
         {% for elem in versions %}
           {% if elem != version %}
-            <!-- <li class="b-path-list-drop-item"> -->
             <li class="version-switcher-item">
-              <!-- <a href="{{ convert_path_version(elem) }}"
-                 class="b-path-list-drop-item-url"> {{ elem }} </a> -->
               <a href="{{ convert_path_version(elem) }}"> {{ elem }} </a>
             </li>
           {% endif %}
@@ -82,16 +72,44 @@
     </div>
 {% endmacro %}
 
-{% macro breadcrumbs(is_main_page=False) %}
+{% macro regular_page_header() %}
+  <div class="doc-page-header" id="doc-page-header">
+    {{- page_path() -}}
+    <!-- <div class="doc-page-header__path">
+      {% for elem in parents %}
+        <a href="{{ elem.link|e }}">
+          {{ elem.title }}
+        </a>
+        /
+      {% endfor %}
+      <span class="doc-page-header__path-current">
+        {{ title }}
+      </span>
+    </div> -->
+    {{- versionswitcher() -}}
+    <div class="doc-page-header__menu-button">
+      <div class="compass-icon"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro page_path() %}
+  <div class="path">
+    {% for elem in parents %}
+      <a href="{{ elem.link|e }}">
+        {{ elem.title }}
+      </a>
+      /
+    {% endfor %}
+    <span class="path__current">
+      {{ title }}
+    </span>
+  </div>
+{% endmacro %}
+
+<!-- {% macro breadcrumbs() %}
   <div class="b-page_header">
     <ul class="b-path-list">
-      {% if is_main_page %}
-      <li class="b-path-list-item">
-        <div title="Available versions" class="b-path_current b-ellipsis">
-          Available versions
-        </div>
-      </li>
-      {% endif %}
       <li class="b-path-list-item">
         <div class="b-path-list-drop-wrapper">
           <a href="{{ convert_path_version(version) }}"
@@ -119,7 +137,7 @@
           </a>
         </li>
       {% endfor %}
-      {% if not is_main_page and title %}
+      {% if title %}
       <li class="b-path-list-item">
         <div title="{{ title }}" class="b-path_current b-ellipsis">
           {{ title }}
@@ -128,7 +146,7 @@
       {% endif %}
     </ul>
   </div>
-{% endmacro %}
+{% endmacro %} -->
 
 {% macro navbar(head=True) %}
   {% if next and prev %}
@@ -139,9 +157,10 @@
     {% endif %}
     {% if prev %}
       <div class="b-page_over-prev">
-        <a href="{{ prev.link | e }}"
-           class="b-prev b-ellipsis"
-           title="{{ prev.title | e }}">{{ prev.title }}</a>
+        <a href="{{ prev.link | e }}" class="b-prev b-ellipsis" title="{{ prev.title | e }}">
+          <i class="fa fa-caret-left"></i>
+          {{ prev.title }}
+        </a>
       </div>
     {% endif %}
     <!--div class="b-page_over-lang">
@@ -154,9 +173,10 @@
     </div-->
     {% if next %}
       <div class="b-page_over-next">
-        <a href="{{ next.link|e }}"
-           class="b-next b-ellipsis"
-           title="{{ next.title | e }}">{{ next.title }}</a>
+        <a href="{{ next.link|e }}" class="b-next b-ellipsis" title="{{ next.title | e }}">
+          {{ next.title }}
+          <i class="fa fa-caret-right"></i>
+        </a>
       </div>
     {% endif %}
     </div>
