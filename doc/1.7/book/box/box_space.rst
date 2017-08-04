@@ -181,6 +181,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: count([key], [iterator])
 
+        Return the number of tuples.
+        If compared with :ref:`len() <box_space-len>`, this method works
+        slower because ``count()`` scans the entire space to count the
+        tuples.
+
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param scalar/table key: primary-key field values, must be passed as a
@@ -482,6 +487,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     .. method:: len()
 
+        Return the number of tuples in the space.
+        If compared with :ref:`count() <box_space-count>`, this method works
+        faster because ``len()`` does not scan the entire space to count the
+        tuples.
+
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
 
@@ -497,8 +507,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             ...
 
         Note re storage engine: vinyl does not support ``len()``.
-        One possible workaround is to say ``#select(...)``.
-
+        Possible workarounds are to use
+        :ref:`count() <box_space-count>` or ``#select(...)``.
 
     .. _box_space-on_replace:
 
