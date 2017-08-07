@@ -20,19 +20,17 @@ Tarantool - Connectors
 
                 Available versions:
 
-                :doc:`1.6 (stable) <download_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <download_18>`
+                :doc:`1.6 (stable) <connectors_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <connectors_18>`
 
     .. wp_section::
         :title: Connectors
         :class: p-connectors-page-header
 
-        .. raw:: html
+        .. container:: p-connectors-page-header-description
 
-            <i class="star-icon"></i>
-            <div class="p-connectors-page-header-description">
-                The recommended connector(s) for a language are marked with a star <i class="star-icon"></i>.
-                Want your connector listed here? Please drop us a line at <span class="colored">support@tarantool.org</span>.
-            </div>
+            The recommended connector for each language is marked with a star |starimage|.
+
+            Want your connector listed here? Please drop us a line at :specialtext:`support@tarantool.org`.
 
     .. container:: p-connectors-page-body
 
@@ -109,7 +107,7 @@ Tarantool - Connectors
 
                         Owner: https://github.com/aensidhe, https://github.com/roman-kozachenko
 
-                -   .Net connector for Tarantool ???. Based on the Akka.Net I/O package.
+                -   .Net connector for Tarantool 1.6. Based on the Akka.Net I/O package.
 
                     .. wp_button::
                         :class: b-connector-source-link
@@ -182,6 +180,18 @@ Tarantool - Connectors
                     .. container:: b-connector-owner
 
                         Owner: https://github.com/funny-falcon, https://github.com/mialinx
+
+                -   Go connector for Tarantool 1.6+.
+
+                    .. wp_button::
+                        :class: b-connector-source-link
+                        :link: https://github.com/viciious/go-tarantool
+                        :title: Source
+                        :icon: github-icon
+
+                    .. container:: b-connector-owner
+
+                        Owner: https://github.com/viciious
 
             .. _Java:
             .. container:: b-connector
@@ -260,7 +270,7 @@ Tarantool - Connectors
 
                 OpenResty
 
-                -   Connector for working with Tarantool ??? from nginx with an embedded Lua module or with OpenResty.
+                -   Connector for working with Tarantool 1.6 from nginx with an embedded Lua module or with OpenResty.
                     |star|
 
                     .. wp_button::
@@ -274,7 +284,6 @@ Tarantool - Connectors
                         Owner: https://github.com/perusio
 
                 -   Lua connector for Tarantool 1.6 on OpenResty nginx cosockets.
-                    |star|
 
                     .. wp_button::
                         :class: b-connector-source-link
@@ -314,7 +323,6 @@ Tarantool - Connectors
                 -   EV connector for Tarantool 1.6+. Asynchronous, fast, supports schemas
                     (incl. fields) for on-the-fly tuple-to-hash and backward transformations,
                     supports Types::Serializer for transparent conversion to JSON.
-                    |star|
 
                     .. wp_button::
                         :class: b-connector-source-link
@@ -345,7 +353,6 @@ Tarantool - Connectors
                         Owner: https://github.com/bigbes
 
                 -   Pure PHP connector for Tarantool 1.6+. Includes a client and a mapper.
-                    |star|
 
                     .. wp_button::
                         :class: b-connector-source-link
@@ -362,7 +369,8 @@ Tarantool - Connectors
 
                 Python
 
-                -   Python connector for Tarantool 1.6+
+                -   Pure Python connector for Tarantool 1.6+, also available from
+                    `pypi <http://pypi.python.org/pypi/tarantool>`_
                     |star|
 
                     .. wp_button::
@@ -371,18 +379,11 @@ Tarantool - Connectors
                         :title: Source
                         :icon: github-icon
 
-                    .. wp_button::
-                        :class: b-connector-source-link
-                        :link: http://pypi.python.org/pypi/tarantool
-                        :title: Source
-                        :icon: github-icon
-
                     .. container:: b-connector-owner
 
                         Owner: https://github.com/bigbes
 
-                -   Python Gevent driver.
-                    |star|
+                -   Python Gevent driver for Tarantool 1.6
 
                     .. wp_button::
                         :class: b-connector-source-link
@@ -394,8 +395,19 @@ Tarantool - Connectors
 
                         Owner: https://github.com/shveenkov
 
-                -   Python AIO driver.
-                    |star|
+                -   Python 3.5 asyncio driver for Tarantool 1.6+
+
+                    .. wp_button::
+                        :class: b-connector-source-link
+                        :link: https://github.com/igorcoding/asynctnt
+                        :title: Source
+                        :icon: github-icon
+
+                    .. container:: b-connector-owner
+
+                        Owner: https://github.com/igorcoding
+
+                -   Python 3.4 asyncio driver for Tarantool 1.6
 
                     .. wp_button::
                         :class: b-connector-source-link
@@ -466,7 +478,12 @@ Tarantool - Connectors
 
                 Smalltalk
 
-                -   Pharo Smalltalk connector for Tarantool ???
+                -   Pharo Smalltalk connector for Tarantool 1.6+. Includes object-oriented
+                    wrapper classes for easier use, automatic connection handling (pooling,
+                    reconnect). An additional module
+                    (`Tarantube <http://smalltalkhub.com/#!/~MasashiUmezawa/Tarantube>`_)
+                    provides queue interfaces.
+
                     |star|
 
                     .. wp_button::
@@ -541,6 +558,9 @@ Tarantool - Connectors
                 * `S <#smalltalk>`_
                 * |point|
                 * `T <#tarantool>`_
+
+.. |starimage| image:: /images/star-icon.png
+    :height: 18px
 
 .. |point| unicode:: U+2022
 

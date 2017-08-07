@@ -29,7 +29,7 @@ $(function() {
       console.log('FIRST FOR', i);
       if (os_name.indexOf(keys[i]) != -1) {
         console.log('FOUND', os_installation_page_names[keys[i]]);
-        window.location.replace('os-installation/' + os_installation_page_names[keys[i]] + '.html');
+        window.location.replace('os-installation/1.7/' + os_installation_page_names[keys[i]] + '.html');
         return;
       }
     }
@@ -38,11 +38,11 @@ $(function() {
       console.log('DOCKER FOR', i);
       if (docker_platforms[i].indexOf(os_name) != -1) {
         console.log('FOUND IN DOCKER');
-        window.location.replace('os-installation/' + os_installation_page_names['docker'] + '.html');
+        window.location.replace('os-installation/1.7/' + os_installation_page_names['docker'] + '.html');
         return;
       }
     }
-    
+
     window.location.replace(learn_more_button.attr('href'));
   });
 

@@ -5,7 +5,7 @@
 
         .. container:: b-download-header-path
 
-            Downloads > OS Installation
+            Downloads > Packages
 
         .. container:: b-download-header-versions
 

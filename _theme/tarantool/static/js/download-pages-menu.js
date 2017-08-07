@@ -3,7 +3,7 @@ $(function() {
   var os_installation_menu = $('.b-os-installation-menu');
   var connectors_page_menu = $('.p-connectors-page-menu');
 
-  var isOpened = false;
+  var isOpened = true;
 
   button.click(function(event) {
     if (isOpened) os_installation_menu.hide();
@@ -16,11 +16,10 @@ $(function() {
     if ($(elem).find('a').attr('href') === '#') $(elem).addClass('active');
   });
 
-  // os_installation_menu.find('li').click(function(event) {
-  //   window.location.replace($(event.target).find('a').attr('href'));
-  // });
-  //
-  // connectors_page_menu.find('li').click(function(event) {
-  //   window.location.replace($(event.target).find('a').attr('href'));
-  // });
+  $(window).resize(function() {
+    if ($(window).width() >= 768) {
+      os_installation_menu.show();
+      isOpened = true;
+    }
+  });
 });
