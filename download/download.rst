@@ -35,13 +35,12 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-general-download-title
 
-                    :doc:`Tarantool 1.6 Download <download>`
+                    :doc:`Tarantool 1.7 downloads <download>`
 
                 .. container:: b-general-download-description
 
-                    Here is bunch of sources you can check out also you can Download them at oncere pre-installed
-                    so that you can get up and running quickly.
-                    Here is bunch of sources you can check out also you can Download them at once
+                    Here is a bunch of free downloads and whatever
+                    you may need for Tarantool.
 
     .. wp_section::
         :class: p-download-mainpage-blocks
@@ -58,17 +57,19 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-title
 
-                    OS Installation
+                    Packages
 
                 .. container:: b-download-block-description
 
-                    There is some instructions how to install tarantool for your OS type.
-                    You can choose your OS type insde this card and see other inctructions.
+                    We're building packages for
+                    a variety of operating systems.
+                    Choose your OS and follow the installation instructions.
+                    Hosting is powered by |packagecloud|
 
                 .. _os-install:
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <os-installation/os-x>`
+                    :doc:`Learn more → <os-installation/1.7/os-x>`
 
         .. container:: b-download-block
 
@@ -86,8 +87,10 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-description
 
-                    If you’re looking for the latest version of a client driver, prefer rocks and gems to rpms and debs,
-                    or looking for an alternative, select a driver from a community-maintained list
+                    If you’re looking for the latest version of a client driver,
+                    prefer rocks and gems to rpms and debs,
+                    or want to try out an alternative, choose a driver from
+                    a community-maintained list.
 
                 .. container:: b-download-block-button
 
@@ -109,8 +112,9 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-description
 
-                    Tarantool official docker images come with batteries on board:
-                    rocks, connectors, and perks are pre-installed so that you can get up and running quickly.
+                    Official Tarantool images for Docker come with batteries
+                    on board: modules, connectors and perks are pre-installed
+                    so that you can get up and running quickly.
 
                 .. container:: b-download-block-button
 
@@ -128,11 +132,12 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-title
 
-                    Rocks
+                    Modules
 
                 .. container:: b-download-block-description
 
-                    An exhaustive list of all Tarantool modules, installable with luarocks or tarantoolctl.
+                    An exhaustive list of all Tarantool modules,
+                    installable with ``luarocks`` or ``tarantoolctl``.
 
                 .. container:: b-download-block-button
 
@@ -154,8 +159,8 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-enterprise-downloads-description
 
-                    All tools and everything you need for critical deployments,
-                    make your work more comfortable and faster
+                    `Carrier-grade edition <https://tarantool.io/try-it>`_
+                    for critical deployments.
 
             .. container:: b-enterprise-downloads-buttons-container
 

@@ -29,7 +29,13 @@ $(function() {
   }
 
   function placeMenu() {
-    if ($(window).width() >= 768) rocks_body.prepend(rocks_menu);
-    else rocks_header.after(rocks_menu);
+    if ($(window).width() >= 768) {
+      rocks_body.prepend(rocks_menu);
+      rocks_menu.show();
+      isOpened = true;
+    }
+    else {
+      rocks_header.after(rocks_menu);
+    }
   }
 });

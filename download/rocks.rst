@@ -30,7 +30,7 @@ Tarantool - Rocks
                 </div>
 
     .. wp_section::
-        :title: Available rocks
+        :title: Available modules
         :class: p-rocks-header
 
         To install a module, say:
@@ -149,7 +149,7 @@ Tarantool - Rocks
                         console
                         :specialtext:`Built-in`
 
-                    Module to connect remotely to a Tarantool instance via an admin port
+                    Connect remotely to a Tarantool instance via an admin port
 
                 -   .. container:: b-rock-block-header
 
@@ -177,7 +177,7 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Module to export Tarantool application metrics to Graphite
+                    Export Tarantool application metrics to Graphite
 
                 -   .. container:: b-rock-block-header
 
@@ -256,21 +256,21 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Simple tool to benchmark Tarantool internal API.
+                    Simple tool to benchmark Tarantool internal API
 
                 -   .. container:: b-rock-block-header
 
                         debug
                         :specialtext:`Built-in`
 
-                    Tools to print call traces, insert watchpoints, inspect Lua objects.
+                    Tools to print call traces, insert watchpoints, inspect Lua objects
 
                 -   .. container:: b-rock-block-header
 
                         fun
                         :specialtext:`Built-in`
 
-                    Functional programming primitives that work well with LuaJIT.
+                    Functional programming primitives that work well with LuaJIT
 
                 -   .. container:: b-rock-block-header
 
@@ -284,14 +284,14 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Lua code profiler based on Google Performance Tools.
+                    Lua code profiler based on Google Performance Tools
 
                 -   .. container:: b-rock-block-header
 
                         log
                         :specialtext:`Built-in`
 
-                    Routines to write messages to the built-in Tarantool log.
+                    Routines to write messages to the built-in Tarantool log
 
                 -   .. container:: b-rock-block-header
 
@@ -305,21 +305,21 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Templates to create new Tarantool modules in Lua, C and C++.
+                    Templates to create new Tarantool modules in Lua, C and C++
 
                 -   .. container:: b-rock-block-header
 
                         strict
                         :specialtext:`Built-in`
 
-                    Module to prohibit use of undeclared Lua variables.
+                    Module to prohibit use of undeclared Lua variables
 
                 -   .. container:: b-rock-block-header
 
                         tap
                         :specialtext:`Built-in`
 
-                    Tools to write nice unit tests conforming to Test Anything Protocol.
+                    Tools to write nice unit tests conforming to Test Anything Protocol
 
             .. _Geo:
             .. container:: b-rock
@@ -338,7 +338,7 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Full-featured geospatial extension for Tarantool.
+                    Full-featured geospatial extension for Tarantool
 
             .. _I18n:
             .. container:: b-rock
@@ -350,7 +350,7 @@ Tarantool - Rocks
                         iconv
                         :specialtext:`Built-in`
 
-                    Convert data between character sets.
+                    Convert data between character sets
 
             .. _Miscellaneous:
             .. container:: b-rock
@@ -369,7 +369,7 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Smart algorithm to iterate over a space and make updates without freezing the database.
+                    Smart algorithm to iterate over a space and make updates without freezing the database
 
             .. _Networking:
             .. container:: b-rock
@@ -388,14 +388,14 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Net.box connection pool for Tarantool.
+                    Net.box connection pool for Tarantool
 
                 -   .. container:: b-rock-block-header
 
                         http
                         :specialtext:`Built-in`
 
-                    HTTP client with support for HTTPS and keepalive; uses routines in the 'libcurl' library.
+                    HTTP client with support for HTTPS and keepalive; uses routines in the 'libcurl' library
 
                 -   .. container:: b-rock-block-header
 
@@ -409,7 +409,7 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Connect from Tarantool to applications which speak MQTT protocol.
+                    Connect from Tarantool to applications which speak MQTT protocol
 
                 -   .. container:: b-rock-block-header
 
@@ -423,7 +423,7 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Send messages from Tarantool to Mail.Ru Agent and ICQ.
+                    Send messages from Tarantool to Mail.Ru Agent and ICQ
 
                 -   .. container:: b-rock-block-header
 
@@ -437,7 +437,7 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    Module to connect remotely to a Tarantool instance via a binary port.
+                    Module to connect remotely to a Tarantool instance via a binary port
 
             .. _Operating systems:
             .. container:: b-rock
@@ -449,28 +449,28 @@ Tarantool - Rocks
                         errno
                         :specialtext:`Built-in`
 
-                    Module to handle errors produced by POSIX APIs.
+                    Module to handle errors produced by POSIX APIs
 
                 -   .. container:: b-rock-block-header
 
                         fio
                         :specialtext:`Built-in`
 
-                    Routines for file input/output.
+                    Routines for file input/output
 
                 -   .. container:: b-rock-block-header
 
                         os
                         :specialtext:`Built-in`
 
-                    Faster analogs to the standard 'os' functions in Lua.
+                    Faster analogs to the standard 'os' functions in Lua
 
                 -   .. container:: b-rock-block-header
 
                         socket
                         :specialtext:`Built-in`
 
-                    Non-blocking routines for socket input/output.
+                    Non-blocking routines for socket input/output
 
             .. _Power tools:
             .. container:: b-rock
@@ -490,7 +490,7 @@ Tarantool - Rocks
                             </a>
 
                     Expiration daemon module to turn Tarantool into a persistent memcache
-                    replacement with your own expiration strategy.
+                    replacement with your own expiration strategy
 
                 -   .. container:: b-rock-block-header
 
@@ -519,7 +519,7 @@ Tarantool - Rocks
                             </a>
 
                     Application-level library that provides sharding, re-sharding and
-                    client-side reliable replication for Tarantool.
+                    client-side reliable replication for Tarantool
 
                 -   .. container:: b-rock-block-header
 
@@ -533,8 +533,8 @@ Tarantool - Rocks
                                 <span>Latest source</span>
                             </a>
 
-                    A set of persistent in-memory queues to create task queues, add and take jobs,
-                    monitor failed tasks.
+                    Set of persistent in-memory queues to create task queues, add and take jobs,
+                    monitor failed tasks
 
                 .. _Security:
                 .. container:: b-rock
@@ -546,11 +546,11 @@ Tarantool - Rocks
                             crypto
                             :specialtext:`Built-in`
 
-                        Routines to work with various cryptographic hash functions.
+                        Routines to work with various cryptographic hash functions
 
                     -   .. container:: b-rock-block-header
 
                             digest
                             :specialtext:`Built-in`
 
-                        Routines to work with “digest”, a value returned by a hash function.
+                        Routines to work with “digest”, a value returned by a hash function

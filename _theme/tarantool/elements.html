@@ -34,6 +34,16 @@
   {%- endif -%}
 {%- endmacro -%}
 
+{%- macro get_version_text(version) -%}
+  {%- if version == "1.6" -%}
+    {{ "1.6 (stable)" }}
+  {%- elif version == "1.7" -%}
+    {{ "1.7 (rc)" }}
+  {%- else -%}
+    {{ "1.8 (alpha)" }}
+  {%- endif -%}
+{%- endmacro -%}
+
 {% macro language_selector() %}
     <ul class="b-doc-language_selector-list">
     {% for lang in language_list %}
@@ -47,6 +57,33 @@
       </li>
     {% endfor %}
     </ul>
+{% endmacro %}
+
+{% macro downloads_page_header() %}
+  <div class="b-download-header">
+    <div class="b-download-header-path"> Downloads > Packages </div>
+    <div class="b-download-header-versions">
+      <p>Available versions:</p>
+      <p>
+        {% for elem in versions %}
+          {%- set version_text = get_version_text(elem) -%}
+
+          {%- set splitted = pagename.split('/') -%}
+          {%- set new_pagename = splitted[0] + '/' + splitted[1] + '/' + elem + '/' + splitted[3] -%}
+
+          {% if pagename != new_pagename %}
+            {%- set lr = pathto("/" + new_pagename + file_suffix, True) -%}
+            <a href="{{ abspath(lr.split("/", 1)[1]) }}"> {{ version_text }} </a> &nbsp;
+          {% else %}
+            <span class="current-version">{{ version_text }}</span> &nbsp;
+          {% endif %}
+        {% endfor %}
+      </p>
+    </div>
+    <div class="b-download-header-menu-button">
+      <div class="b-download-header-icon compass-icon"></div>
+    </div>
+  </div>
 {% endmacro %}
 
 {% macro versionswitcher() %}
@@ -75,17 +112,6 @@
 {% macro regular_page_header() %}
   <div class="doc-page-header" id="doc-page-header">
     {{- page_path() -}}
-    <!-- <div class="doc-page-header__path">
-      {% for elem in parents %}
-        <a href="{{ elem.link|e }}">
-          {{ elem.title }}
-        </a>
-        /
-      {% endfor %}
-      <span class="doc-page-header__path-current">
-        {{ title }}
-      </span>
-    </div> -->
     {{- versionswitcher() -}}
     <div class="doc-page-header__menu-button">
       <div class="compass-icon"></div>
@@ -209,8 +235,6 @@
     ("Try",           "https://tarantool.org/{{ language }}/try.html",                     "try"     ),
     ("Documentation", "https://tarantool.org/{{ language }}/doc/{{ version }}/index.html", "doc"     ),
     ("Download",      "https://tarantool.org/{{ language }}/download.html",                "download"),
-    ("Rocks",         "https://tarantool.org/{{ language }}/rocks.html",                   "rocks"   ),
-    ("Careers",       "https://tarantool.org/{{ language }}/careers.html",                 "careers" ),
   ] %}
 {% else %}
   {% set i_links = [
@@ -218,8 +242,6 @@
     ("Try",           abspath("try.html"),                       "try"     ),
     ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
     ("Download",      abspath("download/download.html"),         "download"),
-    ("Rocks",         abspath("rocks.html"),                     "rocks"   ),
-    ("Careers",       abspath("careers.html"),                   "careers" ),
   ] %}
 {% endif %}
 
