@@ -14,7 +14,7 @@ Tarantool - Downloads (1.8)
 
             .. container:: b-download-header-path
 
-                Downloads >
+                :doc:`Downloads <download_18>` >
 
             .. container:: b-download-header-versions
 

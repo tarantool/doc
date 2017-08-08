@@ -44,6 +44,18 @@
   {%- endif -%}
 {%- endmacro -%}
 
+{%- macro get_downloads_main_page_link() -%}
+  {%- set modified_pagename = pagename | replace("os-installation/1.6", "download_16") -%}
+  {%- set modified_pagename = modified_pagename | replace("os-installation/1.7", "download") -%}
+  {%- set modified_pagename = modified_pagename | replace("os-installation/1.8", "download_18") -%}
+
+  {%- set splitted = modified_pagename.split('/') -%}
+  {%- set download_pagename = splitted[0] + '/' + splitted[1] -%}
+
+  {%- set lr = pathto("/" + download_pagename + file_suffix, True) -%}
+  {{ abspath(lr.split("/", 1)[1]) }}
+{%- endmacro -%}
+
 {% macro language_selector() %}
     <ul class="b-doc-language_selector-list">
     {% for lang in language_list %}
@@ -59,9 +71,11 @@
     </ul>
 {% endmacro %}
 
-{% macro downloads_page_header() %}
+{% macro package_page_header() %}
   <div class="b-download-header">
-    <div class="b-download-header-path"> Downloads > Packages </div>
+    <div class="b-download-header-path">
+      <a href="{{ get_downloads_main_page_link() }}">Downloads</a> > Packages
+    </div>
     <div class="b-download-header-versions">
       <p>Available versions:</p>
       <p>

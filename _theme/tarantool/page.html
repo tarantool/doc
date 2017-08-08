@@ -2,7 +2,7 @@
 
 {% from 'elements.html' import breadcrumbs       with context %}
 {% from 'elements.html' import page_path         with context %}
-{% from 'elements.html' import downloads_page_header     with context %}
+{% from 'elements.html' import package_page_header     with context %}
 {% from 'elements.html' import regular_page_header       with context %}
 {% from 'elements.html' import versionswitcher   with context %}
 {% from 'elements.html' import navbar            with context %}
@@ -17,7 +17,7 @@
   {% elif is_package_page %}
     <div class="p-download">
       <section class="p-download-header b-os-installation-header">
-        <div class="b-block-wrapper">{{- downloads_page_header() -}}</div>
+        <div class="b-block-wrapper">{{- package_page_header() -}}</div>
       </section>
       {{ body }}
     </div>
