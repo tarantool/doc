@@ -95,6 +95,8 @@ html_context = {
         'download-page' : True,
         'download/os-instalation' : True, # FIXME Delete
         'download/connectors' : True,
+        'download/connectors_16' : True,
+        'download/connectors_18' : True,
         'download/rocks' : True,
         'download/rocks_16' : True,
         'download/rocks_18' : True,

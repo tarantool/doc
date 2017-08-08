@@ -1,0 +1,44 @@
+.b-doc-language_selector {
+  &-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+  }
+
+  &-item {
+    padding: 0;
+
+    &-url {
+      border-color: @red-color;
+      padding: 5px 8px 5px 8px;
+      text-decoration: none;
+      color: #262626;
+      font-size: 14px;
+      border: solid 1px @red-color;
+      position: relative;
+      background: #ffffff;
+
+      &.p-active {
+        background: @red-color;
+        pointer-events: none;
+        color: #ffffff;
+      }
+    }
+
+    &:first-child {
+      &-url {
+        border-radius: 4px 0 0 4px;
+      }
+    }
+
+    &:last-child {
+      &-url {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+  }
+}

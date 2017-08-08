@@ -248,14 +248,14 @@
     ("Main",          "https://tarantool.org/{{ language }}/",                             "index"   ),
     ("Try",           "https://tarantool.org/{{ language }}/try.html",                     "try"     ),
     ("Documentation", "https://tarantool.org/{{ language }}/doc/{{ version }}/index.html", "doc"     ),
-    ("Download",      "https://tarantool.org/{{ language }}/download.html",                "download"),
+    ("Download",      "https://tarantool.org/{{ language }}/download/download.html",       "download/download"),
   ] %}
 {% else %}
   {% set i_links = [
     ("Main",          abspath("index.html"),                     "index"   ),
     ("Try",           abspath("try.html"),                       "try"     ),
     ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
-    ("Download",      abspath("download/download.html"),         "download"),
+    ("Download",      abspath("download/download.html"),         "download/download"),
   ] %}
 {% endif %}
 
