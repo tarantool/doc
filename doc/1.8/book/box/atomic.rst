@@ -25,7 +25,7 @@ This is equivalent to an SQL statement like:
 
 .. code-block:: SQL
 
-   UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[[1]" = 3
+   UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[1]" = 3
 
 This query will be processed with three operating system **threads**:
 
