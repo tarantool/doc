@@ -1,0 +1,26 @@
+.b-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  display: block;
+
+  &-item {
+    display: inline-block;
+    color: #262626;
+    margin-right: -0.29em;
+
+    .p-active {
+      .transition-ease();
+      color: @red-color;
+    }
+
+    &-url {
+      display: inline-block;
+      text-decoration: none;
+      padding: 11px 13px 12px 13px;
+      height: 21px;
+    }
+  }
+
+}
