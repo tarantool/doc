@@ -30,6 +30,8 @@
     {% if is_mainpage %}
       <section class="b-block b-documentation">
         <div class="b-block-wrapper">
+          <h1 class="single-page-title">{{ title }}</h1>
+          <div class="single-page-toctree">{{- toctree(maxdepth=2, collapse=false, includehidden=true) }}</div>
           {{ content_pane }}
         </div>
       </section>
