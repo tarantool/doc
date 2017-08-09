@@ -32,9 +32,8 @@ where:
 
     .. NOTE::
 
-        :codered:`Due to technical limitations, instance names must not`
-        :codered:`contain dashes (-), forward slashes (/) and other special`
-        :codered:`characters.`
+        :codered:`Instance names must not contain dashes (-), forward slashes (/)`
+        :codered:`and other special characters.`
 
 * ``FILE`` is the path to some file (.lua, .xlog or .snap).
 

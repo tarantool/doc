@@ -18,8 +18,8 @@ Here is what ``tarantoolctl`` does when you issue the command:
 
    .. NOTE::
 
-      :codered:`Due to technical limitations, instance names must not contain`
-      :codered:`dashes (-), forward slashes (/) and other special characters.`
+      :codered:`Instance names must not contain dashes (-), forward slashes (/)`
+      :codered:`and other special characters.`
 
 2. Read and parse its own configuration file. This file contains ``tarantoolctl``
    defaults, like the path to the directory where instances should be searched
