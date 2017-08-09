@@ -30,6 +30,12 @@ where:
 * ``NAME`` is the name of an :ref:`instance file <admin-instance_file>` or a
   :ref:`module <app_server-modules>`.
 
+    .. NOTE::
+
+        :codered:`Due to technical limitations, instance names must not
+                  contain dashes (-), forward slashes (/) and other special
+                  characters.`
+
 * ``FILE`` is the path to some file (.lua, .xlog or .snap).
 
 * ``URI`` is the URI of some Tarantool instance.
