@@ -30,10 +30,10 @@ where:
 * ``NAME`` is the name of an :ref:`instance file <admin-instance_file>` or a
   :ref:`module <app_server-modules>`.
 
-    .. NOTE::
+  .. NOTE::
 
-        :codered:`Instance names must not contain dashes (-), forward slashes (/)`
-        :codered:`and other special characters.`
+     :codered:`Instance names must not contain dashes (-), forward slashes (/)`
+     :codered:`and other special characters.`
 
 * ``FILE`` is the path to some file (.lua, .xlog or .snap).
 
