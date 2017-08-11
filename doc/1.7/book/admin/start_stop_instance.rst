@@ -16,15 +16,15 @@ Here is what ``tarantoolctl`` does when you issue the command:
 1. Read and parse the command line arguments. The last argument, in our case,
    contains an instance name.
 
-   .. NOTE::
+   .. WARNING::
 
-      :codered:`Instance names must not contain dashes (-), forward slashes (/)`
-      :codered:`and other special characters.`
+       Instance names must not contain dashes (-), forward slashes (/)
+       and other special characters.
 
 2. Read and parse its own configuration file. This file contains ``tarantoolctl``
    defaults, like the path to the directory where instances should be searched
    for.
-   
+
    The default ``tarantoolctl`` configuration file is installed in
    ``/etc/default/tarantool``. This file is used when ``tarantoolctl`` is
    invoked by root. When invoked by a local user, ``tarantoolctl`` first looks
@@ -51,7 +51,7 @@ Here is what ``tarantoolctl`` does when you issue the command:
    console attached to it. This file is used later by ``tarantoolctl`` to query
    the instance state, send commands to the instance and so on.
 
-6. Finally, use Lua ``dofile`` command to execute the instance file. 
+6. Finally, use Lua ``dofile`` command to execute the instance file.
 
 If you start an instance using ``systemd`` tools, like this (the instance name
 is ``my_app``):
@@ -93,7 +93,7 @@ To restart (i.e. stop and start) a running ``my_app`` instance, say:
    $ tarantoolctl restart my_app
    $ # - OR -
    $ systemctl restart tarantool@my_app
-       
+
 .. _admin-start_stop_instance-running_locally:
 
 --------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ First, we create a sandbox directory on the user's path:
 .. NOTE::
 
    * Specify a full path to the user's home directory instead of "~/".
-   
+
    * Omit ``username`` parameter. ``tarantoolctl`` normally doesn't have
      permissions to switch current user when invoked by a local user. The
      instance will be running under 'admin'.
