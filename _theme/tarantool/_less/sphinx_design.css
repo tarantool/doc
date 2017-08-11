@@ -107,9 +107,9 @@ div.section>h1 {
 .b-page_over-head {
     margin: -13px 0 0 0;
 }
-.b-page_over-tail {
+/*.b-page_over-tail {
     margin: 25px 0 -50px 0;
-}
+}*/
 
 .b-page_header {
     margin-bottom: 10px;
@@ -471,7 +471,8 @@ table.border-0-column-2 td {
 .b-page_over-tail {
     width: 100%;
     min-width: 100%;
-    /*display: table;*/
+    display: flex;
+    justify-content: space-between;
 }
 
 .b-page_over-prev,
@@ -530,12 +531,17 @@ table.border-0-column-2 td {
     vertical-align: middle;
 }
 
-.b-page_over-prev {
+/*.b-page_over-prev {
     float: left;
 }
 
 .b-page_over-next {
     float: right;
+}*/
+
+.b-page_over-next,
+.b-page_over-prev {
+    max-width: 40%;
 }
 
 .b-documentation_top h2 {

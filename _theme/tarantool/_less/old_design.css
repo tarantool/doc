@@ -327,10 +327,10 @@
     }
     .b-block-wrapper div.admonition.note {}
     .b-documentation_top.p-documentation_in .b-block-wrapper {}
-    a.b-prev,
+    /*a.b-prev,
     a.b-next {
         max-width: 80px;
-    }
+    }*/
     /*.b-cols_content_left {
         z-index: 30
     }*/

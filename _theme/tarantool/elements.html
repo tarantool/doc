@@ -74,7 +74,9 @@
 {% macro package_page_header() %}
   <div class="b-download-header">
     <div class="b-download-header-path">
-      <a href="{{ get_downloads_main_page_link() }}">Downloads</a> > Packages
+      <a href="{{ get_downloads_main_page_link() }}">Downloads</a> >
+      {%- set lr = pathto("/" + pagename + file_suffix, True) -%}
+      <a href="{{ abspath(lr.split("/", 1)[1]) }}">Packages</a>
     </div>
     <div class="b-download-header-versions">
       <p>Available versions:</p>
@@ -87,9 +89,10 @@
 
           {% if pagename != new_pagename %}
             {%- set lr = pathto("/" + new_pagename + file_suffix, True) -%}
-            <a href="{{ abspath(lr.split("/", 1)[1]) }}"> {{ version_text }} </a> &nbsp;
+            <a href="{{ abspath(lr.split("/", 1)[1]) }}">{{ version_text }}</a> &nbsp;
           {% else %}
-            <span class="current-version">{{ version_text }}</span> &nbsp;
+            {%- set lr = pathto("/" + new_pagename + file_suffix, True) -%}
+            <a href="{{ abspath(lr.split("/", 1)[1]) }}" class="current-version">{{ version_text }}</a> &nbsp;
           {% endif %}
         {% endfor %}
       </p>
@@ -136,12 +139,12 @@
 {% macro page_path() %}
   <div class="path">
     {% for elem in parents %}
-      <a href="{{ elem.link|e }}">
+      <a href="{{ elem.link|e }}" class="path-item">
         {{ elem.title }}
       </a>
       /
     {% endfor %}
-    <span class="path__current">
+    <span class="path__current path-item">
       {{ title }}
     </span>
   </div>
@@ -199,22 +202,14 @@
       <div class="b-page_over-prev">
         <a href="{{ prev.link | e }}" class="b-prev b-ellipsis" title="{{ prev.title | e }}">
           <i class="fa fa-caret-left"></i>
-          {{ prev.title }}
+          <span class="b-ellipsis">{{ prev.title }}</span>
         </a>
       </div>
     {% endif %}
-    <!--div class="b-page_over-lang">
-      <ul class="b-page_over-lang-list">
-        <li class="b-page_over-lang-item">
-          <a href="{{ pathto('_sources/' + sourcename, true) | e }}"
-             class="b-page_over-lang-url"> {{ _("Source") }} </a>
-        </li>
-      </ul>
-    </div-->
     {% if next %}
       <div class="b-page_over-next">
         <a href="{{ next.link|e }}" class="b-next b-ellipsis" title="{{ next.title | e }}">
-          {{ next.title }}
+          <span class="b-ellipsis">{{ next.title }}</span>
           <i class="fa fa-caret-right"></i>
         </a>
       </div>

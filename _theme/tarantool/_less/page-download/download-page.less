@@ -1,6 +1,12 @@
 .p-download-mainpage {
   &-general {
     display: flex;
+
+    @media @medium-screen {
+      .b-block-wrapper {
+        width: 100%;
+      }
+    }
   }
 
   &-blocks {
@@ -14,20 +20,28 @@
   }
 
   &-enterprise-downloads {
-    background-color: #1f1e1e;
+    background: #1f1e1e;
+    border-radius: 4px;
+    margin: 10px;
   }
 
-  // @media @large-screen {
-  //   &-general {
-  //     .b-block-wrapper {
-  //       width: 100%;
-  //     }
-  //   }
-  // }
+  @media @medium-screen {
+    &-enterprise-downloads {
+      margin: 10px 15px;
+    }
+  }
+
+  @media @large-screen {
+    &-enterprise-downloads {
+      max-width: 950px;
+      margin: auto auto 10px;
+    }
+  }
 }
 
 .p-download {
   background-color: #262626;
+  display: flow-root;
 
   .b-block-wrapper {
     width: auto;
@@ -38,6 +52,12 @@
   @media @medium-screen {
     .b-block-wrapper {
       margin: 0 15px;
+    }
+
+    &-mainpage-general {
+      .b-block-wrapper {
+        width: 100%;
+      }
     }
   }
 

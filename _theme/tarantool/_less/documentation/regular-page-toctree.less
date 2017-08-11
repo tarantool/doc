@@ -1,7 +1,6 @@
 .b-cols_content_left {
   display: none;
   background: #1f1e1e;
-  // padding: 15px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -30,6 +29,10 @@
   & > ul { // Depth: 1
     padding: 15px;
 
+    ul {
+      display: none;
+    }
+
     & > li {
       &:last-child {
         margin-bottom: 0;
@@ -55,6 +58,11 @@
 
         &.current {
           border-left: solid 2px @red-color;
+        }
+
+        &.anchor {
+          border: none;
+          display: inline-block;
         }
       }
 
