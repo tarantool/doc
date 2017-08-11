@@ -15,7 +15,7 @@ Tarantool - Rocks
 
             .. container:: b-download-header-path
 
-                :doc:`Downloads <download_18>` > Modules
+                :doc:`Downloads <download_18>` > :doc:`Modules <rocks_18>`
 
             .. container:: b-download-header-versions
 

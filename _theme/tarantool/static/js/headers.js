@@ -155,9 +155,9 @@ $(function () {
           $('<i class="fa fa-caret-down"></i>')
         );
         link.siblings("i").click(function(event) {
-          event.stopPropagation();
+          // if (is_mobile) event.stopPropagation();
 
-          menu.children("ul").slideToggle();
+          menu.children("ul").slideToggle(10);
           $(this).toggleClass("fa-caret-down").toggleClass("fa-caret-up");
         });
         ul.children("li").each(toggle_recursive);
@@ -187,12 +187,19 @@ $(function () {
       $(this).find("a.current").each(function() {
         $(this).siblings("i").click();
         $(this).parents("ul.current").prev().siblings("i").click();
+        $(this).siblings("ul").find("a").each(function(i, el) { // All inside page links should have "anchor" class
+          var href = $(el).attr("href");
+          if (href.startsWith("#") && !href.endsWith("#")) {
+            $(el).addClass("anchor");
+          }
+        })
       });
 
       $(this).find("a").click(function() {
         $(".b-menu-toc").removeClass('active');
         $(".toggle-navigation").removeClass('active');
       });
+
     }).click(function() {
       // if (is_mobile) {
       //   event.stopPropagation();

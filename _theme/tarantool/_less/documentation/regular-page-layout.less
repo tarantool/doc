@@ -6,11 +6,16 @@
   @media @large-screen {
     display: flex;
   }
+
+  @media @xlarge-screen {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
 
 .b-cols_content_right {
   padding: 0;
-  margin: 0 15px;
+  margin: 0 15px 10px;
 
   .b-cols_content_left {
     margin: auto -15px;
@@ -42,5 +47,13 @@
     .page-title {
       font-size: 25px;
     }
+  }
+}
+
+// TODO Separate all header's styles into own file. 
+.b-header {
+  @media @xlarge-screen {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }
