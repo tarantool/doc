@@ -140,18 +140,18 @@ Now we launch our application in the same manner as before:
 
    $ tarantool myapp.lua
    Hello, world!
-   2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> version 1.7.2-146-g021d36b
-   2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> log level 5
-   2016-12-19 16:07:14.251 [41436] main/101/myapp.lua I> mapping 1073741824 bytes for tuple arena...
-   2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovery start
-   2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovering from `./00000000000000000000.snap'
-   2016-12-19 16:07:14.271 [41436] main/101/myapp.lua I> recover from `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.271 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.272 [41436] main/102/hot_standby I> recover from `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.274 [41436] iproto/102/iproto I> binary: started
-   2016-12-19 16:07:14.275 [41436] iproto/102/iproto I> binary: bound to [::]:3301
-   2016-12-19 16:07:14.275 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.278 [41436] main/101/myapp.lua I> ready to accept requests
+   2017-08-11 16:07:14.250 [41436] main/101/myapp.lua C> version 1.8.1-429-g4e5231702
+   2017-08-11 16:07:14.250 [41436] main/101/myapp.lua C> log level 5
+   2017-08-11 16:07:14.251 [41436] main/101/myapp.lua I> mapping 1073741824 bytes for tuple arena...
+   2017-08-11 16:07:14.255 [41436] main/101/myapp.lua I> recovery start
+   2017-08-11 16:07:14.255 [41436] main/101/myapp.lua I> recovering from `./00000000000000000000.snap'
+   2017-08-11 16:07:14.271 [41436] main/101/myapp.lua I> recover from `./00000000000000000000.xlog'
+   2017-08-11 16:07:14.271 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
+   2017-08-11 16:07:14.272 [41436] main/102/hot_standby I> recover from `./00000000000000000000.xlog'
+   2017-08-11 16:07:14.274 [41436] iproto/102/iproto I> binary: started
+   2017-08-11 16:07:14.275 [41436] iproto/102/iproto I> binary: bound to [::]:3301
+   2017-08-11 16:07:14.275 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
+   2017-08-11 16:07:14.278 [41436] main/101/myapp.lua I> ready to accept requests
 
 This time, Tarantool executes our script and keeps working as a server,
 accepting TCP requests on port 3301. We can see Tarantool in the current
