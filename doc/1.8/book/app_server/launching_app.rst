@@ -23,7 +23,7 @@ in C or C++.
       - |
        Tutorial -- Screen #1 -- Hello, Moon
        ====================================
-       
+
        Welcome to the Tarantool tutorial.
        It will introduce you to Tarantool’s Lua application server
        and database server, which is what’s running what you’re seeing.
@@ -33,13 +33,18 @@ in C or C++.
 
 Let's create and launch our first Lua application for Tarantool.
 Here's a simplest Lua application, the good old "Hello, world!":
- 
+
 .. code-block:: lua
 
    #!/usr/bin/env tarantool
    print('Hello, world!')
- 
-We save it in a file (let it be ``myapp.lua`` in the current directory).
+
+We save it in a file. Let it be ``myapp.lua`` in the current directory.
+
+.. WARNING::
+
+    Application file names must not contain dashes (-), forward slashes (/)
+    and other special characters.
 
 Now let's discuss how we can launch our application with Tarantool.
 
@@ -61,8 +66,8 @@ To run Tarantool with our application, we can say:
 
 .. code-block:: bash
 
-   # create a temporary container and 
-   # launch Tarantool with our application  
+   # create a temporary container and
+   # launch Tarantool with our application
    $ docker run --rm -t -i \
                 -v `pwd`/myapp.lua:/opt/tarantool/myapp.lua \
                 -v /data/dir/on/host:/var/lib/tarantool \
@@ -71,7 +76,7 @@ To run Tarantool with our application, we can say:
 Here two resources on the host get mounted in the container:
 
 * our application file (``\`pwd\`/myapp.lua``) and
-* Tarantool data directory (``/data/dir/on/host``). 
+* Tarantool data directory (``/data/dir/on/host``).
 
 By convention, the directory for Tarantool application code inside a container
 is ``/opt/tarantool``, and the directory for data is ``/var/lib/tarantool``.
@@ -89,7 +94,7 @@ application:
 * in the script mode,
 * as a server application, or
 * as a daemon service.
- 
+
 The simplest way is to pass the filename to Tarantool at start:
 
 .. code-block: bash
@@ -97,7 +102,7 @@ The simplest way is to pass the filename to Tarantool at start:
    $ tarantool myapp.lua
    Hello, world!
    $
- 
+
 Tarantool starts, executes our script in the **script mode** and exits.
 
 Now let’s turn this script into a **server application**. We use
@@ -107,7 +112,7 @@ Lua module to:
 * launch the database (a database has a persistent on-disk state, which needs
   to be restored after we start an application) and
 * configure Tarantool as a server that accepts requests over a TCP port.
- 
+
 We also add some simple database logic, using
 :ref:`space.create() <box_schema-space_create>` and
 :ref:`create_index() <box_space-create_index>` to create a space with a primary
@@ -147,17 +152,17 @@ Now we launch our application in the same manner as before:
    2016-12-19 16:07:14.275 [41436] iproto/102/iproto I> binary: bound to [::]:3301
    2016-12-19 16:07:14.275 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
    2016-12-19 16:07:14.278 [41436] main/101/myapp.lua I> ready to accept requests
- 
+
 This time, Tarantool executes our script and keeps working as a server,
 accepting TCP requests on port 3301. We can see Tarantool in the current
 session’s process list:
- 
+
 .. code-block: bash
 
    $ ps | grep "tarantool"
      PID TTY       	TIME CMD
    41608 ttys001	0:00.47 tarantool myapp.lua <running>
- 
+
 But the Tarantool instance will stop if we close the current terminal window.
 To detach Tarantool and our application from the terminal window, we can launch
 it in the **daemon mode**. To do so, we add some parameters to ``box.cfg{}``:
@@ -188,7 +193,7 @@ We launch our application in the same manner as before:
    $ tarantool myapp.lua
    Hello, world!
    $
- 
+
 Tarantool executes our script, gets detached from the current shell session
 (you won't see it with ``ps | grep "tarantool"``) and continues working in the
 background as a daemon attached to the global session (with SID = 0):
@@ -197,7 +202,7 @@ background as a daemon attached to the global session (with SID = 0):
 
    $ ps -ef | grep "tarantool"
      PID SID     TIME  CMD
-   42178   0  0:00.72 tarantool myapp.lua <running> 
+   42178   0  0:00.72 tarantool myapp.lua <running>
 
 Now that we have discussed how to create and launch a Lua application for
 Tarantool, let's dive deeper into programming practices.
