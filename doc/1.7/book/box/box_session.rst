@@ -56,6 +56,35 @@ client connection.
 
     :rtype:  string
 
+.. _box_session-type:
+
+.. function:: type()
+
+    :return: the type of connection or cause of action.
+
+    Possible values are:
+    'binary' (if connection was done with binary protocol, for example
+    to a target made with
+    :ref:`box.cfg{listen=...} <cfg_basic-listen>`);
+    'console' (if connection was done with administrative console,
+    for example to a target made with
+    :ref:`console.listen <console-listen>`);
+    'repl' (if connection was done directly, for example when
+    :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`);
+    'applier' (if action is due to
+    :ref:`replication <replication>`,
+    regardless how connection was done);
+    'background' (if action is in a
+    :ref:`background fiber <fiber-module>`,
+    regardless whether the tarantool server was
+    :ref:`started in the background <cfg_basic-background>`).
+    ``box.session.type()`` is useful for an ``on_replace()`` trigger
+    on a replica -- the value will be 'applier' if and only if
+    the trigger was activated because of a request that was done on
+    the master.
+
+    :rtype:  string
+
 .. _box_session-su:
 
 .. function:: su(user-name [, function-to-execute])
