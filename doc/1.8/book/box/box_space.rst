@@ -175,8 +175,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Note re storage engine:
         vinyl does not support ``bsize()``.
 
-
-
     .. _box_space-count:
 
     .. method:: count([key], [iterator])
@@ -529,6 +527,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         If the parameters are (nil, old-trigger-function), then the old
         trigger is deleted.
+
+        If it is necessary to know whether the trigger activation
+        happened due to replication or on a specific connection type,
+        the function can refer to :ref:`box.session.type() <box_session-type>`.
+
         Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
         **Example #1:**
