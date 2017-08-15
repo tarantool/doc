@@ -283,7 +283,7 @@ client connection.
 
     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
-    **Example**
+    **Example 1**
 
     .. code-block:: tarantoolsession
 
@@ -291,3 +291,47 @@ client connection.
                  >   x = x + 1
                  > end
         tarantool> box.session.on_auth(f)
+
+    **Example 2**
+
+    This is a more complex example, with two server instances.
+    The first server instance listens on port 3301; its default
+    user name is 'admin'.
+    There are two on_auth triggers. The first trigger has a function
+    with no arguments, it can only look at box.session.user().
+    The second trigger has a function with a user_name argument,
+    it can look at both box.session.user() and user_name.
+    The second server instance will connect with console.connect(),
+    and then will display the variables that were set by the
+    trigger functions.
+
+    .. code-block:: none
+
+        -- On the first server instance, which listens on port 3301
+        box.cfg{listen=3301}
+        function function1()
+          print('function 1, box.session.user()='..box.session.user())
+          end
+        function function2(user_name)
+          print('function 2, box.session.user()='..box.session.user())
+          print('function 2, user_name='..user_name)
+          end
+        box.session.on_auth(function1)
+        box.session.on_auth(function2)
+        box.schema.user.passwd('admin')
+
+    .. code-block:: none
+
+        -- On the second server instance, that connects to port 3301
+        console = require('console')
+        console.connect('admin:admin@localhost:3301')
+
+    The result looks like this:
+
+    .. code-block:: none
+
+        function 2, box.session.user()=guest
+        function 2, user_name=admin
+        function 1, box.session.user()=guest
+
+
