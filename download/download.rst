@@ -42,6 +42,10 @@ Tarantool - Downloads (1.7)
                     Here is a bunch of free downloads and whatever
                     you may need for Tarantool.
 
+                .. container:: b-download-block-button
+
+                    :doc:`Learn more → <os-installation/1.7/docker-hub>`
+
     .. wp_section::
         :class: p-download-mainpage-blocks
 
@@ -69,7 +73,7 @@ Tarantool - Downloads (1.7)
                 .. _os-install:
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <os-installation/1.7/os-x>`
+                    :doc:`Learn more → <os-installation/1.7/docker-hub>`
 
         .. container:: b-download-block
 
