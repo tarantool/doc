@@ -62,28 +62,31 @@ client connection.
 
     :return: the type of connection or cause of action.
 
-    Possible values are:
-    'binary' (if connection was done with binary protocol, for example
-    to a target made with
-    :ref:`box.cfg{listen=...} <cfg_basic-listen>`);
-    'console' (if connection was done with administrative console,
-    for example to a target made with
-    :ref:`console.listen <console-listen>`);
-    'repl' (if connection was done directly, for example when
-    :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`);
-    'applier' (if action is due to
-    :ref:`replication <replication>`,
-    regardless how connection was done);
-    'background' (if action is in a
-    :ref:`background fiber <fiber-module>`,
-    regardless whether the tarantool server was
-    :ref:`started in the background <cfg_basic-background>`).
-    ``box.session.type()`` is useful for an ``on_replace()`` trigger
+    :rtype:  string
+
+    Possible return values are:
+
+    * 'binary' if the connection was done via the binary protocol, for example
+      to a target made with
+      :ref:`box.cfg{listen=...} <cfg_basic-listen>`;
+    * 'console' if the connection was done via the administrative console,
+      for example to a target made with
+      :ref:`console.listen <console-listen>`;
+    * 'repl' if the connection was done directly, for example when
+      :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`;
+    * 'applier' if the action is due to
+      :ref:`replication <replication>`,
+      regardless of how the connection was done;
+    * 'background' if the action is in a
+      :ref:`background fiber <fiber-module>`,
+      regardless of whether the Tarantool server was
+      :ref:`started in the background <cfg_basic-background>`.
+
+    ``box.session.type()`` is useful for an
+    :ref:`on_replace() <box_space-on_replace>` trigger
     on a replica -- the value will be 'applier' if and only if
     the trigger was activated because of a request that was done on
     the master.
-
-    :rtype:  string
 
 .. _box_session-su:
 
@@ -122,7 +125,7 @@ client connection.
         - 2
         ...
 
-   
+
 .. _box_session-storage:
 
 .. data:: storage
@@ -254,12 +257,12 @@ client connection.
     Define a trigger for execution during :ref:`authentication <authentication-users>`.
 
     The ``on_auth`` trigger function is invoked in these circumstances:
-    
+
     (1) The :ref:`console.connect <console-connect>` function includes an authentication check
         for all users except 'guest'.
         For this case, the ``on_auth`` trigger function is invoked after the ``on_connect``
         trigger function, if and only if the connection has succeeded so far.
-    
+
     (2) The :ref:`binary protocol <admin-security>` has a separate
         :ref:`authentication packet <box_protocol-authentication>`.
         For this case, connection and authentication are considered to be separate steps.

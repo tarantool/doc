@@ -175,8 +175,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         Note re storage engine:
         vinyl does not support ``bsize()``.
 
-
-
     .. _box_space-count:
 
     .. method:: count([key], [iterator])
