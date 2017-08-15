@@ -41,11 +41,6 @@ Here's a simplest Lua application, the good old "Hello, world!":
 
 We save it in a file. Let it be ``myapp.lua`` in the current directory.
 
-.. WARNING::
-
-    Application file names must not contain dashes (-), forward slashes (/)
-    and other special characters.
-
 Now let's discuss how we can launch our application with Tarantool.
 
 .. _app_server-launching_app_docker:

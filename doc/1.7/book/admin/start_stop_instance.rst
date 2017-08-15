@@ -16,11 +16,6 @@ Here is what ``tarantoolctl`` does when you issue the command:
 1. Read and parse the command line arguments. The last argument, in our case,
    contains an instance name.
 
-   .. WARNING::
-
-       Instance names must not contain dashes (-), forward slashes (/)
-       and other special characters.
-
 2. Read and parse its own configuration file. This file contains ``tarantoolctl``
    defaults, like the path to the directory where instances should be searched
    for.
