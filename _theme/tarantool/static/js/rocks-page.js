@@ -3,8 +3,7 @@ $(function() {
   var rocks_menu = $('#rocks-menu');
   var rocks_header = $('#rocks-general-header');
   var rocks_body = $('#rocks-body');
-
-  console.log('ROCKS MENU SCRIPT', rocks_menu, rocks_body);
+  var rocks_content = $('.p-rocks-content');
 
   var isOpened = true;
 
@@ -15,10 +14,6 @@ $(function() {
 
       isOpened = !isOpened;
     });
-
-    // os_installation_menu.find('li').each(function(i, elem) {
-    //   if ($(elem).find('a').attr('href') === '#') $(elem).addClass('active');
-    // });
   }
 
   if (rocks_menu) {
@@ -37,5 +32,9 @@ $(function() {
     else {
       rocks_header.after(rocks_menu);
     }
+  }
+
+  if ($(window).width() >= 768) {
+    rocks_content.css("max-height", rocks_menu.find('ul').height());
   }
 });

@@ -12,7 +12,7 @@ Tarantool - Ubuntu
         .. include:: menu.rst
 
     .. wp_section::
-        :title: OS Installation: Ubuntu precise
+        :title: Ubuntu precise
         :class: b-os-installation-content
 
         We maintain an always up-to-date Ubuntu package repository.
