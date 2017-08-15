@@ -33,17 +33,16 @@
 
   &-menu {
     display: none;
-
-    ul {
-      // height: 100%;
-    }
   }
 
   &-content {
-    margin-right: 7px;
+    margin: 0 7px 10px 0;
+    overflow-y: scroll;
   }
 
-  &-alphabetical-menu {}
+  &-alphabetical-menu {
+    margin-bottom: 10px;
+  }
 
   @media @mobile-horizontal-screen {
     &-menu {
@@ -52,17 +51,12 @@
       min-width: 150px;
     }
 
-    &-content {
-      margin: 0 10px;
-      overflow-y: scroll;
-
-      &:hover {
-        overflow-y: scroll;
-      }
-    }
-
     &-alphabetical-menu {
       display: none;
+    }
+
+    &-content {
+      margin: 0 7px 10px 10px;
     }
   }
 

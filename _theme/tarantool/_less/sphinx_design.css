@@ -473,6 +473,7 @@ table.border-0-column-2 td {
     min-width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 10px; 
 }
 
 .b-page_over-prev,

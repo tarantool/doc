@@ -1,13 +1,8 @@
 $(function() {
-    // FIXME Delete comments
-    
-    // var doc_main_page_title = '.documentation-main-page-title';
-    // var b_block_wrapper = '.b-block-wrapper';
-    // var b_section_title = '.b-section-title';
-    // var nav_button = "#start-menu-nav-button";
-    // var start_menu = '.start-menu';
     var doc_main_page_header_path = '.documentation-main-page-header-path';
     var version_switcher = '.version-switcher';
+    var content = $('.documentation-main-page-content');
+    var single_page_toctree = $('.single-page-toctree');
 
     // Adding available versions list to doc main page
     if ($(doc_main_page_header_path)) {
@@ -16,27 +11,15 @@ $(function() {
       }
     }
 
-    // if ($(doc_main_page_title)) {
-    //   $(doc_main_page_title).find(b_section_title).addClass('toggle-navigation');
-    //   $(doc_main_page_title).find(b_section_title).attr('id', 'start-menu-nav-button');
-    // }
+    // Swaping list items in menu
+    var main_ul = $($(content.children('.toctree-wrapper')).children('ul'));
+    var sorted_main_ul = main_ul;
+    $(sorted_main_ul.children('li')[1]).insertAfter($(sorted_main_ul.children('li')[2]));
+    main_ul = sorted_main_ul;
 
-    // $(nav_button).on('click', function(event) {
-    //     event.stopPropagation();
-    //     if (!$(this).hasClass('active')) {
-    //         $(this).addClass('active');
-    //         $(start_menu).addClass('active');
-    //         $("body").addClass('stop-scroll');
-    //     } else {
-    //         $(this).removeClass('active');
-    //         $(start_menu).removeClass('active');
-    //         $("body").removeClass('stop-scroll');
-    //     }
-    // });
-
-    // $("body").click(function() {
-    //     $(start_menu).removeClass("active");
-    //     $(nav_button).removeClass("active");
-    //     $("body").removeClass('stop-scroll');
-    // });
+    // Swaping list items in single page menu
+    // var single_page_ul = $(single_page_toctree.children('ul'));
+    // var sorted_single_page_ul = single_page_ul;
+    // $(sorted_single_page_ul.children('li')[1]).insertAfter($(sorted_single_page_ul.children('li')[2]));
+    // single_page_ul = sorted_single_page_ul;
 });

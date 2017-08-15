@@ -1,7 +1,6 @@
 $(function() {
   var button = $('.b-download-header-menu-button');
   var os_installation_menu = $('.b-os-installation-menu');
-  var connectors_page_menu = $('.p-connectors-page-menu');
 
   var isOpened = true;
 

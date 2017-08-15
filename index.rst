@@ -47,18 +47,17 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
 
                 .. raw:: html
 
-                    <div class="b-feature__icon indexes-icon"></div>
+                    <div class="b-feature__icon replacement-icon"></div>
 
                 .. container::
 
                     .. container:: b-feature-title
 
-                        Indexes
+                        Compatibility
 
                     .. container:: b-feature-description
 
-                        :ref:`secondary indexes <box_index>`, :ref:`range queries <box_index>`,
-                        :ref:`index iterators <box_index>`
+                        A drop-in replacement for Lua 5.1, based on LuaJIT
 
             .. container:: b-feature
 
@@ -80,17 +79,36 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
 
                 .. raw:: html
 
+                    <div class="b-feature__icon query-icon"></div>
+
+                .. container::
+
+                    .. container:: b-feature-title
+
+                        Query language
+
+                    .. container:: b-feature-description
+
+                        ANSI SQL, Lua stored procedures and triggers
+
+                        ..
+                            :ref:`server-side scripting and stored procedures <lua_tutorials>`
+
+            .. container:: b-feature
+
+                .. raw:: html
+
                     <div class="b-feature__icon product-icon"></div>
 
                 .. container::
 
                     .. container:: b-feature-title
 
-                        Lua packages
+                        Extensibility
 
                     .. container:: b-feature-description
 
-                        for non-blocking I/O, fibers and HTTP
+                        Packages for network and file I/O, HTTP, and more
 
             .. container:: b-feature
 
@@ -112,51 +130,17 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
 
                 .. raw:: html
 
-                    <div class="b-feature__icon query-icon"></div>
-
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        Query language
-
-                    .. container:: b-feature-description
-
-                        :ref:`server-side scripting and stored procedures <lua_tutorials>`
-
-            .. container:: b-feature
-
-                .. raw:: html
-
                     <div class="b-feature__icon replication-icon"></div>
 
                 .. container::
 
                     .. container:: b-feature-title
 
-                        Replication
+                        High availability
 
                     .. container:: b-feature-description
 
-                        :ref:`master-slave <replication>` and :ref:`master-master <replication>` replication
-
-            .. container:: b-feature
-
-                .. raw:: html
-
-                    <div class="b-feature__icon replacement-icon"></div>
-
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        Drop-in replacement
-
-                    .. container:: b-feature-description
-
-                        A drop-in replacement for Lua 5.1, based on LuaJIT 2.1;
-                        simply use #!/usr/bin/tarantool instead of #!/usr/bin/lua in your script
-
+                        :ref:`master-master <replication>` and sharding
 
 .. _secondary indexes: doc/book/box/box_index.html
 .. _range queries: doc/book/box/box_index.html
