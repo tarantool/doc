@@ -35,6 +35,9 @@ $(function() {
   }
 
   if ($(window).width() >= 768) {
-    rocks_content.css("max-height", rocks_menu.find('ul').height());
+    rocks_content.css("height", rocks_menu.find('ul').height());
+  }
+  else {
+    rocks_content.css("height", "100vh");
   }
 });

@@ -1,4 +1,6 @@
 .p-rocks {
+  display: block;
+  
   &-header {
     font-size: 18px;
     line-height: 1.78;
@@ -31,7 +33,8 @@
 
   &-content {
     width: 100%;
-    margin: 0 15px 0 10px;
+    margin: 0 15px 10px 10px;
+    overflow-y: scroll;
   }
 
   @media @medium-screen {
@@ -40,14 +43,12 @@
       min-width: 260px;
       border: none;
     }
+  }
 
-    &-content {
-      // overflow-y: hidden;
-      overflow-y: scroll;
-
-      &:hover {
-        overflow-y: scroll;
-      }
+  @media @large-screen {
+    &-body {
+      max-width: 950px;
+      margin: auto;
     }
   }
 
@@ -57,11 +58,6 @@
         font-size: 42px;
         line-height: 0.95;
       }
-    }
-
-    &-body {
-      max-width: 950px;
-      margin: auto;
     }
   }
 }

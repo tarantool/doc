@@ -95,10 +95,17 @@
     background: #ffffff;
     border-bottom: solid 1px #dcdcdc;
 }
+
+// FIXME Separate styles into own file
 .b-header-wrapper,
 .b-footer-wrapper {
-    width:  799px;
-    margin: 0 auto;
+    // width:  799px;
+    margin: 0 15px;
+
+    @media @large-screen {
+      width:  950px;
+      margin: 0 auto;
+    }
 }
 .b-content-wrapper {
     width:   940px;
