@@ -36,15 +36,16 @@ $(function() {
 
          general_block_description.html(detected_instruction_text.html());
 
-         general_learn_more_button.show();
-         $(general_learn_more_button.find('a')).attr("href", detected_instruction);
+         if (detected_instruction.includes('docker')) $(general_learn_more_button.find('a')).attr("href", "https://hub.docker.com/r/tarantool/tarantool/");
+         else $(general_learn_more_button.find('a')).attr("href", detected_instruction);
       }
     });
   }
-  else {
-    $(general_learn_more_button.find('a')).attr("href", "https://hub.docker.com/r/tarantool/tarantool/");
-  }
+  // else {
+  //   $(general_learn_more_button.find('a')).attr("href", "https://hub.docker.com/r/tarantool/tarantool/");
+  // }
 
+  general_learn_more_button.show();
   general_block_title.show();
   general_block_description.show();
 
@@ -63,13 +64,14 @@ function getInstruction() {
     }
   }
 
-  for (var i = 0; i < docker_platforms.length; i++) {
-    if (docker_platforms[i].indexOf(os_name) != -1) {
-      return 'os-installation/' + version + '/' + os_installation_page_names['docker'] + '.html';
-    }
-  }
+  // for (var i = 0; i < docker_platforms.length; i++) {
+  //   if (docker_platforms[i].indexOf(os_name) != -1) {
+  //     return 'os-installation/' + version + '/' + os_installation_page_names['docker'] + '.html';
+  //   }
+  // }
 
-  return 'unknown';
+  return 'os-installation/' + version + '/' + os_installation_page_names['docker'] + '.html';
+  // return 'unknown';
 }
 
 function getVersion() {

@@ -15,6 +15,6 @@ Tarantool - Docker Hub
         :title: Docker Hub
         :class: b-os-installation-content
 
-        Tarantool images are available at `Docker Hub`_.
+        .. raw:: html
 
-        .. _Docker Hub: https://hub.docker.com/r/tarantool/tarantool/
+            <p>Tarantool images are available at <a href="https://hub.docker.com/r/tarantool/tarantool/">Docker Hub</a>.</p>

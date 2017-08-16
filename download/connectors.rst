@@ -20,7 +20,7 @@ Tarantool - Connectors
 
                 Available versions:
 
-                :doc:`1.6 (stable) <connectors_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <connectors_18>`
+                :doc:`1.6 (stable) <connectors_16>` :currentversion:`1.7 (rc) <connectors>`   :doc:`1.8 (alpha) <connectors_18>`
 
     .. wp_section::
         :title: Connectors
@@ -68,12 +68,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-c
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/bigbes
+                        Owner: `@bigbes <https://github.com/bigbes>`_
 
                 -   A plain msgpack serialization library. Use it if you wish to write your own
                     connector or embed Tarantool protocol into your application.
@@ -81,12 +81,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/msgpuck
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/rtisisyk
+                        Owner: `@rtisisyk <https://github.com/rtisisyk>`_
 
             .. _C#:
             .. container:: b-connector
@@ -100,24 +100,24 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/progaudi/progaudi.tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/aensidhe, https://github.com/roman-kozachenko
+                        Owner: `@aensidhe <https://github.com/aensidhe>`_, `@roman-kozachenko <https://github.com/roman-kozachenko>`_
 
                 -   .Net connector for Tarantool 1.6. Based on the Akka.Net I/O package.
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/donmikel/tarantool-net
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/donmikel
+                        Owner: `@donmikel <https://github.com/donmikel>`_
 
             .. _Erlang:
             .. container:: b-connector
@@ -132,36 +132,36 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/stofel/taran
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/stofel
+                        Owner: `@stofel <https://github.com/stofel>`_
 
                 -   Erlang connector for Tarantool 1.7+. Based on simplepool.
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/umatomba/tara
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/brigadier
+                        Owner: `@brigadier <https://github.com/brigadier>`_
 
                 -   Native Elixir connector for Tarantool 1.6.
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/progress-engine/tarantool.ex
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/spscream
+                        Owner: `@spscream <https://github.com/spscream>`_
 
             .. _Go:
             .. container:: b-connector
@@ -174,24 +174,24 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/go-tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/funny-falcon, https://github.com/mialinx
+                        Owner: `@funny-falcon <https://github.com/funny-falcon>`_, `@mialinx <https://github.com/mialinx>`_
 
                 -   Go connector for Tarantool 1.6+.
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/viciious/go-tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/viciious
+                        Owner: `@viciious <https://github.com/viciious>`_
 
             .. _Java:
             .. container:: b-connector
@@ -204,12 +204,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-java
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/dgreenru
+                        Owner: `@dgreenru <https://github.com/dgreenru>`_
 
             .. _Lua:
             .. container:: b-connector
@@ -222,12 +222,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-lua
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/csteenberg
+                        Owner: `@csteenberg <https://github.com/csteenberg>`_
 
             .. _Node.js:
             .. container:: b-connector
@@ -240,12 +240,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-node
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/KlonD90
+                        Owner: `@KlonD90 <https://github.com/KlonD90>`_
 
             .. _NginX:
             .. container:: b-connector
@@ -258,12 +258,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/nginx_upstream_module
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/dedok
+                        Owner: `@dedok <https://github.com/dedok>`_
 
             .. _OpenResty:
             .. container:: b-connector
@@ -276,24 +276,24 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/perusio/lua-resty-tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/perusio
+                        Owner: `@perusio <https://github.com/perusio>`_
 
                 -   Lua connector for Tarantool 1.6 on OpenResty nginx cosockets.
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/ziontab/lua-nginx-tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/hengestone
+                        Owner: `@hengestone <https://github.com/hengestone>`_
 
             .. _Perl:
             .. container:: b-connector
@@ -313,12 +313,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-perl
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/Awety
+                        Owner: `@Awety <https://github.com/Awety>`_
 
                 -   EV connector for Tarantool 1.6+. Asynchronous, fast, supports schemas
                     (incl. fields) for on-the-fly tuple-to-hash and backward transformations,
@@ -327,12 +327,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/igorcoding/EV-Tarantool16
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/igorcoding, https://github.com/mons
+                        Owner: `@igorcoding <https://github.com/igorcoding>`_, `@mons <https://github.com/mons>`_
 
             .. _PHP:
             .. container:: b-connector
@@ -345,24 +345,24 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-php
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/bigbes
+                        Owner: `@bigbes <https://github.com/bigbes>`_
 
                 -   Pure PHP connector for Tarantool 1.6+. Includes a client and a mapper.
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool-php
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/rybakit, https://github.com/nekufa
+                        Owner: `@rybakit <https://github.com/rybakit>`_, `@nekufa <https://github.com/nekufa>`_
 
             .. _Python:
             .. container:: b-connector
@@ -376,48 +376,48 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-python
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/bigbes
+                        Owner: `@bigbes <https://github.com/bigbes>`_
 
                 -   Python Gevent driver for Tarantool 1.6
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/shveenkov/gtarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/shveenkov
+                        Owner: `@shveenkov <https://github.com/shveenkov>`_
 
                 -   Python 3.5 asyncio driver for Tarantool 1.6+
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/igorcoding/asynctnt
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/igorcoding
+                        Owner: `@igorcoding <https://github.com/igorcoding>`_
 
                 -   Python 3.4 asyncio driver for Tarantool 1.6
 
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/shveenkov/aiotarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/shveenkov
+                        Owner: `@shveenkov <https://github.com/shveenkov>`_
 
             .. _R language:
             .. container:: b-connector
@@ -430,12 +430,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/thekvs/tarantoolr
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/thekvs
+                        Owner: `@thekvs <https://github.com/thekvs>`_
 
             .. _Ruby:
             .. container:: b-connector
@@ -448,12 +448,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tarantool/tarantool-ruby
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/funny-falcon
+                        Owner: `@funny-falcon <https://github.com/funny-falcon>`_
 
             .. _Rust:
             .. container:: b-connector
@@ -466,12 +466,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/rtsisyk/tarantool-rust
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/rtsisyk
+                        Owner: `@rtsisyk <https://github.com/rtsisyk>`_
 
             .. _Smalltalk:
             .. container:: b-connector
@@ -489,12 +489,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/mumez/Tarantalk
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/mumez/
+                        Owner: `@mumez <https://github.com/mumez/>`_
 
             .. _Swift:
             .. container:: b-connector
@@ -507,12 +507,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tris-foundation/tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/tonyfreeman
+                        Owner: `@tonyfreeman <https://github.com/tonyfreeman>`_
 
             .. _Tarantool:
             .. container:: b-connector
@@ -526,12 +526,12 @@ Tarantool - Connectors
                     .. wp_button::
                         :class: b-connector-source-link
                         :link: https://github.com/tris-foundation/tarantool
-                        :title: Source
+                        :title:
                         :icon: github-icon
 
                     .. container:: b-connector-owner
 
-                        Owner: https://github.com/tonyfreeman
+                        Owner: `@tonyfreeman <https://github.com/tonyfreeman>`_
 
         .. container:: p-connectors-page-alphabetical-menu
 
