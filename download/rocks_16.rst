@@ -77,8 +77,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/avro-schema" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Apache Avro schema tools for Tarantool
@@ -98,8 +98,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/document" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Efficiently store JSON documents in Tarantool spaces
@@ -159,8 +159,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/dump" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Logical dump and restore for Tarantool
@@ -173,8 +173,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/graphite" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Export Tarantool application metrics to Graphite
@@ -187,8 +187,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/prometheus" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Prometheus library to collect metrics from Tarantool
@@ -206,8 +206,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/mysql" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Connect to a MySQL database from a Tarantool application
@@ -220,8 +220,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/pg" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Connect to a PostgreSQL database from a Tarantool application
@@ -252,8 +252,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/cbench" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Simple tool to benchmark Tarantool internal API
@@ -280,8 +280,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/gperftools" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Lua code profiler based on Google Performance Tools
@@ -301,8 +301,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/modulekit" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Templates to create new Tarantool modules in Lua, C and C++
@@ -334,8 +334,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/gis" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Full-featured geospatial extension for Tarantool
@@ -365,8 +365,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/Mons/tnt-moonwalker" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Smart algorithm to iterate over a space and make updates without freezing the database
@@ -384,8 +384,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/connpool" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Net.box connection pool for Tarantool
@@ -405,8 +405,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/mqtt" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Connect from Tarantool to applications which speak MQTT protocol
@@ -419,8 +419,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/mrasender" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Send messages from Tarantool to Mail.Ru Agent and ICQ
@@ -433,8 +433,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/mrasender" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Module to connect remotely to a Tarantool instance via a binary port
@@ -485,8 +485,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/expirationd" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Expiration daemon module to turn Tarantool into a persistent memcache
@@ -500,8 +500,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/memcached" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Memcached protocol wrapper for Tarantool.
@@ -514,8 +514,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/shard" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Application-level library that provides sharding, re-sharding and
@@ -529,8 +529,8 @@ Tarantool - Rocks
                         .. raw:: html
 
                             <a href="https://github.com/tarantool/queue" class="b-rock-block-header-source-link">
-                                <div class="clock-icon"></div>
-                                <span>Latest source</span>
+                                <div class="github-icon"></div>
+
                             </a>
 
                     Set of persistent in-memory queues to create task queues, add and take jobs,
