@@ -20,7 +20,7 @@ Tarantool - Connectors
 
                 Available versions:
 
-                :doc:`1.6 (stable) <connectors_16>` :currentversion:`1.7 (rc) <connectors>`   :doc:`1.8 (alpha) <connectors_18>`
+                :doc:`1.6 (stable) <connectors_16>` :currentversion:`1.7 (rc)`   :doc:`1.8 (alpha) <connectors_18>`
 
     .. wp_section::
         :title: Connectors
@@ -30,7 +30,7 @@ Tarantool - Connectors
 
             The recommended connector for each language is marked with a star |starimage|.
 
-            Want your connector listed here? Please drop us a line at :specialtext:`support@tarantool.org`.
+            Want your connector listed here? Please drop us a line at `support@tarantool.org <mailto:support@tarantool.org>`_.
 
     .. container:: p-connectors-page-body
 

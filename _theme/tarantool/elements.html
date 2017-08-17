@@ -129,7 +129,10 @@
 {% macro regular_page_header() %}
   <div class="doc-page-header" id="doc-page-header">
     {{- page_path() -}}
-    {{- versionswitcher() -}}
+    <div class="container">
+      {{ language_selector() }}
+      {{- versionswitcher() -}}
+    </div>
     <div class="doc-page-header__menu-button">
       <div class="compass-icon"></div>
     </div>
@@ -300,7 +303,6 @@
         <div class="b-header_menu-top">
           {{ i_menu() }}
           <div class="b-header_menu-top-ctl">
-            {{ language_selector() }}
             <a class="b-search-btn" href="#">
               <i class="fa fa-search"></i>
             </a>
