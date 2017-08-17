@@ -295,17 +295,22 @@ client connection.
     **Example 2**
 
     This is a more complex example, with two server instances.
+
     The first server instance listens on port 3301; its default
     user name is 'admin'.
-    There are two on_auth triggers. The first trigger has a function
-    with no arguments, it can only look at box.session.user().
-    The second trigger has a function with a user_name argument,
-    it can look at both box.session.user() and user_name.
-    The second server instance will connect with console.connect(),
+    There are two ``on_auth`` triggers:
+
+    * The first trigger has a function with no arguments, it can only look
+      at ``box.session.user()``.
+    * The second trigger has a function with a ``user_name`` argument,
+      it can look at both ``box.session.user()`` and ``user_name``.
+
+    The second server instance will connect with
+    :ref:`console.connect <console-connect>`,
     and then will display the variables that were set by the
     trigger functions.
 
-    .. code-block:: none
+    .. code-block:: lua
 
         -- On the first server instance, which listens on port 3301
         box.cfg{listen=3301}
@@ -320,7 +325,7 @@ client connection.
         box.session.on_auth(function2)
         box.schema.user.passwd('admin')
 
-    .. code-block:: none
+    .. code-block:: lua
 
         -- On the second server instance, that connects to port 3301
         console = require('console')
@@ -328,10 +333,8 @@ client connection.
 
     The result looks like this:
 
-    .. code-block:: none
+    .. code-block:: console
 
         function 2, box.session.user()=guest
         function 2, user_name=admin
         function 1, box.session.user()=guest
-
-
