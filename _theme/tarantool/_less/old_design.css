@@ -187,21 +187,32 @@
     text-decoration: underline;
 }
 
+@media screen and (max-width: 767px) {
+  .b-header-wrapper {
+      display: none;
+  }
+
+  .b-content {
+      margin-top: 40px;
+  }
+}
+
+
 @media screen and (max-width: 992px) {
     body.stop-scroll {
         position: fixed;
         right: 0;
         left: 0;
     }
-    .b-content {
+    /*.b-content {
         margin-top: 40px;
-    }
+    }*/
     .b-wrapper {
         min-width: 0;
     }
-    .b-header-wrapper {
+    /*.b-header-wrapper {
         display: none;
-    }
+    }*/
 
     .b-section-title {
         margin-bottom: 35px;

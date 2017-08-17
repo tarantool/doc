@@ -3,11 +3,14 @@ $(function() {
     var version_switcher = '.version-switcher';
     var content = $('.documentation-main-page-content');
     var single_page_toctree = $('.single-page-toctree');
+    var selector_wrapper = $('.selector-wrapper');
+    var language_selector = $(selector_wrapper.find('.b-doc-language_selector-list'));
 
-    // Adding available versions list to doc main page
+    // Adding available versions list and language selector to doc main page
     if ($(doc_main_page_header_path)) {
       if ($(version_switcher)) {
-        $(doc_main_page_header_path).after($(version_switcher));
+        language_selector.after($(version_switcher));
+        $(doc_main_page_header_path).after(selector_wrapper);
       }
     }
 

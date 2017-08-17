@@ -11,6 +11,9 @@
 {% block body %}
   {% if is_website %}
     {% if is_mainpage %}
+      <div class="selector-wrapper">
+        {{- language_selector() -}}
+      </div>
       {{- versionswitcher() -}}
     {% endif%}
     {{ body }}

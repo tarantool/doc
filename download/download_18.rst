@@ -147,7 +147,8 @@ Tarantool - Downloads (1.8)
 
                     :doc:`Learn more → <rocks>`
 
-    .. container:: p-download-mainpage-enterprise-downloads
+    .. wp_section::
+        :class: p-download-mainpage-enterprise-downloads
 
         .. container:: b-enterprise-downloads
 
