@@ -10,7 +10,7 @@
 
     .. container:: documentation-main-page-header-path
 
-        :doc:`Documentation main <index>`
+        :doc:`Documentation Overview <index>`
 
 .. wp_section::
     :class: b-documentation-toc
