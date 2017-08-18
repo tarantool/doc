@@ -26,8 +26,9 @@ extensions = [
     'ext.DropdownList',
     'ext.WebPageSection',
     'ext.WebPageButtons',
-    'ext.WebPageRocks',
-    'ext.WebPageMap'
+    'ext.WebPageMap',
+    'ext.ModuleBlock',
+    'ext.DownloadPageBlock'
 ]
 primary_domain = 'lua'
 source_suffix = '.rst'
