@@ -48,6 +48,17 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
           * ``ca_path`` - path to a directory holding one or more certificates to
             verify the peer with
           * ``ca_file`` - path to an SSL certificate file to verify the peer with
+          * ``verify_host`` - set on/off verification of the certificate's name
+            (CN) against host. See also
+            `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_
+          * ``verify_peer`` - set on/off verification of the peer's SSL
+            certificate. See also
+            `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_
+          * ``ssl_key`` - path to a private key file for a TLS and SSL client
+            certificate. See also
+            `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_
+          * ``ssl_cert`` - path to a SSL client certificate file. See also
+            `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_
           * ``headers`` - table of HTTP headers
           * ``keepalive_idle`` - delay, in seconds, that the operating system
             will wait while the connection is idle before sending keepalive
