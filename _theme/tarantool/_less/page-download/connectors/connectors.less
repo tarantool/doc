@@ -1,0 +1,93 @@
+.star-icon { .icon(18px, 18px, @star-icon); }
+
+.p-connectors-page {
+  &-header {
+    .b-section-title {
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.33;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    &-description {
+      font-size: 18px;
+      line-height: 1.78;
+      text-align: left;
+      color: #ffffff;
+
+      .special-text {
+        color: @red-color;
+      }
+
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &-body {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  &-menu {
+    display: none;
+  }
+
+  &-content {
+    margin: 0 7px 10px 0;
+    overflow-y: scroll;
+  }
+
+  &-alphabetical-menu {
+    margin-bottom: 10px;
+  }
+
+  @media @mobile-horizontal-screen {
+    &-menu {
+      display: block;
+      max-width: 150px;
+      min-width: 150px;
+    }
+
+    &-alphabetical-menu {
+      display: none;
+    }
+
+    &-content {
+      margin: 0 7px 10px 10px;
+    }
+  }
+
+  @media @medium-screen {
+    .b-block-wrapper {
+      max-width: 950px;
+      margin: auto;
+    }
+
+    &-menu {
+      max-width: 200px;
+      min-width: 200px;
+    }
+
+    &-body {
+      max-width: 950px;
+      margin: 20px auto 0;
+    }
+  }
+
+  @media @large-screen {
+    &-header {
+      .b-section-title {
+        font-size: 42px;
+        line-height: 0.95;
+      }
+    }
+
+    &-menu {
+      max-width: 215px;
+      min-width: 215px;
+    }
+  }
+}

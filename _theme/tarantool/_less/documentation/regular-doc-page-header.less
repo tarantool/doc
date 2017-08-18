@@ -1,0 +1,80 @@
+.compass-icon { .icon(27px, 27px, @compass-icon); }
+
+.doc-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #dcdcdc;
+  padding: 15px 15px 12px;
+  margin: 0 -15px;
+
+  .path {
+    display: none;
+
+    a {
+      font-size: 16px;
+      color: #262626;
+      text-decoration: none;
+      border-bottom: solid 1px rgba(24, 17, 17, 0.4);
+      margin: 0 8px;
+      display: inline-table;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .container {
+    display: flex;
+
+    .version-switcher {
+      margin-top: 7px;
+    }
+
+    .b-doc-language_selector-list {
+      display: none;
+    }
+  }
+
+  .path__current {
+    display: none;
+
+    font-size: 16px;
+    color: @red-color;
+    border-bottom: solid 1px rgba(255, 46, 47, 0.6);
+    margin-left: 5px;
+    display: inline-table;
+
+    &:first-child {
+      margin: 0;
+    }
+  }
+
+  &__menu-button {}
+
+  @media @medium-screen {
+    .container {
+      .b-doc-language_selector-list {
+        display: inherit;
+      }
+    }
+  }
+
+  @media @large-screen {
+    padding: 0 0 12px;
+    margin: 0;
+
+    &__menu-button {
+      display: none;
+    }
+
+    .path {
+      display: flex;
+    }
+
+    .path__current {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+.b-os-installation {
+  &-body {}
+
+  &-menu {
+    diplay: none;
+  }
+
+  &-content {
+    font-size: 16px;
+    line-height: 1.63;
+    text-align: left;
+    color: #ffffff;
+
+    .b-section-title {
+      font-size: 30px;
+      line-height: 1.23;
+      font-weight: bold;
+      margin: 0 0 20px;
+    }
+
+    code.docutils {
+      background: none;
+      border: none;
+      color: @red-color;
+    }
+
+    a {
+      color: @red-color;
+      text-decoration: none;
+
+      &:hover {
+        color: @light-red-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media @medium-screen {
+    &-body {
+      display: flex;
+    }
+
+    &-menu {
+      display: block !important;
+      max-width: 200px;
+      min-width: 200px;
+      margin-right: 15px;
+    }
+
+    &-content {
+      width: calc(~'100% - 215px');
+
+      .b-block-wrapper {
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  @media @large-screen {
+    &-body {
+      max-width: 994px;
+      margin: auto;
+    }
+
+    &-header {
+      .b-block-wrapper {
+        max-width: 994px;
+      }
+    }
+  }
+
+  @media @xlarge-screen {
+    &-content {
+      font-size: 18px;
+      line-height: 1.56;
+      width: calc(~'100% - 260px');
+
+      .b-section-title {
+        font-size: 42px;
+        line-height: 0.95;
+      }
+    }
+
+    &-body {
+      max-width: 1020px;
+    }
+
+    &-header {
+      .b-block-wrapper {
+        max-width: 1020px;
+      }
+    }
+
+    &-menu {
+      margin-right: 25px;
+      max-width: 260px;
+      min-width: 260px;
+    }
+  }
+}

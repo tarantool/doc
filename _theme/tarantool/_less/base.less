@@ -7,7 +7,8 @@ html {
     -webkit-font-smoothing:antialiased;
 }
 body {
-    font-family: "Helvetica Neue", Arial, Tahoma, Verdana;
+    // font-family: "Helvetica Neue", Arial, Tahoma, Verdana;
+    font-family: 'Open Sans', sans-serif;
     font-size:1em;
     font-style:normal;
     font-weight: 400;
@@ -34,11 +35,11 @@ header, nav, section, article, aside, footer {
     display:block;
 }
 a {
-    color: #168de2;
+    color: @red-color;
     text-decoration: underline;
 }
 a:hover {
-    color:#168de2;
+    color: @light-red-color;
     text-decoration: none;
 }
 textarea, input {
@@ -76,3 +77,13 @@ h1, h2, h3, h4, h5 {
     font-weight: normal;
     font-style: normal;
 }
+
+@mobile-horizontal-screen: ~"(min-width: 568px)";
+@medium-screen: ~"(min-width: 768px)";
+@large-screen: ~"(min-width: 1024px)";
+@xlarge-screen: ~"(min-width: 1280px)";
+
+//colors
+
+@red-color: #ff2e2f;
+@light-red-color: #fd4c4d;

@@ -3,7 +3,7 @@ $(function() {
         if (
             ($(this).attr('href') === window.location.pathname                                               ) ||
             ($(this).attr('href').startsWith("/doc/")     && window.location.pathname.startsWith("/doc/")    ) ||
-            ($(this).attr('href').startsWith("/download") && window.location.pathname.startsWith("/download"))
+            ($(this).attr('href').startsWith("/en/download") && window.location.pathname.startsWith("/en/download"))
            ) {
             $(this).addClass("p-active");
         }
