@@ -1,8 +1,8 @@
 $(function() {
   if (!window.location.href.includes('download/download')) return;
 
-  var os_install_block = '#os-install';
-  var learn_more_button = $(os_install_block).find('a');
+  var os_install_block = '.packages';
+  var learn_more_button = $($(os_install_block).find('.b-download-block-button'));
 
   var detected_instruction = getInstruction();
 

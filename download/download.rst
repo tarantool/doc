@@ -49,103 +49,50 @@ Tarantool - Downloads (1.7)
     .. wp_section::
         :class: p-download-mainpage-blocks
 
-        .. container:: b-download-block
+        .. download_page_block::
+            :title: Packages
+            :class: b-download-block packages
+            :icon: os-installation-icon
+            :buttontext: Learn more →
+            :buttonlink: os-installation/1.7/docker-hub.html
 
-            .. raw:: html
+            We're building packages for
+            a variety of operating systems.
+            Choose your OS and follow the installation instructions.
+            Hosting is powered by |packagecloud|
 
-                <div class="b-download-block-icon-container">
-                    <i class="os-installation-icon"></i>
-                </div>
+        .. download_page_block::
+            :title: Connectors
+            :class: b-download-block
+            :icon: connectors-icon
+            :buttontext: Learn more →
+            :buttonlink: connectors.html
 
-            .. container:: b-download-block-text-group
+            If you’re looking for the latest version of a client driver,
+            prefer rocks and gems to rpms and debs,
+            or want to try out an alternative, choose a driver from
+            a community-maintained list.
 
-                .. container:: b-download-block-title
+        .. download_page_block::
+            :title: Docker
+            :class: b-download-block
+            :icon: docker-icon
+            :buttontext: Learn more →
+            :buttonlink: https://hub.docker.com/r/tarantool/tarantool/
 
-                    Packages
+            Official Tarantool images for Docker come with batteries
+            on board: modules, connectors and perks are pre-installed
+            so that you can get up and running quickly.
 
-                .. container:: b-download-block-description
+        .. download_page_block::
+            :title: Modules
+            :class: b-download-block
+            :icon: rocks-icon
+            :buttontext: Learn more →
+            :buttonlink: rocks.html
 
-                    We're building packages for
-                    a variety of operating systems.
-                    Choose your OS and follow the installation instructions.
-                    Hosting is powered by |packagecloud|
-
-                .. _os-install:
-                .. container:: b-download-block-button
-
-                    :doc:`Learn more → <os-installation/1.7/docker-hub>`
-
-        .. container:: b-download-block
-
-            .. raw:: html
-
-                <div class="b-download-block-icon-container">
-                    <i class="connectors-icon"></i>
-                </div>
-
-            .. container:: b-download-block-text-group
-
-                .. container:: b-download-block-title
-
-                    Connectors
-
-                .. container:: b-download-block-description
-
-                    If you’re looking for the latest version of a client driver,
-                    prefer rocks and gems to rpms and debs,
-                    or want to try out an alternative, choose a driver from
-                    a community-maintained list.
-
-                .. container:: b-download-block-button
-
-                    :doc:`Learn more → <connectors>`
-
-        .. container:: b-download-block
-
-            .. raw:: html
-
-                <div class="b-download-block-icon-container">
-                    <i class="docker-icon"></i>
-                </div>
-
-            .. container:: b-download-block-text-group
-
-                .. container:: b-download-block-title
-
-                    Docker
-
-                .. container:: b-download-block-description
-
-                    Official Tarantool images for Docker come with batteries
-                    on board: modules, connectors and perks are pre-installed
-                    so that you can get up and running quickly.
-
-                .. container:: b-download-block-button
-
-                    `Learn more → <https://hub.docker.com/r/tarantool/tarantool/>`_
-
-        .. container:: b-download-block
-
-            .. raw:: html
-
-                <div class="b-download-block-icon-container">
-                    <i class="rocks-icon"></i>
-                </div>
-
-            .. container:: b-download-block-text-group
-
-                .. container:: b-download-block-title
-
-                    Modules
-
-                .. container:: b-download-block-description
-
-                    An exhaustive list of all Tarantool modules,
-                    installable with ``luarocks`` or ``tarantoolctl``.
-
-                .. container:: b-download-block-button
-
-                    :doc:`Learn more → <rocks>`
+            An exhaustive list of all Tarantool modules,
+            installable with ``luarocks`` or ``tarantoolctl``.
 
     .. wp_section::
         :class: p-download-mainpage-enterprise-downloads

@@ -69,72 +69,53 @@ Tarantool - Rocks
 
                 Data formats / Serialization
 
-                -   .. container:: b-rock-block-header
-
-                        avro-schema
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/avro-schema" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-                            </a>
+                .. module_block::
+                    :title: avro-schema
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/avro-schema
 
                     Apache Avro schema tools for Tarantool
 
-                -   .. container:: b-rock-block-header
-
-                        csv
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: csv
+                    :specialtext: Built-in
 
                     Manipulation routines for CSV (Comma-Separated-Values) records
 
-                -   .. container:: b-rock-block-header
-
-                        document
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/document" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-                                
-                            </a>
+                .. module_block::
+                    :title: document
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/document
 
                     Efficiently store JSON documents in Tarantool spaces
 
-                -   .. container:: b-rock-block-header
-
-                        json
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: json
+                    :specialtext: Built-in
 
                     JSON manipulation routines
 
-                -   .. container:: b-rock-block-header
-
-                        msgpack
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: msgpack
+                    :specialtext: Built-in
 
                     MsgPack encoder/decoder
 
-                -   .. container:: b-rock-block-header
-
-                        pickle
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: pickle
+                    :specialtext: Built-in
 
                     ASN1 BER format reader
 
-                -   .. container:: b-rock-block-header
-
-                        xlog
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: xlog
+                    :specialtext: Built-in
 
                     Reader for Tarantool’s snapshot files and write-ahead-log (WAL) files
 
-                -   .. container:: b-rock-block-header
-
-                        yaml
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: yaml
+                    :specialtext: Built-in
 
                     YAML encoder/decoder
 
@@ -143,52 +124,30 @@ Tarantool - Rocks
 
                 Database administration
 
-                -   .. container:: b-rock-block-header
-
-                        console
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: console
+                    :specialtext: Built-in
 
                     Connect remotely to a Tarantool instance via an admin port
 
-                -   .. container:: b-rock-block-header
-
-                        dump
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/dump" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: dump
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/dump
 
                     Logical dump and restore for Tarantool
 
-                -   .. container:: b-rock-block-header
-
-                        graphite
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/graphite" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: graphite
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/graphite
 
                     Export Tarantool application metrics to Graphite
 
-                -   .. container:: b-rock-block-header
-
-                        prometheus
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/prometheus" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: prometheus
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/prometheus
 
                     Prometheus library to collect metrics from Tarantool
 
@@ -197,31 +156,17 @@ Tarantool - Rocks
 
                 Databases
 
-                -   .. container:: b-rock-block-header
-
-                        mysql
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/mysql" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: mysql
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/mysql
 
                     Connect to a MySQL database from a Tarantool application
 
-                -   .. container:: b-rock-block-header
-
-                        pg
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/pg" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: pg
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/pg
 
                     Connect to a PostgreSQL database from a Tarantool application
 
@@ -230,10 +175,9 @@ Tarantool - Rocks
 
                 Date and time
 
-                -   .. container:: b-rock-block-header
-
-                        clock
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: clock
+                    :specialtext: Built-in
 
                     Routines to get time values derived from the Posix/C 'CLOCK_GETTIME' function
                     or equivalent. Useful for accurate clock and benchmarking.
@@ -243,80 +187,54 @@ Tarantool - Rocks
 
                 Development support
 
-                -   .. container:: b-rock-block-header
-
-                        cbench -- benchmark
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/cbench" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: cbench -- benchmark
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/cbench
 
                     Simple tool to benchmark Tarantool internal API
 
-                -   .. container:: b-rock-block-header
-
-                        debug
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: debug
+                    :specialtext: Built-in
 
                     Tools to print call traces, insert watchpoints, inspect Lua objects
 
-                -   .. container:: b-rock-block-header
-
-                        fun
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: fun
+                    :specialtext: Built-in
 
                     Functional programming primitives that work well with LuaJIT
 
-                -   .. container:: b-rock-block-header
-
-                        gperftools
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/gperftools" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: gperftools
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/gperftools
 
                     Lua code profiler based on Google Performance Tools
 
-                -   .. container:: b-rock-block-header
-
-                        log
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: log
+                    :specialtext: Built-in
 
                     Routines to write messages to the built-in Tarantool log
 
-                -   .. container:: b-rock-block-header
-
-                        modulekit
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/modulekit" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: modulekit
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/modulekit
 
                     Templates to create new Tarantool modules in Lua, C and C++
 
-                -   .. container:: b-rock-block-header
-
-                        strict
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: strict
+                    :specialtext: Built-in
 
                     Module to prohibit use of undeclared Lua variables
 
-                -   .. container:: b-rock-block-header
-
-                        tap
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: tap
+                    :specialtext: Built-in
 
                     Tools to write nice unit tests conforming to Test Anything Protocol
 
@@ -325,17 +243,10 @@ Tarantool - Rocks
 
                 Geo
 
-                -   .. container:: b-rock-block-header
-
-                        gis
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/gis" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: gis
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/gis
 
                     Full-featured geospatial extension for Tarantool
 
@@ -344,10 +255,9 @@ Tarantool - Rocks
 
                 I18n
 
-                -   .. container:: b-rock-block-header
-
-                        iconv
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: iconv
+                    :specialtext: Built-in
 
                     Convert data between character sets
 
@@ -356,17 +266,10 @@ Tarantool - Rocks
 
                 Miscellaneous
 
-                -   .. container:: b-rock-block-header
-
-                        moonwalker
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/Mons/tnt-moonwalker" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: moonwalker
+                    :specialtext: External
+                    :sourcelink: https://github.com/Mons/tnt-moonwalker
 
                     Smart algorithm to iterate over a space and make updates without freezing the database
 
@@ -375,66 +278,36 @@ Tarantool - Rocks
 
                 Networking
 
-                -   .. container:: b-rock-block-header
-
-                        connpool
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/connpool" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: connpool
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/connpool
 
                     Net.box connection pool for Tarantool
 
-                -   .. container:: b-rock-block-header
-
-                        http
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: http
+                    :specialtext: Built-in
 
                     HTTP client with support for HTTPS and keepalive; uses routines in the 'libcurl' library
 
-                -   .. container:: b-rock-block-header
-
-                        mqtt
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/mqtt" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: mqtt
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/mqtt
 
                     Connect from Tarantool to applications which speak MQTT protocol
 
-                -   .. container:: b-rock-block-header
-
-                        mrasender
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/mrasender" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: mrasender
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/mrasender
 
                     Send messages from Tarantool to Mail.Ru Agent and ICQ
 
-                -   .. container:: b-rock-block-header
-
-                        net.box
-                        :specialtext:`Built-in`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/mrasender" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: net.box
+                    :specialtext: Built-in
 
                     Module to connect remotely to a Tarantool instance via a binary port
 
@@ -443,31 +316,27 @@ Tarantool - Rocks
 
                 Operating systems/Interfaces
 
-                -   .. container:: b-rock-block-header
-
-                        errno
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: errno
+                    :specialtext: Built-in
 
                     Module to handle errors produced by POSIX APIs
 
-                -   .. container:: b-rock-block-header
-
-                        fio
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: fio
+                    :specialtext: Built-in
 
                     Routines for file input/output
 
-                -   .. container:: b-rock-block-header
-
-                        os
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: os
+                    :specialtext: Built-in
 
                     Faster analogs to the standard 'os' functions in Lua
 
-                -   .. container:: b-rock-block-header
-
-                        socket
-                        :specialtext:`Built-in`
+                .. module_block::
+                    :title: socket
+                    :specialtext: Built-in
 
                     Non-blocking routines for socket input/output
 
@@ -476,80 +345,50 @@ Tarantool - Rocks
 
                 Power tools
 
-                -   .. container:: b-rock-block-header
-
-                        expirationd
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/expirationd" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: expirationd
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/expirationd
 
                     Expiration daemon module to turn Tarantool into a persistent memcache
                     replacement with your own expiration strategy
 
-                -   .. container:: b-rock-block-header
-
-                        memcached
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/memcached" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: memcached
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/memcached
 
                     Memcached protocol wrapper for Tarantool.
 
-                -   .. container:: b-rock-block-header
-
-                        shard
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/shard" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: shard
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/shard
 
                     Application-level library that provides sharding, re-sharding and
                     client-side reliable replication for Tarantool
 
-                -   .. container:: b-rock-block-header
-
-                        queue
-                        :specialtext:`External`
-
-                        .. raw:: html
-
-                            <a href="https://github.com/tarantool/queue" class="b-rock-block-header-source-link">
-                                <div class="github-icon"></div>
-
-                            </a>
+                .. module_block::
+                    :title: queue
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/queue
 
                     Set of persistent in-memory queues to create task queues, add and take jobs,
                     monitor failed tasks
 
-                .. _Security:
-                .. container:: b-rock
+            .. _Security:
+            .. container:: b-rock
 
-                    Security/Encryption
+                Security/Encryption
 
-                    -   .. container:: b-rock-block-header
+                .. module_block::
+                    :title: crypto
+                    :specialtext: Built-in
 
-                            crypto
-                            :specialtext:`Built-in`
+                    Routines to work with various cryptographic hash functions
 
-                        Routines to work with various cryptographic hash functions
+                .. module_block::
+                    :title: digest
+                    :specialtext: Built-in
 
-                    -   .. container:: b-rock-block-header
-
-                            digest
-                            :specialtext:`Built-in`
-
-                        Routines to work with “digest”, a value returned by a hash function
+                    Routines to work with “digest”, a value returned by a hash function
