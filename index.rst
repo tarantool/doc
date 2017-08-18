@@ -30,7 +30,7 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
                       Github
                       <i class="github-icon"></i>
                     </a>
-                    <a href="http://tarantool.org/download.html" class="b-header-edition__button community">
+                    <a href="download/download.html" class="b-header-edition__button community">
                       Download
                       <i class="download-icon"></i>
                     </a>
