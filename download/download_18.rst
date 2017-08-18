@@ -20,7 +20,7 @@ Tarantool - Downloads (1.8)
 
                 Available versions:
 
-                :doc:`1.6 (stable) <download_16>` :doc:`1.7 (rc) <download>` :currentversion:`1.8 (alpha)`
+                :doc:`1.6 <download_16>` :doc:`1.7 <download>` :currentversion:`1.8 (alpha)`
 
     .. wp_section::
         :class: p-download-mainpage-general

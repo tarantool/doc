@@ -124,7 +124,7 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
 
                     .. container:: b-feature-description
 
-                        :ref:`authentication and access control <authentication>`
+                        :ref:`Authentication and access control <authentication>`
 
             .. container:: b-feature
 
@@ -140,7 +140,7 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
 
                     .. container:: b-feature-description
 
-                        :ref:`master-master <replication>` and sharding
+                        :ref:`Master-master replication <replication>` and sharding
 
 .. _secondary indexes: doc/book/box/box_index.html
 .. _range queries: doc/book/box/box_index.html
