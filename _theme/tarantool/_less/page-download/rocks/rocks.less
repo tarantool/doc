@@ -1,0 +1,63 @@
+.p-rocks {
+  display: block;
+  
+  &-header {
+    font-size: 18px;
+    line-height: 1.78;
+    color: #ffffff;
+    margin-top: 10px;
+
+    .b-section-title {
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.33;
+      color: #ffffff;
+    }
+
+    a {
+      color: @red-color;
+
+      &:hover {
+        color: @light-red-color;
+      }
+    }
+  }
+
+  &-body {
+    display: flex;
+  }
+
+  &-menu {
+    border-top: solid 1px #000000;
+  }
+
+  &-content {
+    width: 100%;
+    margin: 0 15px 10px 10px;
+    overflow-y: scroll;
+  }
+
+  @media @medium-screen {
+    &-menu {
+      max-width: 260px;
+      min-width: 260px;
+      border: none;
+    }
+  }
+
+  @media @large-screen {
+    &-body {
+      max-width: 950px;
+      margin: auto;
+    }
+  }
+
+  @media @xlarge-screen {
+    &-header {
+      .b-section-title {
+        font-size: 42px;
+        line-height: 0.95;
+      }
+    }
+  }
+}

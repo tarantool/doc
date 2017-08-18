@@ -1,0 +1,58 @@
+.p-download-mainpage {
+  &-general {
+    display: flex;
+
+    @media @medium-screen {
+      .b-block-wrapper {
+        width: 100%;
+      }
+    }
+  }
+
+  &-blocks {
+    display: flex;
+
+    .b-block-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &-enterprise-downloads {
+    margin: 0;
+  }
+}
+
+.p-download {
+  background-color: #262626;
+  display: block;
+  padding-bottom: 10px;
+  min-height: 100vh;
+
+  .b-block-wrapper {
+    width: auto;
+    padding: 0;
+    margin: 0 10px;
+  }
+
+  @media @medium-screen {
+    .b-block-wrapper {
+      margin: 0 15px;
+    }
+
+    &-mainpage-general {
+      .b-block-wrapper {
+        width: 100%;
+      }
+    }
+  }
+
+  @media @large-screen {
+    .b-block-wrapper {
+      max-width: 950px;
+      margin: auto;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+.b-cols_content {
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  @media @large-screen {
+    display: flex;
+  }
+
+  @media @xlarge-screen {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.b-cols_content_right {
+  padding: 0;
+  margin: 0 15px 10px;
+
+  .b-article {
+    overflow-y: scroll;
+    max-height: 100vh;
+  }
+
+  .b-cols_content_left {
+    margin: auto -15px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #262626;
+    margin: 15px 0;
+  }
+
+  @media @medium-screen {
+    .b-cols_content_left {
+      margin: 0 0 0 -15px;
+    }
+  }
+
+  @media @large-screen {
+    margin: 10px 25px;
+    width: 100%;
+    max-width: calc(~"100% - 310px"); // 260px - left menu width, 50px - right_slot's margins
+  }
+
+  @media @xlarge-screen {
+    margin: 10px 25px;
+    max-width: calc(~"100% - 410px"); // 360px - left menu width, 50px - right_slot's margins
+
+    .page-title {
+      font-size: 25px;
+    }
+  }
+}
+
+// TODO Separate all header's styles into own file.
+.b-header {
+  @media @xlarge-screen {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}

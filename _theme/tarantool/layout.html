@@ -10,11 +10,17 @@
     '_static/js/menu.js',
     '_static/js/mobile_menu.js',
     '_static/js/headers.js',
-    '_static/js/dropdown.js',
+    '_static/js/os-detect.js',
     '_static/js/jquery.sticky-kit.min.js',
     '_static/js/ua-parser.min.js',
     '_static/js/documentation-main-page.js',
-    '_static/js/copy-button.js'
+    '_static/js/copy-button.js',
+    '_static/js/os-installation-pages.js',
+    '_static/js/rocks-page.js',
+    '_static/js/version-switcher.js',
+    '_static/js/docs-page-path.js',
+    '_static/js/connectors-page.js',
+    '_static/js/documentation-scroll.js'
 ] %}
 {% set css_files = [
     '_static/design.css',
@@ -45,7 +51,8 @@
 {%- endset %}
 
 {% set is_website  = website.get(pagename, False) %}
-{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml"] %}
+{% set is_package_page  = packages.get(pagename, False) %}
+{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
 {% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}
@@ -83,6 +90,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-site-verification" content="CR40jzpLISkiUAw2MrH2zHSDNVmzyK88Nj7Crmx_RxQ" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="search" type="application/opensearchdescription+xml"
           title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
           href="{{ pathto('_static/opensearch.xml', 1) }}"/>

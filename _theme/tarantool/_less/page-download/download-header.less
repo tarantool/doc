@@ -1,0 +1,62 @@
+.compass-icon { .icon(27px, 27px, @compass-icon); }
+
+.b-download-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+
+  &-path {
+    display: none;
+    font-size: 16px;
+    text-align: left;
+    color: #ffffff;
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+
+      &:hover {
+        color: @red-color;
+      }
+    }
+  }
+
+  &-versions {
+    font-size: 16px;
+    color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+
+    p:first-child {
+      margin-right: 10px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+
+      &:hover {
+        color: @red-color;
+        border-bottom-color: rgba(255, 46, 47, 0.5);
+      }
+    }
+
+    .current-version {
+      color: @red-color;
+      border: none;
+    }
+  }
+
+  @media @medium-screen {
+    &-menu-button {
+      display: none;
+    }
+  }
+
+  @media @large-screen {
+    &-path {
+      display: block;
+    }
+  }
+}

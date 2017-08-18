@@ -26,8 +26,9 @@ extensions = [
     'ext.DropdownList',
     'ext.WebPageSection',
     'ext.WebPageButtons',
-    'ext.WebPageRocks',
-    'ext.WebPageMap'
+    'ext.WebPageMap',
+    'ext.ModuleBlock',
+    'ext.DownloadPageBlock'
 ]
 primary_domain = 'lua'
 source_suffix = '.rst'
@@ -84,20 +85,71 @@ html_use_opensearch  = base_url
 html_context = {
     'website': {
         'index'       : True,
-        'download'    : True,
-        'download_16' : True,
-        'download_18' : True,
+        'download/download'    : True,
+        'download/download_16' : True,
+        'download/download_18' : True,
         'careers'     : True,
         'benchmark'   : True,
         'try'         : True,
         'rocks'       : True,
         'doc/' + version + '/index' : True,
+        'download-page' : True,
+        'download/os-instalation' : True, # FIXME Delete
+        'download/connectors' : True,
+        'download/connectors_16' : True,
+        'download/connectors_18' : True,
+        'download/rocks' : True,
+        'download/rocks_16' : True,
+        'download/rocks_18' : True,
         # Helper webpages
         '404'            : True,
         # Internal webpages
         'genindex'       : True,
         'lua-modindex'   : True,
         'search'         : True,
+    },
+    'packages': {
+        # 1.6
+        'download/os-installation/1.6/ubuntu' : True,
+        'download/os-installation/1.6/amazon-linux' : True,
+        'download/os-installation/1.6/building-from-source' : True,
+        'download/os-installation/1.6/debian-stretch-jessie-and-newer' : True,
+        'download/os-installation/1.6/debian-wheezy' : True,
+        'download/os-installation/1.6/docker-hub' : True,
+        'download/os-installation/1.6/fedora' : True,
+        'download/os-installation/1.6/freebsd' : True,
+        'download/os-installation/1.6/microsoft-azure' : True,
+        'download/os-installation/1.6/os-x' : True,
+        'download/os-installation/1.6/rhel-6-and-cent-os-6' : True,
+        'download/os-installation/1.6/rhel-7-and-cent-os-7' : True,
+        # 1.7
+        'download/os-installation/1.7/ubuntu' : True,
+        'download/os-installation/1.7/amazon-linux' : True,
+        'download/os-installation/1.7/building-from-source' : True,
+        'download/os-installation/1.7/debian-stretch-jessie-and-newer' : True,
+        'download/os-installation/1.7/debian-wheezy' : True,
+        'download/os-installation/1.7/docker-hub' : True,
+        'download/os-installation/1.7/fedora' : True,
+        'download/os-installation/1.7/freebsd' : True,
+        'download/os-installation/1.7/microsoft-azure' : True,
+        'download/os-installation/1.7/os-x' : True,
+        'download/os-installation/1.7/rhel-6-and-cent-os-6' : True,
+        'download/os-installation/1.7/rhel-7-and-cent-os-7' : True,
+        'download/os-installation/1.7/snappy-package' : True,
+        # 1.8
+        'download/os-installation/1.8/ubuntu' : True,
+        'download/os-installation/1.8/amazon-linux' : True,
+        'download/os-installation/1.8/building-from-source' : True,
+        'download/os-installation/1.8/debian-stretch-jessie-and-newer' : True,
+        'download/os-installation/1.8/debian-wheezy' : True,
+        'download/os-installation/1.8/docker-hub' : True,
+        'download/os-installation/1.8/fedora' : True,
+        'download/os-installation/1.8/freebsd' : True,
+        'download/os-installation/1.8/microsoft-azure' : True,
+        'download/os-installation/1.8/os-x' : True,
+        'download/os-installation/1.8/rhel-6-and-cent-os-6' : True,
+        'download/os-installation/1.8/rhel-7-and-cent-os-7' : True,
+        'download/os-installation/1.8/snappy-package' : True
     },
     'wp_local': True,
     'versions': ['1.6', '1.7', '1.8'],
@@ -132,6 +184,12 @@ rst_prolog = """
 
 .. role:: codeblue
    :class: ccodeblue
+
+.. role:: currentversion
+   :class: current-version
+
+.. role:: specialtext
+   :class: special-text
 
 .. |nbsp| unicode:: 0xA0
 

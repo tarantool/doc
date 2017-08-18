@@ -1,6 +1,6 @@
 all:
 	lessc --source-map --source-map-less-inline --strict-imports \
-		  --autoprefix="last 3 versions" \
+		  --autoprefix="last 8 versions" \
 		  design.less design.css
 	cleancss -O2 design.css > design.min.css
 	mv design.min.css design.css
@@ -8,5 +8,5 @@ all:
 
 debug:
 	lessc --source-map --source-map-less-inline --strict-imports \
-		  --autoprefix="last 3 versions" \
+		  --autoprefix="last 2 versions" \
 		  design.less ../static/design.css

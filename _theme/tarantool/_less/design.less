@@ -2,12 +2,12 @@
 @import (inline) "font-awesome.min.css";
 
 @import (less, once) "base.less";
+@import (less, once) "icons.less";
 
 @import (less, once) "element-menu.less";
 @import (less, once) "element-path-list.less";
 
 @import (less, once) "page-base.less";
-@import (less, once) "page-index.less";
 @import (less, once) "page-download.less";
 @import (less, once) "page-job.less";
 @import (less, once) "page-rocks.less";
@@ -16,11 +16,46 @@
 @import (less, once) "page-benchmark.less";
 @import (less, once) "page-search.less";
 
-@import (less, once) "pygmentize.less";
-@import (less, once) "dropdown.less";
+@import (less, once) "page-index/mainpage.less";
+@import (less, once) "page-index/mainhead.less";
+@import (less, once) "page-index/header-edition.less";
+@import (less, once) "page-index/features.less";
+
+@import (less, once) "page-download/download-page.less";
+@import (less, once) "page-download/download-block.less";
+@import (less, once) "page-download/general-download.less";
+@import (less, once) "page-download/enterprise-downloads.less";
+@import (less, once) "page-download/download-header.less";
+@import (less, once) "page-download/download-menu.less";
+@import (less, once) "page-download/os-installation.less";
+
+@import (less, once) "page-download/connectors/connectors.less";
+@import (less, once) "page-download/connectors/connector.less";
+@import (less, once) "page-download/connectors/alphabetical-menu.less";
+
+@import (less, once) "page-download/rocks/rocks.less";
+@import (less, once) "page-download/rocks/rock.less";
+
+@import (less, once) "documentation/main-page.less";
+@import (less, once) "documentation/main-page-toctree.less";
+@import (less, once) "documentation/other-sources-menu.less";
+@import (less, once) "documentation/version-switcher.less";
+
+@import (less, once) "documentation/regular-doc-page-header.less";
+@import (less, once) "documentation/regular-page-toctree.less";
+@import (less, once) "documentation/regular-page-layout.less";
+@import (less, once) "documentation/regular-page-nav.less";
+
+@import (less, once) "documentation/single-page-toctree.less";
+@import (less, once) "documentation/single-page.less";
+
+// @import (less, once) "header-menu/language-selector.less";
 
 /* TODO: port them too */
 @import (inline) "old_design.css";
 @import (inline) "sphinx_design.css";
+
+@import (less, once) "pygmentize.less";
+@import (less, once) "dropdown.less";
 
 /* @import "obsolete.less"; */

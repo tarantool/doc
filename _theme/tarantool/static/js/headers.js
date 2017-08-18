@@ -1,4 +1,5 @@
 /* register global replication tab function */
+//FIXME Delete comments
 window['register_replication_tab'] = function (id) {
     $(document).on({
         click: function(event) {
@@ -148,24 +149,16 @@ $(function () {
       var has_ul = (ul.length > 0);
       if (ul.length > 0) {
         var link = menu.children("a");
-        // link.css("position", "relative").css("left", "-12px").before(
         link.css({
           "position": "relative",
-          // "left": "-13px",
         }).before(
-          $('<i class="fa fa-caret-right fa-1"></i>')
+          $('<i class="fa fa-caret-down"></i>')
         );
         link.siblings("i").click(function(event) {
-          if (is_mobile) {
-            event.stopPropagation();
-          }
-          menu.children("ul").slideToggle();
-          $(this).toggleClass("fa-caret-right").toggleClass("fa-caret-down");
-        }).css({
-          "position": "absolute",
-          "left": "-12px",
-          "vertical-align": "middle",
-          "color": "#797979"
+          // if (is_mobile) event.stopPropagation();
+
+          menu.children("ul").slideToggle(10);
+          $(this).toggleClass("fa-caret-down").toggleClass("fa-caret-up");
         });
         ul.children("li").each(toggle_recursive);
         menu.children("ul").css('display', 'none');
@@ -175,32 +168,42 @@ $(function () {
 
   /* Some hacks for sliding TOC and pinned left menu */
   $(function() {
-    var is_mobile = ($("#mobile-checker").css("display") == "none");
+    // var is_mobile = ($("#mobile-checker").css("display") == "none");
 
     $(".b-cols_content_left").each(function() {
-      if (is_mobile) {
-        $(this).find("li.toctree-l3 ul").remove()
-        $(this).find("li.toctree-l2:not(.current) ul").remove()
-      }
+      // if (is_mobile) {
+      //   $(this).find("li.toctree-l3 ul").remove()
+      //   $(this).find("li.toctree-l2:not(.current) ul").remove()
+      // }
       /* delete numbers from left toc */
       $(this).find("li.toctree-l1").each(toggle_recursive).find("a").each(function() {
         var before = $(this).text();
         var after = before.replace(/^[\d.]* (.*)/, '$1');
         $(this).text(after)
       })
+
+      console.log('THIS', $(this));
+
       $(this).find("a.current").each(function() {
         $(this).siblings("i").click();
         $(this).parents("ul.current").prev().siblings("i").click();
+        $(this).siblings("ul").find("a").each(function(i, el) { // All inside page links should have "anchor" class
+          var href = $(el).attr("href");
+          if (href.startsWith("#") && !href.endsWith("#")) {
+            $(el).addClass("anchor");
+          }
+        })
       });
 
       $(this).find("a").click(function() {
         $(".b-menu-toc").removeClass('active');
         $(".toggle-navigation").removeClass('active');
       });
+
     }).click(function() {
-      if (is_mobile) {
-        event.stopPropagation();
-      }
+      // if (is_mobile) {
+      //   event.stopPropagation();
+      // }
     });
   });
 });
