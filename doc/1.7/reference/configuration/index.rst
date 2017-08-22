@@ -122,7 +122,7 @@ server will be used or if ports need to be opened. For example, suppose
     #!/usr/bin/env tarantool
     box.cfg{
         listen              = os.getenv("LISTEN_URI"),
-        slab_alloc_arena    = 0.1,
+        memtx_memory        = 100000,
         pid_file            = "tarantool.pid",
         rows_per_wal        = 50
     }
