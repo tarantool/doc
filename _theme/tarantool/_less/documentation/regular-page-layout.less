@@ -1,3 +1,5 @@
+@doc-page-content-headers-height: 150px;
+
 .b-cols_content {
   display: block;
   margin: 0;
@@ -5,6 +7,7 @@
 
   @media @large-screen {
     display: flex;
+    height: calc(~"100vh" - @header-and-footer-height);
   }
 
   @media @xlarge-screen {
@@ -17,13 +20,18 @@
   padding: 0;
   margin: 0 15px 10px;
 
+  &-slot {
+    height: 100%;
+  }
+
   .b-article {
     overflow-y: scroll;
-    max-height: 100vh;
+    height: 88%;
   }
 
   .b-cols_content_left {
     margin: auto -15px;
+    height: auto;
   }
 
   .page-title {
@@ -43,6 +51,10 @@
     margin: 10px 25px;
     width: 100%;
     max-width: calc(~"100% - 310px"); // 260px - left menu width, 50px - right_slot's margins
+
+    .b-article {
+      height: calc(~"100%" - @doc-page-content-headers-height);
+    }
   }
 
   @media @xlarge-screen {

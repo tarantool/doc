@@ -28,7 +28,8 @@
   background-color: #262626;
   display: block;
   padding-bottom: 10px;
-  min-height: 100vh;
+  min-height: calc(~"100vh" - @header-and-footer-height);
+  box-sizing: border-box;
 
   .b-block-wrapper {
     width: auto;

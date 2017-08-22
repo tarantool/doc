@@ -11,12 +11,16 @@
 {% block body %}
   {% if is_website %}
     {% if is_mainpage %}
-      <div class="selector-wrapper">
-        {{- language_selector() -}}
+      <div class="doc-main-page b-clearbox">
+        <div class="selector-wrapper">
+          {{- language_selector() -}}
+        </div>
+        {{- versionswitcher() -}}
+        {{ body }}
       </div>
-      {{- versionswitcher() -}}
-    {% endif%}
-    {{ body }}
+    {% else %}
+      {{ body }}
+    {% endif %}
   {% elif is_package_page %}
     <div class="p-download">
       <section class="p-download-header b-os-installation-header">
