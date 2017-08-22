@@ -51,8 +51,8 @@ from 1.6.x to 1.7.x. Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
 replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
-Tarantool 1.7 has an incompatible :ref:`.snap <internals-snapshot>` and :ref:`.xlog <internals-wal>`
-file format: 1.6 files are
+Tarantool 1.7 has an incompatible :ref:`.snap <internals-snapshot>` and
+:ref:`.xlog <internals-wal>` file format: 1.6 files are
 supported during upgrade, but you won’t be able to return to 1.6 after running
 under 1.7 for a while. It also renames a few configuration parameters, but old
 parameters are supported. The full list of breaking changes is available in
@@ -72,8 +72,10 @@ parameters are supported. The full list of breaking changes is available in
 4. Update the Tarantool server. See installation instructions at Tarantool
    `download page <http://tarantool.org/download.html>`_.
 
-5. Update the Tarantool database. Make the request ``box.schema.upgrade()``.
-   This will create new system spaces, update data type names (e.g.
+5. Update the Tarantool database. Put the request ``box.schema.upgrade()``
+   inside a :ref:`box.once() <box-once>` function in your Tarantool
+   :ref:`initialization file <index-init_label>`.
+   On startup, this will create new system spaces, update data type names (e.g.
    num -> unsigned, str -> string) and options in Tarantool system spaces.
 
 6. Update application files, if needed.
