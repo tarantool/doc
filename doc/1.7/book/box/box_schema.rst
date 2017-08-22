@@ -290,7 +290,7 @@ for spaces, users, roles, and function tuples.
 .. function:: box.schema.user.passwd([user-name,] password)
 
     Associate a password with the user who is currently logged in,
-    or with another user.
+    or with the user specified by user-name. The user must exist and must not be 'guest'.
 
     Users who wish to change their own passwords should
     use ``box.schema.user.passwd(password)`` syntax.

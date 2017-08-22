@@ -62,7 +62,7 @@ The current user can be changed:
 Passwords
 --------------------------------------------------------------------------------
 
-Each user may have a **password**. The password is any alphanumeric string.
+Each user (except 'guest') may have a **password**. The password is any alphanumeric string.
 
 Tarantool passwords are stored in the :ref:`_user <box_space-user>`
 system space with a
@@ -131,27 +131,29 @@ insert data into the system space (e.g. creating new spaces) and themselves
 become creators/definers of new objects. For the objects they created, the users
 can in turn share privileges with other users.
 
-This is why only an object's owner can drop the object, but not other
-ordinary users. Meanwhile, 'admin' can drop any object or delete any other user,
+This is why only an object's owner can drop the object, but other
+ordinary users cannot. Meanwhile, 'admin' can drop any object or delete any other user,
 because 'admin' is the creator and ultimate owner of them all.
 
 The syntax of all
 :ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
 commands in Tarantool follows this basic idea.
 
-* Their first argument is "who gets" or "who is revoked" a grant.
+* Their first argument is the user who gets the grant or whose grant is revoked.
 
 * Their second argument is the type of privilege granted, or a list of privileges.
 
-* Their third argument is the object type on which the privilege is granted.
+* Their third argument is the object type on which the privilege is granted,
+  or the word 'universe'.
 
-* Their fourth and optional argument is the object name (‘universe' has no name,
+* Their fourth argument is the object name if the object type
+  was specified (‘universe' has no name,
   because there is only one ‘universe’, but you need to specify names for
   functions/users/spaces/etc).
 
 **Example #1**
 
-Here we disable all privileges and run Tarantool in the ‘no-privilege’ mode.
+Here we say that user 'guest' can do common operations on any object.
 
 .. code-block:: lua_tarantool
 
@@ -171,22 +173,23 @@ no-password user becomes this function's creator. Finally, we grant another user
 
    box.schema.space.create('u')
    box.schema.space.create('i')
-   box.schema.space.u:create_index('pk')
-   box.schema.space.i:create_index('pk')
+   box.space.u:create_index('pk')
+   box.space.i:create_index('pk')
 
-   box.schema.user.create(‘internal’)
+   box.schema.user.create('internal')
 
    box.schema.user.grant('internal', 'read,write', 'space', 'u')
    box.schema.user.grant('internal', 'read,write', 'space', 'i')
+   box.schema.user.grant('internal', 'read,write', 'space', '_func')
 
    function read_and_modify(key)
      local u = box.space.u
      local i = box.space.i
      local fiber = require('fiber')
      local t = u:get{key}
-     if t ~= nil
-	   u:put{key, box.session.uid()}
-	   i:put{key, fiber.time()}
+     if t ~= nil then
+	      u:put{key, box.session.uid()}
+	      i:put{key, fiber.time()}
      end
    end
 
