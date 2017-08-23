@@ -26,13 +26,17 @@
     :return: 0 - timeout
     :return: >0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit flags.
 
+..  _c_api-coio-coio_call:
+
 .. c:function:: ssize_t coio_call(ssize_t (*func)(va_list), ...)
 
     Create new eio task with specified function and arguments. Yield and wait
     until the task is complete or a timeout occurs.
+    This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
+    configuration parameter.
 
-    This function doesn't throw exceptions to avoid double error checking: in
-    most cases it's also necessary to check the return value of the called
+    To avoid double error checking, this function does not throw exceptions.
+    In most cases it is also necessary to check the return value of the called
     function and perform necessary actions. If func sets errno, the errno is
     preserved across the call.
 

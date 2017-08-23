@@ -35,7 +35,8 @@
        **Change notice:** Prior to Tarantool version 1.6.6, the snapshot process
        caused a fork, which could cause occasional latency spikes. Starting with
        Tarantool version 1.6.6, the snapshot process creates a consistent
-       read view and writes this view to the snapshot file from a separate thread.
+       read view and this view is written to the snapshot file by a separate thread
+       (the "Write Ahead Log" thread).
 
        Although ``box.snapshot()`` does not cause a fork, there is a separate fiber
        which may produce snapshots at regular intervals -- see the discussion of

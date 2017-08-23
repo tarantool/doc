@@ -534,7 +534,8 @@ execute ``respawn()`` every 60 seconds. Creating a :ref:`fiber <fiber-module>`
 is the Tarantool way of making application logic work in the background at all
 times.
 
-A **fiber** is a lightweight **thread**. The key difference is that threads use
+A **fiber** exists for executing instruction sequences but it is not a thread.
+The key difference is that threads use
 preemptive multitasking, while fibers use cooperative multitasking. This gives
 fibers the following two advantages over threads:
 
