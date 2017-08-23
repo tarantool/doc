@@ -27,6 +27,8 @@
   .b-article {
     overflow-y: scroll;
     height: 88%;
+    margin-left: -25px; 
+    padding-left: 25px; // Crutch, fixes bug with overflow   
   }
 
   .b-cols_content_left {
@@ -51,6 +53,7 @@
     margin: 10px 25px;
     width: 100%;
     max-width: calc(~"100% - 310px"); // 260px - left menu width, 50px - right_slot's margins
+    height: calc(~"100%" - 20px);
 
     .b-article {
       height: calc(~"100%" - @doc-page-content-headers-height);
