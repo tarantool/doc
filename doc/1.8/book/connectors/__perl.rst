@@ -50,7 +50,7 @@ refused”.
     my $tnt = DR::Tarantool::MsgPack::SyncClient->connect(
       host    => '127.0.0.1',                      # look for tarantool on localhost
       port    => 3301,                             # on port 3301
-      user    => 'guest',                          # username. one could also say 'password=>...'
+      user    => 'guest',                          # username. for 'guest' we do not also say 'password=>...'
 
       spaces  => {
         999 => {                                   # definition of space[999] ...
