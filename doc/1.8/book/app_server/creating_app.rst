@@ -130,7 +130,7 @@ The usage is quite straightforward:
 (1) For each entity, we need to define a schema in
     `Apache Avro schema <https://en.wikipedia.org/wiki/Apache_Avro>`_ syntax,
     where we list the entity's fields with their names and
-    :ref:`Lua types <index-box_data-types>`.
+    `Avro data types <http://avro.apache.org/docs/current/spec.html#schema_primitive>`_.
 (2) At initialization, we call ``avro-schema.create()`` that creates objects
     in memory for all schema entities, and ``compile()`` that generates
     flatten/unflatten methods for each entity.
@@ -873,7 +873,7 @@ use non-blocking I/O and are integrated with Tarantool cooperative scheduler.
 For module developers, Tarantool provides an :ref:`API <index-c_api_reference>`.
 
 For our HTTP test, we create a third container based on the
-`official Tarantool 1.8 image <https://github.com/tarantool/docker>`_ (see
+`official Tarantool 1.7 image <https://github.com/tarantool/docker>`_ (see
 `client/Dockerfile <https://github.com/Sulverus/pokemon/blob/master/client/Dockerfile>`_)
 and set the container's default command to ``tarantool client.lua``.
 
