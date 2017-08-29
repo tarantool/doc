@@ -81,7 +81,7 @@ nanoseconds.
     with benchmarks that need to calculate how much time has been spent within a
     thread within a CPU.
 
-    :return: seconds or nanoseconds since the transaction procsssor thread started.
+    :return: seconds or nanoseconds since the transaction processor thread started.
     :rtype: number or number64
 
     **Example:**

@@ -51,7 +51,7 @@ The current user can be changed:
 * For an admin-console connection and in a Lua initialization script --
   with :ref:`box.session.su <box_session-su>`;
 
-* For a stored function invoked with CALL command over a binary port -- 
+* For a stored function invoked with CALL command over a binary port --
   with :ref:`SETUID <box_schema-func_create>` property enabled for the function,
   which makes Tarantool temporarily replace the current user with the
   function’s creator, with all creator's privileges, during function execution.
@@ -77,7 +77,7 @@ in the user’s head, and the hashed value is never passed down a network wire
 except when mixed with a random salt.
 
 .. NOTE::
-   
+
    For more details of the password hashing algorithm (e.g. for the purpose of writing
    a new client application), read the
    `scramble.h <https://github.com/tarantool/tarantool/blob/1.7/src/scramble.h>`_
@@ -93,7 +93,7 @@ guarded and changed occasionally. Administrators should also advise users to
 choose long unobvious passwords, but it is ultimately up to the users to choose
 or change their own passwords.
 
-There are two functions for managing passwords in Tarantool: 
+There are two functions for managing passwords in Tarantool:
 :ref:`box.schema.user.password() <box_schema-user_password>` for changing
 a user's password and :ref:`box.schema.user.passwd() <box_schema-user_passwd>`
 for getting a hash-password.
@@ -147,8 +147,8 @@ commands in Tarantool follows this basic idea.
   or the word 'universe'.
 
 * Their fourth argument is the object name if the object type
-  was specified (‘universe' has no name,
-  because there is only one ‘universe’, but you need to specify names for
+  was specified ('universe' has no name,
+  because there is only one 'universe', but you need to specify names for
   functions/users/spaces/etc).
 
 **Example #1**
