@@ -476,7 +476,7 @@ Now, say:
 The connection-options parameter is a table. Possible options are:
 
 * :samp:`host = {host-name}` - string, default value = 'localhost'
-* :samp:`port = {port-number}` - number, default value = 3306
+* :samp:`port = {port-number}` - number, default value = 5432
 * :samp:`user = {user-name}` - string, default value is operating-system user name
 * :samp:`pass = {password}` or :samp:`password = {password}` - string, default value is blank
 * :samp:`db = {database-name}` - string, default value is blank
