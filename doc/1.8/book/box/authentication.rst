@@ -147,8 +147,8 @@ commands in Tarantool follows this basic idea.
   or the word 'universe'.
 
 * Their fourth argument is the object name if the object type
-  was specified (‘universe' has no name,
-  because there is only one ‘universe’, but you need to specify names for
+  was specified ('universe' has no name,
+  because there is only one 'universe', but you need to specify names for
   functions/users/spaces/etc).
 
 **Example #1**

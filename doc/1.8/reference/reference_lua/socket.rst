@@ -141,6 +141,8 @@ the function invocations will look like ``sock:function_name(...)``.
     The ``socket.getaddrinfo()`` function is useful for finding information
     about a remote site so that the correct arguments for
     ``sock:sysconnect()`` can be passed.
+    This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
+    configuration parameter.
 
     :return: A table containing these fields: "host", "family", "type", "protocol", "port".
     :rtype:  table

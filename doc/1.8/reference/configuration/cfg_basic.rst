@@ -9,6 +9,7 @@
 * :ref:`username <cfg_basic-username>`
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
+* :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
 
 .. _cfg_basic-background:
 
@@ -186,3 +187,17 @@
     | Type: string
     | Default: null
     | Dynamic: no
+
+
+.. _cfg_basic-worker_pool_threads:
+
+.. confval:: worker_pool_threads
+
+    The maximum number of threads to use during execution
+    of certain internal processes (currently
+    :ref:`socket.getaddrinfo() <socket-getaddrinfo>` and
+    :ref:`coio_call() <c_api-coio-coio_call>`).
+
+    | Type: integer
+    | Default: 4
+    | Dynamic: yes

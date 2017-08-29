@@ -10,7 +10,8 @@ Daemon supervision
 Server signals
 --------------------------------------------------------------------------------
 
-Tarantool processes these signals during the main thread event loop:
+Tarantool processes these signals during the event loop in the transaction
+processor thread:
 
 .. container:: table
 
@@ -39,7 +40,8 @@ Tarantool processes these signals during the main thread event loop:
 
 Other signals will result in behavior defined by the operating system. Signals
 other than SIGKILL may be ignored, especially if Tarantool is executing a
-long-running procedure which prevents return to the main thread event loop.
+long-running procedure which prevents return to the event loop in the
+transaction processor thread.
 
 .. _admin-automatic_instance_restart:
 
