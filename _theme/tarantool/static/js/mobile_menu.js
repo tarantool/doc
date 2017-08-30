@@ -22,29 +22,21 @@ $(function() {
       });
     }
 
+    var isScreenSmall = false;
     function replaceMenu() {
       if ($(window).width() >= 1024) {
         b_cols_content.prepend(b_cols_content_left);
         b_cols_content_left.show();
         isOpen = true;
+        isScreenSmall = false;
       }
       else {
+        if (!isScreenSmall) b_cols_content_left.hide();
         doc_page_header.after(b_cols_content_left);
+        isScreenSmall = true;
+        isOpen = false;
       }
     }
-
-    // $("body").click(function() {
-    //   if (($(window).width() < 1024) && isOpen) {
-    //     console.log('BODY CLICK');
-    //     b_cols_content_left.hide();
-    //
-    //     isOpen = false;
-    //   }
-    //     // $(doc_menu).removeClass("active");
-    //     // $(toggle_navigation).removeClass("active");
-    //     // $(menu_mobile).removeClass("active");
-    //     // $("body").removeClass('stop-scroll');
-    // });
 
     //FIXME The code below is deprecated. Probably need to delete.
 
