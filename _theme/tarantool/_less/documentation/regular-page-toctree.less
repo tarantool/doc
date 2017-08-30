@@ -62,7 +62,7 @@
           border-left: solid 2px @red-color;
         }
 
-        &.anchor {
+        &[href^="#"]:not([href$="#"]) {
           border: none;
           display: inline-block;
           font-size: 14px;

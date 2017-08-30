@@ -1,9 +1,9 @@
 :orphan:
 :priority: 0.99
 
---------------------------------------------
-Tarantool - Debian Stretch, Jessie and newer
---------------------------------------------
+-----------------------------------
+Tarantool - Debian Jessie and newer
+-----------------------------------
 
 .. container:: b-os-installation-body
 
@@ -12,7 +12,7 @@ Tarantool - Debian Stretch, Jessie and newer
         .. include:: menu.rst
 
     .. wp_section::
-      :title: Debian Stretch, Jessie and newer
+      :title: Debian Jessie and newer
       :class: b-os-installation-content
 
       We maintain an always up-to-date Debian GNU/Linux
@@ -27,7 +27,7 @@ Tarantool - Debian Stretch, Jessie and newer
 
       .. code-block:: bash
 
-          curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -
+          curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -
           release=`lsb_release -c -s`
 
           # install https download transport for APT
@@ -35,9 +35,9 @@ Tarantool - Debian Stretch, Jessie and newer
 
           # append two lines to a list of source repositories
           sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-          sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF
-          deb http://download.tarantool.org/tarantool/1.8/debian/ $release main
-          deb-src http://download.tarantool.org/tarantool/1.8/debian/ $release main
+          sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF
+          deb http://download.tarantool.org/tarantool/1.7/debian/ $release main
+          deb-src http://download.tarantool.org/tarantool/1.7/debian/ $release main
           EOF
 
           # install
