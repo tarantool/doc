@@ -60,36 +60,20 @@
     }
 
     & > ul { // depth:1
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-content: space-between;
-      height: 720px;
       width: auto;
+      column-count: 2;
+      column-gap: 30px;
 
       & > li {
-        width: 200px;
+        display: inline-block;
+        width: 100%;
       }
-    }
-  }
-
-  @media @medium-screen {
-    & > ul { // depth:1
-      align-content: initial;
-    }
-  }
-
-  @media (min-width: 950px) { // FIXME Crutch!!
-    & > ul { // depth:1
-      height: 570px;
     }
   }
 
   @media @large-screen {
     & > ul { // depth:1
-      & > li {
-        width: 30%;
-      }
+      column-count: 3;
     }
   }
 
