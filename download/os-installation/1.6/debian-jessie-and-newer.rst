@@ -1,9 +1,9 @@
 :orphan:
 :priority: 0.99
 
---------------------------------------------
-Tarantool - Debian Stretch, Jessie and newer
---------------------------------------------
+-----------------------------------
+Tarantool - Debian Jessie and newer
+-----------------------------------
 
 .. container:: b-os-installation-body
 
@@ -12,7 +12,7 @@ Tarantool - Debian Stretch, Jessie and newer
         .. include:: menu.rst
 
     .. wp_section::
-      :title: Debian Stretch, Jessie and newer
+      :title: Debian Jessie and newer
       :class: b-os-installation-content
 
       We maintain an always up-to-date Debian GNU/Linux

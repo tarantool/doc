@@ -187,12 +187,6 @@ $(function () {
       $(this).find("a.current").each(function() {
         $(this).siblings("i").click();
         $(this).parents("ul.current").prev().siblings("i").click();
-        $(this).siblings("ul").find("a").each(function(i, el) { // All inside page links should have "anchor" class
-          var href = $(el).attr("href");
-          if (href.startsWith("#") && !href.endsWith("#")) {
-            $(el).addClass("anchor");
-          }
-        })
       });
 
       $(this).find("a").click(function() {
