@@ -118,6 +118,7 @@ We list them here too:
     <auth>    ::= 0x07
     <eval>    ::= 0x08
     <upsert>  ::= 0x09
+    <call>    ::= 0x0a
     -- Admin command codes
     <ping>    ::= 0x40
 
@@ -345,16 +346,12 @@ It is an error to specify an argument of a type that differs from the expected t
                               MP_MAP
 
 
-* CALL: CODE - 0x06
-  Call a stored function, returning an array of tuples.
-  This is applicable for Tarantool version 1.6.
-  In future versions this request will be renamed to CALL_16
-  and a different code will be recommended for CALL.
-
+* CALL_16: CODE - 0x06
+  Call a stored function, returning an array of tuples. This is deprecated; CALL (0x0a) is recommended instead.
 
 .. code-block:: none
 
-    CALL BODY:
+    CALL_16 BODY:
 
     +=======================+==================+
     |                       |                  |
@@ -425,6 +422,21 @@ It is an error to specify an argument of a type that differs from the expected t
     '#' - delete a field. If the field does not exist, the operation is skipped.
           It's not possible to change with update operations a part of the primary
           key (this is validated before performing upsert).
+
+* CALL: CODE - 0x0a
+  Similar to CALL_16, but -- like EVAL, CALL returns a list of values, unconverted
+
+.. code-block:: none
+
+    CALL BODY:
+
+    +=======================+==================+
+    |                       |                  |
+    |   0x22: FUNCTION_NAME |   0x21: TUPLE    |
+    | MP_INT: MP_STRING     | MP_INT: MP_ARRAY |
+    |                       |                  |
+    +=======================+==================+
+                        MP_MAP
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -505,7 +517,7 @@ Replication packet structure
     | MP_INT: MP_INT | MP_INT: MP_INT || MP_INT: MP_STRING |
     |                |                ||                   |
     +================+================++===================+
-                   MP_MAP                     MP_MAP        
+                   MP_MAP                     MP_MAP
 
     Then instance, which we connect to, will send last SNAP file by, simply,
     creating a number of INSERTs (with additional LSN and ServerID)
@@ -568,7 +580,7 @@ XLOG and SNAP files have nearly the same format. The header looks like:
 After the file header come the data tuples.
 Tuples begin with a row marker ``0xd5ba0bab`` and
 the last tuple may be followed by an EOF marker
-``0xd510aded``. 
+``0xd510aded``.
 Thus, between the file header and the EOF marker, there
 may be data tuples that have this form:
 
