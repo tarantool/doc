@@ -11,7 +11,7 @@ with a Tarantool database server instance on each node. With this arrangement,
 each instance is handling only a subset of the total data,
 so larger loads can be handled by simply adding more computers to a network.
 
-The Tarantool shard module has facilities for creating shards,
+The Tarantool `shard` module has facilities for creating shards,
 as well as analogues for the data-manipulation functions of the box library
 (select, insert, replace, update, delete).
 
@@ -19,12 +19,13 @@ First some terminology:
 
 .. glossary::
 
-    **Consistent Hash**
-        The shard module distributes according to a hash algorithm, that is,
+    **Consistent hash**
+        The `shard` module distributes according to a hash algorithm, that is,
         it applies a hash function to a tuple's primary-key value in order to
-        decide which shard the tuple belongs to. The hash function is `consistent`_
+        decide which shard the tuple belongs to. The hash function is
+        `consistent <https://en.wikipedia.org/wiki/Consistent_hashing>`_
         so that changing the number of servers will not affect results for many
-        keys. The specific hash function that the shard module uses is
+        keys. The specific hash function that the `shard` module uses is
         :ref:`digest.guava <digest-guava>` in the :codeitalic:`digest` module.
 
     **Instance**
@@ -37,7 +38,7 @@ First some terminology:
         A temporary list of recent update requests. Sometimes called "batching".
         Since updates to a sharded database can be slow, it may speed up
         throughput to send requests to a queue rather than wait for the update
-        to finish on every node. The shard module has functions for adding
+        to finish on every node. The `shard` module has functions for adding
         requests to the queue, which it will process without further intervention.
         Queuing is optional.
 
@@ -54,10 +55,10 @@ First some terminology:
         replicated data, are a "replica set".
 
     **Replicated data**
-        A complete copy of the data. The shard module handles both sharding
+        A complete copy of the data. The `shard` module handles both sharding
         and replication. One shard can contain one or more replicated data copies.
         When a write occurs, the write is attempted on every replicated data copy in turn.
-        The shard module does not use the built-in replication feature.
+        The `shard` module does not use the built-in replication feature.
 
     **Shard**
         A subset of the tuples in the database partitioned according to the
@@ -71,16 +72,25 @@ First some terminology:
         of a zone is a single computer with a single Tarantool-server instance.
         A shard's replicated data copies should be in different zones.
 
-The shard package is distributed separately from the main tarantool package.
-To acquire it, do a separate install. For example on Ubuntu say:
+The `shard` package is distributed separately from the main `tarantool` package.
+To acquire it, do a separate installation:
 
-.. code-block:: bash
+* with Tarantool 1.7.4+, say:
 
-    sudo apt-get install tarantool-shard
+  .. code-block:: console
 
-Or, download from github tarantool/shard and tarantool/connpool
-and use the Lua files as described in the README.
-Then, before using the module, say ``shard = require('shard')``
+      $ tarantoolctl rocks install shard
+
+* install with `yum` or `apt`, for example on Ubuntu say:
+
+  .. code-block:: console
+
+      $ sudo apt-get install tarantool-shard
+
+* or download from GitHub `tarantool/shard` and use the Lua files as described
+  in the `README <https://github.com/tarantool/shard>`_.
+
+Then, before using the module, say ``shard = require('shard')``.
 
 The most important function is:
 
@@ -90,26 +100,29 @@ The most important function is:
     shard.init(*shard-configuration*)
 
 This must be called for every shard.
-The shard-configuration is a table with these fields:
 
-* servers (a list of URIs of nodes and the zones the nodes are in)
-* login (the user name which applies for accessing via the shard module)
-* password (the password for the login)
-* redundancy (a number, minimum 1)
-* binary (a port number that this host is listening on, on the current host)
-  (distinguishable from the 'listen' port specified by box.cfg)
+The shard configuration is a table with these fields:
 
-Possible Errors: Redundancy should not be greater than the number of servers;
-the servers must be alive; two replicated data copies of the same shard
-should not be in the same zone.
+* `servers` (a list of URIs of nodes and the zones the nodes are in)
+* `login` (the user name which applies for accessing via the `shard` module)
+* `password` (the password for the login)
+* `redundancy` (a number, minimum 1)
+* `binary` (a port number that this host is listening on, on the current host,
+  (distinguishable from the 'listen' port specified by `box.cfg`)
+
+Possible errors:
+
+* redundancy should not be greater than the number of servers;
+* the servers must be alive;
+* two replicated data copies of the same shard should not be in the same zone.
 
 =====================================================================
-          Example: shard.init syntax for one shard
+          Example: `shard.init` syntax for one shard
 =====================================================================
 
-The number of replicated data copies per shard (redundancy) is 3.
-The number of instances is 3.
-The shard module will conclude that there is only one shard.
+* The number of replicated data copies per shard (redundancy) is 3.
+* The number of instances is 3.
+* The `shard` module will conclude that there is only one shard.
 
 .. code-block:: tarantoolsession
 
@@ -119,7 +132,7 @@ The shard module will conclude that there is only one shard.
              >     { uri = 'localhost:33132', zone = '2' },
              >     { uri = 'localhost:33133', zone = '3' }
              >   },
-             >   login = 'tester',
+             >   login = 'test_user',
              >   password = 'pass',
              >   redundancy = '3',
              >   binary = 33131,
@@ -131,7 +144,7 @@ The shard module will conclude that there is only one shard.
     ...
 
 =====================================================================
-           Example: shard.init syntax for three shards
+           Example: `shard.init` syntax for three shards
 =====================================================================
 
 This describes three shards. Each shard has two replicated data copies. Since the number of
@@ -151,7 +164,7 @@ necessarily an error, because perhaps one of the servers in the list is not aliv
              >     { uri = 'host6:33131', zone = '6' },
              >     { uri = 'host7:33131', zone = '7' }
              >   },
-             >   login = 'tester',
+             >   login = 'test_user',
              >   password = 'pass',
              >   redundancy = '2',
              >   binary = 33131,
@@ -161,6 +174,9 @@ necessarily an error, because perhaps one of the servers in the list is not aliv
     tarantool> shard.init(cfg)
     ---
     ...
+
+Every data-access function in the `box` module has an analogue in the `shard`
+module:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -172,10 +188,12 @@ necessarily an error, because perhaps one of the servers in the list is not aliv
     shard[*space-name*].update{...}
     shard[*space-name*].auto_increment{...}
 
-Every data-access function in the box module has an analogue in the shard
-module, so (for example) to insert in table T in a sharded database one simply
-says ``shard.T:insert{...}`` instead of ``box.space.T:insert{...}``.
+For example, to insert in table T in a sharded database you simply
+say ``shard.T:insert{...}`` instead of ``box.space.T:insert{...}``.
+
 A ``shard.T:select{}`` request without a primary key will search all shards.
+
+Every queued data-access function has an analogue in the `shard` module:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -187,15 +205,16 @@ A ``shard.T:select{}`` request without a primary key will search all shards.
     shard[*space-name*].q_update{...}
     shard[*space-name*].q_auto_increment{...}
 
-Every queued data-access function has an analogue in the shard module. The user
-must add an operation_id. The details of queued data-access functions, and of
-maintenance-related functions, are on `the shard section of github`_.
+The user must add an `operation_id`. For details of queued data-access functions,
+and of maintenance-related functions, see the
+`README <https://github.com/tarantool/shard>`_.
 
 =====================================================================
-             Example: Shard, Minimal Configuration
+             Example: shard, minimal configuration
 =====================================================================
 
-There is only one shard, and that shard contains only one replicated data copy. So this isn't
+There is only one shard, and that shard contains only one replicated data copy.
+So this isn't
 illustrating the features of either replication or sharding, it's only
 illustrating what the syntax is, and what the messages look like, that anyone
 could duplicate in a minute or two with the magic of cut-and-paste.
@@ -211,13 +230,14 @@ could duplicate in a minute or two with the magic of cut-and-paste.
     tarantool> box.cfg{listen = 3301}
     tarantool> box.schema.space.create('tester')
     tarantool> box.space.tester:create_index('primary', {})
-    tarantool> box.schema.user.passwd('admin', 'password')
+    tarantool> box.schema.user.create('test_user', {password = 'pass'})
+    tarantool> box.schema.user.grant('test_user', 'read,write,execute', 'universe')
     tarantool> cfg = {
              >   servers = {
              >       { uri = 'localhost:3301', zone = '1' },
              >   },
-             >   login = 'admin';
-             >   password = 'password';
+             >   login = 'test_user';
+             >   password = 'pass';
              >   redundancy = 1;
              >   binary = 3301;
              > }
@@ -226,25 +246,22 @@ could duplicate in a minute or two with the magic of cut-and-paste.
     tarantool> -- Now put something in ...
     tarantool> shard.tester:insert{1,'Tuple #1'}
 
-If one cuts and pastes the above, then the result,
-showing only the requests and responses for shard.init
-and shard.tester, should look approximately like this:
+If you cut and paste the above, then the result,
+showing only the requests and responses for `shard.init`
+and `shard.tester`, should look approximately like this:
 
 .. code-block:: tarantoolsession
 
+    <...>
     tarantool> shard.init(cfg)
-    2015-08-09 ... I> Sharding initialization started...
-    2015-08-09 ... I> establishing connection to cluster servers...
-    2015-08-09 ... I>  - localhost:3301 - connecting...
-    2015-08-09 ... I>  - localhost:3301 - connected
-    2015-08-09 ... I> connected to all servers
-    2015-08-09 ... I> started
-    2015-08-09 ... I> redundancy = 1
-    2015-08-09 ... I> Zone len=1 THERE
-    2015-08-09 ... I> Adding localhost:3301 to shard 1
-    2015-08-09 ... I> Zone len=1 THERE
-    2015-08-09 ... I> shards = 1
-    2015-08-09 ... I> Done
+    2017-09-06 ... I> Sharding initialization started...
+    2017-09-06 ... I> establishing connection to cluster servers...
+    2017-09-06 ... I> connected to all servers
+    2017-09-06 ... I> started
+    2017-09-06 ... I> redundancy = 1
+    2017-09-06 ... I> Adding localhost:3301 to shard 1
+    2017-09-06 ... I> shards = 1
+    2017-09-06 ... I> Done
     ---
     - true
     ...
@@ -256,15 +273,14 @@ and shard.tester, should look approximately like this:
     - - [1, 'Tuple #1']
     ...
 
-
 =====================================================================
-                 Example: Shard, Scaling Out
+                 Example: shard, scaling out
 =====================================================================
 
-There are two shards, and each shard contains one replicated data copy. This requires two
-nodes. In real life the two nodes would be two computers, but for this
-illustration the requirement is merely: start two shells, which we'll call
-Terminal#1 and Terminal #2.
+There are two shards, and each shard contains one replicated data copy.
+This requires two nodes. In real life the two nodes would be two computers,
+but for this illustration the requirement is merely: start two shells,
+which we'll call Terminal#1 and Terminal #2.
 
 On Terminal #1, say:
 
@@ -279,15 +295,16 @@ On Terminal #1, say:
     tarantool> box.cfg{listen = 3301}
     tarantool> box.schema.space.create('tester')
     tarantool> box.space.tester:create_index('primary', {})
-    tarantool> box.schema.user.passwd('admin', 'password')
+    tarantool> box.schema.user.create('test_user', {password = 'pass'})
+    tarantool> box.schema.user.grant('test_user', 'read,write,execute', 'universe')
     tarantool> console = require('console')
     tarantool> cfg = {
              >   servers = {
              >     { uri = 'localhost:3301', zone = '1' },
              >     { uri = 'localhost:3302', zone = '2' },
              >   },
-             >   login = 'admin',
-             >   password = 'password',
+             >   login = 'test_user',
+             >   password = 'pass',
              >   redundancy = 1,
              >   binary = 3301,
              > }
@@ -309,15 +326,16 @@ On Terminal #2, say:
     tarantool> box.cfg{listen = 3302}
     tarantool> box.schema.space.create('tester')
     tarantool> box.space.tester:create_index('primary', {})
-    tarantool> box.schema.user.passwd('admin', 'password')
+    tarantool> box.schema.user.create('test_user', {password = 'pass'})
+    tarantool> box.schema.user.grant('test_user', 'read,write,execute', 'universe')
     tarantool> console = require('console')
     tarantool> cfg = {
              >   servers = {
              >     { uri = 'localhost:3301', zone = '1' };
              >     { uri = 'localhost:3302', zone = '2' };
              >   };
-             >   login = 'admin';
-             >   password = 'password';
+             >   login = 'test_user';
+             >   password = 'pass';
              >   redundancy = 1;
              >   binary = 3302;
              > }
@@ -340,9 +358,6 @@ What will appear on Terminal #2, at the end, should look like this:
     ...
 
 This shows that what was inserted by Terminal #1 can be selected by Terminal #2,
-via the shard module.
+via the `shard` module.
 
-Details are on `the shard section of github`_.
-
-.. _consistent: https://en.wikipedia.org/wiki/Consistent_hashing
-.. _the shard section of github: https://github.com/tarantool/shard
+For details, see the `README <https://github.com/tarantool/shard>`_.
