@@ -27,6 +27,14 @@
 
     Rollback the current transaction.
 
+.. c:function:: box_txn_savepoint_t * savepoint(void)
+
+    Return a descriptor of a savepoint.
+
+.. c:function:: void box_txn_rollback_to_savepoint(box_txn_savepoint_t *savepoint)
+
+    Rollback the current transaction as far as the specified savepoint.
+
 .. c:function:: void *box_txn_alloc(size_t size)
 
     Allocate memory on txn memory pool.
