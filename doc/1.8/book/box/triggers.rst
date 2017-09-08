@@ -11,7 +11,7 @@ executes when certain events happen.
 There are three types of triggers in Tarantool:
 
 * :ref:`connection triggers <box_session-on_connect>`, which are executed
-  when a session begins or ends, 
+  when a session begins or ends,
 
 * :ref:`authentication triggers <box_session-on_auth>`, which are
   executed during authentication, and
@@ -23,10 +23,10 @@ All triggers have the following characteristics:
 
 * Triggers associate a function with an event.
   The request to "define a trigger" implies passing the
-  trigger’s function to one of the "on_event-name()" functions:
+  trigger’s function to one of the "on_event()" functions:
   :ref:`box.session.on_connect() <box_session-on_connect>`,
-  :ref:`box.session.on_auth() <box_session-on_auth>`, 
-  :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or 
+  :ref:`box.session.on_auth() <box_session-on_auth>`,
+  :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
   :ref:`space_object:on_replace() <box_space-on_replace>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
@@ -46,15 +46,15 @@ All triggers have the following characteristics:
 * Triggers must work within the event context. However, effects are undefined
   if a function contains requests which normally could not occur immediately
   after the event, but only before the return from the event. For example, putting
-  `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or 
+  `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or
   :ref:`box.rollback() <box-rollback>` in a trigger function would be
   bringing in requests outside the event context.
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
   passing a new trigger function and an old trigger function
-  to one of the "on_event-name()" functions.
+  to one of the "on_event()" functions.
 
-* The "on_event_name()" functions all have parameters which are function
+* The "on_event()" functions all have parameters which are function
   pointers, and they all return function pointers. Remember that a Lua
   function definition such as "function f() x = x + 1 end" is the same
   as "f = function () x = x + 1 end" -- in both cases ``f`` gets a function pointer.
