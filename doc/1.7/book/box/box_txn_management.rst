@@ -27,11 +27,13 @@ Observe the following rules when working with transactions:
     in the same transaction.
 
 .. _box-begin:
- 
+
 .. function:: box.begin()
 
-    Begin the transaction. Disable :ref:`implicit yields <atomic-implicit-yields>` until the transaction ends.
-    Signal that writes to the :ref:`write-ahead log <internals-wal>` will be deferred until the transaction ends.
+    Begin the transaction. Disable :ref:`implicit yields <atomic-implicit-yields>`
+    until the transaction ends.
+    Signal that writes to the :ref:`write-ahead log <internals-wal>` will be
+    deferred until the transaction ends.
     In effect the fiber which executes ``box.begin()`` is starting an "active
     multi-request transaction", blocking all other fibers.
 
@@ -55,21 +57,21 @@ Observe the following rules when working with transactions:
 .. function:: box.savepoint()
 
     Return a descriptor of a savepoint (type = table), which can be used later by
-    ``box.rollback_to_savepoint(savepoint)``. Savepoints can only
-    be created while a transaction is active, and they are destroyed
-    when a transaction ends.
+    :ref:`box.rollback_to_savepoint(savepoint) <box-rollback_to_savepoint>`.
+    Savepoints can only be created while a transaction is active, and they are
+    destroyed when a transaction ends.
 
 .. _box-rollback_to_savepoint:
 
 .. function:: box.rollback_to_savepoint(savepoint)
 
     Do not end the transaction, but cancel all its data-change
-    and ``box.savepoint()`` operations that were done after
+    and :ref:`box.savepoint() <box-savepoint>` operations that were done after
     the specified savepoint.
 
     **Example:**
 
-    .. code-block:: none
+    .. code-block:: lua
 
         function f()
           box.begin()           -- start transaction
