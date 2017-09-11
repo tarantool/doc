@@ -1,0 +1,25 @@
+website-full-deploy:
+  tags:
+    - docker
+  image: "registry.gitlab.com/tarantool/doc"
+  script:
+    - cmake . && make
+    - echo ${RSYNC_PASSWORD} > rsync.password
+    - chmod 600 rsync.password
+    - rsync -Pav --password-file=rsync.password output/
+        ${RSYNC_USER}@${RSYNC_HOST}::tarantool-org/
+    - rm -f rsync.password
+  only: [ "1.7" ]
+
+website-doc-deploy:
+  tags:
+    - docker
+  image: "registry.gitlab.com/tarantool/doc"
+  script:
+    - cmake . && make
+    - echo ${RSYNC_PASSWORD} > rsync.password
+    - chmod 600 rsync.password
+    - rsync -Pav --password-file=rsync.password output/en/doc/${CI_COMMIT_REF_NAME}/
+        ${RSYNC_USER}@${RSYNC_HOST}::tarantool-org/en/doc/${CI_COMMIT_REF_NAME}/
+    - rm -f rsync.password
+  only: [ "1.6", "1.8" ]
