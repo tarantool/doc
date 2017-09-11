@@ -1,5 +1,5 @@
 $(function() {
-  if (!window.location.href.includes('download/download')) return;
+  if (window.location.href.indexOf('download/download') === -1) return;
 
   var os_install_block = '.packages';
   var learn_more_button = $($(os_install_block).find('.b-download-block-button'));
@@ -36,7 +36,7 @@ $(function() {
 
          general_block_description.html(detected_instruction_text.html());
 
-         if (detected_instruction.includes('docker')) $(general_learn_more_button.find('a')).attr("href", "https://hub.docker.com/r/tarantool/tarantool/");
+         if (detected_instruction.indexOf('docker') !== -1) $(general_learn_more_button.find('a')).attr("href", "https://hub.docker.com/r/tarantool/tarantool/");
          else $(general_learn_more_button.find('a')).attr("href", detected_instruction);
       }
     });
@@ -75,8 +75,8 @@ function getInstruction() {
 }
 
 function getVersion() {
-  if (window.location.href.includes('16')) return '1.6';
-  if (window.location.href.includes('18')) return '1.8';
+  if (window.location.href.indexOf('16') !== -1) return '1.6';
+  if (window.location.href.indexOf('18') !== -1) return '1.8';
   return '1.7';
 }
 

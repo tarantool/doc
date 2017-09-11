@@ -2,8 +2,8 @@ $(function() {
     $("ul.b-menu a").each(function() {
         if (
             ($(this).attr('href') === window.location.pathname                                               ) ||
-            ($(this).attr('href').startsWith("/doc/")     && window.location.pathname.startsWith("/doc/")    ) ||
-            ($(this).attr('href').startsWith("/en/download") && window.location.pathname.startsWith("/en/download"))
+            ($(this).attr('href').indexOf("/doc/") === 0     && window.location.pathname.indexOf("/doc/") === 0    ) ||
+            ($(this).attr('href').indexOf("/en/download") === 0 && window.location.pathname.indexOf("/en/download") === 0)
            ) {
             $(this).addClass("p-active");
         }
