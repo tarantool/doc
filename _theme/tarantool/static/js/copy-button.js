@@ -41,6 +41,8 @@ $(document).ready(function() {
 
             var html = shortVersion.html();
             html = html.split('\n').map(function(v) {
+                if (/^\s*<span/.test(v) && />&amp;&amp;/.test(v)) return v.trim(); // Crutch. Deletes indent before && symbols in one of code-blocks
+
                 if (/^\s*<span/.test(v)) return v;
                 else return v.trim();
             }).filter(function(v) {
