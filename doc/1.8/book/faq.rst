@@ -57,7 +57,7 @@ FAQ
         Thus, an optimal tuple size is within kilobytes.
 
     :Q: I delete data from vinyl, but disk usage stays the same. What gives?
-    :A: Data you write to vinyl is persistend in append-only run files.
+    :A: Data you write to vinyl is persisted in append-only run files.
         These files are immutable, and to perform a delete, a deletion marker
         (tombstone) is written to a newer run file instead. On compaction,
         new and old run files are merged, and a new run file is produced.
