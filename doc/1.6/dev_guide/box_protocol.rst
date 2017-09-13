@@ -118,7 +118,6 @@ We list them here too:
     <auth>    ::= 0x07
     <eval>    ::= 0x08
     <upsert>  ::= 0x09
-    <call>    ::= 0x0a
     -- Admin command codes
     <ping>    ::= 0x40
 
@@ -346,12 +345,16 @@ It is an error to specify an argument of a type that differs from the expected t
                               MP_MAP
 
 
-* CALL_16: CODE - 0x06
-  Call a stored function, returning an array of tuples. This is deprecated; CALL (0x0a) is recommended instead.
+* CALL: CODE - 0x06
+  Call a stored function, returning an array of tuples.
+  This is applicable for Tarantool version 1.6.
+  In future versions this request will be renamed to CALL_16
+  and a different code will be recommended for CALL.
+
 
 .. code-block:: none
 
-    CALL_16 BODY:
+    CALL BODY:
 
     +=======================+==================+
     |                       |                  |
@@ -422,21 +425,6 @@ It is an error to specify an argument of a type that differs from the expected t
     '#' - delete a field. If the field does not exist, the operation is skipped.
           It's not possible to change with update operations a part of the primary
           key (this is validated before performing upsert).
-
-* CALL: CODE - 0x0a
-  Similar to CALL_16, but -- like EVAL, CALL returns a list of values, unconverted
-
-.. code-block:: none
-
-    CALL BODY:
-
-    +=======================+==================+
-    |                       |                  |
-    |   0x22: FUNCTION_NAME |   0x21: TUPLE    |
-    | MP_INT: MP_STRING     | MP_INT: MP_ARRAY |
-    |                       |                  |
-    +=======================+==================+
-                        MP_MAP
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
