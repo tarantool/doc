@@ -25,12 +25,14 @@ Tarantool.
       .. image:: ide_1.png
          :align: left
          :scale: 50 %
+         :class: frame
 
    c. Click ``Browse repositories``.
 
       .. image:: ide_2.png
          :align: left
          :scale: 50 %
+         :class: frame
 
    d. Install ``EmmyLua`` plugin.
 
