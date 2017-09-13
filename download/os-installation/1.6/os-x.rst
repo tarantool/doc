@@ -15,8 +15,10 @@ Tarantool - OS X
       :title: OS X
       :class: b-os-installation-content
 
-      Tarantool 1.6 package is unavailable for Mac OS.
-      Instead, you can install Tarantool 1.7 using ``homebrew``:
+      The ``homebrew`` formula for Tarantool 1.6 is unavailable.
+
+      Instead, you can build and install Tarantool 1.6 from source, or install
+      Tarantool 1.7 using ``homebrew``:
 
       .. code-block:: bash
 
