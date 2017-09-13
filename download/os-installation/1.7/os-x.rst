@@ -19,7 +19,7 @@ Tarantool - OS X
 
       .. code-block:: bash
 
-          $ brew install tarantool --HEAD
+          $ brew install tarantool
           ==> Cloning https://github.com/tarantool/tarantool.git
           Updating /Users/Me/Library/Caches/Homebrew/tarantool--git
           ==> Checking out branch 1.7
