@@ -706,15 +706,15 @@ The screen now looks like this:
     .. raw:: html
 
         <script>
-            register_replication_tab(1);
-            register_replication_tab(2);
-            register_replication_tab(3);
-            register_replication_tab(4);
-            register_replication_tab(5);
-            register_replication_tab(6);
-            register_replication_tab(7);
-            register_replication_tab(8);
-            register_replication_tab(9);
+            register_tab(1);
+            register_tab(2);
+            register_tab(3);
+            register_tab(4);
+            register_tab(5);
+            register_tab(6);
+            register_tab(7);
+            register_tab(8);
+            register_tab(9);
         </script>
 
 This shows that the two instances are once again in synch, and that each instance
