@@ -29,6 +29,11 @@ the overhead of system calls and increases the overall server performance. There
 are, however, cases when a single connection is not enough — for example, when it's
 necessary to prioritize requests or to use different authentication IDs.
 
+Most ``net.box`` methods allow a final ``{options}`` argument which is useful
+for timeout, for example a method whose final argument is ``{timeout=1}``
+will stop after 1.5 seconds on the local node, although this does not guarantee
+that execution will stop on the remote server node.
+
 The diagram below shows possible connection states and transitions:
 
 .. ifconfig:: builder not in ('latex', )
@@ -83,7 +88,7 @@ On this diagram:
     
     * `wait_connected`: by default, connection creation is blocked until the connection is established,
       but passing ``wait_connected=false`` makes it return immediately. Also, passing a timeout
-      makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 secs).
+      makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 seconds).
       
       .. NOTE::
       
@@ -114,12 +119,14 @@ On this diagram:
       binary and Lua console network protocols are supported). With ``console = false`` (default), you can
       also use ``conn`` database methods (in this case, only the binary protocol is supported).
 
+    * `connect_timeout`: number of seconds to wait before returning "error: Connection timed out".
+
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
     :param options: possible options are `wait_connected`, `reconnect_after`, `call_16` and `console`
     :return: conn object
     :rtype:  userdata
 
-    **Example:**
+    **Examples:**
 
     .. code-block:: lua
 
@@ -206,10 +213,11 @@ On this diagram:
 
             conn:close()
 
-    .. method:: conn.space.<space-name>:select{field-value, ...}
+    .. method:: conn.space.<space-name>:select({field-value, ...} [, {options}])
 
-        :samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call equivalent
+        :samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
+        Example: :code:`conn.space.testspace:select({1,'B'}, {timeout=1})`.
 
         .. NOTE::
 
@@ -220,70 +228,67 @@ On this diagram:
             change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
             occurs.
 
-    .. method:: conn.space.<space-name>:get{field-value, ...}
+    .. method:: conn.space.<space-name>:get({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:get(...)`.
+        Example: :code:`conn.space.testspace:get({1})`.
 
-    .. method:: conn.space.<space-name>:insert{field-value, ...}
+    .. method:: conn.space.<space-name>:insert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:insert(...)`.
+        Example: :code:`conn.space.testspace:insert({2,3,4,5}, {timeout=1.1})`.
 
-    .. method:: conn.space.<space-name>:replace{field-value, ...}
+    .. method:: conn.space.<space-name>:replace({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:replace(...)`.
+        Example: :code:`conn.space.testspace:replace({5,6,7,8})`.
 
-    .. method:: conn.space.<space-name>:update{field-value, ...}
+    .. method:: conn.space.<space-name>:update({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:update(...)`.
+        Example: :code:`conn.space.Q:update({1},{{'=',2,5}}, {timeout=0})`
 
-    .. method:: conn.space.<space-name>:upsert{field-value, ...}
+    .. method:: conn.space.<space-name>:upsert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:upsert(...)`.
 
-    .. method:: conn.space.<space-name>:delete{field-value, ...}
+    .. method:: conn.space.<space-name>:delete({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:delete(...)`.
 
     .. _net_box-call:
 
-    .. method:: call(function-name [, arguments])
+    .. method:: call(function-name, [, {arguments} [, {options} ]])
 
-        ``conn:call('func', '1', '2', '3')`` is the remote-call equivalent of
+        ``conn:call('func', {'1', '2', '3'})`` is the remote-call equivalent of
         ``func('1', '2', '3')``. That is, ``conn:call`` is a remote
         stored-procedure call.
-
-        **Example:**
-
-        .. code-block:: lua
-
-            conn:call('function5')
+        Examples: :code:`conn:call('function5')`, :code:`conn:call('fx',{1,'B'},{timeout=99})`.
 
     .. _net_box-eval:
 
-    .. method:: eval(Lua-string)
+    .. method:: eval(Lua-string [, {arguments}, [ {options} ]])
 
         :samp:`conn:eval({Lua-string})` evaluates and executes the expression
         in Lua-string, which may be any statement or series of statements.
         An :ref:`execute privilege <authentication-owners_privileges>` is required;
         if the user does not have it, an administrator may grant it with
         :samp:`box.schema.user.grant({username}, 'execute', 'universe')`.
-
-        **Example:**
-
-        .. code-block:: lua
-
-            conn:eval('return 5+5')
+        Examples: :code:`conn:eval('return 5+5')`,
+        :code:`conn:eval('return ...', {1,2,3})`,
+        :code:`conn:eval('return 5+5, {}, {timeout=0.1}`.
 
     .. method:: timeout(timeout)
 
         ``timeout(...)`` is a wrapper which sets a timeout for the request that
-        follows it.
+        follows it. Since version 1.7.4 this method is deprecated -- it is better
+        to pass a timeout value for a method's {options} parameter.
 
         **Example:**
 
@@ -291,7 +296,8 @@ On this diagram:
 
             conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})
 
-        All remote calls support execution timeouts. Using a wrapper object makes
+        Although ``timeout(...)`` is deprecated, all
+        remote calls support its use. Using a wrapper object makes
         the remote connection API compatible with the local one, removing the need
         for a separate ``timeout`` argument, which the local version would ignore. Once
         a request is sent, it cannot be revoked from the remote server even if a
@@ -343,19 +349,19 @@ And here starts the example:
              >     table.insert(ta, '(  (so connect will fail)')
              >   end
              >   conn = net_box.connect('127.0.0.1:3301')
-             >   conn.space.tester:delete{800}
+             >   conn.space.tester:delete({800})
              >   table.insert(ta, 'conn delete done on tester.')
-             >   conn.space.tester:insert{800, 'data'}
+             >   conn.space.tester:insert({800, 'data'})
              >   table.insert(ta, 'conn insert done on tester, index 0')
              >   table.insert(ta, '  primary key value = 800.')
-             >   wtuple = conn.space.tester:select{800}
+             >   wtuple = conn.space.tester:select({800})
              >   table.insert(ta, 'conn select done on tester, index 0')
              >   table.insert(ta, '  number of fields = ' .. #wtuple)
-             >   conn.space.tester:delete{800}
+             >   conn.space.tester:delete({800})
              >   table.insert(ta, 'conn delete done on tester')
-             >   conn.space.tester:replace{800, 'New data', 'Extra data'}
+             >   conn.space.tester:replace({800, 'New data', 'Extra data'})
              >   table.insert(ta, 'conn:replace done on tester')
-             >   conn:timeout(0.5).space.tester:update({800}, {{'=', 2, 'Fld#1'}})
+             >   conn.space.tester:update({800}, {{'=', 2, 'Fld#1'}})
              >   table.insert(ta, 'conn update done on tester')
              >   conn:close()
              >   table.insert(ta, 'conn close done')
