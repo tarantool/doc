@@ -44,6 +44,7 @@ Tarantool.
       .. image:: ide_3.png
          :align: left
          :scale: 50 %
+         :class: frame
 
    e. Restart IntelliJ IDEA.
    f. Click ``Configure``, select ``Project Defaults`` and then
@@ -52,6 +53,7 @@ Tarantool.
       .. image:: ide_4.png
          :align: left
          :scale: 50 %
+         :class: frame
 
    g. Find ``Lua Application`` in the sidebar at the left.
 
@@ -66,6 +68,7 @@ Tarantool.
       .. image:: ide_5.png
          :align: left
          :scale: 50 %
+         :class: frame
 
       Now IntelliJ IDEA is ready to use with Tarantool.
 
@@ -74,12 +77,14 @@ Tarantool.
    .. image:: ide_6.png
       :align: left
       :scale: 50 %
+      :class: frame
 
 4. Add a new Lua file, for example ``init.lua``.
 
    .. image:: ide_7.png
       :align: left
       :scale: 50 %
+      :class: frame
 
 5. Write your code, save the file.
 
@@ -89,6 +94,7 @@ Tarantool.
    .. image:: ide_8.png
       :align: left
       :scale: 50 %
+      :class: frame
 
    Or click ``Run -> Debug`` to start debugging.
 
@@ -100,3 +106,4 @@ Tarantool.
    .. image:: ide_9.png
       :align: left
       :scale: 50 %
+      :class: frame
