@@ -30,7 +30,7 @@ are, however, cases when a single connection is not enough — for example, when
 necessary to prioritize requests or to use different authentication IDs.
 
 Most ``net.box`` methods allow a final ``{options}`` argument which is useful
-for timeout, for example a method whose final argument is ``{timeout=1}``
+for timeout. For example a method whose final argument is ``{timeout=1.5}``
 will stop after 1.5 seconds on the local node, although this does not guarantee
 that execution will stop on the remote server node.
 
@@ -47,8 +47,8 @@ On this diagram:
 * The state machine starts in the 'initial' state.
 
 * ``net_box.connect()`` method changes the state to 'connecting' and spawns a worker fiber.
-  
-* If authentication and schema upload are required, it's possible later on to re-enter 
+
+* If authentication and schema upload are required, it's possible later on to re-enter
   the 'fetch_schema' state from 'active' if a request fails due to a schema version
   mismatch error, so schema reload is triggered.
 
@@ -61,11 +61,11 @@ On this diagram:
 .. function:: new(URI [, {option[s]}])
 
     .. NOTE::
-    
+
        The names ``connect()`` and ``new()`` are synonymous with the only
        difference that ``connect()`` is the preferred name, while ``new()`` is
        retained for backward compatibility.
-    
+
     Create a new connection. The connection is established on demand, at the
     time of the first request. It can be re-established automatically after a
     disconnect (see ``reconnect_after`` option below).
@@ -83,18 +83,18 @@ On this diagram:
     :ref:`the implicit rules <atomic-implicit-yields>`
     any request can yield, and database state may have changed by the time it
     regains control.
-    
+
     Possible options:
-    
+
     * `wait_connected`: by default, connection creation is blocked until the connection is established,
       but passing ``wait_connected=false`` makes it return immediately. Also, passing a timeout
       makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 seconds).
-      
+
       .. NOTE::
-      
+
          In the presence of ``reconnect_after``, ``wait_connected`` ignores transient failures.
          The wait completes once the connection is established or is closed explicitly.
-      
+
     * `reconnect_after`: a ``net.box`` instance automatically reconnects
       any time the connection is broken or if a connection attempt fails.
       This makes transient network failures become transparent to the application.
@@ -103,8 +103,8 @@ On this diagram:
       The number of retries is unlimited, connection attempts are done over the
       specified timeout (e.g. ``reconnect_after=5`` for 5 secs).
       Once a connection is explicitly closed (or garbage-collected), reconnects stop.
-      
-    * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new 
+
+    * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new
       binary protocol command for CALL, which is not backward compatible with previous versions.
       The new CALL no longer restricts a function to returning an array of tuples
       and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing).
@@ -112,7 +112,7 @@ On this diagram:
       It will be removed in the next major release.
       All programming language drivers will be gradually changed to use the new CALL.
       To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.
-      
+
     * `console`: depending on the option's value, the connection supports different methods
       (as if instances of different classes were returned). With ``console = true``, you can use
       ``conn`` methods ``close()``, ``is_connected()``, ``wait_state()``, ``eval()`` (in this case, both
@@ -133,7 +133,7 @@ On this diagram:
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
-        
+
 .. class:: conn
 
     .. method:: ping()
@@ -185,16 +185,16 @@ On this diagram:
         :return: true when a target state is reached, false on timeout or connection closure
         :rtype:  boolean
 
-        **Example:**
+        **Examples:**
 
         .. code-block:: lua
 
             -- wait infinitely for 'active' state:
             conn:wait_state('active')
-            
+
             -- wait for 1.5 secs at most:
             conn:wait_state('active', 1.5)
-            
+
             -- wait infinitely for either `active` or `fetch_schema` state:
             conn:wait_state({active=true, fetch_schema=true})
 
@@ -217,7 +217,12 @@ On this diagram:
 
         :samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
-        Example: :code:`conn.space.testspace:select({1,'B'}, {timeout=1})`.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            conn.space.testspace:select({1,'B'}, {timeout=1})
 
         .. NOTE::
 
@@ -232,25 +237,45 @@ On this diagram:
 
         :samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:get(...)`.
-        Example: :code:`conn.space.testspace:get({1})`.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            conn.space.testspace:get({1})
 
     .. method:: conn.space.<space-name>:insert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:insert(...)`.
-        Example: :code:`conn.space.testspace:insert({2,3,4,5}, {timeout=1.1})`.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            conn.space.testspace:insert({2,3,4,5}, {timeout=1.1})
 
     .. method:: conn.space.<space-name>:replace({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:replace(...)`.
-        Example: :code:`conn.space.testspace:replace({5,6,7,8})`.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            conn.space.testspace:replace({5,6,7,8})
 
     .. method:: conn.space.<space-name>:update({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:update(...)`.
-        Example: :code:`conn.space.Q:update({1},{{'=',2,5}}, {timeout=0})`
+
+        **Example:**
+
+        .. code-block:: lua
+
+            conn.space.Q:update({1},{{'=',2,5}}, {timeout=0})
 
     .. method:: conn.space.<space-name>:upsert({field-value, ...} [, {options}])
 
@@ -269,7 +294,13 @@ On this diagram:
         ``conn:call('func', {'1', '2', '3'})`` is the remote-call equivalent of
         ``func('1', '2', '3')``. That is, ``conn:call`` is a remote
         stored-procedure call.
-        Examples: :code:`conn:call('function5')`, :code:`conn:call('fx',{1,'B'},{timeout=99})`.
+
+        **Examples:**
+
+        .. code-block:: lua
+
+            conn:call('function5')
+            conn:call('fx',{1,'B'},{timeout=99})
 
     .. _net_box-eval:
 
@@ -280,15 +311,20 @@ On this diagram:
         An :ref:`execute privilege <authentication-owners_privileges>` is required;
         if the user does not have it, an administrator may grant it with
         :samp:`box.schema.user.grant({username}, 'execute', 'universe')`.
-        Examples: :code:`conn:eval('return 5+5')`,
-        :code:`conn:eval('return ...', {1,2,3})`,
-        :code:`conn:eval('return 5+5, {}, {timeout=0.1}`.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            conn:eval('return 5+5')
+            conn:eval('return ...', {1,2,3})
+            conn:eval('return 5+5, {}, {timeout=0.1})
 
     .. method:: timeout(timeout)
 
         ``timeout(...)`` is a wrapper which sets a timeout for the request that
         follows it. Since version 1.7.4 this method is deprecated -- it is better
-        to pass a timeout value for a method's {options} parameter.
+        to pass a timeout value for a method's ``{options}`` parameter.
 
         **Example:**
 
