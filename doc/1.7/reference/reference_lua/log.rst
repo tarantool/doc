@@ -21,9 +21,26 @@ user-generated with the :samp:`log.{log_level_function_name}` function.
     given log_level_function_name = ``error`` or ``warn`` or ``info`` or
     ``verbose`` or ``debug``.
 
+    As explained in the description of the configuration setting for
+    :ref:`log_level <cfg_logging-log_level>`, there are seven levels of detail:
+
+    * 1 – ``SYSERROR``
+    * 2 – ``ERROR`` -- this corresponds to log.error(...)
+    * 3 – ``CRITICAL``
+    * 4 – ``WARNING``  -- this corresponds to log.warn(...)
+    * 5 – ``INFO`` -- this corresponds to log.info(...)
+    * 6 – ``VERBOSE``  -- this corresponds to log.verbose(...)
+    * 7 – ``DEBUG`` -- this corresponds to log.debug(...)
+
+    For example, if box.cfg.log_level is currently 5 (the default value),
+    then log.error(...) and log.warn(...) and log.info(...) messages will
+    go to the log file. However, log.verbose(...) and log.debug(...)
+    messages will not go to the log file, because they correspond to higher
+    levels of detail.
+
     :param string message: The actual output will be a line containing the
                            current timestamp, a module name, 'E' or 'W' or
-                           'I' or 'V' or 'D' or 'R' depending on
+                           'I' or 'V' or 'D' depending on
                            ``log_level_function_name``, and ``message``.
                            Output will not occur if ``log_level_function_name``
                            is for a type greater than :ref:`log_level
