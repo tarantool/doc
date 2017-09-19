@@ -108,6 +108,10 @@ html_context = {
         'lua-modindex'   : True,
         'search'         : True,
     },
+    'tarantool_io': {
+        # Tarantool-io pages
+        'tarantool-io/news-and-press': True,
+    },
     'packages': {
         # 1.6
         'download/os-installation/1.6/ubuntu' : True,

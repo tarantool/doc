@@ -52,6 +52,7 @@
 
 {% set is_website  = website.get(pagename, False) %}
 {% set is_package_page  = packages.get(pagename, False) %}
+{% set is_tarantool_io = tarantool_io.get(pagename, False) %}
 {% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
@@ -90,6 +91,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-site-verification" content="CR40jzpLISkiUAw2MrH2zHSDNVmzyK88Nj7Crmx_RxQ" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="search" type="application/opensearchdescription+xml"
           title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
@@ -100,10 +102,20 @@
     {%- for scriptfile in script_files %}
       <script type="text/javascript" src="{{ abspath(scriptfile) }}"></script>
     {%- endfor %}
+
+    {% if is_tarantool_io %}
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="{{ abspath('_static/bootstrap.min.css') }}">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
+    {% endif %}
+
     {%- for cssfile in css_files %}
       <link rel="stylesheet" href="{{ abspath(cssfile) }}">
     {%- endfor %}
-
+    
     {% block extrahead %}
     <!--[if lt IE 9]>
       <script src="/js/ie8.js"></script>
