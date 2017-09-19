@@ -111,6 +111,13 @@ html_context = {
     'tarantool_io': {
         # Tarantool-io pages
         'tarantool-io/news-and-press': True,
+        'tarantool-io/press/iiot-released': True,
+        'tarantool-io/press/replication-for-mysql': True,
+        'tarantool-io/press/tarantool-expands': True,
+        'tarantool-io/press/tarantool-partners-waviot': True,
+        'tarantool-io/press/tarantool-supports-sql': True,
+        'tarantool-io/press/tarantool-unviels-replication': True,
+        'tarantool-io/press/veon-migrates': True,
     },
     'packages': {
         # 1.6
