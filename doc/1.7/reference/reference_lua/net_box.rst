@@ -32,7 +32,9 @@ necessary to prioritize requests or to use different authentication IDs.
 Most ``net.box`` methods allow a final ``{options}`` argument which is useful
 for timeout. For example a method whose final argument is ``{timeout=1.5}``
 will stop after 1.5 seconds on the local node, although this does not guarantee
-that execution will stop on the remote server node.
+that execution will stop on the remote server node. A second possible option
+is ``{buffer=...}``, for an example see the description of the
+:ref:`buffer module <buffer-module>`.
 
 The diagram below shows possible connection states and transitions:
 
@@ -366,7 +368,7 @@ Here are commands for a quick sandbox setup:
 
 And here starts the example:
 
-.. code-block:: tarantoolsession
+.. code-block:: none
 
     tarantool> net_box = require('net.box')
     ---
