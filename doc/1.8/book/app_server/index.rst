@@ -17,5 +17,6 @@ This chapter contains the following sections:
    creating_app
    installing_module
    contributing_module
+   reloading_module
    using_ide
    cookbook
