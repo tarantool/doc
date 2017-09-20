@@ -18,6 +18,7 @@ This reference covers Tarantool's built-in Lua modules.
     :caption: List of Lua modules
 
     box
+    buffer
     clock
     console
     crypto
