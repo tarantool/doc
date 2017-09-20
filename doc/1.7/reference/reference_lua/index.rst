@@ -39,6 +39,7 @@ This reference covers Tarantool's built-in Lua modules.
     pickle
     socket
     strict
+    string
     tap
     tarantool
     uuid
