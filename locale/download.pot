@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 19:02+0300\n"
+"POT-Creation-Date: 2017-09-20 15:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,52 +16,1377 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../download.rst:33
-msgid "Tarantool - Downloads"
+#: ../download/connectors.rst:40
+#: ../download/connectors_16.rst:40
+#: ../download/connectors_18.rst:40
+msgid "Tarantool - Connectors"
 msgstr ""
 
-#: ../download.rst:None
-msgid "Available version: 1.6 / 1.7"
+#: ../download/connectors.rst:51
+msgid ":doc:`Downloads <download>` > :doc:`Connectors <connectors>`"
 msgstr ""
 
-#: ../download.rst:38
-msgid "Available version: :doc:`1.6 <download_16>` / 1.7"
+#: ../download/connectors.rst:55
+#: ../download/connectors_16.rst:55
+#: ../download/connectors_18.rst:55
+#: ../download/download.rst:55
+#: ../download/download_16.rst:55
+#: ../download/download_18.rst:55
+#: ../download/rocks.rst:56
+#: ../download/rocks_16.rst:56
+#: ../download/rocks_18.rst:56
+msgid "Available versions:"
 msgstr ""
 
-#: ../download.rst:None
-msgid "To simplify problem analysis and avoid various bugs induced by compilation parameters and environment, it is recommended that production systems use the builds provided on this site.All published releases are available at http://tarantool.org/dist/1.7Hosting is powered by packagecloud."
+#: ../download/connectors.rst:57
+msgid ":doc:`1.6 <connectors_16>` :currentversion:`1.7` :doc:`1.8 (alpha) <connectors_18>`"
 msgstr ""
 
-#: ../download.rst:44
-msgid "To simplify problem analysis and avoid various bugs induced by compilation parameters and environment, it is recommended that production systems use the builds provided on this site."
+#: ../download/connectors.rst:65
+#: ../download/connectors_16.rst:65
+#: ../download/connectors_18.rst:65
+msgid "The recommended connector for each language is marked with a star |starimage|."
 msgstr ""
 
-#: ../download.rst:48
-msgid "All published releases are available at `<http://tarantool.org/dist/1.7>`_"
+#: ../download/connectors.rst:67
+#: ../download/connectors_16.rst:67
+#: ../download/connectors_18.rst:67
+msgid "Want your connector listed here? Please drop us a line at `support@tarantool.org <mailto:support@tarantool.org>`_."
 msgstr ""
 
-#: ../download.rst:50
-msgid "Hosting is powered by |packagecloud|."
+#: ../download/connectors.rst:73
+#: ../download/connectors.rst:574
+#: ../download/connectors_16.rst:73
+#: ../download/connectors_16.rst:574
+#: ../download/connectors_18.rst:73
+#: ../download/connectors_18.rst:574
+msgid "`C <#c-language>`_"
 msgstr ""
 
-#: ../download.rst:57
-msgid "Ubuntu"
+#: ../download/connectors.rst:74
+#: ../download/connectors_16.rst:74
+#: ../download/connectors_18.rst:74
+msgid "`C#`_"
 msgstr ""
 
-#: ../download.rst:59
-msgid "We maintain an always up-to-date Ubuntu package repository. At the moment, the repository contains builds for Ubuntu \"xenial\", \"wily\", \"trusty\", \"precise\"."
+#: ../download/connectors.rst:75
+#: ../download/connectors_16.rst:75
+#: ../download/connectors_18.rst:75
+msgid "Erlang_"
 msgstr ""
 
-#: ../download.rst:63
-msgid "In these instructions, ``$release`` is an environment variable which will contain the Ubuntu version code (e.g. \"precise\")."
+#: ../download/connectors.rst:76
+#: ../download/connectors_16.rst:76
+#: ../download/connectors_18.rst:76
+msgid "Go_"
 msgstr ""
 
-#: ../download.rst:66
-msgid "Copy and paste the script below to the terminal prompt (if you want the version that comes with Ubuntu, start with the lines that follow the '# install' comment):"
+#: ../download/connectors.rst:77
+#: ../download/connectors_16.rst:77
+#: ../download/connectors_18.rst:77
+msgid "Java_"
 msgstr ""
 
-#: ../download.rst:70
-msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -\n"
+#: ../download/connectors.rst:78
+#: ../download/connectors_16.rst:78
+#: ../download/connectors_18.rst:78
+msgid "Lua_"
+msgstr ""
+
+#: ../download/connectors.rst:79
+#: ../download/connectors_16.rst:79
+#: ../download/connectors_18.rst:79
+msgid "`Node.js`_"
+msgstr ""
+
+#: ../download/connectors.rst:80
+#: ../download/connectors_16.rst:80
+#: ../download/connectors_18.rst:80
+msgid "NginX_"
+msgstr ""
+
+#: ../download/connectors.rst:81
+#: ../download/connectors_16.rst:81
+#: ../download/connectors_18.rst:81
+msgid "OpenResty_"
+msgstr ""
+
+#: ../download/connectors.rst:82
+#: ../download/connectors_16.rst:82
+#: ../download/connectors_18.rst:82
+msgid "Perl_"
+msgstr ""
+
+#: ../download/connectors.rst:83
+#: ../download/connectors_16.rst:83
+#: ../download/connectors_18.rst:83
+msgid "PHP_"
+msgstr ""
+
+#: ../download/connectors.rst:84
+#: ../download/connectors_16.rst:84
+#: ../download/connectors_18.rst:84
+msgid "Python_"
+msgstr ""
+
+#: ../download/connectors.rst:85
+#: ../download/connectors.rst:590
+#: ../download/connectors_16.rst:85
+#: ../download/connectors_16.rst:590
+#: ../download/connectors_18.rst:85
+#: ../download/connectors_18.rst:590
+msgid "`R <#r-language>`_"
+msgstr ""
+
+#: ../download/connectors.rst:86
+#: ../download/connectors_16.rst:86
+#: ../download/connectors_18.rst:86
+msgid "Ruby_"
+msgstr ""
+
+#: ../download/connectors.rst:87
+#: ../download/connectors_16.rst:87
+#: ../download/connectors_18.rst:87
+msgid "Rust_"
+msgstr ""
+
+#: ../download/connectors.rst:88
+#: ../download/connectors_16.rst:88
+#: ../download/connectors_18.rst:88
+msgid "Smalltalk_"
+msgstr ""
+
+#: ../download/connectors.rst:89
+#: ../download/connectors_16.rst:89
+#: ../download/connectors_18.rst:89
+msgid "Swift_"
+msgstr ""
+
+#: ../download/connectors.rst:90
+#: ../download/connectors_16.rst:90
+#: ../download/connectors_18.rst:90
+msgid "Tarantool_"
+msgstr ""
+
+#: ../download/connectors.rst:97
+#: ../download/connectors_16.rst:97
+#: ../download/connectors_18.rst:97
+msgid "C"
+msgstr ""
+
+#: ../download/connectors.rst:99
+#: ../download/connectors_16.rst:99
+#: ../download/connectors_18.rst:99
+msgid "C connector for Tarantool 1.6+. Supports sync and async I/O models. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:110
+#: ../download/connectors.rst:387
+#: ../download/connectors.rst:418
+#: ../download/connectors_16.rst:110
+#: ../download/connectors_16.rst:387
+#: ../download/connectors_16.rst:418
+#: ../download/connectors_18.rst:110
+#: ../download/connectors_18.rst:387
+#: ../download/connectors_18.rst:418
+msgid "Owner: `@bigbes <https://github.com/bigbes>`_"
+msgstr ""
+
+#: ../download/connectors.rst:112
+#: ../download/connectors_16.rst:112
+#: ../download/connectors_18.rst:112
+msgid "A plain msgpack serialization library. Use it if you wish to write your own connector or embed Tarantool protocol into your application."
+msgstr ""
+
+#: ../download/connectors.rst:123
+#: ../download/connectors_16.rst:123
+#: ../download/connectors_18.rst:123
+msgid "Owner: `@rtisisyk <https://github.com/rtisisyk>`_"
+msgstr ""
+
+#: ../download/connectors.rst:128
+#: ../download/connectors_16.rst:128
+#: ../download/connectors_18.rst:128
+msgid "C#"
+msgstr ""
+
+#: ../download/connectors.rst:130
+#: ../download/connectors_16.rst:130
+#: ../download/connectors_18.rst:130
+msgid ".Net connector for Tarantool 1.6+. Offers a full-featured support of Tarantool's binary protocol, async API and multiplexing. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:142
+#: ../download/connectors_16.rst:142
+#: ../download/connectors_18.rst:142
+msgid "Owner: `@aensidhe <https://github.com/aensidhe>`_, `@roman-kozachenko <https://github.com/roman-kozachenko>`_"
+msgstr ""
+
+#: ../download/connectors.rst:144
+#: ../download/connectors_16.rst:144
+#: ../download/connectors_18.rst:144
+msgid ".Net connector for Tarantool 1.6. Based on the Akka.Net I/O package."
+msgstr ""
+
+#: ../download/connectors.rst:154
+#: ../download/connectors_16.rst:154
+#: ../download/connectors_18.rst:154
+msgid "Owner: `@donmikel <https://github.com/donmikel>`_"
+msgstr ""
+
+#: ../download/connectors.rst:159
+#: ../download/connectors_16.rst:159
+#: ../download/connectors_18.rst:159
+msgid "Erlang"
+msgstr ""
+
+#: ../download/connectors.rst:161
+#: ../download/connectors_16.rst:161
+#: ../download/connectors_18.rst:161
+msgid "Erlang connector for Tarantool 1.6+. Supports pools of async connects (OTP supervisor based), automatic connection restore, transparent erlang map <-> Lua table. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:174
+#: ../download/connectors_16.rst:174
+#: ../download/connectors_18.rst:174
+msgid "Owner: `@stofel <https://github.com/stofel>`_"
+msgstr ""
+
+#: ../download/connectors.rst:176
+#: ../download/connectors_16.rst:176
+#: ../download/connectors_18.rst:176
+msgid "Erlang connector for Tarantool 1.7+. Based on simplepool."
+msgstr ""
+
+#: ../download/connectors.rst:186
+#: ../download/connectors_16.rst:186
+#: ../download/connectors_18.rst:186
+msgid "Owner: `@brigadier <https://github.com/brigadier>`_"
+msgstr ""
+
+#: ../download/connectors.rst:188
+#: ../download/connectors_16.rst:188
+#: ../download/connectors_18.rst:188
+msgid "Native Elixir connector for Tarantool 1.6."
+msgstr ""
+
+#: ../download/connectors.rst:198
+#: ../download/connectors_16.rst:198
+#: ../download/connectors_18.rst:198
+msgid "Owner: `@spscream <https://github.com/spscream>`_"
+msgstr ""
+
+#: ../download/connectors.rst:203
+#: ../download/connectors_16.rst:203
+#: ../download/connectors_18.rst:203
+msgid "Go"
+msgstr ""
+
+#: ../download/connectors.rst:205
+#: ../download/connectors_16.rst:205
+#: ../download/connectors_18.rst:205
+msgid "Go connector for Tarantool 1.6+. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:216
+#: ../download/connectors_16.rst:216
+#: ../download/connectors_18.rst:216
+msgid "Owner: `@funny-falcon <https://github.com/funny-falcon>`_, `@mialinx <https://github.com/mialinx>`_"
+msgstr ""
+
+#: ../download/connectors.rst:218
+#: ../download/connectors_16.rst:218
+#: ../download/connectors_18.rst:218
+msgid "Go connector for Tarantool 1.6+."
+msgstr ""
+
+#: ../download/connectors.rst:228
+#: ../download/connectors_16.rst:228
+#: ../download/connectors_18.rst:228
+msgid "Owner: `@viciious <https://github.com/viciious>`_"
+msgstr ""
+
+#: ../download/connectors.rst:233
+#: ../download/connectors_16.rst:233
+#: ../download/connectors_18.rst:233
+msgid "Java"
+msgstr ""
+
+#: ../download/connectors.rst:235
+#: ../download/connectors_16.rst:235
+#: ../download/connectors_18.rst:235
+msgid "Java connector for Tarantool 1.6+ |star|"
+msgstr ""
+
+#: ../download/connectors.rst:246
+#: ../download/connectors_16.rst:246
+#: ../download/connectors_18.rst:246
+msgid "Owner: `@dgreenru <https://github.com/dgreenru>`_"
+msgstr ""
+
+#: ../download/connectors.rst:251
+#: ../download/connectors_16.rst:251
+#: ../download/connectors_18.rst:251
+msgid "Lua"
+msgstr ""
+
+#: ../download/connectors.rst:253
+#: ../download/connectors_16.rst:253
+#: ../download/connectors_18.rst:253
+msgid "Pure Lua connector for Tarantool 1.7+. Works on nginx cosockets and plain Lua sockets. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:264
+#: ../download/connectors_16.rst:264
+#: ../download/connectors_18.rst:264
+msgid "Owner: `@csteenberg <https://github.com/csteenberg>`_"
+msgstr ""
+
+#: ../download/connectors.rst:269
+#: ../download/connectors_16.rst:269
+#: ../download/connectors_18.rst:269
+msgid "Node.js"
+msgstr ""
+
+#: ../download/connectors.rst:271
+#: ../download/connectors_16.rst:271
+#: ../download/connectors_18.rst:271
+msgid "Node connector for Tarantool 1.6+. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:282
+#: ../download/connectors_16.rst:282
+#: ../download/connectors_18.rst:282
+msgid "Owner: `@KlonD90 <https://github.com/KlonD90>`_"
+msgstr ""
+
+#: ../download/connectors.rst:287
+#: ../download/connectors_16.rst:287
+#: ../download/connectors_18.rst:287
+msgid "NginX"
+msgstr ""
+
+#: ../download/connectors.rst:289
+#: ../download/connectors_16.rst:289
+#: ../download/connectors_18.rst:289
+msgid "NginX upstream module for Tarantool 1.6+. Features REST, JSON API, websockets, load balancing. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:300
+#: ../download/connectors_16.rst:300
+#: ../download/connectors_18.rst:300
+msgid "Owner: `@dedok <https://github.com/dedok>`_"
+msgstr ""
+
+#: ../download/connectors.rst:305
+#: ../download/connectors_16.rst:305
+#: ../download/connectors_18.rst:305
+msgid "OpenResty"
+msgstr ""
+
+#: ../download/connectors.rst:307
+#: ../download/connectors_16.rst:307
+#: ../download/connectors_18.rst:307
+msgid "Connector for working with Tarantool 1.6 from nginx with an embedded Lua module or with OpenResty. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:318
+#: ../download/connectors_16.rst:318
+#: ../download/connectors_18.rst:318
+msgid "Owner: `@perusio <https://github.com/perusio>`_"
+msgstr ""
+
+#: ../download/connectors.rst:320
+#: ../download/connectors_16.rst:320
+#: ../download/connectors_18.rst:320
+msgid "Lua connector for Tarantool 1.6 on OpenResty nginx cosockets."
+msgstr ""
+
+#: ../download/connectors.rst:330
+#: ../download/connectors_16.rst:330
+#: ../download/connectors_18.rst:330
+msgid "Owner: `@hengestone <https://github.com/hengestone>`_"
+msgstr ""
+
+#: ../download/connectors.rst:335
+#: ../download/connectors_16.rst:335
+#: ../download/connectors_18.rst:335
+msgid "Perl"
+msgstr ""
+
+#: ../download/connectors.rst:337
+#: ../download/connectors_16.rst:337
+#: ../download/connectors_18.rst:337
+msgid "Perl client for Tarantool 1.6+. Fast, based on AnyEvent (async requests out of the box), provides automatic schema loading and on-fly reloading (which enables one to use spaces' and indexes' names in queries), supports all common tarantool statements to be requested natively (select / insert / delete / update / replace / upsert) or through lua function call. The connection is fully customizable (different timeouts can be set), fault-tolerant (reconnect on fails), and can be lazy initialized (to connect on first request). |star|"
+msgstr ""
+
+#: ../download/connectors.rst:355
+#: ../download/connectors_16.rst:355
+#: ../download/connectors_18.rst:355
+msgid "Owner: `@Awety <https://github.com/Awety>`_"
+msgstr ""
+
+#: ../download/connectors.rst:357
+#: ../download/connectors_16.rst:357
+#: ../download/connectors_18.rst:357
+msgid "EV connector for Tarantool 1.6+. Asynchronous, fast, supports schemas (incl. fields) for on-the-fly tuple-to-hash and backward transformations, supports Types::Serializer for transparent conversion to JSON."
+msgstr ""
+
+#: ../download/connectors.rst:369
+#: ../download/connectors_16.rst:369
+#: ../download/connectors_18.rst:369
+msgid "Owner: `@igorcoding <https://github.com/igorcoding>`_, `@mons <https://github.com/mons>`_"
+msgstr ""
+
+#: ../download/connectors.rst:374
+#: ../download/connectors_16.rst:374
+#: ../download/connectors_18.rst:374
+msgid "PHP"
+msgstr ""
+
+#: ../download/connectors.rst:376
+#: ../download/connectors_16.rst:376
+#: ../download/connectors_18.rst:376
+msgid "PECL PHP connector for Tarantool 1.6+ |star|"
+msgstr ""
+
+#: ../download/connectors.rst:389
+#: ../download/connectors_16.rst:389
+#: ../download/connectors_18.rst:389
+msgid "Pure PHP connector for Tarantool 1.6+. Includes a client and a mapper."
+msgstr ""
+
+#: ../download/connectors.rst:399
+#: ../download/connectors_16.rst:399
+#: ../download/connectors_18.rst:399
+msgid "Owner: `@rybakit <https://github.com/rybakit>`_, `@nekufa <https://github.com/nekufa>`_"
+msgstr ""
+
+#: ../download/connectors.rst:404
+#: ../download/connectors_16.rst:404
+#: ../download/connectors_18.rst:404
+msgid "Python"
+msgstr ""
+
+#: ../download/connectors.rst:406
+#: ../download/connectors_16.rst:406
+#: ../download/connectors_18.rst:406
+msgid "Pure Python connector for Tarantool 1.6+, also available from `pypi <http://pypi.python.org/pypi/tarantool>`_ |star|"
+msgstr ""
+
+#: ../download/connectors.rst:420
+#: ../download/connectors_16.rst:420
+#: ../download/connectors_18.rst:420
+msgid "Python Gevent driver for Tarantool 1.6"
+msgstr ""
+
+#: ../download/connectors.rst:430
+#: ../download/connectors.rst:454
+#: ../download/connectors_16.rst:430
+#: ../download/connectors_16.rst:454
+#: ../download/connectors_18.rst:430
+#: ../download/connectors_18.rst:454
+msgid "Owner: `@shveenkov <https://github.com/shveenkov>`_"
+msgstr ""
+
+#: ../download/connectors.rst:432
+#: ../download/connectors_16.rst:432
+#: ../download/connectors_18.rst:432
+msgid "Python 3.5 asyncio driver for Tarantool 1.6+"
+msgstr ""
+
+#: ../download/connectors.rst:442
+#: ../download/connectors_16.rst:442
+#: ../download/connectors_18.rst:442
+msgid "Owner: `@igorcoding <https://github.com/igorcoding>`_"
+msgstr ""
+
+#: ../download/connectors.rst:444
+#: ../download/connectors_16.rst:444
+#: ../download/connectors_18.rst:444
+msgid "Python 3.4 asyncio driver for Tarantool 1.6"
+msgstr ""
+
+#: ../download/connectors.rst:459
+#: ../download/connectors_16.rst:459
+#: ../download/connectors_18.rst:459
+msgid "R"
+msgstr ""
+
+#: ../download/connectors.rst:461
+#: ../download/connectors_16.rst:461
+#: ../download/connectors_18.rst:461
+msgid "R connector for Tarantool 1.6+ |star|"
+msgstr ""
+
+#: ../download/connectors.rst:472
+#: ../download/connectors_16.rst:472
+#: ../download/connectors_18.rst:472
+msgid "Owner: `@thekvs <https://github.com/thekvs>`_"
+msgstr ""
+
+#: ../download/connectors.rst:477
+#: ../download/connectors_16.rst:477
+#: ../download/connectors_18.rst:477
+msgid "Ruby"
+msgstr ""
+
+#: ../download/connectors.rst:479
+#: ../download/connectors_16.rst:479
+#: ../download/connectors_18.rst:479
+msgid "Ruby connector for Tarantool 1.6+ |star|"
+msgstr ""
+
+#: ../download/connectors.rst:490
+#: ../download/connectors_16.rst:490
+#: ../download/connectors_18.rst:490
+msgid "Owner: `@funny-falcon <https://github.com/funny-falcon>`_"
+msgstr ""
+
+#: ../download/connectors.rst:495
+#: ../download/connectors_16.rst:495
+#: ../download/connectors_18.rst:495
+msgid "Rust"
+msgstr ""
+
+#: ../download/connectors.rst:497
+#: ../download/connectors_16.rst:497
+#: ../download/connectors_18.rst:497
+msgid "Rust connector for Tarantool 1.6+ |star|"
+msgstr ""
+
+#: ../download/connectors.rst:508
+#: ../download/connectors_16.rst:508
+#: ../download/connectors_18.rst:508
+msgid "Owner: `@rtsisyk <https://github.com/rtsisyk>`_"
+msgstr ""
+
+#: ../download/connectors.rst:513
+#: ../download/connectors_16.rst:513
+#: ../download/connectors_18.rst:513
+msgid "Smalltalk"
+msgstr ""
+
+#: ../download/connectors.rst:515
+#: ../download/connectors_16.rst:515
+#: ../download/connectors_18.rst:515
+msgid "Pharo Smalltalk connector for Tarantool 1.6+. Includes object-oriented wrapper classes for easier use, automatic connection handling (pooling, reconnect). An additional module (`Tarantube <http://smalltalkhub.com/#!/~MasashiUmezawa/Tarantube>`_) provides queue interfaces."
+msgstr ""
+
+#: ../download/connectors.rst:521
+#: ../download/connectors_16.rst:521
+#: ../download/connectors_18.rst:521
+msgid "|star|"
+msgstr ""
+
+#: ../download/connectors.rst:531
+#: ../download/connectors_16.rst:531
+#: ../download/connectors_18.rst:531
+msgid "Owner: `@mumez <https://github.com/mumez/>`_"
+msgstr ""
+
+#: ../download/connectors.rst:536
+#: ../download/connectors_16.rst:536
+#: ../download/connectors_18.rst:536
+msgid "Swift"
+msgstr ""
+
+#: ../download/connectors.rst:538
+#: ../download/connectors_16.rst:538
+#: ../download/connectors_18.rst:538
+msgid "Swift connector and stored procedures for Tarantool 1.7 |star|"
+msgstr ""
+
+#: ../download/connectors.rst:549
+#: ../download/connectors.rst:568
+#: ../download/connectors_16.rst:549
+#: ../download/connectors_16.rst:568
+#: ../download/connectors_18.rst:549
+#: ../download/connectors_18.rst:568
+msgid "Owner: `@tonyfreeman <https://github.com/tonyfreeman>`_"
+msgstr ""
+
+#: ../download/connectors.rst:554
+#: ../download/connectors_16.rst:554
+#: ../download/connectors_18.rst:554
+msgid "Tarantool"
+msgstr ""
+
+#: ../download/connectors.rst:556
+#: ../download/connectors_16.rst:556
+#: ../download/connectors_18.rst:556
+msgid "Built-in net.box module. Ships together with any Tarantool package. See more `here <https://tarantool.org/en/doc/1.7/reference/reference_lua/net_box.html>`_. |star|"
+msgstr ""
+
+#: ../download/connectors.rst:575
+#: ../download/connectors.rst:577
+#: ../download/connectors.rst:579
+#: ../download/connectors.rst:581
+#: ../download/connectors.rst:583
+#: ../download/connectors.rst:585
+#: ../download/connectors.rst:587
+#: ../download/connectors.rst:589
+#: ../download/connectors.rst:591
+#: ../download/connectors.rst:593
+#: ../download/connectors_16.rst:575
+#: ../download/connectors_16.rst:577
+#: ../download/connectors_16.rst:579
+#: ../download/connectors_16.rst:581
+#: ../download/connectors_16.rst:583
+#: ../download/connectors_16.rst:585
+#: ../download/connectors_16.rst:587
+#: ../download/connectors_16.rst:589
+#: ../download/connectors_16.rst:591
+#: ../download/connectors_16.rst:593
+#: ../download/connectors_18.rst:575
+#: ../download/connectors_18.rst:577
+#: ../download/connectors_18.rst:579
+#: ../download/connectors_18.rst:581
+#: ../download/connectors_18.rst:583
+#: ../download/connectors_18.rst:585
+#: ../download/connectors_18.rst:587
+#: ../download/connectors_18.rst:589
+#: ../download/connectors_18.rst:591
+#: ../download/connectors_18.rst:593
+msgid "|point|"
+msgstr ""
+
+#: ../download/connectors.rst:576
+#: ../download/connectors_16.rst:576
+#: ../download/connectors_18.rst:576
+msgid "`E <#erlang>`_"
+msgstr ""
+
+#: ../download/connectors.rst:578
+#: ../download/connectors_16.rst:578
+#: ../download/connectors_18.rst:578
+msgid "`G <#go>`_"
+msgstr ""
+
+#: ../download/connectors.rst:580
+#: ../download/connectors_16.rst:580
+#: ../download/connectors_18.rst:580
+msgid "`J <#java>`_"
+msgstr ""
+
+#: ../download/connectors.rst:582
+#: ../download/connectors_16.rst:582
+#: ../download/connectors_18.rst:582
+msgid "`L <#lua>`_"
+msgstr ""
+
+#: ../download/connectors.rst:584
+#: ../download/connectors_16.rst:584
+#: ../download/connectors_18.rst:584
+msgid "`N <#node-js>`_"
+msgstr ""
+
+#: ../download/connectors.rst:586
+#: ../download/connectors_16.rst:586
+#: ../download/connectors_18.rst:586
+msgid "`O <#openresty>`_"
+msgstr ""
+
+#: ../download/connectors.rst:588
+#: ../download/connectors_16.rst:588
+#: ../download/connectors_18.rst:588
+msgid "`P <#perl>`_"
+msgstr ""
+
+#: ../download/connectors.rst:592
+#: ../download/connectors_16.rst:592
+#: ../download/connectors_18.rst:592
+msgid "`S <#smalltalk>`_"
+msgstr ""
+
+#: ../download/connectors.rst:594
+#: ../download/connectors_16.rst:594
+#: ../download/connectors_18.rst:594
+msgid "`T <#tarantool>`_"
+msgstr ""
+
+#: ../download/connectors_16.rst:51
+msgid ":doc:`Downloads <download_16>` > :doc:`Connectors <connectors_16>`"
+msgstr ""
+
+#: ../download/connectors_16.rst:57
+msgid ":currentversion:`1.6` :doc:`1.7 <connectors>`  :doc:`1.8 (alpha) <connectors_18>`"
+msgstr ""
+
+#: ../download/connectors_18.rst:51
+msgid ":doc:`Downloads <download_18>` > :doc:`Connectors <connectors_18>`"
+msgstr ""
+
+#: ../download/connectors_18.rst:57
+msgid ":doc:`1.6 <connectors_16>` :doc:`1.7 <connectors>`   :currentversion:`1.8 (alpha)`"
+msgstr ""
+
+#: ../download/download.rst:40
+msgid "Tarantool - Downloads (1.7)"
+msgstr ""
+
+#: ../download/download.rst:51
+msgid ":doc:`Downloads <download>` >"
+msgstr ""
+
+#: ../download/download.rst:57
+msgid ":doc:`1.6 <download_16>` :currentversion:`1.7`  :doc:`1.8 (alpha) <download_18>`"
+msgstr ""
+
+#: ../download/download.rst:72
+msgid ":doc:`Tarantool 1.7 downloads <download>`"
+msgstr ""
+
+#: ../download/download.rst:76
+#: ../download/download_16.rst:76
+#: ../download/download_18.rst:76
+msgid "Here is a bunch of free downloads and whatever you may need for Tarantool."
+msgstr ""
+
+#: ../download/download.rst:81
+msgid ":doc:`Learn more → <os-installation/1.7/docker-hub>`"
+msgstr ""
+
+#: ../download/download.rst:93
+#: ../download/download_16.rst:93
+#: ../download/download_18.rst:93
+msgid "We're building packages for a variety of operating systems. Choose your OS and follow the installation instructions. Hosting is powered by |packagecloud|"
+msgstr ""
+
+#: ../download/download.rst:105
+#: ../download/download_16.rst:105
+#: ../download/download_18.rst:105
+msgid "If you’re looking for the latest version of a client driver, prefer rocks and gems to rpms and debs, or want to try out an alternative, choose a driver from a community-maintained list."
+msgstr ""
+
+#: ../download/download.rst:117
+#: ../download/download_16.rst:117
+#: ../download/download_18.rst:117
+msgid "Official Tarantool images for Docker come with batteries on board: modules, connectors and perks are pre-installed so that you can get up and running quickly."
+msgstr ""
+
+#: ../download/download.rst:128
+#: ../download/download_16.rst:128
+#: ../download/download_18.rst:128
+msgid "An exhaustive list of all Tarantool modules, installable with ``luarocks`` or ``tarantoolctl``."
+msgstr ""
+
+#: ../download/download.rst:144
+#: ../download/download_16.rst:144
+#: ../download/download_18.rst:144
+msgid "Enterprise downloads"
+msgstr ""
+
+#: ../download/download.rst:148
+#: ../download/download_16.rst:148
+#: ../download/download_18.rst:148
+msgid "`Carrier-grade edition <https://tarantool.io/try-it>`_ for critical deployments."
+msgstr ""
+
+#: ../download/download_16.rst:40
+msgid "Tarantool - Downloads (1.6)"
+msgstr ""
+
+#: ../download/download_16.rst:51
+msgid ":doc:`Downloads <download_16>` >"
+msgstr ""
+
+#: ../download/download_16.rst:57
+msgid ":currentversion:`1.6` :doc:`1.7 <download>` :doc:`1.8 (alpha) <download_18>`"
+msgstr ""
+
+#: ../download/download_16.rst:72
+msgid ":doc:`Tarantool 1.6 downloads <download_16>`"
+msgstr ""
+
+#: ../download/download_16.rst:81
+msgid ":doc:`Learn more → <os-installation/1.6/docker-hub>`"
+msgstr ""
+
+#: ../download/download_18.rst:40
+msgid "Tarantool - Downloads (1.8)"
+msgstr ""
+
+#: ../download/download_18.rst:51
+msgid ":doc:`Downloads <download_18>` >"
+msgstr ""
+
+#: ../download/download_18.rst:57
+msgid ":doc:`1.6 <download_16>` :doc:`1.7 <download>` :currentversion:`1.8 (alpha)`"
+msgstr ""
+
+#: ../download/download_18.rst:72
+msgid ":doc:`Tarantool 1.8 downloads <download_18>`"
+msgstr ""
+
+#: ../download/download_18.rst:81
+msgid ":doc:`Learn more → <os-installation/1.8/docker-hub>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:40
+#: ../download/os-installation/1.7/amazon-linux.rst:40
+#: ../download/os-installation/1.8/amazon-linux.rst:40
+msgid "Tarantool - Amazon Linux"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:37
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.6/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:37
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.7/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:37
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+#: ../download/os-installation/1.8/menu.rst:3
+msgid ":doc:`OS X <os-x>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:38
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.6/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:38
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.7/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:38
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+#: ../download/os-installation/1.8/menu.rst:4
+msgid ":doc:`Docker Hub <docker-hub>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:39
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.6/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:39
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.7/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:39
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+#: ../download/os-installation/1.8/menu.rst:5
+msgid ":doc:`Ubuntu <ubuntu>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:40
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.6/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:40
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.7/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:40
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+#: ../download/os-installation/1.8/menu.rst:6
+msgid ":doc:`Debian Jessie and newer <debian-jessie-and-newer>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:41
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.6/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:41
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.7/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:41
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+#: ../download/os-installation/1.8/menu.rst:7
+msgid ":doc:`Debian Wheezy <debian-wheezy>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:42
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.6/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:42
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.7/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:42
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+#: ../download/os-installation/1.8/menu.rst:8
+msgid ":doc:`Fedora <fedora/>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:43
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.6/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:43
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.7/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:43
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+#: ../download/os-installation/1.8/menu.rst:9
+msgid ":doc:`RHEL/CentOS 6 and 7 <rhel-centos-6-7>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:44
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.6/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:44
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.7/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:44
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+#: ../download/os-installation/1.8/menu.rst:10
+msgid ":doc:`Amazon Linux <amazon-linux>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:45
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.6/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:46
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:46
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+#: ../download/os-installation/1.8/menu.rst:12
+msgid ":doc:`FreeBSD <freebsd>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:46
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.6/menu.rst:12
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:47
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:47
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+#: ../download/os-installation/1.8/menu.rst:13
+msgid ":doc:`Microsoft Azure <microsoft-azure>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:47
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.6/menu.rst:13
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:48
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.7/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:48
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+#: ../download/os-installation/1.8/menu.rst:14
+msgid ":doc:`Building from source <building-from-source>`"
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:52
+#: ../download/os-installation/1.7/amazon-linux.rst:52
+#: ../download/os-installation/1.8/amazon-linux.rst:52
+msgid "Amazon Linux is based on RHEL 6 / CentOS 6. We maintain an always up-to-date package repository for RHEL 6 derivatives. You may need to enable the `EPEL`_ repository for some packages."
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:0
+#: ../download/os-installation/1.7/amazon-linux.rst:0
+#: ../download/os-installation/1.8/amazon-linux.rst:0
+msgid "In these instructions,"
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:0
+#: ../download/os-installation/1.7/amazon-linux.rst:0
+#: ../download/os-installation/1.8/amazon-linux.rst:0
+msgid "``$releasever`` (i.e. RHEL / CentOS release version) must be 6, and"
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:0
+#: ../download/os-installation/1.6/fedora.rst:0
+#: ../download/os-installation/1.7/amazon-linux.rst:0
+#: ../download/os-installation/1.7/fedora.rst:0
+#: ../download/os-installation/1.8/amazon-linux.rst:0
+#: ../download/os-installation/1.8/fedora.rst:0
+msgid "``$basearch`` (i.e. base architecture) must be either i386 or x86_64."
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:61
+#: ../download/os-installation/1.6/debian-jessie-and-newer.rst:60
+#: ../download/os-installation/1.6/debian-wheezy.rst:54
+#: ../download/os-installation/1.6/fedora.rst:61
+#: ../download/os-installation/1.7/debian-jessie-and-newer.rst:60
+#: ../download/os-installation/1.7/debian-wheezy.rst:54
+#: ../download/os-installation/1.7/fedora.rst:61
+#: ../download/os-installation/1.8/debian-jessie-and-newer.rst:60
+#: ../download/os-installation/1.8/debian-wheezy.rst:54
+#: ../download/os-installation/1.8/fedora.rst:61
+msgid "Copy and paste the script below to the terminal prompt:"
+msgstr ""
+
+#: ../download/os-installation/1.6/amazon-linux.rst:63
+msgid "# Enable EPEL repository\n"
+"sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm\n"
+"sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
+"\n"
+"# Add Tarantool repository\n"
+"sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+"sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF\n"
+"[tarantool_1_6]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.6/el/6/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"enabled=1\n"
+"\n"
+"[tarantool_1_6-source]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.6/el/6/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"EOF\n"
+"\n"
+"# Update metadata\n"
+"sudo yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6' --enablerepo='epel'\n"
+"\n"
+"# Install Tarantool\n"
+"sudo yum -y install tarantool"
+msgstr ""
+
+#: ../download/os-installation/1.6/building-from-source.rst:40
+#: ../download/os-installation/1.7/building-from-source.rst:40
+#: ../download/os-installation/1.8/building-from-source.rst:40
+msgid "Tarantool - Building from source"
+msgstr ""
+
+#: ../download/os-installation/1.6/building-from-source.rst:52
+msgid "To get the latest source files for version 1.6, you can clone or download them from the Tarantool repository at `GitHub`_, or download them as a `tarball`_."
+msgstr ""
+
+#: ../download/os-installation/1.6/building-from-source.rst:56
+#: ../download/os-installation/1.7/building-from-source.rst:56
+#: ../download/os-installation/1.8/building-from-source.rst:56
+msgid "Please consult with the Tarantool documentation for :ref:`build-from-source <building_from_source>` instructions on your system."
+msgstr ""
+
+#: ../download/os-installation/1.6/debian-jessie-and-newer.rst:40
+#: ../download/os-installation/1.7/debian-jessie-and-newer.rst:40
+#: ../download/os-installation/1.8/debian-jessie-and-newer.rst:40
+msgid "Tarantool - Debian Jessie and newer"
+msgstr ""
+
+#: ../download/os-installation/1.6/debian-jessie-and-newer.rst:52
+#: ../download/os-installation/1.7/debian-jessie-and-newer.rst:52
+#: ../download/os-installation/1.8/debian-jessie-and-newer.rst:52
+msgid "We maintain an always up-to-date Debian GNU/Linux package repository. At the moment, the repository contains builds for Debian \"stretch\" and \"jessie\". For Debian \"wheezy\", see personal instructions on this page."
+msgstr ""
+
+#: ../download/os-installation/1.6/debian-jessie-and-newer.rst:57
+#: ../download/os-installation/1.7/debian-jessie-and-newer.rst:57
+#: ../download/os-installation/1.8/debian-jessie-and-newer.rst:57
+msgid "In these instructions, ``$release`` is an environment variable which will contain the Debian version code (e.g. \"jessie\")."
+msgstr ""
+
+#: ../download/os-installation/1.6/debian-jessie-and-newer.rst:62
+msgid "curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -\n"
 "release=`lsb_release -c -s`\n"
 "\n"
 "# install https download transport for APT\n"
@@ -69,9 +1394,9 @@ msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key ad
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
-"deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main\n"
-"deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF\n"
+"deb http://download.tarantool.org/tarantool/1.6/debian/ $release main\n"
+"deb-src http://download.tarantool.org/tarantool/1.6/debian/ $release main\n"
 "EOF\n"
 "\n"
 "# install\n"
@@ -79,25 +1404,319 @@ msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key ad
 "sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:89
-msgid "Debian Stretch, Jessie and newer"
+#: ../download/os-installation/1.6/debian-wheezy.rst:40
+#: ../download/os-installation/1.7/debian-wheezy.rst:40
+#: ../download/os-installation/1.8/debian-wheezy.rst:40
+msgid "Tarantool - Debian Wheezy"
 msgstr ""
 
-#: ../download.rst:91
-msgid "We maintain an always up-to-date Debian GNU/Linux package repository. At the moment, the repository contains builds for Debian \"stretch\" and \"jessie\". For Debian \"wheezy\", see personal instructions on this page."
+#: ../download/os-installation/1.6/debian-wheezy.rst:52
+#: ../download/os-installation/1.7/debian-wheezy.rst:52
+#: ../download/os-installation/1.8/debian-wheezy.rst:52
+msgid "We maintain an always up-to-date package repository for Debian \"wheezy\"."
 msgstr ""
 
-#: ../download.rst:96
-msgid "In these instructions, ``$release`` is an environment variable which will contain the Debian version code (e.g. \"jessie\")."
+#: ../download/os-installation/1.6/debian-wheezy.rst:56
+msgid "curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -\n"
+"release=`lsb_release -c -s`\n"
+"\n"
+"# install https download transport for APT\n"
+"sudo apt-get -y install apt-transport-https\n"
+"\n"
+"# append two lines to a list of source repositories\n"
+"sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF\n"
+"deb https://packagecloud.io/tarantool/1_6/debian/ wheezy main\n"
+"deb-src https://packagecloud.io/tarantool/1_6/debian/ wheezy main\n"
+"EOF\n"
+"\n"
+"# install\n"
+"sudo apt-get update\n"
+"sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:99
-#: ../download.rst:124
-#: ../download.rst:156
-msgid "Copy and paste the script below to the terminal prompt:"
+#: ../download/os-installation/1.6/docker-hub.rst:40
+#: ../download/os-installation/1.7/docker-hub.rst:40
+#: ../download/os-installation/1.8/docker-hub.rst:40
+msgid "Tarantool - Docker Hub"
 msgstr ""
 
-#: ../download.rst:101
+#: ../download/os-installation/1.6/fedora.rst:40
+#: ../download/os-installation/1.7/fedora.rst:40
+#: ../download/os-installation/1.8/fedora.rst:40
+msgid "Tarantool - Fedora"
+msgstr ""
+
+#: ../download/os-installation/1.6/fedora.rst:52
+#: ../download/os-installation/1.7/fedora.rst:52
+#: ../download/os-installation/1.8/fedora.rst:52
+msgid "We maintain an always up-to-date Fedora package repository. At the moment, the repository contains builds for Fedora 23 and 24."
+msgstr ""
+
+#: ../download/os-installation/1.6/fedora.rst:0
+#: ../download/os-installation/1.7/fedora.rst:0
+#: ../download/os-installation/1.8/fedora.rst:0
+msgid "In these instructions:"
+msgstr ""
+
+#: ../download/os-installation/1.6/fedora.rst:0
+#: ../download/os-installation/1.7/fedora.rst:0
+#: ../download/os-installation/1.8/fedora.rst:0
+msgid "``$releasever`` (i.e. Fedora release version) must be 23 or 24 or rawhide, and"
+msgstr ""
+
+#: ../download/os-installation/1.6/fedora.rst:63
+msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+"sudo tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF\n"
+"[tarantool_1_6]\n"
+"name=Fedora-\\$releasever - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.6/fedora/\\$releasever/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"enabled=1\n"
+"\n"
+"[tarantool_1_6-source]\n"
+"name=Fedora-\\$releasever - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.6/fedora/\\$releasever/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"EOF\n"
+"\n"
+"sudo dnf -q makecache -y --disablerepo='*' --enablerepo='tarantool_1_6'\n"
+"sudo dnf -y install tarantool"
+msgstr ""
+
+#: ../download/os-installation/1.6/freebsd.rst:40
+#: ../download/os-installation/1.7/freebsd.rst:40
+#: ../download/os-installation/1.8/freebsd.rst:40
+msgid "Tarantool - FreeBSD"
+msgstr ""
+
+#: ../download/os-installation/1.6/freebsd.rst:52
+#: ../download/os-installation/1.7/freebsd.rst:52
+#: ../download/os-installation/1.8/freebsd.rst:52
+msgid "Tarantool is available from the FreeBSD Ports collection."
+msgstr ""
+
+#: ../download/os-installation/1.6/freebsd.rst:54
+#: ../download/os-installation/1.7/freebsd.rst:54
+#: ../download/os-installation/1.8/freebsd.rst:54
+msgid "With your browser, go to the `FreeBSD Ports`_ page. Enter the search term: `tarantool`. Choose the package you want."
+msgstr ""
+
+#: ../download/os-installation/1.6/freebsd.rst:58
+#: ../download/os-installation/1.7/freebsd.rst:58
+#: ../download/os-installation/1.8/freebsd.rst:58
+msgid "Also, look at the `Fresh Ports`_ page."
+msgstr ""
+
+#: ../download/os-installation/1.6/microsoft-azure.rst:40
+#: ../download/os-installation/1.7/microsoft-azure.rst:40
+#: ../download/os-installation/1.8/microsoft-azure.rst:40
+msgid "Tarantool - Microsoft Azure"
+msgstr ""
+
+#: ../download/os-installation/1.6/microsoft-azure.rst:52
+#: ../download/os-installation/1.7/microsoft-azure.rst:52
+#: ../download/os-installation/1.8/microsoft-azure.rst:52
+msgid "Tarantool images are available at `Microsoft Azure`_."
+msgstr ""
+
+#: ../download/os-installation/1.6/os-x.rst:40
+#: ../download/os-installation/1.7/os-x.rst:40
+#: ../download/os-installation/1.8/os-x.rst:40
+msgid "Tarantool - OS X"
+msgstr ""
+
+#: ../download/os-installation/1.6/os-x.rst:52
+msgid "The ``homebrew`` formula for Tarantool 1.6 is unavailable."
+msgstr ""
+
+#: ../download/os-installation/1.6/os-x.rst:54
+msgid "Instead, you can build and install Tarantool 1.6 from source, or install Tarantool 1.7 using ``homebrew``:"
+msgstr ""
+
+#: ../download/os-installation/1.6/os-x.rst:57
+#: ../download/os-installation/1.7/os-x.rst:54
+msgid "$ brew install tarantool\n"
+"==> Cloning https://github.com/tarantool/tarantool.git\n"
+"Updating /Users/Me/Library/Caches/Homebrew/tarantool--git\n"
+"==> Checking out branch 1.7\n"
+"Synchronizing submodule url for 'lib/msgpack-python'\n"
+"Synchronizing submodule url for 'lib/tarantool-python'\n"
+"==> cmake . -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG\n"
+"            -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG\n"
+"            -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/HEAD\n"
+"            -DCMAKE_BUILD_TYPE=Release\n"
+"            -DCMAKE_FIND_FRAMEWORK=LAST\n"
+"            -DCMAKE_VERBOSE_MAKEFILE=ON\n"
+"            -Wno-dev -DCMAKE_INSTALL_MANDIR=/usr/share/man\n"
+"==> make\n"
+"==> make install\n"
+"/usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds"
+msgstr ""
+
+#: ../download/os-installation/1.6/rhel-centos-6-7.rst:40
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:40
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:40
+msgid "Tarantool - RHEL/CentOS 6 and 7"
+msgstr ""
+
+#: ../download/os-installation/1.6/rhel-centos-6-7.rst:52
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:52
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:52
+msgid "We maintain an always up-to-date package repository for the derivatives of RHEL 6 and 7."
+msgstr ""
+
+#: ../download/os-installation/1.6/rhel-centos-6-7.rst:55
+#: ../download/os-installation/1.7/amazon-linux.rst:61
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:55
+#: ../download/os-installation/1.8/amazon-linux.rst:61
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:55
+msgid "Copy and paste the script below to the *root* terminal prompt:"
+msgstr ""
+
+#: ../download/os-installation/1.6/rhel-centos-6-7.rst:57
+msgid "# Clean up yum cache\n"
+"yum clean all\n"
+"# Add Tarantool repository\n"
+"rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+"tee /etc/yum.repos.d/tarantool_1_6.repo <<- EOF\n"
+"[tarantool_1_6]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.6/el/\\$releasever/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"enabled=1\n"
+"\n"
+"[tarantool_1_6-source]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.6/el/\\$releasever/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.6/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"EOF\n"
+"\n"
+"# Update metadata\n"
+"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_6'\n"
+"\n"
+"# Install Tarantool\n"
+"yum -y install tarantool"
+msgstr ""
+
+#: ../download/os-installation/1.6/ubuntu.rst:40
+#: ../download/os-installation/1.7/ubuntu.rst:40
+#: ../download/os-installation/1.8/ubuntu.rst:40
+msgid "Tarantool - Ubuntu"
+msgstr ""
+
+#: ../download/os-installation/1.6/ubuntu.rst:52
+#: ../download/os-installation/1.7/ubuntu.rst:52
+#: ../download/os-installation/1.8/ubuntu.rst:52
+msgid "We maintain an always up-to-date Ubuntu package repository. At the moment, the repository contains builds for Ubuntu \"xenial\", \"wily\", \"trusty\", \"precise\"."
+msgstr ""
+
+#: ../download/os-installation/1.6/ubuntu.rst:56
+#: ../download/os-installation/1.7/ubuntu.rst:56
+#: ../download/os-installation/1.8/ubuntu.rst:56
+msgid "In these instructions, ``$release`` is an environment variable which will contain the Ubuntu version code (e.g. \"precise\")."
+msgstr ""
+
+#: ../download/os-installation/1.6/ubuntu.rst:59
+#: ../download/os-installation/1.7/ubuntu.rst:59
+#: ../download/os-installation/1.8/ubuntu.rst:59
+msgid "Copy and paste the script below to the terminal prompt (if you want the version that comes with Ubuntu, start with the lines that follow the '# install' comment):"
+msgstr ""
+
+#: ../download/os-installation/1.6/ubuntu.rst:63
+msgid "curl http://download.tarantool.org/tarantool/1.6/gpgkey | sudo apt-key add -\n"
+"release=`lsb_release -c -s`\n"
+"\n"
+"# install https download transport for APT\n"
+"sudo apt-get -y install apt-transport-https\n"
+"\n"
+"# append two lines to a list of source repositories\n"
+"sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_6.list <<- EOF\n"
+"deb http://download.tarantool.org/tarantool/1.6/ubuntu/ $release main\n"
+"deb-src http://download.tarantool.org/tarantool/1.6/ubuntu/ $release main\n"
+"EOF\n"
+"\n"
+"# install\n"
+"sudo apt-get update\n"
+"sudo apt-get -y install tarantool"
+msgstr ""
+
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:45
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.7/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:45
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+#: ../download/os-installation/1.8/menu.rst:11
+msgid ":doc:`Snappy Package <snappy-package>`"
+msgstr ""
+
+#: ../download/os-installation/1.7/amazon-linux.rst:63
+msgid "# Clean up yum cache\n"
+"yum clean all\n"
+"# Enable EPEL repository\n"
+"yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm\n"
+"sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
+"\n"
+"# Add Tarantool repository\n"
+"rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+"tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
+"[tarantool_1_7]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"enabled=1\n"
+"\n"
+"[tarantool_1_7-source]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"EOF\n"
+"\n"
+"# Update metadata\n"
+"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7' --enablerepo='epel'\n"
+"\n"
+"# Install Tarantool\n"
+"yum -y install tarantool"
+msgstr ""
+
+#: ../download/os-installation/1.7/building-from-source.rst:52
+msgid "To get the latest source files for version 1.7, you can clone or download them from the Tarantool repository at `GitHub`_, or download them as a `tarball`_."
+msgstr ""
+
+#: ../download/os-installation/1.7/debian-jessie-and-newer.rst:62
 msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -\n"
 "release=`lsb_release -c -s`\n"
 "\n"
@@ -116,15 +1735,7 @@ msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key ad
 "sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:120
-msgid "Debian Wheezy"
-msgstr ""
-
-#: ../download.rst:122
-msgid "We maintain an always up-to-date package repository for Debian \"wheezy\"."
-msgstr ""
-
-#: ../download.rst:126
+#: ../download/os-installation/1.7/debian-wheezy.rst:56
 msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -\n"
 "release=`lsb_release -c -s`\n"
 "\n"
@@ -143,31 +1754,7 @@ msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key ad
 "sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:145
-msgid "Fedora"
-msgstr ""
-
-#: ../download.rst:147
-msgid "We maintain an always up-to-date Fedora package repository. At the moment, the repository contains builds for Fedora 23 and 24."
-msgstr ""
-
-#: ../download.rst:0
-#: ../download.rst:0
-msgid "In these instructions:"
-msgstr ""
-
-#: ../download.rst:0
-msgid "``$releasever`` (i.e. Fedora release version) must be 23 or 24 or rawhide, and"
-msgstr ""
-
-#: ../download.rst:0
-#: ../download.rst:0
-#: ../download.rst:0
-#: ../download.rst:0
-msgid "``$basearch`` (i.e. base architecture) must be either i386 or x86_64."
-msgstr ""
-
-#: ../download.rst:158
+#: ../download/os-installation/1.7/fedora.rst:63
 msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "sudo tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
 "[tarantool_1_7]\n"
@@ -190,72 +1777,12 @@ msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "sudo dnf -y install tarantool"
 msgstr ""
 
-#: ../download.rst:181
-msgid "RHEL 6 and CentOS 6"
+#: ../download/os-installation/1.7/os-x.rst:52
+#: ../download/os-installation/1.8/os-x.rst:52
+msgid "You can install Tarantool using ``homebrew``:"
 msgstr ""
 
-#: ../download.rst:183
-msgid "We maintain an always up-to-date package repository for RHEL 7 derivatives. You may need to enable the `EPEL`_ repository for some packages."
-msgstr ""
-
-#: ../download.rst:0
-#: ../download.rst:0
-msgid "``$releasever`` (i.e. CentOS release version) must be 7, and"
-msgstr ""
-
-#: ../download.rst:192
-#: ../download.rst:236
-#: ../download.rst:278
-msgid "Copy and paste the script below to the *root* terminal prompt:"
-msgstr ""
-
-#: ../download.rst:194
-msgid "# Clean up yum cache\n"
-"yum clean all\n"
-"# Enable EPEL repository\n"
-"yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm\n"
-"sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
-"\n"
-"# Add Tarantool repository\n"
-"rm -f /etc/yum.repos.d/*tarantool*.repo\n"
-"tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
-"[tarantool_1_7]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/\\$basearch/\n"
-"gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
-"repo_gpgcheck=1\n"
-"gpgcheck=0\n"
-"enabled=1\n"
-"\n"
-"[tarantool_1_7-source]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/SRPMS\n"
-"gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
-"repo_gpgcheck=1\n"
-"gpgcheck=0\n"
-"EOF\n"
-"\n"
-"# Update metadata\n"
-"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7' --enablerepo='epel'\n"
-"\n"
-"# Install tarantool\n"
-"yum -y install tarantool"
-msgstr ""
-
-#: ../download.rst:227
-msgid "RHEL 7 and CentOS 7"
-msgstr ""
-
-#: ../download.rst:229
-msgid "We maintain an always up-to-date package repository for RHEL 7 derivatives."
-msgstr ""
-
-#: ../download.rst:0
-#: ../download.rst:0
-msgid "In these instructions,"
-msgstr ""
-
-#: ../download.rst:238
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:57
 msgid "# Clean up yum cache\n"
 "yum clean all\n"
 "# Add Tarantool repository\n"
@@ -263,7 +1790,7 @@ msgid "# Clean up yum cache\n"
 "tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
 "[tarantool_1_7]\n"
 "name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/7/\\$basearch/\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/\\$basearch/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -271,7 +1798,7 @@ msgid "# Clean up yum cache\n"
 "\n"
 "[tarantool_1_7-source]\n"
 "name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/7/SRPMS\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/SRPMS\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -284,19 +1811,55 @@ msgid "# Clean up yum cache\n"
 "yum -y install tarantool"
 msgstr ""
 
-#: ../download.rst:267
-msgid "Amazon Linux"
+#: ../download/os-installation/1.7/snappy-package.rst:40
+#: ../download/os-installation/1.8/snappy-package.rst:40
+msgid "Tarantool - Snappy package"
 msgstr ""
 
-#: ../download.rst:269
-msgid "Amazon Linux is based on RHEL 6 / CentOS 6. We maintain an always up-to-date package repository for RHEL 6 derivatives. You may need to enable the `EPEL`_ repository for some packages."
+#: ../download/os-installation/1.7/snappy-package.rst:52
+msgid "You can install Tarantool 1.7.2 (Beta) from a Snappy package:"
 msgstr ""
 
-#: ../download.rst:0
-msgid "``$releasever`` (i.e. RHEL / CentOS release version) must be 6, and"
+#: ../download/os-installation/1.7/snappy-package.rst:54
+#: ../download/os-installation/1.8/snappy-package.rst:54
+msgid "$ snap install tarantool --channel=beta"
 msgstr ""
 
-#: ../download.rst:280
+#: ../download/os-installation/1.7/snappy-package.rst:58
+#: ../download/os-installation/1.8/snappy-package.rst:58
+msgid "Snaps are universal Linux packages which can be installed across a range of Linux distributions."
+msgstr ""
+
+#: ../download/os-installation/1.7/snappy-package.rst:61
+#: ../download/os-installation/1.8/snappy-package.rst:61
+msgid "Snappy package manager is already pre-installed on Ubuntu Xenial and newer. For other distros, you may need to install ``snapd``. See http://snapcraft.io/ for detailed instructions."
+msgstr ""
+
+#: ../download/os-installation/1.7/snappy-package.rst:65
+#: ../download/os-installation/1.8/snappy-package.rst:65
+msgid "Note: initialization scripts, ``systemd`` units and ``tarantoolctl`` utility are not included in Snappy packages."
+msgstr ""
+
+#: ../download/os-installation/1.7/ubuntu.rst:63
+msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key add -\n"
+"release=`lsb_release -c -s`\n"
+"\n"
+"# install https download transport for APT\n"
+"sudo apt-get -y install apt-transport-https\n"
+"\n"
+"# append two lines to a list of source repositories\n"
+"sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
+"deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main\n"
+"deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main\n"
+"EOF\n"
+"\n"
+"# install\n"
+"sudo apt-get update\n"
+"sudo apt-get -y install tarantool"
+msgstr ""
+
+#: ../download/os-installation/1.8/amazon-linux.rst:63
 msgid "# Clean up yum cache\n"
 "yum clean all\n"
 "# Enable EPEL repository\n"
@@ -305,67 +1868,100 @@ msgid "# Clean up yum cache\n"
 "\n"
 "# Add Tarantool repository\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
-"tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
-"[tarantool_1_7]\n"
+"tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
+"[tarantool_1_8]\n"
 "name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/\\$basearch/\n"
-"gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/6/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
 "enabled=1\n"
 "\n"
-"[tarantool_1_7-source]\n"
+"[tarantool_1_8-source]\n"
 "name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/SRPMS\n"
-"gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/6/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
 "EOF\n"
 "\n"
 "# Update metadata\n"
-"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7' --enablerepo='epel'\n"
+"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_8' --enablerepo='epel'\n"
 "\n"
 "# Install Tarantool\n"
 "yum -y install tarantool"
 msgstr ""
 
-#: ../download.rst:313
-msgid "Snappy package"
+#: ../download/os-installation/1.8/building-from-source.rst:52
+msgid "To get the latest source files for version 1.8, you can clone or download them from the Tarantool repository at `GitHub`_, or download them as a `tarball`_."
 msgstr ""
 
-#: ../download.rst:315
-msgid "You can install Tarantool 1.7.2 (Beta) from a Snappy package:"
+#: ../download/os-installation/1.8/debian-jessie-and-newer.rst:62
+msgid "curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -\n"
+"release=`lsb_release -c -s`\n"
+"\n"
+"# install https download transport for APT\n"
+"sudo apt-get -y install apt-transport-https\n"
+"\n"
+"# append two lines to a list of source repositories\n"
+"sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
+"deb http://download.tarantool.org/tarantool/1.8/debian/ $release main\n"
+"deb-src http://download.tarantool.org/tarantool/1.8/debian/ $release main\n"
+"EOF\n"
+"\n"
+"# install\n"
+"sudo apt-get update\n"
+"sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:317
-msgid "$ snap install tarantool --channel=beta"
+#: ../download/os-installation/1.8/debian-wheezy.rst:56
+msgid "curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -\n"
+"release=`lsb_release -c -s`\n"
+"\n"
+"# install https download transport for APT\n"
+"sudo apt-get -y install apt-transport-https\n"
+"\n"
+"# append two lines to a list of source repositories\n"
+"sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
+"deb https://packagecloud.io/tarantool/1_8/debian/ wheezy main\n"
+"deb-src https://packagecloud.io/tarantool/1_8/debian/ wheezy main\n"
+"EOF\n"
+"\n"
+"# install\n"
+"sudo apt-get update\n"
+"sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:321
-msgid "Snaps are universal Linux packages which can be installed across a range of Linux distributions."
+#: ../download/os-installation/1.8/fedora.rst:63
+msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+"sudo tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
+"[tarantool_1_8]\n"
+"name=Fedora-\\$releasever - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\\$releasever/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"enabled=1\n"
+"\n"
+"[tarantool_1_8-source]\n"
+"name=Fedora-\\$releasever - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\\$releasever/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"EOF\n"
+"\n"
+"sudo dnf -q makecache -y --disablerepo='*' --enablerepo='tarantool_1_8'\n"
+"sudo dnf -y install tarantool"
 msgstr ""
 
-#: ../download.rst:324
-msgid "Snappy package manager is already pre-installed on Ubuntu Xenial and newer. For other distros, you may need to install ``snapd``. See http://snapcraft.io/ for detailed instructions."
-msgstr ""
-
-#: ../download.rst:328
-msgid "Note: initialization scripts, ``systemd`` units and ``tarantoolctl`` utility are not included in Snappy packages."
-msgstr ""
-
-#: ../download.rst:331
-msgid "OS X"
-msgstr ""
-
-#: ../download.rst:333
-msgid "You can install Tarantool using ``homebrew``:"
-msgstr ""
-
-#: ../download.rst:335
+#: ../download/os-installation/1.8/os-x.rst:54
 msgid "$ brew install tarantool --HEAD\n"
 "==> Cloning https://github.com/tarantool/tarantool.git\n"
 "Updating /Users/Me/Library/Caches/Homebrew/tarantool--git\n"
-"==> Checking out branch 1.7\n"
+"==> Checking out branch 1.8\n"
 "Synchronizing submodule url for 'lib/msgpack-python'\n"
 "Synchronizing submodule url for 'lib/tarantool-python'\n"
 "==> cmake . -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG\n"
@@ -380,103 +1976,499 @@ msgid "$ brew install tarantool --HEAD\n"
 "/usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds"
 msgstr ""
 
-#: ../download.rst:354
-msgid "FreeBSD"
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:57
+msgid "# Clean up yum cache\n"
+"yum clean all\n"
+"# Add Tarantool repository\n"
+"rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+"tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
+"[tarantool_1_8]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/\\$basearch/\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"enabled=1\n"
+"\n"
+"[tarantool_1_8-source]\n"
+"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/SRPMS\n"
+"gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
+"repo_gpgcheck=1\n"
+"gpgcheck=0\n"
+"EOF\n"
+"\n"
+"# Update metadata\n"
+"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_8'\n"
+"\n"
+"# Install Tarantool\n"
+"yum -y install tarantool"
 msgstr ""
 
-#: ../download.rst:356
-msgid "Tarantool is available from the FreeBSD Ports collection."
+#: ../download/os-installation/1.8/snappy-package.rst:52
+msgid "You can install Tarantool 1.8 (Beta) from a Snappy package:"
 msgstr ""
 
-#: ../download.rst:358
-msgid "With your browser, go to the `FreeBSD Ports`_ page. Enter the search term: `tarantool`. Choose the package you want."
+#: ../download/os-installation/1.8/ubuntu.rst:63
+msgid "curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key add -\n"
+"release=`lsb_release -c -s`\n"
+"\n"
+"# install https download transport for APT\n"
+"sudo apt-get -y install apt-transport-https\n"
+"\n"
+"# append two lines to a list of source repositories\n"
+"sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+"sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
+"deb http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main\n"
+"deb-src http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main\n"
+"EOF\n"
+"\n"
+"# install\n"
+"sudo apt-get update\n"
+"sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download.rst:362
-msgid "Also, look at the `Fresh Ports`_ page."
+#: ../download/rocks.rst:40
+#: ../download/rocks_16.rst:40
+#: ../download/rocks_18.rst:40
+msgid "Tarantool - Rocks"
 msgstr ""
 
-#: ../download.rst:367
-msgid "Microsoft Azure"
+#: ../download/rocks.rst:52
+msgid ":doc:`Downloads <download>` > :doc:`Modules <rocks>`"
 msgstr ""
 
-#: ../download.rst:369
-msgid "Tarantool images are available at `Microsoft Azure`_."
+#: ../download/rocks.rst:58
+msgid ":doc:`1.6 <rocks_16>` :currentversion:`1.7` :doc:`1.8 (alpha) <rocks_18>`"
 msgstr ""
 
-#: ../download.rst:373
-msgid "Docker Hub"
+#: ../download/rocks.rst:70
+#: ../download/rocks_16.rst:70
+#: ../download/rocks_18.rst:70
+msgid "To install a module, say:"
 msgstr ""
 
-#: ../download.rst:375
-msgid "Tarantool images are available at `Docker Hub`_."
+#: ../download/rocks.rst:72
+#: ../download/rocks_16.rst:72
+#: ../download/rocks_18.rst:72
+msgid "$ tarantoolctl rocks install module-name"
 msgstr ""
 
-#: ../download.rst:379
-msgid "Building from source"
+#: ../download/rocks.rst:76
+#: ../download/rocks_16.rst:76
+#: ../download/rocks_18.rst:76
+msgid "Want your module listed here? Please drop us a line at doc@tarantool.org."
 msgstr ""
 
-#: ../download.rst:381
-msgid "To get the latest source files for version 1.7, you can clone or download them from the Tarantool repository at `GitHub`_, or download them as a `tarball`_."
+#: ../download/rocks.rst:78
+#: ../download/rocks_16.rst:78
+#: ../download/rocks_18.rst:78
+msgid "Download a `Lua manifest file <https://github.com/tarantool/rocks/blob/gh-pages/manifest>`_."
 msgstr ""
 
-#: ../download.rst:385
-msgid "Please consult with the Tarantool documentation for :ref:`build-from-source <building_from_source>` instructions on your system."
+#: ../download/rocks.rst:86
+#: ../download/rocks_16.rst:86
+#: ../download/rocks_18.rst:86
+msgid "`Data formats / Serialization <#data-formats>`_"
 msgstr ""
 
-#: ../download.rst:398
-msgid "Connectors"
+#: ../download/rocks.rst:87
+#: ../download/rocks_16.rst:87
+#: ../download/rocks_18.rst:87
+msgid "`Database administration`_"
 msgstr ""
 
-#: ../download.rst:400
-msgid "PHP PECL driver,       `<https://github.com/tarantool/tarantool-php>`_"
+#: ../download/rocks.rst:88
+#: ../download/rocks_16.rst:88
+#: ../download/rocks_18.rst:88
+msgid "Databases_"
 msgstr ""
 
-#: ../download.rst:401
-msgid "Pure PHP driver,       `<https://github.com/tarantool-php/client>`_"
+#: ../download/rocks.rst:89
+#: ../download/rocks_16.rst:89
+#: ../download/rocks_18.rst:89
+msgid "`Date and time`_"
 msgstr ""
 
-#: ../download.rst:402
-msgid "Java driver,           `Maven repository`_ or `Java connector GitHub page`_"
+#: ../download/rocks.rst:90
+#: ../download/rocks_16.rst:90
+#: ../download/rocks_18.rst:90
+msgid "`Development support`_"
 msgstr ""
 
-#: ../download.rst:403
-msgid "Python driver,         `<http://pypi.python.org/pypi/tarantool>`_"
+#: ../download/rocks.rst:91
+#: ../download/rocks_16.rst:91
+#: ../download/rocks_18.rst:91
+msgid "Geo_"
 msgstr ""
 
-#: ../download.rst:404
-msgid "Ruby driver,           `<https://github.com/tarantool/tarantool-ruby>`_"
+#: ../download/rocks.rst:92
+#: ../download/rocks_16.rst:92
+#: ../download/rocks_18.rst:92
+msgid "I18n_"
 msgstr ""
 
-#: ../download.rst:405
-msgid "Perl driver,           `DR:Tarantool`_"
+#: ../download/rocks.rst:93
+#: ../download/rocks_16.rst:93
+#: ../download/rocks_18.rst:93
+msgid "Miscellaneous_"
 msgstr ""
 
-#: ../download.rst:406
-msgid "C connector            `<https://github.com/tarantool/tarantool-c>`_"
+#: ../download/rocks.rst:94
+#: ../download/rocks_16.rst:94
+#: ../download/rocks_18.rst:94
+msgid "Networking_"
 msgstr ""
 
-#: ../download.rst:407
-msgid "node.js driver,        `<https://github.com/KlonD90/node-tarantool-driver>`_"
+#: ../download/rocks.rst:95
+#: ../download/rocks_16.rst:95
+#: ../download/rocks_18.rst:95
+msgid "`Operating systems/Interfaces <#operating-systems>`_"
 msgstr ""
 
-#: ../download.rst:408
-msgid "Erlang driver,         `<https://github.com/rtsisyk/etarantool>`_"
+#: ../download/rocks.rst:96
+#: ../download/rocks_16.rst:96
+#: ../download/rocks_18.rst:96
+msgid "`Power tools`_"
 msgstr ""
 
-#: ../download.rst:409
-msgid "Go driver,             `<https://github.com/tarantool/go-tarantool>`_"
+#: ../download/rocks.rst:97
+#: ../download/rocks_16.rst:97
+#: ../download/rocks_18.rst:97
+msgid "`Security/Encryption <#security>`_"
 msgstr ""
 
-#: ../download.rst:410
-msgid "Lua-nginx driver,      `<https://github.com/ziontab/lua-nginx-tarantool>`_"
+#: ../download/rocks.rst:104
+#: ../download/rocks_16.rst:104
+#: ../download/rocks_18.rst:104
+msgid "Data formats / Serialization"
 msgstr ""
 
-#: ../download.rst:411
-msgid "Lua-resty driver,      `<https://github.com/perusio/lua-resty-tarantool>`_"
+#: ../download/rocks.rst:111
+#: ../download/rocks_16.rst:111
+#: ../download/rocks_18.rst:111
+msgid "Apache Avro schema tools for Tarantool"
 msgstr ""
 
-#: ../download.rst:412
-msgid "Nginx Upstream module, `<https://github.com/tarantool/nginx_upstream_module>`_"
+#: ../download/rocks.rst:117
+#: ../download/rocks_16.rst:117
+#: ../download/rocks_18.rst:117
+msgid "Manipulation routines for CSV (Comma-Separated-Values) records"
+msgstr ""
+
+#: ../download/rocks.rst:124
+#: ../download/rocks_16.rst:124
+#: ../download/rocks_18.rst:124
+msgid "Efficiently store JSON documents in Tarantool spaces"
+msgstr ""
+
+#: ../download/rocks.rst:130
+#: ../download/rocks_16.rst:130
+#: ../download/rocks_18.rst:130
+msgid "JSON manipulation routines"
+msgstr ""
+
+#: ../download/rocks.rst:136
+#: ../download/rocks_16.rst:136
+#: ../download/rocks_18.rst:136
+msgid "MsgPack encoder/decoder"
+msgstr ""
+
+#: ../download/rocks.rst:142
+#: ../download/rocks_16.rst:142
+#: ../download/rocks_18.rst:142
+msgid "ASN1 BER format reader"
+msgstr ""
+
+#: ../download/rocks.rst:148
+#: ../download/rocks_16.rst:148
+#: ../download/rocks_18.rst:148
+msgid "Reader for Tarantool’s snapshot files and write-ahead-log (WAL) files"
+msgstr ""
+
+#: ../download/rocks.rst:154
+#: ../download/rocks_16.rst:154
+#: ../download/rocks_18.rst:154
+msgid "YAML encoder/decoder"
+msgstr ""
+
+#: ../download/rocks.rst:159
+#: ../download/rocks_16.rst:159
+#: ../download/rocks_18.rst:159
+msgid "Database administration"
+msgstr ""
+
+#: ../download/rocks.rst:165
+#: ../download/rocks_16.rst:165
+#: ../download/rocks_18.rst:165
+msgid "Connect remotely to a Tarantool instance via an admin port"
+msgstr ""
+
+#: ../download/rocks.rst:172
+#: ../download/rocks_16.rst:172
+#: ../download/rocks_18.rst:172
+msgid "Logical dump and restore for Tarantool"
+msgstr ""
+
+#: ../download/rocks.rst:179
+#: ../download/rocks_16.rst:179
+#: ../download/rocks_18.rst:179
+msgid "Export Tarantool application metrics to Graphite"
+msgstr ""
+
+#: ../download/rocks.rst:186
+#: ../download/rocks_16.rst:186
+#: ../download/rocks_18.rst:186
+msgid "Prometheus library to collect metrics from Tarantool"
+msgstr ""
+
+#: ../download/rocks.rst:191
+#: ../download/rocks_16.rst:191
+#: ../download/rocks_18.rst:191
+msgid "Databases"
+msgstr ""
+
+#: ../download/rocks.rst:198
+#: ../download/rocks_16.rst:198
+#: ../download/rocks_18.rst:198
+msgid "Connect to a MySQL database from a Tarantool application"
+msgstr ""
+
+#: ../download/rocks.rst:205
+#: ../download/rocks_16.rst:205
+#: ../download/rocks_18.rst:205
+msgid "Connect to a PostgreSQL database from a Tarantool application"
+msgstr ""
+
+#: ../download/rocks.rst:210
+#: ../download/rocks_16.rst:210
+#: ../download/rocks_18.rst:210
+msgid "Date and time"
+msgstr ""
+
+#: ../download/rocks.rst:216
+#: ../download/rocks_16.rst:216
+#: ../download/rocks_18.rst:216
+msgid "Routines to get time values derived from the Posix/C 'CLOCK_GETTIME' function or equivalent. Useful for accurate clock and benchmarking."
+msgstr ""
+
+#: ../download/rocks.rst:222
+#: ../download/rocks_16.rst:222
+#: ../download/rocks_18.rst:222
+msgid "Development support"
+msgstr ""
+
+#: ../download/rocks.rst:229
+#: ../download/rocks_16.rst:229
+#: ../download/rocks_18.rst:229
+msgid "Simple tool to benchmark Tarantool internal API"
+msgstr ""
+
+#: ../download/rocks.rst:235
+#: ../download/rocks_16.rst:235
+#: ../download/rocks_18.rst:235
+msgid "Tools to print call traces, insert watchpoints, inspect Lua objects"
+msgstr ""
+
+#: ../download/rocks.rst:241
+#: ../download/rocks_16.rst:241
+#: ../download/rocks_18.rst:241
+msgid "Functional programming primitives that work well with LuaJIT"
+msgstr ""
+
+#: ../download/rocks.rst:248
+#: ../download/rocks_16.rst:248
+#: ../download/rocks_18.rst:248
+msgid "Lua code profiler based on Google Performance Tools"
+msgstr ""
+
+#: ../download/rocks.rst:254
+#: ../download/rocks_16.rst:254
+#: ../download/rocks_18.rst:254
+msgid "Routines to write messages to the built-in Tarantool log"
+msgstr ""
+
+#: ../download/rocks.rst:261
+#: ../download/rocks_16.rst:261
+#: ../download/rocks_18.rst:261
+msgid "Templates to create new Tarantool modules in Lua, C and C++"
+msgstr ""
+
+#: ../download/rocks.rst:267
+#: ../download/rocks_16.rst:267
+#: ../download/rocks_18.rst:267
+msgid "Module to prohibit use of undeclared Lua variables"
+msgstr ""
+
+#: ../download/rocks.rst:273
+#: ../download/rocks_16.rst:273
+#: ../download/rocks_18.rst:273
+msgid "Tools to write nice unit tests conforming to Test Anything Protocol"
+msgstr ""
+
+#: ../download/rocks.rst:278
+#: ../download/rocks_16.rst:278
+#: ../download/rocks_18.rst:278
+msgid "Geo"
+msgstr ""
+
+#: ../download/rocks.rst:285
+#: ../download/rocks_16.rst:285
+#: ../download/rocks_18.rst:285
+msgid "Full-featured geospatial extension for Tarantool"
+msgstr ""
+
+#: ../download/rocks.rst:290
+#: ../download/rocks_16.rst:290
+#: ../download/rocks_18.rst:290
+msgid "I18n"
+msgstr ""
+
+#: ../download/rocks.rst:296
+#: ../download/rocks_16.rst:296
+#: ../download/rocks_18.rst:296
+msgid "Convert data between character sets"
+msgstr ""
+
+#: ../download/rocks.rst:301
+#: ../download/rocks_16.rst:301
+#: ../download/rocks_18.rst:301
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../download/rocks.rst:308
+#: ../download/rocks_16.rst:308
+#: ../download/rocks_18.rst:308
+msgid "Smart algorithm to iterate over a space and make updates without freezing the database"
+msgstr ""
+
+#: ../download/rocks.rst:313
+#: ../download/rocks_16.rst:313
+#: ../download/rocks_18.rst:313
+msgid "Networking"
+msgstr ""
+
+#: ../download/rocks.rst:320
+#: ../download/rocks_16.rst:320
+#: ../download/rocks_18.rst:320
+msgid "Net.box connection pool for Tarantool"
+msgstr ""
+
+#: ../download/rocks.rst:326
+#: ../download/rocks_16.rst:326
+#: ../download/rocks_18.rst:326
+msgid "HTTP client with support for HTTPS and keepalive; uses routines in the 'libcurl' library"
+msgstr ""
+
+#: ../download/rocks.rst:333
+#: ../download/rocks_16.rst:333
+#: ../download/rocks_18.rst:333
+msgid "Connect from Tarantool to applications which speak MQTT protocol"
+msgstr ""
+
+#: ../download/rocks.rst:340
+#: ../download/rocks_16.rst:340
+#: ../download/rocks_18.rst:340
+msgid "Send messages from Tarantool to Mail.Ru Agent and ICQ"
+msgstr ""
+
+#: ../download/rocks.rst:346
+#: ../download/rocks_16.rst:346
+#: ../download/rocks_18.rst:346
+msgid "Module to connect remotely to a Tarantool instance via a binary port"
+msgstr ""
+
+#: ../download/rocks.rst:351
+#: ../download/rocks_16.rst:351
+#: ../download/rocks_18.rst:351
+msgid "Operating systems/Interfaces"
+msgstr ""
+
+#: ../download/rocks.rst:357
+#: ../download/rocks_16.rst:357
+#: ../download/rocks_18.rst:357
+msgid "Module to handle errors produced by POSIX APIs"
+msgstr ""
+
+#: ../download/rocks.rst:363
+#: ../download/rocks_16.rst:363
+#: ../download/rocks_18.rst:363
+msgid "Routines for file input/output"
+msgstr ""
+
+#: ../download/rocks.rst:369
+#: ../download/rocks_16.rst:369
+#: ../download/rocks_18.rst:369
+msgid "Faster analogs to the standard 'os' functions in Lua"
+msgstr ""
+
+#: ../download/rocks.rst:375
+#: ../download/rocks_16.rst:375
+#: ../download/rocks_18.rst:375
+msgid "Non-blocking routines for socket input/output"
+msgstr ""
+
+#: ../download/rocks.rst:380
+#: ../download/rocks_16.rst:380
+#: ../download/rocks_18.rst:380
+msgid "Power tools"
+msgstr ""
+
+#: ../download/rocks.rst:387
+#: ../download/rocks_16.rst:387
+#: ../download/rocks_18.rst:387
+msgid "Expiration daemon module to turn Tarantool into a persistent memcache replacement with your own expiration strategy"
+msgstr ""
+
+#: ../download/rocks.rst:395
+#: ../download/rocks_16.rst:395
+#: ../download/rocks_18.rst:395
+msgid "Memcached protocol wrapper for Tarantool."
+msgstr ""
+
+#: ../download/rocks.rst:402
+#: ../download/rocks_16.rst:402
+#: ../download/rocks_18.rst:402
+msgid "Application-level library that provides sharding, re-sharding and client-side reliable replication for Tarantool"
+msgstr ""
+
+#: ../download/rocks.rst:410
+#: ../download/rocks_16.rst:410
+#: ../download/rocks_18.rst:410
+msgid "Set of persistent in-memory queues to create task queues, add and take jobs, monitor failed tasks"
+msgstr ""
+
+#: ../download/rocks.rst:416
+#: ../download/rocks_16.rst:416
+#: ../download/rocks_18.rst:416
+msgid "Security/Encryption"
+msgstr ""
+
+#: ../download/rocks.rst:422
+#: ../download/rocks_16.rst:422
+#: ../download/rocks_18.rst:422
+msgid "Routines to work with various cryptographic hash functions"
+msgstr ""
+
+#: ../download/rocks.rst:428
+#: ../download/rocks_16.rst:428
+#: ../download/rocks_18.rst:428
+msgid "Routines to work with “digest”, a value returned by a hash function"
+msgstr ""
+
+#: ../download/rocks_16.rst:52
+msgid ":doc:`Downloads <download_16>` > :doc:`Modules <rocks_16>`"
+msgstr ""
+
+#: ../download/rocks_16.rst:58
+msgid ":currentversion:`1.6` :doc:`1.7 <rocks>` :doc:`1.8 (alpha) <rocks_18>`"
+msgstr ""
+
+#: ../download/rocks_18.rst:52
+msgid ":doc:`Downloads <download_18>` > :doc:`Modules <rocks_18>`"
+msgstr ""
+
+#: ../download/rocks_18.rst:58
+msgid ":doc:`1.6 <rocks_16>` :doc:`1.7 <rocks>` :currentversion:`1.8 (alpha)`"
 msgstr ""
 
