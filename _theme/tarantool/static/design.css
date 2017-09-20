@@ -409,6 +409,9 @@ img.frame {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.b-ellipsis cite {
+  margin-right: 5px;
+}
 .b-block-gray {
   background: #262626;
   color: #ffffff;
