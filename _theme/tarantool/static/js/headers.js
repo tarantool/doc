@@ -1,6 +1,6 @@
-/* register global replication tab function */
+/* register global tab function */
 //FIXME Delete comments
-window['register_replication_tab'] = function (id) {
+window['register_tab'] = function (id) {
     $(document).on({
         click: function(event) {
             event.preventDefault();
