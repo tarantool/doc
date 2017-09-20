@@ -18,6 +18,7 @@ This reference covers Tarantool's built-in Lua modules.
     :caption: List of Lua modules
 
     box
+    buffer
     clock
     console
     crypto
@@ -34,7 +35,6 @@ This reference covers Tarantool's built-in Lua modules.
     log
     msgpack
     net_box
-    buffer
     osmodule
     pickle
     socket

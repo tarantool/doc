@@ -7,8 +7,8 @@ Module `net.box`
 The ``net.box`` module contains connectors to remote database systems. One
 variant, to be discussed later, is connecting to MySQL or MariaDB or PostgreSQL
 (see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
-is discussed in this section, is connecting to Tarantool server instances via a network
-using the built-in ``net.box`` module.
+is discussed in this section, is connecting to Tarantool server instances via a
+network using the built-in ``net.box`` module.
 
 You can call the following methods:
 
@@ -26,15 +26,15 @@ the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
 the overhead of system calls and increases the overall server performance. There
-are, however, cases when a single connection is not enough — for example, when it's
-necessary to prioritize requests or to use different authentication IDs.
+are, however, cases when a single connection is not enough — for example, when
+it's necessary to prioritize requests or to use different authentication IDs.
 
-Most ``net.box`` methods allow a final ``{options}`` argument which is useful
-for timeout. For example a method whose final argument is ``{timeout=1.5}``
-will stop after 1.5 seconds on the local node, although this does not guarantee
-that execution will stop on the remote server node. A second possible option
-is ``{buffer=...}``, for an example see the description of the
-:ref:`buffer module <buffer-module>`.
+Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
+
+* ``{timeout=...}``. For example, a method whose final argument is
+  ``{timeout=1.5}`` will stop after 1.5 seconds on the local node, although this
+  does not guarantee that execution will stop on the remote server node.
+* ``{buffer=...}``. For an example see :ref:`buffer module <buffer-module>`.
 
 The diagram below shows possible connection states and transitions:
 
@@ -357,8 +357,7 @@ The sandbox configuration for this example assumes that:
 
 Here are commands for a quick sandbox setup:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: lua
 
     box.cfg{listen = 3301}
     s = box.schema.space.create('tester')
@@ -368,7 +367,7 @@ Here are commands for a quick sandbox setup:
 
 And here starts the example:
 
-.. code-block:: none
+.. code-block:: tarantoolsession
 
     tarantool> net_box = require('net.box')
     ---
