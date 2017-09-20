@@ -4887,6 +4887,12 @@ footer nav .navbar-right #live-demo-link {
 .tarantool-io-styles #ideas h2 {
   margin-top: 1.0em;
 }
+.tarantool-io-styles #ideas a {
+  text-decoration: none;
+}
+.tarantool-io-styles #ideas a:hover {
+  text-decoration: underline;
+}
 .tarantool-io-styles .header-p {
   margin: 1em 0 2em 0;
   font-size: 2em;

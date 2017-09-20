@@ -111,6 +111,8 @@ html_context = {
     'tarantool_io': {
         # Tarantool-io pages
         'tarantool-io/news-and-press': True,
+        'tarantool-io/blog': True,
+        'tarantool-io/try-it': True,
         'tarantool-io/press/iiot-released': True,
         'tarantool-io/press/replication-for-mysql': True,
         'tarantool-io/press/tarantool-expands': True,
