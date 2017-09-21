@@ -4402,12 +4402,12 @@ footer nav .navbar-right #live-demo-link {
   height: 350px;
 }
 .tarantool-io-styles #product-page .beyond-basics {
-  background-image: url('/web/assets/images/product-page/unwired/iiot-cloud-background.png');
+  background-image: url('images/tarantool-io/product-page/unwired/iiot-cloud-background.png');
   color: #f9f8f8;
   padding: 3em 0;
 }
 .tarantool-io-styles #product-page .unwired-gray-background {
-  background-image: url('/web/assets/images/product-page/unwired/gray-iiot-background.png');
+  background-image: url('images/tarantool-io/product-page/unwired/gray-iiot-background.png');
   background-size: cover;
   color: white;
   padding: 3em 0;
