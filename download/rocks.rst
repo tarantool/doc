@@ -21,7 +21,7 @@ Tarantool - Rocks
 
                 Available versions:
 
-                :doc:`1.6 (stable) <rocks_16>` :currentversion:`1.7 (rc)` :doc:`1.8 (alpha) <rocks_18>`
+                :currentversion:`1.7 (stable)` :doc:`1.8 (alpha) <rocks_18>`
 
             .. raw:: html
 
