@@ -1,0 +1,144 @@
+:orphan:
+:priority: 0.99
+
+----------------------
+Tarantool - Enterprise
+----------------------
+
+.. raw:: html
+    
+    <div class="jumbotron" style="background-image: url('../../_static/images/tarantool-io/banners/enterprise-jumbo.jpg'); height:600px;">
+        <section id="jumbo-product-enterprise">
+            <div class="row ">
+                <div class="enterprise-jumbo-col col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <img id='enterpise-jumbo-text' src="../../_static/images/tarantool-io/product-page/enterprise/enterprise-text.png" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div id="" class="video-icon-wrap try-icon-wrap text-center pull-right">
+                            <span class="">
+                                <a href="/enterprise"><img id='' src="../../_static/images/tarantool-io/bullets/check-icon.png"></a>
+                            </span>
+                            <a href="/try-it"><span id="video-watch-text">Free Trial</span></a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div id="" class="video-icon-wrap text-center">
+                            <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/bXVonOWYewY">
+                                <img id='' src="../../_static/images/tarantool-io/video-icon-100-x-100.png">
+                            </span>
+                                <span id="video-watch-text">Watch Video</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section id="product-page">
+        <div id="how-you-can">
+            <h2 class="text-center">How Can You Use Enterprise?</h2>
+        </div>
+        <div class="row margin">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <ul class="bullet">
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Scale and Accelerate Applications, RESTful APIs, and Microservices</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Orchestrate, Federate, Transform Data for Fast Aggregations and Joins</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Higher Performance, Greater Speed and Reliability</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Reduce Servers and Network Traffic, Reduce Costs for License, Support, and Hardware</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Complete More Innovation Projects, Faster Time to Market</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Lower License, Hardware, and Support Costs</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row margin" id="transform-row">
+            <div class="col-xs-12">
+                <div class="text-center">
+                    <h4>Ready for digital transformation?</h4>
+                    <a href="/live-demo"><button class="product-btn red-btn text-center">Live Demo</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center challenges">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <h2>Challenges Solved</h2>
+                <p>Existing schemas, versions, legacy solutions, and a variety of sources are a headache!
+                    How can we deal with "data spaghetti?"</p>
+            </div>
+        </div>
+        <div class="row text-center integrate">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <img src="../../_static/images/tarantool-io/product-page/enterprise/enterprise-integrate.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <img src="../../_static/images/tarantool-io/product-page/enterprise/enterprise-architecture.jpg" class="img-responsive">
+            </div>
+        </div>
+        <div class="row strategic gray-background">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <h2 class="text-center">Strategic Goals</h2>
+                <ul class="bullet">
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Go to market faster modernizing applications, developing microservices, fueling our BI programs.</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Reduce workload on data sources like Oracle and system tie-ups.</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Lower cost per request and overall support costs.</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Abstract away from data sources, generalize data representation, retrieve, manipulate data.</li>
+                    <li><img src='../../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Win with a faster and simpler approach.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row transform-row">
+            <p>How can you transform your business?</p>
+            <a href="/enterprise"><button type="button" class="product-btn red-btn text-center">Free Trial</button></a>
+        </div>
+        <div class="row unlock-row">
+            <h2 class="text-center">Unlock Value</h2>
+        </div>
+        <div class="row unlock gray-background">
+            <div class="col-sm-6 roi-background hidden-sm hidden-md hidden-lg"></div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>Cost Reduction</h4>
+                                <ul>
+                                    <li>License and hardware cost reduction.</li>
+                                    <li>Lower support and maintenance costs.</li>
+                                    <li>Reduced cost for systems integration.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>Market Agility</h4>
+                                <ul>
+                                    <li>Increased flexibility and performance to create value.</li>
+                                    <li>Faster time to market to capture value.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>Results</h4>
+                                <ul>
+                                    <li>A publicly-traded provider of mobile services wanted to improve reduce the query latency of their Oracle applications. The Oracle workload was reduced by 10x and database latency by 5x.
+                                    </li>
+                                    <li>Allowed the development of new analytics applications.</li>
+                                    <li>Impacted financial performance saving millions of dollars in license, hardware, integration, and support costs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-sm-6 roi-background hidden-xs"></div>
+        </div>
+        <div class="row get-started">
+            <p class="text-center">Ready to get started?</p>
+            <a href="/live-demo"><button type="button" class="product-btn red-btn text-center">Live Demo</button></a>
+        </div>
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'].'/web/assets/templates/social-media/social-media.html';
+        ?>
+    </section>

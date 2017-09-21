@@ -4423,7 +4423,7 @@ footer nav .navbar-right #live-demo-link {
   font-size: 1.2em;
 }
 .tarantool-io-styles #product-page .roi-background {
-  background-image: url('/web/assets/images/roi-background.png');
+  background-image: url('images/tarantool-io/roi-background.png');
   background-size: cover;
   min-height: 367px;
   margin-bottom: 1.5em;
@@ -4541,7 +4541,7 @@ footer nav .navbar-right #live-demo-link {
   height: 50%;
 }
 .tarantool-io-styles #product-page #how-you-can {
-  background-image: url('/web/assets/images/Products/dots.png');
+  background-image: url('images/tarantool-io/Products/dots.png');
   background-size: cover;
 }
 .tarantool-io-styles #product-page #how-you-can h2 {

@@ -7,8 +7,6 @@ Tarantool - News and Press
 
 .. raw:: html
     
-    <div class="tarantool-io-styles">
-        <main>
             <section id="news-and-press-page">
                 <div class="row text-center header-row">
                     <h2>News And Press</h2>
@@ -22,7 +20,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
@@ -43,7 +41,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
@@ -64,7 +62,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
@@ -85,7 +83,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
@@ -106,7 +104,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
@@ -129,7 +127,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
@@ -151,7 +149,7 @@ Tarantool - News and Press
                                     <div class="news-and-press-box press">
                                         <div class="box-header">
                                             <span class="press-image-red">
-                                                <img src="../_static/images/tarantool-io-icons/press-release-46-x-38.png"/>
+                                                <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
                                             </span>
                                             <h4>
                                                 PRESS RELEASE
