@@ -243,8 +243,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | parts               | field-numbers  + types                                | {field_no, 'unsigned' or         | ``{1, 'unsigned'}``           |
             |                     |                                                       | 'string' or 'integer' or         |                               |
-            |                     |                                                       | 'number' or 'array' or           |                               |
-            |                     |                                                       | 'scalar'}                        |                               |
+            |                     |                                                       | 'number' or 'boolean' or         |                               |
+            |                     |                                                       | 'array' or 'scalar'}             |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -288,8 +288,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     Details about index field types:
 
-    The six index field types (unsigned | string | integer | number |
-    array | scalar) differ depending on what values are allowed, and
+    The seven index field types (unsigned | string | integer | number |
+    boolean | array | scalar) differ depending on what values are allowed, and
     what index types are allowed.
 
     * **unsigned**: unsigned integers between 0 and 18446744073709551615,
@@ -306,6 +306,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
       single-precision floating point numbers, or double-precision floating
       point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
+    * **boolean**: true or false. Legal in memtx TREE or HASH indexes, and in
+      vinyl TREE indexes.
     * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
     * **scalar**: booleans (true or false), or integers between
       -9223372036854775808 and 18446744073709551615, or single-precision
@@ -345,6 +347,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         |                  | floating point numbers,   |                                       |                   |
         |                  | double-precision          |                                       |                   |
         |                  | floating point numbers    |                                       |                   |
+        +------------------+---------------------------+---------------------------------------+-------------------+
+        | **boolean**      | true or false             | memtx TREE or HASH indexes, |br|      | false |br|        |
+        |                  |                           | vinyl TREE indexes                    | true              | 
         +------------------+---------------------------+---------------------------------------+-------------------+
         | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
         |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
