@@ -525,7 +525,8 @@ for spaces, users, roles, and function tuples.
 
 .. function:: box.schema.func.exists(func-name)
 
-    Return true if a function tuple exists; return false if a function tuple does not exist.
+    Return true if a function tuple exists; return false if a function tuple
+    does not exist.
 
     :param string func-name: the name of the function
     :rtype: bool
@@ -535,3 +536,35 @@ for spaces, users, roles, and function tuples.
     .. code-block:: lua
 
         box.schema.func.exists('calculate')
+
+.. _box_schema-func_reload:
+
+.. function:: box.schema.func.reload([name])
+
+    Reload a C module or function without restarting the server.
+
+    Under the hood, Tarantool loads a new copy of the module (``*.so`` shared
+    library) and starts routing all new request to the new version.
+    The previous version remains active until all started calls are finished.
+    All shared libraries are loaded with ``RTLD_LOCAL`` (see "man 3 dlopen"),
+    therefore multiple copies can co-exist without any problems.
+
+    .. NOTE::
+
+        * When a function from a certain module is reloaded, all the other
+          functions from this module are also reloaded.
+        * Reload will fail if a module was loaded from Lua script with
+          `ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_.
+
+    :param string name: the name of the module or function to reload
+
+    **Examples:**
+
+    .. code-block:: lua
+
+        -- reload a function
+        box.schema.func.reload('module.function')
+        -- reload the entire module contents
+        box.schema.func.reload('module')
+        -- reload everything
+        box.schema.func.reload()

@@ -6,6 +6,12 @@ Reloading a module
 
 You can reload any Tarantool application or module with zero downtime.
 
+.. _app_server-reloading_lua_module:
+
+--------------------------------------------------------------------------------
+Reloading a module in Lua
+--------------------------------------------------------------------------------
+
 Here's an example that illustrates the most typical case -- "update and reload".
 
 .. NOTE::
@@ -99,3 +105,13 @@ Here's an example that illustrates the most typical case -- "update and reload".
    .. code-block:: console
 
        $ tarantoolctl eval my_app /etc/tarantool/instances.enabled/my_app.lua
+
+.. _app_server-reloading_c_module:
+
+--------------------------------------------------------------------------------
+Reloading a module in C
+--------------------------------------------------------------------------------
+
+After you compiled a new version of a C module (``*.so`` shared library), call
+:ref:`box.schema.func.reload('module-name') <box_schema-func_reload>`
+from your Lua script to reload the module.
