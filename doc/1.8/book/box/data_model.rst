@@ -288,9 +288,12 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | point number or double-precision |                      |                    |
     |                            | floating point number)           |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
-    | **string**                 | **string**                       | TREE or HASH         | ‘A B C’            |
+    | **string**                 | **string**                       | TREE, BITSET or HASH | ‘A B C’            |
     | (may also be called ‘str’) | (any set of octets,              |                      |                    |
     |                            | up to the maximum length)        |                      | ‘\65 \66 \67’      |
+    +----------------------------+----------------------------------+----------------------+--------------------+
+    | **boolean**                | **bool**                         | TREE or HASH         | true               |
+    |                            | (true or false)                  |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
     | **array**                  | **array**                        | RTREE                | {10, 11}           |
     |                            | (list of numbers representing    |                      |                    |
@@ -299,7 +302,7 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     +----------------------------+----------------------------------+----------------------+--------------------+
     | **scalar**                 | **null**                         | TREE or HASH         | msgpack.NULL       |
     |                            |                                  |                      |                    |
-    |                            | **boolean**                      |                      | true               |
+    |                            | **bool**                         |                      | true               |
     |                            | (true or false)                  |                      |                    |
     |                            |                                  |                      | -1                 |
     |                            | **integer**                      |                      |                    |
