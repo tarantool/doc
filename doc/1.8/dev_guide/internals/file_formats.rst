@@ -111,6 +111,8 @@ An .xlog file always contains changes based on the primary key.
 Even if the client requested an update or delete using
 a secondary key, the record in the .xlog file will contain the primary key.
 
+.. _internals-snapshot:
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The snapshot file format
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
