@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-26 12:17+0300\n"
+"POT-Creation-Date: 2017-09-28 17:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1024,33 +1024,17 @@ msgstr ""
 msgid "Amazon Linux is based on RHEL 6 / CentOS 6. We maintain an always up-to-date package repository for RHEL 6 derivatives. You may need to enable the `EPEL`_ repository for some packages."
 msgstr ""
 
-#: ../download/os-installation/1.7/amazon-linux.rst:0
-#: ../download/os-installation/1.8/amazon-linux.rst:0
-msgid "In these instructions,"
-msgstr ""
-
-#: ../download/os-installation/1.7/amazon-linux.rst:0
-#: ../download/os-installation/1.8/amazon-linux.rst:0
-msgid "``$releasever`` (i.e. RHEL / CentOS release version) must be 6, and"
-msgstr ""
-
-#: ../download/os-installation/1.7/amazon-linux.rst:0
-#: ../download/os-installation/1.7/fedora.rst:0
-#: ../download/os-installation/1.8/amazon-linux.rst:0
-#: ../download/os-installation/1.8/fedora.rst:0
-msgid "``$basearch`` (i.e. base architecture) must be either i386 or x86_64."
-msgstr ""
-
-#: ../download/os-installation/1.7/amazon-linux.rst:61
-#: ../download/os-installation/1.7/rhel-centos-6-7.rst:55
-#: ../download/os-installation/1.8/amazon-linux.rst:61
-#: ../download/os-installation/1.8/rhel-centos-6-7.rst:55
+#: ../download/os-installation/1.7/amazon-linux.rst:57
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:59
+#: ../download/os-installation/1.8/amazon-linux.rst:57
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:59
 msgid "Copy and paste the script below to the *root* terminal prompt:"
 msgstr ""
 
-#: ../download/os-installation/1.7/amazon-linux.rst:63
+#: ../download/os-installation/1.7/amazon-linux.rst:59
 msgid "# Clean up yum cache\n"
 "yum clean all\n"
+"\n"
 "# Enable EPEL repository\n"
 "yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm\n"
 "sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
@@ -1059,15 +1043,15 @@ msgid "# Clean up yum cache\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
 "[tarantool_1_7]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/\\$basearch/\n"
+"name=EnterpriseLinux-6 - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/6/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
 "enabled=1\n"
 "\n"
 "[tarantool_1_7-source]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+"name=EnterpriseLinux-6 - Tarantool Sources\n"
 "baseurl=http://download.tarantool.org/tarantool/1.7/el/6/SRPMS\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
@@ -1112,10 +1096,10 @@ msgstr ""
 
 #: ../download/os-installation/1.7/debian-jessie-and-newer.rst:60
 #: ../download/os-installation/1.7/debian-wheezy.rst:54
-#: ../download/os-installation/1.7/fedora.rst:61
+#: ../download/os-installation/1.7/fedora.rst:58
 #: ../download/os-installation/1.8/debian-jessie-and-newer.rst:60
 #: ../download/os-installation/1.8/debian-wheezy.rst:54
-#: ../download/os-installation/1.8/fedora.rst:61
+#: ../download/os-installation/1.8/fedora.rst:58
 msgid "Copy and paste the script below to the terminal prompt:"
 msgstr ""
 
@@ -1182,22 +1166,17 @@ msgstr ""
 msgid "We maintain an always up-to-date Fedora package repository. At the moment, the repository contains builds for Fedora 23 and 24."
 msgstr ""
 
-#: ../download/os-installation/1.7/fedora.rst:0
-#: ../download/os-installation/1.8/fedora.rst:0
-msgid "In these instructions:"
+#: ../download/os-installation/1.7/fedora.rst:55
+#: ../download/os-installation/1.8/fedora.rst:55
+msgid "In these instructions, ``$releasever`` is an environment variable which will contain the Fedora release version (\"23\", \"24\" or \"rawhide\")."
 msgstr ""
 
-#: ../download/os-installation/1.7/fedora.rst:0
-#: ../download/os-installation/1.8/fedora.rst:0
-msgid "``$releasever`` (i.e. Fedora release version) must be 23 or 24 or rawhide, and"
-msgstr ""
-
-#: ../download/os-installation/1.7/fedora.rst:63
+#: ../download/os-installation/1.7/fedora.rst:60
 msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "sudo tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
 "[tarantool_1_7]\n"
 "name=Fedora-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/fedora/\\$releasever/\\$basearch/\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/fedora/\\$releasever/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -1256,22 +1235,7 @@ msgid "You can install Tarantool using ``homebrew``:"
 msgstr ""
 
 #: ../download/os-installation/1.7/os-x.rst:54
-msgid "$ brew install tarantool\n"
-"==> Cloning https://github.com/tarantool/tarantool.git\n"
-"Updating /Users/Me/Library/Caches/Homebrew/tarantool--git\n"
-"==> Checking out branch 1.7\n"
-"Synchronizing submodule url for 'lib/msgpack-python'\n"
-"Synchronizing submodule url for 'lib/tarantool-python'\n"
-"==> cmake . -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG\n"
-"            -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG\n"
-"            -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/HEAD\n"
-"            -DCMAKE_BUILD_TYPE=Release\n"
-"            -DCMAKE_FIND_FRAMEWORK=LAST\n"
-"            -DCMAKE_VERBOSE_MAKEFILE=ON\n"
-"            -Wno-dev -DCMAKE_INSTALL_MANDIR=/usr/share/man\n"
-"==> make\n"
-"==> make install\n"
-"/usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds"
+msgid "brew install tarantool"
 msgstr ""
 
 #: ../download/os-installation/1.7/rhel-centos-6-7.rst:40
@@ -1281,18 +1245,28 @@ msgstr ""
 
 #: ../download/os-installation/1.7/rhel-centos-6-7.rst:52
 #: ../download/os-installation/1.8/rhel-centos-6-7.rst:52
-msgid "We maintain an always up-to-date package repository for the derivatives of RHEL 6 and 7."
+msgid "We maintain an always up-to-date package repository for the derivatives of RHEL 6 and 7. You may need to enable the `EPEL`_ repository for some packages."
 msgstr ""
 
-#: ../download/os-installation/1.7/rhel-centos-6-7.rst:57
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:56
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:56
+msgid "In these instructions, ``$releasever`` is an environment variable which will contain the RHEL / CentOS release version (\"6\" or \"7\")."
+msgstr ""
+
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:61
 msgid "# Clean up yum cache\n"
 "yum clean all\n"
+"\n"
+"# Enable EPEL repository\n"
+"yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-\\$releasever.noarch.rpm\n"
+"sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
+"\n"
 "# Add Tarantool repository\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
 "[tarantool_1_7]\n"
 "name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/\\$basearch/\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -1307,7 +1281,7 @@ msgid "# Clean up yum cache\n"
 "EOF\n"
 "\n"
 "# Update metadata\n"
-"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7'\n"
+"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_7' --enablerepo='epel'\n"
 "\n"
 "# Install Tarantool\n"
 "yum -y install tarantool"
@@ -1381,9 +1355,10 @@ msgid "curl http://download.tarantool.org/tarantool/1.7/gpgkey | sudo apt-key ad
 "sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download/os-installation/1.8/amazon-linux.rst:63
+#: ../download/os-installation/1.8/amazon-linux.rst:59
 msgid "# Clean up yum cache\n"
 "yum clean all\n"
+"\n"
 "# Enable EPEL repository\n"
 "yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm\n"
 "sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
@@ -1392,15 +1367,15 @@ msgid "# Clean up yum cache\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
 "[tarantool_1_8]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.8/el/6/\\$basearch/\n"
+"name=EnterpriseLinux-6 - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/6/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
 "enabled=1\n"
 "\n"
 "[tarantool_1_8-source]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+"name=EnterpriseLinux-6 - Tarantool Sources\n"
 "baseurl=http://download.tarantool.org/tarantool/1.8/el/6/SRPMS\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
@@ -1456,12 +1431,12 @@ msgid "curl http://download.tarantool.org/tarantool/1.8/gpgkey | sudo apt-key ad
 "sudo apt-get -y install tarantool"
 msgstr ""
 
-#: ../download/os-installation/1.8/fedora.rst:63
+#: ../download/os-installation/1.8/fedora.rst:60
 msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "sudo tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
 "[tarantool_1_8]\n"
 "name=Fedora-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\\$releasever/\\$basearch/\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\\$releasever/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -1480,33 +1455,23 @@ msgid "sudo rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 msgstr ""
 
 #: ../download/os-installation/1.8/os-x.rst:54
-msgid "$ brew install tarantool --HEAD\n"
-"==> Cloning https://github.com/tarantool/tarantool.git\n"
-"Updating /Users/Me/Library/Caches/Homebrew/tarantool--git\n"
-"==> Checking out branch 1.8\n"
-"Synchronizing submodule url for 'lib/msgpack-python'\n"
-"Synchronizing submodule url for 'lib/tarantool-python'\n"
-"==> cmake . -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG\n"
-"            -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG\n"
-"            -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/HEAD\n"
-"            -DCMAKE_BUILD_TYPE=Release\n"
-"            -DCMAKE_FIND_FRAMEWORK=LAST\n"
-"            -DCMAKE_VERBOSE_MAKEFILE=ON\n"
-"            -Wno-dev -DCMAKE_INSTALL_MANDIR=/usr/share/man\n"
-"==> make\n"
-"==> make install\n"
-"/usr/local/Cellar/tarantool/HEAD: 17 files, 2.2M, built in 1 minute 7 seconds"
+msgid "brew install tarantool --HEAD"
 msgstr ""
 
-#: ../download/os-installation/1.8/rhel-centos-6-7.rst:57
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:61
 msgid "# Clean up yum cache\n"
 "yum clean all\n"
+"\n"
+"# Enable EPEL repository\n"
+"yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-\\$releasever.noarch.rpm\n"
+"sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
+"\n"
 "# Add Tarantool repository\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
 "[tarantool_1_8]\n"
 "name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/\\$basearch/\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -1521,7 +1486,7 @@ msgid "# Clean up yum cache\n"
 "EOF\n"
 "\n"
 "# Update metadata\n"
-"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_8'\n"
+"yum makecache -y --disablerepo='*' --enablerepo='tarantool_1_8' --enablerepo='epel'\n"
 "\n"
 "# Install Tarantool\n"
 "yum -y install tarantool"
