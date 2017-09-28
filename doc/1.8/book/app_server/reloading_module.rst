@@ -42,7 +42,7 @@ Here's an example that illustrates the most typical case -- "update and reload".
 
          -- migration code from 1.1 to 1.2
          box.once("myapp:v1.2", function()
-           box.space.somedata.space:alter(...)
+           box.space.somedata.index.primary:alter(...)
            box.space.somedata:insert(...)
            ...
          end)
