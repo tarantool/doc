@@ -18,11 +18,8 @@ Tarantool - Fedora
       We maintain an always up-to-date Fedora package repository. At the
       moment, the repository contains builds for Fedora 23 and 24.
 
-      | In these instructions:
-      | ``$releasever`` (i.e. Fedora release version) must be 23 or 24
-        or rawhide, and
-      | ``$basearch`` (i.e. base architecture) must be either i386 or
-        x86_64.
+      In these instructions, ``$releasever`` is an environment variable which
+      will contain the Fedora release version ("23", "24" or "rawhide").
 
       Copy and paste the script below to the terminal prompt:
 
@@ -32,7 +29,7 @@ Tarantool - Fedora
           sudo tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF
           [tarantool_1_8]
           name=Fedora-\$releasever - Tarantool
-          baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\$releasever/\$basearch/
+          baseurl=http://download.tarantool.org/tarantool/1.8/fedora/\$releasever/x86_64/
           gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey
           repo_gpgcheck=1
           gpgcheck=0
