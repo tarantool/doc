@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-27 20:08+0300\n"
+"POT-Creation-Date: 2017-10-02 12:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4017,7 +4017,7 @@ msgid "local function start()\n"
 "\n"
 "  -- migration code from 1.1 to 1.2\n"
 "  box.once(\"myapp:v1.2\", function()\n"
-"    box.space.somedata.space:alter(...)\n"
+"    box.space.somedata.index.primary:alter(...)\n"
 "    box.space.somedata:insert(...)\n"
 "    ...\n"
 "  end)\n"
@@ -16375,19 +16375,19 @@ msgstr ""
 msgid "An .xlog file always contains changes based on the primary key. Even if the client requested an update or delete using a secondary key, the record in the .xlog file will contain the primary key."
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:150
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:152
 msgid "The snapshot file format"
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:152
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:154
 msgid "The format of a snapshot .snap file is nearly the same as the format of a WAL .xlog file. However, the snapshot header differs: it contains the instance's global unique identifier and the snapshot file's position in history, relative to earlier snapshot files. Also, the content differs: an .xlog file may contain records for any data-change requests (inserts, updates, upserts, and deletes), a .snap file may only contain records of inserts to memtx spaces."
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:159
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:161
 msgid "Primarily, the .snap file's records are ordered by space id. Therefore the records of system spaces -- such as ``_schema``, ``_space``, ``_index``, ``_func``, ``_priv`` and ``_cluster`` -- will be at the start of the .snap file, before the records of any spaces that were created by users."
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:164
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:166
 msgid "Secondarily, the .snap file's records are ordered by primary key within space id."
 msgstr ""
 

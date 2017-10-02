@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-27 20:08+0300\n"
-"PO-Revision-Date: 2017-09-27 19:51+0300\n"
+"POT-Creation-Date: 2017-10-02 12:56+0300\n"
+"PO-Revision-Date: 2017-09-28 17:08+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -6021,7 +6021,7 @@ msgstr ""
 #: ../doc/1.8/book/app_server/index.rst:44 ../doc/1.8/book/box/index.rst:44
 #: ../doc/1.8/book/getting_started/index.rst:44
 msgid "This chapter contains the following sections:"
-msgstr ""
+msgstr "Эта глава состоит из следующих разделов:"
 
 #: ../doc/1.8/book/app_server/installing_module.rst:39
 #, fuzzy
@@ -6447,7 +6447,7 @@ msgid ""
 "\n"
 "  -- migration code from 1.1 to 1.2\n"
 "  box.once(\"myapp:v1.2\", function()\n"
-"    box.space.somedata.space:alter(...)\n"
+"    box.space.somedata.index.primary:alter(...)\n"
 "    box.space.somedata:insert(...)\n"
 "    ...\n"
 "  end)\n"
@@ -16867,11 +16867,12 @@ msgid ""
 "In this chapter, we explain how to install Tarantool, how to start it, "
 "and how to create a simple database."
 msgstr ""
+"В этой главе объясняется, как установить и запустить Tarantool, а также "
+"как создать простую базу данных."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:39
-#, fuzzy
 msgid "Using a binary package"
-msgstr "Скачивание и установка бинарного пакета"
+msgstr "Использование бинарного пакета"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:41
 msgid ""
@@ -16882,9 +16883,15 @@ msgid ""
 " branch (``1.7`` or ``1.8``) at `Tarantool's GitHub repository "
 "<https://github.com/tarantool/tarantool>`_."
 msgstr ""
+"Для промышленной разработки мы рекомендуем использовать `официальные "
+"бинарные пакеты <http://tarantool.org/download.html>`_. Можно выбрать "
+"одну из двух версий Tarantool’а: 1.7 (стабильная) и 1.8 (альфа). "
+"Автоматическая система сборки создает, тестирует и публикует пакеты после"
+" каждого коммита в соответствующую ветку (``1.7`` или ``1.8``) "
+"`репозитория Tarantool’а на GitHub "
+"<https://github.com/tarantool/tarantool>`_."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:48
-#, fuzzy
 msgid ""
 "To download and install the package that’s appropriate for your OS, start"
 " a shell (terminal) and enter the command-line instructions provided for "
@@ -16893,20 +16900,18 @@ msgid ""
 msgstr ""
 "Чтобы скачать и установить бинарный пакет для вашей операционной системы,"
 " откройте терминал с командной строкой и введите инструкции, которые даны"
-" для вашей операционной системы на странице "
-"http://tarantool.org/download.html."
+" для вашей операционной системы на `странице для скачивания "
+"<http://tarantool.org/download.html>`_."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:54
-#, fuzzy
 msgid "Starting Tarantool"
-msgstr "Утилита tarantoolctl"
+msgstr "Запуск экземпляра Tarantool’а"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:56
 msgid "To start a Tarantool instance, say this:"
-msgstr ""
+msgstr "Для запуска экземпляра Tarantool’а выполните эту команду:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:58
-#, fuzzy
 msgid ""
 "$ # if you downloaded a binary with apt-get or yum, say this:\n"
 "$ /usr/bin/tarantool\n"
@@ -16914,27 +16919,26 @@ msgid ""
 "this:\n"
 "$ ~/tarantool/bin/tarantool"
 msgstr ""
-"$ # Если вы скачали бинарный пакет с помощью apt-get или yum, введите:\n"
+"$ # если вы скачали бинарный пакет с помощью apt-get или yum, введите:\n"
 "$ /usr/bin/tarantool\n"
-"$ # Если вы скачали бинарный пакет в формате TAR\n"
+"$ # если вы скачали бинарный пакет в формате TAR\n"
 "$ # и разархивировали его в директорию ~/tarantool, введите:\n"
-"$ ~/tarantool/bin/tarantool\n"
-"$ # Если вы собрали Tarantool из исходных файлов, введите:\n"
-"$ ~/tarantool/src/tarantool"
+"$ ~/tarantool/bin/tarantool"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:65
 msgid "Tarantool starts in the interactive mode and displays a prompt:"
 msgstr ""
+"Tarantool запускается в интерактивном режиме и показывает приглашение "
+"командной строки:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:67
-#, fuzzy
 msgid "tarantool>"
-msgstr "tarantool> s:select{3}"
+msgstr "tarantool>"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:71
 #: ../doc/1.8/book/getting_started/using_docker.rst:118
 msgid "Now you can enter requests on the command line."
-msgstr ""
+msgstr "Теперь вы можете вводить запросы в командной строке."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:75
 #: ../doc/1.8/book/getting_started/using_docker.rst:122
@@ -16943,16 +16947,20 @@ msgid ""
 "administration only. But we use it for most examples in this manual, "
 "because the interactive mode is convenient for learning."
 msgstr ""
+"На боевых серверах интерактивный режим Tarantool’а предназначен только "
+"для системных администраторов. Мы же используем его в большинстве "
+"примеров в данном руководстве, потому что интерактивный режим хорошо "
+"подходит для обучения."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:81
 #: ../doc/1.8/book/getting_started/using_docker.rst:128
 msgid "Creating a database"
-msgstr ""
+msgstr "Создание базы данных"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:83
 msgid "Here is how to create a simple test database after installing."
 msgstr ""
-"Далее рассказывается, как создать простую тестовую базу данных после "
+"Далее объясняется, как создать простую тестовую базу данных после "
 "установки Tarantool'а."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:85
@@ -16960,8 +16968,8 @@ msgid ""
 "Create a new directory (it’s just for tests, so you can delete it when "
 "the tests are over):"
 msgstr ""
-"Создайте новую директорию. Она понадобится только для тестовых целей, и "
-"ее можно будет удалить по окончании экспериментов:"
+"Создайте новую директорию (она понадобится только для тестовых целей, и "
+"ее можно будет удалить по окончании экспериментов):"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:88
 msgid ""
@@ -16976,6 +16984,9 @@ msgid ""
 "To start Tarantool's database module and make the instance accept TCP "
 "requests on port 3301, say this:"
 msgstr ""
+"Чтобы запустить модуль Tarantool’а для работы с базой данных и сделать "
+"так, чтобы запущенный экземпляр принимал TCP-запросы на порту 3301, "
+"выполните эту команду:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:96
 msgid "tarantool> box.cfg{listen = 3301}"
@@ -16983,14 +16994,14 @@ msgstr "tarantool> box.cfg{listen = 3301}"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:100
 #: ../doc/1.8/book/getting_started/using_docker.rst:132
-#, fuzzy
 msgid ""
 "First, create the first :ref:`space <index-box_space>` (named 'tester') "
 "and the first :ref:`index <index-box_index>` (named 'primary'):"
-msgstr "Создайте первое пространство и первый :ref:`индекс <box_index>`:"
+msgstr ""
+"Сначала создайте первое :ref:`пространство <index-box_space>` (с именем "
+"'tester') и первый :ref:`индекс <index-box_index>` (с именем 'primary’):"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:103
-#, fuzzy
 msgid ""
 "tarantool> s = box.schema.space.create('tester')\n"
 "tarantool> s:create_index('primary', {\n"
@@ -17000,40 +17011,37 @@ msgid ""
 msgstr ""
 "tarantool> s = box.schema.space.create('tester')\n"
 "tarantool> s:create_index('primary', {\n"
-"         >   type = 'hash',\n"
-"         >   parts = {1, 'unsigned'}\n"
-"         > })"
+"              >  type = 'hash',\n"
+"              >  parts = {1, 'unsigned'}\n"
+"              > })"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:111
 #: ../doc/1.8/book/getting_started/using_docker.rst:143
-#, fuzzy
 msgid ""
 "Next, insert three :ref:`tuples <index-box_tuple>` (our name for "
 "\"records\") into the space:"
 msgstr ""
-"Выполните вставку трех \"кортежей\" (tuple) в первое \"пространство\" "
-"(space) из вашей базы данных:"
+"Затем вставьте в созданное пространство три :ref:`кортежа <index-"
+"box_tuple>` (наш термин для «записей»):"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:114
-#, fuzzy
 msgid ""
 "tarantool> t = s:insert({1, 'Roxette'})\n"
 "tarantool> t = s:insert({2, 'Scorpions', 2015})\n"
 "tarantool> t = s:insert({3, 'Ace of Base', 1993})"
 msgstr ""
-"tarantool> t = s:insert({1})\n"
-"tarantool> t = s:insert({2, 'Music'})\n"
-"tarantool> t = s:insert({3, 'Length', 93})"
+"tarantool> t = s:insert({1, 'Roxette'})\n"
+"tarantool> t = s:insert({2, 'Scorpions', 2015})\n"
+"tarantool> t = s:insert({3, 'Ace of Base', 1993})"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:121
 #: ../doc/1.8/book/getting_started/using_docker.rst:152
-#, fuzzy
 msgid ""
 "To select a tuple from the first space of the database, using the first "
 "defined key, say:"
 msgstr ""
-"Произведите выборку кортежа из первого пространства в базе по первому "
-"указанному ключу:"
+"После этого произведите выборку кортежа из первого пространства в базе "
+"данных по первому заданному ключу:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:124
 msgid "tarantool> s:select{3}"
@@ -17041,12 +17049,10 @@ msgstr "tarantool> s:select{3}"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:128
 #: ../doc/1.8/book/getting_started/using_docker.rst:159
-#, fuzzy
 msgid "The terminal screen now looks like this:"
-msgstr "Теперь вывод на экране выглядит следующим образом:"
+msgstr "Теперь вывод в окне терминала выглядит следующим образом:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:130
-#, fuzzy
 msgid ""
 "tarantool> s = box.schema.space.create('tester')\n"
 "2017-01-17 12:04:18.158 ... creating "
@@ -17073,7 +17079,7 @@ msgid ""
 "tarantool>"
 msgstr ""
 "tarantool> s = box.schema.space.create('tester')\n"
-"2015-06-10 12:04:18.158 ... creating "
+"2017-01-17 12:04:18.158 ... creating "
 "'./00000000000000000000.xlog.inprogress'\n"
 "---\n"
 "...\n"
@@ -17081,40 +17087,41 @@ msgstr ""
 "'unsigned'}})\n"
 "---\n"
 "...\n"
-"tarantool> t = s:insert{1}\n"
+"tarantool> t = s:insert{1, 'Roxette'}\n"
 "---\n"
 "...\n"
-"tarantool> t = s:insert{2, 'Music'}\n"
+"tarantool> t = s:insert{2, 'Scorpions', 2015}\n"
 "---\n"
 "...\n"
-"tarantool> t = s:insert{3, 'Length', 93}\n"
+"tarantool> t = s:insert{3, 'Ace of Base', 1993}\n"
 "---\n"
 "...\n"
 "tarantool> s:select{3}\n"
 "---\n"
-"- - [3, 'Length', 93]\n"
+"- - [3, 'Ace of Base', 1993]\n"
 "...\n"
 "tarantool>"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:154
 #: ../doc/1.8/book/getting_started/using_docker.rst:185
 msgid "To add another index on the second field, say:"
-msgstr ""
+msgstr "Для добавления другого индекса по второму полю используйте эту команду:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:156
-#, fuzzy
 msgid ""
 "tarantool> s:create_index('secondary', {\n"
 "         >  type = 'hash',\n"
 "         >  parts = {2, 'string'}\n"
 "         > })"
 msgstr ""
-"tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, "
-"'unsigned'}})"
+"tarantool> s:create_index('secondary', {\n"
+"         >  type = 'hash',\n"
+"         >  parts = {2, 'string'}\n"
+"         > })"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:165
 msgid "Connecting remotely"
-msgstr "Установка удаленного соединения"
+msgstr "Установка удаленного подключения"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:167
 msgid ""
@@ -17123,48 +17130,48 @@ msgid ""
 "resource identifier). In this case, it’s just a local port: port 3301. "
 "You can send requests to the listen URI via:"
 msgstr ""
+"В запросе ``box.cfg{listen = 3301}``, который мы отправили ранее, "
+"параметр ``listen`` может принимать в качестве значения :ref:`URI <index-"
+"uri>` (универсальный идентификатор ресурса) любой формы. В нашем случае "
+"это просто локальный порт 3301. Вы можете отправлять запросы на указанный"
+" URI, используя:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:172
-#, fuzzy
 msgid "``telnet``,"
-msgstr "telnet,"
+msgstr "``telnet``,"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:173
 msgid "a :ref:`connector <index-box_connectors>`,"
-msgstr ""
+msgstr ":ref:`коннектор <index-box_connectors>`,"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:174
-#, fuzzy
 msgid ""
 "another instance of Tarantool (using the :ref:`console <console-module>` "
 "module), or"
 msgstr ""
-"другого экземпляра Tarantool'а с помощью :ref:`console module <console-"
-"module>`, либо"
+"другой экземпляр Tarantool'а (с помощью модуля :ref:`console <console-"
+"module>`), либо"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:175
 msgid ":ref:`tarantoolctl <tarantoolctl>` utility."
-msgstr ""
+msgstr "утилиту :ref:`tarantoolctl <tarantoolctl>`."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:177
-#, fuzzy
 msgid "Let’s try (4)."
-msgstr "Давайте попробуем вариант с ``tarantoolctl connect``."
+msgstr "Давайте попробуем вариант с ``tarantoolctl``."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:179
-#, fuzzy
 msgid ""
 "Switch to another terminal. On Linux, for example, this means starting "
 "another instance of a Bash shell. You can switch to any working directory"
 " in the new terminal, not necessarily to ``~/tarantool_sandbox``."
 msgstr ""
 "Переключитесь на другой терминал. Например, в Linux-системе для этого "
-"нужно запустить новый экземпляр Bash. При этом вам не потребуется "
-"вызывать cd, чтобы переключиться на директорию "
-":code:`~/tarantool_sandbox`."
+"нужно запустить еще один экземпляр Bash. В новом терминале можно сменить "
+"текущую рабочую директорию на любую другую, необязательно использовать "
+"``~/tarantool_sandbox``."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:183
-#, fuzzy
 msgid "Start the ``tarantoolctl`` utility:"
 msgstr "Запустите утилиту ``tarantoolctl``:"
 
@@ -17173,38 +17180,34 @@ msgid "$ tarantoolctl connect '3301'"
 msgstr "$ tarantoolctl connect '3301'"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:189
-#, fuzzy
 msgid ""
 "This means \"use ``tarantoolctl connect`` to connect to the Tarantool "
 "instance that’s listening on ``localhost:3301``\"."
 msgstr ""
-"Данная команда означает \"использовать утилиту :ref:`tarantoolctl "
-"<administration-tarantoolctl_connect>` для соединения с "
-"Tarantool-сервером, который слушает на ``localhost:3301``.\""
+"Данная команда означает «использовать утилиту ``tarantoolctl`` для "
+"подключения к Tarantool-серверу, который слушает по адресу "
+"``localhost:3301``»."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:192
 msgid "Try this request:"
 msgstr "Введите следующий запрос:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:194
-#, fuzzy
 msgid "tarantool> box.space.tester:select{2}"
-msgstr "tarantool> {**{box.space.tester:select{2}}**}"
+msgstr "tarantool> box.space.tester:select{2}"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:198
-#, fuzzy
 msgid ""
 "This means \"send a request to that Tarantool instance, and display the "
 "result\". The result in this case is one of the tuples that was inserted "
 "earlier. Your terminal screen should now look like this:"
 msgstr ""
-"Это означает \"послать запрос тому Tarantool-серверу и вывести результат "
-"на экран.\" Результатом в данном случае будет один из кортежей, что вы "
-"вставляли ранее. На терминале теперь должно отображаться примерно "
+"Это означает «послать запрос тому Tarantool-серверу и вывести результат "
+"на экран». Результатом в данном случае будет один из кортежей, что вы "
+"вставляли ранее. В окне терминала теперь должно отображаться примерно "
 "следующее:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:202
-#, fuzzy
 msgid ""
 "$ tarantoolctl connect 3301\n"
 "/usr/local/bin/tarantoolctl: connected to localhost:3301\n"
@@ -17219,7 +17222,7 @@ msgstr ""
 "/usr/local/bin/tarantoolctl: connected to localhost:3301\n"
 "localhost:3301> box.space.tester:select{2}\n"
 "---\n"
-"- - [2, 'Music']\n"
+"- - [2, 'Scorpions', 2015]\n"
 "...\n"
 "\n"
 "localhost:3301>"
@@ -17229,38 +17232,47 @@ msgid ""
 "You can repeat ``box.space...:insert{}`` and ``box.space...:select{}`` "
 "indefinitely, on either Tarantool instance."
 msgstr ""
+"Вы можете посылать запросы ``box.space...:insert{}`` и "
+"``box.space...:select{}`` неограниченное количество раз на любом из двух "
+"запущенных экземпляров Tarantool’а."
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:216
 msgid "When the testing is over:"
-msgstr ""
+msgstr "Закончив тестирование, выполните следующие шаги:"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:218
 msgid "To drop the space: ``s:drop()``"
-msgstr ""
+msgstr "Для удаления пространства: ``s:drop()``"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:219
 msgid "To stop ``tarantoolctl``: Ctrl+C or Ctrl+D"
-msgstr ""
+msgstr "Для остановки ``tarantoolctl``:  ctrl+C или ctrl+D"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:220
 msgid ""
 "To stop Tarantool (an alternative): the standard Lua function `os.exit() "
 "<http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_"
 msgstr ""
+"Для остановки Tarantool’а (альтернативный вариант): стандартная "
+"Lua-функция `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-"
+"os.exit>`_"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:222
 msgid "To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``"
 msgstr ""
+"Для остановки Tarantool’а (из другого терминала): ``sudo pkill -f "
+"tarantool``"
 
 #: ../doc/1.8/book/getting_started/using_binary.rst:223
 msgid "To destroy the test: ``rm -r ~/tarantool_sandbox``"
-msgstr ""
+msgstr "Для удаления директории-песочницы: ``rm -r ~/tarantool_sandbox``"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:39
 msgid "Using a Docker image"
-msgstr ""
+msgstr "Использование Docker-образа"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:41
+#, fuzzy
 msgid ""
 "For trial and test purposes, we recommend using `official Tarantool "
 "images for Docker <https://github.com/tarantool/docker>`_. An official "
@@ -17269,6 +17281,12 @@ msgid ""
 "and configured in Linux. These images are the easiest way to install and "
 "use Tarantool."
 msgstr ""
+"Для практики и в тестовых целях мы рекомендуем использовать `официальные "
+"образы Tarantool’а для Docker <https://github.com/tarantool/docker>`_. "
+"Официальный образ содержит определенную версию Tarantool’а (1.6 или 1.7) "
+"и все популярные внешние модули для Tarantool’а. Все необходимое уже "
+"установлено и настроено на платформе Linux. Данные образы - это самый "
+"простой способ установить и запустить Tarantool."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:50
 msgid ""
@@ -17276,10 +17294,13 @@ msgid ""
 "<https://docs.docker.com/engine/getstarted/step_one/>`_ before proceeding"
 " with this chapter."
 msgstr ""
+"Если вы никогда раньше не работали с Docker, рекомендуем сперва прочитать"
+" `эту обучающую статью "
+"<https://docs.docker.com/engine/getstarted/step_one/>`_."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:58
 msgid "Launching a container"
-msgstr ""
+msgstr "Запуск контейнера"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:60
 msgid ""
@@ -17288,14 +17309,21 @@ msgid ""
 "<https://docs.docker.com/engine/getstarted/step_one/#/step-1-get-"
 "docker>`_ for your OS."
 msgstr ""
+"Если Docker не установлен на вашей машине, следуйте официальным "
+"`инструкциям по установке "
+"<https://docs.docker.com/engine/getstarted/step_one/#/step-1-get-"
+"docker>`_ для вашей ОС."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:64
 msgid ""
 "To start a fully functional Tarantool instance, run a container with "
 "minimal options:"
 msgstr ""
+"Для использования полнофункционального экземпляра Tarantool’а запустите "
+"контейнер с минимальными настройками:"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:67
+#, fuzzy
 msgid ""
 "$ docker run \\\n"
 "  --name mytarantool \\\n"
@@ -17303,19 +17331,31 @@ msgid ""
 "  -v /data/dir/on/host:/var/lib/tarantool \\\n"
 "  tarantool/tarantool:1.8"
 msgstr ""
+"$ docker run \\\n"
+"  --name mytarantool \\\n"
+"  -d -p 3301:3301 \\\n"
+"  -v /data/dir/on/host:/var/lib/tarantool \\\n"
+"  tarantool/tarantool:1.7"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:75
+#, fuzzy
 msgid ""
 "This command runs a new container named 'mytarantool'. Docker starts it "
 "from an official image named 'tarantool/tarantool:1.8', with Tarantool "
 "version 1.8 and all external modules already installed."
 msgstr ""
+"Эта команда запускает новый контейнер с именем 'mytarantool'. Docker "
+"запускает его из официального образа 'tarantool/tarantool:1.7' с "
+"предустановленным Tarantool’ом 1.7 и всеми внешними модулями."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:79
 msgid ""
 "Tarantool will be accepting incoming connections on ``localhost:3301``. "
 "You may start using it as a key-value storage right away."
 msgstr ""
+"Tarantool будет принимать входящие подключения по адресу "
+"``localhost:3301``. Можно сразу начать его использовать как key-value "
+"хранилище."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:82
 msgid ""
@@ -17328,6 +17368,15 @@ msgid ""
 "changes made in the mounted directory on the container's side are applied"
 " to the host's disk."
 msgstr ""
+"Tarantool :ref:`сохраняет данные <index-box_persistence>` внутри "
+"контейнера. Чтобы ваше тестовые данные остались доступны после остановки "
+"контейнера, эта команда также монтирует директорию ``/data/dir/on/host`` "
+"(здесь необходимо указать абсолютный путь до существующей локальной "
+"директории), расположенную на машине, в директорию ``/var/lib/tarantool``"
+" (Tarantool традиционно использует эту директорию в контейнере для "
+"сохранения данных), расположенную в контейнере. Таким образом все "
+"изменения в смонтированной директории, внесенные на стороне контейнера, "
+"также отражаются в расположенной на пользовательском диске директории."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:91
 msgid ""
@@ -17336,50 +17385,58 @@ msgid ""
 "unless you use Tarantool as an :ref:`application server <app_server>` and"
 " run it with an application."
 msgstr ""
+"Модуль Tarantool’а для работы с базой данных уже :ref:`настроен "
+"<box_introspection-box_cfg>` и запущен в контейнере. Ручная настройка не "
+"требуется, если только вы не используете Tarantool как :ref:`сервер "
+"приложений <app_server>` и не запускаете его вместе с приложением."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:98
-#, fuzzy
 msgid "Attaching to Tarantool"
-msgstr "Подсоединение к экземплярам"
+msgstr "Подключение к экземпляру Tarantool’а"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:100
 msgid "To attach to Tarantool that runs inside the container, say:"
 msgstr ""
+"Для подключения к запущенному в контейнере экземпляру Tarantool’а, "
+"выполните эту команду:"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:102
 msgid "$ docker exec -i -t mytarantool console"
-msgstr ""
+msgstr "$ docker exec -i -t mytarantool console"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:106
 msgid "This command:"
-msgstr ""
+msgstr "Эта команда:"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:108
 msgid ""
 "Instructs Tarantool to open an interactive console port for incoming "
 "connections."
 msgstr ""
+"Требует от Tarantool’а открыть порт с интерактивной консолью для входящих"
+" подключений."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:109
 msgid ""
 "Attaches to the Tarantool server inside the container under 'admin' user "
 "via a standard Unix socket."
 msgstr ""
+"Подключается через стандартный Unix-сокет к Tarantool-серверу, "
+"запущенному внутри контейнера, из-под пользователя 'admin’."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:112
 msgid "Tarantool displays a prompt:"
-msgstr ""
+msgstr "Tarantool показывает приглашение командной строки:"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:114
 msgid "tarantool.sock>"
-msgstr ""
+msgstr "tarantool.sock>"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:130
 msgid "While you're attached to the console, let's create a simple test database."
-msgstr ""
+msgstr "Подключившись к консоли, давайте создадим простую тестовую базу данных."
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:135
-#, fuzzy
 msgid ""
 "tarantool.sock> s = box.schema.space.create('tester')\n"
 "tarantool.sock> s:create_index('primary', {\n"
@@ -17387,30 +17444,27 @@ msgid ""
 "              >  parts = {1, 'unsigned'}\n"
 "              > })"
 msgstr ""
-"tarantool> s = box.schema.space.create('tester')\n"
-"tarantool> s:create_index('primary', {\n"
-"         >   type = 'hash',\n"
-"         >   parts = {1, 'unsigned'}\n"
-"         > })"
+"tarantool.sock> s = box.schema.space.create('tester')\n"
+"tarantool.sock> s:create_index('primary', {\n"
+"              >  type = 'hash',\n"
+"              >  parts = {1, 'unsigned'}\n"
+"              > })"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:146
-#, fuzzy
 msgid ""
 "tarantool.sock> t = s:insert({1, 'Roxette'})\n"
 "tarantool.sock> t = s:insert({2, 'Scorpions', 2015})\n"
 "tarantool.sock> t = s:insert({3, 'Ace of Base', 1993})"
 msgstr ""
-"tarantool> t = s:insert({1})\n"
-"tarantool> t = s:insert({2, 'Music'})\n"
-"tarantool> t = s:insert({3, 'Length', 93})"
+"tarantool.sock> t = s:insert({1, 'Roxette'})\n"
+"tarantool.sock> t = s:insert({2, 'Scorpions', 2015})\n"
+"tarantool.sock> t = s:insert({3, 'Ace of Base', 1993})"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:155
-#, fuzzy
 msgid "tarantool.sock> s:select{3}"
-msgstr "tarantool> s:select{3}"
+msgstr "tarantool.sock> s:select{3}"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:161
-#, fuzzy
 msgid ""
 "tarantool.sock> s = box.schema.space.create('tester')\n"
 "2017-01-17 12:04:18.158 ... creating "
@@ -17436,57 +17490,55 @@ msgid ""
 "...\n"
 "tarantool.sock>"
 msgstr ""
-"tarantool> s = box.schema.space.create('tester')\n"
-"2015-06-10 12:04:18.158 ... creating "
+"tarantool.sock> s = box.schema.space.create('tester')\n"
+"2017-01-17 12:04:18.158 ... creating "
 "'./00000000000000000000.xlog.inprogress'\n"
 "---\n"
 "...\n"
-"tarantool>s:create_index('primary', {type = 'hash', parts = {1, "
+"tarantool.sock> s:create_index('primary', {type = 'hash', parts = {1, "
 "'unsigned'}})\n"
 "---\n"
 "...\n"
-"tarantool> t = s:insert{1}\n"
+"tarantool.sock> t = s:insert{1, 'Roxette'}\n"
 "---\n"
 "...\n"
-"tarantool> t = s:insert{2, 'Music'}\n"
+"tarantool.sock> t = s:insert{2, 'Scorpions', 2015}\n"
 "---\n"
 "...\n"
-"tarantool> t = s:insert{3, 'Length', 93}\n"
+"tarantool.sock> t = s:insert{3, 'Ace of Base', 1993}\n"
 "---\n"
 "...\n"
-"tarantool> s:select{3}\n"
+"tarantool.sock> s:select{3}\n"
 "---\n"
-"- - [3, 'Length', 93]\n"
+"- - [3, 'Ace of Base', 1993]\n"
 "...\n"
-"tarantool>"
+"tarantool.sock>"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:187
-#, fuzzy
 msgid ""
 "tarantool.sock> s:create_index('secondary', {\n"
 "              >  type = 'hash',\n"
 "              >  parts = {2, 'string'}\n"
 "              > })"
 msgstr ""
-"tarantool> s = box.schema.space.create('tester')\n"
-"tarantool> s:create_index('primary', {\n"
-"         >   type = 'hash',\n"
-"         >   parts = {1, 'unsigned'}\n"
-"         > })"
+"tarantool.sock> s:create_index('secondary', {\n"
+"              >  type = 'hash',\n"
+"              >  parts = {2, 'string'}\n"
+"              > })"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:196
-#, fuzzy
 msgid "Stopping a container"
-msgstr "Остановка всех экземпляров:"
+msgstr "Остановка контейнера"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:198
 msgid "When the testing is over, stop the container politely:"
 msgstr ""
+"После завершения тестирования для корректной остановки контейнера "
+"выполните эту команду:"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:200
-#, fuzzy
 msgid "$ docker stop mytarantool"
-msgstr "$ systemctl stop tarantool@example"
+msgstr "$ docker stop mytarantool"
 
 #: ../doc/1.8/book/getting_started/using_docker.rst:204
 msgid ""
@@ -17497,6 +17549,12 @@ msgid ""
 "it, Tarantool will recover all data from disk and continue working with "
 "the persisted data."
 msgstr ""
+"Это был временный контейнер, поэтому после остановки содержимое его "
+"диска/памяти обнулилось. Но так как вы монтировали локальную директорию в"
+" контейнер, все данные Tarantool’а сохранились на диске вашей машины. "
+"Если вы запустите новый контейнер и смонтируете в него ту же директорию с"
+" данными, Tarantool восстановит все данные с диска и продолжит с ними "
+"работать."
 
 #: ../doc/1.8/book/index.rst:39
 msgid "User's Guide"
@@ -22857,11 +22915,11 @@ msgid ""
 "record in the .xlog file will contain the primary key."
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:150
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:152
 msgid "The snapshot file format"
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:152
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:154
 msgid ""
 "The format of a snapshot .snap file is nearly the same as the format of a"
 " WAL .xlog file. However, the snapshot header differs: it contains the "
@@ -22872,7 +22930,7 @@ msgid ""
 "inserts to memtx spaces."
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:159
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:161
 msgid ""
 "Primarily, the .snap file's records are ordered by space id. Therefore "
 "the records of system spaces -- such as ``_schema``, ``_space``, "
@@ -22881,7 +22939,7 @@ msgid ""
 " users."
 msgstr ""
 
-#: ../doc/1.8/dev_guide/internals/file_formats.rst:164
+#: ../doc/1.8/dev_guide/internals/file_formats.rst:166
 msgid ""
 "Secondarily, the .snap file's records are ordered by primary key within "
 "space id."
@@ -23154,8 +23212,9 @@ msgid ""
 msgstr ""
 
 #: ../doc/1.8/dev_guide/internals/sql_protocol.rst:56
+#, fuzzy
 msgid "Special SQL commands:"
-msgstr ""
+msgstr "Эта команда:"
 
 #: ../doc/1.8/dev_guide/internals/sql_protocol.rst:58
 msgid "<execute> ::= 11"
@@ -27152,7 +27211,7 @@ msgstr ""
 #: ../doc/1.8/index.rst:56
 #, fuzzy
 msgid "Tarantool 1.8 manual"
-msgstr "tarantool> s:select{3}"
+msgstr "tarantool>"
 
 #: ../doc/1.8/index.rst:60
 msgid ""
@@ -47607,36 +47666,6 @@ msgstr ""
 #~ "Note: When there is a mix of "
 #~ "types, the key order is: booleans, "
 #~ "then numbers, then strings."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "For trial and test purposes, we "
-#~ "recommend using `official Tarantool images "
-#~ "for Docker <https://github.com/tarantool/docker>`_. "
-#~ "An official image contains a particular"
-#~ " Tarantool version (1.6 or 1.7) and"
-#~ " all popular external modules for "
-#~ "Tarantool. Everything is already installed "
-#~ "and configured in Linux. These images"
-#~ " are the easiest way to install "
-#~ "and use Tarantool."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "$ docker run \\\n"
-#~ "  --name mytarantool \\\n"
-#~ "  -d -p 3301:3301 \\\n"
-#~ "  -v /data/dir/on/host:/var/lib/tarantool \\\n"
-#~ "  tarantool/tarantool:1.7"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This command runs a new container "
-#~ "named 'mytarantool'. Docker starts it "
-#~ "from an official image named "
-#~ "'tarantool/tarantool:1.7', with Tarantool version"
-#~ " 1.7 and all external modules already"
-#~ " installed."
 #~ msgstr ""
 
 #~ msgid ""
