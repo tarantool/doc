@@ -86,9 +86,16 @@ The functions in digest are:
 
     Returns 128-byte string = hexadecimal of a digest calculated with sha512.
 
-.. function:: base64_encode(string)
+.. function:: base64_encode(string[, {options}]
 
     Returns base64 encoding from a regular string.
+    The possible options are:
+    ``nopad`` -- result must not include '=' for padding at the end,
+    ``nowrap`` -- result must not include line feed for splitting lines after 72 characters,
+    ``urlsafe`` -- result must not include '=' or line feed, and may contain '-' or '_' instead of '+' or '/'
+    for positions 62 and 63 in the index table.
+    Options may be true or false, the default value is false.
+    For example: ``digest.base64_encode(string_variable,{nopad=true})``.
 
 .. function:: base64_decode(string)
 
