@@ -95,6 +95,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`box.space._cluster             | (Metadata) List of replica sets |
         | <box_space-cluster>`                 |                                 |
         +--------------------------------------+---------------------------------+
+        | :ref:`box.space._sequence            | (Metadata) List of sequences    |
+        | <box_space-sequence>`                |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._sequence_data       | (Metadata) List of sequences    |
+        | <box_space-sequence_data>`           |                                 |
+        +--------------------------------------+---------------------------------+
         | :ref:`box.space._func                | (Metadata) List of function     |
         | <box_space-func>`                    | tuples                          |
         +--------------------------------------+---------------------------------+
@@ -261,6 +267,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | run_size_ratio      | affects vinyl only                                    | number                           | ``vinyl_run_size_ratio``      |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | sequence            | see section regarding                                 | string or number                 | not present                   |
+            |                     | :ref:`specifying a sequence in create_index           |                                  |                               |
+            |                     | <box_schema-sequence_in_create_index>`                |                                  |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+
 
         Note re storage engine: vinyl has extra options which by default are
         based on configuration parameters
@@ -1087,6 +1098,24 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
     ``_cluster`` is a system space
     for support of the :ref:`replication feature <replication>`.
+
+.. _box_space-sequence:
+
+.. data:: _sequence
+
+    ``_sequence`` is a system space
+    for support of the :ref:`sequence feature <index-box_sequence>`.
+    It contains persistent information that was established by
+    ``box.schema.sequence.create`` or ``box.schema.sequence.alter``.
+
+.. _box_space-sequence_data:
+
+.. data:: _sequence_data
+
+    ``_sequence_data`` is a system space
+    for support of the :ref:`sequence feature <index-box_sequence>`.
+    It contains the sequence id and one field of non-persistent
+    information: the last value that the sequence generator returned.
 
 .. _box_space-func:
 
