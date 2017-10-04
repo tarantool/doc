@@ -86,9 +86,26 @@ The functions in digest are:
 
     Returns 128-byte string = hexadecimal of a digest calculated with sha512.
 
-.. function:: base64_encode(string)
+.. function:: base64_encode(string[, {options}]
 
     Returns base64 encoding from a regular string.
+
+    The possible options are:
+
+    * ``nopad`` -- result must not include '=' for padding at the end,
+    * ``nowrap`` -- result must not include line feed for splitting lines
+      after 72 characters,
+    * ``urlsafe`` -- result must not include '=' or line feed, and may contain
+      '-' or '_' instead of '+' or '/' for positions 62 and 63 in the index
+      table.
+
+    Options may be ``true`` or ``false``, the default value is ``false``.
+
+    For example:
+
+    .. code-block:: lua
+
+        digest.base64_encode(string_variable,{nopad=true})
 
 .. function:: base64_decode(string)
 
@@ -102,17 +119,19 @@ The functions in digest are:
 
     Returns 32-bit checksum made with CRC32.
 
-    The crc32 and crc32_update functions use the `CRC-32C (Castagnoli)`_
+    The ``crc32`` and ``crc32_update`` functions use the `CRC-32C (Castagnoli)`_
     polynomial value: ``0x1EDC6F41`` / ``4812730177``. If it is necessary to be
     compatible with other checksum functions in other programming languages,
     ensure that the other functions use the same polynomial value.
 
     For example, in Python, install the ``crcmod`` package and say:
 
-      >>> import crcmod
-      >>> fun = crcmod.mkCrcFun('4812730177')
-      >>> fun('string')
-      3304160206L
+    .. code-block:: python
+
+        >>> import crcmod
+        >>> fun = crcmod.mkCrcFun('4812730177')
+        >>> fun('string')
+        3304160206L
 
     In Perl, install the ``Digest::CRC`` module and run the following code:
 
@@ -157,15 +176,14 @@ The functions in digest are:
 
 .. function:: digest.murmur.new([seed])
 
-
     Initiates incremental MurmurHash.
     See :ref:`incremental methods <digest-incremental_digests>` notes.
 
 .. _digest-incremental_digests:
 
-========================================
-Incremental methods in the digest module
-========================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Incremental methods in the ``digest`` module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Suppose that a digest is done for a string 'A', then a new part 'B' is appended
 to the string, then a new digest is required. The new digest could be recomputed
@@ -191,9 +209,9 @@ for the whole string 'AB', but it is faster to take what was computed before for
       m:update('B')
       print(m:result())
 
-=================================================
-                     Example
-=================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the following example, the user creates two functions, ``password_insert()``
 which inserts a SHA-1_ digest of the word "**^S^e^c^ret Wordpass**" into a tuple
