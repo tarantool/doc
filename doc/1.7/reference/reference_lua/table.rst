@@ -7,8 +7,10 @@
 .. module:: table
 
 The :code:`table` module has everything in the
-`standard Lua table library <https://www.lua.org/pil/19.html>`_.
-You can see this by saying "table" ...
+`standard Lua table library <https://www.lua.org/pil/19.html>`_,
+and some Tarantool extensions.
+
+You can see this by saying "table":
 
     .. code-block:: tarantoolsession
 
@@ -36,7 +38,7 @@ that the Tarantool developers have added: ``deepcopy``.
 
 .. function:: deepcopy(input-table)
 
-    Return a copy of the table. A "deep" copy is a copy which follows
+    Return a "deep" copy of the table -- a copy which follows
     nested structures to any depth and does not depend on pointers,
     it copies the contents.
 
@@ -47,7 +49,7 @@ that the Tarantool developers have added: ``deepcopy``.
 
     **Example:**
 
-    .. code-block:: none
+    .. code-block:: tarantoolsession
 
         tarantool> input_table = {1,{'a','b'}}
         ---

@@ -569,16 +569,15 @@ for spaces, users, roles, function tuples, and sequences.
         -- reload everything
         box.schema.func.reload()
 
-~~~~~~~~~~~
-sequences
-~~~~~~~~~~~
-
-
 .. _box_schema-sequence:
 
-    An introduction and a chart and an example for sequences is in the 
-    :ref:`sequence <index-box_sequence>` section of the data models chapter.
-    Here are the details for each function and option.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sequences
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An introduction to sequences is in the :ref:`Sequences <index-box_sequence>`
+section of the "Data model" chapter.
+Here are the details for each function and option.
 
 .. _box_schema-sequence_create:
 
@@ -588,50 +587,61 @@ sequences
 
     :param string name: the name of the sequence
 
-    :param table options: see the "Options for box.schema.sequence.create" chart
-                          in the sequence section of the data models chapter for a quick overview,
-                          and see below for the not-as-quick explanations.
+    :param table options: see a quick overview in the
+                          "Options for ``box.schema.sequence.create()``"
+                          :ref:`chart <index-box_sequence-options>`
+                          (in the :ref:`Sequences <index-box_sequence>`
+                          section of the "Data model" chapter),
+                          and see more details below.
 
-    Return: a reference to a new sequence object.
+    :return: a reference to a new sequence object.
 
-    **start**. The STARTS WITH value. Type = integer, Default = 1.
+    Options:
 
-    **min**. The MINIMUM value. Type = integer, Default = 1.
+    * ``start`` -- the STARTS WITH value. Type = integer, Default = 1.
 
-    **max**. The MAXIMUM value. Type = integer, Default = 9223372036854775807.
-    
-    There is a rule: ``min`` <= ``start`` <= ``max``.
-    For example it is illegal to say ``{start=0}`` because then the
-    specified start value (0) would be less than the default min value (1).
+    * ``min`` -- the MINIMUM value. Type = integer, Default = 1.
 
-    There is a rule: ``min`` <= next-value <= ``max``.
-    For example, if the next generated value would be 1000,
-    but the maximum value is 999, then that would be considered
-    "overflow".
+    * ``max`` - the MAXIMUM value. Type = integer, Default = 9223372036854775807.
 
-    **cycle**. The CYCLE value. Type = bool. Default = false.
-    If the sequence generator's next value
-    is an overflow number, it causes an error return -- unless
-    ``cycle == true``. But if ``cycle == true``, the count is
-    started again, at the STARTS WITH value (not the MINIMUM value).
-    After that, the generated numbers are the same as the numbers that
-    were generated in the previous cycle.
+      There is a rule: ``min`` <= ``start`` <= ``max``.
+      For example it is illegal to say ``{start=0}`` because then the
+      specified start value (0) would be less than the default min value (1).
 
-    **cache**. The CACHE value. Type = unsigned integer. Default = 0.
-    To see the value of a cache, it's necessary to know how Tarantool
-    ensures that the "next value" will always be equal to the "last value"
-    plus the "increment value" -- that is part of the persistence guarantee.
-    Therefore Tarantool must store the last value in a persistent way.
-    But that requires updating or logging, and those things takes time.
-    The solution is to cache (say) 20 numbers, and only ensure storage
-    every 20th time.
-    That saves time.
-    But, if the system goes down unexpectedly, then some of the
-    cached numbers are lost, leaving a gap in the sequence.
-    The cache is "per server instance", not "per session" or "per user".
+      There is a rule: ``min`` <= next-value <= ``max``.
+      For example, if the next generated value would be 1000,
+      but the maximum value is 999, then that would be considered
+      "overflow".
 
-    **step**. The INCREMENT BY value. Type = integer. Default = 1.
-    Ordinarily this is what is added to the previous value.
+    * ``cycle`` -- the CYCLE value. Type = bool. Default = false.
+
+      If the sequence generator's next value is an overflow number,
+      it causes an error return -- unless ``cycle == true``.
+
+      But if ``cycle == true``, the count is started again, at the STARTS WITH
+      value (not the MINIMUM value).
+
+      After that, the generated numbers are the same as the numbers that
+      were generated in the previous cycle.
+
+    * ``cache`` -- the CACHE value. Type = unsigned integer. Default = 0.
+
+      To see the value of a cache, it's necessary to know how Tarantool
+      ensures that the "next value" will always be equal to the "last value"
+      plus the "increment value" -- that is part of the persistence guarantee.
+      Therefore Tarantool must store the last value in a persistent way.
+      But that requires updating or logging, and those things take time.
+
+      The solution is to cache (say) 20 numbers, and only ensure storage
+      every 20th time. That saves time.
+
+      But, if the system goes down unexpectedly, then some of the
+      cached numbers are lost, leaving a gap in the sequence.
+      The cache is "per server instance", not "per session" or "per user".
+
+    * ``step`` -- the INCREMENT BY value. Type = integer. Default = 1.
+
+      Ordinarily this is what is added to the previous value.
 
 .. _box_schema-sequence_next:
 
@@ -639,86 +649,98 @@ sequences
 
     Generate the next value and return it.
 
-    The generation algorithm is simple: |br|
-    If this is the first time, then return the STARTS WITH value. |br|
-    If the previous value plus the INCREMENT value is less than the
-    MINIMUM value or greater than the MAXIMUM value, that is "overflow",
-    so either return an error (if cycle = false) or return the STARTS
-    WITH value (if cycle = true).
+    The generation algorithm is simple:
+
+    * If this is the first time, then return the STARTS WITH value.
+    * If the previous value plus the INCREMENT value is less than the
+      MINIMUM value or greater than the MAXIMUM value, that is "overflow",
+      so either return an error (if ``cycle`` = ``false``) or return the STARTS
+      WITH value (if ``cycle`` = ``true``).
 
     If there was no error, then save the returned result, it is now
     the "previous value".
 
-    For example: suppose sequence S has min == -6, max == -1, step == -3, start = -2,
-    cache = true, and previous value = -2. Then
-    ``box.sequence.S:next()`` returns -5 because -2 + (-3) == -5. Then
-    ``box.sequence.S:next()`` again returns -2 because -5 + (-3) < -6,
-    which is overflow, causing cycle, and start == -2.
+    For example, suppose sequence 'S' has:
 
-    This function should not be used in "cross-engine" transactions
-    (transactions which use both the memtx and the vinyl storage engines).
+    * ``min`` == -6,
+    * ``max`` == -1,
+    * ``step`` == -3,
+    * ``start`` = -2,
+    * ``cache`` = true,
+    * previous value = -2.
 
-    To see what the previous value was, without changing it, you can
-    select from the _sequence_data system space. Each tuple in
-    _sequence_data has two fields: the id of the sequence, and the
-    last value that was generated.
+    Then ``box.sequence.S:next()`` returns -5 because -2 + (-3) == -5.
 
+    Then ``box.sequence.S:next()`` again returns -2 because -5 + (-3) < -6,
+    which is overflow, causing cycle, and ``start`` == -2.
+
+    .. NOTE::
+
+        This function should not be used in "cross-engine" transactions
+        (transactions which use both the memtx and the vinyl storage engines).
+
+        To see what the previous value was, without changing it, you can
+        select from the :ref:`_sequence_data <box_space-sequence_data>`
+        system space.
 
 .. _box_schema-sequence_alter:
 
 .. function:: sequence_object:alter(options)
 
-    The ``alter`` function can be used to change any of the sequence's options.
-    Requirements and restrictions are the same as for
-    :ref:`box.schema.sequence.create <box_schema-sequence_create>`.
+    The ``alter()`` function can be used to change any of the sequence's
+    options. Requirements and restrictions are the same as for
+    :ref:`box.schema.sequence.create() <box_schema-sequence_create>`.
 
 .. _box_schema-sequence_reset:
 
 .. function:: sequence_object:reset()
 
-    The ``reset`` function can be used to set the previous value to the
-    start value. The effect is the same as if an overflow happened while
-    the cycle option was true, except that nothing is returned.
+    Set the previous value to the start value.
+    The effect is the same as if an overflow happened while
+    the ``cycle`` option was ``true``, except that nothing is returned.
 
 .. _box_schema-sequence_drop:
 
 .. function:: sequence_object:drop()
 
-    The ``drop`` function can be used to drop an existing sequence.
+    Drop an existing sequence.
 
-    **Example showing all sequence options and operations:**
+    **Example:**
 
-    .. code-block:: none
+    Here's an example showing all sequence options and operations:
+
+    .. code-block:: lua
 
         s = box.schema.sequence.create(
-                           'S2',
-                           {start=100,
-                           min=100,
-                           max=200,
-                           cache=100000,
-                           cycle=false,
-                           step=100
-                           })
+                       'S2',
+                       {start=100,
+                       min=100,
+                       max=200,
+                       cache=100000,
+                       cycle=false,
+                       step=100
+                       })
         s:alter({step=6})
         s:next()
         s:reset()
         s:drop()
 
-
 .. _box_schema-sequence_in_create_index:
 
 .. function:: space_object:create_index(... [sequence='...' option] ...)
 
-    The :samp:`sequence={sequence-name}`
+    You can use the :samp:`sequence={sequence-name}`
     (or :samp:`sequence={sequence-id}` or :samp:`sequence=true`)
-    option can be used when
-    creating or altering a primary-key index. The sequence becomes
-    associated with the index, so that the next ``insert`` will
-    put the next generated number into the primary-key field,
-    if the field would otherwise be nil. For example, if Q is a
-    sequence and T is a new space, then this will work:
+    option when :ref:`creating <box_space-create_index>` or
+    :ref:`altering <box_index-alter>` a primary-key index.
+    The sequence becomes associated with the index, so that the next
+    ``insert()`` will put the next generated number into the primary-key
+    field, if the field would otherwise be nil.
 
-    .. code-block:: none
+    For example, if 'Q' is a sequence and 'T' is a new space, then this will
+    work:
+
+    .. code-block:: tarantoolsession
 
         tarantool> box.space.T:create_index('Q',{sequence='Q'})
         ---
@@ -733,21 +755,21 @@ sequences
           type: TREE
         ...
 
-    (Notice that the index now has a "sequence_id" field.)
+    (Notice that the index now has a ``sequence_id`` field.)
 
     And this will work:
 
-    .. code-block:: none
+    .. code-block:: tarantoolsession
 
         tarantool> box.space.T:insert{nil,0}
         ---
         - [1, 0]
         ...
 
-    If you are using negative numbers for the sequence options,
-    make sure that the index key type is 'integer'. Otherwise
-    the index key type may be either 'integer' or 'unsigned'.
+    .. NOTE::
 
-    A sequence cannot be dropped if it is associated with an index.
+        If you are using negative numbers for the sequence options,
+        make sure that the index key type is 'integer'. Otherwise
+        the index key type may be either 'integer' or 'unsigned'.
 
-
+        A sequence cannot be dropped if it is associated with an index.

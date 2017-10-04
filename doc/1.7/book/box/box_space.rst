@@ -95,12 +95,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`box.space._cluster             | (Metadata) List of replica sets |
         | <box_space-cluster>`                 |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`box.space._sequence            | (Metadata) List of sequences    |
-        | <box_space-sequence>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._sequence_data       | (Metadata) List of sequences    |
-        | <box_space-sequence_data>`           |                                 |
-        +--------------------------------------+---------------------------------+
         | :ref:`box.space._func                | (Metadata) List of function     |
         | <box_space-func>`                    | tuples                          |
         +--------------------------------------+---------------------------------+
@@ -112,6 +106,12 @@ A list of all ``box.space`` functions follows, then comes a list of all
         +--------------------------------------+---------------------------------+
         | :ref:`box.space._schema              | (Metadata) List of schemas      |
         | <box_space-schema>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._sequence            | (Metadata) List of sequences    |
+        | <box_space-sequence>`                |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.space._sequence_data       | (Metadata) List of sequences    |
+        | <box_space-sequence_data>`           |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`box.space._space               | (Metadata) List of spaces       |
         | <box_space-space>`                   |                                 |
@@ -268,10 +268,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | run_size_ratio      | affects vinyl only                                    | number                           | ``vinyl_run_size_ratio``      |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | sequence            | see section regarding                                 | string or number                 | not present                   |
-            |                     | :ref:`specifying a sequence in create_index           |                                  |                               |
+            |                     | :ref:`specifying a sequence in create_index()         |                                  |                               |
             |                     | <box_schema-sequence_in_create_index>`                |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-
 
         Note re storage engine: vinyl has extra options which by default are
         based on configuration parameters
@@ -360,7 +359,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         |                  | floating point numbers    |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
         | **boolean**      | true or false             | memtx TREE or HASH indexes, |br|      | false |br|        |
-        |                  |                           | vinyl TREE indexes                    | true              | 
+        |                  |                           | vinyl TREE indexes                    | true              |
         +------------------+---------------------------+---------------------------------------+-------------------+
         | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
         |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
@@ -1013,11 +1012,6 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})
 
-
-
-
-
-
     .. _box_space-enabled:
 
     .. data:: enabled
@@ -1099,45 +1093,27 @@ A list of all ``box.space`` functions follows, then comes a list of all
     ``_cluster`` is a system space
     for support of the :ref:`replication feature <replication>`.
 
-.. _box_space-sequence:
-
-.. data:: _sequence
-
-    ``_sequence`` is a system space
-    for support of the :ref:`sequence feature <index-box_sequence>`.
-    It contains persistent information that was established by
-    ``box.schema.sequence.create`` or ``box.schema.sequence.alter``.
-
-.. _box_space-sequence_data:
-
-.. data:: _sequence_data
-
-    ``_sequence_data`` is a system space
-    for support of the :ref:`sequence feature <index-box_sequence>`.
-    It contains the sequence id and one field of non-persistent
-    information: the last value that the sequence generator returned.
-
 .. _box_space-func:
 
 .. data:: _func
 
-    ``_func`` is a system space with function tuples made by
-    :ref:`box.schema.func.create() <box_schema-func_create>`.
+   ``_func`` is a system space with function tuples made by
+   :ref:`box.schema.func.create() <box_schema-func_create>`.
 
-    Tuples in this space contain the following fields:
+   Tuples in this space contain the following fields:
 
-    * the numeric function id, a number,
-    * the function name,
-    * flag,
-    * a language name (optional): 'LUA' (default) or 'C'.
+   * the numeric function id, a number,
+   * the function name,
+   * flag,
+   * a language name (optional): 'LUA' (default) or 'C'.
 
-    The ``_func`` space does not include the function’s body.
-    You continue to create Lua functions in the usual way, by saying
-    ``function function_name () ... end``, without adding anything
-    in the ``_func`` space. The ``_func`` space only exists for storing
-    function tuples so that their names can be used within
-    :ref:`grant/revoke <authentication-owners_privileges>`
-    functions.
+   The ``_func`` space does not include the function’s body.
+   You continue to create Lua functions in the usual way, by saying
+   ``function function_name () ... end``, without adding anything
+   in the ``_func`` space. The ``_func`` space only exists for storing
+   function tuples so that their names can be used within
+   :ref:`grant/revoke <authentication-owners_privileges>`
+   functions.
 
    You can:
 
@@ -1212,8 +1188,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
 .. data:: _priv
 
-    ``_priv`` is a system space where :ref:`privileges <authentication-owners_privileges>`
-    are stored.
+    ``_priv`` is a system space where
+    :ref:`privileges <authentication-owners_privileges>` are stored.
 
     Tuples in this space contain the following fields:
 
@@ -1279,6 +1255,29 @@ A list of all ``box.space`` functions follows, then comes a list of all
          - ['oncebye']
          - ['oncehello']
          - ['version', 1, 7, 2]
+
+.. _box_space-sequence:
+
+.. data:: _sequence
+
+    ``_sequence`` is a system space
+    for support of the :ref:`sequence feature <index-box_sequence>`.
+    It contains persistent information that was established by
+    :ref:`box.schema.sequence.create() <box_schema-sequence_create>` or
+    :ref:`box.schema.sequence.alter() <box_schema-sequence_alter>`.
+
+.. _box_space-sequence_data:
+
+.. data:: _sequence_data
+
+    ``_sequence_data`` is a system space
+    for support of the :ref:`sequence feature <index-box_sequence>`.
+
+    Each tuple in ``_sequence_data`` contains two fields:
+
+    * the id of the sequence, and
+    * the last value that the sequence generator returned
+      (non-persistent information).
 
 .. _box_space-space:
 

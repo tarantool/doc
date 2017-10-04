@@ -324,21 +324,22 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
 .. _index-box_sequence:
 
 --------------------------------------------------------------------------------
-Sequence
+Sequences
 --------------------------------------------------------------------------------
 
 A **sequence** is a generator of ordered integer values.
 
-As with spaces and indexes, you should specify the sequence **name**, and let Tarantool
-come up with a unique **numeric identifier** ("sequence id").
+As with spaces and indexes, you should specify the sequence **name**, and let
+Tarantool come up with a unique **numeric identifier** ("sequence id").
 
 As well, you can specify several options when creating a new sequence.
 The options determine what value will be generated whenever the sequence is used.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Options for create.schema.sequence
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _index-box_sequence-options:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Options for ``box.schema.sequence.create()``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. container:: table
 
@@ -349,7 +350,7 @@ Options for create.schema.sequence
     .. rst-class:: top-align-column-1
 
     +----------------------------+----------------------------------+----------------------+--------------------+
-    | Option name                | Type and Meaning                 | Default              | Examples           |
+    | Option name                | Type and meaning                 | Default              | Examples           |
     +============================+==================================+======================+====================+
     | **start**                  | Integer. The value to generate   | 1                    | start=0            |
     |                            | the first time a sequence is     |                      |                    |
@@ -372,66 +373,67 @@ Options for create.schema.sequence
     |                            | generating a new value           |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
 
-Once a sequence exists, it can be altered, or dropped, or reset,
-or forced to generate the next value, or associated with an index.
+Once a sequence exists, it can be altered, dropped, reset, forced to generate
+the next value, or associated with an index.
 
 For an initial example, we generate a sequence named 'S'.
 
-.. code-block:: none
+.. code-block:: tarantoolsession
 
-   tarantool> box.schema.sequence.create('S',{min=5, start=5})
-   ---
-   - step: 1
-     id: 5
-     min: 5
-     cache: 0
-     uid: 1
-     max: 9223372036854775807
-     cycle: false
-     name: S
-     start: 5
-   ...
+    tarantool> box.schema.sequence.create('S',{min=5, start=5})
+    ---
+    - step: 1
+      id: 5
+      min: 5
+      cache: 0
+      uid: 1
+      max: 9223372036854775807
+      cycle: false
+      name: S
+      start: 5
+    ...
 
 The result shows that the new sequence has all default values,
 except for the two that were specified, ``min`` and ``start``.
 
-Then we get the next value, with the ``next`` function.
+Then we get the next value, with the ``next()`` function.
 
-.. code-block:: none
+.. code-block:: tarantoolsession
 
-   tarantool> box.sequence.S:next()
-   ---
-   - 5
-   ...
+    tarantool> box.sequence.S:next()
+    ---
+    - 5
+    ...
 
-The result is the same as the start value. If we called ``next``
+The result is the same as the start value. If we called ``next()``
 again, we would get 6 (because the previous value plus the
 step value is 6), and so on.
 
 Then we create a new table, and say that its primary key may be
 generated from the sequence.
 
-tarantool> s=box.schema.space.create('T');s:create_index('I',{sequence='S'})
----
-...
+.. code-block:: tarantoolsession
+
+    tarantool> s=box.schema.space.create('T');s:create_index('I',{sequence='S'})
+    ---
+    ...
 
 Then we insert a tuple, without specifying a value for the primary key.
 
 .. code-block:: tarantoolsession
 
-   tarantool> box.space.T:insert{nil,'other stuff'}
-   ---
-   - [6, 'other stuff']
-   ...
+    tarantool> box.space.T:insert{nil,'other stuff'}
+    ---
+    - [6, 'other stuff']
+    ...
 
 The result is a new tuple where the first field has a value of 6.
 This arrangement, where the system automatically generates the
 values for a primary key, is sometimes called "auto-incrementing"
 or "identity".
 
-See syntax and implementation details in the reference for the
-:ref:`box_schema.sequence <box_schema-sequence>` section of the
-box.schema submodule.
+For syntax and implementation details, see the reference for
+:ref:`box.schema.sequence <box_schema-sequence>`.
 
 .. _index-box_persistence:
 

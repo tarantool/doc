@@ -199,7 +199,7 @@ API is a direct binding to corresponding methods of index objects of type
                     if (iterator is EQ or REQ or GE or GT) return FALSE
                     return TRUE
                   }
-                } 
+                }
 
 
             **Iterator types for HASH indexes**
@@ -743,7 +743,7 @@ API is a direct binding to corresponding methods of index objects of type
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
         :param table options: options list, same as the options list for
-                              :ref:`create_index <box_space-create_index>`
+                              :ref:`create_index() <box_space-create_index>`
 
         :return: nil
 
