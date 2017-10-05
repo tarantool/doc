@@ -144,12 +144,12 @@ commands in Tarantool follows this basic idea.
 * Their second argument is the type of privilege granted, or a list of privileges.
 
 * Their third argument is the object type on which the privilege is granted,
-  or the word 'universe'.
+  or the word 'universe'. Possible object types are 'space', 'function', 'user',
+  'role', 'sequence'.
 
 * Their fourth argument is the object name if the object type
-  was specified ('universe' has no name,
-  because there is only one 'universe', but you need to specify names for
-  functions/users/spaces/etc).
+  was specified ('universe' has no name because there is only one 'universe',
+  but otherwise you must specify the name).
 
 **Example #1**
 

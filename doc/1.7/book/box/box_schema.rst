@@ -180,16 +180,16 @@ for spaces, users, roles, function tuples, and sequences.
 
 .. _box_schema-user_grant:
 
-.. function:: box.schema.user.grant(user-name, priveleges, object-type, object-name[, {options} ])
-              box.schema.user.grant(user-name, priveleges, 'universe'[, nil, {options} ])
+.. function:: box.schema.user.grant(user-name, privileges, object-type, object-name[, {options} ])
+              box.schema.user.grant(user-name, privileges, 'universe'[, nil, {options} ])
               box.schema.user.grant(user-name, role-name[, nil, nil, {options} ])
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a user or
     to another role.
 
     :param string   user-name: the name of the user
-    :param string  priveleges: 'read' or 'write' or 'execute' or a combination,
-    :param string object-type: 'space' or 'function'.
+    :param string  privileges: 'read' or 'write' or 'execute' or a combination,
+    :param string object-type: 'space' or 'function' or 'sequence'.
     :param string object-name: name of object to grant permissions to
     :param string   role-name: name of role to grant to user.
     :param table      options: ``grantor``, ``if_not_exists``
@@ -230,8 +230,8 @@ for spaces, users, roles, function tuples, and sequences.
 
     :param string user-name: the name of the user
     :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function'
-    :param string object-name: the name of a function or space
+    :param string object-type: 'space' or 'function' or 'sequence'
+    :param string object-name: the name of a function or space or sequence
 
     The user must exist, and the object must exist,
     but it is not an error if the user does not have the privilege.
@@ -396,8 +396,8 @@ for spaces, users, roles, function tuples, and sequences.
 
     :param string user-name: the name of the role
     :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function'
-    :param string object-name: the name of a function or space
+    :param string object-type: 'space' or 'function' or 'sequence'
+    :param string object-name: the name of a function or space or sequence
     :param table option: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
                          ``true`` means there should be no error if the role already
                          has the privilege
@@ -428,8 +428,8 @@ for spaces, users, roles, function tuples, and sequences.
 
     :param string user-name: the name of the role
     :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function'
-    :param string object-name: the name of a function or space
+    :param string object-type: 'space' or 'function' or 'sequence'
+    :param string object-name: the name of a function or space or sequence
 
     The role must exist, and the object must exist,
     but it is not an error if the role does not have the privilege.
@@ -618,26 +618,12 @@ Here are the details for each function and option.
       If the sequence generator's next value is an overflow number,
       it causes an error return -- unless ``cycle == true``.
 
-      But if ``cycle == true``, the count is started again, at the STARTS WITH
-      value (not the MINIMUM value).
-
-      After that, the generated numbers are the same as the numbers that
-      were generated in the previous cycle.
+      But if ``cycle == true``, the count is started again, at the
+      MINIMUM value or at the MAXIMUM value (not the STARTS WITH value).
 
     * ``cache`` -- the CACHE value. Type = unsigned integer. Default = 0.
 
-      To see the value of a cache, it's necessary to know how Tarantool
-      ensures that the "next value" will always be equal to the "last value"
-      plus the "increment value" -- that is part of the persistence guarantee.
-      Therefore Tarantool must store the last value in a persistent way.
-      But that requires updating or logging, and those things take time.
-
-      The solution is to cache (say) 20 numbers, and only ensure storage
-      every 20th time. That saves time.
-
-      But, if the system goes down unexpectedly, then some of the
-      cached numbers are lost, leaving a gap in the sequence.
-      The cache is "per server instance", not "per session" or "per user".
+      Currently Tarantool ignores this value, it is reserved for future use.
 
     * ``step`` -- the INCREMENT BY value. Type = integer. Default = 1.
 
@@ -654,8 +640,9 @@ Here are the details for each function and option.
     * If this is the first time, then return the STARTS WITH value.
     * If the previous value plus the INCREMENT value is less than the
       MINIMUM value or greater than the MAXIMUM value, that is "overflow",
-      so either return an error (if ``cycle`` = ``false``) or return the STARTS
-      WITH value (if ``cycle`` = ``true``).
+      so either return an error (if ``cycle`` = ``false``) or return the
+      MAXIMUM value (if ``cycle`` = ``true`` and ``step`` < 0)
+      or return the MINIMUM value (if ``cycle`` = ``true`` and ``step`` > 0).
 
     If there was no error, then save the returned result, it is now
     the "previous value".
@@ -666,13 +653,15 @@ Here are the details for each function and option.
     * ``max`` == -1,
     * ``step`` == -3,
     * ``start`` = -2,
-    * ``cache`` = true,
+    * ``cycle`` = true,
     * previous value = -2.
 
     Then ``box.sequence.S:next()`` returns -5 because -2 + (-3) == -5.
 
-    Then ``box.sequence.S:next()`` again returns -2 because -5 + (-3) < -6,
-    which is overflow, causing cycle, and ``start`` == -2.
+    Then ``box.sequence.S:next()`` again returns -1 because -5 + (-3) < -6,
+    which is overflow, causing cycle, and ``max`` == -1.
+
+    This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence.
 
     .. NOTE::
 
@@ -695,9 +684,16 @@ Here are the details for each function and option.
 
 .. function:: sequence_object:reset()
 
-    Set the previous value to the start value.
-    The effect is the same as if an overflow happened while
-    the ``cycle`` option was ``true``, except that nothing is returned.
+    Set the sequence back to its original state.
+    The effect is that a subsequent ``next()`` will return the start value.
+    This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence.
+
+.. _box_schema-sequence_set:
+
+.. function:: sequence_object:set(new-previous-value)
+
+    Set the "previous value" to new-previous-value.
+    This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence.
 
 .. _box_schema-sequence_drop:
 
@@ -707,7 +703,7 @@ Here are the details for each function and option.
 
     **Example:**
 
-    Here's an example showing all sequence options and operations:
+    Here is an example showing all sequence options and operations:
 
     .. code-block:: lua
 
@@ -723,6 +719,7 @@ Here are the details for each function and option.
         s:alter({step=6})
         s:next()
         s:reset()
+        s:set(150)
         s:drop()
 
 .. _box_schema-sequence_in_create_index:
@@ -773,3 +770,4 @@ Here are the details for each function and option.
         the index key type may be either 'integer' or 'unsigned'.
 
         A sequence cannot be dropped if it is associated with an index.
+
