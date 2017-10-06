@@ -66,10 +66,11 @@ for spaces, users, roles, function tuples, and sequences.
         |               | for authorization purposes                         |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
         | format        | field names and types:                             | table   | (blank)             |
-        |               | For an illustration with the                       |         |                     |
-        |               | ``format`` option, see the                         |         |                     |
+        |               | See the illustrations of format clauses in the     |         |                     |
+        |               | :ref:`space_object:format() <box_space-format>`    |         |                     |
+        |               | description and in the                             |         |                     |
         |               | :ref:`box.space._space <box_space-space>`          |         |                     |
-        |               | example.                                           |         |                     |
+        |               | example. Optional and usually not specified.       |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
 
     There are three :ref:`syntax variations <app_server-object_reference>`

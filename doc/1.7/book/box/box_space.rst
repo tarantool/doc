@@ -41,6 +41,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:drop()            | Destroy a space                 |
         | <box_space-drop>`                    |                                 |
         +--------------------------------------+---------------------------------+
+        | :ref:`space_object:format()          | Declare field names and types   |
+        | <box_space-format>`                  |                                 |
+        +--------------------------------------+---------------------------------+
         | :ref:`space_object:get()             | Select a tuple                  |
         | <box_space-get>`                     |                                 |
         +--------------------------------------+---------------------------------+
@@ -438,6 +441,46 @@ A list of all ``box.space`` functions follows, then comes a list of all
         .. code-block:: lua
 
             box.space.space_that_does_not_exist:drop()
+
+    .. _box_space-format:
+
+    .. method:: format(format-clause)
+
+        Declare field names and types.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table format-clause: a list of field names and types
+
+        :return: nil
+
+        **Possible errors:** If ``space_object`` does not exist;
+        if field names are duplicated, if type is not legal.
+
+        Ordinarily Tarantool allows unnamed untyped fields.
+        But with ``format`` users can, for example, document
+        that the Nth field is the surname field and must contain strings.
+        It is also possible to specify a format clause in
+        :ref:`box.schema.space.create() <box_schema-space_create>`.
+
+        The format clause contains ``{name='...',type='...'}`` pairs.
+        The name may be any string, provided that two fields do not have the same name.
+        The type must be ‘unsigned’ or ‘string’ or ‘integer’ or ‘number’
+        or ‘boolean’ or ‘array’ or ‘scalar’ (the same as the requirement
+        in :ref:`"Options for space_object:create_index" <box_space-create_index>`).
+
+        It is legal for tuples to have more fields than are described by a format clause.
+        The way to constrain the number of fields is to specify a space's
+        :ref:`field_count <box_space-field_count>` member.
+
+        It is legal to use ``format`` on a space that already has a format,
+        provided that there is no conflict with existing data or index definitions.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            box.space.T:format({{name='surname',type='string'},{name='IDX',type='array'}})
 
     .. _box_space-get:
 
@@ -1290,7 +1333,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
     * ``id``,
     * ``owner`` (= id of user who owns the space),
     * ``name``, ``engine``, ``field_count``,
-    * ``flags`` (e.g. temporary), ``format``.
+    * ``flags`` (e.g. temporary),
+    * ``format`` (as made by a :ref:`format clause <box_space-format>`).
 
     These fields are established by :ref:`space.create()
     <box_schema-space_create>`.
@@ -1343,7 +1387,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     **Example #2:**
 
     The following requests will create a space using
-    ``box.schema.space.create()`` with a ``format`` clause. Then it retrieves
+    ``box.schema.space.create()`` with a :ref:`format clause <box_space-format>`, then retrieve
     the ``_space`` tuple for the new space. This illustrates the typical use of
     the ``format`` clause, it shows the recommended names and data types for the
     fields.
