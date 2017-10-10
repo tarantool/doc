@@ -3559,7 +3559,6 @@ section {
   background-size: cover;
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-  height: 560px;
   position: relative;
   color: #f9f8f8;
   overflow: hidden;
@@ -3839,7 +3838,7 @@ section {
 .jumbotron nav li a:hover {
   background-color: transparent;
   text-decoration: none;
-  color: blue !important;
+  color: red !important;
 }
 .jumbotron nav li a.btn-custom-sm:hover {
   color: #f9f8f8 !important;
@@ -3927,6 +3926,7 @@ section {
 .jumbotron nav #brand-logo {
   max-width: 150px;
   width: 18vw;
+  content: url("../_static/images/tarantool-io-logo.png");
 }
 @media (min-width: 320px) {
   .jumbotron nav #brand-logo {
