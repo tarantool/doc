@@ -253,7 +253,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | parts               | field-numbers  + types                                | {field_no, 'unsigned' or         | ``{1, 'unsigned'}``           |
             |                     |                                                       | 'string' or 'integer' or         |                               |
             |                     |                                                       | 'number' or 'boolean' or         |                               |
-            |                     |                                                       | 'array' or 'scalar'}             |                               |
+            |                     |                                                       | 'array' or 'scalar',             |                               |
+            |                     |                                                       | and optional collation}          |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -312,6 +313,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     * **string**: any set of octets, up to the :ref:`maximum length
       <limitations_bytes_in_index_key>`. May also be called 'str'. Legal in
       memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes.
+      A string may have a :ref:`collation <index-collation>`.
     * **integer**: integers between -9223372036854775808 and 18446744073709551615.
       May also be called 'int'. Legal in memtx TREE or HASH indexes, and in
       vinyl TREE indexes.
