@@ -29,7 +29,7 @@ API is a direct binding to corresponding methods of index objects of type
         | :ref:`index_object:parts             | Index key fields                |
         | <box_index-parts>`                   |                                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`index_object:index_pairs()     | Prepare for iterating           |
+        | :ref:`index_object:pairs()           | Prepare for iterating           |
         | <box_index-index_pairs>`             |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`index_object:select()          | Select one or more tuples       |
