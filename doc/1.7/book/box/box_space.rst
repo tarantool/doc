@@ -384,6 +384,27 @@ A list of all ``box.space`` functions follows, then comes a list of all
         indexes must be created before tuples are inserted.
 
 
+    **Using field names instead of field numbers:** `create_index()` can use field names and/or field types
+    described by the optional :ref:`space_object:format() <box_space-format>` clause.
+    In the following example, we show `format()` for a space that has two columns
+    named 'x' and 'y', and then we show five variations of the `parts={}` clause of `create_index()`,
+    first for the 'x' column, second for both the 'x' and 'y' columns.
+    The variations include omitting the type, using numbers, and adding extra braces.
+
+    .. code-block:: none
+
+        box.space.T:format({{name='x', type='scalar'}, {name='y', type='integer'}})
+        box.space.T:create_index('I2',{parts={{'x','scalar'}}})
+        box.space.T:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
+        box.space.T:create_index('I4',{parts={1,'scalar'}})
+        box.space.T:create_index('I5',{parts={1,'scalar',2,'integer'}})
+        box.space.T:create_index('I6',{parts={1}})
+        box.space.T:create_index('I7',{parts={1,2}})
+        box.space.T:create_index('I8',{parts={'x'}})
+        box.space.T:create_index('I9',{parts={'x','y'}})
+        box.space.T:create_index('I10',{parts={{'x'}}})
+        box.space.T:create_index('I11',{parts={{'x'},{'y'}}})
+
     .. _box_space-delete:
 
     .. method:: delete(key)
@@ -484,6 +505,28 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             box.space.T:format({{name='surname',type='string'},{name='IDX',type='array'}})
 
+        There are legal variations of the format clause, omitting both 'name=' and 'type=',
+        omitting 'type=' alone, and adding extra braces.
+        The following examples show all the variations,
+        first for one field named 'x', second for two fields named 'x' and 'y'.
+
+        .. code-block:: lua
+
+            box.space.T:format({{'x'}})
+            box.space.T:format({{'x'},{'y'}})
+            box.space.T:format({{name='x',type='scalar'}})
+            box.space.T:format({{name='x',type='scalar'},{name='y',type='unsigned'}})
+            box.space.T:format({{name='x'}})
+            box.space.T:format({{name='x'},{name='y'}})
+            box.space.T:format({{'x',type='scalar'}})
+            box.space.T:format({{'x',type='scalar'},{'y',type='unsigned'}})
+            box.space.T:format({{'x','scalar'}})
+            box.space.T:format({{'x','scalar'},{'y','unsigned'}})
+
+        Names specified with the format clause can be used in
+        :ref:`space_object:get() <box_space-get>` and in
+        :ref:`space_object:create_index() <box_space-create_index>`.
+
     .. _box_space-get:
 
     .. method:: get(key)
@@ -515,6 +558,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             box.space.tester:get{1}
 
+        **Using field names instead of field numbers:** `get()` can use field names
+        described by the optional :ref:`space_object:format() <box_space-format>` clause.
+        This is similar to a standard Lua feature, where a component can be referenced
+        by its name instead of its number. So, if `tester` had been formatted with a
+        field named 'x', and if the name `x` had been used in the index definition,
+        and ``get`` or ``select`` had retrieved a single tuple,
+        then the field in the tuple could be referenced with
+        ``box.space.tester:get{1}['x']`` or ``box.space.tester:select{1}[1]['x']``.
 
     .. _box_space-insert:
 
