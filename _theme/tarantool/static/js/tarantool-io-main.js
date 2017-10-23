@@ -248,7 +248,7 @@ $(function(){
         });
     }
 
-    if (window.location.pathname === "/contact" || window.location.pathname === "/about" ) {
+    if (window.location.pathname.match(/\/contact/g) || window.location.pathname.match(/\/about/g) ) {
         initMap(latLng.siliconValley);
 
         $('.map-trigger').click(function(){
