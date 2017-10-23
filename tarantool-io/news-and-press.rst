@@ -167,11 +167,11 @@ Tarantool - News and Press
                         </div>
                     </div>
                 </section>
-                <section id="social-media">
-                    <?php
-                        include $_SERVER['DOCUMENT_ROOT'].'/web/assets/templates/social-media/social-media.html';
-                    ?>
-                </section>
+
+.. include:: social-icons.rst
+
+.. raw:: html
+
             </section>
         </main>
     </div>
