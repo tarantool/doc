@@ -250,7 +250,7 @@
   ] %}
 {% else %}
   {% set i_links = [
-    ("Main",          abspath("index.html"),                     "index"   ),
+    ("Developers",          abspath("index.html"),                     "index"   ),
     ("Try",           abspath("try.html"),                       "try"     ),
     ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
     ("Download",      abspath("download/download.html"),         "download/download"),
@@ -280,9 +280,9 @@
 {% endmacro %}
 
 {% macro i_header() %}
-<div class="jumbotron">  
-  <header>
-      <nav id="header-nav" class="navbar navbar-fixed-top" style="background-color: black">
+  <div class="jumbotron"> 
+    <header>
+      <nav id="header-nav" class="navbar navbar-fixed-top header_navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ abspath('') }}">
@@ -302,13 +302,13 @@
                             <ul id="nav-collapse-ul">
                                 <a href="{{ abspath('tarantool-io/challenge.html') }}"><li>Challenge</li></a>
                                 <a href="{{ abspath('tarantool-io/try-it.html') }}"><li>Features</li></a>
-                                <a href="{{ abspath('tarantool-io/try-it.html') }}/en/tarantool-io/product/enterprise"><li>Enterprise</li></a>
-                                <a href="{{ abspath('tarantool-io/try-it.html') }}/en/tarantool-io/product/unwired-iiot"><li>IIoT</li></a>
-                                <a href="{{ abspath('tarantool-io/developers.html') }}/en/developers"><li>Developers</li></a>
+                                <a href="{{ abspath('tarantool-io/product/enterprise.html') }}"><li>Enterprise</li></a>
+                                <a href="{{ abspath('tarantool-io/product/unwired-iiot.html') }}"><li>IIoT</li></a>
+                                <a href="{{ abspath('tarantool-io/developers.html') }}"><li>Developers</li></a>
                                 <a href="{{ abspath('tarantool-io/news-and-press.html') }}"><li>News</li></a>
                                 <a href="https://support.tarantool.org/"><li>Support</li></a>
-                                <a href="{{ abspath('tarantool-io/about.html') }}/en/about"><li>About Us</li></a>
-                                <a href="{{ abspath('tarantool-io/contact.html') }}/en/contact"><li>Contact</li></a>
+                                <a href="{{ abspath('tarantool-io/about.html') }}"><li>About Us</li></a>
+                                <a href="{{ abspath('tarantool-io/contact.html') }}"><li>Contact</li></a>
                             </ul>
                         </div>
                     </div>
@@ -332,20 +332,104 @@
                 </ul>
             </div>
         </div>
-      </nav>
+      </nav>  
     </header>
   </div>
 {% endmacro %}
 
-{% macro i_footer() %}
-<footer class="b-footer">
-  <div class="b-footer-wrapper">
-    <nav class="b-footer_menu">
-      {{ i_menu() }}
-      <div class="b-footer-other">
-        <a href="http://15.tarantool.org">1.5 web site and downloads</a>
+{% macro i_header_dev() %}
+<div class="b-header">
+    <div class="b-header_menu_mobile">
+      <div class="b-burger-button">
+        <span></span>
       </div>
-    </nav>
+      <form role="search" class="b-header-search"
+            action="{{ pathto('search') }}" method="get">
+        <input name="q" type="search">
+      </form>
+    </div>
+    <div class="b-menu_mobile">
+      <div class="b-menu_mobile__wrapper">
+        <nav class="b-header_menu">
+          {{ i_menu() }}
+          {{ language_selector() }}
+        </nav>
+      </div>
+    </div>
+    <div class="b-header-wrapper">
+      <nav class="b-header_menu">
+        <div class="b-header_menu-top">
+          {{ i_menu() }}
+          <div class="b-header_menu-top-ctl">
+            <a class="b-search-btn" href="#">
+              <i class="fa fa-search"></i>
+            </a>
+          </div>
+        </div>
+        <div class="b-header_menu-bottom">
+          <form role="search" class="b-header_menu-search" action="{{ pathto('search') }}" method="get">
+            <input name="q" type="search" class="b-header_menu-search-text"
+                   placeholder="Search Tarantool.org web site and documentation">
+            <input class="b-header_menu-search-but" type="submit" value="Go">
+          </form>
+        </div>
+      </nav>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro i_footer() %}
+<footer>
+  <nav id="" class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--                <a class="navbar-brand" href="#">-->
+            <!--                    <img id='brand-logo' src="/web/assets/images/tarantool.png">-->
+            <!--                </a>-->
+        </div>
+        <div class="" id="navbarWrap">
+            <!--nav items-->
+            <ul class="nav navbar-nav nav-bottom-ul hidden-xs">
+                <li><a href="{{ abspath('tarantool-io/product/enterprise.html') }}">Enterprise</a></li>
+                <li><a href="{{ abspath('tarantool-io/product/unwired-iiot.html') }}">IIoT</a></li>
+                <li><a href="{{ abspath('tarantool-io/blog.html') }}">Blog</a></li>
+                <li><a href="{{ abspath('tarantool-io/news-and-press.html') }}">News</a></li>
+                <li><a href="{{ abspath('tarantool-io/careers.html') }}">Careers</a></li>
+                <li><a href="{{ abspath('tarantool-io/about.html') }}">About Us</a></li>
+                <li><a href="https://tarantool.org/en/index.html" target="_blank">Support</a></li>
+                <li><a href="{{ abspath('tarantool-io/contact.html') }}">Contact</a></li>
+            </ul>
+            <!--                nav right-->
+  <!--            <ul class="nav navbar-nav navbar-right">-->
+  <!--                <li id="live-demo-link"><a href="#">Live Demo</a></li>-->
+  <!--                <li class="tryit-li"><a href="#" class="btn btn-default btn-sm btn-custom-sm">Try It</a></li>-->
+  <!--            </ul>-->
+        </div>
+    </div>
+  </nav>
+  <div class="row hidden-sm hidden-md hidden-lg small-nav">
+    <div class="col-xs-6">
+        <ul>
+            <li><a href="{{ abspath('tarantool-io/product/enterprise.html') }}">Enterprise</a></li>
+            <li><a href="{{ abspath('tarantool-io/product/unwired-iiot.html') }}">IIoT</a></li>
+            <li><a href="{{ abspath('tarantool-io/blog.html') }}">Blog</a></li>
+            <li><a href="https://tarantool.org/en/index.html" target="_blank">Support</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-6">
+        <ul>
+            <li><a href="{{ abspath('tarantool-io/careers.html') }}">Careers</a></li>
+            <li><a href="{{ abspath('tarantool-io/news-and-press.html') }}">News</a></li>
+            <li><a href="{{ abspath('tarantool-io/about.html') }}">About Us</a></li>
+            <li><a href="{{ abspath('tarantool-io/contact.html') }}">Contact</a></li>
+        </ul>
+    </div>
+  </div>
+  <div id="copyright">
+    <!-- <div class="col-xs-8 col-xs-offset-2 col-lg-8 col-lg-offset-2"> -->
+        <p class="text-center footer-p-large hidden-xs">&copy; 2017, Tarantool, All Rights Reserved.&nbsp;&nbsp;&nbsp;<i class="fa fa-shield" aria-hidden="true"></i></p>
+        <p class="text-center hidden-sm hidden-md hidden-lg">&copy; 2017, Tarantool, All Rights Reserved.&nbsp;&nbsp;&nbsp;<i class="fa fa-shield" aria-hidden="true"></i></p>
+    <!-- </div> -->
   </div>
 </footer>
 {% endmacro %}

@@ -1,4 +1,5 @@
 {% from 'elements.html' import i_header with context %}
+{% from 'elements.html' import i_header_dev with context %}
 {% from 'elements.html' import i_footer with context %}
 {% from 'elements.html' import abspath  with context %}
 
@@ -156,6 +157,9 @@
     <div class="b-wrapper">
       <!-- HEADER > -->
       {{ i_header() }}
+      {% if not is_tarantool_io %}
+        {{ i_header_dev() }}
+      {% endif %}
       <!-- < HEADER -->
       <div class="b-content b-clearbox">
         {% block body %}
