@@ -61,7 +61,8 @@ exclude_patterns = [
     '_downloads/license_eng.docx',
     '_downloads/terms.docx',
     '_downloads/terms_eng.docx',
-    'images'
+    'images',
+    'tarantool-io/social-icons.rst'
 ]
 
 base_url = "https://tarantool.org/"
@@ -111,6 +112,7 @@ html_context = {
     'tarantool_io': {
         # Tarantool-io pages
         'tarantool-io/news-and-press': True,
+        'tarantool-io/about': True,
         'tarantool-io/blog': True,
         'tarantool-io/try-it': True,
         'tarantool-io/product/enterprise': True,

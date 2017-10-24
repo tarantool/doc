@@ -138,7 +138,9 @@ Tarantool - Enterprise
             <p class="text-center">Ready to get started?</p>
             <a href="/live-demo"><button type="button" class="product-btn red-btn text-center">Live Demo</button></a>
         </div>
-        <?php
-        include $_SERVER['DOCUMENT_ROOT'].'/web/assets/templates/social-media/social-media.html';
-        ?>
+
+.. include:: ../social-icons.rst
+
+.. raw:: html
+
     </section>
