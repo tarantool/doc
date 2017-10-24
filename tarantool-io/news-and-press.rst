@@ -123,7 +123,6 @@ Tarantool - News and Press
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
                         <a href="/en/tarantool-io/press/iiot-released.html">
-                            <!--<a href="https://docs.google.com/document/d/1HhTEw1AmWw80lWI5-8iql66hmHFg4NuWXBMH8E7VYqs/edit?usp=sharing ">-->
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
