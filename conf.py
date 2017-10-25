@@ -85,7 +85,7 @@ html_use_opensearch  = base_url
 
 html_context = {
     'website': {
-        'index'       : True,
+        'developers'   : True,
         'download/download'    : True,
         'download/download_16' : True,
         'download/download_18' : True,
@@ -111,6 +111,7 @@ html_context = {
     },
     'tarantool_io': {
         # Tarantool-io pages
+        'index': True,
         'tarantool-io/news-and-press': True,
         'tarantool-io/about': True,
         'tarantool-io/blog': True,
