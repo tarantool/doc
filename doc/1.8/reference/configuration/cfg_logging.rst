@@ -4,6 +4,7 @@
 * :ref:`log <cfg_logging-log>`
 * :ref:`log_nonblock <cfg_logging-log_nonblock>`
 * :ref:`too_long_threshold <cfg_logging-too_long_threshold>`
+* :ref:`log_format <cfg_logging-log_format>`
 
 .. _cfg_logging-log_level:
 
@@ -84,7 +85,7 @@
     specify an ``identity``, a ``facility``, or both. The ``identity`` is an
     arbitrary string, default value = ``tarantool``, which will be placed at
     the beginning of all messages. The facility is an abbreviation for the
-    name of one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_ 
+    name of one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_
     facilities, default value = ``user``, which
     tell syslogd where the message should go.
 
@@ -127,6 +128,47 @@
 
     | Type: float
     | Default: 0.5
+    | Dynamic: **yes**
+
+.. _cfg_logging-log_format:
+
+.. confval:: log_format
+
+    Log entries have two possible formats:
+
+    * 'plain' (the default), or
+    * 'json' (with more detail and with JSON labels).
+
+    Here is what a log entry looks like after ``box.cfg{log_format='plain'}``:
+
+    .. code-block:: text
+
+        2017-10-16 11:36:01.508 [18081] main/101/interactive I> set 'log_format' configuration option to "plain"
+
+    Here is what a log entry looks like after ``box.cfg{log_format='json'}``:
+
+    .. code-block:: text
+
+        {"time": "2017-10-16T11:36:17.996-0600",
+        "level": "INFO",
+        "message": "set 'log_format' configuration option to \"json\"",
+        "pid": 18081,|
+        "cord_name": "main",
+        "fiber_id": 101,
+        "fiber_name": "interactive",
+        "file": "builtin\/box\/load_cfg.lua",
+        "line": 317}
+
+    The ``log_format='plain'`` entry has time, process id,
+    cord name, :ref:`fiber_id <fiber_object-id>`,
+    :ref:`fiber_name <fiber_object-name_get>`,
+    :ref:`log level <cfg_logging-log_level>`, and message.
+
+    The ``log_format='json'`` entry has the same things along with their labels,
+    and in addition has the file name and line number of the Tarantool source.
+
+    | Type: string
+    | Default: 'plain'
     | Dynamic: **yes**
 
 .. _cfg_logging-logging_example:

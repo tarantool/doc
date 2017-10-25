@@ -41,6 +41,9 @@ A list of all ``box.space`` functions follows, then comes a list of all
         | :ref:`space_object:drop()            | Destroy a space                 |
         | <box_space-drop>`                    |                                 |
         +--------------------------------------+---------------------------------+
+        | :ref:`space_object:format()          | Declare field names and types   |
+        | <box_space-format>`                  |                                 |
+        +--------------------------------------+---------------------------------+
         | :ref:`space_object:get()             | Select a tuple                  |
         | <box_space-get>`                     |                                 |
         +--------------------------------------+---------------------------------+
@@ -145,7 +148,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
         **Complexity factors:** Index size, Index type,
         Number of indexes accessed, :ref:`WAL settings <cfg_binary_logging_snapshots-rows_per_wal>`.
 
-        **Possible errors:** index has wrong type or primary-key indexed field is not a number.
+        **Possible errors:**
+
+        * index has wrong type;
+        * primary-key indexed field is not a number.
 
         **Example:**
 
@@ -178,7 +184,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 22
             ...
 
-        Note re storage engine:
+        **Note re storage engine:**
         vinyl does not support ``bsize()``.
 
     .. _box_space-count:
@@ -225,9 +231,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :return: index object
         :rtype:  index_object
 
-        .. container:: table
+        .. _box_space-create_index-options:
 
-            Options for ``space_object:create_index``:
+        **Options for space_object:create_index()**
+
+        .. container:: table
 
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
@@ -250,7 +258,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
             | parts               | field-numbers  + types                                | {field_no, 'unsigned' or         | ``{1, 'unsigned'}``           |
             |                     |                                                       | 'string' or 'integer' or         |                               |
             |                     |                                                       | 'number' or 'boolean' or         |                               |
-            |                     |                                                       | 'array' or 'scalar'}             |                               |
+            |                     |                                                       | 'array' or 'scalar',             |                               |
+            |                     |                                                       | and optional collation}          |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -272,7 +281,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             |                     | <box_schema-sequence_in_create_index>`                |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
-        Note re storage engine: vinyl has extra options which by default are
+        **Note re storage engine:** vinyl has extra options which by default are
         based on configuration parameters
         :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`,
         :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`,
@@ -283,7 +292,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
         The current values can be seen by selecting from
         :ref:`box.space._index <box_space-index>`.
 
-        **Possible errors:** too many parts. Index '...' already exists. Primary key must be unique.
+        **Possible errors:**
+
+        * too many parts;
+        * index '...' already exists;
+        * primary key must be unique.
 
         .. code-block:: tarantoolsession
 
@@ -309,6 +322,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     * **string**: any set of octets, up to the :ref:`maximum length
       <limitations_bytes_in_index_key>`. May also be called 'str'. Legal in
       memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes.
+      A string may have a :ref:`collation <index-collation>`.
     * **integer**: integers between -9223372036854775808 and 18446744073709551615.
       May also be called 'int'. Legal in memtx TREE or HASH indexes, and in
       vinyl TREE indexes.
@@ -377,9 +391,31 @@ A list of all ``box.space`` functions follows, then comes a list of all
         |                  | point numbers, strings    |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
 
-        Note re storage engine: vinyl supports only the TREE index type, and vinyl secondary
-        indexes must be created before tuples are inserted.
+    **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
+    secondary indexes must be created before tuples are inserted.
 
+    **Using field names instead of field numbers:** ``create_index()`` can use
+    field names and/or field types described by the optional
+    :ref:`space_object:format() <box_space-format>` clause.
+    In the following example, we show ``format()`` for a space that has two columns
+    named 'x' and 'y', and then we show five variations of the ``parts={}``
+    clause of ``create_index()``,
+    first for the 'x' column, second for both the 'x' and 'y' columns.
+    The variations include omitting the type, using numbers, and adding extra braces.
+
+    .. code-block:: none
+
+        box.space.T:format({{name='x', type='scalar'}, {name='y', type='integer'}})
+        box.space.T:create_index('I2',{parts={{'x','scalar'}}})
+        box.space.T:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
+        box.space.T:create_index('I4',{parts={1,'scalar'}})
+        box.space.T:create_index('I5',{parts={1,'scalar',2,'integer'}})
+        box.space.T:create_index('I6',{parts={1}})
+        box.space.T:create_index('I7',{parts={1,2}})
+        box.space.T:create_index('I8',{parts={'x'}})
+        box.space.T:create_index('I9',{parts={'x','y'}})
+        box.space.T:create_index('I10',{parts={{'x'}}})
+        box.space.T:create_index('I11',{parts={{'x'},{'y'}}})
 
     .. _box_space-delete:
 
@@ -397,10 +433,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         **Complexity factors:** Index size, Index type
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl will return ``nil``, rather than the deleted tuple.
+        **Note re storage engine:**
+        vinyl will return ``nil``, rather than the deleted tuple.
 
         **Example:**
 
@@ -430,7 +464,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         :return: nil
 
-        **Possible errors:** If ``space_object`` does not exist.
+        **Possible errors:** ``space_object`` does not exist.
 
         **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.
@@ -440,6 +474,72 @@ A list of all ``box.space`` functions follows, then comes a list of all
         .. code-block:: lua
 
             box.space.space_that_does_not_exist:drop()
+
+    .. _box_space-format:
+
+    .. method:: format(format-clause)
+
+        Declare field names and types.
+
+        :param space_object space_object: an :ref:`object reference
+                                          <app_server-object_reference>`
+        :param table format-clause: a list of field names and types
+
+        :return: nil
+
+        **Possible errors:**
+
+        * ``space_object`` does not exist;
+        * field names are duplicated,
+        * type is not legal.
+
+        Ordinarily Tarantool allows unnamed untyped fields.
+        But with ``format`` users can, for example, document
+        that the Nth field is the surname field and must contain strings.
+        It is also possible to specify a format clause in
+        :ref:`box.schema.space.create() <box_schema-space_create>`.
+
+        The format clause contains ``{name='...',type='...'}`` pairs.
+        The name may be any string, provided that two fields do not have the
+        same name.
+        The type must be ‘unsigned’ or ‘string’ or ‘integer’ or ‘number’
+        or ‘boolean’ or ‘array’ or ‘scalar’ (the same as the requirement in
+        :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
+
+        It is legal for tuples to have more fields than are described by a format
+        clause. The way to constrain the number of fields is to specify a space's
+        :ref:`field_count <box_space-field_count>` member.
+
+        It is legal to use ``format`` on a space that already has a format,
+        provided that there is no conflict with existing data or index definitions.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            box.space.T:format({{name='surname',type='string'},{name='IDX',type='array'}})
+
+        There are legal variations of the format clause, omitting both 'name=' and 'type=',
+        omitting 'type=' alone, and adding extra braces.
+        The following examples show all the variations,
+        first for one field named 'x', second for two fields named 'x' and 'y'.
+
+        .. code-block:: lua
+
+            box.space.T:format({{'x'}})
+            box.space.T:format({{'x'},{'y'}})
+            box.space.T:format({{name='x',type='scalar'}})
+            box.space.T:format({{name='x',type='scalar'},{name='y',type='unsigned'}})
+            box.space.T:format({{name='x'}})
+            box.space.T:format({{name='x'},{name='y'}})
+            box.space.T:format({{'x',type='scalar'}})
+            box.space.T:format({{'x',type='scalar'},{'y',type='unsigned'}})
+            box.space.T:format({{'x','scalar'}})
+            box.space.T:format({{'x','scalar'},{'y','unsigned'}})
+
+        Names specified with the format clause can be used in
+        :ref:`space_object:get() <box_space-get>` and in
+        :ref:`space_object:create_index() <box_space-create_index>`.
 
     .. _box_space-get:
 
@@ -455,7 +555,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
         :return: the tuple whose index key matches ``key``, or ``nil``.
         :rtype:  tuple
 
-        **Possible errors:** If space_object does not exist.
+        **Possible errors:** ``space_object`` does not exist.
 
         **Complexity factors:** Index size, Index type, Number of indexes
         accessed, WAL settings.
@@ -472,6 +572,14 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
             box.space.tester:get{1}
 
+        **Using field names instead of field numbers:** `get()` can use field names
+        described by the optional :ref:`space_object:format() <box_space-format>` clause.
+        This is similar to a standard Lua feature, where a component can be referenced
+        by its name instead of its number. So, if `tester` had been formatted with a
+        field named 'x', and if the name `x` had been used in the index definition,
+        and ``get`` or ``select`` had retrieved a single tuple,
+        then the field in the tuple could be referenced with
+        ``box.space.tester:get{1}['x']`` or ``box.space.tester:select{1}[1]['x']``.
 
     .. _box_space-insert:
 
@@ -521,7 +629,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
             - 2
             ...
 
-        Note re storage engine: vinyl does not support ``len()``.
+        **Note re storage engine:** vinyl does not support ``len()``.
         Possible workarounds are to use
         :ref:`count() <box_space-count>` or ``#select(...)``.
 
@@ -611,7 +719,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
                  used in a for/end loop or with `totable()
                  <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
 
-        **Possible errors:** No such space; wrong type.
+        **Possible errors:**
+
+        * no such space;
+        * wrong type.
 
         **Complexity factors:** Index size, Index type.
 
@@ -750,7 +861,10 @@ A list of all ``box.space`` functions follows, then comes a list of all
                  whose primary key is ``{1,2,3}``.
         :rtype:  array of tuples
 
-        **Possible errors:** No such space; wrong type.
+        **Possible errors:**
+
+        * no such space;
+        * wrong type.
 
         **Complexity factors:** Index size, Index type.
 
@@ -1002,8 +1116,11 @@ A list of all ``box.space`` functions follows, then comes a list of all
 
         :return: null
 
-        **Possible errors:** it is illegal to modify a primary-key field. It is
-        illegal to use upsert with a space that has a unique secondary index.
+        **Possible errors:**
+
+        * It is illegal to modify a primary-key field.
+        * It is illegal to use upsert with a space that has a unique secondary
+          index.
 
         **Complexity factors:** Index size, Index type, number of indexes
         accessed, WAL settings.
@@ -1292,7 +1409,8 @@ A list of all ``box.space`` functions follows, then comes a list of all
     * ``id``,
     * ``owner`` (= id of user who owns the space),
     * ``name``, ``engine``, ``field_count``,
-    * ``flags`` (e.g. temporary), ``format``.
+    * ``flags`` (e.g. temporary),
+    * ``format`` (as made by a :ref:`format clause <box_space-format>`).
 
     These fields are established by :ref:`space.create()
     <box_schema-space_create>`.
@@ -1345,7 +1463,7 @@ A list of all ``box.space`` functions follows, then comes a list of all
     **Example #2:**
 
     The following requests will create a space using
-    ``box.schema.space.create()`` with a ``format`` clause. Then it retrieves
+    ``box.schema.space.create()`` with a :ref:`format clause <box_space-format>`, then retrieve
     the ``_space`` tuple for the new space. This illustrates the typical use of
     the ``format`` clause, it shows the recommended names and data types for the
     fields.

@@ -189,12 +189,14 @@ A **boolean** is either ``true`` or ``false``.
 A **string** is a variable-length sequence of bytes, usually represented with
 alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
 are treated as binary data, with no attempts to determine a string's
-character set or to perform any string conversion.
-So, string sorting and comparison are done byte-by-byte, without any special
+character set or to perform any string conversion -- unless there is an optional
+:ref:`collation <index-collation>`.
+So, usually, string sorting and comparison are done byte-by-byte, without any special
 collation rules applied.
 (Example: numbers are ordered by their point on the number line, so 2345 is
 greater than 500; meanwhile, strings are ordered by the encoding of the first
 byte, then the encoding of the second byte, and so on, so '2345' is less than '500'.)
+
 
 .. _index-box_number:
 
@@ -322,6 +324,53 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | then booleans, then numbers,     |                      |                    |
     |                            | then strings.                    |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
+
+.. _index-collation:
+
+--------------------------------------------------------------------------------
+Collations
+--------------------------------------------------------------------------------
+
+By default, when Tarantool compares strings, it uses what we call a
+"binary" collation. The only consideration is the numeric value of
+each byte in the string. Therefore, if the string is encoded with
+ASCII or UTF-8, then 'A' < 'B' < 'a', because the encoding of 'A'
+(what used to be called the "ASCII value") is 65, the encoding of
+'B' is 66, and the encoding of 'a' is 98. Binary collation is best
+if you prefer fast deterministic simple maintenance and searching
+with Tarantool indexes.
+
+But if you want the order that you see in phone books and dictionaries,
+then either 'A' < 'a' < 'B' or 'A' = 'a' < 'B'. These are Tarantool's
+optional collations, ``unicode`` and ``unicode_s1``. In fact, though,
+good collation involves much more than these simple examples of
+upper case / lower case equivalence in alphabets.
+We also consider accent marks, non-alphabetic writing systems,
+and special rules that apply for combinations of characters.
+
+The optional collations always use the ordering according to the
+`Default Unicode Collation Element Table <http://unicode.org/Public/UCA/latest/allkeys.txt>`_
+and the rules described in
+`Unicode® Technical Standard #10 Unicode Collation Algorithm <http://unicode.org/reports/tr10>`_.
+The optional collations are best if you prefer the standard multilingual
+end-user-oriented order in Tarantool indexes.
+
+Example showing the order of some Russian words with ``unicode_s1`` collation:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.T:create_index('I', {parts = {1,'str', collation='unicode_s1'}})
+    ...
+    tarantool> box.space.T.index.I:select()
+    ---
+    - - ['ЕЛЕ']
+      - ['елейный']
+      - ['ёлка']
+      - ['еловый']
+      - ['елозить']
+      - ['Ёлочка']
+      - ['ёлочный']
+      - ['ЕЛь']
 
 .. _index-box_sequence:
 
