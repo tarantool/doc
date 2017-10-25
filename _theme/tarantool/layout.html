@@ -157,7 +157,7 @@
     <div class="b-wrapper">
       <!-- HEADER > -->
       {{ i_header() }}
-      {% if is_website %}
+      {% if not is_tarantool_io %}
         {{ i_header_dev() }}
       {% endif %}
       <!-- < HEADER -->
