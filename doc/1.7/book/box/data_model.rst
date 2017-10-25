@@ -340,22 +340,22 @@ with Tarantool indexes.
 
 But if you want the order that you see in phone books and dictionaries,
 then either 'A' < 'a' < 'B' or 'A' = 'a' < 'B'. These are Tarantool's
-optional collations, 'unicode' and 'unicode_s1'. In fact, though,
+optional collations, ``unicode`` and ``unicode_s1``. In fact, though,
 good collation involves much more than these simple examples of
 upper case / lower case equivalence in alphabets.
 We also consider accent marks, non-alphabetic writing systems,
-and special rules that apply for combinations of characters. 
+and special rules that apply for combinations of characters.
 
 The optional collations always use the ordering according to the
 `Default Unicode Collation Element Table <http://unicode.org/Public/UCA/latest/allkeys.txt>`_
 and the rules described in
 `Unicode® Technical Standard #10 Unicode Collation Algorithm <http://unicode.org/reports/tr10>`_.
-The optional collations are best if you prefer multilingual 
-standard end-user-oriented order in Tarantool indexes.
+The optional collations are best if you prefer the standard multilingual
+end-user-oriented order in Tarantool indexes.
 
-Example showing order of some Russian words with unicode_s1 collation:
+Example showing the order of some Russian words with ``unicode_s1`` collation:
 
-.. code-block:: none
+.. code-block:: tarantoolsession
 
     tarantool> box.space.T:create_index('I', {parts = {1,'str', collation='unicode_s1'}})
     ...

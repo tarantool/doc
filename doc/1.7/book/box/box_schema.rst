@@ -102,7 +102,8 @@ for spaces, users, roles, function tuples, and sequences.
 
     After a space is created, usually the next step is to
     :ref:`create an index <box_space-create_index>` for it, and then it is
-    available for insert, select, and all the other :ref:`box.space <box_space>` functions.
+    available for insert, select, and all the other :ref:`box.space <box_space>`
+    functions.
 
 .. _box_schema-user_create:
 
@@ -272,8 +273,10 @@ for spaces, users, roles, function tuples, and sequences.
        * For the 'guest' user, it’s impossible to set a password: that would be misleading,
          since 'guest' is the default user on a newly-established connection over a
          :ref:`binary port <admin-security>`, and Tarantool does not require
-         a password to establish a :ref:`binary connection <box_protocol-iproto_protocol>`. It is, however, possible to change the
-         current user to ‘guest’ by providing the :ref:`AUTH packet <box_protocol-authentication>` with no password at all or an
+         a password to establish a :ref:`binary connection <box_protocol-iproto_protocol>`.
+         It is, however, possible to change the
+         current user to ‘guest’ by providing the
+         :ref:`AUTH packet <box_protocol-authentication>` with no password at all or an
          empty password. This feature is useful for connection pools, which want to reuse a
          connection for a different user without re-establishing it.
 
@@ -484,8 +487,8 @@ for spaces, users, roles, function tuples, and sequences.
       treat the function’s caller as the function’s creator, with full privileges.
       Remember that SETUID works only over
       :ref:`binary ports <admin-security>`.
-      SETUID doesn't work if you invoke a function via an :ref:`admin console <admin-security>` or
-      inside a Lua script.
+      SETUID doesn't work if you invoke a function via an
+      :ref:`admin console <admin-security>` or inside a Lua script.
 
     * ``language`` = 'LUA'|'C' (default = ‘LUA’).
 
@@ -662,7 +665,8 @@ Here are the details for each function and option.
     Then ``box.sequence.S:next()`` again returns -1 because -5 + (-3) < -6,
     which is overflow, causing cycle, and ``max`` == -1.
 
-    This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence.
+    This function requires a :ref:`'write' privilege <box_schema-user_grant>`
+    on the sequence.
 
     .. NOTE::
 
@@ -686,15 +690,17 @@ Here are the details for each function and option.
 .. function:: sequence_object:reset()
 
     Set the sequence back to its original state.
-    The effect is that a subsequent ``next()`` will return the start value.
-    This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence.
+    The effect is that a subsequent ``next()`` will return the ``start`` value.
+    This function requires a :ref:`'write' privilege <box_schema-user_grant>`
+    on the sequence.
 
 .. _box_schema-sequence_set:
 
 .. function:: sequence_object:set(new-previous-value)
 
-    Set the "previous value" to new-previous-value.
-    This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence.
+    Set the "previous value" to ``new-previous-value``.
+    This function requires a :ref:`'write' privilege <box_schema-user_grant>`
+    on the sequence.
 
 .. _box_schema-sequence_drop:
 
