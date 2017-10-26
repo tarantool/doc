@@ -635,18 +635,6 @@ Tarantool In Memory Data Grid
                             <figcaption>Test on GitHub: One Million Transactions Per Second on a Single CPU Core</figcaption>
                         </figure>
                     </div>
-                    <!--<div class="col-xs-12 col-sm-6  col-md-2">-->
-                    <!--<figure>-->
-                    <!--<img src="/web/assets/images/benchmarks/mkt-ana.jpg">-->
-                    <!--<figcaption>Tarantool YCSB benchmarks</figcaption>-->
-                    <!--</figure>-->
-                    <!--</div>-->
-                    <!--<div class="col-xs-12 col-sm-6 col-md-2 hidden-xs hidden-sm ">-->
-                    <!--<figure>-->
-                    <!--<img src="/web/assets/images/benchmarks/t-vs-t.jpg">-->
-                    <!--<figcaption>Tarantool vs Tarantool Benchmarks</figcaption>-->
-                    <!--</figure>-->
-                    <!--</div>-->
                 </div>
             </div>
         </section>
@@ -671,26 +659,6 @@ Tarantool In Memory Data Grid
         <section id="news-and-press">
             <h2>News And Press</h2>
             <div class="row">
-                <!--                        <div class="col-xs-12 col-sm-6 col-md-4">-->
-                <!--                            <div class="container-fluid">-->
-                <!--                                <div class="news-and-press-box news">-->
-                <!--                                    <div class="box-header">-->
-                <!--                                        <span class="news-image-gray">-->
-                <!--                                            <img src="/web/assets/images/icons/news-icon.png"/>-->
-                <!--                                        </span>-->
-                <!--                                        <h4>-->
-                <!--                                            NEWS-->
-                <!--                                        </h4>-->
-                <!--                                    </div>-->
-                <!--                                    <div class="box-body">-->
-                <!--                                        <p>Percona Live featured talk with Konstantin Osipov: Tarantool</p>-->
-                <!--                                        <span>-->
-                <!--                                        PERSONA LIVE<br>-->
-                <!--                                        <span class="date">March 16, 2016</span>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
                         <a href="/press/megafon-launches">
@@ -848,92 +816,9 @@ Tarantool In Memory Data Grid
                         </a>
                     </div>
                 </div>
-                <!-- <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4">
-                        <div class="container-fluid">
-                            <a href="/press/veon-migrates">
-                                <div class="news-and-press-box press">
-                                    <div class="box-header">
-                                        <span class="press-image-red">
-                                            <img src="/web/assets/images/icons/press-release-46-x-38.png"/>
-                                        </span>
-                                        <h4>
-                                            PRESS RELEASE
-                                        </h4>
-                                    </div>
-                                    <div class="box-body">
-                                        <p>Veon Migrates Their Online Services to Tarantool
-                                        </p>
-                                        <span class="date">August 1, 2016</span><br>
-                                        <span class="">Read the release here</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> -->
-
-                <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
-                <!--<div class="container-fluid">-->
-                <!--<div class="news-and-press-box press">-->
-                <!--<div class="box-header">-->
-                <!--<span class="press-image-red">-->
-                <!--<img src="/web/assets/images/icons/press-release-46-x-38.png"/>-->
-                <!--</span>-->
-                <!--<h4>-->
-                <!--PRESS RELEASE-->
-                <!--</h4>-->
-                <!--</div>-->
-                <!--<div class="box-body">-->
-                <!--<p>Percona Live featured talk with Konstantin Osipov: Tarantool</p>-->
-                <!--<span>-->
-                <!--PERSONA LIVE<br>-->
-                <!--<span class="date">March 16, 2016</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
-                <!--<div class="container-fluid">-->
-                <!--<div class="news-and-press-box press">-->
-                <!--<div class="box-header">-->
-                <!--<span class="press-image-red">-->
-                <!--<img src="/web/assets/images/icons/press-release-46-x-38.png"/>-->
-                <!--</span>-->
-                <!--<h4>-->
-                <!--PRESS RELEASE-->
-                <!--</h4>-->
-                <!--</div>-->
-                <!--<div class="box-body">-->
-                <!--<p>Percona Live featured talk with Konstantin Osipov: Tarantool</p>-->
-                <!--<span>-->
-                <!--PERSONA LIVE<br>-->
-                <!--<span class="date">March 16, 2016</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
-                <!--<div class="container-fluid">-->
-                <!--<div class="news-and-press-box press">-->
-                <!--<div class="box-header">-->
-                <!--<span class="press-image-red">-->
-                <!--<img src="/web/assets/images/icons/press-release-46-x-38.png"/>-->
-                <!--</span>-->
-                <!--<h4>-->
-                <!--PRESS RELEASE-->
-                <!--</h4>-->
-                <!--</div>-->
-                <!--<div class="box-body">-->
-                <!--<p>Percona Live featured talk with Konstantin Osipov: Tarantool</p>-->
-                <!--<span>-->
-                <!--PERSONA LIVE<br>-->
-                <!--<span class="date">March 16, 2016</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
             </div>
         </section>
-        <!--    social media section-->
+
 .. include:: tarantool-io/social-icons.rst
 
 .. raw:: html
