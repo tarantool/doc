@@ -170,6 +170,9 @@
       <!-- < FOOTER -->
     </div>
     <div id="mobile-checker"></div>
+    {% if pagename in ["index"] %}
+      <script src="{{ abspath('_static/js/carousel-main-page.js') }}"></script>
+    {% endif %}
   </body>
 </html>
 
