@@ -62,7 +62,8 @@ exclude_patterns = [
     '_downloads/terms.docx',
     '_downloads/terms_eng.docx',
     'images',
-    'tarantool-io/social-icons.rst'
+    'tarantool-io/social-icons.rst',
+    'tarantool-io/integrate-data-source.rst'
 ]
 
 base_url = "https://tarantool.org/"
