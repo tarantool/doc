@@ -57,16 +57,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -80,16 +80,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -103,16 +103,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -126,16 +126,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -149,16 +149,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -172,16 +172,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -195,16 +195,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -218,16 +218,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -241,16 +241,16 @@ Tarantool - Try it
                                     <tbody>
                                         <tr>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -267,13 +267,13 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -290,10 +290,10 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
                                                 
@@ -313,13 +313,13 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -336,13 +336,13 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -359,10 +359,10 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
                                                 
@@ -382,13 +382,13 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -408,7 +408,7 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
                                                 
@@ -431,7 +431,7 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
                                                 
@@ -454,7 +454,7 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
                                                 
@@ -480,7 +480,7 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -503,7 +503,7 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -526,7 +526,7 @@ Tarantool - Try it
                                                 
                                             </td>
                                             <td class="col-xs-3 col-md-3 text-center">
-                                                <img src="../_static/images/tarantool-io/check.png">
+                                                <img src="_static/images/tarantool-io/check.png">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -638,73 +638,73 @@ Tarantool - Try it
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Blazing Transaction Speed</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Integrate Any Data Source</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Stored Procedures</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Real ACID transactions</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Universal Backend</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Primary, Secondary Indexes</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Full Persistence to Disk</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Replication Options</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Parallel Virtual Connections</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>No Blocking Lua App Server</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Load Balancing</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 powerful-features-col">
                         <div class="feature-stamp">
-                            <img src="../_static/images/tarantool-io/powerful-features-check.png">
+                            <img src="_static/images/tarantool-io/powerful-features-check.png">
                             <span>Built for High Velocity Data</span>
                         </div>
                     </div>
