@@ -4,12 +4,66 @@
                             Submodule `box.session`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``box.session`` submodule allows querying the session state, writing to a
 session-specific temporary Lua table, or setting up triggers which will fire
 when a session starts or ends. A *session* is an object associated with each
 client connection.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``box.session`` functions and members.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`box.session.id()               | Get the current session's ID    |
+        | <box_session-id>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.exists()           | Check if a session exists       |
+        | <box_session-exists>`                |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.peer()             | Get the session peer's host     |
+        | <box_session-peer>`                  | address and port                |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.sync()             | Get the sync integer constant   |
+        | <box_session-sync>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.user()             | Get the current user's name     |
+        | <box_session-user>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.type()             | Get the connection type or      |
+        | <box_session-type>`                  | cause of action                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.su()               | Change the current user         |
+        | <box_session-su>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.storage            | Table with session-specific     |
+        | <box_session-storage>`               | names and values                |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.on_connect()       | Define a connect trigger        |
+        | <box_session-on_connect>`            |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.on_disconnect()    | Define a disconnect trigger     |
+        | <box_session-on_disconnect>`         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`box.session.on_auth()          | Define an authentication        |
+        | <box_session-on_auth>`               | trigger                         |
+        +--------------------------------------+---------------------------------+
+
 .. module:: box.session
+
+.. _box_session-id:
 
 .. function:: id()
 
@@ -17,10 +71,14 @@ client connection.
              The result can be 0 meaning there is no session.
     :rtype:  number
 
+.. _box_session-exists:
+
 .. function:: exists(id)
 
     :return: 1 if the session exists, 0 if the session does not exist.
     :rtype:  number
+
+.. _box_session-peer:
 
 .. function:: peer(id)
 

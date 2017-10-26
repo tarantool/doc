@@ -6,6 +6,10 @@
 
 .. _fio-section:
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 Tarantool supports file input/output with an API that is similar to POSIX
 syscalls. All operations are performed asynchronously. Multiple fibers can
 access the same file simultaneously.
@@ -17,6 +21,108 @@ The ``fio`` module contains:
 * :ref:`constants <fio-c>` which are the same as POSIX flag values (for example
   ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY).
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``fio`` functions and members.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`fio.pathjoin()                 | Form a path name from one or    |
+        | <fio-pathjoin>`                      | more partial strings            |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.basename()                 | Get a file name                 |
+        | <fio-basename>`                      |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.dirname()                  | Get a directory name            |
+        | <fio-dirname>`                       |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.umask()                    | Set mask bits                   |
+        | <fio-umask>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.lstat()                    |                                 |
+        | <fio-stat>` |br|                     | Get information about a file    |
+        | :ref:`fio.stat()                     | object                          |
+        | <fio-stat>`                          |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.mkdir()                    |                                 |
+        | <fio-mkdir>` |br|                    | Create or delete a directory    |
+        | :ref:`fio.rmdir()                    |                                 |
+        | <fio-mkdir>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.glob()                     | Get files whose names match     |
+        | <fio-glob>`                          | a given string                  |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.tempdir()                  | Get the name of a directory for |
+        | <fio-tempdir>`                       | storing temporary files         |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.cwd()                      | Get the name of the current     |
+        | <fio-cwd>`                           | working directory               |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.link()                     |                                 |
+        | <fio-link>` |br|                     |                                 |
+        | :ref:`fio.symlink()                  |                                 |
+        | <fio-link>` |br|                     | Create and delete links         |
+        | :ref:`fio.readlink()                 |                                 |
+        | <fio-link>` |br|                     |                                 |
+        | :ref:`fio.unlink()                   |                                 |
+        | <fio-link>`                          |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.rename()                   | Rename a file or directory      |
+        | <fio-rename>`                        |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.chown()                    |                                 |
+        | <fio-chown>` |br|                    | Manage rights to and ownership  |
+        | :ref:`fio.chmod()                    | of file objects                 |
+        | <fio-chown>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.truncate()                 | Reduce the file size            |
+        | <fio-truncate>`                      |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.sync()                     | Ensure that changes are written |
+        | <fio-sync>`                          | to disk                         |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.open()                     | Open a file                     |
+        | <fio-open>`                          |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:close()            | Close a file                    |
+        | <file_handle-close>`                 |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:pread()            |                                 |
+        | <file_handle-pread>` |br|            | Perform random-access read or   |
+        | :ref:`file-handle:pwrite()           | write on a file                 |
+        | <file_handle-pread>`                 |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:read()             |                                 |
+        | <file_handle-read>` |br|             | Perform non-random-access read  |
+        | :ref:`file-handle:write()            | or write on a file              |
+        | <file_handle-read>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:truncate()         | Change the size of an open file |
+        | <file_handle-truncate>`              |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:seek()             | Change position in a file       |
+        | <file_handle-seek>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:stat()             | Get statistics about an open    |
+        | <file_handle-stat>`                  | file                            |
+        +--------------------------------------+---------------------------------+
+        | :ref:`file-handle:fsync()            |                                 |
+        | <file_handle-fsync>` |br|            | Ensure that changes made to an  |
+        | :ref:`file-handle:fdatasync()        | open file are written to disk   |
+        | <file_handle-fsync>`                 |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`fio.c                          | Table of constants similar to   |
+        | <fio-c_table>`                       | POSIX flag values               |
+        +--------------------------------------+---------------------------------+
+
 .. module:: fio
 
 .. _fio-pathname:
@@ -24,6 +130,8 @@ The ``fio`` module contains:
 =================================================
          Common pathname manipulations
 =================================================
+
+.. _fio-pathjoin:
 
 .. function:: pathjoin(partial-string [, partial-string ...])
 
@@ -41,6 +149,8 @@ The ``fio`` module contains:
         ---
         - /etc/default/myfile
         ...
+
+.. _fio-basename:
 
 .. function:: basename(path-name[, suffix])
 
@@ -61,6 +171,8 @@ The ``fio`` module contains:
         ---
         - my
         ...
+
+.. _fio-dirname:
 
 .. function:: dirname(path-name)
 
@@ -86,6 +198,8 @@ The ``fio`` module contains:
             Common file manipulations
 =================================================
 
+.. _fio-umask:
+
 .. function:: umask(mask-bits)
 
     Set the mask bits used when creating files or directories. For a detailed
@@ -104,6 +218,8 @@ The ``fio`` module contains:
         - 493
         ...
 
+.. _fio-stat:
+
 .. function:: lstat(path-name)
                stat(path-name)
 
@@ -116,14 +232,14 @@ The ``fio`` module contains:
     :rtype:  table
 
     Additionally, the result of ``fio.stat('file-name')`` will include methods
-    equivalent to POSIX macros:        
+    equivalent to POSIX macros:
 
-    * ``is_blk()`` = POSIX macro S_ISBLK, 
-    * ``is_chr()`` = POSIX macro S_ISCHR, 
-    * ``is_dir()`` = POSIX macro S_ISDIR, 
-    * ``is_fifo()`` = POSIX macro S_ISFIFO, 
-    * ``is_link()`` = POSIX macro S_ISLINK, 
-    * ``is_reg()`` = POSIX macro S_ISREG, 
+    * ``is_blk()`` = POSIX macro S_ISBLK,
+    * ``is_chr()`` = POSIX macro S_ISCHR,
+    * ``is_dir()`` = POSIX macro S_ISDIR,
+    * ``is_fifo()`` = POSIX macro S_ISFIFO,
+    * ``is_link()`` = POSIX macro S_ISLINK,
+    * ``is_reg()`` = POSIX macro S_ISREG,
     * ``is_sock()`` = POSIX macro S_ISSOCK.
 
     For example, ``fio.stat('/'):is_dir()`` will return true.
@@ -151,7 +267,7 @@ The ``fio`` module contains:
 
 .. The following is a workaround for a Sphinx bug.
 
-.. fio-mkdir:
+.. _fio-mkdir:
 
 .. function:: mkdir(path-name[, mode])
               rmdir(path-name)
@@ -174,6 +290,8 @@ The ``fio`` module contains:
         ---
         - false
         ...
+
+.. _fio-glob:
 
 .. function:: glob(path-name)
 
@@ -198,6 +316,8 @@ The ``fio`` module contains:
           - /etc/xul-ext
         ...
 
+.. _fio-tempdir:
+
 .. function:: tempdir()
 
     Return the name of a directory that can be used to store temporary files.
@@ -211,6 +331,8 @@ The ``fio`` module contains:
         - /tmp/lG31e7
         ...
 
+.. _fio-cwd:
+
 .. function:: cwd()
 
     Return the name of the current working directory.
@@ -223,6 +345,8 @@ The ``fio`` module contains:
         ---
         - /home/username/tarantool_sandbox
         ...
+
+.. _fio-link:
 
 .. function:: link     (src, dst)
               symlink  (src, dst)
@@ -252,6 +376,8 @@ The ``fio`` module contains:
         - true
         ...
 
+.. _fio-rename:
+
 .. function:: rename(path-name, new-path-name)
 
     Rename a file or directory. For details type "man 2 rename".
@@ -270,6 +396,8 @@ The ``fio`` module contains:
         ---
         - true
         ...
+
+.. _fio-chown:
 
 .. function:: chown(path-name, owner-user, owner-group)
               chmod(path-name, new-rights)
@@ -294,6 +422,8 @@ The ``fio`` module contains:
         - true
         ...
 
+.. _fio-truncate:
+
 .. function:: truncate(path-name, new-size)
 
     Reduce file size to a specified value. For details type "man 2 truncate".
@@ -312,6 +442,8 @@ The ``fio`` module contains:
         ---
         - true
         ...
+
+.. _fio-sync:
 
 .. function:: sync()
 
@@ -369,6 +501,8 @@ The ``fio`` module contains:
 
 .. class:: file-handle
 
+    .. _file_handle-close:
+
     .. method:: close()
 
         Close a file that was opened with ``fio.open``. For details type "man 2 close".
@@ -385,6 +519,8 @@ The ``fio`` module contains:
             ---
             - true
             ...
+
+    .. _file_handle-pread:
 
     .. method:: pread(count, offset)
                 pwrite(new-string, offset)
@@ -410,6 +546,8 @@ The ``fio`` module contains:
               elete from t8//
               insert in
             ...
+
+    .. _file_handle-read:
 
     .. method:: read(count)
                 write(new-string)
@@ -439,6 +577,8 @@ The ``fio`` module contains:
             - true
             ...
 
+    .. _file_handle-truncate:
+
     .. method:: truncate(new-size)
 
         Change the size of an open file. Differs from ``fio.truncate``, which
@@ -456,6 +596,8 @@ The ``fio`` module contains:
             ---
             - true
             ...
+
+    .. _file_handle-seek:
 
     .. method:: seek(position [, offset-from])
 
@@ -479,6 +621,8 @@ The ``fio`` module contains:
             ---
             - 20
             ...
+
+    .. _file_handle-stat:
 
     .. method:: stat()
 
@@ -510,6 +654,7 @@ The ``fio`` module contains:
               blocks: 8
             ...
 
+    .. _file_handle-fsync:
 
     .. method:: fsync()
                 fdatasync()
@@ -536,11 +681,13 @@ The ``fio`` module contains:
          FIO constants
 =================================================
 
+.. _fio-c_table:
+
 .. data:: c
 
     Table with constants which are the same as POSIX flag values on the
     target platform (see ``man 2 stat``).
-    
+
     **Example:**
 
     .. code-block:: tarantoolsession

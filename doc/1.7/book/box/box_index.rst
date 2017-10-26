@@ -4,15 +4,84 @@
                             Submodule `box.index`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``box.index`` submodule provides read-only access for index definitions and
 index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array within
 each space object. They provide an API for ordered iteration over tuples. This
 API is a direct binding to corresponding methods of index objects of type
 ``box.index`` in the storage engine.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``box.index`` functions and members.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`index_object.unique            | Flag, true if an index is       |
+        | <box_index-unique>`                  | unique                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object.type              | Index type                      |
+        | <box_index-type>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object.parts             | Array of index key fields       |
+        | <box_index-parts>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:pairs()           | Prepare for iterating           |
+        | <box_index-index_pairs>`             |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:select()          | Select one or more tuples       |
+        | <box_index-select>`                  | via index                       |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:get()             | Select a tuple via index        |
+        | <box_index-get>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:min()             | Find the minimum value in index |
+        | <box_index-min>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:max()             | Find the maximum value in index |
+        | <box_index-max>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:random()          | Find a random value in index    |
+        | <box_index-random>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:count()           | Count tuples matching key value |
+        | <box_index-count>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:update()          | Update a tuple                  |
+        | <box_index-update>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:delete()          | Delete a tuple by key           |
+        | <box_index-delete>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:alter()           | Alter an index                  |
+        | <box_index-alter>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:drop()            | Drop an index                   |
+        | <box_index-drop>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:rename()          | Rename an index                 |
+        | <box_index-rename>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:bsize()           | Get count of bytes for an index |
+        | <box_index-bsize>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+
 .. module:: box.index
 
 .. class:: index_object
+
+    .. _box_index-unique:
 
     .. data:: unique
 
@@ -20,9 +89,13 @@ API is a direct binding to corresponding methods of index objects of type
 
         :rtype: boolean
 
+    .. _box_index-type:
+
     .. data:: type
 
         Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'.
+
+    .. _box_index-parts:
 
     .. data:: parts
 
@@ -693,6 +766,8 @@ API is a direct binding to corresponding methods of index objects of type
             - 1
             ...
 
+    .. _box_index-update:
+
     .. method:: update(key, {{operator, field_no, value}, ...})
 
         Update a tuple.
@@ -713,6 +788,8 @@ API is a direct binding to corresponding methods of index objects of type
 
         :return: the updated tuple.
         :rtype:  tuple
+
+    .. _box_index-delete:
 
     .. method:: delete(key)
 
@@ -787,6 +864,8 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             ...
 
+    .. _box_index-rename:
+
     .. method:: rename(index-name)
 
         Rename an index.
@@ -808,6 +887,8 @@ API is a direct binding to corresponding methods of index objects of type
             ...
 
         **Complexity factors:** Index size, Index type, Number of tuples accessed.
+
+    .. _box_index-bsize:
 
     .. method:: bsize()
 

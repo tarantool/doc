@@ -6,13 +6,42 @@
 
 .. module:: crypto.cipher
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 "Crypto" is short for "Cryptography", which generally refers to the production
 of a digest value from a function (usually a `Cryptographic hash function`_),
-applied against a string. Tarantool's crypto module supports ten types of
+applied against a string. Tarantool's ``crypto`` module supports ten types of
 cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_,
 SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
-:ref:`digest` module. The functions in crypto are:
+:ref:`digest` module.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``crypto`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +----------------------------------------------------------+---------------------------------+
+        | Name                                                     | Use                             |
+        +==========================================================+=================================+
+        | :ref:`crypto.cipher.{algorithm}.{cipher_mode}.encrypt()  | Encrypt a string                |
+        | <crypto-cipher>`                                         |                                 |
+        +----------------------------------------------------------+---------------------------------+
+        | :ref:`crypto.cipher.{algorithm}.{cipher_mode}.decrypt()  | Decrypt a string                |
+        | <crypto-cipher>`                                         |                                 |
+        +----------------------------------------------------------+---------------------------------+
+        | :ref:`crypto.digest.{algorithm}()                        | Get a digest                    |
+        | <crypto-digest>`                                         |                                 |
+        +----------------------------------------------------------+---------------------------------+
+
+.. _crypto-cipher:
 
 .. varfunc:: {aes128|aes192|aes256|des}.{cbc|cfb|ecb|ofb}.encrypt(string, key, initialization_vector)
              {aes128|aes192|aes256|des}.{cbc|cfb|ecb|ofb}.decrypt(string, key, initialization_vector)
@@ -34,7 +63,7 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
     * ecb - Electronic Codebook
     * ofb - Output Feedback
 
-    For more information on, read article about `Encryption Modes`_
+    For more information, read the article about `Encryption Modes`_
 
     **Example:**
 
@@ -44,6 +73,8 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
         crypto.cipher.aes256.ecb.decrypt('string', 'key', 'initialization')
 
 .. module:: crypto.digest
+
+.. _crypto-digest:
 
 .. varfunc:: {dss|dss1|md4|md5|mdc2|ripemd160}(string)
              {sha|sha1|sha224|sha256|sha384|sha512}(string)
@@ -57,7 +88,7 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
     * md4 - md4 (with 128-bit binary strings using MD4)
     * md5 - md5 (with 128-bit binary strings using MD5)
     * mdc2 - mdc2 (using MDC2)
-    * ripemd160 - 
+    * ripemd160 - ripemd (with 160-bit binary strings using RIPEMD-160)
     * sha - sha (with 160-bit binary strings using SHA-0)
     * sha1 - sha-1 (with 160-bit binary strings using SHA-1)
     * sha224 - sha-224 (with 224-bit binary strings using SHA-2)

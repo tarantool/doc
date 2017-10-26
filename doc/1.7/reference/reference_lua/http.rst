@@ -6,9 +6,37 @@
 
 .. module:: http.client
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``http`` module, specifically the ``http.client`` submodule,
 provides the functionality of an HTTP client with support for HTTPS and keepalive.
 It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``http`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`http.client.new()              | Create an HTTP client instance  |
+        | <http-new>`                          |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`client_object:request()        | Perform an HTTP request         |
+        | <client_object-request>`             |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`client_object:stat()           | Get a table with statistics     |
+        | <client_object-stat>`                |                                 |
+        +--------------------------------------+---------------------------------+
 
 .. _http-new:
 
@@ -30,6 +58,8 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
         ...
 
 .. class:: client_object
+
+    .. _client_object-request:
 
     .. method:: request(method, url, body, opts)
 
@@ -108,6 +138,8 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
           ``http_client:request("TRACE", url, nil, opts)``
         * ``http_client:connect:(url, options)`` - shortcut for
           ``http_client:request("CONNECT", url, nil, opts)``
+
+    .. _client_object-stat:
 
     .. function:: stat()
 
