@@ -283,7 +283,7 @@ Below is a list of all ``box.space`` functions and members.
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | sequence            | see section regarding                                 | string or number                 | not present                   |
             |                     | :ref:`specifying a sequence in create_index()         |                                  |                               |
-            |                     | <box_schema-sequence_create_index>`                |                                  |                               |
+            |                     | <box_schema-sequence_create_index>`                   |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
         **Note re storage engine:** vinyl has extra options which by default are
