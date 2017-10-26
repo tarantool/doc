@@ -338,7 +338,7 @@ class LuaClass(LuaObject):
               names=('extend',)),
     ]
 
-    typename = l_("object")
+    typename = "object"
 
     def get_index_type(self):
         return "%s" % (self.__class__.typename)
@@ -354,7 +354,7 @@ class LuaClass(LuaObject):
             self.env.temp_data['lua:class'] = None
 
 class LuaFunction(LuaObject):
-    typename = l_("function")
+    typename = "function"
 
     doc_field_types = [
         TypedField('parameter', label=l_('Parameters'),
@@ -431,7 +431,7 @@ class LuaMethod(LuaFunction):
             return None, None
 
 class LuaData(LuaObject):
-    typename = l_("data")
+    typename = "data"
 
     option_spec = dict(
         readonly=directives.flag,
