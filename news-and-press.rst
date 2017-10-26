@@ -20,7 +20,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -41,7 +41,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -62,7 +62,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -83,7 +83,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -104,7 +104,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -126,7 +126,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -148,7 +148,7 @@ Tarantool - News and Press
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
-                                        <img src="../_static/images/tarantool-io/press-release-46-x-38.png"/>
+                                        <img src="/_static/images/tarantool-io/press-release-46-x-38.png"/>
                                     </span>
                                     <h4>
                                         PRESS RELEASE
@@ -168,4 +168,4 @@ Tarantool - News and Press
         </section>
     </section>
             
-.. include:: social-icons.rst
+.. include:: tarantool-io/social-icons.rst
