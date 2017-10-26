@@ -4,6 +4,10 @@
                             Module `string`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 .. module:: string
 
 The :code:`string` module has everything in the
@@ -11,12 +15,40 @@ The :code:`string` module has everything in the
 Tarantool extensions.
 
 In this section we only discuss the additional functions
-that the Tarantool developers have added:
+that the Tarantool developers have added.
 
-* ``ljust``, ``rjust`` and ``center`` for left/right/center-justifying,
-* ``hex`` for hexadecimal,
-* ``startswidth`` and ``endswith`` for checking start/end values,
-* ``split`` for splitting.
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all additional ``string`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`string.ljust()                 | Left-justify a string           |
+        | <string-ljust>`                      |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.rjust()                 | Right-justify a string          |
+        | <string-rjust>`                      |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.hex()                   | Get the hexadecimal value of a  |
+        | <string-hex>`                        | string                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.startswith()            | Check if a string starts with   |
+        | <string-startswith>`                 | a given substring               |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.endswith()              | Check if a string ends with a   |
+        | <string-endswith>`                   | given substring                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.split()                 | Split a string into one or more |
+        | <string-split>`                      | strings                         |
+        +--------------------------------------+---------------------------------+
 
 .. _string-ljust:
 

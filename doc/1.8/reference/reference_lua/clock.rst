@@ -4,12 +4,64 @@
                             Module `clock`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``clock`` module returns time values derived from the Posix / C
 CLOCK_GETTIME_ function or equivalent. Most functions in the module return a
 number of seconds; functions whose names end in "64" return a 64-bit number of
 nanoseconds.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``clock`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`clock.time()                   |                                 |
+        | <clock-time>` |br|                   | Get the wall clock time         |
+        | :ref:`clock.realtime()               | in seconds                      |
+        | <clock-time>`                        |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.time64()                 |                                 |
+        | <clock-time>` |br|                   | Get the wall clock time         |
+        | :ref:`clock.realtime64()             | in nanoseconds                  |
+        | <clock-time>`                        |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.monotonic()              | Get the monotonic time          |
+        | <clock-monotonic>`                   | in seconds                      |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.monotonic64()            | Get the monotonic time          |
+        | <clock-monotonic>`                   | in nanoseconds                  |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.proc()                   | Get the processor time          |
+        | <clock-proc>`                        | in seconds                      |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.proc64()                 | Get the processor time          |
+        | <clock-proc>`                        | in nanoseconds                  |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.thread()                 | Get the thread time             |
+        | <clock-thread>`                      | in seconds                      |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.thread64()               | Get the thread time             |
+        | <clock-thread>`                      | in nanoseconds                  |
+        +--------------------------------------+---------------------------------+
+        | :ref:`clock.bench()                  | Measure the time a function     |
+        | <clock-bench>`                       | takes within a processor        |
+        +--------------------------------------+---------------------------------+
+
 .. module:: clock
+
+.. _clock-time:
 
 .. function:: time()
               time64()
@@ -34,6 +86,8 @@ nanoseconds.
     See also :ref:`fiber.time64 <fiber-time64>` and the standard Lua function
     `os.clock <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_.
 
+.. _clock-monotonic:
+
 .. function:: monotonic()
               monotonic64()
 
@@ -54,6 +108,8 @@ nanoseconds.
         clock = require('clock')
         print(clock.monotonic64())
 
+.. _clock-proc:
+
 .. function:: proc()
               proc64()
 
@@ -73,6 +129,8 @@ nanoseconds.
         clock = require('clock')
         print(clock.proc64())
 
+.. _clock-thread:
+
 .. function:: thread()
               thread64()
 
@@ -91,6 +149,8 @@ nanoseconds.
         -- This will print seconds in the thread since the start.
         clock = require('clock')
         print(clock.thread64())
+
+.. _clock-bench:
 
 .. function:: bench(function[, ...])
 

@@ -4,9 +4,37 @@
                           Module `json`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``json`` module provides JSON manipulation routines. It is based on the
 `Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please
 read `the official documentation`_.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``json`` functions and members.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`json.encode()                  | Convert a Lua object to a JSON  |
+        | <json-encode>`                       | string                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`json.decode()                  | Convert a JSON string to a Lua  |
+        | <json-decode>`                       | object                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`json.NULL                      | Analog of Lua's "nil"           |
+        | <json-null>`                         |                                 |
+        +--------------------------------------+---------------------------------+
 
 .. module:: json
 

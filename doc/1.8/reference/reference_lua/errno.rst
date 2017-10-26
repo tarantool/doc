@@ -6,15 +6,34 @@
 
 .. module:: errno
 
-The ``errno`` module provides:
-
-* a function :ref:`strerror() <errno-strerror>`,
-* an operator :ref:`errno() <errno-errno>`, and
-* a `metatable <https://www.lua.org/pil/13.html>`_ with constant error names.
+===============================================================================
+                                   Overview
+===============================================================================
 
 The ``errno`` module is typically used
 within a function or within a Lua program, in association with a module whose
 functions can return operating-system errors, such as :ref:`fio <fio-module>`.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``errno`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`errno()                        | Get an error number for the     |
+        | <errno-errno>`                       | last OS-related function        |
+        +--------------------------------------+---------------------------------+
+        | :ref:`errno.strerror()               | Get an error message for the    |
+        | <errno-strerror>`                    | corresponding error number      |
+        +--------------------------------------+---------------------------------+
 
 .. _errno-errno:
 

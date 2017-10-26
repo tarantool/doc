@@ -4,6 +4,10 @@
                                 Module `net.box`
 --------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``net.box`` module contains connectors to remote database systems. One
 variant, to be discussed later, is for connecting to MySQL or MariaDB or PostgreSQL —
 that variant is the subject of the :ref:`SQL DBMS modules <dbms_modules>` reference.
@@ -25,7 +29,69 @@ the overhead of system calls and increases the overall server performance. There
 are, however, cases when a single connection is not enough — for example when it's
 necessary to prioritize requests or to use different authentication ids.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``net.box`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +----------------------------------------------------+---------------------------+
+        | Name                                               | Use                       |
+        +====================================================+===========================+
+        | :ref:`net_box.new()                                | Create a connection       |
+        | <net_box-new>`                                     |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:ping()                                  | Execute a PING command    |
+        | <conn-ping>`                                       |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:wait_connected()                        | Wait for a connection to  |
+        | <conn-wait_connected>`                             | be active or closed       |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:is_connected()                          | Check if a connection     |
+        | <conn-is_connected>`                               | is active or closed       |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:close()                                 | Close a connection        |
+        | <conn-close>`                                      |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:select{field-value}  | Select one or more tuples |
+        | <conn-select>`                                     |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:get{field-value}     | Select a tuple            |
+        | <conn-get>`                                        |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:insert{field-value}  | Insert a tuple            |
+        | <conn-insert>`                                     |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:replace{field-value} | Insert or replace a tuple |
+        | <conn-replace>`                                    |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:update{field-value}  | Update a tuple            |
+        | <conn-update>`                                     |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:upsert{field-value}  | Update a tuple            |
+        | <conn-upsert>`                                     |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn.space.<space-name>:delete{field-value}  | Delete a tuple            |
+        | <conn-delete>`                                     |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:call()                                  | Call a stored procedure   |
+        | <net_box-call>`                                    |                           |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:eval()                                  | Evaluate and execute the  |
+        | <net_box-eval>`                                    | expression in a string    |
+        +----------------------------------------------------+---------------------------+
+        | :ref:`conn:timeout()                               | Set a timeout             |
+        | <conn-timeout>`                                    |                           |
+        +----------------------------------------------------+---------------------------+
+
 .. module:: net_box
+
+.. _net_box-new:
 
 .. function:: new(URI [, {option[s]}])
 
@@ -58,6 +124,8 @@ necessary to prioritize requests or to use different authentication ids.
 
 .. class:: conn
 
+    .. _conn-ping:
+
     .. method:: ping()
 
         Execute a PING command.
@@ -70,6 +138,8 @@ necessary to prioritize requests or to use different authentication ids.
         .. code-block:: lua
 
             net_box.self:ping()
+
+    .. _conn-wait_connected:
 
     .. method:: wait_connected([timeout])
 
@@ -85,6 +155,8 @@ necessary to prioritize requests or to use different authentication ids.
 
             net_box.self:wait_connected()
 
+    .. _conn-is_connected:
+
     .. method:: is_connected()
 
         Show whether connection is active or closed.
@@ -98,6 +170,7 @@ necessary to prioritize requests or to use different authentication ids.
 
             net_box.self:is_connected()
 
+    .. _conn-close:
 
     .. method:: close()
 
@@ -114,6 +187,8 @@ necessary to prioritize requests or to use different authentication ids.
 
             conn:close()
 
+    .. _conn-select:
+
     .. method:: conn.space.<space-name>:select{field-value, ...}
 
         :samp:`conn.space.{space-name}:select`:code:`{...}` is the remote-call equivalent
@@ -128,30 +203,42 @@ necessary to prioritize requests or to use different authentication ids.
             change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
             occurs.
 
+    .. _conn-get:
+
     .. method:: conn.space.<space-name>:get{field-value, ...}
 
         :samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:get(...)`.
+
+    .. _conn-insert:
 
     .. method:: conn.space.<space-name>:insert{field-value, ...}
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:insert(...)`.
 
+    .. _conn-replace:
+
     .. method:: conn.space.<space-name>:replace{field-value, ...}
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:replace(...)`.
+
+    .. _conn-update:
 
     .. method:: conn.space.<space-name>:update{field-value, ...}
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:update(...)`.
 
+    .. _conn-upsert:
+
     .. method:: conn.space.<space-name>:upsert{field-value, ...}
 
         :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:upsert(...)`.
+
+    .. _conn-delete:
 
     .. method:: conn.space.<space-name>:delete{field-value, ...}
 
@@ -187,6 +274,8 @@ necessary to prioritize requests or to use different authentication ids.
         .. code-block:: lua
 
             conn:eval('return 5+5')
+
+    .. _conn-timeout:
 
     .. method:: timeout(timeout)
 

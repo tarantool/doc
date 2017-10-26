@@ -2,30 +2,52 @@
                             Module `uuid`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 A "UUID" is a `Universally unique identifier`_. If an application requires that
 a value be unique only within a single computer or on a single database, then a
 simple counter is better than a UUID, because getting a UUID is time-consuming
 (it requires a syscall_). For clusters of computers, or widely distributed
 applications, UUIDs are better.
 
-The functions that can return a UUID are:
+===============================================================================
+                                    Index
+===============================================================================
 
-* :ref:`uuid() <uuid-__call>`
-* :ref:`uuid.bin() <uuid-bin>`
-* :ref:`uuid.str() <uuid-str>`
+Below is list of all ``uuid`` functions and members.
 
-The functions that can convert between different types of UUID are:
+    .. container:: table
 
-* :ref:`uuid_object:bin() <uuid-object_bin>`
-* :ref:`uuid_object:str() <uuid-object_str>`
-* :ref:`uuid.fromstr() <uuid-fromstr>`
-* :ref:`uuid.frombin() <uuid-frombin>`
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
 
-The function that can determine whether a UUID is an all-zero value is:
-
-* :ref:`uuid_object:isnil() <uuid-isnil>`
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`uuid.nil <uuid-nil>`           | A nil object                    |
+        +--------------------------------------+---------------------------------+
+        | :ref:`uuid() <uuid-__call>` |br|     |                                 |
+        | :ref:`uuid.bin() <uuid-bin>` |br|    | Get a UUID                      |
+        | :ref:`uuid.str() <uuid-str>`         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`uuid.fromstr()                 |                                 |
+        | <uuid-fromstr>` |br|                 |                                 |
+        | :ref:`uuid.frombin()                 |                                 |
+        | <uuid-frombin>` |br|                 | Get a converted UUID            |
+        | :ref:`uuid_object:bin()              |                                 |
+        | <uuid-object_bin>` |br|              |                                 |
+        | :ref:`uuid_object:str()              |                                 |
+        | <uuid-object_str>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`uuid_object:isnil()            | Check if a UUID is an all-zero  |
+        | <uuid-isnil>`                        | value                           |
+        +--------------------------------------+---------------------------------+
 
 .. module:: uuid
+
+.. _uuid-nil:
 
 .. data:: nil
 

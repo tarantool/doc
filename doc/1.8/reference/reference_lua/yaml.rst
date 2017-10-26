@@ -4,10 +4,40 @@
                             Module `yaml`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``yaml`` module takes strings in YAML_ format and decodes them, or takes a
 series of non-YAML values and encodes them.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``yaml`` functions and members.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`yaml.encode()                  | Convert a Lua object to a YAML  |
+        | <yaml-encode>`                       | string                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`yaml.decode()                  | Convert a YAML string to a Lua  |
+        | <yaml-decode>`                       | object                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`yaml.NULL                      | Analog of Lua's "nil"           |
+        | <yaml-null>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+
 .. module:: yaml
+
+.. _yaml-encode:
 
 .. function:: encode(lua_value)
 
@@ -16,6 +46,8 @@ series of non-YAML values and encodes them.
     :param lua_value: either a scalar value or a Lua table value.
     :return: the original value reformatted as a YAML string.
     :rtype: string
+
+.. _yaml-decode:
 
 .. function:: decode(string)
 

@@ -6,6 +6,10 @@
 
 .. module:: os
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``os`` module contains the functions :ref:`execute() <os-execute>`,
 :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`,
 :ref:`remove() <os-remove>`, :ref:`date() <os-date>`,
@@ -18,6 +22,60 @@ The ``os`` module contains the functions :ref:`execute() <os-execute>`,
 Most of these functions are described in the Lua manual
 Chapter 22 `The Operating System Library
 <https://www.lua.org/pil/contents.html#22>`_.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``os`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`os.execute()                   | Execute by passing to the shell |
+        | <os-execute>`                        |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.rename()                    | Rename a file or directory      |
+        | <os-rename>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.getenv()                    | Get an environment variable     |
+        | <os-getenv>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.remove()                    | Remove a file or directory      |
+        | <os-remove>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.date()                      | Get a formatted date            |
+        | <os-date>`                           |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.exit()                      | Exit the program                |
+        | <os-exit>`                           |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.time()                      | Get the number of seconds since |
+        | <os-time>`                           | the epoch                       |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.clock()                     | Get the number of CPU seconds   |
+        | <os-clock>`                          | since the program start         |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.tmpname()                   | Get the name of a temporary     |
+        | <os-tmpname>`                        | file                            |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.environ()                   | Get a table with all            |
+        | <os-environ>`                        | environment variables           |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.setenv()                    | Set an environment variable     |
+        | <os-setenv>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.setlocale()                 | Change the locale               |
+        | <os-setlocale>`                      |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`os.difftime()                  | Get the number of seconds       |
+        | <os-difftime>`                       | between two times               |
+        +--------------------------------------+---------------------------------+
 
 .. _os-execute:
 

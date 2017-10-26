@@ -4,6 +4,10 @@
                             Debug facilities
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 Tarantool users can benefit from built-in debug facilities that are part of:
 
 * Lua (`debug <https://www.lua.org/manual/5.1/manual.html#5.9>`_ library,
@@ -24,7 +28,62 @@ to operate on. The default is always the current thread.
     to run. Besides, several of these functions can compromise otherwise
     secure code.
 
-The functions in ``debug`` are:
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``debug`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`debug.debug()                  | Enter an interactive mode       |
+        | <debug-debug>`                       |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.getfenv()                | Get an object's environment     |
+        | <debug-getfenv>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.gethook()                | Get a thread's current hook     |
+        | <debug-gethook>`                     | settings                        |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.getinfo()                | Get information about a         |
+        | <debug-getinfo>`                     | function                        |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.getlocal()               | Get a local variable's name and |
+        | <debug-getlocal>`                    | value                           |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.getmetatable()           | Get an object's metatable       |
+        | <debug-getmetatable>`                |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.getregistry()            | Get the registry table          |
+        | <debug-getregistry>`                 |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.getupvalue()             | Get an upvalue's name and value |
+        | <debug-getupvalue>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.setfenv()                | Set an object's environment     |
+        | <debug-setfenv>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.sethook()                | Set a given function as a hook  |
+        | <debug-sethook>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.setlocal()               | Assign a value to a local       |
+        | <debug-setlocal>`                    | variable                        |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.setmetatable()           | Set an object's metatable       |
+        | <debug-setmetatable>`                |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.setupvalue()             | Assign a value to an upvalue    |
+        | <debug-setupvalue>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`debug.traceback()              | Get a traceback of the call     |
+        | <debug-traceback>`                   | stack                           |
+        +--------------------------------------+---------------------------------+
 
 .. _debug-debug:
 

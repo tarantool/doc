@@ -6,6 +6,10 @@
 
 .. module:: iconv
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``iconv`` module provides a way to convert a string with
 one encoding to a string with another encoding, for example from ASCII
 to UTF-8. It is based on the POSIX iconv routines.
@@ -14,6 +18,27 @@ An exact list of the available encodings may depend on environment.
 Typically the list includes ASCII, BIG5, KOI8R, LATIN8, MS-GREEK, SJIS,
 and about 100 others. For a complete list, type ``iconv --list`` on a
 terminal.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``iconv`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`iconv.new()                    | Create an iconv instance        |
+        | <iconv-new>`                         |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`iconv.converter()              | Perform conversion on a string  |
+        | <iconv-converter>`                   |                                 |
+        +--------------------------------------+---------------------------------+
 
 .. _iconv-new:
 
@@ -36,6 +61,8 @@ terminal.
         tarantool> converter = require('iconv').new('UTF8', 'ASCII')
         ---
         ...
+
+    .. _iconv-converter:
 
     .. function:: converter(input-string)
 

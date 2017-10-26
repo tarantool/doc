@@ -4,6 +4,10 @@
                             Module `socket`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``socket`` module allows exchanging data via BSD sockets with a local or
 remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode.
 Semantics of the calls in the ``socket`` API closely follow semantics of the
@@ -19,72 +23,93 @@ flags are ``nonblock``, ``setsockopt``. The functions for stopping and
 disconnecting are ``shutdown``, ``close``. The functions for error checking
 are ``errno``, ``error``.
 
-.. container:: table
+===============================================================================
+                                    Index
+===============================================================================
 
-    **Socket functions**
+Below is a list of all ``socket`` functions.
 
-    .. rst-class:: left-align-column-2
+    .. container:: table
 
-    +----------------+---------------------------------------------------------------+
-    |    Purposes    |    Names                                                      |
-    +================+===============================================================+
-    |    setup       | :ref:`socket() <socket-socket>`                               |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket.tcp_connect() <socket-tcp_connect>`              |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket.tcp_server() <socket-tcp_server>`                |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:sysconnect() <socket-sysconnect>`         |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:send() <socket-send>`                     |
-    +----------------+---------------------------------------------------------------+
-    |   sending      | :ref:`socket_object:sendto() <socket-sendto>`                 |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:write() <socket-send>`                    |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:syswrite() <socket-syswrite>`             |
-    +----------------+---------------------------------------------------------------+
-    |   receiving    | :ref:`socket_object:recv() <socket-recv>`                     |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:recvfrom() <socket-recvfrom>`             |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:read() <socket-read>`                     |
-    +----------------+---------------------------------------------------------------+
-    |  flag setting  | :ref:`socket_object:nonblock() <socket-nonblock>`             |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:setsockopt() <socket-setsockopt>`         |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:linger() <socket-linger>`                 |
-    +----------------+---------------------------------------------------------------+
-    | client/server  | :ref:`socket_object:listen() <socket-listen>`                 |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:accept() <socket-accept>`                 |
-    +----------------+---------------------------------------------------------------+
-    |    teardown    | :ref:`socket_object:shutdown() <socket-shutdown>`             |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:close() <socket-close>`                   |
-    +----------------+---------------------------------------------------------------+
-    | error checking | :ref:`socket_object:error() <socket-error>`                   |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:errno() <socket-error>`                   |
-    +----------------+---------------------------------------------------------------+
-    |  information   | :ref:`socket.getaddrinfo() <socket-getaddrinfo>`              |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:getsockopt() <socket-getsockopt>`         |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:peer() <socket-peer>`                     |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:name() <socket-name>`                     |
-    +----------------+---------------------------------------------------------------+
-    | state checking | :ref:`socket_object:readable() <socket-readable>`             |
-    +----------------+---------------------------------------------------------------+
-    |   ""           | :ref:`socket_object:writable() <socket-writable>`             |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket_object:wait() <socket-wait>`                     |
-    +----------------+---------------------------------------------------------------+
-    |    ""          | :ref:`socket.iowait() <socket-iowait>`                        |
-    +----------------+---------------------------------------------------------------+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
 
+        +-------------------------------------------------------+------------------------------+
+        | Name                                                  | Use                          |
+        +=======================================================+==============================+
+        | :ref:`socket() <socket-socket>`                       | Create a socket              |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket.tcp_connect() <socket-tcp_connect>`      | Connect a socket to a remote |
+        |                                                       | host                         |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket.getaddrinfo() <socket-getaddrinfo>`      | Get information about        |
+        |                                                       | a remote site                |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket.tcp_server() <socket-tcp_server>`        | Make Tarantool act as a TCP  |
+        |                                                       | server                       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:sysconnect() <socket-sysconnect>` | Connect a socket to a remote |
+        |                                                       | host                         |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:send() <socket-send>` |br|        | Send data over a connected   |
+        | :ref:`socket_object:write() <socket-send>`            | socket                       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:syswrite() <socket-syswrite>`     | Write data to the socket     |
+        |                                                       | buffer if non-blocking       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:recv() <socket-recv>`             | Read from a connected socket |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:sysread() <socket-sysread>`       | Read data from the socket    |
+        |                                                       | buffer if non-blocking       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:bind() <socket-bind>`             | Bind a socket to the given   |
+        |                                                       | host/port                    |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:listen() <socket-listen>`         | Start listening for          |
+        |                                                       | incoming connections         |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:accept() <socket-accept>`         | Accept a client connection + |
+        |                                                       | create a connected socket    |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:sendto() <socket-sendto>`         | Send a message on a UDP      |
+        |                                                       | socket to a specified host   |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:recvfrom() <socket-recvfrom>`     | Receive a message on a UDP   |
+        |                                                       | socket                       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:shutdown() <socket-shutdown>`     | Shut down a reading end, a   |
+        |                                                       | writing end, or both         |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:close() <socket-close>`           | Close a socket               |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:error() <socket-error>` |br|      | Get information about the    |
+        | :ref:`socket_object:errno() <socket-error>`           | last error on a socket       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:setsockopt() <socket-setsockopt>` | Set socket flags             |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:getsockopt() <socket-getsockopt>` | Get socket flags             |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:linger() <socket-linger>`         | Set/clear the SO_LINGER flag |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:nonblock() <socket-nonblock>`     | Set/get the flag value       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:readable() <socket-readable>`     | Wait until something is      |
+        |                                                       | readable                     |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:writable() <socket-writable>`     | Wait until something is      |
+        |                                                       | writable                     |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:wait() <socket-wait>`             | Wait until something is      |
+        |                                                       | either readable or writable  |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:name() <socket-name>`             | Get information about the    |
+        |                                                       | connection's near side       |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket_object:peer() <socket-peer>`             | Get information about the    |
+        |                                                       | connection's far side        |
+        +-------------------------------------------------------+------------------------------+
+        | :ref:`socket.iowait() <socket-iowait>`                | Wait for read/write activity |
+        +-------------------------------------------------------+------------------------------+
 
 Typically a socket session will begin with the setup functions, will set one
 or more flags, will have a loop with sending and receiving functions, will

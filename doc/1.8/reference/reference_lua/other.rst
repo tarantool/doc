@@ -2,6 +2,27 @@
                                Miscellaneous
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of miscellaneous functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`tonumber64()                   | Convert a string or a Lua       |
+        | <other-tonumber64>`                  | number to a 64-bit integer      |
+        +--------------------------------------+---------------------------------+
+        | :ref:`dostring()                     | Parse and execute an arbitrary  |
+        | <other-dostring>`                    | chunk of Lua code               |
+        +--------------------------------------+---------------------------------+
+
 .. _other-tonumber64:
 
 .. function:: tonumber64(value)
@@ -36,6 +57,8 @@
         - 0
         - 1000000000000000000
         ...
+
+.. _other-dostring:
 
 .. function:: dostring(lua-chunk-string [, lua-chunk-string-argument ...])
 

@@ -4,15 +4,84 @@
                             Submodule `box.index`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``box.index`` submodule provides read-only access for index definitions and
-index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array within
-each space object. They provide an API for ordered iteration over tuples. This
-API is a direct binding to corresponding methods of index objects of type
+index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array
+within each space object. They provide an API for ordered iteration over tuples.
+This API is a direct binding to corresponding methods of index objects of type
 ``box.index`` in the storage engine.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``box.index`` functions and members.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`index_object.unique            | Flag, true if an index is       |
+        | <box_index-unique>`                  | unique                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object.type              | Index type                      |
+        | <box_index-type>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object.parts             | Array of index key fields       |
+        | <box_index-parts>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:pairs()           | Prepare for iterating           |
+        | <box_index-index_pairs>`             |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:select()          | Select one or more tuples       |
+        | <box_index-select>`                  | via index                       |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:get()             | Select a tuple via index        |
+        | <box_index-get>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:min()             | Find the minimum value in index |
+        | <box_index-min>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:max()             | Find the maximum value in index |
+        | <box_index-max>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:random()          | Find a random value in index    |
+        | <box_index-random>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:count()           | Count tuples matching key value |
+        | <box_index-count>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:update()          | Update a tuple                  |
+        | <box_index-update>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:delete()          | Delete a tuple by key           |
+        | <box_index-delete>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:alter()           | Alter an index                  |
+        | <box_index-alter>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:drop()            | Drop an index                   |
+        | <box_index-drop>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:rename()          | Rename an index                 |
+        | <box_index-rename>`                  |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`index_object:bsize()           | Get count of bytes for an index |
+        | <box_index-bsize>`                   |                                 |
+        +--------------------------------------+---------------------------------+
 
 .. module:: box.index
 
 .. class:: index_object
+
+    .. _box_index-unique:
 
     .. data:: unique
 
@@ -20,9 +89,13 @@ API is a direct binding to corresponding methods of index objects of type
 
         :rtype: boolean
 
+    .. _box_index-type:
+
     .. data:: type
 
         Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'.
+
+    .. _box_index-parts:
 
     .. data:: parts
 
@@ -86,9 +159,11 @@ API is a direct binding to corresponding methods of index objects of type
                  used in a for/end loop or with `totable()
                  <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
 
-        **Possible errors:** No such space; wrong type; Selected iteration type
-        is not supported for the index type; or key is not supported for the
-        iteration type.
+        **Possible errors:**
+
+        * no such space; wrong type;
+        * selected iteration type is not supported for the index type;
+        * key is not supported for the iteration type.
 
         **Complexity factors:** Index size, Index type; Number of tuples
         accessed.
@@ -154,7 +229,6 @@ API is a direct binding to corresponding methods of index objects of type
             |               |           | index key.                                  |
             +---------------+-----------+---------------------------------------------+
 
-
             Informally, we can state that searches with TREE indexes are
             generally what users will find is intuitive, provided that there
             are no nils and no missing parts. Formally, the logic is as follows.
@@ -200,7 +274,6 @@ API is a direct binding to corresponding methods of index objects of type
                     return TRUE
                   }
                 }
-
 
             **Iterator types for HASH indexes**
 
@@ -323,7 +396,7 @@ API is a direct binding to corresponding methods of index objects of type
             |                    |           | Tuples are returned in order: nearest neighbor first.   |
             +--------------------+-----------+---------------------------------------------------------+
 
-        **First Example of index pairs():**
+        **First example of index pairs():**
 
         Default 'TREE' Index and ``pairs()`` function:
 
@@ -373,7 +446,7 @@ API is a direct binding to corresponding methods of index objects of type
             ---
             ...
 
-        **Second Example of index pairs():**
+        **Second example of index pairs():**
 
         This Lua code finds all the tuples whose primary key values begin with 'XY'.
         The assumptions include that there is a one-part primary-key
@@ -391,7 +464,7 @@ API is a direct binding to corresponding methods of index objects of type
               print(tuple)
             end
 
-        **Third Example of index pairs():**
+        **Third example of index pairs():**
 
         This Lua code finds all the tuples whose primary key values are
         greater than or equal to 1000, and less than or equal to 1999
@@ -563,7 +636,11 @@ API is a direct binding to corresponding methods of index objects of type
         :return: the tuple whose index-key fields are equal to the passed key values.
         :rtype:  tuple
 
-        **Possible errors:** No such index; wrong type; more than one tuple matches.
+        **Possible errors:**
+
+        * no such index;
+        * wrong type;
+        * more than one tuple matches.
 
         **Complexity factors:** Index size, Index type.
         See also :ref:`space_object:get() <box_space-get>`.
@@ -651,10 +728,7 @@ API is a direct binding to corresponding methods of index objects of type
 
         **Complexity factors:** Index size, Index type.
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl does not support ``random()``.
+        **Note re storage engine:** vinyl does not support ``random()``.
 
         **Example:**
 
@@ -693,6 +767,8 @@ API is a direct binding to corresponding methods of index objects of type
             - 1
             ...
 
+    .. _box_index-update:
+
     .. method:: update(key, {{operator, field_no, value}, ...})
 
         Update a tuple.
@@ -714,6 +790,8 @@ API is a direct binding to corresponding methods of index objects of type
         :return: the updated tuple.
         :rtype:  tuple
 
+    .. _box_index-delete:
+
     .. method:: delete(key)
 
         Delete a tuple identified by a key.
@@ -729,10 +807,8 @@ API is a direct binding to corresponding methods of index objects of type
         :return: the deleted tuple.
         :rtype:  tuple
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl will return `nil`, rather than the deleted tuple.
+        **Note re storage engine:**
+        vinyl will return `nil`, rather than the deleted tuple.
 
     .. _box_index-alter:
 
@@ -747,14 +823,13 @@ API is a direct binding to corresponding methods of index objects of type
 
         :return: nil
 
-        **Possible errors:** Index does not exist, or
-        the first index cannot be changed to {unique = false}, or
-        the alter function is only applicable for the memtx storage engine.
+        **Possible errors:**
 
-        .. NOTE::
+        * index does not exist,
+        * the first index cannot be changed to {unique = false},
+        * the alter function is only applicable for the memtx storage engine.
 
-            | Note re storage engine:
-            | vinyl does not support ``alter()``.
+        **Note re storage engine:** vinyl does not support ``alter()``.
 
         **Example:**
 
@@ -776,8 +851,11 @@ API is a direct binding to corresponding methods of index objects of type
 
         :return: nil.
 
-        **Possible errors:** Index does not exist, or a primary-key index cannot
-        be dropped while a secondary-key index exists.
+        **Possible errors:**
+
+        * index does not exist,
+        * a primary-key index cannot be dropped while a secondary-key index
+          exists.
 
         **Example:**
 
@@ -786,6 +864,8 @@ API is a direct binding to corresponding methods of index objects of type
             tarantool> box.space.space55.index.primary:drop()
             ---
             ...
+
+    .. _box_index-rename:
 
     .. method:: rename(index-name)
 
@@ -808,6 +888,8 @@ API is a direct binding to corresponding methods of index objects of type
             ...
 
         **Complexity factors:** Index size, Index type, Number of tuples accessed.
+
+    .. _box_index-bsize:
 
     .. method:: bsize()
 

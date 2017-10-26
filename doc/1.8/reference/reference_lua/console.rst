@@ -4,9 +4,43 @@
                                    Module `console`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The console module allows one Tarantool instance to access another Tarantool
 instance, and allows one Tarantool instance to start listening on an
 :ref:`admin port <admin-security>`.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``console`` functions.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: left-align-column-2
+
+        +--------------------------------------+---------------------------------+
+        | Name                                 | Use                             |
+        +======================================+=================================+
+        | :ref:`console.connect()              | Connect to an instance          |
+        | <console-connect>`                   |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`console.listen()               | Listen for incoming requests    |
+        | <console-listen>`                    |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`console.start()                | Start the console               |
+        | <console-start>`                     |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`console.ac()                   | Set the auto-completion flag    |
+        | <console-ac>`                        |                                 |
+        +--------------------------------------+---------------------------------+
+        | :ref:`console.delimiter()            | Set a delimiter                 |
+        | <console-delimiter>`                 |                                 |
+        +--------------------------------------+---------------------------------+
 
 .. module:: console
 
