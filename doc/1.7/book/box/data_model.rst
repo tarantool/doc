@@ -330,45 +330,94 @@ Collations
 --------------------------------------------------------------------------------
 
 By default, when Tarantool compares strings, it uses what we call a
-"binary" collation. The only consideration is the numeric value of
-each byte in the string. Therefore, if the string is encoded with
-ASCII or UTF-8, then 'A' < 'B' < 'a', because the encoding of 'A'
+**"binary" collation**. The only consideration here is the numeric value
+of each byte in the string. Therefore, if the string is encoded
+with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of 'A'
 (what used to be called the "ASCII value") is 65, the encoding of
 'B' is 66, and the encoding of 'a' is 98. Binary collation is best
 if you prefer fast deterministic simple maintenance and searching
 with Tarantool indexes.
 
-But if you want the order that you see in phone books and dictionaries,
-then either 'A' < 'a' < 'B' or 'A' = 'a' < 'B'. These are Tarantool's
-optional collations, ``unicode`` and ``unicode_s1``. In fact, though,
-good collation involves much more than these simple examples of
+But if you want the ordering that you see in phone books and dictionaries,
+then you need Tarantool's **optional collations** -- ``unicode`` and
+``unicode_s1`` -- that allow for ``'A' < 'a' < 'B'`` and ``'A' = 'a' < 'B'``
+respectively.
+
+Optional collations use the ordering according to the
+`Default Unicode Collation Element Table (DUCET) <http://unicode.org/reports/tr10/#Default_Unicode_Collation_Element_Table>`_
+and the rules described in
+`Unicode® Technical Standard #10 Unicode Collation Algorithm (UTS #10 UCA) <http://unicode.org/reports/tr10>`_.
+The only difference between the two collations is about
+`weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:
+
+* ``unicode`` collation observes four weight levels, from L1 to L4,
+* ``unicode_s1`` collation observes only L1 weights.
+
+As an example, let's take some Russian words:
+
+  .. code-block:: text
+
+      'ЕЛЕ'
+      'елейный'
+      'ёлка'
+      'еловый'
+      'елозить'
+      'Ёлочка'
+      'ёлочный'
+      'ЕЛь'
+      'ель'
+
+...and show the difference in ordering and selecting by index:
+
+* with ``unicode`` collation:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode'}}})
+      ...
+      tarantool> box.space.T.index.I:select()
+      ---
+      - - ['ЕЛЕ']
+        - ['елейный']
+        - ['ёлка']
+        - ['еловый']
+        - ['елозить']
+        - ['Ёлочка']
+        - ['ёлочный']
+        - ['ель']
+        - ['ЕЛь']
+      ...
+      tarantool> box.space.T.index.I:select{'ЁлКа'}
+      ---
+      - []
+      ...
+
+* with ``unicode_s1`` collation:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode_s1'}}})
+      ...
+      tarantool> box.space.S.index.I:select()
+      ---
+      - - ['ЕЛЕ']
+        - ['елейный']
+        - ['ёлка']
+        - ['еловый']
+        - ['елозить']
+        - ['Ёлочка']
+        - ['ёлочный']
+        - ['ЕЛь']
+      ...
+      tarantool> box.space.S.index.I:select{'ЁлКа'}
+      ---
+      - - ['ёлка']
+      ...
+
+In fact, though, good collation involves much more than these simple examples of
 upper case / lower case equivalence in alphabets.
 We also consider accent marks, non-alphabetic writing systems,
 and special rules that apply for combinations of characters.
-
-The optional collations always use the ordering according to the
-`Default Unicode Collation Element Table <http://unicode.org/Public/UCA/latest/allkeys.txt>`_
-and the rules described in
-`Unicode® Technical Standard #10 Unicode Collation Algorithm <http://unicode.org/reports/tr10>`_.
-The optional collations are best if you prefer the standard multilingual
-end-user-oriented order in Tarantool indexes.
-
-Example showing the order of some Russian words with ``unicode_s1`` collation:
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.T:create_index('I', {parts = {1,'str', collation='unicode_s1'}})
-    ...
-    tarantool> box.space.T.index.I:select()
-    ---
-    - - ['ЕЛЕ']
-      - ['елейный']
-      - ['ёлка']
-      - ['еловый']
-      - ['елозить']
-      - ['Ёлочка']
-      - ['ёлочный']
-      - ['ЕЛь']
 
 .. _index-box_sequence:
 
