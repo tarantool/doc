@@ -32,10 +32,10 @@ Below is a list of all additional ``string`` functions.
         | Name                                 | Use                             |
         +======================================+=================================+
         | :ref:`string.ljust()                 | Left-justify a string           |
-        | <string-ljust:>`                     |                                 |
+        | <string-ljust>`                      |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`string.rjust()                 | Right-justify a string          |
-        | <string-rjust`                       |                                 |
+        | <string-rjust>`                      |                                 |
         +--------------------------------------+---------------------------------+
         | :ref:`string.hex()                   | Get the hexadecimal value of a  |
         | <string-hex>`                        | string                          |
