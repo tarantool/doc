@@ -9,9 +9,9 @@
 ===============================================================================
 
 The ``box.index`` submodule provides read-only access for index definitions and
-index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array within
-each space object. They provide an API for ordered iteration over tuples. This
-API is a direct binding to corresponding methods of index objects of type
+index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array
+within each space object. They provide an API for ordered iteration over tuples.
+This API is a direct binding to corresponding methods of index objects of type
 ``box.index`` in the storage engine.
 
 ===============================================================================
@@ -159,9 +159,11 @@ Below is a list of all ``box.index`` functions and members.
                  used in a for/end loop or with `totable()
                  <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
 
-        **Possible errors:** No such space; wrong type; Selected iteration type
-        is not supported for the index type; or key is not supported for the
-        iteration type.
+        **Possible errors:**
+
+        * no such space; wrong type;
+        * selected iteration type is not supported for the index type;
+        * key is not supported for the iteration type.
 
         **Complexity factors:** Index size, Index type; Number of tuples
         accessed.
@@ -227,7 +229,6 @@ Below is a list of all ``box.index`` functions and members.
             |               |           | index key.                                  |
             +---------------+-----------+---------------------------------------------+
 
-
             Informally, we can state that searches with TREE indexes are
             generally what users will find is intuitive, provided that there
             are no nils and no missing parts. Formally, the logic is as follows.
@@ -273,7 +274,6 @@ Below is a list of all ``box.index`` functions and members.
                     return TRUE
                   }
                 }
-
 
             **Iterator types for HASH indexes**
 
@@ -396,7 +396,7 @@ Below is a list of all ``box.index`` functions and members.
             |                    |           | Tuples are returned in order: nearest neighbor first.   |
             +--------------------+-----------+---------------------------------------------------------+
 
-        **First Example of index pairs():**
+        **First example of index pairs():**
 
         Default 'TREE' Index and ``pairs()`` function:
 
@@ -446,7 +446,7 @@ Below is a list of all ``box.index`` functions and members.
             ---
             ...
 
-        **Second Example of index pairs():**
+        **Second example of index pairs():**
 
         This Lua code finds all the tuples whose primary key values begin with 'XY'.
         The assumptions include that there is a one-part primary-key
@@ -464,7 +464,7 @@ Below is a list of all ``box.index`` functions and members.
               print(tuple)
             end
 
-        **Third Example of index pairs():**
+        **Third example of index pairs():**
 
         This Lua code finds all the tuples whose primary key values are
         greater than or equal to 1000, and less than or equal to 1999
@@ -636,7 +636,11 @@ Below is a list of all ``box.index`` functions and members.
         :return: the tuple whose index-key fields are equal to the passed key values.
         :rtype:  tuple
 
-        **Possible errors:** No such index; wrong type; more than one tuple matches.
+        **Possible errors:**
+
+        * no such index;
+        * wrong type;
+        * more than one tuple matches.
 
         **Complexity factors:** Index size, Index type.
         See also :ref:`space_object:get() <box_space-get>`.
@@ -724,10 +728,7 @@ Below is a list of all ``box.index`` functions and members.
 
         **Complexity factors:** Index size, Index type.
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl does not support ``random()``.
+        **Note re storage engine:** vinyl does not support ``random()``.
 
         **Example:**
 
@@ -806,10 +807,8 @@ Below is a list of all ``box.index`` functions and members.
         :return: the deleted tuple.
         :rtype:  tuple
 
-        .. NOTE::
-
-            | Note re storage engine:
-            | vinyl will return `nil`, rather than the deleted tuple.
+        **Note re storage engine:**
+        vinyl will return `nil`, rather than the deleted tuple.
 
     .. _box_index-alter:
 
@@ -824,14 +823,13 @@ Below is a list of all ``box.index`` functions and members.
 
         :return: nil
 
-        **Possible errors:** Index does not exist, or
-        the first index cannot be changed to {unique = false}, or
-        the alter function is only applicable for the memtx storage engine.
+        **Possible errors:**
 
-        .. NOTE::
+        * index does not exist,
+        * the first index cannot be changed to {unique = false},
+        * the alter function is only applicable for the memtx storage engine.
 
-            | Note re storage engine:
-            | vinyl does not support ``alter()``.
+        **Note re storage engine:** vinyl does not support ``alter()``.
 
         **Example:**
 
@@ -853,8 +851,11 @@ Below is a list of all ``box.index`` functions and members.
 
         :return: nil.
 
-        **Possible errors:** Index does not exist, or a primary-key index cannot
-        be dropped while a secondary-key index exists.
+        **Possible errors:**
+
+        * index does not exist,
+        * a primary-key index cannot be dropped while a secondary-key index
+          exists.
 
         **Example:**
 
