@@ -12,7 +12,7 @@ Tarantool - About
     <div class="row">
         <div class="row pic-row">
             <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                <img src="../_static/images/tarantool-io/about/mailru-bike-girl.jpg">
+                <img src="_static/images/tarantool-io/about/mailru-bike-girl.jpg">
             </div>
             <div class="col-xs-12 col-sm-6 pic-col">
                 <p>
@@ -29,12 +29,12 @@ Tarantool - About
                     </p>
                 </div>
                 <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                    <img src="../_static/images/tarantool-io/about/About-office.jpg">
+                    <img src="_static/images/tarantool-io/about/About-office.jpg">
                 </div>
             </span>
             <span class="hidden-sm hidden-md hidden-lg">
                 <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                    <img src="../_static/images/tarantool-io/about/About-office.jpg">
+                    <img src="_static/images/tarantool-io/about/About-office.jpg">
                 </div>
                 <div class="col-xs-12 col-sm-6 pic-col">
                     <p>
@@ -46,7 +46,7 @@ Tarantool - About
         </div>
         <div class="row pic-row">
             <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                <img src="../_static/images/tarantool-io/about/AboutUs2.jpg">
+                <img src="_static/images/tarantool-io/about/AboutUs2.jpg">
             </div>
             <div class="col-xs-12 col-sm-6 pic-col">
                 <p>
@@ -66,7 +66,7 @@ Tarantool - About
         <div class="row">
             <div class="col-sm-2 col-sm-offset-1">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/32.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/32.jpg">
                     <figcaption class="text-center">
                         <span class="name">Wasim Ahmed</span><br>
                         <span class="title">Designer</span>
@@ -75,7 +75,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/5.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/5.jpg">
                     <figcaption class="text-center">
                         <span class="name">Dennis Anikin</span><br>
                         <span class="title">General Manager</span>
@@ -84,7 +84,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/29.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/29.jpg">
                     <figcaption class="text-center">
                         <span class="name">Evan Bates</span><br>
                         <span class="title">Technical Marketing Associate</span>
@@ -93,7 +93,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/4.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/4.jpg">
                     <figcaption class="text-center">
                         <span class="name">Eugene Blikh</span><br>
                         <span class="title">Software Engineer</span>
@@ -102,7 +102,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/2.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/2.jpg">
                     <figcaption class="text-center">
                         <span class="name">Nataliya Bogdanovich</span><br>
                         <span class="title">Head of Worldwide PR</span>
@@ -113,7 +113,7 @@ Tarantool - About
         <div class="row">
             <div class="col-sm-2 col-sm-offset-1">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/3.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/3.jpg">
                     <figcaption class="text-center">
                         <span class="name">Julie Casson</span><br>
                         <span class="title">Marketing Consultant</span>
@@ -122,7 +122,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/1.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/1.jpg">
                     <figcaption class="text-center">
                         <span class="name">Vladimir Davydov</span><br>
                         <span class="title">Software Engineer</span>
@@ -131,7 +131,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/7.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/7.jpg">
                     <figcaption class="text-center">
                         <span class="name">Daniel Dehkanov</span><br>
                         <span class="title">Designer</span>
@@ -139,7 +139,7 @@ Tarantool - About
                 </figure>
             </div>
             <div class="col-sm-2">
-                <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/6.jpg">
+                <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/6.jpg">
                 <figcaption class="text-center">
                     <span class="name">David Goodman</span><br>
                     <span class="title">Full Stack Web Developer</span>
@@ -147,7 +147,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/22.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/22.jpg">
                     <figcaption class="text-center">
                         <span class="name">Olga Filatova</span><br>
                         <span class="title">Vice President of HR</span>
@@ -158,7 +158,7 @@ Tarantool - About
         <div class="row">
             <div class="col-sm-2 col-sm-offset-1">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/27.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/27.jpg">
                     <figcaption class="text-center">
                         <span class="name">Julia Khokhryakova</span><br>
                         <span class="title">HR Manager</span>
@@ -167,7 +167,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/26.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/26.jpg">
                     <figcaption class="text-center">
                         <span class="name">Georgiy Kirichenko</span><br>
                         <span class="title">Software Engineer</span>
@@ -176,7 +176,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/24.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/24.jpg">
                     <figcaption class="text-center">
                         <span class="name">Alex Lyapunov</span><br>
                         <span class="title">Software Engineer</span>
@@ -185,7 +185,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/25.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/25.jpg">
                     <figcaption class="text-center">
                         <span class="name">Eli Markov</span><br>
                         <span class="title">Software Engineer</span>
@@ -194,7 +194,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/14.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/14.jpg">
                     <figcaption class="text-center">
                         <span class="name">Konstantin Nazarov</span><br>
                         <span class="title">Head of Cloud</span>
@@ -205,7 +205,7 @@ Tarantool - About
         <div class="row">
             <div class="col-sm-2 col-sm-offset-1">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/23.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/23.jpg">
                     <figcaption class="text-center">
                         <span class="name">Tyler Norkus</span><br>
                         <span class="title">Director of Sales and Marketing</span>
@@ -214,7 +214,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/13.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/13.jpg">
                     <figcaption class="text-center">
                         <span class="name">Konstantin Osipov</span><br>
                         <span class="title">Chief Technology Officer</span>
@@ -223,7 +223,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/11.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/11.jpg">
                     <figcaption class="text-center">
                         <span class="name">Vadim Popov</span><br>
                         <span class="title">Senior Technical Writer</span>
@@ -232,7 +232,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/31.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/31.jpg">
                     <figcaption class="text-center">
                         <span class="name">Irina Rimecode</span><br>
                         <span class="title">Technical Writer</span>
@@ -241,7 +241,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/15.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/15.jpg">
                     <figcaption class="text-center">
                         <span class="name">Elena Shebunyaeva</span><br>
                         <span class="title">Head of Technical Communications</span>
@@ -252,7 +252,7 @@ Tarantool - About
         <div class="row">
             <div class="col-sm-2 col-sm-offset-1">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/9.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/9.jpg">
                     <figcaption class="text-center">
                         <span class="name">Vlad Shpilevoy</span><br>
                         <span class="title">Software Engineer</span>
@@ -261,7 +261,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/10.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/10.jpg">
                     <figcaption class="text-center">
                         <span class="name">Vasiliy Soshnikov</span><br>
                         <span class="title">Head of Presales Engineering</span>
@@ -270,7 +270,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/28.png">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/28.png">
                     <figcaption class="text-center">
                         <span class="name">Vladimir Tomalchev</span><br>
                         <span class="title">Business Development Executive</span>
@@ -279,7 +279,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/16.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/16.jpg">
                     <figcaption class="text-center">
                         <span class="name">Alexander Turenko</span><br>
                         <span class="title">Solution Engineer</span>
@@ -288,7 +288,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/17.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/17.jpg">
                     <figcaption class="text-center">
                         <span class="name">Roman Tsisyk</span><br>
                         <span class="title">Lead Engineer, Server</span>
@@ -299,7 +299,7 @@ Tarantool - About
         <div class="row">
             <div class="col-sm-2 col-sm-offset-3">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/30.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/30.jpg">
                     <figcaption class="text-center">
                         <span class="name">Tanzid Tushan</span><br>
                         <span class="title">Business Development Representative</span>
@@ -308,7 +308,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/20.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/20.jpg">
                     <figcaption class="text-center">
                         <span class="name">Kirill Yukhin</span><br>
                         <span class="title">Lead SQL Engineer</span>
@@ -317,7 +317,7 @@ Tarantool - About
             </div>
             <div class="col-sm-2">
                 <figure>
-                    <img class="img-circle img-responsive" src="../_static/images/tarantool-io/People/19.jpg">
+                    <img class="img-circle img-responsive" src="_static/images/tarantool-io/People/19.jpg">
                     <figcaption class="text-center">
                         <span class="name">Maria Yurina</span><br>
                         <span class="title">Attorney</span>

@@ -7,20 +7,20 @@ Tarantool - Enterprise
 
 .. raw:: html
 
-    <div class="jumbotron" style="background-image: url('../../_static/images/tarantool-io/banners/unwired-iiot-jumbo.jpg'); height:600px;">
+    <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/unwired-iiot-jumbo.jpg'); height:600px;">
         <section id="jumbo-product-enterprise">
             <div class="row ">
                 <div class="enterprise-jumbo-col col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                     <div class="row">
                         <div class="col-xs-10 col-xs-offset-1">
-                            <img id='enterpise-jumbo-text' src="../../_static/images/tarantool-io/product-page/unwired/iiot-text.png" class="img-responsive">
+                            <img id='enterpise-jumbo-text' src="../_static/images/tarantool-io/product-page/unwired/iiot-text.png" class="img-responsive">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
                             <div id="" class="video-icon-wrap try-icon-wrap text-center pull-right">
                             <span class="">
-                                <a href="/unwired"><img id='' src="../../_static/images/tarantool-io/bullets/check-icon.png"></a>
+                                <a href="/unwired"><img id='' src="../_static/images/tarantool-io/bullets/check-icon.png"></a>
                             </span>
                             <a href="/try-it"><span id="video-watch-text">Free Trial</span></a>
                             </div>
@@ -28,7 +28,7 @@ Tarantool - Enterprise
                         <div class="col-xs-6">
                             <div id="" class="video-icon-wrap text-center">
                             <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/hdAVERxWbEo">
-                                <img id='' src="../../_static/images/tarantool-io/video-icon-100-x-100.png">
+                                <img id='' src="../_static/images/tarantool-io/video-icon-100-x-100.png">
                             </span>
                                 <span id="video-watch-text">Watch Video</span>
                             </div>
@@ -45,11 +45,11 @@ Tarantool - Enterprise
         <div class="row margin">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <ul class="bullet">
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>If you're a tech maven or a legacy loyalist, you're in luck</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Rapid hub deployment to interact with new and existing hardware</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Gather rapid intelligence from the field.</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Control business logic to more efficiently manage your data and network</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Unified data view to create efficiencies in your industrial internet of things</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>If you're a tech maven or a legacy loyalist, you're in luck</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Rapid hub deployment to interact with new and existing hardware</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Gather rapid intelligence from the field.</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Control business logic to more efficiently manage your data and network</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Unified data view to create efficiencies in your industrial internet of things</li>
                 </ul>
             </div>
         </div>
@@ -66,11 +66,11 @@ Tarantool - Enterprise
                         following parts.</p>
                 </div>
                 <ul class="bullet">
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>A fast database management system</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>A fast application server</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>A set of modules to interact with many sensor protocols, such as MQTT or MRAA</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Master-master and master-slave replication mechanisms</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Replication within the site and between the site and the cloud</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>A fast database management system</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>A fast application server</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>A set of modules to interact with many sensor protocols, such as MQTT or MRAA</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Master-master and master-slave replication mechanisms</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Replication within the site and between the site and the cloud</li>
                 </ul>
             </div>
         </div>
@@ -82,17 +82,17 @@ Tarantool - Enterprise
             </div>
         </div>
         <div class="row">
-            <img style="width:100%" src="../../_static/images/tarantool-io/product-page/unwired/unwired-sensors.png" class="img-responsive">
+            <img style="width:100%" src="../_static/images/tarantool-io/product-page/unwired/unwired-sensors.png" class="img-responsive">
         </div>
         <div class="row strategic gray-background">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <h2 class="text-center">Strategic Goals</h2>
                 <ul class="bullet">
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Rapidly deploy more sensore or new hubs</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Use commondity hardware and flexibly source</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Avoid cosst and imporve performance with high velocity data</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Allow local and centralized management, or both</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Do it with a faster, more cost-effective, and simpler approach.</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Rapidly deploy more sensore or new hubs</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Use commondity hardware and flexibly source</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Avoid cosst and imporve performance with high velocity data</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Allow local and centralized management, or both</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Do it with a faster, more cost-effective, and simpler approach.</li>
                 </ul>
             </div>
         </div>
@@ -204,13 +204,13 @@ Tarantool - Enterprise
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <h3 class="text-center">Your needs go beyond basics?</h3>
                 <ul class="bullet">
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-check-bullet.png'>Tarantool and Tarantool IoT are both fully programmable platforms</li>
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-check-bullet.png'>They support scripting languages, for example Lua, a de facto standard in embedded systems,
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-check-bullet.png'>Tarantool and Tarantool IoT are both fully programmable platforms</li>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-check-bullet.png'>They support scripting languages, for example Lua, a de facto standard in embedded systems,
                     as well as low level languages like C and C++</li>
                 </ul>
                 <h3 class="text-center">Don't feel like writing code on your own?</h3>
                 <ul class="bullet">
-                    <li><img src='../../_static/images/tarantool-io/bullets/orange-check-bullet.png'>
+                    <li><img src='../_static/images/tarantool-io/bullets/orange-check-bullet.png'>
                         We got it covered. We'll code any business logic on top of Tarantool to solve your specific problem</li>
                 </ul>
             </div>
@@ -220,7 +220,7 @@ Tarantool - Enterprise
             <a href="/live-demo"><button type="button" class="product-btn orange-btn text-center">Live Demo</button></a>
         </div>
 
-.. include:: ../social-icons.rst
+.. include:: ../tarantool-io/social-icons.rst
 
 .. raw:: html
 
