@@ -7,6 +7,31 @@ Tarantool - Blog
 
 .. raw:: html
     
+    <section id="whitepapers">
+        <h2 class="text-center">White Papers</h2>
+        <div class="row article-row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-4">
+                <div class="container-fluid">
+                    <a href="/white-paper1">
+                        <div class="news-and-press-box paper">
+                            <div class="box-header">
+                                <span class="press-image-red">
+                                    <img src="_static/images/tarantool-io/icons/press-release-46-x-38.png"/>
+                                </span>
+                                <h4>
+                                    White Paper
+                                </h4>
+                            </div>
+                            <div class="box-body">
+                                <p>Optimizing Your Application and Microservice Performance</p>
+                                <span class="download">Download the white paper here</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="ideas">
         <h2 class="text-center">Thought Leadership</h2>
         <div class="row article-row">
@@ -16,7 +41,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                 Article
@@ -38,7 +63,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                 Article
@@ -60,7 +85,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                 Article
@@ -82,7 +107,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -103,7 +128,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -124,7 +149,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -145,7 +170,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -166,7 +191,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -187,7 +212,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -208,7 +233,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -229,7 +254,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -250,7 +275,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -271,7 +296,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -292,7 +317,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -313,7 +338,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -334,7 +359,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -355,7 +380,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -376,7 +401,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -398,7 +423,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -419,7 +444,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -440,7 +465,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -461,7 +486,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -482,7 +507,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -503,7 +528,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -524,7 +549,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -545,7 +570,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -566,7 +591,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -587,7 +612,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -608,7 +633,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -629,7 +654,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -650,7 +675,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -671,7 +696,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -692,7 +717,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
@@ -713,7 +738,7 @@ Tarantool - Blog
                         <div class="news-and-press-box news">
                             <div class="box-header">
                         <span class="news-image-gray">
-                            <img src="../_static/images/tarantool-io/news-icon.png"/>
+                            <img src="_static/images/tarantool-io/news-icon.png"/>
                         </span>
                                 <h4>
                                     Article
