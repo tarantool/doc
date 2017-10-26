@@ -243,14 +243,14 @@
 {# Modify i_links to add records to site #}
 {% if not wp_local %}
   {% set i_links = [
-    ("Main",          "https://tarantool.org/{{ language }}/",                             "index"   ),
+    ("Developers",    "https://tarantool.org/{{ language }}/developers.html",              "index"   ),
     ("Try",           "https://tarantool.org/{{ language }}/try.html",                     "try"     ),
     ("Documentation", "https://tarantool.org/{{ language }}/doc/{{ version }}/index.html", "doc"     ),
     ("Download",      "https://tarantool.org/{{ language }}/download/download.html",       "download/download"),
   ] %}
 {% else %}
   {% set i_links = [
-    ("Developers",          abspath("index.html"),                     "index"   ),
+    ("Developers",    abspath("developers.html"),                "index"   ),
     ("Try",           abspath("try.html"),                       "try"     ),
     ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
     ("Download",      abspath("download/download.html"),         "download/download"),
@@ -304,7 +304,7 @@
                                 <a href="{{ abspath('tarantool-io/try-it.html') }}"><li>Features</li></a>
                                 <a href="{{ abspath('tarantool-io/product/enterprise.html') }}"><li>Enterprise</li></a>
                                 <a href="{{ abspath('tarantool-io/product/unwired-iiot.html') }}"><li>IIoT</li></a>
-                                <a href="{{ abspath('tarantool-io/developers.html') }}"><li>Developers</li></a>
+                                <a href="{{ abspath('developers.html') }}"><li>Developers</li></a>
                                 <a href="{{ abspath('tarantool-io/news-and-press.html') }}"><li>News</li></a>
                                 <a href="https://support.tarantool.org/"><li>Support</li></a>
                                 <a href="{{ abspath('tarantool-io/about.html') }}"><li>About Us</li></a>
@@ -319,7 +319,7 @@
                     <li><a href="{{ abspath('tarantool-io/challenge.html') }}">Challenge</a></li>
                     <li><a href="{{ abspath('tarantool-io/product/enterprise.html') }}">Enterprise</a></li>
                     <li><a href="{{ abspath('tarantool-io/product/unwired-iiot.html') }}">IIoT</a></li>
-                    <li><a href="{{ abspath('tarantool-io/developers.html') }}">Developers</a></li>
+                    <li><a href="{{ abspath('developers.html') }}">Developers</a></li>
                     <li><a href="{{ abspath('tarantool-io/blog.html') }}">Blog</a></li>
                     <li><a href="{{ abspath('tarantool-io/news-and-press.html') }}">News</a></li>
                     <li><a href="{{ abspath('tarantool-io/about.html') }}">About Us</a></li>
@@ -330,8 +330,67 @@
                 </ul>
             </div>
         </div>
-      </nav>  
+      </nav> 
     </header>
+    {% if pagename in ["index"] %}
+
+      <div id="sg-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <!-- Carousel items -->
+        <div class="carousel-inner carousel-zoom">
+          <div class="item active">
+            <img id="carousel-bg" style="max-width: none; width: 1600px; height:850px;" class="img-responsive" src="_static/images/tarantool-io/banners/main-banner1.jpg"
+              alt="">
+            <div class="carousel-content">
+              <p id="jumbo-text" class="text-center hidden-sm hidden-md hidden-lg">
+                <br>
+              </p>
+              <p id="jumbo-text" class="text-center hidden-sm hidden-md hidden-lg">
+                <img id='' style="width: 80%; height: auto;" src="_static/images/tarantool-io/banners/main-banner1-text.png">
+              </p>
+              <div id="large-jumbo-text-wrap">
+                <p class="jumbo-text-large text-center hidden-xs">
+                  <br>
+                </p>
+                <p class="jumbo-text-large text-center hidden-xs">
+                  <img id='' style="width: 80%; height: auto;" src="_static/images/tarantool-io/banners/main-banner1-text.png">
+                </p>
+              </div>
+              <a type="button" id="learn-more-button" class="btn" href="/challenge">LEARN MORE</a>
+            </div>
+          </div>
+          <div class="item">
+            <img id="carousel-bg" style="max-width: none; width: 1600px; height:850px;" class="img-responsive" src="_static/images/tarantool-io/banners/main-banner.png"
+              alt="">
+            <div class="carousel-content">
+              <p id="jumbo-text" class="text-center hidden-sm hidden-md hidden-lg">
+                <span class="hidden-sm hidden-md hidden-lg">
+                  <span>SCALE APPLICATIONS AND MICROSERVICES</span>
+                </span>
+              </p>
+
+              <div id="large-jumbo-text-wrap">
+                <p class="jumbo-text-large text-center hidden-xs">
+                  <br>
+                </p>
+                <p class="jumbo-text-large text-center hidden-xs">SCALE APPLICATIONS AND MICROSERVICES</p>
+              </div>
+              <div id="video-icon-wrap" class="text-center hidden-xs">
+                <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/Xgn576TXPIo">
+                  <img id='' src="_static/images/tarantool-io/video-icon-100-x-100.png">
+                </span>
+                <span id="video-watch-text">Watch the video</span>
+              </div>
+              <div id="video-icon-wrap-sm" class="text-center hidden-sm hidden-md hidden-lg">
+                <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/Xgn576TXPIo">
+                  <img id='video-icon-small' src="_static/images/tarantool-io/video-icon-100-x-100.png">
+                </span>
+                <span id="video-watch-text-sm">Watch the video</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
   </div>
 {% endmacro %}
 
