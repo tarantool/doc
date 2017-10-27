@@ -347,7 +347,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-index_field_types:
 
-    **Index field types to use in create_index**
+    **Index field types to use in space_object:create_index()**
 
     .. container:: table stackcolumn
 

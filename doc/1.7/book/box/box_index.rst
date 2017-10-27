@@ -99,7 +99,7 @@ Below is a list of all ``box.index`` functions and members.
 
     .. data:: parts
 
-        An array describing index key fields. To learn more about the index field
+        An array describing . To learn more about the index field
         types, refer to :ref:`this table <box_space-index_field_types>`.
 
         :rtype: table
