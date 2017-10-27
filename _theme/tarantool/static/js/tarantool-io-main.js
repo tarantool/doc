@@ -92,7 +92,7 @@ $(function(){
         $('.flip-container').scrollTop(0).css('overflow', 'hidden');
         $('.flipper').removeClass('rotate').css('overflow', '');
         var $flipper = $($(el)[0]).parent().parent().parent().parent();
-        $flipper.parent().css('overflow', 'scroll');
+        $flipper.parent().css('overflow-y', 'auto');
         $flipper.addClass('rotate');
     }
 

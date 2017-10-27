@@ -7,37 +7,6 @@ Tarantool - Enterprise
 
 .. raw:: html
     
-    <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/enterprise-jumbo.jpg'); height:600px;">
-        <section id="jumbo-product-enterprise">
-            <div class="row ">
-                <div class="enterprise-jumbo-col col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <img id='enterpise-jumbo-text' src="../_static/images/tarantool-io/product-page/enterprise/enterprise-text.png" class="img-responsive">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div id="" class="video-icon-wrap try-icon-wrap text-center pull-right">
-                            <span class="">
-                                <a href="/enterprise"><img id='' src="../_static/images/tarantool-io/bullets/check-icon.png"></a>
-                            </span>
-                            <a href="/try-it"><span id="video-watch-text">Free Trial</span></a>
-                            </div>
-                        </div>
-                        <div class="col-xs-6">
-                            <div id="" class="video-icon-wrap text-center">
-                            <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/bXVonOWYewY">
-                                <img id='' src="../_static/images/tarantool-io/video-icon-100-x-100.png">
-                            </span>
-                                <span id="video-watch-text">Watch Video</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
     <section id="product-page">
         <div id="how-you-can">
             <h2 class="text-center">How Can You Use Enterprise?</h2>
