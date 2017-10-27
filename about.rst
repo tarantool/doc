@@ -11,8 +11,7 @@ Tarantool - About
     <h2 class="text-center">Meet Tarantool</h2>
     <div class="row">
         <div class="row pic-row">
-            <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                <img src="_static/images/tarantool-io/about/mailru-bike-girl.jpg">
+            <div class="col-xs-12 col-sm-6 no-padding pic-col" style="background-image: url(_static/images/tarantool-io/about/mailru-bike-girl.jpg);">
             </div>
             <div class="col-xs-12 col-sm-6 pic-col">
                 <p>
@@ -28,13 +27,12 @@ Tarantool - About
                         the myGames gaming division, and myMail, which is the 3rd most popular mobile email app in the USA.
                     </p>
                 </div>
-                <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                    <img src="_static/images/tarantool-io/about/About-office.jpg">
+                <div class="col-xs-12 col-sm-6 no-padding pic-col" style="background-image: url(_static/images/tarantool-io/about/About-office.jpg);">
                 </div>
             </span>
             <span class="hidden-sm hidden-md hidden-lg">
-                <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                    <img src="_static/images/tarantool-io/about/About-office.jpg">
+                <div class="col-xs-12 col-sm-6 no-padding pic-col" style="background-image: url(_static/images/tarantool-io/about/About-office.jpg);">
+                    <img src="">
                 </div>
                 <div class="col-xs-12 col-sm-6 pic-col">
                     <p>
@@ -45,8 +43,7 @@ Tarantool - About
             </span>
         </div>
         <div class="row pic-row">
-            <div class="col-xs-12 col-sm-6 no-padding pic-col">
-                <img src="_static/images/tarantool-io/about/AboutUs2.jpg">
+            <div class="col-xs-12 col-sm-6 no-padding pic-col" style="background-image: url(_static/images/tarantool-io/about/AboutUs2.jpg);">
             </div>
             <div class="col-xs-12 col-sm-6 pic-col">
                 <p>

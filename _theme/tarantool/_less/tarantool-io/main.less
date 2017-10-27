@@ -27,6 +27,14 @@
 //   margin-bottom: -10px;
 // }
 
+#infinity-icon {
+  position: absolute;
+  z-index: 200;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60px;
+  bottom: -26px;
+}
 
 .tarantool-io-styles {
 
@@ -103,6 +111,7 @@ a:hover {
 }
 
 #product-page{
+  padding-top: 2em;
   .beyond-basics {
     background-image: url('images/tarantool-io/product-page/unwired/iiot-cloud-background.png');
     color: @white;
@@ -387,10 +396,11 @@ a:hover {
   padding: 0px;
 
   h2 {
+    margin-top: 1em;
     margin-bottom: 1em;
 
     @media (max-width: 768px) {
-      margin-top: 3.5em;
+      margin-top: 0em;
     }
   }
   .pic-row {
@@ -400,6 +410,8 @@ a:hover {
       height: 100%;
       //background-size: cover;
       background-color: white !important;
+      background-size: cover;
+      background-position: center top;
 
       img {
         width: 100%;
@@ -664,7 +676,7 @@ button.close {
   padding-bottom: 0px !important;
 
   h2 {
-    margin-top:2.2em;
+    margin-top: 1em;
     margin-bottom: 1em;
   }
 
@@ -820,15 +832,6 @@ button.unwired {
 button.unwired:hover, .btn-unwired:hover, .orange-btn:hover {
   background-color: rgba(255, 102, 0, 0.72) !important;
   border-color: rgba(255, 102, 0, 0.72) !important;
-}
-
-img#infinity-icon {
-  position: absolute;
-  z-index: 200;
-  left: 50%;
-  transform: translate(-50%);
-  width: 60px;
-  top: 616px;
 }
 
 .triangle {
@@ -1429,7 +1432,7 @@ main {
   }
 
   #page-main{
-    
+    padding-top: 2em;
     h2 {
       font-family: @railway;
       text-align: center;
@@ -1902,7 +1905,6 @@ main {
 
     h2 {
       @media (max-width: 576px) {
-        margin-top:2.2em;
         margin-bottom: 1em;
       }
     }
@@ -1930,12 +1932,8 @@ main {
 
   #page-try-it {
 
-    @media (max-width: 768px) {
-      margin-top: 100px;
-    }
-
     h2 {
-      margin-top: 3em;
+      margin-top: 1em;
       text-align: center;
     }
 
@@ -1944,8 +1942,6 @@ main {
     }
 
     .row.header {
-      margin-top: -3em;
-
       h4, h6 {
         text-align: center;
         font-family: @railway;
