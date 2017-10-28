@@ -1,3 +1,6 @@
+{% set is_website  = website.get(pagename, False) %}
+{% set is_tarantool_io = tarantool_io.get(pagename, False) %}
+
 {% set language_list = [
   ("En", "/en/doc/{{ version }}", "en"),
   ("Ru", "/ru/doc/{{ version }}", "ru"),
@@ -394,15 +397,49 @@
             <div class="collapse navbar-collapse" id="navbarWrap">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                    {% if pagename in ["product/enterprise"] %}
+                    <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                    {% endif %}
+                    
+                    {% if pagename in ["product/unwired-iiot"] %}
+                    <li><a class="active" href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                    {% endif %}
+
+                    {% if not is_tarantool_io %}
+                    <li><a class="active" href="{{ abspath('developers.html') }}">Developers</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('developers.html') }}">Developers</a></li>
+                    {% endif %}
+
+                    {% if pagename in ["blog"] %}
+                    <li><a class="active" href="{{ abspath('blog.html') }}">Blog</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('blog.html') }}">Blog</a></li>
+                    {% endif %}
+
+                    {% if pagename in ["news-and-press"] %}
+                    <li><a class="active" href="{{ abspath('news-and-press.html') }}">News</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('news-and-press.html') }}">News</a></li>
+                    {% endif %}
+                    
+                    {% if pagename in ["about"] %}
+                    <li><a class="active" href="{{ abspath('about.html') }}">About Us</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('about.html') }}">About Us</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    {% if pagename in ["features"] %}
+                    <li id="live-demo-link"><a class="active" href="{{ abspath('features.html') }}">Features</a></li>
+                    {% else %}
                     <li id="live-demo-link"><a href="{{ abspath('features.html') }}">Features</a></li>
+                    {% endif %}
+                    
                     <li class="tryit-li"><a href="{{ abspath('live-demo.html') }}" class="btn btn-default btn-sm btn-custom-sm">Live Demo</a></li>
                 </ul>
             </div>

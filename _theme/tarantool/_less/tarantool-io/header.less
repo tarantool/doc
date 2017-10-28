@@ -346,14 +346,16 @@ section {
       display: inline-block;
 
       a {
-        color: @white !important;
+        color: @white;
         font-family: @notoSans;
         &:hover {
           background-color: transparent;
           text-decoration: none;
           color: red !important;
         }
-
+        &.active {
+          color: red;
+        }
         &.btn-custom-sm:hover {
           color: @white !important;
         }
