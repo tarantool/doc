@@ -477,6 +477,31 @@ Below is a list of all ``fio`` functions and members.
                          constants, for example '``O_RDONLY``',
                          '``O_WRONLY``', '``O_RDWR``'. Flags can be
                          combined by enclosing them in braces.
+                         On Linux the full set of flags
+                         as described on the
+                         `Linux man page <http://man7.org/linux/man-pages/man2/open.2.html>`_
+                         is:
+                         O_APPEND (start at end of file),
+                         O_ASYNC (signal when IO is possible),
+                         O_CLOEXEC (enable a flag related to closing),
+                         O_CREAT (create file if it doesn't exist),
+                         O_DIRECT (do less caching or no caching),
+                         O_DIRECTORY (fail if it's not a directory),
+                         O_EXCL (fail if file cannot be created),
+                         O_LARGEFILE (allow 64-bit file offsets),
+                         O_NOATIME (no access-time updating),
+                         O_NOCTTY (no console tty),
+                         O_NOFOLLOW (no following symbolic links),
+                         O_NONBLOCK (no blocking),
+                         O_PATH (get a path for low-level use),
+                         O_SYNC (force writing if it's possible),
+                         O_TMPFILE (the file will be temporary and nameless),
+                         O_TRUNC (truncate)
+                         ... and, always, one of:
+                         O_RDONLY (read only),
+                         O_WRONLY (write only), or
+                         or O_RDWR (either read or write).
+
     :param number mode: Mode bits can be passed as a number or as string
                         constants, for example ''`S_IWUSR`". Mode bits
                         are significant if flags include `O_CREAT` or
