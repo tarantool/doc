@@ -37,6 +37,9 @@ footer {
           &:hover {
             color: @red;
           }
+          &.active {
+            color: red;
+          }
         }
       }
     }
@@ -59,6 +62,9 @@ footer {
       position: relative;
 
       li {
+        a.active {
+          color: red;
+        }
         @media (max-width: 768px) {
           float: none;
           display: none;
@@ -138,7 +144,7 @@ footer {
       display: inline-block;
 
       a {
-        color: @white !important;
+        color: @white;
         font-family: @notoSans;
         &:hover {
           background-color: black !important;

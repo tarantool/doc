@@ -459,7 +459,7 @@
                                 <a href="{{ abspath('product/unwired-iiot.html') }}"><li>IIoT</li></a>
                                 <a href="{{ abspath('developers.html') }}"><li>Developers</li></a>
                                 <a href="{{ abspath('news-and-press.html') }}"><li>News</li></a>
-                                <a href="https://support.tarantool.org/"><li>Support</li></a>
+                                <a href="{{ abspath('support.html') }}"><li>Support</li></a>
                                 <a href="{{ abspath('about.html') }}"><li>About Us</li></a>
                                 <a href="{{ abspath('contact.html') }}"><li>Contact</li></a>
                             </ul>
@@ -633,14 +633,53 @@
     <div class="container-fluid">
         <div class="" id="navbarWrap">
             <ul class="nav navbar-nav nav-bottom-ul hidden-xs">
+                {% if pagename in ["product/enterprise"] %}
+                <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                {% else %}
                 <li><a href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                {% endif %}
+                
+                {% if pagename in ["product/unwired-iiot"] %}
+                <li><a class="active" href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                {% else %}
                 <li><a href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                {% endif %}
+                
+                {% if pagename in ["blog"] %}
+                <li><a class="active" href="{{ abspath('blog.html') }}">Blog</a></li>
+                {% else %}
                 <li><a href="{{ abspath('blog.html') }}">Blog</a></li>
+                {% endif %}
+                
+                {% if pagename in ["news-and-press"] %}
+                <li><a class="active" href="{{ abspath('news-and-press.html') }}">News</a></li>
+                {% else %}
                 <li><a href="{{ abspath('news-and-press.html') }}">News</a></li>
+                {% endif %}
+                
+                {% if pagename in ["careers"] %}
+                <li><a class="active" href="{{ abspath('careers.html') }}">Careers</a></li>
+                {% else %}
                 <li><a href="{{ abspath('careers.html') }}">Careers</a></li>
+                {% endif %}
+
+                {% if pagename in ["about"] %}
+                <li><a class="active" href="{{ abspath('about.html') }}">About Us</a></li>
+                {% else %}
                 <li><a href="{{ abspath('about.html') }}">About Us</a></li>
-                <li><a href="https://tarantool.org/en/index.html" target="_blank">Support</a></li>
+                {% endif %}
+                
+                {% if pagename in ["support"] %}
+                <li><a class="active" href="{{ abspath('support.html') }}">Support</a></li>
+                {% else %}
+                <li><a href="{{ abspath('support.html') }}">Support</a></li>
+                {% endif %}
+                
+                {% if pagename in ["contact"] %}
+                <li><a class="active" href="{{ abspath('contact.html') }}">Contact</a></li>
+                {% else %}
                 <li><a href="{{ abspath('contact.html') }}">Contact</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -648,18 +687,56 @@
   <div class="row hidden-sm hidden-md hidden-lg small-nav">
     <div class="col-xs-6">
         <ul>
+            {% if pagename in ["product/enterprise"] %}
+            <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+            {% else %}
             <li><a href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+            {% endif %}
+            
+            {% if pagename in ["product/unwired-iiot"] %}
+            <li><a class="active" href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+            {% else %}
             <li><a href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+            {% endif %}
+            
+            {% if pagename in ["blog"] %}
+            <li><a class="active" href="{{ abspath('blog.html') }}">Blog</a></li>
+            {% else %}
             <li><a href="{{ abspath('blog.html') }}">Blog</a></li>
-            <li><a href="https://tarantool.org/en/index.html" target="_blank">Support</a></li>
+            {% endif %}
+            
+            {% if pagename in ["support"] %}
+            <li><a class="active" href="{{ abspath('support.html') }}">Support</a></li>
+            {% else %}
+            <li><a href="{{ abspath('support.html') }}">Support</a></li>
+            {% endif %}
         </ul>
     </div>
     <div class="col-xs-6">
         <ul>
+            {% if pagename in ["careers"] %}
+            <li><a class="active" href="{{ abspath('careers.html') }}">Careers</a></li>
+            {% else %}
             <li><a href="{{ abspath('careers.html') }}">Careers</a></li>
+            {% endif %}
+
+            {% if pagename in ["news-and-press"] %}
+            <li><a class="active" href="{{ abspath('news-and-press.html') }}">News</a></li>
+            {% else %}
             <li><a href="{{ abspath('news-and-press.html') }}">News</a></li>
+            {% endif %}
+            
+            {% if pagename in ["about"] %}
+            <li><a class="active" href="{{ abspath('about.html') }}">About Us</a></li>
+            {% else %}
             <li><a href="{{ abspath('about.html') }}">About Us</a></li>
+            {% endif %}
+            
+            {% if pagename in ["contact"] %}
+            <li><a class="active" href="{{ abspath('contact.html') }}">Contact</a></li>
+            {% else %}
             <li><a href="{{ abspath('contact.html') }}">Contact</a></li>
+            {% endif %}
         </ul>
     </div>
   </div>

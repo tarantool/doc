@@ -123,6 +123,7 @@ html_context = {
         'product/enterprise': True,
         'product/unwired-iiot': True,
         'live-demo': True,
+        'careers': True,
         'press/iiot-released': True,
         'press/replication-for-mysql': True,
         'press/tarantool-expands': True,
