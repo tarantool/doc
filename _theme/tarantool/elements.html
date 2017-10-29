@@ -324,6 +324,79 @@
         </div>
       </div>
     </section>
+  {% elif pagename in ["live-demo"] %}
+  <div class="jumbotron" style="background-image: url('_static/images/tarantool-io/banners/Banner%20for%20Live%20Demo%20(1).jpeg'); background-position: 50% center;">
+    <div class="tarantool-io-styles" id="page-live-demo-jumbo">
+      <div class="container">
+        <div clas="row" class="form-row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-row-text-left-wrap">
+              <h3>#1 Fastest In-Memory Data Grid</h3>
+              <br>
+              <p>We look forward to surpassing your expectations.</p>
+              <p>Please complete this short form to schedule a live demo with our data experts.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <form class="hidden-xs">
+              <div class="row">
+                <div class="col-xs-12" style="position: relative">
+                  <div class="demo-header-tag">Live Demo</div>
+                  <span class="triangle enterprise"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="first_name" placeholder="First Name">
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="last_name" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="phone" placeholder="Phone Number">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="company_name" placeholder="Company Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <textarea rows="5" type="text" class="form-control" name="message" placeholder="Feel free to add a message"></textarea>
+                </div>
+              </div>
+              <div class="row" style="display:none">
+                <div class="col-xs-12">
+                  <h5>Select your interest:</h5>
+                  <input type="radio" value="Enterprise" name="customer_interest">
+                  <span>Enterprise for Cloud and Data Center</span>
+                  <br>
+                  <input type="radio" value="Unwired" name="customer_interest">
+                  <span>IIoT for Sensors and Periphery</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-btn-row">
+                  <button type="button" class="form-submit-btn btn-live-demo"> Send </button>
+                </div>
+              </div>
+              <div class="row">
+                <p class="text-center">All information in confidential. We will not spam you.</p>
+              </div>
+              <input class="hidden" type="radio" name="live_demo" value="true" checked="">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   {% elif pagename in ["product/unwired-iiot"] %}
   <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/unwired-iiot-jumbo.jpg'); height:600px;">
     <section id="jumbo-product-enterprise">
