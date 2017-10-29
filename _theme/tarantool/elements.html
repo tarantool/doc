@@ -396,7 +396,12 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarWrap">
                 <ul class="nav navbar-nav">
+                    {% if pagename in ["challenge"] %}
+                    <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                    {% else %}
                     <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                    {% endif %}
+                    
                     {% if pagename in ["product/enterprise"] %}
                     <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
                     {% else %}

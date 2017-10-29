@@ -113,6 +113,7 @@ html_context = {
     'tarantool_io': {
         # Tarantool-io pages
         'index': True,
+        'challenge': True,
         'news-and-press': True,
         'about': True,
         'blog': True,
