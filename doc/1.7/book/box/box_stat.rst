@@ -6,7 +6,8 @@ Submodule `box.stat`
 
 The ``box.stat`` submodule provides access to request and network statistics.
 Show the average number of requests per second, and the total number of
-requests since startup, broken down by request type and network events statistics.
+requests since startup, broken down by request type.
+Or, show network activity statistics.
 
 .. code-block:: tarantoolsession
 
@@ -62,12 +63,6 @@ requests since startup, broken down by request type and network events statistic
     ---
     - SENT:
         total: 0
-        rps: 0
-      EVENTS:
-        total: 2
-        rps: 0
-      LOCKS:
-        total: 6
         rps: 0
       RECEIVED:
         total: 0
