@@ -354,12 +354,12 @@ Tarantool In Memory Data Grid
             <h2 class="text-center">Ready to get started?</h2>
             <div class="row">
                 <div class="col-xs-12 col-sm-5 col-sm-offset-1 left-product-btn-col">
-                    <a href="/unwired">
+                    <a href="./unwired.html">
                         <button type="button" class="unwired-btn btn-unwired product-btn">Unwired IIoT</button>
                     </a>
                 </div>
                 <div class="col-xs-12 col-sm-5 right-product-btn-col">
-                    <a href="/enterprise">
+                    <a href="./enterprise.html">
                         <button type="button" class="enterprise-btn product-btn">Enterprise Solution</button>
                     </a>
                 </div>
@@ -528,7 +528,7 @@ Tarantool In Memory Data Grid
                 <div class="container-fluid">
                     <div class="text-center">
                         <h2>What can you achieve?</h2>
-                        <a href="/live-demo">
+                        <a href="./live-demo.html">
                             <button class="product-btn enterprise-btn-main">Live Demo</button>
                         </a>
                     </div>

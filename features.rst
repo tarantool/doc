@@ -619,7 +619,7 @@ Tarantool - Try it
                             <div class="request-btn-row row">
                                 <div class="container-fluid">
                                     <div class="col-xs-10 col-xs-offset-1">
-                                        <a href="/enterprise"><button type="button" class="circle-btn enterprise">Request Free Trial</button></a>
+                                        <a href="./enterprise.html"><button type="button" class="circle-btn enterprise">Request Free Trial</button></a>
                                     </div>
                                     <div class="col-xs-12">
                                         <p> Need a hand? Our engineers are standing by to optimize your trial</p>

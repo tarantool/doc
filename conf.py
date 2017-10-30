@@ -126,6 +126,8 @@ html_context = {
         'careers': True,
         'support': True,
         'contact': True,
+        'enterprise': True,
+        'unwired': True,
         'press/iiot-released': True,
         'press/replication-for-mysql': True,
         'press/tarantool-expands': True,

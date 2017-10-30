@@ -25,7 +25,7 @@ Tarantool - Enterprise
         <div class="row margin" id="transform-row">
             <div class="text-center">
                 <h4>Let's discuss your requirements and start a free trial</h4>
-                <a href="/live-demo"><button class="product-btn orange-btn text-center">Live Demo</button></a>
+                <a href="../live-demo.html"><button class="product-btn orange-btn text-center">Live Demo</button></a>
             </div>
         </div>
         <div class="row unwired-gray-background">
@@ -67,7 +67,7 @@ Tarantool - Enterprise
         </div>
         <div class="row transform-row unwired">
             <p>How can you transform your business?</p>
-            <a href="/unwired"><button type="button" class="product-btn orange-btn text-center unwired">Free Trial</button></a>
+            <a href="../unwired.html"><button type="button" class="product-btn orange-btn text-center unwired">Free Trial</button></a>
         </div>
         <!--    lg-->
         <!--    <div class="timeline-section">-->
@@ -186,7 +186,7 @@ Tarantool - Enterprise
         </div>
         <div class="row get-started">
             <p class="text-center">Ready to get started?</p>
-            <a href="/live-demo"><button type="button" class="product-btn orange-btn text-center">Live Demo</button></a>
+            <a href="../live-demo.html"><button type="button" class="product-btn orange-btn text-center">Live Demo</button></a>
         </div>
 
 .. include:: ../tarantool-io/social-icons.rst

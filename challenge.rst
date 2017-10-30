@@ -367,6 +367,6 @@ Tarantool - Challenge
         this.z = z;
       }
 
-      // setInterval(render, 1000 / 30);
+      setInterval(render, 1000 / 30);
     });
   </script>

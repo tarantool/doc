@@ -27,7 +27,7 @@ Tarantool - Enterprise
             <div class="col-xs-12">
                 <div class="text-center">
                     <h4>Ready for digital transformation?</h4>
-                    <a href="/live-demo"><button class="product-btn red-btn text-center">Live Demo</button></a>
+                    <a href="../live-demo.html"><button class="product-btn red-btn text-center">Live Demo</button></a>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@ Tarantool - Enterprise
         </div>
         <div class="row transform-row">
             <p>How can you transform your business?</p>
-            <a href="/enterprise"><button type="button" class="product-btn red-btn text-center">Free Trial</button></a>
+            <a href="../enterprise.html"><button type="button" class="product-btn red-btn text-center">Free Trial</button></a>
         </div>
         <div class="row unlock-row">
             <h2 class="text-center">Unlock Value</h2>
@@ -105,7 +105,7 @@ Tarantool - Enterprise
         </div>
         <div class="row get-started">
             <p class="text-center">Ready to get started?</p>
-            <a href="/live-demo"><button type="button" class="product-btn red-btn text-center">Live Demo</button></a>
+            <a href="../live-demo.html"><button type="button" class="product-btn red-btn text-center">Live Demo</button></a>
         </div>
 
 .. include:: ../tarantool-io/social-icons.rst
