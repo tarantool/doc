@@ -64,6 +64,8 @@ exclude_patterns = [
     'images',
     'tarantool-io/social-icons.rst',
     'tarantool-io/integrate-data-source.rst'
+    'tarantool-io/jumbo-form.rst',
+    'tarantool-io/main-form.rst',
 ]
 
 base_url = "https://tarantool.org/"
@@ -113,12 +115,19 @@ html_context = {
     'tarantool_io': {
         # Tarantool-io pages
         'index': True,
+        'challenge': True,
         'news-and-press': True,
         'about': True,
         'blog': True,
         'features': True,
         'product/enterprise': True,
         'product/unwired-iiot': True,
+        'live-demo': True,
+        'careers': True,
+        'support': True,
+        'contact': True,
+        'enterprise': True,
+        'unwired': True,
         'press/iiot-released': True,
         'press/replication-for-mysql': True,
         'press/tarantool-expands': True,

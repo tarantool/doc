@@ -332,6 +332,10 @@ a:hover {
 
       li {
         font-size: 1.15em;
+        a {
+          color: @white;
+          text-decoration: underline;
+        }
       }
     }
 
@@ -988,10 +992,11 @@ img.form-header-triangle-icon {
 
   .form-row-text-left-wrap {
     position: relative;
-    top: 6em;
+    padding: 6em 0em;
 
-    @media (max-width: 992px) {
-
+    @media (max-width: 576px) {
+      padding: 6em 1em;
+      margin-top: 100px;
     }
     p {
       @media (max-width: 992px) {
@@ -1165,6 +1170,7 @@ main {
               tr {
                 height: 100%;
                 td {
+                  text-align: center;
                   vertical-align: middle;
                   img {
                     width: 90%;
