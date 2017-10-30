@@ -149,6 +149,11 @@ $(function(){
             $form.find('[name="customer_interest"]').val();
         data.live_demo = $form.find('[name="live_demo"]').val();
 
+        // Must be removed
+        alert(JSON.stringify(data));
+        return true;
+        // Must be removed
+
         $.ajax({
             url: '/src/php/demo-request.php',
             dataType: 'json',
