@@ -125,6 +125,7 @@ html_context = {
         'live-demo': True,
         'careers': True,
         'support': True,
+        'contact': True,
         'press/iiot-released': True,
         'press/replication-for-mysql': True,
         'press/tarantool-expands': True,
