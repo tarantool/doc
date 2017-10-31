@@ -12,7 +12,7 @@ Tarantool - Blog
         <div class="row article-row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-4">
                 <div class="container-fluid">
-                    <a href="/white-paper1">
+                    <a href="./white-paper.html">
                         <div class="news-and-press-box paper">
                             <div class="box-header">
                                 <span class="press-image-red">

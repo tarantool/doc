@@ -47,7 +47,7 @@ Tarantool - About
             </div>
             <div class="col-xs-12 col-sm-6 pic-col">
                 <p>
-                    Tarantool was designed to solve data problems because no solutions on the market could meet the requirements. The technology is released commercially for sensors and the periphery in <a href="/product/unwired-iiot">Unwired IIoT</a>, and for the enterprise cloud or data center in the <a href="/product/enterprise">Enterprise Solution</a>.
+                    Tarantool was designed to solve data problems because no solutions on the market could meet the requirements. The technology is released commercially for sensors and the periphery in <a href="product/unwired-iiot.html">Unwired IIoT</a>, and for the enterprise cloud or data center in the <a href="product/enterprise.html">Enterprise Solution</a>.
                 </p>
             </div>
         </div>

@@ -93,8 +93,19 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-site-verification" content="CR40jzpLISkiUAw2MrH2zHSDNVmzyK88Nj7Crmx_RxQ" />
+
+    <meta name="keywords" content="
+    NoSQL, NewSQL, Fast Data, Data Architecture, Oracle, DB2, MySQL, Postrgres SAP, Memcached, Redis, Aerospike,
+    in-memory, in-memory database, online analytics, OLAP, analytics, OSS, DSS, reduce storage space, fastest database,
+    NoSQL, NewSQL, best database 2017, high scalability, No-blocking, Application server, Cache, Big data, MS SQL Server,
+    Hadoop, Lua">
+
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="search" type="application/opensearchdescription+xml"
           title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
           href="{{ pathto('_static/opensearch.xml', 1) }}"/>
@@ -110,6 +121,7 @@
     <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
     {% else %}
     <link rel="stylesheet" href="{{ abspath('_static/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
     {% endif %}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -167,6 +179,8 @@
       <!-- < HEADER -->
       {% if pagename in ["live-demo", "contact", "enterprise", "unwired"] %}
       <div class="b-content b-clearbox" style="margin-top: 30px;">
+      {% elif pagename in ["white-paper"] %}
+      <div class="b-content b-clearbox" style="margin-top: 0px;">
       {% else %}
       <div class="b-content b-clearbox">
       {% endif %}

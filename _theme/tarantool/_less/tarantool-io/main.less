@@ -855,6 +855,10 @@ button.unwired:hover, .btn-unwired:hover, .orange-btn:hover {
   background-color: @red;
 }
 
+.triangle.whitepaper {
+  background-color: @red;
+}
+
 .btn-unwired {
   border-color: @orange !important;
   background-color: @orange !important;
@@ -934,7 +938,15 @@ form {
       background-color: @orange;
     }
 
+    .btn-white-page{
+      .red-btn;
+      width: 100%;
+      font-size: 1.2em;
 
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
+    }
 
     .form-submit-btn {
       color: @white !important;
@@ -1903,10 +1915,6 @@ main {
       text-decoration: underline;
     }
 
-    .header-row {
-      margin: 1em 0;
-    }
-
     padding-bottom: 0px !important;
 
     h2 {
@@ -2237,6 +2245,87 @@ main {
       }
       img {
         width: 100%;
+      }
+    }
+  }
+
+  #page-white-paper-banner {
+    color: @white;
+    height: 400px;
+
+    h2 {
+      font-weight: bold;
+    }
+
+    font-family: @notoSans;
+    #paper-form {
+      max-height: 0px;
+      .row {
+        margin-top: 20px;
+      }
+
+      form {
+        width: 90%;
+        max-height: 1000px;
+        margin: auto;
+
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        label {
+          color: @white;
+          font-weight: normal;
+          margin-left: 15px;
+        }
+
+        input{
+          -webkit-border-radius: 50px;
+          -moz-border-radius: 50px;
+          border-radius: 50px;
+
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  #page-white-paper-content {
+    h3 {
+      font-weight: bold;
+    }
+    
+    font-family: @notoSans;
+
+    form {
+      margin: auto;
+      max-height: none;
+      
+      label {
+        color: @white;
+        font-weight: normal;
+        margin-left: 15px;
+      }
+
+      input{
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+
+        border-bottom: none;
+      }
+    }
+
+    #description {
+      margin-top: 40px;
+      margin-bottom: 40px;
+
+      p {
+        font-size: 17px;
+      }
+
+      li {
+        font-size: 17px;
       }
     }
   }

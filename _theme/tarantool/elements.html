@@ -284,8 +284,10 @@
 
 {% macro i_header() %}
 <header>
-  {% if pagename in ["product/enterprise", "product/unwired-iiot"] %}
+  {% if pagename in ["product/enterprise"] %}
   <img id="infinity-icon" src="../_static/images/tarantool-io/infinity.png">
+  {% elif pagename in ["product/unwired-iiot"] %}
+  <img id="infinity-icon" src="../_static/images/tarantool-io/orange-Infiniti.png">
   {% elif pagename in ["index"] %}
   <img id="infinity-icon" src="_static/images/tarantool-io/infinity.png">
   {% endif %}
@@ -332,6 +334,7 @@
           <div class="col-xs-12 col-sm-6">
             <div class="form-row-text-left-wrap">
               <h3>#1 in Performance</h3>
+              <br>
               <p>We look forward to surpassing your expectations.</p>
               <p>Please complete this form and you will receive an email to schedule a discussion about your trial of Tarantool
                 Unwired IIoT.</p>
@@ -391,6 +394,7 @@
           <div class="col-xs-12 col-sm-6">
             <div class="form-row-text-left-wrap">
               <h3>#1 Fastest In-Memory Data Grid</h3>
+              <br>
               <p>We look forward to surpassing your expectations.</p>
               <p>Please complete this form and you will receive an email to schedule a discussion about your trial of Tarantool
                 Enterprise.</p>
@@ -575,7 +579,7 @@
       </div>
     </div>
   {% elif pagename in ["product/unwired-iiot"] %}
-  <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/unwired-iiot-jumbo.jpg'); height:600px;">
+  <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/unwired-iiot-jumbo.jpg'); height:600px;border-bottom: 4px solid rgb(255, 102, 0);">
     <section id="jumbo-product-enterprise">
       <div class="row ">
         <div class="enterprise-jumbo-col col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
