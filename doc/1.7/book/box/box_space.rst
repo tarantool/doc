@@ -267,7 +267,8 @@ Below is a list of all ``box.space`` functions and members.
             |                     |                                                       | 'string' or 'integer' or         |                               |
             |                     |                                                       | 'number' or 'boolean' or         |                               |
             |                     |                                                       | 'array' or 'scalar',             |                               |
-            |                     |                                                       | and optional collation}          |                               |
+            |                     |                                                       | and optional collation,          |                               |
+            |                     |                                                       | and optional is_nullable value}  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -348,6 +349,9 @@ Below is a list of all ``box.space`` functions and members.
       booleans, then numbers, then strings. Legal in memtx TREE or
       HASH indexes, and in vinyl TREE indexes.
 
+    Additionally, `nil` is allowed with any index field type if
+    :ref:`is_nullable=true <box_space-is_nullable>` is specified.
+
     .. _box_space-index_field_types:
 
     **Index field types to use in space_object:create_index()**
@@ -399,8 +403,16 @@ Below is a list of all ``box.space`` functions and members.
         |                  | point numbers, strings    |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
 
-    **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
-    secondary indexes must be created before tuples are inserted.
+    .. _box_space-is_nullable:
+
+    **Allowing null for an indexed key:** If the index type is TREE, and the index
+    is not the primary index, then the ``parts={...}`` clause may include
+    ``is_nullable=true`` (the default) or ``is_nullable=false``. If ``is_nullable`` is
+    true, then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL``.
+    Within indexes, such "null values" are always treated as equal to other null
+    values, and are always treated as less than non-null values.
+    Nulls may appear multiple times even in a unique index. Example:
+    ``s:create_index('S',{unique=true,parts={{2,'number',is_nullable=true}}})``
 
     **Using field names instead of field numbers:** ``create_index()`` can use
     field names and/or field types described by the optional
@@ -424,6 +436,9 @@ Below is a list of all ``box.space`` functions and members.
         box.space.T:create_index('I9',{parts={'x','y'}})
         box.space.T:create_index('I10',{parts={{'x'}}})
         box.space.T:create_index('I11',{parts={{'x'},{'y'}}})
+
+    **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
+    secondary indexes must be created before tuples are inserted.
 
     .. _box_space-delete:
 

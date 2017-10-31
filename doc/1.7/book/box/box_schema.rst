@@ -845,6 +845,7 @@ Here are the details for each function and option.
         - unique: true
           parts:
           - type: unsigned
+            is_nullable: false
             fieldno: 1
           sequence_id: 8
           id: 0
