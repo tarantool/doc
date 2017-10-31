@@ -16,7 +16,7 @@ Tarantool - News and Press
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/tarantool-partners-waviot.html">
+                        <a href="press/tarantool-partners-waviot.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -37,7 +37,7 @@ Tarantool - News and Press
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/tarantool-supports-sql.html">
+                        <a href="press/tarantool-supports-sql.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -58,7 +58,7 @@ Tarantool - News and Press
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/tarantool-unviels-replication.html">
+                        <a href="press/tarantool-unviels-replication.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -79,7 +79,7 @@ Tarantool - News and Press
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/tarantool-expands.html">
+                        <a href="press/tarantool-expands.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -100,7 +100,7 @@ Tarantool - News and Press
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/replication-for-mysql.html">
+                        <a href="press/replication-for-mysql.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -122,7 +122,7 @@ Tarantool - News and Press
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/iiot-released.html">
+                        <a href="press/iiot-released.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -144,7 +144,7 @@ Tarantool - News and Press
                 </div>
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                     <div class="container-fluid">
-                        <a href="/en/tarantool-io/press/veon-migrates.html">
+                        <a href="press/veon-migrates.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">

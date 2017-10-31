@@ -13,7 +13,7 @@ Tarantool In Memory Data Grid
                     
                 <h1>Tarantool Partners With WAVIoT to Offer Powerful Industrial IoT Solution </h1>
                 
-                <p>MOUNTAIN VIEW, Calif.--(NEWSWIRE)--<a href="tarantool.io">Tarantool</a>'s parent company, <a href="mail.ru">Mail.ru</a> and <a href="waviot.com">WAVIoT</a>, have announced a strategic partnership in the Industrial IoT aimed at integrating LPWAN into the Tarantool IIoT platform. This partnership enables Tarantool to offer a comprehensive solution for gathering and analyzing telemetry data, that is based on the Tarantool IIoT platform and the WAVIoT network.
+                <p>MOUNTAIN VIEW, Calif.--(NEWSWIRE)--<a href="http://tarantool.io">Tarantool</a>'s parent company, <a href="http://mail.ru">Mail.ru</a> and <a href="http://waviot.com">WAVIoT</a>, have announced a strategic partnership in the Industrial IoT aimed at integrating LPWAN into the Tarantool IIoT platform. This partnership enables Tarantool to offer a comprehensive solution for gathering and analyzing telemetry data, that is based on the Tarantool IIoT platform and the WAVIoT network.
                 </p>
 
                 <p>This Industrial IIoT solution will allow obtaining data from wireless sensors installed at industrial sites, in vehicles and retail chains, and later using it for monitoring, analytics and machine learning.
@@ -38,7 +38,7 @@ Tarantool In Memory Data Grid
         <div class="row" id="transform-row">
             <div class="text-center">
                 <h4>How can you transform your business?</h4>
-                <a href="/live-demo"><button class="product-btn enterprise-btn-main">Live Demo</button></a>
+                <a href="../live-demo.html"><button class="product-btn enterprise-btn-main">Live Demo</button></a>
             </div>
         </div>
     </div>

@@ -27,14 +27,14 @@ Tarantool In Memory Data Grid
 
                 <strong>About Tarantool</strong>
                 <p>Tarantool is fast NoSQL database, cache, and an application server all in one. It is offered in two solutions: Unwired IIoT and the Enterprise Solution. Tarantool is owned by My.com and Mail.ru Group, publicly listed on the London Stock Exchange (MAIL:LSE), and the 5th largest internet company in the world with over 2,000 engineers in 10 global locations. The technology is continuously developed in partnership with businesses and the open source community.
-                    Please direct press inquiries to <a href="mailto:press@tarantool.io" target="_top">press@tarantool.io.</a>  For more information, please visit <a href="www.tarantool.io">www.tarantool.io.</a>
+                    Please direct press inquiries to <a href="mailto:press@tarantool.io" target="_top">press@tarantool.io.</a>  For more information, please visit <a href="http://www.tarantool.io">www.tarantool.io.</a>
                 </p>
             </div>
         </div>
         <div class="row" id="transform-row">
             <div class="text-center">
                 <h4>How can you transform your business?</h4>
-                <a href="/live-demo"><button class="product-btn enterprise-btn-main">Live Demo</button></a>
+                <a href="../live-demo.html"><button class="product-btn enterprise-btn-main">Live Demo</button></a>
             </div>
         </div>
     </div>
