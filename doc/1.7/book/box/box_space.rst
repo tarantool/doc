@@ -142,6 +142,9 @@ Below is a list of all ``box.space`` functions and members.
         primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
 
+        Since version 1.7.5 this method is deprecated – it is better to use a
+        :ref:`sequence <index-box_sequence>`.
+
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param table/tuple         tuple: tuple's fields, other than the
