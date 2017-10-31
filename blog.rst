@@ -10,7 +10,7 @@ Tarantool - Blog
     <section id="whitepapers">
         <h2 class="text-center">White Papers</h2>
         <div class="row article-row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-4">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                 <div class="container-fluid">
                     <a href="./white-paper.html">
                         <div class="news-and-press-box paper">

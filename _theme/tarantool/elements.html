@@ -661,16 +661,54 @@
                         </button>
                         <div id="container-collapse">
                             <ul id="nav-collapse-ul">
+                                {% if pagename in ["challenge"] %}
+                                <a class="active" href="{{ abspath('challenge.html') }}"><li>Challenge</li></a>
+                                {% else %}
                                 <a href="{{ abspath('challenge.html') }}"><li>Challenge</li></a>
-                                <a href="{{ abspath('features.html') }}"><li>Features</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["product/enterprise"] %}
+                                <a class="active" href="{{ abspath('product/enterprise.html') }}"><li>Enterprise</li></a>
+                                {% else %}
                                 <a href="{{ abspath('product/enterprise.html') }}"><li>Enterprise</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["product/unwired-iiot"] %}
+                                <a class="active" href="{{ abspath('product/unwired-iiot.html') }}"><li>IIoT</li></a>
+                                {% else %}
                                 <a href="{{ abspath('product/unwired-iiot.html') }}"><li>IIoT</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["developers"] %}
+                                <a class="active" href="{{ abspath('developers.html') }}"><li>Developers</li></a>
+                                {% else %}
                                 <a href="{{ abspath('developers.html') }}"><li>Developers</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["blog"] %}
+                                <a class="active" href="{{ abspath('blog.html') }}"><li>Blog</li></a>
+                                {% else %}
+                                <a href="{{ abspath('blog.html') }}"><li>Blog</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["news-and-press"] %}
+                                <a class="active" href="{{ abspath('news-and-press.html') }}"><li>News</li></a>
+                                {% else %}
                                 <a href="{{ abspath('news-and-press.html') }}"><li>News</li></a>
-                                <a href="{{ abspath('support.html') }}"><li>Support</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["about"] %}
+                                <a class="active" href="{{ abspath('about.html') }}"><li>About Us</li></a>
+                                {% else %}
                                 <a href="{{ abspath('about.html') }}"><li>About Us</li></a>
-                                <a href="{{ abspath('contact.html') }}"><li>Contact</li></a>
-                            </ul>
+                                {% endif %}
+
+                                {% if pagename in ["features"] %}
+                                <a class="active" href="{{ abspath('features.html') }}"><li>Features</li></a>
+                                {% else %}
+                                <a href="{{ abspath('features.html') }}"><li>Features</li></a>
+                                {% endif %}
+                              </ul>
                         </div>
                     </div>
                 </div>
@@ -681,7 +719,7 @@
                     <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
                     {% else %}
                     <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
-                    {% endif %}
+                                {% endif %}
                     
                     {% if pagename in ["product/enterprise"] %}
                     <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>

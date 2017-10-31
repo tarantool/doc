@@ -10,17 +10,17 @@ Tarantool - Enterprise
     <section id="product-page">
         <div id="how-you-can">
             <h2 class="text-center">How Can You Use Enterprise?</h2>
-        </div>
-        <div class="row margin">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-                <ul class="bullet">
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Scale and Accelerate Applications, RESTful APIs, and Microservices</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Orchestrate, Federate, Transform Data for Fast Aggregations and Joins</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Higher Performance, Greater Speed and Reliability</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Reduce Servers and Network Traffic, Reduce Costs for License, Support, and Hardware</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Complete More Innovation Projects, Faster Time to Market</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Lower License, Hardware, and Support Costs</li>
-                </ul>
+            <div class="row" style="background-color: rgba(249,247,248,.8);padding: 30px 0;">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                    <ul class="bullet">
+                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Scale and Accelerate Applications, RESTful APIs, and Microservices</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Orchestrate, Federate, Transform Data for Fast Aggregations and Joins</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Higher Performance, Greater Speed and Reliability</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Reduce Servers and Network Traffic, Reduce Costs for License, Support, and Hardware</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Complete More Innovation Projects, Faster Time to Market</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Lower License, Hardware, and Support Costs</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row margin" id="transform-row">
