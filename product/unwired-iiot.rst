@@ -10,16 +10,16 @@ Tarantool - Enterprise
     <section id="product-page">
         <div id="how-you-can">
             <h2 class="text-center">How Can You Use Unwired IIoT?</h2>
-        </div>
-        <div class="row margin">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-                <ul class="bullet">
-                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>If you're a tech maven or a legacy loyalist, you're in luck</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Rapid hub deployment to interact with new and existing hardware</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Gather rapid intelligence from the field.</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Control business logic to more efficiently manage your data and network</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Unified data view to create efficiencies in your industrial internet of things</li>
-                </ul>
+            <div class="row" style="background-color: rgba(249,247,248,.8);padding: 30px 0;">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                    <ul class="bullet">
+                        <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>If you're a tech maven or a legacy loyalist, you're in luck</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Rapid hub deployment to interact with new and existing hardware</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Gather rapid intelligence from the field.</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Control business logic to more efficiently manage your data and network</li>
+                        <li><img src='../_static/images/tarantool-io/bullets/orange-iiot-bullet.png'>Unified data view to create efficiencies in your industrial internet of things</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row margin" id="transform-row">
