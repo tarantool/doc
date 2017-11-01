@@ -197,7 +197,6 @@ collation rules applied.
 greater than 500; meanwhile, strings are ordered by the encoding of the first
 byte, then the encoding of the second byte, and so on, so '2345' is less than '500'.)
 
-
 .. _index-box_number:
 
 In Lua, a **number** is double-precision floating-point, but Tarantool allows both

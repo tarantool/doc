@@ -142,6 +142,9 @@ Below is a list of all ``box.space`` functions and members.
         primary key index of type ``TREE``. The primary-key field
         will be incremented before the insert.
 
+        Since version 1.7.5 this method is deprecated – it is better to use a
+        :ref:`sequence <index-box_sequence>`.
+
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param table/tuple         tuple: tuple's fields, other than the
@@ -264,7 +267,8 @@ Below is a list of all ``box.space`` functions and members.
             |                     |                                                       | 'string' or 'integer' or         |                               |
             |                     |                                                       | 'number' or 'boolean' or         |                               |
             |                     |                                                       | 'array' or 'scalar',             |                               |
-            |                     |                                                       | and optional collation}          |                               |
+            |                     |                                                       | and optional collation,          |                               |
+            |                     |                                                       | and optional is_nullable value}  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -305,7 +309,7 @@ Below is a list of all ``box.space`` functions and members.
 
         .. code-block:: tarantoolsession
 
-            tarantool> s = box.space.space55
+            tarantool> s = box.space.tester
             ---
             ...
             tarantool> s:create_index('primary', {unique = true, parts = {1, 'unsigned', 2, 'string'}})
@@ -314,7 +318,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _details_about_index_field_types:
 
-    Details about index field types:
+    **Details about index field types:**
 
     The seven index field types (unsigned | string | integer | number |
     boolean | array | scalar) differ depending on what values are allowed, and
@@ -345,6 +349,9 @@ Below is a list of all ``box.space`` functions and members.
       strings. When there is a mix of types, the key order is: null, then
       booleans, then numbers, then strings. Legal in memtx TREE or
       HASH indexes, and in vinyl TREE indexes.
+
+    Additionally, `nil` is allowed with any index field type if
+    :ref:`is_nullable=true <box_space-is_nullable>` is specified.
 
     .. _box_space-index_field_types:
 
@@ -398,8 +405,21 @@ Below is a list of all ``box.space`` functions and members.
         |                  | point numbers, strings    |                                       |                   |
         +------------------+---------------------------+---------------------------------------+-------------------+
 
-    **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
-    secondary indexes must be created before tuples are inserted.
+    .. _box_space-is_nullable:
+
+    **Allowing null for an indexed key:** If the index type is TREE, and the index
+    is not the primary index, then the ``parts={...}`` clause may include
+    ``is_nullable=true`` (the default) or ``is_nullable=false``. If ``is_nullable`` is
+    true, then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL``.
+    Within indexes, such "null values" are always treated as equal to other null
+    values, and are always treated as less than non-null values.
+    Nulls may appear multiple times even in a unique index. Example:
+
+    .. code-block:: lua
+
+        box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})
+
+    .. _box_space-field_names:
 
     **Using field names instead of field numbers:** ``create_index()`` can use
     field names and/or field types described by the optional
@@ -410,19 +430,22 @@ Below is a list of all ``box.space`` functions and members.
     first for the 'x' column, second for both the 'x' and 'y' columns.
     The variations include omitting the type, using numbers, and adding extra braces.
 
-    .. code-block:: none
+    .. code-block:: lua
 
-        box.space.T:format({{name='x', type='scalar'}, {name='y', type='integer'}})
-        box.space.T:create_index('I2',{parts={{'x','scalar'}}})
-        box.space.T:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
-        box.space.T:create_index('I4',{parts={1,'scalar'}})
-        box.space.T:create_index('I5',{parts={1,'scalar',2,'integer'}})
-        box.space.T:create_index('I6',{parts={1}})
-        box.space.T:create_index('I7',{parts={1,2}})
-        box.space.T:create_index('I8',{parts={'x'}})
-        box.space.T:create_index('I9',{parts={'x','y'}})
-        box.space.T:create_index('I10',{parts={{'x'}}})
-        box.space.T:create_index('I11',{parts={{'x'},{'y'}}})
+        box.space.tester:format({{name='x', type='scalar'}, {name='y', type='integer'}})
+        box.space.tester:create_index('I2',{parts={{'x','scalar'}}})
+        box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
+        box.space.tester:create_index('I4',{parts={1,'scalar'}})
+        box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})
+        box.space.tester:create_index('I6',{parts={1}})
+        box.space.tester:create_index('I7',{parts={1,2}})
+        box.space.tester:create_index('I8',{parts={'x'}})
+        box.space.tester:create_index('I9',{parts={'x','y'}})
+        box.space.tester:create_index('I10',{parts={{'x'}}})
+        box.space.tester:create_index('I11',{parts={{'x'},{'y'}}})
+
+    **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
+    secondary indexes must be created before tuples are inserted.
 
     .. _box_space-delete:
 
@@ -486,7 +509,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: format(format-clause)
 
-        Declare field names and types.
+        Declare field names and :ref:`types <index-box_data-types>`.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
@@ -509,8 +532,11 @@ Below is a list of all ``box.space`` functions and members.
         The format clause contains ``{name='...',type='...'}`` pairs.
         The name may be any string, provided that two fields do not have the
         same name.
-        The type must be ‘unsigned’ or ‘string’ or ‘integer’ or ‘number’
-        or ‘boolean’ or ‘array’ or ‘scalar’ (the same as the requirement in
+
+        The type can be any of those allowed for
+        :ref:`indexed fields <index-box_indexed-field-types>`:
+        unsigned | string | integer | number | boolean | array | scalar
+        (the same as the requirement in
         :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
 
         It is legal for tuples to have more fields than are described by a format
@@ -524,25 +550,29 @@ Below is a list of all ``box.space`` functions and members.
 
         .. code-block:: lua
 
-            box.space.T:format({{name='surname',type='string'},{name='IDX',type='array'}})
+            box.space.tester:format({{name='surname',type='string'},{name='IDX',type='array'}})
 
-        There are legal variations of the format clause, omitting both 'name=' and 'type=',
-        omitting 'type=' alone, and adding extra braces.
+        There are legal variations of the format clause:
+
+        * omitting both 'name=' and 'type=',
+        * omitting 'type=' alone, and
+        * adding extra braces.
+
         The following examples show all the variations,
         first for one field named 'x', second for two fields named 'x' and 'y'.
 
         .. code-block:: lua
 
-            box.space.T:format({{'x'}})
-            box.space.T:format({{'x'},{'y'}})
-            box.space.T:format({{name='x',type='scalar'}})
-            box.space.T:format({{name='x',type='scalar'},{name='y',type='unsigned'}})
-            box.space.T:format({{name='x'}})
-            box.space.T:format({{name='x'},{name='y'}})
-            box.space.T:format({{'x',type='scalar'}})
-            box.space.T:format({{'x',type='scalar'},{'y',type='unsigned'}})
-            box.space.T:format({{'x','scalar'}})
-            box.space.T:format({{'x','scalar'},{'y','unsigned'}})
+            box.space.tester:format({{'x'}})
+            box.space.tester:format({{'x'},{'y'}})
+            box.space.tester:format({{name='x',type='scalar'}})
+            box.space.tester:format({{name='x',type='scalar'},{name='y',type='unsigned'}})
+            box.space.tester:format({{name='x'}})
+            box.space.tester:format({{name='x'},{name='y'}})
+            box.space.tester:format({{'x',type='scalar'}})
+            box.space.tester:format({{'x',type='scalar'},{'y',type='unsigned'}})
+            box.space.tester:format({{'x','scalar'}})
+            box.space.tester:format({{'x','scalar'},{'y','unsigned'}})
 
         Names specified with the format clause can be used in
         :ref:`space_object:get() <box_space-get>` and in
@@ -582,11 +612,22 @@ Below is a list of all ``box.space`` functions and members.
         **Using field names instead of field numbers:** `get()` can use field names
         described by the optional :ref:`space_object:format() <box_space-format>` clause.
         This is similar to a standard Lua feature, where a component can be referenced
-        by its name instead of its number. So, if `tester` had been formatted with a
-        field named 'x', and if the name `x` had been used in the index definition,
-        and ``get`` or ``select`` had retrieved a single tuple,
-        then the field in the tuple could be referenced with
-        ``box.space.tester:get{1}['x']`` or ``box.space.tester:select{1}[1]['x']``.
+        by its name instead of its number.
+        For example, we can format the `tester` space
+        with a field named `x` and use the name `x` in the index definition:
+
+        .. code-block:: lua
+
+            box.space.tester:format({{name='x',type='scalar'}})
+            box.space.tester:create_index('I',{parts={'x'}})
+
+        Then, if ``get`` or ``select`` retrieve a single tuple,
+        we can reference the field 'x' in the tuple by its name:
+
+        .. code-block:: lua
+
+            box.space.tester:get{1}['x']
+            box.space.tester:select{1}[1]['x']
 
     .. _box_space-insert:
 
@@ -837,9 +878,9 @@ Below is a list of all ``box.space`` functions and members.
 
         **Example:**
 
-        The following series of requests will associate an existing function named F
-        with an existing space named T, associate the function a second time with the
-        same space (so it will be called twice), disable all triggers of T, and delete
+        The following series of requests will associate an existing function named `F`
+        with an existing space named `T`, associate the function a second time with the
+        same space (so it will be called twice), disable all triggers of `T`, and delete
         each trigger by replacing with ``nil``.
 
         .. code-block:: tarantoolsession
