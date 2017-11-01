@@ -661,7 +661,7 @@ Tarantool In Memory Data Grid
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/press/megafon-launches">
+                        <a href="press/megafon-launches.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -683,7 +683,7 @@ Tarantool In Memory Data Grid
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/press/tarantool-partners-waviot">
+                        <a href="press/tarantool-partners-waviot.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -705,7 +705,7 @@ Tarantool In Memory Data Grid
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/press/tarantool-supports-sql">
+                        <a href="press/tarantool-supports-sql.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -727,7 +727,7 @@ Tarantool In Memory Data Grid
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/press/tarantool-unviels-replication">
+                        <a href="press/tarantool-unviels-replication.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -749,7 +749,7 @@ Tarantool In Memory Data Grid
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/press/tarantool-expands">
+                        <a href="press/tarantool-expands.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -771,7 +771,7 @@ Tarantool In Memory Data Grid
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="container-fluid">
-                        <a href="/press/replication-for-mysql">
+                        <a href="press/replication-for-mysql.html">
                             <div class="news-and-press-box press">
                                 <div class="box-header">
                                     <span class="press-image-red">
@@ -794,7 +794,7 @@ Tarantool In Memory Data Grid
                 </div>
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                     <div class="container-fluid">
-                        <a href="/press/iiot-released">
+                        <a href="press/iiot-released.html">
                             <!--<a href="https://docs.google.com/document/d/1HhTEw1AmWw80lWI5-8iql66hmHFg4NuWXBMH8E7VYqs/edit?usp=sharing ">-->
                             <div class="news-and-press-box press">
                                 <div class="box-header">

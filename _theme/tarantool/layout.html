@@ -120,7 +120,6 @@
     {% if is_website %}
     <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
     {% else %}
-    <link rel="stylesheet" href="{{ abspath('_static/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
     {% endif %}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -179,7 +178,7 @@
       <!-- < HEADER -->
       {% if pagename in ["live-demo", "contact", "enterprise", "unwired"] %}
       <div class="b-content b-clearbox" style="margin-top: 30px;">
-      {% elif pagename in ["white-paper", "product/enterprise", "product/unwired-iiot"] %}
+      {% elif pagename in ["challenge", "white-paper", "product/enterprise", "product/unwired-iiot"] %}
       <div class="b-content b-clearbox" style="margin-top: 0px;">
       {% else %}
       <div class="b-content b-clearbox">
