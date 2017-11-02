@@ -136,6 +136,7 @@ html_context = {
         'press/tarantool-supports-sql': True,
         'press/tarantool-unviels-replication': True,
         'press/veon-migrates': True,
+        'press/megafon-launches': True,
     },
     'packages': {
         # 1.6
