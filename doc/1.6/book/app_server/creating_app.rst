@@ -623,10 +623,10 @@ output in console when we launch our application in script mode.
     :align: center
 
 Great! We've discussed all programming practices used in our Lua module (see
-`pokemon.lua <https://github.com/Sulverus/pokemon/blob/1.6/src/pokemon.lua>`_).
+`pokemon.lua <https://github.com/tarantool/pokemon/blob/1.6/src/pokemon.lua>`_).
 
 Now let's prepare the test environment. As planned, we write a Lua application
-(see `game.lua <https://github.com/Sulverus/pokemon/blob/1.6/game.lua>`_) to
+(see `game.lua <https://github.com/tarantool/pokemon/blob/1.6/game.lua>`_) to
 initialize Tarantool's database module, initialize our game, call the game loop
 and simulate a couple of player requests.
 
@@ -684,7 +684,7 @@ In the real life, this microservice would work over HTTP. Let's add
 demo. But how do we make Tarantool methods callable via REST API? We use nginx
 with `Tarantool nginx upstream <https://github.com/tarantool/nginx_upstream_module>`_
 module and create one more Lua script
-(`app.lua <https://github.com/Sulverus/pokemon/blob/1.6/src/app.lua>`_) that
+(`app.lua <https://github.com/tarantool/pokemon/blob/1.6/src/app.lua>`_) that
 exports three of our game methods -- ``add_pokemon()``, ``map()`` and ``catch()``
 -- as REST endpoints of the nginx upstream module:
 
@@ -720,9 +720,9 @@ exports three of our game methods -- ``add_pokemon()``, ``map()`` and ``catch()`
 An easy way to configure and launch nginx would be to create a Docker container
 based on a `Docker image <https://hub.docker.com/r/tarantool/tarantool-nginx/>`_
 with nginx and the upstream module already installed (see
-`http/Dockerfile <https://github.com/Sulverus/pokemon/blob/1.6/http/Dockerfile>`_).
+`http/Dockerfile <https://github.com/tarantool/pokemon/blob/1.6/http/Dockerfile>`_).
 We take a standard
-`nginx.conf <https://github.com/Sulverus/pokemon/blob/1.6/http/nginx.conf>`_,
+`nginx.conf <https://github.com/tarantool/pokemon/blob/1.6/http/nginx.conf>`_,
 where we define an upstream with our Tarantool backend running (this is another
 Docker container, see details below):
 
@@ -766,7 +766,7 @@ file):
 Likewise, we put Tarantool server and all our game logic in a second Docker
 container based on the
 `official Tarantool 1.6 image <https://github.com/tarantool/docker>`_ (see
-`src/Dockerfile <https://github.com/Sulverus/pokemon/blob/1.6/src/Dockerfile>`_)
+`src/Dockerfile <https://github.com/tarantool/pokemon/blob/1.6/src/Dockerfile>`_)
 and set the container's default command to ``tarantool app.lua``.
 This is the backend.
 
@@ -775,7 +775,7 @@ Non-blocking IO
 --------------------------------------------------------------------------------
 
 To test the REST API, we create a new script
-(`client.lua <https://github.com/Sulverus/pokemon/blob/1.6/client/client.lua>`_),
+(`client.lua <https://github.com/tarantool/pokemon/blob/1.6/client/client.lua>`_),
 which is similar to our ``game.lua`` application, but makes HTTP POST and GET
 requests rather than calling Lua functions:
 
@@ -873,13 +873,13 @@ For module developers, Tarantool provides an :ref:`API <index-c_api_reference>`.
 
 For our HTTP test, we create a third container based on the
 `official Tarantool 1.6 image <https://github.com/tarantool/docker>`_ (see
-`client/Dockerfile <https://github.com/Sulverus/pokemon/blob/1.6/client/Dockerfile>`_)
+`client/Dockerfile <https://github.com/tarantool/pokemon/blob/1.6/client/Dockerfile>`_)
 and set the container's default command to ``tarantool client.lua``.
 
 .. image:: aster.svg
     :align: center
 
-To run this test locally, download our `pokemon <https://github.com/Sulverus/pokemon>`_
+To run this test locally, download our `pokemon <https://github.com/tarantool/pokemon>`_
 project from GitHub (branch 1.6) and say:
 
 .. code-block:: console
