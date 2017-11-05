@@ -11,6 +11,24 @@ For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
 
+.. _whats_new_175:
+
+================================================================================
+What's new in Tarantool 1.7.5?
+================================================================================
+
+In addition to `rollback` of a transaction, there is now `rollback` to 
+a defined point within a transaction -- "savepoint" support.
+
+There is a new object type: sequences. The older option, auto-increment,
+will be deprecated.
+
+String indexes can have collations.
+
+New options are available for net_box timeouts,
+string functions, space formats, base64, and index creation.
+
+
 .. _whats_new_17:
 
 ================================================================================
