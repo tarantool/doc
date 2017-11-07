@@ -13,12 +13,16 @@ Tarantool - Enterprise
             <div class="row" style="background-color: rgba(249,247,248,.8);padding: 30px 0;">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                     <ul class="bullet">
-                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Scale and Accelerate Applications, RESTful APIs, and Microservices</li>
-                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Orchestrate, Federate, Transform Data for Fast Aggregations and Joins</li>
-                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Higher Performance, Greater Speed and Reliability</li>
-                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Reduce Servers and Network Traffic, Reduce Costs for License, Support, and Hardware</li>
-                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Complete More Innovation Projects, Faster Time to Market</li>
-                        <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Lower License, Hardware, and Support Costs</li>
+                        <li>
+                            <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">In-Memory and Disk NewSQL Engine</li>
+                        <li>
+                            <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Reliable ACID Transactions with the Speed of a Cache</li>
+                        <li>
+                            <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Scale and Accelerate Applications, RESTful APIs, and Microservices</li>
+                        <li>
+                            <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Optimal Performance on Commodity Hardware</li>
+                        <li>
+                            <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Reduce License, Hardware, and Support Costs</li>
                     </ul>
                 </div>
             </div>
@@ -38,7 +42,7 @@ Tarantool - Enterprise
                     How can we deal with "data spaghetti?"</p>
             </div>
         </div>
-        <div class="row text-center integrate">
+        <div class="row text-center integrate" style="display: none;">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <img src="../_static/images/tarantool-io/product-page/enterprise/enterprise-integrate.jpg" class="img-responsive">
             </div>
@@ -50,11 +54,14 @@ Tarantool - Enterprise
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <h2 class="text-center">Strategic Goals</h2>
                 <ul class="bullet">
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Go to market faster modernizing applications, developing microservices, fueling our BI programs.</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Reduce workload on data sources like Oracle and system tie-ups.</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Lower cost per request and overall support costs.</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Abstract away from data sources, generalize data representation, retrieve, manipulate data.</li>
-                    <li><img src='../_static/images/tarantool-io/bullets/red-enterprise-bullet.png'>Win with a faster and simpler approach.</li>
+                    <li>
+                        <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Reduce workload on existing data sources.</li>
+                    <li>
+                        <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Improve performance and scale without changing current systems.</li>
+                    <li>
+                        <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Utilize powerful in-memory technology with reliable ACID transactions</li>
+                    <li>
+                        <img src="../_static/images/tarantool-io/bullets/red-enterprise-bullet.png">Launch microservices and REST APIs with your data.</li>
                 </ul>
             </div>
         </div>
@@ -62,10 +69,14 @@ Tarantool - Enterprise
             <p>How can you transform your business?</p>
             <a href="../enterprise.html"><button type="button" class="product-btn red-btn text-center">Free Trial</button></a>
         </div>
-        <div class="row unlock-row">
-            <h2 class="text-center">Unlock Value</h2>
+
+        <div class="row text-center timeline-section">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <img src="../_static/images/tarantool-io/product-page/enterprise/enterprise-timeline.jpg" class="img-responsive"> </div>
         </div>
-        <div class="row unlock gray-background">
+
+        <div class="row unlock gray-background"  id="unlock-value-row">
+            <h2 class="text-center">Unlock Value</h2>
             <div class="col-sm-6 roi-background hidden-sm hidden-md hidden-lg"></div>
                 <div class="col-xs-12 col-sm-6">
                     <div class="container-fluid">

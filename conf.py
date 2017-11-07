@@ -137,6 +137,7 @@ html_context = {
         'press/tarantool-unviels-replication': True,
         'press/veon-migrates': True,
         'press/megafon-launches': True,
+        'press/free-learning-program': True,
     },
     'packages': {
         # 1.6
