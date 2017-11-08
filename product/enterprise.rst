@@ -82,20 +82,21 @@ Tarantool - Enterprise
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4>Cost Reduction</h4>
+                                <h4>Market Agility</h4>
                                 <ul>
-                                    <li>License and hardware cost reduction.</li>
-                                    <li>Lower support and maintenance costs.</li>
-                                    <li>Reduced cost for systems integration.</li>
+                                    <li>+ Escape vendor lock for software and hardware.</li>
+                                    <li>+ Scale applications rapidly, with less complexity.</li>
+                                    <li>+ Respond faster to internal and external data requests.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4>Market Agility</h4>
+                                <h4>Cost Reduction</h4>
                                 <ul>
-                                    <li>Increased flexibility and performance to create value.</li>
-                                    <li>Faster time to market to capture value.</li>
+                                    <li>+ License and hardware cost reduction.</li>
+                                    <li>+ Lower support and maintenance costs.</li>
+                                    <li>+ Reduced cost for systems integration.</li>
                                 </ul>
                             </div>
                         </div>
@@ -103,10 +104,11 @@ Tarantool - Enterprise
                             <div class="col-xs-12">
                                 <h4>Results</h4>
                                 <ul>
-                                    <li>A publicly-traded provider of mobile services wanted to improve reduce the query latency of their Oracle applications. The Oracle workload was reduced by 10x and database latency by 5x.
-                                    </li>
-                                    <li>Allowed the development of new analytics applications.</li>
-                                    <li>Impacted financial performance saving millions of dollars in license, hardware, integration, and support costs.</li>
+                                    <li>+ A publicly-traded provider of mobile services wanted to improve reduce the query latency of their Oracle
+                                        applications. The Oracle workload was reduced by 10x and database latency by 5x. </li>
+                                    <li>+ Allowed the development of new analytics applications.</li>
+                                    <li>+ Impacted financial performance saving millions of dollars in license, hardware, integration, and support
+                                        costs.</li>
                                 </ul>
                             </div>
                         </div>

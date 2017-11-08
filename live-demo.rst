@@ -26,7 +26,7 @@ Tarantool - Live Demo
               <div class="row">
 
 .. include:: tarantool-io/integrate-data-source.rst
-                
+
 .. raw:: html
                 
               </div>
