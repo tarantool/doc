@@ -38,18 +38,15 @@
 {%- endmacro -%}
 
 {%- macro get_version_text(version) -%}
-  {%- if version == "1.6" -%}
-    {{ "1.6 (stable)" }}
-  {%- elif version == "1.7" -%}
-    {{ "1.7 (rc)" }}
-  {%- else -%}
+  {%- if version == "1.7" -%}
+    {{ "1.7 (stable)" }}
+  {%- elif version == "1.8" -%}
     {{ "1.8 (alpha)" }}
   {%- endif -%}
 {%- endmacro -%}
 
 {%- macro get_downloads_main_page_link() -%}
-  {%- set modified_pagename = pagename | replace("os-installation/1.6", "download_16") -%}
-  {%- set modified_pagename = modified_pagename | replace("os-installation/1.7", "download") -%}
+  {%- set modified_pagename = pagename | replace("os-installation/1.7", "download") -%}
   {%- set modified_pagename = modified_pagename | replace("os-installation/1.8", "download_18") -%}
 
   {%- set splitted = modified_pagename.split('/') -%}
