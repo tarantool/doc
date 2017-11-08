@@ -8,7 +8,7 @@ Tarantool - Try it
 .. raw:: html
     
   <div id="page-try-it">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row header">
         <div class="container-fluid">
           <h2>Comparison Chart</h2>
