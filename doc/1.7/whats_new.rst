@@ -11,11 +11,14 @@ For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
 
-.. _whats_new_175:
+.. _whats_new_176:
 
 ================================================================================
-What's new in Tarantool 1.7.5?
+What's new in Tarantool 1.7.6?
 ================================================================================
+
+Tarantool 1.7.6 was `released <https://github.com/tarantool/tarantool/releases/tag/1.7.6>`_
+on November 7 2017.
 
 In addition to `rollback` of a transaction, there is now `rollback` to 
 a defined point within a transaction -- "savepoint" support.
@@ -27,6 +30,7 @@ String indexes can have collations.
 
 New options are available for net_box timeouts,
 string functions, space formats, base64, and index creation.
+
 
 
 .. _whats_new_17:
