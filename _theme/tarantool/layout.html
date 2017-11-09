@@ -2,7 +2,7 @@
 {% from 'elements.html' import i_header_dev with context %}
 {% from 'elements.html' import i_footer with context %}
 {% from 'elements.html' import abspath  with context %}
-{% set is_website  = website.get(pagename, False) %}
+{% set is_tarantool_io = tarantool_io.get(pagename, False) %}
 {% set page = {"slug": "documentation"} %}
 {% set script_files = script_files + [
     '_static/searchtools.js',
@@ -117,10 +117,10 @@
     {%- endfor %}
     
     <!-- Bootstrap -->
-    {% if is_website %}
+    {% if not is_tarantool_io %}
     <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
     {% else %}
-    <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
+    <link rel="stylesheet" href="{{ abspath('_static/bootstrap.min.css') }}">
     {% endif %}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
