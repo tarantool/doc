@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="633px" height="218px" viewBox="0 0 633 218" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="530px" height="147px" viewBox="0 0 530 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
     <title>no-cascade copy</title>
     <desc>Created with Sketch.</desc>
@@ -59,7 +59,7 @@
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="no-cascade-copy">
-            <g id="Rect1_2" transform="translate(51.000000, 42.000000)">
+            <g id="Rect1_2" transform="translate(3.000000, 2.000000)">
                 <path d="M154,71 L166,71" id="Path-5-Copy-15" stroke="#FF2E2F" stroke-linecap="round"></path>
                 <path d="M297,71 L374,71" id="Path-5-Copy-14" stroke="#FF2E2F" stroke-linecap="round"></path>
                 <g id="Round_block-Copy-15" transform="translate(168.000000, 55.000000)">
@@ -85,7 +85,7 @@
                     <polygon id="Path-14-Copy-14" transform="translate(3.000000, 4.500000) rotate(-270.000000) translate(-3.000000, -4.500000) " points="-1 7 3 2 7 7"></polygon>
                 </g>
             </g>
-            <g id="Mask" transform="translate(50.000000, 42.000000)">
+            <g id="Mask" transform="translate(2.000000, 2.000000)">
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>
                 </mask>
@@ -176,7 +176,7 @@
                     </g>
                 </g>
             </g>
-            <g id="Stop" transform="translate(546.500000, 71.500000) rotate(-360.000000) translate(-546.500000, -71.500000) translate(529.000000, 54.000000)">
+            <g id="Stop" transform="translate(498.500000, 31.500000) rotate(-360.000000) translate(-498.500000, -31.500000) translate(481.000000, 14.000000)">
                 <path d="M17.5,35 C7.85116972,35 0,27.1505988 0,17.5 C0,7.85116972 7.85116972,0 17.5,0 C27.1505988,0 35,7.85116972 35,17.5 C35,27.1505988 27.1505988,35 17.5,35" id="Fill-1" fill="#F44336"></path>
                 <path d="M17.5,35 C7.85116972,35 0,27.1505988 0,17.5 C0,7.85116972 7.85116972,0 17.5,0 C27.1505988,0 35,7.85116972 35,17.5 C35,27.1505988 27.1505988,35 17.5,35" id="Fill-1-Copy" fill="#F44336"></path>
                 <polygon id="Fill-2" fill="#FFFFFF" points="7 22 28 22 28 14 7 14"></polygon>
