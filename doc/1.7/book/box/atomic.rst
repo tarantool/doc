@@ -110,10 +110,13 @@ Transactions
 
 In the absence of transactions, any function that contains yield points may see
 changes in the database state caused by fibers that preempt.
-Multi-statement transactions exist to provide isolation: each transaction sees
-a consistent database state and commits all its changes atomically.
+Multi-statement transactions exist to provide **isolation**: each transaction
+sees a consistent database state and commits all its changes atomically.
 At :ref:`commit <box-commit>` time, a yield happens and all transaction changes
 are written to the :ref:`write ahead log <internals-wal>` in a single batch.
+Or, if needed, transaction changes can be rolled back --
+:ref:`completely <box-rollback>` or to a specific
+:ref:`savepoint <box-rollback_to_savepoint>`.
 
 To implement isolation, Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
