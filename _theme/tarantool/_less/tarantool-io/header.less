@@ -458,9 +458,13 @@ section {
     }
 
     #brand-logo {
+      display: block;
+      height: 100%;
       max-width: 150px;
       width: 18vw;
-      content: url("../_static/images/tarantool-io-logo.png");
+      background: url("../_static/images/tarantool-io-logo.png") center no-repeat;
+      background-size: contain;
+
       // Small devices (landscape phones, 576px and up)
       @media (min-width: 320px) {
         width: 32vw;
@@ -473,7 +477,7 @@ section {
       position:relative;
       z-index:9;
       @media (max-width: 576px) {
-        padding: 15px 10px;
+        padding: 0px 10px;
       }
 
       .navbar-brand:hover {
