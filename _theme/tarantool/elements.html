@@ -717,7 +717,7 @@
                     <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
                     {% else %}
                     <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
-                                {% endif %}
+                    {% endif %}
                     
                     {% if pagename in ["product/enterprise"] %}
                     <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
@@ -877,6 +877,12 @@
     <div class="container-fluid">
         <div class="" id="navbarWrap">
             <ul class="nav navbar-nav nav-bottom-ul hidden-xs">
+                {% if pagename in ["challenge"] %}
+                <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                {% else %}
+                <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                {% endif %}
+
                 {% if pagename in ["product/enterprise"] %}
                 <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
                 {% else %}
@@ -931,6 +937,12 @@
   <div class="row hidden-sm hidden-md hidden-lg small-nav">
     <div class="col-xs-6">
         <ul>
+            {% if pagename in ["challenge"] %}
+            <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
+            {% else %}
+            <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+            {% endif %}
+
             {% if pagename in ["product/enterprise"] %}
             <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
             {% else %}
