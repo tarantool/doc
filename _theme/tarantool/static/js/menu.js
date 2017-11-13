@@ -21,3 +21,69 @@ $(function() {
         }
     })
 })
+
+$(function() {
+    window.onload = function() {
+        if (window.location.pathname.match(/\/doc/g)) {
+            var float_block = document.getElementById("b-cols_content_left"),
+                scroll = window.pageYOffset || document.documentElement.scrollTop,
+                scrollHeight = Math.max(
+                    document.body.scrollHeight, document.documentElement.scrollHeight,
+                    document.body.offsetHeight, document.documentElement.offsetHeight,
+                    document.body.clientHeight, document.documentElement.clientHeight
+                ), top = float_block.offsetTop, bottom = 0;
+
+                if (scroll + document.documentElement.clientHeight >= scrollHeight - 200) {
+                    top = scrollHeight - (scroll + document.documentElement.clientHeight) - 200;
+                    bottom = Math.abs(top);
+
+                    float_block.style.top = 100 + top + "px";
+                    float_block.style.bottom = bottom + "px";
+                } else {
+                    float_block.style.top = "100px";
+                    float_block.style.bottom = "0px";
+                }
+
+            window.onresize = function() {
+                if (window.innerWidth <= 1024) {
+                    float_block.style.top = "100px";
+                    float_block.style.bottom = "0px";
+                    return true
+                }
+                scrollHeight = Math.max(
+                    document.body.scrollHeight, document.documentElement.scrollHeight,
+                    document.body.offsetHeight, document.documentElement.offsetHeight,
+                    document.body.clientHeight, document.documentElement.clientHeight
+                );
+                scroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scroll + document.documentElement.clientHeight >= scrollHeight - 200) {
+                    top = scrollHeight - (scroll + document.documentElement.clientHeight) - 200;
+                    bottom = Math.abs(top);
+
+                    float_block.style.top = 100 + top + "px";
+                    float_block.style.bottom = bottom + "px";
+                } else {
+                    float_block.style.top = "100px";
+                    float_block.style.bottom = "0px";
+                }
+            };
+
+            window.onscroll = function() {
+                if (window.innerWidth <= 1024) return true;
+                scroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scroll + document.documentElement.clientHeight >= scrollHeight - 200) {
+                    top = scrollHeight - (scroll + document.documentElement.clientHeight) - 200;
+                    bottom = Math.abs(top);
+
+                    float_block.style.top = 100 + top + "px";
+                    float_block.style.bottom = bottom + "px";
+                } else {
+                    float_block.style.top = "100px";
+                    float_block.style.bottom = "0px";
+                }
+            }
+        }
+    }
+})

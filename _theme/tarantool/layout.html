@@ -2,7 +2,6 @@
 {% from 'elements.html' import i_header_dev with context %}
 {% from 'elements.html' import i_footer with context %}
 {% from 'elements.html' import abspath  with context %}
-{% set is_tarantool_io = tarantool_io.get(pagename, False) %}
 {% set page = {"slug": "documentation"} %}
 {% set script_files = script_files + [
     '_static/searchtools.js',
@@ -130,8 +129,6 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
-    {% if is_tarantool_io %}
-    {% endif %}
     
     {% block extrahead %}
     <!--[if lt IE 9]>
@@ -176,7 +173,9 @@
         {{ i_header_dev() }}
       {% endif %}
       <!-- < HEADER -->
-      {% if pagename in ["live-demo", "contact", "enterprise", "unwired"] %}
+      {% if not is_tarantool_io %}
+      <div class="b-content b-clearbox doc-pages">
+      {% elif pagename in ["live-demo", "contact", "enterprise", "unwired"] %}
       <div class="b-content b-clearbox" style="margin-top: 30px;">
       {% elif pagename in ["challenge", "white-paper", "product/enterprise", "product/unwired-iiot"] %}
       <div class="b-content b-clearbox" style="margin-top: 0px;">

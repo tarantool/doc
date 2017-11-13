@@ -1,6 +1,6 @@
 {% set is_website  = website.get(pagename, False) %}
 {% set is_tarantool_io = tarantool_io.get(pagename, False) %}
-
+{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
 {% set language_list = [
   ("En", "/en/doc/{{ version }}", "en"),
   ("Ru", "/ru/doc/{{ version }}", "ru"),
@@ -872,7 +872,7 @@
 {% endmacro %}
 
 {% macro i_footer() %}
-<footer>
+<footer> 
   <nav id="" class="navbar">
     <div class="container-fluid">
         <div class="" id="navbarWrap">
