@@ -13,25 +13,33 @@ at GitHub.
 
 .. _whats_new_176:
 
-================================================================================
+--------------------------------------------------------------------------------
 What's new in Tarantool 1.7.6?
-================================================================================
+--------------------------------------------------------------------------------
 
-Tarantool 1.7.6 was `released <https://github.com/tarantool/tarantool/releases/tag/1.7.6>`_
-on November 7 2017.
+Tarantool 1.7.6 was
+`released <https://github.com/tarantool/tarantool/releases/tag/1.7.6>`_
+on November 7, 2017.
 
-In addition to `rollback` of a transaction, there is now `rollback` to 
-a defined point within a transaction -- "savepoint" support.
+In addition to :ref:`rollback <box-rollback>` of a transaction, there is now
+rollback to a defined point within a transaction --
+:ref:`savepoint <box-savepoint>` support.
 
-There is a new object type: sequences. The older option, auto-increment,
+There is a new object type: :ref:`sequences <index-box_sequence>`.
+The older option, :ref:`auto-increment <box_space-auto_increment>`,
 will be deprecated.
 
-String indexes can have collations.
+String indexes can have :ref:`collations <index-collation>`.
 
-New options are available for net_box timeouts,
-string functions, space formats, base64, and index creation.
+New options are available for:
 
-
+* :ref:`net_box <net_box-module>` (timeouts),
+* :ref:`string <string-module>` functions,
+* space :ref:`formats <box_space-format>` (user-defined field names and types),
+* :ref:`base64 <digest-base64_encode>` (``urlsafe`` option), and
+* index :ref:`creation <box_space-create_index>` (collation,
+  :ref:`is-nullable <box_space-is_nullable>`,
+  field names).
 
 .. _whats_new_17:
 
@@ -83,11 +91,11 @@ Configuration parameters revised:
 
 .. _whats_new_169:
 
-================================================================================
-What's new in Tarantool 1.6.9 after February 15, 2017?
-================================================================================
+--------------------------------------------------------------------------------
+What's new in Tarantool 1.6.9?
+--------------------------------------------------------------------------------
 
-Due to Tarantool issue#2040
+Since February 15, 2017, due to Tarantool issue#2040
 `Remove sophia engine from 1.6 <https://github.com/tarantool/tarantool/issues/2040>`_
 there no longer is a storage engine named `sophia`.
 It will be superseded in version 1.7 by the `vinyl` storage engine.
@@ -101,3 +109,4 @@ What's new in Tarantool 1.6?
 Tarantool 1.6 is no longer getting major new features,
 although it will be maintained.
 The developers are concentrating on Tarantool version 1.7.
+
