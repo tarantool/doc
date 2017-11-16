@@ -17,10 +17,6 @@ Tarantool extensions.
 In this section we only discuss the additional functions
 that the Tarantool developers have added.
 
-===============================================================================
-                                    Index
-===============================================================================
-
 Below is a list of all additional ``string`` functions.
 
     .. container:: table
@@ -46,8 +42,14 @@ Below is a list of all additional ``string`` functions.
         | :ref:`string.endswith()              | Check if a string ends with a   |
         | <string-endswith>`                   | given substring                 |
         +--------------------------------------+---------------------------------+
-        | :ref:`string.split()                 | Split a string into one or more |
-        | <string-split>`                      | strings                         |
+        | :ref:`string.lstrip()                | Remove spaces on the left of a  |
+        | <string-lstrip>`                     | string                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.rstrip()                | Remove spaces on the right of a |
+        | <string-rstrip>`                     | string                          |
+        +--------------------------------------+---------------------------------+
+        | :ref:`string.strip()                 | Remove spaces on the left and   |
+        | <string-strip>`                      | right of a string               |
         +--------------------------------------+---------------------------------+
 
 .. _string-ljust:
@@ -210,3 +212,74 @@ Below is a list of all additional ``string`` functions.
         - - A*B
           - ' C'
         ...
+
+.. _string-lstrip:
+
+.. function:: lstrip(input-string)
+
+    Return the value of the input string, but without spaces on the left.
+
+    :param input-string: (string) the string to process
+
+    :Return: result after stripping spaces from input string
+    :Rtype: string
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> string = require('string')
+        ---
+        ...
+        tarantool> string.lstrip(' ABC ')
+        ---
+        - 'ABC '
+        ...
+
+.. _string-rstrip:
+
+.. function:: rstrip(input-string)
+
+    Return the value of the input string, but without spaces on the right.
+
+    :param input-string: (string) the string to process
+
+    :Return: result after stripping spaces from input string
+    :Rtype: string
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> string = require('string')
+        ---
+        ...
+        tarantool> string.rstrip(' ABC ')
+        ---
+        - ' ABC'
+        ...
+
+.. _string-strip:
+
+.. function:: strip(input-string)
+
+    Return the value of the input string, but without spaces on the left or the right.
+
+    :param input-string: (string) the string to process
+
+    :Return: result after stripping spaces from input string
+    :Rtype: string
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> string = require('string')
+        ---
+        ...
+        tarantool> string.strip(' ABC ')
+        ---
+        - ABC
+        ...
+
+
