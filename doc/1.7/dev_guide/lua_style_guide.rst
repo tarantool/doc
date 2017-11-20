@@ -484,4 +484,42 @@ When you'll test your code output will be something like this:
     ok - checking, that tables are different
     ...
 
+===========================================================
+                       Error Handling
+===========================================================
+
+Be generous in what you accept and strict in what you return.
+
+With error handling this means that you must provide an error object as second
+multi-return value in case of error. The error object can be a string, a Lua
+table or cdata, in the latter cases it must have ``__tostring`` metamethod
+defined.
+
+In case of error, use ``nil`` for the first return value. This makes the error
+hard to ignore.
+
+When checking function return values, check the first argument first. If it's
+``nil``, look for error in the second argument:
+
+.. code-block:: lua
+
+    local data, err = foo()
+    if not data
+        return nil, err
+    end
+    return bar(data)
+
+Unless performance of your code is paramount, try to avoid using more than two
+return values.
+
+In rare cases you may want to return ``nil`` as a legal return value. In this
+case it's OK to check for error first, and return second:
+
+.. code-block:: lua
+
+    local data, err = foo()
+    if not err
+        return data
+    end
+    return nil, err
 
