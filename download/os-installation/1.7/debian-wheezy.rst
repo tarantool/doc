@@ -29,10 +29,8 @@ Tarantool - Debian Wheezy
 
           # append two lines to a list of source repositories
           sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-          sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF
-          deb https://packagecloud.io/tarantool/1_7/debian/ wheezy main
-          deb-src https://packagecloud.io/tarantool/1_7/debian/ wheezy main
-          EOF
+          echo "deb https://packagecloud.io/tarantool/1_7/debian/ wheezy main" > /etc/apt/sources.list.d/tarantool_1_7.list
+          echo "https://packagecloud.io/tarantool/1_7/debian/ wheezy main" >> /etc/apt/sources.list.d/tarantool_1_7.list
 
           # install
           sudo apt-get update

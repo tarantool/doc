@@ -36,10 +36,8 @@ Tarantool - Ubuntu
 
             # append two lines to a list of source repositories
             sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-            sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF
-            deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main
-            deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main
-            EOF
+            echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main" > /etc/apt/sources.list.d/tarantool_1_7.list
+            echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main" >> /etc/apt/sources.list.d/tarantool_1_7.list
 
             # install
             sudo apt-get update
