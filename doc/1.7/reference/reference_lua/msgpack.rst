@@ -28,13 +28,13 @@ Below is a list of all ``msgpack`` functions and members.
         | Name                                 | Use                             |
         +======================================+=================================+
         | :ref:`msgpack.encode()               | Convert a Lua object to an      |
-        | <json-encode>`                       | MsgPack string                  |
+        | <msgpack-encode>`                    | MsgPack string                  |
         +--------------------------------------+---------------------------------+
         | :ref:`msgpack.decode()               | Convert an MsgPack string to a  |
-        | <json-decode>`                       | Lua object                      |
+        | <msgpack-decode>`                    | Lua object                      |
         +--------------------------------------+---------------------------------+
         | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
-        | <json-null>`                         |                                 |
+        | <msgpack-null>`                      |                                 |
         +--------------------------------------+---------------------------------+
 
 .. module:: msgpack
