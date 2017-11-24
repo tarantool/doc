@@ -6,26 +6,30 @@
 
     Return true if there is an active transaction.
 
+.. _txn-box_txn_begin:
+
 .. c:function:: int box_txn_begin(void)
 
     Begin a transaction in the current fiber.
 
     A transaction is attached to caller fiber, therefore one fiber can have
-    only one active transaction.
+    only one active transaction. See also :ref:`box.begin()<box-begin>`.
 
     :return: 0 on success
-    :return: -1 on error. Perhaps a transaction has already been started
+    :return: -1 on error. Perhaps a transaction has already been started.
+
+.. _txn-box_txn_commit:
 
 .. c:function:: int box_txn_commit(void)
 
-    Commit the current transaction.
+    Commit the current transaction. See also :ref:`box.commit() <box-commit>`.
 
     :return: 0 on success
     :return: -1 on error. Perhaps a disk write failure
 
 .. c:function:: void box_txn_rollback(void)
 
-    Roll back the current transaction.
+    Roll back the current transaction. See also :ref:`box.rollback() <box-rollback>`.
 
 .. c:function:: box_txn_savepoint_t * savepoint(void)
 

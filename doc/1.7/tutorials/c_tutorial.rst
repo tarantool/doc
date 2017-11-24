@@ -19,11 +19,12 @@ In fact the routines are always "C functions" but the phrase
 "stored procedure" is commonly used for historical reasons.
 
 In this tutorial, which can be followed by anyone with a Tarantool
-development package and a C compiler, there are four tasks.
+development package and a C compiler, there are five tasks.
 The first -- :code:`easy.c` -- prints "hello world".
 The second -- :code:`harder.c` -- decodes a passed parameter value.
 The third -- :code:`hardest.c` -- uses the C API to do a DBMS insert.
 The fourth -- :code:`read.c` -- uses the C API to do a DBMS select.
+The fifth -- :code:`write.c` -- uses the C API to do a DBMS replace.
 
 After following the instructions, and seeing that the results
 are what is described here, users should feel confident about
@@ -356,7 +357,7 @@ This time the C function is doing four things: |br|
 (1) once again, finding the numeric identifier of the "capi_test" space
 by calling box_space_id_by_name(); |br|
 (2) formatting a search key = 10000 using more msgpuck.h functions; |br|
-(3) getting a tuple using box_index_get' |br|
+(3) getting a tuple using box_index_get |br|
 (4) going through the tuple's fields with box_tuple_get() and then
 decoding each field depending  on its type. In this case, since
 what we are getting is the tuple that we inserted with hardest.c,
@@ -379,6 +380,81 @@ This proves that the read() function succeeded.
 Once again the important functions that start with `box` came from the C API.
 The function box_index_get() is documented :ref:`here <c_api-box_index-box_index_get>`.
 The function box_tuple_field() is documented :ref:`here <c_api-tuple-box_tuple_field>`.
+
+.. _f_c_tutorial-write:
+
+**write.c**
+
+Go back to the shell where the easy.c
+and the harder.c and the hardest.c and the read.c programs were created.
+
+Create a file. Name it write.c. Put these 24 lines in it:
+
+.. code-block:: none
+
+    #include "module.h"
+    #include <msgpuck.h>
+    int write(box_function_ctx_t *ctx, const char *args, const char *args_end)
+    {
+      static const char *space = "capi_test";
+      char tuple_buf[1024];
+      uint32_t space_id = box_space_id_by_name(space, strlen(space));
+      if (space_id == BOX_ID_NIL) {
+        return box_error_set(__FILE__, __LINE__, ER_PROC_C,
+        "Can't find space %s", "capi_test");
+      }
+      char *tuple_end = tuple_buf;
+      tuple_end = mp_encode_array(tuple_end, 2);
+      tuple_end = mp_encode_uint(tuple_end, 1);
+      tuple_end = mp_encode_uint(tuple_end, 22);
+      box_txn_begin();
+      if (box_replace(space_id, tuple_buf, tuple_end, NULL) != 0)
+        return -1;
+      box_txn_commit();
+      fiber_sleep(0.001);
+      struct tuple *tuple = box_tuple_new(box_tuple_format_default(),
+                                          tuple_buf, tuple_end);
+      return box_return_tuple(ctx, tuple);
+    }
+
+Compile the program, producing a library file named write.so: |br|
+:code:`gcc -shared -o write.so -fPIC write.c`
+
+Now go back to the client and execute these requests:
+
+.. code-block:: none
+
+    box.schema.func.create('write', {language = "C"})
+    box.schema.user.grant('guest', 'execute', 'function', 'write')
+    box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')
+    capi_connection:call('write')
+
+This time the C function is doing six things: |br|
+(1) once again, finding the numeric identifier of the "capi_test" space
+by calling box_space_id_by_name(); |br|
+(2) making a new tuple |br|
+(3) starting a transaction |br|
+(4) replacing a tuple in box.space.capi_test |br|
+(5) ending a transaction |br|
+(6) the final line is a replacement for the loop in read.c --
+instead of getting each field and printing it, use the
+box_return_tuple(...) function to return the entire tuple
+to the caller and let the caller display it.
+
+The result of capi_connection:call('write') should look like this:
+
+.. code-block:: none
+
+    tarantool> capi_connection:call('write')
+    ---
+    - [[1, 22]]
+    ...
+
+This proves that the write() function succeeded.
+Once again the important functions that start with `box` came from the C API.
+The function box_txn_begin() is documented :ref:`here <txn-box_txn_begin>`.
+The function box_txn_commit() is documented :ref:`here <txn-box_txn_commit>`.
+The function box_return_tuple() is documented :ref:`here <box-box_return_tuple>`.
 
 Conclusion: the long description of the whole C API is
 there for a good reason.
