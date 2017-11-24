@@ -12,13 +12,23 @@ Disallow: /404.html
 Disallow: /en/404.html
 Disallow: /ru/404.html
 
-Disallow: https://tarantool.org/https://tarantool.org/careers.html	
-Disallow: https://tarantool.org/https://tarantool.org/benchmark.html	
-Disallow: https://tarantool.org/https://tarantool.org/doc/reference/reference_lua/fiber_ipc.html	
-Disallow: https://tarantool.org/https://tarantool.org/download_16.html	
-Disallow: https://tarantool.org/https://tarantool.org/download_18.html	
-Disallow: https://tarantool.org/https://tarantool.org/download.html	
-Disallow: https://tarantool.org/https://tarantool.org/doc/book/administration.html	
+Disallow: http://tarantool.org/careers.html	
+Disallow: http://tarantool.org/benchmark.html	
+Disallow: http://tarantool.org/doc/reference/reference_lua/fiber_ipc.html	
+Disallow: http://tarantool.org/download_16.html	
+Disallow: http://tarantool.org/download_18.html	
+Disallow: http://tarantool.org/download.html	
+Disallow: http://tarantool.org/doc/book/administration.html	
+Disallow: http://tarantool.org/doc/1.7/book/administration.html	
+Disallow: http://tarantool.org/rocks.html
+
+Disallow: https://tarantool.org/careers.html	
+Disallow: https://tarantool.org/benchmark.html	
+Disallow: https://tarantool.org/doc/reference/reference_lua/fiber_ipc.html	
+Disallow: https://tarantool.org/download_16.html	
+Disallow: https://tarantool.org/download_18.html	
+Disallow: https://tarantool.org/download.html	
+Disallow: https://tarantool.org/doc/book/administration.html	
 Disallow: https://tarantool.org/doc/1.7/book/administration.html	
 Disallow: https://tarantool.org/rocks.html
 
