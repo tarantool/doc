@@ -10,8 +10,8 @@
 
     Tuple format.
 
-    Each Tuple has associated format (class). Default format is used to
-    create tuples which are not attach to any particular space.
+    Each Tuple has an associated format (class). Default format is used to
+    create tuples which are not attached to any particular space.
 
 .. c:type:: box_tuple_t
 
@@ -21,7 +21,7 @@
 
 .. c:function:: box_tuple_t *box_tuple_new(box_tuple_format_t *format, const char *tuple, const char *tuple_end)
 
-    Allocate and initialize a new tuple from a raw MsgPack Array data.
+    Allocate and initialize a new tuple from raw MsgPack Array data.
 
     :param box_tuple_format_t* format: tuple format. Use
                                        :ref:`box_tuple_format_default()<c_api-tuple-box_tuple_format_default>`
@@ -34,6 +34,10 @@
 
     See also: :ref:`box.tuple.new()<box_tuple-new>`
 
+    Warning: when working with tuples, it is the programmer's responsibility
+    to ensure that enough space is allocated, taking especial caution when
+    when writing to them with msgpuck functions such as mp_encode_array().
+
 .. _c_api-tuple-box_tuple_ref:
 
 .. c:function:: int box_tuple_ref(box_tuple_t *tuple)
@@ -41,12 +45,12 @@
     Increase the reference counter of tuple.
 
     Tuples are reference counted. All functions that return tuples guarantee
-    that the last returned tuple is refcounted internally until the next
+    that the last returned tuple is reference counted internally until the next
     call to API function that yields or returns another tuple.
 
     You should increase the reference counter before taking tuples for long
     processing in your code. Such tuples will not be garbage collected even
-    if another fiber remove they from space. After processing please
+    if another fiber removes them from a space. After processing,
     decrement the reference counter using
     :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`,
     otherwise the tuple will leak.
@@ -75,7 +79,7 @@
 
 .. c:function:: uint32_t box_tuple_field_count(const box_tuple_t *tuple)
 
-    Return the number of fields in tuple (the size of MsgPack Array).
+    Return the number of fields in a tuple (the size of MsgPack Array).
 
     :param box_tuple_t* tuple: a tuple
 
@@ -115,7 +119,7 @@
     decoded with mp_decode functions, for an example see the tutorial
     program :ref:`read.c <f_c_tutorial-read>`.
 
-    The buffer is valid until next call to box_tuple_* functions.
+    The buffer is valid until the next call to a box_tuple_* function.
 
     :param box_tuple_t* tuple: a tuple
     :param uint32_t field_id: zero-based index in MsgPack array.
@@ -138,9 +142,9 @@
 
     Possible data types for tuple fields.
 
-    Can't use STRS/ENUM macros for them,
-    since there is a mismatch between enum name (STRING) and type
-    name literal ("STR"). STR is already used as Objective C type.
+    One cannot use STRS/ENUM macros for types because
+    there is a mismatch between enum name (STRING) and type
+    name literal ("STR"). STR is already used as a type in Objective C.
 
 .. _capi-tuple_key_def:
 
@@ -150,7 +154,7 @@
 
 .. c:function:: box_key_def_t *box_key_def_new(uint32_t *fields, uint32_t *types, uint32_t part_count)
 
-    Create key definition with the key fields with passed typed on passed positions.
+    Create a key definition with the key fields with passed types on passed positions.
 
     May be used for tuple format creation and/or tuple comparison.
 
@@ -163,7 +167,7 @@
 
 .. c:function:: void box_key_def_delete(box_key_def_t *key_def)
 
-    Delete key definition
+    Delete a key definition
 
     :param box_key_def_t* key_def: key definition to delete
 
@@ -181,13 +185,13 @@
 
 .. c:function:: void box_tuple_format_ref(box_tuple_format_t *format)
 
-    Increment tuple format ref count
+    Increment tuple format reference count
 
     :param box_tuple_format_t tuple_format: tuple format to ref
 
 .. c:function:: void box_tuple_format_unref(box_tuple_format_t *format)
 
-    Decrement tuple format ref count
+    Decrement tuple format reference count
 
     :param box_tuple_format_t tuple_format: tuple format to unref
 
@@ -227,8 +231,8 @@
 
 .. c:function:: box_tuple_iterator_t *box_tuple_iterator(box_tuple_t *tuple)
 
-    Allocate and initialize a new tuple iterator. The tuple iterator allow to
-    iterate over fields at root level of MsgPack array.
+    Allocate and initialize a new tuple iterator. The tuple iterator allows
+    iterating over fields at the root level of a MsgPack array.
 
     **Example:**
 
@@ -262,7 +266,7 @@
 .. c:function:: uint32_t box_tuple_position(box_tuple_iterator_t *it)
 
     Return zero-based next position in iterator. That is, this function
-    return the field id of field that will be returned by the next call
+    return the field id of the field that will be returned by the next call
     to :ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`.
     Returned value is zero after initialization
     or rewind and :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`
