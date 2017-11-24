@@ -13,7 +13,8 @@
     Return a tuple from a C stored procedure.
 
     The returned tuple is automatically reference-counted by Tarantool.
-    An example program that uses box_return_tuple is :ref:`write.c <f_c_tutorial-write>`.
+    An example program that uses ``box_return_tuple()`` is
+    :ref:`write.c <f_c_tutorial-write>`.
 
     :param box_funtion_ctx_t* ctx: an opaque structure passed to the C stored
                                    procedure by Tarantool
@@ -29,7 +30,7 @@
 
     Find space id by name.
 
-    This function performs a SELECT request on the _vspace system space.
+    This function performs a SELECT request on the ``_vspace`` system space.
 
     :param const char* name: space name
     :param uint32_t     len: length of ``name``
@@ -44,6 +45,8 @@
 
     Find index id by name.
 
+    This function performs a SELECT request on the ``_vindex`` system space.
+
     :param uint32_t space_id: space identifier
     :param const char*  name: index name
     :param uint32_t      len: length of ``name``
@@ -51,8 +54,6 @@
     :return: :c:macro:`BOX_ID_NIL` on error or if not found (check
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: space_id otherwise
-
-    This function performs a SELECT request on the _vindex system space.
 
     See also: :c:type:`box_space_id_by_name`
 
