@@ -265,7 +265,7 @@ Create a file. Name it ``hardest.c``. Put these 13 lines in it:
     int hardest(box_function_ctx_t *ctx, const char *args, const char *args_end)
     {
       uint32_t space_id = box_space_id_by_name("capi_test", strlen("capi_test"));
-      char tuple[1024];
+      char tuple[1024]; /* Must be big enough for mp_encode results */
       char *tuple_pointer = tuple;
       tuple_pointer = mp_encode_array(tuple_pointer, 2);
       tuple_pointer = mp_encode_uint(tuple_pointer, 10000);
@@ -295,6 +295,11 @@ This time the C function is doing three things:
     by calling ``box_space_id_by_name()``;
 (2) formatting a tuple using more ``msgpuck.h`` functions;
 (3) inserting a tuple using ``box_insert()``.
+
+Warning: ``char tuple[1024];`` is used here as just a quick way
+of saying "allocate more than enough bytes". For serious
+programs the programmer must be careful to allow enough space for
+all the bytes that the mp_encode routines will use up.
 
 Now, still on the client, execute this request:
 
@@ -432,7 +437,7 @@ Create a file. Name it ``write.c``. Put these 24 lines in it:
     int write(box_function_ctx_t *ctx, const char *args, const char *args_end)
     {
       static const char *space = "capi_test";
-      char tuple_buf[1024];
+      char tuple_buf[1024]; /* Must be big enough for mp_encode results */
       uint32_t space_id = box_space_id_by_name(space, strlen(space));
       if (space_id == BOX_ID_NIL) {
         return box_error_set(__FILE__, __LINE__, ER_PROC_C,

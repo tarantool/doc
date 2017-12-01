@@ -64,6 +64,11 @@ exist before deletions occur.
     it has created ten snapshots. After that, it will delete the oldest snapshot
     (and any associated write-ahead-log files) after creating a new one.
 
+    Remember that, as stated earlier, snapshots will not be deleted if
+    replication is ongoing and the file has not been relayed to a replica.
+    Therefore ``checkpoint_count`` has no effect unless all replicas are alive.
+
+
     | Type: integer
     | Default: 2
     | Dynamic: yes

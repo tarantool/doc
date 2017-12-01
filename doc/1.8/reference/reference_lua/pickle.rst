@@ -39,48 +39,52 @@ Below is a list of all ``pickle`` functions.
 
         .. rst-class:: left-align-column-2
 
-        +------+-------------------------------------------------+
-        | b, B | converts Lua variable to a 1-byte integer,      |
-        |      | and stores the integer in the resulting string  |
-        +------+-------------------------------------------------+
-        | s, S | converts Lua variable to a 2-byte integer, and  |
-        |      | stores the integer in the resulting string,     |
-        |      | low byte first                                  |
-        +------+-------------------------------------------------+
-        | i, I | converts Lua variable to a 4-byte integer, and  |
-        |      | stores the integer in the resulting string, low |
-        |      | byte first                                      |
-        +------+-------------------------------------------------+
-        | l, L | converts Lua variable to an 8-byte integer, and |
-        |      | stores the integer in the resulting string, low |
-        |      | byte first                                      |
-        +------+-------------------------------------------------+
-        | n    | converts Lua variable to a 2-byte integer, and  |
-        |      | stores the integer in the resulting string, big |
-        |      | endian,                                         |
-        +------+-------------------------------------------------+
-        | N    | converts Lua variable to a 4-byte integer, and  |
-        |      | stores the integer in the resulting string, big |
-        +------+-------------------------------------------------+
-        | q, Q | converts Lua variable to an 8-byte integer, and |
-        |      | stores the integer in the resulting string, big |
-        |      | endian,                                         |
-        +------+-------------------------------------------------+
-        | f    | converts Lua variable to a 4-byte float, and    |
-        |      | stores the float in the resulting string        |
-        +------+-------------------------------------------------+
-        | d    | converts Lua variable to a 8-byte double, and   |
-        |      | stores the double in the resulting string       |
-        +------+-------------------------------------------------+
-        | a, A | converts Lua variable to a sequence of bytes,   |
-        |      | and stores the sequence in the resulting string |
-        +------+-------------------------------------------------+
+        +------+-----------------------------------------------------+
+        | b, B | converts Lua scalar value to a 1-byte integer,      |
+        |      | and stores the integer in the resulting string      |
+        +------+-----------------------------------------------------+
+        | s, S | converts Lua scalar value to a 2-byte integer, and  |
+        |      | stores the integer in the resulting string,         |
+        |      | low byte first                                      |
+        +------+-----------------------------------------------------+
+        | i, I | converts Lua scalar value to a 4-byte integer, and  |
+        |      | stores the integer in the resulting string, low     |
+        |      | byte first                                          |
+        +------+-----------------------------------------------------+
+        | l, L | converts Lua scalar value to an 8-byte integer, and |
+        |      | stores the integer in the resulting string, low     |
+        |      | byte first                                          |
+        +------+-----------------------------------------------------+
+        | n    | converts Lua scalar value to a 2-byte integer, and  |
+        |      | stores the integer in the resulting string, big     |
+        |      | endian,                                             |
+        +------+-----------------------------------------------------+
+        | N    | converts Lua scalar value to a 4-byte integer, and  |
+        |      | stores the integer in the resulting string, big     |
+        +------+-----------------------------------------------------+
+        | q, Q | converts Lua scalar value to an 8-byte integer, and |
+        |      | stores the integer in the resulting string, big     |
+        |      | endian,                                             |
+        +------+-----------------------------------------------------+
+        | f    | converts Lua scalar value to a 4-byte float, and    |
+        |      | stores the float in the resulting string            |
+        +------+-----------------------------------------------------+
+        | d    | converts Lua scalar value to a 8-byte double, and   |
+        |      | stores the double in the resulting string           |
+        +------+-----------------------------------------------------+
+        | a, A | converts Lua scalar value to a sequence of bytes,   |
+        |      | and stores the sequence in the resulting string     |
+        +------+-----------------------------------------------------+
 
     :param string format: string containing format specifiers
     :param scalar-value argument(s): scalar values to be formatted
     :return: a binary string containing all arguments,
              packed according to the format specifiers.
     :rtype:  string
+
+    A scalar value can be either a variable or a literal. Remember that
+    large integers should be entered with
+    :ref:`tonumber64() or LL or ULL suffixes <index-box_number>`.
 
     Possible errors: unknown format specifier.
 
