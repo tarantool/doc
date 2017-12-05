@@ -18,23 +18,23 @@ read `the official documentation`_.
 
 Below is a list of all ``json`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`json.encode()                  | Convert a Lua object to a JSON  |
-        | <json-encode>`                       | string                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`json.decode()                  | Convert a JSON string to a Lua  |
-        | <json-decode>`                       | object                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`json.NULL                      | Analog of Lua's "nil"           |
-        | <json-null>`                         |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`json.encode()                  | Convert a Lua object to a JSON  |
+    | <json-encode>`                       | string                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`json.decode()                  | Convert a JSON string to a Lua  |
+    | <json-decode>`                       | object                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`json.NULL                      | Analog of Lua's "nil"           |
+    | <json-null>`                         |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: json
 

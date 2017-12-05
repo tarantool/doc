@@ -23,23 +23,23 @@ SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
 
 Below is a list of all ``crypto`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +----------------------------------------------------------+---------------------------------+
-        | Name                                                     | Use                             |
-        +==========================================================+=================================+
-        | :ref:`crypto.cipher.{algorithm}.{cipher_mode}.encrypt()  | Encrypt a string                |
-        | <crypto-cipher>`                                         |                                 |
-        +----------------------------------------------------------+---------------------------------+
-        | :ref:`crypto.cipher.{algorithm}.{cipher_mode}.decrypt()  | Decrypt a string                |
-        | <crypto-cipher>`                                         |                                 |
-        +----------------------------------------------------------+---------------------------------+
-        | :ref:`crypto.digest.{algorithm}()                        | Get a digest                    |
-        | <crypto-digest>`                                         |                                 |
-        +----------------------------------------------------------+---------------------------------+
+    +----------------------------------------------------------+---------------------------------+
+    | Name                                                     | Use                             |
+    +==========================================================+=================================+
+    | :ref:`crypto.cipher.{algorithm}.{cipher_mode}.encrypt()  | Encrypt a string                |
+    | <crypto-cipher>`                                         |                                 |
+    +----------------------------------------------------------+---------------------------------+
+    | :ref:`crypto.cipher.{algorithm}.{cipher_mode}.decrypt()  | Decrypt a string                |
+    | <crypto-cipher>`                                         |                                 |
+    +----------------------------------------------------------+---------------------------------+
+    | :ref:`crypto.digest.{algorithm}()                        | Get a digest                    |
+    | <crypto-digest>`                                         |                                 |
+    +----------------------------------------------------------+---------------------------------+
 
 .. _crypto-cipher:
 

@@ -19,45 +19,45 @@ nanoseconds.
 
 Below is a list of all ``clock`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`clock.time()                   |                                 |
-        | <clock-time>` |br|                   | Get the wall clock time         |
-        | :ref:`clock.realtime()               | in seconds                      |
-        | <clock-time>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.time64()                 |                                 |
-        | <clock-time>` |br|                   | Get the wall clock time         |
-        | :ref:`clock.realtime64()             | in nanoseconds                  |
-        | <clock-time>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.monotonic()              | Get the monotonic time          |
-        | <clock-monotonic>`                   | in seconds                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.monotonic64()            | Get the monotonic time          |
-        | <clock-monotonic>`                   | in nanoseconds                  |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.proc()                   | Get the processor time          |
-        | <clock-proc>`                        | in seconds                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.proc64()                 | Get the processor time          |
-        | <clock-proc>`                        | in nanoseconds                  |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.thread()                 | Get the thread time             |
-        | <clock-thread>`                      | in seconds                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.thread64()               | Get the thread time             |
-        | <clock-thread>`                      | in nanoseconds                  |
-        +--------------------------------------+---------------------------------+
-        | :ref:`clock.bench()                  | Measure the time a function     |
-        | <clock-bench>`                       | takes within a processor        |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`clock.time()                   |                                 |
+    | <clock-time>` |br|                   | Get the wall clock time         |
+    | :ref:`clock.realtime()               | in seconds                      |
+    | <clock-time>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.time64()                 |                                 |
+    | <clock-time>` |br|                   | Get the wall clock time         |
+    | :ref:`clock.realtime64()             | in nanoseconds                  |
+    | <clock-time>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.monotonic()              | Get the monotonic time          |
+    | <clock-monotonic>`                   | in seconds                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.monotonic64()            | Get the monotonic time          |
+    | <clock-monotonic>`                   | in nanoseconds                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.proc()                   | Get the processor time          |
+    | <clock-proc>`                        | in seconds                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.proc64()                 | Get the processor time          |
+    | <clock-proc>`                        | in nanoseconds                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.thread()                 | Get the thread time             |
+    | <clock-thread>`                      | in seconds                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.thread64()               | Get the thread time             |
+    | <clock-thread>`                      | in nanoseconds                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`clock.bench()                  | Measure the time a function     |
+    | <clock-bench>`                       | takes within a processor        |
+    +--------------------------------------+---------------------------------+
 
 .. module:: clock
 

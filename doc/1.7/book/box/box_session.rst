@@ -19,47 +19,47 @@ client connection.
 
 Below is a list of all ``box.session`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`box.session.id()               | Get the current session's ID    |
-        | <box_session-id>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.exists()           | Check if a session exists       |
-        | <box_session-exists>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.peer()             | Get the session peer's host     |
-        | <box_session-peer>`                  | address and port                |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.sync()             | Get the sync integer constant   |
-        | <box_session-sync>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.user()             | Get the current user's name     |
-        | <box_session-user>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.type()             | Get the connection type or      |
-        | <box_session-type>`                  | cause of action                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.su()               | Change the current user         |
-        | <box_session-su>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.storage            | Table with session-specific     |
-        | <box_session-storage>`               | names and values                |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.on_connect()       | Define a connect trigger        |
-        | <box_session-on_connect>`            |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.on_disconnect()    | Define a disconnect trigger     |
-        | <box_session-on_disconnect>`         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.session.on_auth()          | Define an authentication        |
-        | <box_session-on_auth>`               | trigger                         |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`box.session.id()               | Get the current session's ID    |
+    | <box_session-id>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.exists()           | Check if a session exists       |
+    | <box_session-exists>`                |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.peer()             | Get the session peer's host     |
+    | <box_session-peer>`                  | address and port                |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.sync()             | Get the sync integer constant   |
+    | <box_session-sync>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.user()             | Get the current user's name     |
+    | <box_session-user>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.type()             | Get the connection type or      |
+    | <box_session-type>`                  | cause of action                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.su()               | Change the current user         |
+    | <box_session-su>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.storage            | Table with session-specific     |
+    | <box_session-storage>`               | names and values                |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.on_connect()       | Define a connect trigger        |
+    | <box_session-on_connect>`            |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.on_disconnect()    | Define a disconnect trigger     |
+    | <box_session-on_disconnect>`         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.on_auth()          | Define an authentication        |
+    | <box_session-on_auth>`               | trigger                         |
+    +--------------------------------------+---------------------------------+
 
 .. module:: box.session
 

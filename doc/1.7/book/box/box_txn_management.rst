@@ -36,30 +36,30 @@ Observe the following rules when working with transactions:
 
 Below is a list of all functions for transaction management.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`box.begin()                    | Begin the transaction           |
-        | <box-begin>`                         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.commit()                   | End the transaction and save    |
-        | <box-commit>`                        | all changes                     |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.rollback()                 | End the transaction and discard |
-        | <box-rollback>`                      | all changes                     |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.savepoint()                | Get a savepoint descriptor      |
-        | <box-savepoint>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.rollback_to_savepoint()    | Do not end the transaction and  |
-        | <box-rollback_to_savepoint>`         | discard all changes made after  |
-        |                                      | a savepoint                     |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`box.begin()                    | Begin the transaction           |
+    | <box-begin>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.commit()                   | End the transaction and save    |
+    | <box-commit>`                        | all changes                     |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.rollback()                 | End the transaction and discard |
+    | <box-rollback>`                      | all changes                     |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.savepoint()                | Get a savepoint descriptor      |
+    | <box-savepoint>`                     |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.rollback_to_savepoint()    | Do not end the transaction and  |
+    | <box-rollback_to_savepoint>`         | discard all changes made after  |
+    |                                      | a savepoint                     |
+    +--------------------------------------+---------------------------------+
 
 .. _box-begin:
 

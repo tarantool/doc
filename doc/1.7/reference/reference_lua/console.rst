@@ -18,29 +18,29 @@ instance, and allows one Tarantool instance to start listening on an
 
 Below is a list of all ``console`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`console.connect()              | Connect to an instance          |
-        | <console-connect>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`console.listen()               | Listen for incoming requests    |
-        | <console-listen>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`console.start()                | Start the console               |
-        | <console-start>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`console.ac()                   | Set the auto-completion flag    |
-        | <console-ac>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`console.delimiter()            | Set a delimiter                 |
-        | <console-delimiter>`                 |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`console.connect()              | Connect to an instance          |
+    | <console-connect>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`console.listen()               | Listen for incoming requests    |
+    | <console-listen>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`console.start()                | Start the console               |
+    | <console-start>`                     |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`console.ac()                   | Set the auto-completion flag    |
+    | <console-ac>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`console.delimiter()            | Set a delimiter                 |
+    | <console-delimiter>`                 |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: console
 
@@ -158,7 +158,7 @@ Below is a list of all ``console`` functions.
 .. function:: delimiter(marker)
 
    Set a custom end-of-request marker for Tarantool console.
-   
+
    The default end-of-request marker is a newline (line feed).
    Custom markers are not necessary because Tarantool can tell when a multi-line
    request has not ended (for example, if it sees that a function declaration
@@ -168,9 +168,9 @@ Below is a list of all ``console`` functions.
    end of request.
 
    To go back to normal mode, say: ``console.delimiter('')<marker>``
-   
+
    :param string marker: a custom end-of-request marker for Tarantool console
-    
+
    **Example:**
 
    .. code-block:: none

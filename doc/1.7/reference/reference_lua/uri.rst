@@ -24,20 +24,20 @@ or turn components into URI strings.
 
 Below is a list of all ``uri`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`uri.parse()                    | Get a table of URI components   |
-        | <uri-parse>`                         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`uri.format()                   | Construct a URI from components |
-        | <uri-format>`                        |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`uri.parse()                    | Get a table of URI components   |
+    | <uri-parse>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`uri.format()                   | Construct a URI from components |
+    | <uri-format>`                        |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: uri
 

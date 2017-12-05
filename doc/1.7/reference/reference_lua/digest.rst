@@ -24,92 +24,92 @@ module.
 
 Below is a list of all ``digest`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`digest.aes256cbc.encrypt()     | Encrypt a string using AES      |
-        | <digest-aes>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.aes256cbc.decrypt()     | Decrypt a string using AES      |
-        | <digest-aes>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.md4()                   | Get a digest made with MD4      |
-        | <digest-md4>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.md4_hex()               | Get a hexadecimal digest made   |
-        | <digest-md4_hex>`                    | with MD4                        |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.md5()                   | Get a digest made with MD5      |
-        | <digest-md5>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.md5_hex()               | Get a hexadecimal digest made   |
-        | <digest-md5_hex>`                    | with MD5                        |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha()                   | Get a digest made with SHA-0    |
-        | <digest-sha>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha_hex()               | Get a hexadecimal digest made   |
-        | <digest-sha_hex>`                    | with SHA-0                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha1()                  | Get a digest made with SHA-1    |
-        | <digest-sha1>`                       |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha1_hex()              | Get a hexadecimal digest made   |
-        | <digest-sha1_hex>`                   | with SHA-1                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha224()                | Get a 224-bit digest made with  |
-        | <digest-sha224>`                     | SHA-2                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha224_hex()            | Get a 56-byte hexadecimal       |
-        | <digest-sha224_hex>`                 | digest made with SHA-2          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha256()                | Get a 256-bit digest made with  |
-        | <digest-sha256>`                     | SHA-2                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha256_hex()            | Get a 64-byte hexadecimal       |
-        | <digest-sha256_hex>`                 | digest made with SHA-2          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha384()                | Get a 384-bit digest made with  |
-        | <digest-sha384>`                     | SHA-2                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha384_hex()            | Get a 96-byte hexadecimal       |
-        | <digest-sha384_hex>`                 | digest made with SHA-2          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha512()                | Get a 512-bit digest made with  |
-        | <digest-sha512>`                     | SHA-2                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.sha512_hex()            | Get a 128-byte hexadecimal      |
-        | <digest-sha512_hex>`                 | digest made with SHA-2          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.base64_encode()         | Encode a string to Base64       |
-        | <digest-base64_encode>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.base64_decode()         | Decode a Base64-encoded string  |
-        | <digest-base64_decode>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.urandom()               | Get an array of random bytes    |
-        | <digest-urandom>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.crc32()                 | Get a 32-bit checksum made with |
-        | <digest-crc32>`                      | CRC32                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.crc32.new()             | Initiate incremental CRC32      |
-        | <digest-crc32_new>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.guava()                 | Get a number made with a        |
-        | <digest-guava>`                      | consistent hash                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.murmur()                | Get a digest made with          |
-        | <digest-murmur>`                     | MurmurHash                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`digest.murmur.new()            | Initiate incremental MurmurHash |
-        | <digest-murmur_new>`                 |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`digest.aes256cbc.encrypt()     | Encrypt a string using AES      |
+    | <digest-aes>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.aes256cbc.decrypt()     | Decrypt a string using AES      |
+    | <digest-aes>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.md4()                   | Get a digest made with MD4      |
+    | <digest-md4>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.md4_hex()               | Get a hexadecimal digest made   |
+    | <digest-md4_hex>`                    | with MD4                        |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.md5()                   | Get a digest made with MD5      |
+    | <digest-md5>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.md5_hex()               | Get a hexadecimal digest made   |
+    | <digest-md5_hex>`                    | with MD5                        |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha()                   | Get a digest made with SHA-0    |
+    | <digest-sha>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha_hex()               | Get a hexadecimal digest made   |
+    | <digest-sha_hex>`                    | with SHA-0                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha1()                  | Get a digest made with SHA-1    |
+    | <digest-sha1>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha1_hex()              | Get a hexadecimal digest made   |
+    | <digest-sha1_hex>`                   | with SHA-1                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha224()                | Get a 224-bit digest made with  |
+    | <digest-sha224>`                     | SHA-2                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha224_hex()            | Get a 56-byte hexadecimal       |
+    | <digest-sha224_hex>`                 | digest made with SHA-2          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha256()                | Get a 256-bit digest made with  |
+    | <digest-sha256>`                     | SHA-2                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha256_hex()            | Get a 64-byte hexadecimal       |
+    | <digest-sha256_hex>`                 | digest made with SHA-2          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha384()                | Get a 384-bit digest made with  |
+    | <digest-sha384>`                     | SHA-2                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha384_hex()            | Get a 96-byte hexadecimal       |
+    | <digest-sha384_hex>`                 | digest made with SHA-2          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha512()                | Get a 512-bit digest made with  |
+    | <digest-sha512>`                     | SHA-2                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.sha512_hex()            | Get a 128-byte hexadecimal      |
+    | <digest-sha512_hex>`                 | digest made with SHA-2          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.base64_encode()         | Encode a string to Base64       |
+    | <digest-base64_encode>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.base64_decode()         | Decode a Base64-encoded string  |
+    | <digest-base64_decode>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.urandom()               | Get an array of random bytes    |
+    | <digest-urandom>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.crc32()                 | Get a 32-bit checksum made with |
+    | <digest-crc32>`                      | CRC32                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.crc32.new()             | Initiate incremental CRC32      |
+    | <digest-crc32_new>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.guava()                 | Get a number made with a        |
+    | <digest-guava>`                      | consistent hash                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.murmur()                | Get a digest made with          |
+    | <digest-murmur>`                     | MurmurHash                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.murmur.new()            | Initiate incremental MurmurHash |
+    | <digest-murmur_new>`                 |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _digest-aes:
 

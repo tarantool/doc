@@ -296,10 +296,12 @@ This time the C function is doing three things:
 (2) formatting a tuple using more ``msgpuck.h`` functions;
 (3) inserting a tuple using ``box_insert()``.
 
-Warning: ``char tuple[1024];`` is used here as just a quick way
-of saying "allocate more than enough bytes". For serious
-programs the programmer must be careful to allow enough space for
-all the bytes that the mp_encode routines will use up.
+.. WARNING::
+
+    ``char tuple[1024];`` is used here as just a quick way
+    of saying "allocate more than enough bytes". For serious
+    programs the developer must be careful to allow enough space for
+    all the bytes that the ``mp_encode`` routines will use up.
 
 Now, still on the client, execute this request:
 
