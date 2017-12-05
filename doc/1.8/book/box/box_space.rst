@@ -20,113 +20,113 @@ source code is available in file
 
 Below is a list of all ``box.space`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`space_object:auto_increment()  | Generate key + Insert a tuple   |
-        | <box_space-auto_increment>`          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:bsize()           | Get count of bytes              |
-        | <box_space-bsize>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:count()           | Get count of tuples             |
-        | <box_space-count>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:create_index()    | Create an index                 |
-        | <box_space-create_index>`            |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:delete()          | Delete a tuple                  |
-        | <box_space-delete>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:drop()            | Destroy a space                 |
-        | <box_space-drop>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:format()          | Declare field names and types   |
-        | <box_space-format>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:get()             | Select a tuple                  |
-        | <box_space-get>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:insert()          | Insert a tuple                  |
-        | <box_space-insert>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:len()             | Get count of tuples             |
-        | <box_space-len>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:on_replace()      | Create a replace trigger        |
-        | <box_space-on_replace>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:pairs()           | Prepare for iterating           |
-        | <box_space-pairs>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:put()             | Insert or replace a tuple       |
-        | <box_space-replace>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:rename()          | Rename a space                  |
-        | <box_space-rename>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:replace()         | Insert or replace a tuple       |
-        | <box_space-replace>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:run_triggers()    | Enable/disable a replace        |
-        | <box_space-run_triggers>`            | trigger                         |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:select()          | Select one or more tuples       |
-        | <box_space-select>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:truncate()        | Delete all tuples               |
-        | <box_space-truncate>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:update()          | Update a tuple                  |
-        | <box_space-update>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object:upsert()          | Update a tuple                  |
-        | <box_space-upsert>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object.enabled           | Flag, true if space is enabled  |
-        | <box_space-enabled>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object.field_count       | Required number of fields       |
-        | <box_space-field_count>`             |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object.id                | Numeric identifier of space     |
-        | <box_space-id>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`space_object.index             | Container of space's indexes    |
-        | <box_space-field_count>`             |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._cluster             | (Metadata) List of replica sets |
-        | <box_space-cluster>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._func                | (Metadata) List of function     |
-        | <box_space-func>`                    | tuples                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._index               | (Metadata) List of indexes      |
-        | <box_space-index>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._priv                | (Metadata) List of privileges   |
-        | <box_space-priv>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._schema              | (Metadata) List of schemas      |
-        | <box_space-schema>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._sequence            | (Metadata) List of sequences    |
-        | <box_space-sequence>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._sequence_data       | (Metadata) List of sequences    |
-        | <box_space-sequence_data>`           |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._space               | (Metadata) List of spaces       |
-        | <box_space-space>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`box.space._user                | (Metadata) List of users        |
-        | <box_space-user>`                    |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`space_object:auto_increment()  | Generate key + Insert a tuple   |
+    | <box_space-auto_increment>`          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:bsize()           | Get count of bytes              |
+    | <box_space-bsize>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:count()           | Get count of tuples             |
+    | <box_space-count>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:create_index()    | Create an index                 |
+    | <box_space-create_index>`            |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:delete()          | Delete a tuple                  |
+    | <box_space-delete>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:drop()            | Destroy a space                 |
+    | <box_space-drop>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:format()          | Declare field names and types   |
+    | <box_space-format>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:get()             | Select a tuple                  |
+    | <box_space-get>`                     |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:insert()          | Insert a tuple                  |
+    | <box_space-insert>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:len()             | Get count of tuples             |
+    | <box_space-len>`                     |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:on_replace()      | Create a replace trigger        |
+    | <box_space-on_replace>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:pairs()           | Prepare for iterating           |
+    | <box_space-pairs>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:put()             | Insert or replace a tuple       |
+    | <box_space-replace>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:rename()          | Rename a space                  |
+    | <box_space-rename>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:replace()         | Insert or replace a tuple       |
+    | <box_space-replace>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:run_triggers()    | Enable/disable a replace        |
+    | <box_space-run_triggers>`            | trigger                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:select()          | Select one or more tuples       |
+    | <box_space-select>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:truncate()        | Delete all tuples               |
+    | <box_space-truncate>`                |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:update()          | Update a tuple                  |
+    | <box_space-update>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object:upsert()          | Update a tuple                  |
+    | <box_space-upsert>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object.enabled           | Flag, true if space is enabled  |
+    | <box_space-enabled>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object.field_count       | Required number of fields       |
+    | <box_space-field_count>`             |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object.id                | Numeric identifier of space     |
+    | <box_space-id>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`space_object.index             | Container of space's indexes    |
+    | <box_space-field_count>`             |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._cluster             | (Metadata) List of replica sets |
+    | <box_space-cluster>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._func                | (Metadata) List of function     |
+    | <box_space-func>`                    | tuples                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._index               | (Metadata) List of indexes      |
+    | <box_space-index>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._priv                | (Metadata) List of privileges   |
+    | <box_space-priv>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._schema              | (Metadata) List of schemas      |
+    | <box_space-schema>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._sequence            | (Metadata) List of sequences    |
+    | <box_space-sequence>`                |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._sequence_data       | (Metadata) List of sequences    |
+    | <box_space-sequence_data>`           |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._space               | (Metadata) List of spaces       |
+    | <box_space-space>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._user                | (Metadata) List of users        |
+    | <box_space-user>`                    |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: box.space
 

@@ -8,20 +8,20 @@
 
 Below is a list of all ``pickle`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`pickle.pack()                  | Convert Lua variables to binary |
-        | <pickle-pack>`                       | format                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`pickle.unpack()                | Convert Lua variables back from |
-        | <pickle-unpack>`                     | binary format                   |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`pickle.pack()                  | Convert Lua variables to binary |
+    | <pickle-pack>`                       | format                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`pickle.unpack()                | Convert Lua variables back from |
+    | <pickle-unpack>`                     | binary format                   |
+    +--------------------------------------+---------------------------------+
 
 .. module:: pickle
 

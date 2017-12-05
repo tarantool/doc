@@ -34,9 +34,12 @@
 
     See also: :ref:`box.tuple.new()<box_tuple-new>`
 
-    Warning: when working with tuples, it is the programmer's responsibility
-    to ensure that enough space is allocated, taking especial caution when
-    when writing to them with msgpuck functions such as mp_encode_array().
+    .. WARNING::
+
+        When working with tuples, it is the developer's responsibility
+        to ensure that enough space is allocated, taking especial caution
+        when writing to them with msgpuck functions such as
+        ``mp_encode_array()``.
 
 .. _c_api-tuple-box_tuple_ref:
 
@@ -119,7 +122,7 @@
     decoded with mp_decode functions, for an example see the tutorial
     program :ref:`read.c <f_c_tutorial-read>`.
 
-    The buffer is valid until the next call to a box_tuple_* function.
+    The buffer is valid until the next call to a ``box_tuple_*`` function.
 
     :param box_tuple_t* tuple: a tuple
     :param uint32_t field_id: zero-based index in MsgPack array.
@@ -247,7 +250,7 @@
             // process raw MsgPack data
         }
 
-        // rewind iterator to first position
+        // rewind the iterator to the first position
         box_tuple_rewind(it)
         assert(box_tuple_position(it) == 0);
 
@@ -266,7 +269,7 @@
 .. c:function:: uint32_t box_tuple_position(box_tuple_iterator_t *it)
 
     Return zero-based next position in iterator. That is, this function
-    return the field id of the field that will be returned by the next call
+    returnы the field id of the field that will be returned by the next call
     to :ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`.
     Returned value is zero after initialization
     or rewind and :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`
@@ -290,8 +293,9 @@
     The result is a pointer to raw MessagePack data which can be
     decoded with mp_decode functions, for an example see the tutorial
     program :ref:`read.c <f_c_tutorial-read>`.
-    The returned buffer is valid until next call to box_tuple_* API.
-    Requested field_no returned by next call to box_tuple_next(it).
+    The returned buffer is valid until the next call to ``box_tuple_*`` API.
+    The requested ``field_no`` is returned by the next call to
+    ``box_tuple_next(it)``.
 
     :param box_tuple_iterator_t* it: a tuple iterator
     :param uint32_t        field_no: field number - zero-based position
@@ -312,7 +316,7 @@
     The result is a pointer to raw MessagePack data which can be
     decoded with mp_decode functions, for an example see the tutorial
     program :ref:`read.c <f_c_tutorial-read>`.
-    The returned buffer is valid until next call to box_tuple_* API.
+    The returned buffer is valid until next call to ``box_tuple_*`` API.
 
     :param box_tuple_iterator_t* it: a tuple iterator
     :return: NULL if there are no more fields

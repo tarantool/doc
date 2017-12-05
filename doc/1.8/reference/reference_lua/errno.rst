@@ -20,20 +20,20 @@ functions can return operating-system errors, such as :ref:`fio <fio-module>`.
 
 Below is a list of all ``errno`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`errno()                        | Get an error number for the     |
-        | <errno-errno>`                       | last OS-related function        |
-        +--------------------------------------+---------------------------------+
-        | :ref:`errno.strerror()               | Get an error message for the    |
-        | <errno-strerror>`                    | corresponding error number      |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`errno()                        | Get an error number for the     |
+    | <errno-errno>`                       | last OS-related function        |
+    +--------------------------------------+---------------------------------+
+    | :ref:`errno.strerror()               | Get an error message for the    |
+    | <errno-strerror>`                    | corresponding error number      |
+    +--------------------------------------+---------------------------------+
 
 .. _errno-errno:
 
@@ -43,7 +43,7 @@ Below is a list of all ``errno`` functions.
     To invoke it, simply say ``errno()``, without the module name.
 
     :rtype: integer
-    
+
 .. _errno-strerror:
 
 .. function:: strerror([code])
@@ -56,7 +56,7 @@ Below is a list of all ``errno`` functions.
     :param integer code: number of an operating-system error
 
     :rtype: string
-    
+
 **Example:**
 
 This function displays the result of a call to :ref:`fio.open() <fio-open>`

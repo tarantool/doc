@@ -27,101 +27,101 @@ The ``fio`` module contains:
 
 Below is a list of all ``fio`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`fio.pathjoin()                 | Form a path name from one or    |
-        | <fio-pathjoin>`                      | more partial strings            |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.basename()                 | Get a file name                 |
-        | <fio-basename>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.dirname()                  | Get a directory name            |
-        | <fio-dirname>`                       |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.umask()                    | Set mask bits                   |
-        | <fio-umask>`                         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.lstat()                    |                                 |
-        | <fio-stat>` |br|                     | Get information about a file    |
-        | :ref:`fio.stat()                     | object                          |
-        | <fio-stat>`                          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.mkdir()                    |                                 |
-        | <fio-mkdir>` |br|                    | Create or delete a directory    |
-        | :ref:`fio.rmdir()                    |                                 |
-        | <fio-mkdir>`                         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.glob()                     | Get files whose names match     |
-        | <fio-glob>`                          | a given string                  |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.tempdir()                  | Get the name of a directory for |
-        | <fio-tempdir>`                       | storing temporary files         |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.cwd()                      | Get the name of the current     |
-        | <fio-cwd>`                           | working directory               |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.link()                     |                                 |
-        | <fio-link>` |br|                     |                                 |
-        | :ref:`fio.symlink()                  |                                 |
-        | <fio-link>` |br|                     | Create and delete links         |
-        | :ref:`fio.readlink()                 |                                 |
-        | <fio-link>` |br|                     |                                 |
-        | :ref:`fio.unlink()                   |                                 |
-        | <fio-link>`                          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.rename()                   | Rename a file or directory      |
-        | <fio-rename>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.chown()                    |                                 |
-        | <fio-chown>` |br|                    | Manage rights to and ownership  |
-        | :ref:`fio.chmod()                    | of file objects                 |
-        | <fio-chown>`                         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.truncate()                 | Reduce the file size            |
-        | <fio-truncate>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.sync()                     | Ensure that changes are written |
-        | <fio-sync>`                          | to disk                         |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.open()                     | Open a file                     |
-        | <fio-open>`                          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:close()            | Close a file                    |
-        | <file_handle-close>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:pread()            |                                 |
-        | <file_handle-pread>` |br|            | Perform random-access read or   |
-        | :ref:`file-handle:pwrite()           | write on a file                 |
-        | <file_handle-pread>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:read()             |                                 |
-        | <file_handle-read>` |br|             | Perform non-random-access read  |
-        | :ref:`file-handle:write()            | or write on a file              |
-        | <file_handle-read>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:truncate()         | Change the size of an open file |
-        | <file_handle-truncate>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:seek()             | Change position in a file       |
-        | <file_handle-seek>`                  |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:stat()             | Get statistics about an open    |
-        | <file_handle-stat>`                  | file                            |
-        +--------------------------------------+---------------------------------+
-        | :ref:`file-handle:fsync()            |                                 |
-        | <file_handle-fsync>` |br|            | Ensure that changes made to an  |
-        | :ref:`file-handle:fdatasync()        | open file are written to disk   |
-        | <file_handle-fsync>`                 |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fio.c                          | Table of constants similar to   |
-        | <fio-c_table>`                       | POSIX flag values               |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`fio.pathjoin()                 | Form a path name from one or    |
+    | <fio-pathjoin>`                      | more partial strings            |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.basename()                 | Get a file name                 |
+    | <fio-basename>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.dirname()                  | Get a directory name            |
+    | <fio-dirname>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.umask()                    | Set mask bits                   |
+    | <fio-umask>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.lstat()                    |                                 |
+    | <fio-stat>` |br|                     | Get information about a file    |
+    | :ref:`fio.stat()                     | object                          |
+    | <fio-stat>`                          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.mkdir()                    |                                 |
+    | <fio-mkdir>` |br|                    | Create or delete a directory    |
+    | :ref:`fio.rmdir()                    |                                 |
+    | <fio-mkdir>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.glob()                     | Get files whose names match     |
+    | <fio-glob>`                          | a given string                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.tempdir()                  | Get the name of a directory for |
+    | <fio-tempdir>`                       | storing temporary files         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.cwd()                      | Get the name of the current     |
+    | <fio-cwd>`                           | working directory               |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.link()                     |                                 |
+    | <fio-link>` |br|                     |                                 |
+    | :ref:`fio.symlink()                  |                                 |
+    | <fio-link>` |br|                     | Create and delete links         |
+    | :ref:`fio.readlink()                 |                                 |
+    | <fio-link>` |br|                     |                                 |
+    | :ref:`fio.unlink()                   |                                 |
+    | <fio-link>`                          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.rename()                   | Rename a file or directory      |
+    | <fio-rename>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.chown()                    |                                 |
+    | <fio-chown>` |br|                    | Manage rights to and ownership  |
+    | :ref:`fio.chmod()                    | of file objects                 |
+    | <fio-chown>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.truncate()                 | Reduce the file size            |
+    | <fio-truncate>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.sync()                     | Ensure that changes are written |
+    | <fio-sync>`                          | to disk                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.open()                     | Open a file                     |
+    | <fio-open>`                          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:close()            | Close a file                    |
+    | <file_handle-close>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:pread()            |                                 |
+    | <file_handle-pread>` |br|            | Perform random-access read or   |
+    | :ref:`file-handle:pwrite()           | write on a file                 |
+    | <file_handle-pread>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:read()             |                                 |
+    | <file_handle-read>` |br|             | Perform non-random-access read  |
+    | :ref:`file-handle:write()            | or write on a file              |
+    | <file_handle-read>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:truncate()         | Change the size of an open file |
+    | <file_handle-truncate>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:seek()             | Change position in a file       |
+    | <file_handle-seek>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:stat()             | Get statistics about an open    |
+    | <file_handle-stat>`                  | file                            |
+    +--------------------------------------+---------------------------------+
+    | :ref:`file-handle:fsync()            |                                 |
+    | <file_handle-fsync>` |br|            | Ensure that changes made to an  |
+    | :ref:`file-handle:fdatasync()        | open file are written to disk   |
+    | <file_handle-fsync>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.c                          | Table of constants similar to   |
+    | <fio-c_table>`                       | POSIX flag values               |
+    +--------------------------------------+---------------------------------+
 
 .. module:: fio
 

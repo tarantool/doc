@@ -25,20 +25,20 @@ terminal.
 
 Below is a list of all ``iconv`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`iconv.new()                    | Create an iconv instance        |
-        | <iconv-new>`                         |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`iconv.converter()              | Perform conversion on a string  |
-        | <iconv-converter>`                   |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`iconv.new()                    | Create an iconv instance        |
+    | <iconv-new>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`iconv.converter()              | Perform conversion on a string  |
+    | <iconv-converter>`                   |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _iconv-new:
 
@@ -62,9 +62,9 @@ Below is a list of all ``iconv`` functions.
         ---
         ...
 
-    .. _iconv-converter:
+.. _iconv-converter:
 
-    .. function:: converter(input-string)
+.. function:: converter(input-string)
 
         Convert.
 

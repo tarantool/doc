@@ -23,107 +23,107 @@ With the ``fiber`` module, you can:
 
 Below is a list of all ``fiber`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`fiber.create()                 | Create and start a fiber        |
-        | <fiber-create>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.self()                   | Get a fiber object              |
-        | <fiber-self>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.find()                   | Get a fiber object by ID        |
-        | <fiber-find>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.sleep()                  | Make a fiber go to sleep        |
-        | <fiber-sleep>`                       |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.yield()                  | Yield control                   |
-        | <fiber-yield>`                       |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.status()                 | Get the current fiber's status  |
-        | <fiber-status>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.info()                   | Get information about all       |
-        | <fiber-info>`                        | fibers                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.kill()                   | Cancel a fiber                  |
-        | <fiber-kill>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.testcancel()             | Check if the current fiber has  |
-        | <fiber-testcancel>`                  | been cancelled                  |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber_object:id()              | Get a fiber's ID                |
-        | <fiber_object-id>`                   |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber_object:name()            | Get a fiber's name              |
-        | <fiber_object-name_get>`             |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber_object:name(name)        | Set a fiber's name              |
-        | <fiber_object-name_set>`             |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber_object:status()          | Get a fiber's status            |
-        | <fiber_object-status>`               |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber_object:cancel()          | Cancel a fiber                  |
-        | <fiber_object-cancel>`               |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber_object.storage           | Local storage within the fiber  |
-        | <fiber_object-storage>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.time()                   | Get the system time in seconds  |
-        | <fiber-time>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.time64()                 | Get the system time in          |
-        | <fiber-time64>`                      | microseconds                    |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.channel()                | Create a communication channel  |
-        | <fiber-channel>`                     |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:put()           | Send a message via a channel    |
-        | <channel_object-put>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:close()         | Close a channel                 |
-        | <channel_object-close>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:get()           | Fetch a message from a channel  |
-        | <channel_object-get>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:is_empty()      | Check if a channel is empty     |
-        | <channel_object-is_empty>`           |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:count()         | Count messages in a channel     |
-        | <channel_object-count>`              |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:is_full()       | Check if a channel is full      |
-        | <channel_object-is_full>`            |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:has_readers()   | Check if an empty channel has   |
-        | <channel_object-has_readers>`        | any readers waiting             |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:has_writers()   | Check if a full channel has any |
-        | <channel_object-has_writers>`        | writers waiting                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`channel_object:is_closed()     | Check if a channel is closed    |
-        | <channel_object-is_closed>`          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`fiber.cond()                   | Create a condition variable     |
-        | <fiber-cond>`                        |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`cond_object:wait()             | Make a fiber go to sleep until  |
-        | <cond_object-wait>`                  | woken by another fiber          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`cond_object:signal()           | Wake up a single fiber          |
-        | <cond_object-signal>`                |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`cond_object:broadcast()        | Wake up all fibers              |
-        | <cond_object-broadcast>`             |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`fiber.create()                 | Create and start a fiber        |
+    | <fiber-create>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.self()                   | Get a fiber object              |
+    | <fiber-self>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.find()                   | Get a fiber object by ID        |
+    | <fiber-find>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.sleep()                  | Make a fiber go to sleep        |
+    | <fiber-sleep>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.yield()                  | Yield control                   |
+    | <fiber-yield>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.status()                 | Get the current fiber's status  |
+    | <fiber-status>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.info()                   | Get information about all       |
+    | <fiber-info>`                        | fibers                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.kill()                   | Cancel a fiber                  |
+    | <fiber-kill>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.testcancel()             | Check if the current fiber has  |
+    | <fiber-testcancel>`                  | been cancelled                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:id()              | Get a fiber's ID                |
+    | <fiber_object-id>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:name()            | Get a fiber's name              |
+    | <fiber_object-name_get>`             |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:name(name)        | Set a fiber's name              |
+    | <fiber_object-name_set>`             |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:status()          | Get a fiber's status            |
+    | <fiber_object-status>`               |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:cancel()          | Cancel a fiber                  |
+    | <fiber_object-cancel>`               |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object.storage           | Local storage within the fiber  |
+    | <fiber_object-storage>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.time()                   | Get the system time in seconds  |
+    | <fiber-time>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.time64()                 | Get the system time in          |
+    | <fiber-time64>`                      | microseconds                    |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.channel()                | Create a communication channel  |
+    | <fiber-channel>`                     |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:put()           | Send a message via a channel    |
+    | <channel_object-put>`                |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:close()         | Close a channel                 |
+    | <channel_object-close>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:get()           | Fetch a message from a channel  |
+    | <channel_object-get>`                |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:is_empty()      | Check if a channel is empty     |
+    | <channel_object-is_empty>`           |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:count()         | Count messages in a channel     |
+    | <channel_object-count>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:is_full()       | Check if a channel is full      |
+    | <channel_object-is_full>`            |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:has_readers()   | Check if an empty channel has   |
+    | <channel_object-has_readers>`        | any readers waiting             |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:has_writers()   | Check if a full channel has any |
+    | <channel_object-has_writers>`        | writers waiting                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`channel_object:is_closed()     | Check if a channel is closed    |
+    | <channel_object-is_closed>`          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.cond()                   | Create a condition variable     |
+    | <fiber-cond>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`cond_object:wait()             | Make a fiber go to sleep until  |
+    | <cond_object-wait>`                  | woken by another fiber          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`cond_object:signal()           | Wake up a single fiber          |
+    | <cond_object-signal>`                |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`cond_object:broadcast()        | Wake up all fibers              |
+    | <cond_object-broadcast>`             |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _fiber-fibers:
 

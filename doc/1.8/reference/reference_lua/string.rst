@@ -19,38 +19,38 @@ that the Tarantool developers have added.
 
 Below is a list of all additional ``string`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`string.ljust()                 | Left-justify a string           |
-        | <string-ljust>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.rjust()                 | Right-justify a string          |
-        | <string-rjust>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.hex()                   | Get the hexadecimal value of a  |
-        | <string-hex>`                        | string                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.startswith()            | Check if a string starts with   |
-        | <string-startswith>`                 | a given substring               |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.endswith()              | Check if a string ends with a   |
-        | <string-endswith>`                   | given substring                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.lstrip()                | Remove spaces on the left of a  |
-        | <string-lstrip>`                     | string                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.rstrip()                | Remove spaces on the right of a |
-        | <string-rstrip>`                     | string                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`string.strip()                 | Remove spaces on the left and   |
-        | <string-strip>`                      | right of a string               |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`string.ljust()                 | Left-justify a string           |
+    | <string-ljust>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.rjust()                 | Right-justify a string          |
+    | <string-rjust>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.hex()                   | Get the hexadecimal value of a  |
+    | <string-hex>`                        | string                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.startswith()            | Check if a string starts with   |
+    | <string-startswith>`                 | a given substring               |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.endswith()              | Check if a string ends with a   |
+    | <string-endswith>`                   | given substring                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.lstrip()                | Remove spaces on the left of a  |
+    | <string-lstrip>`                     | string                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.rstrip()                | Remove spaces on the right of a |
+    | <string-rstrip>`                     | string                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.strip()                 | Remove spaces on the left and   |
+    | <string-strip>`                      | right of a string               |
+    +--------------------------------------+---------------------------------+
 
 .. _string-ljust:
 

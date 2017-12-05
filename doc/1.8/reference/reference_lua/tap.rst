@@ -18,59 +18,59 @@ so on.
 
 Below is a list of all ``tap`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`tap.test()                     | Initialize                      |
-        | <tap-test>`                          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:plan()                 | Indicate how many tests to      |
-        | <taptest-plan>`                      | perform                         |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:check()                | Check the number of tests       |
-        | <taptest-check>`                     | performed                       |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:diag()                 | Display a diagnostic message    |
-        | <taptest-diag>`                      |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:ok()                   | Evaluate the condition and      |
-        | <taptest-ok>`                        | display the message             |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:fail()                 | Evaluate the condition and      |
-        | <taptest-fail>`                      | display the message             |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:skip()                 | Evaluate the condition and      |
-        | <taptest-skip>`                      | display the message             |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:is()                   | Check if the two arguments are  |
-        | <taptest-is>`                        | equal                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:isnt()                 | Check if the two arguments are  |
-        | <taptest-isnt>`                      | equal                           |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:isnil()                |                                 |
-        | <taptest-istype>` |br|               |                                 |
-        | :ref:`taptest:isstring()             |                                 |
-        | <taptest-istype>` |br|               |                                 |
-        | :ref:`taptest:isnumber()             |                                 |
-        | <taptest-istype>` |br|               |                                 |
-        | :ref:`taptest:istable()              | Check if a value has a          |
-        | <taptest-istype>` |br|               | particular type                 |
-        | :ref:`taptest:isboolean()            |                                 |
-        | <taptest-istype>` |br|               |                                 |
-        | :ref:`taptest:isudata()              |                                 |
-        | <taptest-istype>` |br|               |                                 |
-        | :ref:`taptest:iscdata()              |                                 |
-        | <taptest-istype>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`taptest:is_deeply()            | Recursively check if the two    |
-        | <taptest-is_deeply>`                 | arguments are equal             |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`tap.test()                     | Initialize                      |
+    | <tap-test>`                          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:plan()                 | Indicate how many tests to      |
+    | <taptest-plan>`                      | perform                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:check()                | Check the number of tests       |
+    | <taptest-check>`                     | performed                       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:diag()                 | Display a diagnostic message    |
+    | <taptest-diag>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:ok()                   | Evaluate the condition and      |
+    | <taptest-ok>`                        | display the message             |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:fail()                 | Evaluate the condition and      |
+    | <taptest-fail>`                      | display the message             |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:skip()                 | Evaluate the condition and      |
+    | <taptest-skip>`                      | display the message             |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:is()                   | Check if the two arguments are  |
+    | <taptest-is>`                        | equal                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:isnt()                 | Check if the two arguments are  |
+    | <taptest-isnt>`                      | equal                           |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:isnil()                |                                 |
+    | <taptest-istype>` |br|               |                                 |
+    | :ref:`taptest:isstring()             |                                 |
+    | <taptest-istype>` |br|               |                                 |
+    | :ref:`taptest:isnumber()             |                                 |
+    | <taptest-istype>` |br|               |                                 |
+    | :ref:`taptest:istable()              | Check if a value has a          |
+    | <taptest-istype>` |br|               | particular type                 |
+    | :ref:`taptest:isboolean()            |                                 |
+    | <taptest-istype>` |br|               |                                 |
+    | :ref:`taptest:isudata()              |                                 |
+    | <taptest-istype>` |br|               |                                 |
+    | :ref:`taptest:iscdata()              |                                 |
+    | <taptest-istype>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:is_deeply()            | Recursively check if the two    |
+    | <taptest-is_deeply>`                 | arguments are equal             |
+    +--------------------------------------+---------------------------------+
 
 .. module:: tap
 

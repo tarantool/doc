@@ -67,64 +67,64 @@ On this diagram:
 
 Below is a list of all ``net.box`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +----------------------------------------------------+---------------------------+
-        | Name                                               | Use                       |
-        +====================================================+===========================+
-        | :ref:`net_box.connect()                            |                           |
-        | <net_box-connect>` |br|                            | Create a connection       |
-        | :ref:`net_box.new()                                |                           |
-        | <net_box-new>`                                     |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:ping()                                  | Execute a PING command    |
-        | <conn-ping>`                                       |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:wait_connected()                        | Wait for a connection to  |
-        | <conn-wait_connected>`                             | be active or closed       |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:is_connected()                          | Check if a connection     |
-        | <conn-is_connected>`                               | is active or closed       |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:wait_state()                            | Wait for a target state   |
-        | <conn-wait_state>`                                 |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:close()                                 | Close a connection        |
-        | <conn-close>`                                      |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:select{field-value}    | Select one or more tuples |
-        | <conn-select>`                                     |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:get{field-value}       | Select a tuple            |
-        | <conn-get>`                                        |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:insert{field-value}    | Insert a tuple            |
-        | <conn-insert>`                                     |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:replace{field-value}   | Insert or replace a tuple |
-        | <conn-replace>`                                    |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:update{field-value}    | Update a tuple            |
-        | <conn-update>`                                     |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:upsert{field-value}    | Update a tuple            |
-        | <conn-upsert>`                                     |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn.space.space-name:delete{field-value}    | Delete a tuple            |
-        | <conn-delete>`                                     |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:call()                                  | Call a stored procedure   |
-        | <net_box-call>`                                    |                           |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:eval()                                  | Evaluate and execute the  |
-        | <net_box-eval>`                                    | expression in a string    |
-        +----------------------------------------------------+---------------------------+
-        | :ref:`conn:timeout()                               | Set a timeout             |
-        | <conn-timeout>`                                    |                           |
-        +----------------------------------------------------+---------------------------+
+    +----------------------------------------------------+---------------------------+
+    | Name                                               | Use                       |
+    +====================================================+===========================+
+    | :ref:`net_box.connect()                            |                           |
+    | <net_box-connect>` |br|                            | Create a connection       |
+    | :ref:`net_box.new()                                |                           |
+    | <net_box-new>`                                     |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:ping()                                  | Execute a PING command    |
+    | <conn-ping>`                                       |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:wait_connected()                        | Wait for a connection to  |
+    | <conn-wait_connected>`                             | be active or closed       |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:is_connected()                          | Check if a connection     |
+    | <conn-is_connected>`                               | is active or closed       |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:wait_state()                            | Wait for a target state   |
+    | <conn-wait_state>`                                 |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:close()                                 | Close a connection        |
+    | <conn-close>`                                      |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:select{field-value}    | Select one or more tuples |
+    | <conn-select>`                                     |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:get{field-value}       | Select a tuple            |
+    | <conn-get>`                                        |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:insert{field-value}    | Insert a tuple            |
+    | <conn-insert>`                                     |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:replace{field-value}   | Insert or replace a tuple |
+    | <conn-replace>`                                    |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:update{field-value}    | Update a tuple            |
+    | <conn-update>`                                     |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:upsert{field-value}    | Update a tuple            |
+    | <conn-upsert>`                                     |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn.space.space-name:delete{field-value}    | Delete a tuple            |
+    | <conn-delete>`                                     |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:call()                                  | Call a stored procedure   |
+    | <net_box-call>`                                    |                           |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:eval()                                  | Evaluate and execute the  |
+    | <net_box-eval>`                                    | expression in a string    |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:timeout()                               | Set a timeout             |
+    | <conn-timeout>`                                    |                           |
+    +----------------------------------------------------+---------------------------+
 
 .. module:: net_box
 

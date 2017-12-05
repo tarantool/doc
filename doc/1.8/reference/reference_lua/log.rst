@@ -21,31 +21,31 @@ user-generated with the :samp:`log.{log_level_function_name}` function.
 
 Below is a list of all ``log`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`log.error()                    |                                 |
-        | <log-ug_message>` |br|               |                                 |
-        | :ref:`log.warn()                     |                                 |
-        | <log-ug_message>` |br|               |                                 |
-        | :ref:`log.info()                     | Write a user-generated message  |
-        | <log-ug_message>` |br|               | to a log file                   |
-        | :ref:`log.verbose()                  |                                 |
-        | <log-ug_message>` |br|               |                                 |
-        | :ref:`log.debug()                    |                                 |
-        | <log-ug_message>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`log.logger_pid()               | Get the PID of a logger         |
-        | <log-logger_pid>`                    |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`log.rotate()                   | Rotate a log file               |
-        | <log-rotate>`                        |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`log.error()                    |                                 |
+    | <log-ug_message>` |br|               |                                 |
+    | :ref:`log.warn()                     |                                 |
+    | <log-ug_message>` |br|               |                                 |
+    | :ref:`log.info()                     | Write a user-generated message  |
+    | <log-ug_message>` |br|               | to a log file                   |
+    | :ref:`log.verbose()                  |                                 |
+    | <log-ug_message>` |br|               |                                 |
+    | :ref:`log.debug()                    |                                 |
+    | <log-ug_message>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`log.logger_pid()               | Get the PID of a logger         |
+    | <log-logger_pid>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`log.rotate()                   | Rotate a log file               |
+    | <log-rotate>`                        |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _log-ug_message:
 

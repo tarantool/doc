@@ -42,23 +42,23 @@ The possible options which can be passed to csv functions are:
 
 Below is a list of all ``csv`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`csv.load()                     | Load a CSV file                 |
-        | <csv-load>`                          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`csv.dump()                     | Transform input into a          |
-        | <csv-dump>`                          | CSV-formatted string            |
-        +--------------------------------------+---------------------------------+
-        | :ref:`csv.iterate()                  | Iterate over CSV records        |
-        | <csv-iterate>`                       |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`csv.load()                     | Load a CSV file                 |
+    | <csv-load>`                          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`csv.dump()                     | Transform input into a          |
+    | <csv-dump>`                          | CSV-formatted string            |
+    +--------------------------------------+---------------------------------+
+    | :ref:`csv.iterate()                  | Iterate over CSV records        |
+    | <csv-iterate>`                       |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _csv-load:
 

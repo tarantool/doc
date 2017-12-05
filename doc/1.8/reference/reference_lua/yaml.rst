@@ -17,23 +17,23 @@ series of non-YAML values and encodes them.
 
 Below is a list of all ``yaml`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`yaml.encode()                  | Convert a Lua object to a YAML  |
-        | <yaml-encode>`                       | string                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`yaml.decode()                  | Convert a YAML string to a Lua  |
-        | <yaml-decode>`                       | object                          |
-        +--------------------------------------+---------------------------------+
-        | :ref:`yaml.NULL                      | Analog of Lua's "nil"           |
-        | <yaml-null>`                         |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`yaml.encode()                  | Convert a Lua object to a YAML  |
+    | <yaml-encode>`                       | string                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`yaml.decode()                  | Convert a YAML string to a Lua  |
+    | <yaml-decode>`                       | object                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`yaml.NULL                      | Analog of Lua's "nil"           |
+    | <yaml-null>`                         |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: yaml
 

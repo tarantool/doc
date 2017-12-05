@@ -20,23 +20,23 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
 
 Below is a list of all ``http`` functions.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`http.client.new()              | Create an HTTP client instance  |
-        | <http-new>`                          |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`client_object:request()        | Perform an HTTP request         |
-        | <client_object-request>`             |                                 |
-        +--------------------------------------+---------------------------------+
-        | :ref:`client_object:stat()           | Get a table with statistics     |
-        | <client_object-stat>`                |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`http.client.new()              | Create an HTTP client instance  |
+    | <http-new>`                          |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`client_object:request()        | Perform an HTTP request         |
+    | <client_object-request>`             |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`client_object:stat()           | Get a table with statistics     |
+    | <client_object-stat>`                |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _http-new:
 

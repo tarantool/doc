@@ -19,23 +19,23 @@ are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays.
 
 Below is a list of all ``msgpack`` functions and members.
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +--------------------------------------+---------------------------------+
-        | Name                                 | Use                             |
-        +======================================+=================================+
-        | :ref:`msgpack.encode()               | Convert a Lua object to an      |
-        | <msgpack-encode>`                    | MsgPack string                  |
-        +--------------------------------------+---------------------------------+
-        | :ref:`msgpack.decode()               | Convert an MsgPack string to a  |
-        | <msgpack-decode>`                    | Lua object                      |
-        +--------------------------------------+---------------------------------+
-        | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
-        | <msgpack-null>`                      |                                 |
-        +--------------------------------------+---------------------------------+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`msgpack.encode()               | Convert a Lua object to an      |
+    | <msgpack-encode>`                    | MsgPack string                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.decode()               | Convert an MsgPack string to a  |
+    | <msgpack-decode>`                    | Lua object                      |
+    +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
+    | <msgpack-null>`                      |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: msgpack
 
