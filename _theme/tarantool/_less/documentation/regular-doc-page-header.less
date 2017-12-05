@@ -4,10 +4,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid #dcdcdc;
   border-bottom: solid 1px #dcdcdc;
-  padding: 15px 15px 12px;
-  margin: 0 -15px;
-
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  padding: 5px 30px;
+  background-color: white;
+  z-index: 99;
   .path {
     display: none;
 
@@ -29,7 +34,7 @@
     display: flex;
 
     .version-switcher {
-      margin-top: 7px;
+      // margin-top: 7px;
     }
 
     .b-doc-language_selector-list {
@@ -52,7 +57,9 @@
   }
 
   &__menu-button {}
-
+  @media (max-width: 768px) {
+    top: 145px;
+  }
   @media @medium-screen {
     .container {
       .b-doc-language_selector-list {
@@ -62,9 +69,16 @@
   }
 
   @media @large-screen {
-    padding: 0 0 12px;
+    // padding: 0 0 12px;
     margin: 0;
-
+    position: fixed;
+    top: 100px;
+    left: 260px;
+    right: 0;
+    z-index: 100;
+    background-color: white;
+    padding: 5px 30px;
+    border-top: 1px solid #dcdcdc;
     &__menu-button {
       display: none;
     }

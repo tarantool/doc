@@ -61,7 +61,11 @@ exclude_patterns = [
     '_downloads/license_eng.docx',
     '_downloads/terms.docx',
     '_downloads/terms_eng.docx',
-    'images'
+    'images',
+    'tarantool-io/social-icons.rst',
+    'tarantool-io/integrate-data-source.rst'
+    'tarantool-io/jumbo-form.rst',
+    'tarantool-io/main-form.rst',
 ]
 
 base_url = "https://tarantool.org/"
@@ -84,7 +88,7 @@ html_use_opensearch  = base_url
 
 html_context = {
     'website': {
-        'index'       : True,
+        'developers'   : True,
         'download/download'    : True,
         'download/download_16' : True,
         'download/download_18' : True,
@@ -107,6 +111,35 @@ html_context = {
         'genindex'       : True,
         'lua-modindex'   : True,
         'search'         : True,
+    },
+    'tarantool_io': {
+        # Tarantool-io pages
+        'index': True,
+        'challenge': True,
+        'news-and-press': True,
+        'about': True,
+        'learn': True,
+        'features': True,
+        'product/enterprise': True,
+        'product/unwired-iiot': True,
+        'live-demo': True,
+        'careers': True,
+        'support': True,
+        'contact': True,
+        'enterprise': True,
+        'unwired': True,
+        'white-paper': True,
+        'tutorial1': True,
+        'tutorial2': True,
+        'press/iiot-released': True,
+        'press/replication-for-mysql': True,
+        'press/tarantool-expands': True,
+        'press/tarantool-partners-waviot': True,
+        'press/tarantool-supports-sql': True,
+        'press/tarantool-unviels-replication': True,
+        'press/veon-migrates': True,
+        'press/megafon-launches': True,
+        'press/free-learning-program': True,
     },
     'packages': {
         # 1.6

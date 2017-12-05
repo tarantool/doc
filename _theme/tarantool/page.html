@@ -9,7 +9,25 @@
 {% from 'elements.html' import language_selector with context %}
 
 {% block body %}
-  {% if is_website %}
+  {% if is_tarantool_io %}
+    <div class="tarantool-io-styles">
+      <main>  
+        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-body">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <div class="videowrapper">
+                          <iframe src="" allowfullscreen></iframe>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        {{ body }}
+      </main>
+    </div>
+  {% elif is_website %}
     {% if is_mainpage %}
       <div class="doc-main-page b-clearbox">
         <div class="selector-wrapper">

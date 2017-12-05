@@ -88,10 +88,10 @@ $(function() {
         $("body").removeClass('stop-scroll');
     });
 
-    if ($('thead').length) {
-        $('thead').parents('table').cardtable();
-    }
-    $('.stacktable  table').stacktable();
-    $('.cardtable   table').cardtable();
-    $('.stackcolumn table').stackcolumns();
+    // if ($('thead').length) {
+    //     $('thead').parents('table').cardtable();
+    // }
+    // $('.stacktable  table').stacktable();
+    // $('.cardtable   table').cardtable();
+    // $('.stackcolumn table').stackcolumns();
 });

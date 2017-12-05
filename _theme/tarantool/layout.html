@@ -1,7 +1,7 @@
 {% from 'elements.html' import i_header with context %}
+{% from 'elements.html' import i_header_dev with context %}
 {% from 'elements.html' import i_footer with context %}
 {% from 'elements.html' import abspath  with context %}
-
 {% set page = {"slug": "documentation"} %}
 {% set script_files = script_files + [
     '_static/searchtools.js',
@@ -20,7 +20,8 @@
     '_static/js/version-switcher.js',
     '_static/js/docs-page-path.js',
     '_static/js/connectors-page.js',
-    '_static/js/documentation-scroll.js'
+    '_static/js/documentation-scroll.js',
+    '_static/js/tarantool-io-main.js'
 ] %}
 {% set css_files = [
     '_static/design.css',
@@ -52,6 +53,7 @@
 
 {% set is_website  = website.get(pagename, False) %}
 {% set is_package_page  = packages.get(pagename, False) %}
+{% set is_tarantool_io = tarantool_io.get(pagename, False) %}
 {% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
@@ -90,7 +92,19 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="google-site-verification" content="CR40jzpLISkiUAw2MrH2zHSDNVmzyK88Nj7Crmx_RxQ" />
+
+    <meta name="keywords" content="
+    NoSQL, NewSQL, Fast Data, Data Architecture, Oracle, DB2, MySQL, Postrgres SAP, Memcached, Redis, Aerospike,
+    in-memory, in-memory database, online analytics, OLAP, analytics, OSS, DSS, reduce storage space, fastest database,
+    NoSQL, NewSQL, best database 2017, high scalability, No-blocking, Application server, Cache, Big data, MS SQL Server,
+    Hadoop, Lua">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,900" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="search" type="application/opensearchdescription+xml"
           title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
           href="{{ pathto('_static/opensearch.xml', 1) }}"/>
@@ -100,10 +114,22 @@
     {%- for scriptfile in script_files %}
       <script type="text/javascript" src="{{ abspath(scriptfile) }}"></script>
     {%- endfor %}
+    
+    <!-- Bootstrap -->
+    {% if not is_tarantool_io %}
+    <link rel="stylesheet" href="{{ abspath('_static/bootstrap-fluid.min.css') }}">
+    {% else %}
+    <link rel="stylesheet" href="{{ abspath('_static/bootstrap.min.css') }}">
+    {% endif %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     {%- for cssfile in css_files %}
       <link rel="stylesheet" href="{{ abspath(cssfile) }}">
     {%- endfor %}
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
+    
     {% block extrahead %}
     <!--[if lt IE 9]>
       <script src="/js/ie8.js"></script>
@@ -137,14 +163,25 @@
       }(document, "script", "twitter-wjs"));
     </script>
     {% endblock extrahead %}
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw1KrcWzDXCSLulEfazlj9JtZKayJd4_s" async defer></script>
   </head>
   <body class="{{ body_class }}">
     <div class="b-wrapper">
       <!-- HEADER > -->
       {{ i_header() }}
+      {% if not is_tarantool_io %}
+        {{ i_header_dev() }}
+      {% endif %}
       <!-- < HEADER -->
+      {% if not is_tarantool_io %}
+      <div class="b-content b-clearbox doc-pages">
+      {% elif pagename in ["live-demo", "contact", "enterprise", "unwired"] %}
+      <div class="b-content b-clearbox" style="margin-top: 30px;">
+      {% elif pagename in ["challenge", "white-paper", "product/enterprise", "product/unwired-iiot"] %}
+      <div class="b-content b-clearbox" style="margin-top: 0px;">
+      {% else %}
       <div class="b-content b-clearbox">
+      {% endif %}
         {% block body %}
         {% endblock %}
       </div>
@@ -153,6 +190,9 @@
       <!-- < FOOTER -->
     </div>
     <div id="mobile-checker"></div>
+    {% if pagename in ["index"] %}
+      <script src="{{ abspath('_static/js/carousel-main-page.js') }}"></script>
+    {% endif %}
   </body>
 </html>
 

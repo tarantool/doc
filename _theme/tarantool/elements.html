@@ -1,3 +1,6 @@
+{% set is_website  = website.get(pagename, False) %}
+{% set is_tarantool_io = tarantool_io.get(pagename, False) %}
+{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
 {% set language_list = [
   ("En", "/en/doc/{{ version }}", "en"),
   ("Ru", "/ru/doc/{{ version }}", "ru"),
@@ -240,14 +243,14 @@
 {# Modify i_links to add records to site #}
 {% if not wp_local %}
   {% set i_links = [
-    ("Main",          "https://tarantool.org/{{ language }}/",                             "index"   ),
+    ("Developers",    "https://tarantool.org/{{ language }}/developers.html",              "index"   ),
     ("Try",           "https://tarantool.org/{{ language }}/try.html",                     "try"     ),
     ("Documentation", "https://tarantool.org/{{ language }}/doc/{{ version }}/index.html", "doc"     ),
     ("Download",      "https://tarantool.org/{{ language }}/download/download.html",       "download/download"),
   ] %}
 {% else %}
   {% set i_links = [
-    ("Main",          abspath("index.html"),                     "index"   ),
+    ("Developers",    abspath("developers.html"),                "index"   ),
     ("Try",           abspath("try.html"),                       "try"     ),
     ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
     ("Download",      abspath("download/download.html"),         "download/download"),
@@ -277,7 +280,558 @@
 {% endmacro %}
 
 {% macro i_header() %}
-  <header class="b-header">
+<header>
+  {% if pagename in ["product/enterprise"] %}
+  <img id="infinity-icon" src="../_static/images/tarantool-io/infinity.png">
+  {% elif pagename in ["product/unwired-iiot"] %}
+  <img id="infinity-icon" src="../_static/images/tarantool-io/orange-Infiniti.png">
+  {% elif pagename in ["index", "support"] %}
+  <img id="infinity-icon" src="_static/images/tarantool-io/infinity.png">
+  {% endif %}
+  {% if pagename in ["product/enterprise"] %}
+  <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/enterprise-jumbo.jpg'); height:600px;">
+    <section id="jumbo-product-enterprise">
+      <div class="row ">
+        <div class="enterprise-jumbo-col col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <h2>Improve Performance.</h2>
+              <h2>Shrink Hardware.</h2>
+              <h2>Simplify.</h2>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 5em;">
+            <div class="col-xs-6">
+              <div id="" class="video-icon-wrap try-icon-wrap text-center pull-right">
+                <span class="">
+                  <a href="{{ abspath('enterprise.html') }}">
+                    <img id="" src="../_static/images/tarantool-io/bullets/check-icon.png">
+                  </a>
+                </span>
+                <a href="../features.html">
+                  <span id="video-watch-text">Free Trial</span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div id="" class="video-icon-wrap text-center">
+                <span class="" data-toggle="modal" data-target="#videoModal" data-thevideo="https://www.youtube.com/embed/bXVonOWYewY">
+                  <img id="" src="../_static/images/tarantool-io/video-icon-100-x-100.png"> </span>
+                <span id="video-watch-text">Watch Video</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% elif pagename in ["unwired"] %}
+  <div class="jumbotron" style="background-image: url('_static/images/tarantool-io/banners/Banner%20for%20TryIIoT%20(1).jpeg'); border-bottom: 4px solid rgb(255, 102, 0); background-position: 50% center;">
+    <div class="tarantool-io-styles" id="page-unwired-jumbo" style="margin-bottom: 40px;">
+      <div class="container">
+        <div clas="row" class="form-row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-row-text-left-wrap">
+              <h3>#1 in Performance</h3>
+              <br>
+              <p>We look forward to surpassing your expectations.</p>
+              <p>Please complete this form and you will receive an email to schedule a discussion about your trial of Tarantool
+                Unwired IIoT.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <form class="hidden-xs">
+              <div class="row">
+                <div class="col-xs-12" style="position: relative">
+                  <div class="demo-header-tag unwired-tag">Free Trial</div>
+                  <span class="triangle unwired"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="first_name" placeholder="First Name" style="border: 2px solid red;"> </div>
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="last_name" placeholder="Last Name" style="border: 2px solid red;"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="email" placeholder="Email" style="border: 2px solid red;"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="phone" placeholder="Phone Number" style="border: 2px solid red;"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="company_name" placeholder="Company Name" style="border: 2px solid red;"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <textarea rows="5" type="text" class="form-control" name="message" placeholder="Feel free to add a message"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <p class="text-center error-message" style="color: red !important; position: absolute; left: 50%; transform: translateX(-50%); width: 100%;">Please fill out the required fields.</p>
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-btn-row">
+                  <button type="button" class="form-submit-btn btn-unwired"> Send </button>
+                </div>
+              </div>
+              <div class="row">
+                <p class="text-center">All information in confidential. We will not spam you.</p>
+              </div>
+              <input class="hidden" type="radio" name="Unwired IIOT" value="true" checked="" style="border: none;">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% elif pagename in ["enterprise"] %}
+  <div class="jumbotron" style="background-image: url('_static/images/tarantool-io/banners/Banner%20for%20Try%20Enterprise%20(1).jpeg'); background-position: 50% center;">
+    <div class="tarantool-io-styles" id="page-enterprise-jumbo" style="margin-bottom: 40px;">
+      <div class="container">
+        <div clas="row" class="form-row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-row-text-left-wrap">
+              <h3>#1 Fastest In-Memory Data Grid</h3>
+              <br>
+              <p>We look forward to surpassing your expectations.</p>
+              <p>Please complete this form and you will receive an email to schedule a discussion about your trial of Tarantool
+                Enterprise.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <form class="hidden-xs">
+              <div class="row">
+                <div class="col-xs-12" style="position: relative">
+                  <div class="demo-header-tag">Free Trial</div>
+                  <span class="triangle enterprise"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="first_name" placeholder="First Name"> </div>
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="last_name" placeholder="Last Name"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="email" placeholder="Email"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="phone" placeholder="Phone Number"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="company_name" placeholder="Company Name"> </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <textarea rows="5" type="text" class="form-control" name="message" placeholder="Feel free to add a message"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-btn-row">
+                  <button type="button" class="form-submit-btn red-product-btn"> Send </button>
+                </div>
+              </div>
+              <div class="row">
+                <p class="text-center">All information in confidential. We will not spam you.</p>
+              </div>
+              <input class="hidden" type="radio" name="Enterprise" value="true" checked="">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% elif pagename in ["contact"] %}
+  <div class="jumbotron" style="background-image: url('_static/images/tarantool-io/banners/contact.png'); background-position: 50% center;">
+    <div class="tarantool-io-styles" id="page-enterprise-jumbo" style="margin-bottom: 40px;">
+      <div class="container">
+          <div clas="row" class="form-row">
+              <div class="col-xs-12 col-sm-6">
+                  <div class="form-row-text-left-wrap">
+                      <h3 style="border-bottom: 2px solid white;">Lets Connect</h3>
+                      <p>We look forward to surpassing your expectations.</p>
+                      <p>Please complete this form to share your idea or question with
+                          the Tarantool team.
+                      </p>
+                      <p>Please click <a href="mailto:support@tarantool.io?Subject=Support%20Request" style="color: white;">here</a> if you are looking for support</p>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                <form class="hidden-xs">
+                  <div class="row">
+                    <div class="col-xs-12" style="position: relative">
+                      <div class="demo-header-tag">Contact Us</div>
+                      <span class="triangle enterprise"></span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                      <input type="text" class="form-control required" name="first_name" placeholder="First Name"> </div>
+                    <div class="col-xs-12 col-sm-6">
+                      <input type="text" class="form-control required" name="last_name" placeholder="Last Name"> </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <input type="text" class="form-control required" name="email" placeholder="Email"> </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <input type="text" class="form-control required" name="phone" placeholder="Phone Number"> </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <input type="text" class="form-control required" name="company_name" placeholder="Company Name"> </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <textarea rows="5" type="text" class="form-control" name="message" placeholder="Feel free to add a message"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-btn-row">
+                      <button type="button" class="form-submit-btn red-product-btn"> Send </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <p class="text-center">All information in confidential. We will not spam you.</p>
+                  </div>
+                  <input class="hidden" type="radio" name="Contact Form" value="true" checked="">
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+  {% elif pagename in ["live-demo"] %}
+  <div class="jumbotron" style="background-image: url('_static/images/tarantool-io/banners/Banner%20for%20Live%20Demo%20(1).jpeg'); background-position: 50% center;">
+    <div class="tarantool-io-styles" id="page-live-demo-jumbo" style="margin-bottom: 40px;">
+      <div class="container">
+        <div clas="row" class="form-row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-row-text-left-wrap">
+              <h3>#1 Fastest In-Memory Data Grid</h3>
+              <br>
+              <p>We look forward to surpassing your expectations.</p>
+              <p>Please complete this short form to schedule a live demo with our data experts.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <form class="hidden-xs">
+              <div class="row">
+                <div class="col-xs-12" style="position: relative">
+                  <div class="demo-header-tag">Live Demo</div>
+                  <span class="triangle enterprise"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="first_name" placeholder="First Name">
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <input type="text" class="form-control required" name="last_name" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="phone" placeholder="Phone Number">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <input type="text" class="form-control required" name="company_name" placeholder="Company Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <textarea rows="5" type="text" class="form-control" name="message" placeholder="Feel free to add a message"></textarea>
+                </div>
+              </div>
+              <div class="row" style="display:none">
+                <div class="col-xs-12">
+                  <h5>Select your interest:</h5>
+                  <input type="radio" value="Enterprise" name="customer_interest">
+                  <span>Enterprise for Cloud and Data Center</span>
+                  <br>
+                  <input type="radio" value="Unwired" name="customer_interest">
+                  <span>IIoT for Sensors and Periphery</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 form-btn-row">
+                  <button type="button" class="form-submit-btn btn-live-demo"> Send </button>
+                </div>
+              </div>
+              <div class="row">
+                <p class="text-center">All information in confidential. We will not spam you.</p>
+              </div>
+              <input class="hidden" type="radio" name="live_demo" value="true" checked="">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% elif pagename in ["product/unwired-iiot"] %}
+  <div class="jumbotron" style="background-image: url('../_static/images/tarantool-io/banners/unwired-iiot-jumbo.jpg'); height:600px;border-bottom: 4px solid rgb(255, 102, 0);">
+    <section id="jumbo-product-enterprise">
+      <div class="row ">
+        <div class="enterprise-jumbo-col col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="padding-top: 0;">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <img id='enterpise-jumbo-text' src="../_static/images/tarantool-io/product-page/unwired/iiot-text.png" class="img-responsive">
+            </div>
+          </div>
+          <div class="row" style="margin-top: 9.3em;">
+            <div class="col-xs-6">
+              <div id="" class="video-icon-wrap try-icon-wrap text-center pull-right">
+                <span class="">
+                  <a href="{{ abspath('unwired.html') }}">
+                    <img id='' src="../_static/images/tarantool-io/bullets/check-icon.png">
+                  </a>
+                </span>
+                <a href="/try-it">
+                  <span id="video-watch-text">Free Trial</span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div id="" class="video-icon-wrap text-center">
+                <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/hdAVERxWbEo">
+                  <img id='' src="../_static/images/tarantool-io/video-icon-100-x-100.png">
+                </span>
+                <span id="video-watch-text">Watch Video</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% elif pagename in ["support"] %}
+    <div class="tarantool-io-styles jumbotron" style="background-image: url('_static/images/tarantool-io/banners/support.jpg'); background-position: 34% 50%;height: 560px;">
+      <div class="tarantool-io-styles" id="page-support-jumbo">
+          <div class="container">
+              <div class="row">
+                  <div class="support-jumbo-ribbon">
+                      <div class="row">
+                          <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                              <h3>Consulting and support is conducted by real software
+                                  engineers and the developers of the Tarantool core engine.
+                              </h3>
+                              <ul>
+                                  <li>We offer support, consulting, implementation and training</li>
+                                  <li>Terms and conditions of all commerical services are available upon
+                                      request. You can see our SLA <a href="#">here</a>
+                                  </li>
+                                  <li>To receive support, please email
+                                      <a href="mailto:support@tarantool.io?Subject=Support%20Request" target="_top">support@tarantool.io</a>
+                                      or use the short form
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  {% else %}
+  <div class="jumbotron"> 
+  {% endif %}
+      <nav id="header-nav" class="navbar navbar-fixed-top header_navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ abspath('') }}">
+                  <div id="brand-logo"></div>
+                </a>
+                <ul id="small-nav-ul">
+                    <li class="tryit-li">
+                        <a href="{{ abspath('live-demo.html') }}" id='btn-tryit-small'
+                          class="btn btn-default btn-sm btn-custom-sm pull-right hidden-sm hidden-lg hidden-md">Live Demo</a>
+                    </li>
+                </ul>
+                <div id="xs-btn-dropdown-container">
+                    <div class="col-xs-12">
+                        <button id="menu-button" type="button" class="hidden-sm hidden-md hidden-lg">Menu
+                        </button>
+                        <div id="container-collapse">
+                            <ul id="nav-collapse-ul">
+                                {% if pagename in ["challenge"] %}
+                                <a class="active" href="{{ abspath('challenge.html') }}"><li>Challenge</li></a>
+                                {% else %}
+                                <a href="{{ abspath('challenge.html') }}"><li>Challenge</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["product/enterprise"] %}
+                                <a class="active" href="{{ abspath('product/enterprise.html') }}"><li>Enterprise</li></a>
+                                {% else %}
+                                <a href="{{ abspath('product/enterprise.html') }}"><li>Enterprise</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["product/unwired-iiot"] %}
+                                <a class="active" href="{{ abspath('product/unwired-iiot.html') }}"><li>IIoT</li></a>
+                                {% else %}
+                                <a href="{{ abspath('product/unwired-iiot.html') }}"><li>IIoT</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["developers"] %}
+                                <a class="active" href="{{ abspath('developers.html') }}"><li>Developers</li></a>
+                                {% else %}
+                                <a href="{{ abspath('developers.html') }}"><li>Developers</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["learn"] %}
+                                <a class="active" href="{{ abspath('learn.html') }}"><li>Learn</li></a>
+                                {% else %}
+                                <a href="{{ abspath('learn.html') }}"><li>Learn</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["news-and-press"] %}
+                                <a class="active" href="{{ abspath('news-and-press.html') }}"><li>News</li></a>
+                                {% else %}
+                                <a href="{{ abspath('news-and-press.html') }}"><li>News</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["about"] %}
+                                <a class="active" href="{{ abspath('about.html') }}"><li>About Us</li></a>
+                                {% else %}
+                                <a href="{{ abspath('about.html') }}"><li>About Us</li></a>
+                                {% endif %}
+
+                                {% if pagename in ["features"] %}
+                                <a class="active" href="{{ abspath('features.html') }}"><li>Features</li></a>
+                                {% else %}
+                                <a href="{{ abspath('features.html') }}"><li>Features</li></a>
+                                {% endif %}
+                              </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarWrap">
+                <ul class="nav navbar-nav">
+                    {% if pagename in ["challenge"] %}
+                    <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                    {% endif %}
+                    
+                    {% if pagename in ["product/enterprise"] %}
+                    <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                    {% endif %}
+                    
+                    {% if pagename in ["product/unwired-iiot"] %}
+                    <li><a class="active" href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                    {% endif %}
+
+                    {% if not is_tarantool_io %}
+                    <li><a class="active" href="{{ abspath('developers.html') }}">Developers</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('developers.html') }}">Developers</a></li>
+                    {% endif %}
+
+                    {% if pagename in ["learn"] %}
+                    <li><a class="active" href="{{ abspath('learn.html') }}">Learn</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('learn.html') }}">Learn</a></li>
+                    {% endif %}
+
+                    {% if pagename in ["news-and-press"] %}
+                    <li><a class="active" href="{{ abspath('news-and-press.html') }}">News</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('news-and-press.html') }}">News</a></li>
+                    {% endif %}
+                    
+                    {% if pagename in ["about"] %}
+                    <li><a class="active" href="{{ abspath('about.html') }}">About Us</a></li>
+                    {% else %}
+                    <li><a href="{{ abspath('about.html') }}">About Us</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if pagename in ["features"] %}
+                    <li id="live-demo-link"><a class="active" href="{{ abspath('features.html') }}">Features</a></li>
+                    {% else %}
+                    <li id="live-demo-link"><a href="{{ abspath('features.html') }}">Features</a></li>
+                    {% endif %}
+                    
+                    <li class="tryit-li"><a href="{{ abspath('live-demo.html') }}" class="btn btn-default btn-sm btn-custom-sm">Live Demo</a></li>
+                </ul>
+            </div>
+        </div>
+      </nav>
+    {% if pagename in ["index"] %}
+
+      <div id="sg-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <!-- Carousel items -->
+        <div class="carousel-inner carousel-zoom">
+          <div class="item active">
+            <img id="carousel-bg" style="max-width: none; width: 1600px; height:850px;" class="img-responsive" src="_static/images/tarantool-io/banners/main-banner1.jpg"
+              alt="">
+            <div class="carousel-content">
+              <p id="jumbo-text" class="text-center hidden-sm hidden-md hidden-lg">
+                <br>
+              </p>
+              <p id="jumbo-text" class="text-center hidden-sm hidden-md hidden-lg">
+                <img id='' style="width: 80%; height: auto;" src="_static/images/tarantool-io/banners/main-banner1-text.png">
+              </p>
+              <div id="large-jumbo-text-wrap">
+                <p class="jumbo-text-large text-center hidden-xs">
+                  <br>
+                </p>
+                <p class="jumbo-text-large text-center hidden-xs">
+                  <img id='' style="width: 80%; height: auto;" src="_static/images/tarantool-io/banners/main-banner1-text.png">
+                </p>
+              </div>
+              <a type="button" id="learn-more-button" class="btn" href="{{ abspath('challenge.html') }}">LEARN MORE</a>
+            </div>
+          </div>
+          <div class="item">
+            <img id="carousel-bg" style="max-width: none; width: 1600px; height:850px;" class="img-responsive" src="_static/images/tarantool-io/banners/main-banner.png"
+              alt="">
+            <div class="carousel-content">
+              <p id="jumbo-text" class="text-center hidden-sm hidden-md hidden-lg">
+                <span class="hidden-sm hidden-md hidden-lg">
+                  <span>SCALE APPLICATIONS AND MICROSERVICES</span>
+                </span>
+              </p>
+
+              <div id="large-jumbo-text-wrap">
+                <p class="jumbo-text-large text-center hidden-xs">
+                  <br>
+                </p>
+                <p class="jumbo-text-large text-center hidden-xs">SCALE APPLICATIONS AND MICROSERVICES</p>
+              </div>
+              <div id="video-icon-wrap" class="text-center hidden-xs">
+                <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/Xgn576TXPIo">
+                  <img id='' src="_static/images/tarantool-io/video-icon-100-x-100.png">
+                </span>
+                <span id="video-watch-text">Watch the video</span>
+              </div>
+              <div id="video-icon-wrap-sm" class="text-center hidden-sm hidden-md hidden-lg">
+                <span class="" data-toggle="modal" data-target="#videoModal" data-theVideo="https://www.youtube.com/embed/Xgn576TXPIo">
+                  <img id='video-icon-small' src="_static/images/tarantool-io/video-icon-100-x-100.png">
+                </span>
+                <span id="video-watch-text-sm">Watch the video</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</header>
+{% endmacro %}
+
+{% macro i_header_dev() %}
+<div class="b-header">
     <div class="b-header_menu_mobile">
       <div class="b-burger-button">
         <span></span>
@@ -314,18 +868,137 @@
         </div>
       </nav>
     </div>
-  </header>
+  </div>
 {% endmacro %}
 
 {% macro i_footer() %}
-<footer class="b-footer">
-  <div class="b-footer-wrapper">
-    <nav class="b-footer_menu">
-      {{ i_menu() }}
-      <div class="b-footer-other">
-        <a href="http://15.tarantool.org">1.5 web site and downloads</a>
-      </div>
-    </nav>
+<footer> 
+  <nav id="" class="navbar">
+    <div class="container-fluid">
+        <div class="" id="navbarWrap">
+            <ul class="nav navbar-nav nav-bottom-ul hidden-xs">
+                {% if pagename in ["challenge"] %}
+                <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                {% else %}
+                <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+                {% endif %}
+
+                {% if pagename in ["product/enterprise"] %}
+                <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                {% else %}
+                <li><a href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+                {% endif %}
+                
+                {% if pagename in ["product/unwired-iiot"] %}
+                <li><a class="active" href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                {% else %}
+                <li><a href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+                {% endif %}
+                
+                {% if pagename in ["learn"] %}
+                <li><a class="active" href="{{ abspath('learn.html') }}">Learn</a></li>
+                {% else %}
+                <li><a href="{{ abspath('learn.html') }}">Learn</a></li>
+                {% endif %}
+                
+                {% if pagename in ["news-and-press"] %}
+                <li><a class="active" href="{{ abspath('news-and-press.html') }}">News</a></li>
+                {% else %}
+                <li><a href="{{ abspath('news-and-press.html') }}">News</a></li>
+                {% endif %}
+                
+                {% if pagename in ["careers"] %}
+                <li><a class="active" href="{{ abspath('careers.html') }}">Careers</a></li>
+                {% else %}
+                <li><a href="{{ abspath('careers.html') }}">Careers</a></li>
+                {% endif %}
+
+                {% if pagename in ["about"] %}
+                <li><a class="active" href="{{ abspath('about.html') }}">About Us</a></li>
+                {% else %}
+                <li><a href="{{ abspath('about.html') }}">About Us</a></li>
+                {% endif %}
+                
+                {% if pagename in ["support"] %}
+                <li><a class="active" href="{{ abspath('support.html') }}">Support</a></li>
+                {% else %}
+                <li><a href="{{ abspath('support.html') }}">Support</a></li>
+                {% endif %}
+                
+                {% if pagename in ["contact"] %}
+                <li><a class="active" href="{{ abspath('contact.html') }}">Contact</a></li>
+                {% else %}
+                <li><a href="{{ abspath('contact.html') }}">Contact</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+  </nav>
+  <div class="row hidden-sm hidden-md hidden-lg small-nav">
+    <div class="col-xs-6">
+        <ul>
+            {% if pagename in ["challenge"] %}
+            <li><a class="active" href="{{ abspath('challenge.html') }}">Challenge</a></li>
+            {% else %}
+            <li><a href="{{ abspath('challenge.html') }}">Challenge</a></li>
+            {% endif %}
+
+            {% if pagename in ["product/enterprise"] %}
+            <li><a class="active" href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+            {% else %}
+            <li><a href="{{ abspath('product/enterprise.html') }}">Enterprise</a></li>
+            {% endif %}
+            
+            {% if pagename in ["product/unwired-iiot"] %}
+            <li><a class="active" href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+            {% else %}
+            <li><a href="{{ abspath('product/unwired-iiot.html') }}">IIoT</a></li>
+            {% endif %}
+            
+            {% if pagename in ["learn"] %}
+            <li><a class="active" href="{{ abspath('learn.html') }}">Learn</a></li>
+            {% else %}
+            <li><a href="{{ abspath('learn.html') }}">Learn</a></li>
+            {% endif %}
+            
+            {% if pagename in ["support"] %}
+            <li><a class="active" href="{{ abspath('support.html') }}">Support</a></li>
+            {% else %}
+            <li><a href="{{ abspath('support.html') }}">Support</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="col-xs-6">
+        <ul>
+            {% if pagename in ["careers"] %}
+            <li><a class="active" href="{{ abspath('careers.html') }}">Careers</a></li>
+            {% else %}
+            <li><a href="{{ abspath('careers.html') }}">Careers</a></li>
+            {% endif %}
+
+            {% if pagename in ["news-and-press"] %}
+            <li><a class="active" href="{{ abspath('news-and-press.html') }}">News</a></li>
+            {% else %}
+            <li><a href="{{ abspath('news-and-press.html') }}">News</a></li>
+            {% endif %}
+            
+            {% if pagename in ["about"] %}
+            <li><a class="active" href="{{ abspath('about.html') }}">About Us</a></li>
+            {% else %}
+            <li><a href="{{ abspath('about.html') }}">About Us</a></li>
+            {% endif %}
+            
+            {% if pagename in ["contact"] %}
+            <li><a class="active" href="{{ abspath('contact.html') }}">Contact</a></li>
+            {% else %}
+            <li><a href="{{ abspath('contact.html') }}">Contact</a></li>
+            {% endif %}
+        </ul>
+    </div>
+  </div>
+  <div id="copyright">
+        <p class="text-center footer-p-large hidden-xs">&copy; 2017, Tarantool, All Rights Reserved.&nbsp;&nbsp;&nbsp;<i class="fa fa-shield" aria-hidden="true"></i></p>
+        <p class="text-center hidden-sm hidden-md hidden-lg">&copy; 2017, Tarantool, All Rights Reserved.&nbsp;&nbsp;&nbsp;<i class="fa fa-shield" aria-hidden="true"></i></p>
   </div>
 </footer>
 {% endmacro %}

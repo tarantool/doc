@@ -1,2 +1,32 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256px" height="56px" version="1.1" content="&lt;mxfile userAgent=&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko) Version/10.1.1 Safari/603.2.4&quot; version=&quot;6.8.4&quot; editor=&quot;www.draw.io&quot; type=&quot;google&quot;&gt;&lt;diagram&gt;7ZbBcpswEIafhmM9gMAux4Y47aUzmfGh6VEFGTQRiBFywH36rpBkkEXidNreysGj/bUrsfstkgOUN+Nngbv6Ky8JC+KwHAN0H8TxLgvhVwlnLaQo0UIlaKmlaBYO9CcxoomrTrQkveMoOWeSdq5Y8LYlhXQ0LAQfXLcjZ+6uHa6IJxwKzHz1Gy1lrdWP8XbWvxBa1XbnaJvpmQZbZ5NJX+OSDwsJ7QOUC86lHjVjTpiqna2Ljnt4ZfbyYoK08j0BsQ54wexkcjPvJc822aGmkhw6XCh7AJ4Buqtlw8CKYMjwD8LucPFcCX5qy5wzLqZA9DA94NJLwZ/J2syRMrbQj9OjdN5Kgx0S0PbCL5we0DGjVQtaAekSmLwz6RAhyfhqSaJLoaFBCW+IFGdwMQFJmOoQ05zImMNMOk6NVi8oWw2b5qouK8/1h4FBsI4DeTga3KvMFEYUeWygfTo1bMZKfWibI+NDUWMhNxDU0BZLVbLrMmdZnq+DCcMkz7LLjG1uBApsUFLiYMjzfTqtY+fuqYDPjXKFpOVCxfroogwhi9hkErkt9TcgRsiBmIYexCzzGaLwzxkmHkNBOkYL/B/ib0JM0+wmxOTfQExvn4ukLT+pu0QdPwz3PS2mkgM3X17UZQUXQtuthyt+o+xQP3F+AjG0xndlbFJrPhJBIWd1JGqfkcon8wJqvHAH69pbp0rKq0uw5ydREOeggmwrIp2+fwfeBT+L1DlIjSYIw5K+uC+xBtXs8MgpbDx3j71jTfd8iJKrNXRCJmx5SV6vtNvdWEnXwVsJGgGfF26dcui9PryUZq01wZz/Dmj3+T8V2v8C&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><defs><linearGradient x1="0%" y1="100%" x2="0%" y2="0%" id="mx-gradient-cce5ff-1-99ccff-1-s-0"><stop offset="0%" style="stop-color:#99CCFF"/><stop offset="100%" style="stop-color:#CCE5FF"/></linearGradient></defs><g transform="translate(0.5,0.5)"><rect x="0" y="0" width="255" height="55" fill="#ffffff" stroke="#ffffff" pointer-events="none"/><path d="M 38.31 15 L 76.69 15 C 93.43 15 107 21.72 107 30 C 107 38.28 93.43 45 76.69 45 L 38.31 45 C 21.57 45 8 38.28 8 30 C 8 21.72 21.57 15 38.31 15 Z" fill="url(#mx-gradient-cce5ff-1-99ccff-1-s-0)" stroke="#004c99" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(29.5,23.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="56" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 25, 51); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">master #1</div></div></foreignObject><text x="28" y="12" fill="#001933" text-anchor="middle" font-size="12px" font-family="Helvetica" font-weight="bold">master #1</text></switch></g><path d="M 182.78 15 L 219.22 15 C 235.12 15 248 21.72 248 30 C 248 38.28 235.12 45 219.22 45 L 182.78 45 C 166.88 45 154 38.28 154 30 C 154 21.72 166.88 15 182.78 15 Z" fill="url(#mx-gradient-cce5ff-1-99ccff-1-s-0)" stroke="#004c99" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(173.5,23.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="55" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 25, 51); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">replica #1</div></div></foreignObject><text x="28" y="12" fill="#001933" text-anchor="middle" font-size="12px" font-family="Helvetica" font-weight="bold">replica #1</text></switch></g><path d="M 115.24 30 L 145.76 30" fill="none" stroke="#003366" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/><path d="M 109.24 30 L 117.24 26 L 115.24 30 L 117.24 34 Z" fill="#003366" stroke="#003366" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/><path d="M 151.76 30 L 143.76 34 L 145.76 30 L 143.76 26 Z" fill="#003366" stroke="#003366" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="291px" height="36px" viewBox="0 0 291 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>mr-1m-1r-twoway copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mr-1m-1r-twoway-copy">
+            <g id="Round_block-Copy-45" transform="translate(2.000000, 2.000000)">
+                <rect id="Rectangle-Copy-14" fill="#E1E1E1" x="0" y="0" width="124" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="30.7350427" y="20">master #1</tspan>
+                </text>
+            </g>
+            <g id="Round_block-Copy-44" transform="translate(165.000000, 2.000000)">
+                <rect id="Rectangle-Copy-14" fill="#E1E1E1" x="0" y="0" width="124" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="31.7948718" y="20">replica #1</tspan>
+                </text>
+            </g>
+            <g id="Arrow" transform="translate(128.000000, 13.000000)" stroke="#FF2E2F">
+                <g id="Arrow_red" transform="translate(30.000000, 0.500000)" fill="#FF2E2F" stroke-linejoin="round">
+                    <polygon id="Path-14-Copy-14" transform="translate(3.000000, 4.500000) rotate(-270.000000) translate(-3.000000, -4.500000) " points="-1 7 3 2 7 7"></polygon>
+                </g>
+                <g id="Arrow_red" transform="translate(3.000000, 5.000000) scale(-1, 1) translate(-3.000000, -5.000000) translate(0.000000, 0.500000)" fill="#FF2E2F" stroke-linejoin="round">
+                    <polygon id="Path-14-Copy-14" transform="translate(3.000000, 4.500000) rotate(-270.000000) translate(-3.000000, -4.500000) " points="-1 7 3 2 7 7"></polygon>
+                </g>
+                <path d="M5,5 L31,5" id="Path-15-Copy-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>
