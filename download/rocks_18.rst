@@ -151,6 +151,13 @@ Tarantool - Rocks
 
                     Prometheus library to collect metrics from Tarantool
 
+                .. module_block::
+                    :title: zookeeper
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/zookeeper
+
+                    ZooKeeper client for Tarantool
+
             .. _Databases:
             .. container:: b-rock
 
