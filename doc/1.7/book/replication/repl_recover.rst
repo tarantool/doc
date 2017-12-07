@@ -36,10 +36,11 @@ replicas stating that the connection is lost:
        uuid: 70e8e9dc-e38d-4046-99e5-d25419267229
        lsn: 542
        upstream:
+         peer: replicator@192.168.0.101:3301
+         lag: 0.00026607513427734
          status: disconnected
          idle: 182.36929893494
          message: connect, called on fd 13, aka 192.168.0.101:58244
-         lag: 0.00026607513427734
      2:
        id: 2
        uuid: fb252ac7-5c34-4459-84d0-54d248b8c87e
@@ -55,17 +56,18 @@ replicas stating that the connection is lost:
 .. code-block:: tarantoolsession
 
    # report from replica #2
-   box.info.replication
+   tarantool> box.info.replication
    ---
    - 1:
        id: 1
        uuid: 70e8e9dc-e38d-4046-99e5-d25419267229
        lsn: 542
        upstream:
+         peer: replicator@192.168.0.101:3301
+         lag: 0.00027203559875488
          status: disconnected
          idle: 186.76988101006
          message: connect, called on fd 13, aka 192.168.0.101:58253
-         lag: 0.00027203559875488
      2:
        id: 2
        uuid: fb252ac7-5c34-4459-84d0-54d248b8c87e
@@ -73,6 +75,7 @@ replicas stating that the connection is lost:
        upstream:
          status: follow
          idle: 186.76960110664
+         peer: replicator@192.168.0.102:3301
          lag: 0.00020599365234375
      3:
        id: 3
