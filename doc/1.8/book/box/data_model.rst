@@ -341,7 +341,7 @@ with Tarantool indexes.
 
 But if you want the ordering that you see in phone books and dictionaries,
 then you need Tarantool's **optional collations** -- ``unicode`` and
-``unicode_s1`` -- that allow for ``'A' < 'a' < 'B'`` and ``'A' = 'a' < 'B'``
+``unicode_ci`` -- that allow for ``'A' < 'a' < 'B'`` and ``'A' = 'a' < 'B'``
 respectively.
 
 Optional collations use the ordering according to the
@@ -352,7 +352,7 @@ The only difference between the two collations is about
 `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:
 
 * ``unicode`` collation observes four weight levels, from L1 to L4,
-* ``unicode_s1`` collation observes only L1 weights.
+* ``unicode_ci`` collation observes only L1 weights.
 
 As an example, let's take some Russian words:
 
@@ -393,11 +393,11 @@ As an example, let's take some Russian words:
       - []
       ...
 
-* with ``unicode_s1`` collation:
+* with ``unicode_ci`` collation:
 
   .. code-block:: tarantoolsession
 
-      tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode_s1'}}})
+      tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode_ci'}}})
       ...
       tarantool> box.space.S.index.I:select()
       ---
