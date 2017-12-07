@@ -23,6 +23,7 @@ these instances, use ``box.info.replication`` request:
          upstream:
            status: follow
            idle: 43.187747001648
+           peer: replicator@192.168.0.102:3301
            lag: 0
          downstream:
         vclock: {1: 31}
@@ -33,6 +34,7 @@ these instances, use ``box.info.replication`` request:
          upstream:
            status: follow
            idle: 43.187621831894
+           peer: replicator@192.168.0.103:3301
            lag: 2
          downstream:
            vclock: {1: 54}

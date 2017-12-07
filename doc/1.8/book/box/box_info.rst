@@ -17,7 +17,7 @@ variables.
 * **vclock** corresponds to **replication.downstream.vclock** (see below).
 * **uptime** is the number of seconds since the instance started.
   This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`.
-* **lsn** corresponds to **replication.lsn** (see below).                                               
+* **lsn** corresponds to **replication.lsn** (see below).
 * **vinyl** returns runtime statistics for vinyl storage engine.
 * **cluster.uuid** is the UUID of the replica set.
   Every instance in a replica set will have the same ``cluster.uuid`` value.
@@ -34,7 +34,7 @@ variables.
 .. _box_info_replication:
 
 **replication** part contains statistics for all instances in the replica
-set in regard to the current instance (see an example in the section
+set in regard to the current instance (see also an example in the section
 :ref:`"Monitoring a replica set" <replication-monitoring>`):
 
 * **replication.id** is a short numeric identifier of the instance within the
@@ -47,17 +47,17 @@ set in regard to the current instance (see an example in the section
   :ref:`write ahead log <index-box_persistence>` (WAL).
 * **replication.upstream** contains statistics for the replication data
   uploaded by the instance.
-* **replication.upstream.status** is the replication status of the instance.
+* **replication.upstream.status** is the replication status of the instance:
 
-  * ``auth`` means that the instance is getting :ref:`authenticated <authentication>` to connect to a
-    replication source.
+  * ``auth`` means that the instance is getting
+    :ref:`authenticated <authentication>` to connect to a replication source.
   * ``connecting`` means that the instance is trying to connect to the
     replications source(s) listed
     in its :ref:`replication <cfg_replication-replication>` parameter.
   * ``disconnected`` means that the instance is not connected to the replica set
     (due to network problems, not replication errors).
-  * ``follow`` means that the instance's :ref:`role <replication-roles>` is "replica" (read-only) and
-    replication is in progress.
+  * ``follow`` means that the instance's :ref:`role <replication-roles>`
+    is "replica" (read-only) and replication is in progress.
   * ``running`` means the instance's role is "master" (non read-only) and
     replication is in progress.
   * ``stopped`` means that replication was stopped due to a replication error
@@ -65,10 +65,12 @@ set in regard to the current instance (see an example in the section
 
 * **replication.upstream.idle** is the time (in seconds) since the instance
   received the last event from a master.
+* **replication.upstream.peer** contains the replication user name, host IP
+  adress and port number used for the instance.
 * **replication.upstream.lag** is the time difference between the local time at
   the instance, recorded when the event was received, and the local time at
-  another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on
-  that master.
+  another master recorded when the event was written to the
+  :ref:`write ahead log <internals-wal>` on that master.
 
   Since ``lag`` calculation uses operating system clock from two different
   machines, don’t be surprised if it’s negative: a time drift may lead to the
@@ -93,46 +95,40 @@ set in regard to the current instance (see an example in the section
 
     **Example:**
 
+    This example is for a master-replica set that contains one master instance
+    and one replica instance. The request was issued at the replica instance.
+
     .. code-block:: tarantoolsession
 
         tarantool> box.info
         ---
-        - version: 1.7.4-52-g980d30092
-          id: 1
-          ro: false
-          vclock: {1: 8}
-          uptime: 7280
-          lsn: 8
+        - version: 1.7.6-68-g51fcffb77
+          id: 2
+          ro: true
+          vclock: {1: 5}
+          uptime: 917
+          lsn: 0
           vinyl: []
           cluster:
-            uuid: f7c0c1c6-f9d8-4df7-82ff-d4bd00610a6c
-          pid: 16162
+            uuid: 783e2285-55b1-42d4-b93c-68dcbb7a8c18
+          pid: 35341
           status: running
-          signature: 8
+          signature: 5
           replication:
             1:
               id: 1
-              uuid: 1899631e-6369-40a1-81c9-7d170e909276
-              lsn: 8
+              uuid: 471cd36e-cb2e-4447-ac66-2d28e9dd3b67
+              lsn: 5
+              upstream:
+                status: follow
+                idle: 124.98795700073
+                peer: replicator@192.168.0.101:3301
+                lag: 0
+              downstream:
+                vclock: {1: 5}
             2:
               id: 2
-              uuid: bd949e5d-7ff9-413e-b4f2-c9b0149fdda6
+              uuid: ac45d5d2-8a16-4520-ad5e-1abba6baba0a
               lsn: 0
-              upstream:
-                status: follow
-                idle: 7256.7571430206
-                lag: 0
-              downstream:
-                vclock: {1: 8}
-            3:
-              id: 3
-              uuid: c5cb61d5-fa48-460d-abd7-3f13709d07a7
-              lsn: 0
-              upstream:
-                status: follow
-                idle: 7255.7510120869
-                lag: 0
-              downstream:
-                vclock: {1: 8}
-          uuid: 1899631e-6369-40a1-81c9-7d170e909276
+          uuid: ac45d5d2-8a16-4520-ad5e-1abba6baba0a
         ...

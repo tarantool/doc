@@ -70,10 +70,11 @@ report), because the downstream has encountered the same error:
          uuid: 7ab6dee7-dc0f-4477-af2b-0e63452573cf
          lsn: 9
          upstream:
+           peer: replicator@192.168.0.101:3301
+           lag: 0.00050592422485352
            status: stopped
            idle: 445.8626639843
            message: Duplicate key exists in unique index 'primary' in space 'tester'
-           lag: 0.00050592422485352
        2:
          id: 2
          uuid: 9afbe2d9-db84-4d05-9a7b-e0cbbf861e28
@@ -81,6 +82,7 @@ report), because the downstream has encountered the same error:
          upstream:
            status: follow
            idle: 201.99915885925
+           peer: replicator@192.168.0.102:3301
            lag: 0.0015020370483398
          downstream:
            vclock: {1: 8, 2: 1000000, 3: 3}
