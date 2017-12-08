@@ -34,7 +34,7 @@ variables.
 .. _box_info_replication:
 
 **replication** part contains statistics for all instances in the replica
-set in regard to the current instance (see also an example in the section
+set in regard to the current instance (see also
 :ref:`"Monitoring a replica set" <replication-monitoring>`):
 
 * **replication.id** is a short numeric identifier of the instance within the
@@ -63,23 +63,30 @@ set in regard to the current instance (see also an example in the section
   * ``stopped`` means that replication was stopped due to a replication error
     (e.g. :ref:`duplicate key <error_codes>`).
 
+.. _box_info_replication_upstream_idle:
+
 * **replication.upstream.idle** is the time (in seconds) since the instance
   received the last event from a master.
+  This is the primary indicator of replication health.
+  See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+
+.. _box_info_replication_upstream_peer:
+
 * **replication.upstream.peer** contains the replication user name, host IP
   adress and port number used for the instance.
+  See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+
+.. _box_info_replication_upstream_lag:
+
 * **replication.upstream.lag** is the time difference between the local time at
   the instance, recorded when the event was received, and the local time at
   another master recorded when the event was written to the
   :ref:`write ahead log <internals-wal>` on that master.
-
-  Since ``lag`` calculation uses operating system clock from two different
-  machines, don’t be surprised if it’s negative: a time drift may lead to the
-  remote master clock being consistently behind the local instance's clock.
-
-  For multi-master configurations, this is the maximal lag.
+  See more in :ref:`Monitoring a replica set <replication-monitoring>`.
 
 * **replication.downstream** contains statistics for the replication
   data requested and downloaded from the instance.
+
 * **replication.downstream.vclock** is the instance's
   :ref:`vector clock <internals-vector>`, which contains a pair '**id**, **lsn**'.
 
@@ -90,7 +97,7 @@ set in regard to the current instance (see also an example in the section
     builds and returns a Lua table with all keys and values provided in the
     submodule.
 
-    :return: keys and values in the submodule.
+    :return: keys and values in the submodule
     :rtype:  table
 
     **Example:**
