@@ -84,6 +84,9 @@ set in regard to the current instance (see also
   :ref:`write ahead log <internals-wal>` on that master.
   See more in :ref:`Monitoring a replica set <replication-monitoring>`.
 
+* **replication.upstream.message** contains an error message in case of a
+  :ref:`degraded state <replication-recover>`, empty otherwise.
+
 * **replication.downstream** contains statistics for the replication
   data requested and downloaded from the instance.
 
