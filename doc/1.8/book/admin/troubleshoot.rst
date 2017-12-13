@@ -49,12 +49,10 @@ Try either of the following measures:
   value of :ref:`box.cfg{memtx_memory} <cfg_storage-memtx_memory>`
   (if memory resources are available).
 
-  .. NOTE::
-
-      Tarantool needs to be restarted to change this parameter. The Tarantool
-      server will be unavailable while restarting from .xlog files, unless
-      you restart it using :ref:`hot standby <index-hot_standby>` mode.
-      In the latter case, nearly 100% server availability is guaranteed.
+  Tarantool needs to be restarted to change this parameter. The Tarantool
+  server will be unavailable while restarting from .xlog files, unless
+  you restart it using :ref:`hot standby <index-hot_standby>` mode.
+  In the latter case, nearly 100% server availability is guaranteed.
 
 * Clean up the database.
 
@@ -148,9 +146,9 @@ Problem: Query processing times out
 
      .. code-block:: console
 
-         # attaching to a Tarantool instance
+         $ # attaching to a Tarantool instance
          $ tarantoolctl enter <instance_name>
-         # -- OR --
+         $ # -- OR --
          $ tarantoolctl connect <URI>
 
      .. code-block:: tarantoolsession
@@ -169,7 +167,9 @@ Problem: Query processing times out
 
    **Solution**
 
-   Check disk performance (use ``iostat``, ``iotop`` or ``strace`` utilities to
+   Check disk performance (use `iostat <https://linux.die.net/man/1/iostat>`_,
+   `iotop <https://linux.die.net/man/1/iotop>`_ or
+   `strace <https://linux.die.net/man/1/strace>`_ utility to
    check ``iowait`` parameter) and try to put .xlog files and snapshot files on
    different physical disks (i.e. use different locations for
    :ref:`wal_dir <cfg_basic-wal_dir>` and :ref:`memtx_dir <cfg_basic-memtx_dir>`).
@@ -189,7 +189,7 @@ This is about ``box.info.replication.(upstream.)lag`` and
 Operating system clock on the hosts is not synchronized, or the NTP server is
 faulty.
 
-**Solutions**
+**Solution**
 
 Check NTP server settings.
 
@@ -257,7 +257,7 @@ for example re-insert a tuple with the same unique key. This would cause an
 error message like
 ``'Duplicate key exists in unique index 'primary' in space <space_name>'``.
 
-**Solutions**
+**Solution**
 
 Restart replication with the following commands (at each master instance):
 
@@ -288,7 +288,7 @@ Problem: Tarantool works much slower than before
 
 Inefficient memory usage (RAM is cluttered with a huge amount of unused objects).
 
-**Solutions**
+**Solution**
 
 Call the Lua function
 `collectgarbage('count') <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_
