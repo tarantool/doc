@@ -4,7 +4,7 @@
 Server administration
 ********************************************************************************
 
-Tarantool is designed to have multiple running instances on the same host. 
+Tarantool is designed to have multiple running instances on the same host.
 
 Here we show how to administer Tarantool instances using any of the following
 utilities:
@@ -35,3 +35,4 @@ This chapter includes the following sections:
    upgrades
    os_notes
    bug_reports
+   troubleshoot

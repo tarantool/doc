@@ -63,3 +63,37 @@ Also, don't forget this:
 
 2. Click 'Release milestone'. Create a milestone for the next minor release.
    Alert the driver to target bugs and blueprints to the new milestone.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to release a Docker container
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To bump a new version of a Docker container:
+
+1. On the ``master`` branch of
+   `tarantool/docker <https://github.com/tarantool/docker>`_ repository,
+   find the Dockerfile that corresponds to the commit's major version (e.g.
+   https://github.com/tarantool/docker/blob/master/1.7/Dockerfile
+   for Tarantool version 1.7) and specify the required commit in
+   ``TARANTOOL_VERSION``, for example
+   ``TARANTOOL_VERSION=1.7.6-11-gcd17b77f9``.
+
+   Commit the Dockerfile back to ``master`` branch.
+
+3. In the same repository, create a branch named after the commit's
+   ``1.<major>.<minor>`` versions,
+   e.g. ``1.7.6`` for commit 1.7.6-11-gcd17b77f9.
+
+4. In Tarantool container build settings at ``hub.docker.com``
+   (https://hub.docker.com/r/tarantool/tarantool/~/settings/automated-builds/),
+   add a new line:
+
+   .. code-block:: text
+
+       Branch: 1.x.y, /1.x, 1.x.y
+
+   where ``x`` and ``y`` correspond to the commit's major and minor versions.
+
+   Click **Save changes**.
+
+Shortly after, a new Docker container will be built.
