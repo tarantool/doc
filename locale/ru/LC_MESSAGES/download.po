@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 17:30+0300\n"
+"POT-Creation-Date: 2017-12-13 19:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -696,13 +696,14 @@ msgid ""
 msgstr ""
 
 #: ../download/os-installation/1.7/amazon-linux.rst:57
-#: ../download/os-installation/1.7/rhel-centos-6-7.rst:59
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:56
 #: ../download/os-installation/1.8/amazon-linux.rst:57
-#: ../download/os-installation/1.8/rhel-centos-6-7.rst:59
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:56
 msgid "Copy and paste the script below to the *root* terminal prompt:"
 msgstr ""
 
 #: ../download/os-installation/1.7/amazon-linux.rst:59
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:60
 msgid ""
 "# Clean up yum cache\n"
 "yum clean all\n"
@@ -799,11 +800,10 @@ msgid ""
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
-"deb http://download.tarantool.org/tarantool/1.7/debian/ $release main\n"
-"deb-src http://download.tarantool.org/tarantool/1.7/debian/ $release main"
-"\n"
-"EOF\n"
+"echo \"deb http://download.tarantool.org/tarantool/1.7/debian/ $release "
+"main\" > /etc/apt/sources.list.d/tarantool_1_7.list\n"
+"echo \"deb-src http://download.tarantool.org/tarantool/1.7/debian/ "
+"$release main\" >> /etc/apt/sources.list.d/tarantool_1_7.list\n"
 "\n"
 "# install\n"
 "sudo apt-get update\n"
@@ -831,10 +831,10 @@ msgid ""
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
-"deb https://packagecloud.io/tarantool/1_7/debian/ wheezy main\n"
-"deb-src https://packagecloud.io/tarantool/1_7/debian/ wheezy main\n"
-"EOF\n"
+"echo \"deb https://packagecloud.io/tarantool/1_7/debian/ wheezy main\" > "
+"/etc/apt/sources.list.d/tarantool_1_7.list\n"
+"echo \"https://packagecloud.io/tarantool/1_7/debian/ wheezy main\" >> "
+"/etc/apt/sources.list.d/tarantool_1_7.list\n"
 "\n"
 "# install\n"
 "sudo apt-get update\n"
@@ -950,39 +950,40 @@ msgid ""
 "packages."
 msgstr ""
 
-#: ../download/os-installation/1.7/rhel-centos-6-7.rst:56
-#: ../download/os-installation/1.8/rhel-centos-6-7.rst:56
-msgid ""
-"In these instructions, ``$releasever`` is an environment variable which "
-"will contain the RHEL / CentOS release version (\"6\" or \"7\")."
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:58
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:58
+msgid "For RHEL/CentOS 6:"
 msgstr ""
 
-#: ../download/os-installation/1.7/rhel-centos-6-7.rst:61
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:94
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:94
+msgid "For RHEL/CentOS 7:"
+msgstr ""
+
+#: ../download/os-installation/1.7/rhel-centos-6-7.rst:96
 msgid ""
 "# Clean up yum cache\n"
 "yum clean all\n"
 "\n"
 "# Enable EPEL repository\n"
 "yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-"
-"latest-\\$releasever.noarch.rpm\n"
+"latest-7.noarch.rpm\n"
 "sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
 "\n"
 "# Add Tarantool repository\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
 "[tarantool_1_7]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/x86_64/"
-"\n"
+"name=EnterpriseLinux-7 - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/7/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
 "enabled=1\n"
 "\n"
 "[tarantool_1_7-source]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
-"baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/SRPMS"
-"\n"
+"name=EnterpriseLinux-7 - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.7/el/7/SRPMS\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -1071,11 +1072,10 @@ msgid ""
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
-"deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main\n"
-"deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main"
-"\n"
-"EOF\n"
+"echo \"deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release "
+"main\" > /etc/apt/sources.list.d/tarantool_1_7.list\n"
+"echo \"deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ "
+"$release main\" >> /etc/apt/sources.list.d/tarantool_1_7.list\n"
 "\n"
 "# install\n"
 "sudo apt-get update\n"
@@ -1083,6 +1083,7 @@ msgid ""
 msgstr ""
 
 #: ../download/os-installation/1.8/amazon-linux.rst:59
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:60
 msgid ""
 "# Clean up yum cache\n"
 "yum clean all\n"
@@ -1137,11 +1138,10 @@ msgid ""
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
-"deb http://download.tarantool.org/tarantool/1.8/debian/ $release main\n"
-"deb-src http://download.tarantool.org/tarantool/1.8/debian/ $release main"
-"\n"
-"EOF\n"
+"echo \"deb http://download.tarantool.org/tarantool/1.8/debian/ $release "
+"main\" > /etc/apt/sources.list.d/tarantool_1_8.list\n"
+"echo \"deb-src http://download.tarantool.org/tarantool/1.8/debian/ "
+"$release main\" >> /etc/apt/sources.list.d/tarantool_1_8.list\n"
 "\n"
 "# install\n"
 "sudo apt-get update\n"
@@ -1159,10 +1159,10 @@ msgid ""
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
-"deb https://packagecloud.io/tarantool/1_8/debian/ wheezy main\n"
-"deb-src https://packagecloud.io/tarantool/1_8/debian/ wheezy main\n"
-"EOF\n"
+"echo \"deb https://packagecloud.io/tarantool/1_8/debian/ wheezy main\" > "
+"/etc/apt/sources.list.d/tarantool_1_8.list\n"
+"echo \"https://packagecloud.io/tarantool/1_8/debian/ wheezy main\" >> "
+"/etc/apt/sources.list.d/tarantool_1_8.list\n"
 "\n"
 "# install\n"
 "sudo apt-get update\n"
@@ -1199,32 +1199,30 @@ msgstr ""
 msgid "brew install tarantool --HEAD"
 msgstr ""
 
-#: ../download/os-installation/1.8/rhel-centos-6-7.rst:61
+#: ../download/os-installation/1.8/rhel-centos-6-7.rst:96
 msgid ""
 "# Clean up yum cache\n"
 "yum clean all\n"
 "\n"
 "# Enable EPEL repository\n"
 "yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-"
-"latest-\\$releasever.noarch.rpm\n"
+"latest-7.noarch.rpm\n"
 "sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
 "\n"
 "# Add Tarantool repository\n"
 "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
 "tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
 "[tarantool_1_8]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool\n"
-"baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/x86_64/"
-"\n"
+"name=EnterpriseLinux-7 - Tarantool\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/7/x86_64/\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
 "enabled=1\n"
 "\n"
 "[tarantool_1_8-source]\n"
-"name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
-"baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/SRPMS"
-"\n"
+"name=EnterpriseLinux-7 - Tarantool Sources\n"
+"baseurl=http://download.tarantool.org/tarantool/1.8/el/7/SRPMS\n"
 "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
 "repo_gpgcheck=1\n"
 "gpgcheck=0\n"
@@ -1253,11 +1251,10 @@ msgid ""
 "\n"
 "# append two lines to a list of source repositories\n"
 "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
-"sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
-"deb http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main\n"
-"deb-src http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main"
-"\n"
-"EOF\n"
+"echo \"deb http://download.tarantool.org/tarantool/1.8/ubuntu/ $release "
+"main\" > /etc/apt/sources.list.d/tarantool_1_8.list\n"
+"echo \"deb-src http://download.tarantool.org/tarantool/1.8/ubuntu/ "
+"$release main\" >> /etc/apt/sources.list.d/tarantool_1_8.list\n"
 "\n"
 "# install\n"
 "sudo apt-get update\n"
@@ -1398,171 +1395,175 @@ msgstr ""
 msgid "Prometheus library to collect metrics from Tarantool"
 msgstr ""
 
-#: ../download/rocks.rst:191 ../download/rocks_18.rst:191
-msgid "Databases"
+#: ../download/rocks.rst:193 ../download/rocks_18.rst:193
+msgid "ZooKeeper client for Tarantool"
 msgstr ""
 
 #: ../download/rocks.rst:198 ../download/rocks_18.rst:198
-msgid "Connect to a MySQL database from a Tarantool application"
+msgid "Databases"
 msgstr ""
 
 #: ../download/rocks.rst:205 ../download/rocks_18.rst:205
+msgid "Connect to a MySQL database from a Tarantool application"
+msgstr ""
+
+#: ../download/rocks.rst:212 ../download/rocks_18.rst:212
 msgid "Connect to a PostgreSQL database from a Tarantool application"
 msgstr ""
 
-#: ../download/rocks.rst:210 ../download/rocks_18.rst:210
+#: ../download/rocks.rst:217 ../download/rocks_18.rst:217
 msgid "Date and time"
 msgstr ""
 
-#: ../download/rocks.rst:216 ../download/rocks_18.rst:216
+#: ../download/rocks.rst:223 ../download/rocks_18.rst:223
 msgid ""
 "Routines to get time values derived from the Posix/C 'CLOCK_GETTIME' "
 "function or equivalent. Useful for accurate clock and benchmarking."
 msgstr ""
 
-#: ../download/rocks.rst:222 ../download/rocks_18.rst:222
+#: ../download/rocks.rst:229 ../download/rocks_18.rst:229
 msgid "Development support"
 msgstr ""
 
-#: ../download/rocks.rst:229 ../download/rocks_18.rst:229
+#: ../download/rocks.rst:236 ../download/rocks_18.rst:236
 msgid "Simple tool to benchmark Tarantool internal API"
 msgstr ""
 
-#: ../download/rocks.rst:235 ../download/rocks_18.rst:235
+#: ../download/rocks.rst:242 ../download/rocks_18.rst:242
 msgid "Tools to print call traces, insert watchpoints, inspect Lua objects"
 msgstr ""
 
-#: ../download/rocks.rst:241 ../download/rocks_18.rst:241
+#: ../download/rocks.rst:248 ../download/rocks_18.rst:248
 msgid "Functional programming primitives that work well with LuaJIT"
 msgstr ""
 
-#: ../download/rocks.rst:248 ../download/rocks_18.rst:248
+#: ../download/rocks.rst:255 ../download/rocks_18.rst:255
 msgid "Lua code profiler based on Google Performance Tools"
 msgstr ""
 
-#: ../download/rocks.rst:254 ../download/rocks_18.rst:254
+#: ../download/rocks.rst:261 ../download/rocks_18.rst:261
 msgid "Routines to write messages to the built-in Tarantool log"
 msgstr ""
 
-#: ../download/rocks.rst:261 ../download/rocks_18.rst:261
+#: ../download/rocks.rst:268 ../download/rocks_18.rst:268
 msgid "Templates to create new Tarantool modules in Lua, C and C++"
 msgstr ""
 
-#: ../download/rocks.rst:267 ../download/rocks_18.rst:267
+#: ../download/rocks.rst:274 ../download/rocks_18.rst:274
 msgid "Module to prohibit use of undeclared Lua variables"
 msgstr ""
 
-#: ../download/rocks.rst:273 ../download/rocks_18.rst:273
+#: ../download/rocks.rst:280 ../download/rocks_18.rst:280
 msgid "Tools to write nice unit tests conforming to Test Anything Protocol"
 msgstr ""
 
-#: ../download/rocks.rst:278 ../download/rocks_18.rst:278
+#: ../download/rocks.rst:285 ../download/rocks_18.rst:285
 msgid "Geo"
 msgstr ""
 
-#: ../download/rocks.rst:285 ../download/rocks_18.rst:285
+#: ../download/rocks.rst:292 ../download/rocks_18.rst:292
 msgid "Full-featured geospatial extension for Tarantool"
 msgstr ""
 
-#: ../download/rocks.rst:290 ../download/rocks_18.rst:290
+#: ../download/rocks.rst:297 ../download/rocks_18.rst:297
 msgid "I18n"
 msgstr ""
 
-#: ../download/rocks.rst:296 ../download/rocks_18.rst:296
+#: ../download/rocks.rst:303 ../download/rocks_18.rst:303
 msgid "Convert data between character sets"
 msgstr ""
 
-#: ../download/rocks.rst:301 ../download/rocks_18.rst:301
+#: ../download/rocks.rst:308 ../download/rocks_18.rst:308
 msgid "Miscellaneous"
 msgstr ""
 
-#: ../download/rocks.rst:308 ../download/rocks_18.rst:308
+#: ../download/rocks.rst:315 ../download/rocks_18.rst:315
 msgid ""
 "Smart algorithm to iterate over a space and make updates without freezing"
 " the database"
 msgstr ""
 
-#: ../download/rocks.rst:313 ../download/rocks_18.rst:313
+#: ../download/rocks.rst:320 ../download/rocks_18.rst:320
 msgid "Networking"
 msgstr ""
 
-#: ../download/rocks.rst:320 ../download/rocks_18.rst:320
+#: ../download/rocks.rst:327 ../download/rocks_18.rst:327
 msgid "Net.box connection pool for Tarantool"
 msgstr ""
 
-#: ../download/rocks.rst:326 ../download/rocks_18.rst:326
+#: ../download/rocks.rst:333 ../download/rocks_18.rst:333
 msgid ""
 "HTTP client with support for HTTPS and keepalive; uses routines in the "
 "'libcurl' library"
 msgstr ""
 
-#: ../download/rocks.rst:333 ../download/rocks_18.rst:333
+#: ../download/rocks.rst:340 ../download/rocks_18.rst:340
 msgid "Connect from Tarantool to applications which speak MQTT protocol"
 msgstr ""
 
-#: ../download/rocks.rst:340 ../download/rocks_18.rst:340
+#: ../download/rocks.rst:347 ../download/rocks_18.rst:347
 msgid "Send messages from Tarantool to Mail.Ru Agent and ICQ"
 msgstr ""
 
-#: ../download/rocks.rst:346 ../download/rocks_18.rst:346
+#: ../download/rocks.rst:353 ../download/rocks_18.rst:353
 msgid "Module to connect remotely to a Tarantool instance via a binary port"
 msgstr ""
 
-#: ../download/rocks.rst:351 ../download/rocks_18.rst:351
+#: ../download/rocks.rst:358 ../download/rocks_18.rst:358
 msgid "Operating systems/Interfaces"
 msgstr ""
 
-#: ../download/rocks.rst:357 ../download/rocks_18.rst:357
+#: ../download/rocks.rst:364 ../download/rocks_18.rst:364
 msgid "Module to handle errors produced by POSIX APIs"
 msgstr ""
 
-#: ../download/rocks.rst:363 ../download/rocks_18.rst:363
+#: ../download/rocks.rst:370 ../download/rocks_18.rst:370
 msgid "Routines for file input/output"
 msgstr ""
 
-#: ../download/rocks.rst:369 ../download/rocks_18.rst:369
+#: ../download/rocks.rst:376 ../download/rocks_18.rst:376
 msgid "Faster analogs to the standard 'os' functions in Lua"
 msgstr ""
 
-#: ../download/rocks.rst:375 ../download/rocks_18.rst:375
+#: ../download/rocks.rst:382 ../download/rocks_18.rst:382
 msgid "Non-blocking routines for socket input/output"
 msgstr ""
 
-#: ../download/rocks.rst:380 ../download/rocks_18.rst:380
+#: ../download/rocks.rst:387 ../download/rocks_18.rst:387
 msgid "Power tools"
 msgstr ""
 
-#: ../download/rocks.rst:387 ../download/rocks_18.rst:387
+#: ../download/rocks.rst:394 ../download/rocks_18.rst:394
 msgid ""
 "Expiration daemon module to turn Tarantool into a persistent memcache "
 "replacement with your own expiration strategy"
 msgstr ""
 
-#: ../download/rocks.rst:395 ../download/rocks_18.rst:395
+#: ../download/rocks.rst:402 ../download/rocks_18.rst:402
 msgid "Memcached protocol wrapper for Tarantool."
 msgstr ""
 
-#: ../download/rocks.rst:402 ../download/rocks_18.rst:402
+#: ../download/rocks.rst:409 ../download/rocks_18.rst:409
 msgid ""
 "Application-level library that provides sharding, re-sharding and client-"
 "side reliable replication for Tarantool"
 msgstr ""
 
-#: ../download/rocks.rst:410 ../download/rocks_18.rst:410
+#: ../download/rocks.rst:417 ../download/rocks_18.rst:417
 msgid ""
 "Set of persistent in-memory queues to create task queues, add and take "
 "jobs, monitor failed tasks"
 msgstr ""
 
-#: ../download/rocks.rst:416 ../download/rocks_18.rst:416
+#: ../download/rocks.rst:423 ../download/rocks_18.rst:423
 msgid "Security/Encryption"
 msgstr ""
 
-#: ../download/rocks.rst:422 ../download/rocks_18.rst:422
+#: ../download/rocks.rst:429 ../download/rocks_18.rst:429
 msgid "Routines to work with various cryptographic hash functions"
 msgstr ""
 
-#: ../download/rocks.rst:428 ../download/rocks_18.rst:428
+#: ../download/rocks.rst:435 ../download/rocks_18.rst:435
 msgid "Routines to work with “digest”, a value returned by a hash function"
 msgstr ""
 
@@ -2377,5 +2378,216 @@ msgstr ""
 #~ "\n"
 #~ "# Install Tarantool\n"
 #~ "yum -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "curl http://download.tarantool.org/tarantool/1.7/gpgkey |"
+#~ " sudo apt-key add -\n"
+#~ "release=`lsb_release -c -s`\n"
+#~ "\n"
+#~ "# install https download transport for APT\n"
+#~ "sudo apt-get -y install apt-transport-https\n"
+#~ "\n"
+#~ "# append two lines to a list of source repositories\n"
+#~ "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+#~ "sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
+#~ "deb http://download.tarantool.org/tarantool/1.7/debian/ $release main\n"
+#~ "deb-src "
+#~ "http://download.tarantool.org/tarantool/1.7/debian/ $release "
+#~ "main\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# install\n"
+#~ "sudo apt-get update\n"
+#~ "sudo apt-get -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "curl http://download.tarantool.org/tarantool/1.7/gpgkey |"
+#~ " sudo apt-key add -\n"
+#~ "release=`lsb_release -c -s`\n"
+#~ "\n"
+#~ "# install https download transport for APT\n"
+#~ "sudo apt-get -y install apt-transport-https\n"
+#~ "\n"
+#~ "# append two lines to a list of source repositories\n"
+#~ "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+#~ "sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
+#~ "deb https://packagecloud.io/tarantool/1_7/debian/ wheezy main\n"
+#~ "deb-src https://packagecloud.io/tarantool/1_7/debian/ wheezy main\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# install\n"
+#~ "sudo apt-get update\n"
+#~ "sudo apt-get -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In these instructions, ``$releasever`` is "
+#~ "an environment variable which will "
+#~ "contain the RHEL / CentOS release "
+#~ "version (\"6\" or \"7\")."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "# Clean up yum cache\n"
+#~ "yum clean all\n"
+#~ "\n"
+#~ "# Enable EPEL repository\n"
+#~ "yum -y install http://dl.fedoraproject.org/pub/epel"
+#~ "/epel-release-latest-\\$releasever.noarch.rpm\n"
+#~ "sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
+#~ "\n"
+#~ "# Add Tarantool repository\n"
+#~ "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+#~ "tee /etc/yum.repos.d/tarantool_1_7.repo <<- EOF\n"
+#~ "[tarantool_1_7]\n"
+#~ "name=EnterpriseLinux-\\$releasever - Tarantool\n"
+#~ "baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/x86_64/"
+#~ "\n"
+#~ "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
+#~ "repo_gpgcheck=1\n"
+#~ "gpgcheck=0\n"
+#~ "enabled=1\n"
+#~ "\n"
+#~ "[tarantool_1_7-source]\n"
+#~ "name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+#~ "baseurl=http://download.tarantool.org/tarantool/1.7/el/\\$releasever/SRPMS"
+#~ "\n"
+#~ "gpgkey=http://download.tarantool.org/tarantool/1.7/gpgkey\n"
+#~ "repo_gpgcheck=1\n"
+#~ "gpgcheck=0\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# Update metadata\n"
+#~ "yum makecache -y --disablerepo='*' "
+#~ "--enablerepo='tarantool_1_7' --enablerepo='epel'\n"
+#~ "\n"
+#~ "# Install Tarantool\n"
+#~ "yum -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "curl http://download.tarantool.org/tarantool/1.7/gpgkey |"
+#~ " sudo apt-key add -\n"
+#~ "release=`lsb_release -c -s`\n"
+#~ "\n"
+#~ "# install https download transport for APT\n"
+#~ "sudo apt-get -y install apt-transport-https\n"
+#~ "\n"
+#~ "# append two lines to a list of source repositories\n"
+#~ "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+#~ "sudo tee /etc/apt/sources.list.d/tarantool_1_7.list <<- EOF\n"
+#~ "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ $release main\n"
+#~ "deb-src "
+#~ "http://download.tarantool.org/tarantool/1.7/ubuntu/ $release "
+#~ "main\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# install\n"
+#~ "sudo apt-get update\n"
+#~ "sudo apt-get -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "curl http://download.tarantool.org/tarantool/1.8/gpgkey |"
+#~ " sudo apt-key add -\n"
+#~ "release=`lsb_release -c -s`\n"
+#~ "\n"
+#~ "# install https download transport for APT\n"
+#~ "sudo apt-get -y install apt-transport-https\n"
+#~ "\n"
+#~ "# append two lines to a list of source repositories\n"
+#~ "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+#~ "sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
+#~ "deb http://download.tarantool.org/tarantool/1.8/debian/ $release main\n"
+#~ "deb-src "
+#~ "http://download.tarantool.org/tarantool/1.8/debian/ $release "
+#~ "main\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# install\n"
+#~ "sudo apt-get update\n"
+#~ "sudo apt-get -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "curl http://download.tarantool.org/tarantool/1.8/gpgkey |"
+#~ " sudo apt-key add -\n"
+#~ "release=`lsb_release -c -s`\n"
+#~ "\n"
+#~ "# install https download transport for APT\n"
+#~ "sudo apt-get -y install apt-transport-https\n"
+#~ "\n"
+#~ "# append two lines to a list of source repositories\n"
+#~ "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+#~ "sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
+#~ "deb https://packagecloud.io/tarantool/1_8/debian/ wheezy main\n"
+#~ "deb-src https://packagecloud.io/tarantool/1_8/debian/ wheezy main\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# install\n"
+#~ "sudo apt-get update\n"
+#~ "sudo apt-get -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "# Clean up yum cache\n"
+#~ "yum clean all\n"
+#~ "\n"
+#~ "# Enable EPEL repository\n"
+#~ "yum -y install http://dl.fedoraproject.org/pub/epel"
+#~ "/epel-release-latest-\\$releasever.noarch.rpm\n"
+#~ "sed 's/enabled=.*/enabled=1/g' -i /etc/yum.repos.d/epel.repo\n"
+#~ "\n"
+#~ "# Add Tarantool repository\n"
+#~ "rm -f /etc/yum.repos.d/*tarantool*.repo\n"
+#~ "tee /etc/yum.repos.d/tarantool_1_8.repo <<- EOF\n"
+#~ "[tarantool_1_8]\n"
+#~ "name=EnterpriseLinux-\\$releasever - Tarantool\n"
+#~ "baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/x86_64/"
+#~ "\n"
+#~ "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
+#~ "repo_gpgcheck=1\n"
+#~ "gpgcheck=0\n"
+#~ "enabled=1\n"
+#~ "\n"
+#~ "[tarantool_1_8-source]\n"
+#~ "name=EnterpriseLinux-\\$releasever - Tarantool Sources\n"
+#~ "baseurl=http://download.tarantool.org/tarantool/1.8/el/\\$releasever/SRPMS"
+#~ "\n"
+#~ "gpgkey=http://download.tarantool.org/tarantool/1.8/gpgkey\n"
+#~ "repo_gpgcheck=1\n"
+#~ "gpgcheck=0\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# Update metadata\n"
+#~ "yum makecache -y --disablerepo='*' "
+#~ "--enablerepo='tarantool_1_8' --enablerepo='epel'\n"
+#~ "\n"
+#~ "# Install Tarantool\n"
+#~ "yum -y install tarantool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "curl http://download.tarantool.org/tarantool/1.8/gpgkey |"
+#~ " sudo apt-key add -\n"
+#~ "release=`lsb_release -c -s`\n"
+#~ "\n"
+#~ "# install https download transport for APT\n"
+#~ "sudo apt-get -y install apt-transport-https\n"
+#~ "\n"
+#~ "# append two lines to a list of source repositories\n"
+#~ "sudo rm -f /etc/apt/sources.list.d/*tarantool*.list\n"
+#~ "sudo tee /etc/apt/sources.list.d/tarantool_1_8.list <<- EOF\n"
+#~ "deb http://download.tarantool.org/tarantool/1.8/ubuntu/ $release main\n"
+#~ "deb-src "
+#~ "http://download.tarantool.org/tarantool/1.8/ubuntu/ $release "
+#~ "main\n"
+#~ "EOF\n"
+#~ "\n"
+#~ "# install\n"
+#~ "sudo apt-get update\n"
+#~ "sudo apt-get -y install tarantool"
 #~ msgstr ""
 
