@@ -7,37 +7,38 @@
 
   @media @large-screen {
     display: flex;
-    height: calc(~"100vh" - @header-and-footer-height);
+    // height: calc(~"100vh" - @header-and-footer-height);
   }
 
   @media @xlarge-screen {
-    max-width: 1440px;
+    //max-width: 1440px;
     margin: 0 auto;
   }
 }
 
 .b-cols_content_right {
-  padding: 0;
-  margin: 0 15px 10px;
-
-  &-slot {
-    height: 100%;
-  }
+  padding: 0px 30px 10px;
+  // border-top: 1px solid #dcdcdc;
+  // margin: 0 15px 10px;
 
   .b-article {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 88%;
     margin-left: -25px; 
-    padding-left: 25px; // Crutch, fixes bug with overflow   
+    padding-left: 25px; // Crutch, fixes bug with overflow
+    min-height: calc(~"100vh" - 245px);
+    
+    @media screen and (max-width: 768px) {
+      min-height: calc(~"100vh" - 290px);
+    }
   }
 
   .b-cols_content_left {
-    margin: auto -15px;
     height: auto;
   }
 
   .page-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: #262626;
     margin: 15px 0;
@@ -45,35 +46,30 @@
 
   @media @medium-screen {
     .b-cols_content_left {
-      margin: 0 0 0 -15px;
+      // margin: 0 0 0 -15px;
     }
   }
 
   @media @large-screen {
-    margin: 10px 25px;
-    width: 100%;
-    max-width: calc(~"100% - 310px"); // 260px - left menu width, 50px - right_slot's margins
-    height: calc(~"100%" - 20px);
+    // margin: 10px 25px;
+    margin-left: 260px;
+    width: calc(~"100%" - 260px);
+    // max-width: calc(~"100% - 310px"); // 260px - left menu width, 50px - right_slot's margins
+    // height: calc(~"100%" - 20px);
 
     .b-article {
-      height: calc(~"100%" - @doc-page-content-headers-height);
+      // height: calc(~"100%" - @doc-page-content-headers-height);
     }
   }
 
   @media @xlarge-screen {
-    margin: 10px 25px;
-    max-width: calc(~"100% - 410px"); // 360px - left menu width, 50px - right_slot's margins
+    margin-left: 360px;
+    width: calc(~"100%" - 360px);
+    // margin: 10px 25px;
+    // max-width: calc(~"100% - 410px"); // 360px - left menu width, 50px - right_slot's margins
 
     .page-title {
       font-size: 25px;
     }
-  }
-}
-
-// TODO Separate all header's styles into own file.
-.b-header {
-  @media @xlarge-screen {
-    max-width: 1440px;
-    margin: 0 auto;
   }
 }
