@@ -217,6 +217,8 @@ Below is a list of all ``digest`` functions.
 
 .. _digest-base64_encode:
 
+.. function:: base64_encode()
+
     Returns base64 encoding from a regular string.
 
     The possible options are:

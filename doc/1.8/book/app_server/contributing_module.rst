@@ -4,7 +4,7 @@
 Contributing a module
 ================================================================================
 
-We have already discussed 
+We have already discussed
 :ref:`how to create a simple module in Lua for local usage <app_server-modules>`.
 Now let's discuss how to create a more advanced Tarantool module and then get it
 published on `Tarantool rocks page <http://tarantool.org/rocks.html>`_ and
@@ -20,9 +20,9 @@ creating Tarantool modules in Lua and C.
    As a prerequisite for using ``modulekit``, install ``tarantool-dev`` package
    first. For example, in Ubuntu say:
 
-   .. code-block:: bash
- 
-      $ sudo apt-get install tarantool-dev
+   .. code-block:: console
+
+       $ sudo apt-get install tarantool-dev
 
 .. _app_server-contributing_module_lua:
 
@@ -30,7 +30,7 @@ creating Tarantool modules in Lua and C.
 Contributing a module in Lua
 --------------------------------------------------------------------------------
 
-See 
+See
 `README in "luakit" branch of tarantool/modulekit repository <http://github.com/tarantool/modulekit/blob/luakit/README.md>`_
 for detailed instructions and examples.
 

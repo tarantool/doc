@@ -136,7 +136,7 @@
     Re-throw the last Tarantool error as a Lua object.
 
     See also: `lua_error() <https://www.lua.org/manual/5.1/manual.html#lua_error>`_,
-             :ref:`box_error_last() <c_api-error-box_error_last>`.
+              :ref:`box_error_last() <c_api-error-box_error_last>`.
 
 .. c:function:: int luaT_cpcall(lua_State *L, lua_CFunction func, void *ud)
 

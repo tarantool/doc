@@ -352,21 +352,22 @@ The only difference between the two collations is about
 `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:
 
 * ``unicode`` collation observes four weight levels, from L1 to L4,
-* ``unicode_ci`` collation observes only L1 weights.
+* ``unicode_ci`` collation observes only L1 weights, the ``ci`` suffix meaning
+  "`case-insensitive <https://www.unicode.org/reports/tr35/tr35-collation.html#Case_Parameters>`_".
 
 As an example, let's take some Russian words:
 
-  .. code-block:: text
+.. code-block:: text
 
-      'ЕЛЕ'
-      'елейный'
-      'ёлка'
-      'еловый'
-      'елозить'
-      'Ёлочка'
-      'ёлочный'
-      'ЕЛь'
-      'ель'
+    'ЕЛЕ'
+    'елейный'
+    'ёлка'
+    'еловый'
+    'елозить'
+    'Ёлочка'
+    'ёлочный'
+    'ЕЛь'
+    'ель'
 
 ...and show the difference in ordering and selecting by index:
 
