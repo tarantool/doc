@@ -147,7 +147,7 @@ and the second encoding means:
 .. cssclass:: highlight
 .. parsed-literal::
 
-    fixmap(2), key(1), fixstr(1), "A", key(2), fixstr(2), "B".
+    fixmap(2), key(1), fixstr(1), "A", key(2), fixstr(2), "B"
 
 Here are examples for all the common types,
 with the Lua-table representation on the left,

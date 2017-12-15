@@ -35,51 +35,57 @@ Follow these steps:
    `Tarantool rocks page <http://tarantool.org/rocks.html>`_ and put the prefix
    "tarantool-" before the module name to avoid ambiguity:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      # for Ubuntu/Debian:
-      $ sudo apt-get install tarantool-<module-name>
+       $ # for Ubuntu/Debian:
+       $ sudo apt-get install tarantool-<module-name>
 
-      # for RHEL/CentOS/Amazon:
-      $ sudo yum install tarantool-<module-name>
+       $ # for RHEL/CentOS/Amazon:
+       $ sudo yum install tarantool-<module-name>
 
    For example, to install the module
    `shard <http://github.com/tarantool/shard>`_ on Ubuntu, say:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      $ sudo apt-get install tarantool-shard
+       $ sudo apt-get install tarantool-shard
 
 Once these steps are complete, you can:
 
 * load any module with
 
-  .. code-block:: bash
+  .. code-block:: tarantoolsession
 
-     tarantool> local-name = require('module-name')
+       tarantool> name = require('module-name')
+
+  for example:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> shard = require('shard')
 
 * search locally for installed modules using ``package.path`` (Lua) or
   ``package.cpath`` (C):
 
-  .. code-block:: bash
+  .. code-block:: tarantoolsession
 
-     tarantool> package.path
-     ---
-     - ./?.lua;./?/init.lua; /usr/local/share/tarantool/?.lua;/usr/local/share/
-     tarantool/?/init.lua;/usr/share/tarantool/?.lua;/usr/share/tarantool/?/ini
-     t.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;/
-     usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;
-     ...
+      tarantool> package.path
+      ---
+      - ./?.lua;./?/init.lua; /usr/local/share/tarantool/?.lua;/usr/local/share/
+      tarantool/?/init.lua;/usr/share/tarantool/?.lua;/usr/share/tarantool/?/ini
+      t.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;/
+      usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;
+      ...
 
-     tarantool> package.cpath
-     ---
-     - ./?.so;/usr/local/lib/x86_64-linux-gnu/tarantool/?.so;/usr/lib/x86_64-li
-     nux-gnu/tarantool/?.so;/usr/local/lib/tarantool/?.so;/usr/local/lib/x86_64
-     -linux-gnu/lua/5.1/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/local/
-     lib/lua/5.1/?.so;
-     ...
+      tarantool> package.cpath
+      ---
+      - ./?.so;/usr/local/lib/x86_64-linux-gnu/tarantool/?.so;/usr/lib/x86_64-li
+      nux-gnu/tarantool/?.so;/usr/local/lib/tarantool/?.so;/usr/local/lib/x86_64
+      -linux-gnu/lua/5.1/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/local/
+      lib/lua/5.1/?.so;
+      ...
 
   .. NOTE::
 
-     Question-marks stand for the module name that was specified earlier when
-     saying ``require('module-name')``.
+      Question-marks stand for the module name that was specified earlier when
+      saying ``require('module-name')``.

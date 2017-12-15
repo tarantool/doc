@@ -64,14 +64,14 @@ To compile and link the program, say:
 
 Before trying to run,
 check that a server instance is listening at ``localhost:3301`` and that the space
-``examples`` exists, as 
+``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`.
 To run the program, say :samp:`./example`. The program will connect
 to the Tarantool instance, and will send the request.
 If Tarantool is not running on localhost with listen address = 3301, the program
 will print “Connection refused”.
 If the insert fails, the program will print "Insert failed" and an error number
-(see all error codes in the source file 
+(see all error codes in the source file
 `/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h>`_).
 
 Here are notes corresponding to comments in the example program.
@@ -91,11 +91,10 @@ Tarantool instance is supposed to be :ref:`listening <cfg_basic-listen>`.
 
 Function description:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: text
 
-    `struct tnt_stream *tnt_net(struct tnt_stream *s)`
-    `int tnt_set(struct tnt_stream *s, int option, variant option-value)`
+    struct tnt_stream *tnt_net(struct tnt_stream *s)
+    int tnt_set(struct tnt_stream *s, int option, variant option-value)
 
 **CONNECT:** Now that the stream named ``tnt`` exists and is associated with a
 URI, this example program can connect to a server instance.
@@ -107,8 +106,7 @@ URI, this example program can connect to a server instance.
 
 Function description:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: text
 
     int tnt_connect(struct tnt_stream \*s)
 
@@ -135,8 +133,7 @@ then the integer value, then a pointer to the string value.
 
 Function description:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: text
 
     ssize_t tnt_object_format(struct tnt_stream \*s, const char \*fmt, ...)
 
@@ -155,8 +152,7 @@ the program passes the ``tnt_stream`` that was used for connection
 
 Function description:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: text
 
     ssize_t tnt_insert(struct tnt_stream \*s, uint32_t space, struct tnt_stream \*tuple)
     ssize_t tnt_replace(struct tnt_stream \*s, uint32_t space, struct tnt_stream \*tuple)
@@ -180,8 +176,7 @@ This program checks for success but does not decode the rest of the reply.
 
 Function description:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: text
 
     struct tnt_reply \*tnt_reply_init(struct tnt_reply \*r)
     tnt->read_reply(struct tnt_stream \*s, struct tnt_reply \*r)
@@ -199,8 +194,7 @@ made in the setup should be destroyed.
 
 Function description:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: text
 
     void tnt_close(struct tnt_stream \*s)
     void tnt_stream_free(struct tnt_stream \*s)

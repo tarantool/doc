@@ -58,9 +58,9 @@ that apply for the environment where Tarantool was installed. In addition to
 installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add
 the line:
 
-.. code-block:: bash
+.. code-block:: console
 
-    sudo apt-get install tarantool-dev
+    $ sudo apt-get install tarantool-dev
 
 Now, for the MySQL driver shared library, there are two ways to install:
 
@@ -81,9 +81,9 @@ Tarantool luarocks page. Now execute this:
 
 For example:
 
-.. code-block:: bash
+.. code-block:: console
 
-    luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib
+    $ luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub
@@ -91,12 +91,12 @@ For example:
 
 Go the site `github.com/tarantool/mysql`_. Follow the instructions there, saying:
 
-.. code-block:: bash
+.. code-block:: console
 
-    git clone https://github.com/tarantool/mysql.git
-    cd mysql && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo
-    make
-    make install
+    $ git clone https://github.com/tarantool/mysql.git
+    $ cd mysql && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    $ make
+    $ make install
 
 At this point it is a good idea to check that the installation produced a file
 named ``driver.so``, and to check that this file is on a directory that is
@@ -387,9 +387,9 @@ recent versions should also work. The package that matters most is the
 PostgreSQL developer package, typically named something like libpq-dev. On
 Ubuntu this can be installed with:
 
-.. code-block:: bash
+.. code-block:: console
 
-    sudo apt-get install libpq-dev
+    $ sudo apt-get install libpq-dev
 
 However, because not all platforms are alike, for this example the assumption
 is that the user must check that the appropriate PostgreSQL files are present
@@ -411,9 +411,9 @@ that apply for the environment where Tarantool was installed. In addition to
 installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add
 the line:
 
-.. code-block:: bash
+.. code-block:: console
 
-    sudo apt-get install tarantool-dev
+    $ sudo apt-get install tarantool-dev
 
 Now, for the PostgreSQL driver shared library, there are two ways to install:
 
@@ -434,9 +434,9 @@ page. Now execute this:
 
 For example:
 
-.. code-block:: bash
+.. code-block:: console
 
-    luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib
+    $ luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        With GitHub
@@ -444,12 +444,12 @@ For example:
 
 Go the site `github.com/tarantool/pg`_. Follow the instructions there, saying:
 
-.. code-block:: bash
+.. code-block:: console
 
-    git clone https://github.com/tarantool/pg.git
-    cd pg && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo
-    make
-    make install
+    $ git clone https://github.com/tarantool/pg.git
+    $ cd pg && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    $ make
+    $ make install
 
 At this point it is a good idea to check that the installation produced a file
 named ``driver.so``, and to check that this file is on a directory that is
@@ -526,7 +526,6 @@ To ensure that a connection is working, the request is:
 .. parsed-literal::
 
     *connection-name*:ping()
-
 
 **Example:**
 

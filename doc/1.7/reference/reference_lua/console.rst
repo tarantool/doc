@@ -173,11 +173,17 @@ Below is a list of all ``console`` functions.
 
    **Example:**
 
-   .. code-block:: none
+   .. code-block:: tarantoolsession
 
-       console = require('console'); console.delimiter('!')
-       function f ()
-           statement_1 = 'a'
-           statement_2 = 'b'
-       end!
-       console.delimiter('')!
+       tarantool> console = require('console'); console.delimiter('!')
+       ---
+       ...
+       tarantool> function f ()
+                > statement_1 = 'a'
+                > statement_2 = 'b'
+                > end!
+       ---
+       ...
+       tarantool> console.delimiter('')!
+       ---
+       ...

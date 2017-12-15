@@ -62,10 +62,10 @@ system space :ref:`box.space._schema <box_space-schema>`. For example:
 
 .. code-block:: tarantoolsession
 
-   tarantool> box.space._schema:select{'cluster'}
-   ---
-   - - ['cluster', '6308acb9-9788-42fa-8101-2e0cb9d3c9a0']
-   ...
+    tarantool> box.space._schema:select{'cluster'}
+    ---
+    - - ['cluster', '6308acb9-9788-42fa-8101-2e0cb9d3c9a0']
+    ...
 
 Additionally, each instance in a replica set is assigned its own UUID, when it
 joins the replica set. It is called an **instance UUID** and is a globally unique
@@ -83,10 +83,10 @@ used to refer to the instance in the write ahead log. It is called
 
 .. code-block:: tarantoolsession
 
-   tarantool> box.space._cluster:select{}
-   ---
-   - - [1, '88580b5c-4474-43ab-bd2b-2409a9af80d2']
-   ...
+    tarantool> box.space._cluster:select{}
+    ---
+    - - [1, '88580b5c-4474-43ab-bd2b-2409a9af80d2']
+    ...
 
 Here the instance ID is ``1`` (unique within the replica set), and the instance
 UUID is ``88580b5c-4474-43ab-bd2b-2409a9af80d2`` (globally unique).
@@ -97,10 +97,10 @@ describes the state of replication in regard to each connected peer.
 
 .. code-block:: tarantoolsession
 
-   box.info.vclock
-   ---
-   - {1: 827, 2: 584}
-   ...
+    tarantool> box.info.vclock
+    ---
+    - {1: 827, 2: 584}
+    ...
 
 Here ``vclock`` contains log sequence numbers (827 and 584) for instances with short
 identifiers 1 and 2.

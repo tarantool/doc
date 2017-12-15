@@ -32,7 +32,7 @@ STEP 1: Make sure you have:
 
   .. code-block:: console
 
-     sudo apt-get install mysql-client-core-5.7
+      $ sudo apt-get install mysql-client-core-5.7
 
 STEP 2: Download ``libslave``.
 
@@ -41,14 +41,14 @@ Downloads include the source code only.
 
 .. code-block:: console
 
-    sudo apt-get install libboost-all-dev
-    cd ~
-    git clone https://github.com/tarantool/libslave.git tarantool-libslave
-    cd tarantool-libslave
-    git submodule init
-    git submodule update
-    cmake .
-    make
+    $ sudo apt-get install libboost-all-dev
+    $ cd ~
+    $ git clone https://github.com/tarantool/libslave.git tarantool-libslave
+    $ cd tarantool-libslave
+    $ git submodule init
+    $ git submodule update
+    $ cmake .
+    $ make
 
 If you see an error message mentioning the word "vector",
 edit ``field.h`` and add this line:
@@ -62,7 +62,7 @@ appropriate switches for doing replication. For example:
 
 .. code-block:: console
 
-   mysqld --log-bin=mysql-bin --server-id=1
+    $ mysqld --log-bin=mysql-bin --server-id=1
 
 STEP 4: For purposes of this exercise, we are assuming you have:
 
@@ -148,7 +148,7 @@ Step 6: Compile and build:
 
 .. code-block:: console
 
-   g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a -ldl -lpthread
+    $ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a -ldl -lpthread
 
 .. NOTE::
 
@@ -161,7 +161,7 @@ Step 7: Run:
 
 .. code-block:: console
 
-   ./example
+    $ ./example
 
 The result will be nothing -- the program is looping, waiting for
 the MySQL server to write to the replication binary log.
@@ -169,7 +169,7 @@ the MySQL server to write to the replication binary log.
 Step 8: Start a MySQL client program -- any client program will do.
 Enter these statements:
 
-.. code-block:: none
+.. code-block:: sql
 
     USE test
     INSERT INTO test VALUES ('A');
@@ -178,12 +178,12 @@ Enter these statements:
 
 Watch what happens in ``example.cpp`` output -- it displays:
 
-.. code-block:: none
+.. code-block:: text
 
-  INSERT
-  INSERT
-  DELETE
-  DELETE
+    INSERT
+    INSERT
+    DELETE
+    DELETE
 
 This is row-based replication, so you see two DELETEs, because there are two
 rows.

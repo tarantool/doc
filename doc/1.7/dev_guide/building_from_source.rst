@@ -92,14 +92,14 @@ the preferences can differ. But strategically the steps are always the same.
    it is best to set up the modules by getting a tarball and
    doing the setup with ``python setup.py`` like this:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-       # On some machines, this initial command may be necessary:
+       $ # On some machines, this initial command may be necessary:
        $ wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
 
-       # Python module for parsing YAML (pyYAML), for test suite:
-       # (If wget fails, check at http://pyyaml.org/wiki/PyYAML
-       # what the current version is.)
+       $ # Python module for parsing YAML (pyYAML), for test suite:
+       $ # (If wget fails, check at http://pyyaml.org/wiki/PyYAML
+       $ # what the current version is.)
        $ cd ~
        $ wget http://pyyaml.org/download/pyyaml/PyYAML-3.10.tar.gz
        $ tar -xzf PyYAML-3.10.tar.gz
@@ -185,18 +185,18 @@ the preferences can differ. But strategically the steps are always the same.
    make any changes in the code. Assuming you downloaded to ``~/tarantool``, the
    principal steps are:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-       # make a subdirectory named `bin`
+       $ # make a subdirectory named `bin`
        $ mkdir ~/tarantool/bin
 
-       # link Python to bin (this may require superuser privileges)
+       $ # link Python to bin (this may require superuser privileges)
        $ ln /usr/bin/python ~/tarantool/bin/python
 
-       # get to the test subdirectory
+       $ # get to the test subdirectory
        $ cd ~/tarantool/test
 
-       # run tests using Python
+       $ # run tests using Python
        $ PATH=~/tarantool/bin:$PATH ./test-run.py
 
    The output should contain reassuring reports, for example:
@@ -235,10 +235,10 @@ the preferences can differ. But strategically the steps are always the same.
 
    .. code-block:: bash
 
-       # if you installed tarantool locally after build
+       $ # if you installed tarantool locally after build
        $ tarantool
-       # - OR -
-       # if you didn't install tarantool locally after build
+       $ # - OR -
+       $ # if you didn't install tarantool locally after build
        $ ./src/tarantool
 
    This starts Tarantool in the interactive mode.

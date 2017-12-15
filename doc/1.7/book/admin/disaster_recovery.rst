@@ -47,19 +47,19 @@ transferred to the replica before crash. If you were able to salvage the master
 
    a. Find out instance UUID from the crashed master :ref:`xlog <internals-wal>`:
 
-      .. code-block:: bash
+      .. code-block:: console
 
-         $ head -5 *.xlog | grep Instance
-         Instance: ed607cad-8b6d-48d8-ba0b-dae371b79155
+          $ head -5 *.xlog | grep Instance
+          Instance: ed607cad-8b6d-48d8-ba0b-dae371b79155
 
    b. On the new master, use the UUID to find the position:
 
       .. code-block:: tarantoolsession
 
-         tarantool>box.info.vclock[box.space._cluster.index.uuid:select{'ed607cad-8b6d-48d8-ba0b-dae371b79155'}[1][1]]
-         ---
-         - 23425
-         <...>
+          tarantool> box.info.vclock[box.space._cluster.index.uuid:select{'ed607cad-8b6d-48d8-ba0b-dae371b79155'}[1][1]]
+          ---
+          - 23425
+          <...>
 
 2. Play the records from the crashed .xlog to the new master, starting from the
    new master position:
@@ -69,16 +69,16 @@ transferred to the replica before crash. If you were able to salvage the master
 
       .. code-block:: tarantoolsession
 
-         tarantool> box.space._cluster:select{}
-         ---
-         - - [1, '88580b5c-4474-43ab-bd2b-2409a9af80d2']
-         ...
+          tarantool> box.space._cluster:select{}
+          ---
+          - - [1, '88580b5c-4474-43ab-bd2b-2409a9af80d2']
+          ...
 
    b. Play the records to the new master:
 
-      .. code-block:: tarantoolsession
+      .. code-block:: console
 
-         $ tarantoolctl <new_master_uri> <xlog_file> play --from-lsn 23425 --replica 1
+          $ tarantoolctl <new_master_uri> <xlog_file> play --from-lsn 23425 --replica 1
 
 .. _admin-disaster_recovery-master_master:
 

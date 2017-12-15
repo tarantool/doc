@@ -14,7 +14,7 @@ Tarantool allows for two types of connections:
 
 * With :ref:`box.cfg{listen=...} <cfg_basic-listen>` parameter from ``box``
   module, you can set up a binary port for connections which read and write to
-  the database or invoke stored procedures. 
+  the database or invoke stored procedures.
 
 When you connect to an admin console:
 
@@ -30,13 +30,13 @@ server machine is required. Thus a typical port setup for admin console is:
 
 .. code-block:: lua
 
-   console.listen('/var/lib/tarantool/socket_name.sock')
+    console.listen('/var/lib/tarantool/socket_name.sock')
 
 and a typical connection :ref:`URI <index-uri>` is:
 
 .. code-block:: none
 
-   /var/lib/tarantool/socket_name.sock
+    /var/lib/tarantool/socket_name.sock
 
 if the listener has the privilege to write on ``/var/lib/tarantool`` and the
 connector has the privilege to read on ``/var/lib/tarantool``. Alternatively,
@@ -46,14 +46,14 @@ to connect to an admin console of an instance started with ``tarantoolctl``, use
 To find out whether a TCP port is a port for admin console, use ``telnet``.
 For example:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ telnet 0 3303
-   Trying 0.0.0.0...
-   Connected to 0.
-   Escape character is '^]'.
-   Tarantool 1.7.3 (Lua console)
-   type 'help' for interactive help
+    $ telnet 0 3303
+    Trying 0.0.0.0...
+    Connected to 0.
+    Escape character is '^]'.
+    Tarantool 1.7.3 (Lua console)
+    type 'help' for interactive help
 
 In this example, the response does not include the word "binary" and does
 include the words "Lua console". Therefore it is clear that this is a successful
@@ -63,7 +63,7 @@ this terminal.
 When you connect to a binary port:
 
 * The client-server protocol is :ref:`binary <box_protocol-iproto_protocol>`.
-* The user is automatically ':ref:`guest <authentication-users>`'. 
+* The user is automatically ':ref:`guest <authentication-users>`'.
 * To change the user, it’s necessary to authenticate.
 
 For ease of use, ``tarantoolctl connect`` command automatically detects the type

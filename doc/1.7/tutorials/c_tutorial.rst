@@ -47,13 +47,13 @@ For example on Ubuntu say:
 
 .. code-block:: console
 
-    sudo apt-get install tarantool-dev
+    $ sudo apt-get install tarantool-dev
 
 or on Fedora say:
 
 .. code-block:: console
 
-    dnf -y install tarantool-devel
+    $ dnf -y install tarantool-devel
 
 The ``msgpuck.h`` file will exist if Tarantool 1.7 was installed from source.
 Otherwise the "msgpuck" package must be installed from
@@ -67,7 +67,7 @@ and they are not currently on the include path, say:
 
 .. code-block:: console
 
-    export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck
+    $ export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck
 
 The ``libmsgpuck.a`` static library is necessary with msgpuck versions
 produced after February 2017. If and only if you encounter linking
@@ -117,7 +117,7 @@ Compile the program, producing a library file named ``easy.so``:
 
 .. code-block:: console
 
-    gcc -shared -o easy.so -fPIC easy.c
+    $ gcc -shared -o easy.so -fPIC easy.c
 
 Now go back to the client and execute these requests:
 
@@ -191,7 +191,7 @@ Compile the program, producing a library file named ``harder.so``:
 
 .. code-block:: console
 
-    gcc -shared -o harder.so -fPIC harder.c
+    $ gcc -shared -o harder.so -fPIC harder.c
 
 Now go back to the client and execute these requests:
 
@@ -278,7 +278,7 @@ Compile the program, producing a library file named ``hardest.so``:
 
 .. code-block:: console
 
-    gcc -shared -o hardest.so -fPIC hardest.c
+    $ gcc -shared -o hardest.so -fPIC hardest.c
 
 Now go back to the client and execute these requests:
 
@@ -382,7 +382,7 @@ Compile the program, producing a library file named ``read.so``:
 
 .. code-block:: console
 
-    gcc -shared -o read.so -fPIC read.c
+    $ gcc -shared -o read.so -fPIC read.c
 
 Now go back to the client and execute these requests:
 
@@ -463,7 +463,7 @@ Compile the program, producing a library file named ``write.so``:
 
 .. code-block:: console
 
-    gcc -shared -o write.so -fPIC write.c
+    $ gcc -shared -o write.so -fPIC write.c
 
 Now go back to the client and execute these requests:
 

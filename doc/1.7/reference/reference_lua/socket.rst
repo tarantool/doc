@@ -155,7 +155,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
     **Example:**
 
-    .. code-block:: none
+    .. code-block:: lua
 
         socket.tcp_connect('127.0.0.1', 3301)
 
@@ -174,11 +174,9 @@ the function invocations will look like ``sock:function_name(...)``.
 
     **Example:**
 
-    ``socket.getaddrinfo('tarantool.org', 'http')`` will return variable
-    information such as
-
     .. code-block:: tarantoolsession
 
+        tarantool> socket.getaddrinfo('tarantool.org', 'http')
         ---
         - - host: 188.93.56.70
             family: AF_INET

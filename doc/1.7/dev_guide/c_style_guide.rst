@@ -44,7 +44,7 @@ The main tags in use are @param, @retval, @return, @see, @note and @todo.
 Every function, except perhaps a very short and obvious one, should have a
 comment. A sample function comment may look like below:
 
-.. code-block:: none
+.. code-block:: c
 
     /** Write all data to a descriptor.
      *

@@ -220,7 +220,7 @@ roles, directly or indirectly.
 
 **Example**
 
-.. code-block:: lua_tarantool
+.. code-block:: lua
 
    -- This example will work for a user with many privileges, such as 'admin'
    -- Create space T with a primary index

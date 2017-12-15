@@ -1233,19 +1233,21 @@ Below is a list of all ``box.space`` functions and members.
     .. data:: index
 
         A container for all defined indexes. There is a Lua object of type
-        :ref:`box.index <box_index>` with methods to search tuples and iterate over them in
-        predefined order.
+        :ref:`box.index <box_index>` with methods to search tuples and iterate
+        over them in predefined order.
 
         :rtype: table
 
         **Example:**
 
-        .. code-block:: lua
+        .. code-block:: tarantoolsession
 
+            # checking the number of indexes for space 'tester'
             tarantool> #box.space.tester.index
             ---
             - 1
             ...
+            # checking the type of index 'primary'
             tarantool> box.space.tester.index.primary.type
             ---
             - TREE

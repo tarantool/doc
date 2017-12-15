@@ -95,7 +95,7 @@ The screen now looks like this:
     ---
     - hello world
     ...
-    tarantool> 
+    tarantool>
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Create a function that calls another function and sets a variable
@@ -141,7 +141,7 @@ The screen now looks like this:
     ---
     - hello world
     ...
-    tarantool> 
+    tarantool>
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Modify the function so it returns a one-letter random string
@@ -195,7 +195,7 @@ The screen now looks like this:
     ---
     - C
     ...
-    tarantool> 
+    tarantool>
 
 ... Well, actually it won't always look like this because ``math.random()``
 produces random numbers. But for the illustration purposes it won't matter
@@ -254,7 +254,7 @@ The screen now looks like this:
     ---
     - 'ZUDJBHKEFM'
     ...
-    tarantool> 
+    tarantool>
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Make a tuple out of a number and a string
@@ -296,7 +296,7 @@ The screen now looks like this:
     ---
     - [1, 'PNPZPCOOKA']
     ...
-    tarantool> 
+    tarantool>
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Modify main_function to insert a tuple into the database
@@ -359,7 +359,7 @@ The screen now looks like this:
     ---
     - - [1, 'EUJYVEECIL']
     ...
-    tarantool> 
+    tarantool>
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Modify main_function to insert a million tuples into the database
@@ -386,7 +386,7 @@ wrinkle that we add here is a timing function.
     end_time = os.clock()
     'insert done in ' .. end_time - start_time .. ' seconds'
 
-The standard Lua function 
+The standard Lua function
 `os.clock() <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_
 will return the number of CPU seconds since the
 start. Therefore, by getting start_time = number of seconds just before the
@@ -472,7 +472,7 @@ The screen now looks like this:
     ---
     - insert done in 37.62 seconds
     ...
-    tarantool> 
+    tarantool>
 
 What has been shown is that Lua functions are quite expressive (in fact one can
 do more with Tarantool's Lua stored procedures than one can do with stored
@@ -732,7 +732,7 @@ NOTE #1 "FIND AN APPROPRIATE INDEX" |br|
 The caller has passed space_name (a string) and field_no (a number).
 The requirements are: |br|
 (a) index type must be "TREE" because for other index types
-(HASH, BITSET, RTREE) a search with `iterator=GE <box_index-iterator-types>`
+(HASH, BITSET, RTREE) a search with :ref:`iterator=GE <box_index-iterator-types>`
 will not return strings in order by string value; |br|
 (b) field_no must be the first index part; |br|
 (c) the field must contain strings, because for other data types
@@ -768,7 +768,7 @@ them in the result set if they match the pattern.
 
 NOTE #4 "INNER LOOP: ITERATOR" |br|
 The for loop here is using pairs(), see the
-:ref:`explanation of what index iterators are <box_index-index_pairs>`. 
+:ref:`explanation of what index iterators are <box_index-index_pairs>`.
 Within the inner loop,
 there will be a local variable named "tuple" which contains
 the latest tuple found via the index search key.
@@ -820,7 +820,7 @@ will happen again with a new value for the index search key.
 
 EXAMPLE:
 
-Start Tarantool, cut and paste the code for function ``indexed_pattern_search``,
+Start Tarantool, cut and paste the code for function ``indexed_pattern_search()``,
 and try the following:
 
 .. cssclass:: highlight
@@ -842,10 +842,9 @@ and try the following:
 
 The result will be:
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: tarantoolsession
 
-    tarantool> **indexed_pattern_search("t", 2, "ABC.E.")**
+    tarantool> indexed_pattern_search("t", 2, "ABC.E.")
     ---
     - - [7, 'ABCDEF', 'a']
     ...

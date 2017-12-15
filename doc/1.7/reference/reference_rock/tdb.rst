@@ -2,7 +2,7 @@
                             Module `tdb`
 -------------------------------------------------------------------------------
 
-The Tarantool Debugger (abbreviation = tdb) can be used with any Lua program.
+The Tarantool Debugger (abbreviation = ``tdb``) can be used with any Lua program.
 The operational features include: setting breakpoints, examining variables,
 going forward one line at a time, backtracing, and showing information about
 fibers. The display features include: using different colors for different
@@ -11,15 +11,15 @@ situations, including line numbers, and adding hints.
 It is not supplied as part of the Tarantool repository; it must be installed
 separately. Here is the usual way:
 
-.. code-block:: bash
+.. code-block:: console
 
-    git clone --recursive https://github.com/Sulverus/tdb
-    cd tdb
-    make
-    sudo make install prefix=/usr/share/tarantool/
+    $ git clone --recursive https://github.com/Sulverus/tdb
+    $ cd tdb
+    $ make
+    $ sudo make install prefix=/usr/share/tarantool/
 
-To initiate tdb within a Lua program and set a breakpoint, edit the program to
-include these lines:
+To initiate ``tdb`` within a Lua program and set a breakpoint, edit the program
+to include these lines:
 
 .. code-block:: lua
 
@@ -86,10 +86,9 @@ Put the following program in a default directory and call it "example.lua":
 
 Now start Tarantool, using example.lua as the initialization file
 
-.. cssclass:: highlight
-.. parsed-literal::
+.. code-block:: console
 
-    $ :codebold:`tarantool example.lua`
+    $ tarantool example.lua
 
 The screen should now look like this:
 
@@ -138,6 +137,4 @@ The screen should now look like this:
     :codeblue:`(TDB)`  :codegreen:`Eval mode OFF`
     :codeblue:`(TDB)>` q
 
-Another debugger example can be found here_.
-
-.. _here: https://github.com/sulverus/tdb
+Another debugger example can be found `here <https://github.com/sulverus/tdb>`_.

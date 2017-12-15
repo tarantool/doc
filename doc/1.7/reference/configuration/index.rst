@@ -7,15 +7,15 @@ Configuration reference
 This reference covers all options and parameters which can be set for Tarantool
 on the command line or in an :ref:`initialization file <index-init_label>`.
 
-Tarantool is started by entering the following command:
+Tarantool is started by entering either of the following command:
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     $ **tarantool**
-    # OR
+
     $ **tarantool** *options*
-    # OR
+
     $ **tarantool** *lua-initialization-file* **[** *arguments* **]**
 
 --------------------------------------------------------------------------------

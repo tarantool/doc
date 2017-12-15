@@ -9,9 +9,9 @@ by ``tarantoolctl`` which is a Tarantool script.
 
 Here is what ``tarantoolctl`` does when you issue the command:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl start <instance_name>
+    $ tarantoolctl start <instance_name>
 
 1. Read and parse the command line arguments. The last argument, in our case,
    contains an instance name.
@@ -53,9 +53,9 @@ is ``my_app``):
 
 .. code-block:: console
 
-   $ systemctl start tarantool@my_app
-   $ ps axuf|grep exampl[e]
-   taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool my_app.lua <running>
+    $ systemctl start tarantool@my_app
+    $ ps axuf|grep exampl[e]
+    taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool my_app.lua <running>
 
 ... this actually calls ``tarantoolctl`` like in case of
 ``tarantoolctl start my_app``.
@@ -63,31 +63,31 @@ is ``my_app``):
 To check the instance file for syntax errors prior to starting ``my_app``
 instance, say:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl check my_app
+    $ tarantoolctl check my_app
 
 To enable ``my_app`` instance for auto-load during system startup, say:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ systemctl enable tarantool@my_app
+    $ systemctl enable tarantool@my_app
 
 To stop a running ``my_app`` instance, say:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl stop my_app
-   $ # - OR -
-   $ systemctl stop tarantool@my_app
+    $ tarantoolctl stop my_app
+    $ # - OR -
+    $ systemctl stop tarantool@my_app
 
 To restart (i.e. stop and start) a running ``my_app`` instance, say:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl restart my_app
-   $ # - OR -
-   $ systemctl restart tarantool@my_app
+    $ tarantoolctl restart my_app
+    $ # - OR -
+    $ systemctl restart tarantool@my_app
 
 .. _admin-start_stop_instance-running_locally:
 
@@ -101,9 +101,9 @@ purposes. Let's configure a local instance, then start and monitor it with
 
 First, we create a sandbox directory on the user's path:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ mkdir ~/tarantool_test
+    $ mkdir ~/tarantool_test
 
 ... and set default ``tarantoolctl`` configuration in
 ``$HOME/.config/tarantool/tarantool``. Let the file contents be:
@@ -150,61 +150,61 @@ Let’s verify our instance file by starting it without ``tarantoolctl`` first:
 
 .. code-block:: console
 
-   $ cd ~/tarantool_test
-   $ tarantool my_app.lua
-   2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version 1.7.3-489-gd86e36d5b
-   2017-04-06 10:42:15.763 [54085] main/101/my_app.lua C> log level 5
-   2017-04-06 10:42:15.764 [54085] main/101/my_app.lua I> mapping 268435456 bytes for tuple arena...
-   2017-04-06 10:42:15.774 [54085] iproto/101/main I> binary: bound to [::]:3301
-   2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an empty data directory
-   2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
-   2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done
-   2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> vinyl checkpoint done
-   2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept requests
-   insert 1
-   insert 2
-   insert 3
-   <...>
+    $ cd ~/tarantool_test
+    $ tarantool my_app.lua
+    2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version 1.7.3-489-gd86e36d5b
+    2017-04-06 10:42:15.763 [54085] main/101/my_app.lua C> log level 5
+    2017-04-06 10:42:15.764 [54085] main/101/my_app.lua I> mapping 268435456 bytes for tuple arena...
+    2017-04-06 10:42:15.774 [54085] iproto/101/main I> binary: bound to [::]:3301
+    2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an empty data directory
+    2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
+    2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done
+    2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> vinyl checkpoint done
+    2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept requests
+    insert 1
+    insert 2
+    insert 3
+    <...>
 
 Now we tell ``tarantoolctl`` to start the Tarantool instance:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl start my_app
+    $ tarantoolctl start my_app
 
 Expect to see messages indicating that the instance has started. Then:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ ls -l ~/tarantool_test/my_app
+    $ ls -l ~/tarantool_test/my_app
 
 Expect to see the .snap file and the .xlog file. Then:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ less ~/tarantool_test/log/my_app.log
+    $ less ~/tarantool_test/log/my_app.log
 
 Expect to see the contents of ``my_app``‘s log, including error messages, if
 any. Then:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl enter my_app
-   tarantool> box.cfg{}
-   tarantool> console = require('console')
-   tarantool> console.connect('localhost:3301')
-   tarantool> box.space.tester:select({0}, {iterator = 'GE'})
+    $ tarantoolctl enter my_app
+    tarantool> box.cfg{}
+    tarantool> console = require('console')
+    tarantool> console.connect('localhost:3301')
+    tarantool> box.space.tester:select({0}, {iterator = 'GE'})
 
 Expect to see several tuples that ``my_app`` has created.
 
 Stop now. A polite way to stop ``my_app`` is with ``tarantoolctl``, thus we say:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ tarantoolctl stop my_app
+    $ tarantoolctl stop my_app
 
 Finally, we make a cleanup.
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ rm -R tarantool_test
+    $ rm -R tarantool_test

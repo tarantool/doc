@@ -108,6 +108,6 @@ To see all possible error names stored in the ``errno`` metatable, say
      ENOSR: 63
      ENOTSOCK: 88
      EDESTADDRREQ: 89
-     ...
+     <...>
    ...
 

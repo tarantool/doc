@@ -10,9 +10,9 @@ way to install it is with `npm
 example, on Ubuntu, the installation could look like this after npm has been
 installed:
 
-.. code-block:: bash
+.. code-block:: console
 
-    npm install tarantool-driver --global
+    $ npm install tarantool-driver --global
 
 Here is a complete node.js program that inserts ``[99999,'BB']`` into
 ``space[999]`` via the node.js API. Before trying to run, check that the server instance

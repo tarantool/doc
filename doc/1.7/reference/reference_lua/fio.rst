@@ -165,7 +165,7 @@ Below is a list of all ``fio`` functions and members.
 
     **Example:**
 
-     .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
         tarantool> fio.basename('/path/to/my.lua', '.lua')
         ---
@@ -185,7 +185,7 @@ Below is a list of all ``fio`` functions and members.
 
     **Example:**
 
-     .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
         tarantool> fio.dirname('path/to/my.lua')
         ---
@@ -211,7 +211,7 @@ Below is a list of all ``fio`` functions and members.
 
     **Example:**
 
-     .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
         tarantool> fio.umask(tonumber('755', 8))
         ---
@@ -246,7 +246,7 @@ Below is a list of all ``fio`` functions and members.
 
     **Example:**
 
-     .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
         tarantool> fio.lstat('/etc')
         ---
@@ -286,10 +286,10 @@ Below is a list of all ``fio`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        tarantool> fio.mkdir('/etc')
-        ---
-        - false
-        ...
+         tarantool> fio.mkdir('/etc')
+         ---
+         - false
+         ...
 
 .. _fio-glob:
 
@@ -309,12 +309,12 @@ Below is a list of all ``fio`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        tarantool> fio.glob('/etc/x*')
-        ---
-        - - /etc/xdg
-          - /etc/xml
-          - /etc/xul-ext
-        ...
+         tarantool> fio.glob('/etc/x*')
+         ---
+         - - /etc/xdg
+           - /etc/xml
+           - /etc/xul-ext
+         ...
 
 .. _fio-tempdir:
 
@@ -326,10 +326,10 @@ Below is a list of all ``fio`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        tarantool> fio.tempdir()
-        ---
-        - /tmp/lG31e7
-        ...
+         tarantool> fio.tempdir()
+         ---
+         - /tmp/lG31e7
+         ...
 
 .. _fio-cwd:
 

@@ -32,38 +32,38 @@ section of this documentation.
    GitHub repository ``tarantool/doc``, branch 1.7. For example, to download to a local
    directory named ``~/tarantool-doc``:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-     git clone https://github.com/tarantool/doc.git ~/tarantool-doc
+       $ git clone https://github.com/tarantool/doc.git ~/tarantool-doc
 
 2. Use ``CMake`` to initiate the build.
 
-   .. code-block:: bash
-   
-     cd ~/tarantool-doc
-     make clean         # unnecessary, added for good luck
-     rm CMakeCache.txt  # unnecessary, added for good luck
-     cmake .            # initiate
+   .. code-block:: console
+
+       $ cd ~/tarantool-doc
+       $ make clean         # unnecessary, added for good luck
+       $ rm CMakeCache.txt  # unnecessary, added for good luck
+       $ cmake .            # initiate
 
 3. Build a local version of the documentation.
 
-   Run the ``make`` command with an appropriate option to specify which 
+   Run the ``make`` command with an appropriate option to specify which
    documentation version to build.
 
-   .. code-block:: bash
+   .. code-block:: console
 
-     cd ~/tarantool-doc
-     make sphinx-html           # multi-page English version
-     make sphinx-singlehtml     # one-page English version
-     make sphinx-html-ru        # multi-page Russian version
-     make sphinx-singlehtml-ru  # one-page Russian version
-     make all                   # all versions plus the entire web-site
+       $ cd ~/tarantool-doc
+       $ make sphinx-html           # multi-page English version
+       $ make sphinx-singlehtml     # one-page English version
+       $ make sphinx-html-ru        # multi-page Russian version
+       $ make sphinx-singlehtml-ru  # one-page Russian version
+       $ make all                   # all versions plus the entire web-site
 
    Documentation will be created in subdirectories of ``/output``:
-   
+
    * ``/output/en`` (files of the English version)
    * ``/output/ru`` (files of the Russian version)
-   
+
    The entry point for each version is the ``index.html`` file in the appropriate
    directory.
 
@@ -74,10 +74,10 @@ section of this documentation.
    Make sure to run it from the documentation output folder,
    ``output/en`` or ``output/ru``, as in the example below:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-     cd ~/tarantool-doc/output/en
-     python -m SimpleHTTPServer 8000
+       $ cd ~/tarantool-doc/output/en
+       $ python -m SimpleHTTPServer 8000
 
 5. Open your browser and enter ``127.0.0.1:8000/doc/1.7`` into the address box. If
    your local documentation build is valid, the manual will appear in the browser.
@@ -92,12 +92,12 @@ section of this documentation.
    common sense and existing documents.
 
 .. NOTE::
-   
+
    * If you suggest creating a new documentation section (a whole new
      page), it has to be saved to the relevant section at GitHub.
-     
+
    * If you want to contribute to localizing this documentation (for example into
      Russian), add your translation strings to ``.po`` files stored in the
      corresponding locale directory (for example ``/locale/ru/LC_MESSAGES/``
-     for Russian). See more about localizing with Sphinx at 
+     for Russian). See more about localizing with Sphinx at
      http://www.sphinx-doc.org/en/stable/intl.html

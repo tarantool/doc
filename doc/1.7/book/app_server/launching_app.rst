@@ -18,26 +18,26 @@ in C or C++.
 
    .. code-block:: tarantoolsession
 
-      tarantool> tutorial()
-      ---
-      - |
-       Tutorial -- Screen #1 -- Hello, Moon
-       ====================================
+       tarantool> tutorial()
+       ---
+       - |
+        Tutorial -- Screen #1 -- Hello, Moon
+        ====================================
 
-       Welcome to the Tarantool tutorial.
-       It will introduce you to Tarantool’s Lua application server
-       and database server, which is what’s running what you’re seeing.
-       This is INTERACTIVE -- you’re expected to enter requests
-       based on the suggestions or examples in the screen’s text.
-       <...>
+        Welcome to the Tarantool tutorial.
+        It will introduce you to Tarantool’s Lua application server
+        and database server, which is what’s running what you’re seeing.
+        This is INTERACTIVE -- you’re expected to enter requests
+        based on the suggestions or examples in the screen’s text.
+        <...>
 
 Let's create and launch our first Lua application for Tarantool.
 Here's a simplest Lua application, the good old "Hello, world!":
 
 .. code-block:: lua
 
-   #!/usr/bin/env tarantool
-   print('Hello, world!')
+    #!/usr/bin/env tarantool
+    print('Hello, world!')
 
 We save it in a file. Let it be ``myapp.lua`` in the current directory.
 
@@ -52,21 +52,21 @@ Launching in Docker
 If we run Tarantool in a :ref:`Docker container <getting_started-using_docker>`,
 the following command will start Tarantool without any application:
 
-.. code-block:: bash
+.. code-block:: console
 
-   # create a temporary container and run it in interactive mode
-   $ docker run --rm -t -i tarantool/tarantool
+    $ # create a temporary container and run it in interactive mode
+    $ docker run --rm -t -i tarantool/tarantool
 
 To run Tarantool with our application, we can say:
 
-.. code-block:: bash
+.. code-block:: console
 
-   # create a temporary container and
-   # launch Tarantool with our application
-   $ docker run --rm -t -i \
-                -v `pwd`/myapp.lua:/opt/tarantool/myapp.lua \
-                -v /data/dir/on/host:/var/lib/tarantool \
-                tarantool/tarantool tarantool /opt/tarantool/myapp.lua
+    $ # create a temporary container and
+    $ # launch Tarantool with our application
+    $ docker run --rm -t -i \
+                 -v `pwd`/myapp.lua:/opt/tarantool/myapp.lua \
+                 -v /data/dir/on/host:/var/lib/tarantool \
+                 tarantool/tarantool tarantool /opt/tarantool/myapp.lua
 
 Here two resources on the host get mounted in the container:
 
@@ -92,11 +92,11 @@ application:
 
 The simplest way is to pass the filename to Tarantool at start:
 
-.. code-block: bash
+.. code-block:: console
 
-   $ tarantool myapp.lua
-   Hello, world!
-   $
+    $ tarantool myapp.lua
+    Hello, world!
+    $
 
 Tarantool starts, executes our script in the **script mode** and exits.
 
@@ -116,47 +116,47 @@ logic will be executed only once when the database is initialized for the first
 time, so we don't try to create an existing space or index on each invocation
 of the script:
 
-.. code-block: lua
+.. code-block:: lua
 
-   #!/usr/bin/env tarantool
-   -- Configure database
-   box.cfg {
-      listen = 3301
-   }
-   box.once("bootstrap", function()
-      box.schema.space.create('tweedledum')
-      box.space.tweedledum:create_index('primary',
-          { type = 'TREE', parts = {1, 'unsigned'}})
-   end)
+    #!/usr/bin/env tarantool
+    -- Configure database
+    box.cfg {
+       listen = 3301
+    }
+    box.once("bootstrap", function()
+       box.schema.space.create('tweedledum')
+       box.space.tweedledum:create_index('primary',
+           { type = 'TREE', parts = {1, 'unsigned'}})
+    end)
 
 Now we launch our application in the same manner as before:
 
-.. code-block: bash
+.. code-block:: console
 
-   $ tarantool myapp.lua
-   Hello, world!
-   2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> version 1.7.2-146-g021d36b
-   2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> log level 5
-   2016-12-19 16:07:14.251 [41436] main/101/myapp.lua I> mapping 1073741824 bytes for tuple arena...
-   2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovery start
-   2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovering from `./00000000000000000000.snap'
-   2016-12-19 16:07:14.271 [41436] main/101/myapp.lua I> recover from `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.271 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.272 [41436] main/102/hot_standby I> recover from `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.274 [41436] iproto/102/iproto I> binary: started
-   2016-12-19 16:07:14.275 [41436] iproto/102/iproto I> binary: bound to [::]:3301
-   2016-12-19 16:07:14.275 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
-   2016-12-19 16:07:14.278 [41436] main/101/myapp.lua I> ready to accept requests
+    $ tarantool myapp.lua
+    Hello, world!
+    2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> version 1.7.2-146-g021d36b
+    2016-12-19 16:07:14.250 [41436] main/101/myapp.lua C> log level 5
+    2016-12-19 16:07:14.251 [41436] main/101/myapp.lua I> mapping 1073741824 bytes for tuple arena...
+    2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovery start
+    2016-12-19 16:07:14.255 [41436] main/101/myapp.lua I> recovering from `./00000000000000000000.snap'
+    2016-12-19 16:07:14.271 [41436] main/101/myapp.lua I> recover from `./00000000000000000000.xlog'
+    2016-12-19 16:07:14.271 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
+    2016-12-19 16:07:14.272 [41436] main/102/hot_standby I> recover from `./00000000000000000000.xlog'
+    2016-12-19 16:07:14.274 [41436] iproto/102/iproto I> binary: started
+    2016-12-19 16:07:14.275 [41436] iproto/102/iproto I> binary: bound to [::]:3301
+    2016-12-19 16:07:14.275 [41436] main/101/myapp.lua I> done `./00000000000000000000.xlog'
+    2016-12-19 16:07:14.278 [41436] main/101/myapp.lua I> ready to accept requests
 
 This time, Tarantool executes our script and keeps working as a server,
 accepting TCP requests on port 3301. We can see Tarantool in the current
 session’s process list:
 
-.. code-block: bash
+.. code-block:: console
 
-   $ ps | grep "tarantool"
-     PID TTY       	TIME CMD
-   41608 ttys001	0:00.47 tarantool myapp.lua <running>
+    $ ps | grep "tarantool"
+      PID TTY       	TIME CMD
+    41608 ttys001	0:00.47 tarantool myapp.lua <running>
 
 But the Tarantool instance will stop if we close the current terminal window.
 To detach Tarantool and our application from the terminal window, we can launch
@@ -174,30 +174,30 @@ For example:
 
 .. code-block:: lua
 
-   box.cfg {
-      listen = 3301
-      background = true,
-      log = '1.log',
-      pid_file = '1.pid'
-   }
+    box.cfg {
+       listen = 3301
+       background = true,
+       log = '1.log',
+       pid_file = '1.pid'
+    }
 
 We launch our application in the same manner as before:
 
-.. code-block: bash
+.. code-block:: console
 
-   $ tarantool myapp.lua
-   Hello, world!
-   $
+    $ tarantool myapp.lua
+    Hello, world!
+    $
 
 Tarantool executes our script, gets detached from the current shell session
 (you won't see it with ``ps | grep "tarantool"``) and continues working in the
 background as a daemon attached to the global session (with SID = 0):
 
-.. code-block: bash
+.. code-block:: console
 
-   $ ps -ef | grep "tarantool"
-     PID SID     TIME  CMD
-   42178   0  0:00.72 tarantool myapp.lua <running>
+    $ ps -ef | grep "tarantool"
+      PID SID     TIME  CMD
+    42178   0  0:00.72 tarantool myapp.lua <running>
 
 Now that we have discussed how to create and launch a Lua application for
 Tarantool, let's dive deeper into programming practices.

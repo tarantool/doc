@@ -6,7 +6,7 @@
 
 These guidelines are updated on the on-demand basis, covering only those issues
 that cause pains to the existing writers. At this point, we do not aim to come
-up with an exhaustive Documentation Style Guide for the Tarantool project. 
+up with an exhaustive Documentation Style Guide for the Tarantool project.
 
 ===========================================================
                         Markup issues
@@ -51,7 +51,7 @@ For example (a code snippet in Lua):
 
 In rare cases, when we need custom highlight for specific parts of a code
 snippet and the ``code-block`` directive is not enough, we use the per-line
-``codenormal`` directive together and explicit output formatting (defined in 
+``codenormal`` directive together and explicit output formatting (defined in
 :file:`doc/sphinx/_static/sphinx_design.css`).
 
 Examples:
@@ -60,7 +60,7 @@ Examples:
 
   :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')`
 
-* A tdb session (user input is in bold, command prompt is in blue, computer 
+* A tdb session (user input is in bold, command prompt is in blue, computer
   output is in green):
 
   .. cssclass:: highlight
@@ -70,7 +70,7 @@ Examples:
       :codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`
       example.lua
       :codeblue:`(TDB)`  :codegreen:`[example.lua]`
-      :codeblue:`(TDB)`  :codenormal:`3: i = 1`      
+      :codeblue:`(TDB)`  :codenormal:`3: i = 1`
 
 Warning: Every entry of explicit output formatting (``codenormal``, ``codebold``,
 etc) tends to cause troubles when this documentation is translated to other
@@ -117,20 +117,20 @@ Our naming convention is as follows:
   ``c_api`` is the directory name, |br|
   ``box_index`` is the file name (without ".rst"), and |br|
   ``iterator_type`` is the tag.
-  
+
 The file name is useful for knowing, when you see "ref", where it is pointing
 to. And if the file name is meaningful, you see that better.
-  
+
 The file name alone, without a path, is enough when the file name is unique
 within ``doc/sphinx``.
 So, for ``fiber.rst`` it should be just "fiber", not "reference-fiber".
 While for "index.rst" (we have a handful of "index.rst" in different
 directories) please specify the path before the file name, e.g.
 "reference-index".
-  
+
 Use a dash "-" to delimit the path and the file name. In the documentation
 source, we use only underscores "_" in paths and file names, reserving dash "-"
-as the delimiter for local links.  
+as the delimiter for local links.
 
 The tag can be anything meaningful. The only guideline is for Tarantool syntax
 items (such as members), where the preferred tag syntax is
@@ -154,7 +154,7 @@ escape in grep search, just go ahead with something like this:
 
 .. code-block:: console
 
-    grep ".. //" doc/sphinx/dev_guide/*.rst
+    $ grep ".. //" doc/sphinx/dev_guide/*.rst
 
 These comments don't work properly in nested documentation, though (e.g. if you
 leave a comment in module -> object -> method, sphinx ignores the comment and
@@ -192,7 +192,7 @@ copies of the same databases."
                Module and function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here is an example of documenting a module (``my_fiber``) and a function 
+Here is an example of documenting a module (``my_fiber``) and a function
 (``my_fiber.create``).
 
 .. module:: my_fiber
@@ -205,7 +205,7 @@ Here is an example of documenting a module (``my_fiber``) and a function
     :param function: the function to be associated with the ``my_fiber`` object
     :param function-arguments: what will be passed to function
 
-    :return: created ``my_fiber`` object    
+    :return: created ``my_fiber`` object
     :rtype: userdata
 
     **Example:**
@@ -234,11 +234,11 @@ Here is an example of documenting a module (``my_box.index``), a class
 .. module:: my_box.index
 
 .. class:: my_index_object
-    
+
     .. method:: rename(index-name)
 
         Rename an index.
-                      
+
         :param index_object: an object reference
         :param index_name: a new name for the index (type = string)
 
