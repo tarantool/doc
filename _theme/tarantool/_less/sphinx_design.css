@@ -144,6 +144,7 @@ tr.field td p {
 }*/
 .b-cols_content_right-slot {
     width: 100%;
+    padding-top: 40px;
 }
 
 .b-documentation_top .b-section-title {
