@@ -33,6 +33,9 @@ Below is a list of all ``msgpack`` functions and members.
     | :ref:`msgpack.decode()               | Convert an MsgPack string to a  |
     | <msgpack-decode>`                    | Lua object                      |
     +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.decode_unchecked()     | Convert an MsgPack string to a  |
+    | <msgpack-decode_unchecked>`          | Lua object                      |
+    +--------------------------------------+---------------------------------+
     | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
     | <msgpack-null>`                      |                                 |
     +--------------------------------------+---------------------------------+
@@ -51,14 +54,36 @@ Below is a list of all ``msgpack`` functions and members.
 
 .. _msgpack-decode:
 
-.. function:: decode(string)
+.. function:: decode(string [, offset])
 
     Convert a MsgPack string to a Lua object.
 
     :param string: a string formatted as MsgPack.
+    :param num: where to start, minimum = 1, maximum = string length
 
-    * the original contents formatted as a Lua table;
-    * the number of bytes that were decoded.
+    :return:
+
+      * the original contents formatted as a Lua table;
+      * the number of bytes that were decoded.
+
+    :rtype: lua object
+
+.. _msgpack-decode_unchecked:
+
+.. function:: decode_unchecked(string)
+
+    Convert a MsgPack string to a Lua object.
+    Because checking is skipped, decode_unchecked()
+    can operate with string pointers to
+    buffers which decode() cannot handle.
+    For an example see the :ref:`buffer module <buffer-module>`.
+
+    :param string: a string formatted as MsgPack.
+
+    :return:
+
+      * the original contents formatted as a Lua table;
+      * the number of bytes that were decoded.
 
     :rtype: lua object
 
