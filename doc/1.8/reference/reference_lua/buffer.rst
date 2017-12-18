@@ -29,7 +29,8 @@ its own routine for decoding MsgPack strings.
     Then we create a buffer, and use it as an option
     for a ``conn.space...select()`` call.
     The result will be in MsgPack_ format.
-    To show this, we will use ``msgpack.ibuf_decode()``
+    To show this, we will use
+    :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`
     on ``ibuf.rpos`` (the "read position" of the buffer).
     Thus we do not decode on the remote server, but we do
     decode on the local server.
@@ -37,22 +38,29 @@ its own routine for decoding MsgPack strings.
     .. code-block:: lua
 
         box.cfg{listen=3302}
+        buffer = require('buffer')
         ibuf = buffer.ibuf()
         net_box = require('net.box')
         conn = net_box.connect('farhost:3301')
         buffer = require('buffer')
         conn.space.T:select({},{buffer=ibuf})
         msgpack = require('msgpack')
-        msgpack.ibuf_decode(ibuf.rpos)
+        msgpack.decode_unchecked(ibuf.rpos)
 
     The result of the final request looks like this:
 
     .. code-block:: tarantoolsession
 
-        tarantool> msgpack.ibuf_decode(ibuf.rpos)
+        tarantool> msgpack.decode_unchecked(ibuf.rpos)
         ---
-        - 'cdata<char *>: 0x7f97ba10c041'
         - {48: [['ABCDE', 12345]]}
+        - 'cdata<char *>: 0x7f97ba10c041'
         ...
+
+    .. NOTE::
+
+        Before Tarantool version 1.7.7, the function to use for
+        this case is ``msgpack.ibuf_decode(ibuf.rpos)``. Starting
+        with Tarantool version 1.7.7, ``ibuf_decode`` is deprecated.
 
 .. _MsgPack: http://msgpack.org/
