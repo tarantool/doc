@@ -29,7 +29,8 @@ its own routine for decoding MsgPack strings.
     Then we create a buffer, and use it as an option
     for a ``conn.space...select()`` call.
     The result will be in MsgPack_ format.
-    To show this, we will use :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`
+    To show this, we will use
+    :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`
     on ``ibuf.rpos`` (the "read position" of the buffer).
     Thus we do not decode on the remote server, but we do
     decode on the local server.
@@ -56,8 +57,10 @@ its own routine for decoding MsgPack strings.
         - 'cdata<char *>: 0x7f97ba10c041'
         ...
 
-    Before Tarantool version 1.7.7, the function to use for
-    this case is msgpack.ibuf_decode(ibuf.rpos). Starting
-    with Tarantool version 1.7.7, ibuf_decode is deprecated.
+    .. NOTE::
+
+        Before Tarantool version 1.7.7, the function to use for
+        this case is ``msgpack.ibuf_decode(ibuf.rpos)``. Starting
+        with Tarantool version 1.7.7, ``ibuf_decode`` is deprecated.
 
 .. _MsgPack: http://msgpack.org/

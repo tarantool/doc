@@ -30,10 +30,10 @@ Below is a list of all ``msgpack`` functions and members.
     | :ref:`msgpack.encode()               | Convert a Lua object to an      |
     | <msgpack-encode>`                    | MsgPack string                  |
     +--------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode()               | Convert an MsgPack string to a  |
+    | :ref:`msgpack.decode()               | Convert a MsgPack string to a   |
     | <msgpack-decode>`                    | Lua object                      |
     +--------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_unchecked()     | Convert an MsgPack string to a  |
+    | :ref:`msgpack.decode_unchecked()     | Convert a MsgPack string to a   |
     | <msgpack-decode_unchecked>`          | Lua object                      |
     +--------------------------------------+---------------------------------+
     | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
@@ -73,10 +73,10 @@ Below is a list of all ``msgpack`` functions and members.
 .. function:: decode_unchecked(string)
 
     Convert a MsgPack string to a Lua object.
-    Because checking is skipped, decode_unchecked()
+    Because checking is skipped, ``decode_unchecked()``
     can operate with string pointers to
-    buffers which decode() cannot handle.
-    For an example see the :ref:`buffer module <buffer-module>`.
+    buffers which ``decode()`` cannot handle.
+    For an example see the :ref:`buffer <buffer-module>` module.
 
     :param string: a string formatted as MsgPack.
 
