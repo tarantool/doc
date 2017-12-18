@@ -44,6 +44,9 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`fio.dirname()                  | Get a directory name            |
     | <fio-dirname>`                       |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fio.abspath()                  | Get a directory and file name   |
+    | <fio-abspath>`                       |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fio.umask()                    | Set mask bits                   |
     | <fio-umask>`                         |                                 |
     +--------------------------------------+---------------------------------+
@@ -57,6 +60,12 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`fio.rmdir()                    |                                 |
     | <fio-mkdir>`                         |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fio.chdir()                    | Change working directory        |
+    | <fio-chdir>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.listdir()                  | List files in a directory       |
+    | <fio-listdir>`                       |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fio.glob()                     | Get files whose names match     |
     | <fio-glob>`                          | a given string                  |
     +--------------------------------------+---------------------------------+
@@ -65,6 +74,13 @@ Below is a list of all ``fio`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fio.cwd()                      | Get the name of the current     |
     | <fio-cwd>`                           | working directory               |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.copytree()                 |                                 |
+    | <fio-copytree>` |br|                 |                                 |
+    | :ref:`fio.mktree()                   |                                 |
+    | <fio-mktree>` |br|                   | Create and delete directories   |
+    | :ref:`fio.rmtree()                   |                                 |
+    | <fio-rmtree>`                        |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`fio.link()                     |                                 |
     | <fio-link>` |br|                     |                                 |
@@ -77,6 +93,9 @@ Below is a list of all ``fio`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fio.rename()                   | Rename a file or directory      |
     | <fio-rename>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.copyfile()                 | Copy a file                     |
+    | <fio-copyfile>`                      |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`fio.chown()                    |                                 |
     | <fio-chown>` |br|                    | Manage rights to and ownership  |
@@ -190,6 +209,25 @@ Below is a list of all ``fio`` functions and members.
         tarantool> fio.dirname('path/to/my.lua')
         ---
         - 'path/to/'
+
+.. _fio-abspath:
+
+.. function:: abspath(file-name)
+
+    Given a final part (the file name), return the full path name.
+
+    :param string file-name: file name
+
+    :return: directory name, that is, path name including file name.
+    :rtype:  string
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.abspath('my.lua')
+        ---
+        - 'path/to/my.lua'
         ...
 
 .. _fio-file:
@@ -291,6 +329,47 @@ Below is a list of all ``fio`` functions and members.
          - false
          ...
 
+.. _fio-chdir:
+
+.. function:: chdir(path-name)
+
+    Change working directory. For details type
+    "man 2 chdir".
+
+    :param string path-name: path of directory.
+    :return: true if success, false if failure.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+         tarantool> fio.chdir('/etc')
+         ---
+         - true
+         ...
+
+.. _fio-listdir:
+
+.. function:: listdir(path-name)
+
+    List files in directory. The result is similar to the
+    result from the 'ls' command.
+
+    :param string path-name: path of directory.
+    :return: a list if success, an error message "... No such file or directory" if failure.
+    :rtype:  table
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+         tarantool> fio.listdir('/usr/lib/tarantool')
+         ---
+         - - mysql
+         ...
+
+
 .. _fio-glob:
 
 .. function:: glob(path-name)
@@ -346,6 +425,72 @@ Below is a list of all ``fio`` functions and members.
         - /home/username/tarantool_sandbox
         ...
 
+.. _fio-copytree:
+
+.. function:: copytree(from-path, to-path)
+
+    Copy everything in the from-path, including subdirectory
+    contents, to the to-path. The result is similar to the
+    result that one gets from the cp -r command.
+    The to-path should be empty.
+
+    :param string from-path: path-name.
+    :param string to-path: path-name.
+    :return: true if success, false if failure.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.copytree('/home/original','/home/archives')
+        ---
+        - true
+        ...
+
+.. _fio-mktree:
+
+.. function:: mktree(path-name)
+
+    Create the path, including subdirectories, but without
+    file contents. The result is similar to the
+    result that one gets from the mkdir command..
+
+    :param string path-name: path-name.
+    :return: true if success, false if failure.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.mktree('/home/archives')
+        ---
+        - true
+        ...
+
+.. _fio-rmtree:
+
+.. function:: rmtree(path-name)
+
+    Remove the directory indicated by path-name, including subdirectories.
+    The result is similar to the
+    result that one gets from the rmdir command, recursively.
+    The directory must be empty.
+
+    :param string path-name: path-name.
+    :return: true if success, false if failure.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.rmtree('/home/archives')
+        ---
+        - true
+        ...
+
 .. _fio-link:
 
 .. function:: link     (src, dst)
@@ -396,6 +541,29 @@ Below is a list of all ``fio`` functions and members.
         ---
         - true
         ...
+
+.. _fio-copyfile:
+
+.. function:: rename(path-name, new-path-name)
+
+    Copy a file. The effect is similar to the effect
+    that one gets with the cp command.
+
+    :param string     path-name: path to original file.
+    :param string new-path-name: path to new file.
+
+    :return: true if success, false if failure.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.copyfile('/home/user/tmp.txt', '/home/usern/tmp.txt2')
+        ---
+        - true
+        ...
+
 
 .. _fio-chown:
 
