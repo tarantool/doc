@@ -265,9 +265,10 @@ Below is a list of all ``fio`` functions and members.
     "man 2 stat".
 
     :param string path-name: path name of file.
-    :return: fields which describe the file's block size, creation time, size,
-             and other attributes.
-    :rtype:  table
+    :return: (If no error) table of fields which describe the file's block size,
+             creation time, size, and other attributes.
+             (If error) two return values: null, error message.
+    :rtype:  table. 
 
     Additionally, the result of ``fio.stat('file-name')`` will include methods
     equivalent to POSIX macros:
@@ -317,7 +318,7 @@ Below is a list of all ``fio`` functions and members.
     :param number mode: Mode bits can be passed as a number or as string
                         constants, for example ''`S_IWUSR`". Mode bits can be
                         combined by enclosing them in braces.
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -337,7 +338,7 @@ Below is a list of all ``fio`` functions and members.
     "man 2 chdir".
 
     :param string path-name: path of directory.
-    :return: true if success, false if failure.
+    :return: (If success) true. (If failure) false.
     :rtype:  boolean
 
     **Example:**
@@ -357,7 +358,7 @@ Below is a list of all ``fio`` functions and members.
     result from the 'ls' command.
 
     :param string path-name: path of directory.
-    :return: a list if success, an error message "... No such file or directory" if failure.
+    :return: (If no error) a list of files. (If error) two return values: null, error message.
     :rtype:  table
 
     **Example:**
@@ -436,7 +437,7 @@ Below is a list of all ``fio`` functions and members.
 
     :param string from-path: path-name.
     :param string to-path: path-name.
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -457,7 +458,7 @@ Below is a list of all ``fio`` functions and members.
     result that one gets from the mkdir command..
 
     :param string path-name: path-name.
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -479,7 +480,7 @@ Below is a list of all ``fio`` functions and members.
     The directory must be empty.
 
     :param string path-name: path-name.
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: null, error message.
     :rtype:  boolean
 
     **Example:**
@@ -504,9 +505,9 @@ Below is a list of all ``fio`` functions and members.
     :param string src: existing file name.
     :param string dst: linked name.
 
-    :return: ``fio.link`` and ``fio.symlink`` and ``fio.unlink`` return true if
-             success, false if failure. ``fio.readlink`` returns the link value
-             if success, nil if failure.
+    :return: (If no error) ``fio.link`` and ``fio.symlink`` and ``fio.unlink`` return true,
+             ``fio.readlink`` returns the link value.
+             (If error) two return values: false|null, error message.
 
     **Example:**
 
@@ -530,7 +531,7 @@ Below is a list of all ``fio`` functions and members.
     :param string     path-name: original name.
     :param string new-path-name: new name.
 
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -552,7 +553,7 @@ Below is a list of all ``fio`` functions and members.
     :param string     path-name: path to original file.
     :param string new-path-name: path to new file.
 
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -576,6 +577,7 @@ Below is a list of all ``fio`` functions and members.
     :param string owner-user: new user uid.
     :param string owner-group: new group uid.
     :param number new-rights: new permissions
+    :return: null
 
     **Example:**
 
@@ -599,7 +601,7 @@ Below is a list of all ``fio`` functions and members.
     :param string path-name:
     :param number new-size:
 
-    :return: true if success, false if failure.
+    :return: (If no error) true. (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -678,7 +680,8 @@ Below is a list of all ``fio`` functions and members.
                         are significant if flags include `O_CREAT` or
                         `O_TMPFILE`. Mode bits can be
                         combined by enclosing them in braces.
-    :return: file handle (later - fh)
+    :return: (If no error) file handle (abbreviated as 'fh' in later description).
+             (If error) two return values: null, error message.
     :rtype:  userdata
 
     **Possible errors:** nil.
@@ -704,7 +707,7 @@ Below is a list of all ``fio`` functions and members.
         Close a file that was opened with ``fio.open``. For details type "man 2 close".
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
-        :return: true if success, false on failure.
+        :return: true if success, false if failure.
         :rtype:  boolean
 
         **Example:**
