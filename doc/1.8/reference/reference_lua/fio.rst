@@ -44,6 +44,9 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`fio.dirname()                  | Get a directory name            |
     | <fio-dirname>`                       |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fio.abspath()                  | Get a directory and file name   |
+    | <fio-abspath>`                       |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fio.umask()                    | Set mask bits                   |
     | <fio-umask>`                         |                                 |
     +--------------------------------------+---------------------------------+
@@ -57,6 +60,12 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`fio.rmdir()                    |                                 |
     | <fio-mkdir>`                         |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fio.chdir()                    | Change working directory        |
+    | <fio-chdir>`                         |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.listdir()                  | List files in a directory       |
+    | <fio-listdir>`                       |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fio.glob()                     | Get files whose names match     |
     | <fio-glob>`                          | a given string                  |
     +--------------------------------------+---------------------------------+
@@ -65,6 +74,13 @@ Below is a list of all ``fio`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fio.cwd()                      | Get the name of the current     |
     | <fio-cwd>`                           | working directory               |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.copytree()                 |                                 |
+    | <fio-copytree>` |br|                 |                                 |
+    | :ref:`fio.mktree()                   |                                 |
+    | <fio-mktree>` |br|                   | Create and delete directories   |
+    | :ref:`fio.rmtree()                   |                                 |
+    | <fio-rmtree>`                        |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`fio.link()                     |                                 |
     | <fio-link>` |br|                     |                                 |
@@ -77,6 +93,9 @@ Below is a list of all ``fio`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fio.rename()                   | Rename a file or directory      |
     | <fio-rename>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.copyfile()                 | Copy a file                     |
+    | <fio-copyfile>`                      |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`fio.chown()                    |                                 |
     | <fio-chown>` |br|                    | Manage rights to and ownership  |
@@ -190,6 +209,25 @@ Below is a list of all ``fio`` functions and members.
         tarantool> fio.dirname('path/to/my.lua')
         ---
         - 'path/to/'
+
+.. _fio-abspath:
+
+.. function:: abspath(file-name)
+
+    Given a final part (the file name), return the full path name.
+
+    :param string file-name: file name
+
+    :return: directory name, that is, path name including file name.
+    :rtype:  string
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.abspath('my.lua')
+        ---
+        - 'path/to/my.lua'
         ...
 
 .. _fio-file:
@@ -203,7 +241,7 @@ Below is a list of all ``fio`` functions and members.
 .. function:: umask(mask-bits)
 
     Set the mask bits used when creating files or directories. For a detailed
-    description type "man 2 umask".
+    description type ``man 2 umask``.
 
     :param number mask-bits: mask bits.
     :return: previous mask bits.
@@ -223,13 +261,14 @@ Below is a list of all ``fio`` functions and members.
 .. function:: lstat(path-name)
                stat(path-name)
 
-    Returns information about a file object. For details type "man 2 lstat" or
-    "man 2 stat".
+    Returns information about a file object. For details type ``man 2 lstat`` or
+    ``man 2 stat``.
 
     :param string path-name: path name of file.
-    :return: fields which describe the file's block size, creation time, size,
-             and other attributes.
-    :rtype:  table
+    :return: (If no error) table of fields which describe the file's block size,
+             creation time, size, and other attributes. |br|
+             (If error) two return values: null, error message.
+    :rtype:  table.
 
     Additionally, the result of ``fio.stat('file-name')`` will include methods
     equivalent to POSIX macros:
@@ -273,13 +312,14 @@ Below is a list of all ``fio`` functions and members.
               rmdir(path-name)
 
     Create or delete a directory. For details type
-    "man 2 mkdir" or "man 2 rmdir".
+    ``man 2 mkdir`` or ``man 2 rmdir``.
 
     :param string path-name: path of directory.
     :param number mode: Mode bits can be passed as a number or as string
-                        constants, for example ''`S_IWUSR`". Mode bits can be
+                        constants, for example ``S_IWUSR``. Mode bits can be
                         combined by enclosing them in braces.
-    :return: true if success, false if failure.
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -291,13 +331,55 @@ Below is a list of all ``fio`` functions and members.
          - false
          ...
 
+.. _fio-chdir:
+
+.. function:: chdir(path-name)
+
+    Change working directory. For details type
+    ``man 2 chdir``.
+
+    :param string path-name: path of directory.
+    :return: (If success) true. (If failure) false.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+         tarantool> fio.chdir('/etc')
+         ---
+         - true
+         ...
+
+.. _fio-listdir:
+
+.. function:: listdir(path-name)
+
+    List files in directory. The result is similar to the
+    result from the ``ls`` command.
+
+    :param string path-name: path of directory.
+    :return: (If no error) a list of files. |br|
+             (If error) two return values: null, error message.
+    :rtype:  table
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+         tarantool> fio.listdir('/usr/lib/tarantool')
+         ---
+         - - mysql
+         ...
+
+
 .. _fio-glob:
 
 .. function:: glob(path-name)
 
     Return a list of files that match an input string. The list is constructed
-    with a single flag that controls the behavior of the function: GLOB_NOESCAPE.
-    For details type "man 3 glob".
+    with a single flag that controls the behavior of the function:
+    ``GLOB_NOESCAPE``. For details type ``man 3 glob``.
 
     :param string path-name: path-name, which may contain wildcard characters.
     :return: list of files whose names match the input string
@@ -346,6 +428,75 @@ Below is a list of all ``fio`` functions and members.
         - /home/username/tarantool_sandbox
         ...
 
+.. _fio-copytree:
+
+.. function:: copytree(from-path, to-path)
+
+    Copy everything in the from-path, including subdirectory
+    contents, to the to-path. The result is similar to the
+    result that one gets from the ``cp -r`` command.
+    The to-path should be empty.
+
+    :param string from-path: path-name.
+    :param string to-path: path-name.
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.copytree('/home/original','/home/archives')
+        ---
+        - true
+        ...
+
+.. _fio-mktree:
+
+.. function:: mktree(path-name)
+
+    Create the path, including subdirectories, but without
+    file contents. The result is similar to the
+    result that one gets from the ``mkdir`` command.
+
+    :param string path-name: path-name.
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.mktree('/home/archives')
+        ---
+        - true
+        ...
+
+.. _fio-rmtree:
+
+.. function:: rmtree(path-name)
+
+    Remove the directory indicated by path-name, including subdirectories.
+    The result is similar to the
+    result that one gets from the ``rmdir`` command, recursively.
+    The directory must be empty.
+
+    :param string path-name: path-name.
+    :return: (If no error) true. |br|
+             (If error) two return values: null, error message.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.rmtree('/home/archives')
+        ---
+        - true
+        ...
+
 .. _fio-link:
 
 .. function:: link     (src, dst)
@@ -353,15 +504,15 @@ Below is a list of all ``fio`` functions and members.
               readlink (src)
               unlink   (src)
 
-    Functions to create and delete links. For details type "man readlink",
-    "man 2 link", "man 2 symlink", "man 2 unlink"..
+    Functions to create and delete links. For details type ``man readlink``,
+    ``man 2 link``, ``man 2 symlink``, ``man 2 unlink``.
 
     :param string src: existing file name.
     :param string dst: linked name.
 
-    :return: ``fio.link`` and ``fio.symlink`` and ``fio.unlink`` return true if
-             success, false if failure. ``fio.readlink`` returns the link value
-             if success, nil if failure.
+    :return: (If no error) ``fio.link`` and ``fio.symlink`` and ``fio.unlink``
+             return true, ``fio.readlink`` returns the link value. |br|
+             (If error) two return values: false|null, error message.
 
     **Example:**
 
@@ -380,12 +531,13 @@ Below is a list of all ``fio`` functions and members.
 
 .. function:: rename(path-name, new-path-name)
 
-    Rename a file or directory. For details type "man 2 rename".
+    Rename a file or directory. For details type ``man 2 rename``.
 
     :param string     path-name: original name.
     :param string new-path-name: new name.
 
-    :return: true if success, false if failure.
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -397,17 +549,42 @@ Below is a list of all ``fio`` functions and members.
         - true
         ...
 
+.. _fio-copyfile:
+
+.. function:: rename(path-name, new-path-name)
+
+    Copy a file. The effect is similar to the effect
+    that one gets with the ``cp`` command.
+
+    :param string     path-name: path to original file.
+    :param string new-path-name: path to new file.
+
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.copyfile('/home/user/tmp.txt', '/home/usern/tmp.txt2')
+        ---
+        - true
+        ...
+
+
 .. _fio-chown:
 
 .. function:: chown(path-name, owner-user, owner-group)
               chmod(path-name, new-rights)
 
     Manage the rights to file objects, or ownership of file objects.
-    For details type "man 2 chown" or "man 2 chmod".
+    For details type ``man 2 chown`` or ``man 2 chmod``.
 
     :param string owner-user: new user uid.
     :param string owner-group: new group uid.
     :param number new-rights: new permissions
+    :return: null
 
     **Example:**
 
@@ -426,12 +603,13 @@ Below is a list of all ``fio`` functions and members.
 
 .. function:: truncate(path-name, new-size)
 
-    Reduce file size to a specified value. For details type "man 2 truncate".
+    Reduce file size to a specified value. For details type ``man 2 truncate``.
 
     :param string path-name:
     :param number new-size:
 
-    :return: true if success, false if failure.
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
     :rtype:  boolean
 
     **Example:**
@@ -447,7 +625,7 @@ Below is a list of all ``fio`` functions and members.
 
 .. function:: sync()
 
-    Ensure that changes are written to disk. For details type "man 2 sync".
+    Ensure that changes are written to disk. For details type ``man 2 sync``.
 
     :return: true if success, false if failure.
     :rtype:  boolean
@@ -506,11 +684,13 @@ Below is a list of all ``fio`` functions and members.
                          * O_RDWR (either read or write).
 
     :param number mode: Mode bits can be passed as a number or as string
-                        constants, for example ''`S_IWUSR`". Mode bits
-                        are significant if flags include `O_CREAT` or
-                        `O_TMPFILE`. Mode bits can be
+                        constants, for example ``S_IWUSR``. Mode bits
+                        are significant if flags include ``O_CREAT`` or
+                        ``O_TMPFILE``. Mode bits can be
                         combined by enclosing them in braces.
-    :return: file handle (later - fh)
+    :return: (If no error) file handle (abbreviated as 'fh' in later
+             description). |br|
+             (If error) two return values: null, error message.
     :rtype:  userdata
 
     **Possible errors:** nil.
@@ -533,10 +713,11 @@ Below is a list of all ``fio`` functions and members.
 
     .. method:: close()
 
-        Close a file that was opened with ``fio.open``. For details type "man 2 close".
+        Close a file that was opened with ``fio.open``. For details type
+        ``man 2 close``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
-        :return: true if success, false on failure.
+        :return: true if success, false if failure.
         :rtype:  boolean
 
         **Example:**
@@ -555,7 +736,7 @@ Below is a list of all ``fio`` functions and members.
 
         Perform read/write random-access operation on a file, without affecting
         the current seek position of the file.
-        For details type "man 2 pread" or "man 2 pwrite".
+        For details type ``man 2 pread`` or ``man 2 pwrite``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :param number count: number of bytes to read
@@ -581,7 +762,7 @@ Below is a list of all ``fio`` functions and members.
                 write(new-string)
 
         Perform non-random-access read or write on a file. For details type
-        "man 2 read" or "man 2 write".
+        ``man 2 read`` or ``man 2 write``.
 
         .. NOTE::
 
@@ -630,7 +811,7 @@ Below is a list of all ``fio`` functions and members.
     .. method:: seek(position [, offset-from])
 
         Shift position in the file to the specified position. For details type
-        "man 2 seek".
+        ``man 2 seek``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :param number position: position to seek to
@@ -655,7 +836,8 @@ Below is a list of all ``fio`` functions and members.
     .. method:: stat()
 
         Return statistics about an open file. This differs from ``fio.stat``
-        which return statistics about a closed file. For details type "man 2 stat".
+        which return statistics about a closed file. For details type
+        ``man 2 stat``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :return: details about the file.
@@ -689,7 +871,7 @@ Below is a list of all ``fio`` functions and members.
 
         Ensure that file changes are written to disk, for an open file.
         Compare ``fio.sync``, which is for all files. For details type
-        "man 2 fsync" or "man 2 fdatasync".
+        ``man 2 fsync`` or ``man 2 fdatasync``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :return: true if success, false if failure.
