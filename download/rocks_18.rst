@@ -318,6 +318,13 @@ Tarantool - Rocks
 
                     Module to connect remotely to a Tarantool instance via a binary port
 
+                .. module_block::
+                    :title: smtp
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/smtp
+
+                    SMTP client for Tarantool
+
             .. _Operating systems:
             .. container:: b-rock
 
