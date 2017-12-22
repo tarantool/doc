@@ -18,7 +18,6 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
                     <div class="b-header-edition__commercial-icon"></div>
                     <div class="b-header-edition__title">Commercial Editions</div>
                     <div class="b-header-edition__subtitle">For critical deployments</div>
-                    <a href="https://tarantool.io/unwired" class="b-header-edition__button commercial">Unwired IIOT</a>
                     <a href="https://tarantool.io/enterprise" class="b-header-edition__button commercial">Enterprise</a>
                 </div>
                 <div class="delimiter-line"></div>
@@ -26,10 +25,6 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
                     <div class="b-header-edition__community-icon"></div>
                     <div class="b-header-edition__title">Community Edition</div>
                     <div class="b-header-edition__subtitle">For emerging businesses</div>
-                    <a href="http://github.com/tarantool/tarantool/" class="b-header-edition__button community">
-                      Github
-                      <i class="github-icon"></i>
-                    </a>
                     <a href="download/download.html" class="b-header-edition__button community">
                       Download
                       <i class="download-icon"></i>
