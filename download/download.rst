@@ -118,11 +118,6 @@ Tarantool - Downloads (1.7)
 
                 .. wp_button::
                     :class: b-enterprise-downloads-button
-                    :link: https://tarantool.io/unwired
-                    :title: Unwired IIOT
-
-                .. wp_button::
-                    :class: b-enterprise-downloads-button
                     :link: https://tarantool.io/enterprise
                     :title: Enterprise
 
