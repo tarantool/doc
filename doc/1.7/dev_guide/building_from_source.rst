@@ -27,7 +27,8 @@ the preferences can differ. But strategically the steps are always the same.
    * `OpenSSL <https://www.openssl.org>`_ library, version 1.0.1+
    * `cURL <https://curl.haxx.se/>`_ library, version 0.725+
    * `LibYAML <http://pyyaml.org/wiki/LibYAML>`_ library, version 0.1.4+
-
+   * `ICU <http://site.icu-project.org/download>`_ library, recent version
+   
    * Python and modules. |br| Python interpreter is not necessary for building
      Tarantool itself, unless you intend to use the "Run the test suite"
      option in step 5. For all platforms, this is ``python`` version 2.7+
@@ -47,7 +48,7 @@ the preferences can differ. But strategically the steps are always the same.
 
         $ apt install -y build-essential cmake coreutils sed \
               libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
-              libcurl4-openssl-dev libunwind-dev \
+              libcurl4-openssl-dev libunwind-dev libicu-dev \
               python python-pip python-setuptools python-dev \
               python-msgpack python-yaml python-argparse python-six python-gevent
 
@@ -57,7 +58,7 @@ the preferences can differ. But strategically the steps are always the same.
 
          $ yum install -y gcc gcc-c++ cmake coreutils sed \
                readline-devel ncurses-devel libyaml-devel openssl-devel \
-               libcurl-devel libunwind-devel \
+               libcurl-devel libunwind-devel libicu-devel \
                python python-pip python-setuptools python-devel \
                python-msgpack python-yaml python-argparse python-six python-gevent
 
