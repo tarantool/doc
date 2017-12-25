@@ -28,7 +28,7 @@ the preferences can differ. But strategically the steps are always the same.
    * `cURL <https://curl.haxx.se/>`_ library, version 0.725+
    * `LibYAML <http://pyyaml.org/wiki/LibYAML>`_ library, version 0.1.4+
    * `ICU <http://site.icu-project.org/download>`_ library, recent version
-   
+
    * Python and modules. |br| Python interpreter is not necessary for building
      Tarantool itself, unless you intend to use the "Run the test suite"
      option in step 5. For all platforms, this is ``python`` version 2.7+
@@ -69,7 +69,7 @@ the preferences can differ. But strategically the steps are always the same.
      .. code-block:: console
 
          $ brew install cmake autoconf binutils zlib \
-                readline ncurses libyaml openssl curl libunwind-headers \
+                readline ncurses libyaml openssl curl libunwind-headers icu4c \
                 && pip install python-daemon \
                 msgpack-python pyyaml configargparse six gevent
 
@@ -85,7 +85,7 @@ the preferences can differ. But strategically the steps are always the same.
      .. code-block:: console
 
          $ pkg install -y sudo git cmake gmake gcc coreutils \
-               readline ncurses libyaml openssl curl libunwind \
+               readline ncurses libyaml openssl curl libunwind icu \
                python27 py27-pip py27-setuptools py27-daemon \
                py27-msgpack-python py27-yaml py27-argparse py27-six py27-gevent
 
