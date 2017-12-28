@@ -115,7 +115,8 @@ Below is a list of all ``tap`` functions.
         Will display ``# bad plan: ...`` if the number of completed tests is not
         equal to the number of tests specified by ``taptest:plan(...)``.
 
-        :return: nil
+        :return: true or false.
+        :rtype:  boolean
 
     .. _taptest-diag:
 
