@@ -18,7 +18,7 @@ Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performan
                     <div class="b-header-edition__commercial-icon"></div>
                     <div class="b-header-edition__title">Commercial Editions</div>
                     <div class="b-header-edition__subtitle">For critical deployments</div>
-                    <a href="https://tarantool.io/enterprise" class="b-header-edition__button commercial">Enterprise</a>
+                    <a href="https://tarantool.io/en/product/enterprise.html" class="b-header-edition__button commercial">Enterprise</a>
                 </div>
                 <div class="delimiter-line"></div>
                 <div class="b-header-edition">

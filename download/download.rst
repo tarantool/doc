@@ -118,7 +118,7 @@ Tarantool - Downloads (1.7)
 
                 .. wp_button::
                     :class: b-enterprise-downloads-button
-                    :link: https://tarantool.io/enterprise
+                    :link: https://tarantool.io/en/product/enterprise.html
                     :title: Enterprise
 
 .. |packagecloud| image:: /images/packagecloud.png
