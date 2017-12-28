@@ -117,12 +117,20 @@ The terminal screen now looks like this:
    ...
    tarantool>
 
+To add another index on the second field, say:
+
+.. code-block:: tarantoolsession
+
+    tarantool> s:create_index('secondary', {
+             >  type = 'hash',
+             >  parts = {2, 'string'}
+             > })
+
 Now, to prepare for the example in the next section, try this:
 
 .. code-block:: tarantoolsession
 
     tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
-
 
 --------------------------------------------------------------------------------
 Connecting remotely
