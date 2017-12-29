@@ -1,5 +1,7 @@
 * :ref:`replication <cfg_replication-replication>`
 * :ref:`replication_timeout <cfg_replication-replication_timeout>`
+* :ref:`instance_uuid <cfg_replication-instance_uuid>`
+* :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 
 .. _cfg_replication-replication:
 
@@ -51,3 +53,41 @@
     | Type: integer
     | Default: 1
     | Dynamic: **yes**
+
+.. _cfg_replication-instance_uuid:
+
+.. confval:: instance_uuid
+
+    For replication administration purposes, it is possible to set the
+    unique values of the instance and the replica set, instead of having
+    the system generate the values.
+    See the description of the
+    :ref:`replicaset_uuid parameter setting <cfg_replication-replicaset_uuid>`.
+    Example: ``box.cfg{instance_uuid='037fec43-18a9-4e12-a684-a42b716fcd02'}``
+
+    | Type: string
+    | Default: null
+    | Dynamic: no
+    
+.. _cfg_replication-replicaset_uuid:
+
+.. confval:: replicaset_uuid
+
+    As described in section :ref:`"Replication architecture" <replication-architecture>`, each replica set is
+    identified by a globally unique identifier called replica set UUID.
+    Ordinarily it is sufficient to let the system generate and format a 36-byte string
+    which will be permanently stored. However, some administrators may prefer
+    to store Tarantool configuration information in a central repository,
+    for example ZooKeeper. In that case, such administrators can assign
+    their own values for either or both instance_uuid and
+    replicaset_uuid, when starting up for the first time.
+    The values must be true unique identifiers, not shared by other instances.
+    The values must be used consistently, not changed after initial setup
+    (the initial values are stored in snapshot files and are checked whenever
+    the system is restarted).
+    Example: ``box.cfg{replicaset_uuid='7b853d13-508b-4b8e-82e6-806f088ea6e9'}``    
+    
+    | Type: string
+    | Default: null
+    | Dynamic: no
+    
