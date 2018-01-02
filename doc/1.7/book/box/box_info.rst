@@ -9,31 +9,69 @@ Submodule `box.info`
 The ``box.info`` submodule provides access to information about server instance
 variables.
 
-* **version** is the Tarantool version. This value is also shown by
-  :ref:`tarantool --version <index-tarantool_version>`.
-* **id** corresponds to **replication.id** (see below).
-* **ro** is ``true`` if the instance is in "read-only" mode
-  (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``).
-* **vclock** corresponds to **replication.downstream.vclock** (see below).
-* **uptime** is the number of seconds since the instance started.
-  This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`.
-* **lsn** corresponds to **replication.lsn** (see below).
-* **vinyl** returns runtime statistics for vinyl storage engine.
 * **cluster.uuid** is the UUID of the replica set.
   Every instance in a replica set will have the same ``cluster.uuid`` value.
   This value is also stored in :ref:`box.space._schema <box_space-schema>`
   system space.
+* **id** corresponds to **replication.id** (see below).
+* **lsn** corresponds to **replication.lsn** (see below).
+* **memory** has the statistics about memory (see below).
 * **pid** is the process ID. This value is also shown by
   :ref:`tarantool <tarantool-build>` module
   and by the Linux command ``ps -A``.
-* **status** corresponds to **replication.upstream.status** (see below).
+* **ro** is ``true`` if the instance is in "read-only" mode
+  (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``).
 * **signature** is the sum of all **lsn** values from the vector clocks
   (**vclock**) of all instances in the replica set.
+* **status** corresponds to **replication.upstream.status** (see below).
+* **uptime** is the number of seconds since the instance started.
+  This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`.
 * **uuid** corresponds to **replication.uuid**  (see below).
+* **vclock** corresponds to **replication.downstream.vclock** (see below).
+* **version** is the Tarantool version. This value is also shown by
+  :ref:`tarantool --version <index-tarantool_version>`.
+* **vinyl** returns runtime statistics for vinyl storage engine.
+
+.. _box_info_memory:
+
+The **memory** function of box.info gives the ``admin`` user a
+picture of the whole Tarantool instance. (Use box.info.vinyl() instead
+for a picture specifically of the vinyl subsystem.)
+
+* **memory().cache**  - number of bytes used for caching user data. the
+  memtx storage engine does not require a cache, so in fact this is
+  the number of bytes in the cache for the tuples stored for the vinyl
+  storage engine
+* **memory().data** - number of bytes used for storing user data (the tuples)
+  with the memtx engine and with level 0 of the vinyl engine,
+  without taking memory fragmentation into account
+* **memory().index** - number of bytes used for indexing user data, including
+  memtx and vinyl memory tree extents, the vinyl page index, and the vinyl
+  bloom filters.
+* **memory().lua** - number of bytes used for Lua runtime
+* **memory().net** - number of bytes used for network input/output buffers
+* **memory().tx** - number of bytes in use by active transactions.
+  For the vinyl storage engine, this is the total size of all allocated
+  objects with (struct txv, struct vy_tx, struct vy_read_interval) and
+  tuples pinned for those objects.
+
+An example with a minimum allocation while only the memtx storage engine is in use:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.info.memory()
+        ---
+        - cache: 0
+          data: 6552
+          tx: 0
+          lua: 1315567
+          net: 98304
+          index: 1196032
+        ...
 
 .. _box_info_replication:
 
-**replication** part contains statistics for all instances in the replica
+The **replication** section of box.info() contains statistics for all instances in the replica
 set in regard to the current instance (see also
 :ref:`"Monitoring a replica set" <replication-monitoring>`):
 
