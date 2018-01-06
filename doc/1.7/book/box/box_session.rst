@@ -48,6 +48,12 @@ Below is a list of all ``box.session`` functions and members.
     | :ref:`box.session.su()               | Change the current user         |
     | <box_session-su>`                    |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.session.uid()              | Get the current user's ID       |
+    | <box_session-uid>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.sessidion.euid()           | Get the current effective       |
+    | <box_session-euid>`                  | user's ID                       |
+    +--------------------------------------+---------------------------------+
     | :ref:`box.session.storage            | Table with session-specific     |
     | <box_session-storage>`               | names and values                |
     +--------------------------------------+---------------------------------+
@@ -184,6 +190,61 @@ Below is a list of all ``box.session`` functions and members.
         ...
 
 
+.. _box_session-uid:
+
+.. function:: uid()
+
+    :return: the user ID of the :ref:`current user <authentication-users>`.
+
+    :rtype:  number
+    
+    Every user has a unique name (seen with :ref:`box.session.user() <box_session-user>`)
+    and a unique ID (seen with ``box.session.uid()``). The values are stored
+    together in the _user space.
+
+.. _box_session-euid:
+
+.. function:: euid()
+
+    :return: the effective user ID of the :ref:`current user <authentication-users>`.
+
+    This is the same as :ref:`box.session.uid() <box_session-uid>`, except
+    in one case: if the call to ``box.session.euid()`` is within a function
+    invoked by :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`.
+    In that case, ``box.session.euid()`` returns the ID of the changed user
+    (the user who is specified by the ``user-name`` parameter of the ``su`` function) 
+    but ``box.session.uid()`` returns the ID of the original user (the user who
+    is calling the ``su`` function).
+
+    :rtype:  number
+
+    **Example**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.session.su('admin')
+        ---
+        ...
+        tarantool> box.session.uid(), box.session.euid()
+        ---
+        - 1
+        - 1
+        ...
+        tarantool> function f() return {box.session.uid(),box.session.euid()} end
+        ---
+        ...
+        tarantool> box.session.su('guest', f)
+        ---
+        - - 1
+          - 0
+        ...
+
+
+
+
+
+    
+    
 .. _box_session-storage:
 
 .. data:: storage
