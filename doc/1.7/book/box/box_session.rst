@@ -51,7 +51,7 @@ Below is a list of all ``box.session`` functions and members.
     | :ref:`box.session.uid()              | Get the current user's ID       |
     | <box_session-uid>`                   |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`box.sessidion.euid()           | Get the current effective       |
+    | :ref:`box.session.euid()             | Get the current effective       |
     | <box_session-euid>`                  | user's ID                       |
     +--------------------------------------+---------------------------------+
     | :ref:`box.session.storage            | Table with session-specific     |
@@ -239,12 +239,6 @@ Below is a list of all ``box.session`` functions and members.
           - 0
         ...
 
-
-
-
-
-    
-    
 .. _box_session-storage:
 
 .. data:: storage
