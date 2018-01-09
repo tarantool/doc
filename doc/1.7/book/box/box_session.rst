@@ -209,12 +209,20 @@ Below is a list of all ``box.session`` functions and members.
     :return: the effective user ID of the :ref:`current user <authentication-users>`.
 
     This is the same as :ref:`box.session.uid() <box_session-uid>`, except
-    in one case: if the call to ``box.session.euid()`` is within a function
-    invoked by :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`.
-    In that case, ``box.session.euid()`` returns the ID of the changed user
+    in two cases.
+    The first case: if the call to ``box.session.euid()`` is within a function
+    invoked by :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`
+    -- in that case, ``box.session.euid()`` returns the ID of the changed user
     (the user who is specified by the ``user-name`` parameter of the ``su`` function) 
     but ``box.session.uid()`` returns the ID of the original user (the user who
     is calling the ``su`` function).
+    The second case: if the call to ``box.session.euid()`` is within a function
+    specified with
+    :ref:`box.schema.func.create(function-name, {setuid= true}) <box_schema-func_create>`
+    and the binary protocol is in use
+    -- in that case, ``box.session.euid()`` returns the ID of the user who created
+    "function-name" but ``box.session.uid()`` returns the ID of the
+    the user who is calling "function-name".
 
     :rtype:  number
 
