@@ -419,16 +419,20 @@ Below is a list of all ``box.session`` functions and members.
 
     The first server instance listens on port 3301; its default
     user name is 'admin'.
-    There are two ``on_auth`` triggers:
+    There are three ``on_auth`` triggers:
 
     * The first trigger has a function with no arguments, it can only look
       at ``box.session.user()``.
     * The second trigger has a function with a ``user_name`` argument,
-      it can look at both ``box.session.user()`` and ``user_name``.
+      it can look at both of: ``box.session.user()`` and ``user_name``.
+    * The third trigger has a function with a ``user_name`` argument
+      and a ``status`` argument,
+      it can look at all three of:
+      ``box.session.user()`` and ``user_name`` and ``status``.
 
     The second server instance will connect with
     :ref:`console.connect <console-connect>`,
-    and then will display the variables that were set by the
+    and then will cause a display of the variables that were set by the
     trigger functions.
 
     .. code-block:: lua
@@ -442,8 +446,16 @@ Below is a list of all ``box.session`` functions and members.
           print('function 2, box.session.user()='..box.session.user())
           print('function 2, user_name='..user_name)
           end
+        function function3(user_name, status)
+          print('function 3, box.session.user()='..box.session.user())
+          print('function 3, user_name='..user_name)
+          if status == true then
+            print('function 3, status = true, authorization succeeded')
+            end
+          end
         box.session.on_auth(function1)
         box.session.on_auth(function2)
+        box.session.on_auth(function3)
         box.schema.user.passwd('admin')
 
     .. code-block:: lua
@@ -456,6 +468,9 @@ Below is a list of all ``box.session`` functions and members.
 
     .. code-block:: console
 
+        function 3, box.session.user()=guest
+        function 3, user_name=admin
+        function 3, status = true, authorization succeeded
         function 2, box.session.user()=guest
         function 2, user_name=admin
         function 1, box.session.user()=guest
