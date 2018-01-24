@@ -319,7 +319,7 @@ Below is a list of all ``box.schema`` functions.
 .. _box_schema-user_revoke:
 
 .. function:: box.schema.user.revoke(user-name, privilege, object-type, object-name)
-              box.schema.user.revoke(user-name, privilege, 'role', role-name)
+              box.schema.user.revoke(user-name, role-name)
 
     Revoke :ref:`privileges <authentication-owners_privileges>` from a user
     or from another role.
@@ -486,13 +486,13 @@ Below is a list of all ``box.schema`` functions.
 
 .. _box_schema-role_grant:
 
-.. function:: box.schema.role.grant(user-name, privilege, object-type, object-name [, option])
-              box.schema.role.grant(user-name, privilege, 'universe' [, nil, option])
+.. function:: box.schema.role.grant(role-name, privilege, object-type, object-name [, option])
+              box.schema.role.grant(role-name, privilege, 'universe' [, nil, option])
               box.schema.role.grant(role-name, role-name [, nil, nil, option])
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a role.
 
-    :param string user-name: the name of the role
+    :param string role-name: the name of the role
     :param string privilege: 'read' or 'write' or 'execute' or a combination
     :param string object-type: 'space' or 'function' or 'sequence'
     :param string object-name: the name of a function or space or sequence
@@ -520,11 +520,11 @@ Below is a list of all ``box.schema`` functions.
 
 .. _box_schema-role_revoke:
 
-.. function:: box.schema.role.revoke(user-name, privilege, object-type, object-name)
+.. function:: box.schema.role.revoke(role-name, privilege, object-type, object-name)
 
     Revoke :ref:`privileges <authentication-owners_privileges>` from a role.
 
-    :param string user-name: the name of the role
+    :param string role-name: the name of the role
     :param string privilege: 'read' or 'write' or 'execute' or a combination
     :param string object-type: 'space' or 'function' or 'sequence'
     :param string object-name: the name of a function or space or sequence
@@ -549,7 +549,7 @@ Below is a list of all ``box.schema`` functions.
 
 .. _box_schema-role_info:
 
-.. function:: box.schema.role.info([role-name])
+.. function:: box.schema.role.info(role-name)
 
     Return a description of a role's privileges.
 

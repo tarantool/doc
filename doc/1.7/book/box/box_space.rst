@@ -1555,8 +1555,8 @@ Below is a list of all ``box.space`` functions and members.
     * the type: 'user' or 'role',
     * optional password.
 
-    There are four special tuples in the ``_user`` space: 'guest', 'admin',
-    'public' and 'replication'.
+    There are five special tuples in the ``_user`` space: 'guest', 'admin',
+    'public', 'replication', and 'super'.
 
     .. container:: table
 
@@ -1577,16 +1577,23 @@ Below is a list of all ``box.space`` functions and members.
         |             |    |      | with all privileges.                                           |
         +-------------+----+------+----------------------------------------------------------------+
         | public      | 2  | role | Pre-defined :ref:`role <authentication-roles>`,                |
-        |             |    |      | automatically assigned to new users when they are              |
+        |             |    |      | automatically granted to new users when they are               |
         |             |    |      | created with                                                   |
         |             |    |      | ``box.schema.user.create(user-name)``.                         |
-        |             |    |      | Therefore, a convenient way to grant 'read' on space           |
+        |             |    |      | Therefore a convenient way to grant 'read' on space            |
         |             |    |      | 't' to every user that will ever exist is with                 |
         |             |    |      | ``box.schema.role.grant('public','read','space','t')``.        |
         +-------------+----+------+----------------------------------------------------------------+
         | replication | 3  | role | Pre-defined :ref:`role <authentication-roles>`,                |
-        |             |    |      | assigned by the 'admin' user to users who need to use          |
+        |             |    |      | which the 'admin' user can grant to users who need to use      |
         |             |    |      | :ref:`replication <replication>` features.                     |
+        +-------------+----+------+----------------------------------------------------------------+
+        | super       | 31 | role | Pre-defined :ref:`role <authentication-roles>`,                |
+        |             |    |      | which the 'admin' user can grant to users who need all         |
+        |             |    |      | privileges on all objects.                                     |
+        |             |    |      | The 'super' role has these privileges on                       |
+        |             |    |      | 'universe':                                                    |
+        |             |    |      | read, write, execute.                                          |
         +-------------+----+------+----------------------------------------------------------------+
 
     To select a tuple from the ``_user`` space, use ``box.space._user:select()``.

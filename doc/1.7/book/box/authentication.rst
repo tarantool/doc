@@ -223,6 +223,7 @@ roles, directly or indirectly.
 .. code-block:: lua
 
    -- This example will work for a user with many privileges, such as 'admin'
+   -- or a user with the pre-defined 'super' role
    -- Create space T with a primary index
    box.schema.space.create('T')
    box.space.T:create_index('primary', {})
