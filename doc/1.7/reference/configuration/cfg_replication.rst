@@ -90,4 +90,19 @@
     | Type: string
     | Default: null
     | Dynamic: no
+
+.. _cfg_replication-replication_connect_quorum:
+
+.. confval:: replication_connect_quorum
+
+    By default a replica will try to connect to all the masters,
+    or it will not start. (The default is recommended so that all replicas
+    will receive the same replica set UUID.)
+    However, by specifying replication_connect_quorum = N, where
+    N is a number greater than or equal to zero,
+    users can state that the replica only needs to connect to N masters.
+    Example: ``box.cfg{replication_connect_quorum=2}``
     
+    | Type: integer
+    | Default: null
+    | Dynamic: **yes**
