@@ -23,5 +23,5 @@ Tarantool - Building from source
       :ref:`build-from-source <building_from_source>` instructions on
       your system.
 
-.. _tarball: http://download.tarantool.org/tarantool/1.7/src/
-.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.7
+.. _tarball: http://download.tarantool.org/tarantool/1.8/src/
+.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.8
