@@ -1,5 +1,8 @@
 * :ref:`replication <cfg_replication-replication>`
 * :ref:`replication_timeout <cfg_replication-replication_timeout>`
+* :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+* :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
+* :ref:`instance_uuid <cfg_replication-instance_uuid>`
 
 .. _cfg_replication-replication:
 
@@ -51,3 +54,97 @@
     | Type: integer
     | Default: 1
     | Dynamic: **yes**
+
+.. _cfg_replication-replication_connect_quorum:
+
+.. confval:: replication_connect_quorum
+
+    By default a replica will try to connect to all the masters,
+    or it will not start. (The default is recommended so that all replicas
+    will receive the same replica set UUID.)
+
+    However, by specifying ``replication_connect_quorum = N``, where
+    N is a number greater than or equal to zero,
+    users can state that the replica only needs to connect to N masters.
+
+    Example:
+
+    .. code-block:: lua
+
+        box.cfg{replication_connect_quorum=2}
+
+    | Type: integer
+    | Default: null
+    | Dynamic: **yes**
+
+.. _cfg_replication-replicaset_uuid:
+
+.. confval:: replicaset_uuid
+
+    As described in section
+    :ref:`"Replication architecture" <replication-architecture>`,
+    each replica set is identified by a
+    `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_
+    called **replica set UUID**, and each instance is identified by an
+    **instance UUID**.
+
+    Ordinarily it is sufficient to let the system generate and format the UUID
+    strings which will be permanently stored.
+
+    However, some administrators may prefer to store Tarantool configuration
+    information in a central repository, for example
+    `Apache ZooKeeper <https://zookeeper.apache.org>`_.
+    Such administrators can assign their own UUID values for either -- or both --
+    instances (:ref:`instance_uuid <cfg_replication-instance_uuid>`) and
+    replica set (``replicaset_uuid``), when starting up for the first time.
+
+    General rules:
+
+    * The values must be true unique identifiers, not shared by other instances
+      or replica sets within the common infrastructure.
+
+    * The values must be used consistently, not changed after initial setup
+      (the initial values are stored in :ref:`snapshot files <index-box_persistence>`
+      and are checked whenever the system is restarted).
+
+    * The values must comply with `RFC 4122 <https://tools.ietf.org/html/rfc4122>`_.
+      The `nil UUID <https://tools.ietf.org/html/rfc4122#section-4.1.7>`_ is not
+      allowed.
+
+    The UUID format includes sixteen octets represented as 32 hexadecimal
+    (base 16) digits, displayed in five groups separated by hyphens, in the form
+    ``8-4-4-4-12`` for a total of 36 characters (32 alphanumeric characters and
+    four hyphens).
+
+    Example:
+
+    .. code-block:: lua
+
+        box.cfg{replicaset_uuid='7b853d13-508b-4b8e-82e6-806f088ea6e9'}
+
+    | Type: string
+    | Default: null
+    | Dynamic: no
+
+.. _cfg_replication-instance_uuid:
+
+.. confval:: instance_uuid
+
+    For replication administration purposes, it is possible to set the
+    `universally unique identifiers <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_
+    of the instance (``instance_uuid``) and the replica set
+    (``replicaset_uuid``), instead of having the system generate the values.
+
+    See the description of
+    :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>` parameter for details.
+
+    Example:
+
+    .. code-block:: lua
+
+        box.cfg{instance_uuid='037fec43-18a9-4e12-a684-a42b716fcd02'}
+
+    | Type: string
+    | Default: null
+    | Dynamic: no
+

@@ -117,12 +117,12 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`file-handle:pread()            |                                 |
     | <file_handle-pread>` |br|            | Perform random-access read or   |
     | :ref:`file-handle:pwrite()           | write on a file                 |
-    | <file_handle-pread>`                 |                                 |
+    | <file_handle-pwrite>`                |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`file-handle:read()             |                                 |
     | <file_handle-read>` |br|             | Perform non-random-access read  |
     | :ref:`file-handle:write()            | or write on a file              |
-    | <file_handle-read>`                  |                                 |
+    | <file_handle-write>`                 |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`file-handle:truncate()         | Change the size of an open file |
     | <file_handle-truncate>`              |                                 |
@@ -146,9 +146,9 @@ Below is a list of all ``fio`` functions and members.
 
 .. _fio-pathname:
 
-=================================================
+===============================================================================
          Common pathname manipulations
-=================================================
+===============================================================================
 
 .. _fio-pathjoin:
 
@@ -232,9 +232,9 @@ Below is a list of all ``fio`` functions and members.
 
 .. _fio-file:
 
-=================================================
+===============================================================================
             Common file manipulations
-=================================================
+===============================================================================
 
 .. _fio-umask:
 
@@ -371,7 +371,6 @@ Below is a list of all ``fio`` functions and members.
          ---
          - - mysql
          ...
-
 
 .. _fio-glob:
 
@@ -572,7 +571,6 @@ Below is a list of all ``fio`` functions and members.
         - true
         ...
 
-
 .. _fio-chown:
 
 .. function:: chown(path-name, owner-user, owner-group)
@@ -638,7 +636,6 @@ Below is a list of all ``fio`` functions and members.
         ---
         - true
         ...
-
 
 .. The following is a workaround for a Sphinx bug.
 
@@ -732,18 +729,24 @@ Below is a list of all ``fio`` functions and members.
     .. _file_handle-pread:
 
     .. method:: pread(count, offset)
-                pwrite(new-string, offset)
+                pread(buffer, count, offset)
 
-        Perform read/write random-access operation on a file, without affecting
+        Perform random-access read operation on a file, without affecting
         the current seek position of the file.
-        For details type ``man 2 pread`` or ``man 2 pwrite``.
+        For details type ``man 2 pread``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
+        :param buffer: where to read into (if the format is
+                       ``pread(buffer, count, offset)``)
         :param number count: number of bytes to read
-        :param string new-string: value to write
-        :param number offset: offset within file where reading or writing begins
-        :return: ``fh:pwrite`` returns true if success, false if failure.
-                 ``fh:pread`` returns the data that was read, or nil if failure.
+        :param number offset: offset within file where reading begins
+
+        If the format is ``pread(count, offset)`` then return a string
+        containing the data that was read from the file, or nil if failure.
+
+        If the format is ``pread(buffer, count, offset)`` then return the data
+        to the buffer.
+        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
 
         **Example:**
 
@@ -756,12 +759,47 @@ Below is a list of all ``fio`` functions and members.
               insert in
             ...
 
+    .. _file_handle-pwrite:
+
+    .. method:: pwrite(new-string, offset)
+                pwrite(buffer, count, offset)
+
+        Perform random-access write operation on a file, without affecting
+        the current seek position of the file.
+        For details type ``man 2 pwrite``.
+
+        :param userdata fh: file-handle as returned by ``fio.open()``.
+        :param string new-string or buffer: value to write
+        :param number count: number of bytes to write (if the format is
+                             ``pwrite(buffer, count, offset)``)
+        :param number offset: offset within file where writing begins
+        :return: true if success, false if failure.
+        :rtype:  boolean
+
+        If the format is ``pwrite(new-string, offset)`` then the returned string
+        is written to the file, as far as the end of the string.
+
+        If the format is ``pwrite(buffer, count, offset)`` then the buffer
+        contents are written to the file, for ``count`` bytes.
+        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+
+        .. code-block:: tarantoolsession
+
+            ibuf = require('buffer').ibuf()
+            ---
+            ...
+
+            tarantool> fh:pwrite(ibuf, 1, 0)
+            ---
+            - true
+            ...
+
     .. _file_handle-read:
 
     .. method:: read(count)
-                write(new-string)
+                read(buffer, count)
 
-        Perform non-random-access read or write on a file. For details type
+        Perform non-random-access read on a file. For details type
         ``man 2 read`` or ``man 2 write``.
 
         .. NOTE::
@@ -772,16 +810,66 @@ Below is a list of all ``fio`` functions and members.
             access from other fibers with ``fiber.ipc``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
+        :param buffer: where to read into (if the format is
+                       ``read(buffer, count)``)
         :param number count: number of bytes to read
-        :param string new-string: value to write
-        :return: ``fh:write`` returns true if success, false if failure.
-                 ``fh:read`` returns the data that was read, or nil if failure.
+
+        If the format is ``read(count)`` then return a string
+        containing the data that was read from the file, or nil if failure.
+
+        If the format is ``read(buffer, count)`` then return the data
+        to the buffer.
+        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+
+        .. code-block:: tarantoolsession
+
+            ibuf = require('buffer').ibuf()
+            ---
+            ...
+
+            tarantool> fh:read(ibuf:reserve(5), 5)
+            ---
+            - 5
+            ...
+
+            tarantool> require('ffi').string(ibuf:alloc(5),5)
+            ---
+            - abcde
+
+    .. _file_handle-write:
+
+    .. method:: write(new-string)
+                write(buffer, count)
+
+        Perform non-random-access write on a file. For details type
+        ``man 2 write``.
+
+        .. NOTE::
+
+            ``fh:read`` and ``fh:write`` affect the seek position within the
+            file, and this must be taken into account when working on the same
+            file from multiple fibers. It is possible to limit or prevent file
+            access from other fibers with ``fiber.ipc``.
+
+        :param userdata fh: file-handle as returned by ``fio.open()``.
+        :param string new-string or buffer: value to write
+        :param number count: number of bytes to write (if the format is
+                             ``write(buffer, count)``)
+        :return: true if success, false if failure.
+        :rtype:  boolean
+
+        If the format is ``write(new-string)`` then the returned string
+        is written to the file, as far as the end of the string.
+
+        If the format is ``write(buffer, count)`` then the buffer contents
+        are written to the file, for ``count`` bytes.
+        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
 
         **Example:**
 
         .. code-block:: tarantoolsession
 
-            tarantool> fh:write('new data')
+            tarantool> fh:write("new data")
             ---
             - true
             ...
@@ -887,9 +975,9 @@ Below is a list of all ``fio`` functions and members.
 
 .. _fio-c:
 
-=================================================
+===============================================================================
          FIO constants
-=================================================
+===============================================================================
 
 .. _fio-c_table:
 

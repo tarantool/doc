@@ -105,6 +105,11 @@ describes the state of replication in regard to each connected peer.
 Here ``vclock`` contains log sequence numbers (827 and 584) for instances with short
 identifiers 1 and 2.
 
+Starting in Tarantool 1.7.7, it is possible for administrators to assign
+the instance UUID and the replica set UUID values, rather than let the system
+generate them -- see the description of the
+:ref:`replicaset_uuid <cfg_replication-replicaset_uuid>` configuration parameter.
+
 .. _replication-setup:
 
 --------------------------------------------------------------------------------

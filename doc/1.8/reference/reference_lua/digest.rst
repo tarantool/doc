@@ -13,7 +13,7 @@
 A "digest" is a value which is returned by a function (usually a
 `Cryptographic hash function`_), applied against a string. Tarantool's ``digest``
 module supports several types of cryptographic hash functions (AES_, MD4_,
-MD5_, SHA-0_, SHA-1_, SHA-2_) as well as a checksum function (CRC32_), two
+MD5_, SHA-0_, SHA-1_, SHA-2_, PBKDF2_) as well as a checksum function (CRC32_), two
 functions for base64_, and two non-cryptographic hash functions (guava_, murmur_).
 Some of the digest functionality is also present in the :ref:`crypto <crypto>`
 module.
@@ -49,6 +49,9 @@ Below is a list of all ``digest`` functions.
     +--------------------------------------+---------------------------------+
     | :ref:`digest.md5_hex()               | Get a hexadecimal digest made   |
     | <digest-md5_hex>`                    | with MD5                        |
+    +--------------------------------------+---------------------------------+
+    | :ref:`digest.pbkdf2()                | Get a digest made with PBKDF2   |
+    | <digest-pbkdf2>`                     |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`digest.sha()                   | Get a digest made with SHA-0    |
     | <digest-sha>`                        |                                 |
@@ -141,6 +144,15 @@ Below is a list of all ``digest`` functions.
 .. function:: md5_hex(string)
 
     Returns 32-byte string = hexadecimal of a digest calculated with md5.
+
+.. _digest-pbkdf2:
+
+.. function:: pbkdf2(string, salt [,iterations [,digest-length]])
+
+    Returns binary string = digest made with PBKDF2. |br|
+    For effective encryption the ``iterations`` value should be
+    at least several thousand. The ``digest-length`` value
+    determines the length of the resulting binary string.
 
 .. _digest-sha:
 
@@ -408,3 +420,4 @@ password, the result is an error.
 .. _CRC-32C (Castagnoli): https://en.wikipedia.org/wiki/Cyclic_redundancy_check#Standards_and_common_use
 .. _guava: https://code.google.com/p/guava-libraries/wiki/HashingExplained
 .. _Murmur: https://en.wikipedia.org/wiki/MurmurHash
+.. _PBKDF2: https://en.wikipedia.org/wiki/PBKDF2

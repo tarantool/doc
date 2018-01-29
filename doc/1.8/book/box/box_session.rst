@@ -48,6 +48,12 @@ Below is a list of all ``box.session`` functions and members.
     | :ref:`box.session.su()               | Change the current user         |
     | <box_session-su>`                    |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.session.uid()              | Get the current user's ID       |
+    | <box_session-uid>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.session.euid()             | Get the current effective       |
+    | <box_session-euid>`                  | user's ID                       |
+    +--------------------------------------+---------------------------------+
     | :ref:`box.session.storage            | Table with session-specific     |
     | <box_session-storage>`               | names and values                |
     +--------------------------------------+---------------------------------+
@@ -183,6 +189,65 @@ Below is a list of all ``box.session`` functions and members.
         - 2
         ...
 
+.. _box_session-uid:
+
+.. function:: uid()
+
+    :return: the user ID of the :ref:`current user <authentication-users>`.
+
+    :rtype:  number
+
+    Every user has a unique name (seen with :ref:`box.session.user() <box_session-user>`)
+    and a unique ID (seen with ``box.session.uid()``). The values are stored
+    together in the ``_user`` space.
+
+.. _box_session-euid:
+
+.. function:: euid()
+
+    :return: the effective user ID of the :ref:`current user <authentication-users>`.
+
+    This is the same as :ref:`box.session.uid() <box_session-uid>`, except
+    in two cases:
+
+    * The first case: if the call to ``box.session.euid()`` is within
+      a function invoked by
+      :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`
+      -- in that case, ``box.session.euid()`` returns the ID of the changed user
+      (the user who is specified by the ``user-name`` parameter of the ``su``
+      function)  but ``box.session.uid()`` returns the ID of the original user
+      (the user who is calling the ``su`` function).
+
+    * The second case: if the call to ``box.session.euid()`` is within
+      a function specified with
+      :ref:`box.schema.func.create(function-name, {setuid= true}) <box_schema-func_create>`
+      and the binary protocol is in use
+      -- in that case, ``box.session.euid()`` returns the ID of the user who
+      created "function-name" but ``box.session.uid()`` returns the ID of the
+      the user who is calling "function-name".
+
+    :rtype: number
+
+    **Example**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.session.su('admin')
+        ---
+        ...
+        tarantool> box.session.uid(), box.session.euid()
+        ---
+        - 1
+        - 1
+        ...
+        tarantool> function f() return {box.session.uid(),box.session.euid()} end
+        ---
+        ...
+        tarantool> box.session.su('guest', f)
+        ---
+        - - 1
+          - 0
+        ...
 
 .. _box_session-storage:
 
@@ -258,7 +323,7 @@ Below is a list of all ``box.session`` functions and members.
     Define a trigger for execution after a client has disconnected. If the trigger
     function causes an error, the error is logged but otherwise is ignored. The
     trigger is invoked while the session associated with the client still exists
-    and can access session properties, such as box.session.id.
+    and can access session properties, such as :ref:`box.session.id() <box_session-id>`.
 
     :param function trigger-function: function which will become the trigger function
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
@@ -356,16 +421,20 @@ Below is a list of all ``box.session`` functions and members.
 
     The first server instance listens on port 3301; its default
     user name is 'admin'.
-    There are two ``on_auth`` triggers:
+    There are three ``on_auth`` triggers:
 
     * The first trigger has a function with no arguments, it can only look
       at ``box.session.user()``.
     * The second trigger has a function with a ``user_name`` argument,
-      it can look at both ``box.session.user()`` and ``user_name``.
+      it can look at both of: ``box.session.user()`` and ``user_name``.
+    * The third trigger has a function with a ``user_name`` argument
+      and a ``status`` argument,
+      it can look at all three of:
+      ``box.session.user()`` and ``user_name`` and ``status``.
 
     The second server instance will connect with
     :ref:`console.connect <console-connect>`,
-    and then will display the variables that were set by the
+    and then will cause a display of the variables that were set by the
     trigger functions.
 
     .. code-block:: lua
@@ -379,8 +448,16 @@ Below is a list of all ``box.session`` functions and members.
           print('function 2, box.session.user()='..box.session.user())
           print('function 2, user_name='..user_name)
           end
+        function function3(user_name, status)
+          print('function 3, box.session.user()='..box.session.user())
+          print('function 3, user_name='..user_name)
+          if status == true then
+            print('function 3, status = true, authorization succeeded')
+            end
+          end
         box.session.on_auth(function1)
         box.session.on_auth(function2)
+        box.session.on_auth(function3)
         box.schema.user.passwd('admin')
 
     .. code-block:: lua
@@ -393,6 +470,9 @@ Below is a list of all ``box.session`` functions and members.
 
     .. code-block:: console
 
+        function 3, box.session.user()=guest
+        function 3, user_name=admin
+        function 3, status = true, authorization succeeded
         function 2, box.session.user()=guest
         function 2, user_name=admin
         function 1, box.session.user()=guest
