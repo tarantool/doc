@@ -189,7 +189,6 @@ Below is a list of all ``box.session`` functions and members.
         - 2
         ...
 
-
 .. _box_session-uid:
 
 .. function:: uid()
@@ -197,10 +196,10 @@ Below is a list of all ``box.session`` functions and members.
     :return: the user ID of the :ref:`current user <authentication-users>`.
 
     :rtype:  number
-    
+
     Every user has a unique name (seen with :ref:`box.session.user() <box_session-user>`)
     and a unique ID (seen with ``box.session.uid()``). The values are stored
-    together in the _user space.
+    together in the ``_user`` space.
 
 .. _box_session-euid:
 
@@ -209,22 +208,25 @@ Below is a list of all ``box.session`` functions and members.
     :return: the effective user ID of the :ref:`current user <authentication-users>`.
 
     This is the same as :ref:`box.session.uid() <box_session-uid>`, except
-    in two cases.
-    The first case: if the call to ``box.session.euid()`` is within a function
-    invoked by :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`
-    -- in that case, ``box.session.euid()`` returns the ID of the changed user
-    (the user who is specified by the ``user-name`` parameter of the ``su`` function) 
-    but ``box.session.uid()`` returns the ID of the original user (the user who
-    is calling the ``su`` function).
-    The second case: if the call to ``box.session.euid()`` is within a function
-    specified with
-    :ref:`box.schema.func.create(function-name, {setuid= true}) <box_schema-func_create>`
-    and the binary protocol is in use
-    -- in that case, ``box.session.euid()`` returns the ID of the user who created
-    "function-name" but ``box.session.uid()`` returns the ID of the
-    the user who is calling "function-name".
+    in two cases:
 
-    :rtype:  number
+    * The first case: if the call to ``box.session.euid()`` is within
+      a function invoked by
+      :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`
+      -- in that case, ``box.session.euid()`` returns the ID of the changed user
+      (the user who is specified by the ``user-name`` parameter of the ``su``
+      function)  but ``box.session.uid()`` returns the ID of the original user
+      (the user who is calling the ``su`` function).
+
+    * The second case: if the call to ``box.session.euid()`` is within
+      a function specified with
+      :ref:`box.schema.func.create(function-name, {setuid= true}) <box_schema-func_create>`
+      and the binary protocol is in use
+      -- in that case, ``box.session.euid()`` returns the ID of the user who
+      created "function-name" but ``box.session.uid()`` returns the ID of the
+      the user who is calling "function-name".
+
+    :rtype: number
 
     **Example**
 
@@ -321,7 +323,7 @@ Below is a list of all ``box.session`` functions and members.
     Define a trigger for execution after a client has disconnected. If the trigger
     function causes an error, the error is logged but otherwise is ignored. The
     trigger is invoked while the session associated with the client still exists
-    and can access session properties, such as box.session.id.
+    and can access session properties, such as :ref:`box.session.id() <box_session-id>`.
 
     :param function trigger-function: function which will become the trigger function
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function

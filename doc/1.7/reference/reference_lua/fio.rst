@@ -146,9 +146,9 @@ Below is a list of all ``fio`` functions and members.
 
 .. _fio-pathname:
 
-=================================================
+===============================================================================
          Common pathname manipulations
-=================================================
+===============================================================================
 
 .. _fio-pathjoin:
 
@@ -232,9 +232,9 @@ Below is a list of all ``fio`` functions and members.
 
 .. _fio-file:
 
-=================================================
+===============================================================================
             Common file manipulations
-=================================================
+===============================================================================
 
 .. _fio-umask:
 
@@ -371,7 +371,6 @@ Below is a list of all ``fio`` functions and members.
          ---
          - - mysql
          ...
-
 
 .. _fio-glob:
 
@@ -572,7 +571,6 @@ Below is a list of all ``fio`` functions and members.
         - true
         ...
 
-
 .. _fio-chown:
 
 .. function:: chown(path-name, owner-user, owner-group)
@@ -638,7 +636,6 @@ Below is a list of all ``fio`` functions and members.
         ---
         - true
         ...
-
 
 .. The following is a workaround for a Sphinx bug.
 
@@ -739,14 +736,16 @@ Below is a list of all ``fio`` functions and members.
         For details type ``man 2 pread``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
-        :param buffer: where to read into (if format = "pread(bufffer, count, offset)"
+        :param buffer: where to read into (if the format is
+                       ``pread(buffer, count, offset)``)
         :param number count: number of bytes to read
         :param number offset: offset within file where reading begins
-        
-        If format = "pread(count, offset)" then the return is a string
+
+        If the format is ``pread(count, offset)`` then return a string
         containing the data that was read from the file, or nil if failure.
-        If format = "pread(buffer, count, offset)" then the data is
-        returned to the buffer.
+
+        If the format is ``pread(buffer, count, offset)`` then return the data
+        to the buffer.
         (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
 
         **Example:**
@@ -771,23 +770,25 @@ Below is a list of all ``fio`` functions and members.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :param string new-string or buffer: value to write
-        :param number count: number of bytes to write (if format = "pwrite(buffer, count, offset)")
+        :param number count: number of bytes to write (if the format is
+                             ``pwrite(buffer, count, offset)``)
         :param number offset: offset within file where writing begins
         :return: true if success, false if failure.
         :rtype:  boolean
 
-        If format = "pwrite(new-string, offset)" then the string
+        If the format is ``pwrite(new-string, offset)`` then the returned string
         is written to the file, as far as the end of the string.
-        If format = "pwrite(buffer, count, offset)" then the buffer contents
-        are written to the file, for ``count`` bytes.
+
+        If the format is ``pwrite(buffer, count, offset)`` then the buffer
+        contents are written to the file, for ``count`` bytes.
         (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
 
         .. code-block:: tarantoolsession
 
             ibuf = require('buffer').ibuf()
             ---
-            ...            
-        
+            ...
+
             tarantool> fh:pwrite(ibuf, 1, 0)
             ---
             - true
@@ -809,13 +810,15 @@ Below is a list of all ``fio`` functions and members.
             access from other fibers with ``fiber.ipc``.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
-        :param buffer: where to read into (if format = "read(buffer, count)"
+        :param buffer: where to read into (if the format is
+                       ``read(buffer, count)``)
         :param number count: number of bytes to read
 
-        If format = "read(count)" then the return is a string
+        If the format is ``read(count)`` then return a string
         containing the data that was read from the file, or nil if failure.
-        If format = "read(buffer, count)" then the data is
-        returned to the buffer.
+
+        If the format is ``read(buffer, count)`` then return the data
+        to the buffer.
         (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
 
         .. code-block:: tarantoolsession
@@ -823,7 +826,7 @@ Below is a list of all ``fio`` functions and members.
             ibuf = require('buffer').ibuf()
             ---
             ...
-        
+
             tarantool> fh:read(ibuf:reserve(5), 5)
             ---
             - 5
@@ -832,9 +835,7 @@ Below is a list of all ``fio`` functions and members.
             tarantool> require('ffi').string(ibuf:alloc(5),5)
             ---
             - abcde
-            
-            
-        
+
     .. _file_handle-write:
 
     .. method:: write(new-string)
@@ -852,16 +853,18 @@ Below is a list of all ``fio`` functions and members.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :param string new-string or buffer: value to write
-        :param number count: number of bytes to write (if format = "write(buffer, count)")
+        :param number count: number of bytes to write (if the format is
+                             ``write(buffer, count)``)
         :return: true if success, false if failure.
         :rtype:  boolean
 
-        If format = "write(new-string)" then the string
+        If the format is ``write(new-string)`` then the returned string
         is written to the file, as far as the end of the string.
-        If format = "write(buffer, count)" then the buffer contents
+
+        If the format is ``write(buffer, count)`` then the buffer contents
         are written to the file, for ``count`` bytes.
         (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
-        
+
         **Example:**
 
         .. code-block:: tarantoolsession
@@ -972,9 +975,9 @@ Below is a list of all ``fio`` functions and members.
 
 .. _fio-c:
 
-=================================================
+===============================================================================
          FIO constants
-=================================================
+===============================================================================
 
 .. _fio-c_table:
 
