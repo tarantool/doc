@@ -27,6 +27,14 @@ exist before deletions occur.
 
     * a replica is connecting.
 
+
+    The checkpoint daemon will not delete a write-ahead log file if replication
+    is active and a replica has fallen behind. (The progress of each replica is tracked;
+    if a replica's position is far from being up to date, then the server stops
+    to give it a chance to catch up.) If an administrator concludes that a
+    replica is permanently down, then the correct procedure is to restart the
+    server, or (preferably) remove the replica from the cluster.
+
 .. _cfg_checkpoint_daemon-checkpoint_interval:
 
 .. confval:: checkpoint_interval
