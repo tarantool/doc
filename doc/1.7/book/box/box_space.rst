@@ -407,7 +407,7 @@ Below is a list of all ``box.space`` functions and members.
 
     **Allowing null for an indexed key:** If the index type is TREE, and the index
     is not the primary index, then the ``parts={...}`` clause may include
-    ``is_nullable=true`` (the default) or ``is_nullable=false``. If ``is_nullable`` is
+    ``is_nullable=true`` or ``is_nullable=false`` (the default). If ``is_nullable`` is
     true, then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL``.
     Within indexes, such "null values" are always treated as equal to other null
     values, and are always treated as less than non-null values.
