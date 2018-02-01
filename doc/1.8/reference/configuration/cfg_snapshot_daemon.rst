@@ -19,13 +19,21 @@ exist before deletions occur.
 
     The checkpoint daemon **will not delete** a file if:
 
-    * a backup is ongoing and the file has not been backed up
+    * a **backup** is ongoing and the file has not been backed up
       (see :ref:`"Hot backup" <admin-backups-hot_backup_vinyl_memtx>`), or
 
-    * replication is ongoing and the file has not been relayed to a replica
-      (see :ref:`"Replication architecture" <replication-architecture>`), or
+    * **replication** is ongoing and the file has not been relayed to a replica
+      (see :ref:`"Replication architecture" <replication-architecture>`),
 
-    * a replica is connecting.
+    * a replica is connecting, or
+
+    * a replica has fallen behind.
+      The progress of each replica is tracked; if a replica's position is far
+      from being up to date, then the server stops to give it a chance to
+      catch up.
+      If an administrator concludes that a replica is permanently down, then the
+      correct procedure is to restart the server, or (preferably)
+      :ref:`remove the replica from the cluster <replication-remove_instances>`.
 
 .. _cfg_checkpoint_daemon-checkpoint_interval:
 
