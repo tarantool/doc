@@ -796,7 +796,7 @@ Below is a list of all ``fio`` functions and members.
 
     .. _file_handle-read:
 
-    .. method:: read(count)
+    .. method:: read([count])
                 read(buffer, count)
 
         Perform non-random-access read on a file. For details type
@@ -814,9 +814,12 @@ Below is a list of all ``fio`` functions and members.
                        ``read(buffer, count)``)
         :param number count: number of bytes to read
 
-        If the format is ``read(count)`` then return a string
-        containing the data that was read from the file, or nil if failure.
+        If the format is ``read()`` -- omitting ``count`` -- then read all
+        bytes in the file.
 
+        If the format is ``read()``  or ``read([count])`` then return a string
+        containing the data that was read from the file, or nil if failure.
+        
         If the format is ``read(buffer, count)`` then return the data
         to the buffer.
         (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
