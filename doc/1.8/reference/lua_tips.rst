@@ -15,6 +15,10 @@ is 512, which happens to be the case in our sandbox example only.
 
 .. _app_server-object_reference:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Object reference variations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 First, there are three **object reference variations**:
 
 .. code-block:: tarantoolsession
@@ -38,6 +42,10 @@ for references to objects which are spaces, and
 
 .. _app_server-parameter_reference:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parameter variations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Then, there are seven **parameter variations**:
 
 .. code-block:: tarantoolsession
@@ -59,11 +67,39 @@ Then, there are seven **parameter variations**:
     tarantool> variable = {1}
     tarantool> box.space.tester:select(variable)
 
-Lua allows to omit parentheses ``()`` when invoking a function if its only argument
-is a Lua table, and we use it sometimes in our examples. This is why ``select{1}``
-is equivalent to ``select({1})``. Literal values such as ``1`` (a scalar value) or
-``{1}`` (a Lua table value) may be replaced by variable names, as in examples #6 and #7.
-Although there are special cases where braces can be omitted, they are preferable
-because they signal "Lua table". Examples and descriptions in this manual have the
-``{1}`` form. However, this too is a matter of user preference and all the variations
-exist in the wild.
+Lua allows to omit parentheses ``()`` when invoking a function if its only
+argument is a Lua table, and we use it sometimes in our examples.
+This is why ``select{1}`` is equivalent to ``select({1})``.
+Literal values such as ``1`` (a scalar value) or ``{1}`` (a Lua table value)
+may be replaced by variable names, as in examples #6 and #7.
+
+Although there are special cases where braces can be omitted, they are
+preferable because they signal "Lua table".
+Examples and descriptions in this manual have the ``{1}`` form. However, this
+too is a matter of user preference and all the variations exist in the wild.
+
+.. _app_server-names:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rules for object names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Database objects have loose **rules for names**:
+the maximum length is 64000 bytes (not characters),
+and almost any legal Unicode character is allowed,
+including spaces, ideograms and punctuation.
+
+In those cases, to prevent confusion with Lua operators and
+separators, object references should have the literal-in-square-brackets
+form (#2), or the variable form (#3). For example:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space['1*A イ']:select{1}
+    tarantool> s = box.space['1*A イ!@$%^&*()_+12345678901234567890']
+    tarantool> s:select{1}
+
+Control characters are not allowed, and characters which are special or which
+cannot be displayed are not recommended.
+
+Names are "case sensitive", so 'A' and 'a' are not the same.
