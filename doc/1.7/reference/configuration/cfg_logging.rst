@@ -113,6 +113,7 @@
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
     messages go to the log file, setting ``log_nonblock`` to true may improve
     logging performance at the cost of some log messages getting lost.
+
     This parameter has effect only if the output is going to ``syslog`` or
     to a pipe.
 
