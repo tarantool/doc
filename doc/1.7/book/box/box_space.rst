@@ -505,7 +505,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-format:
 
-    .. method:: format(format-clause)
+    .. method:: format([format-clause])
 
         Declare field names and :ref:`types <index-box_data-types>`.
 
@@ -513,7 +513,7 @@ Below is a list of all ``box.space`` functions and members.
                                           <app_server-object_reference>`
         :param table format-clause: a list of field names and types
 
-        :return: nil
+        :return: nil, unless format-clause is omitted
 
         **Possible errors:**
 
@@ -575,6 +575,11 @@ Below is a list of all ``box.space`` functions and members.
         Names specified with the format clause can be used in
         :ref:`space_object:get() <box_space-get>` and in
         :ref:`space_object:create_index() <box_space-create_index>`.
+
+        If the format clause is omitted, then the returned value is the
+        table that was used in a previous :samp:`{space_object}:format({format-clause})`
+        invocation. For example, after ``box.space.tester:format({{'x','scalar'}})``,
+        ``box.space.tester:format()`` will return [{'name': 'x', 'type': 'scalar'}].
 
     .. _box_space-get:
 
