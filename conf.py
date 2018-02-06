@@ -210,3 +210,6 @@ intersphinx_cache_limit = 0
 language = 'en'
 locale_dirs = ['./locale']
 gettext_additional_targets = ['literal-block']
+
+image_converter = 'convert'
+
