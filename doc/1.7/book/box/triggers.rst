@@ -27,7 +27,8 @@ All triggers have the following characteristics:
   :ref:`box.session.on_connect() <box_session-on_connect>`,
   :ref:`box.session.on_auth() <box_session-on_auth>`,
   :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
-  :ref:`space_object:on_replace() <box_space-on_replace>`.
+  :ref:`space_object:on_replace() <box_space-on_replace>` plus 
+  :ref:`space_object:before_replace() <box_space-before_replace>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
@@ -67,7 +68,8 @@ To get a list of triggers, you can use:
 * on_connect() – with no arguments – to return a table of all connect-trigger functions;
 * on_auth() to return all authentication-trigger functions;
 * on_disconnect() to return all disconnect-trigger functions;
-* on_replace() to return all replace-trigger functions.
+* on_replace() to return all replace-trigger functions made for on_replace().
+* before_replace() to return all replace-trigger functions made for before_replace().
 
 **Example**
 
