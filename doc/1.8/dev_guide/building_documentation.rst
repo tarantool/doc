@@ -14,9 +14,11 @@ You need to install these packages:
 * ``CMake`` version 2.8 or later (a program for managing the build process)
 * ``Python`` version greater than 2.6 -- preferably 2.7 -- and less than 3.0
   (Sphinx is a Python-based tool)
-* ``LaTeX`` (a system for document preparation, the installable
-  package name usually begins with the word texlive or tetex, on Ubuntu
-  the name is texlive-latex-base)
+* ``LaTeX`` (a system for document preparation; the installable
+  package name usually begins with the word 'texlive' or 'tetex', on Ubuntu
+  the name is 'texlive-latex-base')
+* ``ImageMagick`` (a system for image conversion; on MacOS install it using
+  ``brew``)
 
 You need to install these Python modules:
 

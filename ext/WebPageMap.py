@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 def add_html_link(app, pagename, templatename, context, doctree):
     """As each page is built, collect page names for the sitemap"""
     base_url = app.config['html_theme_options'].get('base_url', '')
-    if not base_url or app.buildername != 'html':
+    if not base_url or app.builder.name != 'html':
         return
     entry = {}
 
