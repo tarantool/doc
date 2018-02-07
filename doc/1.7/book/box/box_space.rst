@@ -228,7 +228,8 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: create_index(index-name [, options ])
 
-        Create an :ref:`index <index-box_index>`. It is mandatory to create an index for a space
+        Create an :ref:`index <index-box_index>`.
+        It is mandatory to create an index for a space
         before trying to insert tuples into it, or select tuples from it. The
         first created index, which will be used as the primary-key index, must be
         unique.
@@ -236,7 +237,8 @@ Below is a list of all ``box.space`` functions and members.
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param string index_name: name of index, which should
-                                  conform to the :ref:`rules for object names <app_server-names>`
+                                  conform to the
+                                  :ref:`rules for object names <app_server-names>`
         :param table     options:
 
         :return: index object
@@ -691,7 +693,8 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: on_replace(trigger-function [, old-trigger-function])
 
-        Create a "replace :ref:`trigger <triggers>`". The ``trigger-function`` will be executed
+        Create a "replace :ref:`trigger <triggers>`".
+        The ``trigger-function`` will be executed
         whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()``
         or ``delete()`` happens to a tuple in ``<space-name>``.
 
@@ -711,7 +714,7 @@ Below is a list of all ``box.space`` functions and members.
 
         Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
-        See also :ref:`space_object:before_replace()  <box_space-before_replace>`.
+        See also :ref:`space_object:before_replace() <box_space-before_replace>`.
 
         **Example #1:**
 
@@ -761,7 +764,8 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: before_replace(trigger-function [, old-trigger-function])
 
-        Create a "replace :ref:`trigger <triggers>`". The ``trigger-function`` will be executed
+        Create a "replace :ref:`trigger <triggers>`".
+        The ``trigger-function`` will be executed
         whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()``
         or ``delete()`` happens to a tuple in ``<space-name>``.
 
@@ -769,17 +773,18 @@ Below is a list of all ``box.space`` functions and members.
                                               trigger function
         :param function old-trigger-function: existing trigger function which
                                               will be replaced by
-                                              trigger-function
+                                              ``trigger-function``
         :return: nil or function pointer
 
-        If the parameters are (nil, old-trigger-function), then the old
+        If the parameters are ``(nil, old-trigger-function)``, then the old
         trigger is deleted.
 
         If it is necessary to know whether the trigger activation
         happened due to replication or on a specific connection type,
         the function can refer to :ref:`box.session.type() <box_session-type>`.
 
-        Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+        Details about trigger characteristics are in the
+        :ref:`triggers <triggers-box_triggers>` section.
 
         See also :ref:`space_object:on_replace() <box_space-on_replace>`.
 
@@ -798,11 +803,16 @@ Below is a list of all ``box.space`` functions and members.
 
         The value that a ``before_replace`` trigger function can return
         affects what will happen after the return. Specifically:
-        if there is no return value, then execution proceeds, inserting|replacing the new value.
-        if the value is nil, then the tuple will be deleted;
-        if the value is the same as the old parameter, then no ``on_replace`` function will be called;
-        if the value is the same as the new parameter, then it's as if the ``before_replace`` function wasn't called;
-        if the value is something else, then execution proceeds, inserting|replacing the new value.
+
+        * if there is no return value, then execution proceeds,
+          inserting|replacing the new value;
+        * if the value is nil, then the tuple will be deleted;
+        * if the value is the same as the old parameter, then no
+          `on_replace`` function will be called;
+        * if the value is the same as the new parameter, then it's as if
+          the ``before_replace`` function wasn't called;
+        * if the value is something else, then execution proceeds,
+          inserting|replacing the new value.
 
         **Example:**
 
@@ -810,14 +820,13 @@ Below is a list of all ``box.space`` functions and members.
         value, or that return nil, or the same as the old parameter, or the
         same as the new parameter, or something else.
 
-        .. code-block:: none
+        .. code-block:: lua
 
             function f1 (old, new) return end
             function f2 (old, new) return nil end
             function f3 (old, new) return old end
             function f4 (old, new) return new end
             function f5 (old, new) return box.tuple.new({new[1],'b'}) end
-
 
     .. _box_space-pairs:
 
@@ -933,7 +942,6 @@ Below is a list of all ``box.space`` functions and members.
         .. code-block:: lua
 
             box.space.tester:replace{5000, 'tuple number five thousand'}
-
 
     .. _box_space-run_triggers:
 
@@ -1282,7 +1290,6 @@ Below is a list of all ``box.space`` functions and members.
             ---
             - 0
             ...
-
 
     .. _box_space-id:
 
@@ -1706,7 +1713,6 @@ Below is a list of all ``box.space`` functions and members.
         -- (usually only 'admin' can do it)
         box.schema.user.passwd(*user-name*, *password*)
 
-
     To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:
 
     .. cssclass:: highlight
@@ -1750,7 +1756,6 @@ Below is a list of all ``box.space`` functions and members.
         tarantool> box.schema.user.drop('JeanMartin')
         ---
         ...
-
 
 =============================================================================
           Example: use box.space functions to read _space tuples
