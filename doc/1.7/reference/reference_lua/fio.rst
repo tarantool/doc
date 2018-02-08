@@ -293,7 +293,7 @@ functions.
 .. function:: path.lexists(path-name)
 
     :param string path-name: path to directory or file.
-    :return: true if path-name refers to a directory or file that exists and is not a broken symbolic link; otherwise false
+    :return: true if path-name refers to a directory or file that exists or is a broken symbolic link; otherwise false
     :rtype:  boolean
 
 .. _fio-file:
