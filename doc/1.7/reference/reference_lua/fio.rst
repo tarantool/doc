@@ -17,6 +17,7 @@ access the same file simultaneously.
 The ``fio`` module contains:
 
 * functions for :ref:`common pathname manipulations <fio-pathname>`,
+* functions for :ref:`directory or file existence and type checks<fio-checks>`,
 * functions for :ref:`common file manipulations <fio-file>`, and
 * :ref:`constants <fio-c>` which are the same as POSIX flag values (for example
   ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY).
@@ -46,6 +47,21 @@ Below is a list of all ``fio`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fio.abspath()                  | Get a directory and file name   |
     | <fio-abspath>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.path_exists()              | Check if file or directory      |
+    | <fio-path_exists>`                   | exists                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.path.is_dir()              | Check if file or directory      |
+    | <fio-path_is_dir>`                   | is a directory                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.path.is_file()             | Check if file or directory      |
+    | <fio-path_is_file>`                  | is a file                       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.path.is_link()             | Check if file or directory      |
+    | <fio-path_is_link>`                  | is a link                       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fio.path.lexists()             | Check if file or directory      |
+    | <fio-path_lexists>`                  | exists                          |
     +--------------------------------------+---------------------------------+
     | :ref:`fio.umask()                    | Set mask bits                   |
     | <fio-umask>`                         |                                 |
@@ -229,6 +245,56 @@ Below is a list of all ``fio`` functions and members.
         ---
         - 'path/to/my.lua'
         ...
+
+.. _fio-checks:
+
+===============================================================================
+            Directory or file existence and type checks
+===============================================================================
+
+Functions in this section are similar to some
+`Python os.path <https://docs.python.org/2/library/os.path.htmll>`_
+functions.
+
+.. _fio-path_exists:
+
+.. function:: path.exists(path-name)
+
+    :param string path-name: path to directory or file.
+    :return: true if path-name refers to a directory or file that exists and is not a broken symbolic link; otherwise false
+    :rtype:  boolean
+
+.. _fio-path_is_dir:
+
+.. function:: path.is_dir(path-name)
+
+    :param string path-name: path to directory or file.
+    :return: true if path-name refers to a directory; otherwise false
+    :rtype:  boolean
+
+.. _fio-path_is_file:
+
+.. function:: path.is_file(path-name)
+
+    :param string path-name: path to directory or file.
+    :return: true if path-name refers to a file; otherwise false
+    :rtype:  boolean
+
+.. _fio-path_is_link:
+
+.. function:: path.is_link(path-name)
+
+    :param string path-name: path to directory or file.
+    :return: true if path-name refers to a symbolic link; otherwise false
+    :rtype:  boolean
+
+.. _fio-path_lexists:
+
+.. function:: path.lexists(path-name)
+
+    :param string path-name: path to directory or file.
+    :return: true if path-name refers to a directory or file that exists or is a broken symbolic link; otherwise false
+    :rtype:  boolean
 
 .. _fio-file:
 
