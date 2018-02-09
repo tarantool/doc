@@ -12,9 +12,9 @@ Tarantool - Microsoft Azure
         .. include:: menu.rst
 
     .. wp_section::
-      :title: Microsoft Azure
-      :class: b-os-installation-content
+        :title: Microsoft Azure
+        :class: b-os-installation-content
 
-      Tarantool images are available at `Microsoft Azure`_.
+        Tarantool images are available at `Microsoft Azure`_.
 
-      .. _Microsoft Azure: https://azure.microsoft.com/en-us/marketplace/partners/my-com/tarantool/
+.. _Microsoft Azure: https://azure.microsoft.com/en-us/marketplace/partners/my-com/tarantool/
