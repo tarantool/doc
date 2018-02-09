@@ -12,12 +12,12 @@ Tarantool - OS X
         .. include:: menu.rst
 
     .. wp_section::
-      :title: OS X
-      :class: b-os-installation-content
+        :title: OS X
+        :class: b-os-installation-content
 
-      You can install Tarantool using ``homebrew``:
+        You can install Tarantool using ``homebrew``:
 
-      .. code-block:: bash
+        .. code-block:: bash
 
-          brew install tarantool --HEAD
+            brew install tarantool --HEAD
 
