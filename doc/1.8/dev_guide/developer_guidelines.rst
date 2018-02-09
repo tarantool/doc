@@ -67,33 +67,33 @@ A template:
 
 .. code-block:: none
 
-   Summarize changes in 50 characters or less
+    Summarize changes in 50 characters or less
 
-   More detailed explanatory text, if necessary.
-   Wrap it to 72 characters or so.
-   In some contexts, the first line is treated as the subject of the
-   commit, and the rest of the text as the body.
-   The blank line separating the summary from the body is critical
-   (unless you omit the body entirely); various tools like `log`,
-   `shortlog` and `rebase` can get confused if you run the two together.
+    More detailed explanatory text, if necessary.
+    Wrap it to 72 characters or so.
+    In some contexts, the first line is treated as the subject of the
+    commit, and the rest of the text as the body.
+    The blank line separating the summary from the body is critical
+    (unless you omit the body entirely); various tools like `log`,
+    `shortlog` and `rebase` can get confused if you run the two together.
 
-   Explain the problem that this commit is solving. Focus on why you
-   are making this change as opposed to how (the code explains that).
-   Are there side effects or other unintuitive consequences of this
-   change? Here's the place to explain them.
+    Explain the problem that this commit is solving. Focus on why you
+    are making this change as opposed to how (the code explains that).
+    Are there side effects or other unintuitive consequences of this
+    change? Here's the place to explain them.
 
-   Further paragraphs come after blank lines.
+    Further paragraphs come after blank lines.
 
-   - Bullet points are okay, too.
+    - Bullet points are okay, too.
 
-   - Typically a hyphen or asterisk is used for the bullet, preceded
-     by a single space, with blank lines in between, but conventions
-     vary here.
+    - Typically a hyphen or asterisk is used for the bullet, preceded
+      by a single space, with blank lines in between, but conventions
+      vary here.
 
-   Fixes: #123
-   Closes: #456
-   Needed for: #859
-   See also: #343, #789
+    Fixes: #123
+    Closes: #456
+    Needed for: #859
+    See also: #343, #789
 
 Some real-world examples:
 
@@ -103,6 +103,44 @@ Some real-world examples:
 * `tarantool/tarantool@076a842 <https://github.com/tarantool/tarantool/commit/076a842011e09c84c25fb5e68f1b23c9917a3750>`_
 
 Based on [1_] and [2_].
+
+.. _dev_guidelines-patch-review:
+
+===========================================================
+How to submit a patch for review
+===========================================================
+
+Since 24.01.2018 changes prepared for review should be submitted
+to patches@tarantool.org.
+
+e-mail messages are prepared using ``git format-patch`` and ``git send-email``.
+
+.. container:: faq
+
+    :Q: What a mail thread is and why is it useful?
+    :A: ...
+
+    :Q: When a cover letter is needed?
+    :A: ...
+
+    :Q: What to put in a cover letter?
+    :A: ...
+
+    :Q: Which options to add to ``format-patch`` (like ``--signed-off``)?
+    :A: ...
+
+    :Q: What prefixes to put in the subject?
+    :A: ...
+
+    :Q: How to refer to the git branch and issue (in a cover letter)?
+    :A: ...
+
+    :Q: How to put updated changes derived from rebasing (force-pushing) into
+        the same mail thread?
+    :A: ...
+
+Check `here <https://gist.github.com/Gerold103/5471a7ddbeec346c0c845930d5bb9df4>`_
+for scripts which might be useful for preparing e-mail messages.
 
 .. _1: https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project
 .. _2: https://chris.beams.io/posts/git-commit/
