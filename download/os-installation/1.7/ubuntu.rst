@@ -21,7 +21,7 @@ Tarantool - Ubuntu
 
         Copy and paste the script below to the terminal prompt (if you want
         the version that comes with Ubuntu, start with the lines that follow
-        the '# install...' comment):
+        the '# install' comment):
 
         * For Ubuntu "xenial":
 
