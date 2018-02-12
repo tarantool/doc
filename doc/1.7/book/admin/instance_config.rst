@@ -28,7 +28,8 @@ For each Tarantool instance, you need two files:
 
 * An :ref:`instance file <admin-instance_file>` with
   instance-specific initialization logic and parameters. Put this file, or a
-  symlink to it, into the ``/etc/tarantool/instances.enabled`` directory.
+  symlink to it, into the ``/etc/tarantool/instances.enabled`` directory
+  (``/etc/tarantool/instances.available`` is case of Linux with systemd).
  
   For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load
   ``my_app.lua`` module and make a call to ``start()`` function from that
@@ -45,6 +46,16 @@ For each Tarantool instance, you need two files:
      -- load my_app module and call start() function
      -- with some app options controlled by sysadmins
      local m = require('my_app').start({...})
+
+Note: Strictly speaking, the default instance directory depends on
+WITH_SYSVINIT build option: when ON it is ``/etc/tarantool/instances.enabled``,
+otherwise (OFF or not set) it is ``/etc/tarantool/instances.available``. The
+latter case is typical for Tarantool builds for Linux distros with systemd.
+Build options can be checked using output of ``tarantool --version`` command.
+Then, the instance directory can be redefined in ``/etc/default/tarantool`` or
+``/etc/sysconfig/tarantool`` file, with ``instance_dir`` option. The location
+for certain OS distro can be found in :ref:`Notes for operating systems
+<admin-os_notes>`.
 
 .. _admin-instance_file:
 
