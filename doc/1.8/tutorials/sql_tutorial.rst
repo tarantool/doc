@@ -523,9 +523,9 @@ ordering by a string column.
 
     CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 FLOAT,
     PRIMARY KEY (column1));
-    INSERT INTO t6 VALUES (-1234567890, 'АБВГҐДЂЃЕЄ', 123456.123456);
-    INSERT INTO t6 VALUES (+1234567890, '先生', 1e30);
-    INSERT INTO t6 VALUES (10, 'ひらがな?', 0.000001);
+    INSERT INTO t6 VALUES (-1234567890, 'АБВГД', 123456.123456);
+    INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);
+    INSERT INTO t6 VALUES (10, 'FADEW?', 0.000001);
     INSERT INTO t6 VALUES (5, 'ABCDEFG', NULL);
     SELECT column1 + 1, column2, column4 * 2 FROM t6 ORDER BY column2;
 
@@ -534,9 +534,9 @@ The result is:
 .. code-block:: tarantoolsession
 
     - - [6, 'ABCDEFG', null]
-      - [-1234567889, 'АБВГҐДЂЃЕЄ', 246912.246912]
-      - [11, 'ひらがな?', 2e-06]
-      - [1234567891, '先生', 2e+30]
+      - [-1234567889, 'АБВГД', 246912.246912]
+      - [11, 'FADEW?', 2e-06]
+      - [1234567891, 'GD', 2e+30]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Views
@@ -560,8 +560,8 @@ The result is:
 .. code-block:: tarantoolsession
 
     - - ['АБ', 123456.123456]
-      - ['ひら', 1e-06]
-      - ['先生', 1e+30]
+      - ['RRD', 1e-06]
+      - ['GD', 1e+30]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Common table expressions
@@ -585,8 +585,8 @@ Result: the same as the result we got with ``CREATE VIEW`` earlier:
 .. code-block:: tarantoolsession
 
     - - ['АБ', 123456.123456]
-      - ['ひら', 1e-06]
-      - ['先生', 1e+30]
+      - ['RRD', 1e-06]
+      - ['RRD', 1e+30]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 VALUES
