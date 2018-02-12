@@ -95,8 +95,8 @@ form (#2), or the variable form (#3). For example:
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.space['1*A イ']:select{1}
-    tarantool> s = box.space['1*A イ!@$%^&*()_+12345678901234567890']
+    tarantool> box.space['1*A']:select{1}
+    tarantool> s = box.space['1*A !@$%^&*()_+12345678901234567890']
     tarantool> s:select{1}
 
 Control characters are not allowed, and characters which are special or which
