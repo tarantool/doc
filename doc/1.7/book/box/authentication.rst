@@ -110,19 +110,21 @@ state (we call it ‘universe’) --  including the database itself,
 the system spaces, the users -- is ‘admin’.
 
 An object's owner can share some rights on the object by **granting privileges**
-to other users. The following privileges are implemented:
+to other users. The following privileges can be granted:
 
-* Read an object,
-* Write, i.e. modify contents of an object,
-* Execute, i.e. use an object (if the privilege makes sense for the object;
-  for example, spaces can not be "executed", but functions can).
+* Read, e.g. allow select from a space
+* Write, e.g. allow update on a space
+* Execute, e.g. allow call of a function
+* Create, e.g. allow box.schema.space.create (currently this can be granted but has no effect)
+* Alter, e.g. allow box.space.x.index.y:alter (currently this can be granted but has no effect)
+* Drop, e.g. allow box.sequence.x:drop (currently this can be granted but has no effect)
 
 .. NOTE::
 
-   Currently, "drop" and "grant" privileges can not be granted to other users.
+   Currently, "grant" privileges can not be granted to other users.
    This possibility will be added in future versions of Tarantool.
 
-This is how the privilege system works under the hood. To be able to create
+This is how the privilege system works. To be able to create
 objects, a user needs to have write access to Tarantool's system spaces.
 The 'admin' user, who is at the top of the hierarchy and who is the ultimate
 source of privileges, shares write access to a system space
@@ -139,15 +141,15 @@ The syntax of all
 :ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
 commands in Tarantool follows this basic idea.
 
-* Their first argument is the user who gets the grant or whose grant is revoked.
+* The first argument is the name of the user who gets the privilege or whose privilege is revoked.
 
-* Their second argument is the type of privilege granted, or a list of privileges.
+* The second argument is the type of privilege granted, or a list of privileges.
 
-* Their third argument is the object type on which the privilege is granted,
-  or the word 'universe'. Possible object types are 'space', 'function', 'user',
-  'role', 'sequence'.
+* The third argument is the object type on which the privilege is granted,
+  or the word 'universe'. Possible object types are 'space', 'function', 'sequence'
+  (not 'user' or 'role').
 
-* Their fourth argument is the object name if the object type
+* The fourth argument is the name of the object if the object type
   was specified ('universe' has no name because there is only one 'universe',
   but otherwise you must specify the name).
 

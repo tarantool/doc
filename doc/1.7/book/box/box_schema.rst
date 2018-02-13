@@ -284,7 +284,7 @@ Below is a list of all ``box.schema`` functions.
     to another role.
 
     :param string   user-name: the name of the user
-    :param string  privileges: 'read' or 'write' or 'execute' or a combination,
+    :param string  privileges: 'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination,
     :param string object-type: 'space' or 'function' or 'sequence'.
     :param string object-name: name of object to grant permissions to
     :param string   role-name: name of role to grant to user.
@@ -325,7 +325,7 @@ Below is a list of all ``box.schema`` functions.
     or from another role.
 
     :param string user-name: the name of the user
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string privilege: 'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination
     :param string object-type: 'space' or 'function' or 'sequence'
     :param string object-name: the name of a function or space or sequence
 
@@ -493,7 +493,7 @@ Below is a list of all ``box.schema`` functions.
     Grant :ref:`privileges <authentication-owners_privileges>` to a role.
 
     :param string role-name: the name of the role
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string privilege: 'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination
     :param string object-type: 'space' or 'function' or 'sequence'
     :param string object-name: the name of a function or space or sequence
     :param table option: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
@@ -525,7 +525,7 @@ Below is a list of all ``box.schema`` functions.
     Revoke :ref:`privileges <authentication-owners_privileges>` from a role.
 
     :param string role-name: the name of the role
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
+    :param string privilege: 'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination
     :param string object-type: 'space' or 'function' or 'sequence'
     :param string object-name: the name of a function or space or sequence
 
