@@ -28,9 +28,10 @@ For each Tarantool instance, you need two files:
 
 * An :ref:`instance file <admin-instance_file>` with
   instance-specific initialization logic and parameters. Put this file, or a
-  symlink to it, into the ``/etc/tarantool/instances.enabled`` directory
-  (``/etc/tarantool/instances.available`` is case of Linux with systemd).
- 
+  symlink to it, into the **instance directory**
+  (see :ref:`instance_dir <admin-instance_dir>` parameter in ``tarantoolctl``
+  configuration file).
+
   For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load
   ``my_app.lua`` module and make a call to ``start()`` function from that
   module):
@@ -46,16 +47,6 @@ For each Tarantool instance, you need two files:
      -- load my_app module and call start() function
      -- with some app options controlled by sysadmins
      local m = require('my_app').start({...})
-
-Note: Strictly speaking, the default instance directory depends on
-WITH_SYSVINIT build option: when ON it is ``/etc/tarantool/instances.enabled``,
-otherwise (OFF or not set) it is ``/etc/tarantool/instances.available``. The
-latter case is typical for Tarantool builds for Linux distros with systemd.
-Build options can be checked using output of ``tarantool --version`` command.
-Then, the instance directory can be redefined in ``/etc/default/tarantool`` or
-``/etc/sysconfig/tarantool`` file, with ``instance_dir`` option. The location
-for certain OS distro can be found in :ref:`Notes for operating systems
-<admin-os_notes>`.
 
 .. _admin-instance_file:
 
@@ -106,7 +97,9 @@ configuration defaults.
 
 Most of the parameters are similar to those used by
 :ref:`box.cfg{} <box_introspection-box_cfg>`. Here are the default settings
-(installed to ``/etc/default/tarantool`` as part of Tarantool distribution):
+(installed to ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool``
+as part of Tarantool distribution -- see OS-specific default paths in
+:ref:`Notes for operating systems <admin-os_notes>`):
 
 .. code-block:: lua
 
@@ -147,9 +140,19 @@ where:
     name rather than the Tarantool-client user name. Tarantool will change its
     effective user to this user after becoming a daemon.
 
+.. _admin-instance_dir:
+
 * | ``instance_dir``
   | The directory where all instance files for this host are stored. Put
     instance files in this directory, or create symbolic links.
+
+  The default instance directory depends on Tarantool's ``WITH_SYSVINIT``
+  build option: when ON, it is ``/etc/tarantool/instances.enabled``,
+  otherwise (OFF or not set) it is ``/etc/tarantool/instances.available``.
+  The latter case is typical for Tarantool builds for Linux distros with
+  ``systemd``.
+
+  To check the build options, say ``tarantool --version``.
 
 As a full-featured example, you can take
 `example.lua <https://github.com/tarantool/tarantool/blob/1.8/extra/dist/example.lua>`_

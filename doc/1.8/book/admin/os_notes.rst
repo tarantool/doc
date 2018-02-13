@@ -21,7 +21,7 @@ FreeBSD
 
 To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use
 paths other than those suggested in
-:ref:`Instance configuration <admin-instance_config>`. Instead of 
+:ref:`Instance configuration <admin-instance_config>`. Instead of
 ``/usr/share/tarantool/`` directory, use ``/usr/local/etc/tarantool/`` and
 create the following subdirectories:
 
@@ -41,7 +41,7 @@ Here is an example of ``tarantoolctl`` defaults on FreeBSD:
        logger     = "/var/log/tarantool", -- /var/log/tarantool/${INSTANCE}.log
        username   = "tarantool",
    }
-   
+
    -- instances.available - all available instances
    -- instances.enabled - instances to autostart by sysvinit
    instance_dir = "/usr/local/etc/tarantool/instances.available"
@@ -52,22 +52,24 @@ Here is an example of ``tarantoolctl`` defaults on FreeBSD:
 Gentoo Linux
 --------------------------------------------------------------------------------
 
-The section below is about dev-db/tarantool package installed from the official
-layman overlay (named ``tarantool``).
+The section below is about a dev-db/tarantool package installed from the
+official layman overlay (named ``tarantool``).
 
-Default instance directory is ``/etc/tarantool/instances.available``, can be
+The default instance directory is ``/etc/tarantool/instances.available``, can be
 redefined in ``/etc/default/tarantool``.
 
 Tarantool instances can be managed (start/stop/reload/status/...) using OpenRC.
-Consider the example how to create OpenRC-managed instance:
+Consider the example how to create an OpenRC-managed instance:
 
 .. code-block:: console
+
     $ cd /etc/init.d
     $ ln -s tarantool your_service_name
     $ ln -s /usr/share/tarantool/your_service_name.lua /etc/tarantool/instances.available/your_service_name.lua
 
-Check it works:
+Checking that it works:
 
 .. code-block:: console
+
     $ /etc/init.d/your_service_name start
     $ tail -f -n 100 /var/log/tarantool/your_service_name.log
