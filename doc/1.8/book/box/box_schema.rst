@@ -283,12 +283,13 @@ Below is a list of all ``box.schema`` functions.
     Grant :ref:`privileges <authentication-owners_privileges>` to a user or
     to another role.
 
-    :param string   user-name: the name of the user
-    :param string  privileges: 'read' or 'write' or 'execute' or a combination,
+    :param string   user-name: the name of the user.
+    :param string  privileges: 'read' or 'write' or 'execute' or 'create' or
+                               'alter' or 'drop' or a combination.
     :param string object-type: 'space' or 'function' or 'sequence'.
-    :param string object-name: name of object to grant permissions to
+    :param string object-name: name of object to grant permissions to.
     :param string   role-name: name of role to grant to user.
-    :param table      options: ``grantor``, ``if_not_exists``
+    :param table      options: ``grantor``, ``if_not_exists``.
 
     If :samp:`'function','{object-name}'` is specified, then a _func tuple with
     that object-name must exist.
@@ -324,10 +325,11 @@ Below is a list of all ``box.schema`` functions.
     Revoke :ref:`privileges <authentication-owners_privileges>` from a user
     or from another role.
 
-    :param string user-name: the name of the user
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function' or 'sequence'
-    :param string object-name: the name of a function or space or sequence
+    :param string user-name: the name of the user.
+    :param string privilege: 'read' or 'write' or 'execute' or 'create' or
+                             'alter' or 'drop' or a combination.
+    :param string object-type: 'space' or 'function' or 'sequence'.
+    :param string object-name: the name of a function or space or sequence.
 
     The user must exist, and the object must exist,
     but it is not an error if the user does not have the privilege.
@@ -492,13 +494,14 @@ Below is a list of all ``box.schema`` functions.
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a role.
 
-    :param string role-name: the name of the role
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function' or 'sequence'
-    :param string object-name: the name of a function or space or sequence
+    :param string role-name: the name of the role.
+    :param string privilege: 'read' or 'write' or 'execute' or 'create' or
+                             'alter' or 'drop' or a combination.
+    :param string object-type: 'space' or 'function' or 'sequence'.
+    :param string object-name: the name of a function or space or sequence.
     :param table option: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
                          ``true`` means there should be no error if the role already
-                         has the privilege
+                         has the privilege.
 
     The role must exist, and the object must exist.
 
@@ -524,10 +527,11 @@ Below is a list of all ``box.schema`` functions.
 
     Revoke :ref:`privileges <authentication-owners_privileges>` from a role.
 
-    :param string role-name: the name of the role
-    :param string privilege: 'read' or 'write' or 'execute' or a combination
-    :param string object-type: 'space' or 'function' or 'sequence'
-    :param string object-name: the name of a function or space or sequence
+    :param string role-name: the name of the role.
+    :param string privilege: 'read' or 'write' or 'execute' or 'create' or
+                             'alter' or 'drop' or a combination.
+    :param string object-type: 'space' or 'function' or 'sequence'.
+    :param string object-name: the name of a function or space or sequence.
 
     The role must exist, and the object must exist,
     but it is not an error if the role does not have the privilege.
