@@ -115,9 +115,15 @@ to other users. The following privileges can be granted:
 * Read, e.g. allow select from a space
 * Write, e.g. allow update on a space
 * Execute, e.g. allow call of a function
-* Create, e.g. allow box.schema.space.create (currently this can be granted but has no effect)
-* Alter, e.g. allow box.space.x.index.y:alter (currently this can be granted but has no effect)
-* Drop, e.g. allow box.sequence.x:drop (currently this can be granted but has no effect)
+* Create, e.g. allow
+  :ref:`box.schema.space.create <box_schema-space_create>`
+  (currently this can be granted but has no effect)
+* Alter, e.g. allow
+  :ref:`box.space.x.index.y:alter <box_index-alter>`
+  (currently this can be granted but has no effect)
+* Drop, e.g. allow
+  :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
+  (currently this can be granted but has no effect)
 
 .. NOTE::
 
@@ -134,20 +140,21 @@ become creators/definers of new objects. For the objects they created, the users
 can in turn share privileges with other users.
 
 This is why only an object's owner can drop the object, but other
-ordinary users cannot. Meanwhile, 'admin' can drop any object or delete any other user,
-because 'admin' is the creator and ultimate owner of them all.
+ordinary users cannot. Meanwhile, 'admin' can drop any object or delete any
+other user, because 'admin' is the creator and ultimate owner of them all.
 
 The syntax of all
 :ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
 commands in Tarantool follows this basic idea.
 
-* The first argument is the name of the user who gets the privilege or whose privilege is revoked.
+* The first argument is the name of the user who gets the privilege or whose
+  privilege is revoked.
 
 * The second argument is the type of privilege granted, or a list of privileges.
 
 * The third argument is the object type on which the privilege is granted,
-  or the word 'universe'. Possible object types are 'space', 'function', 'sequence'
-  (not 'user' or 'role').
+  or the word 'universe'. Possible object types are 'space', 'function',
+  'sequence' (not 'user' or 'role').
 
 * The fourth argument is the name of the object if the object type
   was specified ('universe' has no name because there is only one 'universe',
@@ -163,8 +170,8 @@ Here we say that user 'guest' can do common operations on any object.
 
 **Example #2**
 
-Here we create a Lua function that will be executed under the user id of its creator,
-even if called by another user.
+Here we create a Lua function that will be executed under the user id of its
+creator, even if called by another user.
 
 First, we create two spaces ('u' and 'i') and grant a no-password user ('internal')
 full access to them. Then we define a function ('read_and_modify') and the
