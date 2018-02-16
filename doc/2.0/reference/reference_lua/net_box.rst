@@ -395,6 +395,10 @@ Below is a list of all ``net.box`` functions.
         ``func('1', '2', '3')``. That is, ``conn:call`` is a remote
         stored-procedure call.
 
+        Limitation: the called function cannot return a function, for example
+        if ``func2`` is defined as ``function func2 () return func end`` then
+        ``conn:call(func2)`` will return "error: unsupported Lua type 'function'".
+
         **Examples:**
 
         .. code-block:: lua

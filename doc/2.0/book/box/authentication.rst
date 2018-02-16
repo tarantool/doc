@@ -125,11 +125,6 @@ to other users. The following privileges can be granted:
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
 
-.. NOTE::
-
-   Currently, "grant" privileges can not be granted to other users.
-   This possibility will be added in future versions of Tarantool.
-
 This is how the privilege system works. To be able to create
 objects, a user needs to have write access to Tarantool's system spaces.
 The 'admin' user, who is at the top of the hierarchy and who is the ultimate
