@@ -87,7 +87,7 @@ html_context = {
         'index'       : True,
         'download/download'    : True,
         'download/download_16' : True,
-        'download/download_18' : True,
+        'download/download_20' : True,
         'careers'     : True,
         'benchmark'   : True,
         'try'         : True,
@@ -97,10 +97,10 @@ html_context = {
         'download/os-instalation' : True, # FIXME Delete
         'download/connectors' : True,
         'download/connectors_16' : True,
-        'download/connectors_18' : True,
+        'download/connectors_20' : True,
         'download/rocks' : True,
         'download/rocks_16' : True,
-        'download/rocks_18' : True,
+        'download/rocks_20' : True,
         # Helper webpages
         '404'            : True,
         # Internal webpages
@@ -132,21 +132,21 @@ html_context = {
         'download/os-installation/1.7/os-x' : True,
         'download/os-installation/1.7/rhel-centos-6-7' : True,
         'download/os-installation/1.7/snappy-package' : True,
-        # 1.8
-        'download/os-installation/1.8/ubuntu' : True,
-        'download/os-installation/1.8/amazon-linux' : True,
-        'download/os-installation/1.8/building-from-source' : True,
-        'download/os-installation/1.8/debian' : True,
-        'download/os-installation/1.8/docker-hub' : True,
-        'download/os-installation/1.8/fedora' : True,
-        'download/os-installation/1.8/freebsd' : True,
-        'download/os-installation/1.8/microsoft-azure' : True,
-        'download/os-installation/1.8/os-x' : True,
-        'download/os-installation/1.8/rhel-centos-6-7' : True,
-        'download/os-installation/1.8/snappy-package' : True
+        # 2.0
+        'download/os-installation/2.0/ubuntu' : True,
+        'download/os-installation/2.0/amazon-linux' : True,
+        'download/os-installation/2.0/building-from-source' : True,
+        'download/os-installation/2.0/debian' : True,
+        'download/os-installation/2.0/docker-hub' : True,
+        'download/os-installation/2.0/fedora' : True,
+        'download/os-installation/2.0/freebsd' : True,
+        'download/os-installation/2.0/microsoft-azure' : True,
+        'download/os-installation/2.0/os-x' : True,
+        'download/os-installation/2.0/rhel-centos-6-7' : True,
+        'download/os-installation/2.0/snappy-package' : True
     },
     'wp_local': True,
-    'versions': ['1.6', '1.7', '1.8'],
+    'versions': ['1.6', '1.7', '2.0'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:
