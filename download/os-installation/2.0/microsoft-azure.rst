@@ -15,6 +15,7 @@ Tarantool - Microsoft Azure
         :title: Microsoft Azure
         :class: b-os-installation-content
 
-        Tarantool images are available at `Microsoft Azure`_.
+        Tarantool 2.0 images are not yet available at `Microsoft Azure`_.
+        For now please try Tarantool 1.7.
 
 .. _Microsoft Azure: https://azure.microsoft.com/en-us/marketplace/partners/my-com/tarantool/
