@@ -21,7 +21,11 @@
     Say ``box.space._schema:select{}``, find your ``once`` object there and
     delete it. For example, re-executing a block with ``key='hello'`` :
 
-    .. code-block:: tarantoolsession
+    When ``box.once()`` is used for initialization, it may be useful to
+    wait until the database is in an appropriate state (read-only or read-write).
+    In that case, see the functions in the :ref:`box.ctl submodule <box_ctl>`.
+
+    .. code-block:: tarantoolsessio
 
       tarantool> box.space._schema:select{}
       ---
