@@ -11,10 +11,10 @@ For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
 
-.. _whats_new_18:
+.. _whats_new_20:
 
 ================================================================================
-What's new in Tarantool 1.8?
+What's new in Tarantool 2.0?
 ================================================================================
 
 Support for a substantial subset of ISO/IEC 9075:2011 SQL standard,
@@ -94,7 +94,7 @@ Configuration parameters revised:
   * ``panic_on_wal_error`` and ``panic_on_snap_error`` united under
     ``force_recovery``.
 
-* Until Tarantool 1.8, you can use :ref:`deprecated parameters <cfg_deprecated>`
+* Until Tarantool 2.0, you can use :ref:`deprecated parameters <cfg_deprecated>`
   for both initial and runtime configuration, but Tarantool will display a warning.
   Also, you can specify both deprecated and up-to-date parameters, provided
   that their values are harmonized. If not, Tarantool will display an error.
@@ -118,8 +118,4 @@ What's new in Tarantool 1.6?
 
 Tarantool 1.6 is no longer getting major new features,
 although it will be maintained.
-<<<<<<< HEAD:doc/1.8/whats_new.rst
-=======
 The developers are concentrating on Tarantool version 1.7.
-
->>>>>>> 1.7:doc/1.7/whats_new.rst

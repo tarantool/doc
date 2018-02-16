@@ -300,8 +300,8 @@ on ~/mysql-5.5. The mysqld server instance is already running on the local host 
     $ # master repository. The resultant display is normal for Ubuntu
     $ # 12.04 precise
     $ cat /etc/apt/sources.list.d/tarantool.list
-    deb http://tarantool.org/dist/1.8/ubuntu/ precise main
-    deb-src http://tarantool.org/dist/1.8/ubuntu/ precise main
+    deb http://tarantool.org/dist/2.0/ubuntu/ precise main
+    deb-src http://tarantool.org/dist/2.0/ubuntu/ precise main
 
     $ # Install tarantool-dev. The displayed line should show version = 1.6
     $ sudo apt-get -y install tarantool-dev | grep -E "Setting up|already"
@@ -329,7 +329,7 @@ on ~/mysql-5.5. The mysqld server instance is already running on the local host 
     $ # Start the Tarantool server instance. Do not use a Lua initialization file.
 
     $ tarantool
-    tarantool: version 1.7.0-222-g48b98bb
+    tarantool: version 2.0.4-222-g48b98bb
     type 'help' for interactive help
     tarantool>
 
@@ -634,12 +634,12 @@ on /usr. The PostgreSQL server instance is already running on the local host 127
     $ # Ensure that the next "install" will get files from Tarantool master
     $ # repository. The resultant display is normal for Ubuntu 12.04 precise
     $ cat /etc/apt/sources.list.d/tarantool.list
-    deb http://tarantool.org/dist/1.8/ubuntu/ precise main
-    deb-src http://tarantool.org/dist/1.8/ubuntu/ precise main
+    deb http://tarantool.org/dist/2.0/ubuntu/ precise main
+    deb-src http://tarantool.org/dist/2.0/ubuntu/ precise main
 
-    $ # Install tarantool-dev. The displayed line should show version = 1.8
+    $ # Install tarantool-dev. The displayed line should show version = 2.0
     $ sudo apt-get -y install tarantool-dev | grep -E "Setting up|already"
-    Setting up tarantool-dev (1.7.0.222.g48b98bb~precise-1) ...
+    Setting up tarantool-dev (2.0.4.222.g48b98bb~precise-1) ...
     $
 
     $ # Use luarocks to install locally, that is, relative to $HOME
@@ -663,7 +663,7 @@ on /usr. The PostgreSQL server instance is already running on the local host 127
     $ # Start the Tarantool server instance. Do not use a Lua initialization file.
 
     $ tarantool
-    tarantool: version 1.7.0-412-g803b15c
+    tarantool: version 2.0.4-412-g803b15c
     type 'help' for interactive help
     tarantool>
 

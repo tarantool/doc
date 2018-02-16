@@ -86,7 +86,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
 
 The first call to ``box.cfg{...}`` (with or without parameters) initiates
 Tarantool's database module :ref:`box <box-module>`.
-Before Tarantool 1.8, you needed to call ``box.cfg{...}`` prior to performing
+Before Tarantool 2.0, you needed to call ``box.cfg{...}`` prior to performing
 any database operations.
 Now you can start working with the database outright, without calling
 ``box.cfg{...}``. In this case, Tarantool initiates the database module and

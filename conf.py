@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
 
-master_doc = 'doc/1.8/index'
+master_doc = 'doc/2.0/index'
 # master_doc = 'index'
 
 extensions = [
@@ -36,25 +36,25 @@ source_suffix = '.rst'
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "1.8.0"
+release = "2.0.4"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
 exclude_patterns = [
     '_build',
-    'doc/1.8/book/connectors/__*',
-    'doc/1.8/book/replication/*_1.rst',
-    'doc/1.8/book/replication/*_2.rst',
-    'doc/1.8/book/admin.rst',
-    'doc/1.8/book/box/box_introspection.rst',
-    'doc/1.8/book/cookbook.rst',
-    'doc/1.8/book/box/vinyl.rst',
-    'doc/1.8/dev_guide/box_protocol.rst',
-    'doc/1.8/dev_guide/internals.rst',
-    'doc/1.8/reference/configuration/cfg_*',
-    'doc/1.8/reference/reference_lua/jit.rst',
-    'doc/1.8/reference/reference_lua/os.rst',
-    'doc/1.8/reference/reference_lua/net_box_1.6.rst',
+    'doc/2.0/book/connectors/__*',
+    'doc/2.0/book/replication/*_1.rst',
+    'doc/2.0/book/replication/*_2.rst',
+    'doc/2.0/book/admin.rst',
+    'doc/2.0/book/box/box_introspection.rst',
+    'doc/2.0/book/cookbook.rst',
+    'doc/2.0/book/box/vinyl.rst',
+    'doc/2.0/dev_guide/box_protocol.rst',
+    'doc/2.0/dev_guide/internals.rst',
+    'doc/2.0/reference/configuration/cfg_*',
+    'doc/2.0/reference/reference_lua/jit.rst',
+    'doc/2.0/reference/reference_lua/os.rst',
+    'doc/2.0/reference/reference_lua/net_box_1.6.rst',
     'CNAME',
     'robots.txt',
     '_downloads/license.docx',

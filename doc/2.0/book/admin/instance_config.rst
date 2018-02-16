@@ -155,5 +155,5 @@ where:
   To check the build options, say ``tarantool --version``.
 
 As a full-featured example, you can take
-`example.lua <https://github.com/tarantool/tarantool/blob/1.8/extra/dist/example.lua>`_
+`example.lua <https://github.com/tarantool/tarantool/blob/2.0/extra/dist/example.lua>`_
 script that ships with Tarantool and defines all configuration options.

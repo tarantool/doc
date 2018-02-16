@@ -82,19 +82,19 @@ parameters are supported. The full list of breaking changes is available in
 
 7. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
 
-.. _admin-upgrades_instance_16_to_18:
+.. _admin-upgrades_instance_16_to_20:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.6 to 1.8
+How to upgrade from Tarantool 1.6 to 2.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The procedure is fully analogous to
-:ref:`upgrading from 1.7 to 1.8 <admin-upgrades_instance_16_to_17>`.
+:ref:`upgrading from 1.7 to 2.0 <admin-upgrades_instance_17_to_20>`.
 
-.. _admin-upgrades_instance_17_to_18:
+.. _admin-upgrades_instance_17_to_20:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.7 to 1.8
+How to upgrade from Tarantool 1.7 to 2.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Stop the Tarantool server.
@@ -114,7 +114,8 @@ How to upgrade from Tarantool 1.7 to 1.8
 Upgrading Tarantool in a replication cluster
 --------------------------------------------------------------------------------
 
-Tarantool 1.7 can work as a :ref:`replica <replication-architecture>` for Tarantool 1.6 and vice versa. Replicas
+Tarantool 1.7 can work as a :ref:`replica <replication-architecture>`
+for Tarantool 1.6 and vice versa. Replicas
 perform capability negotiation on handshake, and new 1.7 replication features
 are not used with 1.6 replicas. This allows upgrading clustered configurations.
 

@@ -35,7 +35,7 @@ writing their own stored procedures.
 
 Check that these items exist on the computer:
 
-* Tarantool 1.8
+* Tarantool 2.0
 * A gcc compiler, any modern version should work
 * ``module.h`` and files #included in it
 * ``msgpuck.h``
@@ -55,7 +55,7 @@ or on Fedora say:
 
     $ dnf -y install tarantool-devel
 
-The ``msgpuck.h`` file will exist if Tarantool 1.8 was installed from source.
+The ``msgpuck.h`` file will exist if Tarantool 2.0 was installed from source.
 Otherwise the "msgpuck" package must be installed from
 `https://github.com/rtsisyk/msgpuck <https://github.com/rtsisyk/msgpuck>`_.
 
