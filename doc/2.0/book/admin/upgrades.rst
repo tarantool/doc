@@ -37,8 +37,8 @@ Upgrading a Tarantool instance
 
 Tarantool is backward compatible between two adjacent versions. For example, you
 should have no or little trouble when upgrading from Tarantool 1.6 to 1.7, or
-from Tarantool 1.7 to 1.8. Meanwhile Tarantool 1.8 may have incompatible changes
-when migrating from Tarantool 1.6. to 1.8 directly.
+from Tarantool 1.7 to 2.0. Meanwhile Tarantool 2.0 may have incompatible changes
+when migrating from Tarantool 1.6. to 2.0 directly.
 
 .. _admin-upgrades_instance_16_to_17:
 
