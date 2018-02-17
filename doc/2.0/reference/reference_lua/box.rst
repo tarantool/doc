@@ -14,6 +14,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     :maxdepth: 1
 
     ../../book/box/box_cfg
+    ../../book/box/box_ctl
     ../../book/box/box_index
     ../../book/box/box_info
     box_once

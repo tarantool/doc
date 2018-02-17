@@ -24,4 +24,4 @@ website-doc-deploy:
     - rsync -Pav --password-file=rsync.password output/ru/doc/${CI_COMMIT_REF_NAME}/
         ${RSYNC_USER}@${RSYNC_HOST}::tarantool-org/ru/doc/${CI_COMMIT_REF_NAME}/
     - rm -f rsync.password
-  only: [ "1.6", "1.8" ]
+  only: [ "1.6", "1.8", "2.0" ]
