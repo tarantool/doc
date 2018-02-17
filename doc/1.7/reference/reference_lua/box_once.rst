@@ -25,25 +25,25 @@
     wait until the database is in an appropriate state (read-only or read-write).
     In that case, see the functions in the :ref:`box.ctl submodule <box_ctl>`.
 
-    .. code-block:: tarantoolsessio
+    .. code-block:: tarantoolsession
 
-      tarantool> box.space._schema:select{}
-      ---
-      - - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']
-        - ['max_id', 512]
-        - ['oncebye']
+        tarantool> box.space._schema:select{}
+        ---
+        - - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']
+          - ['max_id', 512]
+          - ['oncebye']
+          - ['oncehello']
+          - ['version', 1, 7, 2]
+        ...
+
+        tarantool> box.space._schema:delete('oncehello')
+        ---
         - ['oncehello']
-        - ['version', 1, 7, 2]
-      ...
+        ...
 
-      tarantool> box.space._schema:delete('oncehello')
-      ---
-      - ['oncehello']
-      ...
-
-      tarantool> box.once('hello', function() end)
-      ---
-      ...
+        tarantool> box.once('hello', function() end)
+        ---
+        ...
 
     :param string        key: a value that will be checked
     :param function function: a function
