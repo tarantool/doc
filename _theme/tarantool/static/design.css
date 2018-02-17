@@ -75,6 +75,9 @@ h5 {
   margin-top: 0;
   font-weight: normal;
 }
+img.frame {
+  border: 1px solid #999999;
+}
 @font-face {
   font-family: 'helvetica-r';
   src: url('fonts/HelveticaNeue.eot');
@@ -1878,7 +1881,7 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
 }
 @media (min-width: 768px) {
   .b-features .b-block-wrapper {
-    width: 620px;
+    max-width: 620px;
   }
   .b-features-container .b-feature {
     width: 280px;
@@ -1887,7 +1890,7 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
 }
 @media (min-width: 1024px) {
   .b-features .b-block-wrapper {
-    width: 900px;
+    max-width: 900px;
   }
   .b-feature__title {
     font-size: 20px;
@@ -1997,7 +2000,6 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
       flex-direction: column;
   -ms-flex-line-pack: justify;
       align-content: space-between;
-  width: 100%;
 }
 .b-download-block-title {
   font-size: 24px;
@@ -2235,7 +2237,7 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
 }
 .b-enterprise-downloads-button {
   width: 100%;
-  height: auto;
+  height: initial;
   font-size: 20px;
   border-radius: 4px;
   box-sizing: border-box;
@@ -2284,7 +2286,7 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
   .b-enterprise-downloads {
     -ms-flex-direction: column;
         flex-direction: column;
-    height: 200px;
+    max-height: 250px;
   }
   .b-enterprise-downloads-buttons-container {
     width: 70%;
