@@ -129,6 +129,12 @@ Below is a list of all ``box.index`` functions and members.
         and allow iterating over one tuple at a time.
 
         The :samp:`{key}` parameter specifies what must match within the index.
+
+        .. NOTE::
+
+            :samp:`{key}` is only used to find the first match. Do not assume 
+            all matched tuples will contain the key.
+
         The :samp:`{iterator}` parameter specifies the rule for matching and
         ordering. Different index types support different iterators. For
         example, a TREE index maintains a strict order of keys and can return
