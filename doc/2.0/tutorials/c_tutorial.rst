@@ -112,6 +112,12 @@ Create a file. Name it ``easy.c``. Put these six lines in it.
       printf("hello world\n");
       return 0;
     }
+    int easy2(box_function_ctx_t *ctx, const char *args, const char *args_end)
+    {
+      printf("hello world -- easy2\n");
+      return 0;
+    }
+
 
 Compile the program, producing a library file named ``easy.so``:
 
@@ -156,6 +162,20 @@ The result should look like this:
     ---
     - []
     ...
+
+Now let's call the other function in easy.c -- ``easy2()``.
+This is almost the same as the ``easy()`` function, but there's a detail:
+when the file name is not the same as the function name,
+then we have to specify
+:samp:`{file-name}.{function-name}`.
+
+.. code-block:: lua
+
+    box.schema.func.create('easy.easy2', {language = 'C'})
+    box.schema.user.grant('guest', 'execute', 'function', 'easy.easy2')
+    capi_connection:call('easy.easy2')
+
+... and this time the result will be "hello world -- easy2".
 
 Conclusion: calling a C function is easy.
 
