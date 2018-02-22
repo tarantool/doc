@@ -117,7 +117,6 @@ html_context = {
         'download/os-installation/1.6/docker-hub' : True,
         'download/os-installation/1.6/fedora' : True,
         'download/os-installation/1.6/freebsd' : True,
-        'download/os-installation/1.6/microsoft-azure' : True,
         'download/os-installation/1.6/os-x' : True,
         'download/os-installation/1.6/rhel-centos-6-7' : True,
         # 1.9
@@ -128,7 +127,6 @@ html_context = {
         'download/os-installation/1.9/docker-hub' : True,
         'download/os-installation/1.9/fedora' : True,
         'download/os-installation/1.9/freebsd' : True,
-        'download/os-installation/1.9/microsoft-azure' : True,
         'download/os-installation/1.9/os-x' : True,
         'download/os-installation/1.9/rhel-centos-6-7' : True,
         'download/os-installation/1.9/snappy-package' : True,
@@ -140,7 +138,6 @@ html_context = {
         'download/os-installation/2.0/docker-hub' : True,
         'download/os-installation/2.0/fedora' : True,
         'download/os-installation/2.0/freebsd' : True,
-        'download/os-installation/2.0/microsoft-azure' : True,
         'download/os-installation/2.0/os-x' : True,
         'download/os-installation/2.0/rhel-centos-6-7' : True,
         'download/os-installation/2.0/snappy-package' : True
