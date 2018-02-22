@@ -109,18 +109,22 @@ We list them here too:
 
     -- -- Value for <code> key in request can be:
     -- User command codes
-    <select>  ::= 0x01
-    <insert>  ::= 0x02
-    <replace> ::= 0x03
-    <update>  ::= 0x04
-    <delete>  ::= 0x05
-    <call_16> ::= 0x06
-    <auth>    ::= 0x07
-    <eval>    ::= 0x08
-    <upsert>  ::= 0x09
-    <call>    ::= 0x0a
+    <select>       ::= 0x01
+    <insert>       ::= 0x02
+    <replace>      ::= 0x03
+    <update>       ::= 0x04
+    <delete>       ::= 0x05
+    <call_16>      ::= 0x06
+    <auth>         ::= 0x07
+    <eval>         ::= 0x08
+    <upsert>       ::= 0x09
+    <call>         ::= 0x0a
     -- Admin command codes
-    <ping>    ::= 0x40
+    -- (including codes for replica-set initialization and master election)
+    <ping>         ::= 0x40
+    <join>         ::= 0x41
+    <subscribe>    ::= 0x42
+    <request_vote> ::= 0x43
 
     -- -- Value for <code> key in response can be:
     <OK>      ::= 0x00
