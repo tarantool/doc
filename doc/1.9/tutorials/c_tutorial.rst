@@ -35,13 +35,13 @@ writing their own stored procedures.
 
 Check that these items exist on the computer:
 
-* Tarantool 1.7
+* Tarantool 1.9
 * A gcc compiler, any modern version should work
 * ``module.h`` and files #included in it
 * ``msgpuck.h``
 * ``libmsgpuck.a`` (only for some recent msgpuck versions)
 
-The ``module.h`` file will exist if Tarantool 1.7 was installed from source.
+The ``module.h`` file will exist if Tarantool was installed from source.
 Otherwise Tarantool's "developer" package must be installed.
 For example on Ubuntu say:
 
@@ -55,7 +55,7 @@ or on Fedora say:
 
     $ dnf -y install tarantool-devel
 
-The ``msgpuck.h`` file will exist if Tarantool 1.7 was installed from source.
+The ``msgpuck.h`` file will exist if Tarantool was installed from source.
 Otherwise the "msgpuck" package must be installed from
 `https://github.com/rtsisyk/msgpuck <https://github.com/rtsisyk/msgpuck>`_.
 

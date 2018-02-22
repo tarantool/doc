@@ -214,7 +214,7 @@ twice in ``box.cfg{}``, so duplicate connections were established.
 
 **Solution**
 
-:ref:`Upgrade Tarantool 1.6 to 1.7 <admin-upgrades_instance>`, where this error
+:ref:`Upgrade Tarantool 1.6 to 1.9 <admin-upgrades_instance>`, where this error
 is fixed: in case of duplicate connections, replication is stopped and the
 following message is added to the log:
 ``'Incorrect value for option ''replication_source'': duplicate connection with

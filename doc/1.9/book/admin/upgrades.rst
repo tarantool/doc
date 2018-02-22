@@ -41,12 +41,12 @@ from Tarantool 1.7 to 1.8. Meanwhile Tarantool 1.8 may have incompatible changes
 when migrating from Tarantool 1.6. to 1.8 directly.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.6 to 1.7
+How to upgrade from Tarantool 1.6 to 1.7 / 1.9
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This procedure is for upgrading a standalone Tarantool instance in production
 from 1.6.x to 1.7.x
-(or to 1.9.x, which is actually the renamed 1.7 series).
+(or to 1.9.x, which is actually the :ref:`renamed 1.7 series <release-policy>`).
 Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
 replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
@@ -59,7 +59,7 @@ parameters are supported. The full list of breaking changes is available in
 `release notes for Tarantool 1.7 / 1.9 <https://github.com/tarantool/tarantool/releases>`_.
 
 To upgrade from Tarantool 1.6 to 1.7
-(or to 1.9.x, which is actually the renamed 1.7 series):
+(or to 1.9.x, which is actually the :ref:`renamed 1.7 series <release-policy>`):
 
 1. Check with application developers whether application files need to be
    updated due to incompatible changes (see

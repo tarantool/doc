@@ -11,7 +11,7 @@ All such messages, however, are logged in the error log. Below are general
 descriptions of some popular codes. A complete list of errors can be found in file
 `errcode.h`_ in the source tree.
 
-.. _errcode.h: https://github.com/tarantool/tarantool/blob/1.7/src/box/errcode.h
+.. _errcode.h: https://github.com/tarantool/tarantool/blob/1.9/src/box/errcode.h
 
 .. container:: table
 
