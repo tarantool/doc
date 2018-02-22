@@ -52,7 +52,7 @@
 
 {% set is_website  = website.get(pagename, False) %}
 {% set is_package_page  = packages.get(pagename, False) %}
-{% set is_mainpage = pagename in ["doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
+{% set is_mainpage = pagename in ["doc/2.0/index", "doc/2.0/singlehtml", "doc/1.7/index", "doc/1.7/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
 
 {% set pagename_stripped = pagename | replace("/", "_") %}
 {% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}
