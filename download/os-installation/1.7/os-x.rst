@@ -19,4 +19,4 @@ Tarantool - OS X
 
         .. code-block:: bash
 
-          brew install tarantool
+            brew install tarantool
