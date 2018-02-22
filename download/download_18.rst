@@ -20,7 +20,7 @@ Tarantool - Downloads (2.0)
 
                 Available versions:
 
-                :doc:`1.7 (stable) <download>` :currentversion:`2.0 (alpha)`
+                :doc:`1.9 (stable) <download>` :currentversion:`2.0 (alpha)`
 
     .. wp_section::
         :class: p-download-mainpage-general
@@ -133,6 +133,6 @@ Tarantool - Downloads (2.0)
 .. _DR\:Tarantool:              http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
 .. _Maven repository:           http://github.com/tarantool/tarantool-java
 .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.7
-.. _tarball: http://download.tarantool.org/tarantool/1.7/src/
+.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.9
+.. _tarball: http://download.tarantool.org/tarantool/1.9/src/
 .. _EPEL:    https://fedoraproject.org/wiki/EPEL

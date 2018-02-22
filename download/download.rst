@@ -2,7 +2,7 @@
 :priority: 0.99
 
 ---------------------------
-Tarantool - Downloads (1.7)
+Tarantool - Downloads (1.9)
 ---------------------------
 
 .. container:: p-download p-download-mainpage
@@ -20,7 +20,7 @@ Tarantool - Downloads (1.7)
 
                 Available versions:
 
-                :currentversion:`1.7 (stable)`  :doc:`2.0 (alpha) <download_20>`
+                :currentversion:`1.9 (stable)`  :doc:`2.0 (alpha) <download_20>`
 
     .. wp_section::
         :class: p-download-mainpage-general
@@ -35,7 +35,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-general-download-title
 
-                    :doc:`Tarantool 1.7 downloads <download>`
+                    :doc:`Tarantool 1.9 downloads <download>`
 
                 .. container:: b-general-download-description
 
@@ -44,7 +44,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <os-installation/1.7/docker-hub>`
+                    :doc:`Learn more → <os-installation/1.9/docker-hub>`
 
     .. wp_section::
         :class: p-download-mainpage-blocks
@@ -54,7 +54,7 @@ Tarantool - Downloads (1.7)
             :class: b-download-block packages
             :icon: os-installation-icon
             :buttontext: Learn more →
-            :buttonlink: os-installation/1.7/docker-hub.html
+            :buttonlink: os-installation/1.9/docker-hub.html
 
             We're building packages for
             a variety of operating systems.
@@ -128,6 +128,6 @@ Tarantool - Downloads (1.7)
 .. _DR\:Tarantool:              http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
 .. _Maven repository:           http://github.com/tarantool/tarantool-java
 .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.7
-.. _tarball: http://download.tarantool.org/tarantool/1.7/src/
+.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.9
+.. _tarball: http://download.tarantool.org/tarantool/1.9/src/
 .. _EPEL:    https://fedoraproject.org/wiki/EPEL
