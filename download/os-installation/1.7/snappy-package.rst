@@ -15,7 +15,7 @@ Tarantool - Snappy package
         :title: Snappy package
         :class: b-os-installation-content
 
-        You can install Tarantool 1.7.2 (Beta) from a Snappy package:
+        You can install Tarantool 1.7 (Beta) from a Snappy package:
 
         .. code-block:: bash
 
