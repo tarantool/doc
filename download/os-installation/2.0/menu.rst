@@ -9,5 +9,4 @@
     * :doc:`Amazon Linux <amazon-linux>`
     * :doc:`Snappy Package <snappy-package>`
     * :doc:`FreeBSD <freebsd>`
-    * :doc:`Microsoft Azure <microsoft-azure>`
     * :doc:`Building from source <building-from-source>`
