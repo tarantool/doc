@@ -118,4 +118,4 @@ What's new in Tarantool 1.6?
 
 Tarantool 1.6 is no longer getting major new features,
 although it will be maintained.
-The developers are concentrating on Tarantool version 1.7.
+The developers are concentrating on Tarantool version 1.9.
