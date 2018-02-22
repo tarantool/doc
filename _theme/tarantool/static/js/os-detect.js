@@ -77,7 +77,7 @@ function getInstruction() {
 function getVersion() {
   if (window.location.href.indexOf('16') !== -1) return '1.6';
   if (window.location.href.indexOf('20') !== -1) return '2.0';
-  return '1.7';
+  return '1.9';
 }
 
 var os_installation_page_names = new Object();

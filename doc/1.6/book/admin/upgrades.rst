@@ -36,11 +36,13 @@ Upgrading a Tarantool instance
 
 Tarantool is backward compatible between two adjacent versions. For example, you
 should have no or little trouble when upgrading from Tarantool 1.6 to 1.7, or
-from Tarantool 1.7 to 2.0. Meanwhile Tarantool 2.0 may have incompatible changes
-when migrating from Tarantool 1.6. to 2.0 directly.
+from Tarantool 1.7 to 1.8. Meanwhile Tarantool 1.8 may have incompatible changes
+when migrating from Tarantool 1.6. to 1.8 directly.
 
 This procedure is for upgrading a standalone Tarantool instance in production
-from 1.6.x to 1.7.x. Notice that this will **always imply a downtime**.
+from 1.6.x to 1.7.x
+(or to 1.9.x, which is actually the renamed 1.7 series).
+Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
 replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
@@ -48,13 +50,14 @@ Tarantool 1.7 has an incompatible .snap and .xlog file format: 1.6 files are
 supported during upgrade, but you won’t be able to return to 1.6 after running
 under 1.7 for a while. It also renames a few configuration parameters, but old
 parameters are supported. The full list of breaking changes is available in
-`release notes for Tarantool 1.7 <https://github.com/tarantool/tarantool/releases>`_.
+`release notes for Tarantool 1.7 / 1.9 <https://github.com/tarantool/tarantool/releases>`_.
 
-To upgrade from Tarantool 1.6 to 1.7:
+To upgrade from Tarantool 1.6 to 1.7
+(or to 1.9.x, which is actually the renamed 1.7 series):
 
 1. Check with application developers whether application files need to be
    updated due to incompatible changes (see
-   `1.7 release notes <https://github.com/tarantool/tarantool/releases>`_).
+   `1.7 / 1.9 release notes <https://github.com/tarantool/tarantool/releases>`_).
    If yes, back up the old application files.
 
 2. Stop the Tarantool server.
@@ -80,7 +83,8 @@ To upgrade from Tarantool 1.6 to 1.7:
 Upgrading Tarantool in a replication cluster
 --------------------------------------------------------------------------------
 
-Tarantool 1.7 can work as a replica for Tarantool 1.6 and vice versa. Replicas
+Tarantool 1.7 (as well as Tarantool 1.9)
+can work as a replica for Tarantool 1.6 and vice versa. Replicas
 perform capability negotiation on handshake, and new 1.7 replication features
 are not used with 1.6 replicas. This allows upgrading clustered configurations.
 

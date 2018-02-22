@@ -120,18 +120,18 @@ html_context = {
         'download/os-installation/1.6/microsoft-azure' : True,
         'download/os-installation/1.6/os-x' : True,
         'download/os-installation/1.6/rhel-centos-6-7' : True,
-        # 1.7
-        'download/os-installation/1.7/ubuntu' : True,
-        'download/os-installation/1.7/amazon-linux' : True,
-        'download/os-installation/1.7/building-from-source' : True,
-        'download/os-installation/1.7/debian' : True,
-        'download/os-installation/1.7/docker-hub' : True,
-        'download/os-installation/1.7/fedora' : True,
-        'download/os-installation/1.7/freebsd' : True,
-        'download/os-installation/1.7/microsoft-azure' : True,
-        'download/os-installation/1.7/os-x' : True,
-        'download/os-installation/1.7/rhel-centos-6-7' : True,
-        'download/os-installation/1.7/snappy-package' : True,
+        # 1.9
+        'download/os-installation/1.9/ubuntu' : True,
+        'download/os-installation/1.9/amazon-linux' : True,
+        'download/os-installation/1.9/building-from-source' : True,
+        'download/os-installation/1.9/debian' : True,
+        'download/os-installation/1.9/docker-hub' : True,
+        'download/os-installation/1.9/fedora' : True,
+        'download/os-installation/1.9/freebsd' : True,
+        'download/os-installation/1.9/microsoft-azure' : True,
+        'download/os-installation/1.9/os-x' : True,
+        'download/os-installation/1.9/rhel-centos-6-7' : True,
+        'download/os-installation/1.9/snappy-package' : True,
         # 2.0
         'download/os-installation/2.0/ubuntu' : True,
         'download/os-installation/2.0/amazon-linux' : True,
@@ -146,7 +146,7 @@ html_context = {
         'download/os-installation/2.0/snappy-package' : True
     },
     'wp_local': True,
-    'versions': ['1.6', '1.7', '2.0'],
+    'versions': ['1.6', '1.9', '2.0'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:
