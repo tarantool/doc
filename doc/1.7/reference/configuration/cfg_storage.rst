@@ -61,8 +61,8 @@
     Bloom filter false positive rate -- the suitable probability of the
     `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_
     to give a wrong result.
-    The ``vinyl_bloom_fpr`` setting can be overridden by a
-    :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_bloom_fpr`` setting is a default value for one of the
+    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: float
     | Default = 0.05
@@ -106,8 +106,8 @@
 .. confval:: vinyl_page_size
 
     Page size, in bytes. Page is a read/write unit for vinyl disk operations.
-    The ``vinyl_page_size`` setting can be overridden by a
-    :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_page_size`` setting is a default value for one of the
+    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: integer
     | Default = 8 * 1024 = 8192
@@ -118,8 +118,8 @@
 .. confval:: vinyl_range_size
 
     The maximal range size for vinyl, in bytes.
-    The ``vinyl_range_size`` setting can be overridden by a
-    :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_range_size`` setting is a default value for one of the
+    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: integer
     | Default = 1024 * 1024 * 1024 = 1073741824
@@ -131,7 +131,8 @@
 
     The maximal number of runs per level in vinyl LSM tree.
     If this number is exceeded, a new level is created.
-    This can be overridden by a :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_run_count_per_level`` setting is a default value for one of the
+    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: integer
     | Default = 2
@@ -142,8 +143,8 @@
 .. confval:: vinyl_run_size_ratio
 
     Ratio between the sizes of different levels in the LSM tree.
-    The ``vinyl_run_size_ratio`` setting can be overridden by a
-    :ref:`create_index <box_space-create_index>` option.
+    The ``vinyl_run_size_ratio`` setting is a default value for one of the
+    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: float
     | Default = 3.5

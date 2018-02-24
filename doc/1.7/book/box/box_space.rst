@@ -263,6 +263,8 @@ Below is a list of all ``box.space`` functions and members.
             | type                | type of index                                         | string                           | 'TREE'                        |
             |                     |                                                       | ('HASH' or 'TREE' or             |                               |
             |                     |                                                       | 'BITSET' or 'RTREE')             |                               |
+            |                     |                                                       | Note re storage engine:          |                               |
+            |                     |                                                       | vinyl only supports 'TREE'       |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | id                  | unique identifier                                     | number                           | last index's id, +1           |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -296,6 +298,8 @@ Below is a list of all ``box.space`` functions and members.
             |                     | :ref:`specifying a sequence in create_index()         |                                  |                               |
             |                     | <box_schema-sequence_create_index>`                   |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+
+        The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
 
         **Note re storage engine:** vinyl has extra options which by default are
         based on configuration parameters
