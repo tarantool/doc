@@ -77,7 +77,7 @@ function getInstruction() {
 function getVersion() {
   if (window.location.href.indexOf('16') !== -1) return '1.6';
   if (window.location.href.indexOf('20') !== -1) return '2.0';
-  return '1.7';
+  return '1.9';
 }
 
 var os_installation_page_names = new Object();
@@ -89,13 +89,12 @@ os_installation_page_names.wheezy = 'debian';
 os_installation_page_names.docker = 'docker-hub';
 os_installation_page_names.fedora = 'fedora';
 os_installation_page_names.freebsd = 'freebsd';
-os_installation_page_names.azure = 'microsoft-azure';
 os_installation_page_names.mac = 'os-x';
 os_installation_page_names.rhel6 = 'rhel-6-and-cent-os-6';
 os_installation_page_names.rhel7 = 'rhel-7-and-cent-os-7';
 os_installation_page_names.snappy = 'snappy-package';
 
-var docker_platforms = ['os x', 'windows', 'centos', 'debian', 'fedora', 'ubuntu', 'aws', 'azure'];
+var docker_platforms = ['os x', 'windows', 'centos', 'debian', 'fedora', 'ubuntu', 'aws'];
 
 function getOSName(os) {
   switch (os.name.toLowerCase()) {

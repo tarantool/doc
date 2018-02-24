@@ -20,7 +20,7 @@ Tarantool - Connectors
 
                 Available versions:
 
-                :currentversion:`1.7 (stable)`   :doc:`2.0 (alpha) <connectors_20>`
+                :currentversion:`1.9 (stable)`   :doc:`2.0 (alpha) <connectors_20>`
 
     .. wp_section::
         :title: Connectors
