@@ -17,8 +17,4 @@ Tarantool - Docker Hub
 
         .. raw:: html
 
-            <p>
-              Tarantool 2.0 images will soon be available at Docker Hub.
-              For now please try
-              <a href="https://hub.docker.com/r/tarantool/tarantool/">Tarantool 1.7</a>.
-            </p>
+            <p>Tarantool images are available at <a href="https://hub.docker.com/r/tarantool/tarantool/">Docker Hub</a>.</p>

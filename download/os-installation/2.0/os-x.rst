@@ -15,7 +15,9 @@ Tarantool - OS X
         :title: OS X
         :class: b-os-installation-content
 
-        Tarantool 2.0 is not yet available for Mac OS X.
-        For now please try
-        `Tarantool 1.7 <https://tarantool.org/ru/download/os-installation/1.7/os-x.html>`_.
+        You can install Tarantool using ``homebrew``:
+
+        .. code-block:: bash
+
+            brew install tarantool --HEAD
 
