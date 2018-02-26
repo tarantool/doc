@@ -29,6 +29,9 @@ Below is a list of all ``tap`` functions.
     | :ref:`tap.test()                     | Initialize                      |
     | <tap-test>`                          |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`taptest:test()                 | Create a subtest or show the    |
+    | <taptest-test>`                      | results                         |
+    +--------------------------------------+---------------------------------+
     | :ref:`taptest:plan()                 | Indicate how many tests to      |
     | <taptest-plan>`                      | perform                         |
     +--------------------------------------+---------------------------------+
@@ -51,7 +54,16 @@ Below is a list of all ``tap`` functions.
     | <taptest-is>`                        | equal                           |
     +--------------------------------------+---------------------------------+
     | :ref:`taptest:isnt()                 | Check if the two arguments are  |
-    | <taptest-isnt>`                      | equal                           |
+    | <taptest-isnt>`                      | different                       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:is_deeply()            | Recursively check if the two    |
+    | <taptest-is_deeply>`                 | arguments are equal             |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:like()                 | Check if the argument matches a |
+    | <taptest-like>`                      | pattern                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest:unlike()               | Check if the argument does not  |
+    | <taptest-unlike>`                    | match a pattern                 |
     +--------------------------------------+---------------------------------+
     | :ref:`taptest:isnil()                |                                 |
     | <taptest-istype>` |br|               |                                 |
@@ -67,9 +79,6 @@ Below is a list of all ``tap`` functions.
     | <taptest-istype>` |br|               |                                 |
     | :ref:`taptest:iscdata()              |                                 |
     | <taptest-istype>`                    |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`taptest:is_deeply()            | Recursively check if the two    |
-    | <taptest-is_deeply>`                 | arguments are equal             |
     +--------------------------------------+---------------------------------+
 
 .. module:: tap
@@ -94,6 +103,20 @@ Below is a list of all ``tap`` functions.
         taptest = tap.test('test-name')
 
 .. class:: taptest
+
+    .. _taptest-test:
+
+    .. method:: test(test-name, func)
+
+        Create a subtest (if no ``func`` argument specified) or run the
+        test function and show the outputs.
+
+        See the :ref:`example <tap-example>`.
+
+        :param string name: an arbitrary name to give for the test outputs.
+        :param function fun: the test logic to run.
+        :return: taptest (if no ``func``) or test outputs
+        :rtype:  userdata or string
 
     .. _taptest-plan:
 
@@ -136,7 +159,7 @@ Below is a list of all ``tap`` functions.
         debugging information. Displays the message.
 
         :param boolean condition: an expression which is true or false
-        :param string  test-name: name of test
+        :param string  test-name: name of the test
 
         :return: true or false.
         :rtype:  boolean
@@ -170,7 +193,7 @@ Below is a list of all ``tap`` functions.
         ``taptest:fail('x')`` is equivalent to ``taptest:ok(false, 'x')``.
         Displays the message.
 
-        :param string  test-name: name of test
+        :param string  test-name: name of the test
 
         :return: true or false.
         :rtype:  boolean
@@ -183,7 +206,7 @@ Below is a list of all ``tap`` functions.
         ``taptest:ok(true, 'x' .. '# skip')``.
         Displays the message.
 
-        :param string  test-name: name of test
+        :param string  test-name: name of the test
 
         :return: nil
 
@@ -206,7 +229,7 @@ Below is a list of all ``tap`` functions.
 
         :param number got: actual result
         :param number expected: expected result
-        :param string test-name: name of test
+        :param string test-name: name of the test
         :return: true or false.
         :rtype:  boolean
 
@@ -214,11 +237,57 @@ Below is a list of all ``tap`` functions.
 
     .. method:: isnt(got, expected, test-name)
 
-        This is the negation of ``taptest:is(...)``.
+        This is the negation of :ref:`taptest:is() <taptest-is>`.
 
         :param number got: actual result
         :param number expected: expected result
-        :param string test-name: name of test
+        :param string test-name: name of the test
+
+        :return: true or false.
+        :rtype:  boolean
+
+    .. _taptest-is_deeply:
+
+    .. method:: is_deeply(got, expected, test-name)
+
+        Recursive version of ``taptest:is(...)``, which can be be used to
+        compare tables as well as scalar values.
+
+        :return: true or false.
+        :rtype:  boolean
+
+        :param lua-value got: actual result
+        :param lua-value expected: expected result
+        :param string test-name: name of the test
+
+    .. _taptest-like:
+
+    .. method:: like(got, expected, test-name)
+
+        Verify a string against a
+        `pattern <http://lua-users.org/wiki/PatternsTutorial>`_.
+        Ok if match is found.
+
+        :return: true or false.
+        :rtype:  boolean
+
+        :param lua-value got: actual result
+        :param lua-value expected: pattern
+        :param string test-name: name of the test
+
+    .. code-block:: lua
+
+        test:like(tarantool.version, '^[1-9]', "version")
+
+    .. _taptest-unlike:
+
+    .. method:: unlike(got, expected, test-name)
+
+        This is the negation of :ref:`taptest:like() <taptest-like>`.
+
+        :param number got: actual result
+        :param number expected: pattern
+        :param string test-name: name of the test
 
         :return: true or false.
         :rtype:  boolean
@@ -237,28 +306,15 @@ Below is a list of all ``tap`` functions.
         the value is not of the specified type.
 
         :param lua-value value:
-        :param string test-name: name of test
+        :param string test-name: name of the test
 
         :return: true or false.
         :rtype:  boolean
-
-    .. _taptest-is_deeply:
-
-    .. method:: is_deeply(got, expected, test-name)
-
-        Recursive version of ``taptest:is(...)``, which can be be used to
-        compare tables as well as scalar values.
-
-        :return: true or false.
-        :rtype:  boolean
-
-        :param lua-value got: actual result
-        :param lua-value expected: expected result
-        :param string test-name: name of test
-
 
 .. _prove: https://metacpan.org/pod/distribution/Test-Harness/bin/prove
 .. _TAP protocol: https://en.wikipedia.org/wiki/Test_Anything_Protocol
+
+.. _tap-example:
 
 =================================================
                      Example

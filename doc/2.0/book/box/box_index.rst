@@ -821,7 +821,8 @@ Below is a list of all ``box.index`` functions and members.
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
         :param table options: options list, same as the options list for
-                              :ref:`create_index() <box_space-create_index>`
+                              ``create_index``, see the chart named
+                              :ref:`Options for space_object:create_index() <box_space-create_index>`.
 
         :return: nil
 
@@ -829,15 +830,16 @@ Below is a list of all ``box.index`` functions and members.
 
         * index does not exist,
         * the first index cannot be changed to {unique = false},
-        * the alter function is only applicable for the memtx storage engine.
-
-        **Note re storage engine:** vinyl does not support ``alter()``.
 
         **Example:**
 
         .. code-block:: tarantoolsession
 
             tarantool> box.space.space55.index.primary:alter({type = 'HASH'})
+            ---
+            ...
+
+            tarantool> box.space.vinyl_space.index.i:alter({page_size=4096})
             ---
             ...
 
