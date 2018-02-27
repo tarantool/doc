@@ -29,7 +29,7 @@ Below is a list of all ``tap`` functions.
     | :ref:`tap.test()                     | Initialize                      |
     | <tap-test>`                          |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`taptest:test()                 | Create a subtest or show the    |
+    | :ref:`taptest:test()                 | Create a subtest and print the  |
     | <taptest-test>`                      | results                         |
     +--------------------------------------+---------------------------------+
     | :ref:`taptest:plan()                 | Indicate how many tests to      |
@@ -108,14 +108,15 @@ Below is a list of all ``tap`` functions.
 
     .. method:: test(test-name, func)
 
-        Create a subtest (if no ``func`` argument specified) or run the
-        test function and show the outputs.
+        Create a subtest (if no ``func`` argument specified), or
+        (if all arguments are specified)
+        create a subtest, run the test function and print the result.
 
         See the :ref:`example <tap-example>`.
 
         :param string name: an arbitrary name to give for the test outputs.
         :param function fun: the test logic to run.
-        :return: taptest (if no ``func``) or test outputs
+        :return: taptest
         :rtype:  userdata or string
 
     .. _taptest-plan:
