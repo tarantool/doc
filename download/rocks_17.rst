@@ -15,13 +15,13 @@ Tarantool - Rocks
 
             .. container:: b-download-header-path
 
-                :doc:`Downloads <download_20>` > :doc:`Modules <rocks_20>`
+                :doc:`Downloads <download_17>` > :doc:`Modules <rocks_17>`
 
             .. container:: b-download-header-versions
 
                 Available versions:
 
-                :doc:`1.9 (stable) <rocks>` :currentversion:`2.0 (alpha)`
+                :currentversion:`1.7 (old stable)` :doc:`1.9 (stable) <rocks>` :doc:`2.0 (alpha) <rocks_20>`
 
             .. raw:: html
 
@@ -150,13 +150,6 @@ Tarantool - Rocks
                     :sourcelink: https://github.com/tarantool/prometheus
 
                     Prometheus library to collect metrics from Tarantool
-
-                .. module_block::
-                    :title: zookeeper
-                    :specialtext: External
-                    :sourcelink: https://github.com/tarantool/zookeeper
-
-                    ZooKeeper client for Tarantool
 
             .. _Databases:
             .. container:: b-rock
@@ -317,13 +310,6 @@ Tarantool - Rocks
                     :specialtext: Built-in
 
                     Module to connect remotely to a Tarantool instance via a binary port
-
-                .. module_block::
-                    :title: smtp
-                    :specialtext: External
-                    :sourcelink: https://github.com/tarantool/smtp
-
-                    SMTP client for Tarantool
 
             .. _Operating systems:
             .. container:: b-rock

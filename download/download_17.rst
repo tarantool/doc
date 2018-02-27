@@ -2,7 +2,7 @@
 :priority: 0.99
 
 ---------------------------
-Tarantool - Downloads (2.0)
+Tarantool - Downloads (1.7)
 ---------------------------
 
 .. container:: p-download p-download-mainpage
@@ -14,13 +14,13 @@ Tarantool - Downloads (2.0)
 
             .. container:: b-download-header-path
 
-                :doc:`Downloads <download_20>` >
+                :doc:`Downloads <download_17>` >
 
             .. container:: b-download-header-versions
 
                 Available versions:
 
-                :doc:`1.9 (stable) <download>` :currentversion:`2.0 (alpha)`
+                :currentversion:`1.7 (old stable)`   :doc:`1.9 (stable) <download>`   :doc:`2.0 (alpha) <download_20>`
 
     .. wp_section::
         :class: p-download-mainpage-general
@@ -35,7 +35,7 @@ Tarantool - Downloads (2.0)
 
                 .. container:: b-general-download-title
 
-                    :doc:`Tarantool 2.0 downloads <download_20>`
+                    :doc:`Tarantool 1.7 downloads <download>`
 
                 .. container:: b-general-download-description
 
@@ -44,7 +44,7 @@ Tarantool - Downloads (2.0)
 
                 .. container:: b-download-block-button
 
-                    :doc:`Learn more → <os-installation/2.0/docker-hub>`
+                    :doc:`Learn more → <os-installation/1.7/docker-hub>`
 
     .. wp_section::
         :class: p-download-mainpage-blocks
@@ -54,7 +54,7 @@ Tarantool - Downloads (2.0)
             :class: b-download-block packages
             :icon: os-installation-icon
             :buttontext: Learn more →
-            :buttonlink: os-installation/2.0/docker-hub.html
+            :buttonlink: os-installation/1.7/docker-hub.html
 
             We're building packages for
             a variety of operating systems.
@@ -66,7 +66,7 @@ Tarantool - Downloads (2.0)
             :class: b-download-block
             :icon: connectors-icon
             :buttontext: Learn more →
-            :buttonlink: connectors_20.html
+            :buttonlink: connectors.html
 
             If you’re looking for the latest version of a client driver,
             prefer rocks and gems to rpms and debs,
@@ -89,7 +89,7 @@ Tarantool - Downloads (2.0)
             :class: b-download-block
             :icon: rocks-icon
             :buttontext: Learn more →
-            :buttonlink: rocks_20.html
+            :buttonlink: rocks.html
 
             An exhaustive list of all Tarantool modules,
             installable with ``luarocks`` or ``tarantoolctl``.
@@ -111,19 +111,14 @@ Tarantool - Downloads (2.0)
 
                 .. container:: b-enterprise-downloads-description
 
-                    `Carrier-grade edition <https://tarantool.io/try-it>`_
+                    `Carrier-grade edition <../features.html>`_
                     for critical deployments.
 
             .. container:: b-enterprise-downloads-buttons-container
 
                 .. wp_button::
                     :class: b-enterprise-downloads-button
-                    :link: https://tarantool.io/unwired
-                    :title: Unwired IIOT
-
-                .. wp_button::
-                    :class: b-enterprise-downloads-button
-                    :link: https://tarantool.io/enterprise
+                    :link: ../enterprise.html
                     :title: Enterprise
 
 .. |packagecloud| image:: /images/packagecloud.png
@@ -133,6 +128,6 @@ Tarantool - Downloads (2.0)
 .. _DR\:Tarantool:              http://search.cpan.org/~unera/DR-Tarantool-0.42/lib/DR/Tarantool.pm
 .. _Maven repository:           http://github.com/tarantool/tarantool-java
 .. _Java connector GitHub page: https://github.com/tarantool/tarantool-java
-.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.9
-.. _tarball: http://download.tarantool.org/tarantool/1.9/src/
+.. _GitHub:  http://github.com/tarantool/tarantool/tree/1.7
+.. _tarball: http://download.tarantool.org/tarantool/1.7/src/
 .. _EPEL:    https://fedoraproject.org/wiki/EPEL

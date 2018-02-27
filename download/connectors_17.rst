@@ -14,13 +14,13 @@ Tarantool - Connectors
 
             .. container:: b-download-header-path
 
-                :doc:`Downloads <download_20>` > :doc:`Connectors <connectors_20>`
+                :doc:`Downloads <download_17>` > :doc:`Connectors <connectors_17>`
 
             .. container:: b-download-header-versions
 
                 Available versions:
 
-                :doc:`1.9 (stable) <connectors>`   :currentversion:`2.0 (alpha)`
+                :currentversion:`1.7 (old stable)`   :doc:`1.9 (stable) <connectors>`   :doc:`2.0 (alpha) <connectors_20>`
 
     .. wp_section::
         :title: Connectors
