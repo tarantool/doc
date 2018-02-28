@@ -15,18 +15,5 @@ Tarantool - Snappy package
         :title: Snappy package
         :class: b-os-installation-content
 
-        You can install Tarantool 1.7 (Beta) from a Snappy package:
-
-        .. code-block:: bash
-
-            $ snap install tarantool --channel=beta
-
-        Snaps are universal Linux packages which can be installed across
-        a range of Linux distributions.
-
-        Snappy package manager is already pre-installed on Ubuntu Xenial
-        and newer. For other distros, you may need to install ``snapd``.
-        See http://snapcraft.io/ for detailed instructions.
-
-        Note: initialization scripts, ``systemd`` units and
-        ``tarantoolctl`` utility are not included in Snappy packages.
+        Tarantool 1.7 is unavailable as a snappy package.
+        Please consider `Tarantool 1.9 <https://tarantool.io/en/download/os-installation/1.9/snappy-package.html>`_.
