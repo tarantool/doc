@@ -15,11 +15,11 @@ Tarantool - Snappy package
         :title: Snappy package
         :class: b-os-installation-content
 
-        You can install Tarantool 1.9 (Beta) from a Snappy package:
+        You can install Tarantool 1.9 (Stable) from a Snappy package:
 
         .. code-block:: bash
 
-            $ snap install tarantool --channel=beta
+            $ snap install tarantool --channel=stable
 
         Snaps are universal Linux packages which can be installed across
         a range of Linux distributions.
