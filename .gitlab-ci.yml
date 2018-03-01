@@ -1,4 +1,11 @@
+stages:
+  - website-full-deploy
+  - website-doc-deploy
+  - trigger
+
 website-full-deploy:
+  only: [ "2.0" ]
+  stage: website-full-deploy
   tags:
     - docker
   image: "registry.gitlab.com/tarantool/doc"
@@ -9,9 +16,10 @@ website-full-deploy:
     - rsync -Pav --password-file=rsync.password output/
         ${RSYNC_USER}@${RSYNC_HOST}::tarantool-org/
     - rm -f rsync.password
-  only: [ "2.0" ]
 
 website-doc-deploy:
+  only: [ "1.6", "1.9", "2.0" ]
+  stage: website-doc-deploy
   tags:
     - docker
   image: "registry.gitlab.com/tarantool/doc"
@@ -24,4 +32,9 @@ website-doc-deploy:
     - rsync -Pav --password-file=rsync.password output/ru/doc/${CI_COMMIT_REF_NAME}/
         ${RSYNC_USER}@${RSYNC_HOST}::tarantool-org/ru/doc/${CI_COMMIT_REF_NAME}/
     - rm -f rsync.password
-  only: [ "1.6", "1.9", "2.0" ]
+
+trigger:
+  only: [ "2.0" ]
+  stage: trigger
+  script:
+    - "curl -X POST -F token=${TARANTOOLIO_TRIGGER_TOKEN} -F ref=master https://gitlab.com/api/v4/projects/4657341/trigger/pipeline"
