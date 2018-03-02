@@ -30,6 +30,14 @@ Observe the following rules when working with transactions:
     and also access tuple sets that are defined with ``{engine='memtx'}``,
     in the same transaction.
 
+.. admonition:: Rule #3
+    :class: FACT
+
+    Requests which cause changes to the data definition
+    -- create, alter, drop, truncate -- must not be used.
+
+
+
 ===============================================================================
                                     Index
 ===============================================================================
