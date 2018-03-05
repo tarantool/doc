@@ -103,7 +103,7 @@ Below is a list of all ``box.space`` functions and members.
     | <box_space-id>`                      |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`space_object.index             | Container of space's indexes    |
-    | <box_space-field_count>`             |                                 |
+    | <box_space-space_index>`             |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`box.space._cluster             | (Metadata) List of replica sets |
     | <box_space-cluster>`                 |                                 |
@@ -1329,6 +1329,8 @@ Below is a list of all ``box.space`` functions and members.
             ---
             - 512
             ...
+
+.. _box_space-space_index:
 
     .. data:: index
 
