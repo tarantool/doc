@@ -36,8 +36,6 @@ Observe the following rules when working with transactions:
     Requests which cause changes to the data definition
     -- create, alter, drop, truncate -- must not be used.
 
-
-
 ===============================================================================
                                     Index
 ===============================================================================

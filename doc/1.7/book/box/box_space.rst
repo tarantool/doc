@@ -1080,12 +1080,12 @@ Below is a list of all ``box.space`` functions and members.
         :return: nil
 
         The ``truncate`` method can only be called by the user who created
-        the space, or from within a `setuid` function created by the user
-        who created the space. Read
-        more about `setuid` functions in the reference for
+        the space, or from within a ``setuid`` function created by the user
+        who created the space.
+        Read more about ``setuid`` functions in the reference for
         :ref:`box.schema.func.create() <box_schema-func_create>`.
 
-        The ``truncate`` method canot be called from within a transaction.
+        The ``truncate`` method cannot be called from within a transaction.
 
         **Example:**
 
