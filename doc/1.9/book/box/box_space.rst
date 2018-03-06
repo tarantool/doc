@@ -103,7 +103,7 @@ Below is a list of all ``box.space`` functions and members.
     | <box_space-id>`                      |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`space_object.index             | Container of space's indexes    |
-    | <box_space-field_count>`             |                                 |
+    | <box_space-space_index>`             |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`box.space._cluster             | (Metadata) List of replica sets |
     | <box_space-cluster>`                 |                                 |
@@ -1079,12 +1079,13 @@ Below is a list of all ``box.space`` functions and members.
 
         :return: nil
 
-        .. NOTE::
+        The ``truncate`` method can only be called by the user who created
+        the space, or from within a ``setuid`` function created by the user
+        who created the space.
+        Read more about ``setuid`` functions in the reference for
+        :ref:`box.schema.func.create() <box_schema-func_create>`.
 
-            Note that ``truncate`` must be called only by the user who created
-            the space OR under a `setuid` function created by that user. Read
-            more about `setuid` functions in reference on
-            :ref:`box.schema.func.create() <box_schema-func_create>`.
+        The ``truncate`` method cannot be called from within a transaction.
 
         **Example:**
 
@@ -1328,6 +1329,8 @@ Below is a list of all ``box.space`` functions and members.
             ---
             - 512
             ...
+
+.. _box_space-space_index:
 
     .. data:: index
 
