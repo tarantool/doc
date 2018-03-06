@@ -70,9 +70,9 @@ and the first :ref:`index <index-box_index>` (named 'primary'):
 
    tarantool> s = box.schema.space.create('tester')
    tarantool> s:create_index('primary', {
-                 >  type = 'hash',
-                 >  parts = {1, 'unsigned'}
-                 > })
+            >  type = 'hash',
+            >  parts = {1, 'unsigned'}
+            > })
 
 Next, insert three :ref:`tuples <index-box_tuple>` (our name for "records")
 into the space:
@@ -99,7 +99,7 @@ The terminal screen now looks like this:
    2017-01-17 12:04:18.158 ... creating './00000000000000000000.xlog.inprogress'
    ---
    ...
-   tarantool>s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+   tarantool> s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
    ---
    ...
    tarantool> t = s:insert{1, 'Roxette'}
@@ -115,7 +115,6 @@ The terminal screen now looks like this:
    ---
    - - [3, 'Ace of Base', 1993]
    ...
-   tarantool>
 
 To add another index on the second field, say:
 
@@ -165,7 +164,7 @@ Try this request:
 
 .. code-block:: tarantoolsession
 
-   tarantool> box.space.tester:select{2}
+   localhost:3301> box.space.tester:select{2}
 
 This means "send a request to that Tarantool instance, and display the result".
 The result in this case is one of the tuples that was inserted earlier.
@@ -179,8 +178,6 @@ Your terminal screen should now look like this:
    ---
    - - [2, 'Scorpions', 2015]
    ...
-
-   localhost:3301>
 
 You can repeat ``box.space...:insert{}`` and ``box.space...:select{}``
 indefinitely, on either Tarantool instance.

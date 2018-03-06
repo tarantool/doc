@@ -624,7 +624,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
   The syntax of ``upsert()`` is similar to the syntax of ``update()``. However,
   the execution logic of these two requests is different.
   UPSERT is either UPDATE or INSERT, depending on the database's state.
-  Also, UPSERT execution is postponed after transaction commit, so, unlike
+  Also, UPSERT execution is postponed until after transaction commit, so, unlike
   ``update()``, ``upsert()`` doesn't return data back.
 
   .. code-block:: tarantoolsession
