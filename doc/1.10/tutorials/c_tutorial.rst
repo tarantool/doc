@@ -35,7 +35,7 @@ writing their own stored procedures.
 
 Check that these items exist on the computer:
 
-* Tarantool 1.9
+* Tarantool 1.10
 * A gcc compiler, any modern version should work
 * ``module.h`` and files #included in it
 * ``msgpuck.h``

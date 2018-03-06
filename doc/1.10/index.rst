@@ -19,7 +19,7 @@
 
         .. container:: documentation-main-page-title
 
-            Tarantool 1.9 manual
+            Tarantool 1.10 manual
 
         .. container:: documentation-main-page-description
 

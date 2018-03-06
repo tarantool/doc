@@ -52,7 +52,7 @@ For example:
     Trying 0.0.0.0...
     Connected to 0.
     Escape character is '^]'.
-    Tarantool 1.9.0 (Lua console)
+    Tarantool 1.10.0 (Lua console)
     type 'help' for interactive help
 
 In this example, the response does not include the word "binary" and does
