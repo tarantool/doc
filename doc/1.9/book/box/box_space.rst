@@ -860,6 +860,11 @@ Below is a list of all ``box.space`` functions and members.
         * if the value is something else, then execution proceeds,
           inserting|replacing the new value.
 
+        However, if a trigger function returns an old tuple, or if a
+        trigger function calls :ref:`run_triggers(false) <box_space-run_triggers>`,
+        that will not affect other triggers that are activated for the same
+        insert|update|replace request.
+
         **Example:**
 
         The following are ``before_replace`` functions that have no return
