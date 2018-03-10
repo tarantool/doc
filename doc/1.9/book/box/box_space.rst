@@ -572,6 +572,13 @@ Below is a list of all ``box.space`` functions and members.
         It is legal to use ``format`` on a space that already has a format,
         provided that there is no conflict with existing data or index definitions.
 
+        It is legal to use ``format`` to change the is_nullable flag;
+        for example after ``box.space.tester:format({{' ',type='scalar',is_nullable=false}})``
+        the request ``box.space.tester:format({{' ',type='scalar',is_nullable=true}})``
+        will not cause an error -- and will not cause rebuilding of the space.
+        But going the other way and changing is_nullable from true
+        to false might cause rebuilding and might cause an error if there are existing tuples with nulls.
+
         **Example:**
 
         .. code-block:: lua
