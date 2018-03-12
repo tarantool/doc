@@ -131,6 +131,9 @@ Now, to prepare for the example in the next section, try this:
 
     tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
+
+.. _connecting-remotely:
+
 --------------------------------------------------------------------------------
 Connecting remotely
 --------------------------------------------------------------------------------

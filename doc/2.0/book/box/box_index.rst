@@ -823,6 +823,10 @@ Below is a list of all ``box.index`` functions and members.
     .. method:: alter({options})
 
         Alter an index.
+        It is legal in some circumstances to change an index's parts and/or
+        change the type and the is_nullable flag for a part.
+        However, this usually causes rebuilding of the space, except for
+        the simple case where the is_nullable flag is changed from false to true.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
