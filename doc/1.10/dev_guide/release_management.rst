@@ -169,8 +169,8 @@ To bump a new version of a Docker container:
 
 1. On the ``master`` branch of
    `tarantool/docker <https://github.com/tarantool/docker>`_ repository,
-   find the Dockerfile that corresponds to the commit's major version (e.g.
-   https://github.com/tarantool/docker/blob/master/2.4/Dockerfile
+   find the Dockerfile that corresponds to the commit's **major** version (e.g.
+   https://github.com/tarantool/docker/blob/master/2.x/Dockerfile
    for Tarantool version 2.4) and specify the required commit in
    ``TARANTOOL_VERSION``, for example
    ``TARANTOOL_VERSION=2.4.0-11-gcd17b77f9``.
@@ -179,7 +179,7 @@ To bump a new version of a Docker container:
 
 3. In the same repository, create a branch named after the commit's
    ``<major>.<minor>`` versions,
-   e.g. ``2.4`` for commit 2.4.0-11-gcd17b77f9.
+   e.g. branch ``2.4`` for commit 2.4.0-11-gcd17b77f9.
 
 4. In Tarantool container build settings at ``hub.docker.com``
    (https://hub.docker.com/r/tarantool/tarantool/~/settings/automated-builds/),
