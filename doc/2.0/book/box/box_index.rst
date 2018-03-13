@@ -132,7 +132,7 @@ Below is a list of all ``box.index`` functions and members.
 
         .. NOTE::
 
-            :samp:`{key}` is only used to find the first match. Do not assume 
+            :samp:`{key}` is only used to find the first match. Do not assume
             all matched tuples will contain the key.
 
         The :samp:`{iterator}` parameter specifies the rule for matching and
@@ -824,9 +824,10 @@ Below is a list of all ``box.index`` functions and members.
 
         Alter an index.
         It is legal in some circumstances to change an index's parts and/or
-        change the type and the is_nullable flag for a part.
+        change the type and the ``is_nullable`` flag for a part.
         However, this usually causes rebuilding of the space, except for
-        the simple case where the is_nullable flag is changed from false to true.
+        the simple case where the ``is_nullable`` flag is changed from
+        ``false`` to ``true``.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
@@ -839,7 +840,7 @@ Below is a list of all ``box.index`` functions and members.
         **Possible errors:**
 
         * index does not exist,
-        * the first index cannot be changed to {unique = false},
+        * the first index cannot be changed to ``{unique = false}``.
 
         **Example:**
 

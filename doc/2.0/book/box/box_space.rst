@@ -554,23 +554,24 @@ Below is a list of all ``box.space`` functions and members.
         :ref:`box.schema.space.create() <box_schema-space_create>`.
 
         The format clause contains, for each field, a definition within braces:
-        ``{name='...',type='...'[,is_nullable=...]}`` .
-        The name value may be any string, provided that two fields do not have the
-        same name.
-        The type value may be any of those allowed for
-        :ref:`indexed fields <index-box_indexed-field-types>`:
-        unsigned | string | integer | number | boolean | array | scalar
-        (the same as the requirement in
-        :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
-        The optional is_nullable value may be either ``true`` or ``false``
-        (the same as the requirement in
-        :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
+        ``{name='...',type='...'[,is_nullable=...]}``, where:
+
+        * the ``name`` value may be any string, provided that two fields do not
+          have the same name;
+        * the ``type`` value may be any of those allowed for
+          :ref:`indexed fields <index-box_indexed-field-types>`:
+          unsigned | string | integer | number | boolean | array | scalar
+          (the same as the requirement in
+          :ref:`"Options for space_object:create_index" <box_space-create_index-options>`);
+        * the optional ``is_nullable`` value may be either ``true`` or ``false``
+          (the same as the requirement in
+          :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
 
         It is not legal for tuples to contain values that have the wrong type;
         for example after ``box.space.tester:format({{' ',type='number'}})`` the request
         ``box.space.tester:insert{'string-which-is-not-a-number'}`` will cause an error.
 
-        It is not legal for tuples to contain null values if is_nullable = false, which is the default;
+        It is not legal for tuples to contain null values if ``is_nullable=false``, which is the default;
         for example after ``box.space.tester:format({{' ',type='number',is_nullable=false}})`` the request
         ``box.space.tester:insert{nil,2}`` will cause an error.
 
@@ -579,19 +580,20 @@ Below is a list of all ``box.space`` functions and members.
         :ref:`field_count <box_space-field_count>` member.
 
         It is legal for tuples to have fewer fields than are described by a format
-        clause, if the omitted trailing fields are described with is_nullable=true;
+        clause, if the omitted trailing fields are described with ``is_nullable=true``;
         for example after ``box.space.tester:format({{'a',type='number'},{'b',type='number',is_nullable=true}})`` the request
         ``box.space.tester:insert{2}`` will not cause a format-related error.
 
         It is legal to use ``format`` on a space that already has a format,
         provided that there is no conflict with existing data or index definitions.
 
-        It is legal to use ``format`` to change the is_nullable flag;
+        It is legal to use ``format`` to change the ``is_nullable`` flag;
         for example after ``box.space.tester:format({{' ',type='scalar',is_nullable=false}})``
         the request ``box.space.tester:format({{' ',type='scalar',is_nullable=true}})``
         will not cause an error -- and will not cause rebuilding of the space.
-        But going the other way and changing is_nullable from true
-        to false might cause rebuilding and might cause an error if there are existing tuples with nulls.
+        But going the other way and changing ``is_nullable`` from ``true``
+        to ``false`` might cause rebuilding and might cause an error if there
+        are existing tuples with nulls.
 
         **Example:**
 
