@@ -1,23 +1,26 @@
-language: generic # don't install any environment
-sudo: true
-
-addons:
-  apt:
-    sources:
-      - george-edison55-precise-backports
-    packages:
-      - cmake
-      - cmake-data
-      - lua5.1
-      - liblua5.1-0-dev
-
-install:
-  - cmake --version
-  - pip install -r requirements.txt --upgrade --user
-  - pip install pyOpenSSL --upgrade --user
-
-script: bash ./documentation.sh
-
-env:
-  global:
-    - ENCRYPTION_LABEL: "cc37864fc395"
+jobs:
+  include:
+    - stage: build
+      language: generic # don't install any environment
+      sudo: true
+      addons:
+        apt:
+          sources:
+            - george-edison55-precise-backports
+          packages:
+            - cmake
+            - cmake-data
+            - lua5.1
+            - liblua5.1-0-dev
+      install:
+        - cmake --version
+        - pip install -r requirements.txt --upgrade --user
+        - pip install pyOpenSSL --upgrade --user
+      script: bash ./documentation.sh
+      env:
+        global:
+          - ENCRYPTION_LABEL: "cc37864fc395"
+    - stage: trigger
+      if: branch = 2.0
+      language: generic # don't install any environment
+      script: curl -X POST -F token="$GL_TRIGGER_KEY" -F ref=master https://gitlab.com/api/v4/projects/4657341/trigger/pipeline
