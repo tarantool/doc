@@ -113,8 +113,8 @@ section of this documentation.
      In case port ``8000`` is already in use, you can specify any other port
      number that is bigger than ``1000``.
 
-5. Open your browser and enter ``127.0.0.1:8000/en/doc/1.6/`` into the address
-   box (or ``127.0.0.1:8000/ru/doc/1.6/`` if you built the Russian documentation).
+5. Open your browser and enter ``127.0.0.1:8000/en/doc/1.7/`` into the address
+   box (or ``127.0.0.1:8000/ru/doc/1.7/`` if you built the Russian documentation).
    Mind the trailing slash "/" in the address string.
 
    If your local documentation build is valid, the manual will appear in
