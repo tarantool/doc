@@ -32,32 +32,32 @@ section of this documentation.
    GitHub repository ``tarantool/doc``, branch 1.6. For example, to download to a local
    directory named ``~/tarantool-doc``:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-     git clone https://github.com/tarantool/doc.git ~/tarantool-doc
+       $ git clone https://github.com/tarantool/doc.git ~/tarantool-doc
 
 2. Use ``CMake`` to initiate the build.
 
-   .. code-block:: bash
+   .. code-block:: console
 
-     cd ~/tarantool-doc
-     make clean         # unnecessary, added for good luck
-     rm CMakeCache.txt  # unnecessary, added for good luck
-     cmake .            # initiate
+       $ cd ~/tarantool-doc
+       $ make clean         # unnecessary, added for good luck
+       $ rm CMakeCache.txt  # unnecessary, added for good luck
+       $ cmake .            # initiate
 
 3. Build a local version of the documentation.
 
    Run the ``make`` command with an appropriate option to specify which
    documentation version to build.
 
-   .. code-block:: bash
+   .. code-block:: console
 
-     cd ~/tarantool-doc
-     make sphinx-html           # multi-page English version
-     make sphinx-singlehtml     # one-page English version
-     make sphinx-html-ru        # multi-page Russian version
-     make sphinx-singlehtml-ru  # one-page Russian version
-     make all                   # all versions plus the entire web-site
+       $ cd ~/tarantool-doc
+       $ make sphinx-html           # multi-page English version
+       $ make sphinx-singlehtml     # one-page English version
+       $ make sphinx-html-ru        # multi-page Russian version
+       $ make sphinx-singlehtml-ru  # one-page Russian version
+       $ make all                   # all versions plus the entire web-site
 
    Documentation will be created in subdirectories of ``/output``:
 
@@ -69,7 +69,7 @@ section of this documentation.
 
 4. Set up a web server.
 
-   * One way is to run the ``sphinx-webserver`` rule from our makefile.
+   * One way is to say ``make sphinx-webserver``.
      This will set up and run the web server on port ``8000``:
 
      .. code-block:: console
