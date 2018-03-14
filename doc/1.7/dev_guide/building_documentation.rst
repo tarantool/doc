@@ -69,23 +69,60 @@ section of this documentation.
    The entry point for each version is the ``index.html`` file in the appropriate
    directory.
 
-4. Set up a web-server.
+4. Set up a web server.
 
-   Run the following command to set up a web-server. The example below is for
-   Ubuntu, but the procedure is similar for other supported operating systems.
-   Make sure to run it from the documentation output folder,
-   ``output/en`` or ``output/ru``, as in the example below:
+   * One way is to say ``make sphinx-webserver``.
+     This will set up and run the web server on port ``8000``:
 
-   .. code-block:: console
+     .. code-block:: console
 
-       $ cd ~/tarantool-doc/output/en
-       $ python -m SimpleHTTPServer 8000
+         $ cd ~/tarantool-doc
+         $ make sphinx-html       # as an example, build the multi-page English documentation
+         $ make sphinx-webserver  # set up and run the web server
 
-5. Open your browser and enter ``127.0.0.1:8000/doc/1.7`` into the address box. If
-   your local documentation build is valid, the manual will appear in the browser.
+     In case port ``8000`` is already in use, you can specify any other port
+     number that is bigger than ``1000`` in the ``tarantool-doc/CMakeLists.txt``
+     file (search it for the ``sphinx-webserver`` target) and rebuild cmake
+     files:
 
-6. To contribute to documentation, use the ``.rst`` format for drafting and
-   submit your updates as a
+     .. code-block:: console
+
+         $ cd ~/tarantool-doc
+         $ git clean -qfxd        # clean up old cmake files
+         $ cmake .                # rebuild cmake files
+         $ make sphinx-html       # as an example, build the multi-page English documentation
+         $ make sphinx-webserver  # set up and run the web server on the custom port
+
+     Or you can release the port:
+
+     .. code-block:: console
+
+         $ sudo lsof -i :8000  # get the process ID (PID)
+         COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+         Python 19516 user 3u IPv4 0xe7f8gc6be1b43c7 0t0 TCP *:irdmi (LISTEN)
+         $ sudo kill -9 19516  # kill the process
+
+   * The other way is to run the built-in web server in Python.
+     Make sure to run it from the documentation ``output`` folder:
+
+     .. code-block:: console
+
+         $ cd ~/tarantool-doc/output
+         $ python -m SimpleHTTPServer 8000
+
+     In case port ``8000`` is already in use, you can specify any other port
+     number that is bigger than ``1000``.
+
+5. Open your browser and enter ``127.0.0.1:8000/en/doc/1.6/`` into the address
+   box (or ``127.0.0.1:8000/ru/doc/1.6/`` if you built the Russian documentation).
+   Mind the trailing slash "/" in the address string.
+
+   If your local documentation build is valid, the manual will appear in
+   the browser.
+
+6. To contribute to documentation, use the
+   `REST <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_
+   format for drafting and submit your updates as a
    `pull request <https://help.github.com/articles/creating-a-pull-request/>`_
    via GitHub.
 
@@ -95,11 +132,12 @@ section of this documentation.
 
 .. NOTE::
 
-   * If you suggest creating a new documentation section (a whole new
-     page), it has to be saved to the relevant section at GitHub.
+    * If you suggest creating a new documentation section (a whole new
+      page), it has to be saved to the relevant section at GitHub.
 
-   * If you want to contribute to localizing this documentation (for example into
-     Russian), add your translation strings to ``.po`` files stored in the
-     corresponding locale directory (for example ``/locale/ru/LC_MESSAGES/``
-     for Russian). See more about localizing with Sphinx at
-     http://www.sphinx-doc.org/en/stable/intl.html
+    * If you want to contribute to localizing this documentation (for example into
+      Russian), add your translation strings to ``.po`` files stored in the
+      corresponding locale directory (for example ``/locale/ru/LC_MESSAGES/``
+      for Russian). See more about localizing with Sphinx at
+      http://www.sphinx-doc.org/en/stable/intl.html
+
