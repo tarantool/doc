@@ -85,7 +85,7 @@ Rules for object names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Database objects have loose **rules for names**:
-the maximum length is 64000 bytes (not characters),
+the maximum length is 65000 bytes (not characters),
 and almost any legal Unicode character is allowed,
 including spaces, ideograms and punctuation.
 
@@ -99,7 +99,9 @@ form (#2), or the variable form (#3). For example:
     tarantool> s = box.space['1*A !@$%^&*()_+12345678901234567890']
     tarantool> s:select{1}
 
-Control characters are not allowed, and characters which are special or which
-cannot be displayed are not recommended.
+Characters which are unassigned code points, or
+line and paragraph separators, or control characters,
+or the replacement character (U+FFFD), are disallowed.
+Characters which cannot be displayed are not recommended.
 
 Names are "case sensitive", so 'A' and 'a' are not the same.
