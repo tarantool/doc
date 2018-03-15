@@ -505,7 +505,7 @@ Replication packet structure
     | MP_INT: MP_INT | MP_INT: MP_INT | MP_INT: MP_STRING ||       |
     |                |                |                   ||       |
     +================+================+===================++-------+
-                   MP_MAP                                   MP_MAP
+                             MP_MAP                          MP_MAP
 
     Then instance, which we connect to, will send last SNAP file by, simply,
     creating a number of INSERTs (with additional LSN and ServerID)
@@ -528,7 +528,7 @@ Replication packet structure
                                   HEADER
     +===================+===================+
     |                   |                   |
-    |     0x00: 0x41    |    0x01: SYNC     |
+    |     0x00: 0x42    |    0x01: SYNC     |
     |   MP_INT: MP_INT  |  MP_INT: MP_INT   |
     |                   |                   |
     +===================+===================+
