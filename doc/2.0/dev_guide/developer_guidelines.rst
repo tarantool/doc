@@ -113,8 +113,8 @@ How to submit a patch for review
 1. **Preparing a patch**
 
 Once you have committed a patch to your local git repository, you can
-submit it for review. We don't accept GitHub pool requests. Patches
-should be sent as plain text messages to patches@tarantool.org.
+submit it for review. We don't accept GitHub pull requests. Patches
+should be sent as plain text messages to tarantool-patches@freelists.org.
 
 To prepare an email, use `git format-patch` command:
 
@@ -137,6 +137,9 @@ recommend adding:
 
 * a hyperlink to the branch where this patch can be found at GitHub, and
 * a hyperlink to the GitHub issue your patch is supposed to fix, if any.
+
+If there is just one patch, the change log should go right after ``—--`` in the
+message body (it will be ignored by ``git am`` then).
 
 If there are multiple patches you want to submit in one go (e.g. this is
 a big feature which requires some preparatory patches to be committed
@@ -226,7 +229,7 @@ Once configured, use the following command to send your patches:
 
 .. code-block:: console
 
-    $ git send-email --to patches@tarantool.org 00*
+    $ git send-email --to tarantool-patches@freelists.org 00*
 
 (``00*`` wildcard will be expanded by your shell to the list of patches
 generated at the previous step.)
