@@ -49,6 +49,7 @@ to any of Tarantool repositories at GitHub.
    * iproto:
    * net.box:
    * lua:
+   * sql:
 
 4.  Do not end the subject line with a period.
 5.  Do not put "gh-xx", "closes #xxx" to the subject line.
@@ -138,7 +139,7 @@ recommend adding:
 * a hyperlink to the branch where this patch can be found at GitHub, and
 * a hyperlink to the GitHub issue your patch is supposed to fix, if any.
 
-If there is just one patch, the change log should go right after ``—--`` in the
+If there is just one patch, the change log should go right after ``---`` in the
 message body (it will be ignored by ``git am`` then).
 
 If there are multiple patches you want to submit in one go (e.g. this is
