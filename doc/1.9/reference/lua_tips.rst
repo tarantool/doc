@@ -99,9 +99,13 @@ form (#2), or the variable form (#3). For example:
     tarantool> s = box.space['1*A !@$%^&*()_+12345678901234567890']
     tarantool> s:select{1}
 
-Characters which are unassigned code points, or
-line and paragraph separators, or control characters,
-or the replacement character (U+FFFD), are disallowed.
-Characters which cannot be displayed are not recommended.
+Disallowed:
+
+* characters which are unassigned code points,
+* line and paragraph separators,
+* control characters,
+* the replacement character (U+FFFD).
+
+Not recommended: characters which cannot be displayed.
 
 Names are "case sensitive", so 'A' and 'a' are not the same.
