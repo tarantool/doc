@@ -21,6 +21,13 @@ Support for a substantial subset of ISO/IEC 9075:2011 SQL standard,
 including JOINs, subqueries and VIEWs. See details in our
 :ref:`SQL tutorial <sql_tutorial>`.
 
+Minor behavior change:
+starting with Tarantool version 2.0,
+:ref:`index_object:min(key) <box_index-min>` and
+:ref:`index_object:max(key) <box_index-max>`
+will return nothing
+if optional ``key`` value is not equal to a value in the index.
+
 .. _whats_new_176:
 
 --------------------------------------------------------------------------------
