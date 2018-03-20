@@ -22,4 +22,4 @@ jobs:
           - ENCRYPTION_LABEL: "cc37864fc395"
     - stage: trigger
       language: generic # don't install any environment
-      script: curl -X POST -F token="$GL_TRIGGER_KEY" -F ref=master https://gitlab.com/api/v4/projects/4657341/trigger/pipeline
+      script: bash ./trigger.sh "$GL_TRIGGER_KEY"
