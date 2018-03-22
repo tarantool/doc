@@ -160,3 +160,114 @@ read-only mode for this instance:
 
 We also recommend to specify master #3 URI in all instance files in order to
 keep all the files consistent with each other and with the current replication topology.
+
+.. _replication-orphan_status:
+
+--------------------------------------------------------------------------------
+Orphan status
+--------------------------------------------------------------------------------
+
+Starting with Tarantool version 1.9, there is a change to the
+procedure when an instance joins a cluster. 
+During box.cfg() the instance will try to join all masters listed
+in :ref:`box.cfg.replication <cfg_replication-replication>`.
+If the instance does not succeed with at least
+the number of masters specified in
+:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
+then it will switch to orphan status.
+While an instance is in orphan status, it is read-only.
+
+To "join" a master, a replica instance must connect to the
+master node and then "sync". "Sync" means receive updates
+from the master in order to make a local database copy.
+Syncing is complete when the replica has received all the
+updates, or at least has received enough updates that the
+replica's :ref:`lag <box_info_replication_upstream_lag>`
+is less than or equal to the number of seconds specified by the
+configuration parameter
+:ref:`box.cfg.replication_sync_lag <cfg_replication-replication_sync_lag>`.
+
+Situation 1:  box.cfg{} is being called for the first time.
+A replica is joining but no cluster exists yet.
+In pseudocode:
+
+.. code-block:: none
+
+    try to connect to all box.cfg.replication nodes
+      -- try 3 times with timeout = box.cfg.replication_timeout
+      -- if number of successful connects < 1, abort
+    if this instance is chosen as the cluster leader,
+    (that is, it is the master that other nodes must join), then
+    {
+      /* this is called "cluster bootstrap" or "automtic bootstrap" */
+      set status to "running"
+      return from box.cfg{}
+    }
+    otherwise
+    {
+      this instance will be a replica joining an existing cluster,
+      see Situation 2.
+    }
+
+Situation 2: box.cfg{} is being called for the first time.
+A replica is joining an existing cluster.
+In pseudocode:
+
+.. code-block:: none
+
+   try to connect to all box.cfg.replication nodes
+     -- if number of successful connects < 1, abort
+   if box.replication.sync_status is nil
+   or box.replication.sync_status is 365 * 100 * 86400 (TIMEOUT_INFINITY), then
+   {
+     set status to "running"
+   }
+   otherwise
+   {
+     set status to "orphan"
+     for each master in box.cfg.replication that was connected
+     {
+       if master version < '1.9.0', continue
+       receive upates from master until syncing is complete
+       -- but if it fails to sync, continue
+     }
+     if the number of syncs is greater than or equal to the quorum
+     {
+       set status to "running"
+     }
+     otherwise
+     {
+       /* status remains = "orphan" */ 
+     }
+   }
+   return from box.cfg{}
+
+Situation 3: box.cfg{} is not being called for the first time.
+It is being called again in order to perform "recovery".
+In pseudocode:
+
+.. code-block:: none
+
+   perform "recovery" from the last snapshot and the WAL files
+   Do the same steps as in Situation 2, except that:
+     -- the timeout period is box.cfg.replication_timeout * 4
+     -- or, the timeout period is box.cfg.replication_connect_timeout * 4
+     -- it is not necessary to sync for every master, it is only
+        necessary to sync for box.cfg.replication_connect_quorum masters
+
+Situation 4: box.cfg{} is not being called for the first time.
+It is being called again because some replication parameter
+or something in the cluster has changed.
+In pseudocode:
+
+.. code-block:: none
+
+   try to connect to all box.cfg.replication nodes
+     -- if number of connects < number of nodes, abort
+     -- the timeout period is box.cfg.replication_timeout * 4
+     -- or, the timeout period is box.cfg.replication_connect_timeout * 4
+     /* there is no "sync" */
+   set status to "running"
+
+The above pseudocode descriptions are not intended as a complete
+narration of all the steps.
