@@ -56,6 +56,19 @@
     | Default: 1
     | Dynamic: **yes**
 
+.. _cfg_replication-replication_connect_timeout:
+
+.. confval:: replication_connect_timeout
+
+    The number of seconds that a replica will wait when trying to
+    connect to a master in a cluster.
+    See more in :ref:`orphan status <replication-orphan_status>`.
+
+    | Type: float
+    | Default: 4
+    | Dynamic: no
+
+
 .. _cfg_replication-replication_connect_quorum:
 
 .. confval:: replication_connect_quorum

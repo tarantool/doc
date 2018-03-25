@@ -177,8 +177,16 @@ the number of masters specified in
 then it will switch to orphan status.
 While an instance is in orphan status, it is read-only.
 
-To "join" a master, a replica instance must connect to the
-master node and then "sync". "Sync" means receive updates
+To "join" a master, a replica instance must "connect" to the
+master node and then "sync".
+
+"Connect" means contact the master over the physical network
+and receive acknowledgment. If there is no acknowledgment after
+:ref:`box.replication_connect_timeout <cfg_replication-replication_connect_timeout>`
+seconds (usually 4 seconds), and retries fail or do not happen,
+then the connect step fails.
+
+"Sync" means receive updates
 from the master in order to make a local database copy.
 Syncing is complete when the replica has received all the
 updates, or at least has received enough updates that the
@@ -194,7 +202,7 @@ In pseudocode:
 .. code-block:: none
 
     try to connect to all box.cfg.replication nodes
-      -- try 3 times with timeout = box.cfg.replication_timeout
+      -- up to 3 retries are possible
       -- if number of successful connects < 1, abort
     if this instance is chosen as the cluster leader,
     (that is, it is the master that other nodes must join), then
@@ -233,7 +241,7 @@ In pseudocode:
      }
      if the number of syncs is greater than or equal to the quorum
      {
-       set status to "running"
+       set status to "running" or "follow"
      }
      otherwise
      {
@@ -250,8 +258,7 @@ In pseudocode:
 
    perform "recovery" from the last snapshot and the WAL files
    Do the same steps as in Situation 2, except that:
-     -- the timeout period is box.cfg.replication_timeout * 4
-     -- or, the timeout period is box.cfg.replication_connect_timeout * 4
+     -- perhaps retries are not attempted if the connect step fails
      -- it is not necessary to sync for every master, it is only
         necessary to sync for box.cfg.replication_connect_quorum masters
 
@@ -264,10 +271,8 @@ In pseudocode:
 
    try to connect to all box.cfg.replication nodes
      -- if number of connects < number of nodes, abort
-     -- the timeout period is box.cfg.replication_timeout * 4
-     -- or, the timeout period is box.cfg.replication_connect_timeout * 4
      /* there is no "sync" */
-   set status to "running"
+   set status to "running" or "follow"
 
 The above pseudocode descriptions are not intended as a complete
 narration of all the steps.
