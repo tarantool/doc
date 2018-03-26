@@ -107,6 +107,9 @@ Below is a list of all ``http`` functions.
             too slow and abort. See also
             `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_
           * ``verbose`` - set on/off verbose mode
+          * ``unix_socket``  -- A socket name to use instead of an Internet address,
+            for a local connection. The Tarantool server must be built with
+            libcurl 7.40 or later. See the example later in this section.
 
         :return: connection information, with all of these components:
 
@@ -156,7 +159,7 @@ Below is a list of all ``http`` functions.
         * ``failed_requests`` - total number of requests which have failed
           including system errors, curl errors, and HTTP errors
 
-    **Example:**
+    **Example 1:**
 
     Connect to an HTTP server, look at the size of the response for a 'GET' request,
     and look at the statistics for the session.
@@ -182,3 +185,29 @@ Below is a list of all ``http`` functions.
           http_other_responses: 0
           http_200_responses: 1
           sockets_added: 2
+
+    **Example 2:**
+
+    Start two Tarantool instances on the same computer.
+
+    On the first Tarantool instance, listen on a Unix socket: |br|
+    :code:`box.cfg{listen='/tmp/unix_domain_socket.sock'}`
+
+    On the second Tarantool instance, send via http_client: |br|
+    :code:`box.cfg{}` |br|
+    :code:`http_client = require('http.client').new({5})` |br|
+    :code:`http_client:put('http://localhost/','body',{unix_socket = '/tmp/unix_domain_socket.sock'})`
+
+    Terminal #1 will show an error message: "Invalid MsgPack".
+    This is not useful but demonstrates the syntax and demonstrates
+    that was sent was received.
+
+
+
+
+
+
+
+
+
+

@@ -150,6 +150,19 @@ which displays detailed memory usage statistics for a Tarantool instance.
       arena_used: 1003632
     ...
 
+Tarantool takes memory from the operating system,
+for example when a user does many insertions.
+You can see how much it has taken by saying (on Linux) |br|
+``ps -eo args,%mem | grep "tarantool"`` |br|
+Tarantool almost never releases this memory, even if the user
+deletes everything that was inserted, or reduces
+fragmentation by calling the Lua
+`collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_.
+Ordinarily this does not affect performance.
+But, to force Tarantool to release memory, you can
+call :ref:`box.snapshot <box-snapshot>`, stop the server instance, and restart it.
+
+
 .. _admin-profiling_performance_issues:
 
 --------------------------------------------------------------------------------

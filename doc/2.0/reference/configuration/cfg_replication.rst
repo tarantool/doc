@@ -1,6 +1,7 @@
 * :ref:`replication <cfg_replication-replication>`
 * :ref:`replication_timeout <cfg_replication-replication_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+* :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 
@@ -55,6 +56,19 @@
     | Default: 1
     | Dynamic: **yes**
 
+.. _cfg_replication-replication_connect_timeout:
+
+.. confval:: replication_connect_timeout
+
+    The number of seconds that a replica will wait when trying to
+    connect to a master in a cluster.
+    See more in :ref:`orphan status <replication-orphan_status>`.
+
+    | Type: float
+    | Default: 4
+    | Dynamic: no
+
+
 .. _cfg_replication-replication_connect_quorum:
 
 .. confval:: replication_connect_quorum
@@ -76,6 +90,24 @@
     | Type: integer
     | Default: null
     | Dynamic: **yes**
+
+.. _cfg_replication-replication_sync_lag:
+
+.. confval:: replication_sync_lag
+
+    The maximum :ref:`lag <box_info_replication_upstream_lag>` allowed for a replica.
+    When a replica syncs (gets updates from a master), it may not catch up completely.
+    The number of seconds that the replica is behind the master is called the "lag".
+    Syncing is considered to be complete when the replica's lag is less than
+    or equal to replication_sync_lag.
+
+    If a user sets replication_sync_lag to nil or to 365 * 100 * 86400 (TIMEOUT_INFINITY),
+    then lag does not matter -- the replica is always considered to be "synced".
+
+    | Type: float
+    | Default: 10
+    | Dynamic: no
+
 
 .. _cfg_replication-replicaset_uuid:
 
