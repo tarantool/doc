@@ -23,7 +23,8 @@ variables.
   :ref:`tarantool <tarantool-build>` module
   and by the Linux command ``ps -A``.
 * **ro** is ``true`` if the instance is in "read-only" mode
-  (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``).
+  (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``),
+  or if status is 'orphan'.
 * **signature** is the sum of all **lsn** values from the vector clocks
   (**vclock**) of all instances in the replica set.
 * **status** corresponds to **replication.upstream.status** (see below).
@@ -113,6 +114,8 @@ variables.
         replication is in progress.
       * ``stopped`` means that replication was stopped due to a replication
         error (e.g. :ref:`duplicate key <error_codes>`).
+      * ``orphan`` means that the instance has not (yet) succeeded in joining
+        the required number of masters (see :ref:`orphan status <replication-orphan_status>`).
 
     .. _box_info_replication_upstream_idle:
 

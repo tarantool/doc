@@ -673,8 +673,10 @@ Below is a list of all ``box.index`` functions and members.
         :param scalar/table      key: values to be matched against the index key
 
         :return: the tuple for the first key in the index. If optional
-                 ``key-value`` is supplied, returns the first key which
-                 is greater than or equal to ``key-value``.
+                 ``key`` value is supplied, returns the first key which
+                 is greater than or equal to ``key`` value.
+                 In a future version of Tarantool, index:min(``key`` value) will return nothing
+                 if ``key`` value is not equal to a value in the index.
         :rtype:  tuple
 
         **Possible errors:** index is not of type 'TREE'.
@@ -700,9 +702,11 @@ Below is a list of all ``box.index`` functions and members.
                                           <app_server-object_reference>`.
         :param scalar/table      key: values to be matched against the index key
 
-        :return: the tuple for the last key in the index. If optional ``key-value``
+        :return: the tuple for the last key in the index. If optional ``key`` value
                  is supplied, returns the last key which is less than or equal to
-                 ``key-value``.
+                 ``key`` value.
+                 In a future version of Tarantool, index:max(``key`` value) will return nothing
+                 if ``key`` value is not equal to a value in the index.
         :rtype:  tuple
 
         **Possible errors:** index is not of type 'TREE'.
@@ -841,6 +845,10 @@ Below is a list of all ``box.index`` functions and members.
 
         * index does not exist,
         * the first index cannot be changed to ``{unique = false}``.
+        * the alter function is only applicable for the memtx storage engine.
+
+        **Note re storage engine:** vinyl does not support ``alter()``.
+        If necessary, users can drop the index or space and then create it again.
 
         **Example:**
 
