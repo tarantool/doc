@@ -846,7 +846,7 @@ Below is a list of all ``box.index`` functions and members.
         **Possible errors:**
 
         * index does not exist,
-        * the first index cannot be changed to ``{unique = false}``.
+        * the first index cannot be changed to ``{unique = false}``,
         * the alter function is only applicable for the memtx storage engine.
 
         **Note re storage engine:** vinyl does not support ``alter()``.
