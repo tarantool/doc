@@ -111,11 +111,16 @@ Based on [1_] and [2_].
 How to submit a patch for review
 ===========================================================
 
+We don't accept GitHub pull requests. Instead, all patches
+should be sent as plain-text messages to tarantool-patches@freelists.org.
+Please subscribe to our mailing list
+at https://www.freelists.org/list/tarantool-patches
+to ensure that your messages are added to the archive.
+
 1. **Preparing a patch**
 
 Once you have committed a patch to your local git repository, you can
-submit it for review. We don't accept GitHub pull requests. Patches
-should be sent as plain text messages to tarantool-patches@freelists.org.
+submit it for review.
 
 To prepare an email, use `git format-patch` command:
 
