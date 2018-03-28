@@ -758,7 +758,7 @@ functions.
 
     **Possible errors:** nil.
 
-    **Example:**
+    **Example 1:**
 
     .. code-block:: tarantoolsession
 
@@ -769,11 +769,18 @@ functions.
         ---
         - fh: 11
         ...
-        tarantool> fio.open('x.txt', {'O_WRONLY', 'O_CREAT'},tonumber('644',8))
+
+    **Example 2:**
+
+    Using ``fio.open()`` with ``tonumber('N', 8)`` to set permissions
+    as an octal number:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.open('x.txt', {'O_WRONLY', 'O_CREAT'}, tonumber('644',8))
         ---
         - fh: 12
         ...
-
 
 .. class:: file-handle
 
@@ -890,7 +897,7 @@ functions.
 
         If the format is ``read()``  or ``read([count])`` then return a string
         containing the data that was read from the file, or nil if failure.
-        
+
         If the format is ``read(buffer, count)`` then return the data
         to the buffer.
         (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
