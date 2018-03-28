@@ -168,13 +168,13 @@ Orphan status
 --------------------------------------------------------------------------------
 
 Starting with Tarantool version 1.9, there is a change to the
-procedure when an instance joins a cluster. 
-During box.cfg() the instance will try to join all masters listed
+procedure when an instance joins a cluster.
+During ``box.cfg()`` the instance will try to join all masters listed
 in :ref:`box.cfg.replication <cfg_replication-replication>`.
 If the instance does not succeed with at least
 the number of masters specified in
 :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
-then it will switch to orphan status.
+then it will switch to **orphan status**.
 While an instance is in orphan status, it is read-only.
 
 To "join" a master, a replica instance must "connect" to the
@@ -195,7 +195,7 @@ is less than or equal to the number of seconds specified by the
 configuration parameter
 :ref:`box.cfg.replication_sync_lag <cfg_replication-replication_sync_lag>`.
 
-Situation 1:  box.cfg{} is being called for the first time.
+Situation 1: ``box.cfg{}`` is being called for the first time.
 A replica is joining but no cluster exists yet.
 In pseudocode:
 
@@ -217,62 +217,62 @@ In pseudocode:
       see Situation 2.
     }
 
-Situation 2: box.cfg{} is being called for the first time.
+Situation 2: ``box.cfg{}`` is being called for the first time.
 A replica is joining an existing cluster.
 In pseudocode:
 
 .. code-block:: none
 
-   try to connect to all box.cfg.replication nodes
-     -- if number of successful connects < 1, abort
-   if box.replication.sync_status is nil
-   or box.replication.sync_status is 365 * 100 * 86400 (TIMEOUT_INFINITY), then
-   {
-     set status to "running"
-   }
-   otherwise
-   {
-     set status to "orphan"
-     for each master in box.cfg.replication that was connected
-     {
-       if master version < '1.9.0', continue
-       receive upates from master until syncing is complete
-       -- but if it fails to sync, continue
-     }
-     if the number of syncs is greater than or equal to the quorum
-     {
-       set status to "running" or "follow"
-     }
-     otherwise
-     {
-       /* status remains = "orphan" */ 
-     }
-   }
-   return from box.cfg{}
+    try to connect to all box.cfg.replication nodes
+      -- if number of successful connects < 1, abort
+    if box.replication.sync_status is nil
+    or box.replication.sync_status is 365 * 100 * 86400 (TIMEOUT_INFINITY), then
+    {
+      set status to "running"
+    }
+    otherwise
+    {
+      set status to "orphan"
+      for each master in box.cfg.replication that was connected
+      {
+        if master version < '1.9.0', continue
+        receive upates from master until syncing is complete
+        -- but if it fails to sync, continue
+      }
+      if the number of syncs is greater than or equal to the quorum
+      {
+        set status to "running" or "follow"
+      }
+      otherwise
+      {
+        /* status remains = "orphan" */
+      }
+    }
+    return from box.cfg{}
 
-Situation 3: box.cfg{} is not being called for the first time.
+Situation 3: ``box.cfg{}`` is not being called for the first time.
 It is being called again in order to perform "recovery".
 In pseudocode:
 
 .. code-block:: none
 
-   perform "recovery" from the last snapshot and the WAL files
-   Do the same steps as in Situation 2, except that:
-     -- perhaps retries are not attempted if the connect step fails
-     -- it is not necessary to sync for every master, it is only
-        necessary to sync for box.cfg.replication_connect_quorum masters
+    perform "recovery" from the last snapshot and the WAL files
+    Do the same steps as in Situation 2, except that:
+      -- perhaps retries are not attempted if the connect step fails
+      -- it is not necessary to sync for every master, it is only
+         necessary to sync for box.cfg.replication_connect_quorum masters
 
-Situation 4: box.cfg{} is not being called for the first time.
+Situation 4: ``box.cfg{}`` is not being called for the first time.
 It is being called again because some replication parameter
 or something in the cluster has changed.
 In pseudocode:
 
 .. code-block:: none
 
-   try to connect to all box.cfg.replication nodes
-     -- if number of connects < number of nodes, abort
-     /* there is no "sync" */
-   set status to "running" or "follow"
+    try to connect to all box.cfg.replication nodes
+      -- if number of connects < number of nodes, abort
+      /* there is no "sync" */
+    set status to "running" or "follow"
 
 The above pseudocode descriptions are not intended as a complete
 narration of all the steps.
