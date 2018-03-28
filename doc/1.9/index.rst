@@ -10,7 +10,7 @@
 
     .. container:: documentation-main-page-header-path
 
-        :doc:`Documentation Overview <index>`
+        |nbspc|
 
 .. wp_section::
     :class: b-documentation-toc
@@ -55,3 +55,5 @@
 .. _English: https://groups.google.com/forum/#!forum/tarantool
 .. _Russian: https://googlegroups.com/group/tarantool-ru
 .. _Telegram chat: http://telegram.me/tarantool
+.. |nbspc| unicode:: U+00A0
+.. |space| unicode:: U+0020
