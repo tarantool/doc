@@ -1,5 +1,6 @@
 * :ref:`replication <cfg_replication-replication>`
 * :ref:`replication_timeout <cfg_replication-replication_timeout>`
+* :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
 * :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
@@ -63,6 +64,11 @@
     The number of seconds that a replica will wait when trying to
     connect to a master in a cluster.
     See more in :ref:`orphan status <replication-orphan_status>`.
+
+    This parameter is different from
+    :ref:`replication_timeout <cfg_replication-replication_timeout>`,
+    which is only used to automatically reconnect replication when it
+    gets no heartbeats.
 
     | Type: float
     | Default: 4
