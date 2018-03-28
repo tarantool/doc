@@ -548,7 +548,7 @@ Replication packet structure
                                   HEADER
     +===================+===================+
     |                   |                   |
-    |     0x00: 0x41    |    0x01: SYNC     |
+    |     0x00: 0x42    |    0x01: SYNC     |
     |   MP_INT: MP_INT  |  MP_INT: MP_INT   |
     |                   |                   |
     +===================+===================+
