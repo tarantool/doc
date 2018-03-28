@@ -769,6 +769,11 @@ functions.
         ---
         - fh: 11
         ...
+        tarantool> fio.open('x.txt', {'O_WRONLY', 'O_CREAT'},tonumber('644',8))
+        ---
+        - fh: 12
+        ...
+
 
 .. class:: file-handle
 

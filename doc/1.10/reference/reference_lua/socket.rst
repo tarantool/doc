@@ -257,7 +257,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
         Send data over a connected socket.
 
-        :param string data:
+        :param string data: what is to be sent
         :return: the number of bytes sent.
         :rtype:  number
 
@@ -337,11 +337,11 @@ the function invocations will look like ``sock:function_name(...)``.
         A TCP socket can be used to accept new connections, after it has
         been put in listen mode.
 
-        :param host:
-        :param port:
+        :param string host: URL or IP address
+        :param number port: port number
 
-        :return: a socket object on success
-        :rtype:  userdata
+        :return: true or false
+        :rtype:  boolean
 
         Possible errors: Returns nil, status, errno, errstr on error.
 
@@ -377,14 +377,14 @@ the function invocations will look like ``sock:function_name(...)``.
 
         Send a message on a UDP socket to a specified host.
 
-        :param string host:
-        :param number port:
-        :param string data:
+        :param string host: URL or IP address
+        :param number port: port number
+        :param string data: what is to be sent
 
         :return: the number of bytes sent.
         :rtype:  number
 
-        Possible errors: on error, returns status, errno, errstr.
+        Possible errors: on error, returns nil and may return status, errno, errstr.
 
     .. _socket-recvfrom:
 
@@ -646,7 +646,7 @@ computer to communicate with itself, but shows that the system works.
     ...
     tarantool> sock_2:sendto('127.0.0.1', sock_1:name().port,'X')
     ---
-    - true
+    - 1
     ...
     tarantool> message = sock_1:recvfrom()
     ---
