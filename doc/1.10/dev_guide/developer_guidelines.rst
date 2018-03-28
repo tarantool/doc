@@ -122,7 +122,7 @@ to ensure that your messages are added to the archive.
 Once you have committed a patch to your local git repository, you can
 submit it for review.
 
-To prepare an email, use `git format-patch` command:
+To prepare an email, use ``git format-patch`` command:
 
 .. code-block:: console
 
