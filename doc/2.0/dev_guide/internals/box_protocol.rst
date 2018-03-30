@@ -92,22 +92,35 @@ We list them here too:
 .. code-block:: none
 
     -- user keys
-    <code>          ::= 0x00
-    <sync>          ::= 0x01
-    <schema_id>     ::= 0x05
-    <space_id>      ::= 0x10
-    <index_id>      ::= 0x11
-    <limit>         ::= 0x12
-    <offset>        ::= 0x13
-    <iterator>      ::= 0x14
-    <key>           ::= 0x20
-    <tuple>         ::= 0x21
-    <function_name> ::= 0x22
-    <username>      ::= 0x23
-    <expression>    ::= 0x27
-    <ops>           ::= 0x28
-    <data>          ::= 0x30
-    <error>         ::= 0x31
+    <code>           ::= 0x00
+    <sync>           ::= 0x01
+    <replica_id>     ::= 0x02
+    <lsn>            ::= 0x03
+    <timestamp>      ::= 0x04
+    <schema_version> ::= 0x05
+    <server_version  ::= 0x06
+    <space_id>       ::= 0x10
+    <index_id>       ::= 0x11
+    <limit>          ::= 0x12
+    <offset>         ::= 0x13
+    <iterator>       ::= 0x14
+    <index_base>     ::= 0x15
+    <key>            ::= 0x20
+    <tuple>          ::= 0x21
+    <function_name>  ::= 0x22
+    <user_name>      ::= 0x23
+    <instance_uuid   ::= 0x24
+    <cluster_uuid>   ::= 0x25
+    <vclock>         ::= 0x26
+    <expr>           ::= 0x27
+    <ops>            ::= 0x28
+    <options>        ::= 0x29
+    <data>           ::= 0x30
+    <error>          ::= 0x31
+    <metadata>       ::= 0x32
+    <sql_text>       ::= 0x40
+    <sql_bind>       ::= 0x41
+    <sql_info>       ::= 0x42
 
 .. code-block:: none
 
@@ -123,6 +136,8 @@ We list them here too:
     <eval>         ::= 0x08
     <upsert>       ::= 0x09
     <call>         ::= 0x0a
+    <execute>      ::= 0x0b
+    <nop>          ::= 0x0c
     -- Admin command codes
     -- (including codes for replica-set initialization and master election)
     <ping>         ::= 0x40
