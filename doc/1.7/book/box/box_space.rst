@@ -238,9 +238,8 @@ Below is a list of all ``box.space`` functions and members.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
-        :param string index_name: name of index, which should
-                                  conform to the
-                                  :ref:`rules for object names <app_server-names>`
+        :param string index_name: name of index, which should not be a number
+                                  and should not contain special characters
         :param table     options:
 
         :return: index object

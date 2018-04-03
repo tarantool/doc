@@ -109,8 +109,8 @@ Below is a list of all ``box.schema`` functions.
 
     Create a :ref:`space <index-box_space>`.
 
-    :param string space-name: name of space, which should
-                              conform to the :ref:`rules for object names <app_server-names>`
+    :param string space-name: name of space, which should not be a number
+                              and should not contain special characters
     :param table options: see "Options for box.schema.space.create" chart, below
 
     :return: space object
@@ -222,8 +222,8 @@ Below is a list of all ``box.schema`` functions.
 
         The maximum number of users is 32.
 
-    :param string user-name: name of user, which should
-                             conform to the :ref:`rules for object names <app_server-names>`
+    :param string user-name: name of user, which should not be a number
+                             and should not contain special characters
     :param table options: ``if_not_exists``, ``password``
 
     :return: nil
@@ -438,8 +438,8 @@ Below is a list of all ``box.schema`` functions.
     For explanation of how Tarantool maintains role data, see
     section :ref:`Roles <authentication-roles>`.
 
-    :param string role-name: name of role, which should
-                             conform to the :ref:`rules for object names <app_server-names>`
+    :param string role-name: name of role, which should not be a number
+                             and should not contain special characters
     :param table options: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
                           ``true`` means there should be no error if the
                           role already exists
@@ -590,8 +590,8 @@ Below is a list of all ``box.schema`` functions.
 
     * ``language`` = 'LUA'|'C' (default = ‘LUA’).
 
-    :param string func-name: name of function, which should
-                             conform to the :ref:`rules for object names <app_server-names>`
+    :param string func-name: name of function, which should not be a number
+                             and should not contain special characters
     :param table options: ``if_not_exists``, ``setuid``, ``language``.
 
     :return: nil
