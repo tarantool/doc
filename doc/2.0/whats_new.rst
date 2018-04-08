@@ -28,6 +28,12 @@ starting with Tarantool version 2.0,
 will return nothing
 if optional ``key`` value is not equal to a value in the index.
 
+Minor behavior change:
+starting with Tarantool version 2.0,
+the default value of the
+:ref:`log_nonblock <cfg_logging-log_nonblock>`
+configuration parameter is nil rather than true.
+
 .. _whats_new_176:
 
 --------------------------------------------------------------------------------

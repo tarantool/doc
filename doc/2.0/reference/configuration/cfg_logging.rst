@@ -108,17 +108,24 @@
 
 .. confval:: log_nonblock
 
-    If ``log_nonblock`` equals true, Tarantool does not block on the log
-    file descriptor when it’s not ready for write, and drops the message
+    If ``log_nonblock`` equals true, Tarantool does not block during logging
+    when the system is not ready for writing, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
-    messages go to the log file, setting ``log_nonblock`` to true may improve
+    messages go to the log, setting ``log_nonblock`` to true may improve
     logging performance at the cost of some log messages getting lost.
 
-    This parameter has effect only if the output is going to ``syslog`` or
-    to a pipe.
+    This parameter has effect only if the output is going to "syslog:" or
+    "pipe:".
+    Setting ``log_nonblock`` to true is illegal if the output is going to
+    a file.
+
+    The default ``log_nonblock`` value is nil, which means that
+    blocking behavior corresponds to the type of logger.
+    This is a behavior change: in earlier versions of the Tarantool
+    server, the default value was true.
 
     | Type: boolean
-    | Default: true
+    | Default: nil
     | Dynamic: no
 
 .. _cfg_logging-too_long_threshold:
@@ -169,6 +176,8 @@
 
     The ``log_format='json'`` entry has the same things along with their labels,
     and in addition has the file name and line number of the Tarantool source.
+
+    Setting ``log_format`` to 'json' is illegal if the output is going to "syslog:".
 
     | Type: string
     | Default: 'plain'
