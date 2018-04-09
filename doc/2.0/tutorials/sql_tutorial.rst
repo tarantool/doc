@@ -56,6 +56,7 @@ Start with simple SQL statements just to be sure they're there.
     CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));
     INSERT INTO table1 VALUES (1, 'A');
     UPDATE table1 SET column2 = 'B';
+    SELECT * FROM table1 WHERE column1 = 1;
 
 The result of the ``SELECT`` statement will look like this:
 
@@ -127,9 +128,9 @@ The result will be:
 
 .. code-block:: tarantoolsession
 
-    - - [1, 'CD', ' ', 10000]
+    - - [1, 'CD', '  ', 10000]
       - [1, 'AB', 'AB', 5.5]
-      - [2, 'AB', ' ', 12.34567]
+      - [2, 'AB', '  ', 12.34567]
       - [-1000, '', '', 0]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,9 +139,9 @@ SELECT with WHERE clauses
 
 Retrieve some of what you inserted:
 
-* The first statement uses arithmetic operators
-  and the ``LIKE`` comparison operator which is asking
-  for "first character doesn't matter, second must be 'B'".
+* The first statement uses
+  the ``LIKE`` comparison operator which is asking
+  for "first character must be 'A', second character can be anything".
 * The second statement uses logical operators and parentheses,
   so the ANDed expressions must be true, or the ORed expression
   must be true. Notice the columns don't have to be indexed.
@@ -148,7 +149,7 @@ Retrieve some of what you inserted:
 .. code-block:: sql
 
     SELECT column1, column2, column1 * column4 FROM table2 WHERE column2
-    LIKE '_B';
+    LIKE '%B';
     SELECT column1, column2, column3, column4 FROM table2
         WHERE (column1 < 2 AND column4 < 10)
         OR column3 = X'2020';
@@ -166,8 +167,8 @@ and
 
     - - [-1000, '', '', 0]
       - [1, 'AB', 'AB', 5.5]
-      - [1, 'CD', ' ', 10000]
-      - [2, 'AB', ' ', 12.34567]
+      - [1, 'CD', '  ', 10000]
+      - [2, 'AB', '  ', 12.34567]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SELECT with GROUP BY and aggregating
@@ -287,7 +288,7 @@ the rows in the ``INSERT ... SELECT`` statement:
 
 .. code-block:: tarantoolsession
 
-    - - [2, 'AB', ' ', 12.34567]
+    - - [2, 'AB', '  ', 12.34567]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SELECT with a join
@@ -338,7 +339,7 @@ that there must not be any rows containing 13 in
     INSERT INTO table4 VALUES (12, 13);
 
 Result: the insert fails, as it should, with the message
-"``error: 'CHECK constraint failed: table4'``".
+"``error: 'CHECK constraint failed: TABLE4'``".
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CREATE TABLE, with a FOREIGN KEY clause
@@ -382,8 +383,7 @@ Then we'll use ``SELECT`` to see what happened to ``column4``.
     UPDATE table2 SET column4 = column4 + 5 WHERE column4 <> 0;
     SELECT column4 FROM table2 ORDER BY column4;
 
-The result is: ``{0, NULL, NULL, 10.5, 10005, 17.34567}`` but
-ordered by ``column2``.
+The result is: ``{NULL, NULL, 0, 10.5, 17.34567, 10005}``.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 DELETE
@@ -397,8 +397,8 @@ Due to earlier ``INSERT`` statements, there are now 6 rows in ``table2``:
       - [0, '!!!', "\0", null]
       - [0, '!!@', null, null]
       - [1, 'AB', 'AB', 10.5]
-      - [1, 'CD', ' ', 10005]
-      - [2, 'AB', ' ', 17.34567]
+      - [1, 'CD', '  ', 10005]
+      - [2, 'AB', '  ', 17.34567]
 
 We will try to delete the last and first of these rows.
 
@@ -411,7 +411,7 @@ We will try to delete the last and first of these rows.
 The result will be:
 
 * The first ``DELETE`` statement causes an error message because (remember?)
-  there's a foreign-key constraint (although the delete happens anyway).
+  there's a foreign-key constraint.
 * The second ``DELETE`` statement succeeds.
 * The ``SELECT`` statement shows that there are now only 5 rows remaining.
 
@@ -502,8 +502,8 @@ The result will be:
     - - [0, 0, 0, 0]
       - [0, 0, 0, 0]
       - [1, 2, 4, 1]
-      - [2, 4, 8, 0]
       - [1, 2, 4, 1]
+      - [2, 4, 8, 0]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Ranges and limits
@@ -516,7 +516,7 @@ Tarantool can handle:
 * any Unicode characters, with UTF-8 encoding and only UCS_BASIC collating.
 
 Here we will insert some such values in a new table, and see what happens
-when we ask for it to come out, with arithetic on a number column and
+when we select them, with arithmetic on a number column and
 ordering by a string column.
 
 .. code-block:: sql
@@ -534,9 +534,9 @@ The result is:
 .. code-block:: tarantoolsession
 
     - - [6, 'ABCDEFG', null]
-      - [-1234567889, 'АБВГД', 246912.246912]
       - [11, 'FADEW?', 2e-06]
       - [1234567891, 'GD', 2e+30]
+      - [-1234567889, 'АБВГД', 246912.246912]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Views
@@ -560,7 +560,7 @@ The result is:
 .. code-block:: tarantoolsession
 
     - - ['АБ', 123456.123456]
-      - ['RRD', 1e-06]
+      - ['FA', 1e-06]
       - ['GD', 1e+30]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -585,8 +585,8 @@ Result: the same as the result we got with ``CREATE VIEW`` earlier:
 .. code-block:: tarantoolsession
 
     - - ['АБ', 123456.123456]
-      - ['RRD', 1e-06]
-      - ['RRD', 1e+30]
+      - ['FA', 1e-06]
+      - ['GD', 1e+30]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 VALUES
@@ -616,7 +616,7 @@ Temporal functions
 
 Date and time arithmetic is not straightforward
 (it never is), but Tarantool handles a reasonably
-wide range of values with a reasonable tookit of
+wide range of values with a reasonable toolkit of
 functions.
 
 Here we'll just ask for "1 second after 1 second from midnight
@@ -634,17 +634,17 @@ Metadata
 
 What database objects have we created? We can find out about:
 
-* tables with ``SELECT * FROM _space;``
-* indexes with ``SELECT * FROM _index;``
+* tables with ``SELECT * FROM "_space";``
+* indexes with ``SELECT * FROM "_index";``
+* triggers with ``SELECT * FROM "_trigger";``
   (These names will be familiar to old Tarantool users
   because we're actually selecting from NoSQL "system spaces".)
-* triggers with ``SELECT * FROM [yet another table];``
 
 Here we will select from ``_space``.
 
 .. code-block:: sql
 
-    SELECT id, name, owner, engine FROM _space WHERE name='table3';
+    SELECT "id", "name", "owner", "engine" FROM "_space" WHERE "name"='TABLE3';
 
 The result is (we know we will get a row because we created ``table3`` earlier):
 
@@ -671,14 +671,14 @@ This doesn't mean we have left the SQL world though, because we
 can invoke SQL statements using a Lua function:
 ``box.sql.execute(string)``.
 
-Here we'll switch languages, turn off the delimiter
-so it's newline, and ask to select again what's in ``table3``.
+Here we'll switch languages,
+and ask to select again what's in ``table3``.
+These statements must be entered separately.
 
 .. code-block:: tarantoolsession
 
-    tarantool> \set language lua
-    tarantool> \set delimiter
-    tarantool> box.sql.execute([[SELECT * FROM table3;]])
+    \set language lua
+    box.sql.execute([[SELECT * FROM table3;]]);
 
 Showing both the statements and the results:
 
@@ -687,10 +687,7 @@ Showing both the statements and the results:
     tarantool> \set language lua
     ---
     ...
-    tarantool> \set delimiter
-    ---
-    ...
-    tarantool> box.sql.execute([[SELECT * FROM table3;]])
+    tarantool> box.sql.execute([[SELECT * FROM table3;]]);
     ---
     - - [-1000, '']
       - [0, '!!!']
@@ -713,7 +710,7 @@ instructions and wait for about a minute.
 
 .. code-block:: lua
 
-    box.sql.execute("CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))")
+    box.sql.execute("CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))");
 
     function string_function()
        local random_number
@@ -724,24 +721,23 @@ instructions and wait for about a minute.
          random_string = random_string .. string.char(random_number)
        end
        return random_string
-    end
+    end;
 
     function main_function()
        local string_value, t, sql_statement
        for i = 1,1000000,1 do
          string_value = string_function()
-         sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" ..
-    string_value .. "')"
+         sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" .. string_value .. "')"
          box.sql.execute(sql_statement)
        end
-    end
-    start_time = os.clock()
-    main_function()
-    end_time = os.clock()
-    'insert done in ' .. end_time - start_time .. ' seconds'
+    end;
+    start_time = os.clock();
+    main_function();
+    end_time = os.clock();
+    'insert done in ' .. end_time - start_time .. ' seconds';
 
 The result is: you now have a table with a million rows, with a message saying
-"``insert done in 122.144611 seconds``".
+"``insert done in 88.570578 seconds``".
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Select from a million-row table
@@ -759,8 +755,8 @@ an index, because for ``s2`` we didn't say
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.sql.execute([[SELECT * FROM tester WHERE s1 = 73446;]])
-    tarantool> box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%']])
+    box.sql.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
+    box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%']]);
 
 The result is:
 
@@ -778,18 +774,18 @@ very reasonable subset of SQL, and it works.
 The rest of these commands will simply destroy all
 the database objects that were created so that you
 can do the demonstration again.
+These statements must be entered separately.
 
 .. code-block:: tarantoolsession
 
-    tarantool> \set language sql
-    tarantool> \set delimiter ;
-    tarantool> DROP TABLE tester;
-    tarantool> DROP VIEW v3;
-    tarantool> DROP TRIGGER tr;
-    tarantool> DROP TABLE table5;
-    tarantool> DROP TABLE table4;
-    tarantool> DROP TABLE table3;
-    tarantool> DROP TABLE table2;
-    tarantool> DROP TABLE table1;
-    tarantool> \set language lua
-    tarantool> os.exit();
+    \set language sql
+    DROP TABLE tester;
+    DROP VIEW v3;
+    DROP TRIGGER tr;
+    DROP TABLE table5;
+    DROP TABLE table4;
+    DROP TABLE table3;
+    DROP TABLE table2;
+    DROP TABLE table1;
+    \set language lua
+    os.exit();
