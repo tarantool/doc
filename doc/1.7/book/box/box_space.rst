@@ -186,7 +186,11 @@ Below is a list of all ``box.space`` functions and members.
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
 
-        :return: Number of bytes in the space.
+        :return: Number of bytes in the space. This number, which is stored
+                 in Tarantool's internal memory, represents the total number
+                 of bytes in all tuples, not including index keys.
+                 For a measure of index size,
+                 see :ref:`index_object:bsize() <box_index-bsize>`.
 
         **Example:**
 
