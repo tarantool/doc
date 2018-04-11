@@ -209,9 +209,6 @@ Below is a list of all ``box.space`` functions and members.
             - 22
             ...
 
-        **Note re storage engine:**
-        vinyl does not support ``bsize()``.
-
     .. _box_space-count:
 
     .. method:: count([key], [iterator])
