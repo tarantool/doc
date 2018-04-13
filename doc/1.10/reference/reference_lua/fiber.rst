@@ -34,6 +34,9 @@ Below is a list of all ``fiber`` functions and members.
     | :ref:`fiber.create()                 | Create and start a fiber        |
     | <fiber-create>`                      |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fiber.new()                    | Create but do not start a fiber |
+    | <fiber-new>`                         |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fiber.self()                   | Get a fiber object              |
     | <fiber-self>`                        |                                 |
     +--------------------------------------+---------------------------------+
@@ -75,6 +78,12 @@ Below is a list of all ``fiber`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fiber_object.storage           | Local storage within the fiber  |
     | <fiber_object-storage>`              |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:set_joinable()    | Make it possible for a new      |
+    | <fiber_object-set_joinable>`         | fiber to join                   |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object:join()            | Wait for a fiber's state to     |
+    | <fiber_object-join>`                 | become 'dead'                   |
     +--------------------------------------+---------------------------------+
     | :ref:`fiber.time()                   | Get the system time in seconds  |
     | <fiber-time>`                        |                                 |
@@ -125,6 +134,7 @@ Below is a list of all ``fiber`` functions and members.
     | <cond_object-broadcast>`             |                                 |
     +--------------------------------------+---------------------------------+
 
+
 .. _fiber-fibers:
 
 ================================================================================
@@ -137,7 +147,7 @@ a user-supplied function called the *fiber function*.
 
 A fiber has three possible states: **running**, **suspended** or **dead**.
 When a fiber is created with :ref:`fiber.create() <fiber-create>`, it is running.
-When a fiber yields control with :ref:`fiber.sleep() <fiber-sleep>`, it is suspended.
+When a fiber is created with :ref:`fiber.new() <fiber-new>` or yields control with :ref:`fiber.sleep() <fiber-sleep>`, it is suspended.
 When a fiber ends (because the fiber function ends), it is dead.
 
 All fibers are part of the fiber registry. This registry can be searched
@@ -203,6 +213,42 @@ recommended.
         ---
         ...
 
+.. _fiber-new:
+
+.. function:: new(function [, function-arguments])
+
+    Create and start a fiber. The fiber is created but does not
+    begin to run immediately -- it waits until the fiber creator
+    (that is, the job that is calling fiber.new) yields.
+    The initial fiber state is **suspended**.
+    Thus ``fiber.new()`` differs slightly from
+    :ref:`fiber.create <fiber-create>`.
+    Ordinarily ``fiber.new`` is used in conjunction with
+    :ref:`fiber_object:set_joinable <fiber_object-set_joinable>`
+    and
+    :ref:`fiber_object:join <fiber_object-join>`.
+
+    :param function: the function to be associated with the fiber
+    :param function-arguments: what will be passed to function
+
+    :Return: created fiber object
+    :Rtype: userdata
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fiber = require('fiber')
+        ---
+        ...
+        tarantool> function function_name()
+                 >   fiber.sleep(1000)
+                 > end
+        ---
+        ...
+        tarantool> fiber_object = fiber.new(function_name)
+        ---
+        ...
 
 .. _fiber-self:
 
@@ -276,9 +322,11 @@ recommended.
 
 .. _fiber-status:
 
-.. function:: status()
+.. function:: status([fiber_object])
 
     Return the status of the current fiber.
+    Or, if optional fiber_object is passed, return the status of the 
+    specified fiber.
 
     :Return: the status of ``fiber``. One of: “dead”, “suspended”, or “running”.
     :Rtype: string
@@ -511,6 +559,90 @@ recommended.
             ...
 
         See also :ref:`box.session.storage <box_session-storage>`.
+
+    .. _fiber_object-set_joinable:
+
+    .. method:: set_joinable(true_or_false)
+
+        ``fiber_object:set_joinable(true)`` makes a fiber joinable;
+        ``fiber_object:set_joinable(false)`` makes a fiber not joinable;
+        the default is false.
+
+        A joinable fiber can be waited for, with :ref:`fiber_object:join() <fiber_object-join>`.
+
+        Best practice is to call ``fiber_object:set_joinable()`` before the fiber function
+        begins to execute, because otherwise the fiber could become 'dead' before
+        ``fiber_object:set_joinable()`` takes effect. The usual sequence could be: |br|
+        (1) call ``fiber.new()`` instead of ``fiber.create()`` to create a new fiber_object |br|
+        (x) do not yield at this point, because that will cause the fiber function to begin |br|
+        (2) call ``fiber_object:set_joinable(true)`` to make the new fiber_object joinable |br|
+        (x) now it is safe to yield |br|
+        (3) call ``fiber_object:join()``. |br|
+        Usually ``fiber_object:join()`` should be called, otherwise the fiber's status
+        may become 'suspended' when the fiber function ends, instead of 'dead'. 
+
+        :param true_or_false: the boolean value that changes the set_joinable flag
+
+        :Return: nil
+
+        **Example:**
+
+        The result of the following sequence of requests is: the global variable
+        d will be 6 (which proves that the function was not executed until after
+        d was set to 1, when fiber.sleep(1) caused a yield); fiber.status(fi2)
+        will be 'suspended' (which proves that after the function was executed
+        the fiber status did not change to 'dead').
+
+        .. code-block:: none
+
+            fiber=require('fiber')
+            d=0
+            function fu2() d=d+5 end
+            fi2=fiber.new(fu2) fi2:set_joinable(true) d=1 fiber.sleep(1)
+            print(d)
+            fiber.status(fi2)
+
+    .. _fiber_object-join:
+
+    .. method:: join()
+
+        "Join" a joinable fiber.
+        That is, let the fiber's function run and wait
+        until the fiber's status is 'dead' (normally a status
+        becomes 'dead' when the function execution finishes).
+        Joining will cause a yield, therefore, if the fiber is
+        currently in a suspended state, execution of its fiber
+        function will resume.
+        This kind of waiting is more convenient than going into
+        a loop and periodically checking the status; however,
+        it works only if the fiber was created with
+        :ref:`fiber.new <fiber-new>`
+        and was made joinable with
+        :ref:`fiber_object:set_joinable <fiber_object-set_joinable>`.
+
+        :Return: true if successful, false if not successful
+        :Rtype: boolean
+
+        **Example:**
+
+        The result of the following sequence of requests is:
+        the first fiber.status() call returns 'suspended',
+        the join() call returns true,
+        the elapsed time is usually 5 seconds,
+        and the second fiber.status() call returns 'dead'.
+        This proves that the join() does not return until
+        the function -- which sleeps 5 seconds -- is 'dead'.
+
+        .. code-block:: none
+
+            fiber=require('fiber')
+            function fu2() fiber.sleep(5) end
+            fi2=fiber.new(fu2) fi2:set_joinable(true)
+            start_time = os.time()
+            fiber.status(fi2)
+            fi2:join()
+            print('elapsed = ' .. os.time() - start_time)
+            fiber.status(fi2)
 
 .. _fiber-time:
 
