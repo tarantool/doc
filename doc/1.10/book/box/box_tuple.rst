@@ -56,6 +56,9 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`tuple_object:totable()         | Get a tuple's fields as a table |
     | <box_tuple-totable>`                 |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`tuple_object:tomap()           | Get a tuple's fields as a table |
+    | <box_tuple-totable>`                 | along with key:value pairs      |
+    +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:pairs()           | Prepare for iterating           |
     | <box_tuple-pairs>`                   |                                 |
     +--------------------------------------+---------------------------------+
@@ -302,6 +305,37 @@ Below is a list of all ``box.tuple`` functions.
             ---
             - ['Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5']
             ...
+
+    .. _box_tuple-tomap:
+
+    .. method:: tomap()
+
+        A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values,
+        also called key:value pairs.
+        For example after |br|
+        a = {}; a['field1'] = 10; a['field2'] = 20 |br|
+        a is a table with "field1: 10" and "field2: 20".
+        The :ref:`tuple_object:totable() <box_tuple-totable>`
+        function only returns a table containing the values.
+        But the ``tuple_object:tomap()`` function returns a table containing not only the
+        values, but also the key:value pairs.
+        This only works if the tuple comes from a space that has
+        been formatted with a :ref:`format clause <box_space-format>`.
+
+        :return: field(s) and key:value pair(s) from the tuple
+        :rtype:  lua-table
+
+        In the following example, a tuple named ``t1`` is returned
+        from a space that has been formatted, then a table named ``t1map``
+        is produced from ``t1``. ``t1map`` will contain "field1: 10" and "field2: 20".
+
+        .. code-block:: none
+
+            format = {{'field1', 'unsigned'}, {'field2', 'unsigned'}}
+            s = box.schema.space.create('test', {format = format})
+            s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})
+            t1 = s:insert{10, 20}
+            t1map = t1:tomap()
 
     .. _box_tuple-pairs:
 
