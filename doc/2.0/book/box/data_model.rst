@@ -589,12 +589,12 @@ Data operations
 
 The basic data operations supported in Tarantool are:
 
-* one data-retrieval operation (SELECT), and
-* five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE).
+* five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and
+* one data-retrieval operation (SELECT).
 
 All of them are implemented as functions in :ref:`box.space <box_space>` submodule.
 
-**Examples**
+**Examples:**
 
 * :ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'.
 
@@ -604,7 +604,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:insert{999, 'Taranto'}
+      tarantool> box.space.tester:insert{999, 'Taranto'}
 
 * :ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2].
 
@@ -617,9 +617,10 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})
+      tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})
 
-* :ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2] again.
+* :ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2]
+  again.
 
   The syntax of ``upsert()`` is similar to the syntax of ``update()``. However,
   the execution logic of these two requests is different.
@@ -629,7 +630,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})
+      tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})
 
 * :ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field.
 
@@ -638,29 +639,42 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}
+      tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}
 
 * :ref:`SELECT <box_space-select>`: Retrieve the tuple.
 
-  The clause "{999}" is still mandatory, although it does not have to mention the primary key.
+  The clause "{999}" is still mandatory, although it does not have to mention
+  the primary key.
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:select{999}
+      tarantool> box.space.tester:select{999}
+
 * :ref:`DELETE <box_space-delete>`: Delete the tuple.
 
   In this example, we identify the primary-key field.
 
   .. code-block:: tarantoolsession
 
-     tarantool> box.space.tester:delete{999}
+      tarantool> box.space.tester:delete{999}
 
-All the functions operate on tuples and accept only unique key values. So,
-the number of tuples in the space is always 0 or 1, since the keys are unique.
+Summarizing the examples:
 
-Functions ``insert()``, ``upsert()`` and ``replace()`` accept only primary-key values.
-Functions ``select()``, ``delete()`` and ``update()`` may accept either a primary-key
-value or a secondary-key value.
+* Functions ``insert`` and ``replace`` accept a tuple
+  (where a primary key comes as part of the tuple).
+* Function ``upsert`` accepts a tuple
+  (where a primary key comes as part of the tuple),
+  and also the update operations to execute.
+* Function ``delete`` accepts a full key of any unique index
+  (primary or secondary).
+* Function ``update`` accepts a full key of any unique index
+  (primary or secondary),
+  and also the operations to execute.
+* Function ``select`` accepts any key: primary/secondary, unique/non-unique,
+  full/partial.
+
+See reference on ``box.space`` for more
+:ref:`details on using data operations <box_space-operations-detailed-examples>`.
 
 .. NOTE::
 

@@ -198,7 +198,11 @@ Below is a list of all ``box.space`` functions and members.
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
 
-        :return: Number of bytes in the space.
+        :return: Number of bytes in the space. This number, which is stored
+                 in Tarantool's internal memory, represents the total number
+                 of bytes in all tuples, not including index keys.
+                 For a measure of index size,
+                 see :ref:`index_object:bsize() <box_index-bsize>`.
 
         **Example:**
 
@@ -208,9 +212,6 @@ Below is a list of all ``box.space`` functions and members.
             ---
             - 22
             ...
-
-        **Note re storage engine:**
-        vinyl does not support ``bsize()``.
 
     .. _box_space-count:
 
@@ -250,10 +251,10 @@ Below is a list of all ``box.space`` functions and members.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
-        :param string index_name: name of index, which should
-                                  conform to the
+        :param string index_name: name of index, which should conform to the
                                   :ref:`rules for object names <app_server-names>`
-        :param table     options:
+        :param table     options: see "Options for space_object:create_index()",
+                                  below
 
         :return: index object
         :rtype:  index_object
@@ -507,6 +508,10 @@ Below is a list of all ``box.space`` functions and members.
               expected unsigned'
             ...
 
+        For more usage scenarios and typical errors see
+        :ref:`Example: using data operations <box_space-operations-detailed-examples>`
+        further in this section.
+
     .. _box_space-drop:
 
     .. method:: drop()
@@ -709,6 +714,10 @@ Below is a list of all ``box.space`` functions and members.
             ---
             - [5000, 'tuple number five thousand']
             ...
+
+        For more usage scenarios and typical errors see
+        :ref:`Example: using data operations <box_space-operations-detailed-examples>`
+        further in this section.
 
     .. _box_space-len:
 
@@ -1010,6 +1019,10 @@ Below is a list of all ``box.space`` functions and members.
 
             box.space.tester:replace{5000, 'tuple number five thousand'}
 
+        For more usage scenarios and typical errors see
+        :ref:`Example: using data operations <box_space-operations-detailed-examples>`
+        further in this section.
+
     .. _box_space-run_triggers:
 
     .. method:: run_triggers(true|false)
@@ -1113,6 +1126,10 @@ Below is a list of all ``box.space`` functions and members.
         instead of "equal to") and how many tuples to return, see the later
         section :ref:`index_object:select <box_index-select>`.
 
+        For more usage scenarios and typical errors see
+        :ref:`Example: using data operations <box_space-operations-detailed-examples>`
+        further in this section.
+
     .. _box_space-truncate:
 
     .. method:: truncate()
@@ -1129,7 +1146,7 @@ Below is a list of all ``box.space`` functions and members.
         The ``truncate`` method can only be called by the user who created
         the space, or from within a ``setuid`` function created by the user
         who created the space.
-        Read more about ``setuid`` functions in the reference for
+        Read more about `setuid` functions in the reference for
         :ref:`box.schema.func.create() <box_schema-func_create>`.
 
         The ``truncate`` method cannot be called from within a transaction.
@@ -1281,6 +1298,10 @@ Below is a list of all ``box.space`` functions and members.
         The seventh argument is ``'!!'``, because ``'!!'`` is to be added at this position.
         Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'X!!Z'``.
 
+        For more usage scenarios and typical errors see
+        :ref:`Example: using data operations <box_space-operations-detailed-examples>`
+        further in this section.
+
     .. _box_space-upsert:
 
     .. method:: upsert(tuple_value, {{operator, field_no, value}, ...}, )
@@ -1324,6 +1345,10 @@ Below is a list of all ``box.space`` functions and members.
         .. code-block:: lua
 
             box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})
+
+        For more usage scenarios and typical errors see
+        :ref:`Example: using data operations <box_space-operations-detailed-examples>`
+        further in this section.
 
     .. _box_space-enabled:
 
@@ -1892,7 +1917,7 @@ Below is a list of all ``box.space`` functions and members.
         ...
 
 =============================================================================
-Example: use `box.space` functions to read `_space` tuples
+Example: using box.space functions to read _space tuples
 =============================================================================
 
 This function will illustrate how to look at all the spaces, and for each
@@ -1950,7 +1975,7 @@ And here is what happens when one invokes the function:
     ...
 
 ===========================================================================
-Example: use `box.space` functions to organize a `_space` tuple
+Example: using box.space functions to organize a _space tuple
 ===========================================================================
 
 The objective is to display field names and field types of a system space --
@@ -2096,3 +2121,495 @@ organizing:
         * ``_vuser`` is a system view, so it allows only read requests.
         * While the ``_user`` space requires proper access privileges, any user
           can always read from ``_vuser``.
+
+.. _box_space-operations-detailed-examples:
+
+===============================================================================
+Example: using data operations
+===============================================================================
+
+This example demonstrates all legal scenarios -- as well as typical errors --
+for each :ref:`data operation <index-box_data-operations>` in Tarantool:
+:ref:`INSERT <box_space-operations-insert>`,
+:ref:`DELETE <box_space-operations-delete>`,
+:ref:`UPDATE <box_space-operations-update>`,
+:ref:`UPSERT <box_space-operations-upsert>`,
+:ref:`REPLACE <box_space-operations-replace>`, and
+:ref:`SELECT <box_space-operations-select>`.
+
+.. code-block:: lua
+
+    -- Bootstrap the database --
+    box.cfg{}
+    format = {}
+    format[1] = {'field1', 'unsigned'}
+    format[2] = {'field2', 'unsigned'}
+    format[3] = {'field3', 'unsigned'}
+    s = box.schema.create_space('test', {format = format})
+    -- Create a primary index --
+    pk = s:create_index('pk', {parts = {{'field1'}}})
+    -- Create a unique secondary index --
+    sk_uniq = s:create_index('sk_uniq', {parts = {{'field2'}}})
+    -- Create a non-unique secondary index --
+    sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{'field3'}}, unique = false})
+
+.. _box_space-operations-insert:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INSERT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``insert`` accepts a well-formatted tuple and checks all keys for duplicates.
+
+.. code-block:: tarantoolsession
+
+    tarantool> -- Unique indexes: ok --
+    tarantool> s:insert({1, 1, 1})
+    ---
+    - [1, 1, 1]
+    ...
+    tarantool> -- Conflicting primary key: error --
+    tarantool> s:insert({1, 1, 1})
+    ---
+    - error: Duplicate key exists in unique index 'pk' in space 'test'
+    ...
+    tarantool> -- Conflicting unique secondary key: error --
+    tarantool> s:insert({2, 1, 1})
+    ---
+    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
+    ...
+    tarantool> -- Key {1} exists in sk_non_uniq index, but it is not unique: ok --
+    tarantool> s:insert({2, 2, 1})
+    ---
+    - [2, 2, 1]
+    ...
+    tarantool> s:truncate()
+    ---
+    ...
+
+.. _box_space-operations-delete:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DELETE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``delete`` accepts a full key of any unique index.
+
+``space:delete`` is an alias for "delete by primary key".
+
+.. code-block:: tarantoolsession
+
+    tarantool> -- Insert some test data --
+    tarantool> s:insert{3, 4, 5}
+    ---
+    - [3, 4, 5]
+    ...
+    tarantool> s:insert{6, 7, 8}
+    ---
+    - [6, 7, 8]
+    ...
+    tarantool> s:insert{9, 10, 11}
+    ---
+    - [9, 10, 11]
+    ...
+    tarantool> s:insert{12, 13, 14}
+    ---
+    - [12, 13, 14]
+    ...
+    tarantool> -- Nothing done here: no {4} key in pk index --
+    tarantool> s:delete{4}
+    ---
+    ...
+    tarantool> s:select{}
+    ---
+    - - [3, 4, 5]
+      - [6, 7, 8]
+      - [9, 10, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Delete by a primary key: ok --
+    tarantool> s:delete{3}
+    ---
+    - [3, 4, 5]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [6, 7, 8]
+      - [9, 10, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Explicitly delete by a primary key: ok --
+    tarantool> s.index.pk:delete{6}
+    ---
+    - [6, 7, 8]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [9, 10, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Delete by a unique secondary key: ok --
+    s.index.sk_uniq:delete{10}
+    ---
+    - [9, 10, 11]
+    ...
+    s:select{}
+    ---
+    - - [12, 13, 14]
+    ...
+    tarantool> -- Delete by a non-unique secondary index: error --
+    tarantool> s.index.sk_non_uniq:delete{14}
+    ---
+    - error: Get() doesn't support partial keys and non-unique indexes
+    ...
+    tarantool> s:select{}
+    ---
+    - - [12, 13, 14]
+    ...
+    tarantool> s:truncate()
+    ---
+    ...
+
+The key must be full: ``delete`` cannot work with partial keys.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s2 = box.schema.create_space('test2')
+    ---
+    ...
+    tarantool> pk2 = s2:create_index('pk2', {parts = {{1, 'unsigned'}, {2, 'unsigned'}}})
+    ---
+    ...
+    tarantool> s2:insert{1, 1}
+    ---
+    - [1, 1]
+    ...
+    tarantool> -- Delete by a partial key: error --
+    tarantool> s2:delete{1}
+    ---
+    - error: Invalid key part count in an exact match (expected 2, got 1)
+    ...
+    tarantool> -- Delete by a full key: ok --
+    tarantool> s2:delete{1, 1}
+    ---
+    - [1, 1]
+    ...
+    tarantool> s2:select{}
+    ---
+    - []
+    ...
+    tarantool> s2:drop()
+    ---
+    ...
+
+.. _box_space-operations-update:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+UPDATE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Similarly to ``delete``, ``update`` accepts a full key of any unique index,
+and also the operations to execute.
+
+``space:update`` is an alias for "update by primary key".
+
+.. code-block:: tarantoolsession
+
+    tarantool> -- Insert some test data --
+    tarantool> s:insert{3, 4, 5}
+    ---
+    - [3, 4, 5]
+    ...
+    tarantool> s:insert{6, 7, 8}
+    ---
+    - [6, 7, 8]
+    ...
+    tarantool> s:insert{9, 10, 11}
+    ---
+    - [9, 10, 11]
+    ...
+    tarantool> s:insert{12, 13, 14}
+    ---
+    - [12, 13, 14]
+    ...
+    tarantool> -- Nothing done here: no {4} key in pk index --
+    s:update({4}, {{'=', 2, 400}})
+    ---
+    ...
+    tarantool> s:select{}
+    ---
+    - - [3, 4, 5]
+      - [6, 7, 8]
+      - [9, 10, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Update by a primary key: ok --
+    tarantool> s:update({3}, {{'=', 2, 400}})
+    ---
+    - [3, 400, 5]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [3, 400, 5]
+      - [6, 7, 8]
+      - [9, 10, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Explicitly update by a primary key: ok --
+    tarantool> s.index.pk:update({6}, {{'=', 2, 700}})
+    ---
+    - [6, 700, 8]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [3, 400, 5]
+      - [6, 700, 8]
+      - [9, 10, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Update by a unique secondary key: ok --
+    tarantool> s.index.sk_uniq:update({10}, {{'=', 2, 1000}})
+    ---
+    - [9, 1000, 11]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [3, 400, 5]
+      - [6, 700, 8]
+      - [9, 1000, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> -- Update by a non-unique secondary key: error --
+    tarantool> s.index.sk_non_uniq:update({14}, {{'=', 2, 1300}})
+    ---
+    - error: Get() doesn't support partial keys and non-unique indexes
+    ...
+    tarantool> s:select{}
+    ---
+    - - [3, 400, 5]
+      - [6, 700, 8]
+      - [9, 1000, 11]
+      - [12, 13, 14]
+    ...
+    tarantool> s:truncate()
+    ---
+    ...
+
+.. _box_space-operations-upsert:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+UPSERT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``upsert`` accepts a well-formatted tuple and update operations.
+
+If an old tuple is found by the primary key of the specified tuple,
+then the update operations are applied to the old tuple,
+and the new tuple is ignored.
+
+If no old tuple is found, then the new tuple is inserted, and the
+update operations are **ignored**.
+
+Indexes have no ``upsert`` method - this is a method of a space.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s.index.pk.upsert == nil
+    ---
+    - true
+    ...
+    tarantool> s.index.sk_uniq.upsert == nil
+    ---
+    - true
+    ...
+    tarantool> s.upsert ~= nil
+    ---
+    - true
+    ...
+    tarantool> -- As the first argument, upsert accepts --
+    tarantool> -- a well-formatted tuple, NOT a key! --
+    tarantool> s:insert{1, 2, 3}
+    ---
+    - [1, 2, 3]
+    ...
+    tarantool> s:upsert({1}, {{'=', 2, 200}})
+    ---
+    - error: Tuple field count 1 is less than required by space format or defined indexes
+        (expected at least 3)
+    ...
+    tarantool> s:select{}
+    ---
+    - - [1, 2, 3]
+    ...
+    tarantool> s:delete{1}
+    ---
+    - [1, 2, 3]
+    ...
+
+``upsert`` turns into ``insert`` when no old tuple is found by the primary key.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s:upsert({1, 2, 3}, {{'=', 2, 200}})
+    ---
+    ...
+    tarantool> -- As you can see, {1, 2, 3} were inserted, --
+    tarantool> -- and the update operations were not applied. --
+    s:select{}
+    ---
+    - - [1, 2, 3]
+    ...
+    tarantool> -- Performing another upsert with the same primary key, --
+    tarantool> -- but different values in the other fields. --
+    s:upsert({1, 20, 30}, {{'=', 2, 200}})
+    ---
+    ...
+    tarantool> -- The old tuple was found by the primary key {1} --
+    tarantool> -- and update operations were applied. --
+    tarantool> -- The new tuple was ignored. --
+    tarantool> s:select{}
+    ---
+    - - [1, 200, 3]
+    ...
+
+``upsert`` searches for an old tuple by the primary index,
+NOT by a secondary index. This can lead to a duplication error
+if the new tuple ruins the uniqueness of a secondary index.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s:upsert({2, 200, 3}, {{'=', 3, 300}})
+    ---
+    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
+    ...
+    s:select{}
+    ---
+    - - [1, 200, 3]
+    ...
+    tarantool> -- But this works, when uniqueness is preserved. --
+    tarantool> s:upsert({2, 0, 0}, {{'=', 3, 300}})
+    ---
+    ...
+    tarantool> s:select{}
+    ---
+    - - [1, 200, 3]
+      - [2, 0, 0]
+    ...
+    tarantool> s:truncate()
+    ---
+    ...
+
+.. _box_space-operations-replace:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REPLACE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``replace`` accepts a well-formatted tuple and searches for an old tuple
+by the primary key of the new tuple.
+
+If the old tuple is found, then it is deleted, and the new tuple is inserted.
+
+If the old tuple was not found, then just the new tuple is inserted.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s:replace{1, 2, 3}
+    ---
+    - [1, 2, 3]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [1, 2, 3]
+    ...
+    tarantool> s:replace{1, 3, 4}
+    ---
+    - [1, 3, 4]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [1, 3, 4]
+    ...
+    tarantool> s:truncate()
+    ---
+    ...
+
+``replace`` can ruin unique constraints, like ``upsert`` does.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s:insert{1, 1, 1}
+    ---
+    - [1, 1, 1]
+    ...
+    tarantool> s:insert{2, 2, 2}
+    ---
+    - [2, 2, 2]
+    ...
+    tarantool> -- This replace fails, because if the new tuple {1, 2, 0} replaces --
+    tarantool> -- the old tuple by the primary key from 'pk' index {1, 1, 1}, --
+    tarantool> -- this results in a duplicate unique secondary key in 'sk_uniq' index: --
+    tarantool> -- key {2} is used both in the new tuple and in {2, 2, 2}. --
+    tarantool> s:replace{1, 2, 0}
+    ---
+    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
+    ...
+    tarantool> s:truncate()
+    ---
+    ...
+
+.. _box_space-operations-select:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SELECT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``select`` works with any indexes (primary/secondary) and with any keys
+(unique/non-unique, full/partial).
+
+If a key is partial, then ``select`` searches by all keys, where the prefix
+matches the specified key part.
+
+.. code-block:: tarantoolsession
+
+    tarantool> s:insert{1, 2, 3}
+    ---
+    - [1, 2, 3]
+    ...
+    tarantool> s:insert{4, 5, 6}
+    ---
+    - [4, 5, 6]
+    ...
+    tarantool> s:insert{7, 8, 9}
+    ---
+    - [7, 8, 9]
+    ...
+    tarantool> s:insert{10, 11, 9}
+    ---
+    - [10, 11, 9]
+    ...
+    tarantool> s:select{1}
+    ---
+    - - [1, 2, 3]
+    ...
+    tarantool> s:select{}
+    ---
+    - - [1, 2, 3]
+      - [4, 5, 6]
+      - [7, 8, 9]
+      - [10, 11, 9]
+    ...
+    tarantool> s.index.pk:select{4}
+    ---
+    - - [4, 5, 6]
+    ...
+    tarantool> s.index.sk_uniq:select{8}
+    ---
+    - - [7, 8, 9]
+    ...
+    tarantool> s.index.sk_non_uniq:select{9}
+    ---
+    - - [7, 8, 9]
+      - [10, 11, 9]
+    ...
+

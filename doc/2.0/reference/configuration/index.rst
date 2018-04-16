@@ -182,7 +182,8 @@ To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a
 particular parameter, for example the listen address, say ``box.cfg.listen``.
 
 The following sections describe all parameters for basic operation, for storage,
-for binary logging and snapshots, for replication, for networking, and for logging.
+for binary logging and snapshots, for replication, for networking,
+for logging, and for feedback.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Basic parameters

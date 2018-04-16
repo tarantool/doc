@@ -256,3 +256,49 @@ and `Log_file` will have
 
     log file has been reopened
     2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Feedback
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default a Tarantool daemon sends a small packet
+once per hour, to "https://feedback.tarantool.io".
+The packet contains three values from :ref:`box.info <box_introspection-box_info>`:
+box.info.version, box.info.uuid, and box.info.cluster_uuid.
+By changing the feedback configuration parameters, users can
+adjust or turn off this feature.
+
+.. _cfg_logging-feedback_enabled:
+
+.. confval:: feedback_enabled
+
+    Whether to send feedback.
+    If this is set to ``true``, feedback will be sent as described above.
+    If this is set to ``false``, no feedback will be sent.
+
+    | Type: boolean
+    | Default: true
+    | Dynamic: **yes**
+
+.. _cfg_logging-feedback_host:
+
+.. confval:: feedback_host
+
+    The address to which the packet is sent.
+    Usually the recipient is Tarantool, but it can be any URL.
+
+    | Type: string
+    | Default: 'https://feedback.tarantool.io'
+    | Dynamic: **yes**
+
+
+.. _cfg_logging-feedback_interval:
+
+.. confval:: feedback_interval
+
+    The number of seconds between sendings, usually 3600 (1 hour).
+
+    | Type: float
+    | Default: 3600
+    | Dynamic: **yes**
