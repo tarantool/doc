@@ -34,7 +34,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
 .. code-block:: tarantoolsession
 
     tarantool> box.cfg{}
-    tarantool> box.cfg -- shown in order for clarity
+    tarantool> box.cfg -- sorted in the alphabetic order
     ---
     - background                   = false
       checkpoint_count             = 2
