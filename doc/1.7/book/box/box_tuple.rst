@@ -57,7 +57,7 @@ Below is a list of all ``box.tuple`` functions.
     | <box_tuple-totable>`                 |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:tomap()           | Get a tuple's fields as a table |
-    | <box_tuple-totable>`                 | along with key:value pairs      |
+    | <box_tuple-tomap>`                   | along with key:value pairs      |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:pairs()           | Prepare for iterating           |
     | <box_tuple-pairs>`                   |                                 |
@@ -288,6 +288,7 @@ Below is a list of all ``box.tuple`` functions.
         If ``t`` is a tuple instance, ``t:totable()`` will return all fields,
         ``t:totable(1)`` will return all fields starting with field number 1,
         ``t:totable(1,5)`` will return all fields between field number 1 and field number 5.
+
         It is preferable to use ``t:totable()`` rather than ``t:unpack()``.
 
         :return: field(s) from the tuple
@@ -312,13 +313,19 @@ Below is a list of all ``box.tuple`` functions.
 
         A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values,
         also called key:value pairs.
-        For example after |br|
-        a = {}; a['field1'] = 10; a['field2'] = 20 |br|
-        a is a table with "field1: 10" and "field2: 20".
+        For example, here:
+
+        .. code-block:: lua
+
+            a = {}; a['field1'] = 10; a['field2'] = 20
+
+        ``a`` is a table with "field1: 10" and "field2: 20".
+
         The :ref:`tuple_object:totable() <box_tuple-totable>`
         function only returns a table containing the values.
-        But the ``tuple_object:tomap()`` function returns a table containing not only the
-        values, but also the key:value pairs.
+        But the ``tuple_object:tomap()`` function returns a table containing
+        not only the values, but also the key:value pairs.
+
         This only works if the tuple comes from a space that has
         been formatted with a :ref:`format clause <box_space-format>`.
 
@@ -327,15 +334,17 @@ Below is a list of all ``box.tuple`` functions.
 
         In the following example, a tuple named ``t1`` is returned
         from a space that has been formatted, then a table named ``t1map``
-        is produced from ``t1``. ``t1map`` will contain "field1: 10" and "field2: 20".
+        is produced from ``t1``.
 
-        .. code-block:: none
+        .. code-block:: lua
 
             format = {{'field1', 'unsigned'}, {'field2', 'unsigned'}}
             s = box.schema.space.create('test', {format = format})
             s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})
             t1 = s:insert{10, 20}
             t1map = t1:tomap()
+
+        ``t1map`` will contain "field1: 10" and "field2: 20".
 
     .. _box_tuple-pairs:
 
