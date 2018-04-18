@@ -677,8 +677,8 @@ These statements must be entered separately.
 
 .. code-block:: tarantoolsession
 
-    \set language lua
-    box.sql.execute([[SELECT * FROM table3;]]);
+    tarantool> \set language lua
+    tarantool> box.sql.execute([[SELECT * FROM table3;]]);
 
 Showing both the statements and the results:
 
@@ -753,7 +753,7 @@ The second query we'll do will not go via
 an index, because for ``s2`` we didn't say
 ``CREATE INDEX xxxx ON tester (s2);``.
 
-.. code-block:: tarantoolsession
+.. code-block:: lua
 
     box.sql.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
     box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%']]);
@@ -778,14 +778,14 @@ These statements must be entered separately.
 
 .. code-block:: tarantoolsession
 
-    \set language sql
-    DROP TABLE tester;
-    DROP VIEW v3;
-    DROP TRIGGER tr;
-    DROP TABLE table5;
-    DROP TABLE table4;
-    DROP TABLE table3;
-    DROP TABLE table2;
-    DROP TABLE table1;
-    \set language lua
-    os.exit();
+    tarantool> \set language sql
+    tarantool> DROP TABLE tester;
+    tarantool> DROP VIEW v3;
+    tarantool> DROP TRIGGER tr;
+    tarantool> DROP TABLE table5;
+    tarantool> DROP TABLE table4;
+    tarantool> DROP TABLE table3;
+    tarantool> DROP TABLE table2;
+    tarantool> DROP TABLE table1;
+    tarantool> \set language lua
+    tarantool> os.exit();
