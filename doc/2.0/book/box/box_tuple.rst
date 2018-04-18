@@ -309,7 +309,7 @@ Below is a list of all ``box.tuple`` functions.
 
     .. _box_tuple-tomap:
 
-    .. method:: tomap()
+    .. method:: tomap([names-only])
 
         A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values,
         also called key:value pairs.
@@ -329,12 +329,20 @@ Below is a list of all ``box.tuple`` functions.
         This only works if the tuple comes from a space that has
         been formatted with a :ref:`format clause <box_space-format>`.
 
+        :param boolean names-only: if names_only is false or omitted,
+                                   then all the fields will appear twice,
+                                   first with numeric headings and
+                                   second with name headings.
+                                   If names_only is true, then all the
+                                   fields will appear only once, with
+                                   name headings.
+
         :return: field(s) and key:value pair(s) from the tuple
         :rtype:  lua-table
 
         In the following example, a tuple named ``t1`` is returned
-        from a space that has been formatted, then a table named ``t1map``
-        is produced from ``t1``.
+        from a space that has been formatted, then tables named ``t1map1``
+        and ``t1map2`` are produced from ``t1``.
 
         .. code-block:: lua
 
@@ -342,9 +350,11 @@ Below is a list of all ``box.tuple`` functions.
             s = box.schema.space.create('test', {format = format})
             s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})
             t1 = s:insert{10, 20}
-            t1map = t1:tomap()
+            t1map1 = t1:tomap()
+            t1map2 = t1:tomap({names_only=true})
 
-        ``t1map`` will contain "field1: 10" and "field2: 20".
+        ``t1map1`` will contain "1: 10", "2: 20", "field1: 10", and "field2: 20".
+        ``t1map2`` will contain only "field1: 10" and "field2: 20".
 
     .. _box_tuple-pairs:
 
