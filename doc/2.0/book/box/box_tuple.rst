@@ -329,11 +329,12 @@ Below is a list of all ``box.tuple`` functions.
         This only works if the tuple comes from a space that has
         been formatted with a :ref:`format clause <box_space-format>`.
 
-        :param boolean names-only: if names_only is false or omitted,
+        :param boolean names-only: if ``names_only`` is false or omitted,
                                    then all the fields will appear twice,
                                    first with numeric headings and
                                    second with name headings.
-                                   If names_only is true, then all the
+
+                                   If ``names_only`` is true, then all the
                                    fields will appear only once, with
                                    name headings.
 
@@ -354,14 +355,18 @@ Below is a list of all ``box.tuple`` functions.
             t1map2 = t1:tomap({names_only=true})
 
         ``t1map1`` will contain "1: 10", "2: 20", "field1: 10", and "field2: 20".
+
         ``t1map2`` will contain only "field1: 10" and "field2: 20".
 
     .. _box_tuple-pairs:
 
     .. method:: pairs()
 
-        In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns:
-        ``function``, ``lua-table-value``, ``nil``. Tarantool has extended
+        In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_
+        is a method which returns:
+        ``function``, ``lua-table-value``, ``nil``.
+
+        Tarantool has extended
         this so that ``tuple-value:pairs()`` returns: ``function``,
         ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua
         iterators traverse a value's components until an end marker is reached.
