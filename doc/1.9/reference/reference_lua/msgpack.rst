@@ -59,18 +59,20 @@ Below is a list of all ``msgpack`` functions and members.
     Convert a MsgPack string to a Lua object.
 
     :param string msgpack_string: a string formatted as MsgPack.
-    :param integer start_position: where to start, minimum = 1, maximum = string length, default = 1.
+    :param integer start_position: where to start, minimum = 1,
+                                   maximum = string length, default = 1.
 
     :return:
 
-      * (If msgpack_string is in valid MsgPack format) the original contents of msgpack_string,
-        formatted as a Lua table, (otherwise) a scalar value, such as a string or a number;
+      * (if ``msgpack_string`` is in valid MsgPack format) the original contents
+        of ``msgpack_string``, formatted as a Lua table,
+        (otherwise) a scalar value, such as a string or a number;
       * "next_start_position". If ``decode`` stops after parsing as far as
-        byte N in msgpack_string, then next_start_position will equal N + 1, and
-        ``decode(msgpack_string, next_start_position)``
+        byte N in ``msgpack_string``, then "next_start_position" will equal N + 1,
+        and ``decode(msgpack_string, next_start_position)``
         will continue parsing from where the previous ``decode`` stopped, plus 1.
-        Normally ``decode`` parses all of msgpack_string, so next_start_position
-        will equal string.len(msgpack_string) + 1.
+        Normally ``decode`` parses all of ``msgpack_string``, so
+        "next_start_position" will equal ``string.len(msgpack_string)`` + 1.
 
     :rtype: table and number
 
