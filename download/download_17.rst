@@ -111,7 +111,7 @@ Tarantool - Downloads (1.7)
 
                 .. container:: b-enterprise-downloads-description
 
-                    `Carrier-grade edition <../features.html>`_
+                    `Carrier-grade edition <https://tarantool.io/en/enterprise.html>`_
                     for critical deployments.
 
             .. container:: b-enterprise-downloads-buttons-container
