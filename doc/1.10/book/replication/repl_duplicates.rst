@@ -25,6 +25,9 @@ with the same unique key:
 
 This would cause an error saying ``Duplicate key exists in unique index
 'primary' in space 'tester'`` and the replication would be stopped.
+(This is the behavior when the
+:ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`
+configuration parameter has its default recommended value, ``false``.)
 
 .. code-block:: console
 

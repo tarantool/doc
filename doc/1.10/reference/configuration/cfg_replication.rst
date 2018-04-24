@@ -2,6 +2,7 @@
 * :ref:`replication_timeout <cfg_replication-replication_timeout>`
 * :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+* :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`
 * :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
@@ -95,6 +96,28 @@
     | Type: integer
     | Default: null
     | Dynamic: **yes**
+
+.. _cfg_replication-replication_skip_conflict:
+
+.. confval:: replication_skip_conflict
+
+    By default, if a replica adds a unique key that another replica has
+    added, replication :ref:`stops <replication-replication_stops>`
+    with error = ER_TUPLE_FOUND.
+
+    However, by specifying ``replication_skip_conflict = true``,
+    users can state that such errors may be ignored.
+
+    Example:
+
+    .. code-block:: lua
+
+        box.cfg{replication_skip_conflict=true}
+
+    | Type: boolean
+    | Default: false
+    | Dynamic: **yes**
+
 
 .. _cfg_replication-replication_sync_lag:
 
