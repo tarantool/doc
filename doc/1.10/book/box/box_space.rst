@@ -633,7 +633,9 @@ Below is a list of all ``box.space`` functions and members.
 
         Names specified with the format clause can be used in
         :ref:`space_object:get() <box_space-get>` and in
-        :ref:`space_object:create_index() <box_space-create_index>`.
+        :ref:`space_object:create_index() <box_space-create_index>` and in
+        :ref:`tuple_object[field-name] <box_tuple-field_name>` and in
+        :ref:`tuple_object[field-path] <box_tuple-field_path>`.
 
         If the format clause is omitted, then the returned value is the
         table that was used in a previous :samp:`{space_object}:format({format-clause})`
