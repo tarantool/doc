@@ -181,6 +181,11 @@ Below is a list of all ``box.index`` functions and members.
         ``{1234, 'abcd'}``). Each part of a key will be compared to each part of
         an index key.
 
+        The returned tuples will be in order by index key value, or by the hash of
+        the index key value if index type = 'hash'. If the index is non-unique, then
+        duplicates will be secondarily in order by primary key value. The order
+        will be reversed if the iterator type is 'LT' or 'LE' or 'REQ'.
+
         .. _box_index-iterator-types:
 
         **Iterator types for TREE indexes**
