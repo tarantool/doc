@@ -411,10 +411,14 @@ recommended.
 
     .. method:: id()
 
-        :param self: fiber object, for example the fiber object returned
-                     by :ref:`fiber.create <fiber-create>`
+        :param fiber_object: generally this is an object referenced in the return
+                             from :ref:`fiber.create <fiber-create>`
+                             or :ref:`fiber.self <fiber-self>`
+                             or :ref:`fiber.find <fiber-find>`
         :Return: id of the fiber.
         :Rtype: number
+
+        ``fiber.self():id()`` can also be expressed as ``fiber.id()``.
 
         **Example:**
 
@@ -432,10 +436,14 @@ recommended.
 
     .. method:: name()
 
-        :param self: fiber object, for example the fiber object returned
-                     by :ref:`fiber.create <fiber-create>`
+        :param fiber_object: generally this is an object referenced in the return
+                             from :ref:`fiber.create <fiber-create>`
+                             or :ref:`fiber.self <fiber-self>`
+                             or :ref:`fiber.find <fiber-find>`
         :Return: name of the fiber.
         :Rtype: string
+
+        ``fiber.self():name()`` can also be expressed as ``fiber.name()``.
 
         **Example:**
 
@@ -456,8 +464,10 @@ recommended.
         Giving fibers distinct names makes it easier to
         distinguish them when using :ref:`fiber.info <fiber-info>`.
 
-        :param self: fiber object, for example the fiber
-                     object returned by :ref:`fiber.create <fiber-create>`
+        :param fiber_object: generally this is an object referenced in the return
+                             from :ref:`fiber.create <fiber-create>`
+                             or :ref:`fiber.self <fiber-self>`
+                             or :ref:`fiber.find <fiber-find>`
         :param string name: the new name of the fiber.
 
         :Return: nil
@@ -476,11 +486,14 @@ recommended.
 
         Return the status of the specified fiber.
 
-        :param self: fiber object, for example the fiber object returned by
-                     :ref:`fiber.create <fiber-create>`
-
+        :param fiber_object: generally this is an object referenced in the return
+                             from :ref:`fiber.create <fiber-create>`
+                             or :ref:`fiber.self <fiber-self>`
+                             or :ref:`fiber.find <fiber-find>`
         :Return: the status of fiber. One of: “dead”, “suspended”, or “running”.
         :Rtype: string
+
+        ``fiber.self():status(`` can also be expressed as ``fiber.status()``.
 
         **Example:**
 
@@ -500,9 +513,10 @@ recommended.
         cause errors, for example :ref:`fiber_object:id() <fiber_object-id>`
         will cause ``error: the fiber is dead``.
 
-        :param self: fiber object, for example the fiber
-                     object returned by :ref:`fiber.create <fiber-create>`
-
+        :param fiber_object: generally this is an object referenced in the return
+                             from :ref:`fiber.create <fiber-create>`
+                             or :ref:`fiber.self <fiber-self>`
+                             or :ref:`fiber.find <fiber-find>`
         :Return: nil
 
         Possible errors: cancel is not permitted for the specified fiber object.
