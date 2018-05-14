@@ -5,9 +5,7 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
-:ref:`2.0.4 <whats_new_204>`,
 :ref:`1.9.0 <whats_new_190>`,
-:ref:`1.8.1 <whats_new_181>`,
 :ref:`1.7.6 <whats_new_176>`,
 :ref:`1.7.5 <whats_new_175>`,
 :ref:`1.7.4 <whats_new_174>`,
@@ -21,40 +19,6 @@ The Release Notes are summaries of significant changes introduced in Tarantool
 For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
-
-.. _whats_new_20:
-
--------------------------------------------------------------------------------
-Version 2.0
--------------------------------------------------------------------------------
-
-.. _whats_new_204:
-
-**Release 2.0.4**
-
-Release type: alpha. Release date: 2018-02-15.
-
-Announcement: https://groups.google.com/forum/#!topic/tarantool/LZC987UjtPc.
-
-You are reading the manual for Tarantool 1.9; Tarantool 2.0 is a later version.
-
-This is a successor of the 1.8.x releases.
-It improves the overall stability of the SQL engine and has some new features.
-
-Functionality added or changed:
-
-  * Added support for SQL collations by incorporating libICU character set and
-    collation library.
-  * IPROTO interface was extended to support SQL queries.
-  * ``net.box`` subsystem was extended to support SQL queries.
-  * Enabled ``ANALYZE`` statement to produce correct results, necessary for
-    efficient query plans.
-  * Enabled savepoints functionality. ``SAVEPOINT`` statement works w/o issues.
-  * Enabled ``ALTER TABLE ... RENAME`` statement.
-  * Improved rules for identifier names: now fully consistent with Lua frontend.
-  * Enabled support for triggers; trigger bodies now persist in Tarantool snapshots
-    and survive server restart.
-  * Significant performance improvements.
 
 .. _whats_new_19:
 
@@ -166,80 +130,6 @@ Functionality added or changed:
     Issue `2099 <https://github.com/tarantool/tarantool/issues/2099>`_.
   * (Builds) Alpine Linux support.
     Issue `3067 <https://github.com/tarantool/tarantool/issues/3067>`_.
-
-.. _whats_new_18:
-
---------------------------------------------------------------------------------
-Version 1.8
---------------------------------------------------------------------------------
-
-.. _whats_new_181:
-
-**Release 1.8.1**
-
-Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1.
-
-Announcement: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ.
-
-This is an alpha release which delivers support for a substantial subset
-of the ISO/IEC 9075:2011 SQL standard, including joins, subqueries and views.
-SQL is a major feature of the 1.8 release series, in which we plan to add
-support for ODBC and JDBC connectors, SQL triggers, prepared statements,
-security and roles,
-and generally ensure SQL is a first class query language in Tarantool.
-
-Functionality added or changed:
-
-  * A new function ``box.sql.execute()`` was added to query Tarantool databases
-    using SQL statements, e.g.:
-
-    .. code-block:: tarantoolsession
-
-        tarantool> box.sql.execute([[SELECT * FROM _schema]]);
-
-  * SQL and Lua are fully interoperable.
-  * New meta-commands introduced to Tarantool's console.
-
-    You can now set input language to either SQL or Lua, e.g.:
-
-    .. code-block:: tarantoolsession
-
-        tarantool> \set language sql
-        tarantool> SELECT * FROM _schema;
-        tarantool> \set language lua
-        tarantool> print("Hello, world!")
-
-  * Most SQL statements are supported:
-
-    * CREATE/DROP TABLE/INDEX/VIEW
-
-      .. code-block:: tarantoolsession
-
-          tarantool> CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));
-
-    * INSERT/UPDATE/DELETE statements e.g.:
-
-      .. code-block:: tarantoolsession
-
-          tarantool> INSERT INTO table1 VALUES (1, 'A');
-          ...
-          tarantool> UPDATE table1 SET column2 = 'B';
-
-    * SELECT statements, including complex complicated variants which include
-      multiple JOINs, nested SELECTs etc. e.g.:
-
-      .. code-block:: tarantoolsession
-
-          tarantool> SELECT sum(column1) FROM table1 WHERE column2 LIKE '_B' GROUP BY column2;
-
-    * WITH statements e.g.
-
-      .. code-block:: tarantoolsession
-
-          tarantool> WITH cte AS ( SELECT SUBSTR(column2,1,2), column1 FROM table1 WHERE column1 >= 0) SELECT * FROM cte;
-
-    * SQL schema is persistent, so it is able to survive ``snapshot()``/``restore()`` sequence.
-    * SQL features are described in a :ref:`tutorial <sql-tutorial>`.
 
 .. _whats_new_17:
 
@@ -1226,14 +1116,13 @@ New rocks:
   * ``strict`` built-in package, banning use of undeclared variables in
     Lua. Strict mode is on when Tarantool is compiled with debug.
     Turn on/off with ``require('strict').on()``/``require('strict').off()``.
-  * ``pg`` and ``mysql`` rocks, available at http://rocks.tarantool.org
-     - working with MySQL and PostgreSQL from Tarantool.
+  * ``pg`` and ``mysql`` rocks, available at http://rocks.tarantool.org -
+    working with MySQL and PostgreSQL from Tarantool.
   * ``gperftools`` rock, availble at http://rocks.tarantool.org -
     getting perfromance data using Google's gperf from Tarantool.
   * ``csv`` built-in rock, to parse and load CSV (comma-separated
-     values) data.
+    values) data.
 
 New supported platforms:
 
 * Fedora 22, Ubuntu Vivid
-
