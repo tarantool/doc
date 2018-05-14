@@ -239,7 +239,7 @@ Functionality added or changed:
           tarantool> WITH cte AS ( SELECT SUBSTR(column2,1,2), column1 FROM table1 WHERE column1 >= 0) SELECT * FROM cte;
 
     * SQL schema is persistent, so it is able to survive ``snapshot()``/``restore()`` sequence.
-    * SQL features are described in a :ref:`tutorial <sql-tutorial>`.
+    * SQL features are described in a :ref:`tutorial <sql_tutorial>`.
 
 .. _whats_new_17:
 
