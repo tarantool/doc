@@ -61,6 +61,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
       read_only                    = false
       replication                  = nil
       replication_connect_timeout  = 4
+      replication_skip_conflict    = false
       replication_sync_lag         = 10
       replication_timeout          = 1
       rows_per_wal                 = 500000

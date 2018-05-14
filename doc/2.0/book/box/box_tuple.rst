@@ -38,8 +38,14 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`tuple_object:bsize()           | Get count of bytes in a tuple   |
     | <box_tuple-bsize>`                   |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-number]     | Get a tuple's specific field    |
-    | <box_tuple-field_number>`            |                                 |
+    | :ref:`tuple_object[field-number]     | Get a tuple's field by          |
+    | <box_tuple-field_number>`            | specifying a number             |
+    +--------------------------------------+---------------------------------+
+    | :ref:`tuple_object[field-name]       | Get a tuple's field by          |
+    | <box_tuple-field_name>`              | specifying a name               |
+    +--------------------------------------+---------------------------------+
+    | :ref:`tuple_object[field-path]       | Get a tuple's fields or parts   |
+    | <box_tuple-field_path>`              | by specifying a path            |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:find()            | Get the number of the first     |
     | <box_tuple-find>`                    | field matching the search value |
@@ -181,6 +187,108 @@ Below is a list of all ``box.tuple`` functions.
             tarantool> t[2]
             ---
             - Fld#2
+            ...
+
+    .. _box_tuple-field_name:
+
+    .. operator:: tuple_object[field-name]
+
+        If ``t`` is a tuple instance, ``t['field-name']`` will return the field
+        named 'field-name' in the tuple. Fields have names if the tuple has
+        been retrieved from a space that has an associated :ref:`format <box_space-format>`.
+
+        :return: field value.
+        :rtype:  lua-value
+
+        In the following example, a tuple named ``t`` is returned from ``replace``
+        and then the second field in ``t`` named 'field2' is returned.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> format = {}
+            ---
+            ...
+            tarantool> format[1] = {name = 'field1', type = 'unsigned'}
+            ---
+            ...
+            tarantool> format[2] = {name = 'field2', type = 'string'}
+            ---
+            ...
+            tarantool> s = box.schema.space.create('test', {format = format})
+            ---
+            ...
+            tarantool> pk = s:create_index('pk')
+            ---
+            ...
+            tarantool> t = s:replace{1, '中'}
+            ---
+            ...
+            tarantool> t['field2']
+            ---
+            - 中
+            ...
+
+
+    .. _box_tuple-field_path:
+
+    .. operator:: tuple_object[field-path]
+
+        If ``t`` is a tuple instance, ``t['path']`` will return the field
+        or subset of fields that are in ``path``. ``path`` must be a well
+        formed JSON specification. ``path`` may contain field names if the tuple has
+        been retrieved from a space that has an associated :ref:`format <box_space-format>`.
+
+        To prevent ambiguity, Tarantool first tries to interpret the
+        request as :ref:`tuple_object[field-number] <box_tuple-field_number>`
+        or :ref:`tuple_object[field-name] <box_tuple-field_name>`.
+        If and only if that fails, Tarantool tries to interpret the request
+        as ``tuple_object[field-path]``.
+
+        The path must be a well formed JSON specification, but it may be
+        preceded by '.'. The '.' is a signal that the path acts as a suffix
+        for the tuple.
+
+        The advantage of specifying a path is that Tarantool will use it to
+        search through a tuple body and get only the tuple part, or parts,
+        that are actually necessary.
+
+        In the following example, a tuple named ``t`` is returned from ``replace``
+        and then only the relevant part (in this case, matching a name)
+        of a relevant field is returned. Namely: the second field, the
+        sixth part, the value following 'value='.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> format = {}
+            ---
+            ...
+            tarantool> format[1] = {name = 'field1', type = 'unsigned'}
+            ---
+            ...
+            tarantool> format[2] = {name = 'field2', type = 'array'}
+            ---
+            ...
+            tarantool> format[3] = {name = 'field4', type = 'string' }
+            ---
+            ...
+            tarantool> format[4] = {name = "[2][6]['пw']['中']", type = 'string'}
+            ---
+            ...
+            tarantool> s = box.schema.space.create('test', {format = format})
+            ---
+            ...
+            tarantool> pk = s:create_index('pk')
+            ---
+            ...
+            tarantool> field2 = {1, 2, 3, "4", {5,6,7}, {пw={中="п"}, key="V!", value="K!"}}
+            ---
+            ...
+            tarantool> t = s:replace{1, field2, "123456", "Not K!"}
+            ---
+            ...
+            tarantool> t["[2][6]['value']"]
+            ---
+            - K!
             ...
 
     .. _box_tuple-find:

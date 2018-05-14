@@ -66,6 +66,9 @@ Below is a list of all functions for transaction management.
     | <box-rollback_to_savepoint>`         | discard all changes made after  |
     |                                      | a savepoint                     |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.atomic()                   | Execute a function, treating it |
+    | <box-atomic>`                        | as a transaction                |
+    +--------------------------------------+---------------------------------+
 
 .. _box-begin:
 
@@ -122,3 +125,14 @@ Below is a list of all functions for transaction management.
           box.rollback_to_savepoint(s)
           box.commit()          -- end transaction
         end
+
+.. _box-atomic:
+
+.. function:: box.atomic(function-name [, function-arguments])
+
+    Execute a function, acting as if the function starts with an implicit
+    :ref:`box.begin() <box-begin>` and ends with an implicit
+    :ref:`box.commit() <box-commit>` if successful, or ends with an implicit
+    :ref:`box.rollback() <box-rollback>` if there is an error.
+
+
