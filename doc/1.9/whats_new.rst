@@ -1,112 +1,1062 @@
-.. _whats_new:
+.. _release_notes:
 
 ********************************************************************************
-What's new?
+Release Notes
 ********************************************************************************
 
-Here is a summary of significant changes introduced in specific versions of
-Tarantool.
+The Release Notes are summaries of significant changes introduced in Tarantool
+:ref:`2.0.4 <whats_new_204>`,
+:ref:`1.9.0 <whats_new_190>`,
+:ref:`1.8.1 <whats_new_181>`,
+:ref:`1.7.6 <whats_new_176>`,
+:ref:`1.7.5 <whats_new_175>`,
+:ref:`1.7.4 <whats_new_174>`,
+:ref:`1.7.3 <whats_new_173>`,
+:ref:`1.7.2 <whats_new_172>`,
+:ref:`1.7.1 <whats_new_171>`,
+:ref:`1.6.9 <whats_new_169>`,
+:ref:`1.6.8 <whats_new_168>`, and
+:ref:`1.6.6 <whats_new_166>`.
 
 For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
 
-.. _whats_new_176:
+.. _whats_new_20:
+
+-------------------------------------------------------------------------------
+Version 2.0
+-------------------------------------------------------------------------------
+
+.. _whats_new_204:
+
+**Release 2.0.4**
+
+Release type: alpha. Release date: 2018-02-15.
+
+Announcement: https://groups.google.com/forum/#!topic/tarantool/LZC987UjtPc.
+
+You are reading the manual for Tarantool 1.9; Tarantool 2.0 is a later version.
+
+This is a successor of the 1.8.x releases.
+It improves the overall stability of the SQL engine and has some new features.
+
+Functionality added or changed
+
+  * Added support for SQL collations by incorporating libICU character set and collation library
+  * IPROTO interface was extended to support SQL queries
+  * net.box subsystem was extended to support SQL queries
+  * Enabled ANALYZE statement to produce correct results, necessary for efficient query plans
+  * Enabled savepoints functionality. SAVEPOINT statement works w/o issues
+  * Enabled ALTER TABLE … RENAME statement
+  * Improved rules for identifier names: now fully consistent with Lua frontend
+  * Enabled support for triggers; trigger bodies now persist in Tarantool snapshots and survive server restart
+  * Significant performance improvements  
+
+.. _whats_new_19:
 
 --------------------------------------------------------------------------------
-What's new in Tarantool 1.7.6?
+Version 1.9
 --------------------------------------------------------------------------------
 
-Tarantool 1.7.6 was
-`released <https://github.com/tarantool/tarantool/releases/tag/1.7.6>`_
-on November 7, 2017.
+.. _whats_new_190:
 
-In addition to :ref:`rollback <box-rollback>` of a transaction, there is now
-rollback to a defined point within a transaction --
-:ref:`savepoint <box-savepoint>` support.
+**Release 1.9.0**
 
-There is a new object type: :ref:`sequences <index-box_sequence>`.
-The older option, :ref:`auto-increment <box_space-auto_increment>`,
-will be deprecated.
+Release type: stable. Release date: 2018-02-26.  Tag: 1.9.0-4-g195d446.
 
-String indexes can have :ref:`collations <index-collation>`.
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.9.0.
 
-New options are available for:
+This is the successor of the 1.7.6 stable release.
+The goal of this release is increased maturity of vinyl and master-master replication,
+and it contributes a number of features to this cause. Please follow the download
+instructions at https://tarantool.io/en/download/download.html to download and install
+a package for your operating system.
 
-* :ref:`net_box <net_box-module>` (timeouts),
-* :ref:`string <string-module>` functions,
-* space :ref:`formats <box_space-format>` (user-defined field names and types),
-* :ref:`base64 <digest-base64_encode>` (``urlsafe`` option), and
-* index :ref:`creation <box_space-create_index>` (collation,
-  :ref:`is-nullable <box_space-is_nullable>`,
-  field names).
+Functionality added or changed
+
+  * (Security) it is now possible to block/unblock users; gh-2898
+  * (Security) new function box.session.euid() to return effective user. Effective user can be different from authenticated user in case of setuid functions or box.session.su; gh-2994
+  * (Security) new 'super' role, with superuser access. Grant 'super' to guest to disable access control; gh-3022
+  * (Security) on_auth trigger is now fired in case of both successful and failed authentication; gh-3039
+  * (Replication/recovery) new replication configuration algorithm: if replication doesn't connect to replication_quorum peers in replication_connect_timeout seconds, the server start continues but the server enters the new 'orphan' mode, which is basically read-only, until the replica set connects to each other; gh-3151, gh-2958
+  * (Replication/recovery) after replication connect at startup, the server does not start processing write requests before syncing up with all connected peers
+  * (Replication/recovery) it is now possible to explicitly set instance and replica set uuid via database configuration; gh-2967
+  * (Replication/recovery) box.once() no longer fails on a read-only replica but waits; gh-2537
+  * (Replication/recovery) force_recovery can now skip a corrupted xlog file; gh-3076
+  * (Replication/recovery) improved replication monitoring: box.info.replication shows peer ip:port and correct replication lag even for idle peers; gh-2753, gh-2689
+  * (Application server) new 'BEFORE' triggers which can be used for conflict resolution in master-master replication; gh-2993
+  * (Application server) http client now correctly parses cookies and supports http+unix:// paths; gh-3040, gh-2801
+  * (Application server) fio rock now supports file_exists(), rename() works across filesystems, and read() without arguments reads the whole file; gh-2924, gh-2751, gh-2925
+  * (Application server) fio rock errors now follow Tarantool function call conventions and always return an error message in addition to the error flag;
+  * (Application server) digest rock now supports pbkdf2 password hashing algorithm, useful in PCI/DSS compliant applications; gh-2874
+  * (Application server) box.info.memory() provides a high-level overview of server memory usage, including networking, Lua, transaction and index memory; gh-934
+  * (Database) it is now possible to add missing tuple fields to an index, which is very useful when adding an index along with the evolution of the database schema; gh-2988
+  * (Database) lots of improvements in field type support when creating or altering spaces and indexes; gh-2893, gh-3011, gh-3008
+  * (Database) it is now possible to turn on is_nullable property on a field even if the space is not empty, the change is instantaneous; gh-2973
+  * (Database) logging has been improved in many respects: individual messages (gh-1972, gh-2743, gh-2900), more logging in cases when it was useful (gh-3096, gh-2871)
+  * (Vinyl storage engine) it is now possible to make a unique vinyl index non-unique without index rebuild; gh-2449
+  * (Vinyl storage engine) improved UPDATE, REPLACE and recovery performance in presence of secondary keys; gh-2289, gh-2875, gh-3154
+  * (Vinyl storage engine) space:len() and space:bsize() now work for vinyl (although they are still not exact); gh-3056
+  * (Vinyl storage engine) recovery speed has improved in presence of secondary keys; gh-2099
+  * (Builds) Alpine Linux support; gh-3067
+
+.. _whats_new_18:
+
+--------------------------------------------------------------------------------
+Version 1.8
+--------------------------------------------------------------------------------
+
+.. _whats_new_181:
+
+**Release 1.8.1**
+
+Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1.
+
+Announcement: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ.
+
+Download: https://tarantool.org/en/download_18.html
+
+This is an alpha release which delivers support for a substantial subset
+of the ISO/IEC 9075:2011 SQL standard, including joins, subqueries and views.
+SQL is a major feature of the 1.8 release series, in which we plan to add
+support for ODBC and JDBC connectors, SQL triggers, prepared statements,
+security and roles,
+and generally ensure SQL is a first class query language in Tarantool.
+
+Functionality added or changed:
+
+  * A new function box.sql.execute() was added to query Tarantool databases using SQL statements, e.g. |br|
+    tarantool> box.sql.execute([[SELECT * FROM _schema]]);
+  * SQL and Lua are fully interoperable.
+  * New meta-commands introduced to Tarantool's console.
+    You can now set input language to either SQL or Lua, e.g.: |br|
+    tarantool> \set language sql |br|
+    tarantool> SELECT * FROM _schema; |br|
+    tarantool> \set language lua |br|
+    tarantool> print("Hello, world!");
+  * Most SQL statements are supported: |br|
+    * CREATE/DROP TABLE/INDEX/VIEW tarantool> CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100)); |br|
+    * INSERT/UPDATE/DELETE statements e.g. tarantool> INSERT INTO table1 VALUES (1, 'A'); ...  tarantool> UPDATE table1 SET column2 = 'B'; |br|
+    * SELECT statements, including complex complicated variants which include multiple JOINs, nested SELECTs etc. e.g. SELECT sum(column1) FROM table1 WHERE column2 LIKE '_B' GROUP BY column2; |br|
+    * WITH statements e.g.tarantool> WITH cte AS ( SELECT SUBSTR(column2,1,2), column1 FROM table1 WHERE column1 >= 0) SELECT * FROM cte; |br|
+    * SQL schema is persistent, so it is able to survive snapshot()/restore() sequence. |br|
+    * SQL features are described in tutorial https://tarantool.org/doc/1.8/tutorials/sql_tutorial.html.
 
 .. _whats_new_17:
 
-================================================================================
+--------------------------------------------------------------------------------
+Version 1.7
+--------------------------------------------------------------------------------
+
+.. _whats_new_176:
+
+**Release 1.7.6**
+
+Release type: stable. Release date: 2017-11-07.  Tag: 1.7.6-0-g7b2945d6c.
+
+Announcement: https://groups.google.com/forum/#!topic/tarantool/hzc7O2YDZUc.
+
+This is the next stable release in the 1.7 series.
+It resolves more than 75 issues since 1.7.5.
+
+What's new in Tarantool 1.7.6?
+
+  * In addition to :ref:`rollback <box-rollback>` of a transaction, there is now rollback to a defined point within a transaction -- :ref:`savepoint <box-savepoint>` support.
+  * There is a new object type: :ref:`sequences <index-box_sequence>`. The older option, :ref:`auto-increment <box_space-auto_increment>`, will be deprecated.
+  * String indexes can have :ref:`collations <index-collation>`.
+
+New options are available for:
+
+  * :ref:`net_box <net_box-module>` (timeouts),
+  * :ref:`string <string-module>` functions,
+  * space :ref:`formats <box_space-format>` (user-defined field names and types),
+  * :ref:`base64 <digest-base64_encode>` (``urlsafe`` option), and
+  * index :ref:`creation <box_space-create_index>` (collation, :ref:`is-nullable <box_space-is_nullable>`, field names).
+
+Incompatible Changes
+
+  * Layout of `box.space._index` has been extended to support  `is_nullable` and `collation` features.
+    All new indexes created on columns with `is_nullable` or `collation` properties will have the new definition format. Please update your client libraries if you plan to use these new features.
+    Issue `2802 <https://github.com/tarantool/tarantool/issues/2802>`_
+  * `fiber.name()` now raises an exception instead of truncating long fiber names.
+    We found that some Lua modules such as `expirationd` use `fiber.name()` as a key to identify background tasks. If a name is truncated, this fact was silently missed. The new behavior allows to detect bugs caused by `fiber.name()` truncation. Please use `fiber.name(name, { truncate = true })` to emulate the old behavior.
+    Issue `2622 <https://github.com/tarantool/tarantool/issues/2622>`_
+  * `space:format()` is now validated on DML operations.
+    Previously `space:format()` was only used by client libraries, but starting from Tarantoool 1.7.6,
+    field types in `space:format()` are validated on the server side on every DML operation,
+    and field names can be used in indexes and Lua code. If you used `space:format()` in a non-standard way,
+    please update layout and type names according to the official documentation for
+    :ref:`space formats <box_space-format>`.
+
+Functionality Added or Changed
+
+  * Hybrid schema-less + schemaful data model.
+    Earlier Tarantool versions allowed to store arbitrary MessagePack documents in spaces.
+    Starting from Tarantool 1.7.6, you can use
+    `:ref:`space:format() <box_space-format>` to define schema restrictions and constraints
+    for tuples in spaces. Defined field types are automatically validated on every DML operation,
+    and defined field names can be used instead of field numbers in Lua code.
+    A new function `tuple:tomap()` was added to convert a tuple into a key-value Lua dictionary.
+  * Collation and Unicode Support.
+    By default, when Tarantool compares strings, it takes into consideration only the numeric
+    value of each byte in the string. To allow the ordering that you see in phone books and dictionaries,
+    Tarantool 1.7.6 introduces support for collations based on the Default Unicode Collation Element
+    Table (DUCET) and the rules described in Unicode® Technical Standard
+    #10 Unicode Collation Algorithm (UTS #10 UCA). See :ref:`collations <index-collation>`.
+    https://tarantool.org/doc/1.7/book/box/data_model.html#collations
+  * NULL values in unique and non-unique indexes.
+    By default, all fields in Tarantool are  "NOT NULL". Starting from Tarantool 1.7.6, you can use
+    `is_nullable` option in `space:format()` or inside an index part definition to allow storing NULL in indexes.
+    Tarantool partially implements `three-valued logic <https://en.wikipedia.org/wiki/Three-valued_logic>`_
+    from the SQL standard and allows storing multiple NULL values in unique indexes.
+    Issue `1557 <https://github.com/tarantool/tarantool/issues/1557>`_.
+  * Sequences and a new implementation of `auto_increment()`.
+    Tarantool 1.7.6 introduces new
+    :ref:`sequence number generators <index-box_sequence>` (like CREATE SEQUENCE in SQL).
+    This feature is used to implement new persistent auto increment in spaces.
+    Issue `389 <https://github.com/tarantool/tarantool/issues/389>`_.
+  * Vinyl: introduced gap locks in Vinyl transaction manager.
+    The new locking mechanism in Vinyl TX manager reduces the number of conflicts in transactions.
+    Issue `2671 <https://github.com/tarantool/tarantool/issues/2671>`_.
+  * `net.box`: `on_connect`/`on_disconnect` triggers.
+    Issue `2858 <https://github.com/tarantool/tarantool/issues/2858>`_.
+  * Structured logging in JSON format.
+    Issue `2795 <https://github.com/tarantool/tarantool/issues/2795>`_.
+  * (Lua) Lua: `string.strip()`
+    Issue `2785 <https://github.com/tarantool/tarantool/issues/2785>`_.
+  * (Lua) added `base64_urlsafe_encode()` API to `digest` module.
+    Issue `2777 <https://github.com/tarantool/tarantool/issues/2777>`_.
+  * Log conflicted keys in master-master replication.
+    Issue `2779 <https://github.com/tarantool/tarantool/issues/2779>`_.
+  * Allow to disable backtrace in `fiber.info()`.
+    Issue `2878 <https://github.com/tarantool/tarantool/issues/2878>`_.
+  * Implemented `tarantoolctl rocks make *.spec`.
+    Issue `2846 <https://github.com/tarantool/tarantool/issues/2846>`_.
+  * Extended the default loader to look for `.rocks` in the parent dir hierarchy.
+    Issue `2676 <https://github.com/tarantool/tarantool/issues/2676>`_.
+  * `SOL_TCP` options support in `socket:setsockopt()`.
+    Issue `598 <https://github.com/tarantool/tarantool/issues/598>`_.
+  * Partial emulation of LuaSocket on top of Tarantool Socket.
+    Issue `2727 <https://github.com/tarantool/tarantool/issues/2727>`_.
+
+Developer Tools
+
+  * Integration with IntelliJ IDEA with debugging support.
+    Now you can use IntelliJ IDEA as an IDE to develop and debug Lua applications for Tarantool.
+    See :ref:`Using IDE <app_server-using_ide>`.
+  * Integration with [MobDebug](https://github.com/pkulchenko/MobDebug) remote Lua debugger.
+    Issue `2728 <https://github.com/tarantool/tarantool/issues/2728>`_.
+  * Configured `/usr/bin/tarantool` as an alternative Lua interpreter on Debian/Ubuntu.
+    Issue `2730 <https://github.com/tarantool/tarantool/issues/2730>`_.
+
+New Rocks
+
+  * **smtp.client** - support SMTP via `libcurl`.
+    See https://github.com/tarantool/smtp.
+
+.. _whats_new_175:
+
+**Release 1.7.5**
+
+Release type: stable. Release date: 2017-08-22.  Tag: 1.7.5.
+
+Announcement: https://github.com/tarantool/doc/issues/289.
+
+This is a stable release in the 1.7 series.
+This release resolves more than 160 issues since 1.7.4.
+
+Functionality Added or Changed
+
+  * (Vinyl) a new force_recovery mode to recover broken disk files.
+    Use box.cfg { force_recovery = true } is useful to recover corrupted data files after hardware issues
+    or power outages.
+    Issue `2253 <https://github.com/tarantool/tarantool/issues/2253>`_.
+  * (Vinyl) index options can be changed on the fly without rebuild.
+    Now page_size, run_size_ratio, run_count_per_level and bloom_fpr index options can be dynamically changed via index:alter(). The changes take effect in newly created data files only.
+    Issue `2109 <https://github.com/tarantool/tarantool/issues/2109>`_.
+  * (Vinyl) improve box.info.vinyl() and index:info() output
+    Issue `1662 <https://github.com/tarantool/tarantool/issues/1662>`_.
+  * (Vinyl) introduce box.cfg.vinyl_timeout option to control quota throttling
+    Issue `2014 <https://github.com/tarantool/tarantool/issues/2014>`_.
+  * Memtx: stable index:pairs() iterators for the TREE index.
+    TREE iterators are automatically restored to a proper position after index's modifications.
+    Issue `1796 <https://github.com/tarantool/tarantool/issues/1796>`_.
+  * (Memtx) predictable order for non-unique TREE indexes.
+    Non-unique TREE indexes preserve the sort order for duplicate entries.
+    Issue `2476 <https://github.com/tarantool/tarantool/issues/2476>`_.
+  * (Memtx+Vinyl) dynamic configuration of max tuple size.
+    Now box.cfg.memtx_max_tuple_size and box.cfg.vinyl_max_tuple_size configuration options can be changed on the fly without need to restart the server.
+    Issue `2667 <https://github.com/tarantool/tarantool/issues/2667>`_.
+  * (Memtx+Vinyl) new implementation.
+    Space truncation doesn't cause re-creation of all indexes any more.
+    Issue `618 <https://github.com/tarantool/tarantool/issues/618>`_.
+  * Extended the maximal length of all identifiers from 32 to 65k characters.
+    Space, user and function names are not limited by 32 characters anymore.
+    Issue `944 <https://github.com/tarantool/tarantool/issues/944>`_.
+  * Heartbeat messages for replication.
+    Replication client now sends the selective acknowledgments for processed records and automatically re-establish stalled connections. This feature also changes box.info.replication[replica_id].vclock to display committed vclock of remote replica.
+    Issue `2484 <https://github.com/tarantool/tarantool/issues/2484>`_.
+  * Keep track of remote replicas during WAL maintenance.
+    Replication master now automatically preserves xlogs needed for remote replicas.
+    Issue `748 <https://github.com/tarantool/tarantool/issues/748>`_.
+  * Enabled box.tuple.new() to work without box.cfg().
+    Issue `2047 <https://github.com/tarantool/tarantool/issues/2047>`_.
+  * box.atomic(fun, ...) wrapper to execute function in a transaction
+    Issue `818 <https://github.com/tarantool/tarantool/issues/818>`_.
+  * box.session.type() helper to determine session type.
+    Issue `2642 <https://github.com/tarantool/tarantool/issues/2642>`_.
+  * Hot code reload for stored C stored procedures.
+    Use box.schema.func.reload('modulename.function') to reload dynamic shared libraries on the fly.
+    Issue `910 <https://github.com/tarantool/tarantool/issues/910>`_.
+  * string.hex() and str:hex() Lua API.
+    Issue `2522 <https://github.com/tarantool/tarantool/issues/2522>`_.
+  * Package manager based on LuaRocks.
+    Use tarantoolctl rocks install MODULENAME to install MODULENAME Lua module from https://rocks.tarantool.org/.
+    Issue `2067 <https://github.com/tarantool/tarantool/issues/2067>`_.
+  * Lua 5.1 command line options.
+    Tarantool binary now supports '-i', '-e', '-m' and '-l' command line options.
+    Issue `1265 <https://github.com/tarantool/tarantool/issues/1265>`_.
+  * Experimental GC64 mode for LuaJIT.
+    GC64 mode allow to operate the full address space on 64-bit hosts. Enable via -DLUAJIT_ENABLE_GC64=ON compile-time configuration option.
+    Issue `2643 <https://github.com/tarantool/tarantool/issues/2643>`_.
+  * Syslog logger now support non-blocking mode.
+    box.cfg { log_nonblock = true } now also works for syslog logger.
+    Issue `2466 <https://github.com/tarantool/tarantool/issues/2466>`_.
+  * Added a VERBOSE log level beyond INFO.
+    Issue `2467 <https://github.com/tarantool/tarantool/issues/2467>`_.
+  * Tarantool now automatically makes snapshots every hour.
+    Please set box.cfg { checkpoint_interval = 0 } to restore pre-1.7.5 behaviour.
+    Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_.
+  * Increase precision for percentage ratios provoded by box.slab.info().
+    Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_.
+  * Stack traces now contains symbols names on all supported platforms.
+    Previous versions of Tarantool didn't display meaningful function names in fiber.info() on non-x86 platforms.
+    Issue `2103 <https://github.com/tarantool/tarantool/issues/2103>`_.
+  * Allowed to create fiber with custom stack size from C API.
+    Issue `2438 <https://github.com/tarantool/tarantool/issues/2438>`_.
+  * Added ipc_cond to public C API.
+    Issue `1451 <https://github.com/tarantool/tarantool/issues/1451>`_.
+
+New Rocks
+
+  * http.client (built-in) - libcurl-based HTTP client with SSL/TLS support
+    Issue `2083 <https://github.com/tarantool/tarantool/issues/x2083>`_.
+  * iconv (built-in) - bindings for iconv
+    Issue `2587 <https://github.com/tarantool/tarantool/issues/2587>`_.
+  * authman - API for registration and login users in your site using email and social networks
+    See https://github.com/mailru/tarantool-authman.
+  * document - store nested documents in Tarantool
+    See https://github.com/tarantool/document.
+  * synchronized - critical sections for Lua
+    See https://github.com/tarantool/synchronized.
+
+.. _whats_new_174:
+
+**Release 1.7.4**
+
+Release type: release candidate. Release date: 2017-05-12. Release tag: Tag: 1.7.4.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.7.4
+              or https://groups.google.com/forum/#!topic/tarantool/3x88ATX9YbY
+
+This is a release candidate in the 1.7 series.
+Vinyl Engine, the flagship feature of 1.7.x, is now feature complete.
+
+Incompatible changes
+
+  * box.cfg() options were changed to add Vinyl support:
+  * `snap_dir` renamed to `memtx_dir`
+  * `slab_alloc_arena`  (gigabytes) renamed to `memtx_memory` (bytes),
+    default value changed from 1Gb to 256MB
+  * `slab_alloc_minimal` renamed to `memtx_min_tuple_size`
+  * `slab_alloc_maximal` renamed to `memtx_max_tuple_size`
+  * `slab_alloc_factor` is deprecated, not relevant in 1.7.x
+  * `snapshot_count` renamed to `checkpoint_count`
+  * `snapshot_period` renamed to `checkpoint_interval`
+  * `rows_per_wal` renamed to `wal_max_size`
+  * `logger` renamed to `log`
+  * `logger_nonblock` renamed to `log_nonblock`
+  * `logger_level` renamed to `log_level`
+  * `replication_source` renamed to `replication`
+  * `panic_on_snap_error = true` and `panic_on_wal_error = true`
+    superseded by `force_recovery = false`
+  * Until Tarantool 1.8, you can use deprecated parameters for both
+    initial and runtime configuration, but such usage will print
+    a warning in the server log.
+    Issue `1927 <https://github.com/tarantool/tarantool/issues/1927>`_.
+    Issue `2042 <https://github.com/tarantool/tarantool/issues/2042>`_.
+  * Hot standy mode is now off by default. Tarantool automatically detects
+    another running instance in the same `wal_dir` and refuses to start.
+    Please use `box.cfg {hot_standby = true}` to enable the hot standby mode.
+    Issue `775 <https://github.com/tarantool/tarantool/issues/775>`_.
+  * UPSERT via a secondary key was banned to avoid unclear semantics.
+    Issue `2226 <https://github.com/tarantool/tarantool/issues/2226>`_.
+  * `box.info` and `box.info.replication` format was changed to display
+    information about upstream and downstream connections:
+  * Added `box.info.replication[instance_id].downstream.vclock` to display
+    the last sent row to remote replica
+  * Added `box.info.replication[instance_id].id`
+  * Added `box.info.replication[instance_id].lsn`
+  * Moved `box.info.replication[instance_id].{vclock,status,error}` to
+    to `box.info.replication[instance_id].upstream.{vclock,status,error}`
+  * All registered replicas from `box.space._cluster` are included to
+    `box.info.replication` output
+  * `box.info.server.id` renamed `box.info.id`
+  * `box.info.server.lsn` renamed `box.info.lsn`
+  * `box.info.server.uuid` renamed `box.info.uuid`
+  * `box.info.cluster.signature` renamed to `box.info.signature`
+  * `box.info.id` and `box.info.lsn` now return `nil` instead of `-1`
+    during initial cluster bootstrap.
+    Issue `723 <https://github.com/tarantool/tarantool/issues/723>`_.
+  * net.box: added per-request options to all requests:
+  * `conn.call(func_name, arg1, arg2,...)` changed to
+    `conn.call(func_name, {arg1, arg2, ...}, opts)`
+  * `conn.eval(func_name, arg1, arg2,...)` changed to
+    `conn.eval(func_name, {arg1, arg2, ...}, opts)`
+  * All requests now support `timeout = <seconds>`, `buffer = <ibuf>` options
+  * Added `connect_timeout` option to `netbox.connect()`
+  * `netbox:timeout()` and `conn:timeout()` are now deprecated
+    Please use `netbox.connect(host, port, { call_16 = true })` for
+    1.6.x-compatible behavior.
+    Issue `2195 <https://github.com/tarantool/tarantool/issues/2195>`_.
+  * systemd configuration changed to support `Type=Notify` / `sd_notify()`.
+    Now `systemctl start tarantool@INSTANCE` will wait until Tarantool
+    has started and recovered from xlogs. The recovery status is reported to
+    `systemctl status tarantool@INSTANCE`.
+    Issue `1923 <https://github.com/tarantool/tarantool/issues/1923>`_.
+  * `log` module now doesn't prefix all messages with the full path to
+    tarantool binary when used without box.cfg()
+    [#1876](https://github.com/tarantool/tarantool/issues/1876)
+  * `require('log').logger_pid()` was renamed to `require('log').pid()`.
+    Issue `2917 <https://github.com/tarantool/tarantool/issues/2917>`_.
+  * Removed Lua 5.0 compatible defines and functions:
+    * - `luaL_reg`  removed in favor of  `luaL_Reg`
+    * - `luaL_getn(L, i)` removed in favor of `lua_objlen(L, i)`
+    * - `luaL_setn(L, i, j)` removed (was no-op)
+    * - `lua_ref(L, lock)` removed in favor of `luaL_ref(L, lock)`
+    * - `lua_getref(L,ref)` removed in favor of `lua_rawgeti(L, LUA_REGISTRYINDEX, (ref))`
+    * - `lua_unref(L, ref)` removed in favor of `luaL_unref(L, ref)`
+    * - `math.mod()` removed in favor of `math.fmod()`
+    * - `string.gfind()` removed in favor of `string.gmatch()` [#2396](https://github.com/tarantool/tarantool/issues/2396)
+
+Functionality added or changed
+
+  * (Vinyl) multi-level compaction
+    The compaction scheduler now groups runs of the same range into levels to
+    reduce the write amplification during compaction. This design allows Vinyl
+    to support 1:100+ ram:disk use-cases.
+    Issue `1821 <https://github.com/tarantool/tarantool/issues/1821>`_.
+  * (Vinyl) bloom filters for sorted runs
+    Bloom filter is a probabilistic data structure which can be used to test
+    whether a requested key is present in a run file without reading the actual
+    file from the disk. Bloom filter may have false-positive matches but
+    false-negative matches are impossible. This feature reduces the number
+    of seeks needed for random lookups and speeds up REPLACE/DELETE with
+    enabled secondary keys.
+    Issue `1919 <https://github.com/tarantool/tarantool/issues/1919>`_.
+  * (Vinyl) key-level cache for point lookups and range queries.
+    Vinyl storage engine caches selected keys and key ranges instead of
+    entire disk pages like in traditional databases. This approach is more
+    efficient because the cache is not polluted with raw disk data.
+    Issue `1692 <https://github.com/tarantool/tarantool/issues/1692>`_.
+  * (Vinyl) implemented the common memory level for in-memory indexes.
+    Now all in-memory indexes of a space store pointers to the same tuples
+    instead of cached secondary key index data. This feature significantly
+    reduces the memory footprint in case of secondary keys.
+    Issue `1908 <https://github.com/tarantool/tarantool/issues/1908>`_.
+  * (Vinyl) new implementation of initial state transfer of JOIN command in
+    replication protocol. New replication protocol fixes problems with
+    consistency and secondary keys. We implemented a special kind of low-cost
+    database-wide read-view to avoid dirty reads in JOIN procedure. This trick
+    wasn't not possible in traditional B-Tree based databases.
+    Issue `2001 <https://github.com/tarantool/tarantool/issues/2001>`_.
+  * (Vinyl) index-wide mems/runs.
+    Removed ranges from in-memory and and the stop layer of LSM tree on disk.
+    Issue `2209 <https://github.com/tarantool/tarantool/issues/2209>`_.
+  * (Vinyl) coalesce small ranges.
+    Before dumping or compacting a range, consider coalescing it with its
+    neighbors.
+    Issue `1735 <https://github.com/tarantool/tarantool/issues/1735>`_.
+  * (Vinyl) implemented transnational journal for metadata.
+    Now information about all Vinyl files is logged in a special .vylog file.
+    Issue `1967 <https://github.com/tarantool/tarantool/issues/1967>`_.
+  * (Vinyl) implemented consistent secondary keys.
+    Issue `2410 <https://github.com/tarantool/tarantool/issues/2410>`_.
+  * (Memtx+Vinyl) implemented low-level Lua API to create consistent backups.
+    of Memtx + Vinyl data. The new feature provides `box.backup.start()/stop()`
+    functions to create backups of all spaces. `box.backup.start()` pauses
+    garbage collection and returns the list of files to copy. These files then
+    can be copied be any third-party tool, like cp, ln, tar, rsync, etc.
+    `box.backup.stop()` resumes the background garbage collection process.
+    Created backups can be restored instantly by copying into a new directory
+    and starting a new Tarantool instance. No special preparation, conversion
+    or unpacking is needed.
+    Issue `1916 <https://github.com/tarantool/tarantool/issues/1916>`_.
+  * (Vinyl) added statistics for background workers to box.info.vinyl().
+    Issue `2005 <https://github.com/tarantool/tarantool/issues/2005>`_.
+  * (Memtx+Vinyl) reduced the memory footprint for indexes which keys are
+    sequential and start from the first field. This optimization was necessary
+    for secondary keys in Vinyl, but we optimized Memtx as well.
+    Issue `2046 <https://github.com/tarantool/tarantool/issues/2046>`_.
+  * LuaJIT was rebased on the latest 2.1.0b3 with out patches: |br|
+    * Added JIT compiler backend for ARM64 |br|
+    * Added JIT compiler backend and interpreter for MIPS64 |br|
+    * Added some more Lua 5.2 and Lua 5.3 extensions |br|
+    * Fixed several bugs |br|
+    * Removed Lua 5.0 legacy (see incompatible changes above).
+    * Issue `2396 <https://github.com/tarantool/tarantool/issues/2396>`_.
+  * Enabled a new smart string hashing algorithm in LuaJIT to avoid significant
+    slowdown when a lot of collisions are generated.
+    Contributed by Yury Sokolov (@funny-falcon) and Nick Zavaritsky (@mejedi).
+    See https://github.com/tarantool/luajit/pull/2.
+  * box.snapshot() now updates mtime of a snapshot file if there were no
+    changes to the database since the last snapshot.
+    Issue `2045 <https://github.com/tarantool/tarantl/issues/2045>`_.
+  * Implemented `space:bsize()` to return the memory size utilized by all
+    tuples of the space.
+    Contributed by Roman Tokarev (@rtokarev).
+    Issue `2043 <https://github.com/tarantool/tarantool/issues/2043>`_.
+  * Exported new Lua/C functions to public API: |br|
+    * `luaT_pushtuple`, `luaT_istuple` |br|
+    * `luaT_error`, `luaT_call`, `luaT_cpcall`
+    * `luaT_state`
+    * Issue `1878 <https://github.com/tarantool/tarantool/issues/1878>`_.  |br|
+    * Issue `2291 <https://github.com/tarantool/tarantool/issues/2291>`_. |br|
+    * Issue `2416 <https://github.com/tarantool/tarantool/issues/2416>`_.
+  * Exported new Box/C functions to public API ...
+  * `box_key_def`, `box_tuple_format`,  `tuple_compare()`,
+    `tuple_compare_with_key()`
+    [#2225](https://github.com/tarantool/tarantool/issues/2225)
+  * xlogs now can be rotated based on size (`wal_max_size`) as well as
+    the number of written rows (`wal_max_rows`).
+    [#173](https://github.com/tarantool/tarantool/issues/173)
+  * Added string.split(), string.startswith(), string.endswith(),
+    string.ljust(), string.rjust(), string.center() API.
+    Issue `2211 <https://github.com/tarantool/tarantool/issues/2211>`_.
+    Issue `2214 <https://github.com/tarantool/tarantool/issues/2214>`_.
+    Issue `2415 <https://github.com/tarantool/tarantool/issues/2415>`_.
+  * Added `table.copy()` and `table.deepcopy()` functions
+    Issue `2212 <https://github.com/tarantool/tarantool/issues/2412>`_.
+  * Added `pwd` module to work with UNIX users and groups.
+    Issue `2213 <https://github.com/tarantool/tarantool/issues/2213>`_.
+  * `box.session.on_connect()/on_disconnect()/on_auth()` triggers now also
+    fired for admin console connections.
+    Issue `1938 <https://github.com/tarantool/tarantool/issues/1938>`_.
+  * Removed noisy "client unix/: connected" messages from logs. Please use
+    box.session.on_connect()/on_disconnect()` triggers instead.
+    Issue `1938 <https://github.com/tarantool/tarantool/issues/1938>`_.
+  * tarantoolctl: `eval`, `enter`, `connect` commands now support UNIX pipes.
+    Issue `672 <https://github.com/tarantool/tarantool/issues/672>`_.
+  * tarantoolctl: improved error messages and added a new man page.
+    Issue `1488 <https://github.com/tarantool/tarantool/issues/1488>`_.
+  * tarantoolctl: added filter by `replica_id` to `cat` and `play` commands
+    Issue `2301 <https://github.com/tarantool/tarantool/issues/2301>`_.
+  * tarantoolctl: `start`, `stop` and `restart` commands now redirect to
+    `systemctl start/stop/restart` when systemd is enabled.
+    Issue `2254 <https://github.com/tarantool/tarantool/issues/2254>`_.
+  * net.box: added `buffer = <buffer>` per-request option to store raw
+    MessagePack responses into a C buffer.
+    Issue `2195 <https://github.com/tarantool/tarantool/issues/2195>`_.
+  * net.box: added `connect_timeout` option
+    Issue `2054 <https://github.com/tarantool/tarantool/issues/2054>`_.
+  * net.box: added `on_schema_reload()` hook.
+    Issue `2021 <https://github.com/tarantool/tarantool/issues/2021>`_.
+  * net.box: exposed `conn.schema_version` and `space.connection` to API
+    Issue `2412 <https://github.com/tarantool/tarantool/issues/2412>`_.
+  * log: debug()/info()/warn()/error() now doesn't fail on formatting errors.
+    Issue `889 <https://github.com/tarantool/tarantool/issues/889>`_.
+  * crypto: added HMAC support
+    Contributed by Andrey Kulikov (@amdei).
+    Issue `725 <https://github.com/tarantool/tarantool/issues/725>`_.
+
+.. _whats_new_173:
+
+**Release 1.7.3**
+
+Release type: beta. Release date: 2016-12-24. Release tag: Tag: 1.7.3-0-gf0c92aa.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.7.3
+
+This is the second beta release in the 1.7 series.
+
+Incompatible changes
+
+  * Broken coredump() Lua function was removed. Issue#1886.
+    Please use gdb -batch -ex "generate-core-file" -p $PID instead.
+  * Vinyl disk layout was changed since 1.7.2 to add ZStandard compression and improve
+    the performance of secondary keys. Issue#1656.
+  * Please use the replication mechanism to upgrade from 1.7.2 beta.
+
+Functionality added or changed
+
+  * Substantial progress on stabilizing the Vinyl storage engine:
+    Fix most known crashes and bugs with bad results.
+    Switch to use XLOG/SNAP format for all data files.
+    Enable ZStandard compression for all data files.
+    Squash UPSERT operations on the fly and merge hot keys using a
+    background fiber.
+    Significantly improve the performance of index:pairs() and index:count().
+    Remove unnecessary conflicts from transactions.
+    In-memory level was mostly replaced by memtx data structures.
+    Specialized allocators are used in most places.
+  * We're still actively working on Vinyl and plan to add multi-level
+    compaction and improve the performance of secondary keys in 1.7.4.
+    This implies a data format change.
+  * Support for DML requests for space:on_replace() triggers.
+    Issue#587.
+  * UPSERT can be used with the empty list of operations.
+    Issue#5#1854.
+  * Lua functions to manipulate environment variables.
+    Issue#5#1718.
+  * Lua library to read Tarantool snapshots and xlogs.
+    Issue#5#1782.
+  * New play and cat commands in tarantoolctl.
+    Issue#5#1861.
+  * Improve support for the large number of active network clients.
+    Issue#5#1892.
+  * Support for space:pairs(key, iterator-type) syntax.
+    Issue#5#1875.
+  * Automatic cluster bootstrap now also works without authorization.
+    Issue#1589
+  * Replication retries to connect to master indefinitely.
+    Issue#5#1511
+  * Temporary spaces now work with box.cfg { read_only = true }
+    #1378.
+  * The maximum length of space names increased to 64 bytes (was 32).
+    Issue#2008.
+
+.. _whats_new_172:
+
+**Release 1.7.2**
+
+Release type: beta. Release date: 2016-09-29. Release tag: Tag: `1.7.2-1-g92ed6c4`.
+
+Announcement: https://groups.google.com/forum/#!topic/tarantool-ru/qUYUesEhRQg
+
+This is a release in the 1.7 series.
+
+Incompatible changes
+
+  * A new binary protocol command for CALL, which no more restricts a function to returning an array of tuples and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing). The old CALL is left intact for backward compatibility. It will be removed in the next major release. All programming language drivers will be gradually changed to use the new CALL. [[#1296](https://github.com/tarantool/tarantool/issues/1296)].
+
+Functionality added or changed
+
+  * Vinyl storage engine finally reached the beta stage. This release fixes more than 90 bugs in Vinyl, in particular, removing unpredictable latency spikes, all known crashes and bad/lost result bugs.
+    * new cooperative multitasking based architecture to eliminate latency spikes, |br|
+    * support for non-sequential multi-part keys, |br|
+    * support for secondary keys, |br|
+    * support for auto_increment(), |br|
+    * number, integer, scalar field types in indexes, |br|
+    * INSERT, REPLACE and UPDATE return new tuple, like in memtx
+  * We're still actively working on Vinyl and plan to add `zstd` compression and a new memory allocator for Vinyl in-memory index in 1.7.3. This implies a data format change which we plan to implement before 1.7 becomes generally available.
+  * tab-based autocompletion in the interactive console, `require('console').connect()`, `tarantoolctl enter` and `tarantoolctl connect` commands [[#86](https://github.com/tarantool/tarantool/issues/86), [#1790](https://github.com/tarantool/tarantool/issues/1790)].
+    Use the TAB key to auto complete the names of Lua variables, functions and meta-methods.
+  * a new implementation of `net.box` improving performance and solving problems with the garbage collection of dead connections [#799](https://github.com/tarantool/tarantool/issues/799) [#800](https://github.com/tarantool/tarantool/issues/800) [#1138](https://github.com/tarantool/tarantool/issues/1138) [#1750](https://github.com/tarantool/tarantool/issues/1750)
+  * memtx snapshots and xlog files are now compressed on the fly using the fast [ZStandard](https://github.com/facebook/zstd) compression algorithm. Compression options are configured automatically to get an optimal trade-off between CPU utilization and disk throughput.
+  * `fiber.cond()` - a new synchronization mechanism for cooperative multitasking
+    https://github.com/tarantool/tarantool/issues/1731.
+  * Tarantool can now be installed using universal Snappy packages (http://snapcraft.io/) with
+    `snap install tarantool --channel=beta`
+
+New rocks and packages
+
+  * [`curl`](https://github.com/tarantool/tarantool-curl) - non-blocking bindings for libcurl
+  * [`prometheus`](https://github.com/tarantool/prometheus) - Prometheus metric collector for Tarantool
+  * [`gis`](https://github.com/tarantool/gis) - a full-featured geospatial extension for Tarantool
+  * [`mqtt`](https://github.com/tarantool/mqtt) - an MQTT protocol client for Tarantool
+  * [`luaossl`](https://github.com/tarantool/luaossl) - the most comprehensive OpenSSL module in the Lua universe
+
+Deprecated, removed features and minor incompatibilities
+
+  * `num` and `str` fields type names are deprecated, please use `unsigned` and  `string`  instead.
+    Issue `1534 <https://github.com/tarantool/tarantool/issues/1534>`_.
+  * `space:inc()` and `space:dec()` were removed (deprecated in 1.6.x)
+    Issue `1289 <https://github.com/tarantool/tarantool/issues/1289>`_.
+  * `fiber:cancel()` is now asynchronous and doesn't wait for the fiber to end.
+    Issue `1732 <https://github.com/tarantool/tarantool/issues/1732>`_.
+  * Implicit error-prone `tostring()` was removed from `digest` API.
+    Issue `1591 <https://github.com/tarantool/tarantool/issues/1591>`_.
+  * Support for SHA-0 (`digest.sha()`) was removed due to OpenSSL upgrade.
+  * `net.box` now uses one-based indexes for `space.name.index[x].parts`.
+    Issue `1729 <https://github.com/tarantool/tarantool/issues/1729>`_.
+  * Tarantool binary now dynamically links with `libssl.so` during compile time instead of loading it at the run time
+  * Debian and Ubuntu packages switched to use native `systemd` configuration alongside with old-fashioned `sysvinit` scripts;
+    `systemd` provides its own facilities for multi-instance management. To upgrade, please perform the following
+    steps:
+    * - install new 1.7.2 packages |br|
+    * - ensure that INSTANCENAME.lua file is present in `/etc/tarantool/instace.enabled` |br|
+    * - stop INSTANCENAME using `tarantoolctl stop INSTANCENAME` |br|
+    * - start INSTANCENAME using `systemctl start tarantool@INSTANCENAME` |br|
+    * - enable INSTANCENAME during system boot using `systemctl enable trantool@INTANCENAME` |br|
+    * - `systemctl disable tarantool; update-rc.d tarantool remove` - disable sysvinit-compatible wrappers |br|
+    * - Refer to issue `1291 <https://github.com/tarantool/tarantool/issues/1291>`_ comment and `the administration chapter <http://tarantool.org/doc/book/administration.html>`_ for additional information.
+  * Debian and Ubuntu packages start a ready-to-use `example.lua` instance on a clean installation of the package. The default instance grants universe permissions for `guest` user and listens on "locahost:3313".
+  * Fedora 22 packages were deprecated (EOL).
+
+.. _whats_new_171:
+
+**Release 1.7.1**
+
+Release type: alpha. Release date: 2016-07-11.
+
+Announcement: https://groups.google.com/forum/#!topic/tarantool/KGYj3VKJKb8
+
+This is the first alpha in the 1.7 series.
+The main feature of this release is a new storage engine, called "vinyl".
+Vinyl is a write optimized storage engine, allowing the amount
+of data stored exceed the amount of available RAM 10-100x times.
+Vinyl is a continuation of the Sophia engine from 1.6, and
+effectively a fork and a distant relative of Dmitry Simonenko's
+Sophia. Sophia is superseded and replaced by Vinyl.
+Internally it is organized as a log structured merge tree.
+However, it takes a serious effort to improve on the traditional
+deficiencies of log structured storage, such as poor read performance
+and unpredictable write latency. A single index
+is range partitioned among many LSM data structures, each having its
+own in-memory buffers of adjustable size. Range partitioning allows
+merges of LSM levels to be more granular, as well as to prioritize
+hot ranges over cold ones in access to resources, such as RAM and
+I/O. The merge scheduler is designed to minimize write latency
+while ensuring read performance stays within acceptable limits.
+Vinyl today only supports a primary key index. The index
+can consist of up to 256 parts, like in MemTX, up from 8 in
+Sophia. Partial key reads are supported.
+Support of non-sequential multi part keys, as well as secondary keys
+is on the short term todo.
+Our intent is to remove all limitations currently present in
+Vinyl, making it a first class citizen in Tarantool.
+
 What's new in Tarantool 1.7?
-================================================================================
 
-The disk-based storage engine, which was called `sophia` or `phia`
-in earlier versions, is superseded by the `vinyl` storage engine.
+  * The disk-based storage engine, which was called `sophia` or `phia`
+    in earlier versions, is superseded by the `vinyl` storage engine.
+  * There are new types for indexed fields.
+  * The LuaJIT version is updated.
+  * Automatic replica set bootstrap (for easier configuration of a new replica set)
+    is supported.
+  * The ``space_object:inc()`` function is removed.
+  * The ``space_object:dec()`` function is removed.
+  * The ``space_object:bsize()`` function is added.
+  * The ``box.coredump()`` function is removed, for an alternative see
+    :ref:`Core dumps <admin-core_dumps>`.
+  * The ``hot_standby`` configuration option is added.
+  * Configuration parameters revised or renamed:
+    * ``slab_alloc_arena`` (in gigabytes) to ``memtx_memory`` (in bytes),
+    * ``slab_alloc_minimal`` to ``memtx_min_tuple_size``,
+    * ``slab_alloc_maximal`` to ``memtx_max_tuple_size``,
+    * ``replication_source`` to ``replication``,
+    * ``snap_dir`` to ``memtx_dir``,
+    * ``logger`` to ``log``,
+    * ``logger_nonblock`` to ``log_nonblock``,
+    * ``snapshot_count`` to ``checkpoint_count``,
+    * ``snapshot_period`` to ``checkpoint_interval``,
+    * ``panic_on_wal_error`` and ``panic_on_snap_error`` united under ``force_recovery``.
+  * Until Tarantool 1.8, you can use :ref:`deprecated parameters <cfg_deprecated>`
+    for both initial and runtime configuration, but Tarantool will display a warning.
+    Also, you can specify both deprecated and up-to-date parameters, provided
+    that their values are harmonized. If not, Tarantool will display an error.
 
-There are new types for indexed fields.
+Features added or changed:
 
-The LuaJIT version is updated.
+  * automatic replication cluster bootstrap; it's now much
+    easier to configure a new replication cluster
+  * new indexable data types: INTEGER and SCALAR
+  * code refactoring and performance improvements
+  * updated LuaJIT to 2.1-beta116
 
-Automatic replica set bootstrap (for easier configuration of a new replica set)
-is supported.
+.. _whats_new_16:
 
-The ``space_object:inc()`` function is removed.
-
-The ``space_object:dec()`` function is removed.
-
-The ``space_object:bsize()`` function is added.
-
-The ``box.coredump()`` function is removed, for an alternative see
-:ref:`Core dumps <admin-core_dumps>`.
-
-The ``hot_standby`` configuration option is added.
-
-Configuration parameters revised:
-
-* Parameters renamed:
-
-  * ``slab_alloc_arena`` (in gigabytes) to ``memtx_memory`` (in bytes),
-  * ``slab_alloc_minimal`` to ``memtx_min_tuple_size``,
-  * ``slab_alloc_maximal`` to ``memtx_max_tuple_size``,
-  * ``replication_source`` to ``replication``,
-  * ``snap_dir`` to ``memtx_dir``,
-  * ``logger`` to ``log``,
-  * ``logger_nonblock`` to ``log_nonblock``,
-  * ``snapshot_count`` to ``checkpoint_count``,
-  * ``snapshot_period`` to ``checkpoint_interval``,
-  * ``panic_on_wal_error`` and ``panic_on_snap_error`` united under
-    ``force_recovery``.
-
-* Until Tarantool 1.8, you can use :ref:`deprecated parameters <cfg_deprecated>`
-  for both initial and runtime configuration, but Tarantool will display a warning.
-  Also, you can specify both deprecated and up-to-date parameters, provided
-  that their values are harmonized. If not, Tarantool will display an error.
+-------------------------------------------------------------------------------
+Version 1.6
+-------------------------------------------------------------------------------
 
 .. _whats_new_169:
 
---------------------------------------------------------------------------------
+**Release 1.6.9**
+
+Release type: maintenance. Release date: 2016-09-27. Release tag: 1.6.9-4-gcc9ddd7.
+
 What's new in Tarantool 1.6.9?
---------------------------------------------------------------------------------
 
 Since February 15, 2017, due to Tarantool issue#2040
 `Remove sophia engine from 1.6 <https://github.com/tarantool/tarantool/issues/2040>`_
 there no longer is a storage engine named `sophia`.
 It will be superseded in version 1.7 by the `vinyl` storage engine.
 
-.. _whats_new_16:
+Incompatible changes
 
-================================================================================
+  * Support for SHA-0 (`digest.sha()`) was removed due to OpenSSL upgrade
+  * Tarantool binary now dynamically links with libssl.so during compile time instead of loading it at the run time
+  * Fedora 22 packages were deprecated (EOL)
+
+Functionality added or changed
+
+  * Tab-based autocompletion in the interactive console.
+    Issue `86 <https://github.com/tarantool/tarantool/issues/86>`_
+  * LUA_PATH and LUA_CPATH environment variables taken into account, like in PUC-RIO Lua.
+    Issue `1428 <https://github.com/tarantool/tarantool/issues/1428>`_
+  * Search for .dylib as well as for .so libraries in OS X.
+    https://github.com/tarantool/tarantool/issues/810
+  * A new box.cfg { read_only = true } option to emulate master-slave behavior.
+    Issue `246 <https://github.com/tarantool/tarantool/issues/246>`_
+  * if_not_exists = true option added to box.schema.user.grant.
+    Issue `1683 <https://github.com/tarantool/tarantool/issues/1683>`_
+  * clock_realtime()/monotonic() functions added to the public C API.
+    Issue `1455 <https://github.com/tarantool/tarantool/issues/1455>`_
+  * space:count(key, opts) introduced as an alias for space.index.primary:count(key, opts).
+    Issue `1391 <https://github.com/tarantool/tarantool/issues/13918>`_
+  * Upgrade script for 1.6.4 -> 1.6.8 -> 1.6.9.
+    Issue `1281 <https://github.com/tarantool/tarantool/issues/1281>`_
+  * Support for OpenSSL 1.1.
+    Issue `1722 <https://github.com/tarantool/tarantool/issues/1722>`_
+
+New rocks and packages
+
+  * curl - Non-blocking bindings for libcurl
+    https://github.com/tarantool/tarantool-curl
+  * prometheus - Prometheus metric collector for Tarantool
+    https://github.com/tarantool/prometheus
+  * gis - A full-featured geospatial extension for Tarantool
+    https://github.com/tarantool/gis
+  * mqtt - An MQTT protocol client for Tarantool
+    https://github.com/tarantool/mqtt
+  * luaossl - The most comprehensive OpenSSL module in the Lua universe
+    https://github.com/tarantool/luaossl
+
+.. _whats_new_168:
+
+**Release 1.6.8**
+
+Release type: maintenance. Release date: 2016-02-25. Release tag: 1.6.8-525-ga571ac0.
+
+Incompatible changes
+
+  * RPM packages for CentOS 7 / RHEL 7 and Fedora 22+ now use native systemd
+    configuration without legacy sysvinit shell scripts. Systemd provides its own
+    facilities for multi-instance management. To upgrade, please perform the
+    following steps: |br|
+    * ensure that INSTANCENAME.lua file is present in `/etc/tarantool/instace.available` |br|
+    * stop INSTANCENAME using `tarantoolctl stop INSTANCENAME` |br|
+    * start INSTANCENAME using `systemctl start tarantool@INSTANCENAME`
+    * enable INSTANCENAME during system boot using `systemctl enable trantool@INTANCENAME` |br|
+    * /etc/tarantool/instance.enabled directory is now deprecated for systemd-enabled platforms. |br|
+    * Please refer to `the administration chapter <http://tarantool.org/doc/book/administration.html>`_ for additional information.
+  * Sophia was upgraded to v2.1 to fix upsert, memory corruption and other bugs.
+    Sophia v2.1 doesn't support old v1.1 data format. Please use Tarantool
+    replication to upgrade.
+    Issue `1222 <https://github.com/tarantool/tarantool/issues/1222>`_
+  * Ubuntu Vivid, Fedora 20, Fedora 21 were deprecated due to EOL.
+  * i686 packages were deprecated. Please use our RPM and DEB specs to build
+    these on your own infrastructure.
+  * Please update your `yum.repos.d` and/or apt `sources.list.d` according to
+    instructions at http://tarantool.org/download.html
+
+Functionality added or changed
+
+  * Tarantool 1.6.8 fully supports ARMv7 and ARMv8 (aarch64)[1] processors.
+    Now it is possible to use Tarantool on a wide range of consumer devices,
+    starting from popular Raspberry PI 2 to coin-size embedded boards and
+    no-name mini-micro-nano-PCs,
+    https://github.com/tarantool/tarantool/issues/1153
+    (Also qemu works well, but we don't have real hardware to check.
+  * Tuple comparator functions were optimized, providing up to 30% performance.)
+    boost when an index key consists of 2, 3 or more parts,
+    Issue `969 <https://github.com/tarantool/tarantool/issues/969>`_
+  * Tuple allocator changes give another 15% performance improvement,
+    Issue `1298 <https://github.com/tarantool/tarantool/issues/1298>`_
+  * Replication relay performance was improved by reducing the amount of data
+    directory re-scans,
+    Issue `11150 <https://github.com/tarantool/tarantool/issues/1150>`_
+  * A random delay was introduced into snapshot daemon, reducing the chance
+    that multiple instances take a snapshot at the same time,
+    Issue `732 <https://github.com/tarantool/tarantool/issues/732>`_
+  * Sophia storage engine was upgraded to v2.1: |br|
+    * - serializable Snapshot Isolation (SSI), |br|
+    * - RAM storage mode, |br|
+    * - anti-cache storage mode, |br|
+    * - persistent caching storage mode, |br|
+    * - implemented AMQ Filter, |br|
+    * - LRU mode, |br|
+    * - separate compression for hot and cold data, |br|
+    * - snapshot implementation for Faster Recovery, |br|
+    * - upsert reorganizations and fixes, |br|
+    * - new performance metrics. |br|
+    * Please note "Incompatible changes" above.
+  * Allow to remove servers with non-zero LSN from _cluster space,
+    Issue `1219 <https://github.com/tarantool/tarantool/issues/1219>`_
+  * net.box now automatically reloads space and index definitions,
+    Issue `1183 <https://github.com/tarantool/tarantool/issues/1183>`_
+  * The maximal number of indexes in space was increased to 128,
+    Issue `1311 <https://github.com/tarantool/tarantool/issues/1311>`_
+  * New native `systemd` configuration with support of instance management
+    and daemon supervision (CentOS 7 and Fedora 22+ only).
+    Please note "Incompatible changes" above.
+    Issue `1264 <https://github.com/tarantool/tarantool/issues/1264>`_
+  * Tarantool package was accepted to the official Fedora repositories
+    https://apps.fedoraproject.org/packages/tarantool
+  * Tarantool brew formula (OS X) was accepted to the official
+    Homebrew repository http://brewformulas.org/tarantool
+  * Clang compiler support was added on FreeBSD,
+    Issue `786 <https://github.com/tarantool/tarantool/issues/786>`_
+  * Support for musl libc, used by Alpine Linux and Docker images, was added,
+    Issue `1249 <https://github.com/tarantool/tarantool/issues/1249>`_
+  * Added support for GCC 6.0
+  * Ubuntu Wily, Xenial and Fedora 22, 23 and 24 are now supported
+    distributions for which we build official packages.
+  * box.info.cluster.uuid can be used to retrieve cluster UUID,
+    Issue `1117 <https://github.com/tarantool/tarantool/issues/1117>`_
+  * numerous improvements in the documentation, added documentation
+    for 'syslog', 'clock', 'fiber.storage' packages, updated
+    the built-in tutorial,
+
+New rocks and packages
+
+  * Tarantool switched to a new Docker-based cloud build infrastructure
+    The new buildbot significantly decreases commit-to-package time.
+    The official repositories at [tarantool.org](http://tarantool.org) now
+    contain the latest version of the server, rocks and connectors.
+    See http://github.com/tarantool/build.
+  * The repositories at http://tarantool.org/download.html were moved to
+  * http://packagecloud.io cloud hosting (backed by Amazon AWS).
+    Thanks to packagecloud.io for their support of open source!
+  * memcached- memcached text and binary protocol implementation for Tarantool.
+    Turns Tarantool into a persistent memcached with master-master replication.
+    See https://github.com/tarantool/memcached.
+  * migrate- a Tarantool rock for migration from Tarantool 1.5 to 1.6
+    See https://github.com/bigbes/migrate.
+  * cqueues, a Lua asynchronous networking, threading, and notification
+    framework (contributed by daurnimator)
+    See https://github.com/tarantool/tarantool/pull/1204.
+
+.. _whats_new_167:
+
+Release 1.6.7
+
+Release type: maintenance. Release date: 2015-11-17.
+
+Incompatible changes
+
+  * the syntax of 'upsert' command has been changed 
+    and an extra "key" argument was removed from it.  The primary
+    key for look up is now always taken from the tuple, which is the
+    second argument of upsert.  "upsert()" was added fairly late at
+    a release cycle and the design had an obvious bug which we had
+    to fix. Sorry for this.
+  * fiber.channel.broadcast() was removed since it wasn't used by
+    anyone and didn't work properly.
+  * tarantoolctl "reload" command renamed to "eval"
+
+Functionality added or changed
+
+  * logger option now accepts a syntax for syslog output. Use uri-style
+    syntax for file, pipe or syslog log destination
+  * replication_source now accepts an array of URIs,
+    so each replica can have up to 30 peers
+  * RTREE index now accept two type of "distance" functions: 
+    "euclid" and "manhattan"
+  * fio.abspath() - a new function in 'fio' rock to convert
+    a relative path to absolute
+  * the process title now can be set with an on-board "title" rock
+  * this release uses LuaJIT 2.1
+
+New rocks
+
+  * "memcached" rock; Use "memcached" rock to make
+    Tarantool understand Memcached binary protocol. Text
+    protocol support is in progress and will be added to the rock
+    itself, without changes to the server core.
+
+.. _whats_new_166:
+
+Release 1.6.6
+
+Release type: maintenance. Release date: 2015-08-28.
+
 What's new in Tarantool 1.6?
-================================================================================
 
 Tarantool 1.6 is no longer getting major new features,
 although it will be maintained.
 The developers are concentrating on Tarantool version 1.9.
 
+Incompatible changes
+
+  * A new schema of _index system space which accommodates
+    multi-dimensional RTREE indexes. Tarantool 1.6.6 works fine
+    with an old snapshot and system spaces, but you will not
+    be able to start Tarantool 1.6.5 with a data directory
+    created by Tarantool 1.6.6, neither will you be able
+    to query Tarantool 1.6.6 schema with 1.6.5 net.box.
+  * box.info.snapshot_pid is renamed to box.info.snapshot_in_progress 
+
+Functionality added or changed
+
+  * threaded architecture for network. Network I/O has finally
+    been moved to a separate thread, increasing single instance
+    performance by up to 50%.
+  * threaded architecture for checkpointing. Tarantool no longer
+    forks to create a snapshot, but uses a separate thread,
+    accessing data via a consistent read view.
+    This eliminates all known latency spikes caused by
+    snapshotting.
+  * stored procedures in C/C++. Stored procedures in C/C++
+    provide speed (3-4 times, compared to a Lua version in 
+    our measurements), as well as unlimited extensibility
+    power. Since C/C++ procedures run in the same memory
+    space as the database, they are also an easy tool 
+    to corrupt database memory.
+    See `The C API description <http://tarantool.org/doc/reference/capi.html>`_.
+  * multidimensional RTREE index. RTREE index type
+    now support a large (up to 32) number of dimensions.
+    RTREE data structure has been optimized to actually use
+    R*TREE (https://en.wikipedia.org/wiki/R*_tree)
+    We're working on further improvements of the index,
+    in particular, configurable distance function.
+    See https://github.com/tarantool/tarantool/wiki/R-tree-index-quick-start-and-usage.
+  * sophia 2.1.1, with support of compression and multipart
+    primary keys
+    See https://groups.google.com/forum/#!topic/sophia-database/GfcbEC7ksRg.
+  * new 'upsert' command available in the binary protocol
+    and in stored functions. The key advantage of upsert
+    is that it's much faster with write-optimized storage
+    (sophia storage engine), but some caveats exists as well.
+    See Issue `905 <https://github.com/tarantool/tarantool/issues/905>`_
+    for details. Even though upsert performance advantage is most
+    prominent with sophia engine, it works with all storage engines.
+  * better memory diagnostics information for fibers, tuple and
+    index arena Try a new command box.slab.stats(), for
+    detailed information about tuple/index slabs, fiber.info() now
+    displays information about memory used by the fiber.
+  * update and delete now work using a secondary index, if the
+    index is unique. 
+  * authentication triggers. Set box.session.on_auth triggers
+    to catch authentication events. Trigger API is improved
+    to display all defined triggers, easily remove old triggers.
+  * manifold performance improvements of net.box built-in package
+  * performance optimizations of BITSET index
+  * panic_on_wal_error is a dynamic configuration option now
+  * iproto sync field is available in Lua as session.sync()
+  * box.once() - a new method to invoke code once in an
+    instance and replica set lifetime. Use once() to set
+    up spaces and uses, as well as do schema upgrade in
+    production.
+  * box.error.last() to return the last error in a session
+
+New rocks
+
+  * jit.*, jit.dump, jit.util, jit.vmdef modules of LuaJIT 2.0 are now
+    available as built-ins.
+    http://luajit.org/ext_jit.html
+  * 'strict' built in package, banning use of undeclared variables in
+    Lua. Strict mode is on when Tarantool is compiled with debug. 
+    Turn on/off with require('strict').on()/require('strict').off().
+  * 'pg' and 'mysql' rocks, available at http://rocks.tarantool.org 
+     - working with MySQL and PostgreSQL from Tarantool
+  * 'gperftools' rock, availble at http://rocks.tarantool.org -
+    getting perfromance data using Google's gperf from Tarantool.
+  * 'csv' built-in rock, to parse and load CSV (comma-separated
+     values) data
+
+New supported platforms
+
+Fedora 22, Ubuntu Vivid
