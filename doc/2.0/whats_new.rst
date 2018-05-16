@@ -78,42 +78,45 @@ a package for your operating system.
 
 Functionality added or changed:
 
-  * (Security) it is now possible to block/unblock users.
+  * (Security) it is now possible to
+    :ref:`block/unblock <authentication-owners_privileges>` users.
     Issue `2898 <https://github.com/tarantool/tarantool/issues/2898>`_.
-  * (Security) new function ``box.session.euid()`` to return effective user.
+  * (Security) new function :ref:`box.session.euid() <box_session-euid>` to return effective user.
     Effective user can be different from authenticated user in case of ``setuid``
     functions or ``box.session.su``.
     Issue `2994 <https://github.com/tarantool/tarantool/issues/2994>`_.
-  * (Security) new 'super' role, with superuser access. Grant 'super' to guest to
+  * (Security) new :ref:`super <box_space-user>` role, with superuser access. Grant 'super' to guest to
     disable access control.
     Issue `3022 <https://github.com/tarantool/tarantool/issues/3022>`_.
-  * (Security) ``on_auth`` trigger is now fired in case of both successful and
+  * (Security) :ref:`on_auth <box_session-on_auth>` trigger is now fired in case of both successful and
     failed authentication.
     Issue `3039 <https://github.com/tarantool/tarantool/issues/3039>`_.
   * (Replication/recovery) new replication configuration algorithm: if replication
-    doesn't connect to replication_quorum peers in ``replication_connect_timeout``
-    seconds, the server start continues but the server enters the new 'orphan' mode,
-    which is basically read-only, until the replica set connects to each other.
+    doesn't connect to replication_quorum peers in :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
+    seconds, the server start continues but the server enters the new :ref:`orphan <replication-orphan_status>` status,
+    which is basically read-only, until the replicas connect to each other.
     Issues `3151 <https://github.com/tarantool/tarantool/issues/3151>`_ and
     `2958 <https://github.com/tarantool/tarantool/issues/2958>`_.
   * (Replication/recovery) after replication connect at startup, the server does
-    not start processing write requests before syncing up with all connected peers.
-  * (Replication/recovery) it is now possible to explicitly set instance and
-    replica set uuid via database configuration.
+    not start processing write requests before
+    :ref:`syncing up <replication-orphan_status>` syncing up with all connected peers.
+  * (Replication/recovery) it is now possible to explicitly set
+    :ref:`instance_uuid <cfg_replication-instance_uuid>` and
+    :ref:`replica set uuid <cfg_replication-replicaset_uuid>` as configuration parameters.
     Issue `2967 <https://github.com/tarantool/tarantool/issues/2967>`_.
-  * (Replication/recovery) ``box.once()`` no longer fails on a read-only replica
+  * (Replication/recovery) :ref:`box.once() <box-once>` no longer fails on a read-only replica
     but waits.
     Issue `2537 <https://github.com/tarantool/tarantool/issues/2537>`_.
-  * (Replication/recovery) ``force_recovery`` can now skip a corrupted xlog file.
+  * (Replication/recovery) :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>` can now skip a corrupted xlog file.
     Issue `3076 <https://github.com/tarantool/tarantool/issues/3076>`_.
-  * (Replication/recovery) improved replication monitoring: ``box.info.replication``
+  * (Replication/recovery) improved replication monitoring: :ref:`box.info.replication <box_info_replication>`
     shows peer ip:port and correct replication lag even for idle peers.
     Issues `2753 <https://github.com/tarantool/tarantool/issues/2753>`_ and
     `2689 <https://github.com/tarantool/tarantool/issues/2689>`_.
-  * (Application server) new 'BEFORE' triggers which can be used for conflict
+  * (Application server) new :ref:`before <box_space-before_replace>` triggers which can be used for conflict
     resolution in master-master replication.
     Issue `2993 <https://github.com/tarantool/tarantool/issues/2993>`_.
-  * (Application server) http client now correctly parses cookies and supports
+  * (Application server) :ref:`http client <http-module>` now correctly parses cookies and supports
     http+unix:// paths.
     Issues `3040 <https://github.com/tarantool/tarantool/issues/3040>`_ and
     `2801 <https://github.com/tarantool/tarantool/issues/2801>`_.
@@ -128,29 +131,29 @@ Functionality added or changed:
   * (Application server) ``digest`` rock now supports pbkdf2 password hashing
     algorithm, useful in PCI/DSS compliant applications.
     Issue `2874 <https://github.com/tarantool/tarantool/issues/2874>`_.
-  * (Application server) ``box.info.memory()`` provides a high-level overview of
+  * (Application server) :ref:`box.info.memory() <box_info_memory>` provides a high-level overview of
     server memory usage, including networking, Lua, transaction and index memory.
     Issue `934 <https://github.com/tarantool/tarantool/issues/934>`_.
-  * (Database) it is now possible to add missing tuple fields to an index,
+  * (Database) it is now possible to :ref:`add missing tuple fields <box_space-is_nullable>` to an index,
     which is very useful when adding an index along with the evolution of the
     database schema.
     Issue `2988 <https://github.com/tarantool/tarantool/issues/2988>`_.
   * (Database) lots of improvements in field type support when creating or
-    altering spaces and indexes.
+    :ref:`altering <box_index-alter>` spaces and indexes.
     Issues `2893 <https://github.com/tarantool/tarantool/issues/2893>`_,
     `3011 <https://github.com/tarantool/tarantool/issues/3011>`_ and
     `3008 <https://github.com/tarantool/tarantool/issues/3008>`_.
-  * (Database) it is now possible to turn on ``is_nullable`` property on a field
+  * (Database) it is now possible to turn on :ref:`is_nullable <box_space-is_nullable>` property on a field
     even if the space is not empty, the change is instantaneous.
     Issue `2973 <https://github.com/tarantool/tarantool/issues/2973>`_.
-  * (Database) logging has been improved in many respects: individual messages
+  * (Database) :ref:`logging <log-module>` has been improved in many respects: individual messages
     (issues `1972 <https://github.com/tarantool/tarantool/issues/1972>`_,
     `2743 <https://github.com/tarantool/tarantool/issues/2743>`_,
     `2900 <https://github.com/tarantool/tarantool/issues/2900>`_),
     more logging in cases when it was useful
     (issues `3096 <https://github.com/tarantool/tarantool/issues/3096>`_,
     `2871 <https://github.com/tarantool/tarantool/issues/2871>`_).
-  * (Vinyl storage engine) it is now possible to make a unique vinyl index
+  * (Vinyl storage engine) it is now possible to make a :ref:`unique <box_index-unique>` vinyl index
     non-unique without index rebuild.
     Issue `2449 <https://github.com/tarantool/tarantool/issues/2449>`_.
   * (Vinyl storage engine) improved UPDATE, REPLACE and recovery performance in
@@ -158,7 +161,8 @@ Functionality added or changed:
     Issues `2289 <https://github.com/tarantool/tarantool/issues/2289>`_,
     `2875 <https://github.com/tarantool/tarantool/issues/2875>`_ and
     `3154 <https://github.com/tarantool/tarantool/issues/3154>`_.
-  * (Vinyl storage engine) ``space:len()`` and ``space:bsize()`` now work for
+  * (Vinyl storage engine) :ref:`space:len() <box_space-len>` and
+    :ref:`space:bsize() <box_space-bsize>` now work for
     vinyl (although they are still not exact).
     Issue `3056 <https://github.com/tarantool/tarantool/issues/3056>`_.
   * (Vinyl storage engine) recovery speed has improved in presence of secondary
@@ -277,26 +281,27 @@ New options are available for:
 
 Incompatible changes:
 
-  * Layout of ``box.space._index`` has been extended to support  ``is_nullable``
-    and ``collation`` features.
+  * Layout of ``box.space._index`` has been extended to support
+    :ref:`is_nullable <box_space-is_nullable>`
+    and :ref:`collation <index-collation>` features.
     All new indexes created on columns with ``is_nullable`` or ``collation``
     properties will have the new definition format.
     Please update your client libraries if you plan to use these new features.
     Issue `2802 <https://github.com/tarantool/tarantool/issues/2802>`_
-  * ``fiber.name()`` now raises an exception instead of truncating long fiber names.
-    We found that some Lua modules such as ``expirationd`` use ``fiber.name()``
+  * :ref:`fiber_name() <fiber_object-name_get>` now raises an exception instead of truncating long fiber names.
+    We found that some Lua modules such as :ref:`expirationd <expirationd-module>` use ``fiber.name()``
     as a key to identify background tasks. If a name is truncated, this fact was
     silently missed. The new behavior allows to detect bugs caused by ``fiber.name()``
     truncation. Please use ``fiber.name(name, { truncate = true })`` to emulate
     the old behavior.
     Issue `2622 <https://github.com/tarantool/tarantool/issues/2622>`_
-  * ``space:format()`` is now validated on DML operations.
+  * :ref:`space:format() <box_space-format>` is now validated on DML operations.
     Previously ``space:format()`` was only used by client libraries, but starting
     from Tarantoool 1.7.6, field types in ``space:format()`` are validated on the
     server side on every DML operation, and field names can be used in indexes
     and Lua code. If you used ``space:format()`` in a non-standard way,
     please update layout and type names according to the official documentation for
-    :ref:`space formats <box_space-format>`.
+    space formats.
 
 Functionality added or changed:
 
@@ -306,23 +311,26 @@ Functionality added or changed:
     :ref:`space:format() <box_space-format>` to define schema restrictions and constraints
     for tuples in spaces. Defined field types are automatically validated on every DML operation,
     and defined field names can be used instead of field numbers in Lua code.
-    A new function ``tuple:tomap()`` was added to convert a tuple into a key-value Lua dictionary.
+    A new function :ref:`tuple:tomap() <box_tuple-tomap>` was added to convert a tuple into a key-value Lua dictionary.
   * Collation and Unicode support.
     By default, when Tarantool compares strings, it takes into consideration only the numeric
     value of each byte in the string. To allow the ordering that you see in phone books and dictionaries,
-    Tarantool 1.7.6 introduces support for collations based on the Default Unicode Collation Element
-    Table (DUCET) and the rules described in Unicode® Technical Standard
-    #10 Unicode Collation Algorithm (UTS #10 UCA). See :ref:`collations <index-collation>`.
+    Tarantool 1.7.6 introduces support for collations based on the
+    `Default Unicode Collation Element Table (DUCET) <http://unicode.org/reports/tr10/#Default_Unicode_Collation_Element_Table>`_
+    and the rules described in
+    `Unicode® Technical Standard #10 Unicode Collation Algorithm (UTS #10 UCA) <http://unicode.org/reports/tr10>`_
+    See :ref:`collations <index-collation>`.
   * NULL values in unique and non-unique indexes.
     By default, all fields in Tarantool are  "NOT NULL".
     Starting from Tarantool 1.7.6, you can use
-    ``is_nullable`` option in ``space:format()`` or inside an index part definition
+    ``is_nullable`` option in :ref:`space:format() <box_space-format>`
+    or :ref:`inside an index part definition <box_space-is_nullable>`
     to allow storing NULL in indexes.
     Tarantool partially implements
     `three-valued logic <https://en.wikipedia.org/wiki/Three-valued_logic>`_
     from the SQL standard and allows storing multiple NULL values in unique indexes.
     Issue `1557 <https://github.com/tarantool/tarantool/issues/1557>`_.
-  * Sequences and a new implementation of ``auto_increment()``.
+  * Sequences and a new implementation of :ref:`auto_increment() <box_space-auto_increment>`.
     Tarantool 1.7.6 introduces new
     :ref:`sequence number generators <index-box_sequence>` (like CREATE SEQUENCE in SQL).
     This feature is used to implement new persistent auto increment in spaces.
@@ -330,23 +338,24 @@ Functionality added or changed:
   * Vinyl: introduced gap locks in Vinyl transaction manager.
     The new locking mechanism in Vinyl TX manager reduces the number of conflicts in transactions.
     Issue `2671 <https://github.com/tarantool/tarantool/issues/2671>`_.
-  * net.box: ``on_connect``/``on_disconnect`` triggers.
+  * net.box: :ref:`on_connect <box_session-on_connect>`
+    and :ref:`on_disconnect <box_session-on_disconnect>` triggers.
     Issue `2858 <https://github.com/tarantool/tarantool/issues/2858>`_.
-  * Structured logging in JSON format.
+  * Structured logging in :ref:`JSON format <cfg_logging-log_format>`.
     Issue `2795 <https://github.com/tarantool/tarantool/issues/2795>`_.
-  * (Lua) Lua: ``string.strip()``
+  * (Lua) Lua: :ref:`string.strip() <string-strip>`
     Issue `2785 <https://github.com/tarantool/tarantool/issues/2785>`_.
-  * (Lua) added ``base64_urlsafe_encode()`` API to ``digest`` module.
+  * (Lua) added :ref:`base64_urlsafe_encode() <digest-base64_encode>` to ``digest`` module.
     Issue `2777 <https://github.com/tarantool/tarantool/issues/2777>`_.
   * Log conflicted keys in master-master replication.
     Issue `2779 <https://github.com/tarantool/tarantool/issues/2779>`_.
-  * Allow to disable backtrace in ``fiber.info()``.
+  * Allow to disable backtrace in :ref:`fiber.info() <fiber-info>`.
     Issue `2878 <https://github.com/tarantool/tarantool/issues/2878>`_.
   * Implemented ``tarantoolctl rocks make *.spec``.
     Issue `2846 <https://github.com/tarantool/tarantool/issues/2846>`_.
   * Extended the default loader to look for ``.rocks`` in the parent dir hierarchy.
     Issue `2676 <https://github.com/tarantool/tarantool/issues/2676>`_.
-  * ``SOL_TCP`` options support in ``socket:setsockopt()``.
+  * ``SOL_TCP`` options support in :ref:`socket:setsockopt() <socket-setsockopt>`.
     Issue `598 <https://github.com/tarantool/tarantool/issues/598>`_.
   * Partial emulation of LuaSocket on top of Tarantool Socket.
     Issue `2727 <https://github.com/tarantool/tarantool/issues/2727>`_.
@@ -378,55 +387,59 @@ This release resolves more than 160 issues since 1.7.4.
 
 Functionality added or changed:
 
-  * (Vinyl) a new ``force_recovery`` mode to recover broken disk files.
-    Use ``box.cfg { force_recovery = true }`` to recover corrupted data files
+  * (Vinyl) a new :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`
+    mode to recover broken disk files.
+    Use ``box.cfg{force_recovery=true}`` to recover corrupted data files
     after hardware issues or power outages.
     Issue `2253 <https://github.com/tarantool/tarantool/issues/2253>`_.
   * (Vinyl) index options can be changed on the fly without rebuild.
-    Now ``page_size``, ``run_size_ratio``, ``run_count_per_level`` and ``bloom_fpr``
-    index options can be dynamically changed via ``index:alter()``.
+    Now :ref:`page_size <cfg_storage-vinyl_page_size>`,
+    :ref:`run_size_ratio <cfg_storage-vinyl_run_size_ratio>`,
+    :ref:`run_count_per_level <cfg_storage-vinyl_run_count_per_level>`
+    and :ref:`bloom_fpr <cfg_storage-vinyl_bloom_fpr>`
+    index options can be dynamically changed via :ref:`index:alter() <box_index-alter>`.
     The changes take effect in newly created data files only.
     Issue `2109 <https://github.com/tarantool/tarantool/issues/2109>`_.
-  * (Vinyl) improve ``box.info.vinyl()`` and ``index:info()`` output.
+  * (Vinyl) improve :ref:`box.info.vinyl() <box_introspection-box_info>` and ``index:info()`` output.
     Issue `1662 <https://github.com/tarantool/tarantool/issues/1662>`_.
-  * (Vinyl) introduce ``box.cfg.vinyl_timeout`` option to control quota throttling.
+  * (Vinyl) introduce :ref:`box.cfg.vinyl_timeout <cfg_basic-vinyl_timeout>` option to control quota throttling.
     Issue `2014 <https://github.com/tarantool/tarantool/issues/2014>`_.
-  * Memtx: stable ``index:pairs()`` iterators for the TREE index.
+  * Memtx: stable :ref:`index:pairs() <box_index-index_pairs>` iterators for the TREE index.
     TREE iterators are automatically restored to a proper position after index's modifications.
     Issue `1796 <https://github.com/tarantool/tarantool/issues/1796>`_.
-  * (Memtx) predictable order for non-unique TREE indexes.
+  * (Memtx) :ref:`predictable order <box_index-index_pairs>` for non-unique TREE indexes.
     Non-unique TREE indexes preserve the sort order for duplicate entries.
     Issue `2476 <https://github.com/tarantool/tarantool/issues/2476>`_.
-  * (Memtx+Vinyl) dynamic configuration of max tuple size.
+  * (Memtx+Vinyl) dynamic configuration of :ref:`max tuple size <cfg_storage-memtx_max_tuple_size>`.
     Now ``box.cfg.memtx_max_tuple_size`` and ``box.cfg.vinyl_max_tuple_size``
     configuration options can be changed on the fly without need to restart the server.
     Issue `2667 <https://github.com/tarantool/tarantool/issues/2667>`_.
   * (Memtx+Vinyl) new implementation.
-    Space truncation doesn't cause re-creation of all indexes any more.
+    Space :ref:`truncation <box_space-truncate>` doesn't cause re-creation of all indexes any more.
     Issue `618 <https://github.com/tarantool/tarantool/issues/618>`_.
-  * Extended the maximal length of all identifiers from 32 to 65k characters.
+  * Extended the :ref:`maximal length <limitations_length>` of all identifiers from 32 to 65k characters.
     Space, user and function names are not limited by 32 characters anymore.
     Issue `944 <https://github.com/tarantool/tarantool/issues/944>`_.
-  * Heartbeat messages for replication.
+  * :ref:`Heartbeat <cfg_replication-replication_timeout>` messages for replication.
     Replication client now sends the selective acknowledgments for processed
     records and automatically re-establish stalled connections.
-    This feature also changes ``box.info.replication[replica_id].vclock``
+    This feature also changes :ref:`box.info.replication[replica_id].vclock <box_info_replication>`.
     to display committed vclock of remote replica.
     Issue `2484 <https://github.com/tarantool/tarantool/issues/2484>`_.
   * Keep track of remote replicas during WAL maintenance.
     Replication master now automatically preserves xlogs needed for remote replicas.
     Issue `748 <https://github.com/tarantool/tarantool/issues/748>`_.
-  * Enabled ``box.tuple.new()`` to work without ``box.cfg()``.
+  * Enabled :ref:`box.tuple.new() <box_tuple-new>` to work without ``box.cfg()``.
     Issue `2047 <https://github.com/tarantool/tarantool/issues/2047>`_.
-  * ``box.atomic(fun, ...)`` wrapper to execute function in a transaction.
+  * :ref:`box.atomic(fun, ...) <box-atomic>` wrapper to execute function in a transaction.
     Issue `818 <https://github.com/tarantool/tarantool/issues/818>`_.
-  * box.session.type() helper to determine session type.
+  * :ref:`box.session.type() <box_session-type>` helper to determine session type.
     Issue `2642 <https://github.com/tarantool/tarantool/issues/2642>`_.
-  * Hot code reload for stored C stored procedures.
+  * Hot code :ref:`reload <box_schema-func_reload>` for stored C stored procedures.
     Use ``box.schema.func.reload('modulename.function')``
     to reload dynamic shared libraries on the fly.
     Issue `910 <https://github.com/tarantool/tarantool/issues/910>`_.
-  * ``string.hex()`` and ``str:hex()`` Lua API.
+  * :ref:`string.hex() <string-hex>` and ``str:hex()`` Lua API.
     Issue `2522 <https://github.com/tarantool/tarantool/issues/2522>`_.
   * Package manager based on LuaRocks.
     Use ``tarantoolctl rocks install MODULENAME`` to install MODULENAME Lua module
@@ -440,18 +453,18 @@ Functionality added or changed:
     Enable via ``-DLUAJIT_ENABLE_GC64=ON compile-time`` configuration option.
     Issue `2643 <https://github.com/tarantool/tarantool/issues/2643>`_.
   * Syslog logger now support non-blocking mode.
-    ``box.cfg { log_nonblock = true }`` now also works for syslog logger.
+    :ref:`box.cfg{log_nonblock=true} <cfg_logging-log_nonblock>` now also works for syslog logger.
     Issue `2466 <https://github.com/tarantool/tarantool/issues/2466>`_.
-  * Added a VERBOSE log level beyond INFO.
+  * Added a VERBOSE :ref:`log level <cfg_logging-log_level>` beyond INFO.
     Issue `2467 <https://github.com/tarantool/tarantool/issues/2467>`_.
   * Tarantool now automatically makes snapshots every hour.
-    Please set ``box.cfg { checkpoint_interval = 0 }`` to restore pre-1.7.5 behaviour.
+    Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behaviour.
     Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_.
-  * Increase precision for percentage ratios provoded by ``box.slab.info()``.
+  * Increase precision for percentage ratios provoded by :ref:`box.slab.info() <box_slab_info>`.
     Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_.
-  * Stack traces now contains symbols names on all supported platforms.
+  * Stack traces now contain symbols names on all supported platforms.
     Previous versions of Tarantool didn't display meaningful function names in
-    ``fiber.info()`` on non-x86 platforms.
+    :ref:`fiber.info() <fiber-info>` on non-x86 platforms.
     Issue `2103 <https://github.com/tarantool/tarantool/issues/2103>`_.
   * Allowed to create fiber with custom stack size from C API.
     Issue `2438 <https://github.com/tarantool/tarantool/issues/2438>`_.
@@ -460,13 +473,13 @@ Functionality added or changed:
 
 New rocks:
 
-  * ``http.client`` (built-in) - libcurl-based HTTP client with SSL/TLS support.
+  * :ref:`http.client <http-module>` (built-in) - libcurl-based HTTP client with SSL/TLS support.
     Issue `2083 <https://github.com/tarantool/tarantool/issues/x2083>`_.
-  * ``iconv`` (built-in) - bindings for iconv.
+  * :ref:`iconv <iconv-converter>` (built-in) - bindings for iconv.
     Issue `2587 <https://github.com/tarantool/tarantool/issues/2587>`_.
   * `authman <https://github.com/mailru/tarantool-authman>`_ - API for
     user registration and login in your site using email and social networks.
-  * `document <ttps://github.com/tarantool/document>`_ - store nested documents in Tarantool.
+  * `document <https://github.com/tarantool/document>`_ - store nested documents in Tarantool.
   * `synchronized <https://github.com/tarantool/synchronized>`_ - critical sections for Lua.
 
 .. _whats_new_174:
@@ -514,7 +527,8 @@ Incompatible changes
   * UPSERT via a secondary key was banned to avoid unclear semantics.
     Issue `2226 <https://github.com/tarantool/tarantool/issues/2226>`_.
   * ``box.info`` and ``box.info.replication`` format was changed to display
-    information about upstream and downstream connections:
+    information about upstream and downstream connections
+    (Issue `723 <https://github.com/tarantool/tarantool/issues/723>`_):
 
     * Added ``box.info.replication[instance_id].downstream.vclock`` to display
       the last sent row to remote replica.
@@ -529,9 +543,7 @@ Incompatible changes
     * ``box.info.server.uuid`` renamed ``box.info.uuid``
     * ``box.info.cluster.signature`` renamed to ``box.info.signature``
     * ``box.info.id`` and ``box.info.lsn`` now return `nil` instead of `-1`
-      during initial cluster bootstrap.
-
-    Issue `723 <https://github.com/tarantool/tarantool/issues/723>`_.
+      during initial cluster bootstrap. 
 
   * ``net.box``: added per-request options to all requests:
 
@@ -556,7 +568,8 @@ Incompatible changes
     Issue `1876 <https://github.com/tarantool/tarantool/issues/1876>`_.
   * ``require('log').logger_pid()`` was renamed to ``require('log').pid()``.
     Issue `2917 <https://github.com/tarantool/tarantool/issues/2917>`_.
-  * Removed Lua 5.0 compatible defines and functions:
+  * Removed Lua 5.0 compatible defines and functions
+    (Issue `2396 <https://github.com/tarantool/tarantool/issues/2396>`_):
 
     * ``luaL_reg`` removed in favor of ``luaL_Reg``
     * ``luaL_getn(L, i)`` removed in favor of ``lua_objlen(L, i)``
@@ -566,8 +579,6 @@ Incompatible changes
     * ``lua_unref(L, ref)`` removed in favor of ``luaL_unref(L, ref)``
     * ``math.mod()`` removed in favor of ``math.fmod()``
     * ``string.gfind()`` removed in favor of ``string.gmatch()``
-
-  Issue `2396 <https://github.com/tarantool/tarantool/issues/2396>`_.
 
 Functionality added or changed:
 
@@ -628,15 +639,14 @@ Functionality added or changed:
     sequential and start from the first field. This optimization was necessary
     for secondary keys in Vinyl, but we optimized Memtx as well.
     Issue `2046 <https://github.com/tarantool/tarantool/issues/2046>`_.
-  * LuaJIT was rebased on the latest 2.1.0b3 with out patches:
+  * LuaJIT was rebased on the latest 2.1.0b3 with out patches
+    (Issue `2396 <https://github.com/tarantool/tarantool/issues/2396>`_):
 
     * Added JIT compiler backend for ARM64
     * Added JIT compiler backend and interpreter for MIPS64
     * Added some more Lua 5.2 and Lua 5.3 extensions
     * Fixed several bugs
     * Removed Lua 5.0 legacy (see incompatible changes above).
-
-    Issue `2396 <https://github.com/tarantool/tarantool/issues/2396>`_.
 
   * Enabled a new smart string hashing algorithm in LuaJIT to avoid significant
     slowdown when a lot of collisions are generated.
@@ -675,11 +685,10 @@ Functionality added or changed:
     Issue `2213 <https://github.com/tarantool/tarantool/issues/2213>`_.
   * Removed noisy "client unix/: connected" messages from logs. Use
     ``box.session.on_connect()``/``on_disconnect()`` triggers instead.
+    Issue `1938 <https://github.com/tarantool/t`arantool/issues/1938>`_.
 
     ``box.session.on_connect()``/``on_disconnect()``/``on_auth()`` triggers
     now also fired for admin console connections.
-
-    Issue `1938 <https://github.com/tarantool/t`arantool/issues/1938>`_.
 
   * tarantoolctl: ``eval``, ``enter``, ``connect`` commands now support UNIX pipes.
     Issue `672 <https://github.com/tarantool/tarantool/issues/672>`_.

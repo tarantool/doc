@@ -124,6 +124,8 @@ to other users. The following privileges can be granted:
 * Drop, e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
+* Usage (this will be described later)
+* Session (this will be described later)
 
 This is how the privilege system works. To be able to create
 objects, a user needs to have write access to Tarantool's system spaces.
