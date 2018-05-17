@@ -550,17 +550,20 @@ Below is a list of all ``box.space`` functions and members.
         The name may be any string, provided that two fields do not have the
         same name.
 
-        The type can be any of those allowed for
+        The type can be one of those allowed for
         :ref:`indexed fields <index-box_indexed-field-types>`:
-        unsigned | string | integer | number | boolean | array | scalar
+        unsigned | string | integer | number | boolean | array-of-numbers | scalar
         (the same as the requirement in
         :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
+        Additionally the type can one of those not allowed for indexed field types:
+        any | array-of-any-kind | map.
 
         It is legal for tuples to have more fields than are described by a format
         clause. The way to constrain the number of fields is to specify a space's
         :ref:`field_count <box_space-field_count>` member.
 
         It is legal to use ``format`` on a space that already has a format,
+        thus replacing any previous definitions,
         provided that there is no conflict with existing data or index definitions.
 
         **Example:**
@@ -590,6 +593,38 @@ Below is a list of all ``box.space`` functions and members.
             box.space.tester:format({{'x',type='scalar'},{'y',type='unsigned'}})
             box.space.tester:format({{'x','scalar'}})
             box.space.tester:format({{'x','scalar'},{'y','unsigned'}})
+
+        The following example shows how to create a space, format it with all
+        possible types, and insert into it.
+
+        .. code-block:: lua
+
+            tarantool> box.schema.space.create('t')
+            --- ...
+            tarantool> box.space.t:format({{name='1',type='any'},
+                     >                     {name='2',type='unsigned'},
+                     >                     {name='3',type='string'},
+                     >                     {name='4',type='number'},
+                     >                     {name='5',type='integer'},
+                     >                     {name='6',type='boolean'},
+                     >                     {name='7',type='scalar'},
+                     >                     {name='8',type='array'},
+                     >                     {name='9',type='map'}})
+            --- ...
+            tarantool> box.space.t:create_index('i',{parts={2,'unsigned'}})
+            --- ...
+            tarantool> box.space.t:insert{{'a'},      -- any
+                     >                    1,          -- unsigned
+                     >                    'W?',       -- string
+                     >                    5.5,        -- number
+                     >                    -0,         -- integer
+                     >                    true,       -- boolean
+                     >                    true,       -- scalar
+                     >                    {{'a'}},    -- array
+                     >                    {val=1}}    -- map
+            ---
+            - [['a'], 1, 'W?', 5.5, 0, true, true, [['a']], {'val': 1}]
+            ...
 
         Names specified with the format clause can be used in
         :ref:`space_object:get() <box_space-get>` and in
