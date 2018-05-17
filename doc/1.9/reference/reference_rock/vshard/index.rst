@@ -61,7 +61,7 @@ To acquire it, do a separate installation:
 
 .. code-block:: console
 
-    $ tarantoolctl rocks install https://raw.githubusercontent.com/tarantool/vshard/master/vshard-scm-1.rockspec
+    $ tarantoolctl rocks install vshard
 
 .. NOTE::
 
