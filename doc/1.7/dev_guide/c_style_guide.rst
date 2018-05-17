@@ -25,8 +25,9 @@ B. The rest of Linux Kernel Coding Style is amended as follows:
 ===========================================================
 
 We use Git for revision control. The latest development is happening in the
-'master' branch. Our git repository is hosted on github, and can be checked
-out with git clone git://github.com/tarantool/tarantool.git # anonymous read-only access
+default branch (currently ``2.0``).
+Our git repository is hosted on github, and can be checked out with
+``git clone git://github.com/tarantool/tarantool.git`` (anonymous read-only access).
 
 If you have any questions about Tarantool internals, please post them on the
 developer discussion list, https://groups.google.com/forum/#!forum/tarantool. However,
