@@ -183,8 +183,7 @@ master node and then "sync".
 "Connect" means contact the master over the physical network
 and receive acknowledgment. If there is no acknowledgment after
 :ref:`box.replication_connect_timeout <cfg_replication-replication_connect_timeout>`
-seconds (usually 4 seconds), and retries fail or do not happen,
-then the connect step fails.
+seconds (usually 4 seconds), and retries fail, then the connect step fails.
 
 "Sync" means receive updates
 from the master in order to make a local database copy.
@@ -204,6 +203,7 @@ In pseudocode:
     try to connect to all box.cfg.replication nodes
       -- up to 3 retries are possible
       -- if number of successful connects < 1, abort
+      -- replication_connect_quorum has no effect here, at bootstrap
     if this instance is chosen as the cluster leader,
     (that is, it is the master that other nodes must join), then
     {
@@ -224,7 +224,10 @@ In pseudocode:
 .. code-block:: none
 
     try to connect to all box.cfg.replication nodes
-      -- if number of successful connects < 1, abort
+      -- connect to all nodes in box.cfg.replication, abort
+      --
+      -- ensure the lag is below replication_sync_lag for all connected
+      -- peers and then leave orphan mode
     if box.replication.sync_status is nil
     or box.replication.sync_status is 365 * 100 * 86400 (TIMEOUT_INFINITY), then
     {
