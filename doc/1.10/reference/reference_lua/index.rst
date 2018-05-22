@@ -44,6 +44,7 @@ This reference covers Tarantool's built-in Lua modules.
     tap
     tarantool
     uuid
+    utf8
     uri
     xlog
     yaml
