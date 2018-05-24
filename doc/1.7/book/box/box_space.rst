@@ -597,7 +597,7 @@ Below is a list of all ``box.space`` functions and members.
         The following example shows how to create a space, format it with all
         possible types, and insert into it.
 
-        .. code-block:: lua
+        .. code-block:: tarantoolsession
 
             tarantool> box.schema.space.create('t')
             --- ...
