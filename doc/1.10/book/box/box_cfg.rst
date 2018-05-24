@@ -56,6 +56,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
       memtx_max_tuple_size         = 1024 * 1024
       memtx_memory                 = 256 * 1024 *1024
       memtx_min_tuple_size         = 16
+      net_msg_max                  = 768
       pid_file                     = nil
       readahead                    = 16320
       read_only                    = false

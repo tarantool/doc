@@ -1,5 +1,6 @@
 * :ref:`io_collect_interval <cfg_networking-io_collect_interval>`,
-* :ref:`readahead <cfg_networking-readahead>`
+* :ref:`readahead <cfg_networking-readahead>`,
+* :ref:`net_msg_max <cfg_networking-net_msg_max>`
 
 .. _cfg_networking-io_collect_interval:
 
@@ -30,3 +31,23 @@
     | Type: integer
     | Default: 16320
     | Dynamic: **yes**
+
+.. _cfg_networking-net_msg_max:
+
+.. confval:: net_msg_max
+
+    To handle messages, Tarantool allocates fibers.
+    To prevent fiber overhead from affecting the whole system,
+    Tarantool restricts the number of fibers to net_msg_max
+    so that some pending requests are blocked.
+    On powerful systems, increase net_msg_max and the scheduler
+    will immediately start processing pending requests.
+    On weaker systems, decrease net_msg_max and the overhead
+    may decrease although this may take some time because the
+    scheduler must wait until alrady-running requests finish.
+    On typical systems, the default value (768) is correct.
+
+    | Type: integer
+    | Default: 768
+    | Dynamic: **yes**
+
