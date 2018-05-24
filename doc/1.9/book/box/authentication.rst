@@ -124,10 +124,10 @@ to other users. The following privileges can be granted:
 * Drop, e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
-* Usage e.g. whether any action is allowable regardless of other
+* Usage, e.g. whether any action is allowable regardless of other
   privileges (sometimes revoking 'usage' is a convenient way to
   block a user temporarily without dropping the user)
-* Session e.g. whether the user can 'connect'.
+* Session, e.g. whether the user can 'connect'.
 
 This is how the privilege system works. To be able to create
 objects, a user needs to have write access to Tarantool's system spaces.
@@ -158,8 +158,7 @@ commands in Tarantool follows this basic idea.
 
 * The fourth argument is the name of the object if the object type
   was specified ('universe' has no name because there is only one 'universe',
-  but otherwise you must specify the name). 
-
+  but otherwise you must specify the name).
 
 **Example #1**
 
