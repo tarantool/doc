@@ -1,9 +1,15 @@
+.. _utf8-module:
+
 -------------------------------------------------------------------------------
                             Module `utf8`
 -------------------------------------------------------------------------------
 
-Tarantool's module for handling UTF-8 strings includes some functions
-which are compatible with ones in
+===============================================================================
+                                   Overview
+===============================================================================
+
+``utf8`` is a Tarantool's module for handling UTF-8 strings.
+It includes some functions which are compatible with ones in
 `Lua 5.3 <https://www.lua.org/manual/5.3/manual.html#6.5>`_
 but Tarantool has much more. For example, because internally
 Tarantool contains a complete copy of the
@@ -12,14 +18,39 @@ there are comparison functions which understand the default ordering
 for Cyrillic (Capital Letter Zhe Ж = Small Letter Zhe ж)
 and Japanese (Hiragana A あ = Katakana A ア).
 
-The functions are :ref:`lower <utf8-islower>` and :ref:`upper <utf8-isupper>` for case conversions,
-:ref:`casecmp <utf8-casecmp>` and :ref:`cmp <utf8-cmp>` for comparisons,
-:ref:`isalpha <utf8-isalpha>` and :ref:`isdigit <utf8-isdigit>` and :ref:`islower <utf8-islower>` and :ref:`isupper <utf8-isupper>` for determining character types,
-:ref:`sub <utf8-sub>` for substrings,
-:ref:`length <utf8-length>` for length in characters,
-and :ref:`next <utf8-next>` as a tool for character-at-a-time iterations.
+The module is fully built-in so ``require('utf8')`` is not necessary.
 
-The module is fully built-in so require('utf8') is not necessary.
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``utf8`` functions.
+
+.. container:: table
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+
+    +---------------------------------------------------+--------------------------------+
+    | Name                                              | Use                            |
+    +===================================================+================================+
+    | :ref:`casecmp <utf8-casecmp>` and |br|            | Comparisons                    |
+    | :ref:`cmp <utf8-cmp>`                             |                                |
+    +---------------------------------------------------+--------------------------------+
+    | :ref:`lower <utf8-islower>` and |br|              | Case conversions               |
+    | :ref:`upper <utf8-isupper>`                       |                                |
+    +---------------------------------------------------+--------------------------------+
+    | :ref:`isalpha <utf8-isalpha>`, |br|               | Determine character types      |
+    | :ref:`isdigit <utf8-isdigit>`, |br|               |                                |
+    | :ref:`islower <utf8-islower>` and |br|            |                                |
+    | :ref:`isupper <utf8-isupper>`                     |                                |
+    +---------------------------------------------------+--------------------------------+
+    | :ref:`sub <utf8-sub>`                             | Substrings                     |
+    +---------------------------------------------------+--------------------------------+
+    | :ref:`length <utf8-length>`                       | Length in characters           |
+    +---------------------------------------------------+--------------------------------+
+    | :ref:`next <utf8-next>`                           | Character-at-a-time iterations |
+    +---------------------------------------------------+--------------------------------+
 
 .. module:: utf8
 
@@ -72,8 +103,8 @@ The module is fully built-in so require('utf8') is not necessary.
     copy of the code-point number.
 
     Another way to construct a string with Unicode characters is
-    with the \\u{hex-digits} escape mechanism, for example 
-    '\\u{41}\\u{42}' and utf8.char(65,66) both produce the string 'AB'.
+    with the \\u{hex-digits} escape mechanism, for example
+    '\\u{41}\\u{42}' and ``utf8.char(65,66)`` both produce the string 'AB'.
 
     **Example:**
 
@@ -115,15 +146,16 @@ The module is fully built-in so require('utf8') is not necessary.
 
 .. function:: isalpha(UTF8-character)
 
-    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte string or a code point value
+    :param UTF8-character string-or-number: a single UTF8 character, expressed
+                                            as a one-byte string or a code point value
     :return: true or false
     :rtype: boolean
 
     Return true if the input character is an "alphabetic-like" character, otherwise return false.
     Generally speaking a character will be considered alphabetic-like provided it
     is typically used within a word, as opposed to a digit or punctuation.
-    It does not have to be a character in an alphabet. Thus utf8.isalpha('漢') is true,
-    and utf8.isalpha('あ') is true, but '漢' and 'あ' are neither upper-case nor lower-case.
+    It does not have to be a character in an alphabet. Thus ``utf8.isalpha('漢')`` is true,
+    and ``utf8.isalpha('あ')`` is true, but '漢' and 'あ' are neither upper-case nor lower-case.
 
     **Example:**
 
@@ -140,7 +172,8 @@ The module is fully built-in so require('utf8') is not necessary.
 
 .. function:: isdigit(UTF8-character)
 
-    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte string or a code point value
+    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte
+                                            string or a code point value
     :return: true or false
     :rtype: boolean
 
@@ -161,7 +194,8 @@ The module is fully built-in so require('utf8') is not necessary.
 
 .. function:: islower(UTF8-character)
 
-    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte string or a code point value
+    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte
+                                            string or a code point value
     :return: true or false
     :rtype: boolean
 
@@ -182,7 +216,8 @@ The module is fully built-in so require('utf8') is not necessary.
 
 .. function:: isupper(UTF8-character)
 
-    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte string or a code point value
+    :param UTF8-character string-or-number: a single UTF8 character, expressed as a one-byte string
+                                            or a code point value
     :return: true or false
     :rtype: boolean
 
@@ -264,17 +299,17 @@ The module is fully built-in so require('utf8') is not necessary.
     :return: byte position of the next character and the code point value of the next character
     :rtype: table, or error if the input string is not valid UTF-8
 
-    The 'next' function is often used in a loop to get one character
+    The ``next`` function is often used in a loop to get one character
     at a time from a UTF-8 string.
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    In the string 'åa' the first character is 'å', it starts
+    at position 1, it takes two bytes to store so the
+    character after it will be at position 3, its Unicode
+    code point value is (decimal) 229.
 
-        In the string 'åa' the first character is 'å', it starts
-        at position 1, it takes two bytes to store so the
-        character after it will be at position 3, its Unicode
-        code point value is (decimal) 229.
+    .. code-block:: tarantoolsession
 
         tarantool> utf8.next('åa', 1)
         ---
@@ -297,7 +332,7 @@ The module is fully built-in so require('utf8') is not necessary.
 
     The default value for start-character is 1, and the default value
     for end-character is the length of the input string. Therefore, saying
-    utf8.sub('abc') will return 'abc', the same as the input string.
+    ``utf8.sub('abc')`` will return 'abc', the same as the input string.
 
     **Example:**
 
@@ -316,8 +351,10 @@ The module is fully built-in so require('utf8') is not necessary.
     :return: the same string, upper case
     :rtype: string, or error if the input string is not valid UTF-8
 
-    Warning: in rare cases the upper-case result may be longer
-    than the lower-case input, for example utf8.upper('ß') is 'SS'.
+    .. NOTE::
+
+        In rare cases the upper-case result may be longer
+        than the lower-case input, for example ``utf8.upper('ß')`` is 'SS'.
 
     **Example:**
 
