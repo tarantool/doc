@@ -16,7 +16,7 @@ Tarantool contains a complete copy of the
 "International Components For Unicode" library,
 there are comparison functions which understand the default ordering
 for Cyrillic (Capital Letter Zhe Ж = Small Letter Zhe ж)
-and Japanese (Hiragana A あ = Katakana A ア).
+and Japanese (Hiragana A = Katakana A).
 
 The module is fully built-in so ``require('utf8')`` is not necessary.
 
@@ -154,8 +154,7 @@ Below is a list of all ``utf8`` functions.
     Return true if the input character is an "alphabetic-like" character, otherwise return false.
     Generally speaking a character will be considered alphabetic-like provided it
     is typically used within a word, as opposed to a digit or punctuation.
-    It does not have to be a character in an alphabet. Thus ``utf8.isalpha('漢')`` is true,
-    and ``utf8.isalpha('あ')`` is true, but '漢' and 'あ' are neither upper-case nor lower-case.
+    It does not have to be a character in an alphabet.
 
     **Example:**
 
@@ -259,18 +258,16 @@ Below is a list of all ``utf8`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> utf8.len('G'),utf8.len('ж'),utf8.len('あ')
+        tarantool> utf8.len('G'),utf8.len('ж')
         ---
-        - 1
         - 1
         - 1
         ...
 
-        tarantool> string.len('G'),string.len('ж'),string.len('あ')
+        tarantool> string.len('G'),string.len('ж')
         ---
         - 1
         - 2
-        - 3
         ...
 
 .. _utf8-lower:
