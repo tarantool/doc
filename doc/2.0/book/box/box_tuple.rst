@@ -220,14 +220,13 @@ Below is a list of all ``box.tuple`` functions.
             tarantool> pk = s:create_index('pk')
             ---
             ...
-            tarantool> t = s:replace{1, '中'}
+            tarantool> t = s:replace{1, 'Я'}
             ---
             ...
             tarantool> t['field2']
             ---
-            - 中
+            - Я
             ...
-
 
     .. _box_tuple-field_path:
 
@@ -271,7 +270,7 @@ Below is a list of all ``box.tuple`` functions.
             tarantool> format[3] = {name = 'field4', type = 'string' }
             ---
             ...
-            tarantool> format[4] = {name = "[2][6]['пw']['中']", type = 'string'}
+            tarantool> format[4] = {name = "[2][6]['пw']['Я']", type = 'string'}
             ---
             ...
             tarantool> s = box.schema.space.create('test', {format = format})
@@ -280,7 +279,7 @@ Below is a list of all ``box.tuple`` functions.
             tarantool> pk = s:create_index('pk')
             ---
             ...
-            tarantool> field2 = {1, 2, 3, "4", {5,6,7}, {пw={中="п"}, key="V!", value="K!"}}
+            tarantool> field2 = {1, 2, 3, "4", {5,6,7}, {пw={Я="п"}, key="V!", value="K!"}}
             ---
             ...
             tarantool> t = s:replace{1, field2, "123456", "Not K!"}
