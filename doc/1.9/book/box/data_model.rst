@@ -575,6 +575,8 @@ Snapshot files can be created even if there is no WAL file.
 See the :ref:`Internals <internals-data_persistence>` section for more details
 about the WAL writer and the recovery process.
 
+.. _index-box_operations:
+
 --------------------------------------------------------------------------------
 Operations
 --------------------------------------------------------------------------------
@@ -680,6 +682,8 @@ See reference on ``box.space`` for more
    :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`.
    The client server protocol is open and documented.
    See this :ref:`annotated BNF <box_protocol-iproto_protocol>`.
+
+.. _index-box_index-operations:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Index operations
