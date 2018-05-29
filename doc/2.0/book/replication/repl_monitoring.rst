@@ -51,6 +51,8 @@ other two masters, given in regard to master #1.
 
 The primary indicators of replication health are:
 
+.. _heartbeat:
+
 * :ref:`idle <box_info_replication_upstream_idle>`, the time (in seconds) since
   the instance received the last event from a master.
 

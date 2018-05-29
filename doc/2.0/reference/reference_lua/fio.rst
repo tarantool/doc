@@ -48,7 +48,7 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`fio.abspath()                  | Get a directory and file name   |
     | <fio-abspath>`                       |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`fio.path_exists()              | Check if file or directory      |
+    | :ref:`fio.path.exists()              | Check if file or directory      |
     | <fio-path_exists>`                   | exists                          |
     +--------------------------------------+---------------------------------+
     | :ref:`fio.path.is_dir()              | Check if file or directory      |
