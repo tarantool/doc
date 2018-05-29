@@ -124,13 +124,18 @@
 .. confval:: replication_sync_lag
 
     The maximum :ref:`lag <box_info_replication_upstream_lag>` allowed for a replica.
-    When a replica syncs (gets updates from a master), it may not catch up completely.
+    When a replica :ref:`syncs <replication-orphan_status>`
+    (gets updates from a master), it may not catch up completely.
     The number of seconds that the replica is behind the master is called the "lag".
     Syncing is considered to be complete when the replica's lag is less than
     or equal to ``replication_sync_lag``.
 
     If a user sets ``replication_sync_lag`` to nil or to 365 * 100 * 86400 (TIMEOUT_INFINITY),
     then lag does not matter -- the replica is always considered to be "synced".
+    Also, the lag is ignored (assumed to be infinite) in case the master is running
+    Tarantool older than 1.7.7, which does not send :ref:`heartbeat messages <heartbeat>`.
+
+    Read more in :ref:`Orphan status <replication-orphan_status>` section.
 
     | Type: float
     | Default: 10

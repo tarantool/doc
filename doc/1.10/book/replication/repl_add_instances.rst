@@ -168,7 +168,7 @@ Orphan status
 --------------------------------------------------------------------------------
 
 Starting with Tarantool version 1.9, there is a change to the
-procedure when an instance joins a cluster.
+procedure when an instance joins a relica set.
 During ``box.cfg()`` the instance will try to join all masters listed
 in :ref:`box.cfg.replication <cfg_replication-replication>`.
 If the instance does not succeed with at least
@@ -183,96 +183,83 @@ master node and then "sync".
 "Connect" means contact the master over the physical network
 and receive acknowledgment. If there is no acknowledgment after
 :ref:`box.replication_connect_timeout <cfg_replication-replication_connect_timeout>`
-seconds (usually 4 seconds), and retries fail or do not happen,
-then the connect step fails.
+seconds (usually 4 seconds), and retries fail, then the connect step fails.
 
 "Sync" means receive updates
 from the master in order to make a local database copy.
 Syncing is complete when the replica has received all the
-updates, or at least has received enough updates that the
-replica's :ref:`lag <box_info_replication_upstream_lag>`
-is less than or equal to the number of seconds specified by the
-configuration parameter
+updates, or at least has received enough updates that the replica's lag
+(see
+:ref:`replication.upstream.lag <box_info_replication_upstream_lag>`
+in ``box.info()``)
+is less than or equal to the number of seconds specified in
 :ref:`box.cfg.replication_sync_lag <cfg_replication-replication_sync_lag>`.
+If ``replication_sync_lag`` is unset (nil) or set to TIMEOUT_INFINITY, then
+the replica skips the "sync" state and switches to "follow" immediately.
 
-Situation 1: ``box.cfg{}`` is being called for the first time.
-A replica is joining but no cluster exists yet.
-In pseudocode:
+The following situations are possible.
 
-.. code-block:: none
+**Situation 1: bootstrap**
 
-    try to connect to all box.cfg.replication nodes
-      -- up to 3 retries are possible
-      -- if number of successful connects < 1, abort
-    if this instance is chosen as the cluster leader,
-    (that is, it is the master that other nodes must join), then
-    {
-      /* this is called "cluster bootstrap" or "automtic bootstrap" */
-      set status to "running"
-      return from box.cfg{}
-    }
-    otherwise
-    {
-      this instance will be a replica joining an existing cluster,
-      see Situation 2.
-    }
+Here ``box.cfg{}`` is being called for the first time.
+A replica is joining but no replica set exists yet.
 
-Situation 2: ``box.cfg{}`` is being called for the first time.
-A replica is joining an existing cluster.
-In pseudocode:
+    1. Set status to 'orphan'.
+    2. Try to connect to all nodes from ``box.cfg.replication``.
 
-.. code-block:: none
+       * up to 3 retries in 30 sec are possible
+         (``replication_connect_timeout`` is overridden)
+       * ``replication_connect_quorum`` is ignored because it’s bootstrap,
+         so the instance tries to connect to all nodes from
+         ``box.cfg.replication``
 
-    try to connect to all box.cfg.replication nodes
-      -- if number of successful connects < 1, abort
-    if box.replication.sync_status is nil
-    or box.replication.sync_status is 365 * 100 * 86400 (TIMEOUT_INFINITY), then
-    {
-      set status to "running"
-    }
-    otherwise
-    {
-      set status to "orphan"
-      for each master in box.cfg.replication that was connected
-      {
-        if master version < '1.9.0', continue
-        receive upates from master until syncing is complete
-        -- but if it fails to sync, continue
-      }
-      if the number of syncs is greater than or equal to the quorum
-      {
-        set status to "running" or "follow"
-      }
-      otherwise
-      {
-        /* status remains = "orphan" */
-      }
-    }
-    return from box.cfg{}
+    3. Unless connected to all nodes, abort.
 
-Situation 3: ``box.cfg{}`` is not being called for the first time.
-It is being called again in order to perform "recovery".
-In pseudocode:
+    4. If this instance is elected as the replica set leader,
+       (i.e. it is the master that other nodes must join), then
+       perform an "automatic bootstrap":
 
-.. code-block:: none
+       a. Set status to 'running'.
+       b. Return from ``box.cfg{}``.
 
-    perform "recovery" from the last snapshot and the WAL files
-    Do the same steps as in Situation 2, except that:
-      -- perhaps retries are not attempted if the connect step fails
-      -- it is not necessary to sync for every master, it is only
-         necessary to sync for box.cfg.replication_connect_quorum masters
+       Otherwise this instance will be a replica joining an existing replica set,
+       so:
 
-Situation 4: ``box.cfg{}`` is not being called for the first time.
+       a. Bootstrap from the leader.
+       b. In background, sync with all the other nodes in the replication set.
+
+**Situation 2: recovery**
+
+Here ``box.cfg{}`` is not being called for the first time.
+It is being called again in order to perform recovery.
+
+    1. Perform :ref:`recovery <internals-recovery_process>` from the last local
+       snapshot and the WAL files.
+
+    2. Connect to at least
+       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+       nodes.
+
+    3. Sync with all connected nodes, until the difference is not more than
+       :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.
+
+**Situation 3: configuration update**
+
+Here ``box.cfg{}`` is not being called for the first time.
 It is being called again because some replication parameter
-or something in the cluster has changed.
-In pseudocode:
+or something in the replica set has changed.
 
-.. code-block:: none
+    1. Set status to 'orphan'.
+    2. Try to connect to all nodes from ``box.cfg.replication``
+       within the time period specified in
+       :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`.
 
-    try to connect to all box.cfg.replication nodes
-      -- if number of connects < number of nodes, abort
-      /* there is no "sync" */
-    set status to "running" or "follow"
+       * there is no 'sync'
+       * ``box.cfg.replication_connect_quorum`` is ignored
+       * ``box.cfg.replication_sync_lag`` is ignored:
+         ``box.cfg()`` returns as soon as all configured replicas
+         have been connected
 
-The above pseudocode descriptions are not intended as a complete
-narration of all the steps.
+    3. Unless connected to all nodes, abort.
+
+    4. Set status to 'running' (master) or 'follow' (replica).

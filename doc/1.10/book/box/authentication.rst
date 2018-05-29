@@ -124,8 +124,10 @@ to other users. The following privileges can be granted:
 * Drop, e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
-* Usage (this will be described later)
-* Session (this will be described later)
+* Usage, e.g. whether any action is allowable regardless of other
+  privileges (sometimes revoking 'usage' is a convenient way to
+  block a user temporarily without dropping the user)
+* Session, e.g. whether the user can 'connect'.
 
 This is how the privilege system works. To be able to create
 objects, a user needs to have write access to Tarantool's system spaces.
@@ -151,7 +153,8 @@ commands in Tarantool follows this basic idea.
 
 * The third argument is the object type on which the privilege is granted,
   or the word 'universe'. Possible object types are 'space', 'function',
-  'sequence' (not 'user' or 'role').
+  'sequence' (not 'user' or 'role'). For 'usage' and 'session' privileges
+  are called "system privileges" the third argument must be 'universe'.
 
 * The fourth argument is the name of the object if the object type
   was specified ('universe' has no name because there is only one 'universe',
@@ -223,6 +226,8 @@ For example, role R1 can be granted a privilege "role R2", so users with the
 role R1 will subsequently get all privileges from both roles R1 and R2.
 In other words, a user gets all the privileges that are granted to a user’s
 roles, directly or indirectly.
+
+The 'usage' and 'session' privileges cannot be granted to roles.
 
 **Example**
 
