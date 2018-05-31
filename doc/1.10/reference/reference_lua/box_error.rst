@@ -37,6 +37,9 @@ Below is a list of all ``box.error`` functions.
     | :ref:`box.error.clear()              | Clear the record of errors      |
     | <box_error-clear>`                   |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.error.new()                | Create an error but do not      |
+    | <box_error-new>`                     | throw                           |
+    +--------------------------------------+---------------------------------+
 
 .. function:: box.error{reason=string [, code=number]}
 
@@ -141,3 +144,35 @@ Below is a list of all ``box.error`` functions.
         ---
         - null
         ...
+
+.. _box_error-new:
+
+.. function:: box.error.new(code, errtext [, errtext ...])
+
+    Create an error object, but do not throw.
+    This is useful when error information should be saved for later retrieval.
+    The parameters are the same as for :ref:`box.error() <box_error-error>`,
+    see the description there.
+
+    :param number       code: number of a pre-defined error
+    :param string errtext(s): part of the message which will accompany the error
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}
+        ---
+        ...
+        tarantool> e:unpack()
+        ---
+        - type: ClientError
+          code: 555
+          message: Arbitrary message
+          trace:
+          - file: '[string "e = box.error.new{code = 555, reason = ''Arbit..."]'
+            line: 1
+        ...
+
+
+
