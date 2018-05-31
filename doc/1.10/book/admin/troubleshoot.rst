@@ -49,7 +49,8 @@ Try either of the following measures:
   value of :ref:`box.cfg{memtx_memory} <cfg_storage-memtx_memory>`
   (if memory resources are available).
 
-  Tarantool needs to be restarted to change this parameter. The Tarantool
+  In versions of Tarantool before 1.10, the server needs to be restarted
+  to change this parameter. The Tarantool
   server will be unavailable while restarting from .xlog files, unless
   you restart it using :ref:`hot standby <index-hot_standby>` mode.
   In the latter case, nearly 100% server availability is guaranteed.
