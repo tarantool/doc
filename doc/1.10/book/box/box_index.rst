@@ -76,6 +76,10 @@ Below is a list of all ``box.index`` functions and members.
     | :ref:`index_object:bsize()           | Get count of bytes for an index |
     | <box_index-bsize>`                   |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`index_object:compact()         | Remove unused index space       |
+    | <box_index-compact>`                 |                                 |
+    +--------------------------------------+---------------------------------+
+
 
 .. module:: box.index
 
@@ -928,6 +932,20 @@ Below is a list of all ``box.index`` functions and members.
 
         :return: number of bytes
         :rtype: number
+
+    .. _box_index-compact:
+
+    .. method:: compact()
+
+        Remove unused index space. For the memtx storage engine this
+        method does nothing; ``index_object:compact()`` is only for the
+        vinyl storage engine. For example, with vinyl, if a tuple is
+        deleted, the space is not immediately reclaimed. There is a
+        scheduler for reclaiming space automatically based
+        on the :ref:`timeout configuration parameter <cfg_basic-vinyl_timeout>`,
+        so calling ``index_object:compact()`` manually is not always necessary.
+
+        :return: nil (Tarantool returns without waiting for compaction to complete)
 
 =================================================================
               Example showing use of the box functions
