@@ -96,6 +96,9 @@ Below is a list of all ``box.space`` functions and members.
     | :ref:`space_object:upsert()          | Update a tuple                  |
     | <box_space-upsert>`                  |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`space_object:user_defined()    | Any function / method that any  |
+    | <box_space-user_defined>`            | user wants to add               |
+    +--------------------------------------+---------------------------------+
     | :ref:`space_object.enabled           | Flag, true if space is enabled  |
     | <box_space-enabled>`                 |                                 |
     +--------------------------------------+---------------------------------+
@@ -1396,6 +1399,42 @@ Below is a list of all ``box.space`` functions and members.
         For more usage scenarios and typical errors see
         :ref:`Example: using data operations <box_space-operations-detailed-examples>`
         further in this section.
+
+    .. _box_space-user_defined:
+
+    .. method:: user_defined()
+
+        Users can define any functions they want, and associate them with spaces:
+        in effect they can make their own space methods.
+        They do this by (1) creating a Lua function,
+        (2) adding the function name to a predefined global variable which has type = table
+        (3) invoking the function any time thereafter, as long as the server
+        is up, by saying ``space_object:function-name([parameters])``.
+
+        The predefined global variable is box_schema.space_mt.
+        Adding to box_schema.space_mt makes the method available for all spaces.
+
+        Alternatively, user-defined methods can be made available for only one space,
+        by calling getmetatable(space_object) and then adding the function name to the
+        meta table. See also the example for
+        :ref:`index_object:user_defined() <box_index-user_defined>`.
+
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+        :param any-type any-name: whatever the user defines
+
+        **Example:**
+
+        .. code-block:: none
+
+            -- Visible to any space, no parameters
+            -- After these requests, the value of global_variable will be 6.
+            box.schema.space.create('t')
+            box.space.t:create_index('i')
+            global_variable = 5
+            function f(space_arg) global_variable = global_variable + 1 end
+            box.schema.space_mt.counter = f
+            box.space.t:counter()
 
     .. _box_space-enabled:
 
