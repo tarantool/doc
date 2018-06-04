@@ -996,7 +996,7 @@ Below is a list of all ``box.index`` functions and members.
             -- After these requests, the value of X will be 1005.
             box.schema.space.create('t', {engine='memtx', id = 1000})
             box.space.t:create_index('i')
-            X = 5
+            X = 0
             i = box.space.t.index.i
             function f(i_arg, param) X = X + param + i_arg.space_id end
             box.schema.memtx_index_mt.counter = f
