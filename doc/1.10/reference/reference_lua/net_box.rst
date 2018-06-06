@@ -178,7 +178,8 @@ Below is a list of all ``net.box`` functions.
       suffered due to connectivity loss are transparently retried.
       The number of retries is unlimited, connection attempts are done over the
       specified timeout (e.g. ``reconnect_after=5`` for 5 secs).
-      Once a connection is explicitly closed (or garbage-collected), reconnects stop.
+      Once a connection is explicitly closed, or once the Lua garbage collector
+      removes it, reconnects stop.
 
     * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new
       binary protocol command for CALL, which is not backward compatible with previous versions.
@@ -288,7 +289,7 @@ Below is a list of all ``net.box`` functions.
 
         Close a connection.
 
-        Connection objects are garbage collected just like any other objects in Lua, so
+        Connection objects are destroyed by the Lua garbage collector, just like any other objects in Lua, so
         an explicit destruction is not mandatory. However, since close() is a system
         call, it is good programming practice to close a connection explicitly when it
         is no longer needed, to avoid lengthy stalls of the garbage collector.

@@ -4,10 +4,12 @@
 Backups
 ================================================================================
 
-Tarantool storage architecture is append-only: files are only appended to, and
-are never overwritten. Old files are removed by garbage collection after a
-checkpoint. You can configure the amount of past checkpoints preserved by garbage
-collection by configuring Tarantool's
+Tarantool has an append-only storage architecture: it appends data to files but it
+never overwrites earlier data. The
+:ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
+removes old files after a
+checkpoint. You can prevent or delay the garbage collector's action
+by configuring the
 :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at any
 time, with minimal overhead on database performance.
 
@@ -43,19 +45,20 @@ Hot backup (vinyl/memtx)
 
 Vinyl stores its files in :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, and creates a
 folder for each database space. Dump and compaction processes are append-only and
-create new files. Old files are garbage collected after each checkpoint.
+create new files. The Tarantool garbage collector may remove old files after each
+checkoint.
 
 To take a mixed backup:
 
 1. Issue ``box.backup.start()`` on the :ref:`administrative console <admin-security>`. This will suspend
-   garbage collection till the next ``box.backup.stop()`` and will return a list
+   the Tarantool garbage collector till the next ``box.backup.stop()`` and will return a list
    of files to backup.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the
    last checkpoint.
 
-3. Resume garbage collection with ``box.backup.stop()``.
+3. Issue ``box.backup.stop()`` so the garbage collector can continue.
 
 .. _admin-backups-cont_remote_backup_memtx:
 

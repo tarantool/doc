@@ -9,8 +9,10 @@
     Take a snapshot of all data and store it in
     :ref:`memtx_dir <cfg_basic-memtx_dir>`:samp:`/{<latest-lsn>}.snap`.
     To take a snapshot, Tarantool first enters the delayed garbage collection
-    mode for all data. In this mode, tuples which were allocated before the
-    snapshot has started are not freed until the snapshot has finished. To
+    mode for all data. In this mode, the
+    :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` will not
+    remove files which were created before the snapshot started, it will not
+    remove them until the snapshot has finished. To
     preserve consistency of the primary key, used to iterate over tuples, a
     copy-on-write technique is employed. If the master process changes part
     of a primary key, the corresponding process page is split, and the snapshot

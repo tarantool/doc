@@ -52,7 +52,8 @@
     call to API function that yields or returns another tuple.
 
     You should increase the reference counter before taking tuples for long
-    processing in your code. Such tuples will not be garbage collected even
+    processing in your code. The Lua garbage collector will not destroy a
+    tuple that has references, even
     if another fiber removes them from a space. After processing,
     decrement the reference counter using
     :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`,

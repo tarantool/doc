@@ -283,7 +283,7 @@ While being migrated, the bucket can have different states:
   rebalancing; or the bucket was initially in the RECEIVING state, but some error
   occurred during the migration.
 
-Buckets in the GARBAGE state are deleted by the garbage collector.
+Buckets in the GARBAGE state are deleted by a Tarantool garbage collector.
 
 .. image:: states.jpg
     :align: center
@@ -895,7 +895,7 @@ operations:
 Garbage collector
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-A **garbage collection** fiber is running in the background on the master storages
+A Tarantool **garbage collector** fiber is running in the background on the master storages
 of each replica set. It starts deleting the contents of the bucket in the GARBAGE
 state part by part. Once the bucket is empty, its record is deleted from the
 ``_bucket`` system space.
@@ -1010,7 +1010,8 @@ Basic parameters
 
 .. confval:: collect_bucket_garbage_interval
 
-    The interval between the garbage collector actions, in seconds.
+    The interval between actions of a Tarantool :ref:`garbage collector <vshard-gc>`
+    for buckets, in seconds.
 
     | Type: number
     | Default: 0.5
@@ -1020,9 +1021,10 @@ Basic parameters
 
 .. confval:: collect_lua_garbage
 
-    If set to true, the Lua’s collectgarbage() function is called periodically.
+    If set to true, the Lua garbage collector is called periodically
+    via the `collectgarbage() <https://www.lua.org/manual/5.1/manual.html#2.10>`_ function.
 
-    | Type: boolen
+    | Type: boolean
     | Default: no
     | Dynamic: yes
 

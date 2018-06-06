@@ -291,9 +291,9 @@ Inefficient memory usage (RAM is cluttered with a huge amount of unused objects)
 
 **Solution**
 
-Call the Lua function
-`collectgarbage('count') <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_
-and measure its execution time with Tarantool functions
+Call the Lua garbage collector with the
+`collectgarbage('count') function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_
+and measure its execution time with the Tarantool functions
 :ref:`clock.bench() <clock-bench>` or :ref:`clock.proc() <clock-proc>`.
 
 Example of calculating memory usage statistics:
