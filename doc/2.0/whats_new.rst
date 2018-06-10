@@ -625,10 +625,10 @@ Functionality added or changed:
     Issue `2410 <https://github.com/tarantool/tarantool/issues/2410>`_.
   * (Memtx+Vinyl) implemented low-level Lua API to create consistent backups.
     of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()``
-    functions to create backups of all spaces. ``box.backup.start()`` pauses
-    garbage collection and returns the list of files to copy. These files then
+    functions to create backups of all spaces. ``box.backup.start()`` pauses the
+    Tarantool garbage collector and returns the list of files to copy. These files then
     can be copied be any third-party tool, like cp, ln, tar, rsync, etc.
-    ``box.backup.stop()`` resumes the background garbage collection process.
+    ``box.backup.stop()`` lets the garbage collector continue.
     Created backups can be restored instantly by copying into a new directory
     and starting a new Tarantool instance. No special preparation, conversion
     or unpacking is needed.
@@ -820,7 +820,7 @@ Functionality added or changed:
     Use the TAB key to auto complete the names of Lua variables, functions
     and meta-methods.
   * A new implementation of ``net.box`` improving performance and solving problems
-    with the garbage collection of dead connections.
+    when the Lua garbage collector handles dead connections.
     Issues `799 <https://github.com/tarantool/tarantool/issues/799>`_,
     `800 <https://github.com/tarantool/tarantool/issues/800>`_,
     `1138 <https://github.com/tarantool/tarantool/issues/1138>`_ and

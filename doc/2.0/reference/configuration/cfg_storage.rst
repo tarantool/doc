@@ -27,7 +27,7 @@
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456
-    | Dynamic: no
+    | Dynamic: **yes** but it cannot be decreased
 
 .. _cfg_storage-memtx_max_tuple_size:
 
@@ -99,7 +99,7 @@
 
     | Type: integer
     | Default = 128 * 1024 * 1024 = 134217728
-    | Dynamic: no
+    | Dynamic: **yes** but it cannot be decreased
 
 .. _cfg_storage-vinyl_page_size:
 

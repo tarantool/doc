@@ -422,7 +422,7 @@ Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable
 garbage.lua
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Force Lua `garbage collection <https://www.lua.org/manual/5.1/manual.html#2.10>`_
+Activate the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_
 with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_.
 
 .. code-block:: lua

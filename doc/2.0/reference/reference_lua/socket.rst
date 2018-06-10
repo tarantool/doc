@@ -426,7 +426,8 @@ the function invocations will look like ``sock:function_name(...)``.
     .. method:: close()
 
         Close (destroy) a socket. A closed socket should not be used any more.
-        A socket is closed automatically when its userdata is garbage collected by Lua.
+        A socket is closed automatically when the Lua garbage collector removes
+        its user data.
 
         :return: true on success, false on error. For example, if
                  sock is already closed, sock:close() returns false.

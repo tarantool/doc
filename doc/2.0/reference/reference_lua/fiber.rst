@@ -173,7 +173,7 @@ since :ref:`fiber.kill() <fiber-kill>` sends an asynchronous wakeup event to the
 fiber, and :ref:`fiber.testcancel() <fiber-testcancel>` is checked whenever such
 a wakeup event occurs.
 
-Like all Lua objects, dead fibers are garbage collected. The garbage collector
+Like all Lua objects, dead fibers are garbage collected. The Lua garbage collector
 frees pool allocator memory owned by the fiber, resets all fiber data, and
 returns the fiber (now called a fiber carcass) to the fiber pool. The carcass
 can be reused when another fiber is created.
@@ -538,8 +538,8 @@ recommended.
         named values, subject to memory limitations. Naming may be done with
         :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].`
         or with a number :samp:`{fiber_object}.storage[{number}]`.
-        Values may be either numbers or strings. The storage is garbage-collected
-        when :samp:`{fiber_object}:cancel()` happens.
+        Values may be either numbers or strings. The Lua garbage collector will
+        mark or free the local storage when :samp:`{fiber_object}:cancel()` happens.
 
         **Example:**
 
@@ -799,7 +799,8 @@ be called channel for examples in this section.
 Call the other routines, via channel, to send messages, receive messages, or
 check channel status.
 
-Message exchange is synchronous. The channel is garbage collected when no one is
+Message exchange is synchronous. The Lua garbage collector will mark or free the
+channel when no one is
 using it, as with any other Lua object. Use object-oriented syntax, for example
 ``channel:put(message)`` rather than ``fiber.channel.put(message)``.
 

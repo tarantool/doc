@@ -114,7 +114,8 @@ Your actions:
 
 1. Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable
    checkpointing with ``box.backup.start()``. Disabling the checkpointing is
-   necessary to prevent automatic garbage collection of older checkpoints.
+   necessary to prevent the Tarantool garbage collector from removing files
+   made with older checkpoints.
 
 2. Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tarantoolctl cat`` command to
    calculate at which lsn the data loss occurred.

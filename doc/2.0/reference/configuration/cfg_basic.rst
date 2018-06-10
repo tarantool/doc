@@ -134,6 +134,8 @@
     In that situation, queries may time out after ``vinyl_timeout`` seconds.
     This should rarely occur, since normally vinyl
     would throttle inserts when it is running low on compaction bandwidth.
+    Compaction can also be ordered manually with
+    :ref:`index_object:compact() <box_index-compact>`.
 
     | Type: float
     | Default: 60

@@ -13,11 +13,14 @@ variables.
   Every instance in a replica set will have the same ``cluster.uuid`` value.
   This value is also stored in :ref:`box.space._schema <box_space-schema>`
   system space.
+* **gc()** returns the state of the 
+  :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
+  including the checkpoints and their consumers (users).
 * **id** corresponds to **replication.id**
   (see :ref:`below <box_info_replication>`).
 * **lsn** corresponds to **replication.lsn**
   (see :ref:`below <box_info_replication>`).
-* **memory** has the statistics about memory
+* **memory()** returns the statistics about memory
   (see :ref:`below <box_info_memory>`).
 * **pid** is the process ID. This value is also shown by
   :ref:`tarantool <tarantool-build>` module
@@ -37,7 +40,7 @@ variables.
   (see :ref:`below <box_info_replication>`).
 * **version** is the Tarantool version. This value is also shown by
   :ref:`tarantool -V <index-tarantool_version>`.
-* **vinyl** returns runtime statistics for vinyl storage engine.
+* **vinyl()** returns runtime statistics for vinyl storage engine.
 
 .. _box_info_memory:
 

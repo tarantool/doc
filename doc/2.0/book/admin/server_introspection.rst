@@ -160,7 +160,7 @@ You can see how much it has taken by saying (on Linux):
 
 Tarantool almost never releases this memory, even if the user
 deletes everything that was inserted, or reduces
-fragmentation by calling the Lua
+fragmentation by calling the Lua garbage collector via the
 `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_.
 
 Ordinarily this does not affect performance.
