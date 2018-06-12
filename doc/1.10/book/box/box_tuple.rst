@@ -340,6 +340,10 @@ Below is a list of all ``box.tuple`` functions.
         can add more arguments after ``fields-to-remove`` to indicate new
         values that will replace what was removed.
 
+        If the original tuple comes from a space that has been formatted with a
+        :ref:`format clause <box_space-format>`, the formatting will not be
+        preserved for the result tuple.
+
         :param integer start-field-number: base 1, may be negative
         :param integer   fields-to-remove:
         :param lua-value   field-value(s):
@@ -500,6 +504,10 @@ Below is a list of all ``box.tuple`` functions.
         For details: see the description for ``operator``, ``field_no``, and
         ``value`` in the section :ref:`box.space.space-name:update{key, format,
         {field_number, value}...) <box_space-update>`.
+
+        If the original tuple comes from a space that has been formatted with a
+        :ref:`format clause <box_space-format>`, the formatting will be
+        preserved for the result tuple.
 
         :param string  operator: operation type represented in string (e.g.
                                  '``=``' for 'assign new value')
