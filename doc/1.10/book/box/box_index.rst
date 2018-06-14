@@ -76,6 +76,9 @@ Below is a list of all ``box.index`` functions and members.
     | :ref:`index_object:bsize()           | Get count of bytes for an index |
     | <box_index-bsize>`                   |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`index_object:stat()            | Get statistics for an index     |
+    | <box_index-stat>`                    |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`index_object:compact()         | Remove unused index space       |
     | <box_index-compact>`                 |                                 |
     +--------------------------------------+---------------------------------+
@@ -935,6 +938,20 @@ Below is a list of all ``box.index`` functions and members.
 
         :return: number of bytes
         :rtype: number
+
+    .. _box_index-stat:
+
+    .. method:: stat()
+
+        Return statistics about actions taken that affect the index,
+        including details such as a count of cache evictions, number
+        of accesses, and latency. This is for use with the vinyl engine.
+
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+
+        :return: statistics
+        :rtype: table
 
     .. _box_index-compact:
 
