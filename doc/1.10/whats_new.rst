@@ -515,7 +515,8 @@ Functionality added or changed:
     Issue `2410 <https://github.com/tarantool/tarantool/issues/2410>`_.
   * (Memtx+Vinyl) implemented low-level Lua API to create consistent backups.
     of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()``
-    functions to create backups of all spaces. ``box.backup.start()`` pauses the
+    functions to create backups of all spaces.
+    :ref:`box.backup.start() <admin-backups-backup_start>` pauses the
     Tarantool garbage collector and returns the list of files to copy. These files then
     can be copied be any third-party tool, like cp, ln, tar, rsync, etc.
     ``box.backup.stop()`` lets the garbage collector continue.
