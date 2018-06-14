@@ -475,7 +475,7 @@ recommended.
 
         .. code-block:: tarantoolsession
 
-            tarantool> fiber.self():cancel() -- kill self, may make program send
+            tarantool> fiber.self():cancel() -- kill self, may make program end
             ---
             - error: fiber is cancelled
             ...
