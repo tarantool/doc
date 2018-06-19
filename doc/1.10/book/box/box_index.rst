@@ -994,7 +994,7 @@ Below is a list of all ``box.index`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Visible to any index of a memtx space, no parameters
             -- After these requests, the value of global_variable will be 6.
@@ -1007,7 +1007,7 @@ Below is a list of all ``box.index`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Visible to index box.space.t.index.i only, 1 parameter
             -- After these requests, the value of X will be 1005.
@@ -1149,7 +1149,7 @@ Rectangles are described according to their X-axis (horizontal axis) and Y-axis
 (vertical axis) coordinates in a grid of arbitrary size. Here is a picture of
 four rectangles on a grid with 11 horizontal points and 11 vertical points:
 
-::
+.. code-block:: none
 
                X AXIS
                1   2   3   4   5   6   7   8   9   10  11
