@@ -1406,16 +1406,19 @@ Below is a list of all ``box.space`` functions and members.
 
         Users can define any functions they want, and associate them with spaces:
         in effect they can make their own space methods.
-        They do this by (1) creating a Lua function,
-        (2) adding the function name to a predefined global variable which has type = table
-        (3) invoking the function any time thereafter, as long as the server
-        is up, by saying ``space_object:function-name([parameters])``.
+        They do this by:
 
-        The predefined global variable is box_schema.space_mt.
-        Adding to box_schema.space_mt makes the method available for all spaces.
+        (1) creating a Lua function,
+        (2) adding the function name to a predefined global variable which has
+            type = table, and
+        (3) invoking the function any time thereafter, as long as the server
+            is up, by saying ``space_object:function-name([parameters])``.
+
+        The predefined global variable is ``box_schema.space_mt``.
+        Adding to ``box_schema.space_mt`` makes the method available for all spaces.
 
         Alternatively, user-defined methods can be made available for only one space,
-        by calling getmetatable(space_object) and then adding the function name to the
+        by calling ``getmetatable(space_object)`` and then adding the function name to the
         meta table. See also the example for
         :ref:`index_object:user_defined() <box_index-user_defined>`.
 
@@ -1425,9 +1428,9 @@ Below is a list of all ``box.space`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
-            -- Visible to any space, no parameters
+            -- Visible to any space, no parameters.
             -- After these requests, the value of global_variable will be 6.
             box.schema.space.create('t')
             box.space.t:create_index('i')

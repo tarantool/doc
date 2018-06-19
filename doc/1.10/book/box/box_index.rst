@@ -974,18 +974,22 @@ Below is a list of all ``box.index`` functions and members.
 
         Users can define any functions they want, and associate them with indexes:
         in effect they can make their own index methods.
-        They do this by (1) creating a Lua function,
-        (2) adding the function name to a predefined global variable which has type = table
-        (3) invoking the function any time thereafter, as long as the server
-        is up, by saying ``index_object:function-name([parameters])``.
+        They do this by:
 
-        There are actually three predefined global variables ...
-        Adding to box_schema.index_mt makes the method available for all indexes.
-        Adding to box_schema.memtx_index_mt makes the method available for all memtx indexes.
-        Adding to box_schema.vinyl_index_mt makes the method available for all vinyl indexes.
+        (1) creating a Lua function,
+        (2) adding the function name to a predefined global variable which has
+            type = table, and
+        (3) invoking the function any time thereafter, as long as the server
+            is up, by saying ``index_object:function-name([parameters])``.
+
+        There are three predefined global variables:
+
+        * Adding to ``box_schema.index_mt`` makes the method available for all indexes.
+        * Adding to ``box_schema.memtx_index_mt`` makes the method available for all memtx indexes.
+        * Adding to ``box_schema.vinyl_index_mt`` makes the method available for all vinyl indexes.
 
         Alternatively, user-defined methods can be made available for only one index,
-        by calling getmetatable(index_object) and then adding the function name to the
+        by calling ``getmetatable(index_object)`` and then adding the function name to the
         meta table.
 
         :param index_object index_object: an :ref:`object reference
@@ -996,7 +1000,7 @@ Below is a list of all ``box.index`` functions and members.
 
         .. code-block:: lua
 
-            -- Visible to any index of a memtx space, no parameters
+            -- Visible to any index of a memtx space, no parameters.
             -- After these requests, the value of global_variable will be 6.
             box.schema.space.create('t', {engine='memtx'})
             box.space.t:create_index('i')
@@ -1009,7 +1013,7 @@ Below is a list of all ``box.index`` functions and members.
 
         .. code-block:: lua
 
-            -- Visible to index box.space.t.index.i only, 1 parameter
+            -- Visible to index box.space.t.index.i only, 1 parameter.
             -- After these requests, the value of X will be 1005.
             box.schema.space.create('t', {engine='memtx', id = 1000})
             box.space.t:create_index('i')
@@ -1117,7 +1121,9 @@ defined with ``create_index('primary',{parts={1,'string'}})``.
 
 Programmers who use ``paged_iter`` do not need to know why it works, they only
 need to know that, if they call it within a loop, they will get 10 tuples at a
-time until there are no more tuples. In this example the tuples are merely
+time until there are no more tuples.
+
+In this example the tuples are merely
 printed, a page at a time. But it should be simple to change the functionality,
 for example by yielding after each retrieval, or by breaking when the tuples
 fail to match some additional criteria.
