@@ -35,8 +35,8 @@ Tarantool - Ubuntu
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ xenial main" > /etc/apt/sources.list.d/tarantool_1_7.list
-              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ xenial main" >> /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ xenial main" | sudo tee /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ xenial main" | sudo tee -a /etc/apt/sources.list.d/tarantool_1_7.list
 
               # install
               sudo apt-get update
@@ -54,8 +54,8 @@ Tarantool - Ubuntu
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ wily main" > /etc/apt/sources.list.d/tarantool_1_7.list
-              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ wily main" >> /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ wily main" | sudo tee /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ wily main" | sudo tee -a /etc/apt/sources.list.d/tarantool_1_7.list
 
               # install
               sudo apt-get update
@@ -73,8 +73,8 @@ Tarantool - Ubuntu
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ trusty main" > /etc/apt/sources.list.d/tarantool_1_7.list
-              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ trusty main" >> /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ trusty main" | sudo tee /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ trusty main" | sudo tee -a /etc/apt/sources.list.d/tarantool_1_7.list
 
               # install
               sudo apt-get update
@@ -92,8 +92,8 @@ Tarantool - Ubuntu
 
               # append two lines to a list of source repositories
               sudo rm -f /etc/apt/sources.list.d/*tarantool*.list
-              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ precise main" > /etc/apt/sources.list.d/tarantool_1_7.list
-              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ precise main" >> /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb http://download.tarantool.org/tarantool/1.7/ubuntu/ precise main" | sudo tee /etc/apt/sources.list.d/tarantool_1_7.list
+              echo "deb-src http://download.tarantool.org/tarantool/1.7/ubuntu/ precise main" | sudo tee -a /etc/apt/sources.list.d/tarantool_1_7.list
 
               # install
               sudo apt-get update
