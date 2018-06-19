@@ -525,7 +525,7 @@ recommended.
 
         .. code-block:: tarantoolsession
 
-            tarantool> fiber.self():cancel() -- kill self, may make program send
+            tarantool> fiber.self():cancel() -- kill self, may make program end
             ---
             - error: fiber is cancelled
             ...
@@ -550,11 +550,6 @@ recommended.
             ...
             tarantool> function f () fiber.sleep(1000); end
             ---
-            ...
-            tarantool> fiber_function = fiber:create(f)
-            ---
-            - error: '[string "fiber_function = fiber:create(f)"]:1: fiber.create(function, ...):
-                bad arguments'
             ...
             tarantool> fiber_function = fiber.create(f)
             ---

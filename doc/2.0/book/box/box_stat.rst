@@ -7,20 +7,20 @@ Submodule `box.stat`
 The ``box.stat`` submodule provides access to request and network statistics.
 Show the average number of requests per second, and the total number of
 requests since startup, broken down by request type.
-Or, show network activity statistics.
+
+Use ``box.stat.net()``  to see network activity: the number of packets sent
+and received, and the average number of requests per second.
+
+.. _box_introspection-box_stat_vinyl:
+
+Use ``box.stat.vinyl()`` to see vinyl-storage-engine activity, for example:
+
+* ``box.stat.vinyl().cache`` has the cache limit,
+* ``box.stat.vinyl().tx`` has the number of commits and rollbacks,
+* ``box.stat.vinyl().quota`` has the number of bytes used.
 
 .. code-block:: tarantoolsession
 
-    tarantool> type(box.stat), type(box.stat.net) -- virtual tables
-    ---
-    - table
-    - table
-    ...
-    tarantool> box.stat, box.stat.net
-    ---
-    - net: &0 []
-    - *0
-    ...
     tarantool> box.stat()
     ---
     - DELETE:
@@ -68,3 +68,8 @@ Or, show network activity statistics.
         total: 0
         rps: 0
     ...
+    tarantool> box.stat.vinyl().tx.commit -- a selected item of the table
+    ---
+    - 1047632
+    ...
+

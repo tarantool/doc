@@ -113,7 +113,8 @@ The following steps are applicable only to data in memtx storage engine.
 Your actions:
 
 1. Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable
-   checkpointing with ``box.backup.start()``. Disabling the checkpointing is
+   checkpointing with :ref:`box.backup.start() <admin-backups-backup_start>`.
+   Disabling the checkpointing is
    necessary to prevent the Tarantool garbage collector from removing files
    made with older checkpoints.
 

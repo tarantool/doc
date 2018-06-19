@@ -9,10 +9,10 @@ Module `net.box`
 ===============================================================================
 
 The ``net.box`` module contains connectors to remote database systems. One
-variant, to be discussed later, is connecting to MySQL or MariaDB or PostgreSQL
+variant, to be discussed later, is for connecting to MySQL or MariaDB or PostgreSQL
 (see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
-is discussed in this section, is connecting to Tarantool server instances via a
-network using the built-in ``net.box`` module.
+is discussed in this section, is for connecting to Tarantool server instances via a
+network.
 
 You can call the following methods:
 
@@ -21,17 +21,17 @@ You can call the following methods:
 * ``net_box.connect()`` to connect and get a connection object
   (named ``conn`` for examples in this section),
 * other ``net.box()`` routines, passing ``conn:``, to execute requests on
-  a remote box,
+  the remote database system,
 * ``conn:close`` to disconnect.
 
 All ``net.box`` methods are fiber-safe, that is, it is safe to share and use the
-same connection object across multiple concurrent fibers. In fact, it's perhaps
+same connection object across multiple concurrent fibers. In fact that is perhaps
 the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
-the overhead of system calls and increases the overall server performance. There
-are, however, cases when a single connection is not enough — for example, when
-it's necessary to prioritize requests or to use different authentication IDs.
+the overhead of system calls and increases the overall server performance. However
+for some cases a single connection is not enough —- for example, when
+it is necessary to prioritize requests or to use different authentication IDs.
 
 Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
 
@@ -39,6 +39,9 @@ Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
   ``{timeout=1.5}`` will stop after 1.5 seconds on the local node, although this
   does not guarantee that execution will stop on the remote server node.
 * ``{buffer=...}``. For an example see :ref:`buffer module <buffer-module>`.
+* ``{is_async=...}``. For example, a method whose final argument is
+  ``{is_async=true}`` will not wait for the result of a request. See the
+  :ref:`is_async <net_box-is_async>` description.
 
 The diagram below shows possible connection states and transitions:
 
@@ -138,9 +141,8 @@ Below is a list of all ``net.box`` functions.
 
     .. NOTE::
 
-       The names ``connect()`` and ``new()`` are synonymous with the only
-       difference that ``connect()`` is the preferred name, while ``new()`` is
-       retained for backward compatibility.
+       The names ``connect()`` and ``new()`` are synonyms: ``connect()`` is
+       preferred; ``new()`` is retained for backward compatibility.
 
     Create a new connection. The connection is established on demand, at the
     time of the first request. It can be re-established automatically after a
@@ -446,6 +448,77 @@ Below is a list of all ``net.box`` functions.
         a request is sent, it cannot be revoked from the remote server even if a
         timeout expires: the timeout expiration only aborts the wait for the remote
         server response, not the request itself.
+
+    .. _net_box-is_async:
+
+    .. method:: request(... {is_async=...})
+
+        ``{is_async=true|false}`` is an option which is applicable for all
+        ``net_box`` requests including ``conn:call``, ``conn:eval``, and the
+        ``conn.space.space-name`` requests.
+
+        The default is ``is_async=false``, meaning requests are synchronous
+        for the fiber. The fiber is blocked, waiting until there is a
+        reply to the request or until timeout expires. Before Tarantool
+        version 10.1, the only way to make asynchronous requests was to
+        put them in separate fibers.
+
+        The non-default is ``is_async=true``, meaning requests are asynchronous
+        for the fiber. The request causes a yield but there is no waiting.
+        The immediate return is not the result of the request, instead it is
+        an object that the calling program can use later to get the result of the
+        request.
+
+        This immediately-returned object, which we'll call "future",
+        has its own methods:
+
+        * ``future:is_ready()`` which will return true
+          when the result of the request is available,
+        * ``future:result()`` to get the result of the request,
+        * ``future:wait_result(timeout)`` to
+          wait until the result of the request is available and then get it,
+        * ``future:discard()`` to abandon the object.
+
+        Typically a user would say ``future=request-name(...{is_async=true})``,
+        then either loop checking ``future:is_ready()`` until it is true and
+        then say ``request_result=future:result()``,
+        or say ``request_result=future:wait_result(...)``.
+
+        **Example:**
+
+        .. code-block:: lua
+
+            tarantool> future = conn.space.tester:insert({900},{is_async=true})
+            ---
+            ...
+            tarantool> future
+            ---
+            - method: insert
+              response: [900]
+              cond: cond
+              on_push_ctx: []
+              on_push: 'function: builtin#91'
+            ...
+            tarantool> future:is_ready()
+            ---
+            - true
+            ...
+            tarantool> future:result()
+            ---
+            - [900]
+            ...
+
+        Typically ``{is_async=true}`` is used only if the load is
+        large (more than 100,000 requests per second) and latency
+        is large (more than 1 second), or when it is necessary to
+        send multiple requests in parallel then collect responses
+        (sometimes called a "map-reduce" scenario).
+
+        .. NOTE::
+
+            Although the final result of an async request is the same as
+            the result of a sync request, it is structured differently: as a
+            table, instead of as the unpacked values.
 
 ============================================================================
 Example

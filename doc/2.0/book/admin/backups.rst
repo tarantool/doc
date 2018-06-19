@@ -13,6 +13,39 @@ by configuring the
 :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at any
 time, with minimal overhead on database performance.
 
+--------------------------------------------------------------------------------
+backup.start() and backup.stop()
+--------------------------------------------------------------------------------
+
+.. _admin-backups-backup_start:
+
+Two functions are helpful for backups in certain situations.
+
+``box.backup.start()`` informs the server that some activities
+that might interfer with backup should be suspended -- suspend checkpointing,
+suspend Tarantool garbage collection, and effectively enter read-only mode.
+
+Later ``box.backup.stop()`` informs the server that
+normal operations may resume. Starting with Tarantool 1.10.1 there is a new
+optional argument, ``box.backup.start(n)``, where ``n`` indicates the checkpoint
+to use relative to the latest checkpoint -- for example ``n = 0`` means "backup will
+be based on the latest checkpoint", ``n = 1`` means "backup will be based on the first
+checkpoint before the latest checkpoint (counting backwards)", and so on,
+and the default value for ``n`` is zero.
+
+``box.backup.start()`` returns a table with the names of snapshot
+and vinyl files that should be copied. Example:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.backup.start()
+    ---
+    - - ./00000000000000000015.snap
+      - ./00000000000000000000.vylog
+      - ./513/0/00000000000000000002.index
+      - ./513/0/00000000000000000002.run
+    ...
+
 .. _admin-backups-hot_backup_memtx:
 
 --------------------------------------------------------------------------------
@@ -46,13 +79,14 @@ Hot backup (vinyl/memtx)
 Vinyl stores its files in :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, and creates a
 folder for each database space. Dump and compaction processes are append-only and
 create new files. The Tarantool garbage collector may remove old files after each
-checkoint.
+checkpoint.
 
 To take a mixed backup:
 
-1. Issue ``box.backup.start()`` on the :ref:`administrative console <admin-security>`. This will suspend
-   the Tarantool garbage collector till the next ``box.backup.stop()`` and will return a list
-   of files to backup.
+1. Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the
+   :ref:`administrative console <admin-security>`. This will suspend
+   the Tarantool garbage collector till the next ``box.backup.stop()``
+   and will return a list of files to back up.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the

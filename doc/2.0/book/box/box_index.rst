@@ -76,6 +76,9 @@ Below is a list of all ``box.index`` functions and members.
     | :ref:`index_object:bsize()           | Get count of bytes for an index |
     | <box_index-bsize>`                   |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`index_object:stat()            | Get statistics for an index     |
+    | <box_index-stat>`                    |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`index_object:compact()         | Remove unused index space       |
     | <box_index-compact>`                 |                                 |
     +--------------------------------------+---------------------------------+
@@ -938,6 +941,20 @@ Below is a list of all ``box.index`` functions and members.
         :return: number of bytes
         :rtype: number
 
+    .. _box_index-stat:
+
+    .. method:: stat()
+
+        Return statistics about actions taken that affect the index,
+        including details such as a count of cache evictions, number
+        of accesses, and latency. This is for use with the vinyl engine.
+
+        :param index_object index_object: an :ref:`object reference
+                                          <app_server-object_reference>`.
+
+        :return: statistics
+        :rtype: table
+
     .. _box_index-compact:
 
     .. method:: compact()
@@ -959,18 +976,22 @@ Below is a list of all ``box.index`` functions and members.
 
         Users can define any functions they want, and associate them with indexes:
         in effect they can make their own index methods.
-        They do this by (1) creating a Lua function,
-        (2) adding the function name to a predefined global variable which has type = table
-        (3) invoking the function any time thereafter, as long as the server
-        is up, by saying ``index_object:function-name([parameters])``.
+        They do this by:
 
-        There are actually three predefined global variables ...
-        Adding to box_schema.index_mt makes the method available for all indexes.
-        Adding to box_schema.memtx_index_mt makes the method available for all memtx indexes.
-        Adding to box_schema.vinyl_index_mt makes the method available for all vinyl indexes.
+        (1) creating a Lua function,
+        (2) adding the function name to a predefined global variable which has
+            type = table, and
+        (3) invoking the function any time thereafter, as long as the server
+            is up, by saying ``index_object:function-name([parameters])``.
+
+        There are three predefined global variables:
+
+        * Adding to ``box_schema.index_mt`` makes the method available for all indexes.
+        * Adding to ``box_schema.memtx_index_mt`` makes the method available for all memtx indexes.
+        * Adding to ``box_schema.vinyl_index_mt`` makes the method available for all vinyl indexes.
 
         Alternatively, user-defined methods can be made available for only one index,
-        by calling getmetatable(index_object) and then adding the function name to the
+        by calling ``getmetatable(index_object)`` and then adding the function name to the
         meta table.
 
         :param index_object index_object: an :ref:`object reference
@@ -979,9 +1000,9 @@ Below is a list of all ``box.index`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
-            -- Visible to any index of a memtx space, no parameters
+            -- Visible to any index of a memtx space, no parameters.
             -- After these requests, the value of global_variable will be 6.
             box.schema.space.create('t', {engine='memtx'})
             box.space.t:create_index('i')
@@ -992,9 +1013,9 @@ Below is a list of all ``box.index`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
-            -- Visible to index box.space.t.index.i only, 1 parameter
+            -- Visible to index box.space.t.index.i only, 1 parameter.
             -- After these requests, the value of X will be 1005.
             box.schema.space.create('t', {engine='memtx', id = 1000})
             box.space.t:create_index('i')
@@ -1102,7 +1123,9 @@ defined with ``create_index('primary',{parts={1,'string'}})``.
 
 Programmers who use ``paged_iter`` do not need to know why it works, they only
 need to know that, if they call it within a loop, they will get 10 tuples at a
-time until there are no more tuples. In this example the tuples are merely
+time until there are no more tuples.
+
+In this example the tuples are merely
 printed, a page at a time. But it should be simple to change the functionality,
 for example by yielding after each retrieval, or by breaking when the tuples
 fail to match some additional criteria.
@@ -1134,7 +1157,7 @@ Rectangles are described according to their X-axis (horizontal axis) and Y-axis
 (vertical axis) coordinates in a grid of arbitrary size. Here is a picture of
 four rectangles on a grid with 11 horizontal points and 11 vertical points:
 
-::
+.. code-block:: none
 
                X AXIS
                1   2   3   4   5   6   7   8   9   10  11

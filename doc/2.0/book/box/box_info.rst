@@ -40,7 +40,9 @@ variables.
   (see :ref:`below <box_info_replication>`).
 * **version** is the Tarantool version. This value is also shown by
   :ref:`tarantool -V <index-tarantool_version>`.
-* **vinyl()** returns runtime statistics for vinyl storage engine.
+* **vinyl()** returns runtime statistics for the vinyl storage engine.
+  This function is deprecated, use
+  :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead.
 
 .. _box_info_memory:
 
