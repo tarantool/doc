@@ -19,17 +19,19 @@ backup.start() and backup.stop()
 
 .. _admin-backups-backup_start:
 
-Two functions are helpful for backups in certain situations:
-``box.backup.start()`` informs the server that some activities that might interfere
-with backup should be suspended -- suspend checkpointing, suspend
-Tarantool garbage collection, and effectively enter read-only mode.
+Two functions are helpful for backups in certain situations.
+
+``box.backup.start()`` informs the server that some activities
+that might interfer with backup should be suspended -- suspend checkpointing,
+suspend Tarantool garbage collection, and effectively enter read-only mode.
+
 Later ``box.backup.stop()`` informs the server that
 normal operations may resume. Starting with Tarantool 1.10.1 there is a new
-optional argument: ``box.backup.start(n)``, where n indicates the checkpoint
-to use relative to the latest checkpoint -- for example n = 0 means "backup will
-be based on the latest checkpoint", n = 1 means "backup will be based on the first
+optional argument, ``box.backup.start(n)``, where ``n`` indicates the checkpoint
+to use relative to the latest checkpoint -- for example ``n = 0`` means "backup will
+be based on the latest checkpoint", ``n = 1`` means "backup will be based on the first
 checkpoint before the latest checkpoint (counting backwards)", and so on,
-and the default value for n is zero.
+and the default value for ``n`` is zero.
 
 ``box.backup.start()`` returns a table with the names of snapshot
 and vinyl files that should be copied. Example:

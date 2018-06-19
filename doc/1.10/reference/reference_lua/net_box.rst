@@ -30,7 +30,7 @@ the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
 the overhead of system calls and increases the overall server performance. However
-for some cases a single connection is not enough — for example, when
+for some cases a single connection is not enough —- for example, when
 it is necessary to prioritize requests or to use different authentication IDs.
 
 Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
@@ -141,7 +141,7 @@ Below is a list of all ``net.box`` functions.
 
     .. NOTE::
 
-       The names ``connect()`` and ``new()`` are synonyms. ``connect()`` is
+       The names ``connect()`` and ``new()`` are synonyms: ``connect()`` is
        preferred; ``new()`` is retained for backward compatibility.
 
     Create a new connection. The connection is established on demand, at the
@@ -453,9 +453,10 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: request(... {is_async=...})
 
-        ``{is_async=true|false}`` is an option which is applicable for all net_box
-        requests including conn:call, conn:eval, and the conn.space.space-name requests.
-        
+        ``{is_async=true|false}`` is an option which is applicable for all
+        ``net_box`` requests including ``conn:call``, ``conn:eval``, and the
+        ``conn.space.space-name`` requests.
+
         The default is ``is_async=false``, meaning requests are synchronous
         for the fiber. The fiber is blocked, waiting until there is a
         reply to the request or until timeout expires. Before Tarantool
@@ -467,15 +468,21 @@ Below is a list of all ``net.box`` functions.
         The immediate return is not the result of the request, instead it is
         an object that the calling program can use later to get the result of the
         request.
+
         This immediately-returned object, which we'll call "future",
-        has its own methods: ``future:is_ready()`` which will return true
-        when the result of the request is available, ``future:result()``
-        to get the result of the request, ``future:wait_result(timeout)`` to
-        wait until the result of the request is available and then get it, or ``future:discard()`` to abandon
-        the object. Typically a user would say
-        "future=request-name(...{is_async=true})" then either
-        "loop checking future_is_ready until it is true and then say request_result=future:result()"
-        or "say request_result=future:wait_result(...)".
+        has its own methods:
+
+        * ``future:is_ready()`` which will return true
+          when the result of the request is available,
+        * ``future:result()`` to get the result of the request,
+        * ``future:wait_result(timeout)`` to
+          wait until the result of the request is available and then get it,
+        * ``future:discard()`` to abandon the object.
+
+        Typically a user would say ``future=request-name(...{is_async=true})``,
+        then either loop checking ``future:is_ready()`` until it is true and
+        then say ``request_result=future:result()``,
+        or say ``request_result=future:wait_result(...)``.
 
         **Example:**
 
@@ -507,10 +514,11 @@ Below is a list of all ``net.box`` functions.
         send multiple requests in parallel then collect responses
         (sometimes called a "map-reduce" scenario).
 
-        Note: Although the final result of an async request is the same as
-        the result of a sync request, it is structured differently: as a
-        table, instead of as the unpacked values.
+        .. NOTE::
 
+            Although the final result of an async request is the same as
+            the result of a sync request, it is structured differently: as a
+            table, instead of as the unpacked values.
 
 ============================================================================
 Example
