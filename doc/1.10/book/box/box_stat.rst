@@ -8,15 +8,16 @@ The ``box.stat`` submodule provides access to request and network statistics.
 Show the average number of requests per second, and the total number of
 requests since startup, broken down by request type.
 
-Use ``box.stat.net()``  to see netowrk activity: the number of packets sent
+Use ``box.stat.net()``  to see network activity: the number of packets sent
 and received, and the average number of requests per second.
 
 .. _box_introspection-box_stat_vinyl:
 
-Use ``box.stat.vinyl()`` to see vinyl-storage-engine activity:
-box.stat.vinyl().cache for example has the cache limit,
-box.stat.vinyl().tx for example has the number of commits and rollbacks,
-box.stat.vinyl().quota for example has the number of bytes used.
+Use ``box.stat.vinyl()`` to see vinyl-storage-engine activity, for example:
+
+* ``box.stat.vinyl().cache`` has the cache limit,
+* ``box.stat.vinyl().tx`` has the number of commits and rollbacks,
+* ``box.stat.vinyl().quota`` has the number of bytes used.
 
 .. code-block:: tarantoolsession
 
