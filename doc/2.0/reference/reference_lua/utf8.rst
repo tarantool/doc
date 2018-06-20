@@ -47,7 +47,7 @@ Below is a list of all ``utf8`` functions.
     +---------------------------------------------------+--------------------------------+
     | :ref:`sub <utf8-sub>`                             | Substrings                     |
     +---------------------------------------------------+--------------------------------+
-    | :ref:`length <utf8-length>`                       | Length in characters           |
+    | :ref:`len <utf8-len>`                             | Length in characters           |
     +---------------------------------------------------+--------------------------------+
     | :ref:`next <utf8-next>`                           | Character-at-a-time iterations |
     +---------------------------------------------------+--------------------------------+
@@ -233,9 +233,9 @@ Below is a list of all ``utf8`` functions.
         - false
         ...
 
-.. _utf8-length:
+.. _utf8-len:
 
-.. function:: length(UTF8-string [, start-byte [, end-byte]])
+.. function:: len(UTF8-string [, start-byte [, end-byte]])
 
     :param UTF8-string string: a string encoded with UTF-8
     :param start-byte integer: byte position of the first character
