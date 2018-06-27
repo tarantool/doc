@@ -95,25 +95,39 @@ Creating a database
 
 While you're attached to the console, let's create a simple test database.
 
-First, create the first :ref:`space <index-box_space>` (named 'tester')
-and the first :ref:`index <index-box_index>` (named 'primary'):
+First, create the first :ref:`space <index-box_space>` (named 'tester'):
 
 .. code-block:: tarantoolsession
 
    tarantool.sock> s = box.schema.space.create('tester')
-   tarantool.sock> s:create_index('primary', {
-                 >  type = 'hash',
-                 >  parts = {1, 'unsigned'}
+
+Format the created space by specifying field names and types:
+
+.. code-block:: tarantoolsession
+
+   tarantool.sock> s:format({
+                 > {name = 'id', type = 'unsigned'},
+                 > {name = 'band_name', type = 'string'},
+                 > {name = 'year', type = 'unsigned'}
                  > })
 
-Next, insert three :ref:`tuples <index-box_tuple>` (our name for "records")
+Create the first :ref:`index <index-box_index>` (named 'primary'):
+
+.. code-block:: tarantoolsession
+
+   tarantool.sock> s:create_index('primary', {
+                 > type = 'hash',
+                 > parts = {'id'}
+                 > })
+
+Insert three :ref:`tuples <index-box_tuple>` (our name for "records")
 into the space:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> t = s:insert({1, 'Roxette'})
-   tarantool.sock> t = s:insert({2, 'Scorpions', 2015})
-   tarantool.sock> t = s:insert({3, 'Ace of Base', 1993})
+   tarantool.sock> s:insert{1, 'Roxette', 1986}
+   tarantool.sock> s:insert{2, 'Scorpions', 2015}
+   tarantool.sock> s:insert{3, 'Ace of Base', 1993}
 
 To select a tuple from the first space of the database, using the first
 defined key, say:
@@ -127,34 +141,54 @@ The terminal screen now looks like this:
 .. code-block:: tarantoolsession
 
    tarantool.sock> s = box.schema.space.create('tester')
-   2017-01-17 12:04:18.158 ... creating './00000000000000000000.xlog.inprogress'
    ---
    ...
-   tarantool.sock> s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+   tarantool.sock> s:format({
+                 > {name = 'id', type = 'unsigned'},
+                 > {name = 'band_name', type = 'string'},
+                 > {name = 'year', type = 'unsigned'}
+                 > })
    ---
+   ...         
+   tarantool.sock> s:create_index('primary', {
+                 > type = 'hash',
+                 > parts = {'id'}
+                 > })
+   ---
+   - unique: true
+     parts:
+     - type: unsigned
+       is_nullable: false
+       fieldno: 1
+     id: 0
+     space_id: 512
+     name: primary
+     type: HASH
    ...
-   tarantool.sock> t = s:insert{1, 'Roxette'}
+   tarantool.sock> s:insert{1, 'Roxette', 1986}
    ---
+   - [1, 'Roxette', 1986]
    ...
-   tarantool.sock> t = s:insert{2, 'Scorpions', 2015}
+   tarantool.sock> s:insert{2, 'Scorpions', 2015}
    ---
+   - [2, 'Scorpions', 2015]
    ...
-   tarantool.sock> t = s:insert{3, 'Ace of Base', 1993}
+   tarantool.sock> s:insert{3, 'Ace of Base', 1993}
    ---
+   - [3, 'Ace of Base', 1993]
    ...
    tarantool.sock> s:select{3}
    ---
    - - [3, 'Ace of Base', 1993]
    ...
-   tarantool.sock>
 
 To add another index on the second field, say:
 
 .. code-block:: tarantoolsession
 
    tarantool.sock> s:create_index('secondary', {
-                 >  type = 'hash',
-                 >  parts = {2, 'string'}
+                 > type = 'hash',
+                 > parts = {'band_name'}
                  > })
 
 --------------------------------------------------------------------------------
