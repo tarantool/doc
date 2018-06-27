@@ -594,6 +594,7 @@ Below is a list of all ``box.space`` functions and members.
         ``box.space.tester:insert{2}`` will not cause a format-related error.
 
         It is legal to use ``format`` on a space that already has a format,
+        thus replacing any previous definitions,
         provided that there is no conflict with existing data or index definitions.
 
         It is legal to use ``format`` to change the ``is_nullable`` flag;
@@ -633,6 +634,38 @@ Below is a list of all ``box.space`` functions and members.
             box.space.tester:format({{'x',type='scalar'},{'y',type='unsigned'}})
             box.space.tester:format({{'x','scalar'}})
             box.space.tester:format({{'x','scalar'},{'y','unsigned'}})
+
+        The following example shows how to create a space, format it with all
+        possible types, and insert into it.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> box.schema.space.create('t')
+            --- ...
+            tarantool> box.space.t:format({{name='1',type='any'},
+                     >                     {name='2',type='unsigned'},
+                     >                     {name='3',type='string'},
+                     >                     {name='4',type='number'},
+                     >                     {name='5',type='integer'},
+                     >                     {name='6',type='boolean'},
+                     >                     {name='7',type='scalar'},
+                     >                     {name='8',type='array'},
+                     >                     {name='9',type='map'}})
+            --- ...
+            tarantool> box.space.t:create_index('i',{parts={2,'unsigned'}})
+            --- ...
+            tarantool> box.space.t:insert{{'a'},      -- any
+                     >                    1,          -- unsigned
+                     >                    'W?',       -- string
+                     >                    5.5,        -- number
+                     >                    -0,         -- integer
+                     >                    true,       -- boolean
+                     >                    true,       -- scalar
+                     >                    {{'a'}},    -- array
+                     >                    {val=1}}    -- map
+            ---
+            - [['a'], 1, 'W?', 5.5, 0, true, true, [['a']], {'val': 1}]
+            ...
 
         Names specified with the format clause can be used in
         :ref:`space_object:get() <box_space-get>` and in
