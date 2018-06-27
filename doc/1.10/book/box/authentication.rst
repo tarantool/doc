@@ -5,7 +5,7 @@ Access control
 ================================================================================
 
 Understanding security details is primarily an issue for administrators.
-Meanwhile, ordinary users should at least skim this section to get an idea
+However, ordinary users should at least skim this section to get an idea
 of how Tarantool makes it possible for administrators to prevent unauthorized
 access to the database and to certain functions.
 
@@ -45,16 +45,16 @@ The current user name can be found with :ref:`box.session.user() <box_session-us
 
 The current user can be changed:
 
-* For a binary port connection -- with AUTH protocol command, supported
+* For a binary port connection -- with the AUTH protocol command, supported
   by most clients;
 
 * For an admin-console connection and in a Lua initialization script --
   with :ref:`box.session.su <box_session-su>`;
 
-* For a stored function invoked with CALL command over a binary port --
-  with :ref:`SETUID <box_schema-func_create>` property enabled for the function,
-  which makes Tarantool temporarily replace the current user with the
-  function’s creator, with all creator's privileges, during function execution.
+* For a binary-port connection invoking a stored function with the CALL command --
+  if the :ref:`SETUID <box_schema-func_create>` property is enabled for the function,
+  Tarantool temporarily replaces the current user with the
+  function’s creator, with all the creator's privileges, during function execution.
 
 .. _authentication-passwords:
 
@@ -139,34 +139,42 @@ become creators/definers of new objects. For the objects they created, the users
 can in turn share privileges with other users.
 
 This is why only an object's owner can drop the object, but other
-ordinary users cannot. Meanwhile, 'admin' can drop any object or delete any
-other user, because 'admin' is the creator and ultimate owner of them all.
+ordinary users cannot. However, 'admin' can drop any object or delete any
+other user, because 'admin' is the creator and ultimate owner of all
+objects and users.
 
-The syntax of all
+All
 :ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
-commands in Tarantool follows this basic idea.
+requests have up to four arguments.
 
-* The first argument is the name of the user who gets the privilege or whose
-  privilege is revoked.
+* The first argument is the name of the user to whom privileges are being
+  granted or revoked.
 
-* The second argument is the type of privilege granted, or a list of privileges.
+* The second argument is the list of one or more privileges.
 
 * The third argument is the object type on which the privilege is granted,
   or the word 'universe'. Possible object types are 'space', 'function',
-  'sequence' (not 'user' or 'role'). For 'usage' and 'session' privileges
-  are called "system privileges" the third argument must be 'universe'.
+  'sequence' (not 'user' or 'role'). For 'usage' and 'session' privileges,
+  also called "system privileges", the third argument must be 'universe'.
 
-* The fourth argument is the name of the object if the object type
-  was specified ('universe' has no name because there is only one 'universe',
-  but otherwise you must specify the name).
+* The fourth argument is the name of the object.
+  If the third argument is 'universe' then the fourth argument is not
+  specified because there is only one 'universe'.
+  If the third argument is 'space' or 'function' or 'sequence' then
+  the fourth argument is optional -- omit it to mean 
+  "all" spaces or functions or sequences.
 
 **Example #1**
 
-Here we say that user 'guest' can do common operations on any object.
+Here we say that user 'guest' can do common operations on any object,
+and user 'sally' can execute any function,
+and user 'yoshi' can no longer read space '_space'.
 
 .. code-block:: lua_tarantool
 
-    box.schema.user.grant('guest', 'read,write,execute', 'universe')
+    box.schema.user.grant ('guest', 'read,write,execute', 'universe')
+    box.schema.user.grant ('sally', 'execute',            'function')
+    box.schema.user.revoke('yoshi', 'read',              'space',   '_space')
 
 **Example #2**
 
