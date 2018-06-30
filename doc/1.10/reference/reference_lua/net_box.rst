@@ -42,6 +42,8 @@ Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
 * ``{is_async=...}``. For example, a method whose final argument is
   ``{is_async=true}`` will not wait for the result of a request. See the
   :ref:`is_async <net_box-is_async>` description.
+* ``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages.
+  See the :ref:`box.session.push <box_session-push>` description.
 
 The diagram below shows possible connection states and transitions:
 

@@ -125,7 +125,8 @@ We list them here too:
     <join>         ::= 0x41
     <subscribe>    ::= 0x42
     <request_vote> ::= 0x43
-
+    -- box.session.push's out-of-band message 
+    <chunk>        ::= 0x80
     -- -- Value for <code> key in response can be:
     <OK>      ::= 0x00
     <ERROR>   ::= 0x8XXX
