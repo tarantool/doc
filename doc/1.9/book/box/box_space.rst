@@ -1090,12 +1090,13 @@ Below is a list of all ``box.space`` functions and members.
                                           <app_server-object_reference>`
         :param scalar/table          key: value to be matched against the index
                                           key, which may be multi-part.
-        :param table/nil     options: none, any or all of the same options that
+        :param table/nil         options: none, any or all of the same options that
                                           :ref:`index_object:select <box_index-select>`
                                           allows:
-                                          options.iterator (:ref:`type of iterator <box_index-iterator-types>`),
-                                          options.limit (maximum number of tuples),
-                                          options.offset (number of tuples to skip)
+
+                                          * ``options.iterator`` (:ref:`type of iterator <box_index-iterator-types>`)
+                                          * ``options.limit`` (maximum number of tuples)
+                                          * ``options.offset`` (number of tuples to skip)
 
         :return: the tuples whose primary-key fields are equal to the fields of
                  the passed key. If the number of passed fields is less than the
@@ -1164,7 +1165,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> -- skip the first tuple, and return up to
             tarantool> -- 2 tuples. This example's options all
             tarantool> -- depend on index characteristics so see
-            tarantool> -- more explanation in index_object:select(). 
+            tarantool> -- more explanation in index_object:select().
             tarantool> s:select({0},{iterator='GT',offset=1,limit=2})
             ---
             - - [1, 'B']
@@ -1172,11 +1173,10 @@ Below is a list of all ``box.space`` functions and members.
             ...
 
         As the last request in the above example shows:
-        for examples of complex ``select`` requests, where one can specify which
+        to make complex ``select`` requests, where you can specify which
         index to search and what condition to use (for example "greater than"
         instead of "equal to") and how many tuples to return, it will be
-        necessary to become familiar with the later
-        section :ref:`index_object:select <box_index-select>`.
+        necessary to become familiar with :ref:`index_object:select <box_index-select>`.
 
         For more usage scenarios and typical errors see
         :ref:`Example: using data operations <box_space-operations-detailed-examples>`
