@@ -191,7 +191,7 @@ module:
 For example, to insert in table T in a sharded database you simply
 say ``shard.T:insert{...}`` instead of ``box.space.T:insert{...}``.
 
-A ``shard.T:select{}`` request without a primary key will search all shards.
+A ``shard.T:select{}`` request without a primary key will cause an error.
 
 Every queued data-access function has an analogue in the `shard` module:
 
