@@ -150,7 +150,7 @@ requests have up to four arguments.
 * The first argument is the name of the user to whom privileges are being
   granted or revoked.
 
-* The second argument is the list of one or more privileges.
+* The second argument is a list of one or more privileges.
 
 * The third argument is the object type on which the privilege is granted,
   or the word 'universe'. Possible object types are 'space', 'function',
@@ -161,20 +161,22 @@ requests have up to four arguments.
   If the third argument is 'universe' then the fourth argument is not
   specified because there is only one 'universe'.
   If the third argument is 'space' or 'function' or 'sequence' then
-  the fourth argument is optional -- omit it to mean 
+  the fourth argument is optional -- omit it to mean
   "all" spaces or functions or sequences.
 
 **Example #1**
 
-Here we say that user 'guest' can do common operations on any object,
-and user 'sally' can execute any function,
-and user 'yoshi' can no longer read space '_space'.
+Here we say:
+
+* user 'guest' can do common operations on any object,
+* user 'sally' can execute any function,
+* user 'yoshi' can no longer read space '_space'.
 
 .. code-block:: lua_tarantool
 
     box.schema.user.grant ('guest', 'read,write,execute', 'universe')
     box.schema.user.grant ('sally', 'execute',            'function')
-    box.schema.user.revoke('yoshi', 'read',              'space',   '_space')
+    box.schema.user.revoke('yoshi', 'read',               'space',   '_space')
 
 **Example #2**
 

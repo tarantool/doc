@@ -10,9 +10,9 @@
 
 The ``box.session`` submodule allows querying the session state, writing to a
 session-specific temporary Lua table, or sending out-of-band messages, or
-setting up triggers which will fire
-when a session starts or ends. A *session* is an object associated with each
-client connection.
+setting up triggers which will fire when a session starts or ends.
+
+A *session* is an object associated with each client connection.
 
 ===============================================================================
                                     Index
@@ -496,20 +496,21 @@ Below is a list of all ``box.session`` functions and members.
     such messages.
 
     :param string-or-number message: what to send
-    :param int sync: for an optional argument to indicate what the session is,
+    :param int sync: an optional argument to indicate what the session is,
                      as taken from an earlier call to :ref:`box_session:sync() <box_session-sync>`.
                      If it is omitted, the default is the current ``box.session.sync()`` value.
-    :rtype: {nil, error} or true.
+    :rtype: {nil, error} or true:
 
-    If the result is an error, then the first part of the return is
-    ``nil`` and the second part is the error object. If the result is not
-    an error, then the return is the boolean value ``true``.
-    When the return is ``true``, the message has gone to the network
-    buffer as a :ref:`packet <box_protocol-iproto_protocol>`
-    with the code IPROTO_CHUNK (0x80).
+            * If the result is an error, then the first part of the return is
+              ``nil`` and the second part is the error object.
+            * If the result is not an error, then the return is the boolean value ``true``.
+            * When the return is ``true``, the message has gone to the network
+              buffer as a :ref:`packet <box_protocol-iproto_protocol>`
+              with the code IPROTO_CHUNK (0x80).
 
     The server's sole job is to call ``box.session.push()``, there is no
     automatic mechanism for showing that the message was received.
+
     The client's job is to check for such messages after it sends
     something to the server. The major client methods --
     :ref:`conn:call <net_box-call>`, :ref:`conn:eval <net_box-eval>`,
@@ -519,26 +520,26 @@ Below is a list of all ``box.session`` functions and members.
     may cause the server to send a message.
 
     Situation 1: when the client calls synchronously with the default
-    ``{async=false}`` option: there are two optional additional options:
+    ``{async=false}`` option. There are two optional additional options:
     :samp:`on_push={function-name}`, and :samp:`on_push_ctx={function-argument}`.
     When the client receives an out-of-band message for the session,
     it invokes "function-name(function-argument)". For example, with
     options ``{on_push=table.insert, on_push_ctx=messages}``, the client
-    will insert whatever it receives into a table named messages.
+    will insert whatever it receives into a table named 'messages'.
 
     Situation 2: when the client calls asynchronously with the non-default
-    ``{async=true}`` option: ``on_push`` and ``on_push_ctx`` are not allowed, but
+    ``{async=true}`` option. Here ``on_push`` and ``on_push_ctx`` are not allowed, but
     the messages can be seen by calling ``pairs()`` in a loop.
 
     Situation 2 complication: ``pairs()`` is subject to timeout. So there
     is an optional argument = timeout per iteration. If timeout occurs before
     there is a new message or a final response, there is an error return.
-    To check for an error a one can use the first loop parameter (if the loop
+    To check for an error one can use the first loop parameter (if the loop
     starts with "for i, message in future:pairs()" then the first loop parameter
-    is i). If it is box.NULL then the second parameter (in our example, "message")
+    is i). If it is ``box.NULL`` then the second parameter (in our example, "message")
     is the error object.
 
-    ** Example **
+    **Example**
 
     .. code-block:: lua
 
@@ -602,8 +603,8 @@ Below is a list of all ``box.session`` functions and members.
         -- tarantool> messages
         -- ---
         -- - - 2
-         --  - &0 []
-         --  - 2
+        --   - &0 []
+        --   - 2
         --   - *0
         -- ...
         -- Good. That shows that the message was asynchronous, and
