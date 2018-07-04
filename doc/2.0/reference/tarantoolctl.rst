@@ -43,10 +43,10 @@ Commands for managing Tarantool instances
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``tarantoolctl start NAME``
-        Start a Tarantool instance (if not started; fail otherwise).
+        Start a Tarantool instance.
 
 ``tarantoolctl stop NAME``
-        Stop a Tarantool instance (if not stopped; fail otherwise).
+        Stop a Tarantool instance.
 
 ``tarantoolctl status NAME``
         Show an instance's status (started/stopped).
@@ -57,8 +57,7 @@ Commands for managing Tarantool instances
         socket doesn't).
 
 ``tarantoolctl restart NAME``
-        Stop and start a Tarantool instance (if started;
-        fail otherwise).
+        Stop and start a Tarantool instance.
 
 ``tarantoolctl logrotate NAME``
         Rotate logs of a started Tarantool instance.
@@ -72,8 +71,7 @@ Commands for managing Tarantool instances
         Enter an instance's interactive Lua console.
 
 ``tarantoolctl eval NAME FILE``
-        Evaluate a local Lua file on a Tarantool instance (if started;
-        fail otherwise).
+        Evaluate a local Lua file on a running Tarantool instance.
 
 ``tarantoolctl connect URI``
         Connect to a Tarantool instance on an admin-console port.
