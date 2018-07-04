@@ -117,6 +117,10 @@ Below is a list of all ``box.session`` functions and members.
 
     :rtype:  number
 
+    This function is local for the request, i.e. not global for the session. If
+    the connection behind the session is multiplexed, this function can be
+    safely used inside the request processor.
+
 .. _box_session-user:
 
 .. function:: user()
