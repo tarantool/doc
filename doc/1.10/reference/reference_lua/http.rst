@@ -107,10 +107,13 @@ Below is a list of all ``http`` functions.
             too slow and abort. See also
             `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_
           * ``verbose`` - set on/off verbose mode
-          * ``unix_socket``  -- a socket name to use instead of an Internet address,
+          * ``unix_socket`` - a socket name to use instead of an Internet address,
             for a local connection. The Tarantool server must be built with
             ``libcurl`` 7.40 or later. See the :ref:`second example <http-example2>`
             later in this section.
+          * ``max_header_name_len`` - the maximal length of a header name. If a header
+            name is bigger than this value, it is truncated to this length.
+            The default value is '32'.
 
         :return: connection information, with all of these components:
 
