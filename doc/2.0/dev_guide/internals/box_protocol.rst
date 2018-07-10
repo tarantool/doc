@@ -92,7 +92,7 @@ We list them here too:
 .. code-block:: none
 
     -- user keys
-    <code>           ::= 0x00
+    <request_type>   ::= 0x00
     <sync>           ::= 0x01
     <replica_id>     ::= 0x02
     <lsn>            ::= 0x03
@@ -109,12 +109,13 @@ We list them here too:
     <tuple>          ::= 0x21
     <function_name>  ::= 0x22
     <user_name>      ::= 0x23
-    <instance_uuid   ::= 0x24
+    <instance_uuid>  ::= 0x24
     <cluster_uuid>   ::= 0x25
     <vclock>         ::= 0x26
     <expr>           ::= 0x27
     <ops>            ::= 0x28
-    <options>        ::= 0x29
+    <server_is_ro>   ::= 0x29
+    <options>        ::= 0x2a
     <data>           ::= 0x30
     <error>          ::= 0x31
     <metadata>       ::= 0x32
@@ -126,29 +127,29 @@ We list them here too:
 
     -- -- Value for <code> key in request can be:
     -- User command codes
-    <select>       ::= 0x01
-    <insert>       ::= 0x02
-    <replace>      ::= 0x03
-    <update>       ::= 0x04
-    <delete>       ::= 0x05
-    <call_16>      ::= 0x06
-    <auth>         ::= 0x07
-    <eval>         ::= 0x08
-    <upsert>       ::= 0x09
-    <call>         ::= 0x0a
-    <execute>      ::= 0x0b
-    <nop>          ::= 0x0c
+    <select>         ::= 0x01
+    <insert>         ::= 0x02
+    <replace>        ::= 0x03
+    <update>         ::= 0x04
+    <delete>         ::= 0x05
+    <call_16>        ::= 0x06
+    <auth>           ::= 0x07
+    <eval>           ::= 0x08
+    <upsert>         ::= 0x09
+    <call>           ::= 0x10
+    <execute>        ::= 0x11
+    <nop>            ::= 0x12
     -- Admin command codes
     -- (including codes for replica-set initialization and master election)
-    <ping>         ::= 0x40
-    <join>         ::= 0x41
-    <subscribe>    ::= 0x42
-    <request_vote> ::= 0x43
-    -- box.session.push's out-of-band message 
-    <chunk>        ::= 0x80
+    <ping>           ::= 0x64
+    <join>           ::= 0x65
+    <subscribe>      ::= 0x66
+    <request_vote>   ::= 0x67
+    -- box.session.push's out-of-band message
+    <chunk>          ::= 0x128
     -- -- Value for <code> key in response can be:
-    <OK>      ::= 0x00
-    <ERROR>   ::= 0x8XXX
+    <OK>             ::= 0x00
+    <ERROR>          ::= 0x8XXX
 
 
 Both :code:`<header>` and :code:`<body>` are msgpack maps:
@@ -515,18 +516,18 @@ Replication packet structure
 .. code-block:: none
 
     -- replication keys
-    <server_id>     ::= 0x02
-    <lsn>           ::= 0x03
-    <timestamp>     ::= 0x04
-    <server_uuid>   ::= 0x24
-    <cluster_uuid>  ::= 0x25
-    <vclock>        ::= 0x26
+    <server_id>    ::= 0x02
+    <lsn>          ::= 0x03
+    <timestamp>    ::= 0x04
+    <server_uuid>  ::= 0x24
+    <cluster_uuid> ::= 0x25
+    <vclock>       ::= 0x26
 
 .. code-block:: none
 
     -- replication codes
-    <join>      ::= 0x41
-    <subscribe> ::= 0x42
+    <join>         ::= 0x41
+    <subscribe>    ::= 0x42
 
 
 .. code-block:: none
