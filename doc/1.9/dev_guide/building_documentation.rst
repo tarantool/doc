@@ -24,8 +24,33 @@ You need to install these Python modules:
 
 * `pip <https://pypi.python.org/pypi/pip>`_, any version
 * `Sphinx <https://pypi.python.org/pypi/Sphinx>`_ version 1.4.4 or later
+
+  .. NOTE::
+
+      If you encounter the "Missing SPHINX_EXECUTABLE" error message on Mac, manually
+      export the PATH variable:
+
+      .. code-block:: console
+
+          export PATH=$PATH:/User/user_name/Library/Python/2.7/bin
+
 * `sphinx-intl <https://pypi.python.org/pypi/sphinx-intl>`_ version 0.9.9
+
+  .. NOTE::
+
+      If you encounter the "Missing SPHINX_INTL_DIR" error message on Mac, manually
+      export the SPHINX_INTL_DIR variable:
+
+      .. code-block:: console
+
+          export SPHINX_INTL_DIR=/User/user_name/Library/Python/2.7/bin
+
 * `lupa <https://pypi.python.org/pypi/lupa>`_ -- any version
+
+.. NOTE::
+
+    You should specify ``--user`` flag on Mac while installing Python modules for correct
+    installation.
 
 See more details about installation in the :ref:`build-from-source <building_from_source>`
 section of this documentation.
