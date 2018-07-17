@@ -46,7 +46,10 @@ Here is what ``tarantoolctl`` does when you issue the command:
    console attached to it. This file is used later by ``tarantoolctl`` to query
    the instance state, send commands to the instance and so on.
 
-6. Finally, use Lua ``dofile`` command to execute the instance file.
+6. Set the TARANTOOLCTL environment variable to 'true'. This allows the user to
+   know that the instance was started by ``tarantoolctl``.
+
+7. Finally, use Lua ``dofile`` command to execute the instance file.
 
 If you start an instance using ``systemd`` tools, like this (the instance name
 is ``my_app``):

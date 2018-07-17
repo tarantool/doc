@@ -45,6 +45,9 @@ Commands for managing Tarantool instances
 ``tarantoolctl start NAME``
         Start a Tarantool instance.
 
+        Additionally, this command sets the TARANTOOLCTL environment variable to
+        'true', to mark that the instance was started by ``tarantoolctl``.
+
 ``tarantoolctl stop NAME``
         Stop a Tarantool instance.
 
@@ -58,6 +61,10 @@ Commands for managing Tarantool instances
 
 ``tarantoolctl restart NAME``
         Stop and start a Tarantool instance.
+
+        Additionally, this command sets the TARANTOOL_RESTARTED environment
+        variable to 'true', to mark that the instance was restarted by
+        ``tarantoolctl``.
 
 ``tarantoolctl logrotate NAME``
         Rotate logs of a started Tarantool instance.
