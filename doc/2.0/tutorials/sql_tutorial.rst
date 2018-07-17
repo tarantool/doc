@@ -25,11 +25,18 @@ Initialize
 
 Requests will be done using Tarantool as a
 :ref:`client <admin-using_tarantool_as_a_client>`.
-Start Tarantool, and enter a usual Tarantool configuration request.
+Start Tarantool and, optionally, enter the Tarantool configuration request,
+for example:
 
 .. code-block:: tarantoolsession
 
     tarantool> box.cfg{}
+
+Before Tarantool 2.0 you needed to say ``box.cfg{...}`` prior to
+performing any database operations.
+Now you can start working with the database outright.
+Tarantool initiates the database module and applies
+:ref:`default settings <box_introspection-box_cfg>`.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \set
