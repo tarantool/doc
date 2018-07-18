@@ -159,8 +159,7 @@ To add another index on the second field, say:
              > parts = {'band_name'}
              > })
 
-To select a tuple from the second space of the database, using the second
-defined key, say:
+To select a tuple using the second defined key, say:
 
 .. code-block:: tarantoolsession
 
