@@ -67,7 +67,7 @@ To attach to Tarantool that runs inside the container, say:
 
 .. code-block:: console
 
-   $ docker exec -i -t mytarantool console
+    $ docker exec -i -t mytarantool console
 
 This command:
 
@@ -79,15 +79,15 @@ Tarantool displays a prompt:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock>
+    tarantool.sock>
 
 Now you can enter requests on the command line.
 
 .. NOTE::
 
-   On production machines, Tarantool's interactive mode is for system
-   administration only. But we use it for most examples in this manual,
-   because the interactive mode is convenient for learning.
+    On production machines, Tarantool's interactive mode is for system
+    administration only. But we use it for most examples in this manual,
+    because the interactive mode is convenient for learning.
 
 --------------------------------------------------------------------------------
 Creating a database
@@ -105,91 +105,101 @@ Format the created space by specifying field names and types:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> s:format({
-                 > {name = 'id', type = 'unsigned'},
-                 > {name = 'band_name', type = 'string'},
-                 > {name = 'year', type = 'unsigned'}
-                 > })
+    tarantool.sock> s:format({
+                  > {name = 'id', type = 'unsigned'},
+                  > {name = 'band_name', type = 'string'},
+                  > {name = 'year', type = 'unsigned'}
+                  > })
 
 Create the first :ref:`index <index-box_index>` (named 'primary'):
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> s:create_index('primary', {
-                 > type = 'hash',
-                 > parts = {'id'}
-                 > })
+    tarantool.sock> s:create_index('primary', {
+                  > type = 'hash',
+                  > parts = {'id'}
+                  > })
+
+This is a primary index based on the 'id' field of each tuple.
 
 Insert three :ref:`tuples <index-box_tuple>` (our name for "records")
 into the space:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> s:insert{1, 'Roxette', 1986}
-   tarantool.sock> s:insert{2, 'Scorpions', 2015}
-   tarantool.sock> s:insert{3, 'Ace of Base', 1993}
+    tarantool.sock> s:insert{1, 'Roxette', 1986}
+    tarantool.sock> s:insert{2, 'Scorpions', 2015}
+    tarantool.sock> s:insert{3, 'Ace of Base', 1993}
 
-To select a tuple from the first space of the database, using the first
-defined key, say:
+To select a tuple using the 'primary' index, say:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> s:select{3}
+    tarantool.sock> s:select{3}
 
 The terminal screen now looks like this:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> s = box.schema.space.create('tester')
-   ---
-   ...
-   tarantool.sock> s:format({
-                 > {name = 'id', type = 'unsigned'},
-                 > {name = 'band_name', type = 'string'},
-                 > {name = 'year', type = 'unsigned'}
-                 > })
-   ---
-   ...         
-   tarantool.sock> s:create_index('primary', {
-                 > type = 'hash',
-                 > parts = {'id'}
-                 > })
-   ---
-   - unique: true
-     parts:
-     - type: unsigned
-       is_nullable: false
-       fieldno: 1
-     id: 0
-     space_id: 512
-     name: primary
-     type: HASH
-   ...
-   tarantool.sock> s:insert{1, 'Roxette', 1986}
-   ---
-   - [1, 'Roxette', 1986]
-   ...
-   tarantool.sock> s:insert{2, 'Scorpions', 2015}
-   ---
-   - [2, 'Scorpions', 2015]
-   ...
-   tarantool.sock> s:insert{3, 'Ace of Base', 1993}
-   ---
-   - [3, 'Ace of Base', 1993]
-   ...
-   tarantool.sock> s:select{3}
-   ---
-   - - [3, 'Ace of Base', 1993]
-   ...
+    tarantool.sock> s = box.schema.space.create('tester')
+    ---
+    ...
+    tarantool.sock> s:format({
+                  > {name = 'id', type = 'unsigned'},
+                  > {name = 'band_name', type = 'string'},
+                  > {name = 'year', type = 'unsigned'}
+                  > })
+    ---
+    ...
+    tarantool.sock> s:create_index('primary', {
+                  > type = 'hash',
+                  > parts = {'id'}
+                  > })
+    ---
+    - unique: true
+      parts:
+      - type: unsigned
+        is_nullable: false
+        fieldno: 1
+      id: 0
+      space_id: 512
+      name: primary
+      type: HASH
+    ...
+    tarantool.sock> s:insert{1, 'Roxette', 1986}
+    ---
+    - [1, 'Roxette', 1986]
+    ...
+    tarantool.sock> s:insert{2, 'Scorpions', 2015}
+    ---
+    - [2, 'Scorpions', 2015]
+    ...
+    tarantool.sock> s:insert{3, 'Ace of Base', 1993}
+    ---
+    - [3, 'Ace of Base', 1993]
+    ...
+    tarantool.sock> s:select{3}
+    ---
+    - - [3, 'Ace of Base', 1993]
+    ...
 
-To add another index on the second field, say:
+To add a secondary index based on the 'band_name' field, say:
 
 .. code-block:: tarantoolsession
 
-   tarantool.sock> s:create_index('secondary', {
-                 > type = 'hash',
-                 > parts = {'band_name'}
-                 > })
+    tarantool.sock> s:create_index('secondary', {
+                  > type = 'hash',
+                  > parts = {'band_name'}
+                  > })
+
+To select tuples using the 'secondary' index, say:
+
+.. code-block:: tarantoolsession
+
+    tarantool.sock> s.index.secondary:select{'Scorpions'}
+    ---
+    - - [2, 'Scorpions', 2015]
+    ...
 
 --------------------------------------------------------------------------------
 Stopping a container
@@ -199,7 +209,7 @@ When the testing is over, stop the container politely:
 
 .. code-block:: console
 
-   $ docker stop mytarantool
+    $ docker stop mytarantool
 
 This was a temporary container, and its disk/memory data were flushed when you
 stopped it. But since you mounted a data directory from the host in the container,
