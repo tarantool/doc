@@ -14,7 +14,7 @@ retrieve tuple values. Tarantool offers a choice of two storage engines:
   a note beginning with the words "Note re storage engine". See also a coverage
   for all :ref:`the differences between memtx and vinyl <vinyl_diff>` further
   on this page.
-  
+
 To specify that the engine should be vinyl, add the clause ``engine = 'vinyl'``
 when creating a space, for example:
 ``space = box.schema.space.create('name', {engine='vinyl'})``.
@@ -102,6 +102,7 @@ Vinyl features
 * Zero-Configuration (Tuned by default)
 * Implemented as a small library **written in C** with zero dependencies
 * BSD Licensed
+* Zstandard compression for all data files
 
 It is appropriate for databases that cannot fit in memory, where access via
 secondary keys is not required.

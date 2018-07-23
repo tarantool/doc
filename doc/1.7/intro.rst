@@ -33,7 +33,7 @@ packages most of which can become Tarantool extensions.
 
 Users can create, modify and drop **Lua functions** at runtime.
 Or they can define **Lua programs** that are loaded during startup for triggers,
-background tasks, and interacting with networked peers. 
+background tasks, and interacting with networked peers.
 Unlike popular application development frameworks based on a "reactor" pattern,
 networking in server-side Lua is sequential, yet very efficient, as it is built
 on top of the **cooperative multitasking** environment that Tarantool itself
@@ -92,11 +92,11 @@ bus and ensures peak scalability of memory access and network throughput. CPU
 utilization of a typical highly-loaded Tarantool instance is under 10%.
 Searches are possible via **secondary index keys** as well as primary keys.
 
-**Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems, 
+**Tarantool's disk-based storage engine** is a fusion of ideas from modern filesystems,
 log-structured merge trees and classical B-trees. All data is organized
 into **ranges**. Each range is represented by a file on disk. Range
-size is a configuration option and normally is around 64MB. Each 
-range is a collection of pages, serving different purposes. Pages 
+size is a configuration option and normally is around 64MB. Each
+range is a collection of pages, serving different purposes. Pages
 in a fully merged range contain non-overlapping ranges of keys. A range
 can be partially merged if there were a lot of changes in its key range
 recently. In that case some pages represent new keys and values in the
@@ -106,7 +106,7 @@ old data. The disk-based storage engine is named *vinyl*.
 Tarantool supports **multi-part index keys**. The possible index types are HASH,
 TREE, BITSET, and RTREE.
 
-Tarantool supports **asynchronous replication**, locally or to remote hosts. 
+Tarantool supports **asynchronous replication**, locally or to remote hosts.
 The replication architecture can be **master-master**, that is, many nodes may
 both handle the loads and receive what others have handled, for the same data
 sets.
