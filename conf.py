@@ -54,7 +54,6 @@ exclude_patterns = [
     'doc/1.10/reference/configuration/cfg_*',
     'doc/1.10/reference/reference_lua/jit.rst',
     'doc/1.10/reference/reference_lua/os.rst',
-    'doc/1.10/reference/reference_lua/net_box_1.6.rst',
     'CNAME',
     'robots.txt',
     '_downloads/license.docx',
