@@ -64,7 +64,7 @@
 
     The number of seconds that a replica will wait when trying to
     connect to a master in a cluster.
-    See more in :ref:`orphan status <replication-orphan_status>`.
+    See :ref:`orphan status <replication-orphan_status>` for details.
 
     This parameter is different from
     :ref:`replication_timeout <cfg_replication-replication_timeout>`,
@@ -86,6 +86,11 @@
     However, by specifying ``replication_connect_quorum = N``, where
     N is a number greater than or equal to zero,
     users can state that the replica only needs to connect to N masters.
+
+    This parameter is ignored during bootstrap and in case of reconfiguration.
+    For example, setting ``replication_connect_quorum = 0`` makes Tarantool
+    require no immediate reconnect only in case of recovery.
+    See :ref:`orphan status <replication-orphan_status>` for details.
 
     Example:
 
@@ -135,7 +140,8 @@
     Also, the lag is ignored (assumed to be infinite) in case the master is running
     Tarantool older than 1.7.7, which does not send :ref:`heartbeat messages <heartbeat>`.
 
-    Read more in :ref:`Orphan status <replication-orphan_status>` section.
+    This parameter is ignored during bootstrap.
+    See :ref:`orphan status <replication-orphan_status>` for details.
 
     | Type: float
     | Default: 10

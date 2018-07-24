@@ -208,10 +208,11 @@ A replica is joining but no replica set exists yet.
     2. Try to connect to all nodes from ``box.cfg.replication``.
 
        * up to 3 retries in 30 sec are possible
-         (``replication_connect_timeout`` is overridden)
-       * ``replication_connect_quorum`` is ignored because it’s bootstrap,
-         so the instance tries to connect to all nodes from
-         ``box.cfg.replication``
+         (:ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
+         is overridden);
+       * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+         is ignored because it’s bootstrap, so the instance tries to connect
+         to all nodes from ``box.cfg.replication``.
 
     3. Unless connected to all nodes, abort.
 
@@ -254,11 +255,12 @@ or something in the replica set has changed.
        within the time period specified in
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`.
 
-       * there is no 'sync'
-       * ``box.cfg.replication_connect_quorum`` is ignored
-       * ``box.cfg.replication_sync_lag`` is ignored:
-         ``box.cfg()`` returns as soon as all configured replicas
-         have been connected
+       * there is no 'sync';
+       * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+         is ignored;
+       * :ref:`box.cfg.replication_sync_lag <cfg_replication-replication_sync_lag>`
+         is ignored: ``box.cfg()`` returns as soon as all configured replicas
+         have been connected.
 
     3. Unless connected to all nodes, abort.
 
