@@ -37,8 +37,8 @@ Below is a list of all ``utf8`` functions.
     | :ref:`casecmp <utf8-casecmp>` and |br|            | Comparisons                    |
     | :ref:`cmp <utf8-cmp>`                             |                                |
     +---------------------------------------------------+--------------------------------+
-    | :ref:`lower <utf8-islower>` and |br|              | Case conversions               |
-    | :ref:`upper <utf8-isupper>`                       |                                |
+    | :ref:`lower <utf8-lower>` and |br|                | Case conversions               |
+    | :ref:`upper <utf8-upper>`                         |                                |
     +---------------------------------------------------+--------------------------------+
     | :ref:`isalpha <utf8-isalpha>`, |br|               | Determine character types      |
     | :ref:`isdigit <utf8-isdigit>`, |br|               |                                |
