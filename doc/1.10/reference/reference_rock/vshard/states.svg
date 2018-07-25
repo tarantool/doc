@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="537px" height="129px" viewBox="0 0 537 129" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-1"></path>
+        <polygon id="path-3" points="0 0 60 0 60 64 0 64"></polygon>
+        <polygon id="path-5" points="0 0 60 0 60 64 0 64"></polygon>
+        <polygon id="path-7" points="0 0 60 0 60 64 0 64"></polygon>
+        <polygon id="path-9" points="0 0 60 0 60 64 0 64"></polygon>
+        <polygon id="path-11" points="0 0 60 0 60 64 0 64"></polygon>
+    </defs>
+    <g id="5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DIAGRAMS-/-Arrow-black" transform="translate(217.000000, 72.000000)">
+            <rect id="Rectangle-2-Copy-6" fill="#000000" fill-rule="evenodd" x="6" y="5" width="85" height="1"></rect>
+            <g id="DIAGRAMS-/-Arrow-/-End-left" transform="translate(93.500000, 5.500000) rotate(-180.000000) translate(-93.500000, -5.500000) translate(90.500000, 0.500000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+                <g id="COLOR-diagram-/-black" mask="url(#mask-2)" fill="#000000" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                </g>
+            </g>
+        </g>
+        <text id="migration" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" fill="#000000">
+            <tspan x="245" y="69">migration</tspan>
+        </text>
+        <text id="Source-replica-set" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" line-spacing="10" fill="#595959">
+            <tspan x="21" y="36">Source replica set</tspan>
+        </text>
+        <g id="Group" transform="translate(21.000000, 44.000000)">
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M56.25,0 L3.75,0 C1.68375,0 0,1.70287407 0,3.79259259 L0,15.1703704 C0,17.2600889 1.68375,18.962963 3.75,18.962963 L56.25,18.962963 C58.31625,18.962963 60,17.2600889 60,15.1703704 L60,3.79259259 C60,1.70287407 58.31625,0 56.25,0" id="Fill-1" fill="#E1E1E1" mask="url(#mask-4)"></path>
+            <path d="M56.25,22.5185185 L3.75,22.5185185 C1.68375,22.5185185 0,24.2213926 0,26.3111111 L0,37.6888889 C0,39.7786074 1.68375,41.4814815 3.75,41.4814815 L56.25,41.4814815 C58.31625,41.4814815 60,39.7786074 60,37.6888889 L60,26.3111111 C60,24.2213926 58.31625,22.5185185 56.25,22.5185185" id="Fill-3" fill="#E1E1E1" mask="url(#mask-4)"></path>
+            <text id="active" mask="url(#mask-4)" font-family="OpenSans-Semibold, Open Sans" font-size="9" font-weight="500" fill="#00BB13">
+                <tspan x="15.0322266" y="36.0925926">ACTIVE</tspan>
+            </text>
+            <path d="M56.25,45.037037 L3.75,45.037037 C1.68375,45.037037 0,46.7399111 0,48.8296296 L0,60.2074074 C0,62.2971259 1.68375,64 3.75,64 L56.25,64 C58.31625,64 60,62.2971259 60,60.2074074 L60,48.8296296 C60,46.7399111 58.31625,45.037037 56.25,45.037037" id="Fill-4" fill="#E1E1E1" mask="url(#mask-4)"></path>
+        </g>
+        <g id="Group" transform="translate(91.000000, 44.000000)">
+            <mask id="mask-6" fill="white">
+                <use xlink:href="#path-5"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M56.25,0 L3.75,0 C1.68375,0 0,1.70287407 0,3.79259259 L0,15.1703704 C0,17.2600889 1.68375,18.962963 3.75,18.962963 L56.25,18.962963 C58.31625,18.962963 60,17.2600889 60,15.1703704 L60,3.79259259 C60,1.70287407 58.31625,0 56.25,0" id="Fill-1" fill="#E1E1E1" mask="url(#mask-6)"></path>
+            <path d="M56.25,22.5185185 L3.75,22.5185185 C1.68375,22.5185185 0,24.2213926 0,26.3111111 L0,37.6888889 C0,39.7786074 1.68375,41.4814815 3.75,41.4814815 L56.25,41.4814815 C58.31625,41.4814815 60,39.7786074 60,37.6888889 L60,26.3111111 C60,24.2213926 58.31625,22.5185185 56.25,22.5185185" id="Fill-3" fill="#E1E1E1" mask="url(#mask-6)"></path>
+            <text id="sent" mask="url(#mask-6)" font-family="OpenSans-Semibold, Open Sans" font-size="9" font-weight="500" fill="#0B6ACD">
+                <tspan x="18.9433594" y="36.0925926">SENT</tspan>
+            </text>
+            <path d="M56.25,45.037037 L3.75,45.037037 C1.68375,45.037037 0,46.7399111 0,48.8296296 L0,60.2074074 C0,62.2971259 1.68375,64 3.75,64 L56.25,64 C58.31625,64 60,62.2971259 60,60.2074074 L60,48.8296296 C60,46.7399111 58.31625,45.037037 56.25,45.037037" id="Fill-4" fill="#E1E1E1" mask="url(#mask-6)"></path>
+        </g>
+        <g id="Group" transform="translate(161.000000, 44.000000)">
+            <mask id="mask-8" fill="white">
+                <use xlink:href="#path-7"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M56.25,0 L3.75,0 C1.68375,0 0,1.70287407 0,3.79259259 L0,15.1703704 C0,17.2600889 1.68375,18.962963 3.75,18.962963 L56.25,18.962963 C58.31625,18.962963 60,17.2600889 60,15.1703704 L60,3.79259259 C60,1.70287407 58.31625,0 56.25,0" id="Fill-1" fill="#E1E1E1" mask="url(#mask-8)"></path>
+            <path d="M56.25,22.5185185 L3.75,22.5185185 C1.68375,22.5185185 0,24.2213926 0,26.3111111 L0,37.6888889 C0,39.7786074 1.68375,41.4814815 3.75,41.4814815 L56.25,41.4814815 C58.31625,41.4814815 60,39.7786074 60,37.6888889 L60,26.3111111 C60,24.2213926 58.31625,22.5185185 56.25,22.5185185" id="Fill-3" fill="#E1E1E1" mask="url(#mask-8)"></path>
+            <text id="sending" mask="url(#mask-8)" font-family="OpenSans-Semibold, Open Sans" font-size="9" font-weight="500" fill="#FF2E2F">
+                <tspan x="10.0224609" y="36.0925926">SENDING</tspan>
+            </text>
+            <path d="M56.25,45.037037 L3.75,45.037037 C1.68375,45.037037 0,46.7399111 0,48.8296296 L0,60.2074074 C0,62.2971259 1.68375,64 3.75,64 L56.25,64 C58.31625,64 60,62.2971259 60,60.2074074 L60,48.8296296 C60,46.7399111 58.31625,45.037037 56.25,45.037037" id="Fill-4" fill="#E1E1E1" mask="url(#mask-8)"></path>
+        </g>
+        <g id="Group" transform="translate(316.000000, 44.000000)">
+            <mask id="mask-10" fill="white">
+                <use xlink:href="#path-9"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M56.25,0 L3.75,0 C1.68375,0 0,1.70287407 0,3.79259259 L0,15.1703704 C0,17.2600889 1.68375,18.962963 3.75,18.962963 L56.25,18.962963 C58.31625,18.962963 60,17.2600889 60,15.1703704 L60,3.79259259 C60,1.70287407 58.31625,0 56.25,0" id="Fill-1" fill="#E1E1E1" opacity="0.400000006" mask="url(#mask-10)"></path>
+            <path d="M56.25,22.5185185 L3.75,22.5185185 C1.68375,22.5185185 0,24.2213926 0,26.3111111 L0,37.6888889 C0,39.7786074 1.68375,41.4814815 3.75,41.4814815 L56.25,41.4814815 C58.31625,41.4814815 60,39.7786074 60,37.6888889 L60,26.3111111 C60,24.2213926 58.31625,22.5185185 56.25,22.5185185" id="Fill-3" fill="#E1E1E1" opacity="0.400000006" mask="url(#mask-10)"></path>
+            <text id="receiving" mask="url(#mask-10)" font-family="OpenSans-Semibold, Open Sans" font-size="9" font-weight="500" fill="#000000" fill-opacity="0.5">
+                <tspan x="6.91113281" y="36.0925926">RECEIVING</tspan>
+            </text>
+            <path d="M56.25,45.037037 L3.75,45.037037 C1.68375,45.037037 0,46.7399111 0,48.8296296 L0,60.2074074 C0,62.2971259 1.68375,64 3.75,64 L56.25,64 C58.31625,64 60,62.2971259 60,60.2074074 L60,48.8296296 C60,46.7399111 58.31625,45.037037 56.25,45.037037" id="Fill-4" fill="#E1E1E1" opacity="0.400000006" mask="url(#mask-10)"></path>
+        </g>
+        <g id="Group" transform="translate(456.000000, 44.000000)">
+            <mask id="mask-12" fill="white">
+                <use xlink:href="#path-11"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M56.25,0 L3.75,0 C1.68375,0 0,1.70287407 0,3.79259259 L0,15.1703704 C0,17.2600889 1.68375,18.962963 3.75,18.962963 L56.25,18.962963 C58.31625,18.962963 60,17.2600889 60,15.1703704 L60,3.79259259 C60,1.70287407 58.31625,0 56.25,0" id="Fill-1" fill="#E1E1E1" mask="url(#mask-12)"></path>
+            <path d="M56.25,22.5185185 L3.75,22.5185185 C1.68375,22.5185185 0,24.2213926 0,26.3111111 L0,37.6888889 C0,39.7786074 1.68375,41.4814815 3.75,41.4814815 L56.25,41.4814815 C58.31625,41.4814815 60,39.7786074 60,37.6888889 L60,26.3111111 C60,24.2213926 58.31625,22.5185185 56.25,22.5185185" id="Fill-3" fill="#E1E1E1" mask="url(#mask-12)"></path>
+            <text id="active" mask="url(#mask-12)" font-family="OpenSans-Semibold, Open Sans" font-size="9" font-weight="500" fill="#00BB13">
+                <tspan x="15.0322266" y="36.0925926">ACTIVE</tspan>
+            </text>
+            <path d="M56.25,45.037037 L3.75,45.037037 C1.68375,45.037037 0,46.7399111 0,48.8296296 L0,60.2074074 C0,62.2971259 1.68375,64 3.75,64 L56.25,64 C58.31625,64 60,62.2971259 60,60.2074074 L60,48.8296296 C60,46.7399111 58.31625,45.037037 56.25,45.037037" id="Fill-4" fill="#E1E1E1" mask="url(#mask-12)"></path>
+        </g>
+        <path d="M241,80.655662 L241,111.289474 C241,120.518443 232.045695,128 221,128 L21,128 C9.954305,128 1,120.518443 1,111.289474 L1,17.7105263 C1,8.48155747 9.954305,1 21,1 L221,1 C232.045695,1 241,8.48155747 241,17.7105263 L241,75.3495967" id="Rectangle" stroke="#D7D7D7" stroke-linecap="round"></path>
+        <text id="Destination-replica" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" line-spacing="10" fill="#595959">
+            <tspan x="316" y="36">Destination replica set</tspan>
+        </text>
+        <path d="M536,80.655662 L536,111.289474 C536,120.518443 527.045695,128 516,128 L316,128 C304.954305,128 296,120.518443 296,111.289474 L296,17.7105263 C296,8.48155747 304.954305,1 316,1 L516,1 C527.045695,1 536,8.48155747 536,17.7105263 L536,75.3495967" id="Rectangle" stroke="#D7D7D7" stroke-linecap="round" transform="translate(416.000000, 64.500000) scale(-1, 1) translate(-416.000000, -64.500000) "></path>
+    </g>
+</svg>

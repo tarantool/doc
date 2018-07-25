@@ -15,6 +15,7 @@ master_doc = 'doc/1.10/index'
 
 extensions = [
     'sphinx.ext.todo',
+    'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
     'sphinx.ext.imgconverter',
@@ -48,7 +49,7 @@ exclude_patterns = [
     'doc/1.10/book/admin.rst',
     'doc/1.10/book/box/box_introspection.rst',
     'doc/1.10/book/cookbook.rst',
-    'doc/1.10/book/box/vinyl.rst',
+    'doc/1.10/book/box/engines/vinyl.rst',
     'doc/1.10/dev_guide/box_protocol.rst',
     'doc/1.10/dev_guide/internals.rst',
     'doc/1.10/reference/configuration/cfg_*',
