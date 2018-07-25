@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="879px" height="391px" viewBox="0 0 879 391" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-1"></path>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-3"></path>
+        <rect id="path-5" x="0" y="0" width="124" height="76" rx="14"></rect>
+        <rect id="path-7" x="0" y="0" width="89" height="32" rx="4"></rect>
+        <rect id="path-9" x="0" y="0" width="89" height="32" rx="4"></rect>
+        <rect id="path-11" x="0" y="0" width="89" height="32" rx="4"></rect>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-13"></path>
+        <path d="M-1.3904344,7.18859113 L2.6095656,2.18859113 C2.80972824,1.93838783 3.19027176,1.93838783 3.3904344,2.18859113 L7.3904344,7.18859113 C7.65233974,7.5159728 7.4192531,8.00093865 7,8.00093865 L-1,8.00093865 C-1.4192531,8.00093865 -1.65233974,7.5159728 -1.3904344,7.18859113 Z" id="path-15"></path>
+        <polygon id="path-17" points="0 1.5 0 0.5 64 0.5 64 1.5"></polygon>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-19"></path>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-21"></path>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-23"></path>
+    </defs>
+    <g id="1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4" transform="translate(131.000000, 339.000000)">
+            <g>
+                <g id="DIAGRAMS-/-Arrow-/-End-left" transform="translate(612.000000, 3.000000) rotate(-270.000000) translate(-612.000000, -3.000000) translate(609.000000, -2.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+                    <g id="COLOR-diagram-/-black" mask="url(#mask-2)" fill="#000000" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                    </g>
+                </g>
+                <g id="DIAGRAMS-/-Arrow-/-End-left" transform="translate(5.000000, 3.000000) rotate(-270.000000) translate(-5.000000, -3.000000) translate(2.000000, -2.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+                    <g id="COLOR-diagram-/-black" mask="url(#mask-4)" fill="#000000" fill-rule="evenodd">
+                        <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                    </g>
+                </g>
+                <path d="M5,5.96950694 L5,28 C5,31.3137085 7.6862915,34 11,34 L606,34 C609.313708,34 612,31.3137085 612,28 L612,4.43478261" id="Path-3" stroke="#000000"></path>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-Round-block-2-line" transform="translate(378.000000, 0.000000)">
+            <g id="COLOR-diagram-/-gray" stroke-width="1" fill-rule="evenodd">
+                <mask id="mask-6" fill="white">
+                    <use xlink:href="#path-5"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g mask="url(#mask-6)" fill="#E1E1E1" id="Rectangle">
+                    <rect x="0" y="0" width="124" height="76"></rect>
+                </g>
+            </g>
+            <text id="Text-black" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="40.4863281" y="35">Client </tspan>
+                <tspan x="25" y="51">application</tspan>
+            </text>
+            <text id="Text-gray" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16"></text>
+            <text id="Text-white" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16"></text>
+        </g>
+        <g id="Group-3" transform="translate(303.000000, 156.000000)">
+            <path d="M16.439781,0.994505495 C7.91060979,0.994505495 0.996350365,7.89596228 0.996350365,16.4093407 L0.996350365,164.590659 C0.996350365,173.104038 7.91060979,180.005495 16.439781,180.005495 L256.560219,180.005495 C265.08939,180.005495 272.00365,173.104038 272.00365,164.590659 L272.00365,16.4093407 C272.00365,7.89596228 265.08939,0.994505495 256.560219,0.994505495 L16.439781,0.994505495 Z M16.439781,0 L256.560219,0 C265.639659,0 273,7.34671206 273,16.4093407 L273,164.590659 C273,173.653288 265.639659,181 256.560219,181 L16.439781,181 C7.36034067,181 0,173.653288 0,164.590659 L0,16.4093407 C0,7.34671206 7.36034067,0 16.439781,0 Z" id="Rectangle" fill="#D7D7D7" fill-rule="nonzero"></path>
+            <text id="Server-2" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" line-spacing="10" fill="#595959">
+                <tspan x="20" y="38">Server 2</tspan>
+            </text>
+            <g id="DIAGRAMS-/-Rectangular-block-1-line" transform="translate(164.000000, 57.000000)">
+                <g id="COLOR-diagram-/-gray" stroke-width="1" fill-rule="evenodd">
+                    <mask id="mask-8" fill="white">
+                        <use xlink:href="#path-7"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <g id="COLOR-diagram-/-black" mask="url(#mask-8)" fill="#000000">
+                        <rect id="Rectangle" x="0" y="0" width="89" height="32"></rect>
+                    </g>
+                </g>
+                <text id="Text-gray" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14"></text>
+                <text id="Text-white" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14" fill="#FFFFFF">
+                    <tspan x="25.0615234" y="19">router 2</tspan>
+                </text>
+                <text id="Text-black" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14"></text>
+            </g>
+            <g id="DIAGRAMS-/-Data-block" transform="translate(20.000000, 57.000000)">
+                <g id="Data_block">
+                    <path d="M14,0 L122,0 C124.209139,-8.25425059e-15 126,1.790861 126,4 L126,67.788368 C102.519014,67.788368 83.1856809,72.1026496 68,80.7312128 C52.8143191,89.359776 33.4809858,90.5475178 10,84.2944382 L10,4 C10,1.790861 11.790861,4.05812251e-16 14,0 Z" id="Rectangle-2" fill="#D7D7D7"></path>
+                    <path d="M4,10 L112,10 C114.209139,10 116,11.790861 116,14 L116,77.788368 C92.5190142,77.788368 73.1856809,82.1026496 58,90.7312128 C42.8143191,99.359776 23.4809858,100.547518 0,94.2944382 L0,14 C-2.705415e-16,11.790861 1.790861,10 4,10 Z" id="Rectangle-1" fill="#E1E1E1"></path>
+                    <text id="Text" opacity="0.5" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="14" fill="#000000">
+                        <tspan x="41.125" y="45">shard </tspan>
+                        <tspan x="19" y="59">(replica set) 2</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="Group-2" transform="translate(606.000000, 156.000000)">
+            <path d="M16.439781,0.994505495 C7.91060979,0.994505495 0.996350365,7.89596228 0.996350365,16.4093407 L0.996350365,164.590659 C0.996350365,173.104038 7.91060979,180.005495 16.439781,180.005495 L256.560219,180.005495 C265.08939,180.005495 272.00365,173.104038 272.00365,164.590659 L272.00365,16.4093407 C272.00365,7.89596228 265.08939,0.994505495 256.560219,0.994505495 L16.439781,0.994505495 Z M16.439781,0 L256.560219,0 C265.639659,0 273,7.34671206 273,16.4093407 L273,164.590659 C273,173.653288 265.639659,181 256.560219,181 L16.439781,181 C7.36034067,181 0,173.653288 0,164.590659 L0,16.4093407 C0,7.34671206 7.36034067,0 16.439781,0 Z" id="Rectangle" fill="#D7D7D7" fill-rule="nonzero"></path>
+            <text id="Server-3" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" line-spacing="10" fill="#595959">
+                <tspan x="20" y="38">Server 3</tspan>
+            </text>
+            <g id="DIAGRAMS-/-Rectangular-block-1-line" transform="translate(164.000000, 57.000000)">
+                <g id="COLOR-diagram-/-gray" stroke-width="1" fill-rule="evenodd">
+                    <mask id="mask-10" fill="white">
+                        <use xlink:href="#path-9"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <g id="COLOR-diagram-/-black" mask="url(#mask-10)" fill="#000000">
+                        <rect id="Rectangle" x="0" y="0" width="89" height="32"></rect>
+                    </g>
+                </g>
+                <text id="Text-gray" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14"></text>
+                <text id="Text-white" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14" fill="#FFFFFF">
+                    <tspan x="25.0615234" y="19">router 3</tspan>
+                </text>
+                <text id="Text-black" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14"></text>
+            </g>
+            <g id="DIAGRAMS-/-Data-block" transform="translate(20.000000, 57.000000)">
+                <g id="Data_block">
+                    <path d="M14,0 L122,0 C124.209139,-8.25425059e-15 126,1.790861 126,4 L126,67.788368 C102.519014,67.788368 83.1856809,72.1026496 68,80.7312128 C52.8143191,89.359776 33.4809858,90.5475178 10,84.2944382 L10,4 C10,1.790861 11.790861,4.05812251e-16 14,0 Z" id="Rectangle-2" fill="#D7D7D7"></path>
+                    <path d="M4,10 L112,10 C114.209139,10 116,11.790861 116,14 L116,77.788368 C92.5190142,77.788368 73.1856809,82.1026496 58,90.7312128 C42.8143191,99.359776 23.4809858,100.547518 0,94.2944382 L0,14 C-2.705415e-16,11.790861 1.790861,10 4,10 Z" id="Rectangle-1" fill="#E1E1E1"></path>
+                    <text id="Text" opacity="0.5" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="14" fill="#000000">
+                        <tspan x="41.125" y="45">shard </tspan>
+                        <tspan x="19" y="59">(replica set) 3</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="Group" transform="translate(0.000000, 156.000000)">
+            <path d="M16.439781,0.994505495 C7.91060979,0.994505495 0.996350365,7.89596228 0.996350365,16.4093407 L0.996350365,164.590659 C0.996350365,173.104038 7.91060979,180.005495 16.439781,180.005495 L256.560219,180.005495 C265.08939,180.005495 272.00365,173.104038 272.00365,164.590659 L272.00365,16.4093407 C272.00365,7.89596228 265.08939,0.994505495 256.560219,0.994505495 L16.439781,0.994505495 Z M16.439781,0 L256.560219,0 C265.639659,0 273,7.34671206 273,16.4093407 L273,164.590659 C273,173.653288 265.639659,181 256.560219,181 L16.439781,181 C7.36034067,181 0,173.653288 0,164.590659 L0,16.4093407 C0,7.34671206 7.36034067,0 16.439781,0 Z" id="Rectangle" fill="#D7D7D7" fill-rule="nonzero"></path>
+            <text id="Server-1" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" line-spacing="10" fill="#595959">
+                <tspan x="20" y="38">Server 1</tspan>
+            </text>
+            <g id="DIAGRAMS-/-Rectangular-block-1-line" transform="translate(164.000000, 57.000000)">
+                <g id="COLOR-diagram-/-gray" stroke-width="1" fill-rule="evenodd">
+                    <mask id="mask-12" fill="white">
+                        <use xlink:href="#path-11"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <g id="COLOR-diagram-/-black" mask="url(#mask-12)" fill="#000000">
+                        <rect id="Rectangle" x="0" y="0" width="89" height="32"></rect>
+                    </g>
+                </g>
+                <text id="Text-gray" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14"></text>
+                <text id="Text-white" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14" fill="#FFFFFF">
+                    <tspan x="25.0615234" y="19">router 1</tspan>
+                </text>
+                <text id="Text-black" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" line-spacing="14"></text>
+            </g>
+            <g id="DIAGRAMS-/-Data-block" transform="translate(20.000000, 57.000000)">
+                <g id="Data_block">
+                    <path d="M14,0 L122,0 C124.209139,-8.25425059e-15 126,1.790861 126,4 L126,67.788368 C102.519014,67.788368 83.1856809,72.1026496 68,80.7312128 C52.8143191,89.359776 33.4809858,90.5475178 10,84.2944382 L10,4 C10,1.790861 11.790861,4.05812251e-16 14,0 Z" id="Rectangle-2" fill="#D7D7D7"></path>
+                    <path d="M4,10 L112,10 C114.209139,10 116,11.790861 116,14 L116,77.788368 C92.5190142,77.788368 73.1856809,82.1026496 58,90.7312128 C42.8143191,99.359776 23.4809858,100.547518 0,94.2944382 L0,14 C-2.705415e-16,11.790861 1.790861,10 4,10 Z" id="Rectangle-1" fill="#E1E1E1"></path>
+                    <text id="Text" opacity="0.5" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="14" fill="#000000">
+                        <tspan x="41.125" y="45">shard </tspan>
+                        <tspan x="19" y="59">(replica set) 1</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-Arrow-/-Red" transform="translate(440.000000, 116.000000) rotate(-270.000000) translate(-440.000000, -116.000000) translate(402.000000, 111.000000)">
+            <g id="DIAGRAMS-/-Arrow-/-End-left">
+                <mask id="mask-14" fill="white">
+                    <use xlink:href="#path-13"></use>
+                </mask>
+                <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+                <g id="COLOR-diagram-/-red" mask="url(#mask-14)" fill="#FF2E2F" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-Arrow-/-End-right" transform="translate(70.000000, 0.000000)">
+                <mask id="mask-16" fill="white">
+                    <use xlink:href="#path-15"></use>
+                </mask>
+                <g id="End-arrow-right" fill-rule="nonzero" transform="translate(3.000000, 5.000939) rotate(-270.000000) translate(-3.000000, -5.000939) "></g>
+                <g id="COLOR-diagram-/-red" mask="url(#mask-16)" fill="#FF2E2F" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-Arrow-/-Line" transform="translate(6.000000, 4.000000)">
+                <mask id="mask-18" fill="white">
+                    <use xlink:href="#path-17"></use>
+                </mask>
+                <g fill-rule="nonzero"></g>
+                <g id="COLOR-diagram-/-red" mask="url(#mask-18)" fill="#FF2E2F" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="64" height="2"></rect>
+                </g>
+            </g>
+        </g>
+        <text id="data-rebalancing" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" fill="#000000">
+            <tspan x="399" y="388">data rebalancing</tspan>
+        </text>
+        <g id="DIAGRAMS-/-Arrow-black" transform="translate(440.500000, 358.750000) rotate(-90.000000) translate(-440.500000, -358.750000) translate(420.250000, 352.750000)">
+            <rect id="Rectangle-2-Copy-6" fill="#000000" fill-rule="evenodd" x="6" y="5.45454545" width="29" height="1.09090909"></rect>
+            <g id="DIAGRAMS-/-Arrow-/-End-left" transform="translate(37.500000, 6.000000) rotate(-180.000000) translate(-37.500000, -6.000000) translate(34.500000, 1.000000)">
+                <mask id="mask-20" fill="white">
+                    <use xlink:href="#path-19"></use>
+                </mask>
+                <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+                <g id="COLOR-diagram-/-black" mask="url(#mask-20)" fill="#000000" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                </g>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-Arrow-/-End-left" transform="translate(743.000000, 151.000000) rotate(-90.000000) translate(-743.000000, -151.000000) translate(740.000000, 146.000000)">
+            <mask id="mask-22" fill="white">
+                <use xlink:href="#path-21"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+            <g id="COLOR-diagram-/-red" mask="url(#mask-22)" fill="#FF2E2F" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-Arrow-/-End-left" transform="translate(137.000000, 151.000000) rotate(-90.000000) translate(-137.000000, -151.000000) translate(134.000000, 146.000000)">
+            <mask id="mask-24" fill="white">
+                <use xlink:href="#path-23"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+            <g id="COLOR-diagram-/-red" mask="url(#mask-24)" fill="#FF2E2F" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+            </g>
+        </g>
+        <text id="read/white-requests" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" fill="#FF2E2F">
+            <tspan x="448" y="109">read/white requests</tspan>
+        </text>
+        <path d="M440,106 L440,109.99384 C440,113.307548 437.313708,115.99384 434,115.99384 L143,115.99384 C139.686292,115.99384 137,118.680131 137,121.99384 L137,153" id="Path-4" stroke="#FF2E2F"></path>
+        <path d="M743,106 L743,109.99384 C743,113.307548 740.313708,115.99384 737,115.99384 L446,115.99384 C442.686292,115.99384 440,118.680131 440,121.99384 L440,153" id="Path-4-Copy" stroke="#FF2E2F" transform="translate(591.500000, 129.500000) scale(-1, 1) translate(-591.500000, -129.500000) "></path>
+    </g>
+</svg>

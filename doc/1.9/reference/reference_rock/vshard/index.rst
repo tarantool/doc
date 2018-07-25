@@ -191,7 +191,7 @@ To perform commands in the admin console, use the ``router`` API:
 .. _vshard-architecture:
 
 ------------------------------------------------------------------------------
-Archiitecture
+Architecture
 ------------------------------------------------------------------------------
 
 A sharded cluster in Tarantool consists of storages, routers, and a rebalancer.
@@ -207,7 +207,7 @@ A **rebalancer** is an internal component that distributes the dataset among all
 shards evenly in case some servers are added or removed. It also balances the load
 considering the capacities of existing replica sets.
 
-.. image:: schema.jpg
+.. image:: schema.svg
     :align: center
 
 .. _vshard-storage:
@@ -221,7 +221,7 @@ comprise a replica set. Each storage in a replica set has a role, **master** or
 **replica**. Master processes read and write requests. Replicas process read
 requests, but cannot process write requests.
 
-.. image:: master_replica.jpg
+.. image:: master_replica.svg
     :align: center
 
 .. _vshard-vbuckets:
@@ -237,13 +237,13 @@ The dataset is partitioned using the shard key (or **bucket id**, in terms of
 Tarantool). Bucket id is a number from 1 to N, where N is the total number of
 buckets.
 
-.. image:: buckets.jpg
+.. image:: buckets.svg
     :align: center
 
 Each replica set stores a unique subset of buckets. One bucket cannot belong to
 multiple replica sets at a time.
 
-.. image:: vbuckets.jpg
+.. image:: vbuckets.svg
     :align: center
 
 The total number of buckets is determined by the administrator who sets up the
@@ -285,7 +285,7 @@ While being migrated, the bucket can have different states:
 
 Buckets in the GARBAGE state are deleted by the garbage collector.
 
-.. image:: states.jpg
+.. image:: states.svg
     :align: center
 
 Altogether, migration is performed as follows:
@@ -338,8 +338,8 @@ thus keeping the application unaware of:
 * data rebalancing process,
 * the fact and the process of a failover that occurred after a replica's failure.
 
-The router does not have a persistent state, nor does it store the cluster topology
-or balance the data. The router is a standalone software component that can run
+The ``router`` does not have a persistent state, nor does it store the cluster topology
+or balance the data. The ``router`` is a standalone software component that can run
 in the storage layer or application layer depending on the application features.
 
 .. _vshard-routing-table:
@@ -353,13 +353,13 @@ It ensures the consistency of sharding in case of failover.
 
 The ``router`` keeps a persistent pool of connections to all the storages that
 are created at startup. This helps prevent configuration errors. Once the connection
-pool is created, the router caches the current state of the routing table in order
+pool is created, the ``router`` caches the current state of the routing table in order
 to speed up routing. If a bucket migrated to another ``storage`` after rebalancing,
 or a failover occurred and caused one of the shards switching to another replica,
-the ``discovery fiber`` on the router updates the routing table automatically.
+the ``discovery fiber`` on the ``router`` updates the routing table automatically.
 
 As the bucket id is explicitly indicated both in the data and in the mapping table
-on the router, the data is consistent regardless of the application logic. It also
+on the ``router``, the data is consistent regardless of the application logic. It also
 makes rebalancing transparent for the application.
 
 .. _vshard-process-requests:
@@ -372,10 +372,10 @@ Requests to the database can be performed by the application or using stored
 procedures. Either way, the bucket id should be explicitly specified in the request.
 
 All requests are forwarded to the ``router`` first. The only operation supported
-by the router is ``call``. The operation is performed via ``vshard.router.call()``
+by the ``router`` is ``call``. The operation is performed via ``vshard.router.call()``
 function:
 
-.. code-block:: none
+.. code-block:: lua
 
     result = vshard.router.call(<bucket_id>, <mode(read:write)>, <function_name>, {<argument_list>}, {<opts>})
 
@@ -385,12 +385,12 @@ Requests are processed as follows:
    corresponding bucket in the routing table.
 
    If the map of the bucket id to the replica set is not known to the ``router``
-   (the discovery fiber hasn’t filled the table yet), the router makes requests
+   (the discovery fiber hasn’t filled the table yet), the ``router`` makes requests
    to all ``storages`` to find out where the bucket is located.
 2. Once the bucket is located, the shard checks:
 
-   * whether the bucket is stored in the ``_bucket`` system space of the replica set
-   * whether the bucket is ACTIVE or PINNED (for a read request, it can also be SENDING)
+   * whether the bucket is stored in the ``_bucket`` system space of the replica set;
+   * whether the bucket is ACTIVE or PINNED (for a read request, it can also be SENDING).
 3. If all the checks succeed, the request is executed. Otherwise, it is terminated
    with the error: ``“wrong bucket”``.
 
@@ -412,11 +412,11 @@ A minimal viable sharded cluster should consist of:
 * one or more ``router`` instances
 
 The number of ``storage`` instances in a replica set defines the redundancy factor
-of the data. The recommended value is 3 or more. The number of the router instances
+of the data. The recommended value is 3 or more. The number of the ``router`` instances
 is not limited, because routers are completely stateless. We recommend increasing
 the number of routers when the existing ``router`` instance becomes CPU or I/O bound.
 
-As the router and ``storage`` applications perform completely different sets of functions,
+As the ``router`` and ``storage`` applications perform completely different sets of functions,
 they should be deployed to different Tarantool instances. Although it is technically
 possible to place the router application to every ``storage`` node, this approach is
 highly discouraged and should be avoided on production deployments.
@@ -492,7 +492,7 @@ Each ``storage`` instance includes one master and one replica.
 
 The sharding field defines the logical topology of a sharded Tarantool cluster.
 All the other fields are passed to ``box.cfg()`` as they are, without modifications.
-See the Configuration reference section for details.
+See the :ref:`Configuration reference <vshard-config-reference>` section for details.
 
 On routers call ``vshard.router.cfg(cfg)``:
 
@@ -533,7 +533,7 @@ Replica weights
 
 The ``router`` sends all requests to the master instance only. Setting replica
 weights allows sending read requests not only to the master instance, but to any
-available replica that is the 'nearest'  to the router. Weights are used to define
+available replica that is the 'nearest' to the ``router``. Weights are used to define
 distances between replicas within a replica set.
 
 Weights can be used, for example, to define the physical distance between the
@@ -676,7 +676,8 @@ you pin all buckets, a non-locked replica set can still receive new buckets.
 
 Replica set lock is helpful, for example, to separate a replica set from production
 replica sets for testing, or to preserve some application metadata that must not
-be sharded for a while. A bucket pin is used for similar cases but in a smaller scope.
+be sharded for a while. A bucket pin is used for similar cases but in a smaller
+scope.
 
 Introducing both locking a replica set and pinning all buckets is done for the
 ability to isolate an entire replica set.
@@ -887,7 +888,7 @@ operations:
 * a **rebalancer** on a single master ``storage`` among all replica sets executes
   the rebalancing process.
 
-  See the Rebalancing process section for details.
+  See the :ref:`Rebalancing process<vshard-rebalancing>` section for details.
 
 .. _vshard-gc:
 
@@ -925,7 +926,7 @@ Buckets in the RECEIVING state are deleted without extra checks.
 Failover
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-A failover fiber is running on every router. If a master of a replica set
+A failover fiber is running on every ``router``. If a master of a replica set
 becomes unavailable, the failover redirects read requests to the replicas.
 Write requests are rejected with an error until the master becomes available.
 
@@ -956,7 +957,6 @@ Basic parameters
 .. confval:: sharding
 
     A field defining the logical topology of the sharded Tarantool cluster.
-    See Configured Sharded Cluster Example section.
 
     | Type: table
     | Default: false
@@ -967,7 +967,7 @@ Basic parameters
 .. confval:: weights
 
     A field defining the configuration of relative weights for each zone pair in a
-    replica set. See Replica Weight section.
+    replica set. See :ref:`Replica weights <vshard-replica-weights>` section.
 
     | Type: table
     | Default: false
@@ -992,7 +992,8 @@ Basic parameters
     This number should be several orders of magnitude larger than the potential number
     of cluster nodes, considering the potential scaling out in the foreseeable future.
 
-    Example:
+    **Example:**
+
     If the estimated number of nodes is M, then the data set should be divided into
     100M or even 1000M buckets, depending on the planned scale out. This number is
     certainly greater than the potential number of cluster nodes in the system being
@@ -1022,7 +1023,7 @@ Basic parameters
 
     If set to true, the Lua’s collectgarbage() function is called periodically.
 
-    | Type: boolen
+    | Type: boolean
     | Default: no
     | Dynamic: yes
 
@@ -1030,8 +1031,9 @@ Basic parameters
 
 .. confval:: sync_timeout
 
-    Timeout to wait for synchronization with replicas. Used when switching a
-    master or when manually calling ``sync()`` function.
+    Timeout to wait for synchronization of the old master with replicas before
+    demotion. Used when switching a master or when manually calling the
+    ``sync()`` function.
 
     | Type: number
     | Default: 1
@@ -1044,7 +1046,7 @@ Basic parameters
     A maximal bucket disbalance threshold, in percent.
     The threshold is calculated for each replica set using the following formula:
 
-    .. code-block:: console
+    .. code-block:: none
 
         |etalon_bucket_count - real_bucket_count| / etalon_bucket_count * 100
 
@@ -1061,7 +1063,7 @@ Basic parameters
     a cluster, the rebalancer sends a very large amount of buckets from the existing
     replica sets to the new replica set. This produces a heavy load on a new replica set.
 
-    Example:
+    **Example:**
 
     Suppose ``rebalancer_max_receiving`` is equal to 100, ``bucket_count`` is equal to 1000.
     There are 3 replica sets with 333, 333 and 334 buckets on each correspondingly.
@@ -1096,7 +1098,8 @@ Replica set functions
 
 .. confval:: weight
 
-    A weight of a replica set. See Replica Set Weight section for the details.
+    A weight of a replica set. See the :ref:`Replica set weights <vshard-replica-set-weights>`
+    section for the details.
 
     | Type:
     | Default: 1
@@ -1108,23 +1111,28 @@ Replica set functions
 API reference
 -------------------------------------------------------------------------------
 
-.. _vshard-api-reference-router-api:
+.. _vshard_api_reference-router_public_api:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Router API
+Router public API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * :ref:`vshard.router.bootstrap() <router_api-bootstrap>`
 * :ref:`vshard.router.cfg(cfg, instance_uuid) <router_api-cfg>`
-* :ref:`result = vshard.router.call(bucket_id, mode(read:write), function_name, {argument_list}, {options}) <router_api-call>`
-* :ref:`netbox, err = vshard.router.route(bucket_id) <router_api-route>`
+* :ref:`vshard.router.call(bucket_id, mode(read:write), function_name, {argument_list}, {options}) <router_api-call>`
+* :ref:`vshard.router.callro(bucket_id, function_name, {argument_list}, {options}) <router_api-callro>`
+* :ref:`vshard.router.callrw(bucket_id, function_name, {argument_list}, {options}) <router_api-callrw>`
+* :ref:`vshard.router.route(bucket_id) <router_api-route>`
 * :ref:`vshard.router.routeall() <router_api-routeall>`
 * :ref:`vshard.router.bucket_id(key) <router_api-bucket_id>`
 * :ref:`vshard.router.bucket_count() <router_api-bucket_count>`
 * :ref:`vshard.router.sync(timeout) <router_api-sync>`
-* :ref:`vshard.router.bucket_discovery(bucket_id) <router_api-bucket_discovery>`
 * :ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`
 * :ref:`vshard.router.info() <router_api-info>`
+* :ref:`vshard.router.buckets_info() <router_api-buckets_info>`
+* :ref:`replicaset.call() <router_api-replicaset_call>`
+* :ref:`replicaset.callro() <router_api-replicaset_callro>`
+* :ref:`replicaset.callrw() <router_api-replicaset_callrw>`
 
 .. _router_api-bootstrap:
 
@@ -1135,19 +1143,19 @@ Router API
 
 .. _router_api-cfg:
 
-.. function:: vshard.router.cfg(cfg, instance_uuid)
+.. function:: vshard.router.cfg(cfg)
 
     Configure the database and start sharding for the specified ``router`` instance.
 
     :param cfg: a ``router`` configuration
-    :param instance_uuid: an uuid of the instance
 
 .. _router_api-call:
 
-.. function:: result = vshard.router.call(bucket_id, mode(read:write), function_name, {argument_list}, {options})
+.. function:: vshard.router.call(bucket_id, mode(read:write), function_name, {argument_list}, {options})
 
     Call the user function on the shard storing the bucket with the specified
-    bucket id. See Processing Requests section for details on function operation.
+    bucket id. See the :ref:`Processing requests <vshard-process-requests>` section
+    for details on function operation.
 
     :param bucket_id: a bucket identifier
     :param mode: a type of the function: read or write
@@ -1168,28 +1176,94 @@ Router API
 
     ``ShardingError`` is returned on errors specific for sharding: the replica
     set is not available, the master is missing, wrong bucket id, etc. It has an
-    attribute code containing one of the values from ``vshard.error.code()``, an
+    attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for this error code.
 
-    **Example**
+    **Example:**
 
     To call ``customer_add`` function from ``vshard/example``, say:
 
-.. code-block:: tarantoolsession
+    .. code-block:: lua
 
-    result = vshard.router.call(100, 'write', 'customer_add', {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}}, {timeout = 100})
+        result = vshard.router.call(100, 'write', 'customer_add', {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}}, {timeout = 100})
+
+.. _router_api-callro:
+
+.. function:: vshard.router.callro(bucket_id, function_name, {argument_list}, {options})
+
+    Call the user function on the shard storing the bucket with the specified
+    bucket id in the read only mode. See the
+    :ref:`Processing requests <vshard-process-requests>` section for details on
+    function operation.
+
+    :param bucket_id: a bucket identifier
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+    :param options:
+
+        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+          shard with the bucket id, the operation will be repeated until the
+          timeout is reached.
+
+    :Return:
+
+    The original return value of the executed function, or ``nil`` and
+    error object. The error object has a type attribute equal to ``ShardingError``
+    or one of the regular Tarantool errors (``ClientError``, ``OutOfMemory``,
+    ``SocketError``, etc.).
+
+    ``ShardingError`` is returned on errors specific for sharding: the replica
+    set is not available, the master is missing, wrong bucket id, etc. It has an
+    attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an
+    optional attribute containing a message with the human-readable error description,
+    and other attributes specific for this error code.
+
+.. _router_api-callrw:
+
+.. function:: vshard.router.callrw(bucket_id, function_name, {argument_list}, {options})
+
+    Call the user function on the shard storing the bucket with the specified
+    bucket id in the write mode. See the :ref:`Processing requests <vshard-process-requests>` section
+    for details on function operation.
+
+    :param bucket_id: a bucket identifier
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+    :param options:
+
+        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+          shard with the bucket id, the operation will be repeated until the
+          timeout is reached.
+
+    :Return:
+
+    The original return value of the executed function, or ``nil`` and
+    error object. The error object has a type attribute equal to ``ShardingError``
+    or one of the regular Tarantool errors (``ClientError``, ``OutOfMemory``,
+    ``SocketError``, etc.).
+
+    ``ShardingError`` is returned on errors specific for sharding: the replica
+    set is not available, the master is missing, wrong bucket id, etc. It has an
+    attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an
+    optional attribute containing a message with the human-readable error description,
+    and other attributes specific for this error code.
 
 .. _router_api-route:
 
-.. function:: netbox, err = vshard.router.route(bucket_id)
+.. function:: vshard.router.route(bucket_id)
 
     Return the replica set object for the bucket with the specified bucket id.
 
     :param bucket_id: a bucket identifier
 
-    :Return: a netbox connection
-    :Rtype: netbox
+    :Return: a replica set object
+
+    **Example:**
+
+    .. code-block:: lua
+
+        replicaset = vshard.router.route(123)
 
 .. _router_api-routeall:
 
@@ -1200,20 +1274,34 @@ Router API
     :Return: a map of the following type: ``{UUID = replicaset}``
     :Rtype: a replica set object
 
+    **Example:**
+
+    .. code-block:: lua
+
+        replicaset = vshard.router.routeall()
+
 .. _router_api-bucket_id:
 
 .. function:: vshard.router.bucket_id(key)
 
     Calculate the bucket id using a simple built-in hash function.
 
-    :Return: a bucket identified
+    :param key: a hash key. This can be any Lua object (number, table, string).
+
+    :Return: a bucket identifier
     :Rtype: number
+
+    **Example:**
+
+    .. code-block:: lua
+
+        bucket_id = vshard.router.bucket_id(18374927634039)
 
 .. _router_api-bucket_count:
 
 .. function:: vshard.router.bucket_count()
 
-    Return the total number of buckets specified in vshard.router.cfg().
+    Return the total number of buckets specified in ``vshard.router.cfg()``.
 
     :Return: the total number of buckets
     :Rtype: number
@@ -1225,16 +1313,6 @@ Router API
     Wait until the dataset is synchronized on replicas.
 
     :param timeout: a timeout, in seconds
-
-.. _router_api-bucket_discovery:
-
-.. function:: vshard.router.bucket_discovery(bucket_id)
-
-    Search for the bucket in the whole cluster. If the bucket wasn’t
-    found, it’s likely that it doesn’t exist. The bucket might also be
-    moved during rebalancing and currently is in the RECEIVING state.
-
-    :param bucket_id: a bucket identifier
 
 .. _router_api-discovery_wakeup:
 
@@ -1258,50 +1336,423 @@ Router API
 
     Instance parameters:
 
-    * ``uri``
-    * ``uuid``
-    * ``status`` – available, unreachable, missing
+    * ``uri`` — an URI of the instance
+    * ``uuid`` — an UUID of the instance
+    * ``status`` – a status of the instance (``available``, ``unreachable``, ``missing``)
     * ``network_timeout`` – a timeout for the request. The value is updated automatically
       on each 10th successful request and each 2nd failed request.
 
     Bucket parameters:
 
-    * ``available_ro`` – the number of buckets known to the router and available for read requests
+    * ``available_ro`` – the number of buckets known to the ``router`` and available for read requests
     * ``available_rw`` – the number of buckets known to the router and available for read and write requests
-    * ``unavailable`` – the number of buckets known to router but unavailable for any requests
-    * ``unreachable`` – the number of buckets which replica sets are not known to the router
+    * ``unavailable`` – the number of buckets known to the ``router`` but unavailable for any requests
+    * ``unreachable`` – the number of buckets which replica sets are not known to the ``router``
 
-    **Example**
+    **Example:**
 
-.. code-block:: console
+    .. code-block:: tarantoolsession
 
-    unix/:./data/router_1.control> vshard.router.info()
-    ---
-    - replicasets:
-        ac522f65-aa94-4134-9f64-51ee384f1a54:
-          replica: &0
-            network_timeout: 0.5
-            status: available
-            uri: storage@127.0.0.1:3303
-            uuid: 1e02ae8a-afc0-4e91-ba34-843a356b8ed7
-          uuid: ac522f65-aa94-4134-9f64-51ee384f1a54
-          master: *0
-        cbf06940-0790-498b-948d-042b62cf3d29:
-          replica: &1
-            network_timeout: 0.5
-            status: available
-            uri: storage@127.0.0.1:3301
-            uuid: 8a274925-a26d-47fc-9e1b-af88ce939412
-          uuid: cbf06940-0790-498b-948d-042b62cf3d29
-          master: *1
-      bucket:
-        unreachable: 0
-        available_ro: 0
-        unknown: 0
-        available_rw: 3000
-      status: 0
-      alerts: []
-    ...
+        tarantool> vshard.router.info()
+        ---
+        - replicasets:
+            ac522f65-aa94-4134-9f64-51ee384f1a54:
+              replica: &0
+                network_timeout: 0.5
+                status: available
+                uri: storage@127.0.0.1:3303
+                uuid: 1e02ae8a-afc0-4e91-ba34-843a356b8ed7
+              uuid: ac522f65-aa94-4134-9f64-51ee384f1a54
+              master: *0
+            cbf06940-0790-498b-948d-042b62cf3d29:
+              replica: &1
+                network_timeout: 0.5
+                status: available
+                uri: storage@127.0.0.1:3301
+                uuid: 8a274925-a26d-47fc-9e1b-af88ce939412
+              uuid: cbf06940-0790-498b-948d-042b62cf3d29
+              master: *1
+          bucket:
+            unreachable: 0
+            available_ro: 0
+            unknown: 0
+            available_rw: 3000
+          status: 0
+          alerts: []
+        ...
+
+.. _router_api-buckets_info:
+
+.. function:: vshard.router.buckets_info()
+
+    Return the information on each bucket. Since a bucket map can be huge,
+    only the required range of buckets can be specified.
+
+    :param offset: the offset in a bucket map to select from
+    :param limit: the maximum number of the shown buckets
+
+    :Return: the map of the following type: ``{bucket_id = 'unknown'/replicaset_uuid}``
+
+.. _router_api-replicaset_call:
+
+.. function:: replicaset.call(replicaset, function_name, {argument_list}, {options})
+
+    Call a function on a nearest available master (distances are defined using
+    ``replica.zone`` and ``cfg.weights`` matrix) with a specified
+    arguments.
+
+    .. NOTE::
+
+        The ``replicaset.call`` method is similar to ``replicaset.callrw``.
+
+    :param replicaset: an UUID of a replica set
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+    :param options:
+
+        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+          shard with the bucket id, the operation will be repeated until the
+          timeout is reached.
+
+.. _router_api-replicaset_callrw:
+
+.. function:: replicaset.callrw(replicaset, function_name, {argument_list}, {options})
+
+    Call a function on a nearest available master (distances are defined using
+    ``replica.zone`` and ``cfg.weights`` matrix) with a specified
+    arguments.
+
+    .. NOTE::
+
+        The ``replicaset.callrw`` method is similar to ``replicaset.call``.
+
+    :param replicaset: an UUID of a replica set
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+    :param options:
+
+        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+          shard with the bucket id, the operation will be repeated until the
+          timeout is reached.
+
+.. _router_api-replicaset_callro:
+
+.. function:: replicaset.callro(bucket_id, function_name, {argument_list}, {options})
+
+    Call a function on a nearest available replica (distances are defined using
+    ``replica.zone`` and ``cfg.weights`` matrix) with a specified
+    arguments. It is recommended to call only read-only functions using
+    ``replicaset.callro()``, as the function can be executed not only on a master,
+    but also on replicas.
+
+    :param replicaset: an UUID of a replica set
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+    :param options:
+
+        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+          shard with the bucket id, the operation will be repeated until the
+          timeout is reached.
+
+.. _vshard_api_reference-router_internal_api:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Router internal API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* :ref:`vshard.router.bucket_discovery(bucket_id) <router_api-bucket_discovery>`
+
+.. _router_api-bucket_discovery:
+
+.. function:: vshard.router.bucket_discovery(bucket_id)
+
+    Search for the bucket in the whole cluster. If the bucket wasn’t
+    found, it’s likely that it doesn’t exist. The bucket might also be
+    moved during rebalancing and currently is in the RECEIVING state.
+
+    :param bucket_id: a bucket identifier
+
+.. _vshard-storage_public_api:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Storage public API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* :ref:`vshard.storage.cfg(cfg, name) <storage_api-cfg>`
+* :ref:`vshard.storage.info() <storage_api-info>`
+* :ref:`vshard.storage.sync(timeout) <storage_api-sync>`
+* :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`
+* :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`
+* :ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`
+* :ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`
+* :ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`
+* :ref:`vshard.storage.is_locked() <storage_api-is_locked>`
+* :ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-rebalancing_is_in_progress>`
+* :ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`
+* :ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`
+* :ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`
+
+.. _storage_api-cfg:
+
+.. function:: vshard.storage.cfg(cfg, name)
+
+    Configure the database and start sharding for the specified ``storage``
+    instance.
+
+    :param cfg: a ``storage`` configuration
+    :param instance_uuid: an uuid of the instance
+
+.. _storage_api-info:
+
+.. function:: vshard.storage.info()
+
+    Return the information on the storage instance in the following format:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> vshard.storage.info()
+        ---
+        - buckets:
+            2995:
+              status: active
+              id: 2995
+            2997:
+              status: active
+              id: 2997
+            2999:
+              status: active
+              id: 2999
+          replicasets:
+            2dd0a343-624e-4d3a-861d-f45efc571cd3:
+              uuid: 2dd0a343-624e-4d3a-861d-f45efc571cd3
+              master:
+                state: active
+                uri: storage:storage@127.0.0.1:3301
+                uuid: 2ec29309-17b6-43df-ab07-b528e1243a79
+            c7ad642f-2cd8-4a8c-bb4e-4999ac70bba1:
+              uuid: c7ad642f-2cd8-4a8c-bb4e-4999ac70bba1
+              master:
+                state: active
+                uri: storage:storage@127.0.0.1:3303
+                uuid: 810d85ef-4ce4-4066-9896-3c352fec9e64
+        ...
+
+.. _storage_api-sync:
+
+.. function:: vshard.storage.sync(timeout)
+
+    Wait until the dataset is synchronized on replicas.
+
+    :param timeout: a timeout, in seconds
+
+.. _storage_api-bucket_pin:
+
+.. function:: vshard.storage.bucket_pin(bucket_id)
+
+    Pin a bucket to a replica set. Pinned bucket can not be moved
+    even if it breaks the cluster balance.
+
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the bucket is unpinned successfully; or ``nil`` and
+             ``err`` explaining why the bucket cannot be unpinned
+
+.. _storage_api-bucket_unpin:
+
+.. function:: vshard.storage.bucket_unpin(bucket_id)
+
+    Return a pinned bucket back into the active state.
+
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the bucket is unpinned successfully; or ``nil`` and
+             ``err`` explaining why the bucket cannot be unpinned
+
+.. _storage_api-find_garbage_bucket:
+
+.. function:: vshard.storage.find_garbage_bucket(bucket_index, control)
+
+    Find a bucket which has data in a space, but is not stored
+    in a _bucket space; or a bucket is in a garbage state.
+
+    :param bucket_index: index of a space with the part of a bucket id
+    :param control: a garbage collector controller. If there is an increased
+                    buckets generation, then the search should be interrupted.
+
+    :return: an identifier of the bucket in the garbage state, if found; otherwise,
+             nil
+
+.. _storage_api-buckets_info:
+
+.. function:: vshard.storage.buckets_info()
+
+    Return the information on each bucket located on storage.
+
+.. _storage_api-buckets_count:
+
+.. function:: vshard.storage.buckets_count()
+
+    Return the number of buckets located on storage.
+
+.. _storage_api-recovery_wakeup:
+
+.. function:: vshard.storage.recovery_wakeup()
+
+    Immediately wake up recovery fiber, if exists.
+
+.. _storage_api-rebalancing_is_in_progress:
+
+.. function:: vshard.storage.rebalancing_is_in_progress()
+
+    A flag indicating whether rebalancing is in progress. The value is true,
+    if the node is currently applying routes received from a rebalancer node in
+    the special fiber.
+
+.. _storage_api-is_locked:
+
+.. function:: vshard.storage.is_locked()
+
+    A flag indicating whether a rebalancer is locked.
+
+.. _storage_api-rebalancer_disable:
+
+.. function:: vshard.storage.rebalancer_disable()
+
+    Disable rebalancing. Disabled rebalancer sleeps until it
+    is enabled back.
+
+.. _storage_api-rebalancer_enable:
+
+.. function:: vshard.storage.rebalancer_enable()
+
+    Enable rebalancing.
+
+.. _storage_api-sharded_spaces:
+
+.. function:: vshard.storage.sharded_spaces()
+
+    Show the spaces that are visible for rebalancer and garbage collector.
+
+.. _vshard-storage_internal_api:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Storage internal API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* :ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`
+* :ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-bucket_recv>`
+* :ref:`vshard.storage.bucket_delete_garbage(bucket_id) <storage_api-bucket_delete_garbage>`
+* :ref:`vshard.storage.bucket_collect(bucket_id) <storage_api-bucket_collect>`
+* :ref:`vshard.storage.bucket_force_create(first_bucket_id, count) <storage_api-bucket_force_create>`
+* :ref:`vshard.storage.bucket_force_drop(bucket_id, to) <storage_api-bucket_force_drop>`
+* :ref:`vshard.storage.bucket_send(bucket_id, to) <storage_api-bucket_send>`
+* :ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`
+* :ref:`vshard.storage.rebalancer_request_state() <storage_api-rebalancer_request_state>`
+
+.. _storage_api-bucket_recv:
+
+.. function:: vshard.storage.bucket_recv(bucket_id, from, data)
+
+    Receive a bucket id from a remote replica set.
+
+    :param bucket_id: a bucket identifier
+    :param from: a source replica set UUID
+    :param data: a data logically stored in a bucket id in the same format as
+                 the ``bucket_collect() <storage_api-bucket_collect>`` method
+                 return value
+
+.. _storage_api-bucket_stat:
+
+.. function:: vshard.storage.bucket_stat(bucket_id)
+
+    Returns information about the bucket id:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> vshard.storage.bucket_stat(1)
+        ---
+        - 0
+        - status: active
+          id: 1
+        ...
+
+    :param bucket_id: a bucket identifier
+
+.. _storage_api-bucket_delete_garbage:
+
+.. function:: vshard.storage.bucket_delete_garbage(bucket_id)
+
+    Force garbage collection for the bucket id in case the bucket was
+    transferred to a different replica set.
+
+    :param bucket_id: a bucket identifier
+
+.. _storage_api-bucket_collect:
+
+.. function:: vshard.storage.bucket_collect(bucket_id)
+
+    Collect all the data that is logically stored in the bucket id:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> vshard.storage.bucket_collect(1)
+        ---
+        - 0
+        - - - 514
+            - - [10, 1, 1, 100, 'Account 10']
+              - [11, 1, 1, 100, 'Account 11']
+              - [12, 1, 1, 100, 'Account 12']
+              - [50, 5, 1, 100, 'Account 50']
+              - [51, 5, 1, 100, 'Account 51']
+              - [52, 5, 1, 100, 'Account 52']
+          - - 513
+            - - [1, 1, 'Customer 1']
+              - [5, 1, 'Customer 5']
+        ...
+
+    :param bucket_id: a bucket identifier
+
+.. _storage_api-bucket_force_create:
+
+.. function:: vshard.storage.bucket_force_create(first_bucket_id, count)
+
+    Force creation of the buckets (single or multiple) on the current replica
+    set. Use only for manual emergency recovery or initial bootstrap.
+
+    :param first_bucket_id: an identifier of the first bucket in a range
+    :param count: a number of buckets to insert (1 by default)
+
+.. _storage_api-bucket_force_drop:
+
+.. function:: vshard.storage.bucket_force_drop(bucket_id)
+
+    Drop a bucket manually for tests or emergency cases.
+
+    :param bucket_id: a bucket identifier
+
+.. _storage_api-bucket_send:
+
+.. function:: vshard.storage.bucket_send(bucket_id, to)
+
+    Transfer a bucket id from the current replica set to the remote replica set.
+
+    :param bucket_id: a bucket identifier
+    :param to: a remote replica set UUID
+
+.. _storage_api-rebalancer_request_state:
+
+.. function:: vshard.storage.rebalancer_request_state()
+
+    Check all buckets of the host storage that have the SENT or ACTIVE
+    state, return the number of active buckets.
+
+    :return: the number of buckets in the active state, if found; otherwise, nil
+
+.. _storage_api-buckets_discovery:
+
+.. function:: vshard.storage.buckets_discovery()
+
+    Collect an array of active bucket identifiers for discovery.
 
 .. _vshard-glossary:
 
