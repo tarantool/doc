@@ -18,3 +18,4 @@ This chapter contains the following sections:
    authentication
    triggers
    limitations
+   engines/index
