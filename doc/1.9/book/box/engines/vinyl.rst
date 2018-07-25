@@ -496,19 +496,24 @@ pages. The page size (in bytes) is controlled by the ``vinyl_page_size``
 parameter and can be set separately for each index. A page doesn’t have to be
 exactly of ``vinyl_page_size`` size—depending on the data it holds, it can be a
 little bit smaller or larger. Because of this, pages never have any empty space
-inside. Data is compressed by Facebook’s streaming algorithm called "zstd". The
-first key of each page, along with the page offset, is added to a "page index",
-which is a separate file that allows the quick retrieval of any page. After a
-dump or compaction, the page index of the created run is also written to disk.
-All .index files are cached in RAM, which allows finding the necessary page with
-a single lookup in a .run file (in vinyl, this is the extension of files
+inside.
+
+Data is compressed by
+`Facebook’s streaming algorithm <https://github.com/facebook/zstd>`_
+called "zstd". The first key of each page, along with the page offset, is added
+to a "page index", which is a separate file that allows the quick retrieval
+of any page. After a dump or compaction, the page index of the created run is
+also written to disk.
+
+All `.index` files are cached in RAM, which allows finding the necessary page
+with a single lookup in a `.run` file (in vinyl, this is the extension of files
 resulting from a dump or compaction). Since data within a page is sorted, after
 it’s read and decompressed, the needed key can be found using a regular binary
 search. Decompression and reads are handled by separate threads, and are
 controlled by the ``vinyl_read_threads`` parameter.
 
-Tarantool uses a universal file format: for example, the format of a .run file
-is no different from that of an .xlog file (log file). This simplifies backup
+Tarantool uses a universal file format: for example, the format of a `.run` file
+is no different from that of an `.xlog` file (log file). This simplifies backup
 and recovery as well as the usage of external tools.
 
 .. _vinyl-lsm_disadvantages_compression_bloom_filters:
@@ -565,7 +570,7 @@ configurable. The only parameter that can be specified separately for each index
 is called ``bloom_fpr`` (FPR stands for "false positive ratio") and it has the
 default value of 0.05, which translates to a 5% FPR. Based on this parameter,
 Tarantool automatically creates Bloom filters of the optimal size for partial-
-key and full-key searches. The Bloom filters are stored in the .index file,
+key and full-key searches. The Bloom filters are stored in the `.index` file,
 along with the page index, and are cached in RAM.
 
 .. _vinyl-lsm_disadvantages_compression_caching:
@@ -654,8 +659,8 @@ one.
 Split and coalesce don’t entail a compaction, the creation of new runs, or other
 resource-intensive operations. An LSM tree is just a collection of runs. vinyl
 has a special metadata log that helps keep track of which run belongs to which
-subtree(s). This has the .vylog extension and its format is compatible with an
-.xlog file. Similarly to an .xlog file, the metadata log gets rotated at each
+subtree(s). This has the `.vylog` extension and its format is compatible with an
+.xlog file. Similarly to an `.xlog` file, the metadata log gets rotated at each
 checkpoint. To avoid the creation of extra runs with split and coalesce, we have
 also introduced an auxiliary entity called "slice". It’s a reference to a run
 containing a key range and it’s stored only in the metadata log. Once the
