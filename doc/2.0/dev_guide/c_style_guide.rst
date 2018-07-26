@@ -189,8 +189,8 @@ Get a decent editor and don't leave whitespace at the end of lines.
 Coding style is all about readability and maintainability using commonly
 available tools.
 
-The limit on the length of lines is 80 columns and this is a strongly
-preferred limit.
+The limit on the length of lines is 80 columns, reduced to 66 columns for
+comments, and this is a strongly preferred limit.
 
 Statements longer than 80 columns will be broken into sensible chunks.
 Descendants are always substantially shorter than the parent and are placed
