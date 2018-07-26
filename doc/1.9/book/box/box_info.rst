@@ -108,8 +108,7 @@ variables.
         in its :ref:`replication <cfg_replication-replication>` parameter.
       * ``disconnected`` means that the instance is not connected to the
         replica set (due to network problems, not replication errors).
-      * ``follow`` means that the instance's :ref:`role <replication-roles>`
-        is "replica" (read-only) and replication is in progress.
+      * ``follow`` means that replication is in progress.
       * ``running`` means the instance's role is "master" (non read-only) and
         replication is in progress.
       * ``stopped`` means that replication was stopped due to a replication
