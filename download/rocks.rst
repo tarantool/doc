@@ -100,7 +100,7 @@ Tarantool - Rocks
                     :title: msgpack
                     :specialtext: Built-in
 
-                    MsgPack encoder/decoder
+                    MsgPack encoder / decoder
 
                 .. module_block::
                     :title: pickle
@@ -119,7 +119,7 @@ Tarantool - Rocks
                     :title: yaml
                     :specialtext: Built-in
 
-                    YAML encoder/decoder
+                    YAML encoder / decoder
 
             .. _Database administration:
             .. container:: b-rock
@@ -155,6 +155,14 @@ Tarantool - Rocks
                     Export Tarantool application metrics to Graphite
 
                 .. module_block::
+                    :title: migrate
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/migrate
+
+                    Tarantool module for migrating from version 1.5 to 1.6,
+                    1.7, 1.8
+
+                .. module_block::
                     :title: prometheus
                     :specialtext: External
                     :sourcelink: https://github.com/tarantool/prometheus
@@ -180,6 +188,12 @@ Tarantool - Rocks
             .. container:: b-rock
 
                 Databases
+
+                .. module_block::
+                    :title: box
+                    :specialtext: Built-in
+
+                    Tarantool storage functionality
 
                 .. module_block::
                     :title: mysql
@@ -209,6 +223,13 @@ Tarantool - Rocks
                     or equivalent. Useful for accurate clock and benchmarking.
 
                 .. module_block::
+                    :title: date
+                    :specialtext: External
+                    :sourcelink: https://github.com/Tieske/date
+
+                    Date & Time module for Lua 5.x
+
+                .. module_block::
                     :title: icu-date
                     :specialtext: External
                     :sourcelink: https://github.com/tarantool/icu-date
@@ -221,7 +242,7 @@ Tarantool - Rocks
                 Development support
 
                 .. module_block::
-                    :title: cbench -- benchmark
+                    :title: cbench
                     :specialtext: External
                     :sourcelink: https://github.com/tarantool/cbench
 
@@ -233,6 +254,13 @@ Tarantool - Rocks
 
                     Tools to print call traces, insert watchpoints,
                     inspect Lua objects
+
+                .. module_block::
+                    :title: fiber
+                    :specialtext: Built-in
+
+                    Fibers management and sending / receiving messages between
+                    different processes
 
                 .. module_block::
                     :title: fun
@@ -303,7 +331,7 @@ Tarantool - Rocks
                     Lua wrapper for the 'decNumber' library
 
                 .. module_block::
-                    :title: lrexlib
+                    :title: lrexlib-pcre
                     :specialtext: External
                     :sourcelink: http://github.com/rrthomas/lrexlib
 
@@ -330,6 +358,25 @@ Tarantool - Rocks
                     :sourcelink: https://github.com/mpeterv/argparse
 
                     Feature-rich command-line argument parser for Lua
+
+                .. module_block::
+                    :title: stat
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/stat
+
+                    Statistic module for Tarantool
+
+                .. module_block::
+                    :title: string
+                    :specialtext: Built-in
+
+                    Tarantool extension for the standard Lua string library
+
+                .. module_block::
+                    :title: table
+                    :specialtext: Built-in
+
+                    Tarantool extension for the standard Lua table library
 
                 .. module_block::
                     :title: watchdog
@@ -374,10 +421,35 @@ Tarantool - Rocks
                     Smart algorithm to iterate over a space and make updates
                     without freezing the database
 
+                .. module_block::
+                    :title: tarantool
+                    :specialtext: Built-in
+
+                    Tool to get information on how the Tarantool server was
+                    built
+
+                .. module_block::
+                    :title: uuid
+                    :specialtext: Built-in
+
+                    Tools to get a universally unique identifier
+
+                .. module_block::
+                    :title: uri
+                    :specialtext: Built-in
+
+                    Tools to get a uniform resource identifier
+
             .. _Networking:
             .. container:: b-rock
 
                 Networking
+
+                .. module_block::
+                    :title: buffer
+                    :specialtext: Built-in
+
+                    Provides an option for methods of the 'net.box' module
 
                 .. module_block::
                     :title: connpool
@@ -392,6 +464,13 @@ Tarantool - Rocks
 
                     HTTP client with support for HTTPS and keepalive; uses
                     routines in the 'libcurl' library
+
+                .. module_block::
+                    :title: http
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/http/
+
+                    HTTP server for Tarantool
 
                 .. module_block::
                     :title: mqtt
@@ -422,6 +501,14 @@ Tarantool - Rocks
 
                     SMTP client for Tarantool
 
+                .. module_block::
+                    :title: tarantool-curl
+                    :specialtext: External
+                    :sourcelink: https://github.com/tarantool/curl
+
+                    Set of bindings for 'libcurl' to use most of the standard
+                    HTTP client functions
+
             .. _Operating systems:
             .. container:: b-rock
 
@@ -437,7 +524,7 @@ Tarantool - Rocks
                     :title: fio
                     :specialtext: Built-in
 
-                    Routines for file input/output
+                    Routines for file input / output
 
                 .. module_block::
                     :title: os
@@ -449,7 +536,7 @@ Tarantool - Rocks
                     :title: socket
                     :specialtext: Built-in
 
-                    Non-blocking routines for socket input/output
+                    Non-blocking routines for socket input / output
 
             .. _Power tools:
             .. container:: b-rock
