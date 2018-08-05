@@ -148,7 +148,7 @@ Retrieve some of what you inserted:
 
 * The first statement uses
   the ``LIKE`` comparison operator which is asking
-  for "first character must be 'A', second character can be anything".
+  for "first character must be 'A', the next characters can be anything."
 * The second statement uses logical operators and parentheses,
   so the ANDed expressions must be true, or the ORed expression
   must be true. Notice the columns don't have to be indexed.
@@ -156,7 +156,7 @@ Retrieve some of what you inserted:
 .. code-block:: sql
 
     SELECT column1, column2, column1 * column4 FROM table2 WHERE column2
-    LIKE '%B';
+    LIKE 'A%';
     SELECT column1, column2, column3, column4 FROM table2
         WHERE (column1 < 2 AND column4 < 10)
         OR column3 = X'2020';
@@ -520,7 +520,7 @@ Tarantool can handle:
 
 * integers anywhere in the 4-byte integer range,
 * approximate-numerics anywhere in the 8-byte IEEE floating point range,
-* any Unicode characters, with UTF-8 encoding and only UCS_BASIC collating.
+* any Unicode characters, with UTF-8 encoding and a choice of collations.
 
 Here we will insert some such values in a new table, and see what happens
 when we select them, with arithmetic on a number column and
@@ -553,7 +553,7 @@ A view, or "viewed table", is virtual, that is,
 its rows aren't physically in the database,
 their values are calculated from other tables.
 
-Here we'll create a view ``view3`` based on ``table3``,
+Here we'll create a view ``v3`` based on ``table3``,
 then we select from it.
 
 .. code-block:: sql
