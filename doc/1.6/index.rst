@@ -50,10 +50,18 @@
             - `PDF <Tarantool.pdf>`_
             - `English`_
             - `Russian`_
-            - `Telegram chat`_
+
+            .. ifconfig:: language == 'ru'
+
+                - `Telegram chat RU`_
+
+            .. ifconfig:: language == 'en'
+            
+                - `Telegram chat EN`_
 
 .. _English: https://groups.google.com/forum/#!forum/tarantool
 .. _Russian: https://googlegroups.com/group/tarantool-ru
-.. _Telegram chat: http://telegram.me/tarantool
+.. _Telegram chat RU: https://t.me/tarantoolru
+.. _Telegram chat EN: https://t.me/tarantool
 .. |nbspc| unicode:: U+00A0
 .. |space| unicode:: U+0020
