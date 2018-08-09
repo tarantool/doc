@@ -10,7 +10,7 @@ Bootstrapping a replica set
 Master-replica bootstrap
 --------------------------------------------------------------------------------
 
-Let's first bootstrap a simple **master-replica** set containing two instances,
+Let us first bootstrap a simple **master-replica** set containing two instances,
 each located on its own machine. For easier administration, we make the
 :ref:`instance files <admin-instance_file>` almost identical.
 
@@ -38,32 +38,32 @@ Here is an example of the master's instance file:
 
 where:
 
-* :ref:`listen <cfg_basic-listen>` parameter from ``box.cfg{}`` defines a URI
+* the ``box.cfg()`` :ref:`listen <cfg_basic-listen>` parameter defines a URI
   (port 3301 in our example), on which the master can accept connections from
   replicas.
-* :ref:`replication <cfg_replication-replication>` parameter defines the URIs at
+* the ``box.cfg()`` :ref:`replication <cfg_replication-replication>` parameter defines the URIs at
   which all instances in the replica set can accept connections. It includes the
   replica's URI as well, although the replica is not a replication source right
   now.
 
   .. NOTE::
 
-     For security reasons, we recommend to prevent unauthorized replication
+     For security reasons, we recommend that administrators prevent unauthorized replication
      sources by associating a password with every user that has a replication
      :ref:`role <authentication-roles>`. That way, the :ref:`URI <index-uri>`
      for ``replication`` parameter must have the long form
      ``username:password@host:port``.
 
-* :ref:`read_only <cfg_basic-read_only>` parameter enables data-change
-  operations on the instance and makes this Tarantool instance act as a master,
-  not as a replica. *That's the only parameter in our instance files that will
+* the :ref:`read_only = false <cfg_basic-read_only>` parameter setting enables data-change
+  operations on the instance and makes the instance act as a master,
+  not as a replica. *That is the only parameter setting in our instance files that will
   differ.*
-* :ref:`box.once() <box-once>` function contains database initialization logic
+* the :ref:`box.once() <box-once>` function contains database initialization logic
   that should be executed only once during the replica set lifetime.
 
 In this example, we create a space with a primary index, and a user for
-replication purposes. We also say ``print('box.once executed on master')`` to
-see later in console whether ``box.once()`` is executed.
+replication purposes. We also say ``print('box.once executed on master')``
+so that it will later be visible on a console whether ``box.once()`` was executed.
 
 .. NOTE::
 
@@ -75,11 +75,11 @@ see later in console whether ``box.once()`` is executed.
 
 Here we use Tarantool's predefined role named "replication" which by default
 grants "read" privileges for all database objects ("universe"), and we can
-further set up privileges for this role as required.
+change privileges for this role as required.
 
-In the replica's instance file, we only set read-only parameter to "true", and
-say ``print('box.once executed on replica')`` to make sure that box.once() is
-not executed more than once. Otherwise the replica's instance file is fully
+In the replica's instance file, we set the read-only parameter to "true", and
+say ``print('box.once executed on replica')`` so that later it will be visible
+that box.once() was not executed more than once. Otherwise the replica's instance file is
 identical to the master's instance file.
 
 .. code-block:: lua
@@ -103,7 +103,7 @@ identical to the master's instance file.
 
    The replica does not inherit the master’s configuration parameters, such as
    those making the :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>` run on
-   the master. To get the same behavior, please set the relevant parameters
+   the master. To get the same behavior, set the relevant parameters
    explicitly so that they are the same on both master and replica.
 
 Now we can launch the two instances. The master...
@@ -131,7 +131,7 @@ Now we can launch the two instances. The master...
    box.once executed on master
    2017-06-14 14:12:19.920 [18933] main C> entering the event loop
 
-... (yep, ``box.once()`` got executed on the master) -- and the replica:
+... (the display confirms that ``box.once()`` was executed on the master) -- and the replica:
 
 .. code-block:: console
 
@@ -146,7 +146,7 @@ Now we can launch the two instances. The master...
    2017-06-14 14:12:19.496 [18934] main/104/applier/replicator@192.168.0. I> failed to authenticate
    2017-06-14 14:12:19.496 [18934] main/104/applier/replicator@192.168.0. xrow.cc:431 E> ER_LOADING: Instance bootstrap hasn't finished yet
 
-In both logs, there are messages saying that the replica got bootstrapped from the master:
+In both logs, there are messages saying that the replica was bootstrapped from the master:
 
 .. code-block:: console
 
@@ -246,8 +246,8 @@ Controlled failover
 
 To perform a **controlled failover**, that is, swap the roles of the master and
 replica, all we need to do is to set ``read_only=true`` at the master, and
-``read_only=false`` at the replica. The **order of actions** is important here.
-If a system is running in production, we don’t want concurrent writes happen
+``read_only=false`` at the replica. The order of actions is important here.
+If a system is running in production, we do not want concurrent writes happening
 both at the replica and the master. Nor do we want the new replica to accept
 any writes until it has finished fetching all replication data from the old
 master. To compare replica and master state, we can use
@@ -282,7 +282,7 @@ master. To compare replica and master state, we can use
       # at the replica
       tarantool> box.cfg{read_only=false}
 
-These 4 steps ensure that the replica doesn’t accept new writes until it’s done
+These four steps ensure that the replica doesn’t accept new writes until it’s done
 fetching writes from the master.
 
 .. _replication-master_master_bootstrap:
@@ -291,7 +291,7 @@ fetching writes from the master.
 Master-master bootstrap
 --------------------------------------------------------------------------------
 
-Now let's bootstrap a two-instance **master-master** set. For easier
+Now let us bootstrap a two-instance **master-master** set. For easier
 administration, we make master#1 and master#2 instance files fully identical.
 
 .. image:: mm-2m-mesh.svg
@@ -317,14 +317,14 @@ We re-use the master's instance file from the
       print('box.once executed on master #1')
    end)
 
-In :ref:`replication <cfg_replication-replication>` parameter, we define the
+In the :ref:`replication <cfg_replication-replication>` parameter, we define the
 URIs of both masters in the replica set and say
-``print('box.once executed on master #1')`` to see when and where the
+``print('box.once executed on master #1')`` so it will be clear when and where the
 ``box.once()`` logic is executed.
 
 Now we can launch the two masters. Again, the launch order doesn't matter.
 The ``box.once()`` logic will also be executed only once, at the master which
-is elected as the replica set leader at bootstrap.
+is elected as the replica set leader during the bootstrap.
 
 .. code-block:: console
 

@@ -153,10 +153,11 @@ Below is a list of all ``box.schema`` functions.
         |               | nothing but do not cause an                        |         |                     |
         |               | error                                              |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
-        | is_local      | space contents are local to a node:                | boolean | false               |
+        | is_local      | space contents are                                 | boolean | false               |
+        |               | :ref:`replication-local <replication-local>`:      |         |                     |
         |               | changes are stored in the                          |         |                     |
         |               | :ref:`write-ahead log <internals-wal>`             |         |                     |
-        |               | but there is no                                    |         |                     |
+        |               | of the local node but there is no                  |         |                     |
         |               | :ref:`replication <replication>`.                  |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
         | temporary     | space contents are temporary:                      | boolean | false               |

@@ -4,7 +4,7 @@
 Removing instances
 ================================================================================
 
-To politely remove an instance from a replica set, follow these steps:
+To remove an instance from a replica set politely, follow these steps:
 
 1. On the instance, run ``box.cfg{}`` with a blank replication source:
 
@@ -21,15 +21,15 @@ To politely remove an instance from a replica set, follow these steps:
 2. If the instance is decommissioned forever, delete the instance's record from
    the following locations:
 
-   a. :ref:`replication <cfg_replication-replication>` parameter at all running
+   a. the :ref:`replication <cfg_replication-replication>` parameter at all running
       instances in the replica set:
 
       .. code-block:: tarantoolsession
 
          tarantool> box.cfg{replication=...}
 
-   b. :ref:`box.space._cluster <box_space-cluster>` on any master instance in
-      the replica set. For example, a record with instance id = 3:
+   b. the :ref:`box.space._cluster <box_space-cluster>` tuple on any master instance in
+      the replica set. For example, for a record with instance id = 3:
 
       .. code-block:: tarantoolsession
 
