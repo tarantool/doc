@@ -278,7 +278,10 @@ While being migrated, the bucket can have different states:
 * SENDING – the bucket is currently being copied to the destination replica set
   read requests to the source replica set are still processed.
 * RECEIVING – the bucket is currently being filled; all requests to it are rejected.
-* SENT – the bucket was migrated to the destination replica set.
+* SENT – the bucket was migrated to the destination replica set. The `router`
+  uses this state to calculate the new location of the bucket. The bucket in
+  the SENT state goes to the GARBAGE state automatically in 0.5 seconds after
+  migration (the time period is defined by the BUCKET_SENT_GARBAGE_DELAY value).
 * GARBAGE – the bucket was already migrated to the destination replica set during
   rebalancing; or the bucket was initially in the RECEIVING state, but some error
   occurred during the migration.
@@ -294,7 +297,8 @@ Altogether, migration is performed as follows:
    state, the data copying starts, and the bucket rejects all requests.
 2. The source bucket at the source replica set is assigned the SENDING state, and
    the bucket continues to process read requests.
-3. Once the data is copied, the bucket on the source replica set is marked SENT and it starts rejecting all requests.
+3. Once the data is copied, the bucket on the source replica set is marked SENT
+   and it starts rejecting all requests.
 4. The bucket on the destination replica set goes into the ACTIVE state and starts
    accepting all requests.
 
@@ -305,7 +309,7 @@ The `_bucket` system space
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The ``_bucket`` system space of each replica set stores the ids of buckets present
-in the replica set. The space contains the following tuples:
+in the replica set. The space contains the following fields:
 
 * ``bucket`` – bucket id
 * ``status`` – state of the bucket
