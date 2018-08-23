@@ -413,7 +413,7 @@ We will try to delete the last and first of these rows.
 
     DELETE FROM table2 WHERE column1 = 2;
     DELETE FROM table2 WHERE column1 = -1000;
-    SELECT COUNT(*) FROM table2;
+    SELECT COUNT(column1) FROM table2;
 
 The result will be:
 
@@ -421,6 +421,35 @@ The result will be:
   there's a foreign-key constraint.
 * The second ``DELETE`` statement succeeds.
 * The ``SELECT`` statement shows that there are now only 5 rows remaining.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ALTER TABLE, with a FOREIGN KEY clause
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now we want to make another "constraint",
+that there must not be any rows in ``table1``
+containing values that do not appear in ``table5``.
+We couldn't do this when we created ``table1``
+because at that time ``table5`` did not exist.
+But we can add constraints to existing tables with
+the ALTER TABLE statement.
+
+.. code-block:: sql
+
+    ALTER TABLE table1 ADD CONSTRAINT c
+        FOREIGN KEY (column1) REFERENCES table5 (column1);
+    DELETE FROM table1;
+    ALTER TABLE table1 ADD CONSTRAINT c
+        FOREIGN KEY (column1) REFERENCES table5 (column1);
+
+Result:
+
+* The ``ALTER TABLE`` statement fails the first time because
+  there is a row in ``table1``, and ADD CONSTRAINT requires
+  that the table be empty. But after we delete that row,
+  the ``ALTER TABLE`` statement succeeds the second time.
+  Thus we have set up a chain of references, from ``table1``
+  to ``table5`` and from ``table5`` to ``table2``.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Triggers
@@ -763,7 +792,7 @@ an index, because for ``s2`` we didn't say
 .. code-block:: lua
 
     box.sql.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
-    box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%']]);
+    box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%';]]);
 
 The result is:
 
@@ -787,12 +816,13 @@ These statements must be entered separately.
 
     tarantool> \set language sql
     tarantool> DROP TABLE tester;
+    tarantool> DROP TABLE table1;
     tarantool> DROP VIEW v3;
     tarantool> DROP TRIGGER tr;
     tarantool> DROP TABLE table5;
     tarantool> DROP TABLE table4;
     tarantool> DROP TABLE table3;
     tarantool> DROP TABLE table2;
-    tarantool> DROP TABLE table1;
+    tarantool> DROP TABLE t6;
     tarantool> \set language lua
     tarantool> os.exit();
