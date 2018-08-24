@@ -104,71 +104,108 @@ for getting a hash-password.
 Owners and privileges
 --------------------------------------------------------------------------------
 
-In Tarantool, all objects are organized into a hierarchy of ownership.
-Ordinarily the **owner** of every object is its creator. The creator of the initial database
-state (we call it ‘universe’) --  including the database itself,
-the system spaces, the users -- is ‘admin’.
+Tarantool has one database. It may be called "box.schema" or "universe".
+The database contains database objects, including
+spaces, indexes, users, roles, sequences, and functions.
 
-An object's owner can share some rights on the object by **granting privileges**
-to other users. The following privileges can be granted:
+The **owner** of a database object is the user who created it.
+The owner of the database itself, and the owner of objects that
+are created initially -- the system spaces and the default users --
+is 'admin'.
 
-* Read, e.g. allow select from a space
-* Write, e.g. allow update on a space
-* Execute, e.g. allow call of a function
-* Create, e.g. allow
+Owners automatically have **privileges** for what they create.
+They can share these privileges with other users or with roles,
+using **box.user.grant** requests. 
+The following privileges can be granted:
+
+* 'read', e.g. allow select from a space
+* 'write', e.g. allow update on a space
+* 'execute', e.g. allow call of a function
+* 'create', e.g. allow
   :ref:`box.schema.space.create <box_schema-space_create>`
   (currently this can be granted but has no effect)
-* Alter, e.g. allow
+* 'alter', e.g. allow
   :ref:`box.space.x.index.y:alter <box_index-alter>`
   (currently this can be granted but has no effect)
-* Drop, e.g. allow
+* 'drop', e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
-* Usage, e.g. whether any action is allowable regardless of other
+* 'usage', e.g. whether any action is allowable regardless of other
   privileges (sometimes revoking 'usage' is a convenient way to
   block a user temporarily without dropping the user)
-* Session, e.g. whether the user can 'connect'.
+* 'session', e.g. whether the user can 'connect'.
 
-This is how the privilege system works. To be able to create
-objects, a user needs to have write access to Tarantool's system spaces.
-The 'admin' user, who is at the top of the hierarchy and who is the ultimate
-source of privileges, shares write access to a system space
-(e.g. :ref:`_space <box_space-space>`) with some users. Now the users can
-insert data into the system space (e.g. creating new spaces) and themselves
-become creators/definers of new objects. For the objects they created, the users
-can in turn share privileges with other users.
+To **create** objects, users need at least 'read' and 'write' privileges
+on the system space with a similar name (for example, on the
+:ref:`_space <box_space-space>` if the user needs to create spaces).
+To **access** objects, users need an appropriate privilege
+on the object (for example, the 'execute' privilege on function F
+if the users need to execute function F). The exact "grant" requests
+by the grantor (that is, 'admin' or the object creator)
+are in the "Examples for granting specific privileges", below.
 
-This is why only an object's owner can drop the object, but other
-ordinary users cannot. Meanwhile, 'admin' can drop any object or delete any
-other user, because 'admin' is the creator and ultimate owner of them all.
+To **drop** an object, users must be the object's creator or be 'admin'.
+As the owner of the entire database, 'admin' can drop any object including
+other users.
 
-The syntax of all
-:ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
-commands in Tarantool follows this basic idea.
+To grant privileges to a user, the object owner says :ref:`grant() <box_schema-user_grant>`.
+To revoke privileges from a user, the object owner says :ref:`revoke() <box_schema-user_revoke>`.
+In either case, there are three or four parameters:
+(user-name, privilege, object-type [, object-name]).
 
-* The first argument is the name of the user who gets the privilege or whose
-  privilege is revoked.
+``user-name`` is the user (or role) that will receive or lose the privilege;
+``privilege`` is 'read' or 'write or
+'execute' or 'create' or 'alter' or 'drop' or 'usage' or 'session'
+(or a comma-sepated list);
+``object-type`` is 'space' or 'index' or
+'sequence' or 'function' or role-name, or 'universe';
+``object-name`` is what the privilege is for
+(or is omitted if ``object-type`` is 'universe').
 
-* The second argument is the type of privilege granted, or a list of privileges.
+**Example for granting many privileges at once**
 
-* The third argument is the object type on which the privilege is granted,
-  or the word 'universe'. Possible object types are 'space', 'function',
-  'sequence' (not 'user' or 'role'). For 'usage' and 'session' privileges
-  are called "system privileges" the third argument must be 'universe'.
-
-* The fourth argument is the name of the object if the object type
-  was specified ('universe' has no name because there is only one 'universe',
-  but otherwise you must specify the name).
-
-**Example #1**
-
-Here we say that user 'guest' can do common operations on any object.
+In this example user 'admin' grants many privileges on
+many objects to user 'U', with a single request.
 
 .. code-block:: lua_tarantool
 
-    box.schema.user.grant('guest', 'read,write,execute', 'universe')
+    box.schema.user.grant('U','read,write,execute,create,drop','universe')
 
-**Example #2**
+**Examples for granting privileges for specific operations**
+
+In these examples the object's creator grants precisely
+the minimal privileges necessary for particular operations,
+to user 'U'.
+
+.. code-block:: lua_tarantool
+
+    -- So that 'U' can create spaces:
+      box.schema.user.grant('U','write', 'space', '_schema')
+      box.schema.user.grant('U','read,write', 'space', '_space')
+    -- So that 'U' can  create indexes (assuming 'U' is the owner of the space)
+      box.schema.user.grant('U','read', 'space', '_space')
+      box.schema.user.grant('U','read,write', 'space', '_index')
+    -- So that 'U' can create users or roles:
+      box.schema.user.grant('U','read,write', 'space', '_user')
+      box.schema.user.grant('U','read,write','space', '_priv')
+    -- So that 'U' can create sequences:
+      box.schema.user.grant('U','read,write','space','_sequence')
+    -- So that 'U' can create functions:
+      box.schema.user.grant('U','read,write','space','_func')
+    -- So that 'U' can grant access on objects that 'U' created
+      box.schema.user.grant('U','read','space','_user')
+    -- So that 'U' can select or get from a space named 'T'
+      box.schema.user.grant('U','read','space','T')
+    -- So that 'U' can update or insert or delete or truncate a space named 'T'
+      box.schema.user.grant('U','write','space','T')
+    -- So that 'U' can execute a function named 'F'
+      box.schema.user.grant('U','execute','function','F')
+    -- So that 'U' can use the "S:next()" function with a sequence named S
+      box.schema.user.grant('U','read,write','sequence','S')
+    -- So that 'U' can use the "S:set()" or "S:reset() function with a sequence named S
+      box.schema.user.grant('U','write','sequence','S')
+
+**Example for creating users and objects then granting privileges**
 
 Here we create a Lua function that will be executed under the user id of its
 creator, even if called by another user.
