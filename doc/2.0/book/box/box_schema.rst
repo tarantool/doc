@@ -128,6 +128,38 @@ Below is a list of all ``box.schema`` functions.
         +---------------+----------------------------------------------------+---------+---------------------+
         | Name          | Effect                                             | Type    | Default             |
         +===============+====================================================+=========+=====================+
+        | engine        | 'memtx' or 'vinyl'                                 | string  | 'memtx'             |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | field_count   | fixed count of :ref:`fields <index-box_tuple>`:    | number  | 0 i.e. not fixed    |
+        |               | for example if                                     |         |                     |
+        |               | field_count=5, it is illegal                       |         |                     |
+        |               | to insert a tuple with fewer                       |         |                     |
+        |               | than or more than 5 fields                         |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | format        | field names and types:                             | table   | (blank)             |
+        |               | See the illustrations of format clauses in the     |         |                     |
+        |               | :ref:`space_object:format() <box_space-format>`    |         |                     |
+        |               | description and in the                             |         |                     |
+        |               | :ref:`box.space._space <box_space-space>`          |         |                     |
+        |               | example. Optional and usually not specified.       |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | id            | unique identifier:                                 | number  | last space's id, +1 |
+        |               | users can refer to spaces with                     |         |                     |
+        |               | the id instead of the name                         |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | if_not_exists | create space only if a space                       | boolean | false               |
+        |               | with the same name does not                        |         |                     |
+        |               | exist already, otherwise do                        |         |                     |
+        |               | nothing but do not cause an                        |         |                     |
+        |               | error                                              |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | is_local      | space contents are                                 | boolean | false               |
+        |               | :ref:`replication-local <replication-local>`:      |         |                     |
+        |               | changes are stored in the                          |         |                     |
+        |               | :ref:`write-ahead log <internals-wal>`             |         |                     |
+        |               | of the local node but there is no                  |         |                     |
+        |               | :ref:`replication <replication>`.                  |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
         | temporary     | space contents are temporary:                      | boolean | false               |
         |               | changes are not stored in the                      |         |                     |
         |               | :ref:`write-ahead log <internals-wal>`             |         |                     |
@@ -136,35 +168,10 @@ Below is a list of all ``box.schema`` functions.
         |               | Note re storage engine: vinyl                      |         |                     |
         |               | does not support temporary spaces.                 |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
-        | id            | unique identifier:                                 | number  | last space's id, +1 |
-        |               | users can refer to spaces with                     |         |                     |
-        |               | the id instead of the name                         |         |                     |
-        +---------------+----------------------------------------------------+---------+---------------------+
-        | field_count   | fixed count of :ref:`fields <index-box_tuple>`:    | number  | 0 i.e. not fixed    |
-        |               | for example if                                     |         |                     |
-        |               | field_count=5, it is illegal                       |         |                     |
-        |               | to insert a tuple with fewer                       |         |                     |
-        |               | than or more than 5 fields                         |         |                     |
-        +---------------+----------------------------------------------------+---------+---------------------+
-        | if_not_exists | create space only if a space                       | boolean | false               |
-        |               | with the same name does not                        |         |                     |
-        |               | exist already, otherwise do                        |         |                     |
-        |               | nothing but do not cause an                        |         |                     |
-        |               | error                                              |         |                     |
-        +---------------+----------------------------------------------------+---------+---------------------+
-        | engine        | 'memtx' or 'vinyl'                                 | string  | 'memtx'             |
-        +---------------+----------------------------------------------------+---------+---------------------+
         | user          | name of the user who is considered to be           | string  | current user's name |
         |               | the space's                                        |         |                     |
         |               | :ref:`owner <authentication-owners_privileges>`    |         |                     |
         |               | for authorization purposes                         |         |                     |
-        +---------------+----------------------------------------------------+---------+---------------------+
-        | format        | field names and types:                             | table   | (blank)             |
-        |               | See the illustrations of format clauses in the     |         |                     |
-        |               | :ref:`space_object:format() <box_space-format>`    |         |                     |
-        |               | description and in the                             |         |                     |
-        |               | :ref:`box.space._space <box_space-space>`          |         |                     |
-        |               | example. Optional and usually not specified.       |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
 
     There are three :ref:`syntax variations <app_server-object_reference>`
@@ -680,6 +687,9 @@ Sequences
 An introduction to sequences is in the :ref:`Sequences <index-box_sequence>`
 section of the "Data model" chapter.
 Here are the details for each function and option.
+
+All functions related to sequences require appropriate
+:ref:`privileges <authentication-owners_privileges>`.
 
 .. _box_schema-sequence_create:
 

@@ -12,8 +12,8 @@ If any of a replica's .xlog/.snap/.run files are corrupted or deleted, you can
 
 2. Delete the replica's record from the following locations:
 
-   a. ``replication`` parameter at all running instances in the replica set.
-   b. ``box.space._cluster`` on the master instance.
+   a. the ``replication`` parameter at all running instances in the replica set.
+   b. the ``box.space._cluster`` tuple on the master instance.
 
    See section :ref:`Removing instances <replication-remove_instances>` for
    details.

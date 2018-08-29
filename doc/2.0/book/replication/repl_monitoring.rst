@@ -5,7 +5,7 @@ Monitoring a replica set
 ================================================================================
 
 To learn what instances belong in the replica set, and obtain statistics for all
-these instances, use :ref:`box.info.replication <box_info_replication>` request:
+these instances, issue a :ref:`box.info.replication <box_info_replication>` request:
 
 .. code-block:: tarantoolsession
 
@@ -57,12 +57,12 @@ The primary indicators of replication health are:
   the instance received the last event from a master.
 
   A replica sends heartbeat messages to the master every second, and the master
-  is programmed to reconnect automatically if it doesn’t see heartbeat messages
-  more often than :ref:`replication_timeout <cfg_replication-replication_timeout>`
+  is programmed to reconnect automatically if it does not see heartbeat messages
+  within :ref:`replication_timeout <cfg_replication-replication_timeout>`
   seconds.
 
   Therefore, in a healthy replication setup, ``idle`` should never exceed
-  ``replication_timeout``: if it does, either your replication is lagging
+  ``replication_timeout``: if it does, either the replication is lagging
   seriously behind, because the master is running ahead of the replica, or the
   network link between the instances is down.
 
@@ -71,8 +71,8 @@ The primary indicators of replication health are:
   local time at another master recorded when the event was written to the
   :ref:`write ahead log <internals-wal>` on that master.
 
-  Since ``lag`` calculation uses operating system clock from two different
-  machines, don’t be surprised if it’s negative: a time drift may lead to the
+  Since the ``lag`` calculation uses the operating system clocks from two different
+  machines, do not be surprised if it’s negative: a time drift may lead to the
   remote master clock being consistently behind the local instance's clock.
 
-  For multi-master configurations, this is the maximal lag.
+  For multi-master configurations, ``lag`` is the maximal lag.

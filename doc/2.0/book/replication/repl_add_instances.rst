@@ -35,11 +35,11 @@ analog of the instance file that we created for the first replica in that set:
       print('box.once executed on replica #2')
    end)
 
-Here we add replica #2 URI to :ref:`replication <cfg_replication-replication>`
+Here we add the URI of replica #2 to the :ref:`replication <cfg_replication-replication>`
 parameter, so now it contains three URIs.
 
 After we launch the new replica instance, it gets connected to the master
-instance and retrieves the master's write ahead log and snapshot files:
+instance and retrieves the master's write-ahead-log and snapshot files:
 
 .. code-block:: console
 
@@ -60,11 +60,11 @@ instance and retrieves the master's write ahead log and snapshot files:
    2017-06-14 14:54:33.935 [46945] main/101/replica2.lua I> set 'read_only' configuration option to true
    2017-06-14 14:54:33.936 [46945] main C> entering the event loop
 
-Since we're adding a read-only instance, there is no need to dynamically
-update ``replication`` parameter on the other running instances. This update
+Since we are adding a read-only instance, there is no need to dynamically
+update the ``replication`` parameter on the other running instances. This update
 would be required if we :ref:`added a master instance <replication-add_master>`.
 
-However, we recommend to specify replica #3 URI in all instance files of the
+However, we recommend specifying the URI of replica #3 in all instance files of the
 replica set. This will keep all the files consistent with each other and with
 the current replication topology, and so will help to avoid configuration errors
 in case of further reconfigurations and replica set restart.
@@ -102,14 +102,14 @@ instances in that set:
 
 Here we make the following changes:
 
-* Add master#3 URI to :ref:`replication <cfg_replication-replication>`
+* Add the URI of master #3 to the :ref:`replication <cfg_replication-replication>`
   parameter.
 * Temporarily specify :ref:`read_only=true <cfg_basic-read_only>` to disable
   data-change operations on the instance. After launch, master #3 will act as a
   replica until it retrieves all data from the other masters in the replica set.
 
-After we launch the third master instance, it gets connected to the other master
-instances and retrieves their write ahead logs and snapshot files:
+After we launch master #3, it gets connected to the other master
+instances and retrieves their write-ahead-log and snapshot files:
 
 .. code-block:: console
 
@@ -134,7 +134,7 @@ instances and retrieves their write ahead logs and snapshot files:
    2017-06-14 17:10:00.565 [47121] main C> entering the event loop
    2017-06-14 17:10:00.565 [47121] main/104/applier/replicator@192.168.0.10 I> authenticated
 
-Next, we add master#3 URI to ``replication`` parameter on the existing two
+Next, we add the URI of master #3 to the ``replication`` parameter on the existing two
 masters. Replication-related parameters are dynamic, so we only need to make a
 ``box.cfg{}`` request on each of the running instances:
 
@@ -158,7 +158,7 @@ read-only mode for this instance:
    ---
    ...
 
-We also recommend to specify master #3 URI in all instance files in order to
+We also recommend specifying the URI of master #3 in all instance files in order to
 keep all the files consistent with each other and with the current replication topology.
 
 .. _replication-orphan_status:

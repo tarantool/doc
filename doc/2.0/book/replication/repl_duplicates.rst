@@ -4,9 +4,9 @@
 Preventing duplicate actions
 ================================================================================
 
-Tarantool guarantees that every update is applied only once at every replica.
-However, due to asynchronous nature of the replication, the order of updates is
-not guaranteed. Further we analyse this problem in more details, provide
+Tarantool guarantees that every update is applied only once on every replica.
+However, due to the asynchronous nature of replication, the order of updates is
+not guaranteed. We now analyze this problem with more details, provide
 examples of replication going out of sync, and suggest solutions.
 
 .. _replication-replication_stops:
@@ -16,7 +16,7 @@ Replication stops
 --------------------------------------------------------------------------------
 
 In a replica set of two masters, suppose master #1 tries to do something that
-master #2 has already done. For example, try to simultaneously insert a tuple
+master #2 has already done. For example, try to insert a tuple
 with the same unique key:
 
 .. code-block:: tarantoolsession
@@ -45,7 +45,7 @@ configuration parameter has its default recommended value, ``false``.)
     2017-06-26 21:17:03.234 [30445] relay/[::ffff:100.96.166.178]/101/main I> the replica has closed its socket, exiting
     2017-06-26 21:17:03.234 [30445] relay/[::ffff:100.96.166.178]/101/main C> exiting the relay loop
 
-If we check replication statuses with ``box.info``, we'll see that replication
+If we check replication statuses with ``box.info``, we will see that replication
 at master #1 is stopped (``1.upstream.status = stopped``). Additionally, no data
 is replicated from that master (section ``1.downstream`` is missing in the
 report), because the downstream has encountered the same error:
@@ -105,7 +105,7 @@ When replication is later manually resumed:
     tarantool> box.cfg{replication={}}
     tarantool> box.cfg{replication=original_value}
 
-... the faulty row in the write ahead log files is skipped.
+... the faulty row in the write-ahead-log files is skipped.
 
 .. _replication-runs_out_of_sync:
 
@@ -120,7 +120,7 @@ operation:
 
     tarantool> box.space.tester:upsert({1}, {{'=', 2, box.info.uuid}})
 
-When we get this operation applied on both instances in the replica set:
+When this operation is applied on both instances in the replica set:
 
 .. code-block:: tarantoolsession
 
@@ -131,9 +131,9 @@ When we get this operation applied on both instances in the replica set:
 
 ... we can have the following results, depending on the order of execution:
 
-* each master’s row contains the uuid from master #1,
-* each master’s row contains the uuid from master #2,
-* master #1 has the uuid of master #2, and vice versa.
+* each master’s row contains the UUID from master #1,
+* each master’s row contains the UUID from master #2,
+* master #1 has the UUID of master #2, and vice versa.
 
 .. _replication-commutative_changes:
 
@@ -141,10 +141,10 @@ When we get this operation applied on both instances in the replica set:
 Commutative changes
 --------------------------------------------------------------------------------
 
-The cases described in previous paragraphs represent examples of
-**non-commutative** operations, i.e. operations, which result depends on the
+The cases described in the previous paragraphs represent examples of
+**non-commutative** operations, i.e. operations whose result depends on the
 execution order. On the contrary, for **commutative operations**, the
-execution order doesn’t matter.
+execution order does not matter.
 
 Consider for example the following command:
 

@@ -341,7 +341,7 @@ with Tarantool indexes.
 
 But if you want the ordering that you see in phone books and dictionaries,
 then you need Tarantool's **optional collations** -- ``unicode`` and
-``unicode_ci`` -- that allow for ``'A' < 'a' < 'B'`` and ``'A' = 'a' < 'B'``
+``unicode_ci`` -- that allow for ``'a' < 'A' < 'B'`` and ``'a' = 'A' < 'B'``
 respectively.
 
 Optional collations use the ordering according to the
@@ -351,9 +351,8 @@ and the rules described in
 The only difference between the two collations is about
 `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:
 
-* ``unicode`` collation observes four weight levels, from L1 to L4,
-* ``unicode_ci`` collation observes only L1 weights, the ``ci`` suffix meaning
-  "`case-insensitive <https://www.unicode.org/reports/tr35/tr35-collation.html#Case_Parameters>`_".
+* ``unicode`` collation observes all weights, from L1 to Ln (identical),
+* ``unicode_ci`` collation observes only L1 weights, so for example 'a' = 'A' = 'á' = 'Á'.
 
 As an example, let's take some Russian words:
 

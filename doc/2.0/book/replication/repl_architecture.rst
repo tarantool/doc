@@ -36,6 +36,12 @@ temporary spaces is stored in non-temporary
 system spaces, such as :ref:`box.space._space <box_space-space>`. Data change
 operations on temporary spaces are not written to the WAL and are not replicated.
 
+.. _replication-local:
+
+Data change operations on **replication-local** spaces
+(spaces :ref:`created <box_schema-space_create>` with is_local = true)
+are written to the WAL but are not replicated.
+
 To create a valid initial state, to which WAL changes can be applied, every
 instance of a replica set requires a start set of
 :ref:`checkpoint files <index-box_persistence>`, such as .snap files for memtx
@@ -44,9 +50,9 @@ existing master and automatically downloads the initial state from it. This is
 called an **initial join**.
 
 When an entire replica set is bootstrapped for the first time, there is no
-master which could provide the initial checkpoint. In such case, replicas
-connect to each other, elect a master, which then creates the starting set of
-checkpoint files, and distributes it across all other replicas. This is called
+master which could provide the initial checkpoint. In such a case, replicas
+connect to each other and elect a master, which then creates the starting set of
+checkpoint files, and distributes it to all the other replicas. This is called
 an **automatic bootstrap** of a replica set.
 
 When a replica contacts a master (there can be many masters) for the first time,
@@ -55,7 +61,7 @@ contact a master in the same replica set. Once connected to the master, the
 replica requests all changes that happened after the latest local LSN (there
 can be many LSNs -- each master has its own LSN).
 
-Each replica set is identified by a globally unique identifier, called
+Each replica set is identified by a globally unique identifier, called the
 **replica set UUID**. The identifier is created by the master which creates the
 very first checkpoint, and is part of the checkpoint file. It is stored in
 system space :ref:`box.space._schema <box_space-schema>`. For example:
@@ -69,12 +75,12 @@ system space :ref:`box.space._schema <box_space-schema>`. For example:
 
 Additionally, each instance in a replica set is assigned its own UUID, when it
 joins the replica set. It is called an **instance UUID** and is a globally unique
-identifier. This UUID is used to ensure that instances do not join a different
+identifier. The instance UUID is checked to ensure that instances do not join a different
 replica set, e.g. because of a configuration error. A unique instance identifier
 is also necessary to apply rows originating from different masters only once,
-that is, implement multi-master replication. This is why each row in the write
+that is, to implement multi-master replication. This is why each row in the write
 ahead log, in addition to its log sequence number, stores the instance identifier
-of the instance on which it was created. But using UUID as such an identifier
+of the instance on which it was created. But using a UUID as such an identifier
 would take too much space in the write ahead log, thus a shorter integer number
 is assigned to the instance when it joins a replica set. This number is then
 used to refer to the instance in the write ahead log. It is called
@@ -91,7 +97,7 @@ used to refer to the instance in the write ahead log. It is called
 Here the instance ID is ``1`` (unique within the replica set), and the instance
 UUID is ``88580b5c-4474-43ab-bd2b-2409a9af80d2`` (globally unique).
 
-Using shorter numeric identifiers is also handy to track the state of the entire
+Using instance IDs is also handy for tracking the state of the entire
 replica set. For example, :ref:`box.info.vclock <box_introspection-box_info>`
 describes the state of replication in regard to each connected peer.
 
@@ -102,8 +108,8 @@ describes the state of replication in regard to each connected peer.
     - {1: 827, 2: 584}
     ...
 
-Here ``vclock`` contains log sequence numbers (827 and 584) for instances with short
-identifiers 1 and 2.
+Here ``vclock`` contains log sequence numbers (827 and 584) for instances with
+instance IDs 1 and 2.
 
 Starting in Tarantool 1.7.7, it is possible for administrators to assign
 the instance UUID and the replica set UUID values, rather than let the system
@@ -119,15 +125,15 @@ Replication setup
 To enable replication, you need to specify two parameters in a ``box.cfg{}``
 request:
 
-* :ref:`replication <cfg_replication-replication>` parameter which defines the
+* :ref:`replication <cfg_replication-replication>` which defines the
   replication source(s), and
-* :ref:`read_only <cfg_basic-read_only>` parameter which is ``true`` for a
+* :ref:`read_only <cfg_basic-read_only>` which is ``true`` for a
   replica and ``false`` for a master.
 
 Both these parameters are "dynamic". This allows a replica to become a master
 and vice versa on the fly with the help of a ``box.cfg{}`` request.
 
-Further we're giving a detailed example of
+Later we will give a detailed example of
 :ref:`bootstrapping a replica set <replication-bootstrap>`.
 
 .. _replication-roles:
@@ -136,9 +142,9 @@ Further we're giving a detailed example of
 Replication roles: master and replica
 --------------------------------------------------------------------------------
 
-Replication role (master or replica) is set in
+The replication role (master or replica) is set by the
 :ref:`read_only <cfg_basic-read_only>` configuration parameter. The recommended
-role for **all-but-one** instances in a replica set is "read-only" (replica).
+role is "read_only" (replica) for all but one instance in the replica set.
 
 In a master-replica configuration, every change that happens on the master will
 be visible on the replicas, but not vice versa.
@@ -169,12 +175,12 @@ that Tarantool implements.
 Tarantool multi-master replication guarantees that each change on each master is
 propagated to all instances and is applied only once. Changes from the same
 instance are applied in the same order as on the originating instance. Changes
-from different instances, however, can mix and apply in a different order on
+from different instances, however, can be mixed and applied in a different order on
 different instances. This may lead to replication going out of sync in certain
 cases.
 
 For example, assuming the database is only appended to (i.e. it contains only
-insertions), it is safe to set each instance to a master. If there are also
+insertions), a multi-master configuration is safe. If there are also
 deletions, but it is not mission critical that deletion happens in the same
 order on all replicas (e.g. the DELETE is used to prune expired data),
 a master-master configuration is also safe.
@@ -195,7 +201,7 @@ conflict-free replicated data types
 Replication topologies: cascade, ring and full mesh
 --------------------------------------------------------------------------------
 
-Replication topology is set in :ref:`replication <cfg_replication-replication>`
+Replication topology is set by the :ref:`replication <cfg_replication-replication>`
 configuration parameter. The recommended topology is a **full mesh**, because it
 makes potential failover easy.
 
@@ -208,8 +214,8 @@ replica on a replica. Tarantool does not recommend such setup.
 The problem with a cascading replica set is that some instances have no
 connection to other instances and may not receive changes from them. One
 essential change that must be propagated across all instances in a replica set
-is an entry in ``box.space._cluster`` system space with replica set UUID.
-Without knowing a replica set UUID, a master refuses to accept connections from
+is an entry in ``box.space._cluster`` system space with the replica set UUID.
+Without knowing the replica set UUID, a master refuses to accept connections from
 such instances when replication topology changes. Here is how this can happen:
 
 .. image:: cascade-problem-1.svg
@@ -244,7 +250,7 @@ A stock recommendation for a master-master replication topology, however, is a
 You then can decide where to locate instances of the mesh -- within the same
 data center, or spread across a few data centers. Tarantool will automatically
 ensure that each row is applied only once on each instance. To remove a degraded
-instance from a mesh, simply change ``replication`` configuration parameter.
+instance from a mesh, simply change the ``replication`` configuration parameter.
 
 This ensures full cluster availability in case of a local failure, e.g. one of
 the instances failing in one of the data centers, as well as in case of an
