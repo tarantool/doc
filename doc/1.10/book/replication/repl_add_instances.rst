@@ -108,7 +108,7 @@ Here we make the following changes:
   data-change operations on the instance. After launch, master #3 will act as a
   replica until it retrieves all data from the other masters in the replica set.
 
-After we launch mastere #3, it gets connected to the other master
+After we launch master #3, it gets connected to the other master
 instances and retrieves their write-ahead-log and snapshot files:
 
 .. code-block:: console
