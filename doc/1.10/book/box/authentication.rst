@@ -62,7 +62,8 @@ The current user can be changed:
 Passwords
 --------------------------------------------------------------------------------
 
-Each user (except 'guest') may have a **password**. The password is any alphanumeric string.
+Each user (except 'guest') may have a **password**.
+The password is any alphanumeric string.
 
 Tarantool passwords are stored in the :ref:`_user <box_space-user>`
 system space with a
@@ -104,81 +105,113 @@ for getting a hash-password.
 Owners and privileges
 --------------------------------------------------------------------------------
 
-In Tarantool, all objects are organized into a hierarchy of ownership.
-Ordinarily the **owner** of every object is its creator. The creator of the initial database
-state (we call it ‘universe’) --  including the database itself,
-the system spaces, the users -- is ‘admin’.
+Tarantool has one database. It may be called "box.schema" or "universe".
+The database contains database objects, including
+spaces, indexes, users, roles, sequences, and functions.
 
-An object's owner can share some rights on the object by **granting privileges**
-to other users. The following privileges can be granted:
+The **owner** of a database object is the user who created it.
+The owner of the database itself, and the owner of objects that
+are created initially -- the system spaces and the default users --
+is 'admin'.
 
-* Read, e.g. allow select from a space
-* Write, e.g. allow update on a space
-* Execute, e.g. allow call of a function
-* Create, e.g. allow
+Owners automatically have **privileges** for what they create.
+They can share these privileges with other users or with roles,
+using **box.user.grant** requests.
+The following privileges can be granted:
+
+* 'read', e.g. allow select from a space
+* 'write', e.g. allow update on a space
+* 'execute', e.g. allow call of a function
+* 'create', e.g. allow
   :ref:`box.schema.space.create <box_schema-space_create>`
   (currently this can be granted but has no effect)
-* Alter, e.g. allow
+* 'alter', e.g. allow
   :ref:`box.space.x.index.y:alter <box_index-alter>`
   (currently this can be granted but has no effect)
-* Drop, e.g. allow
+* 'drop', e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
-* Usage, e.g. whether any action is allowable regardless of other
+* 'usage', e.g. whether any action is allowable regardless of other
   privileges (sometimes revoking 'usage' is a convenient way to
   block a user temporarily without dropping the user)
-* Session, e.g. whether the user can 'connect'.
+* 'session', e.g. whether the user can 'connect'.
 
-This is how the privilege system works. To be able to create
-objects, a user needs to have write access to Tarantool's system spaces.
-The 'admin' user, who is at the top of the hierarchy and who is the ultimate
-source of privileges, shares write access to a system space
-(e.g. :ref:`_space <box_space-space>`) with some users. Now the users can
-insert data into the system space (e.g. creating new spaces) and themselves
-become creators/definers of new objects. For the objects they created, the users
-can in turn share privileges with other users.
+To **create** objects, users need at least 'read' and 'write' privileges
+on the system space with a similar name (for example, on the
+:ref:`_space <box_space-space>` if the user needs to create spaces).
 
-This is why only an object's owner can drop the object, but other
-ordinary users cannot. However, 'admin' can drop any object or delete any
-other user, because 'admin' is the creator and ultimate owner of all
-objects and users.
+To **access** objects, users need an appropriate privilege
+on the object (for example, the 'execute' privilege on function F
+if the users need to execute function F). See below some
+:ref:`examples for granting specific privileges <authentication-owners_privileges-examples-specific>`
+that a grantor -- that is, 'admin' or the object creator -- can make.
 
-All
-:ref:`grant() <box_schema-user_grant>`/:ref:`revoke() <box_schema-user_revoke>`
-requests have up to four arguments.
+To **drop** an object, users must be the object's creator or be 'admin'.
+As the owner of the entire database, 'admin' can drop any object including
+other users.
 
-* The first argument is the name of the user to whom privileges are being
-  granted or revoked.
+To grant privileges to a user, the object owner says :ref:`grant() <box_schema-user_grant>`.
+To revoke privileges from a user, the object owner says :ref:`revoke() <box_schema-user_revoke>`.
+In either case, there are three or four parameters:
 
-* The second argument is a list of one or more privileges.
+.. code-block:: lua
 
-* The third argument is the object type on which the privilege is granted,
-  or the word 'universe'. Possible object types are 'space', 'function',
-  'sequence' (not 'user' or 'role'). For 'usage' and 'session' privileges,
-  also called "system privileges", the third argument must be 'universe'.
+    (user-name, privilege, object-type [, object-name])
 
-* The fourth argument is the name of the object.
-  If the third argument is 'universe' then the fourth argument is not
-  specified because there is only one 'universe'.
-  If the third argument is 'space' or 'function' or 'sequence' then
-  the fourth argument is optional -- omit it to mean
-  "all" spaces or functions or sequences.
+* ``user-name`` is the user (or role) that will receive or lose the privilege;
+* ``privilege`` is any of 'read', 'write', 'execute', 'create', 'alter', 'drop',
+  'usage', or 'session' (or a comma-separated list);
+* ``object-type`` is any of 'space', 'index',
+  'sequence', 'function', role-name, or 'universe';
+* ``object-name`` is what the privilege is for
+  (omitted if ``object-type`` is 'universe').
 
-**Example #1**
+**Example for granting many privileges at once**
 
-Here we say:
+In this example user 'admin' grants many privileges on
+many objects to user 'U', with a single request.
 
-* user 'guest' can do common operations on any object,
-* user 'sally' can execute any function,
-* user 'yoshi' can no longer read space '_space'.
+.. code-block:: lua
 
-.. code-block:: lua_tarantool
+    box.schema.user.grant('U','read,write,execute,create,drop','universe')
 
-    box.schema.user.grant ('guest', 'read,write,execute', 'universe')
-    box.schema.user.grant ('sally', 'execute',            'function')
-    box.schema.user.revoke('yoshi', 'read',               'space',   '_space')
+.. _authentication-owners_privileges-examples-specific:
 
-**Example #2**
+**Examples for granting privileges for specific operations**
+
+In these examples the object's creator grants precisely
+the minimal privileges necessary for particular operations,
+to user 'U'.
+
+.. code-block:: lua
+
+    -- So that 'U' can create spaces:
+      box.schema.user.grant('U','write', 'space', '_schema')
+      box.schema.user.grant('U','read,write', 'space', '_space')
+    -- So that 'U' can  create indexes (assuming 'U' is the owner of the space)
+      box.schema.user.grant('U','read', 'space', '_space')
+      box.schema.user.grant('U','read,write', 'space', '_index')
+    -- So that 'U' can create users or roles:
+      box.schema.user.grant('U','read,write', 'space', '_user')
+      box.schema.user.grant('U','read,write','space', '_priv')
+    -- So that 'U' can create sequences:
+      box.schema.user.grant('U','read,write','space','_sequence')
+    -- So that 'U' can create functions:
+      box.schema.user.grant('U','read,write','space','_func')
+    -- So that 'U' can grant access on objects that 'U' created
+      box.schema.user.grant('U','read','space','_user')
+    -- So that 'U' can select or get from a space named 'T'
+      box.schema.user.grant('U','read','space','T')
+    -- So that 'U' can update or insert or delete or truncate a space named 'T'
+      box.schema.user.grant('U','write','space','T')
+    -- So that 'U' can execute a function named 'F'
+      box.schema.user.grant('U','execute','function','F')
+    -- So that 'U' can use the "S:next()" function with a sequence named S
+      box.schema.user.grant('U','read,write','sequence','S')
+    -- So that 'U' can use the "S:set()" or "S:reset() function with a sequence named S
+      box.schema.user.grant('U','write','sequence','S')
+
+**Example for creating users and objects then granting privileges**
 
 Here we create a Lua function that will be executed under the user id of its
 creator, even if called by another user.
@@ -188,35 +221,35 @@ full access to them. Then we define a function ('read_and_modify') and the
 no-password user becomes this function's creator. Finally, we grant another user
 ('public_user') access to execute Lua functions created by the no-password user.
 
-.. code-block:: lua_tarantool
+.. code-block:: lua
 
-   box.schema.space.create('u')
-   box.schema.space.create('i')
-   box.space.u:create_index('pk')
-   box.space.i:create_index('pk')
+    box.schema.space.create('u')
+    box.schema.space.create('i')
+    box.space.u:create_index('pk')
+    box.space.i:create_index('pk')
 
-   box.schema.user.create('internal')
+    box.schema.user.create('internal')
 
-   box.schema.user.grant('internal', 'read,write', 'space', 'u')
-   box.schema.user.grant('internal', 'read,write', 'space', 'i')
-   box.schema.user.grant('internal', 'read,write', 'space', '_func')
+    box.schema.user.grant('internal', 'read,write', 'space', 'u')
+    box.schema.user.grant('internal', 'read,write', 'space', 'i')
+    box.schema.user.grant('internal', 'read,write', 'space', '_func')
 
-   function read_and_modify(key)
-     local u = box.space.u
-     local i = box.space.i
-     local fiber = require('fiber')
-     local t = u:get{key}
-     if t ~= nil then
-	      u:put{key, box.session.uid()}
-	      i:put{key, fiber.time()}
-     end
-   end
+    function read_and_modify(key)
+      local u = box.space.u
+      local i = box.space.i
+      local fiber = require('fiber')
+      local t = u:get{key}
+      if t ~= nil then
+        u:put{key, box.session.uid()}
+        i:put{key, fiber.time()}
+      end
+    end
 
-   box.session.su('internal')
-   box.schema.func.create('read_and_modify', {setuid= true})
-   box.session.su('admin')
-   box.schema.user.create('public_user', {password = 'secret'})
-   box.schema.user.grant('public_user', 'execute', 'function', 'read_and_modify')
+    box.session.su('internal')
+    box.schema.func.create('read_and_modify', {setuid= true})
+    box.session.su('admin')
+    box.schema.user.create('public_user', {password = 'secret'})
+    box.schema.user.grant('public_user', 'execute', 'function', 'read_and_modify')
 
 .. _authentication-roles:
 
