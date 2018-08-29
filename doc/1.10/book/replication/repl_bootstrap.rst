@@ -79,8 +79,8 @@ change privileges for this role as required.
 
 In the replica's instance file, we set the read-only parameter to "true", and
 say ``print('box.once executed on replica')`` so that later it will be visible
-that box.once() was not executed more than once. Otherwise the replica's instance file is
-identical to the master's instance file.
+that ``box.once()`` was not executed more than once.
+Otherwise the replica's instance file is identical to the master's instance file.
 
 .. code-block:: lua
 
