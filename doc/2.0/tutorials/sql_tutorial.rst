@@ -442,14 +442,12 @@ the ALTER TABLE statement.
     ALTER TABLE table1 ADD CONSTRAINT c
         FOREIGN KEY (column1) REFERENCES table5 (column1);
 
-Result:
-
-* The ``ALTER TABLE`` statement fails the first time because
-  there is a row in ``table1``, and ADD CONSTRAINT requires
-  that the table be empty. But after we delete that row,
-  the ``ALTER TABLE`` statement succeeds the second time.
-  Thus we have set up a chain of references, from ``table1``
-  to ``table5`` and from ``table5`` to ``table2``.
+Result: the ``ALTER TABLE`` statement fails the first time because
+there is a row in ``table1``, and ADD CONSTRAINT requires
+that the table be empty. But after we delete that row,
+the ``ALTER TABLE`` statement succeeds the second time.
+Thus we have set up a chain of references, from ``table1``
+to ``table5`` and from ``table5`` to ``table2``.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Triggers
