@@ -42,7 +42,7 @@
     (``stderr``). If ``log`` is specified, Tarantool sends the log to a file,
     or to a pipe, or to the system logger.
 
-    Example setting:
+    Example setting for sending the log to a file:
 
     .. code-block:: lua
 
@@ -54,7 +54,7 @@
     directory. If the ``log`` string has no prefix or has the prefix "file:",
     then the string is interpreted as a file path.
 
-    Example setting:
+    Example setting for sending the log to a pipe:
 
     .. code-block:: lua
 
@@ -68,7 +68,7 @@
     then the string is interpreted as a Unix
     `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
-    Example setting:
+    Example setting for sending the log to syslog:
 
     .. code-block:: lua
 
@@ -77,23 +77,30 @@
         box.cfg{log = 'syslog:facility=user'}
         -- or
         box.cfg{log = 'syslog:identity=tarantool,facility=user'}
+        -- or
+        box.cfg{log = 'syslog:server=unix:/dev/log'}
 
-    If the ``log`` string has the prefix "syslog:", then the string is
+    If the ``log`` string begins with "syslog:", then it is
     interpreted as a message for the
     `syslogd <http://www.rfc-base.org/txt/rfc-5424.txt>`_ program which normally
-    is running in the background of any Unix-like platform. One can optionally
-    specify an ``identity``, a ``facility``, or both. The ``identity`` is an
-    arbitrary string, default value = ``tarantool``, which will be placed at
-    the beginning of all messages. The facility is an abbreviation for the
-    name of one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_
-    facilities, default value = ``user``, which
-    tell syslogd where the message should go.
+    is running in the background of any Unix-like platform.
+    The setting can be 'syslog:', 'syslog:facility=...', 'syslog:identity=...',
+    'syslog:server=...', or a combination.
 
-    Possible values for ``facility`` are: auth, authpriv, cron, daemon, ftp,
+    The ``syslog:identity`` setting is an arbitrary string which will be placed at
+    the beginning of all messages. The default value is: tarantool.
+
+    The ``syslog:facility`` setting is currently ignored but will be used in the future.
+    The value must be one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_
+    keywords, which tell syslogd where the message should go.
+    The possible values are: auth, authpriv, cron, daemon, ftp,
     kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2,
-    local3, local4, local5, local6, local7.
+    local3, local4, local5, local6, local7. The default value is: user.
 
-    The ``facility`` setting is currently ignored but will be used in the future.
+    The ``syslog:server`` setting is the locator for the syslog server.
+    It can be a Unix socket path beginning with "unix:", or an ipv4 port number.
+    The default socket value is: dev/log (on Linux) or /var/run/syslog (on Mac OS).
+    The default port value is: 514, the UDP port.
 
     When logging to a file, Tarantool reopens the log on `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
     When log is
