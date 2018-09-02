@@ -94,4 +94,4 @@ Limitations
 
 **Number of replicas in a replica set**
 
-    32 (``box.schema.REPLICA_MAX``).
+    32 (``vclock.VCLOCK_MAX``).
