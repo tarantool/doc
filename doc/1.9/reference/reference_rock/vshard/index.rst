@@ -420,6 +420,10 @@ of the data. The recommended value is 3 or more. The number of the ``router`` in
 is not limited, because routers are completely stateless. We recommend increasing
 the number of routers when the existing ``router`` instance becomes CPU or I/O bound.
 
+``vshard`` supports multiple ``router`` instances on a single Tarantool
+instance. Each ``router`` can be connected to any ``vshard`` cluster. Multiple
+``router`` instances can be connected to the same cluster.
+
 As the ``router`` and ``storage`` applications perform completely different sets of functions,
 they should be deployed to different Tarantool instances. Although it is technically
 possible to place the router application to every ``storage`` node, this approach is
@@ -522,8 +526,7 @@ On storages call ``vshard.storage.cfg(cfg, instance_uuid)``:
     vshard = require('vshard')
     vshard.storage.cfg(cfg, MY_UUID)
 
-
-``vshard.storage.cfg()`` automatically calls box.cfg()and configures the listen
+``vshard.storage.cfg()`` automatically calls ``box.cfg()`` and configures the listen
 port and replication parameters.
 
 See ``router.lua`` and ``storage.lua`` in the ``vshard/example`` directory for
@@ -1122,7 +1125,8 @@ Router public API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * :ref:`vshard.router.bootstrap() <router_api-bootstrap>`
-* :ref:`vshard.router.cfg(cfg, instance_uuid) <router_api-cfg>`
+* :ref:`vshard.router.cfg(cfg) <router_api-cfg>`
+* :ref:`vshard.router.new(name, cfg) <router_api-new>`
 * :ref:`vshard.router.call(bucket_id, mode(read:write), function_name, {argument_list}, {options}) <router_api-call>`
 * :ref:`vshard.router.callro(bucket_id, function_name, {argument_list}, {options}) <router_api-callro>`
 * :ref:`vshard.router.callrw(bucket_id, function_name, {argument_list}, {options}) <router_api-callrw>`
@@ -1149,9 +1153,40 @@ Router public API
 
 .. function:: vshard.router.cfg(cfg)
 
-    Configure the database and start sharding for the specified ``router`` instance.
+    Configure the database and start sharding for the specified ``router``
+    instance. The :ref:`sample configuration <vshard-config-cluster-example>`
+    is described above.
 
-    :param cfg: a ``router`` configuration
+   See the example of sample configuration
+
+    :param cfg: a configuration table
+
+.. _router_api-new:
+
+.. function:: vshard.router.new(name, cfg)
+
+    Create a new router instance.
+
+    A router created via ``vshard.router.new()`` works in the same way as
+    a static router, but requires a colon (``vshard.router:method_name(...)``)
+    before calling its methods (a static router requires a dot:
+    ``vshard.router.method_name(...)``).
+
+    A static router can be obtained via the ``vshard.router.static`` method and
+    used as it was a router created via the ``vshard.router.new()`` method.
+
+    .. NOTE::
+
+        ``box.cfg`` is shared among all the routers of a single instance.
+
+    :param name: a router instance name. It is used as a prefix in logs of
+                 the router and must be unique within the instance
+    :param cfg: a configuration table. The
+                :ref:`sample configuration <vshard-config-cluster-example>` is
+                described above.
+
+    :Return: a router instance, if created successfully; otherwise, nil and an
+             error object
 
 .. _router_api-call:
 
