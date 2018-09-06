@@ -33,8 +33,11 @@ Below is a list of all additional ``string`` functions.
     | :ref:`string.rjust()                 | Right-justify a string          |
     | <string-rjust>`                      |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`string.hex()                   | Get the hexadecimal value of a  |
-    | <string-hex>`                        | string                          |
+    | :ref:`string.hex()                   | Given a string, return          |
+    | <string-hex>`                        | hexadecimal values              |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.fromhex()               | Given hexadecimal values,       |
+    | <string-fromhex>`                    | return a string                 |
     +--------------------------------------+---------------------------------+
     | :ref:`string.startswith()            | Check if a string starts with   |
     | <string-startswith>`                 | a given substring               |
@@ -123,6 +126,31 @@ Below is a list of all additional ``string`` functions.
         tarantool> string.hex('ABC ')
         ---
         - '41424320'
+        ...
+
+.. _string-fromhex:
+
+.. function:: fromhex(hexadecimal-input-string)
+
+    Given a string containing pairs of hexadecimal digits, return a string with one byte
+    for each pair. This is the reverse of ``string.hex()``.
+    The hexadecimal-input-string must contain an even number of hexadecimal digits.
+
+    :param hexadecimal-input-string: (string) string with pairs of hexadecimal digits
+
+    :Return: string with one byte for each pair of hexadecimal digits
+    :Rtype: string
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> string = require('string')
+        ---
+        ...
+        tarantool> string.fromhex('41424320')
+        ---
+        - 'ABC '
         ...
 
 .. _string-startswith:
