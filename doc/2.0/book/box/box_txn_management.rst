@@ -149,7 +149,8 @@ Below is a list of all functions for transaction management.
 
     Define a trigger for execution when a transaction ends due to an event
     such as :ref:`box.commit <box-commit>`. The trigger function may take an iterator
-    parameter, as described in an example for this section. If the trigger execution fails and raises an
+    parameter, as described in an example for this section. The trigger function
+    should not access any database spaces. If the trigger execution fails and raises an
     error, the effect is severe and should be avoided -- use Lua's pcall() mechanism around
     code that might fail. ``box.on_commit()`` must be invoked within a transaction,
     and the trigger ceases to exist when the transaction ends.
