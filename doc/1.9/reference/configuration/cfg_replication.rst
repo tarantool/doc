@@ -72,7 +72,7 @@
 
     | Type: float
     | Default: 4
-    | Dynamic: no
+    | Dynamic: **yes**
 
 .. _cfg_replication-replication_connect_quorum:
 
@@ -122,7 +122,7 @@
 
     | Type: float
     | Default: 10
-    | Dynamic: no
+    | Dynamic: **yes**
 
 .. _cfg_replication-replicaset_uuid:
 
