@@ -87,8 +87,9 @@
     N is a number greater than or equal to zero,
     users can state that the replica only needs to connect to N masters.
 
-    This parameter is ignored during bootstrap and in case of reconfiguration.
-    For example, setting ``replication_connect_quorum = 0`` makes Tarantool
+    This parameter is ignored during bootstrap but not ignored during
+    :ref:`configuration update <replication-configuration_update>`.
+    Setting ``replication_connect_quorum = 0`` makes Tarantool
     require no immediate reconnect only in case of recovery.
     See :ref:`orphan status <replication-orphan_status>` for details.
 
@@ -132,7 +133,7 @@
     The number of seconds that a replica will wait when trying to
     sync with a master in a cluster,
     or a :ref:`quorum <cfg_replication-replication_connect_quorum>` of masters,
-    after connecting or after a change in replication configuration.
+    after connecting or during :ref:`configuration update <replication-configuration_update>`.
     This could fail indefinitely if ``replication_sync_lag`` is smaller
     than network latency, or if the replica cannot keep pace with master
     updates. If replication_sync_timeout expires, the replica

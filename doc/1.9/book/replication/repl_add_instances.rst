@@ -67,7 +67,7 @@ would be required if we :ref:`added a master instance <replication-add_master>`.
 However, we recommend to specify replica #3 URI in all instance files of the
 replica set. This will keep all the files consistent with each other and with
 the current replication topology, and so will help to avoid configuration errors
-in case of further reconfigurations and replica set restart.
+in case of further configuration updates and replica set restart.
 
 .. _replication-add_master:
 
@@ -252,27 +252,32 @@ It is being called again in order to perform recovery.
     3. Sync with all connected nodes, until the difference is not more than
        :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.
 
+
+.. _replication-configuration_update:
+
 **Situation 3: configuration update**
 
 Here ``box.cfg{}`` is not being called for the first time.
 It is being called again because some replication parameter
 or something in the replica set has changed.
 
-    1. Set status to 'orphan'.
-    2. Try to connect to all nodes from ``box.cfg.replication``
+    1. Try to connect to all nodes from ``box.cfg.replication``,
+       or to the number of nodes required by 
+       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
        within the time period specified in
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`.
 
-       * there is no 'sync';
-       * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-         is ignored;
-       * :ref:`box.cfg.replication_sync_lag <cfg_replication-replication_sync_lag>`
-         is ignored: ``box.cfg()`` returns as soon as all configured replicas
-         have been connected.
+    2. Try to 'sync' with the connected nodes,
+       within the time period specified in
+       :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`.
 
-    3. Unless connected to all nodes, abort.
+    3. If earlier steps fail, change status to 'orphan'.
+       (Attempts to sync will continue in the background and when/if they succeed
+       then 'orphan' status will end.)
 
-    4. Set status to 'running' (master) or 'follow' (replica).
+    4. If earlier steps succeed, set status to 'running' (master) or 'follow' (replica).
+
+
 
 .. _replication-server_startup:
 
