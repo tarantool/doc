@@ -14,7 +14,7 @@ Notation in diagrams
 
     0    X
     +----+
-    |    | - X bytes
+    |    | - X + 1 bytes
     +----+
      TYPE - type of MsgPack value (if it is a MsgPack object)
 
