@@ -277,7 +277,7 @@ the function invocations will look like ``sock:function_name(...)``.
         Read ``size`` bytes from a connected socket. An internal read-ahead
         buffer is used to reduce the cost of this call.
 
-        :param integer size:
+        :param integer size: maximum number of bytes to receive. See :ref:`Recommended size <socket-recommended>`.
         :return: a string of the requested length on success.
         :rtype:  string
 
@@ -388,11 +388,11 @@ the function invocations will look like ``sock:function_name(...)``.
 
     .. _socket-recvfrom:
 
-    .. method:: recvfrom(limit)
+    .. method:: recvfrom(size)
 
         Receive a message on a UDP socket.
 
-        :param integer limit:
+        :param integer size: maximum number of bytes to receive. See :ref:`Recommended size <socket-recommended>`.
         :return: message, a table containing "host", "family" and "port" fields.
         :rtype:  string, table
 
@@ -577,6 +577,31 @@ the function invocations will look like ``sock:function_name(...)``.
 
     Example: ``socket.iowait(sock:fd(), 'r', 1.11)``
 
+.. _socket-recommended:
+
+=================================================
+             Recommended size
+=================================================
+
+For ``recv`` and ``recvfrom``: use the
+optional ``size`` parameter to limit the number of bytes to
+receive. A fixed size such as 512 is often reasonable;
+a pre-calculated size that depends on context -- such as the
+message format or the state of the network -- is often better.
+For ``recvfrom``, be aware that a size greater than the
+`Maximum Transmission Unit <https://en.wikipedia.org/wiki/Maximum_transmission_unit>`_
+can cause inefficient transport.
+For Mac OS X, be aware that the the size can be tuned by
+changing sysctl net.inet.udp.maxdgram.
+
+If ``size`` is not stated: Tarantool will make an extra
+call to calculate how many bytes are necessary. This extra call
+takes time, therefore not stating ``size`` may be inefficient.
+
+If ``size`` is stated: on a UDP socket, excess bytes are discarded.
+On a TCP socket, excess bytes are not discarded and can be
+received by the next call.
+
 =================================================
                     Examples
 =================================================
@@ -649,7 +674,7 @@ computer to communicate with itself, but shows that the system works.
     ---
     - 1
     ...
-    tarantool> message = sock_1:recvfrom()
+    tarantool> message = sock_1:recvfrom(512)
     ---
     ...
     tarantool> message
@@ -717,3 +742,4 @@ Now watch what happens on the first shell.
 The strings "A", "B", "C" are printed.
 
 .. _luasocket: https://github.com/diegonehab/luasocket
+
