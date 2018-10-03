@@ -79,10 +79,13 @@ Below is a list of all ``uri`` functions.
 
 .. _uri-format:
 
-.. function:: format(URI-components-table)
+.. function:: format(URI-components-table[, include-password])
 
     :param URI-components-table: a series of name:value pairs, one for each
                                  component
+    :param include-password: boolean. If this is supplied and is ``true``, then
+                             the password component is rendered in clear text,
+                             otherwise it is omitted.
     :return: URI-string. Thus uri.format() is the reverse of uri.parse().
     :rtype: string
 

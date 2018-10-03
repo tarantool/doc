@@ -67,7 +67,7 @@ would be required if we :ref:`added a master instance <replication-add_master>`.
 However, we recommend specifying the URI of replica #3 in all instance files of the
 replica set. This will keep all the files consistent with each other and with
 the current replication topology, and so will help to avoid configuration errors
-in case of further reconfigurations and replica set restart.
+in case of further configuration updates and replica set restart.
 
 .. _replication-add_master:
 
@@ -199,25 +199,33 @@ the replica skips the "sync" state and switches to "follow" immediately.
 
 The following situations are possible.
 
+.. _replication-leader:
+
 **Situation 1: bootstrap**
 
 Here ``box.cfg{}`` is being called for the first time.
 A replica is joining but no replica set exists yet.
 
     1. Set status to 'orphan'.
-    2. Try to connect to all nodes from ``box.cfg.replication``.
+    2. Try to connect to all nodes in ``box.cfg.replication``.
+       Retrying up to 3 times in 30 seconds is possible because this is bootstrap,
+       :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
+       is overridden.
+       Trying to connect to **all** nodes in ``box.cfg.replication`` is necessary because 
+       this is bootstrap, 
+       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+       is ignored.
 
-       * up to 3 retries in 30 sec are possible
-         (:ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
-         is overridden);
-       * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-         is ignored because it’s bootstrap, so the instance tries to connect
-         to all nodes from ``box.cfg.replication``.
+    3. Abort if not connected to all nodes in ``box.cfg.replication``.
 
-    3. Unless connected to all nodes, abort.
+    X. This instance might be elected as the replica set 'leader'.
+       Criteria for electing a leader include vclock value (largest is best),
+       and whether it is read-only or read-write (read-write is best unless there is no other choice).
+       The leader is the master that other instances must join.
+       The leader is the master that executes :ref:`box_once() <box-once>` functions.
 
     4. If this instance is elected as the replica set leader,
-       (i.e. it is the master that other nodes must join), then
+       then
        perform an "automatic bootstrap":
 
        a. Set status to 'running'.
@@ -226,7 +234,7 @@ A replica is joining but no replica set exists yet.
        Otherwise this instance will be a replica joining an existing replica set,
        so:
 
-       a. Bootstrap from the leader.
+       a. Bootstrap from the leader. See examples in section :ref:`Bootstrapping a replica set <replication-bootstrap>`.
        b. In background, sync with all the other nodes in the replication set.
 
 **Situation 2: recovery**
@@ -244,24 +252,123 @@ It is being called again in order to perform recovery.
     3. Sync with all connected nodes, until the difference is not more than
        :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.
 
+
+.. _replication-configuration_update:
+
 **Situation 3: configuration update**
 
 Here ``box.cfg{}`` is not being called for the first time.
 It is being called again because some replication parameter
 or something in the replica set has changed.
 
-    1. Set status to 'orphan'.
-    2. Try to connect to all nodes from ``box.cfg.replication``
+    1. Try to connect to all nodes from ``box.cfg.replication``,
+       or to the number of nodes required by 
+       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
        within the time period specified in
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`.
 
-       * there is no 'sync';
-       * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-         is ignored;
-       * :ref:`box.cfg.replication_sync_lag <cfg_replication-replication_sync_lag>`
-         is ignored: ``box.cfg()`` returns as soon as all configured replicas
-         have been connected.
+    2. Try to 'sync' with the connected nodes,
+       within the time period specified in
+       :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`.
 
-    3. Unless connected to all nodes, abort.
+    3. If earlier steps fail, change status to 'orphan'.
+       (Attempts to sync will continue in the background and when/if they succeed
+       then 'orphan' status will end.)
 
-    4. Set status to 'running' (master) or 'follow' (replica).
+    4. If earlier steps succeed, set status to 'running' (master) or 'follow' (replica).
+
+
+
+.. _replication-server_startup:
+
+--------------------------------------------------------------------------------
+Server startup with replication
+--------------------------------------------------------------------------------
+
+In addition to the recovery process described in the
+section :ref:`Recovery process <internals-recovery_process>`, the server must take
+additional steps and precautions if :ref:`replication <replication>` is enabled.
+
+Once again the startup procedure is initiated by the ``box.cfg{}`` request.
+One of the ``box.cfg`` parameters may be
+:ref:`replication <cfg_replication-replication>` which specifies replication
+source(-s). We will refer to this replica, which is starting up due to ``box.cfg``,
+as the "local" replica to distinguish it from the other replicas in a replica set,
+which we will refer to as "distant" replicas.
+
+*If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
+then the local replica assumes it is an unreplicated "standalone" instance, or is
+the first replica of a new replica set. It will generate new UUIDs for
+itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
+replica set UUID is stored in the ``_schema`` space. Since a snapshot contains all the
+data in all the spaces, that means the local replica's snapshot will contain the
+replica UUID and the replica set UUID. Therefore, when the local replica restarts on
+later occasions, it will be able to recover these UUIDs when it reads the .snap
+file.
+
+*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+and the ``_cluster`` space contains no other replica UUIDs*: |br|
+then the local replica assumes it is not a standalone instance, but is not yet part
+of a replica set. It must now join the replica set. It will send its replica UUID to the
+first distant replica which is listed in ``replication`` and which will act as a
+master. This is called the "join request". When a distant replica receives a join
+request, it will send back:
+
+(1) the distant replica's replica set UUID,
+(2) the contents of the distant replica's .snap file. |br|
+    When the local replica receives this information, it puts the replica set UUID in
+    its ``_schema`` space, puts the distant replica's UUID and connection information
+    in its ``_cluster`` space, and makes a snapshot containing all the data sent by
+    the distant replica. Then, if the local replica has data in its WAL .xlog
+    files, it sends that data to the distant replica. The distant replica will
+    receive this and update its own copy of the data, and add the local replica's
+    UUID to its ``_cluster`` space.
+
+*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+and the ``_cluster`` space contains other replica UUIDs*: |br|
+then the local replica assumes it is not a standalone instance, and is already part
+of a replica set. It will send its replica UUID and replica set UUID to all the distant
+replicas which are listed in ``replication``. This is called the "on-connect
+handshake". When a distant replica receives an on-connect handshake: |br|
+
+(1) the distant replica compares its own copy of the replica set UUID to the one in
+    the on-connect handshake. If there is no match, then the handshake fails and
+    the local replica will display an error.
+(2) the distant replica looks for a record of the connecting instance in its
+    ``_cluster`` space. If there is none, then the handshake fails. |br|
+    Otherwise the handshake is successful. The distant replica will read any new
+    information from its own .snap and .xlog files, and send the new requests to
+    the local replica.
+
+In the end ... the local replica knows what replica set it belongs to, the distant
+replica knows that the local replica is a member of the replica set, and both replicas
+have the same database contents.
+
+.. _replication-vector:
+
+*If there is a snapshot file and replication source is not empty*: |br|
+first the local replica goes through the recovery process described in the
+previous section, using its own .snap and .xlog files. Then it sends a
+"subscribe" request to all the other replicas of the replica set. The subscribe
+request contains the server vector clock. The vector clock has a collection of
+pairs 'server id, lsn' for every replica in the ``_cluster`` system space. Each
+distant replica, upon receiving a subscribe request, will read its .xlog files'
+requests and send them to the local replica if (lsn of .xlog file request) is
+greater than (lsn of the vector clock in the subscribe request). After all the
+other replicas of the replica set have responded to the local replica's subscribe
+request, the replica startup is complete.
+
+The following temporary limitations applied for Tarantool versions earlier than 1.7.7:
+
+* The URIs in the ``replication`` parameter should all be in the same order on all replicas.
+  This is not mandatory but is an aid to consistency.
+* The replicas of a replica set should be started up at slightly different times.
+  This is not mandatory but prevents a situation where each replica is waiting
+  for the other replica to be ready.
+
+The following limitation still applies for the current Tarantool version:
+
+* The maximum number of entries in the ``_cluster`` space is :ref:`32 <limitations_replicas>`. Tuples for
+  out-of-date replicas are not automatically re-used, so if this 32-replica
+  limit is reached, users may have to reorganize the ``_cluster`` space manually.
+

@@ -116,7 +116,7 @@ is 'admin'.
 
 Owners automatically have **privileges** for what they create.
 They can share these privileges with other users or with roles,
-using **box.user.grant** requests.
+using **box.schema.user.grant** requests.
 The following privileges can be granted:
 
 * 'read', e.g. allow select from a space
@@ -124,10 +124,10 @@ The following privileges can be granted:
 * 'execute', e.g. allow call of a function
 * 'create', e.g. allow
   :ref:`box.schema.space.create <box_schema-space_create>`
-  (currently this can be granted but has no effect)
+  (access to certain system spaces is also necessary)
 * 'alter', e.g. allow
   :ref:`box.space.x.index.y:alter <box_index-alter>`
-  (currently this can be granted but has no effect)
+  (access to certain system spaces is also necessary)
 * 'drop', e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
   (currently this can be granted but has no effect)
@@ -136,7 +136,8 @@ The following privileges can be granted:
   block a user temporarily without dropping the user)
 * 'session', e.g. whether the user can 'connect'.
 
-To **create** objects, users need at least 'read' and 'write' privileges
+To **create** objects, users need the 'create' privilege and
+at least 'read' and 'write' privileges
 on the system space with a similar name (for example, on the
 :ref:`_space <box_space-space>` if the user needs to create spaces).
 
@@ -186,17 +187,31 @@ to user 'U'.
 .. code-block:: lua
 
     -- So that 'U' can create spaces:
+      box.schema.user.grant('U','create','universe')
       box.schema.user.grant('U','write', 'space', '_schema')
-      box.schema.user.grant('U','read,write', 'space', '_space')
-    -- So that 'U' can  create indexes (assuming 'U' is the owner of the space)
+      box.schema.user.grant('U','write', 'space', '_space')
+    -- So that 'U' can  create indexes (assuming 'U' created the space)
       box.schema.user.grant('U','read', 'space', '_space')
       box.schema.user.grant('U','read,write', 'space', '_index')
+    -- So that 'U' can  create indexes on space T (assuming 'U' did not create space T)
+      box.schema.user.grant('U','create','space','T')
+      box.schema.user.grant('U','read', 'space', '_space')
+      box.schema.user.grant('U','write', 'space', '_index')
+    -- So that 'U' can  alter indexes on space T (assuming 'U' did not create the index)
+      box.schema.user.grant('U','alter','space','T')
+      box.schema.user.grant('U','read','space','_space')
+      box.schema.user.grant('U','read','space','_index')
+      box.schema.user.grant('U','read','space','_space_sequence')
+      box.schema.user.grant('U','write','space','_index')
     -- So that 'U' can create users or roles:
+      box.schema.user.grant('U','create','universe')
       box.schema.user.grant('U','read,write', 'space', '_user')
-      box.schema.user.grant('U','read,write','space', '_priv')
+      box.schema.user.grant('U','write','space', '_priv')
     -- So that 'U' can create sequences:
+      box.schema.user.grant('U','create','universe')
       box.schema.user.grant('U','read,write','space','_sequence')
     -- So that 'U' can create functions:
+      box.schema.user.grant('U','create','universe')
       box.schema.user.grant('U','read,write','space','_func')
     -- So that 'U' can grant access on objects that 'U' created
       box.schema.user.grant('U','read','space','_user')
@@ -232,6 +247,7 @@ no-password user becomes this function's creator. Finally, we grant another user
 
     box.schema.user.grant('internal', 'read,write', 'space', 'u')
     box.schema.user.grant('internal', 'read,write', 'space', 'i')
+    box.schema.user.grant('internal', 'create', 'universe')
     box.schema.user.grant('internal', 'read,write', 'space', '_func')
 
     function read_and_modify(key)

@@ -149,7 +149,7 @@ variables.
       data requested and downloaded from the instance.
 
     * **replication.downstream.vclock** contains the
-      :ref:`vector clock <internals-vector>`, which is a table of
+      :ref:`vector clock <replication-vector>`, which is a table of
       '**id**, **lsn**' pairs, for example
       :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`.
       Even if an instance is :ref:`removed <replication-remove_instances>`,

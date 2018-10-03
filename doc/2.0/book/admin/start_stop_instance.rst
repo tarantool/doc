@@ -20,15 +20,16 @@ Here is what ``tarantoolctl`` does when you issue the command:
    defaults, like the path to the directory where instances should be searched
    for.
 
-   The default ``tarantoolctl`` configuration file is installed in
-   ``/etc/default/tarantool``. This file is used when ``tarantoolctl`` is
-   invoked by root. When invoked by a local user, ``tarantoolctl`` first looks
-   for its defaults file in the current directory (``$PWD/.tarantoolctl``), and
-   then in the current user’s home directory
-   (``$HOME/.config/tarantool/tarantool``). If not found, ``tarantoolctl`` falls
-   back to :ref:`built-in defaults <admin-tarantoolctl_config_file>`.
+   When ``tarantool`` is invoked by root, it looks for a configuration file in
+   ``/etc/default/tarantool``. When ``tarantool`` is invoked by a local (non-root)
+   user, it looks for a configuration file first in the current directory
+   (``$PWD/.tarantoolctl``), and then in the current user's home directory
+   (``$HOME/.config/tarantool/tarantool``). If no configuration file is found
+   there, or in the ``/usr/local/etc/default/tarantool`` file,
+   then ``tarantoolctl`` falls back to
+   :ref:`built-in defaults <admin-tarantoolctl_config_file>`.
 
-3. Look up the instance file in the instance directory, e.g.
+3. Look up the instance file in the instance directory, for example
    ``/etc/tarantool/instances.enabled``. To build the instance file path,
    ``tarantoolctl`` takes the instance name, prepends the instance directory and
    appends ".lua" extension to the instance file.

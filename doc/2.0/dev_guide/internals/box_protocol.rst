@@ -18,7 +18,7 @@ Notation in diagrams
 
     0    X
     +----+
-    |    | - X bytes
+    |    | - X + 1 bytes
     +----+
      TYPE - type of MsgPack value (if it is a MsgPack object)
 
@@ -80,77 +80,63 @@ a complete access to Tarantool functionality, including:
   via the same connection
 - response format that supports zero-copy writes
 
-For data structuring and encoding, the protocol uses msgpack data format, see
-http://msgpack.org
+The protocol uses `msgpack <http://msgpack.org>`_ for data structures
+and encoding.
 
-The Tarantool protocol mandates use of a few integer constants serving as keys in
-maps used in the protocol. These constants are defined in `src/box/iproto_constants.h
-<https://github.com/tarantool/tarantool/blob/2.0/src/box/iproto_constants.h>`_
-
-We list them here too:
+The protocol uses maps that contain some integer constants as keys.
+These constants are defined in `src/box/iproto_constants.h
+<https://github.com/tarantool/tarantool/blob/2.0/src/box/iproto_constants.h>`_.
+We list common constants here:
 
 .. code-block:: none
 
     -- user keys
-    <request_type>   ::= 0x00
-    <sync>           ::= 0x01
-    <replica_id>     ::= 0x02
-    <lsn>            ::= 0x03
-    <timestamp>      ::= 0x04
-    <schema_version> ::= 0x05
-    <server_version  ::= 0x06
-    <space_id>       ::= 0x10
-    <index_id>       ::= 0x11
-    <limit>          ::= 0x12
-    <offset>         ::= 0x13
-    <iterator>       ::= 0x14
-    <index_base>     ::= 0x15
-    <key>            ::= 0x20
-    <tuple>          ::= 0x21
-    <function_name>  ::= 0x22
-    <user_name>      ::= 0x23
-    <instance_uuid>  ::= 0x24
-    <cluster_uuid>   ::= 0x25
-    <vclock>         ::= 0x26
-    <expr>           ::= 0x27
-    <ops>            ::= 0x28
-    <server_is_ro>   ::= 0x29
-    <options>        ::= 0x2a
-    <data>           ::= 0x30
-    <error>          ::= 0x31
-    <metadata>       ::= 0x32
-    <sql_text>       ::= 0x40
-    <sql_bind>       ::= 0x41
-    <sql_info>       ::= 0x42
+    <iproto_sync>          ::= 0x01
+    <iproto_schema_id>     ::= 0x05  /* also known as schema_version */
+    <iproto_space_id>      ::= 0x10
+    <iproto_index_id>      ::= 0x11
+    <iproto_limit>         ::= 0x12
+    <iproto_offset>        ::= 0x13
+    <iproto_iterator>      ::= 0x14
+    <iproto_key>           ::= 0x20
+    <iproto_tuple>         ::= 0x21
+    <iproto_function_name> ::= 0x22
+    <iproto_username>      ::= 0x23
+    <iproto_expr>          ::= 0x27 /* also known as expression */
+    <iproto_ops>           ::= 0x28
+    <iproto_data>          ::= 0x30
+    <iproto_error>         ::= 0x31
+    <iproto_sql_text>      ::= 0x40
+    <iproto_sql_bind>      ::= 0x41
+    <iproto_sql_info>      ::= 0x42
 
 .. code-block:: none
 
     -- -- Value for <code> key in request can be:
     -- User command codes
-    <select>         ::= 0x01
-    <insert>         ::= 0x02
-    <replace>        ::= 0x03
-    <update>         ::= 0x04
-    <delete>         ::= 0x05
-    <call_16>        ::= 0x06
-    <auth>           ::= 0x07
-    <eval>           ::= 0x08
-    <upsert>         ::= 0x09
-    <call>           ::= 0x10
-    <execute>        ::= 0x11
-    <nop>            ::= 0x12
+    <iproto_select>         ::= 0x01
+    <iproto_insert>         ::= 0x02
+    <iproto_replace>        ::= 0x03
+    <iproto_update>         ::= 0x04
+    <iproto_delete>         ::= 0x05
+    <iproto_call_16>        ::= 0x06 /* as used in version 1.6 */
+    <iproto_auth>           ::= 0x07
+    <iproto_eval>           ::= 0x08
+    <iproto_upsert>         ::= 0x09
+    <iproto_call>           ::= 0x0a
+    <iproto_execute>        ::= 0x0b
+    <iproto_nop>            ::= 0x0c
+    <iproto_type_stat_max>  ::= 0x0d
     -- Admin command codes
     -- (including codes for replica-set initialization and master election)
-    <ping>           ::= 0x64
-    <join>           ::= 0x65
-    <subscribe>      ::= 0x66
-    <request_vote>   ::= 0x67
-    -- box.session.push's out-of-band message
-    <chunk>          ::= 0x128
-    -- -- Value for <code> key in response can be:
-    <OK>             ::= 0x00
-    <ERROR>          ::= 0x8XXX
+    <iproto_ping>         ::= 0x40
+    <iproto_join>         ::= 0x41 /* i.e. replication join */
+    <iproto_subscribe>    ::= 0x42
+    <iproto_request_vote> ::= 0x43
 
+    -- -- Value for <code> key in response can be:
+    <iproto_ok>           ::= 0x00
+    <iproto_type_error>   ::= 0x8XXX /* where XXX is a value in errcode.h */
 
 Both :code:`<header>` and :code:`<body>` are msgpack maps:
 

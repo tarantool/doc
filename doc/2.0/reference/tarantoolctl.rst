@@ -126,3 +126,8 @@ Commands for managing Tarantool modules
 
 ``tarantoolctl rocks list``
         List all installed modules.
+
+Supported options:
+
+* ``--server=server_name`` check this server first, then the usual list.
+* ``--only-server=server_name`` check this server only, ignore the usual list.

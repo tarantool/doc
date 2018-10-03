@@ -506,7 +506,6 @@ Incompatible changes
     * ``slab_alloc_factor`` is deprecated, not relevant in 1.7.x
     * ``snapshot_count`` renamed to ``checkpoint_count``
     * ``snapshot_period`` renamed to ``checkpoint_interval``
-    * ``rows_per_wal`` renamed to ``wal_max_size``
     * ``logger`` renamed to ``log``
     * ``logger_nonblock`` renamed to ``log_nonblock``
     * ``logger_level`` renamed to ``log_level``
@@ -673,7 +672,7 @@ Functionality added or changed:
     ``tuple_compare()``, ``tuple_compare_with_key()``.
     Issue `2225 <https://github.com/tarantool/tarantool/issues/2225>`_.
   * xlogs now can be rotated based on size (``wal_max_size``) as well as
-    the number of written rows (``wal_max_rows``).
+    the number of written rows (``rows_per_wal``).
     Issue `173 <https://github.com/tarantool/tarantool/issues/173>`_.
   * Added ``string.split()``, ``string.startswith()``, ``string.endswith()``,
     ``string.ljust()``, ``string.rjust()``, ``string.center()`` API.

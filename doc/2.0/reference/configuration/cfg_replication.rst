@@ -4,6 +4,7 @@
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
 * :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`
 * :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`
+* :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 
@@ -73,7 +74,7 @@
 
     | Type: float
     | Default: 4
-    | Dynamic: no
+    | Dynamic: **yes**
 
 .. _cfg_replication-replication_connect_quorum:
 
@@ -87,8 +88,9 @@
     N is a number greater than or equal to zero,
     users can state that the replica only needs to connect to N masters.
 
-    This parameter is ignored during bootstrap and in case of reconfiguration.
-    For example, setting ``replication_connect_quorum = 0`` makes Tarantool
+    This parameter is ignored during bootstrap but not ignored during
+    :ref:`configuration update <replication-configuration_update>`.
+    Setting ``replication_connect_quorum = 0`` makes Tarantool
     require no immediate reconnect only in case of recovery.
     See :ref:`orphan status <replication-orphan_status>` for details.
 
@@ -145,7 +147,24 @@
 
     | Type: float
     | Default: 10
-    | Dynamic: no
+    | Dynamic: **yes**
+
+.. _cfg_replication-replication_sync_timeout:
+
+.. confval:: replication_sync_timeout
+
+    The number of seconds that a replica will wait when trying to
+    sync with a master in a cluster,
+    or a :ref:`quorum <cfg_replication-replication_connect_quorum>` of masters,
+    after connecting or during :ref:`configuration update <replication-configuration_update>`.
+    This could fail indefinitely if ``replication_sync_lag`` is smaller
+    than network latency, or if the replica cannot keep pace with master
+    updates. If replication_sync_timeout expires, the replica
+    enters :ref:`orphan status <replication-orphan_status>`.
+
+    | Type: float
+    | Default: 300
+    | Dynamic: **yes**
 
 .. _cfg_replication-replicaset_uuid:
 

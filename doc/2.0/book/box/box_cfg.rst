@@ -64,6 +64,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
       replication_connect_timeout  = 4
       replication_skip_conflict    = false
       replication_sync_lag         = 10
+      replication_sync_timeout     = 300
       replication_timeout          = 1
       rows_per_wal                 = 500000
       slab_alloc_factor            = 1.05
