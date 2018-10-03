@@ -53,7 +53,7 @@ Below is a list of all ``http`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> http_client = require('http.client').new({5})
+        tarantool> http_client = require('http.client').new({max_connections = 5})
         ---
         ...
 
