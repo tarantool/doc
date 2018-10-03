@@ -1,5 +1,6 @@
 * :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`,
 * :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`,
+* :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`,
 * :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`,
 * :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`,
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
@@ -31,6 +32,21 @@
 
     | Type: integer
     | Default: 500000
+    | Dynamic: no
+
+.. _cfg_binary_logging_snapshots-wal_max_size:
+
+.. confval:: wal_max_size
+
+    The maximum number of bytes in a single write-ahead log file.
+    When a request would cause an .xlog file to become larger than
+    wal_max_size, Tarantool creates another WAL file --
+    the same effect that happens when the
+    :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`
+    limit is reached.
+
+    | Type: integer
+    | Default: 268435456 (256 * 1024 * 1024)
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-snap_io_rate_limit:

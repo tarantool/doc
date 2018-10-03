@@ -340,10 +340,8 @@ the function invocations will look like ``sock:function_name(...)``.
         :param string host: URL or IP address
         :param number port: port number
 
-        :return: true or false
+        :return: true for success, false for error. If return is false, Use :ref:`socket_object:errno() <socket-error>` or :ref:`socket_object:error() <socket-error>` to see details.
         :rtype:  boolean
-
-        Possible errors: Returns nil, status, errno, errstr on error.
 
     .. _socket-listen:
 

@@ -90,14 +90,17 @@ you need to run multiple instances of an application.
 `tarantoolctl` configuration file
 --------------------------------------------------------------------------------
 
-While instance files contain instance configuration, ``tarantoolctl``
+While instance files contain instance configuration, the ``tarantoolctl``
 configuration file contains the configuration that ``tarantoolctl`` uses to
 override instance configuration. In other words, it contains system-wide
-configuration defaults.
+configuration defaults. If ``tarantoolctl`` fails to find this file with
+the method described in section
+:ref:`Starting/stopping an instance <admin-start_stop_instance>`, it uses
+default settings.
 
 Most of the parameters are similar to those used by
 :ref:`box.cfg{} <box_introspection-box_cfg>`. Here are the default settings
-(installed to ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool``
+(possibly installed in ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool``
 as part of Tarantool distribution -- see OS-specific default paths in
 :ref:`Notes for operating systems <admin-os_notes>`):
 

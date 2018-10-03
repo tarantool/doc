@@ -46,7 +46,7 @@ Some of this information is also available from the :ref:`tarantool module <tara
 * **version** Tarantool version. This value is also shown by
   :ref:`tarantool --version <index-tarantool_version>`.
 * **status** Usually this is 'running', but it can be 'loading', 'orphan', or 'hot_standby'.
-* **vclock** Same as :ref:`replication.vclock <internals-vector>`.
+* **vclock** Same as :ref:`replication.vclock <replication-vector>`.
 * **pid** Process ID. This value is also shown by the
   :ref:`tarantool <tarantool-build>` module.
   This value is also shown by the Linux "ps -A" command.
@@ -57,7 +57,7 @@ Some of this information is also available from the :ref:`tarantool module <tara
 * **replication.status** Usually this is 'follow', but it can be
   'off', 'stopped', 'connecting', 'auth', or 'disconnected'.
 * **replication.idle** Number of seconds that the instancehas been idle.
-* **replication.vclock** See the :ref:`discussion of "vector clock" <internals-vector>` in the Internals section.
+* **replication.vclock** See the :ref:`discussion of "vector clock" <replication-vector>` in the Internals section.
 * **replication.uuid** The unique identifier of a master to which this instance is connected.
 * **replication.uptime** Number of seconds since the instance started.
   This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`.

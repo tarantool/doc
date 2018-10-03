@@ -324,7 +324,7 @@ URIs of both masters in the replica set and say
 
 Now we can launch the two masters. Again, the launch order doesn't matter.
 The ``box.once()`` logic will also be executed only once, at the master which
-is elected as the replica set leader during the bootstrap.
+is elected as the replica set :ref:`leader <replication-leader>` at bootstrap.
 
 .. code-block:: console
 
