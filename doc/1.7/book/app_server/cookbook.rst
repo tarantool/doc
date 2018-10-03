@@ -19,6 +19,11 @@ The first line is a "hashbang":
 This runs  Tarantool Lua application server, which should be on the execution
 path.
 
+This section contains the following recipes:
+
+.. contents::
+   :local:
+
 Use freely.
 
 .. _cookbook-hello_world:
