@@ -76,8 +76,10 @@ a complete access to Tarantool functionality, including:
   via the same connection
 - response format that supports zero-copy writes
 
-The protocol uses msgpack for data structures and encoding, 
-The protocol uses maps that contain Some integer constants as keys. 
+The protocol uses `msgpack <http://msgpack.org>`_ for data structures
+and encoding.
+
+The protocol uses maps that contain some integer constants as keys.
 These constants are defined in `src/box/iproto_constants.h
 <https://github.com/tarantool/tarantool/blob/1.9/src/box/iproto_constants.h>`_.
 We list common constants here:
