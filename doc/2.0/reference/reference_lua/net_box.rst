@@ -462,7 +462,7 @@ Below is a list of all ``net.box`` functions.
         The default is ``is_async=false``, meaning requests are synchronous
         for the fiber. The fiber is blocked, waiting until there is a
         reply to the request or until timeout expires. Before Tarantool
-        version 10.1, the only way to make asynchronous requests was to
+        version 1.10, the only way to make asynchronous requests was to
         put them in separate fibers.
 
         The non-default is ``is_async=true``, meaning requests are asynchronous
