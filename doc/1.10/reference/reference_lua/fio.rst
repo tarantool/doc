@@ -616,7 +616,7 @@ functions.
 
 .. _fio-copyfile:
 
-.. function:: rename(path-name, new-path-name)
+.. function:: copyfile(path-name, new-path-name)
 
     Copy a file. The effect is similar to the effect
     that one gets with the ``cp`` command.
