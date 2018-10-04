@@ -1522,6 +1522,8 @@ Storage public API
 * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`
 * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`
 * :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`
+* :ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`
+* :ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`
 * :ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`
 * :ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`
 * :ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`
