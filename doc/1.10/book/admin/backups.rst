@@ -54,8 +54,8 @@ Hot backup (memtx)
 
 This is a special case when there are only in-memory tables.
 
-The last :ref:`snapshot file<index-box_persistence>` is a backup of the entire database;
-and the :ref:`WAL<internals-wal>` files
+The last :ref:`snapshot file <index-box_persistence>` is a backup of the entire
+database; and the :ref:`WAL <internals-wal>` files
 that are made after the last snapshot are incremental backups. Therefore taking
 a backup is a matter of copying the snapshot and WAL files.
 
@@ -68,7 +68,7 @@ a backup is a matter of copying the snapshot and WAL files.
 3. Copy the .tar file to a safe place.
 
 Later, restoring the database is a matter of taking the .tar file and putting
-its contents back in the memtx_dir and wal_dir directories.
+its contents back in the ``memtx_dir`` and ``wal_dir`` directories.
 
 .. _admin-backups-hot_backup_vinyl_memtx:
 
@@ -85,8 +85,8 @@ To take a mixed backup:
 
 1. Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the
    :ref:`administrative console <admin-security>`. This will suspend
-   the Tarantool garbage collector till the next ``box.backup.stop()``
-   and will return a list of files to back up.
+   garbage collection till the next ``box.backup.stop()`` and
+   will return a list of files to back up.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the

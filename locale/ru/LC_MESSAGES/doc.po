@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-13 12:53+0300\n"
-"PO-Revision-Date: 2018-10-03 16:14+0300\n"
+"PO-Revision-Date: 2018-10-04 11:21+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -36,11 +36,11 @@ msgstr "Это особый случай, когда все таблицы хр�
 
 #: ../doc/1.7/book/admin/backups.rst:22
 msgid "The last :ref:`snapshot file<index-box_persistence>` is a backup of the entire database; and the :ref:`WAL<internals-wal>` files that are made after the last snapshot are incremental backups. Therefore taking a backup is a matter of copying the snapshot and WAL files."
-msgstr "Последний созданный Tarantool'ом :ref:`файл-снимок <index- box_persistence>` является резервной копией всей базы данных; а созданные следом :ref:`WAL-файлы <internals-wal>` являются инкрементными копиями. Поэтому процедура резервирования сводится к копированию последнего файла-снимка и следующих за ним WAL-файлов."
+msgstr "Последний созданный Tarantool'ом :ref:`файл-снимок <index-box_persistence>` является резервной копией всей базы данных; а созданные следом :ref:`WAL-файлы <internals-wal>` являются инкрементными копиями. Поэтому процедура резервирования сводится к копированию последнего файла-снимка и следующих за ним WAL-файлов."
 
 #: ../doc/1.7/book/admin/backups.rst:27
 msgid "Use ``tar`` to make a (possibly compressed) copy of the latest .snap and .xlog files on the :ref:`memtx_dir <cfg_basic-memtx_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>` directories."
-msgstr "С помощью ``tar`` создайте (зачастую сжатую) копию последнего .snap-файла и следующих за ним .xlog-файлов из директорий :ref:`memtx_dir <cfg_basic- memtx_dir>` и :ref:`wal_dir <cfg_basic-wal_dir>`."
+msgstr "С помощью ``tar`` создайте (зачастую сжатую) копию последнего .snap-файла и следующих за ним .xlog-файлов из директорий :ref:`memtx_dir <cfg_basic-memtx_dir>` и :ref:`wal_dir <cfg_basic-wal_dir>`."
 
 #: ../doc/1.7/book/admin/backups.rst:31
 msgid "If there is a security policy, encrypt the .tar file."
@@ -128,7 +128,7 @@ msgstr "Название и версию вашей операционной с�
 
 #: ../doc/1.7/book/admin/bug_reports.rst:21
 msgid "Related files like a :ref:`stack trace <admin-stack_traces>` or a Tarantool :ref:`log file <admin-logs>`."
-msgstr "Сопутствующие файлы — такие как :ref:`трассировка стека <admin- stack_traces>` или :ref:`файл журнала <admin-logs>` Tarantool'а."
+msgstr "Сопутствующие файлы — такие как :ref:`трассировка стека <admin-stack_traces>` или :ref:`файл журнала <admin-logs>` Tarantool'а."
 
 #: ../doc/1.7/book/admin/bug_reports.rst:24
 msgid "If this is a feature request or if it affects a special category of users, be sure to mention that."
@@ -166,7 +166,7 @@ msgstr "SIGHUP"
 
 #: ../doc/1.7/book/admin/daemon_supervision.rst:24
 msgid "May cause log file rotation. See the :ref:`example <cfg_logging-logging_example>` in reference on Tarantool logging parameters."
-msgstr "Может привести к ротации журналов, см. :ref:`пример <cfg_logging- logging_example>` в справочнике по параметрам журналирования Tarantool'а."
+msgstr "Может привести к ротации журналов, см. :ref:`пример <cfg_logging-logging_example>` в справочнике по параметрам журналирования Tarantool'а."
 
 #: ../doc/1.7/book/admin/daemon_supervision.rst:28
 msgid "SIGUSR1"
@@ -538,7 +538,7 @@ msgstr "Минимальная отказоустойчивая конфигур
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:11
 msgid "The basic recommendation is to configure all Tarantool instances in a cluster to create :ref:`snapshot files <index-box_persistence>` at a regular basis."
-msgstr "Основная рекомендация - настраивать все экземпляры Tarantool'а в кластере  таким образом, чтобы они регулярно создавали :ref:`файлы-снимки <index- box_persistence>`."
+msgstr "Основная рекомендация - настраивать все экземпляры Tarantool'а в кластере  таким образом, чтобы они регулярно создавали :ref:`файлы-снимки <index-box_persistence>`."
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:14
 msgid "Here follow action plans for typical crash scenarios."
@@ -571,15 +571,15 @@ msgstr "Переключите реплику в режим мастера, ус
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:35
 msgid "Set up a replacement for the crashed master on a spare host, with :ref:`replication <cfg_replication-replication>` parameter set to replica (effective master), so it begins to catch up with the new master’s state. The new instance should have :ref:`box.cfg.read_only <cfg_basic-read_only>` parameter set to *true*."
-msgstr "Настройте на свободной машине замену вышедшему из строя мастеру, установив параметру :ref:`replication <cfg_replication-replication>` в качестве значения URI реплики (которая в данный момент выполняет роль мастера), чтобы новая реплика начала синхронизироваться с текущим мастером. Значение параметра :ref:`box.cfg.read_only <cfg_basic- read_only>` в новом экземпляре должно быть установлено на *true*."
+msgstr "Настройте на свободной машине замену вышедшему из строя мастеру, установив параметру :ref:`replication <cfg_replication-replication>` в качестве значения URI реплики (которая в данный момент выполняет роль мастера), чтобы новая реплика начала синхронизироваться с текущим мастером. Значение параметра :ref:`box.cfg.read_only <cfg_basic-read_only>` в новом экземпляре должно быть установлено на *true*."
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:41
 msgid "You lose the few transactions in the master :ref:`write ahead log file <index-box_persistence>`, which it may have not transferred to the replica before crash. If you were able to salvage the master .xlog file, you may be able to recover these. In order to do it:"
-msgstr "Все немногочисленные транзакции в :ref:`WAL-файле <index- box_persistence>` мастера, которые он не успел передать реплике до выхода  из строя, будут потеряны. Однако если удастся получить .xlog-файл мастера, их можно будет восстановить. Для этого:"
+msgstr "Все немногочисленные транзакции в :ref:`WAL-файле <index-box_persistence>` мастера, которые он не успел передать реплике до выхода  из строя, будут потеряны. Однако если удастся получить .xlog-файл мастера, их можно будет восстановить. Для этого:"
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:46
 msgid "Find out the position of the crashed master, as reflected on the new master."
-msgstr "Узнайте позицию вышедшего из строя мастера - эта информация доступна из нового мастера."
+msgstr "Узнайте позицию вышедшего из строя мастера -- эта информация доступна из нового мастера."
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:48
 msgid "Find out instance UUID from the crashed master :ref:`xlog <internals-wal>`:"
@@ -656,7 +656,7 @@ msgstr "Пусть вся нагрузка идет только на масте
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:97
 msgid "2. Follow the same steps as in the :ref:`master-replica <admin-disaster_recovery-master_replica>` recovery scenario to create a new master and salvage lost data."
-msgstr "2. Создайте новый мастер и восстановите данные, проделав те же шаги, что и в сценарии для конфигурации :ref:`мастер-реплика <admin- disaster_recovery-master_replica>`."
+msgstr "2. Создайте новый мастер и восстановите данные, проделав те же шаги, что и в сценарии для конфигурации :ref:`мастер-реплика <admin-disaster_recovery-master_replica>`."
 
 #: ../doc/1.7/book/admin/disaster_recovery.rst:105
 msgid "Data loss"
@@ -762,7 +762,7 @@ msgstr ""
 
 #: ../doc/1.7/book/admin/instance_config.rst:29
 msgid "An :ref:`instance file <admin-instance_file>` with instance-specific initialization logic and parameters. Put this file, or a symlink to it, into the **instance directory** (see :ref:`instance_dir <admin-instance_dir>` parameter in ``tarantoolctl`` configuration file)."
-msgstr ":ref:`Файл экземпляра <admin-instance_file>`, содержащий логику и параметры инициализации данного экземпляра. Поместите этот файл или символьную ссылку на него в **директорию экземпляра** (см. параметр :ref:`instance_dir <admin- instance_dir>` в конфигурационном файле ``tarantoolctl``)."
+msgstr ":ref:`Файл экземпляра <admin-instance_file>`, содержащий логику и параметры инициализации данного экземпляра. Поместите этот файл или символьную ссылку на него в **директорию экземпляра** (см. параметр :ref:`instance_dir <admin-instance_dir>` в конфигурационном файле ``tarantoolctl``)."
 
 #: ../doc/1.7/book/admin/instance_config.rst:35
 msgid "For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load ``my_app.lua`` module and make a call to ``start()`` function from that module):"
@@ -796,11 +796,11 @@ msgstr "Файл экземпляра"
 
 #: ../doc/1.7/book/admin/instance_config.rst:57
 msgid "After this short introduction, you may wonder what an instance file is, what it is for, and how ``tarantoolctl`` uses it. After all, Tarantool is an application server, so why not start the application stored in ``/usr/share/tarantool`` directly?"
-msgstr "После столь краткого предисловия может возникнуть вопрос: что из себя представляет файл экземпляра, для чего он нужен и как ``tarantoolctl`` использует его? Если Tarantool - это сервер приложений, так почему бы не запускать хранящееся в ``/usr/share/tarantool`` приложение напрямую?"
+msgstr "После столь краткого предисловия может возникнуть вопрос: что из себя представляет файл экземпляра, для чего он нужен и как ``tarantoolctl`` использует его? Если Tarantool -- это сервер приложений, так почему бы не запускать хранящееся в ``/usr/share/tarantool`` приложение напрямую?"
 
 #: ../doc/1.7/book/admin/instance_config.rst:62
 msgid "A typical Tarantool application is not a script, but a daemon running in background mode and processing requests, usually sent to it over a TCP/IP socket. This daemon needs to be started automatically when the operating system starts, and managed with the operating system standard tools for service management -- such as ``systemd`` or ``init.d``. To serve this very purpose, we created **instance files**."
-msgstr "Типичное приложение для Tarantool - это не скрипт, а демон, запущенный в фоновом режиме и обрабатывающий запросы, которые, как правило, посылаются  через TCP/IP-сокет. Необходимо запускать этот демон со стартом операционной системы и управлять им с помощью стандартных средств операционной системы для управления сервисами — таких как ``systemd`` или ``init.d``. С этой целью и были созданы **файлы экземпляра**."
+msgstr "Типичное приложение для Tarantool -- это не скрипт, а демон, запущенный в фоновом режиме и обрабатывающий запросы, которые, как правило, посылаются  через TCP/IP-сокет. Необходимо запускать этот демон со стартом операционной системы и управлять им с помощью стандартных средств операционной системы для управления сервисами — таких как ``systemd`` или ``init.d``. С этой целью и были созданы **файлы экземпляра**."
 
 #: ../doc/1.7/book/admin/instance_config.rst:69
 msgid "You can have more than one instance file. For example, a single application in ``/usr/share/tarantool`` can run in multiple instances, each of them having its own instance file. Or you can have multiple applications in ``/usr/share/tarantool`` -- again, each of them having its own instance file."
@@ -812,7 +812,7 @@ msgstr "Обычно файл экземпляра создает системн
 
 #: ../doc/1.7/book/admin/instance_config.rst:77
 msgid "An instance file is designed to not differ in any way from a Lua application. It must, however, configure the database, i.e. contain a call to :ref:`box.cfg{} <box_introspection-box_cfg>` somewhere in it, because it’s the only way to turn a Tarantool script into a background process, and ``tarantoolctl`` is a tool to manage background processes. Other than that, an instance file may contain arbitrary Lua code, and, in theory, even include the entire application business logic in it. We, however, do not recommend this, since it clutters the instance file and leads to unnecessary copy-paste when you need to run multiple instances of an application."
-msgstr "По своему устройству файл экземпляра ничем не отличается от Lua-приложения. Однако с его помощью должна настраиваться база данных, поэтому в нем должен содержаться вызов :ref:`box.cfg{} <box_introspection-box_cfg>`, потому что это единственный способ превратить Tarantool-скрипт в фоновый процесс, а ``tarantoolctl`` - это инструмент для управления фоновыми процессами. За исключением этого вызова, файл экземпляра может содержать произвольный код на Lua и, теоретически, даже всю бизнес-логику приложения. Однако мы не рекомендуем  хранить весь код в файле экземпляра, потому что это приводит как к замусориванию самого файла, так и к ненужному копированию кода при необходимости запустить несколько экземпляров приложения."
+msgstr "По своему устройству файл экземпляра ничем не отличается от Lua-приложения. Однако с его помощью должна настраиваться база данных, поэтому в нем должен содержаться вызов :ref:`box.cfg{} <box_introspection-box_cfg>`, потому что это единственный способ превратить Tarantool-скрипт в фоновый процесс, а ``tarantoolctl`` -- это инструмент для управления фоновыми процессами. За исключением этого вызова, файл экземпляра может содержать произвольный код на Lua и, теоретически, даже всю бизнес-логику приложения. Однако мы не рекомендуем  хранить весь код в файле экземпляра, потому что это приводит как к замусориванию самого файла, так и к ненужному копированию кода при необходимости запустить несколько экземпляров приложения."
 
 #: ../doc/1.7/book/admin/instance_config.rst:91
 msgid "`tarantoolctl` configuration file"
@@ -922,7 +922,7 @@ msgstr "Журналирование"
 
 #: ../doc/1.7/book/admin/logs.rst:7
 msgid "Tarantool logs important events to a file, e.g. ``/var/log/tarantool/my_app.log``. To build the log file path, ``tarantoolctl`` takes the instance name, prepends the instance directory and appends “.log” extension."
-msgstr "Все важные события Tarantool записывает в файл журнала - например, в ``/var/log/tarantool/my_app.log``.  ``tarantoolctl`` строит путь до файла  журнала следующим образом: \"путь до директории с экземплярами\" + \"имя  экземпляра\" + \".lua\"."
+msgstr "Все важные события Tarantool записывает в файл журнала -- например, в ``/var/log/tarantool/my_app.log``.  ``tarantoolctl`` строит путь до файла  журнала следующим образом: \"путь до директории с экземплярами\" + \"имя  экземпляра\" + \".lua\"."
 
 #: ../doc/1.7/book/admin/logs.rst:11
 msgid "Let’s write something to the log file:"
@@ -1019,7 +1019,7 @@ msgstr "Если вы используете другую программу д�
 
 #: ../doc/1.7/book/admin/logs.rst:67
 msgid "Tarantool can write its logs to a log file, ``syslog`` or a program specified in the configuration file (see :ref:`log <cfg_logging-log>` parameter)."
-msgstr "Tarantool может писать события в файл журнала, ``syslog`` или программу, указанную в конфигурационном файле (см. параметр :ref:`log <cfg_logging- log>`)."
+msgstr "Tarantool может писать события в файл журнала, ``syslog`` или программу, указанную в конфигурационном файле (см. параметр :ref:`log <cfg_logging-log>`)."
 
 #: ../doc/1.7/book/admin/logs.rst:70
 msgid "By default, logs are written to a file as defined in ``tarantoolctl`` defaults. ``tarantoolctl`` automatically detects if an instance is using ``syslog`` or an external program for logging, and does not override the log destination in this case. In such configurations, log rotation is usually handled by the external program used for logging. So, ``tarantoolctl logrotate`` command works only if logging-into-file is enabled in the instance file."
@@ -1149,7 +1149,7 @@ msgstr "Если вы подключены к административной �
 
 #: ../doc/1.7/book/admin/security.rst:21
 msgid "The client-server protocol is plain text."
-msgstr "Клиент-серверный протокол - это простой текст."
+msgstr "Клиент-серверный протокол -- это простой текст."
 
 #: ../doc/1.7/book/admin/security.rst:22
 msgid "No password is necessary."
@@ -1181,7 +1181,7 @@ msgstr "/var/lib/tarantool/socket_name.sock"
 
 #: ../doc/1.7/book/admin/security.rst:41
 msgid "if the listener has the privilege to write on ``/var/lib/tarantool`` and the connector has the privilege to read on ``/var/lib/tarantool``. Alternatively, to connect to an admin console of an instance started with ``tarantoolctl``, use :ref:`tarantoolctl enter <admin-executing_code_on_an_instance>`."
-msgstr "если у приемника событий есть права на запись в ``/var/lib/tarantool`` и у коннектора есть права на чтение из ``/var/lib/tarantool``. Еще один способ подключиться к административной консоли экземпляра, запущенного с помощью ``tarantoolctl``, - использовать  :ref:`tarantoolctl enter <admin-executing_code_on_an_instance>`."
+msgstr "если у приемника событий есть права на запись в ``/var/lib/tarantool`` и у коннектора есть права на чтение из ``/var/lib/tarantool``. Еще один способ подключиться к административной консоли экземпляра, запущенного с помощью ``tarantoolctl``, -- использовать  :ref:`tarantoolctl enter <admin-executing_code_on_an_instance>`."
 
 #: ../doc/1.7/book/admin/security.rst:46
 msgid "To find out whether a TCP port is a port for admin console, use ``telnet``. For example:"
@@ -1213,11 +1213,11 @@ msgstr "Если вы подключены к бинарному порту:"
 
 #: ../doc/1.7/book/admin/security.rst:65
 msgid "The client-server protocol is :ref:`binary <box_protocol-iproto_protocol>`."
-msgstr "Клиент-серверный протокол - :ref:`бинарный <box_protocol- iproto_protocol>`."
+msgstr "Клиент-серверный протокол -- :ref:`бинарный <box_protocol- iproto_protocol>`."
 
 #: ../doc/1.7/book/admin/security.rst:66
 msgid "The user is automatically ':ref:`guest <authentication-users>`'."
-msgstr "Автоматически выбирается пользователь ':ref:`guest <authentication- users>`'."
+msgstr "Автоматически выбирается пользователь ':ref:`guest <authentication-users>`'."
 
 #: ../doc/1.7/book/admin/security.rst:67
 msgid "To change the user, it’s necessary to authenticate."
@@ -1249,11 +1249,11 @@ msgstr "вы запускаете его без :ref:`файла экземпл�
 
 #: ../doc/1.7/book/admin/server_introspection.rst:18
 msgid "the instance file contains :ref:`console.start() <console-start>`."
-msgstr "в файле экземпляра содержится команда :ref:`console.start() <console- start>`."
+msgstr "в файле экземпляра содержится команда :ref:`console.start() <console-start>`."
 
 #: ../doc/1.7/book/admin/server_introspection.rst:20
 msgid "Tarantool displays a prompt (e.g. \"tarantool>\") and you can enter requests. When used this way, Tarantool can be a client for a remote server. See basic examples in :ref:`Getting started <getting_started>`."
-msgstr "Tarantool выводит приглашение командной строки (например, \"tarantool>\")  - и вы можете посылать запросы. Если использовать Tarantool таким образом, он может выступать клиентом для удаленного сервера, см. простые примеры в :ref:`Руководстве для начинающих <getting_started>`."
+msgstr "Tarantool выводит приглашение командной строки (например, \"tarantool>\")  -- и вы можете посылать запросы. Если использовать Tarantool таким образом, он может выступать клиентом для удаленного сервера, см. простые примеры в :ref:`Руководстве для начинающих <getting_started>`."
 
 #: ../doc/1.7/book/admin/server_introspection.rst:24
 msgid "The interactive mode is used by ``tarantoolctl`` to implement \"enter\" and \"connect\" commands."
@@ -1397,19 +1397,19 @@ msgstr "Более подробная информация содержится 
 
 #: ../doc/1.7/book/admin/server_introspection.rst:116
 msgid ":ref:`box.cfg <box_introspection-box_cfg>` submodule (check and specify all configuration parameters for the Tarantool server)"
-msgstr ":ref:`box.cfg <box_introspection-box_cfg>` - проверка и указание всех конфигурационных параметров Tarantool-сервера,"
+msgstr ":ref:`box.cfg <box_introspection-box_cfg>` -- проверка и указание всех конфигурационных параметров Tarantool-сервера,"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:119
 msgid ":ref:`box.slab <box_introspection-box_slab>` submodule (monitor the total use and fragmentation of memory allocated for storing data in Tarantool)"
-msgstr ":ref:`box.slab <box_introspection-box_slab>` - мониторинг использования и  фрагментированности памяти, выделенной для хранения данных в Tarantool'е,"
+msgstr ":ref:`box.slab <box_introspection-box_slab>` -- мониторинг использования и  фрагментированности памяти, выделенной для хранения данных в Tarantool'е,"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:122
 msgid ":ref:`box.info <box_introspection-box_info>` submodule (introspect Tarantool server variables, primarily those related to replication)"
-msgstr ":ref:`box.info <box_introspection-box_info>` - просмотр переменных Tarantool-сервера - в первую очередь тех, что относятся к репликации,"
+msgstr ":ref:`box.info <box_introspection-box_info>` -- просмотр переменных Tarantool-сервера -- в первую очередь тех, что относятся к репликации,"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:125
 msgid ":ref:`box.stat <box_introspection-box_stat>` submodule (introspect Tarantool request and network statistics)"
-msgstr ":ref:`box.stat <box_introspection-box_stat>` - просмотр статистики Tarantool'а по запросам и использованию сети,"
+msgstr ":ref:`box.stat <box_introspection-box_stat>` -- просмотр статистики Tarantool'а по запросам и использованию сети,"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:128
 msgid "You can also try `tarantool/prometheus <https://github.com/tarantool/prometheus>`_, a Lua module that makes it easy to collect metrics (e.g. memory usage or number of requests) from Tarantool applications and databases and expose them via the Prometheus protocol."
@@ -1491,7 +1491,7 @@ msgstr "fiber.info()"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:193
 msgid "The simplest profiling method is to take advantage of Tarantool’s built-in functionality. :ref:`fiber.info() <fiber-info>` returns information about all running fibers with their corresponding C stack traces. You can use this data to see how many fibers are running and which C functions are executed more often than others."
-msgstr "Самый простой способ профилирования - это использование встроенных функций Tarantool’а. :ref:`fiber.info() <fiber-info>` возвращает информацию обо всех работающих файберах с соответствующей трассировкой стека для языка C. Эти данные показывают, сколько файберов запущенно на данный момент и какие функции, написанные на C, вызываются чаще остальных."
+msgstr "Самый простой способ профилирования -- это использование встроенных функций Tarantool’а. :ref:`fiber.info() <fiber-info>` возвращает информацию обо всех работающих файберах с соответствующей трассировкой стека для языка C. Эти данные показывают, сколько файберов запущенно на данный момент и какие функции, написанные на C, вызываются чаще остальных."
 
 #: ../doc/1.7/book/admin/server_introspection.rst:199
 msgid "First, enter your instance’s interactive administrator console:"
@@ -1849,7 +1849,7 @@ msgid ""
 "#29 0x0000000000688fbf in coro_init () at /usr/src/tarantool/third_party/coro/coro.c:110"
 msgstr ""
 "[Thread debugging using libthread_db enabled]\n"
-"        Using host libthread_db library \"/lib/x86_64-linux- gnu/libthread_db.so.1\".\n"
+"        Using host libthread_db library \"/lib/x86_64-linux-gnu/libthread_db.so.1\".\n"
 "        \n"
 "        [CUT]\n"
 "        \n"
@@ -1955,7 +1955,7 @@ msgid ""
 "tarantool> cpuprof.start('/home/<username>/tarantool-on-production.prof')"
 msgstr ""
 "tarantool> cpuprof = require('gperftools.cpu')\n"
-"        tarantool> cpuprof.start('/home/<имя_пользователя>/tarantool-on- production.prof')"
+"        tarantool> cpuprof.start('/home/<имя_пользователя>/tarantool-on-production.prof')"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:490
 msgid "It takes at least a couple of minutes for the profiler to gather performance metrics. After that, save the results to disk (you can do that as many times as you need):"
@@ -1979,11 +1979,11 @@ msgstr "Теперь можно проанализировать собранн�
 
 #: ../doc/1.7/book/admin/server_introspection.rst:507
 msgid "$ pprof --text /usr/bin/tarantool /home/<username>/tarantool-on-production.prof"
-msgstr "$ pprof --text /usr/bin/tarantool /home/<имя_пользователя>/tarantool-on- production.prof"
+msgstr "$ pprof --text /usr/bin/tarantool /home/<имя_пользователя>/tarantool-on-production.prof"
 
 #: ../doc/1.7/book/admin/server_introspection.rst:513
 msgid "On Debian/Ubuntu, the ``pprof`` utility is called ``google-pprof``."
-msgstr "В дистрибутивах Debian/Ubuntu утилита ``pprof`` называется ``google- pprof``."
+msgstr "В дистрибутивах Debian/Ubuntu утилита ``pprof`` называется ``google-pprof``."
 
 #: ../doc/1.7/book/admin/server_introspection.rst:515
 msgid "Your output should look similar to this:"
@@ -2209,7 +2209,7 @@ msgstr "Конфигурационный файл с параметрами ``ta
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:31
 msgid "Look up the instance file in the instance directory, e.g. ``/etc/tarantool/instances.enabled``. To build the instance file path, ``tarantoolctl`` takes the instance name, prepends the instance directory and appends \".lua\" extension to the instance file."
-msgstr "Ищет файл экземпляра в директории, где располагаются экземпляры, - например, в ``/etc/tarantool/instances.enabled``. ``tarantoolctl`` строит  путь до файла экземпляра следующим образом: \"путь до директории с экземплярами\" + \"имя экземпляра\" + \".lua\"."
+msgstr "Ищет файл экземпляра в директории, где располагаются экземпляры, -- например, в ``/etc/tarantool/instances.enabled``. ``tarantoolctl`` строит  путь до файла экземпляра следующим образом: \"путь до директории с экземплярами\" + \"имя экземпляра\" + \".lua\"."
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:36
 msgid "Override :ref:`box.cfg{} <box_introspection-box_cfg>` function to pre-process its parameters and ensure that instance paths are pointing to the paths defined in the ``tarantoolctl`` configuration file. For example, if the configuration file specifies that instance work directory must be in ``/var/tarantool``, then the new implementation of ``box.cfg{}`` ensures that :ref:`work_dir <cfg_basic-work_dir>` parameter in ``box.cfg{}`` is set to ``/var/tarantool/<instance_name>``, regardless of what the path is set to in the instance file itself."
@@ -2225,7 +2225,7 @@ msgstr "Наконец, использует Lua-команду ``dofile`` дл�
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:51
 msgid "If you start an instance using ``systemd`` tools, like this (the instance name is ``my_app``):"
-msgstr "При запуске экземпляра с помощью инструментария ``systemd`` указанным ниже способом (имя экземпляра - ``my_app``):"
+msgstr "При запуске экземпляра с помощью инструментария ``systemd`` указанным ниже способом (имя экземпляра -- ``my_app``):"
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:54
 msgid ""
@@ -2239,7 +2239,7 @@ msgstr ""
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:60
 msgid "... this actually calls ``tarantoolctl`` like in case of ``tarantoolctl start my_app``."
-msgstr "...на самом деле вызывается ``tarantoolctl`` - так же, как и в случае ``tarantoolctl start my_app``."
+msgstr "...на самом деле вызывается ``tarantoolctl`` -- так же, как и в случае ``tarantoolctl start my_app``."
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:63
 msgid "To check the instance file for syntax errors prior to starting ``my_app`` instance, say:"
@@ -2291,7 +2291,7 @@ msgstr "Локальный запуск Tarantool"
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:98
 msgid "Sometimes you may need to run a Tarantool instance locally, e.g. for test purposes. Let's configure a local instance, then start and monitor it with ``tarantoolctl``."
-msgstr "Иногда бывает необходимо запустить Tarantool локально - например, для тестирования. Давайте настроим локальный экземпляр, запустим его и будем мониторить с помощью ``tarantoolctl``."
+msgstr "Иногда бывает необходимо запустить Tarantool локально -- например, для тестирования. Давайте настроим локальный экземпляр, запустим его и будем мониторить с помощью ``tarantoolctl``."
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:102
 msgid "First, we create a sandbox directory on the user's path:"
@@ -2453,7 +2453,7 @@ msgstr "В консоли должны появиться несколько к�
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:200
 msgid "Stop now. A polite way to stop ``my_app`` is with ``tarantoolctl``, thus we say:"
-msgstr "Теперь остановим приложение ``my_app``. Корректный способ остановки - это  использовать``tarantoolctl``:"
+msgstr "Теперь остановим приложение ``my_app``. Корректный способ остановки -- это  использовать``tarantoolctl``:"
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:202
 msgid "$ tarantoolctl stop my_app"
@@ -2461,7 +2461,7 @@ msgstr "$ tarantoolctl stop my_app"
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:206
 msgid "Finally, we make a cleanup."
-msgstr "Последний шаг - удаление тестовых данных."
+msgstr "Последний шаг -- удаление тестовых данных."
 
 #: ../doc/1.7/book/admin/start_stop_instance.rst:208
 msgid "$ rm -R tarantool_test"
@@ -2557,11 +2557,11 @@ msgstr "У вас есть несколько вариантов действи�
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:48
 msgid "In Tarantool's :ref:`instance file <admin-instance_config>`, increase the value of :ref:`box.cfg{memtx_memory} <cfg_storage-memtx_memory>` (if memory resources are available)."
-msgstr "Зайти в :ref:`конфигурационный файл <admin-instance_config>` Tarantool и увеличить значение параметра :ref:`box.cfg{memtx_memory} <cfg_storage- memtx_memory>` (при наличии свободных ресурсов)."
+msgstr "Зайти в :ref:`конфигурационный файл <admin-instance_config>` Tarantool и увеличить значение параметра :ref:`box.cfg{memtx_memory} <cfg_storage-memtx_memory>` (при наличии свободных ресурсов)."
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:52
 msgid "Tarantool needs to be restarted to change this parameter. The Tarantool server will be unavailable while restarting from .xlog files, unless you restart it using :ref:`hot standby <index-hot_standby>` mode. In the latter case, nearly 100% server availability is guaranteed."
-msgstr "Для изменения данного параметра требуется перезагрузить Tarantool. При обычной перезагрузке сервер будет недоступен на время старта Tarantool из  .xlog-файлов. При перезагрузке в режиме :ref:`hot standby <index- hot_standby>` гарантирована практически 100-процентная доступность."
+msgstr "Для изменения данного параметра требуется перезагрузить Tarantool. При обычной перезагрузке сервер будет недоступен на время старта Tarantool из  .xlog-файлов. При перезагрузке в режиме :ref:`hot standby <index-hot_standby>` гарантирована практически 100-процентная доступность."
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:57
 msgid "Clean up the database."
@@ -2587,7 +2587,7 @@ msgstr ""
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:69
 msgid "In case of heavy memory fragmentation (``quota_used_ratio`` is getting close to 100%, ``items_used_ratio`` is about 50%), we recommend restarting Tarantool in the :ref:`hot standby <index-hot_standby>` mode."
-msgstr "При высокой степени фрагментации памяти (значение параметра ``quota_used_ratio`` приближается к 100%, ``items_used_ratio`` около 50%)  рекомендуется перезапустить Tarantool в режиме :ref:`hot standby <index- hot_standby>`."
+msgstr "При высокой степени фрагментации памяти (значение параметра ``quota_used_ratio`` приближается к 100%, ``items_used_ratio`` около 50%)  рекомендуется перезапустить Tarantool в режиме :ref:`hot standby <index-hot_standby>`."
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:77
 msgid "Problem: Tarantool generates too heavy CPU load"
@@ -2739,7 +2739,7 @@ msgstr "Речь идет о том, что параметр :ref:`box.info.repl
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:254
 msgid "In a master-master replica set of two Tarantool instances, one of the masters has tried to perform an action already performed by the other server, for example re-insert a tuple with the same unique key. This would cause an error message like ``'Duplicate key exists in unique index 'primary' in space <space_name>'``."
-msgstr "В репликационном кластере, состоящем из двух мастер-серверов, один из серверов попытался выполнить действие, уже выполненное другим сервером, -  например, повторно вставить кортеж с таким же уникальным ключом (распознается по ошибке вида ``'Duplicate key exists in unique index 'primary' in space <space_name>'``)."
+msgstr "В репликационном кластере, состоящем из двух мастер-серверов, один из серверов попытался выполнить действие, уже выполненное другим сервером, -- например, повторно вставить кортеж с таким же уникальным ключом (распознается по ошибке вида ``'Duplicate key exists in unique index 'primary' in space <space_name>'``)."
 
 #: ../doc/1.7/book/admin/troubleshoot.rst:262
 msgid "Restart replication with the following commands (at each master instance):"
@@ -2855,11 +2855,11 @@ msgstr "Как обновить Tarantool 1.6 до 1.7"
 
 #: ../doc/1.7/book/admin/upgrades.rst:47
 msgid "This procedure is for upgrading a standalone Tarantool instance in production from 1.6.x to 1.7.x (or to 1.9.x, which is actually the renamed 1.7 series). Notice that this will **always imply a downtime**. To upgrade **without downtime**, you need several Tarantool servers running in a replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`)."
-msgstr "Этот процесс предназначен для обновления индивидуальных экземпляров Tarantool'а с 1.6.х до 1.7.х (или до 1.9.x, которая на самом деле — переименованная серия 1.7) на боевом сервере. Обратите внимание, что это **всегда приводит к некоторому простою**. Для обновления **без простоев** необходимо, чтобы несколько работающих Tarantool-серверов были объединены в репликационный кластер (см. :ref:`ниже <admin- upgrades_replication_cluster>`)."
+msgstr "Этот процесс предназначен для обновления индивидуальных экземпляров Tarantool'а с 1.6.х до 1.7.х (или до 1.9.x, которая на самом деле — переименованная серия 1.7) на боевом сервере. Обратите внимание, что это **всегда приводит к некоторому простою**. Для обновления **без простоев** необходимо, чтобы несколько работающих Tarantool-серверов были объединены в репликационный кластер (см. :ref:`ниже <admin-upgrades_replication_cluster>`)."
 
 #: ../doc/1.7/book/admin/upgrades.rst:54
 msgid "Tarantool 1.7 has an incompatible :ref:`.snap <internals-snapshot>` and :ref:`.xlog <internals-wal>` file format: 1.6 files are supported during upgrade, but you won’t be able to return to 1.6 after running under 1.7 for a while. It also renames a few configuration parameters, but old parameters are supported. The full list of breaking changes is available in `release notes for Tarantool 1.7 / 1.9 <https://github.com/tarantool/tarantool/releases>`_."
-msgstr "Tarantool 1.7 работает с несовместимыми форматами файлов - :ref:`.snap <internals-snapshot>` и :ref:`.xlog <internals-wal>`. Файлы Tarantool'а 1.6 поддерживаются при обновлении, но после непродолжительного использования Tarantool'а 1.7 вернуться к 1.6 уже нельзя. Также были переименованы некоторые конфигурационные параметры, но старые параметры еще поддерживаются. Список критических изменений доступен в `Release notes для Tarantool'а 1.7 <https://github.com/tarantool/tarantool/releases>`_."
+msgstr "Tarantool 1.7 работает с несовместимыми форматами файлов -- :ref:`.snap <internals-snapshot>` и :ref:`.xlog <internals-wal>`. Файлы Tarantool'а 1.6 поддерживаются при обновлении, но после непродолжительного использования Tarantool'а 1.7 вернуться к 1.6 уже нельзя. Также были переименованы некоторые конфигурационные параметры, но старые параметры еще поддерживаются. Список критических изменений доступен в `Release notes для Tarantool'а 1.7 <https://github.com/tarantool/tarantool/releases>`_."
 
 #: ../doc/1.7/book/admin/upgrades.rst:61
 msgid "To upgrade from Tarantool 1.6 to 1.7 (or to 1.9.x, which is actually the renamed 1.7 series):"
@@ -2899,7 +2899,7 @@ msgstr "Обновление Tarantool'а в репликационном кла
 
 #: ../doc/1.7/book/admin/upgrades.rst:94
 msgid "Tarantool 1.7 (as well as Tarantool 1.9) can work as a :ref:`replica <replication-architecture>` for Tarantool 1.6 and vice versa. Replicas perform capability negotiation on handshake, and new 1.7 replication features are not used with 1.6 replicas. This allows upgrading clustered configurations."
-msgstr "Tarantool 1.7 (а также Tarantool 1.9) может служить :ref:`репликой <replication-architecture>` для Tarantool'а 1.6 - и наоборот. При установке соединения происходит обсуждение возможностей, и новые для 1.7 репликационные функции не используются при работе с репликами версии 1.6. Такой подход позволяет обновлять кластерные конфигурации."
+msgstr "Tarantool 1.7 (а также Tarantool 1.9) может служить :ref:`репликой <replication-architecture>` для Tarantool'а 1.6 -- и наоборот. При установке соединения происходит обсуждение возможностей, и новые для 1.7 репликационные функции не используются при работе с репликами версии 1.6. Такой подход позволяет обновлять кластерные конфигурации."
 
 #: ../doc/1.7/book/admin/upgrades.rst:99
 msgid "This procedure allows for a rolling upgrade **without downtime** and works for any cluster configuration: master-master or master-replica."
@@ -3006,7 +3006,7 @@ msgstr "Любую из этих программ можно выполнить,
 
 #: ../doc/1.7/book/app_server/cookbook.rst:13
 msgid "The first line is a \"hashbang\":"
-msgstr "Первая строка - это шебанг:"
+msgstr "Первая строка -- это шебанг:"
 
 #: ../doc/1.7/book/app_server/cookbook.rst:15
 msgid "#!/usr/bin/env tarantool"
@@ -3374,7 +3374,7 @@ msgstr "print_arrays.lua"
 
 #: ../doc/1.7/book/app_server/cookbook.rst:251
 msgid "Create Lua tables, and print them. Notice that for the 'array' table the iterator function is ipairs(), while for the 'map' table the iterator function is pairs(). (`ipairs()` is faster than `pairs()`, but pairs() is recommended for map-like tables or mixed tables.) The display will look like: \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana | k3 v3 | k1 v1 | k2 v2\"."
-msgstr "Используйте, чтобы создать Lua-таблицы и вывести их. Следует отметить, что для таблицы типа массива (array) функция-итератор будет ipairs(), а для таблицы типа ассоциативного массива (map) функция-итератор - pairs(). (`ipairs()` быстрее, чем `pairs()`, но pairs() рекомендуется для ассоциативных массивов или смешанных таблиц.) Результат будет выглядеть следующим образом: \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana | k3 v3 | k1 v1 | k2  v2\"."
+msgstr "Используйте, чтобы создать Lua-таблицы и вывести их. Следует отметить, что для таблицы типа массива (array) функция-итератор будет ipairs(), а для таблицы типа ассоциативного массива (map) функция-итератор -- `pairs()`. (`ipairs()` быстрее, чем `pairs()`, но `pairs()` рекомендуется для ассоциативных массивов или смешанных таблиц.) Результат будет выглядеть следующим образом: \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana | k3 v3 | k1 v1 | k2  v2\"."
 
 #: ../doc/1.7/book/app_server/cookbook.rst:259
 msgid ""
@@ -3420,7 +3420,7 @@ msgstr "count_array_with_nils.lua"
 
 #: ../doc/1.7/book/app_server/cookbook.rst:291
 msgid "Missing elements in arrays, which Lua treats as \"nil\"s, cause the simple \"#\" operator to deliver improper results. The \"print(#t)\" instruction will print \"4\"; the \"print(counter)\" instruction will print \"3\"; the \"print(max)\" instruction will print \"10\". Other table functions, such as table.sort(), will also misbehave when \"nils\" are present."
-msgstr "Отсутствующие элементы в массивах, которые Lua рассматривает как nil, заставляют простой оператор '#' выдавать неправильные результаты. Команда \"print(#t)\" выведет \"4\", команда \"print(counter)\" выведет \"3\", а команда \"print(max)\" - \"10\". Другие табличные функции, такие как table.sort(), также сработают неправильно при наличии значений nils."
+msgstr "Отсутствующие элементы в массивах, которые Lua рассматривает как nil, заставляют простой оператор '#' выдавать неправильные результаты. Команда \"print(#t)\" выведет \"4\", команда \"print(counter)\" выведет \"3\", а команда \"print(max)\" -- \"10\". Другие табличные функции, такие как table.sort(), также сработают неправильно при наличии значений nils."
 
 #: ../doc/1.7/book/app_server/cookbook.rst:299
 msgid ""
@@ -3550,7 +3550,7 @@ msgstr "class.lua"
 
 #: ../doc/1.7/book/app_server/cookbook.rst:385
 msgid "Create a class, create a metatable for the class, create an instance of the class. Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable <http://lua-users.org/wiki/LuaClassesWithMetatable>`_."
-msgstr "Используется для создания класса, метатаблицы для класса, экземпляра класса. Другой пример можно найти в `http://lua- users.org/wiki/LuaClassesWithMetatable <http://lua- users.org/wiki/LuaClassesWithMetatable>`_."
+msgstr "Используется для создания класса, метатаблицы для класса, экземпляра класса. Другой пример можно найти в `http://lua-users.org/wiki/LuaClassesWithMetatable <http://lua- users.org/wiki/LuaClassesWithMetatable>`_."
 
 #: ../doc/1.7/book/app_server/cookbook.rst:389
 msgid ""
@@ -3616,7 +3616,7 @@ msgstr "garbage.lua"
 
 #: ../doc/1.7/book/app_server/cookbook.rst:425
 msgid "Force Lua `garbage collection <https://www.lua.org/manual/5.1/manual.html#2.10>`_ with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_."
-msgstr "Принудительно запустите ` сборку мусора <https://www.lua.org/manual/5.1/manual.html#2.10>`_ в Lua с `функцией collectgarbage <https://www.lua.org/manual/5.1/manual.html#pdf- collectgarbage>`_."
+msgstr "Принудительно запустите ` сборку мусора <https://www.lua.org/manual/5.1/manual.html#2.10>`_ в Lua с `функцией collectgarbage <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_."
 
 #: ../doc/1.7/book/app_server/cookbook.rst:428
 msgid ""
@@ -3774,7 +3774,7 @@ msgstr "socket_tcp_echo.lua"
 
 #: ../doc/1.7/book/app_server/cookbook.rst:525
 msgid "Use :ref:`socket.tcp_connect() <socket-tcp_connect>` to set up a simple TCP server, by creating a function that handles requests and echos them, and passing the function to :ref:`socket.tcp_server() <socket-tcp_server>`. This program has been used to test with 100,000 clients, with each client getting a separate fiber."
-msgstr "Используйте :ref:`socket.tcp_connect() <socket-tcp_connect>` для настройки простого TCP-сервера путем создания функции, которая обрабатывает запросы и отражает их, а затем передачи функции на :ref:`socket.tcp_server() <socket- tcp_server>`. Данная программа была протестирована на 100 000 клиентов, каждый из которых получил отдельный файбер."
+msgstr "Используйте :ref:`socket.tcp_connect() <socket-tcp_connect>` для настройки простого TCP-сервера путем создания функции, которая обрабатывает запросы и отражает их, а затем передачи функции на :ref:`socket.tcp_server() <socket-tcp_server>`. Данная программа была протестирована на 100 000 клиентов, каждый из которых получил отдельный файбер."
 
 #: ../doc/1.7/book/app_server/cookbook.rst:533
 msgid ""
@@ -4531,7 +4531,7 @@ msgstr "Настройка базы данных"
 
 #: ../doc/1.7/book/app_server/creating_app.rst:285
 msgid "Let's discuss game initialization. In ``start()`` method, we need to populate Tarantool spaces with pokémon data. Why not keep all game data in memory? Why use a database? The answer is: :ref:`persistence <index-box_persistence>`. Without a database, we risk losing data on power outage, for example. But if we store our data in an in-memory database, Tarantool takes care to persist it on disk whenever it's changed. This gives us one more benefit: quick startup in case of failure. Tarantool has a :ref:`smart algorithm <internals-recovery_process>` that quickly loads all data from disk into memory on startup, so the warm-up takes little time."
-msgstr "Обсудим инициализацию игры. В методе ``start()`` нам нужно заполнить спейсы Tarantool'а данными о покемонах. Почему бы не хранить все игровые данные в памяти? Зачем нужна база данных? Ответ на это: :ref:`персистентность <index- box_persistence>`. Без базы данных мы рискуем потерять данные при отключении электроэнергии, например. Но если мы храним данные в in-memory базе данных, Tarantool позаботится о том, чтобы обеспечить постоянное хранение данных при их изменении. Это дает дополнительное преимущество: быстрая загрузка в случае отказа. :ref:`Умный алгоритм <internals-recovery_process>` Tarantool'а быстро загружает все данные с диска в память при начале работы, так что подготовка к работе не займет много времени."
+msgstr "Обсудим инициализацию игры. В методе ``start()`` нам нужно заполнить спейсы Tarantool'а данными о покемонах. Почему бы не хранить все игровые данные в памяти? Зачем нужна база данных? Ответ на это: :ref:`персистентность <index-box_persistence>`. Без базы данных мы рискуем потерять данные при отключении электроэнергии, например. Но если мы храним данные в in-memory базе данных, Tarantool позаботится о том, чтобы обеспечить постоянное хранение данных при их изменении. Это дает дополнительное преимущество: быстрая загрузка в случае отказа. :ref:`Умный алгоритм <internals-recovery_process>` Tarantool'а быстро загружает все данные с диска в память при начале работы, так что подготовка к работе не займет много времени."
 
 #: ../doc/1.7/book/app_server/creating_app.rst:295
 msgid "We'll be using functions from Tarantool built-in :ref:`box <box-module>` module:"
@@ -5492,7 +5492,7 @@ msgstr "Установка модуля из репозитория"
 
 #: ../doc/1.7/book/app_server/installing_module.rst:19
 msgid "See `README in tarantool/rocks repository <https://github.com/tarantool/rocks#managing-modules-with-tarantool-174>`_ for detailed instructions."
-msgstr "Для получения подробной информации см. `README в репозитории tarantool/rocks <https://github.com/tarantool/rocks#managing-modules-with- tarantool-174>`_."
+msgstr "Для получения подробной информации см. `README в репозитории tarantool/rocks <https://github.com/tarantool/rocks#managing-modules-with-tarantool-174>`_."
 
 #: ../doc/1.7/book/app_server/installing_module.rst:27
 msgid "Installing a module from deb/rpm"
@@ -5661,7 +5661,7 @@ msgstr "Запуск в Docker"
 
 #: ../doc/1.7/book/app_server/launching_app.rst:52
 msgid "If we run Tarantool in a :ref:`Docker container <getting_started-using_docker>`, the following command will start Tarantool without any application:"
-msgstr "Если мы запустим Tarantool в :ref:`Docker-контейнере <getting_started- using_docker>`, Tarantool начнет работу без какого-либо приложения после следующей команды:"
+msgstr "Если мы запустим Tarantool в :ref:`Docker-контейнере <getting_started-using_docker>`, Tarantool начнет работу без какого-либо приложения после следующей команды:"
 
 #: ../doc/1.7/book/app_server/launching_app.rst:55
 msgid ""
@@ -5713,7 +5713,7 @@ msgstr "Запуск бинарной программы"
 
 #: ../doc/1.7/book/app_server/launching_app.rst:85
 msgid "If we run Tarantool from a :ref:`binary package <getting_started-using_binary>` or from a :ref:`source build <building_from_source>`, we can launch our application:"
-msgstr "При запуске Tarantool'а из :ref:`бинарного пакета <getting_started- using_binary>` или :ref:`сборке из исходников <building_from_source>`, можно запустить наше приложение:"
+msgstr "При запуске Tarantool'а из :ref:`бинарного пакета <getting_started-using_binary>` или :ref:`сборке из исходников <building_from_source>`, можно запустить наше приложение:"
 
 #: ../doc/1.7/book/app_server/launching_app.rst:89
 msgid "in the script mode,"
@@ -5760,7 +5760,7 @@ msgstr "настроить Tarantool как сервер, который при�
 
 #: ../doc/1.7/book/app_server/launching_app.rst:111
 msgid "We also add some simple database logic, using :ref:`space.create() <box_schema-space_create>` and :ref:`create_index() <box_space-create_index>` to create a space with a primary index. We use the function :ref:`box.once() <box-once>` to make sure that our logic will be executed only once when the database is initialized for the first time, so we don't try to create an existing space or index on each invocation of the script:"
-msgstr "Также добавим простую логику для базы данных, используя :ref:`space.create() <box_schema-space_create>` и :ref:`create_index() <box_space- create_index>` для создания спейса с первичным индексом. Используем функцию :ref:`box.once() <box-once>`, чтобы обеспечить единовременное выполнение логики после первоначальной инициализации базы данных, поскольку мы не хотим создавать уже существующий спейс или индекс при каждом обращении к скрипту:"
+msgstr "Также добавим простую логику для базы данных, используя :ref:`space.create() <box_schema-space_create>` и :ref:`create_index() <box_space-create_index>` для создания спейса с первичным индексом. Используем функцию :ref:`box.once() <box-once>`, чтобы обеспечить единовременное выполнение логики после первоначальной инициализации базы данных, поскольку мы не хотим создавать уже существующий спейс или индекс при каждом обращении к скрипту:"
 
 #: ../doc/1.7/book/app_server/launching_app.rst:119
 msgid ""
@@ -6087,7 +6087,7 @@ msgstr "Перезагрузка модуля на С"
 
 #: ../doc/1.7/book/app_server/reloading_module.rst:115
 msgid "After you compiled a new version of a C module (``*.so`` shared library), call :ref:`box.schema.func.reload('module-name') <box_schema-func_reload>` from your Lua script to reload the module."
-msgstr "После компиляции новой версии модуля на C (библиотека общего пользования ``*.so``),  вызовите функцию :ref:`box.schema.func.reload('module-name') <box_schema- func_reload>` из Lua-скрипта для перезагрузки модуля."
+msgstr "После компиляции новой версии модуля на C (библиотека общего пользования ``*.so``),  вызовите функцию :ref:`box.schema.func.reload('module-name') <box_schema-func_reload>` из Lua-скрипта для перезагрузки модуля."
 
 #: ../doc/1.7/book/app_server/using_ide.rst:5
 msgid "Developing with an IDE"
@@ -6279,7 +6279,7 @@ msgstr "Транзакции"
 
 #: ../doc/1.7/book/box/atomic.rst:111
 msgid "In the absence of transactions, any function that contains yield points may see changes in the database state caused by fibers that preempt. Multi-statement transactions exist to provide **isolation**: each transaction sees a consistent database state and commits all its changes atomically. At :ref:`commit <box-commit>` time, a yield happens and all transaction changes are written to the :ref:`write ahead log <internals-wal>` in a single batch. Or, if needed, transaction changes can be rolled back -- :ref:`completely <box-rollback>` or to a specific :ref:`savepoint <box-rollback_to_savepoint>`."
-msgstr "В отсутствие транзакций любая функция, в которой есть точки передачи управления, может видеть изменения в состоянии базы данных, вызванные вытесняющими файберами. Составные транзакции предназначены для **изоляции**: каждая транзакция видит постоянное состояние базы данных и делает атомарные коммиты изменений. Во время :ref:`коммита <box-commit>` происходит передача управления, а все транзакционные изменения записываются в :ref:`журнал упреждающей записи <internals- wal>` в отдельный пакет. Или, при необходимости, можно откатить изменения — :ref:`полностью <box-rollback>` или на определенную :ref:`точку сохранения <box-rollback_to_savepoint>`."
+msgstr "В отсутствие транзакций любая функция, в которой есть точки передачи управления, может видеть изменения в состоянии базы данных, вызванные вытесняющими файберами. Составные транзакции предназначены для **изоляции**: каждая транзакция видит постоянное состояние базы данных и делает атомарные коммиты изменений. Во время :ref:`коммита <box-commit>` происходит передача управления, а все транзакционные изменения записываются в :ref:`журнал упреждающей записи <internals-wal>` в отдельный пакет. Или, при необходимости, можно откатить изменения — :ref:`полностью <box-rollback>` или на определенную :ref:`точку сохранения <box-rollback_to_savepoint>`."
 
 #: ../doc/1.7/book/box/atomic.rst:121
 msgid "To implement isolation, Tarantool uses a simple optimistic scheduler: the first transaction to commit wins. If a concurrent active transaction has read a value modified by a committed transaction, it is aborted."
@@ -6399,7 +6399,7 @@ msgstr ""
 
 #: ../doc/1.7/book/box/atomic.rst:213
 msgid "causes blocking (in memtx), if it is inside a function or Lua program being executed on the server instance, but causes yielding (in both memtx and vinyl) if it is done as a series of transmissions from a client, including a client which operates via telnet, via one of the connectors, or via the :ref:`MySQL and PostgreSQL rocks <dbms_modules>`, or via the interactive mode when :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`."
-msgstr "приводит к блокировке (в memtx'е), если находится внутри функции или Lua-программы, которая выполняется на экземпляре сервера. Однако она вызывает передачу управления (и в memtx, и в vinyl), если выполняется как серия передач от клиента, включая клиентов, работающих по telnet, по одному из коннекторов или :ref:`модулей MySQL и PostgreSQL <dbms_modules>` или в интерактивном режиме при :ref:`использовании Tarantool'а как клиента <admin- using_tarantool_as_a_client>`."
+msgstr "приводит к блокировке (в memtx'е), если находится внутри функции или Lua-программы, которая выполняется на экземпляре сервера. Однако она вызывает передачу управления (и в memtx, и в vinyl), если выполняется как серия передач от клиента, включая клиентов, работающих по telnet, по одному из коннекторов или :ref:`модулей MySQL и PostgreSQL <dbms_modules>` или в интерактивном режиме при :ref:`использовании Tarantool'а как клиента <admin-using_tarantool_as_a_client>`."
 
 #: ../doc/1.7/book/box/atomic.rst:220
 msgid "After a fiber has yielded and then has regained control, it immediately issues :ref:`testcancel <fiber-testcancel>`."
@@ -6443,7 +6443,7 @@ msgstr "Пользователи"
 
 #: ../doc/1.7/book/box/authentication.rst:35
 msgid "There is a **current user** for any program working with Tarantool, local or remote. If a remote connection is using a :ref:`binary port <admin-security>`, the current user, by default, is '**guest**'. If the connection is using an :ref:`admin-console port <admin-security>`, the current user is '**admin**'. When executing a :ref:`Lua initialization script <index-init_label>`, the current user is also ‘admin’."
-msgstr "Для любой локальной или удаленной программы, работающей с Tarantool'ом, есть **текущий пользователь**. Если удаленное соединение использует :ref:`бинарный порт <admin- security>`, то текущим пользователем, по умолчанию, будет '**guest**' (гость). Если соединение использует :ref:`порт для административной консоли <admin-security>`, текущим пользователем будет '**admin**' (администратор). При выполнении :ref:`скрипта инициализации на Lua <index-init_label>`, текущим пользователем также будет ‘admin’."
+msgstr "Для любой локальной или удаленной программы, работающей с Tarantool'ом, есть **текущий пользователь**. Если удаленное соединение использует :ref:`бинарный порт <admin-security>`, то текущим пользователем, по умолчанию, будет '**guest**' (гость). Если соединение использует :ref:`порт для административной консоли <admin-security>`, текущим пользователем будет '**admin**' (администратор). При выполнении :ref:`скрипта инициализации на Lua <index-init_label>`, текущим пользователем также будет ‘admin’."
 
 #: ../doc/1.7/book/box/authentication.rst:44
 msgid "The current user name can be found with :ref:`box.session.user() <box_session-user>`."
@@ -6488,7 +6488,7 @@ msgstr "Система не дает злоумышленнику определ
 
 #: ../doc/1.7/book/box/authentication.rst:96
 msgid "There are two functions for managing passwords in Tarantool: :ref:`box.schema.user.password() <box_schema-user_password>` for changing a user's password and :ref:`box.schema.user.passwd() <box_schema-user_passwd>` for getting a hash-password."
-msgstr "Для управления паролями в Tarantool'е есть две функции: :ref:`box.schema.user.password() <box_schema-user_password>` для изменения пароля пользователя и :ref:`box.schema.user.passwd() <box_schema- user_passwd>` для получения хеш-пароля."
+msgstr "Для управления паролями в Tarantool'е есть две функции: :ref:`box.schema.user.password() <box_schema-user_password>` для изменения пароля пользователя и :ref:`box.schema.user.passwd() <box_schema-user_passwd>` для получения хеш-пароля."
 
 #: ../doc/1.7/book/box/authentication.rst:105
 msgid "Owners and privileges"
@@ -6516,7 +6516,7 @@ msgstr "Execute (выполнение), например, разрешить в�
 
 #: ../doc/1.7/book/box/authentication.rst:118
 msgid "Create, e.g. allow :ref:`box.schema.space.create <box_schema-space_create>` (currently this can be granted but has no effect)"
-msgstr "Create (создание), например, разрешить :ref:`box.schema.space.create <box_schema- space_create>` (сейчас можно настроить такие привилегии, но они не действуют)"
+msgstr "Create (создание), например, разрешить :ref:`box.schema.space.create <box_schema-space_create>` (сейчас можно настроить такие привилегии, но они не действуют)"
 
 #: ../doc/1.7/book/box/authentication.rst:121
 msgid "Alter, e.g. allow :ref:`box.space.x.index.y:alter <box_index-alter>` (currently this can be granted but has no effect)"
@@ -14363,7 +14363,7 @@ msgstr "Первый индекс, определенный для спейса,
 
 #: ../doc/1.7/book/box/data_model.rst:89
 msgid "An index definition may include identifiers of tuple fields and their expected **types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>` below)."
-msgstr "Индекс может содержать идентификаторы полей кортежа и их предполагаемые **типы** (см. допустимые :ref:`типы индексированных полей <index- box_indexed-field-types>` ниже)."
+msgstr "Индекс может содержать идентификаторы полей кортежа и их предполагаемые **типы** (см. допустимые :ref:`типы индексированных полей <index-box_indexed-field-types>` ниже)."
 
 #: ../doc/1.7/book/box/data_model.rst:93
 msgid "In our example, we first defined the primary index (named 'primary') based on field #1 of each tuple:"
@@ -17229,7 +17229,7 @@ msgstr "Установка удаленного подключения"
 
 #: ../doc/1.7/book/getting_started/using_binary.rst:182
 msgid "In the request ``box.cfg{listen = 3301}`` that we made earlier, the ``listen`` value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier). In this case, it’s just a local port: port 3301. You can send requests to the listen URI via:"
-msgstr "В запросе ``box.cfg{listen = 3301}``, который мы отправили ранее, параметр ``listen`` может принимать в качестве значения :ref:`URI <index- uri>` (универсальный идентификатор ресурса) любой формы. В нашем случае это просто локальный порт 3301. Вы можете отправлять запросы на указанный  URI, используя:"
+msgstr "В запросе ``box.cfg{listen = 3301}``, который мы отправили ранее, параметр ``listen`` может принимать в качестве значения :ref:`URI <index-uri>` (универсальный идентификатор ресурса) любой формы. В нашем случае это просто локальный порт 3301. Вы можете отправлять запросы на указанный  URI, используя:"
 
 #: ../doc/1.7/book/getting_started/using_binary.rst:187
 msgid "``telnet``,"
