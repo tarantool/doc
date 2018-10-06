@@ -113,6 +113,7 @@ as part of Tarantool distribution -- see OS-specific default paths in
        vinyl_dir = "/var/lib/tarantool",
        log       = "/var/log/tarantool",
        username  = "tarantool",
+       language  = "Lua",
    }
    instance_dir = "/etc/tarantool/instances.enabled"
 
@@ -142,6 +143,9 @@ where:
   | The user that runs the Tarantool instance. This is the operating-system user
     name rather than the Tarantool-client user name. Tarantool will change its
     effective user to this user after becoming a daemon.
+
+* | ``language``
+  | The interactive console language. Can be either ``Lua`` or ``SQL``.
 
 .. _admin-instance_dir:
 
