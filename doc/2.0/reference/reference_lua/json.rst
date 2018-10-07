@@ -35,16 +35,21 @@ Below is a list of all ``json`` functions and members.
     | :ref:`json.NULL                      | Analog of Lua's "nil"           |
     | <json-null>`                         |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`json.cfg()                     | Set persistent flags            |
+    | <json-module_cfg>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+
 
 .. module:: json
 
 .. _json-encode:
 
-.. function:: encode(lua-value)
+.. function:: encode(lua-value [, configuration])
 
     Convert a Lua object to a JSON string.
 
     :param lua_value: either a scalar value or a Lua table value.
+    :param configuration: see :ref:`json.cfg <json-module_cfg>`
     :return: the original value reformatted as a JSON string.
     :rtype: string
 
@@ -78,11 +83,12 @@ Below is a list of all ``json`` functions and members.
 
 .. _json-decode:
 
-.. function:: decode(string)
+.. function:: decode(string [,configuration])
 
     Convert a JSON string to a Lua object.
 
     :param string string: a string formatted as JSON.
+    :param configuration: see :ref:`json.cfg <json-module_cfg>`
     :return: the original contents formatted as a Lua table.
     :rtype: table
 
@@ -168,25 +174,28 @@ results:
     - '[[]]'
     ...
 
-
 .. _json-module_cfg:
 
-================================================================
-                    Configuration settings
-================================================================
+.. function:: cfg(list of parameter assignments)
 
-There are configuration settings which affect the way that Tarantool encodes
-invalid numbers or types. They are all boolean ``true``/``false`` values
+    Set values affecting behavior of :ref:`json.encode <json-encode>`
+    and :ref:`json.decode <json-decode>`. The values are all either integers or boolean ``true``/``false`` values.
 
-* ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
-* ``cfg.encode_use_tostring`` (default is false) -- use tostring for
-  unrecognizable types
-* ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
-  unrecognizable types
-* ``cfg.encode_load_metatables`` (default is false) -- load metatables
+* ``encode_invalid_as_nil`` -- use null for unrecognizable types. default = ``false``
+* ``encode_invalid_numbers`` -- allow nan and inf. default = ``true``
+* ``encode_load_metatables`` -- load metatables. default = ``true``
+* ``encode_max_depth`` -- how deep nesting can be. default = 32
+* ``encode_number_precision`` -- maximum post-decimal digits. default = 14
+* ``encode_sparse_ratio`` -- how sparse an array can be. default = 2
+* ``encode_sparse_safe`` -- how much can safely be sparse. default = 10
+* ``encode_use_tostring`` -- use tostring for unrecognizable types. default = ``false``
+* ``decode_invalid_numbers`` -- like encode_invalid_numbers. default = ``true``
+* ``decode_max_depth`` -- like encode_max_depth. default = 32
+* ``decode_save_metatables`` -- like encode_load_metatables. default = ``true``
+* ``decode_sparse_convert`` -- like encode_sparse_convert. default = ``true``
 
-For example, the following code will interpret 0/0 (which is "not a number")
-and 1/0 (which is "infinity") as special values rather than nulls or errors:
+For example, the following code will encode 0/0 as nan ("not a number")
+and 1/0 as inf ("infinity"), rather than returning nil or an error message:
 
 .. code-block:: lua
 
@@ -204,6 +213,10 @@ The result of the ``json.encode()`` request will look like this:
     ---
     - '[1,nan,inf,2]
     ...
+
+To achieve the same effect for only one call to json.encode without
+changing the configuration persistently, one could say
+``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
 
 The same configuration settings exist for json, for :ref:`MsgPack
 <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
