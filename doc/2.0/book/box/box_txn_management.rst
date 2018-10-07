@@ -75,6 +75,9 @@ Below is a list of all functions for transaction management.
     | :ref:`box.on_rollback()              | Define a trigger that will be   |
     | <box-on_rollback>`                   | activated by box.rollback       |
     +--------------------------------------+---------------------------------+
+    | :ref:`is_in_txn()                    | State whether a transaction is  |
+    | <box-is_in_txn>`                     | in progress                     |
+    +--------------------------------------+---------------------------------+
 
 
 .. _box-begin:
@@ -218,3 +221,15 @@ Below is a list of all functions for transaction management.
     Define a trigger for execution when a transaction ends due to an event
     such as :ref:`box.rollback <box-rollback>`. The parameters and warnings
     are exactly the same as for :ref:`box.on-commit <box-on_commit>`.
+
+.. _box-is_in_txn:
+
+.. function:: box.is_in_txn()
+
+    If a transaction is in progress (for example the user has called
+    :ref:`box.begin <box-begin>` and has not yet called either
+    :ref:`box.commit <box-commit>` or :ref:`box.rollback <box-rollback>`,
+    return ``true``. Otherwise return ``false``.
+
+
+
