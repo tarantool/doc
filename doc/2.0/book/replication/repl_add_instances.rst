@@ -168,7 +168,7 @@ Orphan status
 --------------------------------------------------------------------------------
 
 Starting with Tarantool version 1.9, there is a change to the
-procedure when an instance joins a relica set.
+procedure when an instance joins a replica set.
 During ``box.cfg()`` the instance will try to join all masters listed
 in :ref:`box.cfg.replication <cfg_replication-replication>`.
 If the instance does not succeed with at least
@@ -207,24 +207,23 @@ Here ``box.cfg{}`` is being called for the first time.
 A replica is joining but no replica set exists yet.
 
     1. Set status to 'orphan'.
-    2. Try to connect to all nodes in ``box.cfg.replication``.
+    2. Try to connect to all nodes from ``box.cfg.replication``,
+       or to the number of nodes required by 
+       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`.
        Retrying up to 3 times in 30 seconds is possible because this is bootstrap,
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
        is overridden.
-       Trying to connect to **all** nodes in ``box.cfg.replication`` is necessary because 
-       this is bootstrap, 
-       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-       is ignored.
 
-    3. Abort if not connected to all nodes in ``box.cfg.replication``.
+    3. Abort if not connected to all nodes in ``box.cfg.replication`` or
+       :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`.
 
-    X. This instance might be elected as the replica set 'leader'.
+    4. This instance might be elected as the replica set 'leader'.
        Criteria for electing a leader include vclock value (largest is best),
        and whether it is read-only or read-write (read-write is best unless there is no other choice).
        The leader is the master that other instances must join.
        The leader is the master that executes :ref:`box_once() <box-once>` functions.
 
-    4. If this instance is elected as the replica set leader,
+    5. If this instance is elected as the replica set leader,
        then
        perform an "automatic bootstrap":
 
