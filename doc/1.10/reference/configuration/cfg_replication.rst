@@ -88,7 +88,7 @@
     N is a number greater than or equal to zero,
     users can state that the replica only needs to connect to N masters.
 
-    This parameter is ignored during bootstrap but not ignored during
+    This parameter has effect during bootstrap and during
     :ref:`configuration update <replication-configuration_update>`.
     Setting ``replication_connect_quorum = 0`` makes Tarantool
     require no immediate reconnect only in case of recovery.
