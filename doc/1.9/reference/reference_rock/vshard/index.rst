@@ -1165,15 +1165,18 @@ Router public API
 
 .. function:: vshard.router.new(name, cfg)
 
-    Create a new router instance.
+    Create a new router instance. ``vshard`` supports multiple routers in a
+    single Tarantool instance. Each router can be connected to any ``vshard``
+    cluster, and multiple routers can be connected to the same cluster.
 
     A router created via ``vshard.router.new()`` works in the same way as
     a static router, but requires a colon (``vshard.router:method_name(...)``)
     before calling its methods (a static router requires a dot:
     ``vshard.router.method_name(...)``).
 
-    A static router can be obtained via the ``vshard.router.static`` method and
-    used as it was a router created via the ``vshard.router.new()`` method.
+    A static router can be obtained via the ``vshard.router.static()`` method
+    and further used as it was a router created via the ``vshard.router.new()``
+    method.
 
     .. NOTE::
 
