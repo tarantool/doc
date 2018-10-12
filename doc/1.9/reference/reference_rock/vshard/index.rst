@@ -800,6 +800,58 @@ On each step, the algorithm either finishes the calculation, or ignores at least
 one new replica set overloaded with the pinned buckets, and updates the etalon
 number of buckets on other replica sets.
 
+.. _vshard-ref:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Bucket ref
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bucket ref is an in-memory counter that is similar to the
+:ref:`bucket pin <vshard-lock-pin>`, but has the following differences:
+
+#. Bucket ref is never persisted. Refs are intended to forbid bucket transfer
+   during request execution, but on restart all requests are dropped.
+#. Bucket ref has 2 types: read-only (RO) and read-write (RW).
+
+   If a
+   bucket has the RW refs, it can not be moved. However, when the rebalancer
+   needs it to be sent, it locks the bucket for the new write requests, waits
+   until all current requests are finished and then sends the bucket.
+
+   If a bucket has RO refs, it can be sent, but can not be dropped. Such a
+   bucket can even enter GARBAGE or SENT state, but its data is kept until last
+   reader left.
+
+   A single bucket can have both RO and RW refs.
+
+#. Bucket ref is countable.
+
+The :ref:`vshard.storage.bucket_ref/unref()<storage_api-bucket_ref>` methods
+are called automatically when the :ref:`vshard.router.call()<router_api-call>`
+or the :ref:`vshard.storage.call()<storage_api-call>` are used. For
+raw API like ``r = vshard.router.route() r:callro/callrw`` you should call the
+``bucket_ref()`` method by yourself inside the function. Also, make sure that you call
+``bucket_unref()`` after ``bucket_ref()``, otherwise the bucket will be pinned
+to the storage until the instance restart.
+
+To see how many refs there are for a bucket, use
+:ref:`vshard.storage.buckets_info([bucket_id])<storage_api-buckets_info>`
+(the ``bucket_id`` is optional).
+
+For example:
+
+.. code-block:: console
+
+    vshard.storage.buckets_info(1)
+    ---
+    - 1:
+        status: active
+        ref_rw: 1
+        ref_ro: 1
+        ro_lock: true
+        rw_lock: true
+        id: 1
+
 .. _vshard-define-spaces:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1526,7 +1578,11 @@ Storage public API
 * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`
 * :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`
 * :ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`
+* :ref:`vshard.storage.bucket_refro() <storage_api-bucket_refro>`
+* :ref:`vshard.storage.bucket_refrw() <storage_api-bucket_refrw>`
 * :ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`
+* :ref:`vshard.storage.bucket_unrefro() <storage_api-bucket_unrefro>`
+* :ref:`vshard.storage.bucket_unrefrw() <storage_api-bucket_unrefrw>`
 * :ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`
 * :ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`
 * :ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`
@@ -1612,6 +1668,57 @@ Storage public API
     :return: ``true`` if the bucket is unpinned successfully; or ``nil`` and
              ``err`` explaining why the bucket cannot be unpinned
 
+.. _storage_api-bucket_ref:
+
+.. function:: vshard.storage.bucket_ref(bucket_id, mode)
+
+    Create a RO/RW :ref:`ref<_vshard_ref>`.
+
+    :param bucket_id: a bucket identifier
+    :param mode: read or write
+
+    :return: ``true`` if the bucket is the ref is created successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be created
+
+.. _storage_api-bucket_refro:
+
+.. function:: vshard.storage.bucket_refro()
+
+    An alias of :ref:`vshard.storage.bucket_ref<storage_api-bucket_ref>` in
+    the RO mode.
+
+.. _storage_api-bucket_refrw:
+
+.. function:: vshard.storage.bucket_refrw()
+
+    An alias of :ref:`vshard.storage.bucket_ref<storage_api-bucket_ref>` in
+    the RW mode.
+
+.. _storage_api-bucket_unref:
+
+.. function:: vshard.storage.bucket_unref(bucket_id)
+
+    Remove a RO/RW :ref:`ref<_vshard_ref>`.
+
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the ref is removed successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be removed
+
+.. _storage_api-bucket_unrefro:
+
+.. function:: vshard.storage.bucket_unrefro()
+
+    An alias of :ref:`vshard.storage.bucket_unref<storage_api-bucket_unref>` in
+    the RO mode.
+
+.. _storage_api-bucket_unrefrw:
+
+.. function:: vshard.storage.bucket_unrefrw()
+
+    An alias of :ref:`vshard.storage.bucket_unref<storage_api-bucket_unref>` in
+    the RW mode.
+
 .. _storage_api-find_garbage_bucket:
 
 .. function:: vshard.storage.find_garbage_bucket(bucket_index, control)
@@ -1630,7 +1737,19 @@ Storage public API
 
 .. function:: vshard.storage.buckets_info()
 
-    Return the information on each bucket located on storage.
+    Return the information on each bucket located on storage. For example:
+
+    .. code-block:: tarantoolsession
+
+        vshard.storage.buckets_info(1)
+        ---
+        - 1:
+            status: active
+            ref_rw: 1
+            ref_ro: 1
+            ro_lock: true
+            rw_lock: true
+            id: 1
 
 .. _storage_api-buckets_count:
 
