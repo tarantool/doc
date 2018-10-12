@@ -276,7 +276,26 @@ or something in the replica set has changed.
 
     4. If earlier steps succeed, set status to 'running' (master) or 'follow' (replica).
 
+.. _replication-configuration_rebootstrap:
 
+**Situation 4: rebootstrap**
+
+Here ``box.cfg{}`` is not being called. The replica connected successfully
+at some point in the past, and is now ready for an update from the master.
+But the master cannot provide an update.
+This can happen by accident, or more likely can happen because the replica
+is slow (its :ref:`lag <cfg_replication-replication_sync_lag>` is large),
+and the WAL (.xlog) files containing the
+updates have been deleted. This is not crippling. The replica can discard
+what it received earlier, and then ask for the master's latest snapshot
+(.snap) file contents. Since it is effectively going through the bootstrap
+process a second time, this is called "rebootstrapping". However, there has
+to be one difference from an ordinary bootstrap -- the replica's
+:ref:`replica id <replication-replica-id>` will remain the same.
+If it changed, then the master would think that the replica is a
+new addition to the cluster, and would maintain a record of an
+instance ID of a replica that has ceased to exist. Rebootstrapping was
+introduced in Tarantool version 1.10.2 and is completely automatic.
 
 .. _replication-server_startup:
 
