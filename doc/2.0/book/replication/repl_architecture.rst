@@ -73,6 +73,8 @@ system space :ref:`box.space._schema <box_space-schema>`. For example:
     - - ['cluster', '6308acb9-9788-42fa-8101-2e0cb9d3c9a0']
     ...
 
+.. _replication-replica-id:
+
 Additionally, each instance in a replica set is assigned its own UUID, when it
 joins the replica set. It is called an **instance UUID** and is a globally unique
 identifier. The instance UUID is checked to ensure that instances do not join a different
