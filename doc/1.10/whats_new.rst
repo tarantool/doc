@@ -5,6 +5,7 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
+:ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
 :ref:`1.7.6 <whats_new_176>`,
 :ref:`1.7.5 <whats_new_175>`,
@@ -19,6 +20,68 @@ The Release Notes are summaries of significant changes introduced in Tarantool
 For smaller feature changes and bug fixes, see closed
 `milestones <https://github.com/tarantool/tarantool/milestones?state=closed>`_
 at GitHub.
+
+.. _whats_new_110:
+
+--------------------------------------------------------------------------------
+Version 1.10
+--------------------------------------------------------------------------------
+
+.. _whats_new_1102:
+
+**Release 1.10.2**
+
+Release type: lts. Release date: 2018-10-12.  Tag: 1.10.2-?-????????.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.2.
+
+This is the first :ref:`stable (lts) <release-policy>` release in the 1.10
+series.
+
+Also, Tarantool version 1.10.2 is a major release that deprecates Tarantool
+version 1.9.2.
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data
+layout, client-server protocol and replication protocol.
+You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
+procedure.
+
+The goal of this release is to significantly increase ``vinyl`` stability and
+introduce automatic rebootstrap of a Tarantool replica set.
+
+Functionality added or changed:
+
+  * (Engines) support ALTER for non-empty vinyl spaces.
+    Issue `1653 <https://github.com/tarantool/tarantool/issues/1653>`_.
+  * (Engines) tuples stored in the vinyl cache are not shared among the indexes
+    of the same space.
+    Issue `3478 <https://github.com/tarantool/tarantool/issues/3478>`_.
+  * (Engines) keep a stack of UPSERTS in ``vy_read_iterator``.
+    Issue `1833 <https://github.com/tarantool/tarantool/issues/1833>`_.
+
+  * (Replication)
+    display the connection status if the downstream gets disconnected from
+    the upstream
+    (:ref:`box.info.replication.downstream.status <box_info_replication>`
+    ``= disconnected``).
+    Issue `3365 <https://github.com/tarantool/tarantool/issues/3365>`_.
+  * (Replication) :ref:`replica-local spaces <replication-local>`
+    Issue `3443 <https://github.com/tarantool/tarantool/issues/3443>`_.
+  * (Replication)
+    :ref:`replication_skip_conflict <fg-replication-skip-conflict>`,
+    a new option in ``box.cfg{}`` to skip conflicting rows in replication.
+    Issue `3270 <https://github.com/tarantool/tarantool/issues/3270>`_.
+  * (Replication)
+    remove old snapshots which are not needed by replicas.
+    Issue `3444 <https://github.com/tarantool/tarantool/issues/3444>`_.
+  * (Replication)
+    log records which tried to commit twice.
+    Issue `3105 <https://github.com/tarantool/tarantool/issues/3105>`_.
+
+  * (LuaRocks) support custom rock servers (``server`` and ``only-server``
+    options for :ref:`tarantoolctl rocks <tarantoolctl-module_management>`
+    command).
+    Issue `2640 <https://github.com/tarantool/tarantool/issues/2640>`_.
 
 .. _whats_new_19:
 
@@ -432,7 +495,7 @@ Incompatible changes
     * ``box.info.server.uuid`` renamed ``box.info.uuid``
     * ``box.info.cluster.signature`` renamed to ``box.info.signature``
     * ``box.info.id`` and ``box.info.lsn`` now return `nil` instead of `-1`
-      during initial cluster bootstrap. 
+      during initial cluster bootstrap.
 
   * ``net.box``: added per-request options to all requests:
 
