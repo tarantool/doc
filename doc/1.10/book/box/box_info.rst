@@ -13,7 +13,7 @@ variables.
   Every instance in a replica set will have the same ``cluster.uuid`` value.
   This value is also stored in :ref:`box.space._schema <box_space-schema>`
   system space.
-* **gc()** returns the state of the 
+* **gc()** returns the state of the
   :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
   including the checkpoints and their consumers (users).
 * **id** corresponds to **replication.id**
@@ -154,6 +154,10 @@ variables.
       :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`.
       Even if an instance is :ref:`removed <replication-remove_instances>`,
       its values will still appear here.
+
+    * **replication.downstream.status** ``= disconnected`` is displayed if the
+      downstream instance disconnects from the upstream instance. Otherwise the
+      status is not reported.
 
 .. function:: box.info()
 
