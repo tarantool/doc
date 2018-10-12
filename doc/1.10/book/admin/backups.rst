@@ -4,20 +4,20 @@
 Backups
 ================================================================================
 
-Tarantool has an append-only storage architecture: it appends data to files but it
-never overwrites earlier data. The
+Tarantool has an append-only storage architecture: it appends data to files but
+it never overwrites earlier data. The
 :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
 removes old files after a
 checkpoint. You can prevent or delay the garbage collector's action
 by configuring the
-:ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at any
-time, with minimal overhead on database performance.
+:ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at
+any time, with minimal overhead on database performance.
+
+.. _admin-backups-backup_start:
 
 --------------------------------------------------------------------------------
 backup.start() and backup.stop()
 --------------------------------------------------------------------------------
-
-.. _admin-backups-backup_start:
 
 Two functions are helpful for backups in certain situations.
 
@@ -28,9 +28,10 @@ suspend Tarantool garbage collection, and effectively enter read-only mode.
 Later ``box.backup.stop()`` informs the server that
 normal operations may resume. Starting with Tarantool 1.10.1 there is a new
 optional argument, ``box.backup.start(n)``, where ``n`` indicates the checkpoint
-to use relative to the latest checkpoint -- for example ``n = 0`` means "backup will
-be based on the latest checkpoint", ``n = 1`` means "backup will be based on the first
-checkpoint before the latest checkpoint (counting backwards)", and so on,
+to use relative to the latest checkpoint -- for example ``n = 0`` means
+"backup will be based on the latest checkpoint", ``n = 1`` means "backup will
+be based on the first checkpoint before the latest checkpoint
+(counting backwards)", and so on,
 and the default value for ``n`` is zero.
 
 ``box.backup.start()`` returns a table with the names of snapshot

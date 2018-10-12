@@ -31,15 +31,14 @@ Version 1.10
 
 **Release 1.10.2**
 
-Release type: lts. Release date: 2018-10-12.  Tag: 1.10.2-?-????????.
+Release type: stable (lts). Release date: 2018-10-12.  Tag: xxx.
 
 Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.2.
 
 This is the first :ref:`stable (lts) <release-policy>` release in the 1.10
 series.
-
-Also, Tarantool version 1.10.2 is a major release that deprecates Tarantool
-version 1.9.2.
+Also, Tarantool 1.10.2 is a major release that deprecates Tarantool 1.9.2.
+It resolves 95 issues since 1.9.2.
 
 Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data
 layout, client-server protocol and replication protocol.
@@ -58,6 +57,26 @@ Functionality added or changed:
     Issue `3478 <https://github.com/tarantool/tarantool/issues/3478>`_.
   * (Engines) keep a stack of UPSERTS in ``vy_read_iterator``.
     Issue `1833 <https://github.com/tarantool/tarantool/issues/1833>`_.
+  * (Engines) ``box.ctl.reset_stat()``, a function to reset vinyl statistics.
+    Issue `3198 <https://github.com/tarantool/tarantool/issues/3198>`_.
+
+  * (Server) :ref:`configurable syslog destination <cfg_logging-log>`.
+    Issue `3487 <https://github.com/tarantool/tarantool/issues/3487>`_.
+  * (Server) allow different nullability in indexes and format.
+    Issue `3430 <https://github.com/tarantool/tarantool/issues/3430>`_.
+  * (Server) allow to
+    :ref:`back up any checkpoint <admin-backups-backup_start>`,
+    not just the last one.
+    Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_.
+  * (Server) a way to detect that a Tarantool process was
+    started / restarted by ``tarantoolctl``
+    (:ref:`TARANTOOLCTL and TARANTOOL_RESTARTED <tarantoolctl-instance_management>`
+    env vars).
+    Issues `3384 <https://github.com/tarantool/tarantool/issues/3384>`_,
+    `3215 <https://github.com/tarantool/tarantool/issues/3215>`_.
+  * (Server) :ref:`net_msg_max <cfg_networking-net_msg_max>`
+    configuration parameter to restrict the number of allocated fibers.
+    Issue `3320 <https://github.com/tarantool/tarantool/issues/3320>`_.
 
   * (Replication)
     display the connection status if the downstream gets disconnected from
@@ -78,7 +97,11 @@ Functionality added or changed:
     log records which tried to commit twice.
     Issue `3105 <https://github.com/tarantool/tarantool/issues/3105>`_.
 
-  * (LuaRocks) support custom rock servers (``server`` and ``only-server``
+  * (Lua) new function :ref:`fiber.join() <fiber_object-join>`.
+    Issue `1397 <https://github.com/tarantool/tarantool/issues/1397>`_.
+  * (Lua) new option ``only_names`` to :ref:`tuple:tomap() <box_tuple-tomap>`.
+    Issue `3280 <https://github.com/tarantool/tarantool/issues/3280>`_.
+  * (Lua) support custom rock servers (``server`` and ``only-server``
     options for :ref:`tarantoolctl rocks <tarantoolctl-module_management>`
     command).
     Issue `2640 <https://github.com/tarantool/tarantool/issues/2640>`_.
