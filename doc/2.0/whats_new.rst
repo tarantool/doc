@@ -6,6 +6,7 @@ Release Notes
 
 The Release Notes are summaries of significant changes introduced in Tarantool
 :ref:`2.0.4 <whats_new_204>`,
+:ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
 :ref:`1.8.1 <whats_new_181>`,
 :ref:`1.7.6 <whats_new_176>`,
@@ -55,6 +56,91 @@ Functionality added or changed:
   * Enabled support for triggers; trigger bodies now persist in Tarantool snapshots
     and survive server restart.
   * Significant performance improvements.
+
+.. _whats_new_110:
+
+--------------------------------------------------------------------------------
+Version 1.10
+--------------------------------------------------------------------------------
+
+.. _whats_new_1102:
+
+**Release 1.10.2**
+
+Release type: stable (lts). Release date: 2018-10-12.  Tag: xxx.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.2.
+
+This is the first :ref:`stable (lts) <release-policy>` release in the 1.10
+series.
+Also, Tarantool 1.10.2 is a major release that deprecates Tarantool 1.9.2.
+It resolves 95 issues since 1.9.2.
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data
+layout, client-server protocol and replication protocol.
+You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
+procedure.
+
+The goal of this release is to significantly increase ``vinyl`` stability and
+introduce automatic rebootstrap of a Tarantool replica set.
+
+Functionality added or changed:
+
+  * (Engines) support ALTER for non-empty vinyl spaces.
+    Issue `1653 <https://github.com/tarantool/tarantool/issues/1653>`_.
+  * (Engines) tuples stored in the vinyl cache are not shared among the indexes
+    of the same space.
+    Issue `3478 <https://github.com/tarantool/tarantool/issues/3478>`_.
+  * (Engines) keep a stack of UPSERTS in ``vy_read_iterator``.
+    Issue `1833 <https://github.com/tarantool/tarantool/issues/1833>`_.
+  * (Engines) ``box.ctl.reset_stat()``, a function to reset vinyl statistics.
+    Issue `3198 <https://github.com/tarantool/tarantool/issues/3198>`_.
+
+  * (Server) :ref:`configurable syslog destination <cfg_logging-log>`.
+    Issue `3487 <https://github.com/tarantool/tarantool/issues/3487>`_.
+  * (Server) allow different nullability in indexes and format.
+    Issue `3430 <https://github.com/tarantool/tarantool/issues/3430>`_.
+  * (Server) allow to
+    :ref:`back up any checkpoint <admin-backups-backup_start>`,
+    not just the last one.
+    Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_.
+  * (Server) a way to detect that a Tarantool process was
+    started / restarted by ``tarantoolctl``
+    (:ref:`TARANTOOLCTL and TARANTOOL_RESTARTED <tarantoolctl-instance_management>`
+    env vars).
+    Issues `3384 <https://github.com/tarantool/tarantool/issues/3384>`_,
+    `3215 <https://github.com/tarantool/tarantool/issues/3215>`_.
+  * (Server) :ref:`net_msg_max <cfg_networking-net_msg_max>`
+    configuration parameter to restrict the number of allocated fibers.
+    Issue `3320 <https://github.com/tarantool/tarantool/issues/3320>`_.
+
+  * (Replication)
+    display the connection status if the downstream gets disconnected from
+    the upstream
+    (:ref:`box.info.replication.downstream.status <box_info_replication>`
+    ``= disconnected``).
+    Issue `3365 <https://github.com/tarantool/tarantool/issues/3365>`_.
+  * (Replication) :ref:`replica-local spaces <replication-local>`
+    Issue `3443 <https://github.com/tarantool/tarantool/issues/3443>`_.
+  * (Replication)
+    :ref:`replication_skip_conflict <fg-replication-skip-conflict>`,
+    a new option in ``box.cfg{}`` to skip conflicting rows in replication.
+    Issue `3270 <https://github.com/tarantool/tarantool/issues/3270>`_.
+  * (Replication)
+    remove old snapshots which are not needed by replicas.
+    Issue `3444 <https://github.com/tarantool/tarantool/issues/3444>`_.
+  * (Replication)
+    log records which tried to commit twice.
+    Issue `3105 <https://github.com/tarantool/tarantool/issues/3105>`_.
+
+  * (Lua) new function :ref:`fiber.join() <fiber_object-join>`.
+    Issue `1397 <https://github.com/tarantool/tarantool/issues/1397>`_.
+  * (Lua) new option ``only_names`` to :ref:`tuple:tomap() <box_tuple-tomap>`.
+    Issue `3280 <https://github.com/tarantool/tarantool/issues/3280>`_.
+  * (Lua) support custom rock servers (``server`` and ``only-server``
+    options for :ref:`tarantoolctl rocks <tarantoolctl-module_management>`
+    command).
+    Issue `2640 <https://github.com/tarantool/tarantool/issues/2640>`_.
 
 .. _whats_new_19:
 
@@ -542,7 +628,7 @@ Incompatible changes
     * ``box.info.server.uuid`` renamed ``box.info.uuid``
     * ``box.info.cluster.signature`` renamed to ``box.info.signature``
     * ``box.info.id`` and ``box.info.lsn`` now return `nil` instead of `-1`
-      during initial cluster bootstrap. 
+      during initial cluster bootstrap.
 
   * ``net.box``: added per-request options to all requests:
 
