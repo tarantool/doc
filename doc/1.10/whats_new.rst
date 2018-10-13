@@ -31,7 +31,7 @@ Version 1.10
 
 **Release 1.10.2**
 
-Release type: stable (lts). Release date: 2018-10-12.  Tag: xxx.
+Release type: stable (lts). Release date: 2018-10-13.  Tag: 1-10-2.
 
 Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.2.
 
