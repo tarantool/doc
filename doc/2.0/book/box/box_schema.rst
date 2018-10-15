@@ -650,7 +650,7 @@ Below is a list of all ``box.schema`` functions.
 
 .. function:: box.schema.func.reload([name])
 
-    Reload a C module or function without restarting the server.
+    Reload a C module with all its functions without restarting the server.
 
     Under the hood, Tarantool loads a new copy of the module (``*.so`` shared
     library) and starts routing all new request to the new version.
@@ -660,23 +660,17 @@ Below is a list of all ``box.schema`` functions.
 
     .. NOTE::
 
-        * When a function from a certain module is reloaded, all the other
-          functions from this module are also reloaded.
-        * Reload will fail if a module was loaded from Lua script with
-          `ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_.
+        Reload will fail if a module was loaded from Lua script with
+        `ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_.
 
-    :param string name: the name of the module or function to reload
+    :param string name: the name of the module to reload
 
-    **Examples:**
+    **Example:**
 
     .. code-block:: lua
 
-        -- reload a function
-        box.schema.func.reload('module.function')
         -- reload the entire module contents
         box.schema.func.reload('module')
-        -- reload everything
-        box.schema.func.reload()
 
 .. _box_schema-sequence:
 
