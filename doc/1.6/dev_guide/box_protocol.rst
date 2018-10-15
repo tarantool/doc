@@ -497,15 +497,15 @@ Replication packet structure
 
     JOIN:
 
-    In the beginning you must send JOIN
-                             HEADER                          BODY
-    +================+================+===================++-------+
-    |                |                |    SERVER_UUID    ||       |
-    |   0x00: 0x41   |   0x01: SYNC   |   0x24: UUID      || EMPTY |
-    | MP_INT: MP_INT | MP_INT: MP_INT | MP_INT: MP_STRING ||       |
-    |                |                |                   ||       |
-    +================+================+===================++-------+
-                             MP_MAP                          MP_MAP
+     In the beginning you must send initial JOIN
+                    HEADER                      BODY
+     +================+================++===================+
+     |                |                ||   SERVER_UUID     |
+     |   0x00: 0x41   |   0x01: SYNC   ||   0x24: UUID      |
+     | MP_INT: MP_INT | MP_INT: MP_INT || MP_INT: MP_STRING |
+     |                |                ||                   |
+     +================+================++===================+
+                    MP_MAP                     MP_MAP
 
     Then instance, which we connect to, will send last SNAP file by, simply,
     creating a number of INSERTs (with additional LSN and ServerID)
@@ -568,7 +568,7 @@ XLOG and SNAP files have nearly the same format. The header looks like:
 After the file header come the data tuples.
 Tuples begin with a row marker ``0xd5ba0bab`` and
 the last tuple may be followed by an EOF marker
-``0xd510aded``. 
+``0xd510aded``.
 Thus, between the file header and the EOF marker, there
 may be data tuples that have this form:
 
