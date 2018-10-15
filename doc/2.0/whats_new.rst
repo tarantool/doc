@@ -135,12 +135,27 @@ Functionality added or changed:
 
   * (Lua) new function :ref:`fiber.join() <fiber_object-join>`.
     Issue `1397 <https://github.com/tarantool/tarantool/issues/1397>`_.
-  * (Lua) new option ``only_names`` to :ref:`tuple:tomap() <box_tuple-tomap>`.
+  * (Lua) new option ``names_only`` to :ref:`tuple:tomap() <box_tuple-tomap>`.
     Issue `3280 <https://github.com/tarantool/tarantool/issues/3280>`_.
   * (Lua) support custom rock servers (``server`` and ``only-server``
     options for :ref:`tarantoolctl rocks <tarantoolctl-module_management>`
     command).
     Issue `2640 <https://github.com/tarantool/tarantool/issues/2640>`_.
+
+  * (Lua) expose ``on_commit``/``on_rollback`` triggers to Lua;
+    Issue `857 <https://github.com/tarantool/tarantool/issues/857>`_.
+  * (Lua) tuple field access via a json path
+    (by :ref:`number <box-tuple-field-number>`,
+    :ref:`name <box-tuple-field-name>`, and
+    :ref:`path <box-tuple-field-path>`);
+    Issue `1285 <https://github.com/tarantool/tarantool/issues/1285>`_.
+  * (Lua) new function :ref:`space:frommap() <box_space-frommap>`;
+    Issue `3282 <https://github.com/tarantool/tarantool/issues/3282>`_.
+  * (Lua) allow to get the first utf-8 character of a string in Lua using
+    built-in libicu;
+    Issue `3385 <https://github.com/tarantool/tarantool/issues/3385>`_.
+  * (Lua) create libicu's bindings for use in Lua;
+    Issue `3290 <https://github.com/tarantool/tarantool/issues/3290>`_.
 
 .. _whats_new_19:
 
