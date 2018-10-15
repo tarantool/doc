@@ -74,8 +74,13 @@ Commands for managing Tarantool instances
 ``tarantoolctl check NAME``
         Check an instance file for syntax errors.
 
-``tarantoolctl enter NAME``
-        Enter an instance's interactive Lua console.
+``tarantoolctl enter NAME [--language=language]``
+        Enter an instance's interactive Lua or SQL console.
+
+        Supported option:
+
+        * ``--language=language`` to set interactive console language.
+          Can be either ``Lua`` or ``SQL``.
 
 ``tarantoolctl eval NAME FILE``
         Evaluate a local Lua file on a running Tarantool instance.
