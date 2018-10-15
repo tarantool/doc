@@ -159,7 +159,8 @@ read-only mode for this instance:
    ...
 
 We also recommend to specify master #3 URI in all instance files in order to
-keep all the files consistent with each other and with the current replication topology.
+keep all the files consistent with each other and with the current replication
+topology.
 
 .. _replication-orphan_status:
 
@@ -208,7 +209,7 @@ A replica is joining but no replica set exists yet.
 
     1. Set status to 'orphan'.
     2. Try to connect to all nodes from ``box.cfg.replication``,
-       or to the number of nodes required by 
+       or to the number of nodes required by
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`.
        Retrying up to 3 times in 30 seconds is possible because this is bootstrap,
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
@@ -233,7 +234,8 @@ A replica is joining but no replica set exists yet.
        Otherwise this instance will be a replica joining an existing replica set,
        so:
 
-       a. Bootstrap from the leader. See examples in section :ref:`Bootstrapping a replica set <replication-bootstrap>`.
+       a. Bootstrap from the leader.
+          See examples in section :ref:`Bootstrapping a replica set <replication-bootstrap>`.
        b. In background, sync with all the other nodes in the replication set.
 
 **Situation 2: recovery**
@@ -251,7 +253,6 @@ It is being called again in order to perform recovery.
     3. Sync with all connected nodes, until the difference is not more than
        :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.
 
-
 .. _replication-configuration_update:
 
 **Situation 3: configuration update**
@@ -261,12 +262,12 @@ It is being called again because some replication parameter
 or something in the replica set has changed.
 
     1. Try to connect to all nodes from ``box.cfg.replication``,
-       or to the number of nodes required by 
+       or to the number of nodes required by
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
        within the time period specified in
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`.
 
-    2. Try to 'sync' with the connected nodes,
+    2. Try to sync with the connected nodes,
        within the time period specified in
        :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`.
 
@@ -275,8 +276,6 @@ or something in the replica set has changed.
        then 'orphan' status will end.)
 
     4. If earlier steps succeed, set status to 'running' (master) or 'follow' (replica).
-
-
 
 .. _replication-server_startup:
 
@@ -295,7 +294,7 @@ source(-s). We will refer to this replica, which is starting up due to ``box.cfg
 as the "local" replica to distinguish it from the other replicas in a replica set,
 which we will refer to as "distant" replicas.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
+*If there is no snapshot .snap file and the 'replication' parameter is empty*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
 itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
@@ -305,8 +304,8 @@ replica UUID and the replica set UUID. Therefore, when the local replica restart
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is not empty
-and the ``_cluster`` space contains no other replica UUIDs*: |br|
+*If there is no snapshot .snap file and the 'replication' parameter is not empty
+and the '_cluster' space contains no other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, but is not yet part
 of a replica set. It must now join the replica set. It will send its replica UUID to the
 first distant replica which is listed in ``replication`` and which will act as a
@@ -323,7 +322,7 @@ request, it will send back:
     receive this and update its own copy of the data, and add the local replica's
     UUID to its ``_cluster`` space.
 
-*If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*If there is no snapshot .snap file and the 'replication' parameter is not empty
 and the ``_cluster`` space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant
@@ -339,9 +338,9 @@ handshake". When a distant replica receives an on-connect handshake: |br|
     information from its own .snap and .xlog files, and send the new requests to
     the local replica.
 
-In the end ... the local replica knows what replica set it belongs to, the distant
-replica knows that the local replica is a member of the replica set, and both replicas
-have the same database contents.
+In the end, the local replica knows what replica set it belongs to, the distant
+replica knows that the local replica is a member of the replica set, and both
+replicas have the same database contents.
 
 .. _replication-vector:
 
@@ -357,7 +356,8 @@ greater than (lsn of the vector clock in the subscribe request). After all the
 other replicas of the replica set have responded to the local replica's subscribe
 request, the replica startup is complete.
 
-The following temporary limitations applied for Tarantool versions earlier than 1.7.7:
+The following temporary limitations applied for Tarantool versions earlier than
+1.7.7:
 
 * The URIs in the ``replication`` parameter should all be in the same order on all replicas.
   This is not mandatory but is an aid to consistency.
@@ -367,7 +367,7 @@ The following temporary limitations applied for Tarantool versions earlier than 
 
 The following limitation still applies for the current Tarantool version:
 
-* The maximum number of entries in the ``_cluster`` space is :ref:`32 <limitations_replicas>`. Tuples for
+* The maximum number of entries in the ``_cluster`` space is
+  :ref:`32 <limitations_replicas>`. Tuples for
   out-of-date replicas are not automatically re-used, so if this 32-replica
   limit is reached, users may have to reorganize the ``_cluster`` space manually.
-
