@@ -79,7 +79,6 @@ Below is a list of all functions for transaction management.
     | <box-is_in_txn>`                     | in progress                     |
     +--------------------------------------+---------------------------------+
 
-
 .. _box-begin:
 
 .. function:: box.begin()
@@ -110,8 +109,8 @@ Below is a list of all functions for transaction management.
 
 .. function:: box.savepoint()
 
-    Return a descriptor of a savepoint (type = table), which can be used later by
-    :ref:`box.rollback_to_savepoint(savepoint) <box-rollback_to_savepoint>`.
+    Return a descriptor of a savepoint (type = table), which can be used later
+    by :ref:`box.rollback_to_savepoint(savepoint) <box-rollback_to_savepoint>`.
     Savepoints can only be created while a transaction is active, and they are
     destroyed when a transaction ends.
 
@@ -145,28 +144,38 @@ Below is a list of all functions for transaction management.
     :ref:`box.commit() <box-commit>` if successful, or ends with an implicit
     :ref:`box.rollback() <box-rollback>` if there is an error.
 
-
 .. _box-on_commit:
 
 .. function:: box.on_commit(trigger-function [, old-trigger-function])
 
     Define a trigger for execution when a transaction ends due to an event
-    such as :ref:`box.commit <box-commit>`. The trigger function may take an iterator
-    parameter, as described in an example for this section. The trigger function
-    should not access any database spaces. If the trigger execution fails and raises an
-    error, the effect is severe and should be avoided -- use Lua's pcall() mechanism around
-    code that might fail. ``box.on_commit()`` must be invoked within a transaction,
+    such as :ref:`box.commit <box-commit>`.
+
+    The trigger function may take an iterator parameter, as described in an
+    example for this section.
+
+    The trigger function should not access any database spaces.
+
+    If the trigger execution fails and raises an error, the effect is severe
+    and should be avoided -- use Lua's ``pcall()`` mechanism around code that
+    might fail.
+
+    ``box.on_commit()`` must be invoked within a transaction,
     and the trigger ceases to exist when the transaction ends.
 
-    :param function trigger-function: function which will become the trigger function
-    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :param function trigger-function: function which will become the trigger
+                                      function
+    :param function old-trigger-function: existing trigger function which will
+                                          be replaced by trigger-function
     :return: nil or function pointer
 
-    If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+    If the parameters are ``(nil, old-trigger-function)``, then the old trigger
+    is deleted.
 
-    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+    Details about trigger characteristics are in the
+    :ref:`triggers <triggers-box_triggers>` section.
 
-    **Simple and Useless Example:** this will display 'commit happened':
+    **Simple and useless example:** this will display 'commit happened':
 
     .. code-block:: lua
 
@@ -175,14 +184,21 @@ Below is a list of all functions for transaction management.
         box.begin() box.on_commit(f) box.commit()
 
     But of course there is more to it: the function parameter can be an ITERATOR.
+
     The iterator goes through the effects of every request that changed a space
     during the transaction.
-    The iterator will have an ordinal request number,
-    the old value of the tuple before the request (this will be nil for an insert request),
-    the new value of the tuple after the request (this will be nil for a delete request),
-    and the id of the space.
 
-    **Less Simple More Useful Example:** this will display the effects of two replace requests:
+    The iterator will have:
+
+    * an ordinal request number,
+    * the old value of the tuple before the request
+      (this will be nil for an insert request),
+    * the new value of the tuple after the request
+      (this will be nil for a delete request),
+    * and the id of the space.
+
+    **Less simple more useful example:** this will display the effects of two
+    replace requests:
 
     .. code-block:: lua
 
@@ -202,7 +218,7 @@ Below is a list of all functions for transaction management.
 
     The result will look like this:
 
-    .. code-block:: lua
+    .. code-block:: tarantoolsession
 
         tarantool> box.begin() s:replace{1,'x'} s:replace{1,'y'} box.on_commit(f) box.commit()
         request_number 1
@@ -219,8 +235,10 @@ Below is a list of all functions for transaction management.
 .. function:: box.on_rollback(trigger-function [, old-trigger-function])
 
     Define a trigger for execution when a transaction ends due to an event
-    such as :ref:`box.rollback <box-rollback>`. The parameters and warnings
-    are exactly the same as for :ref:`box.on-commit <box-on_commit>`.
+    such as :ref:`box.rollback <box-rollback>`.
+
+    The parameters and warnings are exactly the same as for
+    :ref:`box.on-commit <box-on_commit>`.
 
 .. _box-is_in_txn:
 
@@ -230,6 +248,3 @@ Below is a list of all functions for transaction management.
     :ref:`box.begin <box-begin>` and has not yet called either
     :ref:`box.commit <box-commit>` or :ref:`box.rollback <box-rollback>`,
     return ``true``. Otherwise return ``false``.
-
-
-

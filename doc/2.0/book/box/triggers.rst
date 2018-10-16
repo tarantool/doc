@@ -22,17 +22,21 @@ There are four types of triggers in Tarantool:
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback.
 
+* :ref:`transaction triggers <box-on_commit>`, which are executed
+  during commit or rollback.
+
 All triggers have the following characteristics:
 
 * Triggers associate a function with an event.
   The request to "define a trigger" implies passing the
   trigger’s function to one of the "on_event()" functions:
-  :ref:`box.session.on_connect() <box_session-on_connect>`,
-  :ref:`box.session.on_auth() <box_session-on_auth>`,
-  :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
-  :ref:`space_object:on_replace() <box_space-on_replace>` plus 
-  :ref:`space_object:before_replace() <box_space-before_replace>` plus
-  :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`.
+
+  * :ref:`box.session.on_connect() <box_session-on_connect>`,
+  * :ref:`box.session.on_auth() <box_session-on_auth>`,
+  * :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
+  * :ref:`space_object:on_replace() <box_space-on_replace>` plus
+    :ref:`space_object:before_replace() <box_space-before_replace>` plus
+    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
