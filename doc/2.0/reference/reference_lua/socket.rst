@@ -589,8 +589,8 @@ message format or the state of the network -- is often better.
 For ``recvfrom``, be aware that a size greater than the
 `Maximum Transmission Unit <https://en.wikipedia.org/wiki/Maximum_transmission_unit>`_
 can cause inefficient transport.
-For Mac OS X, be aware that the the size can be tuned by
-changing sysctl net.inet.udp.maxdgram.
+For Mac OS X, be aware that the size can be tuned by
+changing ``sysctl net.inet.udp.maxdgram``.
 
 If ``size`` is not stated: Tarantool will make an extra
 call to calculate how many bytes are necessary. This extra call
@@ -740,4 +740,3 @@ Now watch what happens on the first shell.
 The strings "A", "B", "C" are printed.
 
 .. _luasocket: https://github.com/diegonehab/luasocket
-
