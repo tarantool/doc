@@ -78,6 +78,9 @@ Below is a list of all functions for transaction management.
     | :ref:`is_in_txn()                    | State whether a transaction is  |
     | <box-is_in_txn>`                     | in progress                     |
     +--------------------------------------+---------------------------------+
+    | :ref:`is_in_txn()                    | State whether a transaction is  |
+    | <box-is_in_txn>`                     | in progress                     |
+    +--------------------------------------+---------------------------------+
 
 .. _box-begin:
 
