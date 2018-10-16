@@ -448,11 +448,13 @@ Below is a list of all ``box.space`` functions and members.
 
         box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})
 
-    Warning: It is legal to create multiple indexes for the same field with different
-    ``is_nullable`` values, or to call :ref:`space_object:format() <box_space-format>`
-    with a different ``is_nullable`` value from what is used for an index. When there
-    is a contradiction, the rule is: null is illegal unless ``is_nullable=true`` for
-    every index and for the space format.   
+    .. WARNING::
+
+        It is legal to create multiple indexes for the same field with different
+        ``is_nullable`` values, or to call :ref:`space_object:format() <box_space-format>`
+        with a different ``is_nullable`` value from what is used for an index.
+        When there is a contradiction, the rule is: null is illegal unless
+        ``is_nullable=true`` for every index and for the space format.
 
     .. _box_space-field_names:
 
