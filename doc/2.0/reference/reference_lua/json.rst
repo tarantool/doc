@@ -9,8 +9,9 @@
 ===============================================================================
 
 The ``json`` module provides JSON manipulation routines. It is based on the
-`Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please
-read `the official documentation`_.
+`Lua-CJSON module by Mark Pulford <http://www.kyne.com.au/~mark/software/lua-cjson.php>`_.
+For a complete manual on Lua-CJSON please read
+`the official documentation <http://www.kyne.com.au/~mark/software/lua-cjson-manual.html>`_.
 
 ===============================================================================
                                     Index
@@ -38,7 +39,6 @@ Below is a list of all ``json`` functions and members.
     | :ref:`json.cfg()                     | Set persistent flags            |
     | <json-module_cfg>`                   |                                 |
     +--------------------------------------+---------------------------------+
-
 
 .. module:: json
 
@@ -147,79 +147,77 @@ Below is a list of all ``json`` functions and members.
         - '{"field2":null,"field1":"a","field3":"c"}'
         ...
 
-The JSON output structure can be specified with ``__serialize``:
+    The JSON output structure can be specified with ``__serialize``:
 
-* ``__serialize="seq"`` for an array
-* ``__serialize="map"`` for a map
+    * ``__serialize="seq"`` for an array
+    * ``__serialize="map"`` for a map
 
-Serializing 'A' and 'B' with different ``__serialize`` values causes different
-results:
+    Serializing 'A' and 'B' with different ``__serialize`` values causes different
+    results:
 
-.. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-    tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="seq"}))
-    ---
-    - '["A","B"]'
-    ...
-    tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="map"}))
-    ---
-    - '{"1":"A","2":"B"}'
-    ...
-    tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})})
-    ---
-    - '[{"f2":"B","f1":"A"}]'
-    ...
-    tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="seq"})})
-    ---
-    - '[[]]'
-    ...
+        tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="seq"}))
+        ---
+        - '["A","B"]'
+        ...
+        tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="map"}))
+        ---
+        - '{"1":"A","2":"B"}'
+        ...
+        tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})})
+        ---
+        - '[{"f2":"B","f1":"A"}]'
+        ...
+        tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="seq"})})
+        ---
+        - '[[]]'
+        ...
 
 .. _json-module_cfg:
 
 .. function:: cfg(list of parameter assignments)
 
     Set values affecting behavior of :ref:`json.encode <json-encode>`
-    and :ref:`json.decode <json-decode>`. The values are all either integers or boolean ``true``/``false`` values.
+    and :ref:`json.decode <json-decode>`.
+    The values are all either integers or boolean ``true``/``false`` values.
 
-* ``encode_invalid_as_nil`` -- use null for unrecognizable types. default = ``false``
-* ``encode_invalid_numbers`` -- allow nan and inf. default = ``true``
-* ``encode_load_metatables`` -- load metatables. default = ``true``
-* ``encode_max_depth`` -- how deep nesting can be. default = 32
-* ``encode_number_precision`` -- maximum post-decimal digits. default = 14
-* ``encode_sparse_ratio`` -- how sparse an array can be. default = 2
-* ``encode_sparse_safe`` -- how much can safely be sparse. default = 10
-* ``encode_use_tostring`` -- use tostring for unrecognizable types. default = ``false``
-* ``decode_invalid_numbers`` -- like encode_invalid_numbers. default = ``true``
-* ``decode_max_depth`` -- like encode_max_depth. default = 32
-* ``decode_save_metatables`` -- like encode_load_metatables. default = ``true``
-* ``decode_sparse_convert`` -- like encode_sparse_convert. default = ``true``
+    * ``encode_invalid_as_nil`` -- use null for unrecognizable types; default = ``false``
+    * ``encode_invalid_numbers`` -- allow nan and inf; default = ``true``
+    * ``encode_load_metatables`` -- load metatables; default = ``true``
+    * ``encode_max_depth`` -- how deep nesting can be; default = 32
+    * ``encode_number_precision`` -- maximum post-decimal digits; default = 14
+    * ``encode_sparse_ratio`` -- how sparse an array can be; default = 2
+    * ``encode_sparse_safe`` -- how much can safely be sparse; default = 10
+    * ``encode_use_tostring`` -- use ``tostring`` for unrecognizable types; default = ``false``
+    * ``decode_invalid_numbers`` -- like ``encode_invalid_numbers``; default = ``true``
+    * ``decode_max_depth`` -- like ``encode_max_depth``; default = 32
+    * ``decode_save_metatables`` -- like ``encode_load_metatables``; default = ``true``
+    * ``decode_sparse_convert`` -- like ``encode_sparse_convert``; default = ``true``
 
-For example, the following code will encode 0/0 as nan ("not a number")
-and 1/0 as inf ("infinity"), rather than returning nil or an error message:
+    For example, the following code will encode 0/0 as nan ("not a number")
+    and 1/0 as inf ("infinity"), rather than returning nil or an error message:
 
-.. code-block:: lua
+    .. code-block:: lua
 
-    json = require('json')
-    json.cfg{encode_invalid_numbers = true}
-    x = 0/0
-    y = 1/0
-    json.encode({1, x, y, 2})
+        json = require('json')
+        json.cfg{encode_invalid_numbers = true}
+        x = 0/0
+        y = 1/0
+        json.encode({1, x, y, 2})
 
-The result of the ``json.encode()`` request will look like this:
+    The result of the ``json.encode()`` request will look like this:
 
-.. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-    tarantool> json.encode({1, x, y, 2})
-    ---
-    - '[1,nan,inf,2]
-    ...
+        tarantool> json.encode({1, x, y, 2})
+        ---
+        - '[1,nan,inf,2]
+        ...
 
-To achieve the same effect for only one call to json.encode without
-changing the configuration persistently, one could say
-``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
+    To achieve the same effect for only one call to ``json.encode()`` without
+    changing the configuration persistently, one could say
+    ``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
 
-The same configuration settings exist for json, for :ref:`MsgPack
-<msgpack-module>`, and for :ref:`YAML <yaml-module>`.
-
-.. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
-.. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html
+    The same configuration settings exist for json, for :ref:`MsgPack
+    <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
