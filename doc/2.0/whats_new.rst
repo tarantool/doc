@@ -144,6 +144,9 @@ Functionality added or changed:
 
   * (Lua) expose ``on_commit``/``on_rollback`` triggers to Lua;
     Issue `857 <https://github.com/tarantool/tarantool/issues/857>`_.
+  * (Lua) new function :ref:`box.is_in_txn() <box-is_in_txn>`
+    to check if a transaction is open;
+    Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_.
   * (Lua) tuple field access via a json path
     (by :ref:`number <box-tuple-field-number>`,
     :ref:`name <box-tuple-field-name>`, and
@@ -151,11 +154,10 @@ Functionality added or changed:
     Issue `1285 <https://github.com/tarantool/tarantool/issues/1285>`_.
   * (Lua) new function :ref:`space:frommap() <box_space-frommap>`;
     Issue `3282 <https://github.com/tarantool/tarantool/issues/3282>`_.
-  * (Lua) allow to get the first utf-8 character of a string in Lua using
-    built-in libicu;
-    Issue `3385 <https://github.com/tarantool/tarantool/issues/3385>`_.
-  * (Lua) create libicu's bindings for use in Lua;
-    Issue `3290 <https://github.com/tarantool/tarantool/issues/3290>`_.
+  * (Lua) new module :ref:`utf8 <utf8-module>` that implements libicu's bindings
+    for use in Lua;
+    Issues `3290 <https://github.com/tarantool/tarantool/issues/3290>`_,
+    `3385 <https://github.com/tarantool/tarantool/issues/3385>`_.
 
 .. _whats_new_19:
 
