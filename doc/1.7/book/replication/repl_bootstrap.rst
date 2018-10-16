@@ -14,7 +14,7 @@ Let's first bootstrap a simple **master-replica** set containing two instances,
 each located on its own machine. For easier administration, we make the
 :ref:`instance files <admin-instance_file>` almost identical.
 
-.. image:: mr-1m-1r-twoway.svg
+.. image:: mr-1m-1r-twoway.png
     :align: center
 
 Here is an example of the master's instance file:
@@ -294,7 +294,7 @@ Master-master bootstrap
 Now let's bootstrap a two-instance **master-master** set. For easier
 administration, we make master#1 and master#2 instance files fully identical.
 
-.. image:: mm-2m-mesh.svg
+.. image:: mm-2m-mesh.png
     :align: center
 
 We re-use the master's instance file from the

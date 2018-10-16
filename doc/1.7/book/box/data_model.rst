@@ -11,7 +11,7 @@ If you tried to create a database as suggested in our
 :ref:`"Getting started" exercises <getting_started>`,
 then your test database now looks like this:
 
-.. image:: data_model.svg
+.. image:: data_model.png
 
 .. _index-box_space:
 
