@@ -5,8 +5,9 @@ Submodule `box.stat`
 --------------------------------------------------------------------------------
 
 The ``box.stat`` submodule provides access to request and network statistics.
-Show the average number of requests per second, and the total number of
-requests since startup, broken down by request type.
+
+Use ``box.stat()`` to show the average number of requests per second,
+and the total number of requests since startup, broken down by request type.
 
 Use ``box.stat.net()``  to see network activity: the number of packets sent
 and received, and the average number of requests per second.
@@ -18,6 +19,12 @@ Use ``box.stat.vinyl()`` to see vinyl-storage-engine activity, for example:
 * ``box.stat.vinyl().cache`` has the cache limit,
 * ``box.stat.vinyl().tx`` has the number of commits and rollbacks,
 * ``box.stat.vinyl().quota`` has the number of bytes used.
+
+.. _box_introspection-box_stat_reset:
+
+Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
+``box.stat.net()``, ``box.stat.vinyl()`` and
+:ref:`box.space.index <box_space-space_index>`.
 
 .. code-block:: tarantoolsession
 
