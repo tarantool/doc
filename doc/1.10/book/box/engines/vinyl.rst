@@ -789,7 +789,7 @@ garbage behind.
 |br|
 
 If secondary indexes are not unique, then collecting "garbage" from them can be
-put off until a compaction, which is what we do in Tarantool. Transactions The
+put off until a compaction, which is what we do in Tarantool. The
 append-only nature of LSM trees allowed us to implement full-blown serializable
 transactions in vinyl. Read-only requests use older versions of data without
 blocking any writes. The transaction manager itself is fairly simple for now: in
