@@ -159,7 +159,7 @@
     after connecting or during :ref:`configuration update <replication-configuration_update>`.
     This could fail indefinitely if ``replication_sync_lag`` is smaller
     than network latency, or if the replica cannot keep pace with master
-    updates. If replication_sync_timeout expires, the replica
+    updates. If ``replication_sync_timeout`` expires, the replica
     enters :ref:`orphan status <replication-orphan_status>`.
 
     | Type: float

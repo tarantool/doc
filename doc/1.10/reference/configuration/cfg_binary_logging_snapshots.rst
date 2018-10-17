@@ -40,7 +40,7 @@
 
     The maximum number of bytes in a single write-ahead log file.
     When a request would cause an .xlog file to become larger than
-    wal_max_size, Tarantool creates another WAL file --
+    ``wal_max_size``, Tarantool creates another WAL file --
     the same effect that happens when the
     :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`
     limit is reached.

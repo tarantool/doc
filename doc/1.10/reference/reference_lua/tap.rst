@@ -134,18 +134,21 @@ Below is a list of all ``tap`` functions.
 
         Checks the number of tests performed.
 
-        The result will be a display saying ``# bad plan: ...`` if the number of completed tests is not
-        equal to the number of tests specified by ``taptest:plan(...)``.
+        The result will be a display saying ``# bad plan: ...`` if the number
+        of completed tests is not equal to the number of tests specified by
+        ``taptest:plan(...)``. (This is a purely Tarantool feature: "bad plan"
+        messages are out of the TAP13 standard.)
 
         This check should only be done after all planned tests are complete,
         so ordinarily ``taptest:check()`` will only appear at the end of a script.
         However, as a Tarantool extension, ``taptest:check()`` may appear at the
         end of any subtest. Therefore there are three ways to cause the check:
-        by calling taptest:check() at the end of a script,
-        or by calling a function which ends with a call to taptest:check(),
-        or by calling taptest:test('...', subtest-function-name) where
-        subtest-function-name does not need to end with taptest:check() because
-        it can be called after the subtest is complete.
+
+        * by calling ``taptest:check()`` at the end of a script,
+        * by calling a function which ends with a call to ``taptest:check()``,
+        * or by calling taptest:test('...', subtest-function-name) where
+          subtest-function-name does not need to end with ``taptest:check()``
+          because it can be called after the subtest is complete.
 
         :return: true or false.
         :rtype:  boolean
