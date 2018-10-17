@@ -49,8 +49,12 @@ variables.
 .. function:: box.info.memory()
 
     The **memory** function of ``box.info`` gives the ``admin`` user a
-    picture of the whole Tarantool instance. (Use ``box.info.vinyl()`` instead
-    for a picture specifically of the vinyl subsystem.)
+    picture of the whole Tarantool instance.
+
+    .. NOTE::
+
+        To get a picture of the vinyl subsystem, use
+        :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead.
 
     * **memory().cache** -- number of bytes used for caching user data. The
       memtx storage engine does not require a cache, so in fact this is

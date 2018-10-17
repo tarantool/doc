@@ -1563,6 +1563,8 @@ Below is a list of all ``box.space`` functions and members.
     :ref:`box.index <box_index>` with methods to search tuples and iterate
     over them in predefined order.
 
+    To reset, use :ref:`box.stat.reset() <box_introspection-box_stat_reset>`.
+
     :rtype: table
 
     **Example:**
