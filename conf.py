@@ -37,7 +37,7 @@ source_suffix = '.rst'
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "1.10.1"
+release = "1.10.2"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
