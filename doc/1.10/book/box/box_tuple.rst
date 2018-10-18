@@ -440,7 +440,9 @@ Below is a list of all ``box.tuple`` functions.
         This only works if the tuple comes from a space that has
         been formatted with a :ref:`format clause <box_space-format>`.
 
-        :param table options: say ``{names_only=true}`` to omit field-number:value pairs. Default is ``{names_only=false}``.
+        :param table options: say ``{names_only=true}`` to omit
+                              field-number:value pairs.
+                              Default is ``{names_only=false}``.
         :return: field-number:value pair(s) and key:value pair(s) from the tuple
         :rtype:  lua-table
 
@@ -458,6 +460,7 @@ Below is a list of all ``box.tuple`` functions.
             t1map_names_only = t1:tomap({names_only=true})
 
         ``t1map`` will contain "1: 10", "2: 20", "field1: 10", "field2: 20".
+
         ``t1map_names_only`` will contain "field1: 10", "field2: 20".
 
     .. _box_tuple-pairs:
