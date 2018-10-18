@@ -340,7 +340,9 @@ the function invocations will look like ``sock:function_name(...)``.
         :param string host: URL or IP address
         :param number port: port number
 
-        :return: true for success, false for error. If return is false, Use :ref:`socket_object:errno() <socket-error>` or :ref:`socket_object:error() <socket-error>` to see details.
+        :return: true for success, false for error.
+                 If return is false, use :ref:`socket_object:errno() <socket-error>`
+                 or :ref:`socket_object:error() <socket-error>` to see details.
         :rtype:  boolean
 
     .. _socket-listen:
@@ -349,8 +351,8 @@ the function invocations will look like ``sock:function_name(...)``.
 
         Start listening for incoming connections.
 
-        :param backlog: On Linux the listen ``backlog`` backlog may be from
-                        /proc/sys/net/core/somaxconn, on BSD the backlog
+        :param backlog: on Linux the listen ``backlog`` backlog may be from
+                        ``/proc/sys/net/core/somaxconn``, on BSD the backlog
                         may be ``SOMAXCONN``.
 
         :return: true for success, false for error.

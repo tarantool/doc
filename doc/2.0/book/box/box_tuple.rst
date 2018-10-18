@@ -420,7 +420,7 @@ Below is a list of all ``box.tuple`` functions.
 
     .. _box_tuple-tomap:
 
-    .. method:: tomap([names-only])
+    .. method:: tomap([options])
 
         A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values,
         also called key:value pairs.
@@ -440,16 +440,18 @@ Below is a list of all ``box.tuple`` functions.
         This only works if the tuple comes from a space that has
         been formatted with a :ref:`format clause <box_space-format>`.
 
-        :param boolean names-only: if ``names_only`` is false or omitted,
-                                   then all the fields will appear twice,
-                                   first with numeric headings and
-                                   second with name headings.
+        :param table options: the only possible option is ``names_only``.
 
-                                   If ``names_only`` is true, then all the
-                                   fields will appear only once, with
-                                   name headings.
+                              If ``names_only`` is false or omitted (default),
+                              then all the fields will appear twice,
+                              first with numeric headings and
+                              second with name headings.
 
-        :return: field(s) and key:value pair(s) from the tuple
+                              If ``names_only`` is true, then all the
+                              fields will appear only once, with
+                              name headings.
+
+        :return: field-number:value pair(s) and key:value pair(s) from the tuple
         :rtype:  lua-table
 
         In the following example, a tuple named ``t1`` is returned
@@ -462,12 +464,12 @@ Below is a list of all ``box.tuple`` functions.
             s = box.schema.space.create('test', {format = format})
             s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})
             t1 = s:insert{10, 20}
-            t1map1 = t1:tomap()
-            t1map2 = t1:tomap({names_only=true})
+            t1map = t1:tomap()
+            t1map_names_only = t1:tomap({names_only=true})
 
-        ``t1map1`` will contain "1: 10", "2: 20", "field1: 10", and "field2: 20".
+        ``t1map`` will contain "1: 10", "2: 20", "field1: 10", "field2: 20".
 
-        ``t1map2`` will contain only "field1: 10" and "field2: 20".
+        ``t1map_names_only`` will contain "field1: 10", "field2: 20".
 
     .. _box_tuple-pairs:
 

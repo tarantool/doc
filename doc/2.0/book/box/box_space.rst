@@ -688,7 +688,10 @@ Below is a list of all ``box.space`` functions and members.
         If the format clause is omitted, then the returned value is the
         table that was used in a previous :samp:`{space_object}:format({format-clause})`
         invocation. For example, after ``box.space.tester:format({{'x','scalar'}})``,
-        ``box.space.tester:format()`` will return [{'name': 'x', 'type': 'scalar'}].
+        ``box.space.tester:format()`` will return ``[{'name': 'x', 'type': 'scalar'}]``.
+
+        **Note re storage engine:** vinyl supports formatting of non-empty
+        spaces. Primary index definition cannot be formatted.
 
     .. _box_space-frommap:
 
@@ -702,7 +705,8 @@ Below is a list of all ``box.space`` functions and members.
                                           <app_server-object_reference>`
         :param field-value-pairs map: a series of "field = value" pairs, in any order.
         :param boolean option:  the only legal option is {table = true|false};
-                                if the option is omitted or if {table = false}, then return type will be 'cdata' (i.e. tuple);
+                                if the option is omitted or if {table = false},
+                                then return type will be 'cdata' (i.e. tuple);
                                 if {table = true}, then return type will be 'table'.
 
         :return: a tuple instance or table.

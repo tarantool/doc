@@ -861,11 +861,10 @@ Below is a list of all ``box.index`` functions and members.
         **Possible errors:**
 
         * index does not exist,
-        * the first index cannot be changed to ``{unique = false}``,
-        * the alter function is only applicable for the memtx storage engine.
+        * the first index cannot be changed to ``{unique = false}``.
 
-        **Note re storage engine:** vinyl does not support ``alter()``.
-        If necessary, users can drop the index or space and then create it again.
+        **Note re storage engine:** vinyl supports ``alter()`` for non-empty
+        spaces. Primary index definition cannot be altered.
 
         **Example:**
 

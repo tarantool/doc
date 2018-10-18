@@ -72,11 +72,12 @@
 
 .. confval:: vinyl_cache
 
-    The maximal cache size for the vinyl storage engine, in bytes.
+    The cache size for the vinyl storage engine, in bytes. The cache can
+    be resized dynamically.
 
     | Type: integer
     | Default = 128 * 1024 * 1024 = 134217728
-    | Dynamic: no
+    | Dynamic: **yes**
 
 .. _cfg_storage-vinyl_max_tuple_size:
 
