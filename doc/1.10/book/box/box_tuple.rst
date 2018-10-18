@@ -440,15 +440,23 @@ Below is a list of all ``box.tuple`` functions.
         This only works if the tuple comes from a space that has
         been formatted with a :ref:`format clause <box_space-format>`.
 
-        :param table options: say ``{names_only=true}`` to omit
-                              field-number:value pairs.
-                              Default is ``{names_only=false}``.
+        :param table options: the only possible option is ``names_only``.
+
+                              If ``names_only`` is false or omitted (default),
+                              then all the fields will appear twice,
+                              first with numeric headings and
+                              second with name headings.
+
+                              If ``names_only`` is true, then all the
+                              fields will appear only once, with
+                              name headings.
+
         :return: field-number:value pair(s) and key:value pair(s) from the tuple
         :rtype:  lua-table
 
         In the following example, a tuple named ``t1`` is returned
-        from a space that has been formatted, then tables named ``t1map``
-        and ``t1map_names_only`` are produced from ``t1``.
+        from a space that has been formatted, then tables named ``t1map1``
+        and ``t1map2`` are produced from ``t1``.
 
         .. code-block:: lua
 
