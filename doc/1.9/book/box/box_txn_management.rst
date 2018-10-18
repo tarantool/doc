@@ -81,11 +81,22 @@ Below is a list of all functions for transaction management.
     In effect the fiber which executes ``box.begin()`` is starting an "active
     multi-request transaction", blocking all other fibers.
 
+    :return: error if this operation is not permitted because there 
+             is already an active transaction.
+
+    :return: error if for some reason memory cannot be allocated.
+
 .. _box-commit:
 
 .. function:: box.commit()
 
     End the transaction, and make all its data-change operations permanent.
+
+    :return: error and abort the transaction in case of a conflict.
+
+    :return: error if the operation fails to write to disk.
+
+    :return: error if for some reason memory cannot be allocated.
 
 .. _box-rollback:
 
@@ -100,10 +111,18 @@ Below is a list of all functions for transaction management.
 
 .. function:: box.savepoint()
 
-    Return a descriptor of a savepoint (type = table), which can be used later by
-    :ref:`box.rollback_to_savepoint(savepoint) <box-rollback_to_savepoint>`.
+    Return a descriptor of a savepoint (with ``table`` type), which can be used 
+    later by :ref:`box.rollback_to_savepoint(savepoint) <box-rollback_to_savepoint>`.
     Savepoints can only be created while a transaction is active, and they are
     destroyed when a transaction ends.
+
+    :return: ``savepoint table``
+    :rtype:  Lua object
+
+    :return: error if the savepoint cannot be set in absence of active 
+             transaction.
+
+    :return: error if for some reason memory cannot be allocated.
 
 .. _box-rollback_to_savepoint:
 
@@ -112,6 +131,11 @@ Below is a list of all functions for transaction management.
     Do not end the transaction, but cancel all its data-change
     and :ref:`box.savepoint() <box-savepoint>` operations that were done after
     the specified savepoint.
+
+    :return: error if the savepoint cannot be set in absence of active 
+             transaction.
+
+    :return: error if the savepoint does not exist.
 
     **Example:**
 
@@ -135,4 +159,7 @@ Below is a list of all functions for transaction management.
     :ref:`box.commit() <box-commit>` if successful, or ends with an implicit
     :ref:`box.rollback() <box-rollback>` if there is an error.
 
+    :return: the result of the function passed to ``atomic()`` as an argument.
 
+    :return: any error that :ref:`box.begin() <box-begin>` and 
+             :ref:`box.commit() <box-commit>` can return.
