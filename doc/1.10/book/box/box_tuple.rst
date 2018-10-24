@@ -147,6 +147,8 @@ Below is a list of all ``box.tuple`` functions.
         field has one or more "length" bytes preceding the actual contents, so
         ``bsize()`` returns a value which is slightly greater than the sum of
         the lengths of the contents.
+        The value does not include the size of "struct tuple" (for the current
+        size of this structure look in the tuple.h file in Tarantool's source code).
 
         :return: number of bytes
         :rtype: number
