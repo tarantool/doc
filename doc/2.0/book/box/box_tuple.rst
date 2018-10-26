@@ -147,14 +147,19 @@ Below is a list of all ``box.tuple`` functions.
         field has one or more "length" bytes preceding the actual contents, so
         ``bsize()`` returns a value which is slightly greater than the sum of
         the lengths of the contents.
+        The value does not include the size of "struct tuple" (for the current
+        size of this structure look in the ``tuple.h`` file in Tarantool's
+        source code).
 
         :return: number of bytes
         :rtype: number
 
         In the following example, a tuple named ``t`` is created which has
         three fields, and for each field it takes one byte to store the length
-        and three bytes to store the contents, and a bit for overhead, so
-        ``bsize()`` returns ``3*(1+3)+1``.
+        and three bytes to store the contents, and then there is one more byte
+        to store a count of the number of fields, so ``bsize()`` returns
+        ``3*(1+3)+1``. This is the same as the size of the string that
+        :ref:`msgpack.encode({'aaa','bbb','ccc'}) <msgpack-encode>` would return.
 
         .. code-block:: tarantoolsession
 

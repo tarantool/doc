@@ -16,6 +16,7 @@ variables.
 * **gc()** returns the state of the
   :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
   including the checkpoints and their consumers (users).
+  (see :ref:`below <box_info_gc>`).
 * **id** corresponds to **replication.id**
   (see :ref:`below <box_info_replication>`).
 * **lsn** corresponds to **replication.lsn**
@@ -87,6 +88,25 @@ variables.
           net: 98304
           index: 1196032
         ...
+
+.. _box_info_gc:
+
+.. function:: box.info.gc()
+
+    The **gc** function of ``box.info`` gives the ``admin`` user a
+    picture of the factors that affect the
+    :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`.
+    The garbage collector compares vclock (:ref:`vector clock <replication-vector>`)
+    values of users and checkpoints, so a look at ``box.info.gc()`` may show why the
+    garbage collector has not removed old WAL files, or show what it may soon remove.
+
+    * **gc().consumers** -- a list of users whose requests might affect the garbage collector.
+    * **gc().checkpoints** -- a list of preserved checkpoints.
+    * **gc().checkpoints[n].references** -- a list of references to a checkpoint.
+    * **gc().checkpoints[n].vclock** -- a checkpoint's vclock value.
+    * **gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's components.
+    * **gc().vclock** -- the garbage collector's vclock.
+    * **gc().signature** -- the sum of the garbage collector's checkpoint's components.
 
 .. _box_info_replication:
 
