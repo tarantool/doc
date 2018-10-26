@@ -100,12 +100,12 @@ variables.
     values of users and checkpoints, so a look at ``box.info.gc()`` may show why the
     garbage collector has not removed old WAL files, or show what it may soon remove.
 
-    * **gc().consumers** -- a list of users whose requests might affect the garbage collector
-    * **gc().checkpoints** -- a list of preserved checkpoints
-    * **gc().checkpoints[n].references** a list of references to a checkpoint 
-    * **gc().checkpoints[n].vclock** a checkpoint's vclock value
-    * **gc().checkpoints[n].signature** a sum of a checkpoint's vclock's components
-    * **gc().vclock** -- the garbage collector's vclock
+    * **gc().consumers** -- a list of users whose requests might affect the garbage collector.
+    * **gc().checkpoints** -- a list of preserved checkpoints.
+    * **gc().checkpoints[n].references** -- a list of references to a checkpoint.
+    * **gc().checkpoints[n].vclock** -- a checkpoint's vclock value.
+    * **gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's components.
+    * **gc().vclock** -- the garbage collector's vclock.
     * **gc().signature** -- the sum of the garbage collector's checkpoint's components.
 
 .. _box_info_replication:
