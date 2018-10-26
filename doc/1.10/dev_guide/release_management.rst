@@ -14,9 +14,9 @@ A Tarantool release is identified by three digits, for example, 1.7.7.
 We use these digits according to their definitions provided at http://semver.org:
 
 * The first digit stands for MAJOR release. A **major** release may contain
-  incompatible changes*.
+  *incompatible changes*.
 * The second digit stands for MINOR release, it does not contain incompatible
-   changes, and is used for introducing backward-compatible features.
+  changes, and is used for introducing backward-compatible *features*.
 * The third digit is for PATCH releases that contain only backward-compatible
   *bug fixes*.
 
