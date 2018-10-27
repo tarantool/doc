@@ -17,7 +17,7 @@ a file named :file:`example.php` and say
 The program will open a socket connection with the Tarantool instance at
 ``localhost:3301``, then send an :ref:`INSERT<box_space-insert>` request, then — if all is well — print
 "Insert succeeded". If the tuple already exists, the program will print
-“Duplicate key exists in unique index 'primary' in space 'examples'”.
+"Duplicate key exists in unique index 'primary' in space 'examples'".
 
 .. code-block:: php
 
@@ -36,7 +36,7 @@ necessary for good practice. For that, please see
 `tarantool/tarantool-php <https://github.com/tarantool/tarantool-php>`_
 project at GitHub.
 
-Besides, there is another `GitHub project <https://github.com/tarantool-php>`_ which includes 
-an `alternative connector <https://github.com/tarantool-php/client>`_ written in pure PHP, 
+Besides, there is another community-driven `GitHub project <https://github.com/tarantool-php>`_ 
+which includes an `alternative connector <https://github.com/tarantool-php/client>`_ written in pure PHP, 
 an `object mapper <https://github.com/tarantool-php/mapper>`_, a `queue <https://github.com/tarantool-php/queue>`_
 and other packages.
