@@ -5,7 +5,7 @@
 `tarantool-php <https://github.com/tarantool/tarantool-php>`_ is the official PHP connector for Tarantool.
 It is not supplied as part of the Tarantool repository and must be installed
 separately (see `installation instructions
-<https://github.com/tarantool/tarantool-php/blob/master/#installing-and-building>`_
+<https://github.com/tarantool/tarantool-php/#installing-and-building>`_
 in the connector's :file:`README` file).
 
 Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named
