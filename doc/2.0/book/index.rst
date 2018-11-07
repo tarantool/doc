@@ -14,5 +14,6 @@ User's Guide
     admin/index
     replication/index
     connectors/index
-    faq
     sql
+    faq
+
