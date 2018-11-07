@@ -15,3 +15,4 @@ User's Guide
     replication/index
     connectors/index
     faq
+    sql
