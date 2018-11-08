@@ -26207,20 +26207,20 @@ msgid "Tarantool 1.7 manual  This manual embraces all aspects of using Tarantool
 msgstr ""
 
 #: ../doc/1.7/index.rst:22
-msgid "Tarantool 1.7 manual"
-msgstr ""
+msgid "Tarantool 1.10 manual"
+msgstr "Документация по Tarantool 1.10"
 
 #: ../doc/1.7/index.rst:26
 msgid "This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors."
-msgstr ""
+msgstr "Данная документация содержит полную информацию по использованию Tarantool: от вводной части для новичков – до подробных инструкций и справочников для опытных пользователей и участников проекта."
 
 #: ../doc/1.7/index.rst:47
 msgid "Other sources"
-msgstr ""
+msgstr "Прочие источники"
 
 #: ../doc/1.7/index.rst:49
 msgid "`Single page <singlehtml.html>`_"
-msgstr ""
+msgstr "`Одной страницей <singlehtml.html>`_"
 
 #: ../doc/1.7/index.rst:50
 msgid "`PDF <Tarantool.pdf>`_"
@@ -26228,15 +26228,19 @@ msgstr "`PDF <Tarantool.pdf>`_"
 
 #: ../doc/1.7/index.rst:51
 msgid "`English`_"
-msgstr ""
+msgstr "`Форум (eng)`_"
 
 #: ../doc/1.7/index.rst:52
 msgid "`Russian`_"
-msgstr ""
+msgstr "`Форум (рус)`_"
 
 #: ../doc/1.7/index.rst:60
 msgid "`Telegram chat EN`_"
-msgstr ""
+msgstr "`Telegram-чат`_"
+
+#: ../doc/1.7/index.rst:60
+msgid "`Telegram chat RU`_"
+msgstr "`Telegram-чат`_"
 
 #: ../doc/1.7/intro.rst:7
 msgid "An application server together with a database manager"
@@ -40405,6 +40409,13 @@ msgstr "Версия 1.7"
 #: ../doc/1.7/whats_new.rst:30
 msgid "**Release 1.7.6**"
 msgstr "**Версия 1.7.6**"
+
+msgid "Version 1.9"
+msgstr "Версия 1.9"
+
+#: ../doc/1.7/whats_new.rst:26
+msgid "Version 1.10"
+msgstr "Версия 1.10"
 
 #: ../doc/1.7/whats_new.rst:32
 msgid "Release type: stable. Release date: 2017-11-07.  Tag: 1.7.6-0-g7b2945d6c."
