@@ -422,6 +422,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
 Total number of features marked "Fail": 57
+
 Total number of features marked "Okay": 77
 
 
