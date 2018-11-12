@@ -22,11 +22,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | Feature ID | Feature                                       | Example                                                  | Test                                                    |
     +============+===============================================+==========================================================+=========================================================+
-    | E-011      | Numeric data types                                                                                                                                                 |
+    | E011       | Numeric data types                                                                                                                                                 |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-0    | INTEGER and SMALLINT                          | ``create table t (s1 int primary key);``                 | Fail. A numeric column can contain non-numeric strings. |
-    |            |                                               |                                                          | There is a similar flaw for all data types, but let's   |
-    |            |                                               |                                                          | count them all as only one fail.                        |
+    | E-011-01   | INTEGER and SMALLINT                          | ``create table t (s1 int primary key);``                 | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E-011-02   | REAL, DOUBLE PRECISION, and FLOAT data types  | ``create table tr (s1 float primary key);``              | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -36,8 +34,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | and ``select *from t3" we get "1.0e-16``. We regard     |
     |            |                                               |                                                          | this as a display flaw rather than a fail.              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-04   | Arithmetic operators                          | ``select 10+1,9-2,8*3,7/2 from t;``                      | Okay. Tarantool is wrong to calculate that 7/0 is NULL, |
-    |            |                                               |                                                          | though.                                                 |
+    | E-011-04   | Arithmetic operators                          | ``select 10+1,9-2,8*3,7/2 from t;``                      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E-011-05   | Numeric comparisons                           | ``select * from t where 1 < 2;``                         | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -46,21 +43,13 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021       | Character string types                                                                                                                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-021-01   | Character data type (including all its        | ``create table t44 (s1 char primary key);``              | Okay, but only because Tarantool accepts any definition |
-    |            |                                               |                                                          | that includes the word 'CHAR', for example              |
+    | E021-01    | Character data type (including all its        | ``create table t44 (s1 char primary key);``              | Fail, only the spelling CHAR is allowed. This type of   |
+    |            | its spellings)                                |                                                          | Fail will only be counted once.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-06   | Implicit casting among the numeric data types | ``select * from t where s1 = 1.00;``                     | Okay, but only because Tarantool doesn't distinguish    |
-    |            | spellings)                                    |                                                          | ``CREATE TABLE t (s1 BIGCHAR primary key)`` is okay     |
-    |            |                                               |                                                          | although there's no such data type. There are no checks |
-    |            |                                               |                                                          | on maximum length, and no padding for insertions with   |
-    |            |                                               |                                                          | less than the maximum length.                           |
-    +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-02    | CHARACTER VARYING data type (including all    | ``create table t45 (s1 varchar primary key);``           | Okay, but the behavior is exactly the same              |
-    |            | its spellings)                                |                                                          | as for CHARACTER.                                       |
+    | E021-02    | CHARACTER VARYING data type (including all    | ``create table t45 (s1 varchar primary key);``           | Fail, only the spelling VARCHAR is allowed.             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-03    | Character literals                            | ``insert into t45 values ('');``                         | Okay, and the bad practice of accepting ""'s for        |
-    |            |                                               |                                                          | character literals is avoided. Even hex notation, for   |
-    |            |                                               |                                                          | example X'41', is okay.                                 |
+    |            |                                               |                                                          | character literals is avoided.                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-04    | CHARACTER_LENGTH function                     | ``select character_length(s1) from t;``                  | Fail. There is no such function. There is a function    |
     |            |                                               |                                                          | LENGTH(), which is okay.                                |
@@ -72,8 +61,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-07    | Character concatenation                       | ``select 'a' || 'b' from t;``                            | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-08    | UPPER and LOWER functions                     | ``select upper('a'),lower('B') from t;``                 | Okay. It works for such simple situations, although     |
-    |            |                                               |                                                          | Tarantool does not use the ICU extension for this.      |
+    | E021-08    | UPPER and LOWER functions                     | ``select upper('a'),lower('B') from t;``                 | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-09    | TRIM function                                 | ``select trim('a ') from t;``                            | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -120,8 +108,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061       | Basic predicates and search conditions                                                                                                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-01    | Comparison predicate                          | ``select * from t where 0 = 0;``                         | Okay. But less correct syntax would work too, for       |
-    |            |                                               |                                                          | example "where 0 is 0".                                 |
+    | E061-01    | Comparison predicate                          | ``select * from t where 0 = 0;``                         | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061-02    | BETWEEN predicate                             | ``select * from t where ' ' between '' and ' ';``        | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -137,8 +124,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061-08    | EXISTS predicate                              | ``select * from t where not exists (select * from t);``  | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-09    | Subqueries in comparison predicate            | ``select * from t where s1 > (select s1 from t);``       | Fail. There was more than one row in the subquery       |
-    |            |                                               |                                                          | result set, but Tarantool didn't return an error.       |
+    | E061-09    | Subqueries in comparison predicate            | ``select * from t where s1 > (select s1 from t);``       | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061-11    | Subqueries in IN predicate                    | ``select * from t where s1 in (select s1 from t);``      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -249,9 +235,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E141-03    | PRIMARY KEY constraints                       | ``create table t10 (s1 int primary key);``               | Okay, although Tarantool shouldn't always insist on     |
     |            |                                               |                                                          | having a primary key.                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-04    | Basic FOREIGN KEY constraint with the NO      | ``create table t11 (s0 int primary key, s1 int           | Okay. The foreign-key check will only be                |
-    |            | ACTION default for both referential delete    | references t10);``                                       | checked when we have said ``pragma foreign_keys         |
-    |            | action and referential update action.         |                                                          | (true);`` but that is the default.                      |
+    | E141-04    | Basic FOREIGN KEY constraint with the NO      | ``create table t11 (s0 int primary key, s1 int           | Okay.                                                   |
+    |            | ACTION default for both referential delete    | references t10);``                                       |                                                         |
+    |            | action and referential update action.         |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E141-06    | CHECK constraints                             | ``create table t12 (s1 int primary key, s2 int, check    | Okay.                                                   |
     |            |                                               | (s1 = s2));``                                            |                                                         |
@@ -339,7 +325,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F051-02    | TIME data type (including support of TIME     | ``create table times (s1 time default time '1:2:3');``   | Fail. Syntax error.                                     |
     |            | literal)                                      |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-03    | TIMESTAMP data type (including support of     | ``create table timestamps (s1 timestamp);``              | Okay.                                                   |
+    | F051-03    | TIMESTAMP data type (including support of     | ``create table timestamps (s1 timestamp);``              | Fail.                                                   |
     |            | TIMESTAMP literal)                            |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051-04    | Comparison predicate on DATE, TIME and        | ``select * from dates where s1 = s1;``                   | Okay. We're being lenient because Tarantool does        |
@@ -421,8 +407,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | T321-02    | User-defined procedures with no overloading   | ``create procedure p () begin end;``                     | Fail. Tarantool doesn't support user-defined            |
     |            | procedures.                                   |                                                          | functions.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T321-03    | Function invocation                           | ``select f(1) from t;``                                  | Fail. Tarantool doesn't support user-defined            |
-    |            |                                               |                                                          | functions.                                              |
+    | T321-03    | Function invocation                           | ``select f(1) from t;``                                  | Okay. Tarantool can invoke Lua user-defined functions.  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-04    | CALL statement.                               | ``call p();``                                            | Fail. Tarantool doesn't support user-defined            |
     |            |                                               |                                                          | functions.                                              |
@@ -436,9 +421,8 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | in the final score).                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
-Total number of features marked "Fail": 58.
-
-Total number of features marked "Okay": 76.
+Total number of features marked "Fail": 57
+Total number of features marked "Okay": 77
 
 
 
