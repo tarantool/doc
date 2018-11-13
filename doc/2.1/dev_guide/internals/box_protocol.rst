@@ -85,7 +85,7 @@ and encoding.
 
 The protocol uses maps that contain some integer constants as keys.
 These constants are defined in `src/box/iproto_constants.h
-<https://github.com/tarantool/tarantool/blob/2.0/src/box/iproto_constants.h>`_.
+<https://github.com/tarantool/tarantool/blob/2.1/src/box/iproto_constants.h>`_.
 We list common constants here:
 
 .. code-block:: none
@@ -493,7 +493,7 @@ expects as value a msgpack string.
 
 Convenience macros which define hexadecimal constants for return codes
 can be found in `src/box/errcode.h
-<https://github.com/tarantool/tarantool/blob/2.0/src/box/errcode.h>`_
+<https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication packet structure

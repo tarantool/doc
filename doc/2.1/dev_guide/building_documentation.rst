@@ -56,7 +56,7 @@ See more details about installation in the :ref:`build-from-source <building_fro
 section of this documentation.
 
 1. Use ``git`` to download the latest source code of this documentation from the
-   GitHub repository ``tarantool/doc``, branch 2.0. For example, to download to a local
+   GitHub repository ``tarantool/doc``, branch 2.1. For example, to download to a local
    directory named ``~/tarantool-doc``:
 
    .. code-block:: console
@@ -138,8 +138,8 @@ section of this documentation.
      In case port ``8000`` is already in use, you can specify any other port
      number that is bigger than ``1000``.
 
-5. Open your browser and enter ``127.0.0.1:8000/en/doc/2.0/`` into the address
-   box (or ``127.0.0.1:8000/ru/doc/2.0/`` if you built the Russian documentation).
+5. Open your browser and enter ``127.0.0.1:8000/en/doc/2.1/`` into the address
+   box (or ``127.0.0.1:8000/ru/doc/2.1/`` if you built the Russian documentation).
    Mind the trailing slash "/" in the address string.
 
    If your local documentation build is valid, the manual will appear in

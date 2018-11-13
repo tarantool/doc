@@ -113,7 +113,7 @@ Below is a list of all ``box.session`` functions and members.
 .. function:: sync()
 
     :return: the value of the :code:`sync` integer constant used in the
-             `binary protocol <https://github.com/tarantool/tarantool/blob/2.0/src/box/iproto_constants.h>`_.
+             `binary protocol <https://github.com/tarantool/tarantool/blob/2.1/src/box/iproto_constants.h>`_.
 
     :rtype:  number
 

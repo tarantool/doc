@@ -122,12 +122,12 @@ the preferences can differ. But strategically the steps are always the same.
    This step is only necessary once, the first time you do a download.
 
 2. Use ``git`` to download the latest Tarantool source code from the
-   GitHub repository ``tarantool/tarantool``, branch 2.0, to a
+   GitHub repository ``tarantool/tarantool``, branch 2.1, to a
    local directory named ``~/tarantool``, for example:
 
    .. code-block:: console
 
-       $ git clone --recursive https://github.com/tarantool/tarantool.git -b 2.0 ~/tarantool
+       $ git clone --recursive https://github.com/tarantool/tarantool.git -b 2.1 ~/tarantool
 
    On rare occasions, the submodules need to be updated again with the
    command:
@@ -246,5 +246,5 @@ the preferences can differ. But strategically the steps are always the same.
 
 See also:
 
-* `Tarantool README.md <https://github.com/tarantool/tarantool/blob/2.0/README.md>`_
+* `Tarantool README.md <https://github.com/tarantool/tarantool/blob/2.1/README.md>`_
 

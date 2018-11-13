@@ -5,6 +5,7 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
+:ref:`2.0.4 <whats_new_210>`,
 :ref:`2.0.4 <whats_new_204>`,
 :ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
@@ -29,15 +30,27 @@ at GitHub.
 Version 2.0
 -------------------------------------------------------------------------------
 
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout,
+client-server protocol and replication protocol.
+
+.. _whats_new_210:
+
+**Release 2.1.0**
+
+Release type: beta. Release date: 2018-11-14.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.0.
+
+This release resolves all major bugs since 2.0.4 alpha and extends Tarantool's
+SQL feature set.
+
 .. _whats_new_204:
 
 **Release 2.0.4**
 
 Release type: alpha. Release date: 2018-02-15.
 
-Announcement: https://groups.google.com/forum/#!topic/tarantool/LZC987UjtPc.
-
-You are reading the manual for Tarantool 1.9; Tarantool 2.0 is a later version.
+Announcement: https://github.com/tarantool/tarantool/releases/tag/2.0.4.
 
 This is a successor of the 1.8.x releases.
 It improves the overall stability of the SQL engine and has some new features.

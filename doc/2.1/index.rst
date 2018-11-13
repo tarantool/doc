@@ -19,7 +19,7 @@
 
         .. container:: documentation-main-page-title
 
-            Tarantool 2.0 manual
+            Tarantool 2.1 manual
 
         .. container:: documentation-main-page-description
 
@@ -56,7 +56,7 @@
                 - `Telegram chat RU`_
 
             .. ifconfig:: language == 'en'
-            
+
                 - `Telegram chat EN`_
 
 .. _English: https://groups.google.com/forum/#!forum/tarantool

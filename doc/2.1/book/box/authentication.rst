@@ -81,7 +81,7 @@ except when mixed with a random salt.
 
    For more details of the password hashing algorithm (e.g. for the purpose of writing
    a new client application), read the
-   `scramble.h <https://github.com/tarantool/tarantool/blob/2.0/src/scramble.h>`_
+   `scramble.h <https://github.com/tarantool/tarantool/blob/2.1/src/scramble.h>`_
    header file.
 
 This system prevents malicious onlookers from finding passwords by snooping

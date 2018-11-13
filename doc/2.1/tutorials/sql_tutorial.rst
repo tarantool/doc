@@ -5,10 +5,10 @@ SQL tutorial
 ================================================================================
 
 This tutorial is a demonstration of the SQL feature introduced in
-Tarantool 2.0. There are two ways to go through this tutorial:
+Tarantool 2.x series. There are two ways to go through this tutorial:
 
 * read what we say the results are and take our word for it, or
-* copy and paste each section and see everything work with Tarantool 2.0.
+* copy and paste each section and see everything work with Tarantool 2.1.
 
 You'll encounter all the functionality that you'd encounter in an "SQL-101"
 course.
@@ -802,7 +802,7 @@ The result is:
 Cleanup and exit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We're done. We've shown that Tarantool 2.0 has a
+We're done. We've shown that Tarantool 2.1 has a
 very reasonable subset of SQL, and it works.
 
 The rest of these commands will simply destroy all

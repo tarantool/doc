@@ -135,7 +135,7 @@ Now we launch our application in the same manner as before:
 
    $ tarantool myapp.lua
    Hello, world!
-   2017-08-11 16:07:14.250 [41436] main/101/myapp.lua C> version 2.0.4-429-g4e5231702
+   2017-08-11 16:07:14.250 [41436] main/101/myapp.lua C> version 2.1.0-429-g4e5231702
    2017-08-11 16:07:14.250 [41436] main/101/myapp.lua C> log level 5
    2017-08-11 16:07:14.251 [41436] main/101/myapp.lua I> mapping 1073741824 bytes for tuple arena...
    2017-08-11 16:07:14.255 [41436] main/101/myapp.lua I> recovery start

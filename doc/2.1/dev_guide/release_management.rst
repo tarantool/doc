@@ -92,9 +92,9 @@ identifier to designate the nightly build number.
 
 Example version identifier:
 
-* 2.0.3 - third alpha of 2.0 release
-* 2.1.3 - a beta of 2.0 release
-* 2.2 - a stable version of 2.0 series, but not an LTS yet
+* 2.0.3 - third alpha of 2.x release
+* 2.1.3 - a beta of 2.x release
+* 2.2 - a stable version of 2.x series, but not an LTS yet
 * 2.10 - an LTS release
 
 .. _release-minor:

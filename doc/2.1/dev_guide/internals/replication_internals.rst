@@ -76,7 +76,7 @@ greater than (lsn of the vector clock in the subscribe request). After all the
 other replicas of the replica set have responded to the local replica's subscribe
 request, the replica startup is complete.
 
-The following temporary limitations apply for versions 1.7 and 2.0:
+The following temporary limitations apply for versions 1.7 and 2.1:
 
 * The URIs in the ``replication`` parameter should all be in the same order on all replicas.
   This is not mandatory but is an aid to consistency.
