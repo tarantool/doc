@@ -5,7 +5,7 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
-:ref:`2.0.4 <whats_new_210>`,
+:ref:`2.1.0 <whats_new_210>`,
 :ref:`2.0.4 <whats_new_204>`,
 :ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
