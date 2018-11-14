@@ -125,7 +125,7 @@ Below is a list of all functions for transaction management.
     Savepoints can only be created while a transaction is active, and they are
     destroyed when a transaction ends.
 
-    :return: ``savepoint table``
+    :return: savepoint table
     :rtype:  Lua object
 
     :return: error if the savepoint cannot be set in absence of active
@@ -167,6 +167,11 @@ Below is a list of all functions for transaction management.
     :ref:`box.begin() <box-begin>` and ends with an implicit
     :ref:`box.commit() <box-commit>` if successful, or ends with an implicit
     :ref:`box.rollback() <box-rollback>` if there is an error.
+
+    :return: the result of the function passed to ``atomic()`` as an argument.
+
+    :return: any error that :ref:`box.begin() <box-begin>` and
+             :ref:`box.commit() <box-commit>` can return.
 
 .. _box-on_commit:
 
