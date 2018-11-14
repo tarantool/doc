@@ -150,7 +150,7 @@ Below is a list of all ``box.tuple`` functions.
 
         The value does not include the size of "struct tuple" (for the current
         size of this structure look in the
-        `tuple.h <https://github.com/tarantool/tarantool/blob/1.10/src/box/tuple.h>`_
+        `tuple.h <https://github.com/tarantool/tarantool/blob/2.0/src/box/tuple.h>`_
         file in Tarantool's source code).
 
         :return: number of bytes
