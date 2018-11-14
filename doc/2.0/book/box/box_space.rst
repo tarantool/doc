@@ -697,17 +697,19 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: frommap(map [, option])
 
-        Convert a map to a tuple instance or to a table. The map must consist of "field name = value" pairs.
+        Convert a map to a tuple instance or to a table.
+        The map must consist of "field name = value" pairs.
         The field names and the value types must match names and types
-        stated previously for the space, via :ref:`space_object:format() <box_space-format>`.
+        stated previously for the space, via
+        :ref:`space_object:format() <box_space-format>`.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param field-value-pairs map: a series of "field = value" pairs, in any order.
-        :param boolean option:  the only legal option is {table = true|false};
-                                if the option is omitted or if {table = false},
-                                then return type will be 'cdata' (i.e. tuple);
-                                if {table = true}, then return type will be 'table'.
+        :param boolean option:  the only legal option is ``{table = true|false}``; |br|
+                                if the option is omitted or if ``{table = false}``,
+                                then return type will be 'cdata' (i.e. tuple); |br|
+                                if ``{table = true}``, then return type will be 'table'.
 
         :return: a tuple instance or table.
         :rtype:  tuple or table

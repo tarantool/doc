@@ -278,7 +278,10 @@ While being migrated, the bucket can have different states:
 * SENDING – the bucket is currently being copied to the destination replica set
   read requests to the source replica set are still processed.
 * RECEIVING – the bucket is currently being filled; all requests to it are rejected.
-* SENT – the bucket was migrated to the destination replica set.
+* SENT – the bucket was migrated to the destination replica set. The `router`
+  uses this state to calculate the new location of the bucket. The bucket in
+  the SENT state goes to the GARBAGE state automatically in 0.5 seconds after
+  migration (the time period is defined by the BUCKET_SENT_GARBAGE_DELAY value).
 * GARBAGE – the bucket was already migrated to the destination replica set during
   rebalancing; or the bucket was initially in the RECEIVING state, but some error
   occurred during the migration.
@@ -294,7 +297,8 @@ Altogether, migration is performed as follows:
    state, the data copying starts, and the bucket rejects all requests.
 2. The source bucket at the source replica set is assigned the SENDING state, and
    the bucket continues to process read requests.
-3. Once the data is copied, the bucket on the source replica set is marked SENT and it starts rejecting all requests.
+3. Once the data is copied, the bucket on the source replica set is marked SENT
+   and it starts rejecting all requests.
 4. The bucket on the destination replica set goes into the ACTIVE state and starts
    accepting all requests.
 
@@ -305,7 +309,7 @@ The `_bucket` system space
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The ``_bucket`` system space of each replica set stores the ids of buckets present
-in the replica set. The space contains the following tuples:
+in the replica set. The space contains the following fields:
 
 * ``bucket`` – bucket id
 * ``status`` – state of the bucket
@@ -416,6 +420,10 @@ of the data. The recommended value is 3 or more. The number of the ``router`` in
 is not limited, because routers are completely stateless. We recommend increasing
 the number of routers when the existing ``router`` instance becomes CPU or I/O bound.
 
+``vshard`` supports multiple ``router`` instances on a single Tarantool
+instance. Each ``router`` can be connected to any ``vshard`` cluster. Multiple
+``router`` instances can be connected to the same cluster.
+
 As the ``router`` and ``storage`` applications perform completely different sets of functions,
 they should be deployed to different Tarantool instances. Although it is technically
 possible to place the router application to every ``storage`` node, this approach is
@@ -518,8 +526,7 @@ On storages call ``vshard.storage.cfg(cfg, instance_uuid)``:
     vshard = require('vshard')
     vshard.storage.cfg(cfg, MY_UUID)
 
-
-``vshard.storage.cfg()`` automatically calls box.cfg()and configures the listen
+``vshard.storage.cfg()`` automatically calls ``box.cfg()`` and configures the listen
 port and replication parameters.
 
 See ``router.lua`` and ``storage.lua`` in the ``vshard/example`` directory for
@@ -793,6 +800,58 @@ On each step, the algorithm either finishes the calculation, or ignores at least
 one new replica set overloaded with the pinned buckets, and updates the etalon
 number of buckets on other replica sets.
 
+.. _vshard-ref:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Bucket ref
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bucket ref is an in-memory counter that is similar to the
+:ref:`bucket pin <vshard-lock-pin>`, but has the following differences:
+
+#. Bucket ref is never persisted. Refs are intended to forbid bucket transfer
+   during request execution, but on restart all requests are dropped.
+#. Bucket ref has 2 types: read-only (RO) and read-write (RW).
+
+   If a
+   bucket has RW refs, it can not be moved. However, when the rebalancer
+   needs it to be sent, it locks the bucket for new write requests, waits
+   until all current requests are finished, and then sends the bucket.
+
+   If a bucket has RO refs, it can be sent, but cannot be dropped. Such a
+   bucket can even enter GARBAGE or SENT state, but its data is kept until
+   the last reader is gone.
+
+   A single bucket can have both RO and RW refs.
+
+#. Bucket ref is countable.
+
+The :ref:`vshard.storage.bucket_ref/unref() <storage_api-bucket_ref>` methods
+are called automatically when :ref:`vshard.router.call() <router_api-call>`
+or :ref:`vshard.storage.call() <storage_api-call>` is used.
+For raw API like ``r = vshard.router.route() r:callro/callrw`` you should
+explicitly call the ``bucket_ref()`` method inside the function. Also, make sure
+that you call ``bucket_unref()`` after ``bucket_ref()``, otherwise the bucket
+will be pinned to the storage until the instance restart.
+
+To see how many refs there are for a bucket, use
+:ref:`vshard.storage.buckets_info([bucket_id]) <storage_api-buckets_info>`
+(the ``bucket_id`` is optional).
+
+For example:
+
+.. code-block:: tarantoolsession
+
+    vshard.storage.buckets_info(1)
+    ---
+    - 1:
+        status: active
+        ref_rw: 1
+        ref_ro: 1
+        ro_lock: true
+        rw_lock: true
+        id: 1
+
 .. _vshard-define-spaces:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -888,7 +947,7 @@ operations:
 * a **rebalancer** on a single master ``storage`` among all replica sets executes
   the rebalancing process.
 
-  See the :ref:`Rebalancing process<vshard-rebalancing>` section for details.
+  See the :ref:`Rebalancing process <vshard-rebalancing>` section for details.
 
 .. _vshard-gc:
 
@@ -1118,7 +1177,8 @@ Router public API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * :ref:`vshard.router.bootstrap() <router_api-bootstrap>`
-* :ref:`vshard.router.cfg(cfg, instance_uuid) <router_api-cfg>`
+* :ref:`vshard.router.cfg(cfg) <router_api-cfg>`
+* :ref:`vshard.router.new(name, cfg) <router_api-new>`
 * :ref:`vshard.router.call(bucket_id, mode(read:write), function_name, {argument_list}, {options}) <router_api-call>`
 * :ref:`vshard.router.callro(bucket_id, function_name, {argument_list}, {options}) <router_api-callro>`
 * :ref:`vshard.router.callrw(bucket_id, function_name, {argument_list}, {options}) <router_api-callrw>`
@@ -1145,9 +1205,41 @@ Router public API
 
 .. function:: vshard.router.cfg(cfg)
 
-    Configure the database and start sharding for the specified ``router`` instance.
+    Configure the database and start sharding for the specified ``router``
+    instance. See the :ref:`sample configuration <vshard-config-cluster-example>`
+    above.
 
-    :param cfg: a ``router`` configuration
+    :param cfg: a configuration table
+
+.. _router_api-new:
+
+.. function:: vshard.router.new(name, cfg)
+
+    Create a new router instance. ``vshard`` supports multiple routers in a
+    single Tarantool instance. Each router can be connected to any ``vshard``
+    cluster, and multiple routers can be connected to the same cluster.
+
+    A router created via ``vshard.router.new()`` works in the same way as
+    a static router, but requires a colon before calling its methods
+    (``vshard.router:method_name(...)``), while a static router requires a dot
+    (``vshard.router.method_name(...)``).
+
+    A static router can be obtained via the ``vshard.router.static()`` method
+    and further used like a router created via the ``vshard.router.new()``
+    method.
+
+    .. NOTE::
+
+        ``box.cfg`` is shared among all the routers of a single instance.
+
+    :param name: a router instance name. It is used as a prefix in logs of
+                 the router and must be unique within the instance
+    :param cfg: a configuration table. The
+                :ref:`sample configuration <vshard-config-cluster-example>` is
+                described above.
+
+    :Return: a router instance, if created successfully; otherwise, nil and an
+             error object
 
 .. _router_api-call:
 
@@ -1483,6 +1575,12 @@ Storage public API
 * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`
 * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`
 * :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`
+* :ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`
+* :ref:`vshard.storage.bucket_refro() <storage_api-bucket_refro>`
+* :ref:`vshard.storage.bucket_refrw() <storage_api-bucket_refrw>`
+* :ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`
+* :ref:`vshard.storage.bucket_unrefro() <storage_api-bucket_unrefro>`
+* :ref:`vshard.storage.bucket_unrefrw() <storage_api-bucket_unrefrw>`
 * :ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`
 * :ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`
 * :ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`
@@ -1568,12 +1666,63 @@ Storage public API
     :return: ``true`` if the bucket is unpinned successfully; or ``nil`` and
              ``err`` explaining why the bucket cannot be unpinned
 
+.. _storage_api-bucket_ref:
+
+.. function:: vshard.storage.bucket_ref(bucket_id, mode)
+
+    Create a RO/RW :ref:`ref <_vshard_ref>`.
+
+    :param bucket_id: a bucket identifier
+    :param mode: read or write
+
+    :return: ``true`` if the bucket is the ref is created successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be created
+
+.. _storage_api-bucket_refro:
+
+.. function:: vshard.storage.bucket_refro()
+
+    An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in
+    the RO mode.
+
+.. _storage_api-bucket_refrw:
+
+.. function:: vshard.storage.bucket_refrw()
+
+    An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in
+    the RW mode.
+
+.. _storage_api-bucket_unref:
+
+.. function:: vshard.storage.bucket_unref(bucket_id)
+
+    Remove a RO/RW :ref:`ref <_vshard_ref>`.
+
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the ref is removed successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be removed
+
+.. _storage_api-bucket_unrefro:
+
+.. function:: vshard.storage.bucket_unrefro()
+
+    An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in
+    the RO mode.
+
+.. _storage_api-bucket_unrefrw:
+
+.. function:: vshard.storage.bucket_unrefrw()
+
+    An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in
+    the RW mode.
+
 .. _storage_api-find_garbage_bucket:
 
 .. function:: vshard.storage.find_garbage_bucket(bucket_index, control)
 
     Find a bucket which has data in a space, but is not stored
-    in a _bucket space; or a bucket is in a garbage state.
+    in a ``_bucket`` space; or a bucket is in a garbage state.
 
     :param bucket_index: index of a space with the part of a bucket id
     :param control: a garbage collector controller. If there is an increased
@@ -1586,7 +1735,19 @@ Storage public API
 
 .. function:: vshard.storage.buckets_info()
 
-    Return the information on each bucket located on storage.
+    Return the information on each bucket located on storage. For example:
+
+    .. code-block:: tarantoolsession
+
+        vshard.storage.buckets_info(1)
+        ---
+        - 1:
+            status: active
+            ref_rw: 1
+            ref_ro: 1
+            ro_lock: true
+            rw_lock: true
+            id: 1
 
 .. _storage_api-buckets_count:
 
