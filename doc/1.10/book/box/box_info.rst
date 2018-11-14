@@ -15,8 +15,8 @@ variables.
   system space.
 * **gc()** returns the state of the
   :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
-  including the checkpoints and their consumers (users).
-  (see :ref:`below <box_info_gc>`).
+  including the checkpoints and their consumers (users); see details
+  :ref:`below <box_info_gc>`.
 * **id** corresponds to **replication.id**
   (see :ref:`below <box_info_replication>`).
 * **lsn** corresponds to **replication.lsn**
