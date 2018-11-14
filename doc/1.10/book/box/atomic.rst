@@ -21,7 +21,8 @@ query:
 
     tarantool> box.space.tester:update({3}, {{'=', 2, 'size'}, {'=', 3, 0}})
 
-This is equivalent to an SQL statement like:
+This is equivalent to the following SQL statement for a table that stores 
+primary keys in ``field[1]``:
 
 .. code-block:: SQL
 

@@ -90,11 +90,22 @@ Below is a list of all functions for transaction management.
     In effect the fiber which executes ``box.begin()`` is starting an "active
     multi-request transaction", blocking all other fibers.
 
+    :return: error if this operation is not permitted because there
+             is already an active transaction.
+
+    :return: error if for some reason memory cannot be allocated.
+
 .. _box-commit:
 
 .. function:: box.commit()
 
     End the transaction, and make all its data-change operations permanent.
+
+    :return: error and abort the transaction in case of a conflict.
+
+    :return: error if the operation fails to write to disk.
+
+    :return: error if for some reason memory cannot be allocated.
 
 .. _box-rollback:
 
@@ -114,6 +125,14 @@ Below is a list of all functions for transaction management.
     Savepoints can only be created while a transaction is active, and they are
     destroyed when a transaction ends.
 
+    :return: ``savepoint table``
+    :rtype:  Lua object
+
+    :return: error if the savepoint cannot be set in absence of active
+             transaction.
+
+    :return: error if for some reason memory cannot be allocated.
+
 .. _box-rollback_to_savepoint:
 
 .. function:: box.rollback_to_savepoint(savepoint)
@@ -121,6 +140,11 @@ Below is a list of all functions for transaction management.
     Do not end the transaction, but cancel all its data-change
     and :ref:`box.savepoint() <box-savepoint>` operations that were done after
     the specified savepoint.
+
+    :return: error if the savepoint cannot be set in absence of active
+             transaction.
+
+    :return: error if the savepoint does not exist.
 
     **Example:**
 
