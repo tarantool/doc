@@ -27,7 +27,7 @@ at GitHub.
 .. _whats_new_20:
 
 -------------------------------------------------------------------------------
-Version 2.0
+Version 2.x
 -------------------------------------------------------------------------------
 
 Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout,
