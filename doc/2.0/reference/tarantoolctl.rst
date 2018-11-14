@@ -133,21 +133,24 @@ Commands for managing Tarantool modules
         List all installed modules.
 
 ``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``
-        Create a rock by packing sources or binaries. 
-        Specify:
+        Create a rock by packing sources or binaries.
 
-        * the name of an installed module (and its version if there are more 
-          than one) to create a binary rock containing the compiled module, or 
-        * a ``.rockspec`` file to create a source rock containing the module's 
-          sources.
+        As an argument, you can specify:
+
+        * a ``.rockspec`` file to create a source rock containing the module's
+          sources, or
+        * the name of an installed module (and its version if there are more
+          than one) to create a binary rock containing the compiled module.
 
 ``tarantoolctl rocks unpack {<rock_file> | <rockspec> | <name> [version]}``
         Unpack the contents of a rock into a new directory under the current one.
-        Takes the following resources as arguments:
+
+        As an argument, you can specify:
 
         * source or binary rock files,
-        * ``.rockspec`` files, and
-        * names of rocks or ``.rockspec`` files in remote repositories.
+        * ``.rockspec`` files, or
+        * names of rocks or ``.rockspec`` files in remote repositories
+          (and the rock version if there are more than one).
 
 Supported options:
 
