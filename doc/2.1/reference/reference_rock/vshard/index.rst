@@ -1670,7 +1670,7 @@ Storage public API
 
 .. function:: vshard.storage.bucket_ref(bucket_id, mode)
 
-    Create a RO/RW :ref:`ref <_vshard_ref>`.
+    Create a RO/RW :ref:`ref <vshard-ref>`.
 
     :param bucket_id: a bucket identifier
     :param mode: read or write
@@ -1696,7 +1696,7 @@ Storage public API
 
 .. function:: vshard.storage.bucket_unref(bucket_id)
 
-    Remove a RO/RW :ref:`ref <_vshard_ref>`.
+    Remove a RO/RW :ref:`ref <vshard-ref>`.
 
     :param bucket_id: a bucket identifier
 
