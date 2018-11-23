@@ -87,7 +87,7 @@ Functionality added or changed:
   * (Replication) :ref:`replica-local spaces <replication-local>`
     Issue `3443 <https://github.com/tarantool/tarantool/issues/3443>`_.
   * (Replication)
-    :ref:`replication_skip_conflict <fg-replication-skip-conflict>`,
+    :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`,
     a new option in ``box.cfg{}`` to skip conflicting rows in replication.
     Issue `3270 <https://github.com/tarantool/tarantool/issues/3270>`_.
   * (Replication)
@@ -112,9 +112,9 @@ Functionality added or changed:
     to check if a transaction is open;
     Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_.
   * (Lua) tuple field access via a json path
-    (by :ref:`number <box-tuple-field-number>`,
-    :ref:`name <box-tuple-field-name>`, and
-    :ref:`path <box-tuple-field-path>`);
+    (by :ref:`number <box_tuple-field_number>`,
+    :ref:`name <box_tuple-field_name>`, and
+    :ref:`path <box_tuple-field_path>`);
     Issue `1285 <https://github.com/tarantool/tarantool/issues/1285>`_.
   * (Lua) new function :ref:`space:frommap() <box_space-frommap>`;
     Issue `3282 <https://github.com/tarantool/tarantool/issues/3282>`_.
