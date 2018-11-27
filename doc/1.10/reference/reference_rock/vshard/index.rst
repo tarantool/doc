@@ -1694,11 +1694,12 @@ Storage public API
 
 .. _storage_api-bucket_unref:
 
-.. function:: vshard.storage.bucket_unref(bucket_id)
+.. function:: vshard.storage.bucket_unref(bucket_id, mode)
 
     Remove a RO/RW :ref:`ref <vshard-ref>`.
 
     :param bucket_id: a bucket identifier
+    :param mode: read or write
 
     :return: ``true`` if the ref is removed successfully; or ``nil`` and
              ``err`` explaining why the ref cannot be removed
