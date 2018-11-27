@@ -826,7 +826,7 @@ Bucket ref is an in-memory counter that is similar to the
 
 #. Bucket ref is countable.
 
-The :ref:`vshard.storage.bucket_ref/unref() <storage_api-bucket_ref>` methods
+The :ref:`vshard.storage.bucket_ref/unref()<storage_api-bucket_ref>` methods
 are called automatically when :ref:`vshard.router.call() <router_api-call>`
 or :ref:`vshard.storage.call() <storage_api-call>` is used.
 For raw API like ``r = vshard.router.route() r:callro/callrw`` you should
@@ -1572,6 +1572,7 @@ Storage public API
 
 * :ref:`vshard.storage.cfg(cfg, name) <storage_api-cfg>`
 * :ref:`vshard.storage.info() <storage_api-info>`
+* :ref:`vshard.storage.call(bucket_id, mode(read:write), function_name, {argument_list}) <storage_api-call>`
 * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`
 * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`
 * :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`
@@ -1635,6 +1636,22 @@ Storage public API
                 uuid: 810d85ef-4ce4-4066-9896-3c352fec9e64
         ...
 
+.. _storage_api-call:
+
+.. function:: vshard.storage.call(bucket_id, mode(read:write), function_name, {argument_list})
+
+    Call the user function on the current ``storage`` instance.
+
+    :param bucket_id: a bucket identifier
+    :param mode: a type of the function: read or write
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+
+    :Return:
+
+    The original return value of the executed function, or ``nil`` and
+    error object.
+
 .. _storage_api-sync:
 
 .. function:: vshard.storage.sync(timeout)
@@ -1652,8 +1669,8 @@ Storage public API
 
     :param bucket_id: a bucket identifier
 
-    :return: ``true`` if the bucket is unpinned successfully; or ``nil`` and
-             ``err`` explaining why the bucket cannot be unpinned
+    :return: ``true`` if the bucket is pinned successfully; or ``nil`` and
+             ``err`` explaining why the bucket cannot be pinned
 
 .. _storage_api-bucket_unpin:
 
@@ -1694,11 +1711,12 @@ Storage public API
 
 .. _storage_api-bucket_unref:
 
-.. function:: vshard.storage.bucket_unref(bucket_id)
+.. function:: vshard.storage.bucket_unref(bucket_id, mode)
 
     Remove a RO/RW :ref:`ref <vshard-ref>`.
 
     :param bucket_id: a bucket identifier
+    :param mode: read or write
 
     :return: ``true`` if the ref is removed successfully; or ``nil`` and
              ``err`` explaining why the ref cannot be removed
