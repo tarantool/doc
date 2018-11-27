@@ -826,7 +826,7 @@ Bucket ref is an in-memory counter that is similar to the
 
 #. Bucket ref is countable.
 
-The :ref:`vshard.storage.bucket_ref/unref() <storage_api-bucket_ref>` methods
+The :ref:`vshard.storage.bucket_ref/unref() methods
 are called automatically when :ref:`vshard.router.call() <router_api-call>`
 or :ref:`vshard.storage.call() <storage_api-call>` is used.
 For raw API like ``r = vshard.router.route() r:callro/callrw`` you should
@@ -1652,8 +1652,8 @@ Storage public API
 
     :param bucket_id: a bucket identifier
 
-    :return: ``true`` if the bucket is unpinned successfully; or ``nil`` and
-             ``err`` explaining why the bucket cannot be unpinned
+    :return: ``true`` if the bucket is pinned successfully; or ``nil`` and
+             ``err`` explaining why the bucket cannot be pinned
 
 .. _storage_api-bucket_unpin:
 
