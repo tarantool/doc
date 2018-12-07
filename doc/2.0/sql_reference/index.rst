@@ -1,61 +1,73 @@
+.. _box_reference_guide:
 
-
+========================
 REFERENCE GUIDE
-===============
+========================
 
 The Reference Guide contains descriptions of all the SQL statements and
 major clauses.
 
-ALTER TABLE Statement
-~~~~~~~~~~~~~~~~~~~~~
+.. _index-box_alter_table_statement:
 
-ALTER TABLE table-name RENAME TO new-table-name;
+~~~~~~~~~~~~~~~~~~~~~~~~
+ALTER TABLE Statement
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: sql
+
+        ALTER TABLE table-name RENAME TO new-table-name;
 
 or
 
-ALTER TABLE table-name ADD [COLUMN] column definition;
+.. code-block:: sql
 
-ALTER is used to either change a table's name or to add new columns.
+        ALTER TABLE table-name ADD [COLUMN] column definition;
+
+ALTER is used to either change a table\'s name or to add new columns.
 
 .. image:: image_0.png
 
-
 Known flaws: (Issue#2349)
 
-ALTER does not work well. It is not legal to add a column at time of
+``ALTER`` does not work well. It is not legal to add a column at time of
 writing.
 
 Newly added:
 
-ALTER TABLE table-name ADD CONSTRAINT constraint-name
-foreign-key-constraint-definition;
+.. code-block:: sql
 
-(See "Foreign key Constraint definition" for syntax of
+        ALTER TABLE table-name ADD CONSTRAINT constraint-name foreign-key-constraint-definition;
+
+(See \"Foreign key Constraint definition\" for syntax of
 foreign-constraint-definition.)
 
 This is only legal if the table is empty.
 
-ALTER TABLE table-name DROP CONSTRAINT constraint-name;
+``ALTER TABLE table-name DROP CONSTRAINT constraint-name;``
 
-It is not possible to say "CREATE TABLE table\_a ... REFERENCES table\_b
-..." if table b does not exist yet. This is a situation where ALTER
-TABLE is handy -- users can :CREATE TABLE table\_a" without the foreign
-key, then "CREATE TABLE table\_b", then ALTER TABLE table\_a ...
-REFERENCES table\_b ...".
+It is not possible to say \"``CREATE TABLE table_a ... REFERENCES table_b...``\"
+if table b does not exist yet. This is a situation where ``ALTER TABLE`` is handy -- users can \"``CREATE TABLE table_a``\" without the foreign
+key, then \"``CREATE TABLE table_b``\", then ALTER TABLE table\_a ...
+REFERENCES table\_b ...\".
 
+.. _index-box_create_table_statement:
+
+~~~~~~~~~~~~~~~~~~~~~~
 CREATE TABLE Statement
 ~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: sql
 
-CREATE TABLE [IF NOT EXISTS] table-name (column-definition list
-[,table-constraint list]);
+    CREATE TABLE [IF NOT EXISTS] table-name (column-definition list[,table-constraint list]);
 
 or
 
-CREATE TABLE [IF NOT EXISTS] table-name AS subquery-clause;
+.. code-block:: sql
+
+        CREATE TABLE [IF NOT EXISTS] table-name AS subquery-clause;
 
 .. image:: image_1.png    
 
-Create a new base table, usually called a "table".
+Create a new base table, usually called a \"table\".
 
 The table-name must be an identifier which is valid according to the
 rules for identifiers, and must not be the name of an already existing
@@ -84,7 +96,7 @@ Tarantool calculates column-definitions based
 
 on the names and data types of the items in
 
-the subquery's select-list.
+the subquery\'s select-list.
 
 The subquery-clause should not be used.
 
@@ -115,20 +127,19 @@ and returns an error if any of the rules is violated.
 
 Examples:
 
--- the simplest form, with one column and one constraint
+.. code-block:: sql
 
-CREATE TABLE t1 (s1 INTEGER, PRIMARY KEY (s1));
+    -- the simplest form, with one column and one constraint
 
--- variation of the simplest form, with delimited identifiers and an
-inline comment
+    CREATE TABLE t1 (s1 INTEGER, PRIMARY KEY (s1));
 
-CREATE TABLE "t1" ("s1" INT /\* abbreviation of INTEGER \*/, PRIMARY KEY
-("s1"));
+    -- variation of the simplest form, with delimited identifiers and an inline comment
 
--- two columns, one named constraint
+    CREATE TABLE "t1" ("s1" INT /* abbreviation of INTEGER */, PRIMARY KEY ("s1"));
 
-CREATE TABLE t1 (s1 INTEGER, s2 TEXT, CONSTRAINT c1 PRIMARY KEY (s1,
-s2));
+    -- two columns, one named constraint
+
+    CREATE TABLE t1 (s1 INTEGER, s2 TEXT, CONSTRAINT c1 PRIMARY KEY (s1, s2));
 
 Known flaws: (Issue#2350)
 
@@ -140,10 +151,15 @@ Known flaws: (Issue#2350)
 
 table constraint definitions, is not standard.
 
+.. _index-box_column_definition:
+
+~~~~~~~~~~~~~~~~~
 Column Definition
 ~~~~~~~~~~~~~~~~~
 
-column-name [data-type] [column-constraint [, column-constraint ...]
+.. code-block:: sql
+
+    column-name [data-type] [column-constraint [, column-constraint ...]
 
 .. image:: image_2.png
 
@@ -155,7 +171,6 @@ column-constraint:
 
 .. image:: image_4.png
     
-
 Define a column, which is a table-element used in a CREATE TABLE
 statement.
 
@@ -168,54 +183,53 @@ These are the possible data types, their affinities (what they can be
 automatically converted to or compared with), and their equivalent types
 in Tarantool/NOSQL:
 
-+----------+-----------+------------+
-| SQL TYPE | CANONICAL | FIELD TYPE |
-+==========+===========+============+
-| FLOAT    | REAL      | NUMBER     |
-+----------+-----------+------------+
-| REAL     | REAL      | NUMBER     |
-+----------+-----------+------------+
-| DOUBLE   | REAL      | NUMBER     |
-+----------+-----------+------------+
-| NUMERIC  | REAL      | NUMBER     | 
-+----------+-----------+------------+
-| DECIMAL  | REAL      | NUMBER     |
-+----------+-----------+------------+
-| INTEGER  | INTEGER   | INTEGER    | 
-+----------+-----------+------------+
-| TEXT     | TEXT      | STRING     |
-+----------+-----------+------------+
-| VARCHAR  | TEXT      | STRING     |
-+----------+-----------+------------+
-| CHAR     | TEXT      | STRING     |
-+----------+-----------+------------+
-| BLOB     | BLOB      | SCALAR     |
-+----------+-----------+------------+
-| DATETIME | REAL      | NUMBER     |
-+----------+-----------+------------+
-| DATE     | REAL      | NUMBER     |
-+----------+-----------+------------+
-| TIME     | REAL      | NUMBER     | 
-+----------+-----------+------------+
+.. container:: table
 
-Abbreviation = NUM
-Abbreviation = INT
-not yet working
+    +----------+-----------+------------+--------------------+
+    | SQL TYPE | CANONICAL | FIELD TYPE |                    |
+    +==========+===========+============+                    |
+    | FLOAT    | REAL      | NUMBER     |                    |
+    +----------+-----------+------------+                    |
+    | REAL     | REAL      | NUMBER     |                    |
+    +----------+-----------+------------+                    |
+    | DOUBLE   | REAL      | NUMBER     |                    |
+    +----------+-----------+------------+--------------------+
+    | NUMERIC  | REAL      | NUMBER     | Abbreviation = NUM |
+    +----------+-----------+------------+--------------------|
+    | DECIMAL  | REAL      | NUMBER     |                    |
+    +----------+-----------+------------+--------------------+
+    | INTEGER  | INTEGER   | INTEGER    | Abbreviation = INT |
+    +----------+-----------+------------+--------------------+
+    | TEXT     | TEXT      | STRING     |                    |
+    +----------+-----------+------------+                    |
+    | VARCHAR  | TEXT      | STRING     |                    |
+    +----------+-----------+------------+                    |
+    | CHAR     | TEXT      | STRING     |                    |
+    +----------+-----------+------------+                    |
+    | BLOB     | BLOB      | SCALAR     |                    |
+    +----------+-----------+------------+                    |
+    | DATETIME | REAL      | NUMBER     |                    |
+    +----------+-----------+------------+                    |
+    | DATE     | REAL      | NUMBER     |                    |
+    +----------+-----------+------------+--------------------+
+    | TIME     | REAL      | NUMBER     | not yet working    |
+    +----------+-----------+------------+--------------------+
+
 CHAR and VARCHAR must be followed by a length in parentheses, for
 example VARCHAR(44). NUMERIC and DECIMAL may be followed by precision in
 parentheses, or precision, scale in parentheses, for example DECIMAL(4)
 or DECIMAL(4,2).
 
-The data-type may be followed by [COLLATE collation-name]; for details
+The data-type may be followed by ``[COLLATE collation-name];`` for details
 see section COLLATE clause.
 
 The column-constraint may be NOT NULL, or PRIMARY KEY, or UNIQUE, or
 CHECK (expression), or DEFAULT literal-value \| (expression), or
-REFERENCES foreign-key-clause. NOT NULL means "it is illegal to assign a
-NULL to this column". PRIMARY KEY and UNIQUE and CHECK are explained in
-the later section "Constraint definition". DEFAULT
-literal-value\|(expression) means "if INSERT does not assign to this
-column then assign literal-value or expression result to this column" --
+REFERENCES foreign-key-clause. NOT NULL means \"it is illegal to assign a
+NULL to this column\". PRIMARY KEY and UNIQUE and CHECK are explained in
+the later section \"Constraint definition\". DEFAULT
+literal-value\|(expression) means \"if INSERT does not assign to this
+column then assign literal-value or expression result to this column\" --
 if there is no DEFAULT clause then DEFAULT NULL is assumed.
 
 The maximum number of columns is 2000.
@@ -237,10 +251,10 @@ should be character strings.
 strings.
 
 5 If column-constraint is PRIMARY KEY, this is a shorthand for a
-separate table-constraint definition: "PRIMARY KEY (column-name)".
+separate table-constraint definition: \"PRIMARY KEY (column-name)\".
 
 6 If column-constraint is UNIQUE, this is a shorthand for a separate
-table-constraint definition: "UNIQUE (column-name)".
+table-constraint definition: \"UNIQUE (column-name)\".
 
 7 If column-constraint is NOT NULL, then data in the column cannot be
 NULL.
@@ -254,34 +268,39 @@ if nothing is explicitly assigned to it.
 
 Examples (assume these are parts of a CREATE TABLE statement)
 
--- the simple form with column-name and data-type
+.. code-block:: sql
+
+    -- the simple form with column-name and data-type
 
 column1 INTEGER
 
--- with column-name and data-type and column-constraint
+.. code-block:: sql
+
+    -- with column-name and data-type and column-constraint
 
 column1 TEXT PRIMARY KEY
 
 Known flaws: (Issue#2351): size limits are not enforced for CHAR or
 VARCHAR
 
+.. _index-box_column_definition--relation_to_nosql:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Column Definition -- Relation to NoSQL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When you specify a data type, that affects the storage which must be
-compatible with data types in Tarantool's NoSQL. Ultimately the
+compatible with data types in Tarantool\'s NoSQL. Ultimately the
 constraints that affect the underlying NoSQL data type have an effect on
 the SQL data types as well.
 
 See the chart in the previous section to see what an underlying
 data-type is.
 
-For example, suppose a table is created with CREATE TABLE t (s1 FLOAT
-PRIMARY KEY, s2 REAL, s3 DOUBLE, s4 NUMERIC, s5 DECIMAL); and it
+For example, suppose a table is created with ``CREATE TABLE t (s1 FLOAT PRIMARY KEY, s2 REAL, s3 DOUBLE, s4 NUMERIC, s5 DECIMAL);`` and it
 contains one row, and none of the values is NULL. Then, since all those
-data types have underlying data type = real, SELECT TYPEOF(s1),
-TYPEOF(s2), TYPEOF(s3), TYPEOF(s4), TYPEOF(s5); should return 'real',
-'real', 'real', 'real', 'real'.
+data types have underlying data type = real, ``SELECT TYPEOF(s1), TYPEOF(s2), TYPEOF(s3), TYPEOF(s4), TYPEOF(s5);`` should return \'real\',
+\'real\', \'real\', \'real\', \'real\'.
 
 If two items have SQL data types that have the same underlying type,
 then they are compatible for all assignment or comparison purposes.
@@ -291,13 +310,13 @@ then these rules may apply:
 
 \*\* Implicit cast (assignment of a type-X value to a type-Y target)
 
-In the following, [1] is shorthand for "value 1 inside a column of a
-declared type", not necessarily literal value 1.
+In the following, [1] is shorthand for \"value 1 inside a column of a
+declared type\", not necessarily literal value 1.
 
 Assign to INT:
 
-From REAL: Truncation (not founding) occurs. For example: if "SET
-int\_column = [1.9]", int\_column beomes 1.
+From REAL: Truncation (not founding) occurs. For example: if \"SET
+int\_column = [1.9]\", int\_column beomes 1.
 
 ::
 
@@ -315,26 +334,26 @@ From INT: always allowed
 From BLOB: nothing is allowed except NULL
 
 From CHAR: If it can be converted to a number, it is allowed. Exception:
-'Inf' is not allowed
+\'Inf\' is not allowed
 
 Assign to CHAR:
 
 From INT: any number is allowed
 
-From REAL: any number is allowed. INF becomes 'Inf'
+From REAL: any number is allowed. INF becomes \'Inf\'
 
-From BLOB: nothing is allowed except NULL, for example "SET char\_column
-= [X'44']" is illegal.
+From BLOB: nothing is allowed except NULL, for example \"SET char\_column
+= [X\'44\']\" is illegal.
 
 Assign to BLOB:
 
 From INT: any number is allowed
 
-From REAL: any number is allowed. INF becomes 'INF' (sic. not 'Inf')
+From REAL: any number is allowed. INF becomes \'INF\' (sic. not \'Inf\')
 
 From CHAR: any string is allowed
 
-\*\* Explicit cast (for example CAST('5' as BLOB)
+\*\* Explicit cast (for example CAST(\'5\' as BLOB)
 
 Anything allowed with implicit cast is allowed.
 
@@ -347,13 +366,13 @@ to a number X, then it is X
 
 Conversion is done before comparison.
 
-Example: if FLOAT column contains INF, and BLOB column contains '1e555',
+Example: if FLOAT column contains INF, and BLOB column contains \'1e555\',
 they are equal.
 
 If the conversion is not possible, then the number is always less than
 the char or blob.
 
-Example: 1e55 < '' is TRUE.
+Example: 1e55 < \'\' is TRUE.
 
 When comparing FLOAT TO FLOAT: INF=INF.
 
@@ -364,33 +383,38 @@ Additionally the data type specification affects the underlying storage,
 which is in a NoSQL space. The table in the previous section shows the
 normal way that Tarantool/NOSQL will store SQL values, except that
 Tarantool/NoSQL will store NULL values as a separate data type for
-everything except 'scalar'.
+everything except \'scalar\'.
 
 To enforce some restrictions that Tarantool does not enforce
 automatically, add CHECK clauses, like
 
-CREATE TABLE t ("smallint" INTEGER PRIMARY KEY, CHECK ("smallint" <=
-32767 AND "smallint" >= -32768));
+.. code-block:: sql
 
-CREATE TABLE t ("shorttext" CHAR(10) PRIMARY KEY, CHECK
-(length("shorttext") <= 10));
+    CREATE TABLE t ("smallint" INTEGER PRIMARY KEY, CHECK ("smallint" <= 32767 AND "smallint" >= -32768));
+
+    CREATE TABLE t ("shorttext" CHAR(10) PRIMARY KEY, CHECK (length("shorttext") <= 10));
 
 but this may not be reliable and may cause inserts or updates to be
 slow.
 
 Known Flaws: (Issue#2352)
 
--  Some 'affinity rules' exist. The affinity rules are being replaced by
+-  Some \'affinity rules\' exist. The affinity rules are being replaced by
    more standard rules, but it takes time.
 
 For example: If an underlying type is integer, then Tarantool will
 convert strings to integers -- for example
 
-UPDATE t SET integer\_column = '3';
+.. code-block:: sql
 
-will put the integer 3 in, not the string '3'. This behavior is
+    UPDATE t SET integer_column = '3';
+
+will put the integer 3 in, not the string \'3\'. This behavior is
 temporary.
 
+.. _index-box_constraint_definition:
+
+~~~~~~~~~~~~~~~~~~~~~
 Constraint Definition
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -400,10 +424,7 @@ primary-key-constraint \| unique-constraint \| check-constraint \|
 foreign-key-constraint
 
 .. image:: image_5.png
-    
-
-    
-
+   
 Define a constraint, which is a table-element used in a CREATE TABLE
 statement.
 
@@ -427,29 +448,31 @@ which have the same values for the columns specified in the constraint.
 
 Examples:
 
--- this is a table with a one-column primary-key constraint
+.. code-block:: sql
 
-CREATE TABLE t1 (s1 int, PRIMARY KEY (s1));
+    -- this is a table with a one-column primary-key constraint
 
--- this is the column-definition shorthand for the same thing:
+    CREATE TABLE t1 (s1 int, PRIMARY KEY (s1));
 
-CREATE TABLE t1 (s1 int PRIMARY KEY);
+    -- this is the column-definition shorthand for the same thing:
 
--- this is a table with a two-column primary-key constraint
+    CREATE TABLE t1 (s1 int PRIMARY KEY);
 
-CREATE TABLE t2 (s1 INT, s2 INT, PRIMARY KEY (s1, s2));
+    -- this is a table with a two-column primary-key constraint
 
--- this is an example of an attempted primary-key violation
+    CREATE TABLE t2 (s1 INT, s2 INT, PRIMARY KEY (s1, s2));
 
--- (the third INSERT will fail because 55, 'a' is a duplicate)
+    -- this is an example of an attempted primary-key violation
 
-CREATE TABLE t3 (s1 INT, s2 CHAR(10), PRIMARY KEY (s1, s2));
+    -- (the third INSERT will fail because 55, 'a' is a duplicate)
 
-INSERT INTO t3 VALUES (55, 'a');
+    CREATE TABLE t3 (s1 INT, s2 CHAR(10), PRIMARY KEY (s1, s2));
 
-INSERT INTO t3 VALUES (55, 'b');
+    INSERT INTO t3 VALUES (55, 'a');
 
-INSERT INTO t3 VALUES (55, 'a');
+    INSERT INTO t3 VALUES (55, 'b');
+
+    INSERT INTO t3 VALUES (55, 'a');
 
 PRIMARY KEY AUTOINCREMENT constraints look like this:
 
@@ -491,39 +514,44 @@ the same values.
 
 Examples:
 
--- this is a table with a one-column primary-key constraint
+.. code-block:: sql
 
--- and a one-column unique constraint
+    -- this is a table with a one-column primary-key constraint
 
-CREATE TABLE t1 (s1 INT, s2 INT, PRIMARY KEY (s1), UNIQUE (s2));
+    -- and a one-column unique constraint
 
--- this is the column-definition shorthand for the same thing:
+    CREATE TABLE t1 (s1 INT, s2 INT, PRIMARY KEY (s1), UNIQUE (s2));
 
-CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 INT UNIQUE);
+    -- this is the column-definition shorthand for the same thing:
 
--- this is a table with a two-column unique constraint
+    CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 INT UNIQUE);
 
-CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 INT, UNIQUE (s2, s1));
+    -- this is a table with a two-column unique constraint
 
--- this is an example of an attempted unique-key violation
+    CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 INT, UNIQUE (s2, s1));
 
--- (the third INSERT will not fail because NULL is not a duplicate)
+    -- this is an example of an attempted unique-key violation
 
--- (the fourth INSERT will fail because 'a' is a duplicate)
+    -- (the third INSERT will not fail because NULL is not a duplicate)
 
-CREATE TABLE t3 (s1 INT PRIMARY KEY, s2 CHAR(10), UNIQUE (s2));
+    -- (the fourth INSERT will fail because 'a' is a duplicate)
 
-INSERT INTO t3 VALUES (1, 'a');
+    CREATE TABLE t3 (s1 INT PRIMARY KEY, s2 CHAR(10), UNIQUE (s2));
 
-INSERT INTO t3 VALUES (2, NULL);
+    INSERT INTO t3 VALUES (1, 'a');
 
-INSERT INTO t3 VALUES (3, NULL);
+    INSERT INTO t3 VALUES (2, NULL);
 
-INSERT INTO t3 VALUES (4, 'a');
+    INSERT INTO t3 VALUES (3, NULL);
+
+    INSERT INTO t3 VALUES (4, 'a');
 
 CHECK constraints look like this:
 
-CHECK (expression)
+
+.. code-block:: sql
+
+    CHECK (expression)
 
 There is a shorthand: specifying CHECK in a column definition.
 
@@ -541,23 +569,25 @@ expression is either true or unknown.)
 
 Examples:
 
--- this is a table with a one-column primary-key constraint
+.. code-block:: sql
 
--- and a check constraint
+    -- this is a table with a one-column primary-key constraint
 
-CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 INT, CHECK (s2 <> s1));
+    -- and a check constraint
 
--- this is an attempt to violate the constraint, it will fail
+    CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 INT, CHECK (s2 <> s1));
 
-INSERT INTO t1 VALUES (1, 1);
+    -- this is an attempt to violate the constraint, it will fail
 
--- this is okay because comparison with NULL won't return false
+    INSERT INTO t1 VALUES (1, 1);
 
-INSERT INTO t1 VALUES (1, NULL);
+    -- this is okay because comparison with NULL won't return false
 
--- a constraint that makes it difficult to insert lower case
+    INSERT INTO t1 VALUES (1, NULL);
 
-CHECK (s1 = UPPER(s1))
+    -- a constraint that makes it difficult to insert lower case
+
+    CHECK (s1 = UPPER(s1))
 
 Known flaws:
 
@@ -566,7 +596,9 @@ Known flaws:
 
 -  Try:
 
-CREATE TABLE t99 (s1 INT,UNIQUE(s1,s1),PRIMARY KEY(s1));
+.. code-block:: sql
+
+    CREATE TABLE t99 (s1 INT,UNIQUE(s1,s1),PRIMARY KEY(s1));
 
 The statement causes no error message, although (s1,s1) is probably a
 user error.
@@ -605,33 +637,34 @@ referencing columns must contain NULL.
 
 Examples:
 
--- A foreign key referencing a primary key in the same table
+.. code-block:: sql
 
-CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2) REFERENCES
-t1 (s1));
+    -- A foreign key referencing a primary key in the same table
 
--- The same thing with column shorthand
+    CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2) REFERENCES t1 (s1));
 
-CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 REFERENCES t1(s1));
+    -- The same thing with column shorthand
 
--- An attempt to violate the constraint -- this will fail
+    CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 REFERENCES t1(s1));
 
-INSERT INTO t1 VALUES (1,2);
+    -- An attempt to violate the constraint -- this will fail
 
--- A NULL in the referencing column -- this will succeed
+    INSERT INTO t1 VALUES (1,2);
 
-INSERT INTO t1 VALUES (1,NULL);
+    -- A NULL in the referencing column -- this will succeed
 
--- A reference to a primary key that now exists -- this will succeed
+    INSERT INTO t1 VALUES (1,NULL);
 
-INSERT INTO t1 VALUES (2,1);
+    -- A reference to a primary key that now exists -- this will succeed
+
+    INSERT INTO t1 VALUES (2,1);
 
 The optional update-or-delete rules look like this:
 
 ON {UPDATE\|DELETE} { CASCADE \| SET DEFAULT \| SET NULL}
 
 and the idea is: if something changes the referenced key, then one of
-three possible "referential actions" takes place:
+three possible \"referential actions\" takes place:
 
 CASCADE: the change that is applied for the referenced key is applied
 for the referencing key
@@ -642,65 +675,69 @@ SET NULL: the referencing key is set to NULL.
 
 For example:
 
-CREATE TABLE f1 (ordinal INT PRIMARY KEY, referenced\_planet CHAR(10)
-UNIQUE NOT NULL);
 
-CREATE TABLE f2 (ordinal INT PRIMARY KEY,
+.. code-block:: sql
 
-::
+    CREATE TABLE f1 (ordinal INT PRIMARY KEY, referenced_planet CHAR(10) UNIQUE NOT NULL);
 
-                referring_planet CHAR(10) DEFAULT 'Earth',
+    CREATE TABLE f2 (ordinal INT PRIMARY KEY,
 
-                FOREIGN KEY (referring_planet) REFERENCES f1 (referenced_planet)
+    referring_planet CHAR(10) DEFAULT 'Earth',
 
-                ON UPDATE SET DEFAULT
+    FOREIGN KEY (referring_planet) REFERENCES f1 (referenced_planet)
 
-                ON DELETE CASCADE);
+    ON UPDATE SET DEFAULT
 
-INSERT INTO f1 VALUES (1,'Mercury'),(2,'Venus'),(3,'Earth');
+    ON DELETE CASCADE);
 
-INSERT INTO f2 VALUES (1,'Mercury'),(2,'Mercury');
+    INSERT INTO f1 VALUES (1,'Mercury'),(2,'Venus'),(3,'Earth');
 
-UPDATE f1 SET referenced\_planet = 'Mars' WHERE referenced\_planet =
-'Mercury';
+    INSERT INTO f2 VALUES (1,'Mercury'),(2,'Mercury');
 
-SELECT \* FROM f2;
+    UPDATE f1 SET referenced_planet = 'Mars' WHERE referenced_planet = 'Mercury';
 
-DELETE FROM f1 WHERE referenced\_planet = 'Earth';
+    SELECT * FROM f2;
 
-SELECT \* FROM f2;
+    DELETE FROM f1 WHERE referenced_planet = 'Earth';
+
+    SELECT * FROM f2;
 
 ... In this example, the UPDATE statement changes the referenced key,
 and he clause is ON UPDATE SET DEFAULT, therefore both of the rows in f2
-have referring\_planet set to their default value, which is 'Earth'. The
-DELETE statement deletes the row that has 'Earth', and the clause is ON
+have referring\_planet set to their default value, which is \'Earth\'. The
+DELETE statement deletes the row that has \'Earth\', and the clause is ON
 DELETE CASCADE, therefore both of the rows in f2 are deleted.
 
 Known flaws:
 
 -  Foreign keys can have a MATCH clause (issue#3455).
 
+.. _index-box_constraint_conflict_clauses:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Constraint Conflict Clauses
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In a CREATE TABLE statement:
 
-CREATE TABLE ... constraint-definition ON CONFLICT {ABORT \| FAIL \|
-IGNORE \| REPLACE \| ROLLBACK} ...;
+.. code-block:: sql
+
+    CREATE TABLE ... constraint-definition ON CONFLICT {ABORT | FAIL | IGNORE | REPLACE | ROLLBACK} ...;
 
 In an INSERT or UPDATE statement:
 
-{INSERT\|UPDATE} OR {ABORT \| FAIL \| IGNORE \| REPLACE \| ROLLBACK}
-...;
+.. code-block:: sql
 
-The standard way to handle a constraint violation is "statement
-rollback" -- all rows affected by the statement are restored to their
+    {INSERT|UPDATE} OR {ABORT | FAIL | IGNORE | REPLACE | ROLLBACK}...;
+
+The standard way to handle a constraint violation is \"statement
+rollback\" -- all rows affected by the statement are restored to their
 original values -- and an error is returned. However, Tarantool allows
 the user to specify non-standard ways to handle PRIMARY KEY, UNIQUE,
 CHECK, and NOT NULL constraint violations.
 
 ABORT -- do statement rollback and return an error. This is the default
-and is recommended, so a user's best strategy is to never use constraint
+and is recommended, so a user\'s best strategy is to never use constraint
 conflict clauses.
 
 FAIL -- return an error but do not do statement rollback.
@@ -713,7 +750,7 @@ faster than handling with ABORT.
 REPLACE -- (for a UNIQUE or PRIMARY KEY constraint) -- instead of
 inserting a new row, delete the old row before putting in the new one;
 (for a NOT NULL constraint for a column that has a non-NULL default
-value) replace the NULL value with the column's default value; (for a
+value) replace the NULL value with the column\'s default value; (for a
 NOT NULL constraint for a column that has a NULL default value) do
 statement rollback and return an error; (for a CHECK constraint) -- do
 statement rollback and return an error. If REPLACE action causes a row
@@ -730,16 +767,20 @@ unique constraint.
 
 A transaction starts with START TRANSACTION.
 
-The first statement in the transaction is INSERT INTO t VALUES (1),(2);
+.. code-block:: sql
 
-i.e. "insert 1, then insert 2" -- Tarantool processes the new rows in
+    The first statement in the transaction is INSERT INTO t VALUES (1),(2);
+
+i.e. \"insert 1, then insert 2\" -- Tarantool processes the new rows in
 order.
 
 This statement always succeeds, there are no constraint violations.
 
-The second SQL statement is INSERT INTO t VALUES (3),(2),(5);
+.. code-block:: sql
 
-i.e. "insert 3, then insert 2".
+    The second SQL statement is INSERT INTO t VALUES (3),(2),(5);
+
+i.e. \"insert 3, then insert 2\".
 
 Inserting 3 is not a problem, but inserting 2 is a problem -- it would
 violate the UNIQUE constraint.
@@ -770,34 +811,37 @@ precedence.
 
 Another example:
 
-DROP TABLE t1;
+.. code-block:: sql
 
-CREATE TABLE t1 (s1 INTEGER PRIMARY KEY ON CONFLICT REPLACE, s2
-INTEGER);
+    DROP TABLE t1;
 
-INSERT INTO t1 VALUES (1, NULL); -- now t1 contains (1,NULL)
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY ON CONFLICT REPLACE, s2 INTEGER);
 
-INSERT INTO t1 VALUES (1, 1); -- now t1 contains (1,1)
+    INSERT INTO t1 VALUES (1, NULL); -- now t1 contains (1,NULL)
 
-INSERT OR ABORT INTO t1 VALUES (1,2); -- now t1 contains (1,1)
+    INSERT INTO t1 VALUES (1, 1); -- now t1 contains (1,1)
 
-INSERT OR IGNORE INTO t1 VALUES (1,2),(3,4); -- now t1 contains
-(1,1),(3,4)
+    INSERT OR ABORT INTO t1 VALUES (1,2); -- now t1 contains (1,1)
 
-PRAGMA recursive\_triggers(true);
+    INSERT OR IGNORE INTO t1 VALUES (1,2),(3,4); -- now t1 contains (1,1),(3,4)
 
-CREATE TRIGGER t1d
+    PRAGMA recursive_triggers(true);
 
-AFTER DELETE ON t1 FOR EACH ROW
+    CREATE TRIGGER t1d
 
-BEGIN
+    AFTER DELETE ON t1 FOR EACH ROW
 
-INSERT INTO t1 VALUES (18,25);
+    BEGIN
 
-END;
+    INSERT INTO t1 VALUES (18,25);
 
-INSERT INTO t1 VALUES (1,4); -- now t1 contains (1,4),(3,4),(18,35)
+    END;
 
+    INSERT INTO t1 VALUES (1,4); -- now t1 contains (1,4),(3,4),(18,35)
+
+.. _index-box_collate_clause:
+
+~~~~~~~~~~~~~~
 COLLATE clause
 ~~~~~~~~~~~~~~
 
@@ -809,63 +853,65 @@ The COLLATE clause will be allowed:
 
 () in CREATE INDEX
 
-Example: CREATE INDEX i ON mb (s1 COLLATE "unicode");
+Example: ``CREATE INDEX i ON mb (s1 COLLATE \"unicode\");``
 
 () in CREATE TABLE as part of column definition
 
-Example: CREATE TABLE mb (s1 CHAR(5) COLLATE "unicode");
+Example: ``CREATE TABLE mb (s1 CHAR(5) COLLATE \"unicode\");``
 
 () in CREATE TABLE as part of UNIQUE definition
 
-Example: CREATE TABLE mb (a CHAR(5), b CHAR(10), PRIMARY KEY(a),
-UNIQUE(b COLLATE "unicode\_ci" DESC));
+Example: ``CREATE TABLE mb (a CHAR(5), b CHAR(10), PRIMARY KEY(a), UNIQUE(b COLLATE \"unicode\_ci\" DESC));``
 
 () in string expressions
 
-Example: SELECT 'a' = 'b' COLLATE "unicode"
+Example: ``SELECT \'a\' = \'b\' COLLATE \"unicode\"``
 
 ::
 
-            FROM t
+.. code-block:: sql
 
-            WHERE s1 = 'b' COLLATE "unicode"
+    FROM t
 
-            ORDER BY s1 COLLATE "unicode";
+    WHERE s1 = 'b' COLLATE "unicode"
 
-The list of collations can be seen with: PRAGMA collation\_list;
+    ORDER BY s1 COLLATE "unicode";
+
+    The list of collations can be seen with: PRAGMA collation_list;
 
 The collation rules comply completely with the Unicode Technical
-Standard #10 "Unicode Collation Algorithm"
+Standard #10 \"Unicode Collation Algorithm\"
 http://unicode.org/reports/tr10/ and the default character order is as
 in the *Default Unicode Collation Element Table (DUCET).* The four
 permanent collations are:
 
-"none" (not applicable)
+\"none\" (not applicable)
 
-"unicode" (characters are in DUCET order with all weights considered)
+\"unicode\" (characters are in DUCET order with all weights considered)
 
-"unicode\_ci" (characters are in DUCET order with only primary weight
+\"unicode\_ci\" (characters are in DUCET order with only primary weight
 considered)
 
-"binary" (characters are in code point order)
+\"binary\" (characters are in code point order)
 
 These identifiers must be quoted and in lower case because they are in
 lower case in Tarantool/NoSQL.
 
-If one says COLLATE "binary", this is equivalent to asking for what is
-sometimes called "code point order" because, if the contents are in the
+If one says COLLATE \"binary\", this is equivalent to asking for what is
+sometimes called \"code point order\" because, if the contents are in the
 UTF-8 character set, characters with larger code points will appear
 after characters with lower code points.
 
 If one makes a new collation with Tarantool/NoSQL thus:
 
-box.internal.collation.create('SWEDISH\_S1', 'ICU', 'sv\_SE',
-{strength='primary'});
+.. code-block:: sql
+
+    box.internal.collation.create('SWEDISH_S1', 'ICU', 'sv_SE', {strength='primary'});
 
 later in the same session one can say COLLATE swedish\_s1.
 
 In an expression, COLLATE is an operator with higher precedence than
-anything except '~'. This is fine because there are no other useful
+anything except \'~\'. This is fine because there are no other useful
 operators except \|\| and comparison.
 
 After \|\|, collation is preserved.
@@ -873,30 +919,34 @@ After \|\|, collation is preserved.
 In an expression with more than one COLLATE clause, the first COLLATE
 clause has higher precedence (there is no error). Therefore
 
-SELECT 'ÄÄ' = 'Ę' COLLATE "unicode\_ci" \|\| 'Ę' COLLATE swedish\_s1;
+.. code-block:: sql
+
+    SELECT 'ÄÄ' = 'Ę' COLLATE "unicode_ci" || 'Ę' COLLATE swedish_s1;
 
 returns false but
 
-SELECT 'ÄÄ' = 'Ę' COLLATE swedish\_s1 \|\| 'Ę' COLLATE "unicode\_ci";
+.. code-block:: sql
+
+    SELECT 'ÄÄ' = 'Ę' COLLATE swedish_s1 || 'Ę' COLLATE "unicode_ci";
 
 returns true.
 
 In an expression with no COLLATE clauses, literals have collation
-"binary", columns have the collation specified by CREATE TABLE.
+\"binary\", columns have the collation specified by CREATE TABLE.
 
 In other words, to pick a collation, we use:
 
 the first COLLATE clause in an expression
 
-else the the column's COLLATE clause if it was specified
+else the the column\'s COLLATE clause if it was specified
 
-else "binary".
+else \"binary\".
 
 However, for searches and sometimes for sorting, the collation may be an
-index's collation, so all non-index COLLATE clauses are ignored.
+index\'s collation, so all non-index COLLATE clauses are ignored.
 
 EXPLAIN will not show the name of what collation was used, but will show
-the collation's characteristics.
+the collation\'s characteristics.
 
 Known flaws:
 
@@ -906,16 +956,18 @@ Known flaws:
 -  LIKE does not follow exactly the same rules as = for collations
    (Issue#3589)
 
+.. _index-box_drop_table_statement:
+
+~~~~~~~~~~~~~~~~~~~~
 DROP TABLE Statement
 ~~~~~~~~~~~~~~~~~~~~
 
-DROP TABLE [IF EXISTS] table-name;
+.. code-block:: sql
+
+    DROP TABLE [IF EXISTS] table-name;
 
 .. image:: image_6.png
     
-
-    
-
 Drop a table.
 
 The table-name must identify a table that was created earlier with the
@@ -941,27 +993,31 @@ Actions:
 
 Examples:
 
--- the simple case
+.. code-block:: sql
 
-DROP TABLE t31;
+    -- the simple case
 
--- with an IF EXISTS clause
+    DROP TABLE t31;
 
-DROP TABLE IF EXISTS t31;
+    -- with an IF EXISTS clause
+
+    DROP TABLE IF EXISTS t31;
 
 See also: DROP VIEW
 
+.. _index-box_create_view_statement:
+
+~~~~~~~~~~~~~~~~~~~~~
 CREATE VIEW Statement
 ~~~~~~~~~~~~~~~~~~~~~
 
-CREATE VIEW [IF NOT EXISTS] view-name [(column-list)] AS subquery;
+.. code-block:: sql
+
+    CREATE VIEW [IF NOT EXISTS] view-name [(column-list)] AS subquery;
 
 .. image:: image_7.png
     
-
-    
-
-Create a new viewed table, usually called a "view".
+Create a new viewed table, usually called a \"view\".
 
 The view-name must be valid according to the rules for identifiers.
 
@@ -984,20 +1040,22 @@ Actions:
 1 Tarantool will throw an error if a rule is violated.
 
 2 Tarantool will create a new persistent object with column-names equal
-to the names in the column-list or the names in the subquery's
+to the names in the column-list or the names in the subquery\'s
 select-list.
 
 3 Tarantool effectively executes a COMMIT statement.
 
 Examples:
 
--- the simple case
+.. code-block:: sql
 
-CREATE VIEW v AS SELECT column1, column2 FROM t;
+    -- the simple case
 
--- with a column-list
+    CREATE VIEW v AS SELECT column1, column2 FROM t;
 
-CREATE VIEW v (a,b) AS SELECT column1, column2 FROM t;
+    -- with a column-list
+
+    CREATE VIEW v (a,b) AS SELECT column1, column2 FROM t;
 
 Known flaws:
 
@@ -1005,16 +1063,18 @@ Known flaws:
    although sometimes a possible substitution is to create an INSTEAD OF
    trigger.
 
-DROP VIEW Statement
-~~~~~~~~~~~~~~~~~~~
+.. _index-box_drop_view_statement:
 
-DROP VIEW [IF EXISTS] view-name;
+~~~~~~~~~~~~~~~~~~~~~
+DROP VIEW Statement
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: sql
+
+    DROP VIEW [IF EXISTS] view-name;
 
 .. image:: image_8.png
     
-
-    
-
 Drop a view.
 
 The view-name must identify a view that was created earlier with the
@@ -1036,44 +1096,46 @@ Actions:
 
 Examples:
 
--- the simple case
+.. code-block:: sql
 
-DROP VIEW v31;
+    -- the simple case
 
--- with an IF EXISTS clause
+    DROP VIEW v31;
 
-DROP VIEW IF EXISTS v31;
+    -- with an IF EXISTS clause
+
+    DROP VIEW IF EXISTS v31;
 
 See also: DROP TABLE
 
+.. _index-box_create_trigger_statement:
+
+~~~~~~~~~~~~~~~~~~~~~~~~
 CREATE TRIGGER Statement
 ~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+.. code-block:: sql
 
-CREATE TRIGGER [IF NOT EXISTS] trigger-name
+    CREATE TRIGGER [IF NOT EXISTS] trigger-name
 
-BEFORE\|AFTER\|INSTEAD OF
+    BEFORE|AFTER|INSTEAD OF
 
-INSERT\|UPDATE\|DELETE ON table-name
+    INSERT|UPDATE|DELETE ON table-name
 
-[FOR EACH ROW]
+    [FOR EACH ROW]
 
-[WHEN (search-condition)]
+    [WHEN (search-condition)]
 
-BEGIN
+    BEGIN
 
-update-statement \| insert-statement \| delete-statement \|
-select-statement;
+    update-statement | insert-statement | delete-statement | select-statement;
 
-[update-statement \| insert-statement \| delete-statement \|
-select-statement; ...]
+    [update-statement | insert-statement | delete-statement | select-statement; ...]
 
-END;
+    END;
 
 .. image:: image_9.png
     
-
-    
-
 The trigger-name must be valid according to the rules for identifiers.
 
 If the trigger action time is BEFORE or AFTER, then the table-name must
@@ -1102,27 +1164,31 @@ Actions:
 
 Examples:
 
--- the simple case
+.. code-block:: sql
 
-CREATE TRIGGER tr BEFORE INSERT ON t1 BEGIN DELETE FROM t2; END;
+    -- the simple case
 
--- with IF NOT EXISTS clause
+    CREATE TRIGGER tr BEFORE INSERT ON t1 BEGIN DELETE FROM t2; END;
 
-CREATE TRIGGER IF NOT EXISTS tr BEFORE INSERT ON t1 BEGIN DELETE FROM
-t2; END;
+    -- with IF NOT EXISTS clause
 
--- with FOR EACH ROW and WHEN clauses
+    CREATE TRIGGER IF NOT EXISTS tr BEFORE INSERT ON t1 BEGIN DELETE FROM t2; END;
 
-CREATE TRIGGER tr BEFORE INSERT ON t1 FOR EACH ROW WHEN a=5 BEGIN DELETE
-FROM t2; END;
+    -- with FOR EACH ROW and WHEN clauses
 
--- with multiple statements between BEGIN and END
+    CREATE TRIGGER tr BEFORE INSERT ON t1 FOR EACH ROW WHEN a=5 BEGIN DELETE FROM t2; END;
 
-CREATE TRIGGER tr BEFORE INSERT ON t1 BEGIN DELETE FROM t2; INSERT INTO
-t3 VALUES (1); END;
+    -- with multiple statements between BEGIN and END
+
+    CREATE TRIGGER tr BEFORE INSERT ON t1 BEGIN DELETE FROM t2; INSERT INTO
+
+    t3 VALUES (1); END;
 
 See also Trigger Extra Clauses and Trigger Activation.
 
+.. _index-box_trigger_extra_clauses:
+
+~~~~~~~~~~~~~~~~~~~~~
 Trigger Extra Clauses
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -1143,14 +1209,15 @@ BEFORE UPDATE OF column1, column2 ON table1
 
 FOR EACH ROW
 
-BEGIN UPDATE table2 SET column1 = column1 + 1; END;
+.. code-block:: sql
 
-UPDATE table1 SET column3 = column3 + 1; -- Trigger will not be
-activated
+    BEGIN UPDATE table2 SET column1 = column1 + 1; END;
 
-UPDATE table1 SET column2 = column2 + 0; -- Trigger will be activated
+    UPDATE table1 SET column3 = column3 + 1; -- Trigger will not be activated
 
-WHEN
+    UPDATE table1 SET column2 = column2 + 0; -- Trigger will be activated
+
+    WHEN
 
 After table-name [FOR EACH ROW] it is optional to add
 
@@ -1163,9 +1230,11 @@ For example,
 
 CREATE TRIGGER trigger\_on\_table1 BEFORE UPDATE ON table1 FOR EACH ROW
 
-WHEN TIME('now') > '20:00:00'
+WHEN TIME(\'now\') > \'20:00:00\'
 
-BEGIN UPDATE table2 SET column1 = column1 + 1; END;
+.. code-block:: sql
+
+    BEGIN UPDATE table2 SET column1 = column1 + 1; END;
 
 This trigger will not be activated unless it is after 20:00:00.
 
@@ -1183,34 +1252,40 @@ NEW.column-name refers to the value of column-name after the change.
 
 For example,
 
-CREATE TABLE table1 (column1 CHAR(15) PRIMARY KEY);
+.. code-block:: sql
 
-CREATE TABLE table2 (column1 CHAR(15) PRIMARY KEY, column2 CHAR(15));
+    CREATE TABLE table1 (column1 CHAR(15) PRIMARY KEY);
 
-INSERT INTO table1 VALUES ('old value');
+    CREATE TABLE table2 (column1 CHAR(15) PRIMARY KEY, column2 CHAR(15));
 
-INSERT INTO table2 VALUES ('', '');
+    INSERT INTO table1 VALUES ('old value');
+
+    INSERT INTO table2 VALUES ('', '');
 
 CREATE TRIGGER trigger\_on\_table1 BEFORE UPDATE ON table1 FOR EACH ROW
 
-BEGIN UPDATE table2 SET column1 = old.column1, column2 = new.column1;
-END;
+.. code-block:: sql
 
-UPDATE table1 SET column1 = 'new value';
+    BEGIN UPDATE table2 SET column1 = old.column1, column2 = new.column1;
+    END;
 
-SELECT \* FROM table2;
+    UPDATE table1 SET column1 = 'new value';
+
+    SELECT * FROM table2;
 
 At the beginning of the UPDATE for the single row of table1, the value
-in column1 is 'old value' -- so that is what is seen as "old.column1".
+in column1 is \'old value\' -- so that is what is seen as \"old.column1\".
 
 At the end of the UPDATE for the single row of table1, the value in
-column1 is 'new value' -- so that is what is seen as "new.column1".
+column1 is \'new value\' -- so that is what is seen as \"new.column1\".
 
 (OLD and NEW are qualifiers for table1, not table2.)
 
-Therefore, SELECT \* FROM table2; returns
+Therefore, ``SELECT \* FROM table2;`` returns
 
---  ['old value', 'new value']
+.. code-block:: sql
+
+    --  ['old value', 'new value']
 
 OLD.column-name does not exist for an INSERT trigger.
 
@@ -1225,7 +1300,7 @@ REPLACE statement, but not recommended.
 
 It is illegal for the trigger action to include a qualified column
 reference other than OLD.column-name or NEW.column-name. For example,
-CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1=5; END; is
+``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1=5; END;`` is
 illegal.
 
 It is illegal for the trigger action to include statements that include
@@ -1243,7 +1318,9 @@ BEFORE UPDATE ON table1
 
 FOR EACH ROW
 
-BEGIN UPDATE table2 SET column1 = column1 + 1; END;
+.. code-block:: sql
+
+    BEGIN UPDATE table2 SET column1 = column1 + 1; END;
 
 CREATE TRIGGER trigger\_on\_table2
 
@@ -1251,7 +1328,9 @@ BEFORE UPDATE ON table2
 
 FOR EACH ROW
 
-BEGIN UPDATE table1 SET column1 = column1 + 1; END;
+.. code-block:: sql
+
+    BEGIN UPDATE table1 SET column1 = column1 + 1; END;
 
 Luckily UPDATE table1 ... will not cause an infinite loop, because
 Tarantool recognizes when it has already updated so it will stop.
@@ -1259,8 +1338,11 @@ However, not every DBMS acts this way.
 
 Known flaws (issue#2505)
 
--  Triggered WHEN clauses can't have column names
+-  Triggered WHEN clauses can\'t have column names
 
+.. _index-box_trigger_activation:
+
+~~~~~~~~~~~~~~~~~~
 Trigger Activation
 ~~~~~~~~~~~~~~~~~~
 
@@ -1268,17 +1350,17 @@ These are remarks concerning trigger activation.
 
 Standard Terminology:
 
-"trigger action time" = BEFORE or AFTER or INSTEAD OF
+\"trigger action time\" = BEFORE or AFTER or INSTEAD OF
 
-"trigger event" = INSERT or DELETE or UPDATE
+\"trigger event\" = INSERT or DELETE or UPDATE
 
-"triggered statement" = BEGIN ... INSERT\|DELETE\|UPDATE ... END
+\"triggered statement\" = BEGIN ... INSERT\|DELETE\|UPDATE ... END
 
-"triggered when clause" = WHEN (search condition)
+\"triggered when clause\" = WHEN (search condition)
 
-"activate" = execute a triggered statement
+\"activate\" = execute a triggered statement
 
-Some vendors use the word "fire" instead of "activate".
+Some vendors use the word \"fire\" instead of \"activate\".
 
 If there is more than one trigger for the same trigger event, Tarantool
 may execute the triggers in any order.
@@ -1286,9 +1368,11 @@ may execute the triggers in any order.
 It is possible for a triggered statement to cause activation of another
 triggered statement. For example, this is legal:
 
-CREATE TRIGGER on\_t1 BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;
+.. code-block:: sql
 
-CREATE TRIGGER on\_t2 BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;
+    CREATE TRIGGER on_t1 BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;
+
+    CREATE TRIGGER on_t2 BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;
 
 Activation occurs FOR EACH ROW, not FOR EACH STATEMENT. Therefore, if no
 rows are candidates for insert or update or delete, then no triggers are
@@ -1298,8 +1382,8 @@ currently it is not a mandatory clause.
 The BEFORE trigger is activated even if the trigger event fails.
 
 If an UPDATE trigger event does not make a change, the trigger is
-activated anyway. For example, if row 1 column1 contains 'a', and the
-trigger event is "UPDATE ... SET column1 = 'a';", the trigger is
+activated anyway. For example, if row 1 column1 contains \'a\', and the
+trigger event is \"``UPDATE ... SET column1 = 'a';``\", the trigger is
 activated.
 
 The triggered statement may refer to a function
@@ -1311,29 +1395,31 @@ or if a triggered statement causes an error, then execution stops
 immediately.
 
 The triggered statement may refer to column values within the rows being
-changed. The row "as of before" the change is called the "old" row
-(which makes sense only for UPDATE and DELETE statements); the row "as
-of after" the change is called the "new" row (which makes sense only for
+changed. The row \"as of before\" the change is called the \"old\" row
+(which makes sense only for UPDATE and DELETE statements); the row \"as
+of after\" the change is called the \"new\" row (which makes sense only for
 UPDATE and INSERT statements). This example shows how an INSERT can be
-done to a view by referring to the "new" row ...
+done to a view by referring to the \"new\" row ...
 
-CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
+.. code-block:: sql
 
-CREATE VIEW v AS SELECT s1, s2 FROM t;
+    CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
 
-CREATE TRIGGER tv INSTEAD OF INSERT ON v
+    CREATE VIEW v AS SELECT s1, s2 FROM t;
 
-BEGIN INSERT INTO t VALUES (new.s1, new.s2); END;
+    CREATE TRIGGER tv INSTEAD OF INSERT ON v
 
-INSERT INTO v VALUES (1,2);
+    BEGIN INSERT INTO t VALUES (new.s1, new.s2); END;
+
+    INSERT INTO v VALUES (1,2);
 
 Ordinarily saying INSERT INTO view\_name ... is illegal
 
 in Tarantool, so this is a workaround.
 
 When INSERT or UPDATE or DELETE occurs for table X, Tarantool usually
-operates in this order described by section "Order of Execution in
-Data-change statements". Ignoring the details there, one can think of
+operates in this order described by section \"Order of Execution in
+Data-change statements\". Ignoring the details there, one can think of
 the basic scheme like this:
 
 For each row
@@ -1367,6 +1453,9 @@ of table X).
 
 The maximum number of trigger activations per statement is 32.
 
+.. _index-box_instead_of_triggers:
+
+~~~~~~~~~~~~~~~~~~~
 INSTEAD OF Triggers
 ~~~~~~~~~~~~~~~~~~~
 
@@ -1375,7 +1464,7 @@ A trigger which is created with the clause
 INSTEAD OF {INSERT\|UPDATE\|DELETE} ON view-name
 
 is an INSTEAD OF trigger. For each affected row, the trigger action is
-performed "instead of" the INSERT or UPDATE or DELETE statement that
+performed \"instead of\" the INSERT or UPDATE or DELETE statement that
 causes trigger activation.
 
 For example:
@@ -1384,15 +1473,17 @@ Ordinarily it is illegal to INSERT rows in a view, but it is legal to
 create a trigger which intercepts attempts to INSERT, and puts rows in
 the underlying base table:
 
-CREATE TABLE t1 (column1 INT PRIMARY KEY, column2 INT);
+.. code-block:: sql
 
-CREATE VIEW v1 AS SELECT column1, column2 FROM t1;
+    CREATE TABLE t1 (column1 INT PRIMARY KEY, column2 INT);
 
-CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 FOR EACH ROW BEGIN
+    CREATE VIEW v1 AS SELECT column1, column2 FROM t1;
 
-INSERT INTO t1 VALUES (NEW.column1, NEW.column2); END;
+    CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 FOR EACH ROW BEGIN
 
-INSERT INTO v1 VALUES (1, 1);
+    INSERT INTO t1 VALUES (NEW.column1, NEW.column2); END;
+
+    INSERT INTO v1 VALUES (1, 1);
 
 ... The result will be: table t1 will contain a new row.
 
@@ -1407,17 +1498,22 @@ Known flaws:
 -  It is legal to create INSTEAD OF triggers with UPDATE OF column-list
    clauses, but they are not standard SQL. Example: CREATE TRIGGER et1
    INSTEAD OF UPDATE OF column2,column1 ON ev1 FOR EACH ROW BEGIN INSERT
-   INTO et2 VALUES (NEW.column1, NEW.column2); END;
 
+.. code-block:: sql
+
+       INTO et2 VALUES (NEW.column1, NEW.column2); END;
+
+.. _index-box_drop_trigger_statement:
+
+~~~~~~~~~~~~~~~~~~~~~~
 DROP TRIGGER Statement
 ~~~~~~~~~~~~~~~~~~~~~~
 
-DROP TRIGGER [IF EXISTS] trigger-name;
+.. code-block:: sql
+
+    DROP TRIGGER [IF EXISTS] trigger-name;
 
 .. image:: image_10.png
-    
-
-    
 
 Drop a trigger.
 
@@ -1438,14 +1534,19 @@ Actions:
 
 Examples:
 
--- the simple case
+.. code-block:: sql
 
-DROP TRIGGER tr;
+    -- the simple case
 
--- with an IF EXISTS clause
+    DROP TRIGGER tr;
 
-DROP TRIGGER IF EXISTS tr;
+    -- with an IF EXISTS clause
 
+    DROP TRIGGER IF EXISTS tr;
+
+.. _index-box_create_index_statement:
+
+~~~~~~~~~~~~~~~~~~~~~~
 CREATE INDEX Statement
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1453,13 +1554,12 @@ CREATE [UNIQUE] INDEX [IF NOT EXISTS] index-name
 
 ON table-name
 
-(column-list);
+.. code-block:: sql
+
+    (column-list);
 
 .. image:: image_11.png
-    
-
-    
-
+   
 Create an index.
 
 The index-name must be valid according to the rules for identifiers.
@@ -1469,7 +1569,7 @@ The table-name must refer to an existing table.
 The column-list must be a comma-separated list of names of columns in
 the table.
 
-Each column name may be followed by "[COLLATE clause] [ ASC\|DESC]".
+Each column name may be followed by \"[COLLATE clause] [ ASC\|DESC]\".
 
 Rules:
 
@@ -1495,37 +1595,37 @@ Indexes may be created automatically for columns mentioned in the
 PRIMARY KEY or UNIQUE clauses of a CREATE TABLE statement. If an index
 was created automatically, then the index-name is based on three items:
 
-(1) "pk" if this is for a PRIMARY KEY clause, "unique" if this is for a
+(1) \"pk\" if this is for a PRIMARY KEY clause, \"unique\" if this is for a
     UNIQUE clause
 
-(2) "*unnamed*"
+(2) \"*unnamed*\"
 
 (3) the name of the table
 
-(4) "\_" and an ordinal number, the first index is 1, the second index
+(4) \"\_\" and an ordinal number, the first index is 1, the second index
     is 2, and so on.
 
-For example, after CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT, UNIQUE
-(s2)); there are two indexes named pk\_unnamed\_T\_1 and
-unique\_unnamed\_T\_2. You can confirm this by saying SELECT \* FROM
-"\_index"; which will list all indexes on all tables.
+For example, after ``CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT, UNIQUE (s2));`` there are two indexes named pk\_unnamed\_T\_1 and
+unique\_unnamed\_T\_2. You can confirm this by saying ``SELECT \* FROM \"\_index\";`` which will list all indexes on all tables.
 
 There is no need to say CREATE INDEX for columns that already have
 automatic indexes..
 
 Examples:
 
--- the simple case
+.. code-block:: sql
 
-CREATE INDEX i ON t (column1);
+    -- the simple case
 
--- with IF NOT EXISTS clause
+    CREATE INDEX i ON t (column1);
 
-CREATE INDEX IF NOT EXISTS i ON t (column1);
+    -- with IF NOT EXISTS clause
 
--- with UNIQUE specifier and more than one column
+    CREATE INDEX IF NOT EXISTS i ON t (column1);
 
-CREATE UNIQUE INDEX i ON t (column1, column2);
+    -- with UNIQUE specifier and more than one column
+
+    CREATE UNIQUE INDEX i ON t (column1, column2);
 
 Known flaws: (Issue#2357)
 
@@ -1539,16 +1639,18 @@ but there is no effect.
 
 -  It is legal to add COLLATE collation-name after the column name.
 
+.. _index-box_drop_index_statement:
+
+~~~~~~~~~~~~~~~~~~~~
 DROP INDEX Statement
 ~~~~~~~~~~~~~~~~~~~~
 
-DROP INDEX [IF EXISTS] index-name ON table-name;
+.. code-block:: sql
+
+    DROP INDEX [IF EXISTS] index-name ON table-name;
 
 .. image:: image_12.png
     
-
-    
-
 The index-name must be the name of an existing index, which was created
 with CREATE INDEX.
 
@@ -1568,29 +1670,36 @@ automatically created index.
 
 Examples:
 
--- the simplest form
+.. code-block:: sql
 
-DROP INDEX i ON t;
+    -- the simplest form
 
+    DROP INDEX i ON t;
+
+.. _index-box_insert_statement:
+
+~~~~~~~~~~~~~~~~
 INSERT Statement
 ~~~~~~~~~~~~~~~~
 
-INSERT INTO table-name [(column-list)] VALUES (expression-list) [,
-(expression-list)];
+.. code-block:: sql
+
+    INSERT INTO table-name [(column-list)] VALUES (expression-list) [, (expression-list)];
 
 or
 
-INSERT INTO table-name [(column-list)] select-statement;
+.. code-block:: sql
+
+    INSERT INTO table-name [(column-list)] select-statement;
 
 or
 
-INSERT INTO table-name DEFAULT VALUES;
+.. code-block:: sql
+
+    INSERT INTO table-name DEFAULT VALUES;
 
 .. image:: image_13.png
     
-
-    
-
 Insert one or more new rows into a table.
 
 The table-name must be a name of a table defined earlier with CREATE
@@ -1617,7 +1726,7 @@ If a column-list is specified, then some columns may be omitted; omitted
 columns will get default values.
 
 The parenthesized expression-list may be repeated --
-"(expression-list),(expression-list),..." -- for multiple rows.
+\"(expression-list),(expression-list),...\" -- for multiple rows.
 
 Actions:
 
@@ -1633,24 +1742,29 @@ in Data-Change Statements.
 
 Examples:
 
--- the simplest form
+.. code-block:: sql
 
-INSERT INTO table1 VALUES (1, 'A');
+    -- the simplest form
 
--- with a column list
+    INSERT INTO table1 VALUES (1, 'A');
 
-INSERT INTO table1 (column1, column2) VALUES (2, 'B');
+    -- with a column list
 
--- with an arithmetic operator in the first expression
+    INSERT INTO table1 (column1, column2) VALUES (2, 'B');
 
-INSERT INTO table1 VALUES (2 + 1, 'C');
+    -- with an arithmetic operator in the first expression
 
--- put two rows in the table
+    INSERT INTO table1 VALUES (2 + 1, 'C');
 
-INSERT INTO table1 VALUES (4, 'D'), (5, 'E');
+    -- put two rows in the table
+
+    INSERT INTO table1 VALUES (4, 'D'), (5, 'E');
 
 See also: REPLACE statement
 
+.. _index-box_update_statement:
+
+~~~~~~~~~~~~~~~~
 UPDATE Statement
 ~~~~~~~~~~~~~~~~
 
@@ -1658,12 +1772,11 @@ UPDATE table-name
 
 SET column-name = expression [, column-name = expression ...]
 
-[WHERE search-condition];
+.. code-block:: sql
 
-.. image:: image_14.png
-    
+    [WHERE search-condition];
 
-    
+.. image:: image_14.png   
 
 Update zero or more existing rows in a table.
 
@@ -1699,32 +1812,38 @@ Data-Change Statements.
 
 Examples:
 
--- the simplest form
+.. code-block:: sql
 
-UPDATE t SET column1 = 1;
+    -- the simplest form
 
--- with more than one assignment in the SET clause
+    UPDATE t SET column1 = 1;
 
-UPDATE t SET column1 = 1, column2 = 2;
+    -- with more than one assignment in the SET clause
 
--- with a WHERE clause
+    UPDATE t SET column1 = 1, column2 = 2;
 
-UPDATE t SET column1 = 5 WHERE column2 = 6;
+    -- with a WHERE clause
+
+    UPDATE t SET column1 = 5 WHERE column2 = 6;
 
 Special cases:
 
 It is legal to say SET (list of columns) = (list of values). For
 example:
 
-UPDATE t SET (column1, column2, column3) = (1,2,3);
+.. code-block:: sql
+
+    UPDATE t SET (column1, column2, column3) = (1,2,3);
 
 It is not legal to assign to a column more than once. For example:
 
-INSERT INTO t (column1) VALUES (0);
+.. code-block:: sql
 
-UPDATE t SET column1 = column1 + 1, column1 = column1 + 1;
+    INSERT INTO t (column1) VALUES (0);
 
-... The result is an error: "duplicate column name".
+    UPDATE t SET column1 = column1 + 1, column1 = column1 + 1;
+
+... The result is an error: \"duplicate column name\".
 
 It is legal to assign to a primary-key column. This is disallowed with
 Tarantool/NoSQL, but it is possible with Tarantool/SQL because an SQL
@@ -1736,16 +1855,18 @@ Known flaws: (Issue#3566)
 There are some optional clauses (UPDATE OR IGNORE, UPDATE OR FAIL,
 UPDATE OR REPLACE, etc.) which cause unexpectable results.
 
+.. _index-box_delete_statement:
+
+~~~~~~~~~~~~~~~~
 DELETE Statement
 ~~~~~~~~~~~~~~~~
 
-DELETE FROM table-name [WHERE search-condition];
+.. code-block:: sql
+
+    DELETE FROM table-name [WHERE search-condition];
 
 .. image:: image_15.png
     
-
-    
-
 Delete zero or more existing rows in a table.
 
 The table-name must be a name of a table defined earlier with CREATE
@@ -1772,32 +1893,39 @@ Data-Change Statements.
 
 Examples:
 
--- the simplest form
+.. code-block:: sql
 
-DELETE FROM t;
+    -- the simplest form
 
--- with a WHERE clause
+    DELETE FROM t;
 
-DELETE FROM t WHERE column2 = 6;
+    -- with a WHERE clause
 
+    DELETE FROM t WHERE column2 = 6;
+
+.. _index-box_replace_statement:
+
+~~~~~~~~~~~~~~~~~
 REPLACE Statement
 ~~~~~~~~~~~~~~~~~
 
-REPLACE INTO table-name [(column-list)] VALUES (expression-list) [,
-(expression-list)];
+.. code-block:: sql
+
+    REPLACE INTO table-name [(column-list)] VALUES (expression-list) [,(expression-list)];
 
 or
 
-REPLACE INTO table-name [(column-list)] select-statement;
+.. code-block:: sql
+
+    REPLACE INTO table-name [(column-list)] select-statement;
 
 or
 
-REPLACE INTO table-name DEFAULT VALUES;
+.. code-block:: sql
 
-.. image:: image_16.png
-    
+    REPLACE INTO table-name DEFAULT VALUES;
 
-    
+.. image:: image_16.png 
 
 Insert one or more new rows into a table, or update existing rows.
 
@@ -1810,39 +1938,44 @@ INSERT statement.
 
 Examples:
 
--- the simplest form
+.. code-block:: sql
 
-REPLACE INTO table1 VALUES (1, 'A');
+    -- the simplest form
 
--- with a column list
+    REPLACE INTO table1 VALUES (1, 'A');
 
-REPLACE INTO table1 (column1, column2) VALUES (2, 'B');
+    -- with a column list
 
--- with an arithmetic operator in the first expression
+    REPLACE INTO table1 (column1, column2) VALUES (2, 'B');
 
-REPLACE INTO table1 VALUES (2 + 1, 'C');
+    -- with an arithmetic operator in the first expression
 
--- put two rows in the table
+    REPLACE INTO table1 VALUES (2 + 1, 'C');
 
-REPLACE INTO table1 VALUES (4, 'D'), (5, 'E');
+    -- put two rows in the table
+
+    REPLACE INTO table1 VALUES (4, 'D'), (5, 'E');
 
 See also: INSERT Statement, UPDATE Statement, and Order of Execution in
 Data-Change Statements.
 
+.. _index-box_order_of_execution_in_data-change_statements:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Order of Execution In Data-Change Statements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the general order in which Tarantool performs checks and
 triggered actions for data-change (INSERT or UPDATE or DELETE)
 statements, Notice that one action can cause another action, as is the
-case for triggers (see "CREATE TRIGGER Statement"), or as is the case
+case for triggers (see \"CREATE TRIGGER Statement\"), or as is the case
 for REPLACE (which can cause either INSERT or DELETE plus INSERT).
 
-In this description, the words "constraint ... would be violated" mean
-"table would contain a value that would not be allowed (due to the
-constraint) if the operation was permitted to continue"..The word
-"behavior" refers to one of the possible behaviors described in section
-"Constraint Conflict Clauses". If two or more constraints are relevant
+In this description, the words \"constraint ... would be violated\" mean
+\"table would contain a value that would not be allowed (due to the
+constraint) if the operation was permitted to continue\"..The word
+\"behavior\" refers to one of the possible behaviors described in section
+\"Constraint Conflict Clauses\". If two or more constraints are relevant
 at the same time, for example UNIQUE (s2), CHECK (s2 <> 5), Tarantool
 may elect to check them in any order. If Tarantool determines that a
 step is not necessary, it does not perform it.
@@ -1857,42 +1990,42 @@ For each row ...
    the value to the next available integer.
 
 2. If statement is INSERT\|UPDATE: for each NOT NULL constraint that
-   would be violated:... If behavior is "REPLACE (for a NOT NULL
-   constraint for a column that has a non-NULL default value)", then
+   would be violated:... If behavior is \"REPLACE (for a NOT NULL
+   constraint for a column that has a non-NULL default value)\", then
    replace NULL with the default value.
 
 3. If statement is INSERT\|UPDATE: for each UNIQUE or PRIMARY KEY
-   constraint that would be violated ... If behavior is "REPLACE", then
+   constraint that would be violated ... If behavior is \"REPLACE\", then
    delete the old row and insert the new row.
 
 4. For each FOREIGN KEY constraint that would be violated ... do
    statement rollback and return an error.
 
-5. If statement is INSERT, then activate the table's BEFORE INSERT
-   triggers.If statement is UPDATE, then activate the table's BEFORE
-   UPDATE triggers. If statement is DELETE, then activate the table's
+5. If statement is INSERT, then activate the table\'s BEFORE INSERT
+   triggers.If statement is UPDATE, then activate the table\'s BEFORE
+   UPDATE triggers. If statement is DELETE, then activate the table\'s
    BEFORE DELETE triggers.
 
 6. If statement is INSERT\|UPDATE: for each NOT NULL constraint that
-   would be violated ... If behavior is "ABORT" or "REPLACE (for a NOT
-   NULL constraint that has a NULL default value)", do statement
-   rollback and return an error. If behavior is "IGNORE", then skip this
-   and all following steps (i.e. skip this row). If behavior is "FAIL",
-   then return an error. If behavior is "ROLLBACK", then do transaction
+   would be violated ... If behavior is \"ABORT\" or \"REPLACE (for a NOT
+   NULL constraint that has a NULL default value)\", do statement
+   rollback and return an error. If behavior is \"IGNORE\", then skip this
+   and all following steps (i.e. skip this row). If behavior is \"FAIL\",
+   then return an error. If behavior is \"ROLLBACK\", then do transaction
    rollback and return an error.
 
 7. If statement is INSERT\|UPDATE: for each CHECK or UNIQUE or PRIMARY
-   KEY constraint that would be violated ... If behavior is "IGNORE",
-   then skip this row. If behavior is "FAIL", return an error. If
-   behavior is "ROLLBACK", then do transaction rollback and return an
-   error. If behavior is "ABORT" or "REPLACE": do statement rollback and
+   KEY constraint that would be violated ... If behavior is \"IGNORE\",
+   then skip this row. If behavior is \"FAIL\", return an error. If
+   behavior is \"ROLLBACK\", then do transaction rollback and return an
+   error. If behavior is \"ABORT\" or \"REPLACE\": do statement rollback and
    return an error. This means that UNIQUE or PRIMARY KEY constraints
    are checked twice, in step 2 and in this step. This is necessary
    because execution of an earlier step might cause a new conflict.
 
-8. If statement is INSERT, then activate the table's AFTER INSERT
-   triggers.If statement is UPDATE, then activate the table's AFTER
-   UPDATE triggers. If statement is DELETE, then activate the table's
+8. If statement is INSERT, then activate the table\'s AFTER INSERT
+   triggers.If statement is UPDATE, then activate the table\'s AFTER
+   UPDATE triggers. If statement is DELETE, then activate the table\'s
    AFTER DELETE triggers.
 
 If all rows were processed without an error that caused statement
@@ -1901,14 +2034,19 @@ Ordinarily, unless processing is within a transaction that began with
 START TRANSACTION, there will be an automatic COMMIT.
 
 Finish the data-change by calling the low-level Tarantool routines. Thus
-new rows (new "tuples" in Tarantool's NoSQL terminology) are added to
-the table (the "space" in Tarantool's NoSQL terminology), or row sare
+new rows (new \"tuples\" in Tarantool\'s NoSQL terminology) are added to
+the table (the \"space\" in Tarantool\'s NoSQL terminology), or row sare
 removed from the table, and indexes are updated.
 
+.. _index-box_truncate_statement:
+
+~~~~~~~~~~~~~~~~~~
 TRUNCATE Statement
 ~~~~~~~~~~~~~~~~~~
 
-TRUNCATE TABLE table-name;
+.. code-block:: sql
+
+    TRUNCATE TABLE table-name;
 
 Remove all rows in the table.
 
@@ -1921,7 +2059,7 @@ Rules:
 It is illegal to truncate a table which is referenced by a foreign key.
 
 It is illegal to truncate a table which is also a system space, such as
-"\_space".
+\"\_space\".
 
 The table must be a base table rather than a view.
 
@@ -1937,13 +2075,18 @@ There is no effect for any triggers associated with the table.
 
 There is no effect on the counts for the row\_count() function.
 
-Only one action is written to the write-ahead log (with "DELETE FROM
-table-name;" there would be one action for each deleted row).
+Only one action is written to the write-ahead log (with \"DELETE FROM
+table-name;\" there would be one action for each deleted row).
 
 Example:
 
-TRUNCATE TABLE t;
+.. code-block:: sql
 
+    TRUNCATE TABLE t;
+
+.. _index-box_select_statement:
+
+~~~~~~~~~~~~~~~~
 SELECT Statement
 ~~~~~~~~~~~~~~~~
 
@@ -1957,53 +2100,52 @@ select-list
 
 [group-by clause `having clause <#having-clause>`__]
 
-[order-by clause];
+[`order-by clause <#order-by-clause>`__];
 
 .. image:: image_17.png
-    
-
-    
 
 Select zero or more rows.
 
 The clauses of the SELECT statement are discussed in the following five
 sections.
 
+.. _index-box_select-list:
+
+~~~~~~~~~~~
 Select-list
 ~~~~~~~~~~~
 
-select-list-column [, select-list-column ...]
+.. code-block:: sql
+
+    select-list-column [, select-list-column ...]
 
 select-list-column:
 
 .. image:: image_18.png
-    
-
-    
-
+   
 Define what will be in a result set; this is a clause in a SELECT
 statement.
 
 The select-list is a comma-delimited list of expressions, with the
-addition of the \* "asterisk" shorthand and the [AS [column-name]]
+addition of the \* \"asterisk\" shorthand and the [AS [column-name]]
 clause.
 
-The \* "asterisk" shorthand is valid if and only if the SELECT statement
+The \* \"asterisk\" shorthand is valid if and only if the SELECT statement
 also contains a FROM clause which specifies the table or tables (details
 about the FROM clause are in the next section). The simple form is
 
 -  
 
-which means "all columns" -- for example, if the select is done for a
-table which contains three columns s1 s2 s3, then "SELECT \* ..." is
+which means \"all columns\" -- for example, if the select is done for a
+table which contains three columns s1 s2 s3, then \"SELECT \* ...\" is
 equivalent to
 
-"SELECT s1, s2, s3 ...".
+\"SELECT s1, s2, s3 ...\".
 
 The qualified form is table-name.\* or correlation-name.\* which means
-"all columns in the specified table or correlation", which again must be
+\"all columns in the specified table or correlation\", which again must be
 a result of the FROM clause -- for example, if the table is named
-table1, then "table1.\*" is equivalent to a list of the columns of
+table1, then \"table1.\*\" is equivalent to a list of the columns of
 table1.
 
 The [AS [column-name]] clause determines the column name.
@@ -2020,44 +2162,48 @@ the column names in the new table will be the column names in the
 select-list.
 
 If [AS [column-name]] is missing, Tarantool makes a name equal to the
-expression, for example "SELECT 5\ *88" will cause the column name to be
-"5*\ 88", but such names may be ambiguous or illegal in other contexts,
-so it is better to say, for example, "SELECT 5 \* 88 AS column1".
+expression, for example \"SELECT 5\ *88\" will cause the column name to be
+\"5*\ 88\", but such names may be ambiguous or illegal in other contexts,
+so it is better to say, for example, \"SELECT 5 \* 88 AS column1\".
 
 Examples:
 
--- the simple form
+.. code-block:: sql
 
-SELECT 5;
+    -- the simple form
 
--- with multiple expressions including operators
+    SELECT 5;
 
-SELECT 1, 2 \* 2, 'Three' \|\| 'Four';
+    -- with multiple expressions including operators
 
--- with [[AS] column-name] clause
+    SELECT 1, 2 * 2, 'Three' || 'Four';
 
-SELECT 5 AS column1;
+    -- with [[AS] column-name] clause
 
--- \* which must be eventually followed by a FROM clause
+    SELECT 5 AS column1;
 
-SELECT \* FROM table1;
+    -- * which must be eventually followed by a FROM clause
 
--- as a list
+    SELECT * FROM table1;
 
-SELECT 1 AS a, 2 AS b, table1.\* FROM table1;
+    -- as a list
 
+    SELECT 1 AS a, 2 AS b, table1.* FROM table1;
+
+.. _index-box_from_clause:
+
+~~~~~~~~~~~
 FROM Clause
 ~~~~~~~~~~~
 
-FROM table-reference [, table-reference ...]
+.. code-block:: sql
+
+    FROM table-reference [, table-reference ...]
 
 table-reference:
 
 .. image:: image_19.png
-    
-
-    
-
+   
 Specify the table or tables for the source of a SELECT statement.
 
 The table-reference must be a name of an existing table, or a subquery,
@@ -2082,25 +2228,27 @@ The maximum number of joins in a FROM clause is 64.
 
 Examples:
 
--- the simplest form
+.. code-block:: sql
 
-SELECT \* FROM t;
+    -- the simplest form
 
--- with two tables, making a Cartesian join
+    SELECT * FROM t;
 
-SELECT \* FROM t1, t2;
+    -- with two tables, making a Cartesian join
 
--- with one table joined to itself, requiring correlation names
+    SELECT * FROM t1, t2;
 
-SELECT a.\ *, b.* FROM t1 AS a, t1 AS b;
+    -- with one table joined to itself, requiring correlation names
 
--- with a left outer join
+    SELECT a. *, b.* FROM t1 AS a, t1 AS b;
 
-SELECT \* FROM t1 LEFT JOIN t2;
+    -- with a left outer join
+
+    SELECT * FROM t1 LEFT JOIN t2;
 
 Known flaws: (Issue#2361) (Issue#2362) (Issue#2363)
 
--  It's good that the first row in the result set is not a header any
+-  It\'s good that the first row in the result set is not a header any
    more,
 
 but we do still need to see what the column names are. This will be
@@ -2108,16 +2256,18 @@ fixed in version 1.8.2 (issue#2620).
 
 ...
 
+.. _index-box_where_clause:
+
+~~~~~~~~~~~~
 WHERE Clause
 ~~~~~~~~~~~~
 
-WHERE condition;
+.. code-block:: sql
+
+    WHERE condition;
 
 .. image:: image_20.png
     
-
-    
-
 Specify the condition for filtering rows from a table; this is a clause
 in a SELECT or UPDATE or DELETE statement.
 
@@ -2132,24 +2282,28 @@ with n or fewer rows.
 
 Examples:
 
--- with a simple condition
+.. code-block:: sql
 
-SELECT 1 FROM t WHERE column1 = 5;
+    -- with a simple condition
 
--- with a condition that contains AND and OR and parentheses
+    SELECT 1 FROM t WHERE column1 = 5;
 
-SELECT 1 FROM t WHERE column1 = 5 AND (x > 1 OR y < 1);
+    -- with a condition that contains AND and OR and parentheses
 
+    SELECT 1 FROM t WHERE column1 = 5 AND (x > 1 OR y < 1);
+
+.. _index-box_group_by_clause:
+
+~~~~~~~~~~~~~~~
 GROUP BY Clause
 ~~~~~~~~~~~~~~~
 
-GROUP BY expression [, expression ...]
+.. code-block:: sql
+
+    GROUP BY expression [, expression ...]
 
 .. image:: image_21.png
     
-
-    
-
 Make a grouped table; this is a clause in a SELECT statement.
 
 The expressions should be column names in the table, and each column
@@ -2162,73 +2316,84 @@ is called a grouped table.
 
 Thus, if the input is a table
 
-+---+-----+-----+
-| a |  b  |  c  |
-+---+-----+-----+
-| 1 | 'a' | 'b' |
-+---+-----+-----+
-| 1 | 'b' | 'b' |
-+---+-----+-----+
-| 2 | 'a' | 'b' |
-+---+-----+-----+
-| 3 | 'a' | 'b' |
-+---+-----+-----+
-| 1 | 'b' | 'b' |
-+---+-----+-----+
+.. container:: table
+
+    +---+-----+-----+
+    | a |  b  |  c  |
+    +---+-----+-----+
+    | 1 | 'a' | 'b' |
+    +---+-----+-----+
+    | 1 | 'b' | 'b' |
+    +---+-----+-----+
+    | 2 | 'a' | 'b' |
+    +---+-----+-----+
+    | 3 | 'a' | 'b' |
+    +---+-----+-----+
+    | 1 | 'b' | 'b' |
+    +---+-----+-----+
 
 then GROUP BY a, b will produce a grouped table
 
-+---+-----+-----+
-| a |  b  |  c  |
-+---+-----+-----+
-| 1 | 'a' | 'b' |
-+---+-----+-----+
-| 1 | 'b' | 'b' |
-+---+-----+-----+
-| 2 | 'a' | 'b' |
-+---+-----+-----+
-| 3 | 'a' | 'b' |
-+---+-----+-----+
+.. container:: table
+
+    +---+-----+-----+
+    | a |  b  |  c  |
+    +---+-----+-----+
+    | 1 | 'a' | 'b' |
+    +---+-----+-----+
+    | 1 | 'b' | 'b' |
+    +---+-----+-----+
+    | 2 | 'a' | 'b' |
+    +---+-----+-----+
+    | 3 | 'a' | 'b' |
+    +---+-----+-----+
 
 The rows where column a and column b have the same value have been
 merged; column c has been preserved but its value should not be depended
-on -- if the rows were not all 'b', Tarantool could pick any value.
+on -- if the rows were not all \'b\', Tarantool could pick any value.
 
 It is useful to envisage a grouped table as having hidden extra columns
 for the aggregation of the values, for example:
 
-+---+---+---+-------------+--------+--------+
-| a | b | c |    COUNT(a) | SUM(a) | MIN(c) |
-+---+---+---+-------------+--------+--------+
-|1  |'a'|'b'|      2      |  2     |   'b'  |
-+---+---+---+-------------+--------+--------+
-|1  |'b'|'b'|      1      |  1     |   'b'  |
-+---+---+---+-------------+--------+--------+
-|2  |'a'|'b'|      1      |  2     | 'b'    |
-+---+---+---+-------------+--------+--------+
-|3  |'a'|'b'|      1      |  3     | 'b'    |
-+---+---+---+-------------+--------+--------+
+.. container:: table
+
+    +---+---+---+-------------+--------+--------+
+    | a | b | c |    COUNT(a) | SUM(a) | MIN(c) |
+    +---+---+---+-------------+--------+--------+
+    |1  |'a'|'b'|      2      |  2     |   'b'  |
+    +---+---+---+-------------+--------+--------+
+    |1  |'b'|'b'|      1      |  1     |   'b'  |
+    +---+---+---+-------------+--------+--------+
+    |2  |'a'|'b'|      1      |  2     | 'b'    |
+    +---+---+---+-------------+--------+--------+
+    |3  |'a'|'b'|      1      |  3     | 'b'    |
+    +---+---+---+-------------+--------+--------+
 
 These extra columns are what aggregate functions are for.
 
 Examples:
 
--- with a single column
+.. code-block:: sql
 
-SELECT 1 FROM t GROUP BY column1;
+    -- with a single column
 
--- with two columns
+    SELECT 1 FROM t GROUP BY column1;
 
-SELECT 1 FROM t GROUP BY column1, column2;
+    -- with two columns
+
+    SELECT 1 FROM t GROUP BY column1, column2;
 
 Known flaws: (Issue#2364)
 
--  SELECT s1,s2 FROM t GROUP BY s1; is legal
+-  ``SELECT s1,s2 FROM t GROUP BY s1;`` is legal
 
--  SELECT s1 AS q FROM t GROUP BY q; is legal
+-  ``SELECT s1 AS q FROM t GROUP BY q;`` is legal
 
--  SELECT s1 FROM t GROUP by 1; is legal
+-  ``SELECT s1 FROM t GROUP by 1;`` is legal
 
+.. _index-box_aggregate_functions:
+
+~~~~~~~~~~~~~~~~~~~
 Aggregate Functions
 ~~~~~~~~~~~~~~~~~~~
 
@@ -2247,7 +2412,9 @@ an aggregate function is used in a select-list and
 
 GROUP BY clause is omitted, then Tarantool assumes
 
-SELECT ... GROUP BY [all columns];
+.. code-block:: sql
+
+    SELECT ... GROUP BY [all columns];
 
 NULLs are ignored for all aggregate functions except COUNT(\*).
 
@@ -2323,16 +2490,18 @@ TOTAL([DISTINCT] expression)
 
 See also: Functions
 
+.. _index-box_having_clause:
+
+~~~~~~~~~~~~~
 HAVING Clause
 ~~~~~~~~~~~~~
 
-HAVING condition;
+.. code-block:: sql
+
+    HAVING condition;
 
 .. image:: image_22.png
     
-
-    
-
 Specify the condition for filtering rows from a grouped table; this is a
 clause in a SELECT statement.
 
@@ -2347,32 +2516,36 @@ with n or fewer rows.
 
 Examples:
 
--- with a simple condition
+.. code-block:: sql
 
-SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5;
+    -- with a simple condition
 
--- with a more complicated condition
+    SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5;
 
-SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5 OR column2 < 5;
+    -- with a more complicated condition
 
--- with an aggregate
+    SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5 OR column2 < 5;
 
-SELECT x, SUM(y) FROM t GROUP BY x HAVING SUM(y) > 0;
+    -- with an aggregate
 
-Known flaws: (Issue#2364) (closed as "won't fix")
+    SELECT x, SUM(y) FROM t GROUP BY x HAVING SUM(y) > 0;
+
+Known flaws: (Issue#2364) (closed as \"won\'t fix\")
 
 -  HAVING is not legal without GROUP BY
 
+.. _index-box_order_by_clause:
+
+~~~~~~~~~~~~~~~
 ORDER BY Clause
 ~~~~~~~~~~~~~~~
 
-ORDER BY expression [ASC\|DESC] [, expression [ASC\|DESC] ...]
+.. code-block:: sql
+
+    ORDER BY expression [ASC\|DESC] [, expression [ASC\|DESC] ...]
 
 .. image:: image_23.png
     
-
-    
-
 Put rows in order; this is a clause in a SELECT statement.
 
 An ORDER BY expression has one of three types which are checked in
@@ -2381,9 +2554,11 @@ order:
 1 expression is a positive integer, representing the ordinal position of
 the column in the select list. For example, in the statement
 
-SELECT x, y, z FROM t ORDER BY 2;
+.. code-block:: sql
 
-ORDER BY 2 means "order by the second column in the select list", which
+    SELECT x, y, z FROM t ORDER BY 2;
+
+ORDER BY 2 means \"order by the second column in the select list\", which
 is y.
 
 or
@@ -2393,10 +2568,12 @@ determined by an AS clause.
 
 For example, in the statement
 
-SELECT x, y AS x, z FROM t ORDER BY x;
+.. code-block:: sql
 
-ORDER BY x means "order by the column explicitly named x in the select
-list", which is the second column.
+    SELECT x, y AS x, z FROM t ORDER BY x;
+
+ORDER BY x means \"order by the column explicitly named x in the select
+list\", which is the second column.
 
 or
 
@@ -2404,10 +2581,12 @@ or
 
 For example, in the statement
 
-SELECT x, y FROM t1 JOIN t2 ORDER BY z;
+.. code-block:: sql
 
-ORDER BY z means "order by a column named z which is expected to be in
-table t1 or table t2". If both tables contain a column named z, then
+    SELECT x, y FROM t1 JOIN t2 ORDER BY z;
+
+ORDER BY z means \"order by a column named z which is expected to be in
+table t1 or table t2\". If both tables contain a column named z, then
 Tarantool will choose the first column that it finds.
 
 The expression may also contain operators and function names and
@@ -2415,9 +2594,11 @@ literals.
 
 For example, in the statement
 
-SELECT x, y FROM t ORDER BY UPPER(z);
+.. code-block:: sql
 
-ORDER BY UPPER(z) means "order by the uppercase form of column t.z",
+    SELECT x, y FROM t ORDER BY UPPER(z);
+
+ORDER BY UPPER(z) means \"order by the uppercase form of column t.z\",
 
 which may be similar to doing ordering in a case-insensitive manner.
 
@@ -2430,7 +2611,9 @@ only if necessary for tie-breaking.
 
 For example, in the statement
 
-SELECT x, y FROM t ORDER BY x, y;
+.. code-block:: sql
+
+    SELECT x, y FROM t ORDER BY x, y;
 
 if there are two rows which both have the same values for column x, then
 an additional check is made to see which row has a greater value for
@@ -2448,44 +2631,45 @@ be specified within the ORDER BY column-list, or may be default.
 
 Examples:
 
--- with a single column
+.. code-block:: sql
 
-SELECT 1 FROM t ORDER BY column1;
+    -- with a single column
 
--- with two columns
+    SELECT 1 FROM t ORDER BY column1;
 
-SELECT 1 FROM t ORDER BY column1, column2;
+    -- with two columns
 
--- With a variety of data
+    SELECT 1 FROM t ORDER BY column1, column2;
 
-CREATE TABLE h (s1 INT PRIMARY KEY, s2 INT);
+    -- With a variety of data
 
-INSERT INTO h VALUES (7,'A'),(4,'A '),(-4,'AZ'),(17,17),(23,NULL);
+    CREATE TABLE h (s1 INT PRIMARY KEY, s2 INT);
 
-INSERT INTO h VALUES (17.5,'Д'),(1e+300,'a'),(0,''),(-1,'');
+    INSERT INTO h VALUES (7,'A'),(4,'A '),(-4,'AZ'),(17,17),(23,NULL);
 
-SELECT \* FROM h ORDER BY s2, s1;
+    INSERT INTO h VALUES (17.5,'Д'),(1e+300,'a'),(0,''),(-1,'');
+
+    SELECT * FROM h ORDER BY s2, s1;
 
 The result of the above SELECT will be:
-
 
 *  [23, null]
 
 *  [17, 17]
 
-*  [-1, '']
+*  [-1, \'\']
 
-*  [0, '']
+*  [0, \'\']
 
-*  [7, 'A']
+*  [7, \'A\']
 
-*  [4, 'A ']
+*  [4, \'A \']
 
-*  [-4, 'AZ']
+*  [-4, \'AZ\']
 
-*  [1e+300, 'a']
+*  [1e+300, \'a\']
 
-*  [17.5, 'Д']
+*  [17.5, \'Д\']
 
 ...
 
@@ -2493,23 +2677,27 @@ Known flaws: (Issue#2365)
 
 -  ORDER BY 1 is legal. This is common but is not standard SQL nowadays.
 
+.. _index-box_limit_clause:
+
+~~~~~~~~~~~~
 LIMIT Clause
 ~~~~~~~~~~~~
 
-LIMIT limit-expression [OFFSET offset-expression]
+.. code-block:: sql
+
+    LIMIT limit-expression [OFFSET offset-expression]
 
 or
 
-LIMIT offset-expression, limit-expression
+.. code-block:: sql
+
+    LIMIT offset-expression, limit-expression
 
 Warning: the above is not a typo. offset-expression and limit-expression
 are in reverse order if a comma is used.
 
 .. image:: image_24.png
     
-
-    
-
 Specify a maximum number of rows and a start row; this is a clause in a
 SELECT statement.
 
@@ -2525,34 +2713,36 @@ Tarantool does not guarantee that rows are in order.
 
 Examples:
 
--- simple case
+.. code-block:: sql
 
-SELECT \* FROM t LIMIT 3;
+    -- simple case
 
--- both limit and order
+    SELECT * FROM t LIMIT 3;
 
-SELECT \* FROM t LIMIT 3 OFFSET 1;
+    -- both limit and order
 
--- applied to a UNIONed result (LIMIT clause must be the final clause)
+    SELECT * FROM t LIMIT 3 OFFSET 1;
 
-SELECT column1 FROM table1 UNION SELECT column1 FROM table2 ORDER BY 1
-LIMIT 1;
+    -- applied to a UNIONed result (LIMIT clause must be the final clause)
+
+    SELECT column1 FROM table1 UNION SELECT column1 FROM table2 ORDER BY 1 LIMIT 1;
 
 Known flaws: (Issue#2365) (closed)
 
 -  LIMIT without ORDER BY is legal
 
+.. _index-box_values_statement:
+
+~~~~~~~~~~~~~~~~
 VALUES Statement
 ~~~~~~~~~~~~~~~~
 
-VALUES (expression [, expression ...]) [, (expression [, expression
-...])
+.. code-block:: sql
+
+    VALUES (expression [, expression ...]) [, (expression [, expression ...])
 
 .. image:: image_25.png
     
-
-    
-
 Select one or more rows.
 
 VALUES has the same effect as SELECT, that is, it returns a result set,
@@ -2564,17 +2754,19 @@ subqueries.
 
 Examples:
 
--- simple case
+.. code-block:: sql
 
-VALUES (1);
+    -- simple case
 
--- equivalent to SELECT 1, 2, 3
+    VALUES (1);
 
-VALUES (1, 2, 3);
+    -- equivalent to SELECT 1, 2, 3
 
--- two rows
+    VALUES (1, 2, 3);
 
-VALUES (1, 2, 3), (4, 5, 6);
+    -- two rows
+
+    VALUES (1, 2, 3), (4, 5, 6);
 
 Subquery
 ~~~~~~~~
@@ -2588,7 +2780,7 @@ VALUES-statement syntax
 A subquery is a SELECT statement or VALUES statement embedded inside
 another statement.
 
-(The SELECT and VALUES statements are called "queries" because they
+(The SELECT and VALUES statements are called \"queries\" because they
 return answers, in the form of result sets.)
 
 Subqueries are not statements, so they do not end with semicolons.
@@ -2597,7 +2789,9 @@ Subqueries may be the second part of INSERT statements.
 
 Example:
 
-INSERT INTO t2 SELECT a,b,c FROM t1;
+.. code-block:: sql
+
+    INSERT INTO t2 SELECT a,b,c FROM t1;
 
 Subqueries may be in the FROM clause of SELECT statements.
 
@@ -2606,8 +2800,9 @@ they must be parenthesized, and usually the number of rows must be 1.
 
 Example:
 
-SELECT 1, (SELECT 5), 3 FROM t WHERE c1 \* (SELECT COUNT(\*) FROM t2) >
-5;
+.. code-block:: sql
+
+    SELECT 1, (SELECT 5), 3 FROM t WHERE c1 * (SELECT COUNT(*) FROM t2) >5;
 
 Subqueries may be expressions on the right side of certain comparison
 operators, and in this unusual case the number of rows may be greater
@@ -2615,47 +2810,58 @@ than 1. The comparison operators are: [NOT] EXISTS and [NOT] IN.
 
 Example:
 
-DELETE FROM t WHERE s1 NOT IN (SELECT s2 FROM t);
+.. code-block:: sql
+
+    DELETE FROM t WHERE s1 NOT IN (SELECT s2 FROM t);
 
 Subqueries may refer to values in the outer query. In this case, the
-subquery is called a "correlated subquery".
+subquery is called a \"correlated subquery\".
 
 Subqueries may refer to rows which are being updated or deleted by the
 main query. In that case, he subquery finds the matching rows first,
 before starting to update or delete. For example, after
 
-CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
+.. code-block:: sql
 
-INSERT INTO t VALUES (1,3),(2,1);
+    CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
 
-DELETE FROM t WHERE s2 NOT IN (SELECT s1 FROM t);
+    INSERT INTO t VALUES (1,3),(2,1);
+
+    DELETE FROM t WHERE s2 NOT IN (SELECT s1 FROM t);
 
 only one of the rows is deleted, not both rows.
 
+.. _index-box_with_clause(common_table_expression):
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 WITH clause (Common Table Expression)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-WITH temporary-table-name AS (subquery.)
+.. code-block:: sql
 
-[, temporary-table-name AS (subquery)
+    WITH temporary-table-name AS (subquery.)
 
-SELECT statement \| INSERT statement \| DELETE statement \| UPDATE
-statement\|REPLACE statement;
+    [, temporary-table-name AS (subquery)
+
+    SELECT statement | INSERT statement | DELETE statement | UPDATE
+
+    statement|REPLACE statement;
 
 .. image:: image_26.png
-    
 
-    
+.. code-block:: sql
 
-WITH v AS (SELECT \* FROM t) SELECT \* FROM v;
+    WITH v AS (SELECT * FROM t) SELECT * FROM v;
 
 is equivalent to creating a view and selecting from it:
 
-CREATE VIEW v AS SELECT \* FROM t;
+.. code-block:: sql
 
-SELECT \* FROM v;
+    CREATE VIEW v AS SELECT * FROM t;
 
-The difference is that a WITH-clause "view" is temporary and only
+    SELECT * FROM v;
+
+The difference is that a WITH-clause \"view\" is temporary and only
 
 useful within the same statement. No CREATE privilege is required.
 
@@ -2663,102 +2869,112 @@ The WITH-clause can also be thought of as a subquery that has a name.
 
 This is useful when the same subquery is being repeated. For example:
 
-SELECT \* FROM t WHERE a < (SELECT s1 FROM x) AND b < (SELECT s1 FROM
-x);
+.. code-block:: sql
+
+    SELECT * FROM t WHERE a < (SELECT s1 FROM x) AND b < (SELECT s1 FROM x);
 
 can be replaced with
 
-WITH S AS (SELECT s1 FROM x) SELECT \* FROM t WHERE a < S AND b < S;
+.. code-block:: sql
 
-This "factoring out" of a repeated expression is regarded as good
+    WITH S AS (SELECT s1 FROM x) SELECT * FROM t WHERE a < S AND b < S;
+
+This \"factoring out\" of a repeated expression is regarded as good
 practice.
 
 Examples:
 
-WITH cte AS (VALUES (7,'') INSERT INTO j SELECT \* FROM cte;
+.. code-block:: sql
 
-WITH cte AS (SELECT s1 AS x FROM k) SELECT \* FROM cte;
+    WITH cte AS (VALUES (7,'') INSERT INTO j SELECT * FROM cte;
 
-WITH cte AS (SELECT COUNT(\*) FROM k WHERE s2 < 'x' GROUP BY s3)
+    WITH cte AS (SELECT s1 AS x FROM k) SELECT * FROM cte;
 
-UPDATE j SET s2 = 5
+    WITH cte AS (SELECT COUNT(*) FROM k WHERE s2 < 'x' GROUP BY s3)
 
-WHERE s1 = (SELECT s1 FROM cte) OR s3 = (SELECT s1 FROM cte);
+    UPDATE j SET s2 = 5
+
+    WHERE s1 = (SELECT s1 FROM cte) OR s3 = (SELECT s1 FROM cte);
 
 WITH can only be used at the beginning of a statement, therefore it
 cannot be used at the beginning of a subquery or after a set operator or
 inside a CREATE statement.
 
-A WITH-clause "view" is read-only because Tarantool does not support
+A WITH-clause \"view\" is read-only because Tarantool does not support
 updatable views.
 
+.. _index-box_with_recursive_clause(iterative_common_table_expression):
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 WITH RECURSIVE clause (Iterative Common Table Expression)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The real power of WITH lies in the WITH RECURSIVE clause, which is
 useful when it is combined with UNION or UNION ALL:
 
-WITH RECURSIVE recursive-table-name AS
+.. code-block:: sql
 
-(SELECT ...FROM non-recursive-table-name ...
+    WITH RECURSIVE recursive-table-name AS
 
-UNION ALL
+    (SELECT ...FROM non-recursive-table-name ...
 
-SELECT ... FROM recursive-table-name ...)
+    UNION ALL
 
-SELECT ... FROM recursive-table-name;
+    SELECT ... FROM recursive-table-name ...)
+
+    SELECT ... FROM recursive-table-name;
 
 .. image:: image_27.png
     
-
-    
-
 In non-SQL this can be read as: starting with a seed value from a
 non-recursive table, produce a recursive viewed table, UNION that with
 itself, UNION that with itself, UNION that with itself ... forever, or
-until a condition in the WHERE clause says "stop".
+until a condition in the WHERE clause says \"stop\".
 
 For example:
 
-CREATE TABLE ts (s1 INT PRIMARY KEY);
+.. code-block:: sql
 
-INSERT INTO ts VALUES (1);
+    CREATE TABLE ts (s1 INT PRIMARY KEY);
 
-WITH RECURSIVE w AS (
+    INSERT INTO ts VALUES (1);
 
-SELECT s1 FROM ts
+    WITH RECURSIVE w AS (
 
-UNION ALL
+    SELECT s1 FROM ts
 
-SELECT s1+1 FROM w WHERE s1 < 4)
+    UNION ALL
 
-SELECT \* FROM w;
+    SELECT s1+1 FROM w WHERE s1 < 4)
+
+    SELECT * FROM w;
 
 First, table w is seeded from t1, so it has one row: [1]. Then, UNION
 ALL (SELECT s1+1 FROM w) takes the row from w -- which contains [1] --
-adds 1 because the select list says "s1+1", and so it has one row: [2].
+adds 1 because the select list says \"s1+1\", and so it has one row: [2].
 
 Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which
-contains [2] -- adds 1 because the select list says "s1+1", and so it
+contains [2] -- adds 1 because the select list says \"s1+1\", and so it
 has one row: [3].
 
 Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which
-contains [3] -- adds 1 because the select list says "s1+1", and so it
+contains [3] -- adds 1 because the select list says \"s1+1\", and so it
 has one row: [4].
 
 Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which
 contains [4] -- and now the importance of the WHERE clause becomes
-evident, because "s1 < 4" is false for this row, and therefore we have
-reached the "stop" condition.
+evident, because \"s1 < 4\" is false for this row, and therefore we have
+reached the \"stop\" condition.
 
-So, before the "stop", table w got 4 rows: [1], [2], [3], [4].
+So, before the \"stop\", table w got 4 rows: [1], [2], [3], [4].
 
 So the result of the statement looks like:
 
-"
+\"
 
-tarantool> WITH RECURSIVE w AS (
+.. code-block:: sql
 
+    tarantool> WITH RECURSIVE w AS (
 
         >   SELECT s1 FROM ts
 
@@ -2778,12 +2994,15 @@ tarantool> WITH RECURSIVE w AS (
 
 ...
 
-"
+\"
 
 In other words, this WITH RECURSIVE ... SELECT produces a table of
 
 auto-incrementing values.
 
+.. _index-box_indexed_by_clause:
+
+~~~~~~~~~~~~~~~~~
 INDEXED BY clause
 ~~~~~~~~~~~~~~~~~
 
@@ -2791,26 +3010,27 @@ INDEXED BY index-name
 
 .. image:: image_28.png
     
-
-    
-
 The INDEXED BY clause may be used in a SELECT, DELETE, or UPDATE
 statement, immediately after the table-name. For example:
 
-DELETE FROM table7 INDEXED BY index7 WHERE column1 = 'a';
+.. code-block:: sql
 
-In this case the search for 'a' will take place within index7.
+    DELETE FROM table7 INDEXED BY index7 WHERE column1 = 'a';
+
+In this case the search for \'a\' will take place within index7.
 
 For example:
 
-SELECT \* FROM table7 NOT INDEXED WHERE column1 = 'a';
+.. code-block:: sql
 
-In this case the search for 'a' will be done via a search of the whole
-table, what is sometimes called a "full table scan", even if there is an
+    SELECT * FROM table7 NOT INDEXED WHERE column1 = 'a';
+
+In this case the search for \'a\' will be done via a search of the whole
+table, what is sometimes called a \"full table scan\", even if there is an
 index for column1.
 
 Ordinarily Tarantool chooses the appropriate index or lookup method
-depending on a complex set of "optimizer" rules; the INDEXED BY clause
+depending on a complex set of \"optimizer\" rules; the INDEXED BY clause
 overrides the optimizer choice.
 
 Example
@@ -2821,31 +3041,33 @@ column has an index created by the user. The user selects with INDEXED
 BY the-index-on-column1, then selects with INDEXED BY
 the-index-on-column-2.
 
-CREATE TABLE t (column1 INT PRIMARY KEY, column2 INT);
+.. code-block:: sql
 
-CREATE INDEX i ON t (column2);
+    CREATE TABLE t (column1 INT PRIMARY KEY, column2 INT);
 
-INSERT INTO t VALUES (1,2),(2,1);
+    CREATE INDEX i ON t (column2);
 
-SELECT \* FROM t INDEXED BY "pk\_unnamed\_T\_1";
+    INSERT INTO t VALUES (1,2),(2,1);
 
-SELECT \* FROM t INDEXED BY i;
+    SELECT * FROM t INDEXED BY "pk_unnamed_T_1";
+
+    SELECT * FROM t INDEXED BY i;
 
 Result for the first select: (1,2),(2,1)
 
 Result for the second select: (2,1),(1,2).
 
+.. _index-box_union_except_and_intersect_clauses:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 UNION, EXCEPT, and INTERSECT clauses
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-select-statement UNION [ALL] select-statement `ORDER BY
-clause <#limit-clause>`__;
+select-statement UNION [ALL] select-statement `ORDER BY clause <#limit-clause>`__;
 
-select-statement EXCEPT select-statement `ORDER BY
-clause <#limit-clause>`__;
+select-statement EXCEPT select-statement `ORDER BY clause <#limit-clause>`__;
 
-select-statement INTERSECT select-statement `ORDER BY
-clause <#limit-clause>`__;
+select-statement INTERSECT select-statement `ORDER BY clause <#limit-clause>`__;
 
 .. image:: image_29.png
 
@@ -2853,19 +3075,18 @@ clause <#limit-clause>`__;
 
 .. image:: image_31.png
 
+UNION, EXCEPT, and INTERSECT are collectively called \"set operators\" or
+\"table operators\".
 
-UNION, EXCEPT, and INTERSECT are collectively called "set operators" or
-"table operators".
+a UNION b means \"take rows which occur in a OR b\".
 
-a UNION b means "take rows which occur in a OR b".
+a EXCEPT b means \"take rows which occur in a AND NOT b\".
 
-a EXCEPT b means "take rows which occur in a AND NOT b".
-
-a INTERSECT b means "take rows which occur in a AND b".
+a INTERSECT b means \"take rows which occur in a AND b\".
 
 Duplicate rows are eliminated unless ALL is specified.
 
-The select-statements may be chained: SELECT ... SELECT ... SELECT ...;
+The select-statements may be chained: ``SELECT ... SELECT ... SELECT ...;``
 
 Each select-statement must result in the same number of columns.
 
@@ -2875,29 +3096,31 @@ The maximum number of set operations is 50.
 
 Example:
 
-CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+.. code-block:: sql
 
-CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+        CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
 
-INSERT INTO t1 VALUES (1,'A'),(2,'B'),(3,NULL);
+        CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
 
-INSERT INTO t2 VALUES (1,'A'),(2,'C'),(3,NULL);
+        INSERT INTO t1 VALUES (1,'A'),(2,'B'),(3,NULL);
 
-SELECT s2 FROM t1 UNION SELECT s2 FROM t2;
+        INSERT INTO t2 VALUES (1,'A'),(2,'C'),(3,NULL);
 
-SELECT s2 FROM t1 UNION ALL SELECT s2 FROM t2 ORDER BY s2;
+        SELECT s2 FROM t1 UNION SELECT s2 FROM t2;
 
-SELECT s2 FROM t1 EXCEPT SELECT s2 FROM t2;
+        SELECT s2 FROM t1 UNION ALL SELECT s2 FROM t2 ORDER BY s2;
 
-SELECT s2 FROM t1 INTERSECT SELECT s2 FROM t2;
+        SELECT s2 FROM t1 EXCEPT SELECT s2 FROM t2;
 
-The UNION query returns 4 rows: NULL, 'A', 'B', 'C'.
+        SELECT s2 FROM t1 INTERSECT SELECT s2 FROM t2;
 
-The UNION ALL query returns 6 rows: NULL, NULL, 'A', 'A', 'B', 'C'.
+The UNION query returns 4 rows: NULL, \'A\', \'B\', \'C\'.
 
-The EXCEPT query returns 1 row: 'B'.
+The UNION ALL query returns 6 rows: NULL, NULL, \'A\', \'A\', \'B\', \'C\'.
 
-The INTERSECT query returns 2 rows: NULL, 'A'.
+The EXCEPT query returns 1 row: \'B\'.
+
+The INTERSECT query returns 2 rows: NULL, \'A\'.
 
 Known flaws:
 
@@ -2906,46 +3129,52 @@ Known flaws:
 -  ORDER BY expression is usually not allowed.
 
 -  Evaluation is left to right, INTERSECT does not have precedence.
+
    Example:
 
-CREATE TABLE t01 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+.. code-block:: sql
 
-CREATE TABLE t02 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+        CREATE TABLE t01 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
 
-CREATE TABLE t03 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+        CREATE TABLE t02 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
 
-INSERT INTO t01 VALUES (1,'A');
+        CREATE TABLE t03 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
 
-INSERT INTO t02 VALUES (1,'B');
+        INSERT INTO t01 VALUES (1,'A');
 
-INSERT INTO t03 VALUES (1,'A');
+        INSERT INTO t02 VALUES (1,'B');
 
-SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM
-t02;
+        INSERT INTO t03 VALUES (1,'A');
 
-SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM
-t03;
+        SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM t02;
+
+        SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;
 
 ... results are different.
 
+.. _index-box_start_transaction_statement:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 START TRANSACTION Statement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-START TRANSACTION;
+.. code-block:: sql
+
+    START TRANSACTION;
 
 .. image:: image_32.png
 
-Start a transaction. After START TRANSACTION; a transaction is "active".
-If a transaction is already active, then START TRANSACTION; is illegal.
+Start a transaction. After ``START TRANSACTION;`` a transaction is \"active\".
+If a transaction is already active, then ``START TRANSACTION;`` is illegal.
 
 Transactions should be active for fairly short periods of time, to avoid
 concurrency issues. To end a transaction, say COMMIT or ROLLBACK.
 
-All statements between START TRANSACTION; and COMMIT; or ROLLBACK;
+All statements between ``START TRANSACTION; and COMMIT; or ROLLBACK;``
 inclusive, must be sent as a single batch. In order to ensure this, you
 should:
 
--  Decide in advance what all the transaction's SQL statements will be,
+-  Decide in advance what all the transaction\'s SQL statements will be,
    from the starting START TRANSACTION statement to the ending COMMIT or
    ROLLBACK statement.
 
@@ -2959,112 +3188,132 @@ should:
 
 Example:
 
-START TRANSACTION;
+.. code-block:: sql
+
+    START TRANSACTION;
 
 Example of a whole transaction sent to a server on localhost:3301 with
 eval(string):
 
-net\_box = require('net.box') conn = net\_box.new('localhost', 3301) s =
-'box.sql.execute([[START TRANSACTION; ]]) ' s = s ..
-'box.sql.execute([[INSERT INTO t VALUES (1); ]]) ' s = s ..
-'box.sql.execute([[ROLLBACK; ]]) ' conn:eval(s)
+.. code-block:: sql
 
+    net_box = require('net.box') conn = net_box.new('localhost', 3301) s =
+    'box.sql.execute([[START TRANSACTION; ]]) ' s = s ..
+    'box.sql.execute([[INSERT INTO t VALUES (1); ]]) ' s = s ..
+    'box.sql.execute([[ROLLBACK; ]]) ' conn:eval(s)
+
+.. _index-box_commit_statement:
+
+~~~~~~~~~~~~~~~~
 COMMIT Statement
 ~~~~~~~~~~~~~~~~
 
-COMMIT;
+.. code-block:: sql
+
+    COMMIT;
 
 .. image:: image_33.png
-    
-
-    
 
 Commit an active transaction, so all changes are made permanent.
 
 Example:
 
-COMMIT;
+.. code-block:: sql
+
+    COMMIT;
 
 Known flaws:
 
 -  Auto-commit is on, so COMMIT has no effect unless START TRANSACTION
    has been done.
 
+.. _index-box_savepoint_statement:
+
+~~~~~~~~~~~~~~~~~~~
 SAVEPOINT Statement
 ~~~~~~~~~~~~~~~~~~~
 
-SAVEPOINT savepoint-name;
+.. code-block:: sql
+
+    SAVEPOINT savepoint-name;
 
 .. image:: image_34.png
     
-
-    
-
 Set a savepoint, so that ROLLBACK TO savepoint-name is possible.
 
 Example:
 
-SAVEPOINT x;
+.. code-block:: sql
+
+    SAVEPOINT x;
 
 Known flaws (issue#2656)
 
 -  Savepoints do not work.
 
+.. _index-box_release_savepoint_statement:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 RELEASE SAVEPOINT Statement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-RELEASE SAVEPOINT savepoint-name;
+.. code-block:: sql
+
+    RELEASE SAVEPOINT savepoint-name;
 
 .. image:: image_35.png
     
-
-    
-
 Release (destroy) a savepoint created by SAVEPOINT statement.
 
 Example:
 
-RELEASE SAVEPOINT x;
+.. code-block:: sql
+
+    RELEASE SAVEPOINT x;
 
 Known flaws (issue#2656):
 
 -  Savepoints do not work.
 
+.. _index-box_rollback_statement:
+
+~~~~~~~~~~~~~~~~~~
 ROLLBACK Statement
 ~~~~~~~~~~~~~~~~~~
 
-ROLLBACK [TO [SAVEPOINT] savepoint-name];
+.. code-block:: sql
+
+    ROLLBACK [TO [SAVEPOINT] savepoint-name];
 
 .. image:: image_36.png
     
-
-    
-
 Rollback an active transaction, so all changes are cancelled.
 
 Example:
 
--- the simple form
+.. code-block:: sql
 
-ROLLBACK;
+    -- the simple form
 
--- the form so changes before a savepoint are not cancelled.
+    ROLLBACK;
 
-ROLLBACK TO SAVEPOINT x;
+    -- the form so changes before a savepoint are not cancelled.
+
+    ROLLBACK TO SAVEPOINT x;
 
 Known flaws:
 
 -  ROLLBACK TO SAVEPOINT does not work (issue#2656).
 
+.. _index-box_explain_statement:
+
+~~~~~~~~~~~~~~~~~
 EXPLAIN Statement
 ~~~~~~~~~~~~~~~~~
 
 EXPLAIN explainable-statement
 
 .. image:: image_37.png
-    
-
-    
 
 EXPLAIN will show what steps Tarantool would take if it executed
 explainable-statement.
@@ -3074,22 +3323,23 @@ team.
 
 Example:
 
-EXPLAIN DELETE FROM m; returns:
+``EXPLAIN DELETE FROM m;`` returns:
 
- 
+*  [0, \'Init\', 0, 3, 0, \'\', \'00\', \'Start at 3\']
 
-*  [0, 'Init', 0, 3, 0, '', '00', 'Start at 3']
+*  [1, \'Clear\', 16416, 0, 0, \'\', \'00\', \'\']\t
 
-*  [1, 'Clear', 16416, 0, 0, '', '00', '']	
+*  [2, \'Halt\', 0, 0, 0, \'\', \'00\', \'\']
 
-*  [2, 'Halt', 0, 0, 0, '', '00', '']
+*  [3, \'Transaction\', 0, 1, 1, \'0\', \'01\', \'usesStmtJournal=0\']
 
-*  [3, 'Transaction', 0, 1, 1, '0', '01', 'usesStmtJournal=0']
+*  [4, \'Goto\', 0, 1, 0, \'\', \'00\', \'\']
 
-*  [4, 'Goto', 0, 1, 0, '', '00', '']
+Variation: ``EXPLAIN QUERY PLAN statement;``
 
-Variation: EXPLAIN QUERY PLAN statement;
+.. _index-box_analyze_statement:
 
+~~~~~~~~~~~~~~~~~
 ANALYZE Statement
 ~~~~~~~~~~~~~~~~~
 
@@ -3102,141 +3352,144 @@ system tables named \_sql\_stat1 and \_sql\_stat4.
 
 Example:
 
-ANALYZE t;
+.. code-block:: sql
 
-SELECT \* FROM "\_sql\_stat1", "\_sql\_stat4";
+    ANALYZE t;
 
-+-----+-----+------+-----+-----+-----+-----+------+
-| tbl | idx | stat | tbl | idx | neq | nlt | ndlt |
-+=====+=====+======+=====+=====+=====+=====+======+
-| T   | T   | 2 1  | T   | T   | 1   | 0   | 0    |
-+-----+-----+------+-----+-----+-----+-----+------+
-| T   | T   | 2 1  | T   | T   | 1   | 1   | 1    |
-+-----+-----+------+-----+-----+-----+-----+------+
+    SELECT * FROM "_sql_stat1", "_sql_stat4";
 
+.. container:: table
 
+    +-----+-----+------+-----+-----+-----+-----+------+
+    | tbl | idx | stat | tbl | idx | neq | nlt | ndlt |
+    +=====+=====+======+=====+=====+=====+=====+======+
+    | T   | T   | 2 1  | T   | T   | 1   | 0   | 0    |
+    +-----+-----+------+-----+-----+-----+-----+------+
+    | T   | T   | 2 1  | T   | T   | 1   | 1   | 1    |
+    +-----+-----+------+-----+-----+-----+-----+------+
+
+.. _index-box_pragma_statement:
+
+~~~~~~~~~~~~~~~~
 PRAGMA Statement
 ~~~~~~~~~~~~~~~~
 
-PRAGMA pragma-name = pragma-value [, = pragma value ...];
+.. code-block:: sql
+
+    PRAGMA pragma-name = pragma-value [, = pragma value ...];
 
 or
 
-PRAGMA pragma-name (pragma-value [, pragma-value ...);
+.. code-block:: sql
+
+    PRAGMA pragma-name (pragma-value [, pragma-value ...);
 
 or (rarely)
 
-PRAGMA pragma-name;
+.. code-block:: sql
+
+    PRAGMA pragma-name;
 
 or (once)
 
-PRAGMA;
+.. code-block:: sql
 
-.. image:: image_39.png
-    
+    PRAGMA;
 
-    
+.. image:: image_39.png  
 
 Some PRAGMA statements will change DBMS behavior. Others will give
-rudimentary information about table 'metadata', although it is better to
+rudimentary information about table \'metadata\', although it is better to
 get such information via System Tables.
 
 We recommend: always use pragma-name(pragma-value) rather than
 pragma-name=pragma-value.
 
 Often pragma values are boolean, and can be specified with any of: true
-\| on \| 1 \| yes \| 'true' \| 'on' \| 'yes' ... false \| off \| 0 \| no
-\| 'false' \| 'off' \| 'no'. We recommend always use true or false.
+\| on \| 1 \| yes \| \'true\' \| \'on\' \| \'yes\' ... false \| off \| 0 \| no
+\| \'false\' \| \'off\' \| \'no\'. We recommend always use true or false.
 
 Less commonly pragma values are strings and can be specified with any
-of: inside "" double quotes, inside '' single quotes, or without quotes.
+of: inside \"\" double quotes, inside \'\' single quotes, or without quotes.
 We recommend: always use single quotes.
 
 When a string is used for searching, results must match according to a
 binary collation.
 
-PRAGMA; -- returns a list of pragmas and their current values.
+.. code-block:: sql
 
-PRAGMA busy\_timeout (number); /\* rather than this, prefer
-Tarantool/NoSQL timeouts \*/
+    PRAGMA; -- returns a list of pragmas and their current values.
 
-PRAGMA case\_sensitive\_like (boolean); /\* default = false \*/
+    PRAGMA busy_timeout (number); /* rather than this, prefer Tarantool/NoSQL timeouts */
 
-PRAGMA collation\_list; -- returns a list of supported collations.
+    PRAGMA case_sensitive_like (boolean); /* default = false */
 
-The result is 'unicode' and 'unicode\_ci' unless users have added their
+    PRAGMA collation_list; -- returns a list of supported collations.
+
+The result is \'unicode\' and \'unicode\_ci\' unless users have added their
 own collations.
 
-PRAGMA count\_changes (boolean); /\* default = false \*/
+.. code-block:: sql
 
-PRAGMA defer\_foreign\_keys (boolean); /\* default = false
+    PRAGMA count_changes (boolean); /* default = false */
 
-PRAGMA foreign\_key\_list;
+    PRAGMA defer_foreign_keys (boolean); /* default = false */
 
-PRAGMA full\_column\_names (boolean); /\* default = false \*/
+    PRAGMA foreign_key_list;
 
-PRAGMA index\_info ('table-name.index-name'); -- a list of the columns
-in an index
+    PRAGMA full_column_names (boolean); /* default = false */
 
-PRAGMA index\_list (table-name); -- a list of the table's indexes
+    PRAGMA index_info ('table-name.index-name'); -- a list of the columns in an index
 
-PRAGMA index\_xinfo (index-name);
+    PRAGMA index_list (table-name); -- a list of the table's indexes
 
-PRAGMA parser\_trace;
+    PRAGMA index_xinfo (index-name);
 
-PRAGMA query\_only (boolean); /\* default = false \*/ -- do not use
-this, use box.cfg{read\_only} instead
+    PRAGMA parser_trace;
 
-PRAGMA read\_uncommitted (boolean); /\* default = false \*/
+    PRAGMA query_only (boolean); /* default = false */ -- do not use this, use box.cfg{read_only} instead
 
-PRAGMA recursive\_triggers (boolean); /\* whether a triggered statement
-can activate a trigger \*/
+    PRAGMA read_uncommitted (boolean); /* default = false */
 
-PRAGMA reverse\_unordered\_selects (boolean);
+    PRAGMA recursive_triggers (boolean); /* whether a triggered statement can activate a trigger */
 
-PRAGMA select\_trace (boolean); /\* default = false \*/
+    PRAGMA reverse_unordered_selects (boolean);
 
-PRAGMA short\_column\_names (boolean); /\* default = true \*/
+    PRAGMA select_trace (boolean); /* default = false */
 
-PRAGMA sql\_default\_engine (engine-name); -- after this CREATE TABLE
-will create using the specified engine-name. The choices are 'memtx' and
-'vinyl'. The default default is 'memtx'.
+    PRAGMA short_column_names (boolean); /* default = true */
 
-PRAGMA sql\_trace (boolean); /\* default = false \*/
+    PRAGMA sql_default_engine (engine-name); -- after this CREATE TABLE will create using the specified engine-name. The choices are 'memtx' and 'vinyl'. The default default is 'memtx'.
 
-PRAGMA stats; /\* statistics for users with performance concerns \*/
+    PRAGMA sql_trace (boolean); /* default = false */
 
-PRAGMA table\_info(table-name) -- a list of the column descriptors
+    PRAGMA stats; /* statistics for users with performance concerns */
 
-PRAGMA vdbe\_addoptrace (boolean); /\* default = false \*/ -- for use by
-Tarantool's developers
+    PRAGMA table_info(table-name) -- a list of the column descriptors
 
-PRAGMA vdbe\_debug (boolean); /\* default = false \*/ -- for use by
-Tarantool's developers
+    PRAGMA vdbe_addoptrace (boolean); /* default = false */ -- for use by Tarantool's developers
 
-PRAGMA vdbe\_eqp (boolean); /\* default = false \*/ -- for use by
-Tarantool's developers
+    PRAGMA vdbe_debug (boolean); /* default = false */ -- for use by Tarantool's developers
 
-PRAGMA vdbe\_listing (boolean); /\* default = false \*/ -- for use by
-Tarantool's developers
+    PRAGMA vdbe_eqp (boolean); /* default = false */ -- for use by Tarantool's developers
 
-PRAGMA vdbe\_trace (boolean); /\* default = false \*/ -- for use by
-Tarantool's developers
+    PRAGMA vdbe_listing (boolean); /* default = false */ -- for use by Tarantool's developers
 
-PRAGMA where\_trace(boolean); /\* default = false \*/ -- for use by
-Tarantool's developers
+    PRAGMA vdbe_trace (boolean); /* default = false */ -- for use by Tarantool's developers
+
+    PRAGMA where_trace(boolean); /* default = false */ -- for use by Tarantool's developers
 
 Example:
 
-tarantool> box.sql.execute([[PRAGMA table\_info('T')]])
+tarantool> box.sql.execute([[PRAGMA table_info(\'T\')]])
 
+*  [0, \'s1\', \'INT\', 1, null, 1]
 
-*  [0, 's1', 'INT', 1, null, 1]
-
-*  [1, 's2', 'INT', 0, null, 0]
+*  [1, \'s2\', \'INT\', 0, null, 0]
 
 ...
 
 Known flaws: PRAGMA can change behavior for all sessions, not just the
 session where it is executed.
+
 
