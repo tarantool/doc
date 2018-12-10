@@ -290,9 +290,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
     .. method:: read(limit [, timeout])
                 read(delimiter [, timeout])
-                read({limit=limit} [, timeout])
-                read({delimiter=delimiter} [,timeout])
-                read({limit=limit, delimiter=delimiter} [, timeout])
+                read({options} [, timeout])
 
         Read from a connected socket until some condition is true, and return
         the bytes that were read.
@@ -303,8 +301,11 @@ the function invocations will look like ``sock:function_name(...)``.
                                  example 50 means "stop after 50 bytes"
         :param string delimiter: separator for example
                                  '?' means "stop after a question mark"
-        :param number   timeout: maximum number of seconds to wait for
+        :param number   timeout: maximum number of seconds to wait, for
                                  example 50 means "stop after 50 seconds".
+        :param table    options: :samp:`chunk={limit}` and/or
+                                 :samp:`delimiter={delimiter}`,
+                                 for example :code:`{chunk=5,delimiter='x'}`.
 
         :return: an empty string if there is nothing more to read, or a nil
                  value if error, or a string up to ``limit`` bytes long,
