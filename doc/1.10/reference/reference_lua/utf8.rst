@@ -308,10 +308,16 @@ Below is a list of all ``utf8`` functions.
 
     .. code-block:: tarantoolsession
 
+        tarantool> -- show next-character position + first-character codepoint
         tarantool> utf8.next('åa', 1)
         ---
         - 3
         - 229
+        ...
+        tarantool> -- (loop) show codepoint of every character
+        tarantool> for position,codepoint in utf8.next,'åa' do print(codepoint) end
+        229
+        97
         ...
 
 .. _utf8-sub:
