@@ -46,134 +46,163 @@ Now you can enter requests on the command line.
 Creating a database
 --------------------------------------------------------------------------------
 
-Here is how to create a simple test database after installing.
+Here is how to create a simple test database after installation.
 
-Create a new directory (it’s just for tests, so you can delete it when the tests
-are over):
+#. To let Tarantool store data in a separate place, create a new directory
+   dedicated for tests:
 
-.. code-block:: console
+   .. code-block:: console
 
-    $ mkdir ~/tarantool_sandbox
-    $ cd ~/tarantool_sandbox
+      $ mkdir ~/tarantool_sandbox
+      $ cd ~/tarantool_sandbox
 
-To start Tarantool's database module and make the instance accept TCP requests
-on port 3301, say this:
+   You can delete the directory when the tests are over.
 
-.. code-block:: tarantoolsession
+#. Check if the default port the database instance will listen to is vacant.
+   
+   Depending on the release, during installation Tarantool may start a
+   demonstrative global ``example.lua`` instance that listens to the
+   ``3301`` port by default. The ``example.lua`` file showcases basic
+   configuration and can be found in the ``/etc/tarantool/instances.enabled``
+   or ``/etc/tarantool/instances.available`` directories.
 
-    tarantool> box.cfg{listen = 3301}
+   However, we encourage you to perform the instance startup manually, so you
+   can learn. 
 
-First, create the first :ref:`space <index-box_space>` (named 'tester'):
+   Make sure the default port is vacant:
 
-.. code-block:: tarantoolsession
+   #. To check if the demonstrative instance is running, say:
 
-    tarantool> s = box.schema.space.create('tester')
+      .. code-block:: console
 
-Format the created space by specifying field names and types:
+         $ lsof -i :3301
+         COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+         tarantool 6851 root   12u  IPv4  40827      0t0  TCP *:3301 (LISTEN)
 
-.. code-block:: tarantoolsession
+   #. If it does, kill the corresponding process. In this example:
 
-    tarantool> s:format({
-             > {name = 'id', type = 'unsigned'},
-             > {name = 'band_name', type = 'string'},
-             > {name = 'year', type = 'unsigned'}
-             > })
+      .. code-block:: console
 
-Create the first :ref:`index <index-box_index>` (named 'primary'):
+         $ kill 6851
 
-.. code-block:: tarantoolsession
+#. To start Tarantool's database module and make the instance accept TCP requests
+   on port ``3301``, say:
 
-    tarantool> s:create_index('primary', {
-             > type = 'hash',
-             > parts = {'id'}
-             > })
+   .. code-block:: tarantoolsession
 
-This is a primary index based on the 'id' field of each tuple.
+      tarantool> box.cfg{listen = 3301}
 
-Insert three :ref:`tuples <index-box_tuple>` (our name for "records")
-into the space:
+#. Create the first :ref:`space <index-box_space>` (named ``'tester'``):
 
-.. code-block:: tarantoolsession
+   .. code-block:: tarantoolsession
 
-    tarantool> s:insert{1, 'Roxette', 1986}
-    tarantool> s:insert{2, 'Scorpions', 2015}
-    tarantool> s:insert{3, 'Ace of Base', 1993}
+      tarantool> s = box.schema.space.create('tester')
 
-To select a tuple using the 'primary' index, say:
+#. Format the created space by specifying field names and types:
 
-.. code-block:: tarantoolsession
+   .. code-block:: tarantoolsession
 
-    tarantool> s:select{3}
+      tarantool> s:format({
+               > {name = 'id', type = 'unsigned'},
+               > {name = 'band_name', type = 'string'},
+               > {name = 'year', type = 'unsigned'}
+               > })
 
-The terminal screen now looks like this:
+#. Create the first :ref:`index <index-box_index>` (named ``'primary'``):
 
-.. code-block:: tarantoolsession
+   .. code-block:: tarantoolsession
 
-    tarantool> s = box.schema.space.create('tester')
-    ---
-    ...
-    tarantool> s:format({
-             > {name = 'id', type = 'unsigned'},
-             > {name = 'band_name', type = 'string'},
-             > {name = 'year', type = 'unsigned'}
-             > })
-    ---
-    ...
-    tarantool> s:create_index('primary', {
-             > type = 'hash',
-             > parts = {'id'}
-             > })
-    ---
-    - unique: true
-      parts:
-      - type: unsigned
-        is_nullable: false
-        fieldno: 1
-      id: 0
-      space_id: 512
-      name: primary
-      type: HASH
-    ...
-    tarantool> s:insert{1, 'Roxette', 1986}
-    ---
-    - [1, 'Roxette', 1986]
-    ...
-    tarantool> s:insert{2, 'Scorpions', 2015}
-    ---
-    - [2, 'Scorpions', 2015]
-    ...
-    tarantool> s:insert{3, 'Ace of Base', 1993}
-    ---
-    - [3, 'Ace of Base', 1993]
-    ...
-    tarantool> s:select{3}
-    ---
-    - - [3, 'Ace of Base', 1993]
-    ...
+      tarantool> s:create_index('primary', {
+               > type = 'hash',
+               > parts = {'id'}
+               > })
 
-To add a secondary index based on the 'band_name' field, say:
+   This is a primary index based on the ``id`` field of each tuple.
 
-.. code-block:: tarantoolsession
+#. Insert three :ref:`tuples <index-box_tuple>` (our name for "records")
+   into the space:
 
-    tarantool> s:create_index('secondary', {
-             > type = 'hash',
-             > parts = {'band_name'}
-             > })
+   .. code-block:: tarantoolsession
 
-To select tuples using the 'secondary' index, say:
+      tarantool> s:insert{1, 'Roxette', 1986}
+      tarantool> s:insert{2, 'Scorpions', 2015}
+      tarantool> s:insert{3, 'Ace of Base', 1993}
 
-.. code-block:: tarantoolsession
+#. To select a tuple using the ``'primary'`` index, say:
 
-    tarantool> s.index.secondary:select{'Scorpions'}
-    ---
-    - - [2, 'Scorpions', 2015]
-    ...
+   .. code-block:: tarantoolsession
 
-Now, to prepare for the example in the next section, try this:
+      tarantool> s:select{3}
 
-.. code-block:: tarantoolsession
+   The terminal screen now looks like this:
 
-    tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
+   .. code-block:: tarantoolsession
+
+      tarantool> s = box.schema.space.create('tester')
+      ---
+      ...
+      tarantool> s:format({
+               > {name = 'id', type = 'unsigned'},
+               > {name = 'band_name', type = 'string'},
+               > {name = 'year', type = 'unsigned'}
+               > })
+      ---
+      ...
+      tarantool> s:create_index('primary', {
+               > type = 'hash',
+               > parts = {'id'}
+               > })
+      ---
+      - unique: true
+        parts:
+        - type: unsigned
+          is_nullable: false
+          fieldno: 1
+        id: 0
+        space_id: 512
+        name: primary
+        type: HASH
+      ...
+      tarantool> s:insert{1, 'Roxette', 1986}
+      ---
+      - [1, 'Roxette', 1986]
+      ...
+      tarantool> s:insert{2, 'Scorpions', 2015}
+      ---
+      - [2, 'Scorpions', 2015]
+      ...
+      tarantool> s:insert{3, 'Ace of Base', 1993}
+      ---
+      - [3, 'Ace of Base', 1993]
+      ...
+      tarantool> s:select{3}
+      ---
+      - - [3, 'Ace of Base', 1993]
+      ...
+
+#. To add a secondary index based on the ``'band_name'`` field, say:
+
+   .. code-block:: tarantoolsession
+
+      tarantool> s:create_index('secondary', {
+               > type = 'hash',
+               > parts = {'band_name'}
+               > })
+
+#. To select tuples using the ``'secondary'`` index, say:
+
+   .. code-block:: tarantoolsession
+
+      tarantool> s.index.secondary:select{'Scorpions'}
+      ---
+      - - [2, 'Scorpions', 2015]
+      ...
+
+#. Now, to prepare for the example in the next section, try this:
+
+   .. code-block:: tarantoolsession
+
+      tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
 
 .. _connecting-remotely:
