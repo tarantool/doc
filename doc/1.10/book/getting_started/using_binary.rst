@@ -60,8 +60,8 @@ Here is how to create a simple test database after installation.
 
 #. Check if the default port the database instance will listen to is vacant.
    
-   Depending on the release, in some cases during installation Tarantool may
-   start a demonstrative global ``example.lua`` instance that listens to the
+   Depending on the release, during installation Tarantool may start a
+   demonstrative global ``example.lua`` instance that listens to the
    ``3301`` port by default. The ``example.lua`` file showcases basic
    configuration and can be found in the ``/etc/tarantool/instances.enabled``
    or ``/etc/tarantool/instances.available`` directories.
@@ -74,7 +74,6 @@ Here is how to create a simple test database after installation.
    #. To check if the demonstrative instance is running, say:
 
       .. code-block:: console
-         :emphasize-lines: 3
 
          $ lsof -i :3301
          COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
