@@ -942,9 +942,20 @@ Below is a list of all ``box.index`` functions and members.
 
     .. method:: stat()
 
-        Return statistics about actions taken that affect the index,
-        including details such as a count of cache evictions, number
-        of accesses, and latency. This is for use with the vinyl engine.
+        Return statistics about actions taken that affect the index.
+        This is for use with the vinyl engine.
+        Some detail items in the output from ``index_object:stat()`` are:
+        ``index_object:stat().latency`` -- timings subdivided by percentages;
+        ``index_object:stat().bytes`` -- the number of bytes total;
+        ``index_object:stat().disk.rows`` -- the approximate number of tuples in each range;
+        ``index_object:stat().disk.statement`` -- counts of inserts|updates|upserts|deletes;
+        ``index_object:stat().disk.compact`` -- counts of compactions and their amounts;
+        ``index_object:stat().disk.dump`` -- counts of dumps and their amounts;
+        ``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter hits|misses;
+        ``index_object:stat().disk.pages`` -- the size in pages.
+        ``index_object:stat().cache.evict`` -- number of evictions from the cache.
+        Summary index statistics are also available via
+        :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl_details>`.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
