@@ -23,6 +23,8 @@
     Since a snapshot is written sequentially, one can expect a very high write
     performance (averaging to 80MB/second on modern disks), which means an average
     database instance gets saved in a matter of minutes.
+    Users may restrict the speed by changing
+    :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
     
     .. NOTE::
     

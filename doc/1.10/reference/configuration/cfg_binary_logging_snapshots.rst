@@ -59,6 +59,9 @@
     achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and
     :ref:`memtx_dir <cfg_basic-memtx_dir>`
     locations and moving snapshots to a separate disk.
+    The limit also affects what
+    :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>`
+    may show for the write rate of dumps to .run and .index files.
 
     | Type: float
     | Default: null

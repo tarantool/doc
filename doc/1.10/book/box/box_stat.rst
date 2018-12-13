@@ -103,7 +103,9 @@ that is allocated for vinyl trees, which is the
 is the actual average rate at which recent writes to disk are done.
 Averaging is done over a 5-second time window, so if there has
 been no activity for 5 seconds then regulator.write_rate = 0.
-The write_rate may appear to be slow when a dump is in progress.
+The write_rate may be slowed when a dump is in progress
+or when the user has set
+:ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
 
 Re ``box.stat.vinyl().disk``:
 Since vinyl is an on-disk storage engine
