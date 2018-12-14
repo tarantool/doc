@@ -144,14 +144,21 @@ at the source code. Particularly important are {options} which can be
 added as a final parameter in expirationd.run_task:
 
 * ``force`` (boolean) -- run task even on replica.
-  Ordinarily expirationd ignores replicas.
-
-
-
-
-
-
-
+  Default: force=false so ordinarily expirationd ignores replicas.
+* ``tuples_per_iteration`` (integer) -- number of tuples that
+  will be checked by one iteration
+  Default: tuples_per_iteration=1024.
+* ``full_scan_time`` (number) -- number of seconds required for full index scan
+  Default: full_scan_time=3600
+* ``vinyl_assumed_space_len`` (integer) -- assumed size of vinyl space, for the first
+  iteration only. Default: vinyl_assumed_space_len=10000000.
+* ``vinyl_assumed_space_len_factor`` (integer) -- factor for recalculation
+  of size of vinyl space.
+  Default: vinyl_assumed_space_len_factor=2.
+  (The size of a vinyl space cannot be easily calculated, so on the first
+  iteration it will be the "assumed" size, on the second iteration it will
+  be "assumed" times "factor", on the third iteration it will be
+  "assumed" times "factor" times factor", and so on.)
 
 .. _rock: http://rocks.tarantool.org/
 .. _expirationd.lua: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
