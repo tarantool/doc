@@ -5,7 +5,7 @@
 -------------------------------------------------------------------------------
 
 For a commercial-grade example of a Lua rock that works with Tarantool, let us
-look at expirationd, which Tarantool supplies on GitHub_ with an Artistic license.
+look at the source code of expirationd, which Tarantool supplies on GitHub_ with an Artistic license.
 The expirationd.lua program is lengthy (about 500 lines), so here we will only
 highlight the matters that will be enhanced by studying the full source later.
 
@@ -26,10 +26,12 @@ back for more.
 
     for _, tuple in scan_space.index[0]:pairs(nil, {iterator = box.index.ALL}) do
     ...
-            if task.is_tuple_expired(task.args, tuple) then
-            task.expired_tuples_count = task.expired_tuples_count + 1
-            task.process_expired_tuple(task.space_id, task.args, tuple)
+        expiration_process(task, tuple)
     ...
+        /* expiration_process() contains:
+        if task.is_tuple_expired(task.args, tuple) then
+        task.expired_tuples_count = task.expired_tuples_count + 1
+        task.process_expired_tuple(task.space_id, task.args, tuple) */
 
 The "for" instruction can be translated as "iterate through the index of the
 space that is being scanned", and within it, if the tuple is "expired" (for
@@ -40,12 +42,15 @@ process the tuple as an expired tuple.
 
     -- default process_expired_tuple function
     local function default_tuple_drop(space_id, args, tuple)
-        local key = fun.map(
-            function(x) return tuple[x.fieldno] end,
-            box.space[space_id].index[0].parts
-        ):totable()
-        box.space[space_id]:delete(key)
+        box.space[space_id]:delete(construct_key(space_id, tuple))
     end
+        /* construct_key() contains:
+        local function construct_key(space_id, tuple)
+            return fun.map(
+                function(x) return tuple[x.fieldno] end,
+               box.space[space_id].index[0].parts
+            ):totable()
+        end */
 
 Ultimately the tuple-expiry process leads to ``default_tuple_drop()``
 which does a "delete" of a tuple from its original space.
@@ -62,7 +67,7 @@ The result of fun.map() is passed to :ref:`space_object:delete() <box_space-dele
     local function expirationd_run_task(name, space_id, is_tuple_expired, options)
     ...
 
-At this point, if the above explanation is worthwhile, it's clear that
+At this point, if the above explanation is worthwhile, it is clear that
 ``expirationd.lua`` starts a background routine (fiber) which iterates through
 all the tuples in a space, sleeps cooperatively so that other fibers can
 operate at the same time, and - whenever it finds a tuple that has expired
@@ -76,7 +81,8 @@ expirationd through the test.
 
 1. Get ``expirationd.lua``. There are standard ways - it is after all part
    of a `standard rock <https://luarocks.org/modules/rtsisyk/expirationd>`_  - but for this purpose just copy the contents of
-   expirationd.lua_ to a default directory.
+   expirationd.lua_ to a directory on the Lua path
+   (type ``print(package.path)`` to see the Lua path).
 2. Start the Tarantool server as described before.
 3. Execute these requests:
 
@@ -114,9 +120,11 @@ The function which will be supplied to expirationd is
 :ref:`current time <fiber-time>`  , then return true, otherwise return false".
 
 The key for getting the rock rolling is
-``expd = require('expirationd')``. The "``require``" function is what reads in
+``expd = require('expirationd')``. The require_ function is what reads in
 the program; it will appear in many later examples in this manual, when it's
-necessary to get a module that's not part of the Tarantool kernel. After the
+necessary to get a module that's not part of the Tarantool kernel,
+but is on the Lua path (``package.path``) or the C path (``package.cpath``).
+After the
 Lua variable expd has been assigned the value of the expirationd module, it's
 possible to invoke the module's ``run_task()`` function.
 
@@ -132,11 +140,21 @@ three seconds old.
 
 Of course, expirationd can be customized to do different things
 by passing different parameters, which will be evident after looking in more detail
-at the source code.
+at the source code. Particularly important are {options} which can be
+added as a final parameter in expirationd.run_task:
+
+* ``force`` (boolean) -- run task even on replica.
+  Ordinarily expirationd ignores replicas.
+
+
+
+
+
+
 
 
 .. _rock: http://rocks.tarantool.org/
 .. _expirationd.lua: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
 .. _GitHub: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
 .. _fun.map: http://rtsisyk.github.io/luafun/transformations.html#fun.map
-
+.. _require: https://www.lua.org/pil/8.1.html#require
