@@ -39631,11 +39631,11 @@ msgstr "`PDF <Tarantool.pdf>`_"
 
 #: ../doc/1.10/index.rst:85
 msgid "`English`_"
-msgstr "Английская версия `English`_"
+msgstr "`Форум (eng)`_"
 
 #: ../doc/1.10/index.rst:86
 msgid "`Russian`_"
-msgstr "Русская версия `Russian`_"
+msgstr "`Форум (рус)`_"
 
 #: ../doc/1.10/index.rst:94
 msgid "`Telegram chat EN`_"
