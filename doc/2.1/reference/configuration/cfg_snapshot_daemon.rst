@@ -1,5 +1,6 @@
 * :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`
 * :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`
+* :ref:`checkpoint_wal_threshold <cfg_checkpoint_daemon-checkpoint_wal_threshold>`
 
 The checkpoint daemon is a fiber which is constantly running. At intervals,
 it may make new :ref:`snapshot (.snap) files <index-box_persistence>` and then
@@ -97,3 +98,33 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
     | Type: integer
     | Default: 2
     | Dynamic: yes
+
+.. _cfg_checkpoint_daemon-checkpoint_wal_threshold:
+
+.. confval:: checkpoint_wal_threshold
+
+    The threshold for the total size in bytes of all WAL files created since the last checkpoint.
+    Once the configured threshold is exceeded, the WAL thread notifies the
+    checkpoint daemon that it must make a new checkpoint and delete old WAL files.
+
+    | Type: integer
+    | Default: 10^18 (a large number so in effect there is no limit by default)
+    | Dynamic: yes
+
+    This parameter was added in version 2.1. It enables administrators to
+    handle a problem that could occur with calculating
+    how much disk space to allocate for a partition containing WAL files.
+    For example, suppose
+    :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`
+    = 2 and
+    :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`
+    = 5
+    and the average amount that Tarantool writes between each checkpoint interval
+    = 1 GB.
+    Then one could calculate that the necessary amount is (2*5*1) 10GB.
+    But this calculation would be wrong if, instead of writing 1 GB
+    during one checkpoint interval,
+    Tarantool encounters an unusual spike and tries to write 11 GB,
+    causing an operating-system ENOSPC ("no space") error.
+    By setting checkpoint_wal_threshold to a lower value, say 9 GB,
+    an administrator could prevent the error.

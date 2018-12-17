@@ -39,6 +39,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
     - background                   = false
       checkpoint_count             = 2
       checkpoint_interval          = 3600
+      checkpoint_wal_threshold     = 1000000000000000000
       coredump                     = false
       custom_proc_title            = nil
       feedback_enabled             = true
