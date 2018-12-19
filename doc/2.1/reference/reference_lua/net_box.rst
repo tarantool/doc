@@ -485,6 +485,8 @@ Below is a list of all ``net.box`` functions.
         then either loop checking ``future:is_ready()`` until it is true and
         then say ``request_result=future:result()``,
         or say ``request_result=future:wait_result(...)``.
+        Alternatively the client could check for "out-of-band" messages from the server
+        by calling ``pairs()`` in a loop -- see :ref:`box.session.push() <box_session-push>`.
 
         **Example:**
 

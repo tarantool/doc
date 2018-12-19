@@ -9,7 +9,7 @@ However, ordinary users should at least skim this section to get an idea
 of how Tarantool makes it possible for administrators to prevent unauthorized
 access to the database and to certain functions.
 
-In a nutshell:
+Briefly:
 
 * There is a method to guarantee with password checks that users really are
   who they say they are (“authentication”).
@@ -24,7 +24,7 @@ In a nutshell:
   stored. Whenever a user tries to do an operation, there is a check whether
   the user has the privilege to do the operation (“access control”).
 
-Further on, we explain all of this in more detail.
+Details follow.
 
 .. _authentication-users:
 
@@ -45,7 +45,8 @@ The current user name can be found with :ref:`box.session.user() <box_session-us
 
 The current user can be changed:
 
-* For a binary port connection -- with the AUTH protocol command, supported
+* For a binary port connection -- with the
+  :ref:`AUTH protocol command <box_protocol-iproto_protocol>`, supported
   by most clients;
 
 * For an admin-console connection and in a Lua initialization script --
@@ -121,7 +122,7 @@ The following privileges can be granted:
 
 * 'read', e.g. allow select from a space
 * 'write', e.g. allow update on a space
-* 'execute', e.g. allow call of a function
+* 'execute', e.g. allow call of a function, or (less commonly) allow use of a role
 * 'create', e.g. allow
   :ref:`box.schema.space.create <box_schema-space_create>`
   (access to certain system spaces is also necessary)
@@ -153,11 +154,11 @@ other users.
 
 To grant privileges to a user, the object owner says :ref:`grant() <box_schema-user_grant>`.
 To revoke privileges from a user, the object owner says :ref:`revoke() <box_schema-user_revoke>`.
-In either case, there are three or four parameters:
+In either case, there are up to five parameters:
 
 .. code-block:: lua
 
-    (user-name, privilege, object-type [, object-name])
+    (user-name, privilege, object-type [, object-name [, options]])
 
 * ``user-name`` is the user (or role) that will receive or lose the privilege;
 * ``privilege`` is any of 'read', 'write', 'execute', 'create', 'alter', 'drop',
@@ -165,7 +166,9 @@ In either case, there are three or four parameters:
 * ``object-type`` is any of 'space', 'index',
   'sequence', 'function', role-name, or 'universe';
 * ``object-name`` is what the privilege is for
-  (omitted if ``object-type`` is 'universe').
+  (omitted if ``object-type`` is 'universe');
+* ``options`` is a list inside braces for example ``{if_not_exists=true|false}``
+  (usually omitted because the default is acceptable).
 
 **Example for granting many privileges at once**
 
@@ -286,6 +289,12 @@ role R1 will subsequently get all privileges from both roles R1 and R2.
 In other words, a user gets all the privileges that are granted to a user’s
 roles, directly or indirectly.
 
+There are actually two ways to grant or revoke a role:
+:samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},'execute', 'role',{role-name}...)`
+or
+:samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},{role-name}...)`.
+The second way is preferable.
+
 The 'usage' and 'session' privileges cannot be granted to roles.
 
 **Example**
@@ -303,8 +312,9 @@ The 'usage' and 'session' privileges cannot be granted to roles.
    box.schema.role.create('R1')
    box.schema.role.create('R2')
    -- Grant role R2 to role R1 and role R1 to user U1 (order doesn't matter)
-   box.schema.role.grant('R1', 'execute', 'role', 'R2')
-   box.schema.user.grant('U1', 'execute', 'role', 'R1')
+   -- There are two ways to grant a role; here we use the shorter way
+   box.schema.role.grant('R1', 'R2')
+   box.schema.user.grant('U1', 'R1')
    -- Grant read/write privileges for space T to role R2
    -- (but not to role R1 and not to user U1)
    box.schema.role.grant('R2', 'read,write', 'space', 'T')
@@ -314,8 +324,10 @@ The 'usage' and 'session' privileges cannot be granted to roles.
    -- user U1 has write privilege on space T
    box.space.T:insert{1}
 
-For details about Tarantool functions related to role management, see
-reference on :ref:`box.schema <box_schema>` submodule.
+For more detail see
+:ref:`box.schema.user.grant() <box_schema-user_grant>` and
+:ref:`box.schema.role.grant() <box_schema-role_grant>` in
+the built-in modules reference.
 
 .. _authentication-sessions:
 

@@ -13,12 +13,14 @@
     an error while reading a :ref:`snapshot file<index-box_persistence>`
     (at server instance start) or a :ref:`write-ahead log file<internals-wal>`
     (at server instance start or when applying an update at a replica): skips
-    invalid records, reads as much data as possible and re-builds the file.
+    invalid records, reads as much data as possible and lets the process finish
+    with a warning. Users can prevent the error from recurring by writing to
+    the database and executing :ref:`box.snapshot() <box-snapshot>`.    
 
-    Otherwise, Tarantool aborts recovery on read errors.
+    Otherwise, Tarantool aborts recovery if there is an error while reading.
 
     | Type: boolean
-    | Default: true
+    | Default: false
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-rows_per_wal:
@@ -59,6 +61,9 @@
     achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and
     :ref:`memtx_dir <cfg_basic-memtx_dir>`
     locations and moving snapshots to a separate disk.
+    The limit also affects what
+    :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>`
+    may show for the write rate of dumps to .run and .index files.
 
     | Type: float
     | Default: null
