@@ -167,7 +167,7 @@ In either case, there are up to five parameters:
   'sequence', 'function', role-name, or 'universe';
 * ``object-name`` is what the privilege is for
   (omitted if ``object-type`` is 'universe');
-* ``options`` is a list inside braces for example {if_not_exists=true|false}
+* ``options`` is a list inside braces for example ``{if_not_exists=true|false}``
   (usually omitted because the default is acceptable).
 
 **Example for granting many privileges at once**
