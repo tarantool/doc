@@ -84,7 +84,7 @@ Here are details about the ``box.stat.vinyl()`` items.
 
 .. _box_introspection-box_stat_vinyl_regulator:
 
-**Re ``box.stat.vinyl().regulator``:**
+**Details about box.stat.vinyl().regulator:**
 The vinyl regulator decides when to take or delay actions for
 disk IO, grouping activity in batches so that it is
 consistent and efficient. The regulator is invoked by
@@ -110,7 +110,9 @@ related variables whenever it is invoked.
   or when the user has set
   :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
 
-**Re ``box.stat.vinyl().disk``:**
+.. _box_introspection-box_stat_vinyl_disk:
+
+**Details about box.stat.vinyl().disk:**
 Since vinyl is an on-disk storage engine
 (unlike memtx which is an in-memory storage engine),
 it can handle large databases -- but if a database is
@@ -122,9 +124,9 @@ then there will be more disk activity.
 
   A "dump" is explained in section :ref:`Storing data with vinyl <engines-algorithm_filling_lsm>`:
 
-    "Sooner or later the number of elements in an LSM tree exceeds the L0 size and that’s
+    Sooner or later the number of elements in an LSM tree exceeds the L0 size and that’s
     when L0 gets written to a file on disk (called a 'run') and then cleared for storing new elements.
-    This operation is called a 'dump'."`
+    This operation is called a 'dump'.
 
   Thus it can be predicted that a dump will occur if the
   size of L0
@@ -155,7 +157,7 @@ then there will be more disk activity.
 
 .. _box_introspection-box_stat_vinyl_memory:
 
-**Re ``box.stat.vinyl().memory``:**
+**Details about box.stat.vinyl().memory:**
 Although the vinyl storage engine is not "in-memory", Tarantool does
 need to have memory for write buffers and for caches:
 
@@ -184,7 +186,7 @@ that statistic can be found with
 
 .. _box_introspection-box_stat_vinyl_tx:
 
-**Re ``box.stat.vinyl().tx``:**
+**Details about box.stat.vinyl().tx:**
 This is about requests that affect transactional activity
 ("tx" is used here as an abbreviation for "transaction"):
 
