@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="860px" height="493px" viewBox="0 0 860 493" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>17</title>
+    <desc>Created with Sketch.</desc>
+    <g id="17" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M285,58.5 C284.723858,58.5 284.5,58.7238576 284.5,59 L284.5,442 C284.5,442.276142 284.723858,442.5 285,442.5 C285.276142,442.5 285.5,442.276142 285.5,442 L285.5,59 C285.5,58.7238576 285.276142,58.5 285,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <path d="M45,58.5 C44.7238576,58.5 44.5,58.7238576 44.5,59 L44.5,442 C44.5,442.276142 44.7238576,442.5 45,442.5 C45.2761424,442.5 45.5,442.276142 45.5,442 L45.5,59 C45.5,58.7238576 45.2761424,58.5 45,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <path d="M165,58.5 C164.723858,58.5 164.5,58.7238576 164.5,59 L164.5,442 C164.5,442.276142 164.723858,442.5 165,442.5 C165.276142,442.5 165.5,442.276142 165.5,442 L165.5,59 C165.5,58.7238576 165.276142,58.5 165,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <text id="primary-key-1" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="13" y="470">primary</tspan>
+            <tspan x="24.4453125" y="490">key 1</tspan>
+        </text>
+        <text id="primary-key-2" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="134" y="470">primary</tspan>
+            <tspan x="145.445312" y="490">key 2</tspan>
+        </text>
+        <text id="Primary-index" font-family="OpenSans-Bold, Open Sans" font-size="20" font-weight="bold" fill="#595959">
+            <tspan x="96" y="16">Primary index</tspan>
+        </text>
+        <text id="primary-key-3" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="254" y="470">primary</tspan>
+            <tspan x="265.445312" y="490">key 3</tspan>
+        </text>
+        <g id="DIAGRAMS-/-BLOCK-/-round-gray" transform="translate(0.000000, 169.000000)">
+            <rect id="Rectangle-Copy-14" fill="#E1E1E1" fill-rule="evenodd" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="26" y="20">vers. 4</tspan>
+            </text>
+        </g>
+        <g id="DIAGRAMS-/--BLOCK-/-round-black" transform="translate(120.000000, 233.000000)">
+            <g id="DIAGRAMS-/-BLOCK-/-round-black">
+                <rect id="Rectangle-Copy-14" fill="#1F1E1E" x="0" y="0" width="90" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="19.1835938" y="20">vers. 3</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/--BLOCK-/-round-black" transform="translate(240.000000, 297.000000)">
+            <g id="DIAGRAMS-/-BLOCK-/-round-black">
+                <rect id="Rectangle-Copy-14" fill="#1F1E1E" x="0" y="0" width="90" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="19.1835938" y="20">vers. 2</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/--BLOCK-/-round-black" transform="translate(0.000000, 361.000000)">
+            <g id="DIAGRAMS-/-BLOCK-/-round-black">
+                <rect id="Rectangle-Copy-14" fill="#1F1E1E" x="0" y="0" width="90" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="19.1835938" y="20">vers. 1</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-BLOCK-/-round-gray" transform="translate(120.000000, 106.000000)">
+            <rect id="Rectangle-Copy-14" fill="#E1E1E1" fill-rule="evenodd" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="26" y="20">vers. 5</tspan>
+            </text>
+        </g>
+        <g id="DIAGRAMS-/-BLOCK-/-round-gray" transform="translate(240.000000, 42.000000)">
+            <rect id="Rectangle-Copy-14" fill="#E1E1E1" fill-rule="evenodd" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="26" y="20">vers. 6</tspan>
+            </text>
+        </g>
+        <text id="Secondary-index" font-family="OpenSans-Bold, Open Sans" font-size="20" font-weight="bold" fill="#595959">
+            <tspan x="553.041992" y="16">Secondary index</tspan>
+        </text>
+        <path d="M695,58.5 C694.723858,58.5 694.5,58.7238576 694.5,59 L694.5,442 C694.5,442.276142 694.723858,442.5 695,442.5 C695.276142,442.5 695.5,442.276142 695.5,442 L695.5,59 C695.5,58.7238576 695.276142,58.5 695,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <path d="M455,58.5 C454.723858,58.5 454.5,58.7238576 454.5,59 L454.5,442 C454.5,442.276142 454.723858,442.5 455,442.5 C455.276142,442.5 455.5,442.276142 455.5,442 L455.5,59 C455.5,58.7238576 455.276142,58.5 455,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <path d="M575,58.5 C574.723858,58.5 574.5,58.7238576 574.5,59 L574.5,442 C574.5,442.276142 574.723858,442.5 575,442.5 C575.276142,442.5 575.5,442.276142 575.5,442 L575.5,59 C575.5,58.7238576 575.276142,58.5 575,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <text id="secondary-key-1" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="414" y="470">secondary</tspan>
+            <tspan x="434.542969" y="490">key 1</tspan>
+        </text>
+        <text id="secondary-key-2" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="535" y="470">secondary</tspan>
+            <tspan x="555.542969" y="490">key 2</tspan>
+        </text>
+        <text id="secondary-key-3" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="655" y="470">secondary</tspan>
+            <tspan x="675.542969" y="490">key 3</tspan>
+        </text>
+        <g id="DIAGRAMS-/-BLOCK-/-round-gray" transform="translate(410.000000, 169.000000)">
+            <rect id="Rectangle-Copy-14" fill="#E1E1E1" fill-rule="evenodd" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="26" y="20">vers. 4</tspan>
+            </text>
+        </g>
+        <g id="DIAGRAMS-/-BLOCK-/-round-black" transform="translate(650.000000, 233.000000)">
+            <rect id="Rectangle-Copy-14" fill="#000000" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FF2E2F">
+                <tspan x="19.1835938" y="20">vers. 3</tspan>
+            </text>
+        </g>
+        <g id="DIAGRAMS-/--BLOCK-/-round-black" transform="translate(410.000000, 361.000000)">
+            <g id="DIAGRAMS-/-BLOCK-/-round-black">
+                <rect id="Rectangle-Copy-14" fill="#1F1E1E" x="0" y="0" width="90" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="19.1835938" y="20">vers. 1</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-BLOCK-/-round-gray" transform="translate(530.000000, 106.000000)">
+            <rect id="Rectangle-Copy-14" fill="#E1E1E1" fill-rule="evenodd" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="26" y="20">vers. 5</tspan>
+            </text>
+        </g>
+        <path d="M815,58.5 C814.723858,58.5 814.5,58.7238576 814.5,59 L814.5,442 C814.5,442.276142 814.723858,442.5 815,442.5 C815.276142,442.5 815.5,442.276142 815.5,442 L815.5,59 C815.5,58.7238576 815.276142,58.5 815,58.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <text id="secondary-key-4" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" line-spacing="20" fill="#595959">
+            <tspan x="775" y="470">secondary</tspan>
+            <tspan x="795.542969" y="490">key 4</tspan>
+        </text>
+        <g id="DIAGRAMS-/--BLOCK-/-round-black" transform="translate(770.000000, 297.000000)">
+            <g id="DIAGRAMS-/-BLOCK-/-round-black">
+                <rect id="Rectangle-Copy-14" fill="#1F1E1E" x="0" y="0" width="90" height="32" rx="14"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="19.1835938" y="20">vers. 2</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-BLOCK-/-round-gray" transform="translate(770.000000, 42.000000)">
+            <rect id="Rectangle-Copy-14" fill="#E1E1E1" fill-rule="evenodd" x="0" y="0" width="90" height="32" rx="14"></rect>
+            <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                <tspan x="26" y="20">vers. 6</tspan>
+            </text>
+        </g>
+        <text id="Deleted,-but-visible" font-family="OpenSans-Semibold, Open Sans" font-size="10" font-weight="500" fill="#FF2E2F">
+            <tspan x="706" y="180">Deleted, but </tspan>
+            <tspan x="706" y="194">visible in the </tspan>
+            <tspan x="706" y="208">secondary </tspan>
+            <tspan x="706" y="222">index!</tspan>
+        </text>
+    </g>
+</svg>

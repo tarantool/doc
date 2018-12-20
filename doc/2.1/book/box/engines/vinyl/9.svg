@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="660px" height="276px" viewBox="0 0 660 276" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-1"></path>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-3"></path>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-5"></path>
+        <path d="M-1.3904344,7.18765248 L2.6095656,2.18765248 C2.80972824,1.93744917 3.19027176,1.93744917 3.3904344,2.18765248 L7.3904344,7.18765248 C7.65233974,7.51503415 7.4192531,8 7,8 L-1,8 C-1.4192531,8 -1.65233974,7.51503415 -1.3904344,7.18765248 Z" id="path-7"></path>
+    </defs>
+    <g id="9" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-8-Copy" transform="translate(188.000000, 15.000000)">
+            <g id="DIAGRAMS-/-Arrows-/-Left" transform="translate(99.000000, 5.000000) rotate(-180.000000) translate(-99.000000, -5.000000) translate(96.000000, 0.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+                <g id="COLOR-/-diagram-/-black" mask="url(#mask-2)" fill="#000000" fill-rule="evenodd">
+                    <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+                </g>
+            </g>
+            <path d="M97.9158662,5 L0.0187553862,5" id="Path-6-Copy" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(48.967311, 5.000000) scale(-1, 1) translate(-48.967311, -5.000000) "></path>
+        </g>
+        <text id="GET-(16)" font-family="OpenSans-Semibold, Open Sans" font-size="14" font-weight="500" fill="#000000">
+            <tspan x="205.303223" y="11">GET (16)</tspan>
+        </text>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(292.000000, 4.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16"></text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(292.000000, 64.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">22</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(330.000000, 4.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16"></text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(330.000000, 64.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">37</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(292.000000, 124.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">25</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(254.000000, 124.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">10</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(330.000000, 124.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">36</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(368.000000, 124.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="5.14257812" y="20">42</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(292.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">26</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(254.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">15</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(216.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="8.56738281" y="20">8</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(178.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="8.56738281" y="20">3</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-black" transform="translate(330.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-black">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="5.14257812" y="20">35</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(368.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="5.14257812" y="20">40</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(406.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="5.14257812" y="20">45</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-square-/-gray" transform="translate(444.000000, 184.000000)">
+            <g id="CHART-/-VINYL-/-rect-/-gray">
+                <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                    <tspan x="5.14257812" y="20">48</tspan>
+                </text>
+            </g>
+        </g>
+        <g id="Group" transform="translate(26.000000, 244.000000)">
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(266.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">28 </tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-black" transform="translate(228.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-black">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                        <tspan x="5.14257812" y="20">23</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-black" transform="translate(190.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-black">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                        <tspan x="5.14257812" y="20">16</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-black" transform="translate(152.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-black">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#1F1E1E" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#FFFFFF">
+                        <tspan x="5.14257812" y="20">14</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(114.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">10</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(76.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="8.56738281" y="20">7</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(38.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="8.56738281" y="20">6</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="8.56738281" y="20">2</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(304.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">30</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(342.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">32</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(380.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">37</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(418.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">38</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(456.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">41</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(494.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">45</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(532.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">47</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="DIAGRAMS-/-square-/-gray" transform="translate(570.000000, 0.000000)">
+                <g id="CHART-/-VINYL-/-rect-/-gray">
+                    <rect id="Rectangle" stroke="#E9E9E9" stroke-width="0.5" fill="#E1E1E1" x="0.25" y="0.25" width="37.5" height="31.5"></rect>
+                    <text id="text" font-family="OpenSans-Semibold, Open Sans" font-size="12" font-weight="500" line-spacing="16" fill="#1F1E1E">
+                        <tspan x="5.14257812" y="20">49</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <text id="Disk" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#595959">
+            <tspan x="599.398438" y="81">Disk</tspan>
+        </text>
+        <text id="Memory" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#595959">
+            <tspan x="567.476562" y="31">Memory</tspan>
+        </text>
+        <path d="M1,49.5 C0.723857625,49.5 0.5,49.7238576 0.5,50 C0.5,50.2761424 0.723857625,50.5 1,50.5 L659,50.5 C659.276142,50.5 659.5,50.2761424 659.5,50 C659.5,49.7238576 659.276142,49.5 659,49.5 L1,49.5 Z" id="Rectangle-2" stroke="#D7D7D7"></path>
+        <path d="M311,97.9181356 L311,103.953891 C311,107.267599 308.313708,109.953891 305,109.953891 L279.074536,109.953891 C275.760828,109.953891 273.074536,112.640182 273.074536,115.953891 L273.074536,122.433494" id="Path-10" stroke="#000000" stroke-linecap="round"></path>
+        <g id="DIAGRAMS-/-Arrows-/-Left" transform="translate(273.000000, 120.000000) rotate(-90.000000) translate(-273.000000, -120.000000) translate(270.000000, 115.000000)">
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+            <g id="COLOR-/-diagram-/-black" mask="url(#mask-4)" fill="#000000" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-Arrows-/-Left" transform="translate(273.000000, 180.000000) rotate(-90.000000) translate(-273.000000, -180.000000) translate(270.000000, 175.000000)">
+            <mask id="mask-6" fill="white">
+                <use xlink:href="#path-5"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+            <g id="COLOR-/-diagram-/-black" mask="url(#mask-6)" fill="#000000" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+            </g>
+        </g>
+        <g id="DIAGRAMS-/-Arrows-/-Left" transform="translate(197.000000, 240.000000) rotate(-90.000000) translate(-197.000000, -240.000000) translate(194.000000, 235.000000)">
+            <mask id="mask-8" fill="white">
+                <use xlink:href="#path-7"></use>
+            </mask>
+            <g id="Mask" fill-rule="nonzero" transform="translate(3.000000, 5.000000) rotate(-90.000000) translate(-3.000000, -5.000000) "></g>
+            <g id="COLOR-/-diagram-/-black" mask="url(#mask-8)" fill="#000000" fill-rule="evenodd">
+                <rect id="Rectangle" x="0" y="0" width="6" height="10"></rect>
+            </g>
+        </g>
+        <path d="M273,157.976692 L273,179.405" id="Path-11" stroke="#000000" stroke-linecap="round"></path>
+        <path d="M273,217.990124 L273,223.981946 C273,227.295654 270.313708,229.981946 267,229.981946 L203.085886,229.981946 C199.772178,229.981946 197.085886,232.668237 197.085886,235.981946 L197.085886,241.337572" id="Path-12" stroke="#000000" stroke-linecap="round"></path>
+    </g>
+</svg>
