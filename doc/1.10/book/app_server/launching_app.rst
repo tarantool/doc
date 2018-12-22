@@ -70,7 +70,7 @@ To run Tarantool with our application, we can say:
 
 Here two resources on the host get mounted in the container:
 
-* our application file (``\`pwd\`/myapp.lua``) and
+* our application file (myapp.lua) and
 * Tarantool data directory (``/data/dir/on/host``).
 
 By convention, the directory for Tarantool application code inside a container

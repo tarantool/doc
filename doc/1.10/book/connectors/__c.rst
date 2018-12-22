@@ -87,7 +87,7 @@ In this program, the stream will be named ``tnt``.
 Before connecting on the ``tnt`` stream, some options may have to be set.
 The most important option is TNT_OPT_URI.
 In this program, the :ref:`URI <index-uri>` is ``localhost:3301``, since that is where the
-Tarantool instance is supposed to be :ref:`listening <cfg_basic-listen>`.
+Tarantool instance is supposed to be listening.
 
 Function description:
 
@@ -108,7 +108,7 @@ Function description:
 
 .. code-block:: text
 
-    int tnt_connect(struct tnt_stream \*s)
+    int tnt_connect(struct tnt_stream *s)
 
 The connection might fail for a variety of reasons, such as:
 the server is not running, or the URI contains an invalid :ref:`password<authentication-passwords>`.
@@ -135,7 +135,7 @@ Function description:
 
 .. code-block:: text
 
-    ssize_t tnt_object_format(struct tnt_stream \*s, const char \*fmt, ...)
+    ssize_t tnt_object_format(struct tnt_stream *s, const char *fmt, ...)
 
 **SEND REQUEST:** The database-manipulation requests are analogous to the
 requests in the box library.
@@ -154,13 +154,13 @@ Function description:
 
 .. code-block:: text
 
-    ssize_t tnt_insert(struct tnt_stream \*s, uint32_t space, struct tnt_stream \*tuple)
-    ssize_t tnt_replace(struct tnt_stream \*s, uint32_t space, struct tnt_stream \*tuple)
-    ssize_t tnt_select(struct tnt_stream \*s, uint32_t space, uint32_t index,
+    ssize_t tnt_insert(struct tnt_stream *s, uint32_t space, struct tnt_stream *tuple)
+    ssize_t tnt_replace(struct tnt_stream *s, uint32_t space, struct tnt_stream *tuple)
+    ssize_t tnt_select(struct tnt_stream *s, uint32_t space, uint32_t index,
                        uint32_t limit, uint32_t offset, uint8_t iterator,
-                       struct tnt_stream \*key)
-    ssize_t tnt_update(struct tnt_stream \*s, uint32_t space, uint32_t index,
-                       struct tnt_stream \*key, struct tnt_stream \*ops)
+                       struct tnt_stream *key)
+    ssize_t tnt_update(struct tnt_stream *s, uint32_t space, uint32_t index,
+                       struct tnt_stream *key, struct tnt_stream *ops)
 
 **GET REPLY:** For most requests, the client will receive a reply containing some
 indication whether the result was successful, and a set of tuples.
@@ -178,9 +178,9 @@ Function description:
 
 .. code-block:: text
 
-    struct tnt_reply \*tnt_reply_init(struct tnt_reply \*r)
-    tnt->read_reply(struct tnt_stream \*s, struct tnt_reply \*r)
-    void tnt_reply_free(struct tnt_reply \*r)
+    struct tnt_reply *tnt_reply_init(struct tnt_reply *r)
+    tnt->read_reply(struct tnt_stream *s, struct tnt_reply *r)
+    void tnt_reply_free(struct tnt_reply *r)
 
 **TEARDOWN:** When a session ends, the connection that was made with
 :c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that were
@@ -196,8 +196,8 @@ Function description:
 
 .. code-block:: text
 
-    void tnt_close(struct tnt_stream \*s)
-    void tnt_stream_free(struct tnt_stream \*s)
+    void tnt_close(struct tnt_stream *s)
+    void tnt_stream_free(struct tnt_stream *s)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                          Example 2

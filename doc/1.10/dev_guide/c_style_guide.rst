@@ -602,8 +602,8 @@ When commenting the kernel API functions, please use the kernel-doc format.
 See the files Documentation/kernel-doc-nano-HOWTO.txt and scripts/kernel-doc
 for details.
 
-Linux style for comments is the C89 ``"/\* ... \*/"`` style.
-Don't use C99-style ``"// ..."`` comments.
+Linux style for comments is the C89 :code:`/* ... */`` style.
+Don't use C99-style :code:`// ...` comments.
 
 The preferred style for long (multi-line) comments is:
 

@@ -61,7 +61,7 @@ Greeting packet
 
 The server instance begins the dialogue by sending a fixed-size (128-byte) text greeting
 to the client. The greeting always contains two 64-byte lines of ASCII text, each
-line ending with a newline character ('\\n'). The first line contains the instance
+line ending with a newline character (:code:`\n`). The first line contains the instance
 version and protocol type. The second line contains up to 44 bytes of base64-encoded
 random string, to use in the authentication packet, and ends with up to 23 spaces.
 
