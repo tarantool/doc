@@ -146,6 +146,12 @@ Below is a list of all ``http`` functions.
         * ``http_client:connect:(url, options)`` - shortcut for
           ``http_client:request("CONNECT", url, nil, opts)``
 
+        Requests may be influenced by environment variables, for example
+        users can set up an http proxy by setting
+        :samp:`HTTP_PROXY={proxy}` before initiating any requests.
+        See the web page document
+        `Environment variables libcurl understands <https://curl.haxx.se/libcurl/c/libcurl-env.html>`_.
+
     .. _client_object-stat:
 
     .. function:: stat()
