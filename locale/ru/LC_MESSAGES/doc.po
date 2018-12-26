@@ -383,18 +383,6 @@ msgstr ""
 msgid "Discussion boards"
 msgstr ""
 
-#: ../doc.rst:101
-msgid "`English`_"
-msgstr ""
-
-#: ../doc.rst:102
-msgid "`Russian`_"
-msgstr ""
-
-#: ../doc.rst:104
-msgid "Telegram chat"
-msgstr ""
-
 #: ../doc.rst:106
 msgid "tl;dr? ;-) Feel free to ask your question in our `telegram chat`_."
 msgstr ""
@@ -35333,6 +35321,33 @@ msgstr ""
 "exit() <os-exit>`. Чтобы остановить Tarantool (с другого терминала): :code:"
 "`sudo pkill -f tarantool`. Чтобы удалить тестовую базу: :code:`rm -r ~/"
 "tarantool_sandbox`."
+
+msgid ""
+"This manual embraces all aspects of using Tarantool: from introductory information and "
+"exercises for beginners -- to advanced instructions and detailed references for power users "
+"and contributors."
+msgstr ""
+"Данное руководство охватывает все аспекты использования Tarantool'а: от вводной информации и "
+"упражнений для начинающих -- до продвинутых инструкций и подробных справочников для опытных "
+"пользователей и сторонних разработчиков."
+
+msgid "Other sources"
+msgstr "Другие источники"
+
+msgid "`Single page <singlehtml.html>`_"
+msgstr "`На одной странице <singlehtml.html>`_"
+
+msgid "`PDF <Tarantool.pdf>`_"
+msgstr "`PDF <Tarantool.pdf>`_"
+
+msgid "`English`_"
+msgstr "`Форум (eng)`_"
+
+msgid "`Russian`_"
+msgstr "`Форум (рус)`_"
+
+msgid "`Telegram chat EN`_"
+msgstr "Чат в Telegram на EN `Telegram chat EN`_"
 
 #~ msgid ""
 #~ "**Tarantool's disk-based storage engine** is a fusion of ideas from "
