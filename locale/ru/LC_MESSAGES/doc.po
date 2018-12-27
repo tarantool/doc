@@ -35349,6 +35349,9 @@ msgstr "`Форум (рус)`_"
 msgid "`Telegram chat EN`_"
 msgstr "Чат в Telegram на EN `Telegram chat EN`_"
 
+msgid "Tarantool 1.6 manual"
+msgstr "Руководство по Tarantool 1.6"
+
 #~ msgid ""
 #~ "**Tarantool's disk-based storage engine** is a fusion of ideas from "
 #~ "modern filesystems, log-structured merge trees and classical B-trees. All "
