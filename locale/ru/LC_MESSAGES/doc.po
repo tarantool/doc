@@ -39605,7 +39605,7 @@ msgstr ""
 
 #: ../doc/1.10/index.rst:56
 msgid "Tarantool 1.10 manual"
-msgstr ""
+msgstr "Руководство по Tarantool 1.10"
 
 #: ../doc/1.10/index.rst:60
 msgid ""
@@ -66808,9 +66808,6 @@ msgstr "Поддержка новой платформы:"
 #: ../doc/1.10/whats_new.rst:1274
 msgid "Fedora 22, Ubuntu Vivid"
 msgstr "Fedora 22, Ubuntu Vivid"
-
-msgid "Tarantool 1.10 manual"
-msgstr "Руководство по Tarantool 1.10"
 
 #~ msgid ""
 #~ "Tarantool storage architecture is append-only: files are only appended to, and are never "
