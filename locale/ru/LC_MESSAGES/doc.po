@@ -66809,6 +66809,9 @@ msgstr "Поддержка новой платформы:"
 msgid "Fedora 22, Ubuntu Vivid"
 msgstr "Fedora 22, Ubuntu Vivid"
 
+msgid "Tarantool 1.10 manual"
+msgstr "Руководство по Tarantool 1.10"
+
 #~ msgid ""
 #~ "Tarantool storage architecture is append-only: files are only appended to, and are never "
 #~ "overwritten. Old files are removed by garbage collection after a checkpoint. You can "
