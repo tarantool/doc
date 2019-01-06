@@ -36,7 +36,7 @@ This query will be processed with three operating system **threads**:
    the server instance can understand without parsing everything again.
 
 2. The network thread ships this message to the instance's
-   **"transaction processor" thread** using a lock-free message bus.
+   **transaction processor thread** using a lock-free message bus.
    Lua programs execute directly in the transaction processor thread,
    and do not require parsing and preparation.
 
