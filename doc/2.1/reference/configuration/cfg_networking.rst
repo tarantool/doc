@@ -21,7 +21,7 @@
 
     To handle messages, Tarantool allocates fibers.
     To prevent fiber overhead from affecting the whole system,
-    Tarantool restricts the number of fibers to ``net_msg_max``
+    Tarantool restricts how many messages the fibers handle,
     so that some pending requests are blocked.
 
     On powerful systems, increase ``net_msg_max`` and the scheduler
@@ -29,7 +29,21 @@
 
     On weaker systems, decrease ``net_msg_max`` and the overhead
     may decrease although this may take some time because the
-    scheduler must wait until alrady-running requests finish.
+    scheduler must wait until already-running requests finish.
+
+    When ``net_msg_max`` is reached,
+    Tarantool suspends processing of incoming packages until it
+    has processed earlier messages. This is not a direct restriction of
+    the number of fibers that handle network messages, rather it
+    is a system-wide restriction of channel bandwidth.
+    This in turn causes restriction of the number of incoming
+    network messages that the
+    :ref:`transaction processor thread <atomic-threads_fibers_yields>`
+    handles, and therefore indirectly affects the fibers that handle
+    network messages.
+    (The number of fibers is smaller than the number of messages because
+    messages can be released as soon as they are delivered, while
+    incoming requests might not be processed until some time after delivery.)
 
     On typical systems, the default value (768) is correct.
 

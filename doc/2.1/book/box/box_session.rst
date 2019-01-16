@@ -71,7 +71,6 @@ Below is a list of all ``box.session`` functions and members.
     | <box_session-push>`                  |                                 |
     +--------------------------------------+---------------------------------+
 
-
 .. module:: box.session
 
 .. _box_session-id:
@@ -79,7 +78,7 @@ Below is a list of all ``box.session`` functions and members.
 .. function:: id()
 
     :return: the unique identifier (ID) for the current session.
-             The result can be 0 meaning there is no session.
+             The result can be 0 or -1 meaning there is no session.
     :rtype:  number
 
 .. _box_session-exists:
@@ -114,6 +113,7 @@ Below is a list of all ``box.session`` functions and members.
 
     :return: the value of the :code:`sync` integer constant used in the
              `binary protocol <https://github.com/tarantool/tarantool/blob/2.1/src/box/iproto_constants.h>`_.
+             This value becomes invalid when the session is disconnected.
 
     :rtype:  number
 
@@ -334,6 +334,9 @@ Below is a list of all ``box.session`` functions and members.
     trigger is invoked while the session associated with the client still exists
     and can access session properties, such as :ref:`box.session.id() <box_session-id>`.
 
+    Since version 1.10, the trigger function is invoked immediately after the disconnect,
+    even if requests that were made during the session have not finished.
+
     :param function trigger-function: function which will become the trigger function
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
@@ -498,6 +501,8 @@ Below is a list of all ``box.session`` functions and members.
     it is invoked by the server (on the "remote database system" to use
     our terminology for net.box), and the client has options for getting
     such messages.
+
+    This function returns an error if the session is disconnected.
 
     :param string-or-number message: what to send
     :param int sync: an optional argument to indicate what the session is,
