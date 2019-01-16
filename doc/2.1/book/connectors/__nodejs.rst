@@ -16,14 +16,14 @@ installed:
 
 Here is a complete node.js program that inserts ``[99999,'BB']`` into
 ``space[999]`` via the node.js API. Before trying to run, check that the server instance
-is :ref:`listening<cfg_basic-listen>` at ``localhost:3301`` and that the space ``examples`` exists, as
+is :ref:`listening <cfg_basic-listen>` at ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`. To run, paste the code into
 a file named :file:`example.rs` and say ``node example.rs``. The program will
 connect using an application-specific definition of the space. The program will
 open a socket connection with the Tarantool instance at ``localhost:3301``, then
-send an :ref:`INSERT<box_space-insert>` request, then — if all is well — end after saying "Insert
+send an :ref:`INSERT <box_space-insert>` request, then — if all is well — end after saying "Insert
 succeeded". If Tarantool is not running on ``localhost`` with listen port =
-3301, the program will print “Connect failed”. If :ref:`user 'guest' user<box_space-user>` does not have
+3301, the program will print “Connect failed”. If :ref:`the 'guest' user <box_space-user>` does not have
 authorization to connect, the program will print "Auth failed". If the insert
 request fails for any reason, for example because the tuple already exists,
 the program will print "Insert failed".
