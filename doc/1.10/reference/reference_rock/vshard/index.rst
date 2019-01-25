@@ -1529,10 +1529,10 @@ Router public API
 
 .. _router_api-replicaset_callro:
 
-.. function:: replicaset.callro(bucket_id, function_name, {argument_list}, {options})
+.. function:: replicaset.callro(function_name, {argument_list}, {options})
 
-    Call a function on a nearest available replica (distances are defined using
-    ``replica.zone`` and ``cfg.weights`` matrix) with a specified
+    Call a function on the nearest available replica (distances are defined using
+    ``replica.zone`` and ``cfg.weights`` matrix) with specified
     arguments. It is recommended to call only read-only functions using
     ``replicaset.callro()``, as the function can be executed not only on a master,
     but also on replicas.
