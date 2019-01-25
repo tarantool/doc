@@ -105,6 +105,7 @@ variables.
     * **gc().checkpoints[n].references** -- a list of references to a checkpoint.
     * **gc().checkpoints[n].vclock** -- a checkpoint's vclock value.
     * **gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's components.
+    * **gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false
     * **gc().vclock** -- the garbage collector's vclock.
     * **gc().signature** -- the sum of the garbage collector's checkpoint's components.
 
