@@ -102,13 +102,13 @@ Response:
     }
 
 If the SQL request is not SELECT, the response body contains only SQL_INFO.
-Usually SQL_INFO is a map with only one key -- SQL_ROW_COUNT (0) -- which is the number of
+Usually SQL_INFO is a map with only one key -- SQL_INFO_ROW_COUNT (0) -- which is the number of
 changed rows. For example, if the request is
 :code:`INSERT INTO test VALUES (1), (2), (3)`, the response body contains
-an SQL_INFO map with SQL_ROW_COUNT = 3.
-SQL_ROW_COUNT can be 0 for statements that do not change rows, such as CREATE TABLE.
+an SQL_INFO map with SQL_INFO_ROW_COUNT = 3.
+SQL_INFO_ROW_COUNT can be 0 for statements that do not change rows, such as CREATE TABLE.
 
-The SQL_INFO map may contain a second key -- SQL_AUTO_INCREMENT (1) -- which is the
+The SQL_INFO map may contain a second key -- SQL_INFO_AUTO_INCREMENT_IDS (1) -- which is the
 new primary-key value for an INSERT in a table defined with PRIMARY KEY
 AUTOINCREMENT.
 
@@ -116,14 +116,14 @@ AUTOINCREMENT.
 
     EXECUTE NOT-SELECT RESPONSE BODY:
 
-    +========================================================+
-    |                                                        |
-    |   0x43: SQL_INFO                                       |
-    | MP_MAP: single-key map  +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |
-    |                         |                            | |
-    |                         |    0x44: ROW_COUNT         | |
-    |                         | MP_UINT: changed row count | |
-    |                         |                            | |
-    |                         +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |
-    |                                                        |
-    +========================================================+
+    +=========================================================+
+    |                                                         |
+    |   0x42: SQL_INFO                                        |
+    | MP_MAP: usually 1 key   +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |
+    |                         |                             | |
+    |                         |    0x00: SQL_INFO_ROW_COUNT | |
+    |                         | MP_UINT: changed row count  | |
+    |                         |                             | |
+    |                         +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |
+    |                                                         |
+    +=========================================================+
