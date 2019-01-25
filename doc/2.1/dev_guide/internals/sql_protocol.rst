@@ -5,7 +5,7 @@ SQL protocol
 --------------------------------------------------------------------------------
 
 Tarantool's SQL protocol regulates how to build SQL requests and parse responses
-using the common Tarantool's binary protocol.
+using Tarantool's common binary protocol.
 
 Special SQL keys:
 
@@ -15,9 +15,8 @@ Special SQL keys:
     <metadata>      ::= 0x32
     <sql_text>      ::= 0x40
     <sql_bind>      ::= 0x41
-    <sql_options>   ::= 0x42 /* yet unused */
-    <sql_info>      ::= 0x43
-    <sql_row_count> ::= 0x44
+    <sql_info>      ::= 0x42
+
 
 Special SQL commands:
 
@@ -103,11 +102,15 @@ Response:
     }
 
 If the SQL request is not SELECT, the response body contains only SQL_INFO.
-The SQL_INFO is a map with one key -- SQL_ROW_COUNT -- which is the number of
+Usually SQL_INFO is a map with only one key -- SQL_ROW_COUNT (0) -- which is the number of
 changed rows. For example, if the request is
 :code:`INSERT INTO test VALUES (1), (2), (3)`, the response body contains
-SQL_INFO map with SQL_ROW_COUNT = 3.
-Notice that SQL_ROW_COUNT can be 0, for example if the request is CREATE TABLE.
+an SQL_INFO map with SQL_ROW_COUNT = 3.
+SQL_ROW_COUNT can be 0 for statements that do not change rows, such as CREATE TABLE.
+
+The SQL_INFO map may contain a second key -- SQL_AUTO_INCREMENT (1) -- which is the
+new primary-key value for an INSERT in a table defined with PRIMARY KEY
+AUTOINCREMENT.
 
 .. code-block:: none
 
