@@ -24,21 +24,21 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +============+===============================================+==========================================================+=========================================================+
     | E011       | Numeric data types                                                                                                                                                 |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-01   | INTEGER and SMALLINT                          | ``create table t (s1 int primary key);``                 | Okay.                                                   |
+    | E011-01    | INTEGER and SMALLINT                          | ``create table t (s1 int primary key);``                 | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-02   | REAL, DOUBLE PRECISION, and FLOAT data types  | ``create table tr (s1 float primary key);``              | Okay.                                                   |
+    | E011-02    | REAL, DOUBLE PRECISION, and FLOAT data types  | ``create table tr (s1 float primary key);``              | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-03   | DECIMAL and NUMERIC data types                | ``create table td (s1 numeric primary key);``            | Okay, although: when there are many post-decimal digits |
+    | E011-03    | DECIMAL and NUMERIC data types                | ``create table td (s1 numeric primary key);``            | Okay, although: when there are many post-decimal digits |
     |            |                                               |                                                          | there is a switch to exponential notation, for example  |
     |            |                                               |                                                          | after ``insert into t3 values (0.0000000000000001);``   |
     |            |                                               |                                                          | and ``select *from t3" we get "1.0e-16``. We regard     |
     |            |                                               |                                                          | this as a display flaw rather than a fail.              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-04   | Arithmetic operators                          | ``select 10+1,9-2,8*3,7/2 from t;``                      | Okay.                                                   |
+    | E011-04    | Arithmetic operators                          | ``select 10+1,9-2,8*3,7/2 from t;``                      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-05   | Numeric comparisons                           | ``select * from t where 1 < 2;``                         | Okay.                                                   |
+    | E011-05    | Numeric comparisons                           | ``select * from t where 1 < 2;``                         | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E-011-06   | Implicit casting among the numeric data types | ``select * from t where s1 = 1.00;``                     | Okay, but only because Tarantool doesn't distinguish    |
+    | E011-06    | Implicit casting among the numeric data types | ``select * from t where s1 = 1.00;``                     | Okay, but only because Tarantool doesn't distinguish    |
     |            |                                               |                                                          | between numeric data types.                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021       | Character string types                                                                                                                                             |
@@ -96,9 +96,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E051-05    | Select list items can be renamed              | ``select s1 as K from t order by K;``                    | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-06    | HAVING clause                                 | ``select s1,count(*) from t having s1 < 'b';``           | Fail. GROUP BY is mandatory before HAVING.              |
-    |            |                                               |                                                          | If we hadn't happened to omit GROUP BY, it would have   |
-    |            |                                               |                                                          | been okay.                                              |
+    | E051-06    | HAVING clause                                 | ``select count(*) from t having count(*) > 0;``          | Okay. GROUP BY is not mandatory before HAVING.          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E051-07    | Qualified * in select list                    | ``select t.* from t;``                                   | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -248,7 +246,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E141-08    | NOT NULL inferred on primary key              | ``create table t14 (s1 int primary key);``               | Okay. We are unable to insert NULL although we don't    |
     |            |                                               |                                                          | explicitly say the column is NOT NULL.                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-10    | Names in a foreign key can be specified in    | ``create table t15 (s1 int, s2 int, primary key          |  Okay.                                                  |
+    | E141-10    | Names in a foreign key can be specified in    | ``create table t15 (s1 int, s2 int, primary key          | Okay.                                                   |
     |            | any order                                     | (s1,s2));``                                              |                                                         |
     |            |                                               | ``create table t16 (s1 int primary key, s2 int, foreign  |                                                         |
     |            |                                               | key (s2,s1) references t15 (s1,s2));``                   |                                                         |
@@ -325,13 +323,13 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F051-02    | TIME data type (including support of TIME     | ``create table times (s1 time default time '1:2:3');``   | Fail. Syntax error.                                     |
     |            | literal)                                      |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-03    | TIMESTAMP data type (including support of     | ``create table timestamps (s1 timestamp);``              | Fail.                                                   |
+    | F051-03    | TIMESTAMP data type (including support of     | ``create table timestamps (s1 timestamp);``              | Fail. Syntax error.                                     |
     |            | TIMESTAMP literal)                            |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051-04    | Comparison predicate on DATE, TIME and        | ``select * from dates where s1 = s1;``                   | Okay. We're being lenient because Tarantool does        |
     |            | TIMESTAMP data types                          |                                                          | have date-arithmetic functions.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-05    | Explicit CAST between date-time types and     | ``select cast(s1 as varchar) from dates;``               | Okay.                                                   |
+    | F051-05    | Explicit CAST between date-time types and     | ``select cast(s1 as varchar(10)) from dates;``           | Okay.                                                   |
     |            | character string types                        |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051-06    | CURRENT_DATE                                  | ``select current_date from t;``                          | Okay.                                                   |
@@ -421,9 +419,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | in the final score).                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
-Total number of features marked "Fail": 57
+Total number of items marked "Fail": 61
 
-Total number of features marked "Okay": 77
+Total number of items marked "Okay": 85
 
 
 
