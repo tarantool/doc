@@ -8,22 +8,22 @@ Triggers
 **Triggers**, also known as **callbacks**, are functions which the server
 executes when certain events happen.
 
-There are four types of triggers in Tarantool:
+There are five types of triggers in Tarantool:
 
 * :ref:`connection triggers <box_session-on_connect>`, which are executed
   when a session begins or ends,
 
 * :ref:`authentication triggers <box_session-on_auth>`, which are
-  executed during authentication, and
+  executed during authentication,
 
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
-  events, and
+  events,
 
 * :ref:`transaction triggers <box-on_commit>`, which are executed
-  during commit or rollback.
+  during commit or rollback,
 
-* :ref:`transaction triggers <box-on_commit>`, which are executed
-  during commit or rollback.
+* :ref:`the shutdown trigger <box_ctl-on_shutdown>`, which is executed
+  when the server stops.
 
 All triggers have the following characteristics:
 
@@ -36,7 +36,8 @@ All triggers have the following characteristics:
   * :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
   * :ref:`space_object:on_replace() <box_space-on_replace>` plus
     :ref:`space_object:before_replace() <box_space-before_replace>` plus
-    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`.
+    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, plus
+    :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
@@ -73,11 +74,12 @@ All triggers have the following characteristics:
 
 To get a list of triggers, you can use:
 
-* on_connect() – with no arguments – to return a table of all connect-trigger functions;
-* on_auth() to return all authentication-trigger functions;
-* on_disconnect() to return all disconnect-trigger functions;
-* on_replace() to return all replace-trigger functions made for on_replace().
-* before_replace() to return all replace-trigger functions made for before_replace().
+* box.session.on_connect() – with no arguments – to return a table of all connect-trigger functions;
+* box.session.on_auth() to return all authentication-trigger functions;
+* box.session.on_disconnect() to return all disconnect-trigger functions;
+* space_object:on_replace() to return all replace-trigger functions made for on_replace().
+* space_object:before_replace() to return all replace-trigger functions made for before_replace().
+* box.ctl.on_shutdown() to return all shutdown-trigger functions made for on_shutdown().
 
 **Example**
 
@@ -97,7 +99,7 @@ Here we log connect and disconnect events into Tarantool server log.
 
    function on_auth_impl(user)
      log.info("authenticated sid "..box.session.id().." as "..user)
-   end
+   end"
 
    function on_connect() pcall(on_connect_impl) end
    function on_disconnect() pcall(on_disconnect_impl) end
