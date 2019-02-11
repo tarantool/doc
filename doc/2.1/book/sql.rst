@@ -44,9 +44,10 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E021       | Character string types                                                                                                                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-01    | Character data type (including all its        | ``create table t44 (s1 char primary key);``              | Fail, only the spelling CHAR is allowed. This type of   |
-    |            | its spellings)                                |                                                          | Fail will only be counted once.                         |
+    |            | spellings)                                    |                                                          | Fail will only be counted once.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-02    | CHARACTER VARYING data type (including all    | ``create table t45 (s1 varchar primary key);``           | Fail, only the spelling VARCHAR is allowed.             |
+    |            | its spellings)                                |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-03    | Character literals                            | ``insert into t45 values ('');``                         | Okay, and the bad practice of accepting ""'s for        |
     |            |                                               |                                                          | character literals is avoided.                          |
@@ -70,11 +71,11 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-11    | POSITION function                             | ``select position(x in y) from z;``                      | Fail. There is no such function.                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-02    | Character comparison                          | ``select * from t where s1 > 'a';``                      | Okay. We should note here that comparisons use a binary |
+    | E021-12    | Character comparison                          | ``select * from t where s1 > 'a';``                      | Okay. We should note here that comparisons use a binary |
     |            |                                               |                                                          | collation by default, but it is easy to specify unicode |
     |            |                                               |                                                          | or unicode_ci collations, or create new collations.     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E031       | Identifiers                                   | ``create table rank (rank int primary key);``            | Fail. Tarantool's list of reserved words differs from   |
+    | E031       | Identifiers                                   | ``create table rank (ceil int primary key);``            | Fail. Tarantool's list of reserved words differs from   |
     |            |                                               |                                                          | the standard's list of reserved words.                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E031-01    | Delimited Identifiers                         | ``create table "t47" (s1 int primary key);``             | Okay. And enclosing identifiers inside double quotes    |
@@ -139,7 +140,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E071-01    | UNION DISTINCT table operator                 | ``select * from t union distinct select * from t;``      | Fail. However, "select * from t union select * from t;" |
     |            |                                               |                                                          | is okay.                                                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E071-01    | UNION ALL table operator                      | ``select * from t union all select * from t;``           | Okay.                                                   |
+    | E071-02    | UNION ALL table operator                      | ``select * from t union all select * from t;``           | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E071-03    | EXCEPT DISTINCT table operator                | ``select * from t except distinct select * from t;``     | Fail. However,                                          |
     |            |                                               |                                                          | ``select * from t except select * from t;`` is okay.    |
@@ -196,7 +197,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E101-03    | Searched UPDATE statement                     | ``update t set s1 = null where s1 in (select s1 from     | Okay.                                                   |
     |            |                                               | t2);``                                                   |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E01-04     | Searched DELETE statement                     | ``delete from t where s1 in (select s1 from t);``        | Okay.                                                   |
+    | E101-04    | Searched DELETE statement                     | ``delete from t where s1 in (select s1 from t);``        | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E111       | Single row SELECT statement                   | ``select count(*) from t;``                              | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -287,11 +288,11 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031-04    | ALTER TABLE statement: add column             | ``alter table t7 add column t7_2 varchar default 'q';``  | Fail. Table alterations aren't working at all.          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-14    | DROP TABLE statement: RESTRICT clause         | ``drop table t20 restrict;``                             | Fail. Syntax error, and RESTRICT is not assumed.        |
+    | F031-13    | DROP TABLE statement: RESTRICT clause         | ``drop table t20 restrict;``                             | Fail. Syntax error, and RESTRICT is not assumed.        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-14    | DROP VIEW statement: RESTRICT clause          | ``drop view v2 restrict;``                               | Fail. Syntax error, and RESTRICT is not assumed.        |
+    | F031-16    | DROP VIEW statement: RESTRICT clause          | ``drop view v2 restrict;``                               | Fail. Syntax error, and RESTRICT is not assumed.        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-10    | REVOKE statement: RESTRICT clause             |                                                          | Fail. Tarantool does not support privileges except      |
+    | F031-19    | REVOKE statement: RESTRICT clause             |                                                          | Fail. Tarantool does not support privileges except      |
     |            |                                               |                                                          | via NoSQL.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F041       |Basic joined table                                                                                                                                                  |
@@ -400,22 +401,22 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | T321       | Basic SQL-invoked routines                                                                                                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-01    | User-defined functions with no overloading    | ``create function f () returns int return 5;``           | Fail. Tarantool doesn't support user-defined            |
-    |            | procedures.                                   |                                                          | functions.                                              |
+    |            |                                               |                                                          | SQL functions.                                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-02    | User-defined procedures with no overloading   | ``create procedure p () begin end;``                     | Fail. Tarantool doesn't support user-defined            |
-    |            | procedures.                                   |                                                          | functions.                                              |
+    |            |                                               |                                                          | proceduress.                                            |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-03    | Function invocation                           | ``select f(1) from t;``                                  | Okay. Tarantool can invoke Lua user-defined functions.  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-04    | CALL statement.                               | ``call p();``                                            | Fail. Tarantool doesn't support user-defined            |
-    |            |                                               |                                                          | functions.                                              |
+    |            |                                               |                                                          | procedures.                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-05    | RETURN statement.                             | ``create function f() returns int return 5;``            | Fail. Tarantool doesn't support user-defined            |
     |            |                                               |                                                          | functions.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T631       | IN predicate with one list element            | ``select * from t where 1 in (1);``                      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031       | Basic information schema.                     | ``select * from information_schema.tables;``             | Fail. There is no schema with that name (not counted    |
+    | F021       | Basic information schema                      | ``select * from information_schema.tables;``             | Fail. There is no schema with that name (not counted    |
     |            |                                               |                                                          | in the final score).                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
