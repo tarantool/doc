@@ -219,8 +219,9 @@ recommended.
 .. function:: new(function [, function-arguments])
 
     Create but do not start a fiber: the fiber is created but does not
-    begin to run immediately -- it waits until the fiber creator
-    (that is, the job that is calling ``fiber.new()``) yields.
+    begin to run immediately -- it starts after the fiber creator
+    (that is, the job that is calling ``fiber.new()``) yields,
+    under :ref:`transaction control <atomic-atomic_execution>`.
     The initial fiber state is 'suspended'.
     Thus ``fiber.new()`` differs slightly from
     :ref:`fiber.create() <fiber-create>`.
