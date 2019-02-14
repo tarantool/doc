@@ -11,7 +11,6 @@ Special SQL keys:
 
 .. code-block:: none
 
-    <field_name>    ::= 0x29
     <metadata>      ::= 0x32
     <sql_text>      ::= 0x40
     <sql_bind>      ::= 0x41
@@ -66,7 +65,7 @@ Body structure depends on the type of the SQL request.
 If the SQL request is SELECT, the response contains:
 
 * metadata for columns (metadata for a single column contains only the column's
-  name) and
+  name and type) and
 * result rows.
 
 .. code-block:: none
@@ -79,8 +78,10 @@ If the SQL request is SELECT, the response contains:
     | MP_ARRAY: array of maps:             |                           |
     |           +~~~~~~~~~~~~~~~~~~~~~~~~+ |                           |
     |           | +~~~~~~~~~~~~~~~~~~~~+ | |     0x30: DATA            |
-    |           | |   0x29: FIELD_NAME | | | MP_ARRAY: array of tuples |
+    |           | |   0x00: FIELD_NAME | | | MP_ARRAY: array of tuples |
     |           | | MP_STR: field name | | |                           |
+    |           | |   0x01: FIELD_TYPE | | |                           |
+    |           | | MP_STR: field type | | |                           |
     |           | +~~~~~~~~~~~~~~~~~~~~+ | |                           |
     |           |        MP_MAP          | |                           |
     |           +~~~~~~~~~~~~~~~~~~~~~~~~+ |                           |
@@ -90,15 +91,16 @@ If the SQL request is SELECT, the response contains:
 
 **Example:**
 
-Request: :code:`SELECT col1, col2, col3 FROM test_space`
+Request: :code:`SELECT x, y FROM test_space;`
 
 Response:
 
 .. code-block:: none
 
     BODY = {
-        METADATA = [ { FIELD_NAME: 'col1' }, { FIELD_NAME: 'col2' }, { FIELD_NAME: 'col3' } ],
-        DATA = [ [1, 1, 1], [2, 2, 2], [3, 3, 3], ... ]
+        METADATA = [
+        { FIELD_NAME: 'X', FIELD_TYPE: 'TEXT'}, { FIELD_NAME: 'Y', FIELD_TYPE: 'INTEGER'},
+        DATA = [ ['a', 1], ['c', 2], ['e', 5], ... ]
     }
 
 If the SQL request is not SELECT, the response body contains only SQL_INFO.
