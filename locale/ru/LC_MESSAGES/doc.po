@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-27 13:27+0300\n"
-"PO-Revision-Date: 2019-02-27 15:47+0300\n"
+"PO-Revision-Date: 2019-02-27 15:54+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -1792,7 +1792,6 @@ msgstr ""
 "помощью ``telnet``. Например:"
 
 #: ../doc/2.1/book/admin/security.rst:83
-#, fuzzy
 msgid ""
 "$ telnet 0 3303\n"
 "Trying 0.0.0.0...\n"
@@ -1805,7 +1804,7 @@ msgstr ""
 "Trying 0.0.0.0...\n"
 "Connected to 0.\n"
 "Escape character is '^]'.\n"
-"Tarantool 1.10.0 (Lua console)\n"
+"Tarantool 2.1.0 (Lua console)\n"
 "type 'help' for interactive help"
 
 #: ../doc/2.1/book/admin/security.rst:92
@@ -4106,9 +4105,8 @@ msgid "Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl
 msgstr "Запустите обновленный Tarantool-сервер с помощью ``tarantoolctl`` или ``systemctl``."
 
 #: ../doc/2.1/book/admin/upgrades.rst:123
-#, fuzzy
 msgid "How to upgrade from Tarantool 1.6 to 2.x"
-msgstr "Как обновить Tarantool 1.6 до 1.7 / 1.10"
+msgstr "Как обновить Tarantool 1.6 до 1.7 / 2.x"
 
 #: ../doc/2.1/book/admin/upgrades.rst:125
 msgid ""
@@ -4117,9 +4115,8 @@ msgid ""
 msgstr ""
 
 #: ../doc/2.1/book/admin/upgrades.rst:132
-#, fuzzy
 msgid "How to upgrade from Tarantool 1.7 to 2.x"
-msgstr "Как обновить Tarantool 1.6 до 1.7 / 1.10"
+msgstr "Как обновить Tarantool 1.6 до 1.7 / 2.x"
 
 #: ../doc/2.1/book/admin/upgrades.rst:149
 msgid "Upgrading Tarantool in a replication cluster"
@@ -33962,14 +33959,13 @@ msgstr ""
 "<building_from_source>` данного руководства."
 
 #: ../doc/2.1/dev_guide/building_documentation.rst:92
-#, fuzzy
 msgid ""
 "Use ``git`` to download the latest source code of this documentation from the GitHub "
 "repository ``tarantool/doc``, branch 2.1. For example, to download to a local directory "
 "named ``~/tarantool-doc``:"
 msgstr ""
 "Используйте ``git`` для загрузки последней версии исходного кода документации из репозитория "
-"GitHub ``tarantool/doc`` (ветка 1.10). Например, для загрузки локальной директории под "
+"GitHub ``tarantool/doc`` (ветка 2.1). Например, для загрузки локальной директории под "
 "названием ``~/tarantool-doc``:"
 
 #: ../doc/2.1/dev_guide/building_documentation.rst:96
@@ -34126,14 +34122,13 @@ msgstr ""
 "файле."
 
 #: ../doc/2.1/dev_guide/building_documentation.rst:175
-#, fuzzy
 msgid ""
 "Open your browser and enter ``127.0.0.1:8000/en/doc/2.1/`` into the address box (or "
 "``127.0.0.1:8000/ru/doc/2.1/`` if you built the Russian documentation). Mind the trailing "
 "slash \"/\" in the address string."
 msgstr ""
-"Откройте браузер и введите ``127.0.0.1:8000/en/doc/1.10/`` в адресной строке (или "
-"``127.0.0.1:8000/ru/doc/1.10/`` для документации на русском). Обратите внимание на "
+"Откройте браузер и введите ``127.0.0.1:8000/en/doc/2.1/`` в адресной строке (или "
+"``127.0.0.1:8000/ru/doc/2.1/`` для документации на русском). Обратите внимание на "
 "завершающую косую черту \"/\" в адресной строке."
 
 #: ../doc/2.1/dev_guide/building_documentation.rst:179
@@ -34432,18 +34427,16 @@ msgid "This step is only necessary once, the first time you do a download."
 msgstr "Это действие следует выполнить только один раз при первой загрузке."
 
 #: ../doc/2.1/dev_guide/building_from_source.rst:158
-#, fuzzy
 msgid ""
 "Use ``git`` to download the latest Tarantool source code from the GitHub repository "
 "``tarantool/tarantool``, branch 2.1, to a local directory named ``~/tarantool``, for example:"
 msgstr ""
 "Используйте ``git``, чтобы загрузить последний исходный код Tarantool'а из репозитория  на "
-"GitHub ``tarantool/tarantool`` (ветка 1.10) в локальную директорию ``~/tarantool``, например:"
+"GitHub ``tarantool/tarantool`` (ветка 2.1) в локальную директорию ``~/tarantool``, например:"
 
 #: ../doc/2.1/dev_guide/building_from_source.rst:162
-#, fuzzy
 msgid "$ git clone --recursive https://github.com/tarantool/tarantool.git -b 2.1 ~/tarantool"
-msgstr "$ git clone --recursive https://github.com/tarantool/tarantool.git -b 1.10 ~/tarantool"
+msgstr "$ git clone --recursive https://github.com/tarantool/tarantool.git -b 2.1 ~/tarantool"
 
 #: ../doc/2.1/dev_guide/building_from_source.rst:166
 msgid "On rare occasions, the submodules need to be updated again with the command:"
@@ -34661,9 +34654,8 @@ msgid "See also:"
 msgstr "См. также:"
 
 #: ../doc/2.1/dev_guide/building_from_source.rst:283
-#, fuzzy
 msgid "`Tarantool README.md <https://github.com/tarantool/tarantool/blob/2.1/README.md>`_"
-msgstr "`Tarantool README.md <https://github.com/tarantool/tarantool/blob/1.10/README.md>`_"
+msgstr "`Tarantool README.md <https://github.com/tarantool/tarantool/blob/2.1/README.md>`_"
 
 #: ../doc/2.1/dev_guide/c_style_guide.rst:37
 msgid "C Style Guide"
@@ -44491,7 +44483,7 @@ msgid ""
 "отставать от английской версии.      <div class=\"badge-icon\"></div>  Other sources  Single "
 "page  PDF  English  Russian  Telegram chat RU  Telegram chat EN"
 msgstr ""
-"Руководство по Tarantool 1.10  Данное руководство охватывает все аспекты использования "
+"Руководство по Tarantool 2.1  Данное руководство охватывает все аспекты использования "
 "Tarantool'а: от вводной информации и упражнений для начинающих -- до продвинутых инструкций "
 "и подробных справочников для опытных пользователей и сторонних разработчиков.  Документация "
 "находится в процессе перевода и может отставать от английской версии.      <div class="
@@ -44499,9 +44491,8 @@ msgstr ""
 "Чат в Telegram на RU  Чат в Telegram на EN"
 
 #: ../doc/2.1/index.rst:56
-#, fuzzy
 msgid "Tarantool 2.1 manual"
-msgstr "Руководство по Tarantool 1.10"
+msgstr "Руководство по Tarantool 2.1"
 
 #: ../doc/2.1/index.rst:60
 msgid ""
@@ -67551,9 +67542,8 @@ msgid "Check that these items exist on the computer:"
 msgstr "Проверьте наличие следующих элементов на компьютере:"
 
 #: ../doc/2.1/tutorials/c_tutorial.rst:72
-#, fuzzy
 msgid "Tarantool 2.1"
-msgstr "Tarantool 1.10"
+msgstr "Tarantool 2.1"
 
 #: ../doc/2.1/tutorials/c_tutorial.rst:73
 msgid "A gcc compiler, any modern version should work"
@@ -71158,9 +71148,8 @@ msgid "Ranges and limits"
 msgstr ""
 
 #: ../doc/2.1/tutorials/sql_tutorial.rst:580
-#, fuzzy
 msgid "Tarantool can handle:"
-msgstr "Руководство по Tarantool 1.10"
+msgstr ""
 
 #: ../doc/2.1/tutorials/sql_tutorial.rst:582
 msgid "integers anywhere in the 4-byte integer range,"
@@ -71586,12 +71575,11 @@ msgid "Version 2.x"
 msgstr "Версия 1.9"
 
 #: ../doc/2.1/whats_new.rst:67
-#, fuzzy
 msgid ""
 "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-"
 "server protocol and replication protocol."
 msgstr ""
-"Tarantool 1.10.x обратно совместим с Tarantool 1.9.x в том, что касается структуры бинарных "
+"Tarantool 2.x обратно совместим с Tarantool 1.10.x в том, что касается структуры бинарных "
 "данных, клиент-серверного протокола и протокола репликации. :ref:`Обновление <admin-"
 "upgrades>` можно произвести с помощью процедуры ``box.schema.upgrade()``."
 
@@ -71627,9 +71615,8 @@ msgid "Release type: alpha. Release date: 2018-02-15."
 msgstr "Тип версии: альфа. Дата выхода: 2016-07-11."
 
 #: ../doc/2.1/whats_new.rst:87
-#, fuzzy
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/2.0.4."
-msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.2."
+msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/2.0.4."
 
 #: ../doc/2.1/whats_new.rst:89
 msgid ""
