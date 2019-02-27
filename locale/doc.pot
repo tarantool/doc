@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-16 17:01+0300\n"
+"POT-Creation-Date: 2019-02-27 13:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,7 +185,7 @@ msgstr ""
 #: ../doc/2.1/book/admin/daemon_supervision.rst:56
 #: ../doc/2.1/book/box/box_schema.rst:163
 #: ../doc/2.1/book/box/box_space.rst:314
-#: ../doc/2.1/book/box/data_model.rst:890
+#: ../doc/2.1/book/box/data_model.rst:895
 msgid "Effect"
 msgstr ""
 
@@ -1235,7 +1235,7 @@ msgstr ""
 #: ../doc/2.1/book/box/box_session.rst:304
 #: ../doc/2.1/book/box/box_session.rst:348
 #: ../doc/2.1/book/box/box_session.rst:585
-#: ../doc/2.1/book/box/triggers.rst:116
+#: ../doc/2.1/book/box/triggers.rst:118
 msgid "**Example**"
 msgstr ""
 
@@ -5334,7 +5334,7 @@ msgid "Submodule `box.ctl`"
 msgstr ""
 
 #: ../doc/2.1/book/box/box_ctl.rst:43
-msgid "The ``box.ctl`` submodule contains two functions: ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write). The functions are useful during initialization of a server."
+msgid "The ``box.ctl`` submodule contains two wait functions: ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write). The wait functions are useful during initialization of a server."
 msgstr ""
 
 #: ../doc/2.1/book/box/box_ctl.rst:48
@@ -5349,6 +5349,7 @@ msgstr ""
 msgid "Wait until ``box.info.ro`` is true."
 msgstr ""
 
+#: ../doc/2.1/book/box/box_ctl.rst:0
 #: ../doc/2.1/book/box/box_ctl.rst:0
 #: ../doc/2.1/book/box/box_ctl.rst:0
 #: ../doc/2.1/book/box/box_index.rst:0
@@ -5675,6 +5676,7 @@ msgstr ""
 
 #: ../doc/2.1/book/box/box_ctl.rst:0
 #: ../doc/2.1/book/box/box_ctl.rst:0
+#: ../doc/2.1/book/box/box_ctl.rst:0
 #: ../doc/2.1/book/box/box_index.rst:0
 #: ../doc/2.1/book/box/box_index.rst:0
 #: ../doc/2.1/book/box/box_index.rst:0
@@ -5929,7 +5931,7 @@ msgstr ""
 #: ../doc/2.1/book/box/box_index.rst:955
 #: ../doc/2.1/book/box/box_index.rst:1049
 #: ../doc/2.1/book/box/box_index.rst:1062
-#: ../doc/2.1/book/box/box_info.rst:230
+#: ../doc/2.1/book/box/box_info.rst:231
 #: ../doc/2.1/book/box/box_schema.rst:312
 #: ../doc/2.1/book/box/box_schema.rst:350
 #: ../doc/2.1/book/box/box_schema.rst:384
@@ -6005,25 +6007,25 @@ msgstr ""
 #: ../doc/2.1/reference/reference_lua/csv.rst:238
 #: ../doc/2.1/reference/reference_lua/errno.rst:94
 #: ../doc/2.1/reference/reference_lua/fiber.rst:235
-#: ../doc/2.1/reference/reference_lua/fiber.rst:273
-#: ../doc/2.1/reference/reference_lua/fiber.rst:296
-#: ../doc/2.1/reference/reference_lua/fiber.rst:316
-#: ../doc/2.1/reference/reference_lua/fiber.rst:336
-#: ../doc/2.1/reference/reference_lua/fiber.rst:351
-#: ../doc/2.1/reference/reference_lua/fiber.rst:370
-#: ../doc/2.1/reference/reference_lua/fiber.rst:389
-#: ../doc/2.1/reference/reference_lua/fiber.rst:416
-#: ../doc/2.1/reference/reference_lua/fiber.rst:433
-#: ../doc/2.1/reference/reference_lua/fiber.rst:457
-#: ../doc/2.1/reference/reference_lua/fiber.rst:482
-#: ../doc/2.1/reference/reference_lua/fiber.rst:509
-#: ../doc/2.1/reference/reference_lua/fiber.rst:532
-#: ../doc/2.1/reference/reference_lua/fiber.rst:558
-#: ../doc/2.1/reference/reference_lua/fiber.rst:578
-#: ../doc/2.1/reference/reference_lua/fiber.rst:646
-#: ../doc/2.1/reference/reference_lua/fiber.rst:687
-#: ../doc/2.1/reference/reference_lua/fiber.rst:720
-#: ../doc/2.1/reference/reference_lua/fiber.rst:739
+#: ../doc/2.1/reference/reference_lua/fiber.rst:274
+#: ../doc/2.1/reference/reference_lua/fiber.rst:297
+#: ../doc/2.1/reference/reference_lua/fiber.rst:317
+#: ../doc/2.1/reference/reference_lua/fiber.rst:337
+#: ../doc/2.1/reference/reference_lua/fiber.rst:352
+#: ../doc/2.1/reference/reference_lua/fiber.rst:371
+#: ../doc/2.1/reference/reference_lua/fiber.rst:390
+#: ../doc/2.1/reference/reference_lua/fiber.rst:417
+#: ../doc/2.1/reference/reference_lua/fiber.rst:434
+#: ../doc/2.1/reference/reference_lua/fiber.rst:458
+#: ../doc/2.1/reference/reference_lua/fiber.rst:483
+#: ../doc/2.1/reference/reference_lua/fiber.rst:510
+#: ../doc/2.1/reference/reference_lua/fiber.rst:533
+#: ../doc/2.1/reference/reference_lua/fiber.rst:559
+#: ../doc/2.1/reference/reference_lua/fiber.rst:579
+#: ../doc/2.1/reference/reference_lua/fiber.rst:647
+#: ../doc/2.1/reference/reference_lua/fiber.rst:688
+#: ../doc/2.1/reference/reference_lua/fiber.rst:721
+#: ../doc/2.1/reference/reference_lua/fiber.rst:740
 #: ../doc/2.1/reference/reference_lua/fio.rst:213
 #: ../doc/2.1/reference/reference_lua/fio.rst:235
 #: ../doc/2.1/reference/reference_lua/fio.rst:255
@@ -6159,6 +6161,61 @@ msgstr ""
 msgid "tarantool> box.ctl.wait_rw(0.1)\n"
 "---\n"
 "..."
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:107
+msgid "The ``box.ctl`` submodule also contains one function for :ref:`trigger <triggers>` definition: ``on_shutdown``."
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:111
+msgid "Create a \"shutdown :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed whenever   :ref:`os.exit() <os-exit>` happens, or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination)."
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:118
+#: ../doc/2.1/book/box/box_session.rst:340
+#: ../doc/2.1/book/box/box_session.rst:374
+#: ../doc/2.1/book/box/box_session.rst:447
+#: ../doc/2.1/book/box/box_space.rst:893
+#: ../doc/2.1/book/box/box_space.rst:964
+#: ../doc/2.1/book/box/box_txn_management.rst:232
+msgid "function which will become the trigger function"
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:120
+#: ../doc/2.1/book/box/box_session.rst:341
+#: ../doc/2.1/book/box/box_session.rst:375
+#: ../doc/2.1/book/box/box_session.rst:448
+#: ../doc/2.1/book/box/box_space.rst:895
+#: ../doc/2.1/book/box/box_txn_management.rst:234
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:123
+#: ../doc/2.1/book/box/box_session.rst:342
+#: ../doc/2.1/book/box/box_session.rst:376
+#: ../doc/2.1/book/box/box_session.rst:449
+#: ../doc/2.1/book/box/box_space.rst:898
+#: ../doc/2.1/book/box/box_space.rst:969
+#: ../doc/2.1/book/box/box_txn_management.rst:236
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:125
+#: ../doc/2.1/book/box/box_session.rst:344
+#: ../doc/2.1/book/box/box_session.rst:378
+#: ../doc/2.1/book/box/box_session.rst:451
+#: ../doc/2.1/book/box/box_space.rst:900
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
+#: ../doc/2.1/book/box/box_ctl.rst:128
+#: ../doc/2.1/book/box/box_session.rst:346
+#: ../doc/2.1/book/box/box_session.rst:380
+#: ../doc/2.1/book/box/box_session.rst:453
+#: ../doc/2.1/book/box/box_space.rst:907
+#: ../doc/2.1/book/box/box_space.rst:978
+#: ../doc/2.1/book/box/box_txn_management.rst:241
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
 msgstr ""
 
 #: ../doc/2.1/book/box/box_index.rst:39
@@ -6333,7 +6390,7 @@ msgstr ""
 
 #: ../doc/2.1/book/box/box_index.rst:68
 #: ../doc/2.1/book/box/data_model.rst:303
-#: ../doc/2.1/book/box/data_model.rst:901
+#: ../doc/2.1/book/box/data_model.rst:906
 msgid "Index type"
 msgstr ""
 
@@ -6670,14 +6727,14 @@ msgstr ""
 #: ../doc/2.1/book/box/box_space.rst:324
 #: ../doc/2.1/book/box/box_space.rst:326
 #: ../doc/2.1/book/box/data_model.rst:189
-#: ../doc/2.1/reference/reference_lua/fiber.rst:685
-#: ../doc/2.1/reference/reference_lua/fiber.rst:864
-#: ../doc/2.1/reference/reference_lua/fiber.rst:896
-#: ../doc/2.1/reference/reference_lua/fiber.rst:916
-#: ../doc/2.1/reference/reference_lua/fiber.rst:926
-#: ../doc/2.1/reference/reference_lua/fiber.rst:936
-#: ../doc/2.1/reference/reference_lua/fiber.rst:944
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1056
+#: ../doc/2.1/reference/reference_lua/fiber.rst:686
+#: ../doc/2.1/reference/reference_lua/fiber.rst:865
+#: ../doc/2.1/reference/reference_lua/fiber.rst:897
+#: ../doc/2.1/reference/reference_lua/fiber.rst:917
+#: ../doc/2.1/reference/reference_lua/fiber.rst:927
+#: ../doc/2.1/reference/reference_lua/fiber.rst:937
+#: ../doc/2.1/reference/reference_lua/fiber.rst:945
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1057
 #: ../doc/2.1/reference/reference_lua/fio.rst:299
 #: ../doc/2.1/reference/reference_lua/fio.rst:307
 #: ../doc/2.1/reference/reference_lua/fio.rst:315
@@ -6732,14 +6789,14 @@ msgstr ""
 
 #: ../doc/2.1/book/box/box_index.rst:149
 #: ../doc/2.1/book/box/box_index.rst:1004
-#: ../doc/2.1/book/box/box_info.rst:228
+#: ../doc/2.1/book/box/box_info.rst:229
 #: ../doc/2.1/book/box/box_schema.rst:173
 #: ../doc/2.1/book/box/box_slab.rst:87
 #: ../doc/2.1/book/box/box_slab.rst:146
 #: ../doc/2.1/book/box/box_slab.rst:188
 #: ../doc/2.1/book/box/box_space.rst:1610
 #: ../doc/2.1/reference/reference_lua/csv.rst:109
-#: ../doc/2.1/reference/reference_lua/fiber.rst:387
+#: ../doc/2.1/reference/reference_lua/fiber.rst:388
 #: ../doc/2.1/reference/reference_lua/fio.rst:464
 #: ../doc/2.1/reference/reference_lua/fio.rst:485
 #: ../doc/2.1/reference/reference_lua/fio.rst:1047
@@ -7472,8 +7529,8 @@ msgstr ""
 #: ../doc/2.1/book/box/box_tuple.rst:157
 #: ../doc/2.1/book/box/box_tuple.rst:191
 #: ../doc/2.1/book/box/box_tuple.rst:347
-#: ../doc/2.1/reference/reference_lua/fiber.rst:453
-#: ../doc/2.1/reference/reference_lua/fiber.rst:905
+#: ../doc/2.1/reference/reference_lua/fiber.rst:454
+#: ../doc/2.1/reference/reference_lua/fiber.rst:906
 #: ../doc/2.1/reference/reference_lua/fio.rst:348
 #: ../doc/2.1/reference/reference_lua/fio.rst:1024
 #: ../doc/2.1/reference/reference_lua/socket.rst:296
@@ -7567,11 +7624,11 @@ msgstr ""
 #: ../doc/2.1/book/box/data_model.rst:187
 #: ../doc/2.1/dev_guide/documentation_guidelines.rst:279
 #: ../doc/2.1/reference/reference_lua/console.rst:108
-#: ../doc/2.1/reference/reference_lua/fiber.rst:507
-#: ../doc/2.1/reference/reference_lua/fiber.rst:554
-#: ../doc/2.1/reference/reference_lua/fiber.rst:644
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1065
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1073
+#: ../doc/2.1/reference/reference_lua/fiber.rst:508
+#: ../doc/2.1/reference/reference_lua/fiber.rst:555
+#: ../doc/2.1/reference/reference_lua/fiber.rst:645
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1066
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1074
 #: ../doc/2.1/reference/reference_lua/log.rst:154
 #: ../doc/2.1/reference/reference_lua/log.rst:168
 #: ../doc/2.1/reference/reference_lua/msgpack.rst:248
@@ -8195,106 +8252,110 @@ msgid "**gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's com
 msgstr ""
 
 #: ../doc/2.1/book/box/box_info.rst:142
-msgid "**gc().vclock** -- the garbage collector's vclock."
+msgid "**gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false"
 msgstr ""
 
 #: ../doc/2.1/book/box/box_info.rst:143
+msgid "**gc().vclock** -- the garbage collector's vclock."
+msgstr ""
+
+#: ../doc/2.1/book/box/box_info.rst:144
 msgid "**gc().signature** -- the sum of the garbage collector's checkpoint's components."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:149
+#: ../doc/2.1/book/box/box_info.rst:150
 msgid "The **replication** section of ``box.info()`` contains statistics for all instances in the replica set in regard to the current instance (see also :ref:`\"Monitoring a replica set\" <replication-monitoring>`):"
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:153
+#: ../doc/2.1/book/box/box_info.rst:154
 msgid "**replication.id** is a short numeric identifier of the instance within the replica set."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:155
+#: ../doc/2.1/book/box/box_info.rst:156
 msgid "**replication.uuid** is a globally unique identifier of the instance. This value is also stored in :ref:`box.space._cluster <box_space-cluster>` system space."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:158
+#: ../doc/2.1/book/box/box_info.rst:159
 msgid "**replication.lsn** is the :ref:`log sequence number <replication-mechanism>` (LSN) for the latest entry in the instance's :ref:`write ahead log <index-box_persistence>` (WAL)."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:162
+#: ../doc/2.1/book/box/box_info.rst:163
 msgid "**replication.upstream** contains statistics for the replication data uploaded by the instance."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:164
+#: ../doc/2.1/book/box/box_info.rst:165
 msgid "**replication.upstream.status** is the replication status of the instance:"
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:166
+#: ../doc/2.1/book/box/box_info.rst:167
 msgid "``auth`` means that the instance is getting :ref:`authenticated <authentication>` to connect to a replication source."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:169
+#: ../doc/2.1/book/box/box_info.rst:170
 msgid "``connecting`` means that the instance is trying to connect to the replications source(s) listed in its :ref:`replication <cfg_replication-replication>` parameter."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:172
+#: ../doc/2.1/book/box/box_info.rst:173
 msgid "``disconnected`` means that the instance is not connected to the replica set (due to network problems, not replication errors)."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:174
+#: ../doc/2.1/book/box/box_info.rst:175
 msgid "``follow`` means that replication is in progress."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:175
+#: ../doc/2.1/book/box/box_info.rst:176
 msgid "``running`` means the instance's role is \"master\" (non read-only) and replication is in progress."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:177
+#: ../doc/2.1/book/box/box_info.rst:178
 msgid "``stopped`` means that replication was stopped due to a replication error (e.g. :ref:`duplicate key <error_codes>`)."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:179
+#: ../doc/2.1/book/box/box_info.rst:180
 msgid "``orphan`` means that the instance has not (yet) succeeded in joining the required number of masters (see :ref:`orphan status <replication-orphan_status>`)."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:184
+#: ../doc/2.1/book/box/box_info.rst:185
 msgid "**replication.upstream.idle** is the time (in seconds) since the instance received the last event from a master. This is the primary indicator of replication health. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:191
+#: ../doc/2.1/book/box/box_info.rst:192
 msgid "**replication.upstream.peer** contains the replication user name, host IP adress and port number used for the instance. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:197
+#: ../doc/2.1/book/box/box_info.rst:198
 msgid "**replication.upstream.lag** is the time difference between the local time at the instance, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on that master. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:203
+#: ../doc/2.1/book/box/box_info.rst:204
 msgid "**replication.upstream.message** contains an error message in case of a :ref:`degraded state <replication-recover>`, empty otherwise."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:206
+#: ../doc/2.1/book/box/box_info.rst:207
 msgid "**replication.downstream** contains statistics for the replication data requested and downloaded from the instance."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:209
+#: ../doc/2.1/book/box/box_info.rst:210
 msgid "**replication.downstream.vclock** contains the :ref:`vector clock <replication-vector>`, which is a table of '**id**, **lsn**' pairs, for example :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`. Even if an instance is :ref:`removed <replication-remove_instances>`, its values will still appear here."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:216
+#: ../doc/2.1/book/box/box_info.rst:217
 msgid "**replication.downstream.status** ``= disconnected`` is displayed if the downstream instance disconnects from the upstream instance. Otherwise the status is not reported."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:222
+#: ../doc/2.1/book/box/box_info.rst:223
 msgid "Since ``box.info`` contents are dynamic, it's not possible to iterate over keys with the Lua ``pairs()`` function. For this purpose, ``box.info()`` builds and returns a Lua table with all keys and values provided in the submodule."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:227
+#: ../doc/2.1/book/box/box_info.rst:228
 msgid "keys and values in the submodule"
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:232
+#: ../doc/2.1/book/box/box_info.rst:233
 msgid "This example is for a master-replica set that contains one master instance and one replica instance. The request was issued at the replica instance."
 msgstr ""
 
-#: ../doc/2.1/book/box/box_info.rst:235
+#: ../doc/2.1/book/box/box_info.rst:236
 msgid "tarantool> box.info()\n"
 "---\n"
 "- version: 1.7.6-68-g51fcffb77\n"
@@ -8561,9 +8622,9 @@ msgstr ""
 #: ../doc/2.1/book/box/box_schema.rst:151
 #: ../doc/2.1/dev_guide/documentation_guidelines.rst:243
 #: ../doc/2.1/reference/reference_lua/fiber.rst:233
-#: ../doc/2.1/reference/reference_lua/fiber.rst:271
-#: ../doc/2.1/reference/reference_lua/fiber.rst:294
-#: ../doc/2.1/reference/reference_lua/fiber.rst:314
+#: ../doc/2.1/reference/reference_lua/fiber.rst:272
+#: ../doc/2.1/reference/reference_lua/fiber.rst:295
+#: ../doc/2.1/reference/reference_lua/fiber.rst:315
 #: ../doc/2.1/reference/reference_lua/fio.rst:791
 #: ../doc/2.1/reference/reference_lua/http.rst:84
 #: ../doc/2.1/reference/reference_lua/iconv.rst:87
@@ -8601,9 +8662,9 @@ msgstr ""
 #: ../doc/2.1/book/box/box_session.rst:172
 #: ../doc/2.1/book/box/data_model.rst:191
 #: ../doc/2.1/reference/reference_lua/errno.rst:92
-#: ../doc/2.1/reference/reference_lua/fiber.rst:368
-#: ../doc/2.1/reference/reference_lua/fiber.rst:478
-#: ../doc/2.1/reference/reference_lua/fiber.rst:528
+#: ../doc/2.1/reference/reference_lua/fiber.rst:369
+#: ../doc/2.1/reference/reference_lua/fiber.rst:479
+#: ../doc/2.1/reference/reference_lua/fiber.rst:529
 #: ../doc/2.1/reference/reference_lua/fio.rst:211
 #: ../doc/2.1/reference/reference_lua/fio.rst:233
 #: ../doc/2.1/reference/reference_lua/fio.rst:253
@@ -8682,6 +8743,7 @@ msgstr ""
 #: ../doc/2.1/book/box/box_schema.rst:190
 #: ../doc/2.1/book/box/box_schema.rst:197
 #: ../doc/2.1/book/box/data_model.rst:498
+#: ../doc/2.1/book/box/data_model.rst:508
 #: ../doc/2.1/reference/reference_lua/msgpack.rst:238
 msgid "false"
 msgstr ""
@@ -8778,8 +8840,8 @@ msgstr ""
 
 #: ../doc/2.1/book/box/box_schema.rst:272
 #: ../doc/2.1/book/box/box_schema.rst:293
-#: ../doc/2.1/book/box/data_model.rst:632
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:90
+#: ../doc/2.1/book/box/data_model.rst:637
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:88
 #: ../doc/2.1/reference/reference_lua/net_box.rst:244
 #: ../doc/2.1/reference/reference_lua/net_box.rst:311
 #: ../doc/2.1/reference/reference_lua/net_box.rst:441
@@ -9689,48 +9751,6 @@ msgstr ""
 
 #: ../doc/2.1/book/box/box_session.rst:335
 msgid "Define a trigger for execution when a new session is created due to an event such as :ref:`console.connect <console-connect>`. The trigger function will be the first thing executed after a new session is created. If the trigger execution fails and raises an error, the error is sent to the client and the connection is closed."
-msgstr ""
-
-#: ../doc/2.1/book/box/box_session.rst:340
-#: ../doc/2.1/book/box/box_session.rst:374
-#: ../doc/2.1/book/box/box_session.rst:447
-#: ../doc/2.1/book/box/box_space.rst:893
-#: ../doc/2.1/book/box/box_space.rst:964
-#: ../doc/2.1/book/box/box_txn_management.rst:232
-msgid "function which will become the trigger function"
-msgstr ""
-
-#: ../doc/2.1/book/box/box_session.rst:341
-#: ../doc/2.1/book/box/box_session.rst:375
-#: ../doc/2.1/book/box/box_session.rst:448
-#: ../doc/2.1/book/box/box_space.rst:895
-#: ../doc/2.1/book/box/box_txn_management.rst:234
-msgid "existing trigger function which will be replaced by trigger-function"
-msgstr ""
-
-#: ../doc/2.1/book/box/box_session.rst:342
-#: ../doc/2.1/book/box/box_session.rst:376
-#: ../doc/2.1/book/box/box_session.rst:449
-#: ../doc/2.1/book/box/box_space.rst:898
-#: ../doc/2.1/book/box/box_space.rst:969
-#: ../doc/2.1/book/box/box_txn_management.rst:236
-msgid "nil or function pointer"
-msgstr ""
-
-#: ../doc/2.1/book/box/box_session.rst:344
-#: ../doc/2.1/book/box/box_session.rst:378
-#: ../doc/2.1/book/box/box_session.rst:451
-#: ../doc/2.1/book/box/box_space.rst:900
-msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
-msgstr ""
-
-#: ../doc/2.1/book/box/box_session.rst:346
-#: ../doc/2.1/book/box/box_session.rst:380
-#: ../doc/2.1/book/box/box_session.rst:453
-#: ../doc/2.1/book/box/box_space.rst:907
-#: ../doc/2.1/book/box/box_space.rst:978
-#: ../doc/2.1/book/box/box_txn_management.rst:241
-msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
 msgstr ""
 
 #: ../doc/2.1/book/box/box_session.rst:350
@@ -11874,7 +11894,7 @@ msgid "invoking the function any time thereafter, as long as the server is up, b
 msgstr ""
 
 #: ../doc/2.1/book/box/box_space.rst:1523
-msgid "The predefined global variable is ``box_schema.space_mt``. Adding to ``box_schema.space_mt`` makes the method available for all spaces."
+msgid "The predefined global variable is ``box.schema.space_mt``. Adding to ``box.schema.space_mt`` makes the method available for all spaces."
 msgstr ""
 
 #: ../doc/2.1/book/box/box_space.rst:1526
@@ -13964,9 +13984,9 @@ msgstr ""
 #: ../doc/2.1/book/sql.rst:57
 #: ../doc/2.1/reference/configuration/index.rst:125
 #: ../doc/2.1/reference/reference_lua/digest.rst:402
-#: ../doc/2.1/reference/reference_lua/fiber.rst:751
-#: ../doc/2.1/reference/reference_lua/fiber.rst:948
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1077
+#: ../doc/2.1/reference/reference_lua/fiber.rst:752
+#: ../doc/2.1/reference/reference_lua/fiber.rst:949
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1078
 #: ../doc/2.1/reference/reference_lua/log.rst:172
 #: ../doc/2.1/reference/reference_lua/msgpack.rst:141
 #: ../doc/2.1/reference/reference_lua/net_box.rst:563
@@ -14171,7 +14191,7 @@ msgid "savepoint table"
 msgstr ""
 
 #: ../doc/2.1/book/box/box_txn_management.rst:166
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1040
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1041
 msgid "Lua object"
 msgstr ""
 
@@ -14941,15 +14961,27 @@ msgstr ""
 msgid "step=-1"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:509
-msgid "Once a sequence exists, it can be altered, dropped, reset, forced to generate the next value, or associated with an index."
+#: ../doc/2.1/book/box/data_model.rst:508
+msgid "**if_not_exists**"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:512
-msgid "For an initial example, we generate a sequence named 'S'."
+#: ../doc/2.1/book/box/data_model.rst:508
+msgid "Boolean. If this is true and a sequence with this name exists already, ignore other options and use the existing values"
+msgstr ""
+
+#: ../doc/2.1/book/box/data_model.rst:508
+msgid "if_not_exists=true"
 msgstr ""
 
 #: ../doc/2.1/book/box/data_model.rst:514
+msgid "Once a sequence exists, it can be altered, dropped, reset, forced to generate the next value, or associated with an index."
+msgstr ""
+
+#: ../doc/2.1/book/box/data_model.rst:517
+msgid "For an initial example, we generate a sequence named 'S'."
+msgstr ""
+
+#: ../doc/2.1/book/box/data_model.rst:519
 msgid "tarantool> box.schema.sequence.create('S',{min=5, start=5})\n"
 "---\n"
 "- step: 1\n"
@@ -14964,307 +14996,307 @@ msgid "tarantool> box.schema.sequence.create('S',{min=5, start=5})\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:529
+#: ../doc/2.1/book/box/data_model.rst:534
 msgid "The result shows that the new sequence has all default values, except for the two that were specified, ``min`` and ``start``."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:532
+#: ../doc/2.1/book/box/data_model.rst:537
 msgid "Then we get the next value, with the ``next()`` function."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:534
+#: ../doc/2.1/book/box/data_model.rst:539
 msgid "tarantool> box.sequence.S:next()\n"
 "---\n"
 "- 5\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:541
+#: ../doc/2.1/book/box/data_model.rst:546
 msgid "The result is the same as the start value. If we called ``next()`` again, we would get 6 (because the previous value plus the step value is 6), and so on."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:545
+#: ../doc/2.1/book/box/data_model.rst:550
 msgid "Then we create a new table, and say that its primary key may be generated from the sequence."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:548
+#: ../doc/2.1/book/box/data_model.rst:553
 msgid "tarantool> s=box.schema.space.create('T');s:create_index('I',{sequence='S'})\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:554
+#: ../doc/2.1/book/box/data_model.rst:559
 msgid "Then we insert a tuple, without specifying a value for the primary key."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:556
+#: ../doc/2.1/book/box/data_model.rst:561
 msgid "tarantool> box.space.T:insert{nil,'other stuff'}\n"
 "---\n"
 "- [6, 'other stuff']\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:563
+#: ../doc/2.1/book/box/data_model.rst:568
 msgid "The result is a new tuple where the first field has a value of 6. This arrangement, where the system automatically generates the values for a primary key, is sometimes called \"auto-incrementing\" or \"identity\"."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:568
+#: ../doc/2.1/book/box/data_model.rst:573
 msgid "For syntax and implementation details, see the reference for :ref:`box.schema.sequence <box_schema-sequence>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:575
+#: ../doc/2.1/book/box/data_model.rst:580
 msgid "Persistence"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:577
+#: ../doc/2.1/book/box/data_model.rst:582
 msgid "In Tarantool, updates to the database are recorded in the so-called :ref:`write ahead log (WAL) <internals-wal>` files. This ensures data persistence. When a power outage occurs or the Tarantool instance is killed incidentally, the in-memory database is lost. In this situation, WAL files are used to restore the data. Namely, Tarantool reads the WAL files and redoes the requests (this is called the \"recovery process\"). You can change the timing of the WAL writer, or turn it off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:586
+#: ../doc/2.1/book/box/data_model.rst:591
 msgid "Tarantool also maintains a set of :ref:`snapshot files <internals-snapshot>`. These files contain an on-disk copy of the entire data set for a given moment. Instead of reading every WAL file since the databases were created, the recovery process can load the latest snapshot file and then read only those WAL files that were produced after the snapshot file was made. After checkpointing, old WAL files can be removed to free up space."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:593
+#: ../doc/2.1/book/box/data_model.rst:598
 msgid "To force immediate creation of a snapshot file, you can use Tarantool's :ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation of snapshot files, you can use Tarantool's :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. The checkpoint daemon sets intervals for forced checkpoints. It makes sure that the states of both memtx and vinyl storage engines are synchronized and saved to disk, and automatically removes old WAL files."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:601
+#: ../doc/2.1/book/box/data_model.rst:606
 msgid "Snapshot files can be created even if there is no WAL file."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:605
+#: ../doc/2.1/book/box/data_model.rst:610
 msgid "The memtx engine makes only regular checkpoints with the interval set in :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>` configuration."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:608
+#: ../doc/2.1/book/box/data_model.rst:613
 msgid "The vinyl engine runs checkpointing in the background at all times."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:610
+#: ../doc/2.1/book/box/data_model.rst:615
 msgid "See the :ref:`Internals <internals-data_persistence>` section for more details about the WAL writer and the recovery process."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:617
+#: ../doc/2.1/book/box/data_model.rst:622
 msgid "Operations"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:623
+#: ../doc/2.1/book/box/data_model.rst:628
 msgid "Data operations"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:625
+#: ../doc/2.1/book/box/data_model.rst:630
 msgid "The basic data operations supported in Tarantool are:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:627
+#: ../doc/2.1/book/box/data_model.rst:632
 msgid "five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:628
+#: ../doc/2.1/book/box/data_model.rst:633
 msgid "one data-retrieval operation (SELECT)."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:630
+#: ../doc/2.1/book/box/data_model.rst:635
 msgid "All of them are implemented as functions in :ref:`box.space <box_space>` submodule."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:634
+#: ../doc/2.1/book/box/data_model.rst:639
 msgid ":ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:636
+#: ../doc/2.1/book/box/data_model.rst:641
 msgid "The first field, field[1], will be 999 (MsgPack type is `integer`)."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:638
+#: ../doc/2.1/book/box/data_model.rst:643
 msgid "The second field, field[2], will be 'Taranto' (MsgPack type is `string`)."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:640
+#: ../doc/2.1/book/box/data_model.rst:645
 msgid "tarantool> box.space.tester:insert{999, 'Taranto'}"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:644
+#: ../doc/2.1/book/box/data_model.rst:649
 msgid ":ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2]."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:646
+#: ../doc/2.1/book/box/data_model.rst:651
 msgid "The clause \"{999}\", which has the value to look up in the index of the tuple's primary-key field, is mandatory, because ``update()`` requests must always have a clause that specifies a unique key, which in this case is field[1]."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:650
+#: ../doc/2.1/book/box/data_model.rst:655
 msgid "The clause \"{{'=', 2, 'Tarantino'}}\" specifies that assignment will happen to field[2] with the new value."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:653
+#: ../doc/2.1/book/box/data_model.rst:658
 msgid "tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:657
+#: ../doc/2.1/book/box/data_model.rst:662
 msgid ":ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2] again."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:660
+#: ../doc/2.1/book/box/data_model.rst:665
 msgid "The syntax of ``upsert()`` is similar to the syntax of ``update()``. However, the execution logic of these two requests is different. UPSERT is either UPDATE or INSERT, depending on the database's state. Also, UPSERT execution is postponed until after transaction commit, so, unlike ``update()``, ``upsert()`` doesn't return data back."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:666
+#: ../doc/2.1/book/box/data_model.rst:671
 msgid "tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:670
+#: ../doc/2.1/book/box/data_model.rst:675
 msgid ":ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:672
+#: ../doc/2.1/book/box/data_model.rst:677
 msgid "This is also possible with the ``update()`` request, but the ``update()`` request is usually more complicated."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:675
+#: ../doc/2.1/book/box/data_model.rst:680
 msgid "tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:679
+#: ../doc/2.1/book/box/data_model.rst:684
 msgid ":ref:`SELECT <box_space-select>`: Retrieve the tuple."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:681
+#: ../doc/2.1/book/box/data_model.rst:686
 msgid "The clause \"{999}\" is still mandatory, although it does not have to mention the primary key."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:684
+#: ../doc/2.1/book/box/data_model.rst:689
 msgid "tarantool> box.space.tester:select{999}"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:688
+#: ../doc/2.1/book/box/data_model.rst:693
 msgid ":ref:`DELETE <box_space-delete>`: Delete the tuple."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:690
+#: ../doc/2.1/book/box/data_model.rst:695
 msgid "In this example, we identify the primary-key field."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:692
+#: ../doc/2.1/book/box/data_model.rst:697
 msgid "tarantool> box.space.tester:delete{999}"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:696
+#: ../doc/2.1/book/box/data_model.rst:701
 msgid "Summarizing the examples:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:698
+#: ../doc/2.1/book/box/data_model.rst:703
 msgid "Functions ``insert`` and ``replace`` accept a tuple (where a primary key comes as part of the tuple)."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:700
+#: ../doc/2.1/book/box/data_model.rst:705
 msgid "Function ``upsert`` accepts a tuple (where a primary key comes as part of the tuple), and also the update operations to execute."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:703
+#: ../doc/2.1/book/box/data_model.rst:708
 msgid "Function ``delete`` accepts a full key of any unique index (primary or secondary)."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:705
+#: ../doc/2.1/book/box/data_model.rst:710
 msgid "Function ``update`` accepts a full key of any unique index (primary or secondary), and also the operations to execute."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:708
+#: ../doc/2.1/book/box/data_model.rst:713
 msgid "Function ``select`` accepts any key: primary/secondary, unique/non-unique, full/partial."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:711
+#: ../doc/2.1/book/box/data_model.rst:716
 msgid "See reference on ``box.space`` for more :ref:`details on using data operations <box_space-operations-detailed-examples>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:716
+#: ../doc/2.1/book/box/data_model.rst:721
 msgid "Besides Lua, you can use :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`. The client server protocol is open and documented. See this :ref:`annotated BNF <box_protocol-iproto_protocol>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:725
+#: ../doc/2.1/book/box/data_model.rst:730
 msgid "Index operations"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:727
+#: ../doc/2.1/book/box/data_model.rst:732
 msgid "Index operations are automatic: if a data-manipulation request changes a tuple, then it also changes the index keys defined for the tuple."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:730
+#: ../doc/2.1/book/box/data_model.rst:735
 msgid "The simple index-creation operation that we've illustrated before is:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:735
+#: ../doc/2.1/book/box/data_model.rst:740
 msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:737
+#: ../doc/2.1/book/box/data_model.rst:742
 msgid "This creates a unique TREE index on the first field of all tuples (often called \"Field#1\"), which is assumed to be numeric."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:740
+#: ../doc/2.1/book/box/data_model.rst:745
 msgid "The simple SELECT request that we've illustrated before is:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:745
+#: ../doc/2.1/book/box/data_model.rst:750
 msgid ":extsamp:`box.space.{*{space-name}*}:select({*{value}*})`"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:747
+#: ../doc/2.1/book/box/data_model.rst:752
 msgid "This looks for a single tuple via the first index. Since the first index is always unique, the maximum number of returned tuples will be: one."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:750
+#: ../doc/2.1/book/box/data_model.rst:755
 msgid "The following SELECT variations exist:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:752
+#: ../doc/2.1/book/box/data_model.rst:757
 msgid "The search can use comparisons other than equality."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:759
+#: ../doc/2.1/book/box/data_model.rst:764
 msgid "The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT (for \"less than\", \"less than or equal\", \"equal\", \"reversed equal\", \"greater than or equal\", \"greater than\" respectively). Comparisons make sense if and only if the index type is ‘TREE'."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:764
+#: ../doc/2.1/book/box/data_model.rst:769
 msgid "This type of search may return more than one tuple; if so, the tuples will be in descending order by key when the comparison operator is LT or LE or REQ, otherwise in ascending order."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:768
+#: ../doc/2.1/book/box/data_model.rst:773
 msgid "The search can use a secondary index."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:775
+#: ../doc/2.1/book/box/data_model.rst:780
 msgid "For a primary-key search, it is optional to specify an index name. For a secondary-key search, it is mandatory."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:778
+#: ../doc/2.1/book/box/data_model.rst:783
 msgid "The search may be for some or all key parts."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:799
+#: ../doc/2.1/book/box/data_model.rst:804
 msgid "The search may be for all fields, using a table for the value:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:806
+#: ../doc/2.1/book/box/data_model.rst:811
 msgid "or the search can be for one field, using a table or a scalar:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:813
+#: ../doc/2.1/book/box/data_model.rst:818
 msgid "In the second case, the result will be two tuples: ``{1, 'A'}`` and ``{1, 'B'}``."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:816
+#: ../doc/2.1/book/box/data_model.rst:821
 msgid "You can specify even zero fields, causing all three tuples to be returned. (Notice that partial key searches are available only in TREE indexes.)"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:819
+#: ../doc/2.1/book/box/data_model.rst:824
 msgid "**Examples**"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:821
+#: ../doc/2.1/book/box/data_model.rst:826
 msgid "BITSET example:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:823
+#: ../doc/2.1/book/box/data_model.rst:828
 msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example:create_index('primary')\n"
 "tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'unsigned'}})\n"
@@ -15275,8 +15307,8 @@ msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example.index.bitset:select(2, {iterator='BITS_ANY_SET'})"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:834
-#: ../doc/2.1/book/box/data_model.rst:856
+#: ../doc/2.1/book/box/data_model.rst:839
+#: ../doc/2.1/book/box/data_model.rst:861
 #: ../doc/2.1/tutorials/lua_tutorials.rst:877
 #: ../doc/2.1/tutorials/sql_tutorial.rst:148
 #: ../doc/2.1/tutorials/sql_tutorial.rst:168
@@ -15290,22 +15322,22 @@ msgstr ""
 msgid "The result will be:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:836
+#: ../doc/2.1/book/box/data_model.rst:841
 msgid "---\n"
 "- - [3, 7]\n"
 "  - [4, 3]\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:843
+#: ../doc/2.1/book/box/data_model.rst:848
 msgid "because (7 AND 2) is not equal to 0, and (3 AND 2) is not equal to 0."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:845
+#: ../doc/2.1/book/box/data_model.rst:850
 msgid "RTREE example:"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:847
+#: ../doc/2.1/book/box/data_model.rst:852
 msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example:create_index('primary')\n"
 "tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})\n"
@@ -15314,73 +15346,73 @@ msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:858
+#: ../doc/2.1/book/box/data_model.rst:863
 msgid "---\n"
 "- - [1, [3, 5, 9, 10]]\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:864
+#: ../doc/2.1/book/box/data_model.rst:869
 msgid "because a rectangle whose corners are at coordinates ``4,7,5,9`` is entirely within a rectangle whose corners are at coordinates ``3,5,9,10``."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:867
+#: ../doc/2.1/book/box/data_model.rst:872
 msgid "Additionally, there exist :ref:`index iterator operations <box_index-index_pairs>`. They can only be used with code in Lua and C/C++. Index iterators are for traversing indexes one key at a time, taking advantage of features that are specific to an index type, for example evaluating Boolean expressions when traversing BITSET indexes, or going in descending order when traversing TREE indexes."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:873
+#: ../doc/2.1/book/box/data_model.rst:878
 msgid "See also other index operations like :ref:`alter() <box_index-alter>` and :ref:`drop() <box_index-drop>` in reference for :ref:`box.index <box_index>` submodule."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:878
+#: ../doc/2.1/book/box/data_model.rst:883
 msgid "Complexity factors"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:880
+#: ../doc/2.1/book/box/data_model.rst:885
 msgid "In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>` submodules, there are notes about which complexity factors might affect the resource usage of each function."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:890
+#: ../doc/2.1/book/box/data_model.rst:895
 msgid "Complexity factor"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:893
+#: ../doc/2.1/book/box/data_model.rst:898
 msgid "Index size"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:893
+#: ../doc/2.1/book/box/data_model.rst:898
 msgid "The number of index keys is the same as the number of tuples in the data set. For a TREE index, if there are more keys, then the lookup time will be greater, although of course the effect is not linear. For a HASH index, if there are more keys, then there is more RAM used, but the number of low-level steps tends to remain constant."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:901
+#: ../doc/2.1/book/box/data_model.rst:906
 msgid "Typically, a HASH index is faster than a TREE index if the number of tuples in the space is greater than one."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:905
+#: ../doc/2.1/book/box/data_model.rst:910
 msgid "Number of indexes accessed"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:905
+#: ../doc/2.1/book/box/data_model.rst:910
 msgid "Ordinarily, only one index is accessed to retrieve one tuple. But to update the tuple, there must be N accesses if the space has N different indexes."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:909
+#: ../doc/2.1/book/box/data_model.rst:914
 msgid "Note re storage engine: Vinyl optimizes away such accesses if secondary index fields are unchanged by the update. So, this complexity factor applies only to memtx, since it always makes a full-tuple copy on every update."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:915
+#: ../doc/2.1/book/box/data_model.rst:920
 msgid "Number of tuples accessed"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:915
+#: ../doc/2.1/book/box/data_model.rst:920
 msgid "A few requests, for example SELECT, can retrieve multiple tuples. This factor is usually less important than the others."
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:919
+#: ../doc/2.1/book/box/data_model.rst:924
 msgid "WAL settings"
 msgstr ""
 
-#: ../doc/2.1/book/box/data_model.rst:919
+#: ../doc/2.1/book/box/data_model.rst:924
 msgid "The important setting for the write-ahead log is :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. If the setting causes no writing or delayed writing, this factor is unimportant. If the setting causes every data-change request to wait for writing to finish on a slow device, this factor is more important than all the others."
 msgstr ""
 
@@ -16173,7 +16205,7 @@ msgid "**Triggers**, also known as **callbacks**, are functions which the server
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:45
-msgid "There are four types of triggers in Tarantool:"
+msgid "There are five types of triggers in Tarantool:"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:47
@@ -16181,16 +16213,19 @@ msgid ":ref:`connection triggers <box_session-on_connect>`, which are executed w
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:50
-msgid ":ref:`authentication triggers <box_session-on_auth>`, which are executed during authentication, and"
+msgid ":ref:`authentication triggers <box_session-on_auth>`, which are executed during authentication,"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:53
-msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events, and"
+msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events,"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:56
+msgid ":ref:`transaction triggers <box-on_commit>`, which are executed during commit or rollback,"
+msgstr ""
+
 #: ../doc/2.1/book/box/triggers.rst:59
-msgid ":ref:`transaction triggers <box-on_commit>`, which are executed during commit or rollback."
+msgid ":ref:`the shutdown trigger <box_ctl-on_shutdown>`, which is executed when the server stops."
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:62
@@ -16214,66 +16249,70 @@ msgid ":ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:71
-msgid ":ref:`space_object:on_replace() <box_space-on_replace>` plus :ref:`space_object:before_replace() <box_space-before_replace>` plus :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`."
+msgid ":ref:`space_object:on_replace() <box_space-on_replace>` plus :ref:`space_object:before_replace() <box_space-before_replace>` plus :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, plus :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:75
+#: ../doc/2.1/book/box/triggers.rst:76
 msgid "Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:77
+#: ../doc/2.1/book/box/triggers.rst:78
 msgid "Triggers are stored in the Tarantool instance's memory, not in the database. Therefore triggers disappear when the instance is shut down. To make them permanent, put function definitions and trigger settings into Tarantool's :ref:`initialization script <index-init_label>`."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:82
+#: ../doc/2.1/book/box/triggers.rst:83
 msgid "Triggers have low overhead. If a trigger is not defined, then the overhead is minimal: merely a pointer dereference and check. If a trigger is defined, then its overhead is equivalent to the overhead of calling a function."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:86
+#: ../doc/2.1/book/box/triggers.rst:87
 msgid "There can be multiple triggers for one event. In this case, triggers are executed in the reverse order that they were defined in."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:89
+#: ../doc/2.1/book/box/triggers.rst:90
 msgid "Triggers must work within the event context. However, effects are undefined if a function contains requests which normally could not occur immediately after the event, but only before the return from the event. For example, putting `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or :ref:`box.rollback() <box-rollback>` in a trigger function would be bringing in requests outside the event context."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:96
+#: ../doc/2.1/book/box/triggers.rst:97
 msgid "Triggers are replaceable. The request to \"redefine a trigger\" implies passing a new trigger function and an old trigger function to one of the \"on_event()\" functions."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:100
+#: ../doc/2.1/book/box/triggers.rst:101
 msgid "The \"on_event()\" functions all have parameters which are function pointers, and they all return function pointers. Remember that a Lua function definition such as \"function f() x = x + 1 end\" is the same as \"f = function () x = x + 1 end\" -- in both cases ``f`` gets a function pointer. And \"trigger = box.session.on_connect(f)\" is the same as \"trigger = box.session.on_connect(function () x = x + 1 end)\" -- in both cases ``trigger`` gets the function pointer which was passed."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:108
+#: ../doc/2.1/book/box/triggers.rst:109
 msgid "To get a list of triggers, you can use:"
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:110
-msgid "on_connect() – with no arguments – to return a table of all connect-trigger functions;"
-msgstr ""
-
 #: ../doc/2.1/book/box/triggers.rst:111
-msgid "on_auth() to return all authentication-trigger functions;"
+msgid "box.session.on_connect() – with no arguments – to return a table of all connect-trigger functions;"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:112
-msgid "on_disconnect() to return all disconnect-trigger functions;"
+msgid "box.session.on_auth() to return all authentication-trigger functions;"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:113
-msgid "on_replace() to return all replace-trigger functions made for on_replace()."
+msgid "box.session.on_disconnect() to return all disconnect-trigger functions;"
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:114
-msgid "before_replace() to return all replace-trigger functions made for before_replace()."
+msgid "space_object:on_replace() to return all replace-trigger functions made for on_replace()."
 msgstr ""
 
-#: ../doc/2.1/book/box/triggers.rst:118
-msgid "Here we log connect and disconnect events into Tarantool server log."
+#: ../doc/2.1/book/box/triggers.rst:115
+msgid "space_object:before_replace() to return all replace-trigger functions made for before_replace()."
+msgstr ""
+
+#: ../doc/2.1/book/box/triggers.rst:116
+msgid "box.ctl.on_shutdown() to return all shutdown-trigger functions made for on_shutdown()."
 msgstr ""
 
 #: ../doc/2.1/book/box/triggers.rst:120
+msgid "Here we log connect and disconnect events into Tarantool server log."
+msgstr ""
+
+#: ../doc/2.1/book/box/triggers.rst:122
 msgid "log = require('log')\n"
 "\n"
 "function on_connect_impl()\n"
@@ -16286,7 +16325,7 @@ msgid "log = require('log')\n"
 "\n"
 "function on_auth_impl(user)\n"
 "  log.info(\"authenticated sid \"..box.session.id()..\" as \"..user)\n"
-"end\n"
+"end\"\n"
 "\n"
 "function on_connect() pcall(on_connect_impl) end\n"
 "function on_disconnect() pcall(on_disconnect_impl) end\n"
@@ -19254,7 +19293,7 @@ msgid "Numeric data types"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:61
-msgid "E-011-01"
+msgid "E011-01"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:61
@@ -19269,77 +19308,77 @@ msgstr ""
 #: ../doc/2.1/book/sql.rst:63
 #: ../doc/2.1/book/sql.rst:71
 #: ../doc/2.1/book/sql.rst:73
-#: ../doc/2.1/book/sql.rst:96
-#: ../doc/2.1/book/sql.rst:98
-#: ../doc/2.1/book/sql.rst:100
-#: ../doc/2.1/book/sql.rst:118
-#: ../doc/2.1/book/sql.rst:120
-#: ../doc/2.1/book/sql.rst:124
-#: ../doc/2.1/book/sql.rst:126
-#: ../doc/2.1/book/sql.rst:128
-#: ../doc/2.1/book/sql.rst:131
-#: ../doc/2.1/book/sql.rst:137
-#: ../doc/2.1/book/sql.rst:139
-#: ../doc/2.1/book/sql.rst:145
-#: ../doc/2.1/book/sql.rst:147
-#: ../doc/2.1/book/sql.rst:149
-#: ../doc/2.1/book/sql.rst:151
-#: ../doc/2.1/book/sql.rst:153
-#: ../doc/2.1/book/sql.rst:155
-#: ../doc/2.1/book/sql.rst:159
-#: ../doc/2.1/book/sql.rst:161
-#: ../doc/2.1/book/sql.rst:163
-#: ../doc/2.1/book/sql.rst:167
-#: ../doc/2.1/book/sql.rst:170
-#: ../doc/2.1/book/sql.rst:178
-#: ../doc/2.1/book/sql.rst:186
-#: ../doc/2.1/book/sql.rst:216
-#: ../doc/2.1/book/sql.rst:218
-#: ../doc/2.1/book/sql.rst:220
-#: ../doc/2.1/book/sql.rst:222
-#: ../doc/2.1/book/sql.rst:224
-#: ../doc/2.1/book/sql.rst:226
-#: ../doc/2.1/book/sql.rst:230
-#: ../doc/2.1/book/sql.rst:232
-#: ../doc/2.1/book/sql.rst:235
-#: ../doc/2.1/book/sql.rst:237
-#: ../doc/2.1/book/sql.rst:243
-#: ../doc/2.1/book/sql.rst:245
-#: ../doc/2.1/book/sql.rst:259
-#: ../doc/2.1/book/sql.rst:263
-#: ../doc/2.1/book/sql.rst:266
-#: ../doc/2.1/book/sql.rst:272
-#: ../doc/2.1/book/sql.rst:276
-#: ../doc/2.1/book/sql.rst:279
-#: ../doc/2.1/book/sql.rst:285
-#: ../doc/2.1/book/sql.rst:294
-#: ../doc/2.1/book/sql.rst:306
-#: ../doc/2.1/book/sql.rst:319
-#: ../doc/2.1/book/sql.rst:335
-#: ../doc/2.1/book/sql.rst:338
-#: ../doc/2.1/book/sql.rst:340
-#: ../doc/2.1/book/sql.rst:346
-#: ../doc/2.1/book/sql.rst:352
-#: ../doc/2.1/book/sql.rst:368
-#: ../doc/2.1/book/sql.rst:371
-#: ../doc/2.1/book/sql.rst:373
-#: ../doc/2.1/book/sql.rst:379
-#: ../doc/2.1/book/sql.rst:384
-#: ../doc/2.1/book/sql.rst:387
-#: ../doc/2.1/book/sql.rst:390
-#: ../doc/2.1/book/sql.rst:393
-#: ../doc/2.1/book/sql.rst:398
-#: ../doc/2.1/book/sql.rst:404
-#: ../doc/2.1/book/sql.rst:406
-#: ../doc/2.1/book/sql.rst:408
-#: ../doc/2.1/book/sql.rst:410
-#: ../doc/2.1/book/sql.rst:428
-#: ../doc/2.1/book/sql.rst:452
+#: ../doc/2.1/book/sql.rst:97
+#: ../doc/2.1/book/sql.rst:99
+#: ../doc/2.1/book/sql.rst:101
+#: ../doc/2.1/book/sql.rst:119
+#: ../doc/2.1/book/sql.rst:121
+#: ../doc/2.1/book/sql.rst:125
+#: ../doc/2.1/book/sql.rst:127
+#: ../doc/2.1/book/sql.rst:129
+#: ../doc/2.1/book/sql.rst:132
+#: ../doc/2.1/book/sql.rst:136
+#: ../doc/2.1/book/sql.rst:138
+#: ../doc/2.1/book/sql.rst:144
+#: ../doc/2.1/book/sql.rst:146
+#: ../doc/2.1/book/sql.rst:148
+#: ../doc/2.1/book/sql.rst:150
+#: ../doc/2.1/book/sql.rst:152
+#: ../doc/2.1/book/sql.rst:154
+#: ../doc/2.1/book/sql.rst:158
+#: ../doc/2.1/book/sql.rst:160
+#: ../doc/2.1/book/sql.rst:162
+#: ../doc/2.1/book/sql.rst:166
+#: ../doc/2.1/book/sql.rst:169
+#: ../doc/2.1/book/sql.rst:177
+#: ../doc/2.1/book/sql.rst:185
+#: ../doc/2.1/book/sql.rst:215
+#: ../doc/2.1/book/sql.rst:217
+#: ../doc/2.1/book/sql.rst:219
+#: ../doc/2.1/book/sql.rst:221
+#: ../doc/2.1/book/sql.rst:223
+#: ../doc/2.1/book/sql.rst:225
+#: ../doc/2.1/book/sql.rst:229
+#: ../doc/2.1/book/sql.rst:231
+#: ../doc/2.1/book/sql.rst:234
+#: ../doc/2.1/book/sql.rst:236
+#: ../doc/2.1/book/sql.rst:242
+#: ../doc/2.1/book/sql.rst:244
+#: ../doc/2.1/book/sql.rst:258
+#: ../doc/2.1/book/sql.rst:262
+#: ../doc/2.1/book/sql.rst:265
+#: ../doc/2.1/book/sql.rst:271
+#: ../doc/2.1/book/sql.rst:275
+#: ../doc/2.1/book/sql.rst:278
+#: ../doc/2.1/book/sql.rst:284
+#: ../doc/2.1/book/sql.rst:293
+#: ../doc/2.1/book/sql.rst:305
+#: ../doc/2.1/book/sql.rst:318
+#: ../doc/2.1/book/sql.rst:334
+#: ../doc/2.1/book/sql.rst:337
+#: ../doc/2.1/book/sql.rst:339
+#: ../doc/2.1/book/sql.rst:345
+#: ../doc/2.1/book/sql.rst:351
+#: ../doc/2.1/book/sql.rst:367
+#: ../doc/2.1/book/sql.rst:370
+#: ../doc/2.1/book/sql.rst:372
+#: ../doc/2.1/book/sql.rst:378
+#: ../doc/2.1/book/sql.rst:383
+#: ../doc/2.1/book/sql.rst:386
+#: ../doc/2.1/book/sql.rst:389
+#: ../doc/2.1/book/sql.rst:392
+#: ../doc/2.1/book/sql.rst:397
+#: ../doc/2.1/book/sql.rst:403
+#: ../doc/2.1/book/sql.rst:405
+#: ../doc/2.1/book/sql.rst:407
+#: ../doc/2.1/book/sql.rst:409
+#: ../doc/2.1/book/sql.rst:427
+#: ../doc/2.1/book/sql.rst:451
 msgid "Okay."
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:63
-msgid "E-011-02"
+msgid "E011-02"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:63
@@ -19351,7 +19390,7 @@ msgid "``create table tr (s1 float primary key);``"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:65
-msgid "E-011-03"
+msgid "E011-03"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:65
@@ -19367,7 +19406,7 @@ msgid "Okay, although: when there are many post-decimal digits there is a switch
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:71
-msgid "E-011-04"
+msgid "E011-04"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:71
@@ -19379,7 +19418,7 @@ msgid "``select 10+1,9-2,8*3,7/2 from t;``"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:73
-msgid "E-011-05"
+msgid "E011-05"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:73
@@ -19391,7 +19430,7 @@ msgid "``select * from t where 1 < 2;``"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:75
-msgid "E-011-06"
+msgid "E011-06"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:75
@@ -19419,7 +19458,7 @@ msgid "E021-01"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:80
-msgid "Character data type (including all its its spellings)"
+msgid "Character data type (including all its spellings)"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:80
@@ -19431,12 +19470,11 @@ msgid "Fail, only the spelling CHAR is allowed. This type of Fail will only be c
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:83
-#: ../doc/2.1/book/sql.rst:107
 msgid "E021-02"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:83
-msgid "CHARACTER VARYING data type (including all"
+msgid "CHARACTER VARYING data type (including all its spellings)"
 msgstr ""
 
 #: ../doc/2.1/book/sql.rst:83
@@ -19447,1866 +19485,1888 @@ msgstr ""
 msgid "Fail, only the spelling VARCHAR is allowed."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:85
+#: ../doc/2.1/book/sql.rst:86
 msgid "E021-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:85
+#: ../doc/2.1/book/sql.rst:86
 msgid "Character literals"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:85
+#: ../doc/2.1/book/sql.rst:86
 msgid "``insert into t45 values ('');``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:85
+#: ../doc/2.1/book/sql.rst:86
 msgid "Okay, and the bad practice of accepting \"\"'s for character literals is avoided."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:88
+#: ../doc/2.1/book/sql.rst:89
 msgid "E021-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:88
+#: ../doc/2.1/book/sql.rst:89
 msgid "CHARACTER_LENGTH function"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:88
+#: ../doc/2.1/book/sql.rst:89
 msgid "``select character_length(s1) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:88
+#: ../doc/2.1/book/sql.rst:89
 msgid "Fail. There is no such function. There is a function LENGTH(), which is okay."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:91
+#: ../doc/2.1/book/sql.rst:92
 msgid "E021-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:91
+#: ../doc/2.1/book/sql.rst:92
 msgid "OCTET_LENGTH"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:91
+#: ../doc/2.1/book/sql.rst:92
 msgid "``select octet_length(s1) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:91
-#: ../doc/2.1/book/sql.rst:105
+#: ../doc/2.1/book/sql.rst:92
+#: ../doc/2.1/book/sql.rst:106
 msgid "Fail. There is no such function."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:93
+#: ../doc/2.1/book/sql.rst:94
 msgid "E021-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:93
+#: ../doc/2.1/book/sql.rst:94
 msgid "SUBSTRING function."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:93
+#: ../doc/2.1/book/sql.rst:94
 msgid "``select substring(s1 from 1 for 1) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:93
+#: ../doc/2.1/book/sql.rst:94
 msgid "Fail. There is no such function. There is a function SUBSTR(x,n,n) which is okay."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:96
+#: ../doc/2.1/book/sql.rst:97
 msgid "E021-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:96
+#: ../doc/2.1/book/sql.rst:97
 msgid "Character concatenation"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:96
+#: ../doc/2.1/book/sql.rst:97
 msgid "``select 'a' || 'b' from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:98
+#: ../doc/2.1/book/sql.rst:99
 msgid "E021-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:98
+#: ../doc/2.1/book/sql.rst:99
 msgid "UPPER and LOWER functions"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:98
+#: ../doc/2.1/book/sql.rst:99
 msgid "``select upper('a'),lower('B') from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:100
+#: ../doc/2.1/book/sql.rst:101
 msgid "E021-09"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:100
+#: ../doc/2.1/book/sql.rst:101
 msgid "TRIM function"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:100
+#: ../doc/2.1/book/sql.rst:101
 msgid "``select trim('a ') from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:102
+#: ../doc/2.1/book/sql.rst:103
 msgid "E021-10"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:102
+#: ../doc/2.1/book/sql.rst:103
 msgid "Implicit casting among the fixed-length and variable-length character string types"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:102
+#: ../doc/2.1/book/sql.rst:103
 msgid "``select * from tm where char_column > varchar_column;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:102
+#: ../doc/2.1/book/sql.rst:103
 msgid "Okay, but only because Tarantool doesn't distinguish between character data types."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:105
+#: ../doc/2.1/book/sql.rst:106
 msgid "E021-11"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:105
+#: ../doc/2.1/book/sql.rst:106
 msgid "POSITION function"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:105
+#: ../doc/2.1/book/sql.rst:106
 msgid "``select position(x in y) from z;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:107
+#: ../doc/2.1/book/sql.rst:108
+msgid "E021-12"
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:108
 msgid "Character comparison"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:107
+#: ../doc/2.1/book/sql.rst:108
 msgid "``select * from t where s1 > 'a';``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:107
+#: ../doc/2.1/book/sql.rst:108
 msgid "Okay. We should note here that comparisons use a binary collation by default, but it is easy to specify unicode or unicode_ci collations, or create new collations."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:111
+#: ../doc/2.1/book/sql.rst:112
 msgid "E031"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:111
+#: ../doc/2.1/book/sql.rst:112
 msgid "Identifiers"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:111
-msgid "``create table rank (rank int primary key);``"
+#: ../doc/2.1/book/sql.rst:112
+msgid "``create table rank (ceil int primary key);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:111
+#: ../doc/2.1/book/sql.rst:112
 msgid "Fail. Tarantool's list of reserved words differs from the standard's list of reserved words."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:114
+#: ../doc/2.1/book/sql.rst:115
 msgid "E031-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:114
+#: ../doc/2.1/book/sql.rst:115
 msgid "Delimited Identifiers"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:114
+#: ../doc/2.1/book/sql.rst:115
 msgid "``create table \"t47\" (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:114
+#: ../doc/2.1/book/sql.rst:115
 msgid "Okay. And enclosing identifiers inside double quotes means they won't be converted to upper case or lower case, this is behavior that some other DBMSs sadly lack."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:118
+#: ../doc/2.1/book/sql.rst:119
 msgid "E031-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:118
+#: ../doc/2.1/book/sql.rst:119
 msgid "Lower case identifiers"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:118
+#: ../doc/2.1/book/sql.rst:119
 msgid "``create table t48 (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:120
+#: ../doc/2.1/book/sql.rst:121
 msgid "E031-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:120
+#: ../doc/2.1/book/sql.rst:121
 msgid "Trailing underscore"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:120
+#: ../doc/2.1/book/sql.rst:121
 msgid "``create table t49_ (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:122
+#: ../doc/2.1/book/sql.rst:123
 msgid "E051"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:122
+#: ../doc/2.1/book/sql.rst:123
 msgid "Basic query specification"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:124
+#: ../doc/2.1/book/sql.rst:125
 msgid "E051-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:124
+#: ../doc/2.1/book/sql.rst:125
 msgid "SELECT DISTINCT"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:124
+#: ../doc/2.1/book/sql.rst:125
 msgid "``select distinct s1 from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:126
+#: ../doc/2.1/book/sql.rst:127
 msgid "E051-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:126
+#: ../doc/2.1/book/sql.rst:127
 msgid "GROUP BY clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:126
+#: ../doc/2.1/book/sql.rst:127
 msgid "``select distinct s1 from t group by s1;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:128
+#: ../doc/2.1/book/sql.rst:129
 msgid "E051-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:128
+#: ../doc/2.1/book/sql.rst:129
 msgid "GROUP BY can contain columns not in select list"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:128
+#: ../doc/2.1/book/sql.rst:129
 msgid "``select s1 from t group by lower(s1);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:131
+#: ../doc/2.1/book/sql.rst:132
 msgid "E051-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:131
+#: ../doc/2.1/book/sql.rst:132
 msgid "Select list items can be renamed"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:131
+#: ../doc/2.1/book/sql.rst:132
 msgid "``select s1 as K from t order by K;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:133
+#: ../doc/2.1/book/sql.rst:134
 msgid "E051-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:133
+#: ../doc/2.1/book/sql.rst:134
 msgid "HAVING clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:133
-msgid "``select s1,count(*) from t having s1 < 'b';``"
+#: ../doc/2.1/book/sql.rst:134
+msgid "``select count(*) from t having count(*) > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:133
-msgid "Fail. GROUP BY is mandatory before HAVING. If we hadn't happened to omit GROUP BY, it would have been okay."
+#: ../doc/2.1/book/sql.rst:134
+msgid "Okay. GROUP BY is not mandatory before HAVING."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:137
+#: ../doc/2.1/book/sql.rst:136
 msgid "E051-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:137
+#: ../doc/2.1/book/sql.rst:136
 msgid "Qualified * in select list"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:137
+#: ../doc/2.1/book/sql.rst:136
 msgid "``select t.* from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:139
+#: ../doc/2.1/book/sql.rst:138
 msgid "E051-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:139
+#: ../doc/2.1/book/sql.rst:138
 msgid "Correlation names in the FROM clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:139
+#: ../doc/2.1/book/sql.rst:138
 msgid "``select * from t as K;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:141
+#: ../doc/2.1/book/sql.rst:140
 msgid "E051-09"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:141
+#: ../doc/2.1/book/sql.rst:140
 msgid "Rename columns in the FROM clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:141
+#: ../doc/2.1/book/sql.rst:140
 msgid "``select * from t as x(q,c);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:141
-#: ../doc/2.1/book/sql.rst:362
+#: ../doc/2.1/book/sql.rst:140
 msgid "Fail."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:143
+#: ../doc/2.1/book/sql.rst:142
 msgid "E061"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:143
+#: ../doc/2.1/book/sql.rst:142
 msgid "Basic predicates and search conditions"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:145
+#: ../doc/2.1/book/sql.rst:144
 msgid "E061-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:145
+#: ../doc/2.1/book/sql.rst:144
 msgid "Comparison predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:145
+#: ../doc/2.1/book/sql.rst:144
 msgid "``select * from t where 0 = 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:147
+#: ../doc/2.1/book/sql.rst:146
 msgid "E061-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:147
+#: ../doc/2.1/book/sql.rst:146
 msgid "BETWEEN predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:147
+#: ../doc/2.1/book/sql.rst:146
 msgid "``select * from t where ' ' between '' and ' ';``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:149
+#: ../doc/2.1/book/sql.rst:148
 msgid "E061-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:149
+#: ../doc/2.1/book/sql.rst:148
 msgid "IN predicate with list of values"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:149
+#: ../doc/2.1/book/sql.rst:148
 msgid "``select * from t where s1 in ('a',upper('a'));``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:151
+#: ../doc/2.1/book/sql.rst:150
 msgid "E061-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:151
+#: ../doc/2.1/book/sql.rst:150
 msgid "LIKE predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:151
+#: ../doc/2.1/book/sql.rst:150
 msgid "``select * from t where s1 like '_';``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:153
+#: ../doc/2.1/book/sql.rst:152
 msgid "E061-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:153
+#: ../doc/2.1/book/sql.rst:152
 msgid "LIKE predicate: ESCAPE clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:153
+#: ../doc/2.1/book/sql.rst:152
 msgid "``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:155
+#: ../doc/2.1/book/sql.rst:154
 msgid "E061-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:155
+#: ../doc/2.1/book/sql.rst:154
 msgid "NULL predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:155
+#: ../doc/2.1/book/sql.rst:154
 msgid "``select * from t where s1 is not null;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:157
+#: ../doc/2.1/book/sql.rst:156
 msgid "E061-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:157
+#: ../doc/2.1/book/sql.rst:156
 msgid "Quantified comparison predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:157
+#: ../doc/2.1/book/sql.rst:156
 msgid "``select * from t where s1 = any (select s1 from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:157
-#: ../doc/2.1/book/sql.rst:165
-#: ../doc/2.1/book/sql.rst:298
-#: ../doc/2.1/book/sql.rst:301
-#: ../doc/2.1/book/sql.rst:343
-#: ../doc/2.1/book/sql.rst:359
-#: ../doc/2.1/book/sql.rst:375
-#: ../doc/2.1/book/sql.rst:377
-#: ../doc/2.1/book/sql.rst:400
-#: ../doc/2.1/book/sql.rst:430
+#: ../doc/2.1/book/sql.rst:156
+#: ../doc/2.1/book/sql.rst:164
+#: ../doc/2.1/book/sql.rst:297
+#: ../doc/2.1/book/sql.rst:300
+#: ../doc/2.1/book/sql.rst:342
+#: ../doc/2.1/book/sql.rst:358
+#: ../doc/2.1/book/sql.rst:361
+#: ../doc/2.1/book/sql.rst:374
+#: ../doc/2.1/book/sql.rst:376
+#: ../doc/2.1/book/sql.rst:399
+#: ../doc/2.1/book/sql.rst:429
 msgid "Fail. Syntax error."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:159
+#: ../doc/2.1/book/sql.rst:158
 msgid "E061-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:159
+#: ../doc/2.1/book/sql.rst:158
 msgid "EXISTS predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:159
+#: ../doc/2.1/book/sql.rst:158
 msgid "``select * from t where not exists (select * from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:161
+#: ../doc/2.1/book/sql.rst:160
 msgid "E061-09"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:161
+#: ../doc/2.1/book/sql.rst:160
 msgid "Subqueries in comparison predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:161
+#: ../doc/2.1/book/sql.rst:160
 msgid "``select * from t where s1 > (select s1 from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:163
+#: ../doc/2.1/book/sql.rst:162
 msgid "E061-11"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:163
+#: ../doc/2.1/book/sql.rst:162
 msgid "Subqueries in IN predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:163
+#: ../doc/2.1/book/sql.rst:162
 msgid "``select * from t where s1 in (select s1 from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:165
+#: ../doc/2.1/book/sql.rst:164
 msgid "E061-12"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:165
+#: ../doc/2.1/book/sql.rst:164
 msgid "Subqueries in quantified comparison predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:165
+#: ../doc/2.1/book/sql.rst:164
 msgid "``select * from t where s1 >= all (select s1 from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:167
+#: ../doc/2.1/book/sql.rst:166
 msgid "E061-13"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:167
+#: ../doc/2.1/book/sql.rst:166
 msgid "Correlated subqueries"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:167
+#: ../doc/2.1/book/sql.rst:166
 msgid "``select * from t where s1 = (select s1 from t2 where t2.s2 = t.s1);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:170
+#: ../doc/2.1/book/sql.rst:169
 msgid "E061-14"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:170
+#: ../doc/2.1/book/sql.rst:169
 msgid "Search condition"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:170
+#: ../doc/2.1/book/sql.rst:169
 msgid "``select * from t where 0 <> 0 or 'a' < 'b' and s1 is null;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:173
+#: ../doc/2.1/book/sql.rst:172
 msgid "E071"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:173
+#: ../doc/2.1/book/sql.rst:172
 msgid "Basic query expressions"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:175
-#: ../doc/2.1/book/sql.rst:178
+#: ../doc/2.1/book/sql.rst:174
 msgid "E071-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:175
+#: ../doc/2.1/book/sql.rst:174
 msgid "UNION DISTINCT table operator"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:175
+#: ../doc/2.1/book/sql.rst:174
 msgid "``select * from t union distinct select * from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:175
+#: ../doc/2.1/book/sql.rst:174
 msgid "Fail. However, \"select * from t union select * from t;\" is okay."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:178
+#: ../doc/2.1/book/sql.rst:177
+msgid "E071-02"
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:177
 msgid "UNION ALL table operator"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:178
+#: ../doc/2.1/book/sql.rst:177
 msgid "``select * from t union all select * from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:180
+#: ../doc/2.1/book/sql.rst:179
 msgid "E071-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:180
+#: ../doc/2.1/book/sql.rst:179
 msgid "EXCEPT DISTINCT table operator"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:180
+#: ../doc/2.1/book/sql.rst:179
 msgid "``select * from t except distinct select * from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:180
+#: ../doc/2.1/book/sql.rst:179
 msgid "Fail. However, ``select * from t except select * from t;`` is okay."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:183
+#: ../doc/2.1/book/sql.rst:182
 msgid "E071-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:183
+#: ../doc/2.1/book/sql.rst:182
 msgid "Columns combined via table operators need not have exactly the same data type."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:183
+#: ../doc/2.1/book/sql.rst:182
 msgid "``select s1 from t union select 5 from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:183
+#: ../doc/2.1/book/sql.rst:182
 msgid "Okay, but only because Tarantool doesn't distinguish data types very well."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:186
+#: ../doc/2.1/book/sql.rst:185
 msgid "E071-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:186
+#: ../doc/2.1/book/sql.rst:185
 msgid "Table operators in subqueries"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:186
+#: ../doc/2.1/book/sql.rst:185
 msgid "``select * from t where 'a' in (select * from t union select * from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:189
+#: ../doc/2.1/book/sql.rst:188
 msgid "E081"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:189
+#: ../doc/2.1/book/sql.rst:188
 msgid "Basic privileges"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:191
+#: ../doc/2.1/book/sql.rst:190
 msgid "E081-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:191
+#: ../doc/2.1/book/sql.rst:190
 msgid "Select privilege at the table level"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:191
+#: ../doc/2.1/book/sql.rst:190
 msgid "Fail. Syntax error. (Tarantool doesn't support privileges.)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:194
+#: ../doc/2.1/book/sql.rst:193
 msgid "E081-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:194
+#: ../doc/2.1/book/sql.rst:193
 msgid "DELETE privilege"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:194
-#: ../doc/2.1/book/sql.rst:196
-#: ../doc/2.1/book/sql.rst:198
-#: ../doc/2.1/book/sql.rst:200
-#: ../doc/2.1/book/sql.rst:202
-#: ../doc/2.1/book/sql.rst:204
-#: ../doc/2.1/book/sql.rst:206
-#: ../doc/2.1/book/sql.rst:208
-#: ../doc/2.1/book/sql.rst:210
+#: ../doc/2.1/book/sql.rst:193
+#: ../doc/2.1/book/sql.rst:195
+#: ../doc/2.1/book/sql.rst:197
+#: ../doc/2.1/book/sql.rst:199
+#: ../doc/2.1/book/sql.rst:201
+#: ../doc/2.1/book/sql.rst:203
+#: ../doc/2.1/book/sql.rst:205
+#: ../doc/2.1/book/sql.rst:207
+#: ../doc/2.1/book/sql.rst:209
 msgid "Fail. (Tarantool doesn't support privileges.)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:196
+#: ../doc/2.1/book/sql.rst:195
 msgid "E081-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:196
+#: ../doc/2.1/book/sql.rst:195
 msgid "INSERT privilege at the table level"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:198
+#: ../doc/2.1/book/sql.rst:197
 msgid "E081-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:198
+#: ../doc/2.1/book/sql.rst:197
 msgid "UPDATE privilege at the table level"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:200
+#: ../doc/2.1/book/sql.rst:199
 msgid "E081-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:200
+#: ../doc/2.1/book/sql.rst:199
 msgid "UPDATE privilege at column level"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:202
+#: ../doc/2.1/book/sql.rst:201
 msgid "E081-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:202
+#: ../doc/2.1/book/sql.rst:201
 msgid "REFERENCES privilege at the table level"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:204
+#: ../doc/2.1/book/sql.rst:203
 msgid "E081-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:204
+#: ../doc/2.1/book/sql.rst:203
 msgid "REFERENCES privilege at column level"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:206
+#: ../doc/2.1/book/sql.rst:205
 msgid "E081-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:206
+#: ../doc/2.1/book/sql.rst:205
 msgid "WITH GRANT OPTION"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:208
+#: ../doc/2.1/book/sql.rst:207
 msgid "E081-09"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:208
+#: ../doc/2.1/book/sql.rst:207
 msgid "USAGE privilege"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:210
+#: ../doc/2.1/book/sql.rst:209
 msgid "E081-10"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:210
+#: ../doc/2.1/book/sql.rst:209
 msgid "EXECUTE privilege"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:212
+#: ../doc/2.1/book/sql.rst:211
 msgid "E091"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:212
+#: ../doc/2.1/book/sql.rst:211
 msgid "Set functions"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:214
+#: ../doc/2.1/book/sql.rst:213
 msgid "E091-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:214
+#: ../doc/2.1/book/sql.rst:213
 msgid "AVG"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:214
+#: ../doc/2.1/book/sql.rst:213
 msgid "``select avg(s1) from t7;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:214
+#: ../doc/2.1/book/sql.rst:213
 msgid "Fail. No warning that nulls were eliminated."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:216
+#: ../doc/2.1/book/sql.rst:215
 msgid "E091-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:216
+#: ../doc/2.1/book/sql.rst:215
 msgid "COUNT"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:216
+#: ../doc/2.1/book/sql.rst:215
 msgid "``select count(*) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:218
+#: ../doc/2.1/book/sql.rst:217
 msgid "E091-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:218
+#: ../doc/2.1/book/sql.rst:217
 msgid "MAX"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:218
+#: ../doc/2.1/book/sql.rst:217
 msgid "``select max(s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:220
+#: ../doc/2.1/book/sql.rst:219
 msgid "E091-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:220
+#: ../doc/2.1/book/sql.rst:219
 msgid "MIN"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:220
+#: ../doc/2.1/book/sql.rst:219
 msgid "``select min(s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:222
+#: ../doc/2.1/book/sql.rst:221
 msgid "E091-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:222
+#: ../doc/2.1/book/sql.rst:221
 msgid "SUM"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:222
+#: ../doc/2.1/book/sql.rst:221
 msgid "``select sum(1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:224
+#: ../doc/2.1/book/sql.rst:223
 msgid "E091-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:224
+#: ../doc/2.1/book/sql.rst:223
 msgid "ALL quantifier"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:224
+#: ../doc/2.1/book/sql.rst:223
 msgid "``select sum(all s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:226
+#: ../doc/2.1/book/sql.rst:225
 msgid "E091-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:226
+#: ../doc/2.1/book/sql.rst:225
 msgid "DISTINCT quantifier"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:226
+#: ../doc/2.1/book/sql.rst:225
 msgid "``select sum(distinct s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:228
+#: ../doc/2.1/book/sql.rst:227
 msgid "E101"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:228
+#: ../doc/2.1/book/sql.rst:227
 msgid "Basic data manipulation"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:230
+#: ../doc/2.1/book/sql.rst:229
 msgid "E101-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:230
+#: ../doc/2.1/book/sql.rst:229
 msgid "INSERT statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:230
+#: ../doc/2.1/book/sql.rst:229
 msgid "``insert into t (s1,s2) values (1,''),(2,null),(3,55);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:232
+#: ../doc/2.1/book/sql.rst:231
 msgid "E101-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:232
+#: ../doc/2.1/book/sql.rst:231
 msgid "Searched UPDATE statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:232
+#: ../doc/2.1/book/sql.rst:231
 msgid "``update t set s1 = null where s1 in (select s1 from t2);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:235
-msgid "E01-04"
+#: ../doc/2.1/book/sql.rst:234
+msgid "E101-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:235
+#: ../doc/2.1/book/sql.rst:234
 msgid "Searched DELETE statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:235
+#: ../doc/2.1/book/sql.rst:234
 msgid "``delete from t where s1 in (select s1 from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:237
+#: ../doc/2.1/book/sql.rst:236
 msgid "E111"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:237
+#: ../doc/2.1/book/sql.rst:236
 msgid "Single row SELECT statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:237
+#: ../doc/2.1/book/sql.rst:236
 msgid "``select count(*) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:239
+#: ../doc/2.1/book/sql.rst:238
 msgid "E121"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:239
+#: ../doc/2.1/book/sql.rst:238
 msgid "Basic cursor support"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:241
+#: ../doc/2.1/book/sql.rst:240
 msgid "E121-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:241
+#: ../doc/2.1/book/sql.rst:240
 msgid "DECLARE CURSOR"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:241
-#: ../doc/2.1/book/sql.rst:247
-#: ../doc/2.1/book/sql.rst:249
-#: ../doc/2.1/book/sql.rst:251
-#: ../doc/2.1/book/sql.rst:253
-#: ../doc/2.1/book/sql.rst:255
-#: ../doc/2.1/book/sql.rst:257
+#: ../doc/2.1/book/sql.rst:240
+#: ../doc/2.1/book/sql.rst:246
+#: ../doc/2.1/book/sql.rst:248
+#: ../doc/2.1/book/sql.rst:250
+#: ../doc/2.1/book/sql.rst:252
+#: ../doc/2.1/book/sql.rst:254
+#: ../doc/2.1/book/sql.rst:256
 msgid "Fail. Tarantool doesn't support cursors."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:243
+#: ../doc/2.1/book/sql.rst:242
 msgid "E121-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:243
+#: ../doc/2.1/book/sql.rst:242
 msgid "ORDER BY columns need not be in select list"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:243
+#: ../doc/2.1/book/sql.rst:242
 msgid "``select s1 from t order by s2;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:245
+#: ../doc/2.1/book/sql.rst:244
 msgid "E121-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:245
+#: ../doc/2.1/book/sql.rst:244
 msgid "Value expressions in select list"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:245
+#: ../doc/2.1/book/sql.rst:244
 msgid "``select s1 from t7 order by -s1;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:247
+#: ../doc/2.1/book/sql.rst:246
 msgid "E121-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:247
+#: ../doc/2.1/book/sql.rst:246
 msgid "OPEN statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:249
+#: ../doc/2.1/book/sql.rst:248
 msgid "E121-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:249
+#: ../doc/2.1/book/sql.rst:248
 msgid "Positioned UPDATE statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:251
+#: ../doc/2.1/book/sql.rst:250
 msgid "E121-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:251
+#: ../doc/2.1/book/sql.rst:250
 msgid "Positioned DELETE statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:253
+#: ../doc/2.1/book/sql.rst:252
 msgid "E121-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:253
+#: ../doc/2.1/book/sql.rst:252
 msgid "CLOSE statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:255
+#: ../doc/2.1/book/sql.rst:254
 msgid "E121-10"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:255
+#: ../doc/2.1/book/sql.rst:254
 msgid "FETCH statement implicit next"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:257
+#: ../doc/2.1/book/sql.rst:256
 msgid "E121-17"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:257
+#: ../doc/2.1/book/sql.rst:256
 msgid "WITH HOLD cursors"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:259
+#: ../doc/2.1/book/sql.rst:258
 msgid "E131"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:259
+#: ../doc/2.1/book/sql.rst:258
 msgid "Null value support (nulls in lieu of values)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:259
+#: ../doc/2.1/book/sql.rst:258
 msgid "``select s1 from t7 where s1 is null;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:261
+#: ../doc/2.1/book/sql.rst:260
 msgid "E141"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:261
+#: ../doc/2.1/book/sql.rst:260
 msgid "Basic integrity constraints"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:263
+#: ../doc/2.1/book/sql.rst:262
 msgid "E141-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:263
+#: ../doc/2.1/book/sql.rst:262
 msgid "NOT NULL constraints"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:263
+#: ../doc/2.1/book/sql.rst:262
 msgid "``create table t8 (s1 int primary key, s2 int not null);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:266
+#: ../doc/2.1/book/sql.rst:265
 msgid "E141-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:266
+#: ../doc/2.1/book/sql.rst:265
 msgid "UNIQUE constraints of NOT NULL columns"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:266
+#: ../doc/2.1/book/sql.rst:265
 msgid "``create table t9 (s1 int primary key , s2 int not null unique);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:269
+#: ../doc/2.1/book/sql.rst:268
 msgid "E141-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:269
+#: ../doc/2.1/book/sql.rst:268
 msgid "PRIMARY KEY constraints"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:269
+#: ../doc/2.1/book/sql.rst:268
 msgid "``create table t10 (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:269
+#: ../doc/2.1/book/sql.rst:268
 msgid "Okay, although Tarantool shouldn't always insist on having a primary key."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:272
+#: ../doc/2.1/book/sql.rst:271
 msgid "E141-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:272
+#: ../doc/2.1/book/sql.rst:271
 msgid "Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:272
+#: ../doc/2.1/book/sql.rst:271
 msgid "``create table t11 (s0 int primary key, s1 int references t10);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:276
+#: ../doc/2.1/book/sql.rst:275
 msgid "E141-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:276
+#: ../doc/2.1/book/sql.rst:275
 msgid "CHECK constraints"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:276
+#: ../doc/2.1/book/sql.rst:275
 msgid "``create table t12 (s1 int primary key, s2 int, check (s1 = s2));``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:279
+#: ../doc/2.1/book/sql.rst:278
 msgid "E141-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:279
+#: ../doc/2.1/book/sql.rst:278
 msgid "Column defaults"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:279
+#: ../doc/2.1/book/sql.rst:278
 msgid "``create table t13 (s1 int primary key, s2 int default -1);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:282
+#: ../doc/2.1/book/sql.rst:281
 msgid "E141-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:282
+#: ../doc/2.1/book/sql.rst:281
 msgid "NOT NULL inferred on primary key"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:282
+#: ../doc/2.1/book/sql.rst:281
 msgid "``create table t14 (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:282
+#: ../doc/2.1/book/sql.rst:281
 msgid "Okay. We are unable to insert NULL although we don't explicitly say the column is NOT NULL."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:285
+#: ../doc/2.1/book/sql.rst:284
 msgid "E141-10"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:285
+#: ../doc/2.1/book/sql.rst:284
 msgid "Names in a foreign key can be specified in any order"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:285
+#: ../doc/2.1/book/sql.rst:284
 msgid "``create table t15 (s1 int, s2 int, primary key (s1,s2));`` ``create table t16 (s1 int primary key, s2 int, foreign key (s2,s1) references t15 (s1,s2));``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:290
+#: ../doc/2.1/book/sql.rst:289
 msgid "E151"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:290
+#: ../doc/2.1/book/sql.rst:289
 msgid "Transaction support"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:292
+#: ../doc/2.1/book/sql.rst:291
 msgid "E151-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:292
+#: ../doc/2.1/book/sql.rst:291
 msgid "COMMIT statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:292
+#: ../doc/2.1/book/sql.rst:291
 msgid "``commit;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:292
+#: ../doc/2.1/book/sql.rst:291
 msgid "Fail. We have to say START TRANSACTION first."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:294
+#: ../doc/2.1/book/sql.rst:293
 msgid "E151-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:294
+#: ../doc/2.1/book/sql.rst:293
 msgid "ROLLBACK statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:294
+#: ../doc/2.1/book/sql.rst:293
 msgid "``rollback;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:296
+#: ../doc/2.1/book/sql.rst:295
 msgid "E152"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:296
+#: ../doc/2.1/book/sql.rst:295
 msgid "Basic SET TRANSACTION statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:298
+#: ../doc/2.1/book/sql.rst:297
 msgid "E152-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:298
+#: ../doc/2.1/book/sql.rst:297
 msgid "SET TRANSACTION statement ISOLATION SERIALIZABLE clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:298
+#: ../doc/2.1/book/sql.rst:297
 msgid "``set transaction isolation level serializable;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:301
+#: ../doc/2.1/book/sql.rst:300
 msgid "E152-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:301
+#: ../doc/2.1/book/sql.rst:300
 msgid "SET TRANSACTION statement READ ONLY and READ WRITE clauses"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:301
+#: ../doc/2.1/book/sql.rst:300
 msgid "``set transaction read only;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:304
+#: ../doc/2.1/book/sql.rst:303
 msgid "E153"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:304
+#: ../doc/2.1/book/sql.rst:303
 msgid "Updatable queries with subqueries"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:306
+#: ../doc/2.1/book/sql.rst:305
 msgid "E161"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:306
+#: ../doc/2.1/book/sql.rst:305
 msgid "SQL comments using leading double minus"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:306
+#: ../doc/2.1/book/sql.rst:305
 msgid "``--comment;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:308
+#: ../doc/2.1/book/sql.rst:307
 msgid "E171"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:308
+#: ../doc/2.1/book/sql.rst:307
 msgid "SQLSTATE support"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:308
+#: ../doc/2.1/book/sql.rst:307
 msgid "``drop table no_such_table;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:308
+#: ../doc/2.1/book/sql.rst:307
 msgid "Fail. At least, the error message doesn't hint that SQLSTATE exists."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:311
+#: ../doc/2.1/book/sql.rst:310
 msgid "E182"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:311
+#: ../doc/2.1/book/sql.rst:310
 msgid "Host language binding"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:311
+#: ../doc/2.1/book/sql.rst:310
 msgid "Okay. Any of the Tarantool connectors should be able to call ``box.sql.execute()``."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:314
-#: ../doc/2.1/book/sql.rst:454
+#: ../doc/2.1/book/sql.rst:313
 msgid "F031"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:314
+#: ../doc/2.1/book/sql.rst:313
 msgid "Basic schema manipulation"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:316
+#: ../doc/2.1/book/sql.rst:315
 msgid "F031-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:316
+#: ../doc/2.1/book/sql.rst:315
 msgid "CREATE TABLE statement to create persistent base tables"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:316
+#: ../doc/2.1/book/sql.rst:315
 msgid "``create table t20 (t20_1 int not null);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:316
+#: ../doc/2.1/book/sql.rst:315
 msgid "Fail. We always have to say PRIMARY KEY (we only count this flaw once)."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:319
+#: ../doc/2.1/book/sql.rst:318
 msgid "F031-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:319
+#: ../doc/2.1/book/sql.rst:318
 msgid "CREATE VIEW statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:319
+#: ../doc/2.1/book/sql.rst:318
 msgid "``create view t21 as select * from t20;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:321
+#: ../doc/2.1/book/sql.rst:320
 msgid "F031-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:321
-#: ../doc/2.1/book/sql.rst:425
+#: ../doc/2.1/book/sql.rst:320
+#: ../doc/2.1/book/sql.rst:424
 msgid "GRANT statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:321
+#: ../doc/2.1/book/sql.rst:320
 msgid "Fail. Tarantool doesn't support privileges except via NoSQL."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:324
+#: ../doc/2.1/book/sql.rst:323
 msgid "F031-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:324
+#: ../doc/2.1/book/sql.rst:323
 msgid "ALTER TABLE statement: add column"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:324
+#: ../doc/2.1/book/sql.rst:323
 msgid "``alter table t7 add column t7_2 varchar default 'q';``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:324
+#: ../doc/2.1/book/sql.rst:323
 msgid "Fail. Table alterations aren't working at all."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:326
-#: ../doc/2.1/book/sql.rst:328
-msgid "F031-14"
+#: ../doc/2.1/book/sql.rst:325
+msgid "F031-13"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:326
+#: ../doc/2.1/book/sql.rst:325
 msgid "DROP TABLE statement: RESTRICT clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:326
+#: ../doc/2.1/book/sql.rst:325
 msgid "``drop table t20 restrict;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:326
-#: ../doc/2.1/book/sql.rst:328
+#: ../doc/2.1/book/sql.rst:325
+#: ../doc/2.1/book/sql.rst:327
 msgid "Fail. Syntax error, and RESTRICT is not assumed."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:328
+#: ../doc/2.1/book/sql.rst:327
+msgid "F031-16"
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:327
 msgid "DROP VIEW statement: RESTRICT clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:328
+#: ../doc/2.1/book/sql.rst:327
 msgid "``drop view v2 restrict;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:330
-msgid "F031-10"
+#: ../doc/2.1/book/sql.rst:329
+msgid "F031-19"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:330
+#: ../doc/2.1/book/sql.rst:329
 msgid "REVOKE statement: RESTRICT clause"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:330
+#: ../doc/2.1/book/sql.rst:329
 msgid "Fail. Tarantool does not support privileges except via NoSQL."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:333
+#: ../doc/2.1/book/sql.rst:332
 msgid "F041"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:333
+#: ../doc/2.1/book/sql.rst:332
 msgid "Basic joined table"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:335
+#: ../doc/2.1/book/sql.rst:334
 msgid "F041-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:335
+#: ../doc/2.1/book/sql.rst:334
 msgid "Inner join but not necessarily the INNER keyword"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:335
+#: ../doc/2.1/book/sql.rst:334
 msgid "``select a.s1 from t7 a join t7 b;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:338
+#: ../doc/2.1/book/sql.rst:337
 msgid "F041-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:338
+#: ../doc/2.1/book/sql.rst:337
 msgid "INNER keyword"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:338
+#: ../doc/2.1/book/sql.rst:337
 msgid "``select a.s1 from t7 a inner join t7 b;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:340
+#: ../doc/2.1/book/sql.rst:339
 msgid "F041-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:340
+#: ../doc/2.1/book/sql.rst:339
 msgid "LEFT OUTER JOIN"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:340
+#: ../doc/2.1/book/sql.rst:339
 msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:343
+#: ../doc/2.1/book/sql.rst:342
 msgid "F041-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:343
+#: ../doc/2.1/book/sql.rst:342
 msgid "RIGHT OUTER JOIN"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:343
+#: ../doc/2.1/book/sql.rst:342
 msgid "``select t7.*,t22.* from t22 right outer join t7 on (t22_1=s1);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:346
+#: ../doc/2.1/book/sql.rst:345
 msgid "F041-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:346
+#: ../doc/2.1/book/sql.rst:345
 msgid "Outer joins can be nested"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:346
+#: ../doc/2.1/book/sql.rst:345
 msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1) left outer join t23;``."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:349
+#: ../doc/2.1/book/sql.rst:348
 msgid "F041-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:349
+#: ../doc/2.1/book/sql.rst:348
 msgid "The inner table in a left or right outer join can also be used in an inner join"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:349
+#: ../doc/2.1/book/sql.rst:348
 msgid "``select t7.* from t22 left outer join t7 on (t22_1=s1) inner join t22 on (t22_4=t22_5);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:349
+#: ../doc/2.1/book/sql.rst:348
 msgid "Okay. The query fails due to a syntax error but that's expectable."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:352
+#: ../doc/2.1/book/sql.rst:351
 msgid "F041-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:352
+#: ../doc/2.1/book/sql.rst:351
 msgid "All comparison operators are supported"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:352
+#: ../doc/2.1/book/sql.rst:351
 msgid "``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:354
+#: ../doc/2.1/book/sql.rst:353
 msgid "F051 Basic date and time"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:356
+#: ../doc/2.1/book/sql.rst:355
 msgid "F051-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:356
+#: ../doc/2.1/book/sql.rst:355
 msgid "DATE data type (including support of DATE literal)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:356
+#: ../doc/2.1/book/sql.rst:355
 msgid "``create table dates (s1 date);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:356
+#: ../doc/2.1/book/sql.rst:355
 msgid "Okay. (Tarantool doesn't enforce valid dates or. times, but we've already noted that.)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:359
+#: ../doc/2.1/book/sql.rst:358
 msgid "F051-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:359
+#: ../doc/2.1/book/sql.rst:358
 msgid "TIME data type (including support of TIME literal)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:359
+#: ../doc/2.1/book/sql.rst:358
 msgid "``create table times (s1 time default time '1:2:3');``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:362
+#: ../doc/2.1/book/sql.rst:361
 msgid "F051-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:362
+#: ../doc/2.1/book/sql.rst:361
 msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:362
+#: ../doc/2.1/book/sql.rst:361
 msgid "``create table timestamps (s1 timestamp);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:365
+#: ../doc/2.1/book/sql.rst:364
 msgid "F051-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:365
+#: ../doc/2.1/book/sql.rst:364
 msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:365
+#: ../doc/2.1/book/sql.rst:364
 msgid "``select * from dates where s1 = s1;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:365
+#: ../doc/2.1/book/sql.rst:364
 msgid "Okay. We're being lenient because Tarantool does have date-arithmetic functions."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:368
+#: ../doc/2.1/book/sql.rst:367
 msgid "F051-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:368
+#: ../doc/2.1/book/sql.rst:367
 msgid "Explicit CAST between date-time types and character string types"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:368
-msgid "``select cast(s1 as varchar) from dates;``"
+#: ../doc/2.1/book/sql.rst:367
+msgid "``select cast(s1 as varchar(10)) from dates;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:371
+#: ../doc/2.1/book/sql.rst:370
 msgid "F051-06"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:371
+#: ../doc/2.1/book/sql.rst:370
 msgid "CURRENT_DATE"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:371
+#: ../doc/2.1/book/sql.rst:370
 msgid "``select current_date from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:373
+#: ../doc/2.1/book/sql.rst:372
 msgid "F051-07"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:373
+#: ../doc/2.1/book/sql.rst:372
 msgid "CURRENT_TIME"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:373
+#: ../doc/2.1/book/sql.rst:372
 msgid "``select * from t where current_time < '23:23:23';``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:375
+#: ../doc/2.1/book/sql.rst:374
 msgid "F051-08"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:375
+#: ../doc/2.1/book/sql.rst:374
 msgid "LOCALTIME"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:375
+#: ../doc/2.1/book/sql.rst:374
 msgid "``select localtime from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:377
+#: ../doc/2.1/book/sql.rst:376
 msgid "F051-09"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:377
+#: ../doc/2.1/book/sql.rst:376
 msgid "LOCALTIMESTAMP"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:377
+#: ../doc/2.1/book/sql.rst:376
 msgid "``select localtimestamp from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:379
+#: ../doc/2.1/book/sql.rst:378
 msgid "F081"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:379
+#: ../doc/2.1/book/sql.rst:378
 msgid "UNION and EXCEPT in views"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:379
+#: ../doc/2.1/book/sql.rst:378
 msgid "``create view vv as select * from t7 except select * from t15;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:382
+#: ../doc/2.1/book/sql.rst:381
 msgid "F131"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:382
+#: ../doc/2.1/book/sql.rst:381
 msgid "Grouped operations"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:384
+#: ../doc/2.1/book/sql.rst:383
 msgid "F131-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:384
+#: ../doc/2.1/book/sql.rst:383
 msgid "WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:384
+#: ../doc/2.1/book/sql.rst:383
 msgid "``create view vv2 as select * from vv group by s1;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:387
+#: ../doc/2.1/book/sql.rst:386
 msgid "F131-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:387
+#: ../doc/2.1/book/sql.rst:386
 msgid "Multiple tables supported in queries with grouped views"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:387
+#: ../doc/2.1/book/sql.rst:386
 msgid "``create view vv3 as select * from vv2,t30;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:390
+#: ../doc/2.1/book/sql.rst:389
 msgid "F131-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:390
+#: ../doc/2.1/book/sql.rst:389
 msgid "Set functions supported in queries with grouped views"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:390
+#: ../doc/2.1/book/sql.rst:389
 msgid "``create view vv4 as select count(*) from vv2;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:393
+#: ../doc/2.1/book/sql.rst:392
 msgid "F131-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:393
+#: ../doc/2.1/book/sql.rst:392
 msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:393
+#: ../doc/2.1/book/sql.rst:392
 msgid "``create view vv5 as select count(*) from vv2 group by s1 having count(*) > 0;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:396
+#: ../doc/2.1/book/sql.rst:395
 msgid "F181"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:396
+#: ../doc/2.1/book/sql.rst:395
 msgid "Multiple module support"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:396
+#: ../doc/2.1/book/sql.rst:395
 msgid "Fail. Tarantool doesn't have modules."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:398
+#: ../doc/2.1/book/sql.rst:397
 msgid "F201"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:398
+#: ../doc/2.1/book/sql.rst:397
 msgid "CAST function"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:398
+#: ../doc/2.1/book/sql.rst:397
 msgid "``select cast(s1 as int) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:400
+#: ../doc/2.1/book/sql.rst:399
 msgid "F221"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:400
+#: ../doc/2.1/book/sql.rst:399
 msgid "Explicit defaults"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:400
+#: ../doc/2.1/book/sql.rst:399
 msgid "``update t set s1 = default;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:402
+#: ../doc/2.1/book/sql.rst:401
 msgid "F261"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:402
+#: ../doc/2.1/book/sql.rst:401
 msgid "CASE expression"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:404
+#: ../doc/2.1/book/sql.rst:403
 msgid "F261-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:404
+#: ../doc/2.1/book/sql.rst:403
 msgid "Simple CASE"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:404
+#: ../doc/2.1/book/sql.rst:403
 msgid "``select case when 1 = 0 then 5 else 7 end from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:406
+#: ../doc/2.1/book/sql.rst:405
 msgid "F261-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:406
+#: ../doc/2.1/book/sql.rst:405
 msgid "Searched CASE"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:406
+#: ../doc/2.1/book/sql.rst:405
 msgid "``select case 1 when 0 then 5 else 7 end from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:408
+#: ../doc/2.1/book/sql.rst:407
 msgid "F261-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:408
+#: ../doc/2.1/book/sql.rst:407
 msgid "NULLIF"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:408
+#: ../doc/2.1/book/sql.rst:407
 msgid "``select nullif(s1,7) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:410
+#: ../doc/2.1/book/sql.rst:409
 msgid "F261-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:410
+#: ../doc/2.1/book/sql.rst:409
 msgid "COALESCE"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:410
+#: ../doc/2.1/book/sql.rst:409
 msgid "``select coalesce(s1,7) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:412
+#: ../doc/2.1/book/sql.rst:411
 msgid "F311"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:412
+#: ../doc/2.1/book/sql.rst:411
 msgid "Schema definition statement"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:414
+#: ../doc/2.1/book/sql.rst:413
 msgid "F311-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:414
+#: ../doc/2.1/book/sql.rst:413
 msgid "CREATE SCHEMA"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:414
+#: ../doc/2.1/book/sql.rst:413
 msgid "Fail. Tarantool doesn't have schemas or databases."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:416
+#: ../doc/2.1/book/sql.rst:415
 msgid "F311-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:416
+#: ../doc/2.1/book/sql.rst:415
 msgid "CREATE TABLE for persistent base tables"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:416
+#: ../doc/2.1/book/sql.rst:415
 msgid "Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:419
+#: ../doc/2.1/book/sql.rst:418
 msgid "F311-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:419
+#: ../doc/2.1/book/sql.rst:418
 msgid "CREATE VIEW"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:419
-#: ../doc/2.1/book/sql.rst:422
+#: ../doc/2.1/book/sql.rst:418
+#: ../doc/2.1/book/sql.rst:421
 msgid "Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:422
+#: ../doc/2.1/book/sql.rst:421
 msgid "F311-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:422
+#: ../doc/2.1/book/sql.rst:421
 msgid "CREATE VIEW: WITH CHECK OPTION"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:425
+#: ../doc/2.1/book/sql.rst:424
 msgid "F311-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:425
+#: ../doc/2.1/book/sql.rst:424
 msgid "Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:428
+#: ../doc/2.1/book/sql.rst:427
 msgid "F471"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:428
+#: ../doc/2.1/book/sql.rst:427
 msgid "Scalar subquery values"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:428
+#: ../doc/2.1/book/sql.rst:427
 msgid "``select s1 from t where s1 = (select count(*) from t);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:430
+#: ../doc/2.1/book/sql.rst:429
 msgid "F481"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:430
+#: ../doc/2.1/book/sql.rst:429
 msgid "Expanded NULL Predicate"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:430
+#: ../doc/2.1/book/sql.rst:429
 msgid "``select * from t where row(s1,s1) is not null;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:432
+#: ../doc/2.1/book/sql.rst:431
 msgid "F812"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:432
+#: ../doc/2.1/book/sql.rst:431
 msgid "Basic flagging"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:432
+#: ../doc/2.1/book/sql.rst:431
 msgid "Fail. Tarantool doesn't support any flagging."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:434
+#: ../doc/2.1/book/sql.rst:433
 msgid "S011"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:434
+#: ../doc/2.1/book/sql.rst:433
 msgid "Distinct types"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:434
+#: ../doc/2.1/book/sql.rst:433
 msgid "``create type x as float;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:434
+#: ../doc/2.1/book/sql.rst:433
 msgid "Fail. Tarantool doesn't support distinct types."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:436
+#: ../doc/2.1/book/sql.rst:435
 msgid "T321"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:436
+#: ../doc/2.1/book/sql.rst:435
 msgid "Basic SQL-invoked routines"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:438
+#: ../doc/2.1/book/sql.rst:437
 msgid "T321-01"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:438
-msgid "User-defined functions with no overloading procedures."
+#: ../doc/2.1/book/sql.rst:437
+msgid "User-defined functions with no overloading"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:438
+#: ../doc/2.1/book/sql.rst:437
 msgid "``create function f () returns int return 5;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:438
-#: ../doc/2.1/book/sql.rst:441
-#: ../doc/2.1/book/sql.rst:446
-#: ../doc/2.1/book/sql.rst:449
-msgid "Fail. Tarantool doesn't support user-defined functions."
+#: ../doc/2.1/book/sql.rst:437
+msgid "Fail. Tarantool doesn't support user-defined SQL functions."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:441
+#: ../doc/2.1/book/sql.rst:440
 msgid "T321-02"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:441
-msgid "User-defined procedures with no overloading procedures."
+#: ../doc/2.1/book/sql.rst:440
+msgid "User-defined procedures with no overloading"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:441
+#: ../doc/2.1/book/sql.rst:440
 msgid "``create procedure p () begin end;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:444
+#: ../doc/2.1/book/sql.rst:440
+msgid "Fail. Tarantool doesn't support user-defined proceduress."
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:443
 msgid "T321-03"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:444
+#: ../doc/2.1/book/sql.rst:443
 msgid "Function invocation"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:444
+#: ../doc/2.1/book/sql.rst:443
 msgid "``select f(1) from t;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:444
+#: ../doc/2.1/book/sql.rst:443
 msgid "Okay. Tarantool can invoke Lua user-defined functions."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:446
+#: ../doc/2.1/book/sql.rst:445
 msgid "T321-04"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:446
+#: ../doc/2.1/book/sql.rst:445
 msgid "CALL statement."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:446
+#: ../doc/2.1/book/sql.rst:445
 msgid "``call p();``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:449
+#: ../doc/2.1/book/sql.rst:445
+msgid "Fail. Tarantool doesn't support user-defined procedures."
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:448
 msgid "T321-05"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:449
+#: ../doc/2.1/book/sql.rst:448
 msgid "RETURN statement."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:449
+#: ../doc/2.1/book/sql.rst:448
 msgid "``create function f() returns int return 5;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:452
+#: ../doc/2.1/book/sql.rst:448
+msgid "Fail. Tarantool doesn't support user-defined functions."
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:451
 msgid "T631"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:452
+#: ../doc/2.1/book/sql.rst:451
 msgid "IN predicate with one list element"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:452
+#: ../doc/2.1/book/sql.rst:451
 msgid "``select * from t where 1 in (1);``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:454
-msgid "Basic information schema."
+#: ../doc/2.1/book/sql.rst:453
+msgid "F021"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:454
+#: ../doc/2.1/book/sql.rst:453
+msgid "Basic information schema"
+msgstr ""
+
+#: ../doc/2.1/book/sql.rst:453
 msgid "``select * from information_schema.tables;``"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:454
+#: ../doc/2.1/book/sql.rst:453
 msgid "Fail. There is no schema with that name (not counted in the final score)."
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:458
-msgid "Total number of features marked \"Fail\": 57"
+#: ../doc/2.1/book/sql.rst:457
+msgid "Total number of items marked \"Fail\": 61"
 msgstr ""
 
-#: ../doc/2.1/book/sql.rst:460
-msgid "Total number of features marked \"Okay\": 77"
+#: ../doc/2.1/book/sql.rst:459
+msgid "Total number of items marked \"Okay\": 85"
 msgstr ""
 
 #: ../doc/2.1/dev_guide/build_contribute_index.rst:37
@@ -23506,7 +23566,7 @@ msgstr ""
 
 #: ../doc/2.1/dev_guide/documentation_guidelines.rst:240
 #: ../doc/2.1/reference/reference_lua/fiber.rst:230
-#: ../doc/2.1/reference/reference_lua/fiber.rst:268
+#: ../doc/2.1/reference/reference_lua/fiber.rst:269
 msgid "what will be passed to function"
 msgstr ""
 
@@ -24414,7 +24474,7 @@ msgid "SQL protocol"
 msgstr ""
 
 #: ../doc/2.1/dev_guide/internals/sql_protocol.rst:41
-msgid "Tarantool's SQL protocol regulates how to build SQL requests and parse responses using the common Tarantool's binary protocol."
+msgid "Tarantool's SQL protocol regulates how to build SQL requests and parse responses using Tarantool's common binary protocol."
 msgstr ""
 
 #: ../doc/2.1/dev_guide/internals/sql_protocol.rst:44
@@ -24422,32 +24482,29 @@ msgid "Special SQL keys:"
 msgstr ""
 
 #: ../doc/2.1/dev_guide/internals/sql_protocol.rst:46
-msgid "<field_name>    ::= 0x29\n"
-"<metadata>      ::= 0x32\n"
+msgid "<metadata>      ::= 0x32\n"
 "<sql_text>      ::= 0x40\n"
 "<sql_bind>      ::= 0x41\n"
-"<sql_options>   ::= 0x42 /* yet unused */\n"
-"<sql_info>      ::= 0x43\n"
-"<sql_row_count> ::= 0x44"
+"<sql_info>      ::= 0x42"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:56
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:54
 msgid "Special SQL commands:"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:58
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:56
 msgid "<execute> ::= 11"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:64
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:62
 msgid "Request packet body"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:66
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:64
 msgid "An SQL request has the type ``EXECUTE=11``."
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:68
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:66
 msgid "EXECUTE REQUEST BODY:\n"
 "                         MAP\n"
 "+=====================+===============================+\n"
@@ -24458,47 +24515,47 @@ msgid "EXECUTE REQUEST BODY:\n"
 "+=====================+===============================+"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:79
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:77
 msgid "**SQL_TEXT** is a single non-empty SQL statement. For SQL syntax, see https://sqlite.org/lang.html"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:81
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:79
 msgid "**SQL_BIND** is an optional array of bindings (parameters). Each parameter value is a scalar: number, string, binary, null."
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:84
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:82
 msgid "A parameter can be *ordinal* or *named*. An ordinal parameter is encoded as a message pack scalar value (MP_UINT, INT, DOUBLE, FLOAT, STR, BIN, EXT, NIL). A named parameter is encoded as a map with one string key -- its name. For bindings syntax, see https://sqlite.org/lang_expr.html#varparam"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:92
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:90
 msgid ":code:`[100, 'abc', NULL, -345.6] = MP_ARRAY[ MP_UINT, MP_STR, MP_NIL, MP_DOUBLE ]`"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:93
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:91
 msgid ":code:`[1, 2, {'name': 300}] = MP_ARRAY[ MP_UINT, MP_UINT, MP_MAP{ MP_STR : MP_UINT } ]`"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:97
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:95
 msgid "Response packet body"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:99
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:97
 msgid "Body structure depends on the type of the SQL request."
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:101
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:99
 msgid "If the SQL request is SELECT, the response contains:"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:103
-msgid "metadata for columns (metadata for a single column contains only the column's name) and"
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:101
+msgid "metadata for columns (metadata for a single column contains only the column's name and type) and"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:105
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:103
 msgid "result rows."
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:107
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:105
 msgid "EXECUTE SELECT RESPONSE BODY:\n"
 "                              MAP\n"
 "+======================================+===========================+\n"
@@ -24507,8 +24564,10 @@ msgid "EXECUTE SELECT RESPONSE BODY:\n"
 "| MP_ARRAY: array of maps:             |                           |\n"
 "|           +~~~~~~~~~~~~~~~~~~~~~~~~+ |                           |\n"
 "|           | +~~~~~~~~~~~~~~~~~~~~+ | |     0x30: DATA            |\n"
-"|           | |   0x29: FIELD_NAME | | | MP_ARRAY: array of tuples |\n"
+"|           | |   0x00: FIELD_NAME | | | MP_ARRAY: array of tuples |\n"
 "|           | | MP_STR: field name | | |                           |\n"
+"|           | |   0x01: FIELD_TYPE | | |                           |\n"
+"|           | | MP_STR: field type | | |                           |\n"
 "|           | +~~~~~~~~~~~~~~~~~~~~+ | |                           |\n"
 "|           |        MP_MAP          | |                           |\n"
 "|           +~~~~~~~~~~~~~~~~~~~~~~~~+ |                           |\n"
@@ -24518,7 +24577,7 @@ msgid "EXECUTE SELECT RESPONSE BODY:\n"
 msgstr ""
 
 #: ../doc/2.1/dev_guide/internals/sql_protocol.rst:128
-msgid "Request: :code:`SELECT col1, col2, col3 FROM test_space`"
+msgid "Request: :code:`SELECT x, y FROM test_space;`"
 msgstr ""
 
 #: ../doc/2.1/dev_guide/internals/sql_protocol.rst:130
@@ -24527,29 +24586,34 @@ msgstr ""
 
 #: ../doc/2.1/dev_guide/internals/sql_protocol.rst:132
 msgid "BODY = {\n"
-"    METADATA = [ { FIELD_NAME: 'col1' }, { FIELD_NAME: 'col2' }, { FIELD_NAME: 'col3' } ],\n"
-"    DATA = [ [1, 1, 1], [2, 2, 2], [3, 3, 3], ... ]\n"
+"    METADATA = [\n"
+"    { FIELD_NAME: 'X', FIELD_TYPE: 'TEXT'}, { FIELD_NAME: 'Y', FIELD_TYPE: 'INTEGER'},\n"
+"    DATA = [ ['a', 1], ['c', 2], ['e', 5], ... ]\n"
 "}"
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:139
-msgid "If the SQL request is not SELECT, the response body contains only SQL_INFO. The SQL_INFO is a map with one key -- SQL_ROW_COUNT -- which is the number of changed rows. For example, if the request is :code:`INSERT INTO test VALUES (1), (2), (3)`, the response body contains SQL_INFO map with SQL_ROW_COUNT = 3. Notice that SQL_ROW_COUNT can be 0, for example if the request is CREATE TABLE."
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:140
+msgid "If the SQL request is not SELECT, the response body contains only SQL_INFO. Usually SQL_INFO is a map with only one key -- SQL_INFO_ROW_COUNT (0) -- which is the number of changed rows. For example, if the request is :code:`INSERT INTO test VALUES (1), (2), (3)`, the response body contains an SQL_INFO map with SQL_INFO_ROW_COUNT = 3. SQL_INFO_ROW_COUNT can be 0 for statements that do not change rows, such as CREATE TABLE."
 msgstr ""
 
-#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:146
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:147
+msgid "The SQL_INFO map may contain a second key -- SQL_INFO_AUTO_INCREMENT_IDS (1) -- which is the new primary-key value for an INSERT in a table defined with PRIMARY KEY AUTOINCREMENT."
+msgstr ""
+
+#: ../doc/2.1/dev_guide/internals/sql_protocol.rst:151
 msgid "EXECUTE NOT-SELECT RESPONSE BODY:\n"
 "\n"
-"+========================================================+\n"
-"|                                                        |\n"
-"|   0x43: SQL_INFO                                       |\n"
-"| MP_MAP: single-key map  +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |\n"
-"|                         |                            | |\n"
-"|                         |    0x44: ROW_COUNT         | |\n"
-"|                         | MP_UINT: changed row count | |\n"
-"|                         |                            | |\n"
-"|                         +~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |\n"
-"|                                                        |\n"
-"+========================================================+"
+"+=========================================================+\n"
+"|                                                         |\n"
+"|   0x42: SQL_INFO                                        |\n"
+"| MP_MAP: usually 1 key   +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |\n"
+"|                         |                             | |\n"
+"|                         |    0x00: SQL_INFO_ROW_COUNT | |\n"
+"|                         | MP_UINT: changed row count  | |\n"
+"|                         |                             | |\n"
+"|                         +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |\n"
+"|                                                         |\n"
+"+=========================================================+"
 msgstr ""
 
 #: ../doc/2.1/dev_guide/lua_style_guide.rst:37
@@ -29529,7 +29593,7 @@ msgstr ""
 #: ../doc/2.1/reference/configuration/cfg_logging.rst:47
 msgid "box.cfg{log = 'tarantool.log'}\n"
 "-- or\n"
-"box.cfg{log = 'file: tarantool.log'}"
+"box.cfg{log = 'file:tarantool.log'}"
 msgstr ""
 
 #: ../doc/2.1/reference/configuration/cfg_logging.rst:53
@@ -30054,7 +30118,7 @@ msgstr ""
 msgid "The contents of the ``box`` module can be inspected at runtime with ``box``, with no arguments. The ``box`` module contains:"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/box.rst:68
+#: ../doc/2.1/reference/reference_lua/box.rst:69
 msgid "Every submodule contains one or more Lua functions. A few submodules contain members as well as functions. The functions allow data definition (create alter drop), data manipulation (insert delete update upsert select replace), and introspection (inspecting contents of spaces, accessing server configuration)."
 msgstr ""
 
@@ -31829,32 +31893,32 @@ msgid "Returns 32-bit checksum made with CRC32."
 msgstr ""
 
 #: ../doc/2.1/reference/reference_lua/digest.rst:305
-msgid "The ``crc32`` and ``crc32_update`` functions use the `CRC-32C (Castagnoli)`_ polynomial value: ``0x1EDC6F41`` / ``4812730177``. If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
-msgstr ""
-
-#: ../doc/2.1/reference/reference_lua/digest.rst:310
-msgid "For example, in Python, install the ``crcmod`` package and say:"
+msgid "The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check`_ polynomial value: ``0x1EDC6F41`` / ``4812730177``. (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.) If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
 msgstr ""
 
 #: ../doc/2.1/reference/reference_lua/digest.rst:312
+msgid "For example, in Python, install the ``crcmod`` package and say:"
+msgstr ""
+
+#: ../doc/2.1/reference/reference_lua/digest.rst:314
 msgid ">>> import crcmod\n"
 ">>> fun = crcmod.mkCrcFun('4812730177')\n"
 ">>> fun('string')\n"
 "3304160206L"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/digest.rst:319
+#: ../doc/2.1/reference/reference_lua/digest.rst:321
 msgid "In Perl, install the ``Digest::CRC`` module and run the following code:"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/digest.rst:321
+#: ../doc/2.1/reference/reference_lua/digest.rst:323
 msgid "use Digest::CRC;\n"
 "$d = Digest::CRC->new(width => 32, poly => 0x1EDC6F41, init => 0xFFFFFFFF, refin => 1, refout => 1);\n"
 "$d->add('string');\n"
 "print $d->digest;"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/digest.rst:328
+#: ../doc/2.1/reference/reference_lua/digest.rst:330
 msgid "(the expected output is 3304160206)."
 msgstr ""
 
@@ -32547,7 +32611,7 @@ msgid "Create and start a fiber. The fiber is created and begins to run immediat
 msgstr ""
 
 #: ../doc/2.1/reference/reference_lua/fiber.rst:229
-#: ../doc/2.1/reference/reference_lua/fiber.rst:267
+#: ../doc/2.1/reference/reference_lua/fiber.rst:268
 msgid "the function to be associated with the fiber"
 msgstr ""
 
@@ -32592,7 +32656,7 @@ msgid "Return"
 msgstr ""
 
 #: ../doc/2.1/reference/reference_lua/fiber.rst:232
-#: ../doc/2.1/reference/reference_lua/fiber.rst:270
+#: ../doc/2.1/reference/reference_lua/fiber.rst:271
 msgid "created fiber object"
 msgstr ""
 
@@ -32640,14 +32704,14 @@ msgid "tarantool> fiber = require('fiber')\n"
 msgstr ""
 
 #: ../doc/2.1/reference/reference_lua/fiber.rst:255
-msgid "Create but do not start a fiber: the fiber is created but does not begin to run immediately -- it waits until the fiber creator (that is, the job that is calling ``fiber.new()``) yields. The initial fiber state is 'suspended'. Thus ``fiber.new()`` differs slightly from :ref:`fiber.create() <fiber-create>`."
+msgid "Create but do not start a fiber: the fiber is created but does not begin to run immediately -- it starts after the fiber creator (that is, the job that is calling ``fiber.new()``) yields, under :ref:`transaction control <atomic-atomic_execution>`. The initial fiber state is 'suspended'. Thus ``fiber.new()`` differs slightly from :ref:`fiber.create() <fiber-create>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:262
+#: ../doc/2.1/reference/reference_lua/fiber.rst:263
 msgid "Ordinarily ``fiber.new()`` is used in conjunction with :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>` and :ref:`fiber_object:join() <fiber_object-join>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:275
+#: ../doc/2.1/reference/reference_lua/fiber.rst:276
 msgid "tarantool> fiber = require('fiber')\n"
 "---\n"
 "...\n"
@@ -32661,11 +32725,11 @@ msgid "tarantool> fiber = require('fiber')\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:293
+#: ../doc/2.1/reference/reference_lua/fiber.rst:294
 msgid "fiber object for the currently scheduled fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:298
+#: ../doc/2.1/reference/reference_lua/fiber.rst:299
 msgid "tarantool> fiber.self()\n"
 "---\n"
 "- status: running\n"
@@ -32674,15 +32738,15 @@ msgid "tarantool> fiber.self()\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:311
+#: ../doc/2.1/reference/reference_lua/fiber.rst:312
 msgid "numeric identifier of the fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:313
+#: ../doc/2.1/reference/reference_lua/fiber.rst:314
 msgid "fiber object for the specified fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:318
+#: ../doc/2.1/reference/reference_lua/fiber.rst:319
 msgid "tarantool> fiber.find(101)\n"
 "---\n"
 "- status: running\n"
@@ -32691,54 +32755,54 @@ msgid "tarantool> fiber.find(101)\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:331
+#: ../doc/2.1/reference/reference_lua/fiber.rst:332
 msgid "Yield control to the scheduler and sleep for the specified number of seconds. Only the current fiber can be made to sleep."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:334
+#: ../doc/2.1/reference/reference_lua/fiber.rst:335
 msgid "number of seconds to sleep."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:338
+#: ../doc/2.1/reference/reference_lua/fiber.rst:339
 msgid "tarantool> fiber.sleep(1.5)\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:348
+#: ../doc/2.1/reference/reference_lua/fiber.rst:349
 msgid "Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`, except that `fiber.sleep(0)` depends on a timer, `fiber.yield()` does not."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:353
+#: ../doc/2.1/reference/reference_lua/fiber.rst:354
 msgid "tarantool> fiber.yield()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:363
+#: ../doc/2.1/reference/reference_lua/fiber.rst:364
 msgid "Return the status of the current fiber. Or, if optional fiber_object is passed, return the status of the specified fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:367
+#: ../doc/2.1/reference/reference_lua/fiber.rst:368
 msgid "the status of ``fiber``. One of: “dead”, “suspended”, or “running”."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:372
+#: ../doc/2.1/reference/reference_lua/fiber.rst:373
 msgid "tarantool> fiber.status()\n"
 "---\n"
 "- running\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:383
+#: ../doc/2.1/reference/reference_lua/fiber.rst:384
 msgid "Return information about all fibers."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:385
+#: ../doc/2.1/reference/reference_lua/fiber.rst:386
 msgid "number of context switches, backtrace, id, total memory, used memory, name for each fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:391
+#: ../doc/2.1/reference/reference_lua/fiber.rst:392
 msgid "tarantool> fiber.info()\n"
 "---\n"
 "- 101:\n"
@@ -32752,11 +32816,11 @@ msgid "tarantool> fiber.info()\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:409
+#: ../doc/2.1/reference/reference_lua/fiber.rst:410
 msgid "Locate a fiber by its numeric id and cancel it. In other words, :ref:`fiber.kill() <fiber-kill>` combines :ref:`fiber.find() <fiber-find>` and :ref:`fiber_object:cancel() <fiber_object-cancel>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:413
+#: ../doc/2.1/reference/reference_lua/fiber.rst:414
 msgid "the id of the fiber to be cancelled."
 msgstr ""
 
@@ -32764,45 +32828,45 @@ msgstr ""
 msgid "Exception"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:414
+#: ../doc/2.1/reference/reference_lua/fiber.rst:415
 msgid "the specified fiber does not exist or cancel is not permitted."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:418
+#: ../doc/2.1/reference/reference_lua/fiber.rst:419
 msgid "tarantool> fiber.kill(fiber.id()) -- kill self, may make program end\n"
 "---\n"
 "- error: fiber is cancelled\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:430
+#: ../doc/2.1/reference/reference_lua/fiber.rst:431
 msgid "Check if the current fiber has been cancelled and throw an exception if this is the case."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:435
+#: ../doc/2.1/reference/reference_lua/fiber.rst:436
 msgid "tarantool> fiber.testcancel()\n"
 "---\n"
 "- error: fiber is cancelled\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:448
-#: ../doc/2.1/reference/reference_lua/fiber.rst:473
-#: ../doc/2.1/reference/reference_lua/fiber.rst:501
-#: ../doc/2.1/reference/reference_lua/fiber.rst:523
-#: ../doc/2.1/reference/reference_lua/fiber.rst:550
+#: ../doc/2.1/reference/reference_lua/fiber.rst:449
+#: ../doc/2.1/reference/reference_lua/fiber.rst:474
+#: ../doc/2.1/reference/reference_lua/fiber.rst:502
+#: ../doc/2.1/reference/reference_lua/fiber.rst:524
+#: ../doc/2.1/reference/reference_lua/fiber.rst:551
 msgid "generally this is an object referenced in the return from :ref:`fiber.create <fiber-create>` or :ref:`fiber.self <fiber-self>` or :ref:`fiber.find <fiber-find>`"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:452
+#: ../doc/2.1/reference/reference_lua/fiber.rst:453
 msgid "id of the fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:455
+#: ../doc/2.1/reference/reference_lua/fiber.rst:456
 msgid "``fiber.self():id()`` can also be expressed as ``fiber.id()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:459
+#: ../doc/2.1/reference/reference_lua/fiber.rst:460
 msgid "tarantool> fiber_object = fiber.self()\n"
 "---\n"
 "...\n"
@@ -32812,74 +32876,74 @@ msgid "tarantool> fiber_object = fiber.self()\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:477
+#: ../doc/2.1/reference/reference_lua/fiber.rst:478
 msgid "name of the fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:480
+#: ../doc/2.1/reference/reference_lua/fiber.rst:481
 msgid "``fiber.self():name()`` can also be expressed as ``fiber.name()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:484
+#: ../doc/2.1/reference/reference_lua/fiber.rst:485
 msgid "tarantool> fiber.self():name()\n"
 "---\n"
 "- interactive\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:495
+#: ../doc/2.1/reference/reference_lua/fiber.rst:496
 msgid "Change the fiber name. By default a Tarantool server's interactive-mode fiber is named 'interactive' and new fibers created due to :ref:`fiber.create <fiber-create>` are named 'lua'. Giving fibers distinct names makes it easier to distinguish them when using :ref:`fiber.info <fiber-info>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:505
+#: ../doc/2.1/reference/reference_lua/fiber.rst:506
 msgid "the new name of the fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:511
+#: ../doc/2.1/reference/reference_lua/fiber.rst:512
 msgid "tarantool> fiber.self():name('non-interactive')\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:521
+#: ../doc/2.1/reference/reference_lua/fiber.rst:522
 msgid "Return the status of the specified fiber."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:527
+#: ../doc/2.1/reference/reference_lua/fiber.rst:528
 msgid "the status of fiber. One of: “dead”, “suspended”, or “running”."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:530
+#: ../doc/2.1/reference/reference_lua/fiber.rst:531
 msgid "``fiber.self():status(`` can also be expressed as ``fiber.status()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:534
+#: ../doc/2.1/reference/reference_lua/fiber.rst:535
 msgid "tarantool> fiber.self():status()\n"
 "---\n"
 "- running\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:545
+#: ../doc/2.1/reference/reference_lua/fiber.rst:546
 msgid "Cancel a fiber. Running and suspended fibers can be cancelled. After a fiber has been cancelled, attempts to operate on it will cause errors, for example :ref:`fiber_object:id() <fiber_object-id>` will cause ``error: the fiber is dead``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:556
+#: ../doc/2.1/reference/reference_lua/fiber.rst:557
 msgid "Possible errors: cancel is not permitted for the specified fiber object."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:560
+#: ../doc/2.1/reference/reference_lua/fiber.rst:561
 msgid "tarantool> fiber.self():cancel() -- kill self, may make program end\n"
 "---\n"
 "- error: fiber is cancelled\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:571
+#: ../doc/2.1/reference/reference_lua/fiber.rst:572
 msgid "Local storage within the fiber. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings. The Lua garbage collector will mark or free the local storage when :samp:`{fiber_object}:cancel()` happens."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:580
+#: ../doc/2.1/reference/reference_lua/fiber.rst:581
 msgid "tarantool> fiber = require('fiber')\n"
 "---\n"
 "...\n"
@@ -32905,64 +32969,64 @@ msgid "tarantool> fiber = require('fiber')\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:606
+#: ../doc/2.1/reference/reference_lua/fiber.rst:607
 msgid "See also :ref:`box.session.storage <box_session-storage>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:612
+#: ../doc/2.1/reference/reference_lua/fiber.rst:613
 msgid "``fiber_object:set_joinable(true)`` makes a fiber joinable; ``fiber_object:set_joinable(false)`` makes a fiber not joinable; the default is false."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:616
+#: ../doc/2.1/reference/reference_lua/fiber.rst:617
 msgid "A joinable fiber can be waited for, with :ref:`fiber_object:join() <fiber_object-join>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:619
+#: ../doc/2.1/reference/reference_lua/fiber.rst:620
 msgid "Best practice is to call ``fiber_object:set_joinable()`` before the fiber function begins to execute, because otherwise the fiber could become 'dead' before ``fiber_object:set_joinable()`` takes effect. The usual sequence could be:"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:624
+#: ../doc/2.1/reference/reference_lua/fiber.rst:625
 msgid "Call ``fiber.new()`` instead of ``fiber.create()`` to create a new fiber_object."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:627
+#: ../doc/2.1/reference/reference_lua/fiber.rst:628
 msgid "Do not yield at this point, because that will cause the fiber function to begin."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:630
+#: ../doc/2.1/reference/reference_lua/fiber.rst:631
 msgid "Call ``fiber_object:set_joinable(true)`` to make the new fiber_object joinable."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:633
+#: ../doc/2.1/reference/reference_lua/fiber.rst:634
 msgid "Now it is safe to yield."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:635
+#: ../doc/2.1/reference/reference_lua/fiber.rst:636
 msgid "Call ``fiber_object:join()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:637
+#: ../doc/2.1/reference/reference_lua/fiber.rst:638
 msgid "Usually ``fiber_object:join()`` should be called, otherwise the fiber's status may become 'suspended' when the fiber function ends, instead of 'dead'."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:641
+#: ../doc/2.1/reference/reference_lua/fiber.rst:642
 msgid "the boolean value that changes the ``set_joinable`` flag"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:648
-#: ../doc/2.1/reference/reference_lua/fiber.rst:689
+#: ../doc/2.1/reference/reference_lua/fiber.rst:649
+#: ../doc/2.1/reference/reference_lua/fiber.rst:690
 msgid "The result of the following sequence of requests is:"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:650
+#: ../doc/2.1/reference/reference_lua/fiber.rst:651
 msgid "the global variable ``d`` will be 6 (which proves that the function was not executed until after ``d`` was set to 1, when ``fiber.sleep(1)`` caused a yield);"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:653
+#: ../doc/2.1/reference/reference_lua/fiber.rst:654
 msgid "``fiber.status(fi2)`` will be 'suspended' (which proves that after the function was executed the fiber status did not change to 'dead')."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:656
+#: ../doc/2.1/reference/reference_lua/fiber.rst:657
 msgid "fiber=require('fiber')\n"
 "d=0\n"
 "function fu2() d=d+5 end\n"
@@ -32971,39 +33035,39 @@ msgid "fiber=require('fiber')\n"
 "fiber.status(fi2)"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:669
+#: ../doc/2.1/reference/reference_lua/fiber.rst:670
 msgid "\"Join\" a joinable fiber. That is, let the fiber's function run and wait until the fiber's status is 'dead' (normally a status becomes 'dead' when the function execution finishes). Joining will cause a yield, therefore, if the fiber is currently in a suspended state, execution of its fiber function will resume."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:677
+#: ../doc/2.1/reference/reference_lua/fiber.rst:678
 msgid "This kind of waiting is more convenient than going into a loop and periodically checking the status; however, it works only if the fiber was created with :ref:`fiber.new() <fiber-new>` and was made joinable with :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:684
+#: ../doc/2.1/reference/reference_lua/fiber.rst:685
 msgid "true if successful, false if not successful"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:691
+#: ../doc/2.1/reference/reference_lua/fiber.rst:692
 msgid "the first ``fiber.status()`` call returns 'suspended',"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:692
+#: ../doc/2.1/reference/reference_lua/fiber.rst:693
 msgid "the ``join()`` call returns true,"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:693
+#: ../doc/2.1/reference/reference_lua/fiber.rst:694
 msgid "the elapsed time is usually 5 seconds, and"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:694
+#: ../doc/2.1/reference/reference_lua/fiber.rst:695
 msgid "the second ``fiber.status()`` call returns 'dead'."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:696
+#: ../doc/2.1/reference/reference_lua/fiber.rst:697
 msgid "This proves that the ``join()`` does not return until the function -- which sleeps 5 seconds -- is 'dead'."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:699
+#: ../doc/2.1/reference/reference_lua/fiber.rst:700
 msgid "fiber=require('fiber')\n"
 "function fu2() fiber.sleep(5) end\n"
 "fi2=fiber.new(fu2) fi2:set_joinable(true)\n"
@@ -33014,16 +33078,16 @@ msgid "fiber=require('fiber')\n"
 "fiber.status(fi2)"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:714
+#: ../doc/2.1/reference/reference_lua/fiber.rst:715
 msgid "current system time (in seconds since the epoch) as a Lua number. The time is taken from the event loop clock, which makes this call very cheap, but still useful for constructing artificial tuple keys."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:718
-#: ../doc/2.1/reference/reference_lua/fiber.rst:737
+#: ../doc/2.1/reference/reference_lua/fiber.rst:719
+#: ../doc/2.1/reference/reference_lua/fiber.rst:738
 msgid "num"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:722
+#: ../doc/2.1/reference/reference_lua/fiber.rst:723
 msgid "tarantool> fiber.time(), fiber.time()\n"
 "---\n"
 "- 1448466279.2415\n"
@@ -33031,11 +33095,11 @@ msgid "tarantool> fiber.time(), fiber.time()\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:734
+#: ../doc/2.1/reference/reference_lua/fiber.rst:735
 msgid "current system time (in microseconds since the epoch) as a 64-bit integer. The time is taken from the event loop clock."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:741
+#: ../doc/2.1/reference/reference_lua/fiber.rst:742
 msgid "tarantool> fiber.time(), fiber.time64()\n"
 "---\n"
 "- 1448466351.2708\n"
@@ -33043,15 +33107,15 @@ msgid "tarantool> fiber.time(), fiber.time64()\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:753
-msgid "Make the function which will be associated with the fiber. This function contains an infinite loop (``while 0 == 0`` is always true). Each iteration of the loop adds 1 to a global variable named gvar, then goes to sleep for 2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`."
+#: ../doc/2.1/reference/reference_lua/fiber.rst:754
+msgid "Make the function which will be associated with the fiber. This function contains an infinite loop. Each iteration of the loop adds 1 to a global variable named gvar, then goes to sleep for 2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:758
+#: ../doc/2.1/reference/reference_lua/fiber.rst:759
 msgid "tarantool> fiber = require('fiber')\n"
 "tarantool> function function_x()\n"
 "         >   gvar = 0\n"
-"         >   while 0 == 0 do\n"
+"         >   while true do\n"
 "         >     gvar = gvar + 1\n"
 "         >     fiber.sleep(2)\n"
 "         >   end\n"
@@ -33060,11 +33124,11 @@ msgid "tarantool> fiber = require('fiber')\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:771
+#: ../doc/2.1/reference/reference_lua/fiber.rst:772
 msgid "Make a fiber, associate function_x with the fiber, and start function_x. It will immediately \"detach\" so it will be running independently of the caller."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:774
+#: ../doc/2.1/reference/reference_lua/fiber.rst:775
 msgid "tarantool> gvar = 0\n"
 "\n"
 "tarantool> fiber_of_x = fiber.create(function_x)\n"
@@ -33072,32 +33136,32 @@ msgid "tarantool> gvar = 0\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:782
+#: ../doc/2.1/reference/reference_lua/fiber.rst:783
 msgid "Get the id of the fiber (fid), to be used in later displays."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:784
+#: ../doc/2.1/reference/reference_lua/fiber.rst:785
 msgid "tarantool> fid = fiber_of_x:id()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:790
+#: ../doc/2.1/reference/reference_lua/fiber.rst:791
 msgid "Pause for a while, while the detached function runs. Then ... Display the fiber id, the fiber status, and gvar (gvar will have gone up a bit depending how long the pause lasted). The status is suspended because the fiber spends almost all its time sleeping or yielding."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:795
+#: ../doc/2.1/reference/reference_lua/fiber.rst:796
 msgid "tarantool> print('#', fid, '. ', fiber_of_x:status(), '. gvar=', gvar)\n"
 "# 102 .  suspended . gvar= 399\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:802
+#: ../doc/2.1/reference/reference_lua/fiber.rst:803
 msgid "Pause for a while, while the detached function runs. Then ... Cancel the fiber. Then, once again ... Display the fiber id, the fiber status, and gvar (gvar will have gone up a bit more depending how long the pause lasted). This time the status is dead because the cancel worked."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:807
+#: ../doc/2.1/reference/reference_lua/fiber.rst:808
 msgid "tarantool> fiber_of_x:cancel()\n"
 "---\n"
 "...\n"
@@ -33107,123 +33171,123 @@ msgid "tarantool> fiber_of_x:cancel()\n"
 "..."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:823
+#: ../doc/2.1/reference/reference_lua/fiber.rst:824
 msgid "Channels"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:825
+#: ../doc/2.1/reference/reference_lua/fiber.rst:826
 msgid "Call ``fiber.channel()`` to allocate space and get a channel object, which will be called channel for examples in this section."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:828
+#: ../doc/2.1/reference/reference_lua/fiber.rst:829
 msgid "Call the other routines, via channel, to send messages, receive messages, or check channel status."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:831
+#: ../doc/2.1/reference/reference_lua/fiber.rst:832
 msgid "Message exchange is synchronous. The Lua garbage collector will mark or free the channel when no one is using it, as with any other Lua object. Use object-oriented syntax, for example ``channel:put(message)`` rather than ``fiber.channel.put(message)``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:840
+#: ../doc/2.1/reference/reference_lua/fiber.rst:841
 msgid "Create a new communication channel."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:842
+#: ../doc/2.1/reference/reference_lua/fiber.rst:843
 msgid "the maximum number of slots (spaces for ``channel:put`` messages) that can be in use at once. The default is 0."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:846
+#: ../doc/2.1/reference/reference_lua/fiber.rst:847
 msgid "new channel."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:847
+#: ../doc/2.1/reference/reference_lua/fiber.rst:848
 msgid "userdata, possibly including the string \"channel ...\"."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:855
+#: ../doc/2.1/reference/reference_lua/fiber.rst:856
 msgid "Send a message using a channel. If the channel is full, ``channel:put()`` waits until there is a free slot in the channel."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:858
+#: ../doc/2.1/reference/reference_lua/fiber.rst:859
 msgid "what will be sent, usually a string or number or table"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:859
+#: ../doc/2.1/reference/reference_lua/fiber.rst:860
 msgid "maximum number of seconds to wait for a slot to become free"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:860
+#: ../doc/2.1/reference/reference_lua/fiber.rst:861
 msgid "If timeout is specified, and there is no free slot in the channel for the duration of the timeout, then the return value is ``false``. If the channel is closed, then the return value is ``false``. Otherwise, the return value is ``true``, indicating success."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:870
+#: ../doc/2.1/reference/reference_lua/fiber.rst:871
 msgid "Close the channel. All waiters in the channel will stop waiting. All following ``channel:get()`` operations will return ``nil``, and all following ``channel:put()`` operations will return ``false``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:878
+#: ../doc/2.1/reference/reference_lua/fiber.rst:879
 msgid "Fetch and remove a message from a channel. If the channel is empty, ``channel:get()`` waits for a message."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:881
+#: ../doc/2.1/reference/reference_lua/fiber.rst:882
 msgid "maximum number of seconds to wait for a message"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:882
+#: ../doc/2.1/reference/reference_lua/fiber.rst:883
 msgid "If timeout is specified, and there is no message in the channel for the duration of the timeout, then the return value is ``nil``. If the channel is closed, then the return value is ``nil``. Otherwise, the return value is the message placed on the channel by ``channel:put()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:887
+#: ../doc/2.1/reference/reference_lua/fiber.rst:888
 msgid "usually string or number or table, as determined by ``channel:put``"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:893
+#: ../doc/2.1/reference/reference_lua/fiber.rst:894
 msgid "Check whether the channel is empty (has no messages)."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:895
+#: ../doc/2.1/reference/reference_lua/fiber.rst:896
 msgid "``true`` if the channel is empty. Otherwise ``false``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:902
+#: ../doc/2.1/reference/reference_lua/fiber.rst:903
 msgid "Find out how many messages are in the channel."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:904
+#: ../doc/2.1/reference/reference_lua/fiber.rst:905
 msgid "the number of messages."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:911
+#: ../doc/2.1/reference/reference_lua/fiber.rst:912
 msgid "Check whether the channel is full."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:913
+#: ../doc/2.1/reference/reference_lua/fiber.rst:914
 msgid "``true`` if the channel is full (the number of messages in the channel equals the number of slots so there is no room for a new message). Otherwise ``false``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:922
+#: ../doc/2.1/reference/reference_lua/fiber.rst:923
 msgid "Check whether readers are waiting for a message because they have issued ``channel:get()`` and the channel is empty."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:925
+#: ../doc/2.1/reference/reference_lua/fiber.rst:926
 msgid "``true`` if readers are waiting. Otherwise ``false``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:932
+#: ../doc/2.1/reference/reference_lua/fiber.rst:933
 msgid "Check whether writers are waiting because they have issued ``channel:put()`` and the channel is full."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:935
+#: ../doc/2.1/reference/reference_lua/fiber.rst:936
 msgid "``true`` if writers are waiting. Otherwise ``false``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:942
+#: ../doc/2.1/reference/reference_lua/fiber.rst:943
 msgid "``true`` if the channel is already closed. Otherwise ``false``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:950
+#: ../doc/2.1/reference/reference_lua/fiber.rst:951
 msgid "This example should give a rough idea of what some functions for fibers should look like. It's assumed that the functions would be referenced in :ref:`fiber.create() <fiber-create>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:954
+#: ../doc/2.1/reference/reference_lua/fiber.rst:955
 msgid "fiber = require('fiber')\n"
 "channel = fiber.channel(10)\n"
 "function consumer_fiber()\n"
@@ -33285,87 +33349,87 @@ msgid "fiber = require('fiber')\n"
 "end"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1020
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1021
 msgid "Condition variables"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1022
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1023
 msgid "Call ``fiber.cond()`` to create a named condition variable, which will be called 'cond' for examples in this section."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1025
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1026
 msgid "Call ``cond:wait()`` to make a fiber wait for a signal via a condition variable."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1027
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1028
 msgid "Call ``cond:signal()`` to send a signal to wake up a single fiber that has executed ``cond:wait()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1030
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1031
 msgid "Call ``cond:broadcast()`` to send a signal to all fibers that have executed ``cond:wait()``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1037
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1038
 msgid "Create a new condition variable."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1039
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1040
 msgid "new condition variable."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1048
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1049
 msgid "Make the current fiber go to sleep, waiting until another fiber invokes the ``signal()`` or ``broadcast()`` method on the cond object. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1052
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1053
 msgid "number of seconds to wait, default = forever."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1053
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1054
 msgid "If timeout is provided, and a signal doesn't happen for the duration of the timeout, ``wait()`` returns false. If a signal or broadcast happens, ``wait()`` returns true."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1062
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1063
 msgid "Wake up a single fiber that has executed ``wait()`` for the same variable."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1071
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1072
 msgid "Wake up all fibers that have executed ``wait()`` for the same variable."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1079
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1080
 msgid "Assume that a tarantool instance is running and listening for connections on localhost port 3301. Assume that guest users have privileges to connect. We will use the tarantoolctl utility to start two clients."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1083
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1084
 msgid "On terminal #1, say"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1085
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1086
 msgid "$ tarantoolctl connect '3301'\n"
 "tarantool> fiber = require('fiber')\n"
 "tarantool> cond = fiber.cond()\n"
 "tarantool> cond:wait()"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1092
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1093
 msgid "The job will hang because ``cond:wait()`` -- without an optional timeout argument -- will go to sleep until the condition variable changes."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1095
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1096
 msgid "On terminal #2, say"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1097
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1098
 msgid "$ tarantoolctl connect '3301'\n"
 "tarantool> cond:signal()"
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1102
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1103
 msgid "Now look again at terminal #1. It will show that the waiting stopped, and the ``cond:wait()`` function returned ``true``."
 msgstr ""
 
-#: ../doc/2.1/reference/reference_lua/fiber.rst:1105
+#: ../doc/2.1/reference/reference_lua/fiber.rst:1106
 msgid "This example depended on the use of a global conditional variable with the arbitrary name ``cond``. In real life, programmers would make sure to use different conditional variable names for different applications."
 msgstr ""
 
@@ -42351,7 +42415,7 @@ msgid "The ``replicaset.callrw`` method is similar to ``replicaset.call``."
 msgstr ""
 
 #: ../doc/2.1/reference/reference_rock/vshard/index.rst:1568
-msgid "Call a function on a nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with a specified arguments. It is recommended to call only read-only functions using ``replicaset.callro()``, as the function can be executed not only on a master, but also on replicas."
+msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to call only read-only functions using ``replicaset.callro()``, as the function can be executed not only on a master, but also on replicas."
 msgstr ""
 
 #: ../doc/2.1/reference/reference_rock/vshard/index.rst:1587

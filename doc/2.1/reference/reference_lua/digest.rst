@@ -268,8 +268,10 @@ Below is a list of all ``digest`` functions.
 
     Returns 32-bit checksum made with CRC32.
 
-    The ``crc32`` and ``crc32_update`` functions use the `CRC-32C (Castagnoli)`_
-    polynomial value: ``0x1EDC6F41`` / ``4812730177``. If it is necessary to be
+    The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check`_
+    polynomial value: ``0x1EDC6F41`` / ``4812730177``.
+    (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.)
+    If it is necessary to be
     compatible with other checksum functions in other programming languages,
     ensure that the other functions use the same polynomial value.
 
@@ -292,8 +294,6 @@ Below is a list of all ``digest`` functions.
       print $d->digest;
 
     (the expected output is 3304160206).
-
-.. _CRC-32C (Castagnoli): https://en.wikipedia.org/wiki/Cyclic_redundancy_check#Standards_and_common_use
 
 .. _digest-crc32_new:
 
@@ -417,7 +417,7 @@ password, the result is an error.
 .. _base64: https://en.wikipedia.org/wiki/Base64
 .. _Cryptographic hash function: https://en.wikipedia.org/wiki/Cryptographic_hash_function
 .. _Consistent Hashing: https://en.wikipedia.org/wiki/Consistent_hashing
-.. _CRC-32C (Castagnoli): https://en.wikipedia.org/wiki/Cyclic_redundancy_check#Standards_and_common_use
+.. _Cyclic Redundancy Check: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
 .. _guava: https://code.google.com/p/guava-libraries/wiki/HashingExplained
 .. _Murmur: https://en.wikipedia.org/wiki/MurmurHash
 .. _PBKDF2: https://en.wikipedia.org/wiki/PBKDF2

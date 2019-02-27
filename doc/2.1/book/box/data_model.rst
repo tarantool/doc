@@ -471,6 +471,11 @@ Options for ``box.schema.sequence.create()``
     |                            | previous generated value, when   |                      |                    |
     |                            | generating a new value           |                      |                    |
     +----------------------------+----------------------------------+----------------------+--------------------+
+    | **if_not_exists**          | Boolean. If this is true and     | false                | if_not_exists=true |
+    |                            | a sequence with this name exists |                      |                    |
+    |                            | already, ignore other options    |                      |                    |
+    |                            | and use the existing values      |                      |                    |
+    +----------------------------+----------------------------------+----------------------+--------------------+
 
 Once a sequence exists, it can be altered, dropped, reset, forced to generate
 the next value, or associated with an index.

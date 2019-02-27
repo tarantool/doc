@@ -48,7 +48,7 @@
 
         box.cfg{log = 'tarantool.log'}
         -- or
-        box.cfg{log = 'file: tarantool.log'}
+        box.cfg{log = 'file:tarantool.log'}
 
     This will open the file ``tarantool.log`` for output on the server’s default
     directory. If the ``log`` string has no prefix or has the prefix "file:",

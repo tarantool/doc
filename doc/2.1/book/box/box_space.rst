@@ -1486,8 +1486,8 @@ Below is a list of all ``box.space`` functions and members.
         (3) invoking the function any time thereafter, as long as the server
             is up, by saying ``space_object:function-name([parameters])``.
 
-        The predefined global variable is ``box_schema.space_mt``.
-        Adding to ``box_schema.space_mt`` makes the method available for all spaces.
+        The predefined global variable is ``box.schema.space_mt``.
+        Adding to ``box.schema.space_mt`` makes the method available for all spaces.
 
         Alternatively, user-defined methods can be made available for only one space,
         by calling ``getmetatable(space_object)`` and then adding the function name to the

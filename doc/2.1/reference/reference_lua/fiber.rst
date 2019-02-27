@@ -219,8 +219,9 @@ recommended.
 .. function:: new(function [, function-arguments])
 
     Create but do not start a fiber: the fiber is created but does not
-    begin to run immediately -- it waits until the fiber creator
-    (that is, the job that is calling ``fiber.new()``) yields.
+    begin to run immediately -- it starts after the fiber creator
+    (that is, the job that is calling ``fiber.new()``) yields,
+    under :ref:`transaction control <atomic-atomic_execution>`.
     The initial fiber state is 'suspended'.
     Thus ``fiber.new()`` differs slightly from
     :ref:`fiber.create() <fiber-create>`.
@@ -717,7 +718,7 @@ Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Make the function which will be associated with the fiber. This function
-contains an infinite loop (``while 0 == 0`` is always true). Each iteration
+contains an infinite loop. Each iteration
 of the loop adds 1 to a global variable named gvar, then goes to sleep for
 2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`.
 
@@ -726,7 +727,7 @@ of the loop adds 1 to a global variable named gvar, then goes to sleep for
     tarantool> fiber = require('fiber')
     tarantool> function function_x()
              >   gvar = 0
-             >   while 0 == 0 do
+             >   while true do
              >     gvar = gvar + 1
              >     fiber.sleep(2)
              >   end
