@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-16 15:42+0300\n"
-"PO-Revision-Date: 2019-02-01 17:52+0300\n"
+"POT-Creation-Date: 2019-02-27 13:01+0300\n"
+"PO-Revision-Date: 2019-02-27 13:24+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -329,7 +329,7 @@ msgid "Signal"
 msgstr "Сигнал"
 
 #: ../doc/1.10/book/admin/daemon_supervision.rst:56 ../doc/1.10/book/box/box_schema.rst:163
-#: ../doc/1.10/book/box/box_space.rst:314 ../doc/1.10/book/box/data_model.rst:888
+#: ../doc/1.10/book/box/box_space.rst:314 ../doc/1.10/book/box/data_model.rst:893
 msgid "Effect"
 msgstr "Эффект"
 
@@ -9654,7 +9654,7 @@ msgstr ""
 #: ../doc/1.10/book/box/box_index.rst:818 ../doc/1.10/book/box/box_index.rst:901
 #: ../doc/1.10/book/box/box_index.rst:931 ../doc/1.10/book/box/box_index.rst:953
 #: ../doc/1.10/book/box/box_index.rst:1047 ../doc/1.10/book/box/box_index.rst:1060
-#: ../doc/1.10/book/box/box_info.rst:230 ../doc/1.10/book/box/box_schema.rst:312
+#: ../doc/1.10/book/box/box_info.rst:231 ../doc/1.10/book/box/box_schema.rst:312
 #: ../doc/1.10/book/box/box_schema.rst:350 ../doc/1.10/book/box/box_schema.rst:384
 #: ../doc/1.10/book/box/box_schema.rst:423 ../doc/1.10/book/box/box_schema.rst:445
 #: ../doc/1.10/book/box/box_schema.rst:467 ../doc/1.10/book/box/box_schema.rst:490
@@ -9705,25 +9705,25 @@ msgstr ""
 #: ../doc/1.10/reference/reference_lua/csv.rst:238
 #: ../doc/1.10/reference/reference_lua/errno.rst:94
 #: ../doc/1.10/reference/reference_lua/fiber.rst:235
-#: ../doc/1.10/reference/reference_lua/fiber.rst:273
-#: ../doc/1.10/reference/reference_lua/fiber.rst:296
-#: ../doc/1.10/reference/reference_lua/fiber.rst:316
-#: ../doc/1.10/reference/reference_lua/fiber.rst:336
-#: ../doc/1.10/reference/reference_lua/fiber.rst:351
-#: ../doc/1.10/reference/reference_lua/fiber.rst:370
-#: ../doc/1.10/reference/reference_lua/fiber.rst:389
-#: ../doc/1.10/reference/reference_lua/fiber.rst:416
-#: ../doc/1.10/reference/reference_lua/fiber.rst:433
-#: ../doc/1.10/reference/reference_lua/fiber.rst:457
-#: ../doc/1.10/reference/reference_lua/fiber.rst:482
-#: ../doc/1.10/reference/reference_lua/fiber.rst:509
-#: ../doc/1.10/reference/reference_lua/fiber.rst:532
-#: ../doc/1.10/reference/reference_lua/fiber.rst:558
-#: ../doc/1.10/reference/reference_lua/fiber.rst:578
-#: ../doc/1.10/reference/reference_lua/fiber.rst:646
-#: ../doc/1.10/reference/reference_lua/fiber.rst:687
-#: ../doc/1.10/reference/reference_lua/fiber.rst:720
-#: ../doc/1.10/reference/reference_lua/fiber.rst:739
+#: ../doc/1.10/reference/reference_lua/fiber.rst:274
+#: ../doc/1.10/reference/reference_lua/fiber.rst:297
+#: ../doc/1.10/reference/reference_lua/fiber.rst:317
+#: ../doc/1.10/reference/reference_lua/fiber.rst:337
+#: ../doc/1.10/reference/reference_lua/fiber.rst:352
+#: ../doc/1.10/reference/reference_lua/fiber.rst:371
+#: ../doc/1.10/reference/reference_lua/fiber.rst:390
+#: ../doc/1.10/reference/reference_lua/fiber.rst:417
+#: ../doc/1.10/reference/reference_lua/fiber.rst:434
+#: ../doc/1.10/reference/reference_lua/fiber.rst:458
+#: ../doc/1.10/reference/reference_lua/fiber.rst:483
+#: ../doc/1.10/reference/reference_lua/fiber.rst:510
+#: ../doc/1.10/reference/reference_lua/fiber.rst:533
+#: ../doc/1.10/reference/reference_lua/fiber.rst:559
+#: ../doc/1.10/reference/reference_lua/fiber.rst:579
+#: ../doc/1.10/reference/reference_lua/fiber.rst:647
+#: ../doc/1.10/reference/reference_lua/fiber.rst:688
+#: ../doc/1.10/reference/reference_lua/fiber.rst:721
+#: ../doc/1.10/reference/reference_lua/fiber.rst:740
 #: ../doc/1.10/reference/reference_lua/fio.rst:213
 #: ../doc/1.10/reference/reference_lua/fio.rst:235
 #: ../doc/1.10/reference/reference_lua/fio.rst:255
@@ -10038,7 +10038,7 @@ msgid ":ref:`index_object.type <box_index-type>`"
 msgstr ":ref:`index_object.type <box_index-type>`"
 
 #: ../doc/1.10/book/box/box_index.rst:68 ../doc/1.10/book/box/data_model.rst:303
-#: ../doc/1.10/book/box/data_model.rst:899
+#: ../doc/1.10/book/box/data_model.rst:904
 msgid "Index type"
 msgstr "Тип индекса"
 
@@ -10208,14 +10208,14 @@ msgstr "тип возвращаемого значения"
 #: ../doc/1.10/book/box/box_index.rst:134 ../doc/1.10/book/box/box_schema.rst:184
 #: ../doc/1.10/book/box/box_schema.rst:190 ../doc/1.10/book/box/box_schema.rst:197
 #: ../doc/1.10/book/box/box_space.rst:324 ../doc/1.10/book/box/box_space.rst:326
-#: ../doc/1.10/book/box/data_model.rst:189 ../doc/1.10/reference/reference_lua/fiber.rst:685
-#: ../doc/1.10/reference/reference_lua/fiber.rst:864
-#: ../doc/1.10/reference/reference_lua/fiber.rst:896
-#: ../doc/1.10/reference/reference_lua/fiber.rst:916
-#: ../doc/1.10/reference/reference_lua/fiber.rst:926
-#: ../doc/1.10/reference/reference_lua/fiber.rst:936
-#: ../doc/1.10/reference/reference_lua/fiber.rst:944
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1056
+#: ../doc/1.10/book/box/data_model.rst:189 ../doc/1.10/reference/reference_lua/fiber.rst:686
+#: ../doc/1.10/reference/reference_lua/fiber.rst:865
+#: ../doc/1.10/reference/reference_lua/fiber.rst:897
+#: ../doc/1.10/reference/reference_lua/fiber.rst:917
+#: ../doc/1.10/reference/reference_lua/fiber.rst:927
+#: ../doc/1.10/reference/reference_lua/fiber.rst:937
+#: ../doc/1.10/reference/reference_lua/fiber.rst:945
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1057
 #: ../doc/1.10/reference/reference_lua/fio.rst:299
 #: ../doc/1.10/reference/reference_lua/fio.rst:307
 #: ../doc/1.10/reference/reference_lua/fio.rst:315
@@ -10273,11 +10273,11 @@ msgstr ""
 "ref:`этой таблице <box_space-index_field_types>`."
 
 #: ../doc/1.10/book/box/box_index.rst:149 ../doc/1.10/book/box/box_index.rst:1002
-#: ../doc/1.10/book/box/box_info.rst:228 ../doc/1.10/book/box/box_schema.rst:173
+#: ../doc/1.10/book/box/box_info.rst:229 ../doc/1.10/book/box/box_schema.rst:173
 #: ../doc/1.10/book/box/box_slab.rst:87 ../doc/1.10/book/box/box_slab.rst:146
 #: ../doc/1.10/book/box/box_slab.rst:188 ../doc/1.10/book/box/box_space.rst:1608
 #: ../doc/1.10/reference/reference_lua/csv.rst:109
-#: ../doc/1.10/reference/reference_lua/fiber.rst:387
+#: ../doc/1.10/reference/reference_lua/fiber.rst:388
 #: ../doc/1.10/reference/reference_lua/fio.rst:464
 #: ../doc/1.10/reference/reference_lua/fio.rst:485
 #: ../doc/1.10/reference/reference_lua/fio.rst:1047
@@ -11384,8 +11384,8 @@ msgstr "количество совпадающих ключей индекса.
 #: ../doc/1.10/book/box/box_space.rst:342 ../doc/1.10/book/box/box_space.rst:344
 #: ../doc/1.10/book/box/box_space.rst:346 ../doc/1.10/book/box/box_space.rst:348
 #: ../doc/1.10/book/box/box_tuple.rst:157 ../doc/1.10/book/box/box_tuple.rst:191
-#: ../doc/1.10/book/box/box_tuple.rst:347 ../doc/1.10/reference/reference_lua/fiber.rst:453
-#: ../doc/1.10/reference/reference_lua/fiber.rst:905
+#: ../doc/1.10/book/box/box_tuple.rst:347 ../doc/1.10/reference/reference_lua/fiber.rst:454
+#: ../doc/1.10/reference/reference_lua/fiber.rst:906
 #: ../doc/1.10/reference/reference_lua/fio.rst:348
 #: ../doc/1.10/reference/reference_lua/fio.rst:1024
 #: ../doc/1.10/reference/reference_lua/socket.rst:296
@@ -11500,11 +11500,11 @@ msgstr ""
 #: ../doc/1.10/book/box/box_space.rst:1298 ../doc/1.10/book/box/data_model.rst:187
 #: ../doc/1.10/dev_guide/documentation_guidelines.rst:279
 #: ../doc/1.10/reference/reference_lua/console.rst:108
-#: ../doc/1.10/reference/reference_lua/fiber.rst:507
-#: ../doc/1.10/reference/reference_lua/fiber.rst:554
-#: ../doc/1.10/reference/reference_lua/fiber.rst:644
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1065
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1073
+#: ../doc/1.10/reference/reference_lua/fiber.rst:508
+#: ../doc/1.10/reference/reference_lua/fiber.rst:555
+#: ../doc/1.10/reference/reference_lua/fiber.rst:645
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1066
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1074
 #: ../doc/1.10/reference/reference_lua/log.rst:154
 #: ../doc/1.10/reference/reference_lua/log.rst:168
 #: ../doc/1.10/reference/reference_lua/msgpack.rst:248
@@ -12566,14 +12566,21 @@ msgid "**gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's com
 msgstr "**gc().checkpoints[n].signature** -- сумма компонентов vclock контрольной точки."
 
 #: ../doc/1.10/book/box/box_info.rst:142
+msgid ""
+"**gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false"
+msgstr ""
+"**gc().checkpoint_is_in_progress** -- true если идет создание контрольной точки, в противном "
+"случае false."
+
+#: ../doc/1.10/book/box/box_info.rst:143
 msgid "**gc().vclock** -- the garbage collector's vclock."
 msgstr "**gc().vclock** -- vclock сборщика мусора."
 
-#: ../doc/1.10/book/box/box_info.rst:143
+#: ../doc/1.10/book/box/box_info.rst:144
 msgid "**gc().signature** -- the sum of the garbage collector's checkpoint's components."
 msgstr "**gc().signature** -- сумма компонентов контрольной точки сборщика мусора."
 
-#: ../doc/1.10/book/box/box_info.rst:149
+#: ../doc/1.10/book/box/box_info.rst:150
 msgid ""
 "The **replication** section of ``box.info()`` contains statistics for all instances in the "
 "replica set in regard to the current instance (see also :ref:`\"Monitoring a replica set\" "
@@ -12583,13 +12590,13 @@ msgstr ""
 "по всем экземплярам в наборе реплик относительно текущего экземпляра (см. также :ref:`"
 "\"Мониторинг набора реплик\" <replication-monitoring>`):"
 
-#: ../doc/1.10/book/box/box_info.rst:153
+#: ../doc/1.10/book/box/box_info.rst:154
 msgid ""
 "**replication.id** is a short numeric identifier of the instance within the replica set."
 msgstr ""
 "**replication.id** -- это короткий числовой идентификатор экземпляра в рамках набора реплик."
 
-#: ../doc/1.10/book/box/box_info.rst:155
+#: ../doc/1.10/book/box/box_info.rst:156
 msgid ""
 "**replication.uuid** is a globally unique identifier of the instance. This value is also "
 "stored in :ref:`box.space._cluster <box_space-cluster>` system space."
@@ -12597,7 +12604,7 @@ msgstr ""
 "**replication.uuid** -- это глобально-уникальный идентификатор экземпляра. Данное значение "
 "также хранится в системном спейсе :ref:`box.space._cluster <box_space-cluster>`."
 
-#: ../doc/1.10/book/box/box_info.rst:158
+#: ../doc/1.10/book/box/box_info.rst:159
 msgid ""
 "**replication.lsn** is the :ref:`log sequence number <replication-mechanism>` (LSN) for the "
 "latest entry in the instance's :ref:`write ahead log <index-box_persistence>` (WAL)."
@@ -12606,7 +12613,7 @@ msgstr ""
 "последней записи в :ref:`журнале упреждающей записи <index-box_persistence>` (WAL) "
 "экземпляра."
 
-#: ../doc/1.10/book/box/box_info.rst:162
+#: ../doc/1.10/book/box/box_info.rst:163
 msgid ""
 "**replication.upstream** contains statistics for the replication data uploaded by the "
 "instance."
@@ -12614,11 +12621,11 @@ msgstr ""
 "**replication.upstream** содержит статистику по реплицируемым данным, которые переданы "
 "экземпляром."
 
-#: ../doc/1.10/book/box/box_info.rst:164
+#: ../doc/1.10/book/box/box_info.rst:165
 msgid "**replication.upstream.status** is the replication status of the instance:"
 msgstr "**replication.upstream.status** -- это репликационный статус экземпляра:"
 
-#: ../doc/1.10/book/box/box_info.rst:166
+#: ../doc/1.10/book/box/box_info.rst:167
 msgid ""
 "``auth`` means that the instance is getting :ref:`authenticated <authentication>` to connect "
 "to a replication source."
@@ -12626,7 +12633,7 @@ msgstr ""
 "``auth`` означает, что экземпляр проходит :ref:`аутентификацию <authentication>` для "
 "установки соединения с источником репликации."
 
-#: ../doc/1.10/book/box/box_info.rst:169
+#: ../doc/1.10/book/box/box_info.rst:170
 msgid ""
 "``connecting`` means that the instance is trying to connect to the replications source(s) "
 "listed in its :ref:`replication <cfg_replication-replication>` parameter."
@@ -12634,7 +12641,7 @@ msgstr ""
 "``connecting`` означает, что экземпляр пытается установить соединение с источниками "
 "репликации, перечисленными в параметре :ref:`replication <cfg_replication-replication>`."
 
-#: ../doc/1.10/book/box/box_info.rst:172
+#: ../doc/1.10/book/box/box_info.rst:173
 msgid ""
 "``disconnected`` means that the instance is not connected to the replica set (due to network "
 "problems, not replication errors)."
@@ -12642,11 +12649,11 @@ msgstr ""
 "``disconnected`` означает, что экземпляр не подключен к набору реплик (по причине проблем в "
 "сети, а не ошибок репликации)."
 
-#: ../doc/1.10/book/box/box_info.rst:174
+#: ../doc/1.10/book/box/box_info.rst:175
 msgid "``follow`` means that replication is in progress."
 msgstr "``follow`` означает, что идет репликация."
 
-#: ../doc/1.10/book/box/box_info.rst:175
+#: ../doc/1.10/book/box/box_info.rst:176
 msgid ""
 "``running`` means the instance's role is \"master\" (non read-only) and replication is in "
 "progress."
@@ -12654,7 +12661,7 @@ msgstr ""
 "``running`` означает, что роль экземпляра -- \"мастер\" (не только для чтения), и идет "
 "репликация."
 
-#: ../doc/1.10/book/box/box_info.rst:177
+#: ../doc/1.10/book/box/box_info.rst:178
 msgid ""
 "``stopped`` means that replication was stopped due to a replication error (e.g. :ref:"
 "`duplicate key <error_codes>`)."
@@ -12662,7 +12669,7 @@ msgstr ""
 "``stopped`` означает, что репликация остановилась по причине ошибки репликации (например, :"
 "ref:`повторяющийся ключ <error_codes>`)."
 
-#: ../doc/1.10/book/box/box_info.rst:179
+#: ../doc/1.10/book/box/box_info.rst:180
 msgid ""
 "``orphan`` means that the instance has not (yet) succeeded in joining the required number of "
 "masters (see :ref:`orphan status <replication-orphan_status>`)."
@@ -12670,7 +12677,7 @@ msgstr ""
 "Статус ``orphan`` означает, что экземпляр (еще) не подключился к необходимому количеству "
 "мастеров (см. :ref:`статус orphan <replication-orphan_status>`)."
 
-#: ../doc/1.10/book/box/box_info.rst:184
+#: ../doc/1.10/book/box/box_info.rst:185
 msgid ""
 "**replication.upstream.idle** is the time (in seconds) since the instance received the last "
 "event from a master. This is the primary indicator of replication health. See more in :ref:"
@@ -12680,7 +12687,7 @@ msgstr ""
 "последнего события от мастера. Это основной индикатор работоспособности репликации. Более "
 "подробную информацию см. в разделе :ref:`Мониторинг набора реплик <replication-monitoring>`."
 
-#: ../doc/1.10/book/box/box_info.rst:191
+#: ../doc/1.10/book/box/box_info.rst:192
 msgid ""
 "**replication.upstream.peer** contains the replication user name, host IP adress and port "
 "number used for the instance. See more in :ref:`Monitoring a replica set <replication-"
@@ -12690,7 +12697,7 @@ msgstr ""
 "хоста и номер порта, используемый для экземпляра. Более подробную информацию см. в разделе :"
 "ref:`Мониторинг набора реплик <replication-monitoring>`."
 
-#: ../doc/1.10/book/box/box_info.rst:197
+#: ../doc/1.10/book/box/box_info.rst:198
 msgid ""
 "**replication.upstream.lag** is the time difference between the local time at the instance, "
 "recorded when the event was received, and the local time at another master recorded when the "
@@ -12703,7 +12710,7 @@ msgstr ""
 "этом мастере. Более подробную информацию см. в разделе :ref:`Мониторинг набора реплик "
 "<replication-monitoring>`."
 
-#: ../doc/1.10/book/box/box_info.rst:203
+#: ../doc/1.10/book/box/box_info.rst:204
 msgid ""
 "**replication.upstream.message** contains an error message in case of a :ref:`degraded state "
 "<replication-recover>`, empty otherwise."
@@ -12711,7 +12718,7 @@ msgstr ""
 "**replication.upstream.message** содержит сообщение об ошибке в случае :ref:`системного сбоя "
 "<replication-recover>`, в противном случае не заполнен."
 
-#: ../doc/1.10/book/box/box_info.rst:206
+#: ../doc/1.10/book/box/box_info.rst:207
 msgid ""
 "**replication.downstream** contains statistics for the replication data requested and "
 "downloaded from the instance."
@@ -12719,7 +12726,7 @@ msgstr ""
 "**replication.downstream** содержит статистику по реплицируемым данным, которые запрошены и "
 "загружены с экземпляра."
 
-#: ../doc/1.10/book/box/box_info.rst:209
+#: ../doc/1.10/book/box/box_info.rst:210
 msgid ""
 "**replication.downstream.vclock** contains the :ref:`vector clock <replication-vector>`, "
 "which is a table of '**id**, **lsn**' pairs, for example :code:`vclock: {1: 3054773, 4: "
@@ -12731,7 +12738,7 @@ msgstr ""
 "8938827, 3: 285902018}`. Даже если экземпляр :ref:`удален <replication-remove_instances>`, "
 "тем не менее, значения с него появятся здесь."
 
-#: ../doc/1.10/book/box/box_info.rst:216
+#: ../doc/1.10/book/box/box_info.rst:217
 msgid ""
 "**replication.downstream.status** ``= disconnected`` is displayed if the downstream instance "
 "disconnects from the upstream instance. Otherwise the status is not reported."
@@ -12739,7 +12746,7 @@ msgstr ""
 "**replication.downstream.status** ``= disconnected`` отображается, если последующий "
 "экземпляр отключается от предыдущего. В остальных случаях такой статус не отображается."
 
-#: ../doc/1.10/book/box/box_info.rst:222
+#: ../doc/1.10/book/box/box_info.rst:223
 msgid ""
 "Since ``box.info`` contents are dynamic, it's not possible to iterate over keys with the Lua "
 "``pairs()`` function. For this purpose, ``box.info()`` builds and returns a Lua table with "
@@ -12749,11 +12756,11 @@ msgstr ""
 "провести итерацию по ключам с помощью Lua-функции ``pairs()``. Для этой цели модуль ``box."
 "info()`` создает и возвращает Lua-таблицу со всеми ключами и значениями во вложенном модуле."
 
-#: ../doc/1.10/book/box/box_info.rst:227
+#: ../doc/1.10/book/box/box_info.rst:228
 msgid "keys and values in the submodule"
 msgstr "ключи и значения во вложенном модуле"
 
-#: ../doc/1.10/book/box/box_info.rst:232
+#: ../doc/1.10/book/box/box_info.rst:233
 msgid ""
 "This example is for a master-replica set that contains one master instance and one replica "
 "instance. The request was issued at the replica instance."
@@ -12761,7 +12768,7 @@ msgstr ""
 "Данный пример приводится для набора со схемой мастер-реплика, который включает в себя один "
 "мастер-экземпляр и один реплика-экземпляр. Запрос был отправлен с реплики-экземпляра."
 
-#: ../doc/1.10/book/box/box_info.rst:235
+#: ../doc/1.10/book/box/box_info.rst:236
 msgid ""
 "tarantool> box.info()\n"
 "---\n"
@@ -13067,9 +13074,9 @@ msgstr "объект спейса"
 #: ../doc/1.10/book/box/box_schema.rst:151
 #: ../doc/1.10/dev_guide/documentation_guidelines.rst:243
 #: ../doc/1.10/reference/reference_lua/fiber.rst:233
-#: ../doc/1.10/reference/reference_lua/fiber.rst:271
-#: ../doc/1.10/reference/reference_lua/fiber.rst:294
-#: ../doc/1.10/reference/reference_lua/fiber.rst:314
+#: ../doc/1.10/reference/reference_lua/fiber.rst:272
+#: ../doc/1.10/reference/reference_lua/fiber.rst:295
+#: ../doc/1.10/reference/reference_lua/fiber.rst:315
 #: ../doc/1.10/reference/reference_lua/fio.rst:791
 #: ../doc/1.10/reference/reference_lua/http.rst:84
 #: ../doc/1.10/reference/reference_lua/iconv.rst:87
@@ -13102,9 +13109,9 @@ msgstr "'memtx' или 'vinyl'"
 #: ../doc/1.10/book/box/box_schema.rst:421 ../doc/1.10/book/box/box_session.rst:141
 #: ../doc/1.10/book/box/box_session.rst:161 ../doc/1.10/book/box/box_session.rst:169
 #: ../doc/1.10/book/box/data_model.rst:191 ../doc/1.10/reference/reference_lua/errno.rst:92
-#: ../doc/1.10/reference/reference_lua/fiber.rst:368
-#: ../doc/1.10/reference/reference_lua/fiber.rst:478
-#: ../doc/1.10/reference/reference_lua/fiber.rst:528
+#: ../doc/1.10/reference/reference_lua/fiber.rst:369
+#: ../doc/1.10/reference/reference_lua/fiber.rst:479
+#: ../doc/1.10/reference/reference_lua/fiber.rst:529
 #: ../doc/1.10/reference/reference_lua/fio.rst:211
 #: ../doc/1.10/reference/reference_lua/fio.rst:233
 #: ../doc/1.10/reference/reference_lua/fio.rst:253
@@ -13194,7 +13201,7 @@ msgstr ""
 
 #: ../doc/1.10/book/box/box_schema.rst:184 ../doc/1.10/book/box/box_schema.rst:190
 #: ../doc/1.10/book/box/box_schema.rst:197 ../doc/1.10/book/box/data_model.rst:496
-#: ../doc/1.10/reference/reference_lua/msgpack.rst:238
+#: ../doc/1.10/book/box/data_model.rst:506 ../doc/1.10/reference/reference_lua/msgpack.rst:238
 msgid "false"
 msgstr "false (ложь)"
 
@@ -13350,7 +13357,7 @@ msgid "``if_not_exists``, ``password``"
 msgstr "``if_not_exists``, ``password``"
 
 #: ../doc/1.10/book/box/box_schema.rst:272 ../doc/1.10/book/box/box_schema.rst:293
-#: ../doc/1.10/book/box/data_model.rst:630 ../doc/1.10/reference/reference_lua/net_box.rst:244
+#: ../doc/1.10/book/box/data_model.rst:635 ../doc/1.10/reference/reference_lua/net_box.rst:244
 #: ../doc/1.10/reference/reference_lua/net_box.rst:311
 #: ../doc/1.10/reference/reference_lua/net_box.rst:441
 msgid "**Examples:**"
@@ -18223,10 +18230,10 @@ msgstr ""
 
 #: ../doc/1.10/book/box/box_space.rst:1521
 msgid ""
-"The predefined global variable is ``box_schema.space_mt``. Adding to ``box_schema.space_mt`` "
+"The predefined global variable is ``box.schema.space_mt``. Adding to ``box.schema.space_mt`` "
 "makes the method available for all spaces."
 msgstr ""
-"Задана глобальная переменная ``box_schema.space_mt``. Метод, добавленный в ``box_schema."
+"Задана глобальная переменная ``box.schema.space_mt``. Метод, добавленный в ``box.schema."
 "space_mt``, будет доступен для всех спейсов."
 
 #: ../doc/1.10/book/box/box_space.rst:1524
@@ -21909,9 +21916,9 @@ msgstr ""
 
 #: ../doc/1.10/book/box/box_tuple.rst:593 ../doc/1.10/reference/configuration/index.rst:125
 #: ../doc/1.10/reference/reference_lua/digest.rst:402
-#: ../doc/1.10/reference/reference_lua/fiber.rst:751
-#: ../doc/1.10/reference/reference_lua/fiber.rst:948
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1077
+#: ../doc/1.10/reference/reference_lua/fiber.rst:752
+#: ../doc/1.10/reference/reference_lua/fiber.rst:949
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1078
 #: ../doc/1.10/reference/reference_lua/log.rst:172
 #: ../doc/1.10/reference/reference_lua/msgpack.rst:141
 #: ../doc/1.10/reference/reference_lua/net_box.rst:563
@@ -22195,7 +22202,7 @@ msgid "savepoint table"
 msgstr "таблица точки сохранения"
 
 #: ../doc/1.10/book/box/box_txn_management.rst:163
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1040
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1041
 msgid "Lua object"
 msgstr "Lua-объект."
 
@@ -23339,7 +23346,23 @@ msgstr ""
 msgid "step=-1"
 msgstr "step=-1"
 
-#: ../doc/1.10/book/box/data_model.rst:507
+#: ../doc/1.10/book/box/data_model.rst:506
+msgid "**if_not_exists**"
+msgstr "**if_not_exists** (если отсутствует)"
+
+#: ../doc/1.10/book/box/data_model.rst:506
+msgid ""
+"Boolean. If this is true and a sequence with this name exists already, ignore other options "
+"and use the existing values"
+msgstr ""
+"Логическое значение. Если выставлено в true (истина) и существует последовательность с таким "
+"именем, то игнорировать другие опции и использовать текущие значения"
+
+#: ../doc/1.10/book/box/data_model.rst:506
+msgid "if_not_exists=true"
+msgstr "if_not_exists=true"
+
+#: ../doc/1.10/book/box/data_model.rst:512
 msgid ""
 "Once a sequence exists, it can be altered, dropped, reset, forced to generate the next "
 "value, or associated with an index."
@@ -23347,11 +23370,11 @@ msgstr ""
 "Существующую последовательность можно изменять, опускать, сбрасывать, заставить "
 "сгенерировать новое значение или ассоциировать с индексом."
 
-#: ../doc/1.10/book/box/data_model.rst:510
+#: ../doc/1.10/book/box/data_model.rst:515
 msgid "For an initial example, we generate a sequence named 'S'."
 msgstr "Для первоначального примера сгенерируем последовательность под названием 'S'."
 
-#: ../doc/1.10/book/box/data_model.rst:512
+#: ../doc/1.10/book/box/data_model.rst:517
 msgid ""
 "tarantool> box.schema.sequence.create('S',{min=5, start=5})\n"
 "---\n"
@@ -23379,7 +23402,7 @@ msgstr ""
 "  start: 5\n"
 "..."
 
-#: ../doc/1.10/book/box/data_model.rst:527
+#: ../doc/1.10/book/box/data_model.rst:532
 msgid ""
 "The result shows that the new sequence has all default values, except for the two that were "
 "specified, ``min`` and ``start``."
@@ -23387,11 +23410,11 @@ msgstr ""
 "В результате видим, что в новой последовательность есть все значения по умолчанию, за "
 "исключением указанных ``min`` и ``start``."
 
-#: ../doc/1.10/book/box/data_model.rst:530
+#: ../doc/1.10/book/box/data_model.rst:535
 msgid "Then we get the next value, with the ``next()`` function."
 msgstr "Затем получаем следующее значение с помощью функции ``next()``."
 
-#: ../doc/1.10/book/box/data_model.rst:532
+#: ../doc/1.10/book/box/data_model.rst:537
 msgid ""
 "tarantool> box.sequence.S:next()\n"
 "---\n"
@@ -23403,7 +23426,7 @@ msgstr ""
 "- 5\n"
 "..."
 
-#: ../doc/1.10/book/box/data_model.rst:539
+#: ../doc/1.10/book/box/data_model.rst:544
 msgid ""
 "The result is the same as the start value. If we called ``next()`` again, we would get 6 "
 "(because the previous value plus the step value is 6), and so on."
@@ -23411,14 +23434,14 @@ msgstr ""
 "Результат точно такой же, как и начальное значение. Если мы снова вызовем ``next()``, то "
 "получим 6 (потому что предыдущее значение плюс значение шага составит 6) и так далее."
 
-#: ../doc/1.10/book/box/data_model.rst:543
+#: ../doc/1.10/book/box/data_model.rst:548
 msgid ""
 "Then we create a new table, and say that its primary key may be generated from the sequence."
 msgstr ""
 "Затем создадим новую таблицу и скажем, что ее первичный ключ можно получить из "
 "последовательности."
 
-#: ../doc/1.10/book/box/data_model.rst:546
+#: ../doc/1.10/book/box/data_model.rst:551
 msgid ""
 "tarantool> s=box.schema.space.create('T');s:create_index('I',{sequence='S'})\n"
 "---\n"
@@ -23428,11 +23451,11 @@ msgstr ""
 "---\n"
 "..."
 
-#: ../doc/1.10/book/box/data_model.rst:552
+#: ../doc/1.10/book/box/data_model.rst:557
 msgid "Then we insert a tuple, without specifying a value for the primary key."
 msgstr "Затем вставим кортеж, не указывая значение первичного ключа."
 
-#: ../doc/1.10/book/box/data_model.rst:554
+#: ../doc/1.10/book/box/data_model.rst:559
 msgid ""
 "tarantool> box.space.T:insert{nil,'other stuff'}\n"
 "---\n"
@@ -23444,7 +23467,7 @@ msgstr ""
 "- [6, 'other stuff']\n"
 "..."
 
-#: ../doc/1.10/book/box/data_model.rst:561
+#: ../doc/1.10/book/box/data_model.rst:566
 msgid ""
 "The result is a new tuple where the first field has a value of 6. This arrangement, where "
 "the system automatically generates the values for a primary key, is sometimes called \"auto-"
@@ -23455,7 +23478,7 @@ msgstr ""
 "называется \"автоинкрементным\" (т.е. с автоматическим увеличением) или \"по идентификатору"
 "\"."
 
-#: ../doc/1.10/book/box/data_model.rst:566
+#: ../doc/1.10/book/box/data_model.rst:571
 msgid ""
 "For syntax and implementation details, see the reference for :ref:`box.schema.sequence "
 "<box_schema-sequence>`."
@@ -23463,11 +23486,11 @@ msgstr ""
 "Для получения подробной информации о синтаксисе и методах реализации см. справочник по :ref:"
 "`box.schema.sequence <box_schema-sequence>`."
 
-#: ../doc/1.10/book/box/data_model.rst:573
+#: ../doc/1.10/book/box/data_model.rst:578
 msgid "Persistence"
 msgstr "Персистентность"
 
-#: ../doc/1.10/book/box/data_model.rst:575
+#: ../doc/1.10/book/box/data_model.rst:580
 msgid ""
 "In Tarantool, updates to the database are recorded in the so-called :ref:`write ahead log "
 "(WAL) <internals-wal>` files. This ensures data persistence. When a power outage occurs or "
@@ -23485,7 +23508,7 @@ msgstr ""
 "\"процессом восстановления\"). Можно изменить временные настройки метода записи WAL-файлов "
 "или отключить его с помощью :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`."
 
-#: ../doc/1.10/book/box/data_model.rst:584
+#: ../doc/1.10/book/box/data_model.rst:589
 msgid ""
 "Tarantool also maintains a set of :ref:`snapshot files <internals-snapshot>`. These files "
 "contain an on-disk copy of the entire data set for a given moment. Instead of reading every "
@@ -23500,7 +23523,7 @@ msgstr ""
 "только те WAL-файлы, которые были сделаны с момента сохранения снимка. После создания новых "
 "файлов, старые WAL-файлы могут быть удалены в целях экономии места на диске."
 
-#: ../doc/1.10/book/box/data_model.rst:591
+#: ../doc/1.10/book/box/data_model.rst:596
 msgid ""
 "To force immediate creation of a snapshot file, you can use Tarantool's :ref:`box.snapshot() "
 "<box-snapshot>` request. To enable automatic creation of snapshot files, you can use "
@@ -23515,11 +23538,11 @@ msgstr ""
 "создания контрольных точек. Он обеспечивает синхронизацию и сохранение на диск образов "
 "движков базы данных (как memtx, так и vinyl), а также автоматически удаляет старые WAL-файлы."
 
-#: ../doc/1.10/book/box/data_model.rst:599
+#: ../doc/1.10/book/box/data_model.rst:604
 msgid "Snapshot files can be created even if there is no WAL file."
 msgstr "Файлы со снимками можно создавать, даже если WAL-файлы отсутствуют."
 
-#: ../doc/1.10/book/box/data_model.rst:603
+#: ../doc/1.10/book/box/data_model.rst:608
 msgid ""
 "The memtx engine makes only regular checkpoints with the interval set in :ref:`checkpoint "
 "daemon <book_cfg_checkpoint_daemon>` configuration."
@@ -23527,11 +23550,11 @@ msgstr ""
 "Движок memtx регулярно создает контрольные точки с интервалом, указанным в настройках :ref:"
 "`демона создания контрольных точек <book_cfg_checkpoint_daemon>`."
 
-#: ../doc/1.10/book/box/data_model.rst:606
+#: ../doc/1.10/book/box/data_model.rst:611
 msgid "The vinyl engine runs checkpointing in the background at all times."
 msgstr "Движок vinyl постоянно сохраняет состояние в контрольной точке в фоновом режиме."
 
-#: ../doc/1.10/book/box/data_model.rst:608
+#: ../doc/1.10/book/box/data_model.rst:613
 msgid ""
 "See the :ref:`Internals <internals-data_persistence>` section for more details about the WAL "
 "writer and the recovery process."
@@ -23539,51 +23562,51 @@ msgstr ""
 "Для получения более подробной информации о методе записи WAL-файлов и процессе "
 "восстановления см. раздел :ref:`Внутренняя реализация <internals-data_persistence>`."
 
-#: ../doc/1.10/book/box/data_model.rst:615
+#: ../doc/1.10/book/box/data_model.rst:620
 msgid "Operations"
 msgstr "Операции"
 
-#: ../doc/1.10/book/box/data_model.rst:621
+#: ../doc/1.10/book/box/data_model.rst:626
 msgid "Data operations"
 msgstr "Операции с данными"
 
-#: ../doc/1.10/book/box/data_model.rst:623
+#: ../doc/1.10/book/box/data_model.rst:628
 msgid "The basic data operations supported in Tarantool are:"
 msgstr "Tarantool поддерживает следующие основные операции с данными:"
 
-#: ../doc/1.10/book/box/data_model.rst:625
+#: ../doc/1.10/book/box/data_model.rst:630
 msgid "five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and"
 msgstr "пять операций по изменению данных (INSERT, UPDATE, UPSERT, DELETE, REPLACE) и"
 
-#: ../doc/1.10/book/box/data_model.rst:626
+#: ../doc/1.10/book/box/data_model.rst:631
 msgid "one data-retrieval operation (SELECT)."
 msgstr "одну операция по выборке данных (SELECT)."
 
-#: ../doc/1.10/book/box/data_model.rst:628
+#: ../doc/1.10/book/box/data_model.rst:633
 msgid "All of them are implemented as functions in :ref:`box.space <box_space>` submodule."
 msgstr "Все они реализованы в виде функций во вложенном модуле  :ref:`box.space <box_space>`."
 
-#: ../doc/1.10/book/box/data_model.rst:632
+#: ../doc/1.10/book/box/data_model.rst:637
 msgid ":ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'."
 msgstr ":ref:`INSERT <box_space-insert>`: добавить новый кортеж к спейсу 'tester'."
 
-#: ../doc/1.10/book/box/data_model.rst:634
+#: ../doc/1.10/book/box/data_model.rst:639
 msgid "The first field, field[1], will be 999 (MsgPack type is `integer`)."
 msgstr "Первое поле, field[1], будет 999 (тип MsgPack -- `integer`, целое число)."
 
-#: ../doc/1.10/book/box/data_model.rst:636
+#: ../doc/1.10/book/box/data_model.rst:641
 msgid "The second field, field[2], will be 'Taranto' (MsgPack type is `string`)."
 msgstr "Второе поле, field[2], будет 'Taranto' (тип MsgPack -- `string`, строка)."
 
-#: ../doc/1.10/book/box/data_model.rst:638
+#: ../doc/1.10/book/box/data_model.rst:643
 msgid "tarantool> box.space.tester:insert{999, 'Taranto'}"
 msgstr "tarantool> box.space.tester:insert{999, 'Taranto'}"
 
-#: ../doc/1.10/book/box/data_model.rst:642
+#: ../doc/1.10/book/box/data_model.rst:647
 msgid ":ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2]."
 msgstr ":ref:`UPDATE <box_space-update>`: обновить кортеж, изменяя поле field[2]."
 
-#: ../doc/1.10/book/box/data_model.rst:644
+#: ../doc/1.10/book/box/data_model.rst:649
 msgid ""
 "The clause \"{999}\", which has the value to look up in the index of the tuple's primary-key "
 "field, is mandatory, because ``update()`` requests must always have a clause that specifies "
@@ -23593,7 +23616,7 @@ msgstr ""
 "ключу в первичном индексе, является обязательным, поскольку в запросе ``update()`` должен "
 "быть оператор, который указывает уникальный ключ, в данном случае -- field[1]."
 
-#: ../doc/1.10/book/box/data_model.rst:648
+#: ../doc/1.10/book/box/data_model.rst:653
 msgid ""
 "The clause \"{{'=', 2, 'Tarantino'}}\" specifies that assignment will happen to field[2] "
 "with the new value."
@@ -23601,16 +23624,16 @@ msgstr ""
 "Оператор \"{{'=', 2, 'Tarantino'}}\" указывает, что назначение нового значения относится к "
 "field[2]."
 
-#: ../doc/1.10/book/box/data_model.rst:651
+#: ../doc/1.10/book/box/data_model.rst:656
 msgid "tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})"
 msgstr "tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})"
 
-#: ../doc/1.10/book/box/data_model.rst:655
+#: ../doc/1.10/book/box/data_model.rst:660
 msgid ":ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2] again."
 msgstr ""
 ":ref:`UPSERT <box_space-upsert>`: обновить или вставить кортеж, снова изменяя поле field[2]."
 
-#: ../doc/1.10/book/box/data_model.rst:658
+#: ../doc/1.10/book/box/data_model.rst:663
 msgid ""
 "The syntax of ``upsert()`` is similar to the syntax of ``update()``. However, the execution "
 "logic of these two requests is different. UPSERT is either UPDATE or INSERT, depending on "
@@ -23622,15 +23645,15 @@ msgstr ""
 "данных. Кроме того, выполнение UPSERT откладывается до коммита транзакции, поэтому в отличие "
 "от``update()``, ``upsert()`` не возвращает данные."
 
-#: ../doc/1.10/book/box/data_model.rst:664
+#: ../doc/1.10/book/box/data_model.rst:669
 msgid "tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})"
 msgstr "tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})"
 
-#: ../doc/1.10/book/box/data_model.rst:668
+#: ../doc/1.10/book/box/data_model.rst:673
 msgid ":ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field."
 msgstr ":ref:`REPLACE <box_space-replace>`: заменить кортеж, добавляя новое поле."
 
-#: ../doc/1.10/book/box/data_model.rst:670
+#: ../doc/1.10/book/box/data_model.rst:675
 msgid ""
 "This is also possible with the ``update()`` request, but the ``update()`` request is usually "
 "more complicated."
@@ -23638,49 +23661,49 @@ msgstr ""
 "Это действие также можно выполнить с помощью запроса ``update()``, но обычно запрос "
 "``update()`` более сложен."
 
-#: ../doc/1.10/book/box/data_model.rst:673
+#: ../doc/1.10/book/box/data_model.rst:678
 msgid "tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}"
 msgstr "tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}"
 
-#: ../doc/1.10/book/box/data_model.rst:677
+#: ../doc/1.10/book/box/data_model.rst:682
 msgid ":ref:`SELECT <box_space-select>`: Retrieve the tuple."
 msgstr ":ref:`SELECT <box_space-select>`: провести выборку кортежа."
 
-#: ../doc/1.10/book/box/data_model.rst:679
+#: ../doc/1.10/book/box/data_model.rst:684
 msgid ""
 "The clause \"{999}\" is still mandatory, although it does not have to mention the primary "
 "key."
 msgstr ""
 "Оператор \"{999}\" все еще обязателен, хотя в нем не должен упоминаться первичный ключ."
 
-#: ../doc/1.10/book/box/data_model.rst:682
+#: ../doc/1.10/book/box/data_model.rst:687
 msgid "tarantool> box.space.tester:select{999}"
 msgstr "tarantool> box.space.tester:select{999}"
 
-#: ../doc/1.10/book/box/data_model.rst:686
+#: ../doc/1.10/book/box/data_model.rst:691
 msgid ":ref:`DELETE <box_space-delete>`: Delete the tuple."
 msgstr ":ref:`DELETE <box_space-delete>`: удалить кортеж."
 
-#: ../doc/1.10/book/box/data_model.rst:688
+#: ../doc/1.10/book/box/data_model.rst:693
 msgid "In this example, we identify the primary-key field."
 msgstr "В этом примере мы определяем поле, соответствующее ключу в первичном индексе."
 
-#: ../doc/1.10/book/box/data_model.rst:690
+#: ../doc/1.10/book/box/data_model.rst:695
 msgid "tarantool> box.space.tester:delete{999}"
 msgstr "tarantool> box.space.tester:delete{999}"
 
-#: ../doc/1.10/book/box/data_model.rst:694
+#: ../doc/1.10/book/box/data_model.rst:699
 msgid "Summarizing the examples:"
 msgstr "Подводя итоги по примерам:"
 
-#: ../doc/1.10/book/box/data_model.rst:696
+#: ../doc/1.10/book/box/data_model.rst:701
 msgid ""
 "Functions ``insert`` and ``replace`` accept a tuple (where a primary key comes as part of "
 "the tuple)."
 msgstr ""
 "Функции ``insert`` и ``replace`` принимают кортеж (где первичный ключ -- это часть кортежа)."
 
-#: ../doc/1.10/book/box/data_model.rst:698
+#: ../doc/1.10/book/box/data_model.rst:703
 msgid ""
 "Function ``upsert`` accepts a tuple (where a primary key comes as part of the tuple), and "
 "also the update operations to execute."
@@ -23688,13 +23711,13 @@ msgstr ""
 "Функция ``upsert`` принимает кортеж (где первичный ключ -- это часть кортежа), а также "
 "операции по обновлению."
 
-#: ../doc/1.10/book/box/data_model.rst:701
+#: ../doc/1.10/book/box/data_model.rst:706
 msgid "Function ``delete`` accepts a full key of any unique index (primary or secondary)."
 msgstr ""
 "Функция ``delete`` принимает полный ключ любого уникального индекса (первичный или "
 "вторичный)."
 
-#: ../doc/1.10/book/box/data_model.rst:703
+#: ../doc/1.10/book/box/data_model.rst:708
 msgid ""
 "Function ``update`` accepts a full key of any unique index (primary or secondary), and also "
 "the operations to execute."
@@ -23702,14 +23725,14 @@ msgstr ""
 "Функция  ``update`` принимает полный ключ любого уникального индекса (первичный или "
 "вторичный), а также операции к выполнению."
 
-#: ../doc/1.10/book/box/data_model.rst:706
+#: ../doc/1.10/book/box/data_model.rst:711
 msgid ""
 "Function ``select`` accepts any key: primary/secondary, unique/non-unique, full/partial."
 msgstr ""
 "Функция ``select`` принимает любой ключ: первичный/вторичный, уникальный/неуникальный, "
 "полный/часть."
 
-#: ../doc/1.10/book/box/data_model.rst:709
+#: ../doc/1.10/book/box/data_model.rst:714
 msgid ""
 "See reference on ``box.space`` for more :ref:`details on using data operations <box_space-"
 "operations-detailed-examples>`."
@@ -23717,7 +23740,7 @@ msgstr ""
 "Для получения более :ref:`подробной информации по использованию операций с данными "
 "<box_space-operations-detailed-examples>` см. справочник по ``box.space``."
 
-#: ../doc/1.10/book/box/data_model.rst:714
+#: ../doc/1.10/book/box/data_model.rst:719
 msgid ""
 "Besides Lua, you can use :ref:`Perl, PHP, Python or other programming language connectors "
 "<index-box_connectors>`. The client server protocol is open and documented. See this :ref:"
@@ -23727,11 +23750,11 @@ msgstr ""
 "программирования <index-box_connectors>`. Клиент-серверный протокол открыт и "
 "задокументирован. См. :ref:`БНФ с комментариями <box_protocol-iproto_protocol>`."
 
-#: ../doc/1.10/book/box/data_model.rst:723
+#: ../doc/1.10/book/box/data_model.rst:728
 msgid "Index operations"
 msgstr "Операции с индексами"
 
-#: ../doc/1.10/book/box/data_model.rst:725
+#: ../doc/1.10/book/box/data_model.rst:730
 msgid ""
 "Index operations are automatic: if a data-manipulation request changes a tuple, then it also "
 "changes the index keys defined for the tuple."
@@ -23739,17 +23762,17 @@ msgstr ""
 "Операции с индексами производятся автоматически. Если запрос по манипулированию данными "
 "меняет данные в кортеже, то меняются и ключи в индексе для данного кортежа."
 
-#: ../doc/1.10/book/box/data_model.rst:728
+#: ../doc/1.10/book/box/data_model.rst:733
 msgid "The simple index-creation operation that we've illustrated before is:"
 msgstr ""
 "Простая операция по созданию индекса, которую мы рассматривали ранее, выглядит следующим "
 "образом:"
 
-#: ../doc/1.10/book/box/data_model.rst:733
+#: ../doc/1.10/book/box/data_model.rst:738
 msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
 msgstr ":samp:`box.space.{имя-спейса}:create_index('{имя-индекса}')`"
 
-#: ../doc/1.10/book/box/data_model.rst:735
+#: ../doc/1.10/book/box/data_model.rst:740
 msgid ""
 "This creates a unique TREE index on the first field of all tuples (often called "
 "\"Field#1\"), which is assumed to be numeric."
@@ -23757,15 +23780,15 @@ msgstr ""
 "По умолчанию, при этом создается TREE-индекс по первому полю для всех кортежей (обычно его "
 "называют \"Field#1\"). Предполагается, что индексируемое поле является числовым."
 
-#: ../doc/1.10/book/box/data_model.rst:738
+#: ../doc/1.10/book/box/data_model.rst:743
 msgid "The simple SELECT request that we've illustrated before is:"
 msgstr "Вот простой SELECT-запрос, который мы рассматривали ранее:"
 
-#: ../doc/1.10/book/box/data_model.rst:743
+#: ../doc/1.10/book/box/data_model.rst:748
 msgid ":extsamp:`box.space.{*{space-name}*}:select({*{value}*})`"
 msgstr ":extsamp:`box.space.{*{space-name}*}:select({*{value}*})`"
 
-#: ../doc/1.10/book/box/data_model.rst:745
+#: ../doc/1.10/book/box/data_model.rst:750
 msgid ""
 "This looks for a single tuple via the first index. Since the first index is always unique, "
 "the maximum number of returned tuples will be: one."
@@ -23773,15 +23796,15 @@ msgstr ""
 "Такой запрос ищет отдельный кортеж по первичному индексу. Поскольку первичный индекс всегда "
 "уникален, то данный запрос вернет не более одного кортежа."
 
-#: ../doc/1.10/book/box/data_model.rst:748
+#: ../doc/1.10/book/box/data_model.rst:753
 msgid "The following SELECT variations exist:"
 msgstr "Возможны следующие варианты SELECT:"
 
-#: ../doc/1.10/book/box/data_model.rst:750
+#: ../doc/1.10/book/box/data_model.rst:755
 msgid "The search can use comparisons other than equality."
 msgstr "Помимо условия равенства, при поиске могут использоваться и другие условия сравнения."
 
-#: ../doc/1.10/book/box/data_model.rst:757
+#: ../doc/1.10/book/box/data_model.rst:762
 msgid ""
 "The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT (for "
 "\"less than\", \"less than or equal\", \"equal\", \"reversed equal\", \"greater than or equal"
@@ -23792,7 +23815,7 @@ msgstr ""
 "(меньше), LE (меньше  или равно), EQ (равно), REQ (неравно), GE (больше или равно), GT "
 "(больше). Сравнения имеют смысл только для индексов типа 'TREE'."
 
-#: ../doc/1.10/book/box/data_model.rst:762
+#: ../doc/1.10/book/box/data_model.rst:767
 msgid ""
 "This type of search may return more than one tuple; if so, the tuples will be in descending "
 "order by key when the comparison operator is LT or LE or REQ, otherwise in ascending order."
@@ -23801,11 +23824,11 @@ msgstr ""
 "отсортированы в порядке убывания по ключу (если использовался оператор LT, LE или REQ), либо "
 "в порядке возрастания (во всех остальных случаях)."
 
-#: ../doc/1.10/book/box/data_model.rst:766
+#: ../doc/1.10/book/box/data_model.rst:771
 msgid "The search can use a secondary index."
 msgstr "Поиск может производиться по вторичному индексу."
 
-#: ../doc/1.10/book/box/data_model.rst:773
+#: ../doc/1.10/book/box/data_model.rst:778
 msgid ""
 "For a primary-key search, it is optional to specify an index name. For a secondary-key "
 "search, it is mandatory."
@@ -23813,23 +23836,23 @@ msgstr ""
 "При поиске по первичному индексу имя индекса можно не указывать. При поиске же по вторичному "
 "индексу имя индекса указывать необходимо."
 
-#: ../doc/1.10/book/box/data_model.rst:776
+#: ../doc/1.10/book/box/data_model.rst:781
 msgid "The search may be for some or all key parts."
 msgstr "Поиск может производиться как по всему ключу, так и по его частям."
 
-#: ../doc/1.10/book/box/data_model.rst:797
+#: ../doc/1.10/book/box/data_model.rst:802
 msgid "The search may be for all fields, using a table for the value:"
 msgstr "Поиск может производиться по всем полям с использованием таблицы значений:"
 
-#: ../doc/1.10/book/box/data_model.rst:804
+#: ../doc/1.10/book/box/data_model.rst:809
 msgid "or the search can be for one field, using a table or a scalar:"
 msgstr "либо же по одному полю (в этом случае используется таблица или скалярное значение):"
 
-#: ../doc/1.10/book/box/data_model.rst:811
+#: ../doc/1.10/book/box/data_model.rst:816
 msgid "In the second case, the result will be two tuples: ``{1, 'A'}`` and ``{1, 'B'}``."
 msgstr "Во втором случае Tarantool вернет два кортежа: ``{1, 'A'}`` и ``{1,  'B'}``."
 
-#: ../doc/1.10/book/box/data_model.rst:814
+#: ../doc/1.10/book/box/data_model.rst:819
 msgid ""
 "You can specify even zero fields, causing all three tuples to be returned. (Notice that "
 "partial key searches are available only in TREE indexes.)"
@@ -23838,15 +23861,15 @@ msgstr ""
 "кортежа (обратите внимание, что поиск по компонентам ключа доступен только для TREE-"
 "индексов)."
 
-#: ../doc/1.10/book/box/data_model.rst:817
+#: ../doc/1.10/book/box/data_model.rst:822
 msgid "**Examples**"
 msgstr "**Примеры**"
 
-#: ../doc/1.10/book/box/data_model.rst:819
+#: ../doc/1.10/book/box/data_model.rst:824
 msgid "BITSET example:"
 msgstr "Пример работы с BITSET-индексом:"
 
-#: ../doc/1.10/book/box/data_model.rst:821
+#: ../doc/1.10/book/box/data_model.rst:826
 msgid ""
 "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example:create_index('primary')\n"
@@ -23869,12 +23892,12 @@ msgstr ""
 "            tarantool> box.space.bitset_example.index.bitset:select(2, "
 "{iterator='BITS_ANY_SET'})"
 
-#: ../doc/1.10/book/box/data_model.rst:832 ../doc/1.10/book/box/data_model.rst:854
+#: ../doc/1.10/book/box/data_model.rst:837 ../doc/1.10/book/box/data_model.rst:859
 #: ../doc/1.10/tutorials/lua_tutorials.rst:877
 msgid "The result will be:"
 msgstr "Мы получим следующий результат:"
 
-#: ../doc/1.10/book/box/data_model.rst:834
+#: ../doc/1.10/book/box/data_model.rst:839
 msgid ""
 "---\n"
 "- - [3, 7]\n"
@@ -23886,15 +23909,15 @@ msgstr ""
 "              - [4, 3]\n"
 "            ..."
 
-#: ../doc/1.10/book/box/data_model.rst:841
+#: ../doc/1.10/book/box/data_model.rst:846
 msgid "because (7 AND 2) is not equal to 0, and (3 AND 2) is not equal to 0."
 msgstr "поскольку (7 AND 2) не равно 0 и (3 AND 2) не равно 0."
 
-#: ../doc/1.10/book/box/data_model.rst:843
+#: ../doc/1.10/book/box/data_model.rst:848
 msgid "RTREE example:"
 msgstr "Пример работы с RTREE-индексом:"
 
-#: ../doc/1.10/book/box/data_model.rst:845
+#: ../doc/1.10/book/box/data_model.rst:850
 msgid ""
 "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example:create_index('primary')\n"
@@ -23912,7 +23935,7 @@ msgstr ""
 "tarantool> box.space.rtree_example:insert{2, {10, 11}}\n"
 "tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})"
 
-#: ../doc/1.10/book/box/data_model.rst:856
+#: ../doc/1.10/book/box/data_model.rst:861
 msgid ""
 "---\n"
 "- - [1, [3, 5, 9, 10]]\n"
@@ -23922,7 +23945,7 @@ msgstr ""
 "- - [1, [3, 5, 9, 10]]\n"
 "..."
 
-#: ../doc/1.10/book/box/data_model.rst:862
+#: ../doc/1.10/book/box/data_model.rst:867
 msgid ""
 "because a rectangle whose corners are at coordinates ``4,7,5,9`` is entirely within a "
 "rectangle whose corners are at coordinates ``3,5,9,10``."
@@ -23930,7 +23953,7 @@ msgstr ""
 "поскольку прямоугольник с углами в координатах ``4,7,5,9`` лежит целиком внутри "
 "прямоугольника с углами в координатах ``3,5,9,10``."
 
-#: ../doc/1.10/book/box/data_model.rst:865
+#: ../doc/1.10/book/box/data_model.rst:870
 msgid ""
 "Additionally, there exist :ref:`index iterator operations <box_index-index_pairs>`. They can "
 "only be used with code in Lua and C/C++. Index iterators are for traversing indexes one key "
@@ -23944,7 +23967,7 @@ msgstr ""
 "индекса, например оценка логических выражений при обходе BITSET-индексов или обход TREE-"
 "индексов в порядке по убыванию."
 
-#: ../doc/1.10/book/box/data_model.rst:871
+#: ../doc/1.10/book/box/data_model.rst:876
 msgid ""
 "See also other index operations like :ref:`alter() <box_index-alter>` and :ref:`drop() "
 "<box_index-drop>` in reference for :ref:`box.index <box_index>` submodule."
@@ -23953,11 +23976,11 @@ msgstr ""
 "<box_index-alter>` и :ref:`drop() <box_index-drop>` во вложенном модуле :ref:`box.index "
 "<box_index>`."
 
-#: ../doc/1.10/book/box/data_model.rst:876
+#: ../doc/1.10/book/box/data_model.rst:881
 msgid "Complexity factors"
 msgstr "Факторы сложности"
 
-#: ../doc/1.10/book/box/data_model.rst:878
+#: ../doc/1.10/book/box/data_model.rst:883
 msgid ""
 "In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>` submodules, "
 "there are notes about which complexity factors might affect the resource usage of each "
@@ -23966,15 +23989,15 @@ msgstr ""
 "Что касается вложенных модулей :ref:`box.space <box_space>` и :ref:`box.index <box_index>`, "
 "есть информация о том, как факторы сложности могут повлиять на использование каждой функции."
 
-#: ../doc/1.10/book/box/data_model.rst:888
+#: ../doc/1.10/book/box/data_model.rst:893
 msgid "Complexity factor"
 msgstr "Фактор сложности"
 
-#: ../doc/1.10/book/box/data_model.rst:891
+#: ../doc/1.10/book/box/data_model.rst:896
 msgid "Index size"
 msgstr "Размер индекса"
 
-#: ../doc/1.10/book/box/data_model.rst:891
+#: ../doc/1.10/book/box/data_model.rst:896
 msgid ""
 "The number of index keys is the same as the number of tuples in the data set. For a TREE "
 "index, if there are more keys, then the lookup time will be greater, although of course the "
@@ -23986,7 +24009,7 @@ msgstr ""
 "конечно же, не линейная. В случае с HASH-индексом: с ростом количества ключей увеличивается "
 "объем оперативной памяти, но количество низкоуровневых шагов остается примерно тем же."
 
-#: ../doc/1.10/book/box/data_model.rst:899
+#: ../doc/1.10/book/box/data_model.rst:904
 msgid ""
 "Typically, a HASH index is faster than a TREE index if the number of tuples in the space is "
 "greater than one."
@@ -23994,11 +24017,11 @@ msgstr ""
 "Как правило, поиск по HASH-индексу работает быстрее, чем по TREE-индексу,  если в спейсе "
 "более одного кортежа."
 
-#: ../doc/1.10/book/box/data_model.rst:903
+#: ../doc/1.10/book/box/data_model.rst:908
 msgid "Number of indexes accessed"
 msgstr "Количество обращений к индексам"
 
-#: ../doc/1.10/book/box/data_model.rst:903
+#: ../doc/1.10/book/box/data_model.rst:908
 msgid ""
 "Ordinarily, only one index is accessed to retrieve one tuple. But to update the tuple, there "
 "must be N accesses if the space has N different indexes."
@@ -24006,7 +24029,7 @@ msgstr ""
 "Обычно для выборки значений одного кортежа используется только один индекс. Но при "
 "обновлении значений в кортеже требуется N обращений, если в спейсе N индексов."
 
-#: ../doc/1.10/book/box/data_model.rst:907
+#: ../doc/1.10/book/box/data_model.rst:912
 msgid ""
 "Note re storage engine: Vinyl optimizes away such accesses if secondary index fields are "
 "unchanged by the update. So, this complexity factor applies only to memtx, since it always "
@@ -24016,11 +24039,11 @@ msgstr ""
 "затрагивает поля вторичного индекса. Таким образом, этот фактор сложности влияет только на "
 "memtx, поскольку он всегда создает копию всего кортежа при каждом обновлении."
 
-#: ../doc/1.10/book/box/data_model.rst:913
+#: ../doc/1.10/book/box/data_model.rst:918
 msgid "Number of tuples accessed"
 msgstr "Количество обращений к кортежам"
 
-#: ../doc/1.10/book/box/data_model.rst:913
+#: ../doc/1.10/book/box/data_model.rst:918
 msgid ""
 "A few requests, for example SELECT, can retrieve multiple tuples. This factor is usually "
 "less important than the others."
@@ -24028,11 +24051,11 @@ msgstr ""
 "Некоторые запросы, например SELECT, могут возвращать несколько кортежей. Как правило, это "
 "наименее важный фактор из всех."
 
-#: ../doc/1.10/book/box/data_model.rst:917
+#: ../doc/1.10/book/box/data_model.rst:922
 msgid "WAL settings"
 msgstr "Настройки WAL"
 
-#: ../doc/1.10/book/box/data_model.rst:917
+#: ../doc/1.10/book/box/data_model.rst:922
 msgid ""
 "The important setting for the write-ahead log is :ref:`wal_mode "
 "<cfg_binary_logging_snapshots-wal_mode>`. If the setting causes no writing or delayed "
@@ -35349,7 +35372,7 @@ msgstr "функция, которая будет связана с ``my_fiber``
 
 #: ../doc/1.10/dev_guide/documentation_guidelines.rst:240
 #: ../doc/1.10/reference/reference_lua/fiber.rst:230
-#: ../doc/1.10/reference/reference_lua/fiber.rst:268
+#: ../doc/1.10/reference/reference_lua/fiber.rst:269
 msgid "what will be passed to function"
 msgstr "что передается в функцию"
 
@@ -44131,11 +44154,11 @@ msgstr "Пример настройки для отправки журнала �
 msgid ""
 "box.cfg{log = 'tarantool.log'}\n"
 "-- or\n"
-"box.cfg{log = 'file: tarantool.log'}"
+"box.cfg{log = 'file:tarantool.log'}"
 msgstr ""
 "box.cfg{log = 'tarantool.log'}\n"
 "-- или\n"
-"box.cfg{log = 'file: tarantool.log'}"
+"box.cfg{log = 'file:tarantool.log'}"
 
 #: ../doc/1.10/reference/configuration/cfg_logging.rst:53
 msgid ""
@@ -44958,7 +44981,7 @@ msgstr ""
 "Содержимое модуля ``box`` можно просмотреть во время исполнения кода с помощью команды "
 "``box`` без аргументов. Модуль ``box`` включает в себя следующее:"
 
-#: ../doc/1.10/reference/reference_lua/box.rst:68
+#: ../doc/1.10/reference/reference_lua/box.rst:69
 msgid ""
 "Every submodule contains one or more Lua functions. A few submodules contain members as well "
 "as functions. The functions allow data definition (create alter drop), data manipulation "
@@ -47556,21 +47579,24 @@ msgstr "Возврат 32-битной контрольной суммы с по
 
 #: ../doc/1.10/reference/reference_lua/digest.rst:305
 msgid ""
-"The ``crc32`` and ``crc32_update`` functions use the `CRC-32C (Castagnoli)`_ polynomial "
-"value: ``0x1EDC6F41`` / ``4812730177``. If it is necessary to be compatible with other "
-"checksum functions in other programming languages, ensure that the other functions use the "
-"same polynomial value."
+"The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check`_ polynomial "
+"value: ``0x1EDC6F41`` / ``4812730177``. (Other settings are: input = reflected, output = "
+"reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.) If it is necessary to be "
+"compatible with other checksum functions in other programming languages, ensure that the "
+"other functions use the same polynomial value."
 msgstr ""
-"Функции ``crc32`` и ``crc32_update`` используют значение многочлена `CRC-32C (Castagnoli)`_: "
-"``0x1EDC6F41`` / ``4812730177``. Если необходима совместимость с другими функциями "
-"контрольной суммы на другом языке программирования, убедитесь, что другие функции используют "
-"то же значение многочлена."
+"Функции ``crc32`` и ``crc32_update`` используют значение многочлена `Cyclic Redundancy "
+"Check`_ : ``0x1EDC6F41`` / ``4812730177``. (Другие используемые значения: ввод = отраженное "
+"значение, вывод = отраженное значение, начальное значение = 0xFFFFFFFF, финальное xor-"
+"значение = 0x0.) Если необходима совместимость с другими функциями контрольной суммы на "
+"другом языке программирования, убедитесь, что другие функции используют то же значение "
+"многочлена."
 
-#: ../doc/1.10/reference/reference_lua/digest.rst:310
+#: ../doc/1.10/reference/reference_lua/digest.rst:312
 msgid "For example, in Python, install the ``crcmod`` package and say:"
 msgstr "Например, в Python установите пакет ``crcmod`` и введите команду:"
 
-#: ../doc/1.10/reference/reference_lua/digest.rst:312
+#: ../doc/1.10/reference/reference_lua/digest.rst:314
 msgid ""
 ">>> import crcmod\n"
 ">>> fun = crcmod.mkCrcFun('4812730177')\n"
@@ -47582,11 +47608,11 @@ msgstr ""
 "  >>> fun('string')\n"
 "  3304160206L"
 
-#: ../doc/1.10/reference/reference_lua/digest.rst:319
+#: ../doc/1.10/reference/reference_lua/digest.rst:321
 msgid "In Perl, install the ``Digest::CRC`` module and run the following code:"
 msgstr "В Perl установите модуль ``Digest::CRC`` и выполните следующий код:"
 
-#: ../doc/1.10/reference/reference_lua/digest.rst:321
+#: ../doc/1.10/reference/reference_lua/digest.rst:323
 msgid ""
 "use Digest::CRC;\n"
 "$d = Digest::CRC->new(width => 32, poly => 0x1EDC6F41, init => 0xFFFFFFFF, refin => 1, "
@@ -47600,7 +47626,7 @@ msgstr ""
 "  $d->add('string');\n"
 "  print $d->digest;"
 
-#: ../doc/1.10/reference/reference_lua/digest.rst:328
+#: ../doc/1.10/reference/reference_lua/digest.rst:330
 msgid "(the expected output is 3304160206)."
 msgstr "(ожидается выходное значение: 3304160206)."
 
@@ -48596,7 +48622,7 @@ msgstr ""
 "работу."
 
 #: ../doc/1.10/reference/reference_lua/fiber.rst:229
-#: ../doc/1.10/reference/reference_lua/fiber.rst:267
+#: ../doc/1.10/reference/reference_lua/fiber.rst:268
 msgid "the function to be associated with the fiber"
 msgstr "функция, которая будет связана с файбером"
 
@@ -48607,7 +48633,7 @@ msgid "Return"
 msgstr "Возвращается"
 
 #: ../doc/1.10/reference/reference_lua/fiber.rst:232
-#: ../doc/1.10/reference/reference_lua/fiber.rst:270
+#: ../doc/1.10/reference/reference_lua/fiber.rst:271
 msgid "created fiber object"
 msgstr "созданный объект файбера"
 
@@ -48646,16 +48672,18 @@ msgstr ""
 #: ../doc/1.10/reference/reference_lua/fiber.rst:255
 msgid ""
 "Create but do not start a fiber: the fiber is created but does not begin to run immediately "
-"-- it waits until the fiber creator (that is, the job that is calling ``fiber.new()``) "
-"yields. The initial fiber state is 'suspended'. Thus ``fiber.new()`` differs slightly from :"
-"ref:`fiber.create() <fiber-create>`."
+"-- it starts after the fiber creator (that is, the job that is calling ``fiber.new()``) "
+"yields, under :ref:`transaction control <atomic-atomic_execution>`. The initial fiber state "
+"is 'suspended'. Thus ``fiber.new()`` differs slightly from :ref:`fiber.create() <fiber-"
+"create>`."
 msgstr ""
-"Создание файбера без запуска: файбер создается, но не запускается сразу же,  а ожидает, пока "
-"создатель файбера (то есть задача, которая вызывает ``fiber.new()``) не передаст управление. "
-"Файбер создается со статусом 'suspended' (приостановлен). Таким образом, ``fiber.new()`` "
-"слегка отличается от :ref:`fiber.create() <fiber-create>`."
+"Создание файбера без запуска: файбер создается, но не запускается сразу же, а ожидает, пока "
+"создатель файбера (то есть задача, которая вызывает ``fiber.new()``) не передаст управление "
+"согласно правилам :ref:`контроля транзакций <atomic-atomic_execution>`. Файбер создается со "
+"статусом 'suspended' (приостановлен). Таким образом, логика ``fiber.new()`` слегка "
+"отличается от :ref:`fiber.create() <fiber-create>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:262
+#: ../doc/1.10/reference/reference_lua/fiber.rst:263
 msgid ""
 "Ordinarily ``fiber.new()`` is used in conjunction with :ref:`fiber_object:set_joinable() "
 "<fiber_object-set_joinable>` and :ref:`fiber_object:join() <fiber_object-join>`."
@@ -48663,7 +48691,7 @@ msgstr ""
 "Как правило, ``fiber.new()`` используется вместе с :ref:`fiber_object:set_joinable() "
 "<fiber_object-set_joinable>` и :ref:`fiber_object:join() <fiber_object-join>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:275
+#: ../doc/1.10/reference/reference_lua/fiber.rst:276
 msgid ""
 "tarantool> fiber = require('fiber')\n"
 "---\n"
@@ -48689,11 +48717,11 @@ msgstr ""
 "---\n"
 "..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:293
+#: ../doc/1.10/reference/reference_lua/fiber.rst:294
 msgid "fiber object for the currently scheduled fiber."
 msgstr "объект файбера для запланированного на данный момент файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:298
+#: ../doc/1.10/reference/reference_lua/fiber.rst:299
 msgid ""
 "tarantool> fiber.self()\n"
 "---\n"
@@ -48709,15 +48737,15 @@ msgstr ""
 "   id: 101\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:311
+#: ../doc/1.10/reference/reference_lua/fiber.rst:312
 msgid "numeric identifier of the fiber."
 msgstr "числовой идентификатор файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:313
+#: ../doc/1.10/reference/reference_lua/fiber.rst:314
 msgid "fiber object for the specified fiber."
 msgstr "объект файбера для указанного файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:318
+#: ../doc/1.10/reference/reference_lua/fiber.rst:319
 msgid ""
 "tarantool> fiber.find(101)\n"
 "---\n"
@@ -48733,7 +48761,7 @@ msgstr ""
 "   id: 101\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:331
+#: ../doc/1.10/reference/reference_lua/fiber.rst:332
 msgid ""
 "Yield control to the scheduler and sleep for the specified number of seconds. Only the "
 "current fiber can be made to sleep."
@@ -48741,11 +48769,11 @@ msgstr ""
 "Передача управления планировщику и переход в режим ожидания на указанное количество секунд. "
 "Только текущий файбер можно перевести в режим ожидания."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:334
+#: ../doc/1.10/reference/reference_lua/fiber.rst:335
 msgid "number of seconds to sleep."
 msgstr "количество секунд в режиме ожидания."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:338
+#: ../doc/1.10/reference/reference_lua/fiber.rst:339
 msgid ""
 "tarantool> fiber.sleep(1.5)\n"
 "---\n"
@@ -48755,7 +48783,7 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:348
+#: ../doc/1.10/reference/reference_lua/fiber.rst:349
 msgid ""
 "Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`, except "
 "that `fiber.sleep(0)` depends on a timer, `fiber.yield()` does not."
@@ -48763,7 +48791,7 @@ msgstr ""
 "Передача управления планировщику. Работает аналогично :ref:`fiber.sleep(0) <fiber-sleep>`, "
 "только `fiber.sleep(0)` зависит от таймера, `fiber.yield()` -- нет."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:353
+#: ../doc/1.10/reference/reference_lua/fiber.rst:354
 msgid ""
 "tarantool> fiber.yield()\n"
 "---\n"
@@ -48773,7 +48801,7 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:363
+#: ../doc/1.10/reference/reference_lua/fiber.rst:364
 msgid ""
 "Return the status of the current fiber. Or, if optional fiber_object is passed, return the "
 "status of the specified fiber."
@@ -48781,12 +48809,12 @@ msgstr ""
 "Возврат статуса текущего файбера. Или же, если передается необязательный параметр "
 "fiber_object, возврат статуса указанного файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:367
+#: ../doc/1.10/reference/reference_lua/fiber.rst:368
 msgid "the status of ``fiber``. One of: “dead”, “suspended”, or “running”."
 msgstr ""
 "статус файбера: “dead” (недоступен), “suspended” (приостановлен) или “running” (активен)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:372
+#: ../doc/1.10/reference/reference_lua/fiber.rst:373
 msgid ""
 "tarantool> fiber.status()\n"
 "---\n"
@@ -48798,18 +48826,18 @@ msgstr ""
 " - running\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:383
+#: ../doc/1.10/reference/reference_lua/fiber.rst:384
 msgid "Return information about all fibers."
 msgstr "Возврат информации о всех файберах."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:385
+#: ../doc/1.10/reference/reference_lua/fiber.rst:386
 msgid ""
 "number of context switches, backtrace, id, total memory, used memory, name for each fiber."
 msgstr ""
 "количество переключений контекста, обратная трассировка, ID, общий объем памяти, объем "
 "используемой памяти, имя каждого файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:391
+#: ../doc/1.10/reference/reference_lua/fiber.rst:392
 msgid ""
 "tarantool> fiber.info()\n"
 "---\n"
@@ -48835,7 +48863,7 @@ msgstr ""
 "     name: interactive\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:409
+#: ../doc/1.10/reference/reference_lua/fiber.rst:410
 msgid ""
 "Locate a fiber by its numeric id and cancel it. In other words, :ref:`fiber.kill() <fiber-"
 "kill>` combines :ref:`fiber.find() <fiber-find>` and :ref:`fiber_object:cancel() "
@@ -48845,7 +48873,7 @@ msgstr ""
 "<fiber-kill>` объединяет в себе :ref:`fiber.find() <fiber-find>` и :ref:`fiber_object:"
 "cancel() <fiber_object-cancel>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:413
+#: ../doc/1.10/reference/reference_lua/fiber.rst:414
 msgid "the id of the fiber to be cancelled."
 msgstr "ID файбера для отмены."
 
@@ -48853,11 +48881,11 @@ msgstr "ID файбера для отмены."
 msgid "Exception"
 msgstr "Исключение"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:414
+#: ../doc/1.10/reference/reference_lua/fiber.rst:415
 msgid "the specified fiber does not exist or cancel is not permitted."
 msgstr "указанный файбер отсутствует, или отмена невозможна."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:418
+#: ../doc/1.10/reference/reference_lua/fiber.rst:419
 msgid ""
 "tarantool> fiber.kill(fiber.id()) -- kill self, may make program end\n"
 "---\n"
@@ -48869,12 +48897,12 @@ msgstr ""
 " - error: fiber is cancelled\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:430
+#: ../doc/1.10/reference/reference_lua/fiber.rst:431
 msgid ""
 "Check if the current fiber has been cancelled and throw an exception if this is the case."
 msgstr "Проверка отмены действующего файбера и выдача исключения, если файбер отменен."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:435
+#: ../doc/1.10/reference/reference_lua/fiber.rst:436
 msgid ""
 "tarantool> fiber.testcancel()\n"
 "---\n"
@@ -48886,11 +48914,11 @@ msgstr ""
 " - error: fiber is cancelled\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:448
-#: ../doc/1.10/reference/reference_lua/fiber.rst:473
-#: ../doc/1.10/reference/reference_lua/fiber.rst:501
-#: ../doc/1.10/reference/reference_lua/fiber.rst:523
-#: ../doc/1.10/reference/reference_lua/fiber.rst:550
+#: ../doc/1.10/reference/reference_lua/fiber.rst:449
+#: ../doc/1.10/reference/reference_lua/fiber.rst:474
+#: ../doc/1.10/reference/reference_lua/fiber.rst:502
+#: ../doc/1.10/reference/reference_lua/fiber.rst:524
+#: ../doc/1.10/reference/reference_lua/fiber.rst:551
 msgid ""
 "generally this is an object referenced in the return from :ref:`fiber.create <fiber-create>` "
 "or :ref:`fiber.self <fiber-self>` or :ref:`fiber.find <fiber-find>`"
@@ -48898,15 +48926,15 @@ msgstr ""
 "как правило, это объект, полученный в результате вызова :ref:`fiber.create <fiber-create>`, :"
 "ref:`fiber.self <fiber-self>` или :ref:`fiber.find <fiber-find>`"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:452
+#: ../doc/1.10/reference/reference_lua/fiber.rst:453
 msgid "id of the fiber."
 msgstr "ID файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:455
+#: ../doc/1.10/reference/reference_lua/fiber.rst:456
 msgid "``fiber.self():id()`` can also be expressed as ``fiber.id()``."
 msgstr "``fiber.self():id()`` может также быть выражен как ``fiber.id()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:459
+#: ../doc/1.10/reference/reference_lua/fiber.rst:460
 msgid ""
 "tarantool> fiber_object = fiber.self()\n"
 "---\n"
@@ -48924,15 +48952,15 @@ msgstr ""
 " - 101\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:477
+#: ../doc/1.10/reference/reference_lua/fiber.rst:478
 msgid "name of the fiber."
 msgstr "имя файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:480
+#: ../doc/1.10/reference/reference_lua/fiber.rst:481
 msgid "``fiber.self():name()`` can also be expressed as ``fiber.name()``."
 msgstr "``fiber.self():name()`` может также быть выражен как ``fiber.name()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:484
+#: ../doc/1.10/reference/reference_lua/fiber.rst:485
 msgid ""
 "tarantool> fiber.self():name()\n"
 "---\n"
@@ -48944,7 +48972,7 @@ msgstr ""
 " - interactive\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:495
+#: ../doc/1.10/reference/reference_lua/fiber.rst:496
 msgid ""
 "Change the fiber name. By default a Tarantool server's interactive-mode fiber is named "
 "'interactive' and new fibers created due to :ref:`fiber.create <fiber-create>` are named "
@@ -48956,11 +48984,11 @@ msgstr ""
 "create>`, называются 'lua'. Переименование файберов позволяет легче различать их при "
 "использовании :ref:`fiber.info <fiber-info>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:505
+#: ../doc/1.10/reference/reference_lua/fiber.rst:506
 msgid "the new name of the fiber."
 msgstr "новое имя файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:511
+#: ../doc/1.10/reference/reference_lua/fiber.rst:512
 msgid ""
 "tarantool> fiber.self():name('non-interactive')\n"
 "---\n"
@@ -48970,20 +48998,20 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:521
+#: ../doc/1.10/reference/reference_lua/fiber.rst:522
 msgid "Return the status of the specified fiber."
 msgstr "Возврат статуса указанного файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:527
+#: ../doc/1.10/reference/reference_lua/fiber.rst:528
 msgid "the status of fiber. One of: “dead”, “suspended”, or “running”."
 msgstr ""
 "статус файбера: “dead” (недоступен), “suspended” (приостановлен) или “running” (активен)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:530
+#: ../doc/1.10/reference/reference_lua/fiber.rst:531
 msgid "``fiber.self():status(`` can also be expressed as ``fiber.status()``."
 msgstr "``fiber.self():status(`` может также быть выражен как ``fiber.status()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:534
+#: ../doc/1.10/reference/reference_lua/fiber.rst:535
 msgid ""
 "tarantool> fiber.self():status()\n"
 "---\n"
@@ -48995,7 +49023,7 @@ msgstr ""
 " - running\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:545
+#: ../doc/1.10/reference/reference_lua/fiber.rst:546
 msgid ""
 "Cancel a fiber. Running and suspended fibers can be cancelled. After a fiber has been "
 "cancelled, attempts to operate on it will cause errors, for example :ref:`fiber_object:id() "
@@ -49005,11 +49033,11 @@ msgstr ""
 "попытки работать с ним вызовут ошибку, например, вызов :ref:`fiber_object:id() <fiber_object-"
 "id>` вызовет ошибку с указанием недоступности файбера ``error: the fiber is dead``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:556
+#: ../doc/1.10/reference/reference_lua/fiber.rst:557
 msgid "Possible errors: cancel is not permitted for the specified fiber object."
 msgstr "Возможные ошибки: нельзя отменить указанный объект файбера."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:560
+#: ../doc/1.10/reference/reference_lua/fiber.rst:561
 msgid ""
 "tarantool> fiber.self():cancel() -- kill self, may make program end\n"
 "---\n"
@@ -49021,7 +49049,7 @@ msgstr ""
 "- error: fiber is cancelled\n"
 "..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:571
+#: ../doc/1.10/reference/reference_lua/fiber.rst:572
 msgid ""
 "Local storage within the fiber. The storage can contain any number of named values, subject "
 "to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :"
@@ -49036,7 +49064,7 @@ msgstr ""
 "строковыми. Сборщик мусора в Lua отметит или освободит локальное хранилище при вызове :samp:"
 "`{fiber_object}:cancel()`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:580
+#: ../doc/1.10/reference/reference_lua/fiber.rst:581
 msgid ""
 "tarantool> fiber = require('fiber')\n"
 "---\n"
@@ -49086,11 +49114,11 @@ msgstr ""
 "- error: '[string \"return fiber_function.storage[''str1'']\"]:1: the fiber is dead'\n"
 "..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:606
+#: ../doc/1.10/reference/reference_lua/fiber.rst:607
 msgid "See also :ref:`box.session.storage <box_session-storage>`."
 msgstr "См. также :ref:`box.session.storage <box_session-storage>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:612
+#: ../doc/1.10/reference/reference_lua/fiber.rst:613
 msgid ""
 "``fiber_object:set_joinable(true)`` makes a fiber joinable; ``fiber_object:"
 "set_joinable(false)`` makes a fiber not joinable; the default is false."
@@ -49099,13 +49127,13 @@ msgstr ""
 "``fiber_object:set_joinable(false)`` делает файбер недоступным для присоединения; по "
 "умолчанию, false."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:616
+#: ../doc/1.10/reference/reference_lua/fiber.rst:617
 msgid ""
 "A joinable fiber can be waited for, with :ref:`fiber_object:join() <fiber_object-join>`."
 msgstr ""
 "Присоединяемый файбер можно ожидать с помощью :ref:`fiber_object:join() <fiber_object-join>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:619
+#: ../doc/1.10/reference/reference_lua/fiber.rst:620
 msgid ""
 "Best practice is to call ``fiber_object:set_joinable()`` before the fiber function begins to "
 "execute, because otherwise the fiber could become 'dead' before ``fiber_object:"
@@ -49115,31 +49143,31 @@ msgstr ""
 "поскольку в противном случае файбер может стать недоступен до того, как сработает "
 "``fiber_object:set_joinable()``. Правильная последовательность может быть такой:"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:624
+#: ../doc/1.10/reference/reference_lua/fiber.rst:625
 msgid "Call ``fiber.new()`` instead of ``fiber.create()`` to create a new fiber_object."
 msgstr ""
 "Вызов ``fiber.new()`` вместо ``fiber.create()`` для создания нового объекта файбера "
 "fiber_object."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:627
+#: ../doc/1.10/reference/reference_lua/fiber.rst:628
 msgid "Do not yield at this point, because that will cause the fiber function to begin."
 msgstr "Не передавать управление, поскольку это приведет к началу работы функции с файбером."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:630
+#: ../doc/1.10/reference/reference_lua/fiber.rst:631
 msgid "Call ``fiber_object:set_joinable(true)`` to make the new fiber_object joinable."
 msgstr ""
 "Вызов ``fiber_object:set_joinable(true)``, чтобы сделать новый объект файбера fiber_object "
 "присоединяемым."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:633
+#: ../doc/1.10/reference/reference_lua/fiber.rst:634
 msgid "Now it is safe to yield."
 msgstr "Сейчас можно передать управление."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:635
+#: ../doc/1.10/reference/reference_lua/fiber.rst:636
 msgid "Call ``fiber_object:join()``."
 msgstr "Вызов ``fiber_object:join()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:637
+#: ../doc/1.10/reference/reference_lua/fiber.rst:638
 msgid ""
 "Usually ``fiber_object:join()`` should be called, otherwise the fiber's status may become "
 "'suspended' when the fiber function ends, instead of 'dead'."
@@ -49148,16 +49176,16 @@ msgstr ""
 "может перейти в 'suspended' (приостановлен) после выполнения функции, а не "
 "'dead' (недоступен)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:641
+#: ../doc/1.10/reference/reference_lua/fiber.rst:642
 msgid "the boolean value that changes the ``set_joinable`` flag"
 msgstr "логическое значение, которое изменяет флаг ``set_joinable``"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:648
-#: ../doc/1.10/reference/reference_lua/fiber.rst:689
+#: ../doc/1.10/reference/reference_lua/fiber.rst:649
+#: ../doc/1.10/reference/reference_lua/fiber.rst:690
 msgid "The result of the following sequence of requests is:"
 msgstr "Результат следующего ряда запросов:"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:650
+#: ../doc/1.10/reference/reference_lua/fiber.rst:651
 msgid ""
 "the global variable ``d`` will be 6 (which proves that the function was not executed until "
 "after ``d`` was set to 1, when ``fiber.sleep(1)`` caused a yield);"
@@ -49166,7 +49194,7 @@ msgstr ""
 "до тех пор, пока значение ``d`` не стало 1, когда ``fiber.sleep(1)`` вызвал передачу "
 "управления);"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:653
+#: ../doc/1.10/reference/reference_lua/fiber.rst:654
 msgid ""
 "``fiber.status(fi2)`` will be 'suspended' (which proves that after the function was executed "
 "the fiber status did not change to 'dead')."
@@ -49174,7 +49202,7 @@ msgstr ""
 "``fiber.status(fi2)`` будет приостановлен 'suspended' (что доказывает, что после выполнения "
 "функции статус файбера не изменился на недоступный 'dead')."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:656
+#: ../doc/1.10/reference/reference_lua/fiber.rst:657
 msgid ""
 "fiber=require('fiber')\n"
 "d=0\n"
@@ -49190,7 +49218,7 @@ msgstr ""
 "print(d)\n"
 "fiber.status(fi2)"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:669
+#: ../doc/1.10/reference/reference_lua/fiber.rst:670
 msgid ""
 "\"Join\" a joinable fiber. That is, let the fiber's function run and wait until the fiber's "
 "status is 'dead' (normally a status becomes 'dead' when the function execution finishes). "
@@ -49203,7 +49231,7 @@ msgstr ""
 "таким образом, если файбер находится в приостановленном состоянии, выполнение функции "
 "файбера возобновится."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:677
+#: ../doc/1.10/reference/reference_lua/fiber.rst:678
 msgid ""
 "This kind of waiting is more convenient than going into a loop and periodically checking the "
 "status; however, it works only if the fiber was created with :ref:`fiber.new() <fiber-new>` "
@@ -49214,27 +49242,27 @@ msgstr ""
 "и стал доступным для присоединения путем :ref:`fiber_object:set_joinable() <fiber_object-"
 "set_joinable>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:684
+#: ../doc/1.10/reference/reference_lua/fiber.rst:685
 msgid "true if successful, false if not successful"
 msgstr "true, если выполнено, false, если не выполнено"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:691
+#: ../doc/1.10/reference/reference_lua/fiber.rst:692
 msgid "the first ``fiber.status()`` call returns 'suspended',"
 msgstr "первый вызов ``fiber.status()`` возвращает 'suspended' (приостановлен),"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:692
+#: ../doc/1.10/reference/reference_lua/fiber.rst:693
 msgid "the ``join()`` call returns true,"
 msgstr "вызов ``join()`` возвращает true (правда),"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:693
+#: ../doc/1.10/reference/reference_lua/fiber.rst:694
 msgid "the elapsed time is usually 5 seconds, and"
 msgstr "как правило, проходит 5 секунд, и"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:694
+#: ../doc/1.10/reference/reference_lua/fiber.rst:695
 msgid "the second ``fiber.status()`` call returns 'dead'."
 msgstr "второй вызов ``fiber.status()`` возвращает 'dead' (недоступен)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:696
+#: ../doc/1.10/reference/reference_lua/fiber.rst:697
 msgid ""
 "This proves that the ``join()`` does not return until the function -- which sleeps 5 seconds "
 "-- is 'dead'."
@@ -49242,7 +49270,7 @@ msgstr ""
 "Это доказывает, что ``join()`` не возвращает результат, пока функция, которая находится в "
 "режиме ожидания в течение 5 секунд, недоступна ('dead')."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:699
+#: ../doc/1.10/reference/reference_lua/fiber.rst:700
 msgid ""
 "fiber=require('fiber')\n"
 "function fu2() fiber.sleep(5) end\n"
@@ -49262,7 +49290,7 @@ msgstr ""
 "print('elapsed = ' .. os.time() - start_time)\n"
 "fiber.status(fi2)"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:714
+#: ../doc/1.10/reference/reference_lua/fiber.rst:715
 msgid ""
 "current system time (in seconds since the epoch) as a Lua number. The time is taken from the "
 "event loop clock, which makes this call very cheap, but still useful for constructing "
@@ -49272,12 +49300,12 @@ msgstr ""
 "часов событийного цикла, поэтому вызов полезен лишь для создания искусственных ключей "
 "кортежа."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:718
-#: ../doc/1.10/reference/reference_lua/fiber.rst:737
+#: ../doc/1.10/reference/reference_lua/fiber.rst:719
+#: ../doc/1.10/reference/reference_lua/fiber.rst:738
 msgid "num"
 msgstr "num"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:722
+#: ../doc/1.10/reference/reference_lua/fiber.rst:723
 msgid ""
 "tarantool> fiber.time(), fiber.time()\n"
 "---\n"
@@ -49291,7 +49319,7 @@ msgstr ""
 " - 1448466279.2415\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:734
+#: ../doc/1.10/reference/reference_lua/fiber.rst:735
 msgid ""
 "current system time (in microseconds since the epoch) as a 64-bit integer. The time is taken "
 "from the event loop clock."
@@ -49299,7 +49327,7 @@ msgstr ""
 "текущее системное время (в микросекундах с начала отсчета) в виде 64-битного целого числа. "
 "Время берется из часов событийного цикла."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:741
+#: ../doc/1.10/reference/reference_lua/fiber.rst:742
 msgid ""
 "tarantool> fiber.time(), fiber.time64()\n"
 "---\n"
@@ -49313,24 +49341,23 @@ msgstr ""
 " - 1448466351270762\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:753
+#: ../doc/1.10/reference/reference_lua/fiber.rst:754
 msgid ""
 "Make the function which will be associated with the fiber. This function contains an "
-"infinite loop (``while 0 == 0`` is always true). Each iteration of the loop adds 1 to a "
-"global variable named gvar, then goes to sleep for 2 seconds. The sleep causes an implicit :"
-"ref:`fiber.yield() <fiber-yield>`."
+"infinite loop. Each iteration of the loop adds 1 to a global variable named gvar, then goes "
+"to sleep for 2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`."
 msgstr ""
-"Создание функции, которая будет связана с файбером. Такая функция содержит бесконечный цикл "
-"(``while 0 == 0`` всегда будет правдой). Каждая итерация цикла прибавляет 1 к глобальной "
-"переменной под названием gvar, затем уходит в режим ожидания на 2 секунды. Ожидание вызывает "
-"неявную передачу управления :ref:`fiber.yield() <fiber-yield>`."
+"Создание функции, которая будет связана с файбером. Такая функция содержит бесконечный цикл. "
+"Каждая итерация цикла прибавляет 1 к глобальной переменной под названием ``gvar``, а затем "
+"уходит в режим ожидания на 2 секунды. Ожидание вызывает неявную передачу управления :ref:"
+"`fiber.yield() <fiber-yield>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:758
+#: ../doc/1.10/reference/reference_lua/fiber.rst:759
 msgid ""
 "tarantool> fiber = require('fiber')\n"
 "tarantool> function function_x()\n"
 "         >   gvar = 0\n"
-"         >   while 0 == 0 do\n"
+"         >   while true do\n"
 "         >     gvar = gvar + 1\n"
 "         >     fiber.sleep(2)\n"
 "         >   end\n"
@@ -49339,17 +49366,17 @@ msgid ""
 "..."
 msgstr ""
 "tarantool> fiber = require('fiber')\n"
-" tarantool> function function_x()\n"
-"          >   gvar = 0\n"
-"          >   while 0 == 0 do\n"
-"          >     gvar = gvar + 1\n"
-"          >     fiber.sleep(2)\n"
-"          >   end\n"
-"          > end\n"
-" ---\n"
-" ..."
+"tarantool> function function_x()\n"
+"         >   gvar = 0\n"
+"         >   while true do\n"
+"         >     gvar = gvar + 1\n"
+"         >     fiber.sleep(2)\n"
+"         >   end\n"
+"         > end\n"
+"---\n"
+"..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:771
+#: ../doc/1.10/reference/reference_lua/fiber.rst:772
 msgid ""
 "Make a fiber, associate function_x with the fiber, and start function_x. It will immediately "
 "\"detach\" so it will be running independently of the caller."
@@ -49357,7 +49384,7 @@ msgstr ""
 "Создание файбера, ассоциация функции function_x с файбером и запуск function_x. Она сразу же "
 "\"отсоединится\", то есть будет работать отдельно от вызывающего метода."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:774
+#: ../doc/1.10/reference/reference_lua/fiber.rst:775
 msgid ""
 "tarantool> gvar = 0\n"
 "\n"
@@ -49371,11 +49398,11 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:782
+#: ../doc/1.10/reference/reference_lua/fiber.rst:783
 msgid "Get the id of the fiber (fid), to be used in later displays."
 msgstr "Получение ID файбера (fid) для последующего вывода."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:784
+#: ../doc/1.10/reference/reference_lua/fiber.rst:785
 msgid ""
 "tarantool> fid = fiber_of_x:id()\n"
 "---\n"
@@ -49385,7 +49412,7 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:790
+#: ../doc/1.10/reference/reference_lua/fiber.rst:791
 msgid ""
 "Pause for a while, while the detached function runs. Then ... Display the fiber id, the "
 "fiber status, and gvar (gvar will have gone up a bit depending how long the pause lasted). "
@@ -49396,7 +49423,7 @@ msgstr ""
 "в зависимости от длительности паузы). Статус будет \"suspended\" (приостановлен), потому что "
 "файбер практически всё время проводит в режиме ожидания или передачи управления."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:795
+#: ../doc/1.10/reference/reference_lua/fiber.rst:796
 msgid ""
 "tarantool> print('#', fid, '. ', fiber_of_x:status(), '. gvar=', gvar)\n"
 "# 102 .  suspended . gvar= 399\n"
@@ -49408,7 +49435,7 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:802
+#: ../doc/1.10/reference/reference_lua/fiber.rst:803
 msgid ""
 "Pause for a while, while the detached function runs. Then ... Cancel the fiber. Then, once "
 "again ... Display the fiber id, the fiber status, and gvar (gvar will have gone up a bit "
@@ -49420,7 +49447,7 @@ msgstr ""
 "немного увеличится в зависимости от длительности паузы). На этот раз статус будет \"dead"
 "\" (недоступен), потому что произошла отмена."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:807
+#: ../doc/1.10/reference/reference_lua/fiber.rst:808
 msgid ""
 "tarantool> fiber_of_x:cancel()\n"
 "---\n"
@@ -49438,11 +49465,11 @@ msgstr ""
 " ---\n"
 " ..."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:823
+#: ../doc/1.10/reference/reference_lua/fiber.rst:824
 msgid "Channels"
 msgstr "Каналы"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:825
+#: ../doc/1.10/reference/reference_lua/fiber.rst:826
 msgid ""
 "Call ``fiber.channel()`` to allocate space and get a channel object, which will be called "
 "channel for examples in this section."
@@ -49450,7 +49477,7 @@ msgstr ""
 "Вызов ``fiber.channel()`` для выделения спейса и получение объекта канала, который будет "
 "называться \"channel\" в примерах данного раздела."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:828
+#: ../doc/1.10/reference/reference_lua/fiber.rst:829
 msgid ""
 "Call the other routines, via channel, to send messages, receive messages, or check channel "
 "status."
@@ -49458,7 +49485,7 @@ msgstr ""
 "Вызов других процедур по каналу для отправки сообщений, получения сообщений или проверки "
 "статуса канала."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:831
+#: ../doc/1.10/reference/reference_lua/fiber.rst:832
 msgid ""
 "Message exchange is synchronous. The Lua garbage collector will mark or free the channel "
 "when no one is using it, as with any other Lua object. Use object-oriented syntax, for "
@@ -49469,11 +49496,11 @@ msgstr ""
 "ориентированный синтаксис, например ``channel:put(message)``, а не ``fiber.channel."
 "put(message)``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:840
+#: ../doc/1.10/reference/reference_lua/fiber.rst:841
 msgid "Create a new communication channel."
 msgstr "Создание нового канала связи."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:842
+#: ../doc/1.10/reference/reference_lua/fiber.rst:843
 msgid ""
 "the maximum number of slots (spaces for ``channel:put`` messages) that can be in use at "
 "once. The default is 0."
@@ -49481,15 +49508,15 @@ msgstr ""
 "максимальное количество слотов (спейсы для сообщений ``channel:put``), которые можно "
 "использовать одновременно. По умолчанию, 0."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:846
+#: ../doc/1.10/reference/reference_lua/fiber.rst:847
 msgid "new channel."
 msgstr "новый канал."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:847
+#: ../doc/1.10/reference/reference_lua/fiber.rst:848
 msgid "userdata, possibly including the string \"channel ...\"."
 msgstr "пользовательские данные, возможно включая строку \"channel ...\"."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:855
+#: ../doc/1.10/reference/reference_lua/fiber.rst:856
 msgid ""
 "Send a message using a channel. If the channel is full, ``channel:put()`` waits until there "
 "is a free slot in the channel."
@@ -49497,15 +49524,15 @@ msgstr ""
 "Отправка сообщения по каналу связи. Если канал заполнен, ``channel:put()`` ожидает, пока не "
 "освободится слот в канале."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:858
+#: ../doc/1.10/reference/reference_lua/fiber.rst:859
 msgid "what will be sent, usually a string or number or table"
 msgstr "то, что отправляется, как правило, строка, число или таблица"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:859
+#: ../doc/1.10/reference/reference_lua/fiber.rst:860
 msgid "maximum number of seconds to wait for a slot to become free"
 msgstr "максимальное количество секунд ожидания, чтобы слот освободился"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:860
+#: ../doc/1.10/reference/reference_lua/fiber.rst:861
 msgid ""
 "If timeout is specified, and there is no free slot in the channel for the duration of the "
 "timeout, then the return value is ``false``. If the channel is closed, then the return value "
@@ -49516,7 +49543,7 @@ msgstr ""
 "значение ``false``. В остальных случаях возвращается значение ``true`` (правда), которое "
 "указывает на успешную отправку."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:870
+#: ../doc/1.10/reference/reference_lua/fiber.rst:871
 msgid ""
 "Close the channel. All waiters in the channel will stop waiting. All following ``channel:"
 "get()`` operations will return ``nil``, and all following ``channel:put()`` operations will "
@@ -49526,7 +49553,7 @@ msgstr ""
 "операции ``channel:get()`` вернут нулевое значение ``nil``, а все последующие операции "
 "``channel:put()`` вернут ``false`` (ложь)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:878
+#: ../doc/1.10/reference/reference_lua/fiber.rst:879
 msgid ""
 "Fetch and remove a message from a channel. If the channel is empty, ``channel:get()`` waits "
 "for a message."
@@ -49534,11 +49561,11 @@ msgstr ""
 "Перехват и удаление сообщения из канала. Если канал пуст, ``channel:get()`` будет ожидать "
 "сообщения."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:881
+#: ../doc/1.10/reference/reference_lua/fiber.rst:882
 msgid "maximum number of seconds to wait for a message"
 msgstr "максимальное количество секунд ожидания сообщения"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:882
+#: ../doc/1.10/reference/reference_lua/fiber.rst:883
 msgid ""
 "If timeout is specified, and there is no message in the channel for the duration of the "
 "timeout, then the return value is ``nil``. If the channel is closed, then the return value "
@@ -49550,31 +49577,31 @@ msgstr ""
 "``nil``. В остальных случаях возвращается сообщение, отправленное на канал с помощью "
 "``channel:put()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:887
+#: ../doc/1.10/reference/reference_lua/fiber.rst:888
 msgid "usually string or number or table, as determined by ``channel:put``"
 msgstr "как правило, строка, число или таблица, как определяет ``channel:put()``"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:893
+#: ../doc/1.10/reference/reference_lua/fiber.rst:894
 msgid "Check whether the channel is empty (has no messages)."
 msgstr "Проверка пустоты канала (отсутствие сообщений)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:895
+#: ../doc/1.10/reference/reference_lua/fiber.rst:896
 msgid "``true`` if the channel is empty. Otherwise ``false``."
 msgstr "``true`` (правда), если канал пуст. В противном случае, ``false`` (ложь)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:902
+#: ../doc/1.10/reference/reference_lua/fiber.rst:903
 msgid "Find out how many messages are in the channel."
 msgstr "Определение количества сообщений в канале."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:904
+#: ../doc/1.10/reference/reference_lua/fiber.rst:905
 msgid "the number of messages."
 msgstr "количество сообщений."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:911
+#: ../doc/1.10/reference/reference_lua/fiber.rst:912
 msgid "Check whether the channel is full."
 msgstr "Проверка заполненности канала."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:913
+#: ../doc/1.10/reference/reference_lua/fiber.rst:914
 msgid ""
 "``true`` if the channel is full (the number of messages in the channel equals the number of "
 "slots so there is no room for a new message). Otherwise ``false``."
@@ -49582,7 +49609,7 @@ msgstr ""
 "``true`` (правда), если канал заполнен (количество сообщений в канале равно количеству "
 "слотов, то есть нет места для новых сообщений). В противном случае, ``false`` (ложь)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:922
+#: ../doc/1.10/reference/reference_lua/fiber.rst:923
 msgid ""
 "Check whether readers are waiting for a message because they have issued ``channel:get()`` "
 "and the channel is empty."
@@ -49590,13 +49617,13 @@ msgstr ""
 "Проверка пустого канала на наличие читателей в состоянии ожидания сообщения после отправки "
 "запросов ``channel:get()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:925
+#: ../doc/1.10/reference/reference_lua/fiber.rst:926
 msgid "``true`` if readers are waiting. Otherwise ``false``."
 msgstr ""
 "``true`` (правда), если на канале есть читатели в ожидании сообщения. В противном случае, "
 "``false`` (ложь)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:932
+#: ../doc/1.10/reference/reference_lua/fiber.rst:933
 msgid ""
 "Check whether writers are waiting because they have issued ``channel:put()`` and the channel "
 "is full."
@@ -49604,17 +49631,17 @@ msgstr ""
 "Проверка полного канала на наличие писателей в состоянии ожидания после отправки запросов "
 "``channel:put()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:935
+#: ../doc/1.10/reference/reference_lua/fiber.rst:936
 msgid "``true`` if writers are waiting. Otherwise ``false``."
 msgstr ""
 "``true`` (правда), если на канале есть писатели в состоянии ожидании. В противном случае, "
 "``false`` (ложь)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:942
+#: ../doc/1.10/reference/reference_lua/fiber.rst:943
 msgid "``true`` if the channel is already closed. Otherwise ``false``."
 msgstr "``true`` (правда), если канал уже закрыт. В противном случае, ``false`` (ложь)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:950
+#: ../doc/1.10/reference/reference_lua/fiber.rst:951
 msgid ""
 "This example should give a rough idea of what some functions for fibers should look like. "
 "It's assumed that the functions would be referenced in :ref:`fiber.create() <fiber-create>`."
@@ -49622,7 +49649,7 @@ msgstr ""
 "В данном примере дается примерное представление о том, как должны выглядеть функции для "
 "файберов. Предполагается, что на функции ссылается :ref:`fiber.create() <fiber-create>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:954
+#: ../doc/1.10/reference/reference_lua/fiber.rst:955
 msgid ""
 "fiber = require('fiber')\n"
 "channel = fiber.channel(10)\n"
@@ -49744,11 +49771,11 @@ msgstr ""
 "     end\n"
 " end"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1020
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1021
 msgid "Condition variables"
 msgstr "Условные переменные"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1022
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1023
 msgid ""
 "Call ``fiber.cond()`` to create a named condition variable, which will be called 'cond' for "
 "examples in this section."
@@ -49756,13 +49783,13 @@ msgstr ""
 "Вызов ``fiber.cond()`` используется для создания именованной условной переменной, которая "
 "будет называться 'cond' для примеров данного раздела."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1025
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1026
 msgid "Call ``cond:wait()`` to make a fiber wait for a signal via a condition variable."
 msgstr ""
 "Вызов ``cond:wait()`` используется, чтобы заставить файбер ожидать сигнал, с помощью "
 "условной переменной."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1027
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1028
 msgid ""
 "Call ``cond:signal()`` to send a signal to wake up a single fiber that has executed ``cond:"
 "wait()``."
@@ -49770,22 +49797,22 @@ msgstr ""
 "Вызов ``cond:signal()`` используется, чтобы отправить сигнал для пробуждения отдельного "
 "файбера, который выполнил запрос ``cond:wait()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1030
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1031
 msgid ""
 "Call ``cond:broadcast()`` to send a signal to all fibers that have executed ``cond:wait()``."
 msgstr ""
 "Вызов ``cond:broadcast()`` используется для отправки сигнала всем файберам, которые "
 "выполнили ``cond:wait()``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1037
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1038
 msgid "Create a new condition variable."
 msgstr "Создание новой условной переменной."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1039
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1040
 msgid "new condition variable."
 msgstr "новая условная переменная."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1048
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1049
 msgid ""
 "Make the current fiber go to sleep, waiting until another fiber invokes the ``signal()`` or "
 "``broadcast()`` method on the cond object. The sleep causes an implicit :ref:`fiber.yield() "
@@ -49795,11 +49822,11 @@ msgstr ""
 "``signal()`` или ``broadcast()``. Переход в режим ожидания вызывает неявную передачу "
 "управления :ref:`fiber.yield() <fiber-yield>`."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1052
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1053
 msgid "number of seconds to wait, default = forever."
 msgstr "количество секунд ожидания, по умолчанию = всегда."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1053
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1054
 msgid ""
 "If timeout is provided, and a signal doesn't happen for the duration of the timeout, "
 "``wait()`` returns false. If a signal or broadcast happens, ``wait()`` returns true."
@@ -49808,15 +49835,15 @@ msgstr ""
 "времени, ``wait()`` вернет значение false (ложь). Если передается ``signal()`` или "
 "``broadcast()``, ``wait()`` вернет true (правда)."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1062
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1063
 msgid "Wake up a single fiber that has executed ``wait()`` for the same variable."
 msgstr "Пробуждение отдельного файбера, который выполнил ``wait()`` для той же переменной."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1071
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1072
 msgid "Wake up all fibers that have executed ``wait()`` for the same variable."
 msgstr "Пробуждение всех файберов, которые выполнили ``wait()`` для той же переменной."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1079
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1080
 msgid ""
 "Assume that a tarantool instance is running and listening for connections on localhost port "
 "3301. Assume that guest users have privileges to connect. We will use the tarantoolctl "
@@ -49826,11 +49853,11 @@ msgstr ""
 "Предположим, что у пользователя guest есть права на подключение. Используем утилиту "
 "tarantoolctl для запуска двух клиентов."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1083
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1084
 msgid "On terminal #1, say"
 msgstr "В первом терминале введите:"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1085
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1086
 msgid ""
 "$ tarantoolctl connect '3301'\n"
 "tarantool> fiber = require('fiber')\n"
@@ -49842,7 +49869,7 @@ msgstr ""
 " tarantool> cond = fiber.cond()\n"
 " tarantool> cond:wait()"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1092
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1093
 msgid ""
 "The job will hang because ``cond:wait()`` -- without an optional timeout argument -- will go "
 "to sleep until the condition variable changes."
@@ -49850,11 +49877,11 @@ msgstr ""
 "Задача повиснет, поскольку ``cond:wait()`` -- без дополнительного аргумента времени ожидания "
 "timeout -- уйдет в режим ожидания до изменения условной переменной."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1095
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1096
 msgid "On terminal #2, say"
 msgstr "Во втором терминале введите:"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1097
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1098
 msgid ""
 "$ tarantoolctl connect '3301'\n"
 "tarantool> cond:signal()"
@@ -49862,7 +49889,7 @@ msgstr ""
 "$ tarantoolctl connect '3301'\n"
 " tarantool> cond:signal()"
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1102
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1103
 msgid ""
 "Now look again at terminal #1. It will show that the waiting stopped, and the ``cond:"
 "wait()`` function returned ``true``."
@@ -49870,7 +49897,7 @@ msgstr ""
 "Теперь снова взгляните на терминал №1. Он покажет, что ожидание прекратилось, и функция "
 "``cond:wait()`` вернула значение ``true``."
 
-#: ../doc/1.10/reference/reference_lua/fiber.rst:1105
+#: ../doc/1.10/reference/reference_lua/fiber.rst:1106
 msgid ""
 "This example depended on the use of a global conditional variable with the arbitrary name "
 "``cond``. In real life, programmers would make sure to use different conditional variable "
@@ -63705,15 +63732,15 @@ msgstr "Метод ``replicaset.callrw`` аналогичен ``replicaset.call`
 
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:1568
 msgid ""
-"Call a function on a nearest available replica (distances are defined using ``replica.zone`` "
-"and ``cfg.weights`` matrix) with a specified arguments. It is recommended to call only read-"
-"only functions using ``replicaset.callro()``, as the function can be executed not only on a "
-"master, but also on replicas."
+"Call a function on the nearest available replica (distances are defined using ``replica."
+"zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to call only "
+"read-only functions using ``replicaset.callro()``, as the function can be executed not only "
+"on a master, but also on replicas."
 msgstr ""
 "Вызов функции с указанными аргументами на ближайшей доступной реплике (расстояние "
 "определяется с помощью матрицы ``replica.zone`` и ``cfg.weights``). С помощью ``replicaset."
-"callro()`` рекомендуется вызывать функции, доступные только для чтения. поскольку эту "
-"функцию можно выполнять не только на мастере, но и на репликах."
+"callro()`` рекомендуется вызывать исключительно функции, доступные только для чтения. "
+"поскольку такие функции можно выполнять не только на мастере, но и на репликах."
 
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:1587
 msgid "Router internal API"
