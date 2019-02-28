@@ -842,11 +842,11 @@ Below is a list of all ``box.index`` functions and members.
     .. method:: alter({options})
 
         Alter an index.
-        It is legal in some circumstances to change an index's parts and/or
-        change the type and the ``is_nullable`` flag for a part.
-        However, this usually causes rebuilding of the space, except for
-        the simple case where the ``is_nullable`` flag is changed from
-        ``false`` to ``true``.
+        It is legal in some circumstances to change one or more of the
+        index characteristics, for example its type, its sequence options,
+        its parts, and whether it is unique, Usually this causes rebuilding
+        of the space,  except for the simple case where a part's ``is_nullable``
+        flag is changed from ``false`` to ``true``.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
@@ -859,10 +859,10 @@ Below is a list of all ``box.index`` functions and members.
         **Possible errors:**
 
         * index does not exist,
-        * the first index cannot be changed to ``{unique = false}``.
+        * the primary-key index cannot be changed to ``{unique = false}``.
 
-        **Note re storage engine:** vinyl supports ``alter()`` for non-empty
-        spaces. Primary index definition cannot be altered.
+        **Note re storage engine:** vinyl does not support ``alter()``
+        of a primary-key index unless the space is empty.
 
         **Example:**
 

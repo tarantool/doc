@@ -880,3 +880,8 @@ All functions related to sequences require appropriate
         the index key type may be either 'integer' or 'unsigned'.
 
         A sequence cannot be dropped if it is associated with an index.
+        However, :ref:`index_object:alter() <box_index-alter>`
+        can be used to say that a sequence
+        is not associated with an index, for example
+        ``box.space.T.index.I:alter({sequence=false})``.
+        
