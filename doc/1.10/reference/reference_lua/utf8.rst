@@ -8,7 +8,7 @@
                                    Overview
 ===============================================================================
 
-``utf8`` is a Tarantool's module for handling UTF-8 strings.
+``utf8`` is Tarantool's module for handling UTF-8 strings.
 It includes some functions which are compatible with ones in
 `Lua 5.3 <https://www.lua.org/manual/5.3/manual.html#6.5>`_
 but Tarantool has much more. For example, because internally
@@ -19,12 +19,6 @@ for Cyrillic (Capital Letter Zhe Ж = Small Letter Zhe ж)
 and Japanese (Hiragana A = Katakana A).
 
 The module is fully built-in so ``require('utf8')`` is not necessary.
-
-===============================================================================
-                                    Index
-===============================================================================
-
-Below is a list of all ``utf8`` functions.
 
 .. container:: table
 
@@ -67,7 +61,7 @@ Below is a list of all ``utf8`` functions.
     `Unicode Collation Algorithm <http://www.unicode.org/Public/UCA/10.0.0/allkeys.txt>`_.
     Thus 'å' is less than 'B', even though the code-point value of å (229) is greater
     than the code-point value of B (66), because the algorithm depends on
-    the values in the Collation Element Table, not the code values.
+    the values in the Collation Element Table, not the code-point values.
 
     The comparison is done with primary weights. Therefore the
     elements which affect secondary or later weights (such as "case"
@@ -130,7 +124,10 @@ Below is a list of all ``utf8`` functions.
     than the code-point value of B (66), because the algorithm depends on
     the values in the Collation Element Table, not the code values.
 
-    The comparison is done with all weights, and upper case comes before lower case.
+    The comparison is done with at least three weights. Therefore the
+    elements which affect secondary or later weights (such as "case"
+    in Latin or Cyrillic alphabets, or "kana differentiation" in Japanese)
+    are not ignored. and upper case comes after lower case.
 
     **Example:**
 
@@ -241,13 +238,13 @@ Below is a list of all ``utf8`` functions.
     :param start-byte integer: byte position of the first character
     :param end-byte integer: byte position where to stop
     :return: the number of characters in the string, or between start and end
-    :rtype: number, or error if the input string is not valid UTF-8
+    :rtype: number
 
     Byte positions for start and end can be negative, which indicates
     "calculate from end of string" rather than "calculate from start of string".
 
-    If an error occurs, the error return will include the byte position
-    where the not-valid UTF-8 character was found, as a second value.
+    If the string contains a byte sequence which is not valid in UTF-8,
+    each byte in the invalid byte sequence will be counted as one character.
 
     UTF-8 is a variable-size encoding scheme. Typically
     a simple Latin letter takes one byte, a Cyrillic letter
@@ -276,7 +273,7 @@ Below is a list of all ``utf8`` functions.
 
     :param UTF8-string string: a string encoded with UTF-8
     :return: the same string, lower case
-    :rtype: string, or error if the input string is not valid UTF-8
+    :rtype: string
 
     **Example:**
 
@@ -294,7 +291,7 @@ Below is a list of all ``utf8`` functions.
     :param UTF8-string string: a string encoded with UTF-8
     :param start-byte integer: byte position where to start within the string, default is 1
     :return: byte position of the next character and the code point value of the next character
-    :rtype: table, or error if the input string is not valid UTF-8
+    :rtype: table
 
     The ``next`` function is often used in a loop to get one character
     at a time from a UTF-8 string.
@@ -322,7 +319,7 @@ Below is a list of all ``utf8`` functions.
 
 .. _utf8-sub:
 
-.. function:: sub(UTF8-string [, start-character [, end-character]])
+.. function:: sub(UTF8-string, start-character [, end-character])
 
     :param UTF8-string string: a string encoded as UTF-8
     :param start-character number: the position of the first character
@@ -333,9 +330,9 @@ Below is a list of all ``utf8`` functions.
     Character positions for start and end can be negative, which indicates
     "calculate from end of string" rather than "calculate from start of string".
 
-    The default value for start-character is 1, and the default value
+    The default value
     for end-character is the length of the input string. Therefore, saying
-    ``utf8.sub('abc')`` will return 'abc', the same as the input string.
+    ``utf8.sub(1, 'abc')`` will return 'abc', the same as the input string.
 
     **Example:**
 
@@ -352,7 +349,7 @@ Below is a list of all ``utf8`` functions.
 
     :param UTF8-string string: a string encoded with UTF-8
     :return: the same string, upper case
-    :rtype: string, or error if the input string is not valid UTF-8
+    :rtype: string
 
     .. NOTE::
 
