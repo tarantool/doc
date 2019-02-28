@@ -658,9 +658,9 @@ on Saint Sylvester's Day".
 
 .. code-block:: sql
 
-    VALUES (DATETIME('1970-12-31 23:59:59', '1 SECOND'));
+    VALUES (DATETIME('2018-12-31 23:59:59', '1 SECOND'));
 
-The result will be: ``'1971-01-01 00:00:00'``
+The result will be: ``'2019-01-01 00:00:00'``
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Metadata
