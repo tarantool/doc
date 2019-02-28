@@ -132,7 +132,7 @@ Below is a list of all ``http`` functions.
         * ``http_client:post (url, body, options)`` - shortcut for
           ``http_client:request("POST", url, body, opts)``
         * ``http_client:put(url, body, options)`` - shortcut for
-          ``http_client:request("POST", url, body, opts)``
+          ``http_client:request("PUT", url, body, opts)``
         * ``http_client:patch(url, body, options)`` - shortcut for
           ``http_client:request("PATCH", url, body, opts)``
         * ``http_client:options(url, options)`` - shortcut for
