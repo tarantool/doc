@@ -957,6 +957,7 @@ Below is a list of all ``box.index`` functions and members.
         * ``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter hits|misses;
         * ``index_object:stat().disk.pages`` -- the size in pages;
         * ``index_object:stat().cache.evict`` -- number of evictions from the cache.
+        * ``index_object:stat().range_size`` -- maximum number of bytes in a range
 
         Summary index statistics are also available via
         :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl_details>`.
