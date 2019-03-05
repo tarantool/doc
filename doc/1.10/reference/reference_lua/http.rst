@@ -98,8 +98,8 @@ Below is a list of all ``http`` functions.
           * ``keepalive_interval`` - the interval, in seconds, that the operating
             system will wait between sending keepalive probes. See also
             `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_.
-            If either keepalive_idle or keepalive_interval is set, then
-            Tarantool will also set http keepalive headers: Connection:Keep-Alive
+            If both keepalive_idle and keepalive_interval are set, then
+            Tarantool will also set HTTP keepalive headers: Connection:Keep-Alive
             and Keep-Alive:timeout=<keepalive_idle>.
             Otherwise Tarantool will send Connection:close
           * ``low_speed_time`` - set the "low speed time" -- the time that the
