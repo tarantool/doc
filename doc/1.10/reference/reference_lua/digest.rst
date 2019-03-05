@@ -13,7 +13,7 @@
 A "digest" is a value which is returned by a function (usually a
 `Cryptographic hash function`_), applied against a string. Tarantool's ``digest``
 module supports several types of cryptographic hash functions (AES_, MD4_,
-MD5_, SHA-0_, SHA-1_, SHA-2_, PBKDF2_) as well as a checksum function (CRC32_), two
+MD5_, SHA-1_, SHA-2_, PBKDF2_) as well as a checksum function (CRC32_), two
 functions for base64_, and two non-cryptographic hash functions (guava_, murmur_).
 Some of the digest functionality is also present in the :ref:`crypto <crypto>`
 module.
@@ -52,12 +52,6 @@ Below is a list of all ``digest`` functions.
     +--------------------------------------+---------------------------------+
     | :ref:`digest.pbkdf2()                | Get a digest made with PBKDF2   |
     | <digest-pbkdf2>`                     |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`digest.sha()                   | Get a digest made with SHA-0    |
-    | <digest-sha>`                        |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`digest.sha_hex()               | Get a hexadecimal digest made   |
-    | <digest-sha_hex>`                    | with SHA-0                      |
     +--------------------------------------+---------------------------------+
     | :ref:`digest.sha1()                  | Get a digest made with SHA-1    |
     | <digest-sha1>`                       |                                 |
@@ -153,19 +147,6 @@ Below is a list of all ``digest`` functions.
     For effective encryption the ``iterations`` value should be
     at least several thousand. The ``digest-length`` value
     determines the length of the resulting binary string.
-
-.. _digest-sha:
-
-.. function:: sha(string)
-
-    Returns 160-bit binary string = digest made with SHA-0. |br|
-    Not recommended.
-
-.. _digest-sha_hex:
-
-.. function:: sha_hex(string)
-
-    Returns 40-byte string = hexadecimal of a digest calculated with sha.
 
 .. _digest-sha1:
 
@@ -408,7 +389,6 @@ password, the result is an error.
     ...
 
 .. _AES: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
-.. _SHA-0: https://en.wikipedia.org/wiki/Sha-0
 .. _SHA-1: https://en.wikipedia.org/wiki/Sha-1
 .. _SHA-2: https://en.wikipedia.org/wiki/Sha-2
 .. _MD4: https://en.wikipedia.org/wiki/Md4
