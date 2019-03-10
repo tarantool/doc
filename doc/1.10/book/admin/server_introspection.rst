@@ -628,3 +628,48 @@ Unlike the poor man’s profilers, ``gperftools`` and ``perf`` have low overhead
 (almost negligible as compared with ``pstack`` and ``gdb``): they don’t result
 in long delays when attaching to a process and therefore can be used without
 serious consequences.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+jit.p
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+The jit.p profiler comes with the Tarantool application server, to load it one
+only needs to say ``require('jit.p')`` or ``require('jit.profile')``.
+There are many options for sampling and display, they are described in
+the documentation for
+`The LuaJIT Profiler <http://www.luatex.org/svn/trunk/source/libs/luajit/LuaJIT-src/doc/ext_profiler.html>`_.
+
+**Example**
+
+Make a function that calls a function named f1 that
+does 500,000 inserts and deletes in a Tarantool space.
+Start the profiler, execute the function, stop the
+profiler, and show what the profiler sampled.
+
+.. code-block:: none
+
+    box.space.t:drop()
+    box.schema.space.create('t')
+    box.space.t:create_index('i')
+    function f1() for i = 1,500000 do
+      box.space.t:insert{i}
+      box.space.t:delete{i}
+      end
+    return 1
+    end
+    function f3() f1() end
+    jit_p = require("jit.profile")
+    sampletable = {}
+    jit_p.start("f", function(thread, samples, vmstate)
+      local dump=jit_p.dumpstack(thread, "f", 1)
+      sampletable[dump] = (sampletable[dump] or 0) + samples
+    end)
+    f3()
+    jit_p.stop()
+    for d,v in pairs(sampletable) do print(v, d) end
+
+Typically the result will show that the sampling happened
+within f1() many times, but also within internal Tarantool
+functions, whose names may change with each new version.
+
