@@ -45,14 +45,14 @@ Below is a list of all additional ``string`` functions.
     | :ref:`string.endswith()              | Check if a string ends with a   |
     | <string-endswith>`                   | given substring                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`string.lstrip()                | Remove spaces on the left of a  |
-    | <string-lstrip>`                     | string                          |
+    | :ref:`string.lstrip()                | Remove characters from the      |
+    | <string-lstrip>`                     | left of a string                |
     +--------------------------------------+---------------------------------+
-    | :ref:`string.rstrip()                | Remove spaces on the right of a |
-    | <string-rstrip>`                     | string                          |
+    | :ref:`string.rstrip()                | Remove characters from the      |
+    | <string-rstrip>`                     | right of a string               |
     +--------------------------------------+---------------------------------+
-    | :ref:`string.strip()                 | Remove spaces on the left and   |
-    | <string-strip>`                      | right of a string               |
+    | :ref:`string.strip()                 | Remove characters from the      |
+    | <string-strip>`                      | left and right of a string      |
     +--------------------------------------+---------------------------------+
 
 .. _string-ljust:
@@ -243,13 +243,16 @@ Below is a list of all additional ``string`` functions.
 
 .. _string-lstrip:
 
-.. function:: lstrip(input-string)
+.. function:: lstrip(input-string [, list-of-characers])
 
-    Return the value of the input string, but without spaces on the left.
+    Return the value of the input string, after removing characters on the left.
+    The optional ``list-of-characters`` parameter is a set not a sequence, so
+    ``string.lstrip(...,'ABC')`` does not mean strip ``'ABC'``, it means strip ``'A'`` or ``'B'`` or ``'C'``.
 
     :param input-string: (string) the string to process
+    :param list-of-characters: (string) what characters can be stripped. Default = space.
 
-    :Return: result after stripping spaces from input string
+    :Return: result after stripping characters from input string
     :Rtype: string
 
     **Example:**
@@ -266,13 +269,16 @@ Below is a list of all additional ``string`` functions.
 
 .. _string-rstrip:
 
-.. function:: rstrip(input-string)
+.. function:: rstrip(input-string [, list-of-characters])
 
-    Return the value of the input string, but without spaces on the right.
+    Return the value of the input string, after removing characters on the right.
+    The optional ``list-of-characters`` parameter is a set not a sequence, so
+    ``string.rstrip(...,'ABC')`` does not mean strip ``'ABC'``, it means strip ``'A'`` or ``'B'`` or ``'C'``.
 
     :param input-string: (string) the string to process
+    :param list-of-characters: (string) what characters can be stripped. Default = space.
 
-    :Return: result after stripping spaces from input string
+    :Return: result after stripping characters from input string
     :Rtype: string
 
     **Example:**
@@ -289,13 +295,16 @@ Below is a list of all additional ``string`` functions.
 
 .. _string-strip:
 
-.. function:: strip(input-string)
+.. function:: strip(input-string [, list-of-characters])
 
-    Return the value of the input string, but without spaces on the left or the right.
+    Return the value of the input string, after removing characters on the left and the right.
+    The optional ``list-of-characters`` parameter is a set not a sequence, so
+    ``string.strip(...,'ABC')`` does not mean strip ``'ABC'``, it means strip ``'A'`` or ``'B'`` or ``'C'``.
 
     :param input-string: (string) the string to process
+    :param list-of-characters: (string) what characters can be stripped. Default = space.
 
-    :Return: result after stripping spaces from input string
+    :Return: result after stripping characters from input string
     :Rtype: string
 
     **Example:**
@@ -309,5 +318,4 @@ Below is a list of all additional ``string`` functions.
         ---
         - ABC
         ...
-
 
