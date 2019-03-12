@@ -242,6 +242,7 @@ Also, show network activity statistics.
     - SENT:
         total: 0
         rps: 0
+      CONNECTIONS: 0
       RECEIVED:
         total: 0
         rps: 0

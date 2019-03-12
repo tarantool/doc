@@ -10,7 +10,7 @@ Use ``box.stat()`` to show the average number of requests per second,
 and the total number of requests since startup, broken down by request type.
 
 Use ``box.stat.net()``  to see network activity: the number of packets sent
-and received, and the average number of requests per second.
+and received, the count of active iproto connections, and the average number of requests per second.
 
 .. _box_introspection-box_stat_vinyl:
 
@@ -69,6 +69,7 @@ Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
     - SENT:
         total: 0
         rps: 0
+      CONNECTIONS: 0
       RECEIVED:
         total: 0
         rps: 0
