@@ -22,8 +22,9 @@ There are five types of triggers in Tarantool:
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback,
 
-* :ref:`the shutdown trigger <box_ctl-on_shutdown>`, which is executed
-  when the server stops.
+* :ref:`server triggers <box_ctl-on_shutdown>`, which are executed
+  when the server starts or stops.
+
 
 All triggers have the following characteristics:
 
@@ -31,13 +32,11 @@ All triggers have the following characteristics:
   The request to "define a trigger" implies passing the
   trigger’s function to one of the "on_event()" functions:
 
-  * :ref:`box.session.on_connect() <box_session-on_connect>`,
-  * :ref:`box.session.on_auth() <box_session-on_auth>`,
-  * :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
-  * :ref:`space_object:on_replace() <box_space-on_replace>` plus
-    :ref:`space_object:before_replace() <box_space-before_replace>` plus
-    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, plus
-    :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`.
+  * :ref:`box.session.on_connect() <box_session-on_connect>` and :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
+  * :ref:`box.session.on_auth() <box_session-on_auth>`, or
+  * :ref:`space_object:on_replace() <box_space-on_replace>` and :ref:`space_object:before_replace() <box_space-before_replace>`, or
+  * :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, or
+  * :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>` and :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
@@ -80,6 +79,7 @@ To get a list of triggers, you can use:
 * space_object:on_replace() to return all replace-trigger functions made for on_replace().
 * space_object:before_replace() to return all replace-trigger functions made for before_replace().
 * box.ctl.on_shutdown() to return all shutdown-trigger functions made for on_shutdown().
+* box.ctl.on_schema_init() to return all initialization-trigger functions made for on_schema_init().
 
 **Example**
 
