@@ -648,8 +648,17 @@ recommended.
         and was made joinable with
         :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`.
 
-        :Return: true if successful, false if not successful
-        :Rtype: boolean
+        :Return: two values. The first value is boolean.
+                 If the first value is true, then the join succeeded
+                 because the fiber's function ended normally and the
+                 second result has the return value from the fiber's function.
+                 If the first value is false, then the join succeeded
+                 because the fiber's function ended abnormally and the
+                 second result has the details about the error, which
+                 one can unpack in the same way that one unpacks
+                 :ref:`a pcall result <error_handling>`.
+
+        :Rtype: boolean +result type, or boolean + struct error
 
         **Example:**
 
