@@ -87,7 +87,7 @@ Here's ``CREATE TABLE`` with more details:
 
     CREATE TABLE table2 (column1 INTEGER,
                          column2 VARCHAR(100),
-                         column3 BLOB,
+                         column3 SCALAR,
                          column4 FLOAT,
                          PRIMARY KEY (column1, column2));
 
@@ -100,8 +100,8 @@ INSERT
 Try to put 5 rows in the table:
 
 * The INTEGER and FLOAT columns get numbers.
-* The VARCHAR and BLOB columns get strings
-  (the BLOB strings are expressed as hexadecimals).
+* The VARCHAR and SCALAR columns get strings
+  (the SCALAR strings are expressed as hexadecimals).
 
 .. code-block:: sql
 
@@ -361,7 +361,6 @@ columns were ``(column1, column2)``.
 
 .. code-block:: sql
 
-    PRAGMA foreign_keys=on;
     CREATE TABLE table5 (column1 INTEGER, column2 VARCHAR(100),
         PRIMARY KEY (column1),
         FOREIGN KEY (column1, column2) REFERENCES table2 (column1, column2));
@@ -510,8 +509,9 @@ The result will be:
     - - ['!!!', '!!!!!!', '!']
       - ['!!@', '!!@!!@', '!']
       - ['AB', 'ABAB', 'B']
-      - ['AB', 'ABAB', 'B']
       - ['CD', 'CDCD', 'D']
+      - ['AB', 'ABAB', 'B']
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Number operations
@@ -643,24 +643,6 @@ The result of either statement will be:
 .. code-block:: tarantoolsession
 
     - - [3025, 'The rain in Spain']
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Temporal functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Date and time arithmetic is not straightforward
-(it never is), but Tarantool handles a reasonably
-wide range of values with a reasonable toolkit of
-functions.
-
-Here we'll just ask for "1 second after 1 second from midnight
-on Saint Sylvester's Day".
-
-.. code-block:: sql
-
-    VALUES (DATETIME('2018-12-31 23:59:59', '1 SECOND'));
-
-The result will be: ``'2019-01-01 00:00:00'``
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Metadata
