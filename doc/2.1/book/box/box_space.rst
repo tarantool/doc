@@ -291,12 +291,12 @@ Below is a list of all ``box.space`` functions and members.
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | if_not_exists       | no error if duplicate name                            | boolean                          | ``false``                     |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | parts               | field-numbers  + types                                | {field_no, 'unsigned' or         | ``{1, 'unsigned'}``           |
-            |                     |                                                       | 'string' or 'integer' or         |                               |
-            |                     |                                                       | 'number' or 'boolean' or         |                               |
-            |                     |                                                       | 'array' or 'scalar',             |                               |
-            |                     |                                                       | and optional collation,          |                               |
-            |                     |                                                       | and optional is_nullable value}  |                               |
+            | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
+            |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
+            |                     |                                                       | ``'number'`` or ``'boolean'`` or |                               |
+            |                     |                                                       | ``'array'`` or ``'scalar'``,     |                               |
+            |                     |                                                       | and optional collation or        |                               |
+            |                     |                                                       | is_nullable value or path}       |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -482,6 +482,31 @@ Below is a list of all ``box.space`` functions and members.
         box.space.tester:create_index('I9',{parts={'x','y'}})
         box.space.tester:create_index('I10',{parts={{'x'}}})
         box.space.tester:create_index('I11',{parts={{'x'},{'y'}}})
+
+    .. _box_space-path:
+
+    **Using the path option for map fields:** To create an index for a field that is a map
+    (a path string and a scalar value), specify the path string during index_create,
+    that is, :code:`parts={` :samp:`{field-number},'{data-type}',path = '{path-name}'` :code:`}`.
+    The index type must be ``'tree'`` or ``'hash'`` and the field's contents must always
+    be maps with the same path.
+
+    .. code-block:: tarantoolsession
+
+        -- Example 1 -- The simplest use of path:
+        -- Result will be - - [{'age': 44}]
+        box.schema.space.create('T')
+        box.space.T:create_index('I',{parts={{1, 'scalar', path='age'}}})
+        box.space.T:insert{{age=44}}
+        box.space.T:select(44)
+        -- Example 2 -- path plus format() plus JSON syntax to add clarity
+        -- Result will be: - [1, {'FIO': {'surname': 'Xi', 'firstname': 'Ahmed'}}]
+        s = box.schema.space.create('T')
+        format = {{'id', 'unsigned'}, {'data', 'map'}}
+        s:format(format)
+        parts = {{'data.FIO["firstname"]', 'str'}, {'data.FIO["surname"]', 'str'}}
+        i = s:create_index('info', {parts = parts})
+        s:insert({1, {FIO={firstname='Ahmed', surname='Xi'}}})
 
     **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
     secondary indexes must be created before tuples are inserted.
