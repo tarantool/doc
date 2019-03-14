@@ -110,6 +110,10 @@ related variables whenever it is invoked.
   or when the user has set
   :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
 
+* ``box.stat.vinyl().regulator.rate_limit`` is the write rate limit,
+  in bytes per second, imposed on transactions by
+  the regulator based on the observed dump/compaction performance.
+
 .. _box_introspection-box_stat_vinyl_disk:
 
 **Details about box.stat.vinyl().disk:**
@@ -119,41 +123,18 @@ it can handle large databases -- but if a database is
 larger than the amount of memory that is allocated for vinyl,
 then there will be more disk activity.
 
-* ``box.stat.vinyl().disk.dump`` has
-  the amount of data from recent changes that has been dumped, and the count of dumps.
-
-  A "dump" is explained in section :ref:`Storing data with vinyl <engines-algorithm_filling_lsm>`:
-
-    Sooner or later the number of elements in an LSM tree exceeds the L0 size and that’s
-    when L0 gets written to a file on disk (called a 'run') and then cleared for storing new elements.
-    This operation is called a 'dump'.
-
-  Thus it can be predicted that a dump will occur if the
-  size of L0
-  (which is :ref:`memory.level0 <box_introspection-box_stat_vinyl_memory>`)
-  is approaching the
-  maximum
-  (which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`)
-  and a
-  dump is not already in progress. In fact Tarantool will
-  try to arrange a dump before this hard limit is reached.
-
-  A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation.
-
-* ``box.stat.vinyl().disk.compact``
-  is the amount of data from recent changes that has been
-  :ref:`compacted <box_index-compact>`.
-  This is divided into ``disk.compact.in`` (the amount that is being
-  compacted), ``disk.compact.queue`` (the amount tht is waiting to be
-  compacted), and ``disk.compact.out`` (the amount that has been compacted,
-  which is presumably smaller than ``disk.compact.in``).
-
 * ``box.stat.vinyl().disk.data`` and ``box.stat.vinyl().disk.index``
   are the amount of data that has gone into files in a subdirectory
   of :ref:`vinyl_dir <cfg_basic-vinyl_dir>`,
   with names like ``{lsn}.run``
   and ``{lsn}.index``. The size of the run will be
-  related to the output of ``disk.dump``.
+  related to the output of ``scheduler.dump_*``.
+
+* ``box.stat.vinyl().disk.data_compacted``
+  Sum size of data stored at the last LSM tree level, in bytes,
+  without taking disk compression into account. It can be thought of as the
+  size of disk space that the user data would occupy if there were no compression,
+  indexing, or space increase caused by the LSM tree design.
 
 .. _box_introspection-box_stat_vinyl_memory:
 
@@ -215,3 +196,50 @@ This is about requests that affect transactional activity
 * ``box.stat.vinyl().tx.read_views``
   shows whether a transaction has entered a read-only state
   to avoid conflict temporarily. This will usually be 0.
+
+**Details about box.stat.vinyl().scheduler:**
+This primarily has counters related to tasks that the scheduler has arranged
+for dumping or compaction:
+(most of these items are reset to 0 when the server restarts or when
+:ref:`box.stat.reset() <box_introspection-box_stat_reset>` occurs):
+
+* ``box.stat.vinyl().scheduler.compaction_*``
+  is the amount of data from recent changes that has been
+  :ref:`compacted <box_index-compact>`.
+  This is divided into ``scheduler.compaction_input`` (the amount that is being
+  compacted), ``scheduler.compaction_queue`` (the amount that is waiting to be
+  compacted),
+  ``scheduler.compaction_time`` (total time spent by all worker threads performing compaction, in seconds),
+  and ``scheduler.compaction_output`` (the amount that has been compacted,
+  which is presumably smaller than ``scheduler.compaction_input``).
+
+* ``box.stat.vinyl().scheduler.tasks_*``
+  is about dump/compaction tasks, in three categories,
+  ``scheduler.tasks_inprogress`` (currently running),
+  ``scheduler.tasks_completed`` (successfully completed)
+  ``scheduler.tasks_failed`` (aborted due to errors).
+
+* ``box.stat.vinyl().scheduler_dump_*`` has
+  the amount of data from recent changes that has been dumped,
+  including ``dump_time`` (total time spent by all worker threads performing dumps, in seconds),
+  and ``dump_count`` (the count of completed dumps),
+  ``dump_input`` and ``dump_output``.
+
+  A "dump" is explained in section :ref:`Storing data with vinyl <engines-algorithm_filling_lsm>`:
+
+    Sooner or later the number of elements in an LSM tree exceeds the L0 size and that is
+    when L0 gets written to a file on disk (called a 'run') and then cleared for storing new elements.
+    This operation is called a 'dump'.
+
+  Thus it can be predicted that a dump will occur if the
+  size of L0
+  (which is :ref:`memory.level0 <box_introspection-box_stat_vinyl_memory>`)
+  is approaching the
+  maximum
+  (which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`)
+  and a
+  dump is not already in progress. In fact Tarantool will
+  try to arrange a dump before this hard limit is reached.
+
+  A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation.
+
