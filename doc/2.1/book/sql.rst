@@ -28,11 +28,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E011-02    | REAL, DOUBLE PRECISION, and FLOAT data types  | ``create table tr (s1 float primary key);``              | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-03    | DECIMAL and NUMERIC data types                | ``create table td (s1 numeric primary key);``            | Okay, although: when there are many post-decimal digits |
-    |            |                                               |                                                          | there is a switch to exponential notation, for example  |
-    |            |                                               |                                                          | after ``insert into t3 values (0.0000000000000001);``   |
-    |            |                                               |                                                          | and ``select *from t3" we get "1.0e-16``. We regard     |
-    |            |                                               |                                                          | this as a display flaw rather than a fail.              |
+    | E011-03    | DECIMAL and NUMERIC data types                | ``create table td (s1 numeric primary key);``            | Fail, DECIMAL and NUMERIC data types are not supported  |
+    |            |                                               |                                                          | and a number containing post-decimal digits will be     |
+    |            |                                               |                                                          | treated as approximate numeric.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E011-04    | Arithmetic operators                          | ``select 10+1,9-2,8*3,7/2 from t;``                      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -43,7 +41,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021       | Character string types                                                                                                                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-01    | Character data type (including all its        | ``create table t44 (s1 char primary key);``              | Fail, only the spelling CHAR is allowed. This type of   |
+    | E021-01    | Character data type (including all its        | ``create table t44 (s1 char primary key);``              | Fail, CHAR is not supported. This type of               |
     |            | spellings)                                    |                                                          | Fail will only be counted once.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-02    | CHARACTER VARYING data type (including all    | ``create table t45 (s1 varchar primary key);``           | Fail, only the spelling VARCHAR is allowed.             |
@@ -66,8 +64,8 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-09    | TRIM function                                 | ``select trim('a ') from t;``                            | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-10    | Implicit casting among the fixed-length and   | ``select * from tm where char_column > varchar_column;`` | Okay, but only because Tarantool doesn't distinguish    |
-    |            | variable-length character string types        |                                                          | between character data types.                           |
+    | E021-10    | Implicit casting among the fixed-length and   | ``select * from tm where char_column > varchar_column;`` | Fail, there is no fixed-length character string type.   |
+    |            | variable-length character string types        |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-11    | POSITION function                             | ``select position(x in y) from z;``                      | Fail. There is no such function.                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -318,8 +316,8 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051 Basic date and time                                                                                                                                                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-01    | DATE data type (including support of DATE     | ``create table dates (s1 date);``                        | Okay. (Tarantool doesn't enforce valid dates or.        |
-    |            | literal)                                      |                                                          | times, but we've already noted that.)                   |
+    | F051-01    | DATE data type (including support of DATE     | ``create table dates (s1 date);``                        | Fail. Tarantool does not support DATE data type.        |
+    |            | literal)                                      |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051-02    | TIME data type (including support of TIME     | ``create table times (s1 time default time '1:2:3');``   | Fail. Syntax error.                                     |
     |            | literal)                                      |                                                          |                                                         |
@@ -327,15 +325,15 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F051-03    | TIMESTAMP data type (including support of     | ``create table timestamps (s1 timestamp);``              | Fail. Syntax error.                                     |
     |            | TIMESTAMP literal)                            |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-04    | Comparison predicate on DATE, TIME and        | ``select * from dates where s1 = s1;``                   | Okay. We're being lenient because Tarantool does        |
-    |            | TIMESTAMP data types                          |                                                          | have date-arithmetic functions.                         |
+    | F051-04    | Comparison predicate on DATE, TIME and        | ``select * from dates where s1 = s1;``                   | Fail. The data types are not supported.                 |
+    |            | TIMESTAMP data types                          |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-05    | Explicit CAST between date-time types and     | ``select cast(s1 as varchar(10)) from dates;``           | Okay.                                                   |
+    | F051-05    | Explicit CAST between date-time types and     | ``select cast(s1 as varchar(10)) from dates;``           | Fail. The data types are not supported.                 |
     |            | character string types                        |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-06    | CURRENT_DATE                                  | ``select current_date from t;``                          | Okay.                                                   |
+    | F051-06    | CURRENT_DATE                                  | ``select current_date from t;``                          | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-07    | CURRENT_TIME                                  | ``select * from t where current_time < '23:23:23';``     | Okay.                                                   |
+    | F051-07    | CURRENT_TIME                                  | ``select * from t where current_time < '23:23:23';``     | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051-08    | LOCALTIME                                     | ``select localtime from t;``                             | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -420,9 +418,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | in the final score).                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
-Total number of items marked "Fail": 61
+Total number of items marked "Fail": 69
 
-Total number of items marked "Okay": 85
+Total number of items marked "Okay": 77
 
 
 
