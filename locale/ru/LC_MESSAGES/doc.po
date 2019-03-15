@@ -42033,7 +42033,6 @@ msgstr ""
 "пользователей и сторонних разработчиков."
 
 #: ../doc/1.10/index.rst:81
-#, fuzzy
 msgid "See also"
 msgstr "См. также:"
 
