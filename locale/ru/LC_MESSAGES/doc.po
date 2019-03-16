@@ -42034,7 +42034,7 @@ msgstr ""
 
 #: ../doc/1.10/index.rst:81
 msgid "See also"
-msgstr "См. также:"
+msgstr "Дополнительно"
 
 #: ../doc/1.10/index.rst:83
 msgid "**Other formats:**"
