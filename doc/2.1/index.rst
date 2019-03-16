@@ -44,24 +44,31 @@
 
                 <div class="badge-icon"></div>
 
-            Other sources
+            See also
 
-            - `Single page <singlehtml.html>`_
-            - `PDF <Tarantool.pdf>`_
-            - `English`_
-            - `Russian`_
-
+            * **Other formats:**
+            * `Single-page HTML <singlehtml.html>`_
+            * `PDF <Tarantool.pdf>`_
+            - **Resources:**
+            - `Documentation archive`_
+            - `Articles`_
             .. ifconfig:: language == 'ru'
 
-                - `Telegram chat RU`_
-
+                * **Support:**
+                * `Форум в Google`_
+                * `Чат в Telegram`_
             .. ifconfig:: language == 'en'
 
-                - `Telegram chat EN`_
+                * **Support:**
+                * `Google forum`_
+                * `Telegram chat`_
 
-.. _English: https://groups.google.com/forum/#!forum/tarantool
-.. _Russian: https://googlegroups.com/group/tarantool-ru
-.. _Telegram chat RU: https://t.me/tarantoolru
-.. _Telegram chat EN: https://t.me/tarantool
+.. _Documentation archive: https://tarantool.io/dist/
+.. _Articles: https://tarantool.io/learn/
+.. _Google forum: https://groups.google.com/forum/#!forum/tarantool
+.. _Форум в Google: https://googlegroups.com/group/tarantool-ru
+.. _Telegram chat: https://t.me/tarantool
+.. _Чат в Telegram: https://t.me/tarantoolru
+
 .. |nbspc| unicode:: U+00A0
 .. |space| unicode:: U+0020
