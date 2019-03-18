@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-16 18:44+0300\n"
+"POT-Creation-Date: 2019-03-18 12:12+0300\n"
 "PO-Revision-Date: 2019-02-27 15:54+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -48737,20 +48737,20 @@ msgstr "Tarantool - Документация"
 msgid "|nbspc|"
 msgstr "|nbspc|"
 
-#: ../doc/2.1/index.rst:99
+#: ../doc/2.1/index.rst:97
 msgid ""
 "Tarantool 2.1 manual  This manual embraces all aspects of using "
 "Tarantool: from introductory information and exercises for beginners -- "
 "to advanced instructions and detailed references for power users and "
 "contributors.  Документация находится в процессе перевода и может "
 "отставать от английской версии.      <div class=\"badge-icon\"></div>  "
-"See also  Other formats:  Single-page HTML  PDF  "
-"/Users/artembo/work/doc/doc/2.1/index.rst:86: (WARNING/2) Bullet list "
-"ends without a blank line; unexpected unindent.  Resources:  "
-"Documentation archive  Articles  "
-"/Users/artembo/work/doc/doc/2.1/index.rst:89: (WARNING/2) Bullet list "
-"ends without a blank line; unexpected unindent.  Support:  Форум в Google"
-"  Чат в Telegram  Support:  Google forum  Telegram chat"
+"Other formats:  Single-page HTML  PDF  "
+"/Users/artembo/work/doc/doc/2.1/index.rst:84: (WARNING/2) Bullet list "
+"ends without a blank line; unexpected unindent.  See also:  Documentation"
+" archive  Articles  /Users/artembo/work/doc/doc/2.1/index.rst:87: "
+"(WARNING/2) Bullet list ends without a blank line; unexpected unindent.  "
+"Support:  Форум в Google  Чат в Telegram  Support:  Google forum  "
+"Telegram chat"
 msgstr ""
 
 #: ../doc/2.1/index.rst:56
@@ -48768,43 +48768,39 @@ msgstr ""
 "инструкций и подробных справочников для опытных пользователей и сторонних"
 " разработчиков."
 
-#: ../doc/1.10/index.rst:81
-msgid "See also"
-msgstr "Дополнительно"
-
-#: ../doc/1.10/index.rst:83
+#: ../doc/2.1/index.rst:81
 msgid "**Other formats:**"
 msgstr "**Другие форматы:**"
 
-#: ../doc/1.10/index.rst:84
+#: ../doc/2.1/index.rst:82
 msgid "`Single-page HTML <singlehtml.html>`_"
 msgstr "`HTML одной страницей <singlehtml.html>`_"
 
-#: ../doc/1.10/index.rst:85
+#: ../doc/2.1/index.rst:83
 msgid "`PDF <Tarantool.pdf>`_"
 msgstr "`PDF <Tarantool.pdf>`_"
 
-#: ../doc/1.10/index.rst:86
-msgid "**Resources:**"
-msgstr "**Ресурсы:**"
+#: ../doc/2.1/index.rst:84
+msgid "**See also:**"
+msgstr "**См. также:**"
 
-#: ../doc/1.10/index.rst:87
+#: ../doc/2.1/index.rst:85
 msgid "`Documentation archive`_"
 msgstr "`Архив документации`_"
 
-#: ../doc/1.10/index.rst:88
+#: ../doc/2.1/index.rst:86
 msgid "`Articles`_"
 msgstr "`Статьи`_"
 
-#: ../doc/1.10/index.rst:96
+#: ../doc/2.1/index.rst:94
 msgid "**Support:**"
 msgstr "**Поддержка:**"
 
-#: ../doc/1.10/index.rst:97
+#: ../doc/2.1/index.rst:95
 msgid "`Google forum`_"
 msgstr ""
 
-#: ../doc/1.10/index.rst:98
+#: ../doc/2.1/index.rst:96
 msgid "`Telegram chat`_"
 msgstr ""
 
@@ -82280,4 +82276,32 @@ msgstr "Fedora 22, Ubuntu Vivid"
 
 #~ msgid "The result will be: ``'1971-01-01 00:00:00'``"
 #~ msgstr ""
+
+#~ msgid ""
+#~ "Tarantool 2.1 manual  This manual "
+#~ "embraces all aspects of using Tarantool:"
+#~ " from introductory information and "
+#~ "exercises for beginners -- to advanced"
+#~ " instructions and detailed references for"
+#~ " power users and contributors.  "
+#~ "Документация находится в процессе перевода "
+#~ "и может отставать от английской версии."
+#~ "      <div class=\"badge-icon\"></div>  See "
+#~ "also  Other formats:  Single-page HTML"
+#~ "  PDF  /Users/artembo/work/doc/doc/2.1/index.rst:86: "
+#~ "(WARNING/2) Bullet list ends without a"
+#~ " blank line; unexpected unindent.  "
+#~ "Resources:  Documentation archive  Articles  "
+#~ "/Users/artembo/work/doc/doc/2.1/index.rst:89: (WARNING/2) "
+#~ "Bullet list ends without a blank "
+#~ "line; unexpected unindent.  Support:  Форум"
+#~ " в Google  Чат в Telegram  Support:"
+#~ "  Google forum  Telegram chat"
+#~ msgstr ""
+
+#~ msgid "See also"
+#~ msgstr "Дополнительно"
+
+#~ msgid "**Resources:**"
+#~ msgstr "**Ресурсы:**"
 

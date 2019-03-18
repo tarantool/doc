@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-16 19:05+0300\n"
+"POT-Creation-Date: 2019-03-18 12:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28297,8 +28297,8 @@ msgstr ""
 msgid "|nbspc|"
 msgstr ""
 
-#: ../doc/2.1/index.rst:99
-msgid "Tarantool 2.1 manual  This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors.  Документация находится в процессе перевода и может отставать от английской версии.      <div class=\"badge-icon\"></div>  See also  Other formats:  Single-page HTML  PDF  /Users/artembo/work/doc/doc/2.1/index.rst:86: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  Resources:  Documentation archive  Articles  /Users/artembo/work/doc/doc/2.1/index.rst:89: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  Support:  Форум в Google  Чат в Telegram  Support:  Google forum  Telegram chat"
+#: ../doc/2.1/index.rst:97
+msgid "Tarantool 2.1 manual  This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors.  Документация находится в процессе перевода и может отставать от английской версии.      <div class=\"badge-icon\"></div>  Other formats:  Single-page HTML  PDF  /Users/artembo/work/doc/doc/2.1/index.rst:84: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  See also:  Documentation archive  Articles  /Users/artembo/work/doc/doc/2.1/index.rst:87: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  Support:  Форум в Google  Чат в Telegram  Support:  Google forum  Telegram chat"
 msgstr ""
 
 #: ../doc/2.1/index.rst:56
@@ -28310,42 +28310,38 @@ msgid "This manual embraces all aspects of using Tarantool: from introductory in
 msgstr ""
 
 #: ../doc/2.1/index.rst:81
-msgid "See also"
-msgstr ""
-
-#: ../doc/2.1/index.rst:83
 msgid "**Other formats:**"
 msgstr ""
 
-#: ../doc/2.1/index.rst:84
+#: ../doc/2.1/index.rst:82
 msgid "`Single-page HTML <singlehtml.html>`_"
 msgstr ""
 
-#: ../doc/2.1/index.rst:85
+#: ../doc/2.1/index.rst:83
 msgid "`PDF <Tarantool.pdf>`_"
 msgstr ""
 
-#: ../doc/2.1/index.rst:86
-msgid "**Resources:**"
+#: ../doc/2.1/index.rst:84
+msgid "**See also:**"
 msgstr ""
 
-#: ../doc/2.1/index.rst:87
+#: ../doc/2.1/index.rst:85
 msgid "`Documentation archive`_"
 msgstr ""
 
-#: ../doc/2.1/index.rst:88
+#: ../doc/2.1/index.rst:86
 msgid "`Articles`_"
 msgstr ""
 
-#: ../doc/2.1/index.rst:96
+#: ../doc/2.1/index.rst:94
 msgid "**Support:**"
 msgstr ""
 
-#: ../doc/2.1/index.rst:97
+#: ../doc/2.1/index.rst:95
 msgid "`Google forum`_"
 msgstr ""
 
-#: ../doc/2.1/index.rst:98
+#: ../doc/2.1/index.rst:96
 msgid "`Telegram chat`_"
 msgstr ""
 
