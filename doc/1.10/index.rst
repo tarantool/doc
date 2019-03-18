@@ -44,12 +44,10 @@
 
                 <div class="badge-icon"></div>
 
-            See also
-
             * **Other formats:**
             * `Single-page HTML <singlehtml.html>`_
             * `PDF <Tarantool.pdf>`_
-            - **Resources:**
+            - **See also:**
             - `Documentation archive`_
             - `Articles`_
             .. ifconfig:: language == 'ru'
@@ -63,7 +61,7 @@
                 * `Google forum`_
                 * `Telegram chat`_
 
-.. _Documentation archive: https://tarantool.io/dist/
+.. _Documentation archive: https://tarantool.io/dist/pdf/
 .. _Articles: https://tarantool.io/learn/
 .. _Google forum: https://groups.google.com/forum/#!forum/tarantool
 .. _Форум в Google: https://googlegroups.com/group/tarantool-ru
