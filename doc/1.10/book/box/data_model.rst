@@ -349,8 +349,8 @@ and the rules described in
 The only difference between the two collations is about
 `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:
 
-* ``unicode`` collation observes all weights, from L1 to Ln (identical),
-* ``unicode_ci`` collation observes only L1 weights, so for example 'a' = 'A' = 'á' = 'Á'.
+* ``unicode`` collation observes L1 and L2 and L3 weights (strength = 'tertiary'),
+* ``unicode_ci`` collation observes only L1 weights (strength = 'primary'), so for example 'a' = 'A' = 'á' = 'Á'.
 
 As an example, let's take some Russian words:
 
@@ -414,8 +414,8 @@ As an example, let's take some Russian words:
       ...
 
 In fact, though, good collation involves much more than these simple examples of
-upper case / lower case equivalence in alphabets.
-We also consider accent marks, non-alphabetic writing systems,
+upper case / lower case and accented / unaccented equivalence in alphabets.
+We also consider variations of the same character, non-alphabetic writing systems,
 and special rules that apply for combinations of characters.
 
 .. _index-box_sequence:
