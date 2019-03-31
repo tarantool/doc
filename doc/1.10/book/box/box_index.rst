@@ -593,7 +593,7 @@ Below is a list of all ``box.index`` functions and members.
             replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`.
             That is, ``get`` can be used as a convenient shorthand to get the first
             tuple in the tuple set that would be returned by ``select``. However,
-            if there is more than one tuple in the tuple set, then ``get`` returns
+            if there is more than one tuple in the tuple set, then ``get`` throws
             an error.
 
 
@@ -1051,7 +1051,7 @@ That is, there is a space named tester with a numeric primary key. The example
 function will:
 
 * select a tuple whose key value is 1000;
-* return an error if the tuple already exists and already has 3 fields;
+* raise an error if the tuple already exists and already has 3 fields;
 * Insert or replace the tuple with:
     * field[1] = 1000
     * field[2] = a uuid

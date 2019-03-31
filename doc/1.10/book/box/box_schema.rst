@@ -746,7 +746,7 @@ All functions related to sequences require appropriate
     * If this is the first time, then return the STARTS WITH value.
     * If the previous value plus the INCREMENT value is less than the
       MINIMUM value or greater than the MAXIMUM value, that is "overflow",
-      so either return an error (if ``cycle`` = ``false``) or return the
+      so either raise an error (if ``cycle`` = ``false``) or return the
       MAXIMUM value (if ``cycle`` = ``true`` and ``step`` < 0)
       or return the MINIMUM value (if ``cycle`` = ``true`` and ``step`` > 0).
 

@@ -31,7 +31,7 @@ read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
     Wait until ``box.info.ro`` is true.
 
     :param number timeout: maximum number of seconds to wait
-    :return: nil, or error (errors may be due to timeout or fiber cancellation)
+    :return: nil, or error may be thrown due to timeout or fiber cancellation
 
     **Example:**
 
@@ -54,7 +54,7 @@ read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
     Wait until box.info.ro is false.
 
     :param number timeout: maximum number of seconds to wait
-    :return: nil, or error (errors may be due to timeout or fiber cancellation)
+    :return: nil, or error may be thrown due to timeout or fiber cancellation
 
 
     **Example:**

@@ -802,8 +802,8 @@ Below is a list of all ``box.space`` functions and members.
         :return: the inserted tuple
         :rtype:  tuple
 
-        **Possible errors:** If a tuple with the same unique-key value already
-        exists, returns :errcode:`ER_TUPLE_FOUND`.
+        **Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same unique-key value already
+        exists.
 
         **Example:**
 
@@ -1104,8 +1104,8 @@ Below is a list of all ``box.space`` functions and members.
         :return: the inserted tuple.
         :rtype:  tuple
 
-        **Possible errors:** If a different tuple with the same unique-key
-        value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This
+        **Possible errors:** :errcode:`ER_TUPLE_FOUND` if a different tuple with the same unique-key
+        value already exists. (This
         will only happen if there is a unique secondary index.)
 
         **Complexity factors:** Index size, Index type,
