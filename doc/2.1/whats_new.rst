@@ -310,7 +310,8 @@ and generally ensure SQL is a first class query language in Tarantool.
 
 Functionality added or changed:
 
-  * A new function ``box.sql.execute()`` was added to query Tarantool databases
+  * A new function ``box.sql.execute()`` (later changed to ``box.execute``
+    in Tarantool 2.1) was added to query Tarantool databases
     using SQL statements, e.g.:
 
     .. code-block:: tarantoolsession

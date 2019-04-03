@@ -10,7 +10,7 @@ Tarantool 2.x series. There are two ways to go through this tutorial:
 * read what we say the results are and take our word for it, or
 * copy and paste each section and see everything work with Tarantool 2.1.
 
-You'll encounter all the functionality that you'd encounter in an "SQL-101"
+You will encounter all the functionality that you'd encounter in an "SQL-101"
 course.
 
 .. _sql_tutorial-starting_up_with_a_first_table_and_selects:
@@ -74,11 +74,15 @@ The result of the ``SELECT`` statement will look like this:
     - - [1, 'B']
     ...
 
+Reality check: actually the result will include include initial fields
+called "metadata", the names and data types of each column. For all
+SELECT examples we show only the result rows without showing the metadata.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CREATE TABLE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here's ``CREATE TABLE`` with more details:
+Here is ``CREATE TABLE`` with more details:
 
 * There are multiple columns, with different data types.
 * There is a ``PRIMARY KEY`` (unique and not-null) for two of the columns.
@@ -91,7 +95,7 @@ Here's ``CREATE TABLE`` with more details:
                          column4 FLOAT,
                          PRIMARY KEY (column1, column2));
 
-The result will be: "``---``" (no error).
+The result will be: "``rowcount: 1``" (no error).
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 INSERT
@@ -246,7 +250,7 @@ values in ``column4``. However, it is not an error that
 
     CREATE UNIQUE INDEX i ON table2 (column4);
 
-The result will be: "``---``" (no error).
+The result will be: "``rowcount: 1``" (no error).
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Create a subset table
@@ -675,7 +679,7 @@ Calling from a host language to make a big table
 --------------------------------------------------------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-box.sql.execute()
+box.execute()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we will change the settings so that the
@@ -685,7 +689,7 @@ will exist in Tarantool clients in our next version.)
 
 This doesn't mean we have left the SQL world though, because we
 can invoke SQL statements using a Lua function:
-``box.sql.execute(string)``.
+``box.execute(string)``.
 
 Here we'll switch languages,
 and ask to select again what's in ``table3``.
@@ -694,7 +698,7 @@ These statements must be entered separately.
 .. code-block:: tarantoolsession
 
     tarantool> \set language lua
-    tarantool> box.sql.execute([[SELECT * FROM table3;]]);
+    tarantool> box.execute([[SELECT * FROM table3;]]);
 
 Showing both the statements and the results:
 
@@ -703,7 +707,7 @@ Showing both the statements and the results:
     tarantool> \set language lua
     ---
     ...
-    tarantool> box.sql.execute([[SELECT * FROM table3;]]);
+    tarantool> box.execute([[SELECT * FROM table3;]]);
     ---
     - - [-1000, '']
       - [0, '!!!']
@@ -726,7 +730,7 @@ instructions and wait for about a minute.
 
 .. code-block:: lua
 
-    box.sql.execute("CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))");
+    box.execute("CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))");
 
     function string_function()
        local random_number
@@ -744,7 +748,7 @@ instructions and wait for about a minute.
        for i = 1,1000000,1 do
          string_value = string_function()
          sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" .. string_value .. "')"
-         box.sql.execute(sql_statement)
+         box.execute(sql_statement)
        end
     end;
     start_time = os.clock();
@@ -771,8 +775,8 @@ an index, because for ``s2`` we didn't say
 
 .. code-block:: lua
 
-    box.sql.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
-    box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%';]]);
+    box.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
+    box.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%';]]);
 
 The result is:
 
