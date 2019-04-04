@@ -40,6 +40,32 @@ should have no or little trouble when upgrading from Tarantool 1.6 to 1.7, or
 from Tarantool 1.7 to 2.x. Meanwhile Tarantool 2.x may have incompatible changes
 when migrating from Tarantool 1.6. to 2.x directly.
 
+.. _admin-upgrades_instance_17_to_20:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to upgrade from Tarantool 1.7 to 2.x
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Stop the Tarantool server.
+
+2. Make a copy of all data (see an appropriate hot backup procedure in
+   :ref:`Backups <admin-backups>`) and the package from which the current (old)
+   version was installed (for rollback purposes).
+
+3. Update the Tarantool server. See installation instructions at Tarantool
+   `download page <http://tarantool.org/download.html>`_.
+
+4. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
+
+.. _admin-upgrades_instance_16_to_20:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to upgrade from Tarantool 1.6 to 2.x
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The procedure is fully analogous to
+:ref:`upgrading from 1.7 to 2.x <admin-upgrades_instance_17_to_20>`.
+
 .. _admin-upgrades_instance_16_to_17:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,32 +107,6 @@ parameters are supported. The full list of breaking changes is available in
 6. Update application files, if needed.
 
 7. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
-
-.. _admin-upgrades_instance_16_to_20:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.6 to 2.x
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The procedure is fully analogous to
-:ref:`upgrading from 1.7 to 2.x <admin-upgrades_instance_17_to_20>`.
-
-.. _admin-upgrades_instance_17_to_20:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.7 to 2.x
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-1. Stop the Tarantool server.
-
-2. Make a copy of all data (see an appropriate hot backup procedure in
-   :ref:`Backups <admin-backups>`) and the package from which the current (old)
-   version was installed (for rollback purposes).
-
-3. Update the Tarantool server. See installation instructions at Tarantool
-   `download page <http://tarantool.org/download.html>`_.
-
-4. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
 
 .. _admin-upgrades_replication_cluster:
 
