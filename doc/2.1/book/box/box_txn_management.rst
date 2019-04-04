@@ -93,10 +93,9 @@ Below is a list of all functions for transaction management.
     In effect the fiber which executes ``box.begin()`` is starting an "active
     multi-request transaction", blocking all other fibers.
 
-    :return: error if this operation is not permitted because there
-             is already an active transaction.
-
-    :return: error if for some reason memory cannot be allocated.
+    **Possible errors:** error if this operation is not permitted because there
+                         is already an active transaction. error if for some
+                         reason memory cannot be allocated.
 
 .. _box-commit:
 
@@ -104,11 +103,9 @@ Below is a list of all functions for transaction management.
 
     End the transaction, and make all its data-change operations permanent.
 
-    :return: error and abort the transaction in case of a conflict.
-
-    :return: error if the operation fails to write to disk.
-
-    :return: error if for some reason memory cannot be allocated.
+    **Possible errors:**  error and abort the transaction in case of a conflict.
+                          error if the operation fails to write to disk.
+                          error if for some reason memory cannot be allocated.
 
 .. _box-rollback:
 
@@ -134,7 +131,7 @@ Below is a list of all functions for transaction management.
     :return: error if the savepoint cannot be set in absence of active
              transaction.
 
-    :return: error if for some reason memory cannot be allocated.
+    **Possible errors:** error if for some reason memory cannot be allocated.
 
 .. _box-rollback_to_savepoint:
 
@@ -147,7 +144,7 @@ Below is a list of all functions for transaction management.
     :return: error if the savepoint cannot be set in absence of active
              transaction.
 
-    :return: error if the savepoint does not exist.
+    **Possible errors:** error if the savepoint does not exist.
 
     **Example:**
 
@@ -173,8 +170,8 @@ Below is a list of all functions for transaction management.
 
     :return: the result of the function passed to ``atomic()`` as an argument.
 
-    :return: any error that :ref:`box.begin() <box-begin>` and
-             :ref:`box.commit() <box-commit>` can return.
+    **Possible errors:** any error that :ref:`box.begin() <box-begin>` and
+                        :ref:`box.commit() <box-commit>` can return.
 
 .. _box-on_commit:
 

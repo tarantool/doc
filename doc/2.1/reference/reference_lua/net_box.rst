@@ -121,11 +121,11 @@ Below is a list of all ``net.box`` functions.
     | :ref:`conn.space.space-name:delete{field-value}    | Delete a tuple            |
     | <conn-delete>`                                     |                           |
     +----------------------------------------------------+---------------------------+
-    | :ref:`conn:call()                                  | Call a stored procedure   |
-    | <net_box-call>`                                    |                           |
-    +----------------------------------------------------+---------------------------+
     | :ref:`conn:eval()                                  | Evaluate and execute the  |
     | <net_box-eval>`                                    | expression in a string    |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`conn:call()                                  | Call a stored procedure   |
+    | <net_box-call>`                                    |                           |
     +----------------------------------------------------+---------------------------+
     | :ref:`conn:timeout()                               | Set a timeout             |
     | <conn-timeout>`                                    |                           |
@@ -392,25 +392,6 @@ Below is a list of all ``net.box`` functions.
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:delete(...)`.
 
-    .. _net_box-call:
-
-    .. method:: call(function-name, [, {arguments} [, {options} ]])
-
-        ``conn:call('func', {'1', '2', '3'})`` is the remote-call equivalent of
-        ``func('1', '2', '3')``. That is, ``conn:call`` is a remote
-        stored-procedure call.
-
-        Limitation: the called function cannot return a function, for example
-        if ``func2`` is defined as ``function func2 () return func end`` then
-        ``conn:call(func2)`` will return "error: unsupported Lua type 'function'".
-
-        **Examples:**
-
-        .. code-block:: lua
-
-            conn:call('function5')
-            conn:call('fx',{1,'B'},{timeout=99})
-
     .. _net_box-eval:
 
     .. method:: eval(Lua-string [, {arguments}, [ {options} ]])
@@ -421,13 +402,63 @@ Below is a list of all ``net.box`` functions.
         if the user does not have it, an administrator may grant it with
         :samp:`box.schema.user.grant({username}, 'execute', 'universe')`.
 
-        **Example:**
+        To ensure that the return from ``conn:eval`` is whatever the Lua expression returns,
+        begin the Lua-string with the word "return".
+
+        **Examples:**
 
         .. code-block:: lua
 
-            conn:eval('return 5+5')
-            conn:eval('return ...', {1,2,3})
-            conn:eval('return 5+5, {}, {timeout=0.1})
+            tarantool> --Lua-string
+            tarantool> conn:eval('function f5() return 5+5 end; return f5();')
+            ---
+            - 10
+            ...
+            tarantool> --Lua-string, {arguments}
+            tarantool> conn:eval('return ...', {1,2,{3,'x'}})
+            ---
+            - 1
+            - 2
+            - [3, 'x']
+            ...
+            tarantool> --Lua-string, {arguments}, {options}
+            tarantool> conn:eval('return {nil,5}', {}, {timeout=0.1})
+            ---
+            - [null, 5]
+            ...
+
+    .. _net_box-call:
+
+    .. method:: call(function-name, [, {arguments} [, {options} ]])
+
+        ``conn:call('func', {'1', '2', '3'})`` is the remote-call equivalent of
+        ``func('1', '2', '3')``. That is, ``conn:call`` is a remote
+        stored-procedure call. The return from ``conn:call`` is whatever the function returns.
+
+        Limitation: the called function cannot return a function, for example
+        if ``func2`` is defined as ``function func2 () return func end`` then
+        ``conn:call(func2)`` will return "error: unsupported Lua type 'function'".
+
+        **Examples:**
+
+        .. code-block:: lua
+
+            tarantool> -- create 2 functions with conn:eval()
+            tarantool> conn:eval('function f1() return 5+5 end;')
+            tarantool> conn:eval('function f2(x,y) return x,y end;')
+            tarantool> -- call first function with no parameters and no options
+            tarantool> conn:call('f1')
+            ---
+            - 10
+            ...
+            tarantool> -- call second function with two parameters and one option
+            tarantool> conn:call('f2',{1,'B'},{timeout=99})
+            ---
+            - 1
+            - B
+            ...
+
+
 
     .. _conn-timeout:
 

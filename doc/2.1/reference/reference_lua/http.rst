@@ -93,10 +93,15 @@ Below is a list of all ``http`` functions.
           * ``keepalive_idle`` - delay, in seconds, that the operating system
             will wait while the connection is idle before sending keepalive
             probes. See also
-            `CURLOPT_TCP_KEEPALIVE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPALIVE.html>`_
+            `CURLOPT_TCP_KEEPIDLE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPIDLE.html>`_
+            and the note below about keepalive_interval.
           * ``keepalive_interval`` - the interval, in seconds, that the operating
             system will wait between sending keepalive probes. See also
-            `CURLOPT_TCP_KEEPALIVE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPALIVE.html>`_
+            `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_.
+            If both keepalive_idle and keepalive_interval are set, then
+            Tarantool will also set HTTP keepalive headers: Connection:Keep-Alive
+            and Keep-Alive:timeout=<keepalive_idle>.
+            Otherwise Tarantool will send Connection:close
           * ``low_speed_time`` - set the "low speed time" -- the time that the
             transfer speed should be below the "low speed limit" for the library
             to consider it too slow and abort. See also
@@ -132,7 +137,7 @@ Below is a list of all ``http`` functions.
         * ``http_client:post (url, body, options)`` - shortcut for
           ``http_client:request("POST", url, body, opts)``
         * ``http_client:put(url, body, options)`` - shortcut for
-          ``http_client:request("POST", url, body, opts)``
+          ``http_client:request("PUT", url, body, opts)``
         * ``http_client:patch(url, body, options)`` - shortcut for
           ``http_client:request("PATCH", url, body, opts)``
         * ``http_client:options(url, options)`` - shortcut for

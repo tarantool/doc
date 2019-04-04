@@ -296,6 +296,8 @@ the function invocations will look like ``sock:function_name(...)``.
         the bytes that were read.
         Reading goes on until ``limit`` bytes have been read, or a delimiter
         has been read, or a timeout has expired.
+        Unlike ``socket_object:recv`` (which uses an internal read-ahead buffer),
+        ``socket_object:read`` depends on the socket's buffer.
 
         :param integer    limit: maximum number of bytes to read, for
                                  example 50 means "stop after 50 bytes"

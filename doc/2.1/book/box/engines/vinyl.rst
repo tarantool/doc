@@ -631,8 +631,8 @@ form of the LSM tree in this case? If it’s too high, read performance is
 impacted; if it’s too low—write speed is reduced.
 
 Tarantool "factorizes" this problem by creating multiple LSM trees for each
-index. The approximate size of each subtree is controlled by the
-``vinyl_range_size`` parameter, which is equal to 1 Gb by default. We call such
+index. The approximate size of each subtree may be controlled by the
+:ref:`vinyl_range_size <cfg_storage-vinyl_range_size>` configuration parameter. We call such
 subtrees "ranges".
 
 .. image:: vinyl/factor_lsm.png
@@ -644,8 +644,11 @@ Factorizing large LSM trees via ranging
 * Ranges reflect a static layout of sorted runs
 * Slices connect a sorted run into a range
 
-Initially, when the index has few elements, it consists of a single range. As it
-gets filled, its total volume may exceed ``vinyl_range_size``, in which case a
+.. _engines-vinyl_split:
+
+Initially, when the index has few elements, it consists of a single range. As more
+elements are added, its total size may exceed
+:ref:`the maximum range size <cfg_storage-vinyl_range_size>`. In that case a
 special operation called "split" divides the tree into two equal parts. The tree
 is split at the middle element in the range of keys stored in the tree. For
 example, if  the tree initially stores the full range of -inf…+inf, then after

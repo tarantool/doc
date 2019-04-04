@@ -746,7 +746,7 @@ All functions related to sequences require appropriate
     * If this is the first time, then return the STARTS WITH value.
     * If the previous value plus the INCREMENT value is less than the
       MINIMUM value or greater than the MAXIMUM value, that is "overflow",
-      so either return an error (if ``cycle`` = ``false``) or return the
+      so either raise an error (if ``cycle`` = ``false``) or return the
       MAXIMUM value (if ``cycle`` = ``true`` and ``step`` < 0)
       or return the MINIMUM value (if ``cycle`` = ``true`` and ``step`` > 0).
 
@@ -880,3 +880,8 @@ All functions related to sequences require appropriate
         the index key type may be either 'integer' or 'unsigned'.
 
         A sequence cannot be dropped if it is associated with an index.
+        However, :ref:`index_object:alter() <box_index-alter>`
+        can be used to say that a sequence
+        is not associated with an index, for example
+        ``box.space.T.index.I:alter({sequence=false})``.
+        

@@ -504,7 +504,7 @@ Below is a list of all ``box.session`` functions and members.
 
     This function returns an error if the session is disconnected.
 
-    :param string-or-number message: what to send
+    :param any-Lua-type message: what to send
     :param int sync: an optional argument to indicate what the session is,
                      as taken from an earlier call to :ref:`box_session:sync() <box_session-sync>`.
                      If it is omitted, the default is the current ``box.session.sync()`` value.

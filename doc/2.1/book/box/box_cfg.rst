@@ -78,7 +78,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
       vinyl_max_tuple_size         = 1024 * 1024* 1024 * 1024
       vinyl_memory                 = 128 * 1024 * 1024
       vinyl_page_size              = 8 * 1024
-      vinyl_range_size             = 1024 * 1024 * 1024
+      vinyl_range_size             = nil
       vinyl_read_threads           = 1
       vinyl_run_count_per_level    = 2
       vinyl_run_size_ratio         = 3.5

@@ -14,7 +14,7 @@
 of a digest value from a function (usually a `Cryptographic hash function`_),
 applied against a string. Tarantool's ``crypto`` module supports ten types of
 cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_,
-SHA-0_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
+SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
 :ref:`digest` module.
 
 ===============================================================================
@@ -69,19 +69,21 @@ Below is a list of all ``crypto`` functions.
 
     .. code-block:: lua
 
-        crypto.cipher.aes192.cbc.encrypt('string', 'key', 'initialization')
-        crypto.cipher.aes256.ecb.decrypt('string', 'key', 'initialization')
+        _16byte_iv='1234567890123456'
+        _16byte_pass='1234567890123456'
+        e=crypto.cipher.aes128.cbc.encrypt('string', _16byte_pass, _16byte_iv)
+        crypto.cipher.aes128.cbc.decrypt(e,  _16byte_pass, _16byte_iv)
 
 .. module:: crypto.digest
 
 .. _crypto-digest:
 
 .. varfunc:: {dss|dss1|md4|md5|mdc2|ripemd160}(string)
-             {sha|sha1|sha224|sha256|sha384|sha512}(string)
+             {sha1|sha224|sha256|sha384|sha512}(string)
     :needs_modname: True
 
-    Pass or return a digest derived from the string. The twelve choices of
-    algorithms:
+    Pass or return a digest derived from the string. The eleven
+    algorithm choices:
 
     * dss - dss (using DSS)
     * dss1 - dss (using DSS-1)
@@ -89,7 +91,6 @@ Below is a list of all ``crypto`` functions.
     * md5 - md5 (with 128-bit binary strings using MD5)
     * mdc2 - mdc2 (using MDC2)
     * ripemd160 - ripemd (with 160-bit binary strings using RIPEMD-160)
-    * sha - sha (with 160-bit binary strings using SHA-0)
     * sha1 - sha-1 (with 160-bit binary strings using SHA-1)
     * sha224 - sha-224 (with 224-bit binary strings using SHA-2)
     * sha256 - sha-256 (with 256-bit binary strings using SHA-2)
@@ -144,10 +145,9 @@ the ``crypto`` function will both produce the same result.
 
 .. code-block:: lua
 
-    crypto.cipher.aes256.cbc.encrypt('string', 'key') == digest.aes256cbc.encrypt('string', 'key')
+    crypto.cipher.aes256.cbc.encrypt('x',b32,b16)==digest.aes256cbc.encrypt('x',b32,b16)
     crypto.digest.md4('string') == digest.md4('string')
     crypto.digest.md5('string') == digest.md5('string')
-    crypto.digest.sha('string') == digest.sha('string')
     crypto.digest.sha1('string') == digest.sha1('string')
     crypto.digest.sha224('string') == digest.sha224('string')
     crypto.digest.sha256('string') == digest.sha256('string')
@@ -157,7 +157,6 @@ the ``crypto`` function will both produce the same result.
 .. _AES: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 .. _DES: https://en.wikipedia.org/wiki/Data_Encryption_Standard
 .. _DSS: https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard
-.. _SHA-0: https://en.wikipedia.org/wiki/Sha-0
 .. _SHA-1: https://en.wikipedia.org/wiki/Sha-1
 .. _SHA-2: https://en.wikipedia.org/wiki/Sha-2
 .. _MD4: https://en.wikipedia.org/wiki/Md4

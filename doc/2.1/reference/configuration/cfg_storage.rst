@@ -118,12 +118,24 @@
 
 .. confval:: vinyl_range_size
 
-    The maximal range size for vinyl, in bytes.
-    The ``vinyl_range_size`` setting is a default value for one of the
-    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+    The default maximum range size for a vinyl index, in bytes.
+    The maximum range size affects the decision whether to
+    :ref:`split <engines-vinyl_split>` a range.
+
+    If ``vinyl_range_size`` is not nil and not 0, then
+    it is used as the
+    default value for the ``range_size`` option in the
+    :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+
+    If ``vinyl_range_size`` is nil or 0, and ``range_size`` is not specified
+    when the index is created, then Tarantool sets a value later depending on
+    performance considerations. To see the actual value, use
+    :ref:`index_object:stat().range_size <box_index-stat>`.
+
+    In Tarantool versions prior to 1.10.2, ``vinyl_range_size`` default value was 1073741824.
 
     | Type: integer
-    | Default = 1024 * 1024 * 1024 = 1073741824
+    | Default = nil
     | Dynamic: no
 
 .. _cfg_storage-vinyl_run_count_per_level:

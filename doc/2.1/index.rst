@@ -67,6 +67,5 @@
 .. _Форум в Google: https://googlegroups.com/group/tarantool-ru
 .. _Telegram chat: https://t.me/tarantool
 .. _Чат в Telegram: https://t.me/tarantoolru
-
 .. |nbspc| unicode:: U+00A0
 .. |space| unicode:: U+0020

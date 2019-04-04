@@ -593,7 +593,7 @@ Below is a list of all ``box.index`` functions and members.
             replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`.
             That is, ``get`` can be used as a convenient shorthand to get the first
             tuple in the tuple set that would be returned by ``select``. However,
-            if there is more than one tuple in the tuple set, then ``get`` returns
+            if there is more than one tuple in the tuple set, then ``get`` throws
             an error.
 
 
@@ -844,11 +844,11 @@ Below is a list of all ``box.index`` functions and members.
     .. method:: alter({options})
 
         Alter an index.
-        It is legal in some circumstances to change an index's parts and/or
-        change the type and the ``is_nullable`` flag for a part.
-        However, this usually causes rebuilding of the space, except for
-        the simple case where the ``is_nullable`` flag is changed from
-        ``false`` to ``true``.
+        It is legal in some circumstances to change one or more of the
+        index characteristics, for example its type, its sequence options,
+        its parts, and whether it is unique, Usually this causes rebuilding
+        of the space,  except for the simple case where a part's ``is_nullable``
+        flag is changed from ``false`` to ``true``.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
@@ -861,10 +861,10 @@ Below is a list of all ``box.index`` functions and members.
         **Possible errors:**
 
         * index does not exist,
-        * the first index cannot be changed to ``{unique = false}``.
+        * the primary-key index cannot be changed to ``{unique = false}``.
 
-        **Note re storage engine:** vinyl supports ``alter()`` for non-empty
-        spaces. Primary index definition cannot be altered.
+        **Note re storage engine:** vinyl does not support ``alter()``
+        of a primary-key index unless the space is empty.
 
         **Example:**
 
@@ -954,11 +954,14 @@ Below is a list of all ``box.index`` functions and members.
         * ``index_object:stat().bytes`` -- the number of bytes total;
         * ``index_object:stat().disk.rows`` -- the approximate number of tuples in each range;
         * ``index_object:stat().disk.statement`` -- counts of inserts|updates|upserts|deletes;
-        * ``index_object:stat().disk.compact`` -- counts of compactions and their amounts;
+        * ``index_object:stat().disk.compaction`` -- counts of compactions and their amounts;
         * ``index_object:stat().disk.dump`` -- counts of dumps and their amounts;
         * ``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter hits|misses;
         * ``index_object:stat().disk.pages`` -- the size in pages;
-        * ``index_object:stat().cache.evict`` -- number of evictions from the cache.
+        * ``index_object:stat().disk.last_level`` -- size of data in the last LSM tree level;
+        * ``index_object:stat().cache.evict`` -- number of evictions from the cache;
+        * ``index_object:stat().range_size`` -- maximum number of bytes in a range;
+        * ``index_object:stat().dumps_per_compaction`` -- average number of dumps required to trigger major compaction in any range of the LSM tree.
 
         Summary index statistics are also available via
         :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl_details>`.
@@ -1050,7 +1053,7 @@ That is, there is a space named tester with a numeric primary key. The example
 function will:
 
 * select a tuple whose key value is 1000;
-* return an error if the tuple already exists and already has 3 fields;
+* raise an error if the tuple already exists and already has 3 fields;
 * Insert or replace the tuple with:
     * field[1] = 1000
     * field[2] = a uuid

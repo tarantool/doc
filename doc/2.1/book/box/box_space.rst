@@ -829,8 +829,8 @@ Below is a list of all ``box.space`` functions and members.
         :return: the inserted tuple
         :rtype:  tuple
 
-        **Possible errors:** If a tuple with the same unique-key value already
-        exists, returns :errcode:`ER_TUPLE_FOUND`.
+        **Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same unique-key value already
+        exists.
 
         **Example:**
 
@@ -868,9 +868,8 @@ Below is a list of all ``box.space`` functions and members.
             - 2
             ...
 
-        **Note re storage engine:** vinyl does not support ``len()``.
-        Possible workarounds are to use
-        :ref:`count() <box_space-count>` or ``#select(...)``.
+        **Note re storage engine:** vinyl supports ``len()`` but the result may be approximate.
+        If an exact result is necessary then use :ref:`count() <box_space-count>` or ``#select(...)``.
 
     .. _box_space-on_replace:
 
@@ -1132,8 +1131,8 @@ Below is a list of all ``box.space`` functions and members.
         :return: the inserted tuple.
         :rtype:  tuple
 
-        **Possible errors:** If a different tuple with the same unique-key
-        value already exists, returns :errcode:`ER_TUPLE_FOUND`. (This
+        **Possible errors:** :errcode:`ER_TUPLE_FOUND` if a different tuple with the same unique-key
+        value already exists. (This
         will only happen if there is a unique secondary index.)
 
         **Complexity factors:** Index size, Index type,
