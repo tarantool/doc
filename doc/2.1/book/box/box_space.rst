@@ -491,7 +491,7 @@ Below is a list of all ``box.space`` functions and members.
     The index type must be ``'tree'`` or ``'hash'`` and the field's contents must always
     be maps with the same path.
 
-    .. code-block:: tarantoolsession
+    .. code-block:: lua
 
         -- Example 1 -- The simplest use of path:
         -- Result will be - - [{'age': 44}]
