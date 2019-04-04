@@ -27,6 +27,16 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E011-01    | INTEGER and SMALLINT                          | ``create table t (s1 int primary key);``                 | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E011-02    | REAL, DOUBLE PRECISION, and FLOAT data types  | ``create table tr (s1 float primary key);``              | Okay.                                                   |
+    |            |                                               |                                                          |                                                         |
+    |            |                                               |                                                          | **Note:** Floating point SQL types are not planned to   |
+    |            |                                               |                                                          | be compatible between 2.1 and 2.2 releases. The reason  |
+    |            |                                               |                                                          | is that in 2.1 we set 'number' format for columns of    |
+    |            |                                               |                                                          | these types, but will restrict it to 'float32' and      |
+    |            |                                               |                                                          | 'float64' in 2.2. The format change requires data       |
+    |            |                                               |                                                          | migration and cannot be done automatically, because in  |
+    |            |                                               |                                                          | 2.1 we have no information to distinguish 'number'      |
+    |            |                                               |                                                          | columns (created from Lua) from FLOAT/DOUBLE/REAL ones  |
+    |            |                                               |                                                          | (created from SQL).                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E011-03    | DECIMAL and NUMERIC data types                | ``create table td (s1 numeric primary key);``            | Fail, DECIMAL and NUMERIC data types are not supported  |
     |            |                                               |                                                          | and a number containing post-decimal digits will be     |
@@ -46,6 +56,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-02    | CHARACTER VARYING data type (including all    | ``create table t45 (s1 varchar primary key);``           | Fail, only the spelling VARCHAR is allowed.             |
     |            | its spellings)                                |                                                          |                                                         |
+    |            |                                               |                                                          | **Note:** VARCHAR(N) does not check the string length.  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-03    | Character literals                            | ``insert into t45 values ('');``                         | Okay, and the bad practice of accepting ""'s for        |
     |            |                                               |                                                          | character literals is avoided.                          |
