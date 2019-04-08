@@ -34,6 +34,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     ../../book/box/box_tuple
     box_error
     ../../book/box/box_txn_management
+    ../../book/box/box_sql
 
 
 .. // moved to "User Guide > 5. Server administration":
