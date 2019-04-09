@@ -34,7 +34,6 @@ For example, this Lua script will insert 10 rows with different primary-key valu
 
         for i=1,10,1 do
           box.execute("insert into t values (" .. i .. ")")
-        box.schema.user.create('Lena', {if_not_exists = false})
         end
 
 The second way is to put one or more placeholder "?" tokens inside the string,
