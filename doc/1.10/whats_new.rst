@@ -5,6 +5,7 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
+:ref:`1.10.3 <whats_new_1103>`,
 :ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
 :ref:`1.7.6 <whats_new_176>`,
@@ -26,6 +27,147 @@ at GitHub.
 --------------------------------------------------------------------------------
 Version 1.10
 --------------------------------------------------------------------------------
+
+.. _whats_new_1103:
+
+**Release 1.10.3**
+
+Release type: stable (lts). Release date: 2019-04-01.  Tag: 1-10-3.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.3.
+
+Overview
+
+1.10.3 is the next :ref:`stable (lts) <release-policy>` release in the 1.10 series.
+The label 'stable' means we have had systems running in production without known crashes,
+bad results or other showstopper bugs for quite a while now.
+
+This release resolves 69 issues since 1.10.2. There may be bugs in less common areas, please feel free to
+file an issue at GitHub.
+Compatibility
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol.
+Please :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series when migrating from 1.9 version.
+
+Functionality added or changed
+
+* (Engines) Randomize vinyl index compaction
+  Issue `3944 <https://github.com/tarantool/tarantool/issues/3944>`_.
+* (Engines) Throttle tx thread if compaction doesn't keep up with dumps
+  Issue `3721 <https://github.com/tarantool/tarantool/issues/3721>`_.
+* (Engines) Do not apply run_count_per_level to the last level
+  Issue `3657 <https://github.com/tarantool/tarantool/issues/3657>`_.
+* (Server) Report the number of active iproto connections
+  Issue `3905 <https://github.com/tarantool/tarantool/issues/3905>`_.
+* (Replication) Never keep a dead replica around if running out of disk space
+  Issue `3397 <https://github.com/tarantool/tarantool/issues/3397>`_.
+* (Replication) Report join progress to the replica log
+  Issue `3165 <https://github.com/tarantool/tarantool/issues/3165>`_.
+* (Lua) Expose snapshot status in box.info.gc()
+  Issue `3935 <https://github.com/tarantool/tarantool/issues/3935>`_.
+* (Lua) Show names of Lua functions in backtraces in fiber.info()
+  Issue `3538 <https://github.com/tarantool/tarantool/issues/3538>`_.
+* (Lua) Check if transaction opened
+  Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_.
+
+Bugs fixed
+
+* (Engines) Tarantool crashes if DML races with DDL
+  Issue `3420 <https://github.com/tarantool/tarantool/issues/3420>`_.
+* (Engines) Recovery error if DDL is aborted
+  Issue `4066 <https://github.com/tarantool/tarantool/issues/4066>`_.
+* (Engines) Tarantool could commit in the read-only mode
+  Issue `4016 <https://github.com/tarantool/tarantool/issues/4016>`_.
+* (Engines) Vinyl iterator crashes if used throughout DDL
+  Issue `4000 <https://github.com/tarantool/tarantool/issues/4000>`_.
+* (Engines) Vinyl doesn't exit until dump/compaction is complete
+  Issue `3949 <https://github.com/tarantool/tarantool/issues/3949>`_.
+* (Engines) After re-creating secondary index no data is visible
+  Issue `3903 <https://github.com/tarantool/tarantool/issues/3903>`_.
+* (Engines) box.info.memory().tx underflow
+  Issue `3897 <https://github.com/tarantool/tarantool/issues/3897>`_.
+* (Engines) Vinyl stalls on intensive random insertion
+  Issue `3603 <https://github.com/tarantool/tarantool/issues/3603>`_.
+* (Server) Newer version of libcurl explodes fiber stack
+  Issue `3569 <https://github.com/tarantool/tarantool/issues/3569>`_.
+* (Server) SIGHUP crashes tarantool
+  Issue `4063 <https://github.com/tarantool/tarantool/issues/4063>`_.
+* (Server) checkpoint_daemon.lua:49: bad argument #2 to 'format'
+  Issue `4030 <https://github.com/tarantool/tarantool/issues/4030>`_.
+* (Server) fiber:name() show only part of name
+  Issue `4011 <https://github.com/tarantool/tarantool/issues/4011>`_.
+* (Server) Second hot standby switch may fail
+  Issue `3967 <https://github.com/tarantool/tarantool/issues/3967>`_.
+* (Server) Updating box.cfg.readahead doesn't affect existing connections
+  Issue `3958 <https://github.com/tarantool/tarantool/issues/3958>`_.
+* (Server) fiber.join() blocks in 'suspended' if fiber has cancelled
+  Issue `3948 <https://github.com/tarantool/tarantool/issues/3948>`_.
+* (Server) Tarantool can be crashed by sending gibberish to a binary socket
+  Issue `3900 <https://github.com/tarantool/tarantool/issues/3900>`_.
+* (Server) Stored procedure to produce push-messages never breaks on client disconnect
+  Issue `3859 <https://github.com/tarantool/tarantool/issues/3559>`_.
+* (Server) Tarantool crashed in lj_vm_return
+  Issue `3840 <https://github.com/tarantool/tarantool/issues/3840>`_.
+* (Server) Fiber executing box.cfg() may process messages from iproto
+  Issue `3779 <https://github.com/tarantool/tarantool/issues/3779>`_.
+* (Server) Possible regression on nosqlbench
+  Issue `3747 <https://github.com/tarantool/tarantool/issues/3747>`_.
+* (Server) Assertion after improper index creation
+  Issue `3744 <https://github.com/tarantool/tarantool/issues/3744>`_.
+* (Server) Tarantool crashes on vshard startup (lj_gc_step)
+  Issue `3725 <https://github.com/tarantool/tarantool/issues/3725>`_.
+* (Server) Do not restart replication on box.cfg if the configuration didn't change
+  Issue `3711 <https://github.com/tarantool/tarantool/issues/3711>`_.
+* (Replication) Applier times out too fast when reading large tuples
+  Issue `4042 <https://github.com/tarantool/tarantool/issues/4042>`_.
+* (Replication) Vinyl replica join fails
+  Issue `3968 <https://github.com/tarantool/tarantool/issues/3968>`_.
+* (Replication) Error during replication
+  Issue `3910 <https://github.com/tarantool/tarantool/issues/3910>`_.
+* (Replication) Downstream status doesn't show up in replication.info unless the channel is broken
+  Issue `3904 <https://github.com/tarantool/tarantool/issues/3904>`_.
+* (Replication) replication fails: tx checksum mismatch
+  Issue `3993 <https://github.com/tarantool/tarantool/issues/3883>`_.
+* (Replication) Rebootstrap crashes if master has replica's rows
+  Issue `3740 <https://github.com/tarantool/tarantool/issues/3740>`_.
+* (Replication) After restart tuples revert back to their old state which was before replica sync
+  Issue `3722 <https://github.com/tarantool/tarantool/issues/3722>`_.
+* (Replication) Add vclock for safer hot standby switch
+  Issue `3002 <https://github.com/tarantool/tarantool/issues/3002>`_.
+* (Replication) Master row is skipped forever in case of wal write failure
+  Issue `2283 <https://github.com/tarantool/tarantool/issues/2283>`_.
+* (Lua) space:frommap():tomap() conversion fail
+  Issue `4045 <https://github.com/tarantool/tarantool/issues/4045>`_.
+* (Lua) Non-informative message when trying to read a negative count of bytes from socket
+  Issue `3979 <https://github.com/tarantool/tarantool/issues/3979>`_.
+* (Lua) space:frommap raise "tuple field does not match..." even for nullable field
+  Issue `3883 <https://github.com/tarantool/tarantool/issues/3883>`_.
+* (Lua) Tarantool crashes on net.box.call after some uptime with vshard internal fiber
+  Issue `3751 <https://github.com/tarantool/tarantool/issues/3751>`_.
+* (Lua) Heap use after free in lbox_error
+  Issue `1955 <https://github.com/tarantool/tarantool/issues/1955>`_.
+* (Misc) http.client doesn't honour 'connection: keep-alive'
+  Issue `3955 <https://github.com/tarantool/tarantool/issues/3955>`_.
+* (Misc) net.box wait_connected is broken
+  Issue `3856 <https://github.com/tarantool/tarantool/issues/3856>`_.
+* (Misc) Mac build fails on Mojave
+  Issue `3797 <https://github.com/tarantool/tarantool/issues/3797>`_.
+* (Misc) FreeBSD build error: no SSL support
+  Issue `3750 <https://github.com/tarantool/tarantool/issues/3750>`_.
+* (Misc) 'http.client' sets invalid (?) reason
+  Issue `3681 <https://github.com/tarantool/tarantool/issues/3681>`_.
+* (Misc) Http client silently modifies headers when value is not a "string" or a "number"
+  Issue `3679 <https://github.com/tarantool/tarantool/issues/3679>`_.
+* (Misc) yaml.encode uses multiline format for 'false' and 'true'
+  Issue `3662 <https://github.com/tarantool/tarantool/issues/3662>`_.
+* (Misc) yaml.encode encodes 'null' incorrectly
+  Issue `3583 <https://github.com/tarantool/tarantool/issues/3583>`_.
+* (Misc) Error object message is empty
+  Issue `3604 <https://github.com/tarantool/tarantool/issues/3604>`_.
+* (Misc) Log can be flooded by warning messages
+  Issue `2218 <https://github.com/tarantool/tarantool/issues/2218>`_.
+
+
 
 .. _whats_new_1102:
 
