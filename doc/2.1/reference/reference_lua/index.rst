@@ -1,8 +1,8 @@
-.. _built_in_modules:
-
 ================================================================================
 Built-in modules reference
 ================================================================================
+
+.. _built_in_modules:
 
 This reference covers Tarantool's built-in Lua modules.
 
