@@ -1,7 +1,7 @@
 .. _reference_sql:
 
 ================================================================================
-Tarantool/SQL reference
+SQL reference
 ================================================================================
 
 This reference covers all the SQL statements and clauses supported by Tarantool.
