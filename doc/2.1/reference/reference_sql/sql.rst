@@ -1,4 +1,4 @@
-.. _alter_table:
+.. _sql_alter_table:
 
 --------------------------------------------------------------------------------
 ALTER TABLE statement
@@ -85,3 +85,4 @@ Limitations:
   However, it is possible to modify them with Tarantool/NOSQL, for example by
   calling call :ref:`space_object:format() <box_space-format>` with a different
   ``is_nullable`` value.
+
