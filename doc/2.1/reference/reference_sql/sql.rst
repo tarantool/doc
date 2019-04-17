@@ -88,7 +88,7 @@ Limitations:
 * It is not possible to modify NOT NULL constraints or column properties DEFAULT
   and data type.
   However, it is possible to modify them with Tarantool/NOSQL, for example by
-  calling call :ref:`space_object:format() <box_space-format>` with a different
+  calling :ref:`space_object:format() <box_space-format>` with a different
   ``is_nullable`` value.
 
 .. _sql_create_table:
@@ -326,3 +326,249 @@ Examples:
    DROP VIEW IF EXISTS v31;
 
 See also: :ref:`DROP TABLE <sql_drop_table>`.
+
+.. _sql_create_index:
+
+**CREATE INDEX**
+
+:samp:`CREATE [UNIQUE] INDEX [IF NOT EXISTS] {index-name}
+ON {table-name}
+(column-list);`
+
+.. image:: create_index.svg
+    :align: left
+
+
+Create an index.
+
+The index-name must be valid according to the rules for identifiers.
+The table-name must refer to an existing table.
+The column-list must be a comma-separated list of names of columns in the table.
+
+Rules: |br|
+There must not already be, for the same table, an index with the same name as index-name. |br|
+An index name is local to the table the index is defined on. |br|
+The maximum number of indexes per table is 128.
+
+Actions: |br|
+1 Tarantool will throw an error if a rule is violated. |br|
+2 If the new index is UNIQUE, Tarantool will throw an error if any row exists with columns that have duplicate values. |br|
+3 Tarantool will create a new index. |br|
+4 Tarantool effectively executes a COMMIT statement.
+
+Automatic indexes:
+Indexes may be created automatically for columns mentioned in the PRIMARY KEY or UNIQUE clauses of a CREATE TABLE statement. If an index was created automatically, then the index-name is based on three items:
+(1) "pk" if this is for a PRIMARY KEY clause, "unique" if this is for a UNIQUE clause
+(2) "_unnamed_"
+(3) the name of the table
+(4) "_" and an ordinal number, the first index is 1, the second index is 2, and so on.
+For example, after CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT, UNIQUE (s2)); there are two indexes named pk_unnamed_T_1 and unique_unnamed_T_2. You can confirm this by saying SELECT * FROM "_index"; which will list all indexes on all tables.
+There is no need to say CREATE INDEX for columns that already have automatic indexes.
+
+Examples:
+
+.. code-block:: none
+
+   -- the simple case
+   CREATE INDEX i ON t (column1);
+   -- with IF NOT EXISTS clause
+   CREATE INDEX IF NOT EXISTS i ON t (column1);
+   -- with UNIQUE specifier and more than one column
+   CREATE UNIQUE INDEX i ON t (column1, column2);
+
+Dropping an automatic index created for a unique constraint, will drop the unique constraint as well. 
+
+.. _sql_drop_index:
+
+**DROP INDEX**
+
+:samp:`DROP INDEX [IF EXISTS] index-name ON {table-name};`
+
+.. image:: drop_index.svg
+    :align: left
+
+
+The index-name must be the name of an existing index, which was created with CREATE INDEX.
+Or, the index-name must be the name of an index that was created automatically 
+due to a PRIMARY KEY or UNIQUE clause in the CREATE TABLE statement.
+To see what a table's indexes are, use PRAGMA index_list (table-name).
+
+Rules:
+None.
+
+Actions: |br|
+1 Tarantool throws an error if the index does not exist, or is an automatically created index. |br|
+2 Tarantool will drop the index. |br|
+3 Tarantool effectively executes a COMMIT statement.
+
+Example:
+
+.. code-block:: none
+
+   -- the simplest form
+   DROP INDEX i ON t;
+
+.. _sql_insert:
+
+**INSERT**
+
+:samp:`INSERT INTO {table-name} [(column-list)] VALUES (expression-list) [, (expression-list)];` |br|
+or |br|
+:samp:`INSERT INTO {table-name} [(column-list)]  select-statement;` |br|
+or |br|
+:samp:`INSERT INTO {table-name} DEFAULT VALUES;`
+
+.. image:: insert.svg
+    :align: left
+
+Insert one or more new rows into a table.
+
+The table-name must be a name of a table defined earlier with CREATE TABLE. The optional column-list must be a comma-separated list of names of columns in the table. The expression-list must be a comma-separated list of expressions; each expression may contain literals and operators and subqueries and function invocations.
+
+Rules: |br|
+The values in the expression-list are evaluated from left to right. |br|
+The order of the values in the expression-list must correspond to the order of the columns in the table, or (if a column-list is specified) to the order of the columns in the column-list. |br|
+The data type of the value should correspond to the data type of the column, that is, the data type that was specified with CREATE TABLE. |br|
+If a column-list is not specified, then the number of expressions must be the same as the number of columns in the table. |br|
+If a column-list is specified, then some columns may be omitted; omitted columns will get default values. |br|
+The parenthesized expression-list may be repeated -- "(expression-list),(expression-list),..." -- for multiple rows.
+
+Actions: |br|
+1 Tarantool evaluates each expression in expression-list, and returns an error if any of the rules is violated. Tarantool creates zero or more new rows containing values based on the values in the VALUES list or based on the results of the select-expression or based on the default values. |br|
+2 Tarantool executes constraint checks and trigger actions and the actual insertion, in the order described by section Order of Execution in Data-Change Statements. |br|
+3 Tarantool inserts values into the table.
+
+Examples:
+
+.. code-block:: none
+
+   -- the simplest form
+   INSERT INTO table1 VALUES (1, 'A');
+   -- with a column list
+   INSERT INTO table1 (column1, column2) VALUES (2, 'B');
+   -- with an arithmetic operator in the first expression
+   INSERT INTO table1 VALUES (2 + 1, 'C');
+   -- put two rows in the table
+   INSERT INTO table1 VALUES (4, 'D'), (5, 'E');
+
+
+See also: :ref:`REPLACE statement <sql_replace>`.
+
+.. _sql_update:
+
+**UPDATE**
+
+:samp:`UPDATE {table-name}
+SET column-name = expression [, column-name = expression ...]
+[WHERE search-condition];`
+
+.. image:: update.svg
+    :align: left
+
+
+Update zero or more existing rows in a table.
+
+The table-name must be a name of a table defined earlier with CREATE TABLE or CREATE VIEW.
+The column-name must be an updatable column in the table.
+The expression may contain literals and operators and subqueries and function invocations and column names.
+
+Rules: |br|
+The values in the SET clause are evaluated from left to right. |br|
+The data type of the value should correspond to the data type of the column, that is, the data type that was specified with CREATE TABLE. |br|
+If a search-condition is not specified, then all rows in the table will be updated; otherwise only those rows which match the search-condition will be updated.
+
+Actions: |br|
+1 Tarantool evaluates each expression in the SET clause, and returns an error if any of the rules is violated. For each row that is found by the WHERE clause, a temporary new row is formed based on the original contents and the modifications caused by the SET clause.2  Tarantool executes constraint checks and trigger actions and the actual update, in the order described by section Order of Execution in Data-Change Statements. |br|
+
+
+Examples:
+
+.. code-block:: none
+
+   -- the simplest form
+   UPDATE t SET column1 = 1;
+   -- with more than one assignment in the SET clause
+   UPDATE t SET column1 = 1, column2 = 2;
+   -- with a WHERE clause
+   UPDATE t SET column1 = 5 WHERE column2 = 6;
+
+Special cases:
+
+It is legal to say SET (list of columns) = (list of values). For example: |br|
+``UPDATE t SET (column1, column2, column3) = (1,2,3);``
+
+It is not legal to assign to a column more than once. For example: |br|
+``INSERT INTO t (column1) VALUES (0);``  |br|
+``UPDATE t SET column1 = column1 + 1, column1 = column1 + 1;`` |br|
+... The result is an error: "duplicate column name".
+
+It is legal to assign to a primary-key column. This is disallowed with Tarantool/NoSQL, but it is possible with Tarantool/SQL because an SQL UPDATE statement is effectively split into two Tarantool/NoSQL requests: space_object:delete() followed by space_object:insert().
+
+
+.. _sql_delete:
+
+**DELETE**
+
+:samp:`DELETE FROM {table-name} [WHERE search-condition];`
+
+.. image:: delete.svg
+    :align: left
+
+
+Delete zero or more existing rows in a table.
+
+The table-name must be a name of a table defined earlier with CREATE TABLE or CREATE VIEW.
+The search-condition may contain literals and operators and subqueries and function invocations and column names.
+
+Rules: |br|
+If a search-condition is not specified, then all rows in the table will be deleted; otherwise only those rows which match the search-condition will be deleted.
+
+Actions: |br|
+1 Tarantool evaluates each expression in the search-condition, and returns an error if any of the rules is violated. Tarantool finds the set of rows that are to be deleted. |br|
+2 Tarantool executes constraint checks and trigger actions and the actual deletion, in the order described by section Order of Execution in Data-Change Statements.
+3 Tarantool deletes the set of matching rows from the table.
+
+Examples:
+
+.. code-block:: none
+
+   -- the simplest form
+   DELETE FROM t;
+   -- with a WHERE clause
+   DELETE FROM t WHERE column2 = 6;
+
+.. _sql_replace:
+
+**REPLACE**
+
+:samp:`REPLACE INTO {table-name} [(column-list)] VALUES (expression-list) [, (expression-list)];` |br|
+or |br|
+:samp:`REPLACE INTO {table-name} [(column-list)] select-statement;` |br|
+or |br|
+:samp:`REPLACE INTO {table-name} DEFAULT VALUES;`
+
+.. image:: replace.svg
+    :align: left
+
+
+Insert one or more new rows into a table, or update existing rows.
+If a row already exists (as determined by the primary key or any unique key), then the action is delete + insert, and the rules are the same as for a DELETE statement followed by an INSERT statement.
+Otherwise the action is insert, and the rules are the same as for the INSERT statement.
+
+
+Examples:
+
+.. code-block:: none
+
+   -- the simplest form
+   REPLACE INTO table1 VALUES (1, 'A');
+   -- with a column list
+   REPLACE INTO table1 (column1, column2) VALUES (2, 'B');
+   -- with an arithmetic operator in the first expression
+   REPLACE INTO table1 VALUES (2 + 1, 'C');
+   -- put two rows in the table
+   REPLACE INTO table1 VALUES (4, 'D'), (5, 'E');
+
+See also: :ref:`INSERT Statement <sql_insert>`, :ref:`UPDATE Statement <sql_update>`,
+and Order of Execution in Data-Change Statements.
+
