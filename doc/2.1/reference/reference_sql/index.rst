@@ -11,4 +11,3 @@ This reference covers all the SQL statements and clauses supported by Tarantool.
     :numbered: 0
 
     sql
- 
