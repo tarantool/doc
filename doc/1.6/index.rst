@@ -95,8 +95,6 @@
                     Документация находится в процессе перевода и может
                     отставать от английской версии.
 
-.. //            .. include:: singlehtml.rst
-
         .. container:: other-sources-menu
 
             .. raw:: html
