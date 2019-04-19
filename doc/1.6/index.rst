@@ -95,7 +95,7 @@
                     Документация находится в процессе перевода и может
                     отставать от английской версии.
 
-            .. include:: singlehtml.rst
+.. //            .. include:: singlehtml.rst
 
         .. container:: other-sources-menu
 
