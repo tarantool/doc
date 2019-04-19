@@ -579,10 +579,7 @@ It is not legal to assign to a column more than once. For example:
 
 The result is an error: "duplicate column name".
 
-It is legal to assign to a primary-key column. This is disallowed with
-Tarantool/NoSQL, but it is possible with Tarantool/SQL because an SQL UPDATE
-statement is effectively split into two Tarantool/NoSQL requests:
-``space_object:delete()`` followed by ``space_object:insert()``.
+It is not legal to assign to a primary-key column.
 
 .. _sql_delete:
 
