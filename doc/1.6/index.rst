@@ -27,6 +27,65 @@
             information and exercises for beginners -- to advanced instructions and
             detailed references for power users and contributors.
 
+            Before you take a deep dive:
+
+            * Have a quick look at `Tarantool online <https://www.tarantool.io/en/try-dev/>`_!
+            * Try it out locally with the `getting started guide <https://www.tarantool.io/en/doc/1.6/book/getting_started/>`_.
+
+            If you are new to Tarantool, start from scratch by learning the :ref:`fundamentals <fundamentals>`.
+
+            If you are a power user, :ref:`skip the basics <beyond_the_basics>`.
+
+            |
+
+            .. _fundamentals:
+
+            |lego| **Level 1 -- fundamentals**
+
+            To understand what Tarantool is all about, check out the `overview <https://www.tarantool.io/en/doc/1.6/intro/>`_.
+
+            To start using Tarantool as a *database manager*, familiarize yourself
+            with the `database concepts <https://www.tarantool.io/en/doc/1.6/book/box/>`_.
+
+            To start using Tarantool as an *application server*, create and run
+            a real application following our `step-by-step instructions <https://www.tarantool.io/en/doc/1.6/book/app_server/>`_.
+
+            `Connect <https://www.tarantool.io/en/doc/1.6/book/connectors/>`_ to Tarantool
+            with your language of choice.
+
+            Finally, learn to `administer Tarantool instances <https://www.tarantool.io/en/doc/1.6/book/admin/>`_
+            in a powerful fashion!
+
+            |
+
+            .. _beyond_the_basics:
+
+            |cogs| **Level 2 -- beyond the basics**
+
+            To utilize Tarantool to the fullest:
+
+            * Make it fault-tolerant with the built-in `replication <https://www.tarantool.io/en/doc/1.6/book/replication/>`_.
+            * Scale it with the built-in `sharding <https://www.tarantool.io/en/doc/1.10/reference/reference_rock/vshard/>`_.
+            * Do not ‘reinvent the wheel’, use the `built-in modules <https://www.tarantool.io/en/doc/1.6/reference/reference_lua/>`_
+              or plug `rock modules <https://www.tarantool.io/en/doc/1.6/reference/reference_rock/>`_
+              with the functionality you need.
+            * Complete our `tutorials <https://www.tarantool.io/en/doc/1.6/tutorials/>`_ to learn more.
+
+            |
+
+            .. _contribute:
+
+            |atom| **Level 3 -- contribute!**
+
+            Tarantool has a growing open source community. Join our friendly developer’s
+            `chat in Telegram <https://telegram.me/tarantool>`_.
+
+            Become a Tarantool developer:
+
+            * `Build from source <https://www.tarantool.io/en/doc/1.6/dev_guide/build_contribute_index/>`_.
+            * Go through the `guidelines <https://www.tarantool.io/en/doc/1.6/dev_guide/guidelines_index/>`_.
+            * `Contribute! <https://github.com/tarantool>`_
+
         .. container:: documentation-main-page-content
 
             .. ifconfig:: language == 'ru'
@@ -69,3 +128,12 @@
 .. _Чат в Telegram: https://t.me/tarantoolru
 .. |nbspc| unicode:: U+00A0
 .. |space| unicode:: U+0020
+
+.. |lego| image:: icons/lego.png
+   :scale: 6%
+
+.. |cogs| image:: icons/cogs.png
+   :scale: 7%
+
+.. |atom| image:: icons/atom.png
+   :scale: 6%
