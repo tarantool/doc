@@ -83,7 +83,7 @@
 
     | Type: string
     | Default: "write"
-    | Dynamic: **yes**
+    | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-wal_dir_rescan_delay:
 
