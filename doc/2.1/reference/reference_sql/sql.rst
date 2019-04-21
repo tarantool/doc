@@ -428,7 +428,7 @@ Example:
 
 .. code-block:: sql
 
-   -- the simplest form
+   -- the simplest form:
    DROP INDEX i ON t;
 
 .. _sql_insert:
@@ -491,13 +491,13 @@ Examples:
 
 .. code-block:: sql
 
-   -- the simplest form
+   -- the simplest form:
    INSERT INTO table1 VALUES (1, 'A');
-   -- with a column list
+   -- with a column list:
    INSERT INTO table1 (column1, column2) VALUES (2, 'B');
-   -- with an arithmetic operator in the first expression
+   -- with an arithmetic operator in the first expression:
    INSERT INTO table1 VALUES (2 + 1, 'C');
-   -- put two rows in the table
+   -- put two rows in the table:
    INSERT INTO table1 VALUES (4, 'D'), (5, 'E');
 
 
@@ -555,11 +555,11 @@ Examples:
 
 .. code-block:: sql
 
-   -- the simplest form
+   -- the simplest form:
    UPDATE t SET column1 = 1;
-   -- with more than one assignment in the SET clause
+   -- with more than one assignment in the SET clause:
    UPDATE t SET column1 = 1, column2 = 2;
-   -- with a WHERE clause
+   -- with a WHERE clause:
    UPDATE t SET column1 = 5 WHERE column2 = 6;
 
 Special cases:
@@ -626,9 +626,9 @@ Examples:
 
 .. code-block:: sql
 
-   -- the simplest form
+   -- the simplest form:
    DELETE FROM t;
-   -- with a WHERE clause
+   -- with a WHERE clause:
    DELETE FROM t WHERE column2 = 6;
 
 .. _sql_replace:
@@ -662,13 +662,13 @@ Examples:
 
 .. code-block:: sql
 
-   -- the simplest form
+   -- the simplest form:
    REPLACE INTO table1 VALUES (1, 'A');
-   -- with a column list
+   -- with a column list:
    REPLACE INTO table1 (column1, column2) VALUES (2, 'B');
-   -- with an arithmetic operator in the first expression
+   -- with an arithmetic operator in the first expression:
    REPLACE INTO table1 VALUES (2 + 1, 'C');
-   -- put two rows in the table
+   -- put two rows in the table:
    REPLACE INTO table1 VALUES (4, 'D'), (5, 'E');
 
 See also: :ref:`INSERT Statement <sql_insert>`, :ref:`UPDATE Statement <sql_update>`.
@@ -681,6 +681,8 @@ See also: :ref:`INSERT Statement <sql_insert>`, :ref:`UPDATE Statement <sql_upda
 CREATE TRIGGER
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Syntax:
+
 :samp:`CREATE TRIGGER [IF NOT EXISTS] {trigger-name}` |br|
 :samp:`BEFORE|AFTER|INSTEAD OF` |br|
 :samp:`INSERT|UPDATE|DELETE ON {table-name}` |br|
@@ -691,173 +693,219 @@ CREATE TRIGGER
 :samp:`[update-statement | insert-statement | delete-statement | select-statement; ...]` |br|
 :samp:`END;`
 
+|br|
+
 .. image:: create_trigger.svg
     :align: left
 
+|br|
 
-The trigger-name must be valid according to the rules for identifiers. |br|
-If the trigger action time is BEFORE or AFTER, then the table-name must refer to an existing base table. |br|
-If the trigger action time is INSTEAD OF, then the table-name must refer to an existing view
+The *trigger-name* must be valid according to the rules for identifiers.
 
-Rules: |br|
-There must not already be a trigger with the same name as trigger-name.
-Triggers on different tables or views share the same namespace. |br|
-The statements between BEGIN and END should not refer to the table-name mentioned in the ON clause. |br|
-The statements between BEGIN and END should not contain an INDEXED BY clause. |br|
+If the trigger action time is BEFORE or AFTER, then the *table-name* must refer
+to an existing base table.
+
+If the trigger action time is INSTEAD OF, then the *table-name* must refer to an
+existing view.
+
+Rules:
+
+* There must not already be a trigger with the same name as *trigger-name*.
+* Triggers on different tables or views share the same namespace.
+* The statements between BEGIN and END should not refer to the *table-name*
+  mentioned in the ON clause.
+* The statements between BEGIN and END should not contain an INDEXED BY clause.
 
 SQL triggers are not fired upon Tarantool/NoSQL requests.
 This will change in version 2.2.
-On a replica, effects of trigger execution are applied, and the SQL triggers themselves are not fired upon replication events.
-NoSQL triggers are fired both on replica and master, thus if you have a NoSQL trigger on replica,
-it is fired when applying effects of an SQL trigger.
 
+On a replica, effects of trigger execution are applied, and the SQL triggers
+themselves are not fired upon replication events.
 
-Actions: |br|
-1 Tarantool will throw an error if a rule is violated. |br|
-2 Tarantool will create a new trigger. |br|
-3 Tarantool effectively executes a COMMIT statement. |br|
+NoSQL triggers are fired both on replica and master, thus if you have a NoSQL
+trigger on replica, it is fired when applying effects of an SQL trigger.
+
+Actions:
+
+#. Tarantool will throw an error if a rule is violated.
+#. Tarantool will create a new trigger.
+#. Tarantool effectively executes a COMMIT statement.
 
 Examples:
 
 .. code-block:: sql
 
-   -- the simple case
+   -- the simple case:
    CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW
      BEGIN DELETE FROM warehouses; END;
-   -- with IF NOT EXISTS clause
+   -- with IF NOT EXISTS clause:
    CREATE TRIGGER IF NOT EXISTS delete_if_insert BEFORE INSERT ON stores FOR EACH ROW
      BEGIN DELETE FROM warehouses; END;
-   -- with FOR EACH ROW and WHEN clauses
+   -- with FOR EACH ROW and WHEN clauses:
    CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW WHEN a=5
      BEGIN DELETE FROM warehouses; END;
-   -- with multiple statements between BEGIN and END
+   -- with multiple statements between BEGIN and END:
    CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW
      BEGIN DELETE FROM warehouses; INSERT INTO inventories VALUES (1); END;
 
-
-See also :ref:`Trigger Extra Clauses <sql_trigger_extra>` and
-:ref:`Trigger Activation <sql_trigger_activation>`.
-
 .. _sql_trigger_extra:
 
-**Trigger Extra Clauses**
+***********************************************
+Trigger extra clauses
+***********************************************
 
-:samp:`UPDATE OF column-list`
+* :samp:`UPDATE OF column-list`
 
-After BEFORE|AFTER UPDATE it is optional to add |br|
-OF column-list |br|
-If any of the columns in column-list is affected at the time the row is processed, then the trigger will be activated for that row.
-For example,
+  After BEFORE|AFTER UPDATE it is optional to add ``OF column-list``.
+  If any of the columns in *column-list* is affected at the time the row is
+  processed, then the trigger will be activated for that row. For example:
 
-.. code-block:: sql
+  .. code-block:: sql
 
-   CREATE TRIGGER trigger_on_table1
-    BEFORE UPDATE  OF column1, column2 ON table1
-    FOR EACH ROW
-    BEGIN UPDATE table2 SET column1 = column1 + 1; END;
-   UPDATE table1 SET column3 = column3 + 1; -- Trigger will not be activated
-   UPDATE table1 SET column2 = column2 + 0; -- Trigger will be activated
+     CREATE TRIGGER trigger_on_table1
+      BEFORE UPDATE  OF column1, column2 ON table1
+      FOR EACH ROW
+      BEGIN UPDATE table2 SET column1 = column1 + 1; END;
+     UPDATE table1 SET column3 = column3 + 1; -- Trigger will not be activated
+     UPDATE table1 SET column2 = column2 + 0; -- Trigger will be activated
 
-WHEN
+* :samp:`WHEN`
 
-After table-name FOR EACH ROW it is optional to add |br|
-[``WHEN expression``] |br|
-If the expression is true at the time the row is processed, only then the trigger will be activated for that row.
-For example,
+  After *table-name* FOR EACH ROW it is optional to add [``WHEN expression``].
+  If the expression is true at the time the row is processed, only then the
+  trigger will be activated for that row. For example:
 
-.. code-block:: sql
+  .. code-block:: sql
 
-   CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW
-    WHEN (SELECT COUNT(*) FROM table1) > 1
-    BEGIN UPDATE table2 SET column1 = column1 + 1; END;
+     CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW
+      WHEN (SELECT COUNT(*) FROM table1) > 1
+      BEGIN UPDATE table2 SET column1 = column1 + 1; END;
 
-This trigger will not be activated unless there is more than one row in table1.
+  This trigger will not be activated unless there is more than one row in
+  ``table1``.
 
-OLD and NEW
+* :samp:`OLD and NEW`
 
-The keywords OLD and NEW have special meaning in the context of trigger action: |br|
-OLD.column-name refers to the value of column-name before the change. |br|
-NEW.column-name refers to the value of column-name after the change.
-For example,
+  The keywords OLD and NEW have special meaning in the context of trigger action:
 
-.. code-block:: none   
+  * OLD.column-name refers to the value of *column-name* before the change.
+  * NEW.column-name refers to the value of *column-name* after the change.
 
-   CREATE TABLE table1 (column1 VARCHAR(15), column2 INT PRIMARY KEY);
-   CREATE TABLE table2 (column1 VARCHAR(15), column2 VARCHAR(15), column3 INT PRIMARY KEY);
-   INSERT INTO table1 VALUES ('old value', 1);
-   INSERT INTO table2 VALUES ('', '', 1);
-   CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW
-    BEGIN UPDATE table2 SET column1 = old.column1, column2 = new.column1; END;
-   UPDATE table1 SET column1 = 'new value';
-   SELECT * FROM table2;
+  For example:
 
-At the beginning of the UPDATE for the single row of table1, the value in column1 is 'old value' -- so that is what is seen as "old.column1".
-At the end of the UPDATE for the single row of table1, the value in column1 is 'new value' -- so that is what is seen as "new.column1".
-(OLD and NEW are qualifiers for table1, not table2.)
-Therefore, SELECT * FROM table2; returns |br|
-``- - ['old value', 'new value']`` |br|
-OLD.column-name does not exist for an INSERT trigger. |br|
-NEW.column-name does not exist for a DELETE trigger. |br|
-OLD and NEW are read-only; you cannot change their values.
+  .. code-block:: sql
 
-Deprecated or illegal statements
+     CREATE TABLE table1 (column1 VARCHAR(15), column2 INT PRIMARY KEY);
+     CREATE TABLE table2 (column1 VARCHAR(15), column2 VARCHAR(15), column3 INT PRIMARY KEY);
+     INSERT INTO table1 VALUES ('old value', 1);
+     INSERT INTO table2 VALUES ('', '', 1);
+     CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW
+      BEGIN UPDATE table2 SET column1 = old.column1, column2 = new.column1; END;
+     UPDATE table1 SET column1 = 'new value';
+     SELECT * FROM table2;
 
-It is legal for the trigger action to include a SELECT statement or a REPLACE statement, but not recommended.
+  At the beginning of the UPDATE for the single row of ``table1``, the value in
+  ``column1`` is 'old value' -- so that is what is seen as ``old.column1``.
 
-It is illegal for the trigger action to include a qualified column reference other than OLD.column-name or NEW.column-name. For example, CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1=5; END; is illegal.
+  At the end of the UPDATE for the single row of ``table1``, the value in
+  ``column1`` is 'new value' -- so that is what is seen as ``new.column1``.
+  (OLD and NEW are qualifiers for ``table1``, not ``table2.``)
 
-It is illegal for the trigger action to include statements that include a WITH clause, a DEFAULT VALUES clause, or an INDEXED BY clause.
+  Therefore, ``SELECT * FROM table2;`` returns ``['old value', 'new value']``.
 
-It is usually not a good idea to have a trigger on table1 which causes a change on table2, and at the same time have a trigger on table2 which causes a change on table1.
-For example,
+  ``OLD.column-name`` does not exist for an INSERT trigger.
 
-.. code-block:: none   
+  ``NEW.column-name`` does not exist for a DELETE trigger.
 
-   CREATE TRIGGER trigger_on_table1
-    BEFORE UPDATE ON table1
-    FOR EACH ROW
-    BEGIN UPDATE table2 SET column1 = column1 + 1; END;
-   CREATE TRIGGER trigger_on_table2
-    BEFORE UPDATE ON table2
-    FOR EACH ROW
-    BEGIN UPDATE table1 SET column1 = column1 + 1; END;
+  OLD and NEW are read-only; you cannot change their values.
 
-Luckily UPDATE table1 ... will not cause an infinite loop, because Tarantool recognizes when it has already updated so it will stop. However, not every DBMS acts this way.
+* Deprecated or illegal statements:
 
+  It is legal for the trigger action to include a SELECT statement or a REPLACE
+  statement, but not recommended.
+
+  It is illegal for the trigger action to include a qualified column reference
+  other than ``OLD.column-name`` or ``NEW.column-name``. For example,
+  ``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1=5; END;``
+  is illegal.
+
+  It is illegal for the trigger action to include statements that include a WITH
+  clause, a DEFAULT VALUES clause, or an INDEXED BY clause.
+
+  It is usually not a good idea to have a trigger on ``table1`` which causes
+  a change on ``table2``, and at the same time have a trigger on ``table2``
+  which causes a change on ``table1``. For example:
+
+  .. code-block:: none
+
+     CREATE TRIGGER trigger_on_table1
+      BEFORE UPDATE ON table1
+      FOR EACH ROW
+      BEGIN UPDATE table2 SET column1 = column1 + 1; END;
+     CREATE TRIGGER trigger_on_table2
+      BEFORE UPDATE ON table2
+      FOR EACH ROW
+      BEGIN UPDATE table1 SET column1 = column1 + 1; END;
+
+  Luckily ``UPDATE table1 ...`` will not cause an infinite loop, because
+  Tarantool recognizes when it has already updated so it will stop.
+  However, not every DBMS acts this way.
 
 .. _sql_trigger_activation:
 
-**Trigger Activation**
+***********************************************
+Trigger activation
+***********************************************
 
 These are remarks concerning trigger activation.
 
-Standard Terminology: |br|
-"trigger action time" = BEFORE or AFTER or INSTEAD OF |br|
-"trigger event" = INSERT or DELETE or UPDATE |br|
-"triggered statement" = BEGIN ... INSERT|DELETE|UPDATE ... END |br|
-"triggered when clause" = WHEN (search condition) |br|
-"activate" = execute a triggered statement |br|
-Some vendors use the word "fire" instead of "activate".
+Standard terminology:
 
-If there is more than one trigger for the same trigger event, Tarantool may execute the triggers in any order.
+* "trigger action time" = BEFORE or AFTER or INSTEAD OF
+* "trigger event" = INSERT or DELETE or UPDATE
+* "triggered statement" = BEGIN ... INSERT|DELETE|UPDATE ... END
+* "triggered when clause" = WHEN (search condition)
+* "activate" = execute a triggered statement
+* some vendors use the word "fire" instead of "activate"
 
-It is possible for a triggered statement to cause activation of another triggered statement. For example, this is legal: |br|
-``CREATE TRIGGER on_t1 BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;`` |br|
-``CREATE TRIGGER on_t2 BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;``
+If there is more than one trigger for the same trigger event, Tarantool may
+execute the triggers in any order.
 
-Activation occurs FOR EACH ROW, not FOR EACH STATEMENT. Therefore, if no rows are candidates for insert or update or delete, then no triggers are activated.
+It is possible for a triggered statement to cause activation of another
+triggered statement. For example, this is legal:
+
+.. code-block:: sql
+
+   CREATE TRIGGER on_t1 BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;
+   CREATE TRIGGER on_t2 BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;
+
+Activation occurs FOR EACH ROW, not FOR EACH STATEMENT. Therefore, if no rows
+are candidates for insert or update or delete, then no triggers are activated.
 
 The BEFORE trigger is activated even if the trigger event fails.
 
-If an UPDATE trigger event does not make a change, the trigger is activated anyway. For example, if row 1 column1 contains 'a', and the trigger event is "UPDATE ... SET column1 = 'a';", the trigger is activated.
+If an UPDATE trigger event does not make a change, the trigger is activated
+anyway. For example, if row 1 ``column1`` contains 'a', and the trigger event
+is ``UPDATE ... SET column1 = 'a';``, the trigger is activated.
 
-The triggered statement may refer to a function |br|
-RAISE(FAIL, error-message) |br|
-If a triggered statement invokes a RAISE(FAIL, error-message) function, or if a triggered statement causes an error, then statement execution stops immediately.
+The triggered statement may refer to a function:
+``RAISE(FAIL, error-message)``.
+If a triggered statement invokes a ``RAISE(FAIL, error-message)`` function, or
+if a triggered statement causes an error, then statement execution stops
+immediately.
 
-The triggered statement may refer to column values within the rows being changed. The row "as of before" the change is called the "old" row (which makes sense only for UPDATE and DELETE statements); the row "as of after" the change is called the "new" row (which makes sense only for UPDATE and INSERT statements). This example shows how an INSERT can be done to a view by referring to the "new" row ...
+The triggered statement may refer to column values within the rows being changed.
+in this case:
 
-.. code-block:: none   
+* The row "as of before" the change is called the "old" row (which makes sense
+  only for UPDATE and DELETE statements).
+* The row "as of after" the change is called the "new" row (which makes sense
+  only for UPDATE and INSERT statements).
+
+This example shows how an INSERT can be done to a view by referring to the
+"new" row:
+
+.. code-block:: sql
 
    CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
    CREATE VIEW v AS SELECT s1, s2 FROM t;
@@ -866,15 +914,15 @@ The triggered statement may refer to column values within the rows being changed
      BEGIN INSERT INTO t VALUES (new.s1, new.s2); END;
    INSERT INTO v VALUES (1,2);
 
-Ordinarily saying ``INSERT INTO view_name ...`` is illegal
-in Tarantool, so this is a workaround.
+Ordinarily saying ``INSERT INTO view_name ...`` is illegal in Tarantool,
+so this is a workaround.
 
 It is possible to generalize this so that all data-change statements
 on views will change the base tables, provided that the view contains
 all the columns of the base table, and provided that the triggers
 refer to those columns when necessary, as in this example:
 
-.. code-block:: none   
+.. code-block:: sql
 
    CREATE TABLE base_table (primary_key_column INT PRIMARY KEY, value_column INT);
    CREATE VIEW viewed_table AS SELECT primary_key_column, value_column FROM base_table;
@@ -893,10 +941,10 @@ refer to those columns when necessary, as in this example:
        DELETE FROM base_table WHERE primary_key_column = old.primary_key_column;
      END;
 
+When INSERT or UPDATE or DELETE occurs for table ``X``, Tarantool usually
+operates in this order (a basic scheme):
 
-When INSERT or UPDATE or DELETE occurs for table X, Tarantool usually operates in this order described by section "Order of Execution in Data-change statements". Ignoring the details there, one can think of the basic scheme like this:
-
-.. code-block:: none   
+.. code-block:: none
 
    For each row
      Perform constraint checks
@@ -909,22 +957,32 @@ When INSERT or UPDATE or DELETE occurs for table X, Tarantool usually operates i
        Check that the trigger's WHEN condition is true.
        Execute what is in the trigger's BEGIN|END block.
 
-However, Tarantool does not guarantee execution order when there are multiple constraints, or multiple triggers for the same event (including NoSQL on_replace triggers or SQL INSTEAD OF triggers that affect a view of table X).
+.. // For details, see "Order of Execution in Data-change statements".
+
+However, Tarantool does not guarantee execution order when there are multiple
+constraints, or multiple triggers for the same event (including NoSQL
+``on_replace`` triggers or SQL INSTEAD OF triggers that affect a view of table
+``X``).
 
 The maximum number of trigger activations per statement is 32.
 
 .. _sql_instead_of_triggers:
 
-**INSTEAD OF Triggers**
+***********************************************
+INSTEAD OF triggers
+***********************************************
 
 A trigger which is created with the clause |br|
 :samp:`INSTEAD OF {INSERT|UPDATE|DELETE} ON {view-name}` |br|
-is an INSTEAD OF trigger. For each affected row, the trigger action is performed "instead of" the INSERT or UPDATE or DELETE statement that causes trigger activation.
+is an INSTEAD OF trigger. For each affected row, the trigger action is performed
+"instead of" the INSERT or UPDATE or DELETE statement that causes trigger
+activation.
 
-For example:
-Ordinarily it is illegal to INSERT rows in a view, but it is legal to create a trigger which intercepts attempts to INSERT, and puts rows in the underlying base table:
+For example, ordinarily it is illegal to INSERT rows in a view, but it is legal
+to create a trigger which intercepts attempts to INSERT, and puts rows in the
+underlying base table:
 
-.. code-block:: none   
+.. code-block:: sql
 
    CREATE TABLE t1 (column1 INT PRIMARY KEY, column2 INT);
    CREATE VIEW v1 AS SELECT column1, column2 FROM t1;
@@ -933,55 +991,63 @@ Ordinarily it is illegal to INSERT rows in a view, but it is legal to create a t
    INSERT INTO v1 VALUES (1, 1);
    -- ... The result will be: table t1 will contain a new row.
 
-INSTEAD OF triggers are only legal for views. |br|
-BEFORE or AFTER triggers are not legal for views. |br|
+INSTEAD OF triggers are only legal for views, while
+BEFORE or AFTER triggers are not legal for views.
+
 It is legal to create INSTEAD OF triggers with triggered WHEN clauses.
 
 Limitations:
 
-* It is legal to create INSTEAD OF triggers with UPDATE OF column-list clauses, but they are not standard SQL.
+* It is legal to create INSTEAD OF triggers with UPDATE OF *column-list* clauses,
+  but they are not standard SQL.
+
   Example:
 
-.. code-block:: none   
+.. code-block:: sql
 
    CREATE TRIGGER et1
      INSTEAD OF UPDATE OF column2,column1 ON ev1
      FOR EACH ROW BEGIN
      INSERT INTO et2 VALUES (NEW.column1, NEW.column2); END;
 
-.. _sql_drop_trigger:
+.. _sql_drop_trigger:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 DROP TRIGGER
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Syntax:
+
 :samp:`DROP TRIGGER [IF EXISTS] {trigger-name};`
+
+|br|
 
 .. image:: drop_trigger.svg
     :align: left
 
+|br|
 
 Drop a trigger.
 
-The trigger-name must identify a trigger that was created earlier with the CREATE TRIGGER statement.
+The *trigger-name* must identify a trigger that was created earlier with the
+CREATE TRIGGER statement.
 
-Rules: |br|
-None.
+Rules: none
 
-Actions: |br|
-1 Tarantool returns an error if the trigger does not exist. |br|
-2 The trigger is dropped. |br|
-3 Tarantool effectively executes a COMMIT statement.
+Actions:
+
+#. Tarantool returns an error if the trigger does not exist.
+#. The trigger is dropped.
+#. Tarantool effectively executes a COMMIT statement.
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
-   -- the simple case
+   -- the simple case:
    DROP TRIGGER tr;
-   -- with an IF EXISTS clause
+   -- with an IF EXISTS clause:
    DROP TRIGGER IF EXISTS tr;
-
 
 .. _sql_truncate:
 
@@ -989,30 +1055,42 @@ Examples:
 TRUNCATE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Syntax:
 
 :samp:`TRUNCATE TABLE {table-name};`
+
+|br|
 
 .. image:: truncate.svg
     :align: left
 
+|br|
+
 Remove all rows in the table.
 
-TRUNCATE is considered to be a schema-change rather than a data-change statement, so it does not work within transactions (it cannot be rolled back).
+TRUNCATE is considered to be a schema-change rather than a data-change statement,
+so it does not work within transactions (it cannot be rolled back).
 
-Rules: |br|
-It is illegal to truncate a table which is referenced by a foreign key. |br|
-It is illegal to truncate a table which is also a system space, such as "_space". |br|
-The table must be a base table rather than a view.
+Rules:
 
-Actions: |br|
-All rows in the table are removed. Usually this is faster than DELETE FROM table-name;. |br|
-If the table has an autoincrement primary key, its sequence is reset to zero. |br|
-There is no effect for any triggers associated with the table. |br|
-There is no effect on the counts for the row_count() function. |br|
-Only one action is written to the write-ahead log (with "``DELETE FROM table-name;``" there would be one action for each deleted row).
+* It is illegal to truncate a table which is referenced by a foreign key.
+* It is illegal to truncate a table which is also a system space, such as
+  ``_space``.
+* The table must be a base table rather than a view.
+
+Actions:
+
+#. All rows in the table are removed. Usually this is faster than
+   ``DELETE FROM table-name;``.
+#. If the table has an autoincrement primary key, its sequence is reset to zero.
+#. There is no effect for any triggers associated with the table.
+#. There is no effect on the counts for the ``row_count()`` function.
+#. Only one action is written to the write-ahead log
+   (with ``DELETE FROM table-name;`` there would be one action for each deleted
+   row).
 
 Example:
 
-.. code-block:: none
+.. code-block:: sql
 
-   TRUNCATE TABLE t;
+   TRUNCATE TABLE t;
