@@ -170,6 +170,8 @@ Limitations:
   :ref:`vinyl_max_tuple_size  <cfg_storage-memtx_max_tuple_size>`
   configuration option.
 
+
+
 .. _sql_drop_table:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1094,3 +1096,556 @@ Example:
 .. code-block:: sql
 
    TRUNCATE TABLE t;
+
+
+.. _sql_select:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SELECT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:samp:`SELECT [ALL|DISTINCT]
+select-list
+[from clause]
+[where clause]
+[group-by clause] [having clause]
+[order-by clause];`
+
+.. image:: select.svg
+    :align: left
+
+
+Select zero or more rows.
+
+The clauses of the SELECT statement are discussed in the following five sections.
+
+.. _sql_select_list:
+
+**Select-list**
+
+:samp:`select-list-column [, select-list-column ...]
+select-list-column:`
+
+.. image:: select_list.svg
+    :align: left
+
+
+Define what will be in a result set; this is a clause in a SELECT statement.
+
+The select-list is a comma-delimited list of expressions, or * (asterisk). An expression can have an alias provided with [AS [column-name]] clause.
+
+The * "asterisk" shorthand is valid if and only if the SELECT statement also contains a FROM clause which specifies the table or tables (details about the FROM clause are in the next section). The simple form is
+*
+which means "all columns" -- for example, if the select is done for a table which contains three columns s1 s2 s3, then "SELECT * ..." is equivalent to |br|
+"``SELECT s1, s2, s3 ...``". |br|
+The qualified form is table-name.* which means "all columns in the specified table",
+which again must be a result of the FROM clause -- for example, if the table is named table1,
+then "table1.*" is equivalent to a list of the columns of table1.
+
+The [AS [column-name]] clause determines the column name.
+The column name is useful for two reasons:
+
+* in a tabular display, the column names are the headings
+* if the results of the SELECT are used in
+  ``CREATE TABLE new-table-name ... AS SELECT select-list ...``, then
+  the column names in the new table will be the   column names in the select-list.
+
+If [AS [column-name]] is missing, Tarantool makes a name equal to the expression, for example "SELECT 5*88" will cause the column name to be "5*88", but such names may be ambiguous or illegal in other contexts, so it is better to say, for example, "SELECT 5 * 88 AS column1".
+
+Examples:
+
+.. code-block:: none
+
+   -- the simple form
+   SELECT 5;
+   -- with multiple expressions including operators
+   SELECT 1, 2 * 2, 'Three' || 'Four';
+   -- with [[AS] column-name] clause
+   SELECT 5 AS column1;
+   -- * which must be eventually followed by a FROM clause
+   SELECT * FROM table1;
+   -- as a list
+   SELECT 1 AS a, 2 AS b, table1.* FROM table1;
+
+.. _sql_from:
+
+**FROM Clause**
+
+:samp:`FROM table-reference [, table-reference ...]`
+
+table-reference:
+
+.. image:: from.svg
+    :align: left
+
+Specify the table or tables for the source of a SELECT statement.
+
+The table-reference must be a name of an existing table, or a subquery, or a joined table.
+A joined table looks like |br|
+table-reference-or-joined-table join-operator table-reference-or-joined-table [join-specification] |br|
+A join-operator must be any of the `the standard types <https://en.wikipedia.org/wiki/Join_(SQL)>`_: |br|
+[NATURAL] LEFT [OUTER] JOIN, [NATURAL] INNER JOIN, or CROSS JOIN. |br|
+A join-specification must be any of: |br|
+ON expression, or USING (column-name [, column-name ...]). |br|
+Parentheses are allowed, and [[AS] correlation-name] is allowed. |br|
+The maximum number of joins in a FROM clause is 64.
+
+Examples:
+
+.. code-block:: none
+
+   -- the simplest form
+   SELECT * FROM t;
+   -- with two tables, making a Cartesian join
+   SELECT * FROM t1, t2;
+   -- with one table joined to itself, requiring correlation names
+   SELECT a.*, b.* FROM t1 AS a, t1 AS b;
+   -- with a left outer join
+   SELECT * FROM t1 LEFT JOIN t2;
+
+
+.. _sql_where:
+
+
+**WHERE Clause**
+
+:samp:`WHERE condition;`
+
+.. image:: where.svg
+    :align: left
+
+
+Specify the condition for filtering rows from a table; this is a clause in a SELECT or UPDATE or DELETE statement.
+
+The condition may contain any expression that returns a boolean (true|false|unknown) value, or returns a value that can be interpreted as boolean (for example 1 or 0).
+
+For each row in the table: if the condition is true, then the row is kept, if the condition is false or unknown, then the row is ignored. In effect, WHERE condition takes a table with n rows and returns a table with n or fewer rows.
+
+Examples:
+
+.. code-block:: none
+
+   -- with a simple condition
+   SELECT 1 FROM t WHERE column1 = 5;
+   -- with a condition that contains AND and OR and parentheses
+   SELECT 1 FROM t WHERE column1 = 5 AND (x > 1 OR y < 1);
+
+.. _sql_group_by:
+
+**GROUP BY Clause**
+
+:samp:`GROUP BY expression [, expression ...]`
+
+.. image:: group_by.svg
+    :align: left
+
+Make a grouped table; this is a clause in a SELECT statement.
+
+The expressions should be column names in the table, and each column should be specified only once.
+
+In effect, GROUP BY clause takes a table with rows that may have matching values, combines rows that have matching values into single rows, and returns a table which, because it is the result of GROUP BY, is called a grouped table.
+
+Thus, if the input is a table
+
+.. code-block:: none
+
+   a    b      c
+   -    -      -
+   1    'a'   'b
+   1    'b'   'b'
+   2    'a'   'b'
+   3    'a'   'b'
+   1    'b'   'b'
+ 
+then GROUP BY a, b will produce a grouped table |br|
+
+.. code-block:: none
+
+   a    b      c
+   -    -      -
+   1    'a'   'b'
+   1    'b'   'b'
+   2    'a'   'b'
+   3    'a'   'b'
+
+The rows where column a and column b have the same value have been merged; column c has been preserved but its value should not be depended on -- if the rows were not all 'b', Tarantool could pick any value.
+It is useful to envisage a grouped table as having hidden extra columns for the aggregation of the values, for example: |br|
+
+.. code-block:: none
+
+   a    b      c    COUNT(a) SUM(a) MIN(c)
+   -    -      -    -------- ------ ------
+   1    'a'  'b'         2      2    'b'
+   1    'b'  'b'         1      1    'b'
+   2    'a'  'b'         1      2    'b'
+        'a'  'b'         1      3    'b'
+
+These extra columns are what aggregate functions are for.
+
+Examples:
+
+.. code-block:: none
+
+   -- with a single column
+   SELECT 1 FROM t GROUP BY column1;
+   -- with two columns
+   SELECT 1 FROM t GROUP BY column1, column2;
+
+Limitations: (Issue#2364)
+
+* SELECT s1,s2 FROM t GROUP BY s1; is legal
+* SELECT s1 AS q FROM t GROUP BY q; is legal
+* SELECT s1 FROM t GROUP by 1; is legal
+
+.. _sql_aggregate:
+
+**Aggregate Functions**
+
+:samp:`function-name (one or more expressions)`
+
+Apply a built-in aggregate function to one or more expressions and return a scalar value.
+
+Aggregate functions are only legal in certain clauses
+of SELECT for grouped tables. A table is a grouped
+table if a GROUP BY clause is present. Also, if
+an aggregate function is used in a select-list and
+GROUP BY clause is omitted, then Tarantool assumes
+SELECT ... GROUP BY [all columns];
+
+NULLs are ignored for all aggregate functions except COUNT(*).
+
+AVG([DISTINCT] expression)
+          -- return the average value of expression
+             Example: :samp:`AVG({column1})`
+COUNT([DISTINCT] expression)
+          -- return the number of occurrences of expression
+             Example: :samp:`COUNT({column1})`
+COUNT(*)
+          -- return the number of occurrences of a row
+             Example: :samp:`COUNT(*)`
+GROUP_CONCAT(expression-1 [, expression-2])
+          -- return a list of expression-1 values, separated
+             by commas if expression-2 is omitted, separated
+             by the expression-2 value if expression-2 is
+             not omitted
+             Example: :samp:`GROUP_CONCAT({column1})`
+MAX([DISTINCT] expression)
+          -- return the maximum value of expression
+             Example: :samp:`MAX({column1})`
+MIN([DISTINCT] expression)
+          -- return the minimum value of expression
+             Example: :samp:`MIN({column1})`
+SUM([DISTINCT] expression)
+          -- return the sum of values of expression
+             Example: :samp:`SUM({column1})`
+TOTAL([DISTINCT] expression)
+          -- return the sum of values of expression
+             Example: :samp:`TOTAL({column1})`
+
+See also: :ref:`Functions <sql_functions>`.
+
+.. _sql_having:
+
+**HAVING Clause**
+
+:samp:`HAVING condition;`
+
+.. image:: having.svg
+    :align: left
+
+Specify the condition for filtering rows from a grouped table; this is a clause in a SELECT statement.
+
+The clause preceding the HAVING clause may be a GROUP BY clause. HAVING operates on the table that the GROUP BY produces, which may contain grouped columns and aggregates.
+If the preceding clause is not a GROUP BY clause, then there is only one group and the HAVING clause may only contain aggregate functions or literals.
+
+For each row in the table: if the condition is true, then the row is kept, if the condition is false or unknown, then the row is ignored. In effect, HAVING condition takes a table with n rows and returns a table with n or fewer rows.
+
+Examples:
+
+.. code-block:: none
+
+   -- with a simple condition
+   SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5;
+   -- with a more complicated condition
+   SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5 OR column2 < 5;
+   -- with an aggregate
+   SELECT x, SUM(y) FROM t GROUP BY x HAVING SUM(y) > 0;
+   -- with no GROUP BY and an aggregate
+   SELECT SUM(y) FROM t GROUP BY x HAVING MIN(y) < MAX(y);
+
+Limitations:
+
+* HAVING without GROUP BY is not supported for multiple tables.
+
+.. _sql_order_by:
+
+**ORDER BY Clause**
+
+:samp:`ORDER BY expression [ASC|DESC] [, expression [ASC|DESC] ...]`
+
+.. image:: order_by.svg
+    :align: left
+
+Put rows in order; this is a clause in a SELECT statement.
+
+An ORDER BY expression has one of three types which are checked in order: |br|
+1 expression is a positive integer, representing the ordinal position of the column in the select list. |br|
+For example, in the statement |br|
+SELECT x, y, z FROM t ORDER BY 2; |br|
+ORDER BY 2 means "order by the second column in the select list", which is y. |br|
+or |br|
+2 expression is a name of a column in the select list, which is determined  by an AS clause.
+For example, in the statement |br|
+SELECT x, y AS x, z FROM t ORDER BY x; |br|
+ORDER BY x means "order by the column explicitly named x in the   select list", which is the second column. |br|
+or |br|
+3 expression contains a name of a column in a table of the FROM clause. |br|
+For example, in the statement |br|
+SELECT x, y FROM t1 JOIN t2 ORDER BY z; |br|
+ORDER BY z means "order by a column named z which is expected to be in table t1 or table t2". |br|
+If both tables contain a column named z, then Tarantool will choose the first column that it finds. |br|
+The expression may also contain operators and function names and literals. |br|
+For example, in the statement |br|
+``SELECT x, y FROM t ORDER BY UPPER(z);`` |br|
+ORDER BY UPPER(z) means "order by the uppercase form of column t.z",
+which may be similar to doing ordering in a case-insensitive manner. |br|
+Type 3 is illegal if the SELECT statement contains UNION or EXCEPT or INTERSECT.
+
+If an ORDER BY clause contains multiple expressions, then expressions on the left are processed first and expressions on the right are processed only if necessary for tie-breaking.
+For example, in the statement |br|
+SELECT x, y FROM t ORDER BY x, y; |br|
+if there are two rows which both have the same values for column x, then an additional check is made to see which row has a greater value for column y.
+
+In effect, ORDER BY clause takes a table with rows that may be out of order, and returns a table with rows in order.
+
+The default order is ASC (ascending), the optional order is DESC (descending).
+
+NULLs come first, then numbers, then text strings, then blob strings. Within text strings, ordering is according to collation. Collation may be specified within the ORDER BY column-list, or may be default.
+
+Examples:
+
+.. code-block:: none
+
+   -- with a single column
+   SELECT 1 FROM t ORDER BY column1;
+   -- with two columns
+   SELECT 1 FROM t ORDER BY column1, column2;
+   -- With a variety of data
+   CREATE TABLE h (s1 INT PRIMARY KEY, s2 INT);
+   INSERT INTO h VALUES (7,'A'),(4,'A '),(-4,'AZ'),(17,17),(23,NULL);
+   INSERT INTO h VALUES (17.5,'Д'),(1e+300,'a'),(0,''),(-1,'');
+   SELECT * FROM h ORDER BY s2, s1;
+   The result of the above SELECT will be:
+   - - [23, null]
+     - [17, 17]
+     - [-1, '']
+     - [0, '']
+     - [7, 'A']
+     - [4, 'A ']
+     - [-4, 'AZ']
+     - [1e+300, 'a']
+     - [17.5, 'Д']
+   ...
+
+Limitations: (Issue#2365)
+
+* ORDER BY 1 is legal. This is common but is not standard SQL nowadays.
+
+.. _sql_limit:
+
+**LIMIT Clause**
+
+:samp:`LIMIT limit-expression [OFFSET offset-expression]` |br|
+or |br|
+:samp:`LIMIT offset-expression, limit-expression`
+
+Warning: the above is not a typo. offset-expression and limit-expression are in reverse order if a comma is used.
+
+.. image:: limit.svg
+    :align: left
+
+Specify a maximum number of rows and a start row; this is a clause in a SELECT statement.
+
+Expressions may contain integers and arithmetic operators or functions, for example ABS(-3/1).
+However, the result must be an integer value greater than or equal to zero.
+
+Usually the LIMIT clause follows an ORDER BY clause, because otherwise Tarantool does not guarantee that rows are in order.
+
+Examples:
+
+.. code-block:: none
+
+   -- simple case
+   SELECT * FROM t LIMIT 3;
+   -- both limit and order
+   SELECT * FROM t LIMIT 3 OFFSET 1;
+   -- applied to a UNIONed result (LIMIT clause must be the final clause)
+   SELECT column1 FROM table1 UNION SELECT column1 FROM table2 ORDER BY 1 LIMIT 1;
+
+
+Limitations: (Issue#4038)
+
+* if ORDER BY ... LIMIT is used, then all order-by columns must be ASC or all must be DESC
+
+
+.. _sql_values:
+
+**VALUES**
+
+:samp:`VALUES (expression [, expression ...]) [, (expression [, expression ...])`
+
+.. image:: values.svg
+    :align: left
+
+Select one or more rows.
+
+VALUES has the same effect as SELECT, that is, it returns a result set, but VALUES statements may not have FROM or GROUP or ORDER BY or LIMIT clauses.
+
+VALUES may be used wherever SELECT may be used, for example in subqueries.
+
+Examples:
+
+.. code-block:: none
+
+   -- simple case
+   VALUES (1);
+   -- equivalent to SELECT 1, 2, 3
+   VALUES (1, 2, 3);
+   -- two rows
+   VALUES (1, 2, 3), (4, 5, 6);
+
+.. _sql_subquery:
+
+**Subquery**
+
+:samp:`SELECT-statement syntax` |br|
+or |br|
+:samp:`VALUES-statement syntax`
+
+A subquery has the same syntax as a SELECT statement or VALUES statement embedded inside a main statement.
+(The SELECT and VALUES statements are called "queries" because they return answers, in the form of result sets.)
+
+Subqueries may be the second part of INSERT statements.
+Example:
+
+.. code-block:: none
+
+   INSERT INTO t2 SELECT a,b,c FROM t1;
+
+Subqueries may be in the FROM clause of SELECT statements.
+
+Subqueries may be expressions, or be inside expressions. In this case they must be parenthesized, and usually the number of rows must be 1.
+Example:
+
+.. code-block:: none
+
+   SELECT 1, (SELECT 5), 3 FROM t WHERE c1 * (SELECT COUNT(*) FROM t2) > 5;
+
+Subqueries may be expressions on the right side of certain comparison operators, and in this unusual case the number of rows may be greater than 1. The comparison operators are: [NOT] EXISTS and [NOT] IN.
+Example:
+
+.. code-block:: none
+
+   DELETE FROM t WHERE s1 NOT IN (SELECT s2 FROM t);
+
+Subqueries may refer to values in the outer query. In this case, the subquery is called a "correlated subquery".
+
+Subqueries may refer to rows which are being updated or deleted by the main query. In that case, the subquery finds the matching rows first, before starting to update or delete. For example, after |br|
+``CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);`` |br|
+``INSERT INTO t VALUES (1,3),(2,1);`` |br|
+``DELETE FROM t WHERE s2 NOT IN (SELECT s1 FROM t);`` |br|
+only one of the rows is deleted, not both rows.
+
+.. _sql_with:
+
+**WITH clause (Common Table Expression)**
+
+:samp:`WITH {temporary-table-name} AS (subquery.)
+[, {temporary-table-name} AS (subquery)
+SELECT statement | INSERT statement | DELETE statement | UPDATE statement|REPLACE statement;`
+
+.. image:: with.svg
+    :align: left
+
+WITH v AS (SELECT * FROM t) SELECT * FROM v; |br|
+is equivalent to creating a view and selecting from it: |br|
+CREATE VIEW v AS SELECT * FROM t; |br|
+``SELECT * FROM v;`` |br|
+The difference is that a WITH-clause "view" is temporary and only
+useful within the same statement. No CREATE privilege is required.
+
+The WITH-clause can also be thought of as a subquery that has a name.
+This is useful when the same subquery is being repeated. For example: |br|
+``SELECT * FROM t WHERE a < (SELECT s1 FROM x) AND b < (SELECT s1 FROM x);`` |br|
+can be replaced with |br|
+``WITH S AS (SELECT s1 FROM x) SELECT * FROM t WHERE a < S AND b < S;`` |br|
+This "factoring out" of a repeated expression is regarded as good practice.
+
+Examples:
+
+.. code-block:: none
+
+   WITH cte AS (VALUES (7,'') INSERT INTO j SELECT * FROM cte;
+   WITH cte AS (SELECT s1 AS x FROM k) SELECT * FROM cte;
+   WITH cte AS (SELECT COUNT(*) FROM k WHERE s2 < 'x' GROUP BY s3)
+     UPDATE j SET s2 = 5
+     WHERE s1 = (SELECT s1 FROM cte) OR s3 = (SELECT s1 FROM cte);
+
+WITH can only be used at the beginning of a statement, therefore it cannot be used at the beginning of a subquery or after a set operator or inside a CREATE statement.
+
+A WITH-clause "view" is read-only because Tarantool does not support updatable views.
+
+.. _sql_with_recursive:
+
+**WITH RECURSIVE clause (Iterative Common Table Expression)**
+
+The real power of WITH lies in the WITH RECURSIVE clause, which is useful when it is combined with UNION or UNION ALL:
+
+:samp:`WITH RECURSIVE {recursive-table-name} AS`  |br|
+:samp:`  (SELECT ...FROM {non-recursive-table-name} ...` |br|
+:samp:`   UNION ALL` |br|
+:samp:`   SELECT ... FROM {recursive-table-name} ...)` |br|
+:samp:`SELECT ... FROM {recursive-table-name};` |br|
+
+.. image:: with_recursive.svg
+    :align: left
+
+In non-SQL this can be read as: starting with a seed value from a non-recursive table, produce a recursive viewed table, UNION that with itself, UNION that with itself, UNION that with itself ... forever, or until a condition in the WHERE clause says "stop".
+
+For example:
+
+.. code-block:: none
+
+   CREATE TABLE ts (s1 INT PRIMARY KEY);
+   INSERT INTO ts VALUES (1);
+   WITH RECURSIVE w AS (
+     SELECT s1 FROM ts
+     UNION ALL
+     SELECT s1+1 FROM w WHERE s1 < 4)
+   SELECT * FROM w;
+
+First, table w is seeded from t1, so it has one row: [1]. |br|
+Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which contains [1] -- adds 1 because the select list says "s1+1", and so it has one row: [2]. |br|
+Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which contains [2] -- adds 1 because the select list says "s1+1", and so it has one row: [3]. |br|
+Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which contains [3] -- adds 1 because the select list says "s1+1", and so it has one row: [4]. |br|
+Then, UNION ALL (SELECT s1+1 FROM w) takes the row from w -- which contains [4] -- and now the importance of the WHERE clause becomes evident, because "s1 < 4" is false for this row, and therefore we have reached the "stop" condition. |br|
+So, before the "stop", table w got 4 rows: [1], [2], [3], [4]. |br|
+So the result of the statement looks like: |br|
+
+.. code-block:: none
+
+   tarantool> WITH RECURSIVE w AS (
+            >   SELECT s1 FROM ts
+            >   UNION ALL
+            >   SELECT s1+1 FROM w WHERE s1 < 4)
+            > SELECT * FROM w;
+   ---
+   - - [1]
+     - [2]
+     - [3]
+     - [4]
+   ...
+
+In other words, this WITH RECURSIVE ... SELECT produces a table of
+auto-incrementing values.
+
