@@ -24,6 +24,12 @@ Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
 ``box.stat.net()``, ``box.stat.vinyl()`` and
 :ref:`box.space.index <box_space-space_index>`.
 
+In the tables that ``box.stat()`` and ``box.stat.net()`` return:
+``rps`` stands for "[average number of] requests per second [in the last 5 seconds]",
+``total`` stands for "total [number processed since the server began]",
+``current`` stands for "[number of] current [requests in progress, which can be
+limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]".
+
 .. code-block:: tarantoolsession
 
     tarantool> box.stat() -- return 10 tables
