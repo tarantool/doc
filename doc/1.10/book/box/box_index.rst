@@ -283,7 +283,6 @@ Below is a list of all ``box.index`` functions and members.
                   }
                   if (search-key-part[i] == index-key-part[i])
                   {
-                    if (iterator is LT or GT) return FALSE
                     continue
                   }
                   if (search-key-part[i] > index-key-part[i])
