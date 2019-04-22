@@ -26,7 +26,7 @@ Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.stat()
+    tarantool> box.stat() -- return 10 tables
     ---
     - DELETE:
         total: 1873949
@@ -59,21 +59,29 @@ Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
         total: 0
         rps: 0
     ...
-    tarantool> box.stat().DELETE -- a selected item of the table
+    tarantool> box.stat().DELETE -- total + requests per second from one table
     ---
     - total: 0
       rps: 0
     ...
-    tarantool> box.stat.net()
+    tarantool> box.stat.net() -- 4 tables
     ---
     - SENT:
         total: 0
         rps: 0
+      CONNECTIONS:
+        current: 0
+        rps: 0
+        total: 0
+      REQUESTS:
+        current: 0
+        rps: 0
+        total: 0
       RECEIVED:
         total: 0
         rps: 0
     ...
-    tarantool> box.stat.vinyl().tx.commit -- a selected item of the table
+    tarantool> box.stat.vinyl().tx.commit -- one item of the vinyl table
     ---
     - 1047632
     ...
