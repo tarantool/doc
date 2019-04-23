@@ -1804,11 +1804,11 @@ WITH RECURSIVE clause (iterative common table expression)
 The real power of WITH lies in the WITH RECURSIVE clause, which is useful when
 it is combined with UNION or UNION ALL:
 
-:samp:`WITH RECURSIVE {recursive-table-name} AS`  |br|
-:samp:`  (SELECT ...FROM {non-recursive-table-name} ...` |br|
-:samp:`   UNION ALL` |br|
-:samp:`   SELECT ... FROM {recursive-table-name} ...)` |br|
-:samp:`SELECT ... FROM {recursive-table-name};` |br|
+WITH RECURSIVE recursive-table-name AS  |br|
+  (SELECT ...FROM non-recursive-table-name ... |br|
+   UNION ALL` |br|
+   SELECT ... FROM recursive-table-name ...) |br|
+SELECT ... FROM recursive-table-name; |br|
 
 |br|
 
@@ -1872,3 +1872,68 @@ the result of the statement looks like:
 
 In other words, this WITH RECURSIVE ... SELECT produces a table of
 auto-incrementing values.
+
+
+.. _sql_union:
+
+**UNION, EXCEPT, and INTERSECT clauses**
+
+:samp:`select-statement UNION [ALL] select-statement [ORDER BY clause] [LIMIT clause];` |br|
+:samp:`select-statement EXCEPT select-statement [ORDER BY clause] [LIMIT clause];` |br|
+:samp:`select-statement INTERSECT select-statement [ORDER BY clause] [LIMIT clause];`
+
+.. image:: union.svg
+    :align: left
+
+.. image:: except.svg
+    :align: left
+
+.. image:: intersect.svg
+    :align: left
+
+
+UNION, EXCEPT, and INTERSECT are collectively called "set operators" or "table operators". |br|
+a UNION b means "take rows which occur in a OR b". |br|
+a EXCEPT b means "take rows which occur in a AND NOT b". |br|
+a INTERSECT b means "take rows which occur in a AND b". |br|
+Duplicate rows are eliminated unless ALL is specified. |br|
+The select-statements may be chained: SELECT ... SELECT ... SELECT ...; |br|
+Each select-statement must result in the same number of columns. |br|
+The select-statements may be replaced with VALUES statements. |br|
+The maximum number of set operations is 50.
+
+Example:
+
+.. code-block:: none
+
+   CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+   CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+   INSERT INTO t1 VALUES (1,'A'),(2,'B'),(3,NULL);
+   INSERT INTO t2 VALUES (1,'A'),(2,'C'),(3,NULL);
+   SELECT s2 FROM t1 UNION SELECT s2 FROM t2;
+   SELECT s2 FROM t1 UNION ALL SELECT s2 FROM t2 ORDER BY s2;
+   SELECT s2 FROM t1 EXCEPT SELECT s2 FROM t2;
+   SELECT s2 FROM t1 INTERSECT SELECT s2 FROM t2;
+
+The UNION query returns 4 rows: NULL, 'A', 'B', 'C'. |br|
+The UNION ALL query returns 6 rows: NULL, NULL, 'A', 'A', 'B', 'C'. |br|
+The EXCEPT query returns 1 row: 'B'. |br|
+The INTERSECT query returns 2 rows: NULL, 'A'.
+
+Limitations:
+
+* Parentheses are not allowed.
+* Evaluation is left to right, INTERSECT does not have precedence. Example:
+
+.. code-block:: none
+
+   CREATE TABLE t01 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+   CREATE TABLE t02 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+   CREATE TABLE t03 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
+   INSERT INTO t01 VALUES (1,'A');
+   INSERT INTO t02 VALUES (1,'B');
+   INSERT INTO t03 VALUES (1,'A');
+   SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM t02;
+   SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;
+   -- ... results are different.
+
