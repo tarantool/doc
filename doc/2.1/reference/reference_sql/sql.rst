@@ -1738,9 +1738,9 @@ WITH clause (common table expression)
 
 Syntax:
 
-:samp:`WITH {temporary-table-name} AS (subquery.)
-[, {temporary-table-name} AS (subquery)
-SELECT statement | INSERT statement | DELETE statement | UPDATE statement|REPLACE statement;`
+:samp:`WITH {temporary-table-name} AS (subquery)` |br|
+:samp:`[, {temporary-table-name} AS (subquery)]` |br|
+:samp:`SELECT statement | INSERT statement | DELETE statement | UPDATE statement | REPLACE statement;`
 
 |br|
 
@@ -1804,11 +1804,11 @@ WITH RECURSIVE clause (iterative common table expression)
 The real power of WITH lies in the WITH RECURSIVE clause, which is useful when
 it is combined with UNION or UNION ALL:
 
-WITH RECURSIVE recursive-table-name AS  |br|
-  (SELECT ...FROM non-recursive-table-name ... |br|
-   UNION ALL` |br|
-   SELECT ... FROM recursive-table-name ...) |br|
-SELECT ... FROM recursive-table-name; |br|
+:samp:`WITH RECURSIVE recursive-table-name AS` |br|
+:samp:`  (SELECT ...FROM non-recursive-table-name ...` |br|
+:samp:`   UNION ALL` |br|
+:samp:`   SELECT ... FROM recursive-table-name ...)` |br|
+:samp:`SELECT ... FROM recursive-table-name;` |br|
 
 |br|
 
@@ -1870,41 +1870,58 @@ the result of the statement looks like:
      - [4]
    ...
 
-In other words, this WITH RECURSIVE ... SELECT produces a table of
+In other words, this ``WITH RECURSIVE ... SELECT`` produces a table of
 auto-incrementing values.
 
+.. _sql_union:
 
-.. _sql_union:
+*********************************************************
+UNION, EXCEPT, and INTERSECT clauses
+*********************************************************
 
-**UNION, EXCEPT, and INTERSECT clauses**
+Syntax:
 
-:samp:`select-statement UNION [ALL] select-statement [ORDER BY clause] [LIMIT clause];` |br|
-:samp:`select-statement EXCEPT select-statement [ORDER BY clause] [LIMIT clause];` |br|
-:samp:`select-statement INTERSECT select-statement [ORDER BY clause] [LIMIT clause];`
+* :samp:`select-statement UNION [ALL] select-statement [ORDER BY clause] [LIMIT clause];`
+* :samp:`select-statement EXCEPT select-statement [ORDER BY clause] [LIMIT clause];`
+* :samp:`select-statement INTERSECT select-statement [ORDER BY clause] [LIMIT clause];`
+
+|br|
 
 .. image:: union.svg
     :align: left
 
+|br|
+
 .. image:: except.svg
     :align: left
+
+|br|
 
 .. image:: intersect.svg
     :align: left
 
+|br|
 
-UNION, EXCEPT, and INTERSECT are collectively called "set operators" or "table operators". |br|
-a UNION b means "take rows which occur in a OR b". |br|
-a EXCEPT b means "take rows which occur in a AND NOT b". |br|
-a INTERSECT b means "take rows which occur in a AND b". |br|
-Duplicate rows are eliminated unless ALL is specified. |br|
-The select-statements may be chained: SELECT ... SELECT ... SELECT ...; |br|
-Each select-statement must result in the same number of columns. |br|
-The select-statements may be replaced with VALUES statements. |br|
+UNION, EXCEPT, and INTERSECT are collectively called "set operators" or "table operators".
+In particular:
+
+* ``a UNION b`` means "take rows which occur in a OR b".
+* ``a EXCEPT b`` means "take rows which occur in a AND NOT b".
+* ``a INTERSECT b`` means "take rows which occur in a AND b".
+
+Duplicate rows are eliminated unless ALL is specified.
+
+The *select-statements* may be chained: ``SELECT ... SELECT ... SELECT ...;``
+
+Each *select-statement* must result in the same number of columns.
+
+The *select-statements* may be replaced with VALUES statements.
+
 The maximum number of set operations is 50.
 
 Example:
 
-.. code-block:: none
+.. code-block:: sql
 
    CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
    CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
@@ -1915,17 +1932,21 @@ Example:
    SELECT s2 FROM t1 EXCEPT SELECT s2 FROM t2;
    SELECT s2 FROM t1 INTERSECT SELECT s2 FROM t2;
 
-The UNION query returns 4 rows: NULL, 'A', 'B', 'C'. |br|
-The UNION ALL query returns 6 rows: NULL, NULL, 'A', 'A', 'B', 'C'. |br|
-The EXCEPT query returns 1 row: 'B'. |br|
-The INTERSECT query returns 2 rows: NULL, 'A'.
+In this example:
+
+* The UNION query returns 4 rows: NULL, 'A', 'B', 'C'.
+* The UNION ALL query returns 6 rows: NULL, NULL, 'A', 'A', 'B', 'C'.
+* The EXCEPT query returns 1 row: 'B'.
+* The INTERSECT query returns 2 rows: NULL, 'A'.
 
 Limitations:
 
 * Parentheses are not allowed.
-* Evaluation is left to right, INTERSECT does not have precedence. Example:
+* Evaluation is left to right, INTERSECT does not have precedence.
 
-.. code-block:: none
+Example:
+
+.. code-block:: sql
 
    CREATE TABLE t01 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
    CREATE TABLE t02 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
@@ -1936,4 +1957,3 @@ Limitations:
    SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM t02;
    SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;
    -- ... results are different.
-
