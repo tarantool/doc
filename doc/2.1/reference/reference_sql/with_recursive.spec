@@ -1,6 +1,6 @@
 stack (
   line(
-    ' WITH ', ' RECURSIVE ', 'temporary-table-name', ' AS '
+    ' WITH ', ' RECURSIVE ', 'recursive-table-name', ' AS '
   ),
   line(
     '(',
@@ -10,6 +10,8 @@ stack (
       None,
       ' ALL '
      ),
-     ')', 'statement'
-  )
+     'select-statement',
+     ')'
+  ),
+  line('statement-that-uses-recursive-table-name')
 )

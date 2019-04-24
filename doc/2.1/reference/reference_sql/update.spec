@@ -9,7 +9,7 @@ stack (
   line(
     choice(
       None,
-      line(' WHERE ', 'expression')
+      line(' WHERE ', 'search-condition')
     )
   )
 )

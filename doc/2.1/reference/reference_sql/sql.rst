@@ -1805,10 +1805,10 @@ The real power of WITH lies in the WITH RECURSIVE clause, which is useful when
 it is combined with UNION or UNION ALL:
 
 :samp:`WITH RECURSIVE recursive-table-name AS` |br|
-:samp:`  (SELECT ...FROM non-recursive-table-name ...` |br|
-:samp:`   UNION ALL` |br|
-:samp:`   SELECT ... FROM recursive-table-name ...)` |br|
-:samp:`SELECT ... FROM recursive-table-name;` |br|
+:samp:`(SELECT ...FROM non-recursive-table-name ...` |br|
+:samp:`UNION [ALL]` |br|
+:samp:`SELECT ... FROM recursive-table-name ...)` |br|
+:samp:`statement-that-uses-recursive-table-name;` |br|
 
 |br|
 

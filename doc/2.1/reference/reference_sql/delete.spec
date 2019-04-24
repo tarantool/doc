@@ -3,7 +3,7 @@ stack (
     ' DELETE ', ' FROM ', 'table-name',
     choice(
       None,
-      line(' WHERE ', 'expression')
+      line(' WHERE ', 'search-condition')
     )
   )
 )
