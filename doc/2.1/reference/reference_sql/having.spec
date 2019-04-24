@@ -1,0 +1,5 @@
+stack (
+  line(
+    ' HAVING ','expression'
+  )
+)

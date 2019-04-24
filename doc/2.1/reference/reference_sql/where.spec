@@ -1,0 +1,5 @@
+stack (
+  line(
+    ' WHERE ','expression'
+  )
+)
