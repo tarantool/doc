@@ -170,8 +170,6 @@ Limitations:
   :ref:`vinyl_max_tuple_size  <cfg_storage-memtx_max_tuple_size>`
   configuration option.
 
-
-
 .. _sql_drop_table:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1097,7 +1095,6 @@ Example:
 
    TRUNCATE TABLE t;
 
-
 .. _sql_select:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1680,8 +1677,8 @@ Subquery
 
 Syntax:
 
-* :samp:`SELECT-statement syntax`
-* :samp:`VALUES-statement syntax`
+* :ref:`SELECT-statement <sql_select>` syntax
+* :ref:`VALUES-statement <sql_values>` syntax
 
 A subquery has the same syntax as a SELECT statement or VALUES statement
 embedded inside a main statement.
@@ -1805,7 +1802,7 @@ The real power of WITH lies in the WITH RECURSIVE clause, which is useful when
 it is combined with UNION or UNION ALL:
 
 :samp:`WITH RECURSIVE recursive-table-name AS` |br|
-:samp:`(SELECT ...FROM non-recursive-table-name ...` |br|
+:samp:`(SELECT ... FROM non-recursive-table-name ...` |br|
 :samp:`UNION [ALL]` |br|
 :samp:`SELECT ... FROM recursive-table-name ...)` |br|
 :samp:`statement-that-uses-recursive-table-name;` |br|
