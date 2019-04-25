@@ -1954,3 +1954,157 @@ Example:
    SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM t02;
    SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;
    -- ... results are different.
+
+.. _sql_start_transaction:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Transaction Statements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**START TRANSACTION**
+
+:samp:`START TRANSACTION;`
+
+.. image:: start.svg
+    :align: left
+
+Start a transaction. After START TRANSACTION; a transaction is "active". If a transaction is already active, then START TRANSACTION; is illegal.
+
+Transactions should be active for fairly short periods of time, to avoid concurrency issues. To end a transaction, say COMMIT or ROLLBACK.
+
+Just like in NoSQL, transaction control statements are subject to limitations set by the storage engine involved. For memtx storage engine, if a yield happens within an active transaction, the transaction is rolled back. For vinyl engine, yields are allowed. However,transaction control statements still may not work as you expect when run over a network connection: a transaction is associated with a fiber, not a network connection, and different transaction control statements sent via the same network connection may be executed by different fibers from the fiber pool.
+
+In order to ensure that all statements are part of the intended transaction,
+ put all of them between START TRANSACTION; and COMMIT; or ROLLBACK; then send as a single batch. For example:
+
+* Enclose each separate SQL statement in a box.execute() function.
+* Pass all the box.execute() functions to the server in a single message. If you are using a console, you can do this by writing everything on a single line. If you are using net.box, you can do this by putting all the function calls in a single string and calling eval(string).
+
+
+
+Example:
+
+.. code-block:: none
+
+   START TRANSACTION;
+
+Example of a whole transaction sent to a server on localhost:3301 with eval(string):
+
+.. code-block:: none
+
+   net_box = require('net.box')
+   conn = net_box.new('localhost', 3301)
+   s = 'box.execute([[START TRANSACTION; ]]) '
+   s = s .. 'box.execute([[INSERT INTO t VALUES (1); ]]) '
+   s = s .. 'box.execute([[ROLLBACK; ]]) '
+   conn:eval(s)
+
+.. _sql_commit:
+
+**COMMIT**
+
+:samp:`COMMIT;`
+
+.. image:: commit.svg
+    :align: left
+
+Commit an active transaction, so all changes are made permanent
+and the transaction ends.
+
+COMMIT is illegal unless a transaction is active.
+If a transaction is not active then SQL statements are committed automatically.
+
+Example:
+
+.. code-block:: none
+
+   COMMIT;
+
+.. _sql_savepoint:
+
+**SAVEPOINT**
+
+:samp:`SAVEPOINT {savepoint-name};`
+
+.. image:: savepoint.svg
+    :align: left
+
+Set a savepoint, so that ROLLBACK TO savepoint-name is possible.
+SAVEPOINT is illegal unless a transaction is active.
+If a savepoint with the same name already exists, it is released
+before the new savepoint is set.
+
+Example:
+
+.. code-block:: none
+
+   SAVEPOINT x;
+
+
+
+.. _sql_release_savepoint:
+
+**RELEASE SAVEPOINT**
+
+:samp:`RELEASE SAVEPOINT {savepoint-name};`
+
+.. image:: release.svg
+    :align: left
+
+Release (destroy) a savepoint created by SAVEPOINT statement.
+
+RELEASE is illegal unless a transaction is active.
+Savepoints are released automatically when a transaction ends.
+
+Example:
+
+.. code-block:: none
+
+   RELEASE SAVEPOINT x;
+
+.. _sql_rollback:
+
+**ROLLBACKt**
+
+:samp:`ROLLBACK [TO [SAVEPOINT] {savepoint-name}];`
+
+.. image:: rollback.svg
+    :align: left
+
+
+If ROLLBACK does not specify a savepoint-name:
+Rollback an active transaction, so all changes
+since START TRANSACTION are cancelled,
+and the transaction ends.
+
+If ROLLBACK does specify a savepoint-name:
+Rollback an active transaction, so all changes 
+since SET savepoint-name are cancelled,
+and the transaction does not end.
+
+ROLLBACK is illegal unless a transaction is active.
+
+Examples:
+
+.. code-block:: none
+
+   -- the simple form
+   ROLLBACK;
+   -- the form so changes before a savepoint are not cancelled.
+   ROLLBACK TO SAVEPOINT x;
+
+.. code-block:: none
+
+   -- An example of a Lua function that will do a transaction
+   -- containing savepoint and rollback to savepoint.
+   function f()
+   box.execute([[DROP TABLE IF EXISTS t;]]) -- commits automatically
+   box.execute([[CREATE TABLE t (s1 VARCHAR(20) PRIMARY KEY);]]) -- commits automatically
+   box.execute([[START TRANSACTION;]]) -- after this succeeds, a transaction is active
+   box.execute([[INSERT INTO t VALUES ('Data change #1');]])
+   box.execute([[SAVEPOINT "1";]])
+   box.execute([[INSERT INTO t VALUES ('Data change #2');]])
+   box.execute([[ROLLBACK TO SAVEPOINT "1";]]) -- rollback Data change #2
+   box.execute([[ROLLBACK TO SAVEPOINt "1";]]) -- this is legal but does nothing
+   box.execute([[COMMIT;]]) -- make Data change #1 permanent, end the transaction
+   end
