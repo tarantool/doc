@@ -5,7 +5,8 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
-:ref:`2.1.0 <whats_new_210>`,
+:ref:`2.1.2 <whats_new_212>`,
+:ref:`2.1.1 <whats_new_211>`,
 :ref:`2.0.4 <whats_new_204>`,
 :ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
@@ -32,14 +33,164 @@ Version 2.x
 
 Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout,
 client-server protocol and replication protocol.
+You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
+procedure.
 
-.. _whats_new_210:
+.. _whats_new_212:
 
-**Release 2.1.0**
+**Release 2.1.2**
+
+Release type: stable. Release date: 2019-04-05.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.2.
+
+This is the first :ref:`stable <release-policy>` release in the 2.x series.
+
+The goal of this release is to significantly extend SQL support and increase
+stability.
+
+Functionality added or changed:
+
+* (SQL) ``box.sql.execute()`` replaced with
+  :ref:`box.execute() <box-sql_box_execute>`.
+  It now works just like ``netbox.execute()``:
+  returns result set metadata, row count, etc. E.g.:
+
+  .. code-block:: tarantoolsession
+
+     box.execute("CREATE TABLE person(id INTEGER PRIMARY KEY, birth_year INT)")
+     ---
+     - row_count: 1
+     ...
+     box.execute("SELECT birth_year FROM person")
+     ---
+     - metadata:
+       - name: birth_year
+         type: INTEGER
+       rows:
+       - [1983]
+       - [1984]
+     ...
+
+* (SQL) Type system was :ref:`significantly refactored <sql>`.
+
+* (SQL) There are cases in SQL when it is possible to do Tarantool’s
+  update operation for UPDATE statement, instead of doing delete + insert.
+  However, there are cases where SQL semantics is too complex. E.g.:
+
+  .. code-block:: sql
+
+     CREATE TABLE file (id INT PRIMARY KEY, checksum INT);
+     INSERT INTO stock VALUES (1, 3),(2, 4),(3,5);
+     CREATE UNIQUE INDEX i ON file (checksum);
+     SELECT * FROM file;
+     -- [1, 3], [2, 4], [3, 5]
+     UPDATE OR REPLACE file SET checksum = checksum + 1;
+     SELECT * FROM stock;
+     -- [1, 4], [3, 6]
+
+  I.e. [1, 3] tuple is updated as [1, 4] and have replaced tuple [2, 4].
+  This logic is implemented by preventive tuple deletion from all corresponding
+  indexes in SQL.
+
+* (SQL) Now SQL’s integer type is stored as integer in space’s format.
+  It was stored as scalar before, which made comarisons slow.
+
+* (SQL) It is now possible to define a constraint
+  :ref:`within column definition <sql_create_table>`. E.g.:
+
+  .. code-block:: sql
+
+     CREATE TABLE person (id INT PRIMARY KEY, age INT, CHECK (age > 10));
+
+* (SQL) Syntax for the pragma ``pragma index_info`` is now unified with
+  ``table_info``.
+  E.g. to get information on index ``age_index`` of table ``person`` you can write:
+
+  .. code-block:: sql
+
+     pragma index_info(person.age_index);
+
+* (Server) It is now possible to index a field specified using JSON. E.g.:
+
+  .. code-block:: lua
+
+     person = box.schema.create_space("person")
+     name_idx = person:create_index('name', {parts = {{'[2]fname', 'str'}, {'[2]sname', 'str'}}})
+     person:insert({1, {fname='James', sname='Bond'}, {town='London', country='GB', organization='MI6'}})
+
+* (Server) In case of out of space event, Tarantool is now allowed to delete
+  backup WAL files not needed for recovery from the last checkpoint.
+
+* (Server) Add support for :ref:`tarantoolctl rocks pack / unpack <tarantoolctl-module_management>`
+  subcommands. The subcommands are used to create / deploy binary rock distributions.
+
+* (Server) ``string.rstrip`` and ``string.lstrip`` should accept symbols to
+  strip. Add optional 'chars' parameter for specifying the unwanted characters. E.g.:
+
+  .. code-block:: lua
+
+     local chars = "#\0"
+     str = "##Hello world!#"
+     print(string.strip(str, chars)) -- "Hello world!"
+
+* (Server) :ref:`on_shutdown <box_ctl-on_shutdown>` trigger added.
+  It may be set in a way similar to ``space:on_replace`` triggers:
+
+  .. code-block:: lua
+
+     box.ctl.on_shutdown(new_trigger, old_trigger)
+
+* (Server) :ref:`on_schema_init <box_ctl-on_schema_init>` trigger added.
+  It may be set before the first call to ``box.cfg()`` and is fired during
+  ``box.cfg()`` before user data recovery start. To set the trigger, say:
+
+  .. code-block:: lua
+
+     box.ctl.on_schema_init(new_trig, old_trig)
+
+* (Server) A new option for the snapshot daemon,
+  :ref:`box.cfg.checkpoint_wal_threshold <cfg_checkpoint_daemon-checkpoint_wal_threshold>`,
+  allows to limit the maximum disk size of maintained WALs.
+  Once the configured threshold is exceeded, the WAL thread notifies the
+  checkpoint daemon that it's time to make a new checkpoint and delete old WAL files.
+
+* (Server) New types of :ref:`privileges <authentication-owners_privileges>` --
+  to create, alter and drop space -- were introduced.
+  In order to create, drop or alter space or index, you should have
+  a corresponding privilege. E.g.:
+
+  .. code-block:: lua
+
+     box.schema.user.create("optimizer", { password  = 'secret' })
+     box.schema.user.grant("optimizer", "alter", "space")
+     person = box.schema.space.create("person")
+     box.session.su("optimizer")
+     i = s:create_index("primary") -- success
+     s:insert{1} -- fail
+     s:select{} -- fail
+     s:drop() -- fail
+
+  Notice the incompatible change: Tarantool 1.10 requires read/write/execute
+  privileges on an object to allow create, drop or alter. These privileges are
+  no longer sufficient in 2.1. To remedy the problem, Tarantool 2.1 automatically
+  grants create/drop/alter privileges on an object if a user has
+  read/write/execute privileges on it during schema upgrade.
+  But old scripts may stop working if read/write/execute is granted **after**
+  schema upgrade.
+
+  Additionally, create/drop/alter privileges are already supported in 1.10,
+  which also supports the old semantics of read/write/execute.
+  You are encouraged to grant new privileges in 1.10 before upgrade
+  and modify your scripts.
+
+.. _whats_new_211:
+
+**Release 2.1.1**
 
 Release type: beta. Release date: 2018-11-14.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.0.
+Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.1.
 
 This release resolves all major bugs since 2.0.4 alpha and extends Tarantool's
 SQL feature set.
