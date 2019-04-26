@@ -1960,28 +1960,55 @@ Example:
    -- ... results are different.
 
 .. _sql_indexed_by:
-
-**INDEXED BY clause**
+
+***********************************************
+INDEXED BY clause
+***********************************************
+
+Syntax:
 
 :samp:`INDEXED BY {index-name}`
+
+|br|
 
 .. image:: indexed_by.svg
     :align: left
 
-The INDEXED BY clause may be used in a SELECT, DELETE, or UPDATE statement, immediately after the table-name. For example: |br|
-``DELETE FROM table7 INDEXED BY index7 WHERE column1 = 'a';`` |br|
-In this case the search for 'a' will take place within index7. |br|
-For example: |br|
-``SELECT * FROM table7 NOT INDEXED WHERE column1 = 'a';`` |br|
-In this case the search for 'a' will be done via a search of the whole table, what is sometimes called a "full table scan", even if there is an index for column1.
+|br|
 
-Ordinarily Tarantool chooses the appropriate index or lookup method depending on a complex set of "optimizer" rules; the INDEXED BY clause overrides the optimizer choice.
+The INDEXED BY clause may be used in a SELECT, DELETE, or UPDATE statement,
+immediately after the *table-name*. For example:
+
+.. code-block:: sql
+
+   DELETE FROM table7 INDEXED BY index7 WHERE column1 = 'a';
+
+In this case the search for 'a' will take place within ``index7``. For example:
+
+.. code-block:: sql
+
+   SELECT * FROM table7 NOT INDEXED WHERE column1 = 'a';
+
+In this case the search for 'a' will be done via a search of the whole table,
+what is sometimes called a "full table scan", even if there is an index for
+``column1``.
+
+Ordinarily Tarantool chooses the appropriate index or lookup method depending
+on a complex set of "optimizer" rules; the INDEXED BY clause overrides the
+optimizer choice.
 
 Example:
 
-Suppose a table has two columns.The first column is the primary key and therefore it has an automatic index named pk_unnamed_T_1. The second column has an index created by the user. The user selects with INDEXED BY the-index-on-column1, then selects with INDEXED BY the-index-on-column-2.
+Suppose a table has two columns:
 
-.. code-block:: none
+* The first column is the primary key and
+  therefore it has an automatic index named ``pk_unnamed_T_1``.
+* The second column has an index created by the user.
+
+The user selects with ``INDEXED BY the-index-on-column1``,
+then selects with ``INDEXED BY the-index-on-column-2``.
+
+.. code-block:: sql
 
    CREATE TABLE t (column1 INT PRIMARY KEY, column2 INT);
    CREATE INDEX i ON t (column2);
@@ -1991,42 +2018,73 @@ Suppose a table has two columns.The first column is the primary key and therefor
    -- Result for the first select: (1,2),(2,1)
    -- Result for the second select: (2,1),(1,2).
 
-.. _sql_start_transaction:
+.. _sql_transactions:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Transactions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**START TRANSACTION**
+.. _sql_start_transaction:
+
+***********************************************
+START TRANSACTION
+***********************************************
+
+Syntax:
 
 :samp:`START TRANSACTION;`
+
+|br|
 
 .. image:: start.svg
     :align: left
 
-Start a transaction. After START TRANSACTION; a transaction is "active". If a transaction is already active, then START TRANSACTION; is illegal.
+|br|
 
-Transactions should be active for fairly short periods of time, to avoid concurrency issues. To end a transaction, say COMMIT or ROLLBACK.
+Start a transaction. After ``START TRANSACTION;``, a transaction is "active".
+If a transaction is already active, then ``START TRANSACTION;`` is illegal.
 
-Just like in NoSQL, transaction control statements are subject to limitations set by the storage engine involved. For memtx storage engine, if a yield happens within an active transaction, the transaction is rolled back. For vinyl engine, yields are allowed. However,transaction control statements still may not work as you expect when run over a network connection: a transaction is associated with a fiber, not a network connection, and different transaction control statements sent via the same network connection may be executed by different fibers from the fiber pool.
+Transactions should be active for fairly short periods of time, to avoid
+concurrency issues. To end a transaction, say ``COMMIT;`` or ``ROLLBACK;``.
+
+Just like in NoSQL, transaction control statements are subject to limitations
+set by the storage engine involved:
+
+* For memtx storage engine, if a yield happens
+  within an active transaction, the transaction is rolled back.
+* For vinyl engine, yields are allowed.
+
+However,transaction control statements still may not work as you expect when
+run over a network connection:
+a transaction is associated with a fiber, not a network connection, and
+different transaction control statements sent via the same network connection
+may be executed by different fibers from the fiber pool.
 
 In order to ensure that all statements are part of the intended transaction,
- put all of them between START TRANSACTION; and COMMIT; or ROLLBACK; then send as a single batch. For example:
+put all of them between ``START TRANSACTION;`` and ``COMMIT;`` or ``ROLLBACK;``
+then send as a single batch. For example:
 
-* Enclose each separate SQL statement in a box.execute() function.
-* Pass all the box.execute() functions to the server in a single message. If you are using a console, you can do this by writing everything on a single line. If you are using net.box, you can do this by putting all the function calls in a single string and calling eval(string).
+* Enclose each separate SQL statement in a
+  :ref:`box.execute() <box-sql_box_execute>` function.
+* Pass all the ``box.execute()`` functions to the server in a single message.
 
+  If you are using a console, you can do this by writing everything on a single
+  line.
 
+  If you are using :ref:`net.box <net_box-module>`, you can do this by putting
+  all the function calls in a single string and calling
+  :ref:`eval(string) <net_box-eval>`.
 
 Example:
 
-.. code-block:: none
+.. code-block:: sql
 
    START TRANSACTION;
 
-Example of a whole transaction sent to a server on localhost:3301 with eval(string):
+Example of a whole transaction sent to a server on ``localhost:3301`` with
+``eval(string)``:
 
-.. code-block:: none
+.. code-block:: lua
 
    net_box = require('net.box')
    conn = net_box.new('localhost', 3301)
@@ -2037,12 +2095,20 @@ Example of a whole transaction sent to a server on localhost:3301 with eval(stri
 
 .. _sql_commit:
 
-**COMMIT**
+***********************************************
+COMMIT
+***********************************************
+
+Syntax:
 
 :samp:`COMMIT;`
 
+|br|
+
 .. image:: commit.svg
     :align: left
+
+|br|
 
 Commit an active transaction, so all changes are made permanent
 and the transaction ends.
@@ -2052,84 +2118,108 @@ If a transaction is not active then SQL statements are committed automatically.
 
 Example:
 
-.. code-block:: none
+.. code-block:: sql
 
    COMMIT;
 
 .. _sql_savepoint:
-
-**SAVEPOINT**
+
+***********************************************
+SAVEPOINT
+***********************************************
+
+Syntax:
 
 :samp:`SAVEPOINT {savepoint-name};`
+
+|br|
 
 .. image:: savepoint.svg
     :align: left
 
-Set a savepoint, so that ROLLBACK TO savepoint-name is possible.
+|br|
+
+Set a savepoint, so that ROLLBACK TO *savepoint-name* is possible.
+
 SAVEPOINT is illegal unless a transaction is active.
+
 If a savepoint with the same name already exists, it is released
 before the new savepoint is set.
 
 Example:
 
-.. code-block:: none
+.. code-block:: sql
 
    SAVEPOINT x;
 
-
-
 .. _sql_release_savepoint:
-
-**RELEASE SAVEPOINT**
+
+***********************************************
+RELEASE SAVEPOINT
+***********************************************
+
+Syntax:
 
 :samp:`RELEASE SAVEPOINT {savepoint-name};`
+
+|br|
 
 .. image:: release.svg
     :align: left
 
+|br|
+
 Release (destroy) a savepoint created by SAVEPOINT statement.
 
 RELEASE is illegal unless a transaction is active.
+
 Savepoints are released automatically when a transaction ends.
 
 Example:
 
-.. code-block:: none
+.. code-block:: sql
 
    RELEASE SAVEPOINT x;
 
 .. _sql_rollback:
 
-**ROLLBACKt**
+***********************************************
+ROLLBACK
+***********************************************
+
+Syntax:
 
 :samp:`ROLLBACK [TO [SAVEPOINT] {savepoint-name}];`
+
+|br|
 
 .. image:: rollback.svg
     :align: left
 
+|br|
 
-If ROLLBACK does not specify a savepoint-name:
-Rollback an active transaction, so all changes
+If ROLLBACK does not specify a *savepoint-name*,
+rollback an active transaction, so all changes
 since START TRANSACTION are cancelled,
 and the transaction ends.
 
-If ROLLBACK does specify a savepoint-name:
-Rollback an active transaction, so all changes 
-since SET savepoint-name are cancelled,
+If ROLLBACK does specify a *savepoint-name*,
+rollback an active transaction, so all changes
+since *savepoint-name* are cancelled,
 and the transaction does not end.
 
 ROLLBACK is illegal unless a transaction is active.
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
-   -- the simple form
+   -- the simple form:
    ROLLBACK;
-   -- the form so changes before a savepoint are not cancelled.
+   -- the form so changes before a savepoint are not cancelled:
    ROLLBACK TO SAVEPOINT x;
 
-.. code-block:: none
+.. code-block:: lua
 
    -- An example of a Lua function that will do a transaction
    -- containing savepoint and rollback to savepoint.
@@ -2145,12 +2235,13 @@ Examples:
    box.execute([[COMMIT;]]) -- make Data change #1 permanent, end the transaction
    end
 
-
 .. _sql_functions:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syntax:
 
 :samp:`function-name (one or more expressions)`
 
@@ -2158,87 +2249,114 @@ Apply a built-in function to one or more expressions and return a scalar value.
 
 Tarantool supports 32 built-in functions.
 
-CHAR([numeric-expression [,numeric-expression...]) |br|
--- return the characters whose Unicode code point values are equal
-to the numeric expressions |br|
-Short example:
-The first 128 Unicode characters are the "ASCII" characters,
-so CHAR(65,66,67) is 'ABC'. |br|
-Long Example: |br|
-For the current list of Unicode characters,
-in order by code point, see
-`www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_.
-In that list, there is a line for a Linear B ideogram |br|
-100CC;LINEAR B IDEOGRAM B240 WHEELED CHARIOT ... |br|
-Therefore, for a string with a chariot in the middle,
-use the concatenation operator || and the CHAR function
-``'start of string ' || CHAR(0X100CC) || ' end of string'``
+``CHAR([numeric-expression [,numeric-expression...])``
+        Return the characters whose Unicode code point values are equal
+        to the numeric expressions.
 
-COALESCE(expression, expression [, expression ...]) |br|
--- return the value of the first non-NULL expression, or, if all
-expression values are NULL, return NULL |br|
-Example: ``COALESCE(NULL, 17, 32)`` is 17
+        Short example:
+        The first 128 Unicode characters are the "ASCII" characters,
+        so CHAR(65,66,67) is 'ABC'.
 
-HEX(string-expression) |br|
--- return the hexadecimal code for each byte in
-string-expression. For ASCII characters, this
-is straightforward because the encoding is
-the same as the code point value. For
-non-ASCII characters, since character strings
-are usually encoded in UTF-8, each character
-will require two or more bytes. |br|
-Example: ``HEX('A')`` will return '41', and ``HEX('Д')`` will return 'D094'.
+        Long example:
+        For the current list of Unicode characters,
+        in order by code point, see
+        `www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_.
+        In that list, there is a line for a Linear B ideogram |br|
+        ``100CC;LINEAR B IDEOGRAM B240 WHEELED CHARIOT ...`` |br|
+        Therefore, for a string with a chariot in the middle,
+        use the concatenation operator ``||`` and the CHAR function
+        ``'start of string ' || CHAR(0X100CC) || ' end of string'``.
 
-IFNULL(expression, expression) |br|
--- return the value of the first non-NULL expression, or, if both
-expression values are NULL, return NULL. Thus
-IFNULL(expression,expression) is the same as
-COALESCE(expression, expression). |br|
-Example: ``IFNULL(NULL, 17)`` is 17
+``COALESCE(expression, expression [, expression ...])``
+        Return the value of the first non-NULL expression, or, if all
+        expression values are NULL, return NULL.
 
-LENGTH(string-expression) |br|
--- return the number of characters in the string-expression,
-or the number of bytes in
-the string-expression. It depends on the data type:
-TEXT (VARCHAR) strings are counted in characters, BLOB (SCALAR) strings
-are counted in bytes and are not ended by the nul character. |br|
-Example: ``LENGTH('ДД')`` is 2, the string has 2 characters |br|
-Example: ``LENGTH(CAST('ДД' AS BLOB))`` is 4, the string has 4 bytes |br|
-Example: ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'. |br|
-Example: ``LENGTH(X'410041')`` is 3, X'...' strings have type BLOB.
+        Example: ``COALESCE(NULL, 17, 32)`` is 17
 
-NULLIF(expression-1, expression-2) |br|
--- return expression-1 if expression-1 <> expression-2, otherwise return NULL |br|
-Example: ``NULLIF('a','A')`` is 'a' |br|
-Example: ``NULLIF(1.00, 1)`` is NULL
+``HEX(string-expression)``
+        Return the hexadecimal code for each byte in
+        *string-expression*. For ASCII characters, this
+        is straightforward because the encoding is
+        the same as the code point value. For
+        non-ASCII characters, since character strings
+        are usually encoded in UTF-8, each character
+        will require two or more bytes.
 
-PRINTF(string-expression [, expression ...])
--- return a string formatted according to the rules of the C sprintf() function,
-where %d%s means the next two arguments are a number and a string, etc.
-If an argument is missing or is NULL, it becomes '0'.if the format requires
-an integer, or it becomes '0.0' if the format requires a decimal number, or
-it becomes '' if the format requires a string. |br|
-Example: ``PRINTF('%da', 5)`` is '5a'
+        Examples:
 
-QUOTE(string-literal) |br|
--- return a string with enclosing quotes if necessary, and with quotes inside
-the enclosing quotes if necessary. This function is useful for creating strings
-which are part of SQL statements, because of SQL's rules that string literals
-are enclosed by single quotes, and single quotes inside such strings are
-shown as two single quotes in a row. |br|
-Example: ``QUOTE('a')`` is '''a'''
+        * ``HEX('A')`` will return '41'
+        * ``HEX('Д')`` will return 'D094'
 
-UNICODE(string-expression) |br|
--- return the Unicode code point value of the first character of
-string-expression. If string-expression is empty, the return is NULL.
-This is the reverse of CHAR(integer). |br|
-Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429)
+``IFNULL(expression, expression)``
+        Return the value of the first non-NULL expression, or, if both
+        expression values are NULL, return NULL. Thus
+        ``IFNULL(expression,expression)`` is the same as
+        ``COALESCE(expression, expression)``.
 
-UPPER(string-expression) |br|
--- return the expression, with lower-case characters converted to upper case
-This is the reverse of LOWER(string-expression). |br|
-Example: ``UPPER('-4Щl')`` is '-4ЩL'
+        Example: ``IFNULL(NULL, 17)`` is 17
 
-VERSION() |br|
--- return the Tarantool version. |br|
-Example: for a March 2019  build VERSION() is  '2.1.1-374-g27283debc'.
+``LENGTH(string-expression)``
+        Return the number of characters in the *string-expression*,
+        or the number of bytes in the *string-expression*.
+        It depends on the data type:
+        TEXT (VARCHAR) strings are counted in characters, BLOB (SCALAR) strings
+        are counted in bytes and are not ended by the nul character.
+
+        Examples:
+
+        * ``LENGTH('ДД')`` is 2, the string has 2 characters
+        * ``LENGTH(CAST('ДД' AS BLOB))`` is 4, the string has 4 bytes
+        * ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'
+        * ``LENGTH(X'410041')`` is 3, X'...' strings have type BLOB
+
+``NULLIF(expression-1, expression-2)``
+        Return *expression-1* if *expression-1* <> *expression-2*,
+        otherwise return NULL.
+
+        Examples:
+
+        * ``NULLIF('a','A')`` is 'a'
+        * ``NULLIF(1.00, 1)`` is NULL
+
+``PRINTF(string-expression [, expression ...])``
+        Return a string formatted according to the rules of the C
+        ``sprintf()`` function, where ``%d%s`` means the next two arguments
+        are a number and a string, etc.
+
+        If an argument is missing or is NULL, it becomes:
+
+        * '0' if the format requires an integer,
+        * '0.0' if the format requires a decimal number,
+        * '' if the format requires a string.
+
+        Example: ``PRINTF('%da', 5)`` is '5a'
+
+``QUOTE(string-literal)``
+        Return a string with enclosing quotes if necessary,
+        and with quotes inside the enclosing quotes if necessary.
+        This function is useful for creating strings
+        which are part of SQL statements, because of SQL's rules that
+        string literals are enclosed by single quotes, and single quotes
+        inside such strings are shown as two single quotes in a row.
+
+        Example: ``QUOTE('a')`` is '''a'''
+
+``UNICODE(string-expression)``
+        Return the Unicode code point value of the first character of
+        *string-expression*.
+        If *string-expression* is empty, the return is NULL.
+        This is the reverse of CHAR(integer).
+
+        Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429)
+
+``UPPER(string-expression)``
+        Return the expression, with lower-case characters converted
+        to upper case.
+        This is the reverse of LOWER(string-expression).
+
+        Example: ``UPPER('-4щl')`` is '-4ЩL'
+
+``VERSION()``
+        Return the Tarantool version.
+
+        Example: for a March 2019 build VERSION() is  '2.1.1-374-g27283debc'
