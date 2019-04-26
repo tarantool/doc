@@ -1730,8 +1730,10 @@ only one of the rows is deleted, not both rows.
 .. _sql_with:
 
 ***********************************************
-WITH clause (common table expression)
+WITH clause
 ***********************************************
+
+**WITH claue (common table expression)**
 
 Syntax:
 
@@ -1795,8 +1797,10 @@ updatable views.
 .. _sql_with_recursive:
 
 *********************************************************
-WITH RECURSIVE clause (iterative common table expression)
+WITH RECURSIVE
 *********************************************************
+
+**WITH RECURSIVE clause (iterative common table expression)**
 
 The real power of WITH lies in the WITH RECURSIVE clause, which is useful when
 it is combined with UNION or UNION ALL:
@@ -1955,10 +1959,42 @@ Example:
    SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;
    -- ... results are different.
 
+.. _sql_indexed_by:
+
+**INDEXED BY clause**
+
+:samp:`INDEXED BY {index-name}`
+
+.. image:: indexed_by.svg
+    :align: left
+
+The INDEXED BY clause may be used in a SELECT, DELETE, or UPDATE statement, immediately after the table-name. For example: |br|
+``DELETE FROM table7 INDEXED BY index7 WHERE column1 = 'a';`` |br|
+In this case the search for 'a' will take place within index7. |br|
+For example: |br|
+``SELECT * FROM table7 NOT INDEXED WHERE column1 = 'a';`` |br|
+In this case the search for 'a' will be done via a search of the whole table, what is sometimes called a "full table scan", even if there is an index for column1.
+
+Ordinarily Tarantool chooses the appropriate index or lookup method depending on a complex set of "optimizer" rules; the INDEXED BY clause overrides the optimizer choice.
+
+Example:
+
+Suppose a table has two columns.The first column is the primary key and therefore it has an automatic index named pk_unnamed_T_1. The second column has an index created by the user. The user selects with INDEXED BY the-index-on-column1, then selects with INDEXED BY the-index-on-column-2.
+
+.. code-block:: none
+
+   CREATE TABLE t (column1 INT PRIMARY KEY, column2 INT);
+   CREATE INDEX i ON t (column2);
+   INSERT INTO t VALUES (1,2),(2,1);
+   SELECT * FROM t INDEXED BY "pk_unnamed_T_1";
+   SELECT * FROM t INDEXED BY i;
+   -- Result for the first select: (1,2),(2,1)
+   -- Result for the second select: (2,1),(1,2).
+
 .. _sql_start_transaction:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Transaction Statements
+Transactions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **START TRANSACTION**
@@ -2108,3 +2144,101 @@ Examples:
    box.execute([[ROLLBACK TO SAVEPOINt "1";]]) -- this is legal but does nothing
    box.execute([[COMMIT;]]) -- make Data change #1 permanent, end the transaction
    end
+
+
+.. _sql_functions:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:samp:`function-name (one or more expressions)`
+
+Apply a built-in function to one or more expressions and return a scalar value.
+
+Tarantool supports 32 built-in functions.
+
+CHAR([numeric-expression [,numeric-expression...]) |br|
+-- return the characters whose Unicode code point values are equal
+to the numeric expressions |br|
+Short example:
+The first 128 Unicode characters are the "ASCII" characters,
+so CHAR(65,66,67) is 'ABC'. |br|
+Long Example: |br|
+For the current list of Unicode characters,
+in order by code point, see
+`www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_.
+In that list, there is a line for a Linear B ideogram |br|
+100CC;LINEAR B IDEOGRAM B240 WHEELED CHARIOT ... |br|
+Therefore, for a string with a chariot in the middle,
+use the concatenation operator || and the CHAR function
+``'start of string ' || CHAR(0X100CC) || ' end of string'``
+
+COALESCE(expression, expression [, expression ...]) |br|
+-- return the value of the first non-NULL expression, or, if all
+expression values are NULL, return NULL |br|
+Example: ``COALESCE(NULL, 17, 32)`` is 17
+
+HEX(string-expression) |br|
+-- return the hexadecimal code for each byte in
+string-expression. For ASCII characters, this
+is straightforward because the encoding is
+the same as the code point value. For
+non-ASCII characters, since character strings
+are usually encoded in UTF-8, each character
+will require two or more bytes. |br|
+Example: ``HEX('A')`` will return '41', and ``HEX('Д')`` will return 'D094'.
+
+IFNULL(expression, expression) |br|
+-- return the value of the first non-NULL expression, or, if both
+expression values are NULL, return NULL. Thus
+IFNULL(expression,expression) is the same as
+COALESCE(expression, expression). |br|
+Example: ``IFNULL(NULL, 17)`` is 17
+
+LENGTH(string-expression) |br|
+-- return the number of characters in the string-expression,
+or the number of bytes in
+the string-expression. It depends on the data type:
+TEXT (VARCHAR) strings are counted in characters, BLOB (SCALAR) strings
+are counted in bytes and are not ended by the nul character. |br|
+Example: ``LENGTH('ДД')`` is 2, the string has 2 characters |br|
+Example: ``LENGTH(CAST('ДД' AS BLOB))`` is 4, the string has 4 bytes |br|
+Example: ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'. |br|
+Example: ``LENGTH(X'410041')`` is 3, X'...' strings have type BLOB.
+
+NULLIF(expression-1, expression-2) |br|
+-- return expression-1 if expression-1 <> expression-2, otherwise return NULL |br|
+Example: ``NULLIF('a','A')`` is 'a' |br|
+Example: ``NULLIF(1.00, 1)`` is NULL
+
+PRINTF(string-expression [, expression ...])
+-- return a string formatted according to the rules of the C sprintf() function,
+where %d%s means the next two arguments are a number and a string, etc.
+If an argument is missing or is NULL, it becomes '0'.if the format requires
+an integer, or it becomes '0.0' if the format requires a decimal number, or
+it becomes '' if the format requires a string. |br|
+Example: ``PRINTF('%da', 5)`` is '5a'
+
+QUOTE(string-literal) |br|
+-- return a string with enclosing quotes if necessary, and with quotes inside
+the enclosing quotes if necessary. This function is useful for creating strings
+which are part of SQL statements, because of SQL's rules that string literals
+are enclosed by single quotes, and single quotes inside such strings are
+shown as two single quotes in a row. |br|
+Example: ``QUOTE('a')`` is '''a'''
+
+UNICODE(string-expression) |br|
+-- return the Unicode code point value of the first character of
+string-expression. If string-expression is empty, the return is NULL.
+This is the reverse of CHAR(integer). |br|
+Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429)
+
+UPPER(string-expression) |br|
+-- return the expression, with lower-case characters converted to upper case
+This is the reverse of LOWER(string-expression). |br|
+Example: ``UPPER('-4Щl')`` is '-4ЩL'
+
+VERSION() |br|
+-- return the Tarantool version. |br|
+Example: for a March 2019  build VERSION() is  '2.1.1-374-g27283debc'.
