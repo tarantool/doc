@@ -160,7 +160,7 @@ Examples:
    CREATE TABLE "t1" ("s1" INT /* synonym of INTEGER */, PRIMARY KEY ("s1"));
 
    -- two columns, one named constraint
-   CREATE TABLE t1 (s1 INTEGER, s2 TEXT, CONSTRAINT c1 PRIMARY KEY (s1, s2));
+   CREATE TABLE t1 (s1 INTEGER, s2 STRING, CONSTRAINT c1 PRIMARY KEY (s1, s2));
 
 Limitations:
 
@@ -1548,8 +1548,8 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then numbers, then text strings, then blob strings.
-* Within text strings, ordering is according to collation.
+* NULLs come first, then numbers (INTEGER or NUMBER), then STRINGs, then BLOBs.
+* Within STRINGs, ordering is according to collation.
 * Collation may be specified within the ORDER BY column-list, or may be default.
 
 Examples:
@@ -2299,7 +2299,8 @@ Tarantool supports 32 built-in functions.
         Return the number of characters in the *string-expression*,
         or the number of bytes in the *string-expression*.
         It depends on the data type:
-        TEXT (VARCHAR) strings are counted in characters, BLOB (SCALAR) strings
+        strings with data type STRING are counted in characters,
+        strings with data type BLOB
         are counted in bytes and are not ended by the nul character.
 
         Examples:
