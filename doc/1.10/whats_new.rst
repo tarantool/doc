@@ -167,7 +167,7 @@ Bugs fixed
 * (Misc) Log can be flooded by warning messages
   Issue `2218 <https://github.com/tarantool/tarantool/issues/2218>`_.
 
-
+Deprecations: the console=true option for :ref:`net.box.new <net_box-new>` is deprecated.
 
 .. _whats_new_1102:
 

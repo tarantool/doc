@@ -199,6 +199,8 @@ Below is a list of all ``net.box`` functions.
       ``conn`` methods ``close()``, ``is_connected()``, ``wait_state()``, ``eval()`` (in this case, both
       binary and Lua console network protocols are supported). With ``console = false`` (default), you can
       also use ``conn`` database methods (in this case, only the binary protocol is supported).
+      Deprecation notice: ``console = true`` is deprecated, users should use
+      :ref:`console.connect() <console-connect>` instead.
 
     * `connect_timeout`: number of seconds to wait before returning "error: Connection timed out".
 
