@@ -340,11 +340,11 @@ if you prefer fast deterministic simple maintenance and searching
 with Tarantool indexes.
 
 But if you want the ordering that you see in phone books and dictionaries,
-then you need Tarantool's **optional collations** -- ``unicode`` and
-``unicode_ci`` -- that allow for ``'a' < 'A' < 'B'`` and ``'a' = 'A' < 'B'``
+then you need Tarantool's optional collations, such as ``unicode`` and
+``unicode_ci``, which allow for ``'a' < 'A' < 'B'`` and ``'a' = 'A' < 'B'``
 respectively.
 
-Optional collations use the ordering according to the
+**The unicode and unicode_ci optional collations** use the ordering according to the
 `Default Unicode Collation Element Table (DUCET) <http://unicode.org/reports/tr10/#Default_Unicode_Collation_Element_Table>`_
 and the rules described in
 `Unicode® Technical Standard #10 Unicode Collation Algorithm (UTS #10 UCA) <http://unicode.org/reports/tr10>`_.
@@ -354,7 +354,7 @@ The only difference between the two collations is about
 * ``unicode`` collation observes L1 and L2 and L3 weights (strength = 'tertiary'),
 * ``unicode_ci`` collation observes only L1 weights (strength = 'primary'), so for example 'a' = 'A' = 'á' = 'Á'.
 
-As an example, let's take some Russian words:
+As an example, take some Russian words:
 
 .. code-block:: text
 
@@ -415,10 +415,39 @@ As an example, let's take some Russian words:
       - - ['ёлка']
       ...
 
-In fact, though, good collation involves much more than these simple examples of
+
+In all, collation involves much more than these simple examples of
 upper case / lower case and accented / unaccented equivalence in alphabets.
 We also consider variations of the same character, non-alphabetic writing systems,
 and special rules that apply for combinations of characters.
+
+For English: use "unicode" and "unicode_ci".
+For Russian: use "unicode" and "unicode_ci" (although a few Russians might
+prefer the Kyrgyz collation which says Cyrillic letters 'Е' and 'Ё' are the
+same with level-1 weights).
+For Dutch, German (dictionary), French, Indonesian, Irish,
+Italian, Lingala, Malay, Portuguese, Southern Soho, Xhosa, or Zulu:
+"unicode" and "unicode_ci" will do.
+
+**The tailored optional collations**: For other languages, Tarantool supplies tailored collations for every
+modern language that has more than a million native speakers, and
+for specialized situations such as the difference between dictionary
+order and telephone book order.
+To see a complete list say ``box.space._collation:select()``.
+The tailored collation names have the form
+unicode_[language code]_[strength] where language code is a standard
+2-character or 3-character language abbreviation, and strength is s1
+for "primary strength" (level-1 weights), s2 for "secondary", s3 for "tertiary".
+Tarantool uses the same language codes as the ones in the "list of tailorable locales" on man pages of
+`Ubuntu <http://manpages.ubuntu.com/manpages/bionic/man3/Unicode::Collate::Locale.3perl.html>`_ and
+`Fedora <http://www.polarhome.com/service/man/?qf=Unicode%3A%3ACollate%3A%3ALocale&af=0&tf=2&of=Fedora>`_.
+Charts explaining the precise differences from DUCET order are
+in the
+`Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
+
+
+
+
 
 .. _index-box_sequence:
 
