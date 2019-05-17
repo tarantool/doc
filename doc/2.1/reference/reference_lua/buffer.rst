@@ -63,4 +63,65 @@ its own routine for decoding MsgPack strings.
         this case is ``msgpack.ibuf_decode(ibuf.rpos)``. Starting
         with Tarantool version 1.7.7, ``ibuf_decode`` is deprecated.
 
+
+.. _buffer-module_and_skip_header:
+
+**Module buffer and skip-header**
+
+The example in the previous section
+
+    .. code-block:: tarantoolsession
+
+        tarantool> msgpack.decode_unchecked(ibuf.rpos)
+        ---
+        - {48: [['ABCDE', 12345]]}
+        - 'cdata<char *>: 0x7f97ba10c041'
+        ...
+
+showed that, ordinarily, the response from net.box includes a header --
+48 (hexadecimal 30) is the :ref:`key <internals-unified_packet_structure>`
+for IPROTO_DATA. But in some situations,
+for example when passing the buffer to a C function
+that expects a MsgPack byte array without a header,
+the header can be skipped. This is done by specifying
+``skip-header=true`` as an option to
+:ref:`conn.space.space-name:select{...} <conn-select>` or
+:ref:`conn.space.space-name:insert{...} <conn-insert>` or
+:ref:`conn.space.space-name:replace{...} <conn-replace>` or
+:ref:`conn.space.space-name:update{...} <conn-update>` or
+:ref:`conn.space.space-name:upsert{...} <conn-upsert>` or
+:ref:`conn.space.space-name:delete{...} <conn-delete>`.
+The default is ``skip-header=false``.
+
+Now here is the same example, except that ``skip_header=true`` is used.
+
+    .. code-block:: lua
+
+        box.cfg{listen=3302}
+        buffer = require('buffer')
+        ibuf = buffer.ibuf()
+        net_box = require('net.box')
+        conn = net_box.connect('farhost:3301')
+        buffer = require('buffer')
+        conn.space.T:select({},{buffer=ibuf, skip_header=true})
+        msgpack = require('msgpack')
+        msgpack.decode_unchecked(ibuf.rpos)
+
+    The result of the final request looks like this:
+
+    .. code-block:: tarantoolsession
+
+        tarantool>         msgpack.decode_unchecked(ibuf.rpos)
+        ---
+        - [['ABCDE', 12345]]
+        - 'cdata<char *>: 0x7f8fd102803f'
+        ...
+
+    Notice that the IPROTO_DATA header (48) is gone.
+
+    The result is still inside an array, as is clear from the fact
+    that it is shown inside square brackets. It is possible to skip
+    the array header too, with
+    :ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`.
+
 .. _MsgPack: http://msgpack.org/

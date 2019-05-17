@@ -310,6 +310,7 @@ Below is a list of all ``net.box`` functions.
 
         :samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
+        For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
 
@@ -345,6 +346,7 @@ Below is a list of all ``net.box`` functions.
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:insert(...)`.
+        For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
 
@@ -358,6 +360,7 @@ Below is a list of all ``net.box`` functions.
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:replace(...)`.
+        For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
 
@@ -371,6 +374,7 @@ Below is a list of all ``net.box`` functions.
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:update(...)`.
+        For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
 
@@ -384,6 +388,7 @@ Below is a list of all ``net.box`` functions.
 
         :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:upsert(...)`.
+        For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
     .. _conn-delete:
 
@@ -391,6 +396,7 @@ Below is a list of all ``net.box`` functions.
 
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
         of the local call :samp:`box.space.{space-name}:delete(...)`.
+        For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
     .. _net_box-eval:
 

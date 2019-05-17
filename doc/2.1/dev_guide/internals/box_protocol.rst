@@ -69,6 +69,8 @@ line ending with a newline character (:code:`\n`). The first line contains the i
 version and protocol type. The second line contains up to 44 bytes of base64-encoded
 random string, to use in the authentication packet, and ends with up to 23 spaces.
 
+.. _internals-unified_packet_structure:
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Unified packet structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
