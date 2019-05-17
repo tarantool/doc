@@ -39,6 +39,13 @@ Below is a list of all ``msgpack`` functions and members.
     | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
     | <msgpack-null>`                      |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.decode_array_header    | Skip array header in a MsgPack  |
+    | <msgpack-decode_array_header>`       | string                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.decode_map_header      | Skip map header in a MsgPack    |
+    | <msgpack-decode_map_header>`         | string                          |
+    +--------------------------------------+---------------------------------+
+
 
 .. module:: msgpack
 
@@ -101,6 +108,62 @@ Below is a list of all ``msgpack`` functions and members.
 
     A value comparable to Lua "nil" which may be useful as a placeholder in a
     tuple.
+
+.. _msgpack-decode_array_header:
+
+.. function:: decode_array_header(byte-array, size)
+
+    Call the mp_decode_array function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library
+    and return the array size and a pointer to the first array component.
+    A subsequent call to ``msgpack_decode`` can decode the component instead of the whole array.
+
+    :param byte-array: a pointer to a byte array formatted as MsgPack.
+    :param size: a number greater than or equal to the string's length
+
+    :return:
+
+      * the size of the array;
+      * a pointer to after the array header.
+
+    .. code-block:: none
+
+        -- Example of decode_array_header
+        -- Suppose we have the raw data '\x93\x01\x02\x03'.
+        -- \x93 is MsgPack encoding for a header of a three-item array.
+        -- We want to skip it and decode the next three items.
+        msgpack=require('msgpack'); ffi=require('ffi')
+        x,y=msgpack.decode_array_header(ffi.cast('char*','\x93\x01\x02\x03'),4)
+        a=msgpack.decode(y,1);b=msgpack.decode(y+1,1);c=msgpack.decode(y+2,1);
+        a,b,c
+        -- The result will be: 1,2,3.
+
+.. _msgpack-decode_map_header:
+
+.. function:: decode_map_header(byte-array, size)
+
+    Call the mp_decode_map function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library
+    and return the map size and a pointer to the first map component.
+    A subsequent call to ``msgpack_decode`` can decode the component instead of the whole map.
+
+    :param byte-array: a pointer to a byte array formatted as MsgPack.
+    :param size: a number greater than or equal to the byte array's length
+
+    :return:
+
+      * the size of the map;
+      * a pointer to after the map header.
+
+    .. code-block:: none
+
+        -- Example of decode_map_header
+        -- Suppose we have the raw data '\x81\xa2\x41\x41\xc3'.
+        -- \x81 is MsgPack encoding for a header of a one-item map.
+        -- We want to skip it and decode the next map item.
+        msgpack=require('msgpack'); ffi=require('ffi')
+        x,y=msgpack.decode_map_header(ffi.cast('char*','\x81\xa2\x41\x41\xc3'),5)
+        a=msgpack.decode(y,3);b=msgpack.decode(y+3,1)
+        x,a,b
+        -- The result will be: 1,"AA", true.
 
 =================================================
                     Example
