@@ -842,7 +842,8 @@ Below is a list of all ``box.space`` functions and members.
             ...
 
         **Note re storage engine:** vinyl supports ``len()`` but the result may be approximate.
-        If an exact result is necessary then use :ref:`count() <box_space-count>` or ``#select(...)``.
+        If an exact result is necessary then use :ref:`count() <box_space-count>`
+        or :ref:`pairs():length() <box_space-pairs>`.
 
     .. _box_space-on_replace:
 
