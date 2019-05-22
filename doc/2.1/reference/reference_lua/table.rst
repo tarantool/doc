@@ -10,26 +10,20 @@ The :code:`table` module has everything in the
 `standard Lua table library <https://www.lua.org/pil/19.html>`_,
 and some Tarantool extensions.
 
-You can see this by saying "table":
-
-    .. code-block:: tarantoolsession
-
-        tarantool> table
-        ---
-        - maxn: 'function: builtin#90'
-          copy: 'function: 0x41e9d300'
-          new: 'function: builtin#94'
-          clear: 'function: builtin#95'
-          move: 'function: 0x41e918e0'
-          foreach: 'function: 0x41e91588'
-          sort: 'function: builtin#93'
-          remove: 'function: 0x41e917c8'
-          foreachi: 'function: 0x41e914b8'
-          deepcopy: 'function: 0x41e9d2e0'
-          getn: 'function: 0x41e91620'
-          concat: 'function: builtin#92'
-          insert: 'function: builtin#91'
-        ...
+You can see this by saying "table": you will see this list of functions:
+``clear`` (LuaJIT extension = erase all elements),
+`concat <https://www.lua.org/manual/5.1/manual.html#pdf-table.concat>`_ (concatenate),
+``copy`` (make a copy of an array),
+``deepcopy`` (see description below),
+``foreach``,
+``foreach1``,
+`getn <https://www.lua.org/pil/19.1.html>`_ (get the number of elements in an array),
+`insert <https://www.lua.org/manual/5.1/manual.html#pdf-table.insert>`_ (insert an element into an array),
+`maxn <https://www.lua.org/manual/5.1/manual.html#pdf-table.maxn>`_ (get largest index)
+`move <https://www.lua.org/manual/5.3/manual.html#pdf-table.move>`_ (move elements between tables),
+``new`` (LuaJIT extension = return a new table with pre-allocated elements),
+`remove <https://www.lua.org/manual/5.1/manual.html#pdf-table.remove>`_ (remove an element from an array),
+`sort <https://www.lua.org/manual/5.1/manual.html#pdf-table.sort>`_ (sort the elements of an array).
 
 In this section we only discuss the additional function
 that the Tarantool developers have added: ``deepcopy``.

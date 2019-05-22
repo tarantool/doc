@@ -78,7 +78,7 @@ transferred to the replica before crash. If you were able to salvage the master
 
       .. code-block:: console
 
-          $ tarantoolctl <new_master_uri> <xlog_file> play --from-lsn 23425 --replica 1
+          $ tarantoolctl <new_master_uri> <xlog_file> play --from 23425 --replica 1
 
 .. _admin-disaster_recovery-master_master:
 

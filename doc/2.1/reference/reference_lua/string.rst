@@ -51,8 +51,11 @@ Below is a list of all additional ``string`` functions.
     | :ref:`string.rstrip()                | Remove characters from the      |
     | <string-rstrip>`                     | right of a string               |
     +--------------------------------------+---------------------------------+
-    | :ref:`string.strip()                 | Remove characters from the      |
-    | <string-strip>`                      | left and right of a string      |
+    | :ref:`string.split()                 | Split a string into a table of  |
+    | <string-split>`                      | strings                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`string.strip()                 | Remove spaces on the left and   |
+    | <string-strip>`                      | right of a string               |
     +--------------------------------------+---------------------------------+
 
 .. _string-ljust:
@@ -213,33 +216,6 @@ Below is a list of all additional ``string`` functions.
         - true
         ...
 
-.. _string-split:
-
-.. function:: split(input-string [, split-string])
-
-    Split ``input-string`` into one or more output strings
-    in a table. The places to split are the places where
-    ``split-string`` occurs.
-
-    :param input-string: (string) the string to split
-    :param split-string: (string) the string to find within ``input-string``.
-                         Default = space.
-
-    :Return: table of strings that were split from ``input-string``
-    :Rtype: table
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> fiber = require('string')
-        ---
-        ...
-        tarantool> string.split("A*BXX C", "XX")
-        ---
-        - - A*B
-          - ' C'
-        ...
 
 .. _string-lstrip:
 
@@ -291,6 +267,34 @@ Below is a list of all additional ``string`` functions.
         tarantool> string.rstrip(' ABC ')
         ---
         - ' ABC'
+        ...
+
+.. _string-split:
+
+.. function:: split(input-string [, split-string])
+
+    Split ``input-string`` into one or more output strings
+    in a table. The places to split are the places where
+    ``split-string`` occurs.
+
+    :param input-string: (string) the string to split
+    :param split-string: (string) the string to find within ``input-string``.
+                         Default = space.
+
+    :Return: table of strings that were split from ``input-string``
+    :Rtype: table
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fiber = require('string')
+        ---
+        ...
+        tarantool> string.split("A*BXX C", "XX")
+        ---
+        - - A*B
+          - ' C'
         ...
 
 .. _string-strip:

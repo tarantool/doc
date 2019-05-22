@@ -141,17 +141,18 @@ The only explicit yield requests in Tarantool are :ref:`fiber.sleep() <fiber-sle
 and :ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields
 because Tarantool is designed to avoid blocking.
 
-Database operations usually do not yield, but it depends on the engine:
-
-* In memtx, reads or writes do not require I/O and do not yield.
-
-* In vinyl, not all data is in memory, and SELECT often incurs a disc I/O,
-  and therefore yields, while a write may stall waiting for memory to free up,
-  thus also causing a yield.
-
-In the "autocommit" mode, all data change operations are followed by an automatic
-commit, which yields. So does an explicit commit of a multi-statement transaction,
-:ref:`box.commit() <box-commit>`.
+Database requests imply yields if and only if there is disk I/O.
+For memtx, since all data is in memory, there is no disk I/O during the request.
+For vinyl, since some data may not be in memory, there may be disk I/O
+for a read (to fetch data from disk) or for a write (because a stall
+may occur while waiting for memory to be free).
+For both memtx and vinyl, since data-change requests must be recorded in the WAL,
+there is normally a commit.
+A commit happens automatically after every request in default "autocommit" mode,
+or a commit happens at the end of a transaction in "transaction" mode,
+when a user deliberately commits by calling :ref:`box.commit() <box-commit>`.
+Therefore for both memtx and vinyl, because there can be disk I/O,
+some database operations may imply yields.
 
 Many functions in modules :ref:`fio <fio-section>`, :ref:`net_box <net_box-module>`,
 :ref:`console <console-module>` and :ref:`socket <socket-module>`
