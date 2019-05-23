@@ -78,7 +78,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E021-10    | Implicit casting among the fixed-length and   | ``select * from tm where char_column > varchar_column;`` | Fail, there is no fixed-length character string type.   |
     |            | variable-length character string types        |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-11    | POSITION function                             | ``select position(x in y) from z;``                      | Fail. There is no such function.                        |
+    | E021-11    | POSITION function                             | ``select position(x in y) from z;``                      | Fail. Tarantool's function uses ',' rather than 'in'    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021-12    | Character comparison                          | ``select * from t where s1 > 'a';``                      | Okay. We should note here that comparisons use a binary |
     |            |                                               |                                                          | collation by default, but it is easy to specify unicode |
@@ -413,7 +413,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | SQL functions.                                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-02    | User-defined procedures with no overloading   | ``create procedure p () begin end;``                     | Fail. Tarantool doesn't support user-defined            |
-    |            |                                               |                                                          | proceduress.                                            |
+    |            |                                               |                                                          | procedures.                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321-03    | Function invocation                           | ``select f(1) from t;``                                  | Okay. Tarantool can invoke Lua user-defined functions.  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
