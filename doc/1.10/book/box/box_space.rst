@@ -1033,6 +1033,10 @@ Below is a list of all ``box.space`` functions and members.
         instead of "equal to"), see the later section :ref:`index_object:pairs
         <box_index-index_pairs>`.
 
+        For information about iterators' internal structures see
+        `"Under the Hood" <https://luafun.github.io/under_the_hood.html>`_
+        in the the Lua functional documentation.
+
         **Example:**
 
         .. code-block:: tarantoolsession
