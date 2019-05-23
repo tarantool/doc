@@ -112,18 +112,20 @@ Suppose that a digest is done for a string 'A', then a new part 'B' is appended
 to the string, then a new digest is required. The new digest could be recomputed
 for the whole string 'AB', but it is faster to take what was computed before for
 'A' and apply changes based on the new part 'B'. This is called multi-step or
-"incremental" digesting, which Tarantool supports for all crypto functions..
+"incremental" digesting, which Tarantool supports for all crypto functions.
 
 .. code-block:: lua
 
       crypto = require('crypto')
 
       -- print aes-192 digest of 'AB', with one step, then incrementally
-      print(crypto.cipher.aes192.cbc.encrypt('AB', 'key'))
-      c = crypto.cipher.aes192.cbc.encrypt.new()
-      c:init()
-      c:update('A', 'key')
-      c:update('B', 'key')
+      key = 'key/key/key/key/key/key/'
+      iv =  'iviviviviviviviv'
+      print(crypto.cipher.aes192.cbc.encrypt('AB', key, iv))
+      c = crypto.cipher.aes192.cbc.encrypt.new(key)
+      c:init(nil, iv)
+      c:update('A')
+      c:update('B')
       print(c:result())
       c:free()
 
