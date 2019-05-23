@@ -10,6 +10,7 @@
 * :ref:`wal_dir <cfg_basic-wal_dir>`
 * :ref:`work_dir <cfg_basic-work_dir>`
 * :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
+* :ref:`strip_core <cfg_basic-strip_core>`
 
 .. _cfg_basic-background:
 
@@ -219,3 +220,16 @@
     | Type: integer
     | Default: 4
     | Dynamic: yes
+
+.. _cfg_basic-strip_core:
+
+.. confval:: strip_core
+
+    Whether coredump files should include memory allocated for tuples.
+    (This can be large if Tarantool runs under heavy load.)
+    Setting to ``true`` means "do not include".
+
+    | Type: boolean
+    | Default: false
+    | Dynamic: no
+
