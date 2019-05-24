@@ -511,6 +511,45 @@ Below is a list of all ``box.space`` functions and members.
     **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
     secondary indexes must be created before tuples are inserted.
 
+    .. _box_space-path_multikey:
+
+    **Using the path option with [*]**  The string in a path option can contain '[*]'
+    which is called an array index placeholder.
+    Indexes defined with this are useful for JSON documents that all have the same structure.
+    For example, when creating an index on field#2 for a string document that will start
+    with ``{'data': [{'name': '...'}, {'name': '...'}]``, the parts section in the
+    create_index request could look like: ``parts = {{2, 'str', path = 'data[*].name'}}``.
+    Then tuples containing names can be retrieved quickly with ``index_object:select({key-value})``.
+    In fact a single field can have multiple keys, as in this example which retrieves the
+    same tuple twice because there are two keys 'A' and 'B' which both match the request:
+
+    .. code-block:: none
+
+        s = box.schema.space.create('json_documents')
+        s:create_index('primarykey')
+        i = s:create_index('multikey', {parts = {{2, 'str', path = 'data[*].name'}}})
+        s:insert({1,
+                 {data = {{name='A'},
+                          {name='B'}},
+                  extra_field = 1}})
+        i:select({''},{iterator='GE'})
+        --  The result of the select request looks like this:
+        --  tarantool> i:select({''},{iterator='GE'})
+        --  ---
+        --  - - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
+        --    - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
+        --  ...
+
+    Some restrictions exist:
+    () '[*]' must be alone or must be at the end of a name in the path;
+    () '[*]' must not appear twice in the path;
+    () if an index has a path with x[*] then no other index can have a path with x.component;
+    () '[*]' must not appear in the path of a primary-key ;
+    () if an index has ``unique=true`` and has a path with '[*]' then duplicate keys
+    from different tuples are disallowed but duplicate keys for the same tuple are allowed;
+    () As with :ref:`Using the path option for map fields <box_space-path>`, the field's value
+    must have the structure that the path definition implies, or be nil (nil is not indexed).
+
     .. _box_space-delete:
 
     .. method:: delete(key)
