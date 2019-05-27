@@ -16,8 +16,6 @@ so on.
                                     Index
 ===============================================================================
 
-Below is a list of all ``tap`` functions.
-
 .. container:: table
 
     .. rst-class:: left-align-column-1
@@ -79,6 +77,9 @@ Below is a list of all ``tap`` functions.
     | <taptest-istype>` |br|               |                                 |
     | :ref:`taptest:iscdata()              |                                 |
     | <taptest-istype>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`taptest.strict                 | Flag, true if comparisons with  |
+    | <taptest-strict>`                    | nil should be strict            |
     +--------------------------------------+---------------------------------+
 
 .. module:: tap
@@ -322,6 +323,20 @@ Below is a list of all ``tap`` functions.
 
         :return: true or false.
         :rtype:  boolean
+
+    .. _taptest-strict:
+
+    .. data:: strict
+
+        Set ``taptest.strict=true`` if :ref:`taptest:is() <taptest-is>`
+        and :ref:`taptest:isnt() <taptest-isnt>`
+        and :ref:`taptest:is_deeply() <taptest-is_deeply>`
+        must be compared strictly with ``nil``.
+        Set ``taptest.strict=false`` if ``nil`` and ``box.NULL`` both have the same effect.
+        The default is false.
+        For example, if and only if ``taptest.strict=true`` has happened,
+        then ``taptest:is_deeply({a = box.NULL}, {})``
+        will return ``false``.
 
 .. _prove: https://metacpan.org/pod/distribution/Test-Harness/bin/prove
 .. _TAP protocol: https://en.wikipedia.org/wiki/Test_Anything_Protocol
