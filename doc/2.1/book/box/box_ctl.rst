@@ -6,10 +6,11 @@
 
 .. module:: box.ctl
 
-The ``box.ctl`` submodule contains two wait functions: ``wait_ro``
-(wait until read-only)
-and ``wait_rw`` (wait until read-write).
-The wait functions are useful during initialization of a server.
+The ``box.ctl`` submodule contains two wait functions
+and two functions related to triggers.
+
+The wait functions ``wait_ro`` (wait until read-only)
+and ``wait_rw`` (wait until read-write) are useful during initialization of a server.
 
 A particular use is for :ref:`box_once() <box-once>`.
 For example, when a replica is initializing, it may call
