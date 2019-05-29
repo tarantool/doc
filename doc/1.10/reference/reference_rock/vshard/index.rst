@@ -544,7 +544,7 @@ distances between replicas within a replica set.
 
 Weights can be used, for example, to define the physical distance between the
 ``router`` and each replica in each replica set. In such a case read requests
-are sent to the literary nearest replica.
+are sent to the nearest replica.
 
 Setting weights can also help to define the most powerful replicas: the ones that
 can process the largest number of requests per second.
@@ -623,7 +623,9 @@ replica set with more memory space.
 Rebalancing process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is an **etalon number** of buckets for a replica set. If there is no deviation
+There is an **etalon number** of buckets for a replica set.
+(Etalon in this context means "ideal".)
+If there is no deviation
 from this number in the whole replica set, then the buckets are distributed evenly.
 
 The etalon number is calculated automatically considering the number of buckets
@@ -1183,6 +1185,8 @@ Router public API
 * :ref:`vshard.router.callro(bucket_id, function_name, {argument_list}, {options}) <router_api-callro>`
 * :ref:`vshard.router.callrw(bucket_id, function_name, {argument_list}, {options}) <router_api-callrw>`
 * :ref:`vshard.router.callre(bucket_id, function_name, {argument_list}, {options}) <router_api-callre>`
+* :ref:`vshard.router.callbro(bucket_id, function_name, {argument_list}, {options}) <router_api-callbro>`
+* :ref:`vshard.router.callbre(bucket_id, function_name, {argument_list}, {options}) <router_api-callbre>`
 * :ref:`vshard.router.route(bucket_id) <router_api-route>`
 * :ref:`vshard.router.routeall() <router_api-routeall>`
 * :ref:`vshard.router.bucket_id(key) <router_api-bucket_id>`
@@ -1247,12 +1251,12 @@ Router public API
 
 .. function:: vshard.router.call(bucket_id, mode, function_name, {argument_list}, {options})
 
-    Call the user function on the shard storing the bucket with the specified
-    bucket id value. See the :ref:`Processing requests <vshard-process-requests>` section
+    Call the function identified by function-name on the shard storing the bucket identified by bucket_id.
+    See the :ref:`Processing requests <vshard-process-requests>` section
     for details on function operation.
 
     :param bucket_id: a bucket identifier
-    :param mode: either a string = 'read'|'write', or a map with mode='read|write' and/or prefer_replica=true|false.
+    :param mode: either a string = 'read'|'write', or a map with mode='read'|'write' and/or prefer_replica=true|false and/or balance=true|false.
     :param function_name: a function to execute
     :param argument_list: an array of the function's arguments
     :param options:
@@ -1263,11 +1267,15 @@ Router public API
 
     The mode parameter has two possible forms: a string or a map. Examples of the string form are:
     'read', 'write'. Examples of the map form are: {mode='read'}, {mode='write'},
-    {mode='read', prefer_replica=true}. If 'write' is specified then the target is the master.
+    {mode='read', prefer_replica=true}, {mode='read', balance=true}, {mode='read', prefer_replica=true, balance=true}.
+    If 'write' is specified then the target is the master.
     If prefer_replica=true is specified then the preferred target is one of the replicas, but
     the target is the master if there is no conveniently available replica.
     It may be good to specify prefer_replica=true for functions which are expensive in terms
     of resource use, to avoid slowing down the master.
+    If balance=true then there is load balancing -- reads are distributed over all the nodes
+    in the replica set in round-robin fashion, with a preference for replicas if
+    prefer_replica=true is also set.
 
     :Return:
 
@@ -1296,8 +1304,8 @@ Router public API
 
 .. function:: vshard.router.callro(bucket_id, function_name, {argument_list}, {options})
 
-    Call the user function on the shard storing the bucket with the specified
-    bucket_id value in read-only mode (similar to calling vshard.router.call
+    Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
+    in read-only mode (similar to calling vshard.router.call
     with mode='read'). See the
     :ref:`Processing requests <vshard-process-requests>` section for details on
     function operation.
@@ -1328,8 +1336,8 @@ Router public API
 
 .. function:: vshard.router.callrw(bucket_id, function_name, {argument_list}, {options})
 
-    Call the user function on the shard storing the bucket with the specified
-    bucket_id value in read-write mode (similar to calling vshard.router.call
+    Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
+    in read-write mode (similar to calling vshard.router.call
     with mode='write'). See the :ref:`Processing requests <vshard-process-requests>` section
     for details on function operation.
 
@@ -1359,8 +1367,8 @@ Router public API
 
 .. function:: vshard.router.callre(bucket_id, function_name, {argument_list}, {options})
 
-    Call the user function on the shard storing the bucket with the specified
-    bucket_id value in read-only mode (similar to calling vshard.router.call
+    Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
+    in read-only mode (similar to calling vshard.router.call
     with mode='read'), with preference for a replica rather than a master
     (similar to calling vshard.router.call with prefer_replica = true). See the
     :ref:`Processing requests <vshard-process-requests>` section for details on
@@ -1388,6 +1396,21 @@ Router public API
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for this error code.
 
+.. _router_api-callbro:
+
+.. function:: vshard.router.callbro(bucket_id, function_name, {argument_list}, {options})
+
+    This has the same effect as
+    :ref:`vshard.router.call() <router_api-call>`
+    with mode parameter = {mode='read', balance=true}.
+
+.. _router_api-callbre:
+
+.. function:: vshard.router.callbre(bucket_id, function_name, {argument_list}, {options})
+
+    This has the same effect as
+    :ref:`vshard.router.call() <router_api-call>`
+    with mode parameter = {mode='read', balance=true, prefer_replica=true}.
 
 .. _router_api-route:
 
@@ -1853,7 +1876,7 @@ Storage public API
 
 .. function:: vshard.storage.rebalancing_is_in_progress()
 
-    A flag indicating whether rebalancing is in progress. The result is true
+    Return a flag indicating whether rebalancing is in progress. The result is true
     if the node is currently applying routes received from a rebalancer node in
     the special fiber.
 
@@ -1861,7 +1884,7 @@ Storage public API
 
 .. function:: vshard.storage.is_locked()
 
-    A flag indicating whether a rebalancer is locked.
+    Return a flag indicating whether storage is invisible to the rebalancer.
 
 .. _storage_api-rebalancer_disable:
 
