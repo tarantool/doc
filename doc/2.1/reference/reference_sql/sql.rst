@@ -1733,7 +1733,7 @@ only one of the rows is deleted, not both rows.
 WITH clause
 ***********************************************
 
-**WITH claue (common table expression)**
+**WITH clause (common table expression)**
 
 Syntax:
 
@@ -1773,7 +1773,7 @@ can be replaced with:
 
 .. code-block:: sql
 
-   WITH S AS (SELECT s1 FROM x) SELECT * FROM t WHERE a < S AND b < S;
+   WITH S AS (SELECT s1 FROM x) SELECT * FROM t,S WHERE a < S.s1 AND b < S.s1;
 
 This "factoring out" of a repeated expression is regarded as good practice.
 

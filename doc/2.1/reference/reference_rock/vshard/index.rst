@@ -379,7 +379,7 @@ All requests are forwarded to the ``router`` first. The only operation supported
 by the ``router`` is ``call``. The operation is performed via ``vshard.router.call()``
 function:
 
-.. code-block:: lua
+.. code-block:: none
 
     result = vshard.router.call(<bucket_id>, <mode(read:write)>, <function_name>, {<argument_list>}, {<opts>})
 
