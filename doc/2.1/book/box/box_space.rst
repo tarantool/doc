@@ -331,6 +331,12 @@ Below is a list of all ``box.space`` functions and members.
         The current values can be seen by selecting from
         :ref:`box.space._index <box_space-index>`.
 
+        **Note re storage engine:** memtx operations will
+        :ref:`yield <atomic-cooperative_multitasking>` occasionally while building 
+        or rebuilding a large index, so that other requests will not be blocked.
+        If the other requests cause an illegal situation such as a duplicate key
+        in a unique index, the index building will fail.
+
         **Possible errors:**
 
         * too many parts;
