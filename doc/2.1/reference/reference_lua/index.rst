@@ -39,6 +39,7 @@ This reference covers Tarantool's built-in Lua modules.
     socket
     strict
     string
+    swim
     table
     tap
     tarantool
