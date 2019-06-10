@@ -159,7 +159,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         gc_mode (enum) -- dead member collection mode.
         If gc_mode == 'off' then SWIM never removes dead
         members from the member table (though users may remove them
-        with :ref:`swim_member_object:delete() <swim-delete>`), and
+        with :ref:`swim_object:remove_member() <swim-remove_member>`), and
         SWIM will continue to ping them as if they were alive.
         If gc_mode == 'on' then SWIM removes dead members
         from the member table after one round.
@@ -282,9 +282,8 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :param table cfg: description of the member
 
-        The cfg table may have the same components as in the
-        description of :ref:`swim_object:cfg() <swim-cfg>`.
-        The only ones that matter are uuid and uri, which are mandatory.
+        The cfg table has two mandatory components, uuid and uri, which have
+        the same format as uuid and uri in the table for :ref:`swim_object:cfg() <swim-cfg>`.
 
         :return: true if member is added
         :return: nil, err if an error occurred. err is an error object
@@ -313,7 +312,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         is listening at that address, it will receive the ping, respond with
         an ACK (acknowledgment) message containing information such as UUID.
         That information will 
-        it will be added to the
+        be added to the
         member table. ``swim_object:probe_member`` is similar to
         :ref:`swim_object:add_member() <swim-add_member>`, but it
         does not require UUID, and it is not reliable because it uses UDP.
@@ -762,7 +761,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         Return the status, which may be 'alive', 'suspected',
         'left', or 'dead'.
 
-        :return: string 'suspected' | 'suspected' | 'left' | dead'
+        :return: string 'alive' | 'suspected' | 'left' | dead'
 
     .. _swim-uuid:
 
@@ -920,9 +919,7 @@ The protocol is encoded as
 `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_.
 
 
-        .. code-block:: tarantoolsession
-
-            tarantool> tarantool> swim = require('swim')
+        .. code-block:: none
 
             SWIM packet structure:
 
