@@ -31,6 +31,7 @@ This reference covers Tarantool's built-in Lua modules.
     http
     iconv
     json
+    key_def
     log
     msgpack
     net_box
