@@ -33,7 +33,7 @@ to extract or compare the index key values.
 
     Other components are optional.
 
-    Example: key_def.new({{type='unsigned',fieldno=1}})
+    Example: ``key_def.new({{type = 'unsigned', fieldno = 1}})``
 
 .. _key_def-object:
 
@@ -63,7 +63,8 @@ to extract or compare the index key values.
 
             -- Suppose that an item has five fields
             -- 1, 99.5, 'X', nil, 99.5
-            -- and the fields that we care about are #3 (a string) and #1 (an integer).
+            -- and the fields that we care about are
+            -- #3 (a string) and #1 (an integer).
             -- We can define those fields with k = key_def.new
             -- and extract the values with k:extract_key.
 
@@ -71,11 +72,12 @@ to extract or compare the index key values.
             ---
             ...
 
-            tarantool> k = key_def.new({{type='string',fieldno=3},{type='unsigned',fieldno=1}})
+            tarantool> k = key_def.new({{type = 'string', fieldno = 3},
+            >                           {type = 'unsigned', fieldno =1 }})
             ---
             ...
 
-            tarantool> k:extract_key({1,99.5,'X',nil,99.5})
+            tarantool> k:extract_key({1, 99.5, 'X', nil, 99.5})
             ---
             - ['X', 1]
             ...
@@ -91,10 +93,10 @@ to extract or compare the index key values.
             -- The result will be the same.
             key_def = require('key_def')
             box.schema.space.create('T')
-            i = box.space.T:create_index('I',{parts={3, 'string', 1, 'unsigned'}})
-            box.space.T:insert{1,99.5,'X',nil,99.5}
+            i = box.space.T:create_index('I',{parts={3,'string',1,'unsigned'}})
+            box.space.T:insert{1, 99.5, 'X', nil, 99.5}
             k = key_def.new(i.parts)
-            k:extract_key(box.space.T:get({'X',1}))
+            k:extract_key(box.space.T:get({'X', 1}))
 
         **Example #3**
 
@@ -139,14 +141,13 @@ to extract or compare the index key values.
 
            -- This will return 0
            key_def = require('key_def')
-           k = key_def.new({{type='string',fieldno=3,collation='unicode_ci'},{type='unsigned',fieldno=1}})
-           k:compare({1,99.5,'X',nil,99.5},{1,99.5,'x',nil,99.5})
+           k = key_def.new({{type='string',fieldno=3,collation='unicode_ci'},
+                            {type='unsigned',fieldno=1}})
+           k:compare({1, 99.5, 'X', nil, 99.5}, {1, 99.5, 'x', nil, 99.5})
 
     .. _key_def-compare_with_key:
 
-    .. method:: compare-with-key
-
-    .. method:: compare(tuple_1, tuple_2)
+    .. method:: compare_with_key(tuple_1, tuple_2)
 
         Compare the key fields of tuple_1 to all the fields of tuple_2.
         This is the same as :ref:`key_def_object:compare() <key_def-compare>`
@@ -166,8 +167,9 @@ to extract or compare the index key values.
 
            -- This will return 0
            key_def = require('key_def')
-           k = key_def.new({{type='string',fieldno=3,collation='unicode_ci'},{type='unsigned',fieldno=1}})
-           k:compare_with_key({1,99.5,'X',nil,99.5},{'x',1})
+           k = key_def.new({{type='string',fieldno=3,collation='unicode_ci'},
+                            {type='unsigned',fieldno=1}})
+           k:compare_with_key({1, 99.5, 'X', nil, 99.5}, {'x', 1})
 
     .. _key_def-merge:
 
@@ -188,8 +190,9 @@ to extract or compare the index key values.
 
            -- This will return a key definition with fieldno=3 and fieldno=1.
            key_def = require('key_def')
-           k = key_def.new({{type='string',fieldno=3}})
-           k2= key_def.new({{type='unsigned',fieldno=1},{type='string',fieldno=3}})
+           k = key_def.new({{type = 'string', fieldno = 3}})
+           k2= key_def.new({{type = 'unsigned', fieldno = 1},
+                            {type = 'string', fieldno = 3}})
            k:merge(k2)
 
     .. _key_def-totable:
@@ -210,5 +213,5 @@ to extract or compare the index key values.
 
            -- This will return a table with type='string', fieldno=3
            key_def = require('key_def')
-           k = key_def.new({{type='string',fieldno=3}})
+           k = key_def.new({{type = 'string', fieldno = 3}})
            k:totable()
