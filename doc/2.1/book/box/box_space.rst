@@ -150,6 +150,13 @@ Below is a list of all ``box.space`` functions and members.
     | :ref:`box.space._vuser               | (Metadata) List of users        |
     | <box_space-vuser>`                   | accessible for the current user |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.space._collation           | (Metadata) List of collations   |
+    | <box_space-collation>`               |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`box.space._vcollation          | (Metadata) List of collations   |
+    | <box_space-vcollation>`              | accessible for the current user |
+    +--------------------------------------+---------------------------------+
+
 
 .. module:: box.space
 
@@ -2363,6 +2370,39 @@ organizing:
         * ``_vuser`` is a system view, so it allows only read requests.
         * While the ``_user`` space requires proper access privileges, any user
           can always read from ``_vuser``.
+
+
+.. _box_space-collation:
+
+.. data:: _collation
+
+    ``_collation`` is a system space with a list of :ref:`collations <index-collation>`.
+    There are over 270 built-in collations and users may add more. Here is one example:
+
+    .. code-block:: tarantoolsession
+
+        localhost:3301> box.space._collation:select(239)
+        ---
+        - - [239, 'unicode_uk_s2', 1, 'ICU', 'uk', {'strength': 'secondary'}]
+        ...
+
+    Explanation of the fields in the example: id = 239 i.e. Tarantool's primary key is 239,
+    name = 'unicode_uk_s2' i.e. according to Tarantool's naming convention this is a
+    Unicode collation + it is for the uk locale + it has secondary strength,
+    owner = 1 i.e. :ref:`the admin user <authentication-owners_privileges>`,
+    type = 'ICU' i.e. the rules are according to `International Components for Unicode <http://site.icu-project.org/home>`_,
+    locale = 'uk' i.e. `Ukrainian <http://www.unicode.org/cldr/charts/29/collation/uk.html>`_,
+    opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary
+    `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_.
+
+.. _box_space-vcollation:
+
+.. data:: _vcollation
+
+    ``_vcollation`` is a system space with a list of :ref:`collations <index-collation>`.
+    The structure
+    of its tuples is identical to that of :ref:`box.space._collation <box_space-collation>`, but
+    permissions for certain tuples are limited in accordance with user privileges.
 
 .. _box_space-operations-detailed-examples:
 
