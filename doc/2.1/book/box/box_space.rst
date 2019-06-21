@@ -1688,22 +1688,37 @@ Below is a list of all ``box.space`` functions and members.
 .. data:: _func
 
    ``_func`` is a system space with function tuples made by
-   :ref:`box.schema.func.create() <box_schema-func_create>`.
+   :ref:`box.schema.func.create() <box_schema-func_create>`
+   or
+   :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_with-body>`.
 
    Tuples in this space contain the following fields:
 
-   * the numeric function id, a number,
+   * id (integer identifier),
+   * owner (integer identifier),
    * the function name,
-   * flag,
+   * the setuid flag,
    * a language name (optional): 'LUA' (default) or 'C'.
+   * the body
+   * the is_deterministic flag
+   * the is_sandboxed flag
+   * options
 
-   The ``_func`` space does not include the function’s body.
+   If the function tuple was made in the older way without specification of ``body``,
+   then the ``_func`` space will contain default values for the body and the
+   is_deterministic flag and the is_sandboxed flag.
+   Such function tuples are called "not persistent".
    You continue to create Lua functions in the usual way, by saying
    ``function function_name () ... end``, without adding anything
    in the ``_func`` space. The ``_func`` space only exists for storing
    function tuples so that their names can be used within
    :ref:`grant/revoke <authentication-owners_privileges>`
    functions.
+
+   If the function tuple was made the newer way with specification of ``body``,
+   then all the fields may contain non-default values.
+   Such functions are called "persistent".
+   They should be invoked with :samp:`box.func.{func-name}:call([parameters])`.
 
    You can:
 
