@@ -22,7 +22,7 @@ There are five types of triggers in Tarantool:
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback,
 
-* :ref:`server triggers <box_ctl-on_shutdown>`, which are executed
+* :ref:`server triggers <box_ctl-on_schema_init>`, which are executed
   when the server starts or stops.
 
 
@@ -36,7 +36,7 @@ All triggers have the following characteristics:
   * :ref:`box.session.on_auth() <box_session-on_auth>`, or
   * :ref:`space_object:on_replace() <box_space-on_replace>` and :ref:`space_object:before_replace() <box_space-before_replace>`, or
   * :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, or
-  * :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>` and :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>`.
+  * :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` and :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
