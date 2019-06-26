@@ -293,7 +293,7 @@ Below is a list of all ``box.session`` functions and members.
 
 .. _box_session-on_connect:
 
-.. function:: box.session.on_connect(trigger-function [, old-trigger-function])
+.. function:: box.session.on_connect([trigger-function [, old-trigger-function]])
 
     Define a trigger for execution when a new session is created due to an event
     such as :ref:`console.connect <console-connect>`. The trigger function will be the first thing
@@ -305,6 +305,8 @@ Below is a list of all ``box.session`` functions and members.
     :return: nil or function pointer
 
     If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+    If both parameters are omitted, then the response is a list of existing trigger functions.
 
     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
@@ -324,7 +326,7 @@ Below is a list of all ``box.session`` functions and members.
 
 .. _box_session-on_disconnect:
 
-.. function:: box.session.on_disconnect(trigger-function [, old-trigger-function])
+.. function:: box.session.on_disconnect([trigger-function [, old-trigger-function]])
 
     Define a trigger for execution after a client has disconnected. If the trigger
     function causes an error, the error is logged but otherwise is ignored. The
@@ -339,6 +341,8 @@ Below is a list of all ``box.session`` functions and members.
     :return: nil or function pointer
 
     If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+    If both parameters are omitted, then the response is a list of existing trigger functions.
 
     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
@@ -384,7 +388,7 @@ Below is a list of all ``box.session`` functions and members.
 
 .. _box_session-on_auth:
 
-.. function:: box.session.on_auth(trigger-function [, old-trigger-function])
+.. function:: box.session.on_auth([trigger-function [, old-trigger-function]])
 
     Define a trigger for execution during :ref:`authentication <authentication-users>`.
 
@@ -412,6 +416,8 @@ Below is a list of all ``box.session`` functions and members.
     :return: nil or function pointer
 
     If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+    If both parameters are omitted, then the response is a list of existing trigger functions.
 
     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 

@@ -847,7 +847,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-on_replace:
 
-    .. method:: on_replace(trigger-function [, old-trigger-function])
+    .. method:: on_replace([trigger-function [, old-trigger-function]])
 
         Create a "replace :ref:`trigger <triggers>`".
         The ``trigger-function`` will be executed
@@ -863,6 +863,8 @@ Below is a list of all ``box.space`` functions and members.
 
         If the parameters are (nil, old-trigger-function), then the old
         trigger is deleted.
+
+        If both parameters are omitted, then the response is a list of existing trigger functions.
 
         If it is necessary to know whether the trigger activation
         happened due to replication or on a specific connection type,
@@ -918,7 +920,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-before_replace:
 
-    .. method:: before_replace(trigger-function [, old-trigger-function])
+    .. method:: before_replace([trigger-function [, old-trigger-function]])
 
         Create a "replace :ref:`trigger <triggers>`".
         The ``trigger-function`` will be executed
@@ -934,6 +936,8 @@ Below is a list of all ``box.space`` functions and members.
 
         If the parameters are ``(nil, old-trigger-function)``, then the old
         trigger is deleted.
+
+        If both parameters are omitted, then the response is a list of existing trigger functions.
 
         If it is necessary to know whether the trigger activation
         happened due to replication or on a specific connection type,
