@@ -958,13 +958,37 @@ All functions related to sequences require appropriate
 
 .. function:: space_object:create_index(... [sequence='...' option] ...)
 
-    You can use the :samp:`sequence={sequence-name}`
-    (or :samp:`sequence={sequence-id}` or :samp:`sequence=true`)
+    You can use the ``sequence``
     option when :ref:`creating <box_space-create_index>` or
     :ref:`altering <box_index-alter>` a primary-key index.
     The sequence becomes associated with the index, so that the next
     ``insert()`` will put the next generated number into the primary-key
-    field, if the field would otherwise be nil.
+    field, if the field value would otherwise be nil.
+
+    The syntax may be either
+    :samp:`sequence = {sequence identifier}`
+    or
+    :code:`sequence = {` :samp:`id = {sequence identifier} [, field = {field number}]` :code:`})`.
+    The sequence identifier may either be a number
+    (the sequence id) or a string (the sequence name).
+    The field number may be the ordinal number of any field
+    in the index; default = 1.
+    Examples of all possibilities:
+    ``sequence = 1`` or
+    ``sequence = 'sequence_name'`` or
+    ``sequence = {id = 1}`` or
+    ``sequence = {id = 'sequence_name'}`` or
+    ``sequence = {id = 1, field = 1}`` or
+    ``sequence = {id = 'sequence_name', field = 1}`` or
+    ``sequence = {field = 1}`` or
+    ``sequence = {}`` or
+    ``sequence = true``.
+    Notice that the sequence identifier can be omitted,
+    if it is omitted then a new sequence is created
+    automatically with default name = :samp:`{space-name}_seq`.
+    Notice that the field number does not have to be 1,
+    that is, the sequence can be associated with any
+    field in the primary-key index.
 
     For example, if 'Q' is a sequence and 'T' is a new space, then this will
     work:
