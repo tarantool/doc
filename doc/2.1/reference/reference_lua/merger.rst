@@ -187,3 +187,14 @@ Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
             i1:is_null()
             -- i2:is_null() will be true (merger 2 ends)
             i2:is_null()
+
+
+        **More examples:**
+
+        See
+        `https://github.com/Totktonada/tarantool-merger-examples <https://github.com/Totktonada/tarantool-merger-examples>`_
+        which, in addition to discussing the merger API in detail,
+        shows Lua code for handling many more situations than are
+        in this manual's brief examples.
+ 
+
