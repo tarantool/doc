@@ -81,9 +81,16 @@ Below is a list of all ``debug`` functions.
     | :ref:`debug.setupvalue()             | Assign a value to an upvalue    |
     | <debug-setupvalue>`                  |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`debug.sourcedir()              | Get the source directory name   |
+    | <debug-sourcedir>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`debug.sourcefile()             | Get the source file name        |
+    | <debug-sourcefile>`                  |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`debug.traceback()              | Get a traceback of the call     |
     | <debug-traceback>`                   | stack                           |
     +--------------------------------------+---------------------------------+
+
 
 .. _debug-debug:
 
@@ -261,6 +268,44 @@ Below is a list of all ``debug`` functions.
     :return: the name of the upvalue or ``nil`` if there is no
              upvalue with the given index
 
+.. _debug-sourcedir:
+
+.. function:: sourcedir([level])
+
+    :param number level: the level of the call stack which should contain the path
+                         (default is 2)
+
+    :return: a string with the relative path to the source file directory
+
+    Instead of ``debug.sourcedir()`` one can say ``debug.__dir__`` which means the same thing.
+
+    Determining the real path to a directory is only possible
+    if the function was defined in a Lua file (this restriction
+    may not apply for `loadstring() <https://www.lua.org/pil/8.html>`_
+    since Lua will store the entire string in debug info).
+
+    If ``debug.sourcedir()`` is part of a ``return`` argument,
+    then it should be inside parentheses: ``return (debug.sourcedir())``.
+
+.. _debug-sourcefile:
+
+.. function:: sourcefile([level])
+
+    :param number level: the level of the call stack which should contain the path
+                         (default is 2)
+
+    :return: a string with the relative path to the source file
+
+    Instead of ``debug.sourcefile()`` one can say ``debug.__file__`` which means the same thing.
+
+    Determining the real path to a file is only possible
+    if the function was defined in a Lua file (this restriction
+    may not apply to ``loadstring()`` since Lua will store the
+    entire string in debug info).
+
+    If ``debug.sourcefile()`` is part of a ``return`` argument,
+    then it should be inside parentheses: ``return (debug.sourcefile())``.
+
 .. _debug-traceback:
 
 .. function:: traceback([thread,] [message] [, level])
@@ -270,3 +315,29 @@ Below is a list of all ``debug`` functions.
                          (default is 1)
 
     :return: a string with a traceback of the call stack
+
+**Debug example:**
+
+Make a file in the /tmp directory named example.lua, containing:
+
+.. code-block:: none
+
+    function w()
+      print(debug.sourcedir())
+      print(debug.sourcefile())
+      print(debug.traceback())
+      print(debug.getinfo(1)['currentline'])
+    end
+    w()
+
+Execute ``tarantool /tmp/example.lua``. Expect to see this:
+
+.. code-block:: none
+
+    /tmp
+    /tmp/example.lua
+    stack traceback:
+        /tmp/example.lua:4: in function 'w'
+        /tmp/example.lua:7: in main chunk
+    5
+
