@@ -344,11 +344,11 @@ Below is a list of all ``box.space`` functions and members.
         The current values can be seen by selecting from
         :ref:`box.space._index <box_space-index>`.
 
-        **Note re storage engine:** memtx operations will
-        :ref:`yield <atomic-cooperative_multitasking>` occasionally while building 
-        or rebuilding a large index, so that other requests will not be blocked.
+        Building or rebuilding a large index will cause occasional
+        :ref:`yields <atomic-cooperative_multitasking>` 
+        so that other requests will not be blocked.
         If the other requests cause an illegal situation such as a duplicate key
-        in a unique index, the index building will fail.
+        in a unique index, the index building or rebuilding will fail.
 
         **Possible errors:**
 
@@ -773,8 +773,11 @@ Below is a list of all ``box.space`` functions and members.
         invocation. For example, after ``box.space.tester:format({{'x','scalar'}})``,
         ``box.space.tester:format()`` will return ``[{'name': 'x', 'type': 'scalar'}]``.
 
-        **Note re storage engine:** vinyl supports formatting of non-empty
-        spaces. Primary index definition cannot be formatted.
+        Formatting or reformatting a large space will cause occasional
+        :ref:`yields <atomic-cooperative_multitasking>` 
+        so that other requests will not be blocked.
+        If the other requests cause an illegal situation such as a field value
+        of the wrong type, the formatting or reformatting will fail.
 
     .. _box_space-frommap:
 
