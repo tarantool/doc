@@ -1,12 +1,10 @@
 -------------------------------------------------------------------------------
-                               Miscellaneous
+                          Other package components
 -------------------------------------------------------------------------------
 
-===============================================================================
-                                    Index
-===============================================================================
-
-Below is a list of miscellaneous functions.
+All the Tarantool modules are, at some level, inside a package which,
+appropriately, is named ``package``. There are also miscellaneous functions
+and variables which are outside all modules.
 
 .. container:: table
 
@@ -22,6 +20,22 @@ Below is a list of miscellaneous functions.
     | :ref:`dostring()                     | Parse and execute an arbitrary  |
     | <other-dostring>`                    | chunk of Lua code               |
     +--------------------------------------+---------------------------------+
+    | :ref:`package.path                   | Where Tarantool looks for Lua   |
+    | <other-package_path>`                | additions                       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`package.cpath                  | Where Tarantool looks for C     |
+    | <other-package_cpath>`               | additions                       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`package.loaded                 | What Tarantool has already      |
+    | <other-package_loaded>`              | looked for and found            |
+    +--------------------------------------+---------------------------------+
+    | :ref:`package.setsearchroot          | Set the root path for a         |
+    | <other-package_setsearchroot>`       | directory search                |
+    +--------------------------------------+---------------------------------+
+    | :ref:`package.searchroot             | Get the root path for a         |
+    | <other-package_searchroot>`          | directory search                |
+    +--------------------------------------+---------------------------------+
+
 
 .. _other-tonumber64:
 
@@ -105,5 +119,65 @@ Below is a list of miscellaneous functions.
         ---
         - null
         ...
+
+.. _other-package_path:
+
+.. data:: package.path
+
+    This is a string that Tarantool uses to search for Lua modules,
+    especially imporant for ``require()``.
+    See :ref:`Modules, rocks and applications <app_server-modules>`.
+
+.. _other-package_cpath:
+
+.. data:: package.cpath
+
+    This is a string that Tarantool uses to search for C modules,
+    especially imporant for ``require()``.
+    See :ref:`Modules, rocks and applications <app_server-modules>`.
+
+.. _other-package_loaded:
+
+.. data:: package.loaded
+
+    This is a string that shows what Lua or C modules Tarantool
+    has loaded, so that their functions and members are available.
+    Initially it has all the pre-loaded modules, which don't need
+    ``require()``.
+
+.. _other-package_setsearchroot:
+
+.. function:: package.setsearchroot([search-root])
+
+    Set the search root. The search root is the root directory from
+    which dependencies are loaded.
+
+    :param string search-root: the path. Default = current directory.
+
+    The search-root string must contain a relative or absolute path.
+    If it is a relative path, then it will be expanded to an
+    absolute path.
+    If search-root is omitted, or is box.NULL, then the search root
+    is reset to the current directory, which is found with debug.sourcedir().
+
+    Example:
+
+    Suppose that a Lua file ``myapp/init.lua`` is the project root. |br|
+    Suppose the current path is ``/home/tara``. |br|
+    Add this as the first line of ``myapp/init.lua``: |br|
+    :code:`package.setsearchroot()` |br|
+    Start the project with |br|
+    :code:`$ tarantool myapp/init.lua` |br|
+    The search root will be the default, made absolute: ``/home/tara/myapp``.
+    Within the Lua application all dependencies will be searched relative
+    to ``/home/tara/myapp``.
+
+.. _other-package_searchroot:
+
+.. function:: package.searchroot()
+
+    Return a string with the current search root.
+    After ``package.setsearchroot('/home')`` the returned
+    string will be ``/home'``.
 
 .. _double square brackets: http://www.lua.org/pil/2.4.html
