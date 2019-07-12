@@ -107,13 +107,13 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
                       members and only a few methods are valid
                       until :ref:`swim_object:cfg() <swim-cfg>` is called.
                       If cfg is specified, then the effect is the same as
-                      calling :code:`s = swim.new() s:cfg`.
+                      calling :code:`s = swim.new() s:cfg()`.
                       For configuration description see
                       :ref:`swim_object:cfg() <swim-cfg>`.
 
     :returns: swim-object :ref:`a swim object <swim-object>`
 
-    Example: swim_object = swim.new({uri = 3333, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})
+    Example: ``swim_object = swim.new({uri = 3333, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})``
 
 .. _swim-object:
 
@@ -173,7 +173,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         uuid (string or cdata struct tt_uuid) -- a value which should
         be unique among SWIM instances. Users may choose any value
         but the recommendation is: use
-        :ref:`box.cfg.instancd_uuid <cfg_replication-instance_uuid>`,
+        :ref:`box.cfg.instance_uuid <cfg_replication-instance_uuid>`,
         the Tarantool instance's UUID.
 
         All the cfg components are dynamic -- ``swim_object:cfg()``
@@ -189,7 +189,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         :return: true if configuration succeeds
         :return: nil, err if an error occurred. err is an error object
 
-        Example: swim_object:cfg({heartbeat_rate = 0.5})
+        Example: ``swim_object:cfg({heartbeat_rate = 0.5})``
 
         After ``swim_object:cfg()``, all other swim_object methods are callable.
 
@@ -222,7 +222,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: none, this method does not fail
 
-        Example: swim_object:delete()
+        Example: ``swim_object:delete()``
 
     .. _swim-is_configured:
 
@@ -236,7 +236,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: boolean result, true if configured, otherwise false
 
-        Example: swim_object:is_configured()
+        Example: ``swim_object:is_configured()``
 
     .. _swim-size:
 
@@ -247,7 +247,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: integer size
 
-        Example: swim_object:size()
+        Example: ``swim_object:size()``
 
     .. _swim-quit:
 
@@ -265,7 +265,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: none, the method does not fail
 
-        Example: swim_object:quit()
+        Example: ``swim_object:quit()``
 
     .. _swim-add_member:
 
@@ -288,7 +288,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         :return: true if member is added
         :return: nil, err if an error occurred. err is an error object
 
-        Example: swim_member_object = swim_object:add_member({uuid = ..., uri = ...})
+        Example: ``swim_member_object = swim_object:add_member({uuid = ..., uri = ...})``
 
     .. _swim-remove_member:
 
@@ -302,18 +302,18 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         :return: true if member is removed
         :return: nil, err if an error occurred. err is an error object.
 
-        Example: swim_object:delete('00000000-0000-1000-8000-000000000001')
+        Example: ``swim_object:delete('00000000-0000-1000-8000-000000000001')``
 
     .. _swim-probe_member:
 
     .. method:: probe_member(uri)
 
         Send a ping request to the specified uri address. If another member
-        is listening at that address, it will receive the ping, respond with
+        is listening at that address, it will receive the ping, and respond with
         an ACK (acknowledgment) message containing information such as UUID.
         That information will 
         be added to the
-        member table. ``swim_object:probe_member`` is similar to
+        member table. ``swim_object:probe_member()`` is similar to
         :ref:`swim_object:add_member() <swim-add_member>`, but it
         does not require UUID, and it is not reliable because it uses UDP.
 
@@ -322,7 +322,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         :return: true if member is pinged
         :return: nil, err if an error occurred. err is an error object.
 
-        Example: swim_object:probe_member(3333)
+        Example: ``swim_object:probe_member(3333)``
 
     .. _swim-broadcast:
 
@@ -459,7 +459,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         :return: true if payload is set
         :return: nil, err if an error occurred. err is an error object
 
-        Example: swim_object:set_payload({field1 = 100, field2 = 200})
+        Example: ``swim_object:set_payload({field1 = 100, field2 = 200})``
 
     .. _swim-set_payload_raw:
 
@@ -597,9 +597,9 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         secret and should never be stored hardcoded in source code.
 
         key_size (integer) -- size of the key in bytes.
-        key_size is key is cdata. key_size is optional if key is
+        key_size is mandatory if key is cdata. key_size is optional if key is
         string, and if key_size is shorter than than actual key size
-        then the key is truncated
+        then the key is truncated.
 
         ``algo`` and ``mode`` and ``key`` and ``key_size`` should be
         the same for all SWIM instances, so that members can understand
@@ -630,7 +630,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: :ref:`swim member object <swim-member_object>`, not nil because self() will not fail
 
-        Example: swim_member_object = swim_object:self()
+        Example: ``swim_member_object = swim_object:self()``
 
     .. _swim-member_by_uuid:
 
@@ -644,7 +644,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: :ref:`swim member object <swim-member_object>`, or nil if not found
 
-        Example: swim_member_object = swim_object:member_by_uuid('00000000-0000-1000-8000-000000000001')
+        Example: ``swim_member_object = swim_object:member_by_uuid('00000000-0000-1000-8000-000000000001')``
 
     .. _swim-pairs:
 
@@ -906,6 +906,126 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
             - {'a': 100}
             ...
 
+    .. _swim-on_member_event:
+
+    .. method:: on_member_event(trigger-function[, ctx])
+
+        Create an "on_member :ref:`trigger <triggers>`".
+        The ``trigger-function`` will be executed when a member in the member table is updated.
+
+        :param function trigger-function: this will become the trigger function
+        :param cdata ctx: (optional) this will be passed to trigger-function
+
+        :return: nil or function pointer.
+
+        The **trigger-function** should have three parameter declarations
+        (Tarantool will pass values for them when it invokes the function):
+        the member which is having the member event,
+        the event object,
+        and the ctx which will be the same value as what is passed to ``swim_object:on_member_event``.
+
+        A **member event** is any of: appearance of a new member,
+        drop of an existing member, or update of an existing member.
+
+        An **event object** is an object which the trigger-function
+        can use for determining what type of member event has happened.
+        The object's methods -- such as ``is_new_status()``, ``is_new_uri()``,
+        ``is_new_incarnation()``, ``is_new_payload()``, ``is_drop()`` --
+        return boolean values.
+
+        A member event may have more than one associated trigger.
+        Triggers are executed sequentially.
+        Therefore if a trigger function causes yields or sleeps,
+        other triggers may be forced to wait.
+        However, since trigger execution is done in a separate fiber,
+        SWIM itself is not forced to wait.
+
+        Example of an on-member trigger function:
+
+        .. code-block:: none
+
+            tarantool> swim = require('swim')
+
+            local function on_event(member, event, ctx)
+                if event:is_new() then
+                    ...
+                elseif event:is_drop() then
+                    ...
+                end
+
+                if event:is_update() then
+                    -- All next conditions can be
+                    -- true simultaneously.
+                    if event:is_new_status() then
+            ...
+                    end
+                    if event:is_new_uri() then
+            ...
+                    end
+                    if event:is_new_incarnation() then
+            ...
+                    end
+                    if event:is_new_payload() then
+            ...
+                    end
+                end
+            end
+
+        Notice in the above example that the function is ready
+        for the possibility that multiple events can happen
+        simultaneously for a single trigger activation.
+        ``is_new()`` and ``is_drop()`` can not both be true,
+        but ``is_new()`` and ``is_update()`` can both be true,
+        or ``is_drop()`` and ``is_update()`` can both be true.
+        Multiple simultaneous events are especially likely if
+        there are many events and trigger functions are slow --
+        in that case, for example, a member might be added
+        and then updated after a while, and then after a while
+        there will be a single trigger activation.
+
+        Also: ``is_new()`` and ``is_new_payload()`` can both be true.
+        This case is not due to trigger functions that are slow.
+        It occurs because "omitted payload" and "size-zero payload"
+        are not the same thing. For example: when a ping is received,
+        a new member might be added, but ping messages do not include
+        payload. The payload will appear later in a different message.
+        If that is important for the application, then the function
+        should not assume when ``is_new()`` is true that the member
+        already has a payload, and should not assume that payload size
+        says something about the payload's presence or absence.
+
+        Also: functions should not assume that ``is_new()`` and ``is_drop()`` will always be seen.
+        If a new member appears but then is dropped before its appearance has
+        caused a trigger activation, then there will be no trigger
+        activation.
+
+    .. method:: on_member_event(nil, old-trigger)
+
+        Delete an on-member trigger.
+
+        :param function old-trigger: old-trigger
+
+        The old-trigger value should be the value returned by
+        ``on_member_event(trigger-function[, ctx])``.
+
+    .. method:: on_member_event(new-trigger, old-trigger [, ctx])
+
+        This is a variation of ``on_member_event(new-trigger, [, ctx])``.
+        The additional parameter is ``old-trigger``.
+        Instead of adding the new-trigger at the end of a
+        list of triggers, this function will replace the entry in
+        the list of triggers that matches old-trigger.
+        The position within a list may be important because
+        triggers are activated sequentially starting
+        with the first trigger in the list.
+
+        The old-trigger value should be the value returned by
+        ``on_member_event(trigger-function[, ctx])``.
+
+    .. method:: on_member_event()
+
+        Return the list of on-member triggers.
+
 **SWIM internals**
 
 The SWIM internals section is not necessary for programmers who wish to use the SWIM module,
@@ -1031,7 +1151,7 @@ SWIM_ROUTE_SRC_ADDRESS and SWIM_ROUTE_SRC_PORT (source
 IP address and port) (should be an address of the
 message originator (can differ from
 SWIM_META_SRC_ADDRESS and from SWIM_META_SRC_ADDRESS_PORT);
-SWIM_ROUTE_DST_ADDRESS and SWIM_ROUTE_DST_PORT (estination
+SWIM_ROUTE_DST_ADDRESS and SWIM_ROUTE_DST_PORT (destination
 IP address and port, for the the message's final destination).
 If a message was sent indirectly with help of SWIM_META_ROUTING,
 then the reply should be sent back by the same route.
@@ -1085,7 +1205,7 @@ dead receives that information from other members, increases its own
 incarnation, and spreads a message saying the member is
 alive (a "refutation").
 
-When a member's incarnation number in a message is larger than local one,
+When a member's incarnation number in a message is larger than the local number,
 all its attributes  (IP,
 port, status) should be updated with the values received in the message.
 Payload is a bit different. Payload can be updated
@@ -1117,7 +1237,7 @@ SWIM_ANTI_ENTROPY subsection -- a helper for the
 dissemination. It contains all the same fields as the
 dissemination, but all of them are mandatory, including
 payload even when payload size is 0. Anti-entropy eventually
-spreads changes which for any reason are not spread by the dissemination;
+spreads changes which for any reason are not spread by the dissemination.
 
 SWIM_QUIT subsection -- statement that the sender has left the
 cluster gracefully, for example via :ref:`swim_object:quit() <swim-quit>`,

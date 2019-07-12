@@ -8,7 +8,7 @@ Triggers
 **Triggers**, also known as **callbacks**, are functions which the server
 executes when certain events happen.
 
-There are five types of triggers in Tarantool:
+There are six types of triggers in Tarantool:
 
 * :ref:`connection triggers <box_session-on_connect>`, which are executed
   when a session begins or ends,
@@ -25,6 +25,9 @@ There are five types of triggers in Tarantool:
 * :ref:`server triggers <box_ctl-on_schema_init>`, which are executed
   when the server starts or stops.
 
+* :ref:`member triggers <swim-on_member_event>`, which are executed
+  when a SWIM member is updated.
+
 
 All triggers have the following characteristics:
 
@@ -36,7 +39,8 @@ All triggers have the following characteristics:
   * :ref:`box.session.on_auth() <box_session-on_auth>`, or
   * :ref:`space_object:on_replace() <box_space-on_replace>` and :ref:`space_object:before_replace() <box_space-before_replace>`, or
   * :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, or
-  * :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` and :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`.
+  * :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` and :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`, or
+  * :ref:`swim_object:on_member_event() <swim-on_member_event>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
@@ -50,7 +54,8 @@ All triggers have the following characteristics:
   then its overhead is equivalent to the overhead of calling a function.
 
 * There can be multiple triggers for one event. In this case, triggers are
-  executed in the reverse order that they were defined in.
+  executed in the reverse order that they were defined in. (Exception:
+  member triggers are executed in the order that they appear in the member list.)
 
 * Triggers must work within the event context. However, effects are undefined
   if a function contains requests which normally could not occur immediately
@@ -80,6 +85,7 @@ To get a list of triggers, you can use:
 * space_object:before_replace() to return all replace-trigger functions made for before_replace().
 * box.ctl.on_shutdown() to return all shutdown-trigger functions made for on_shutdown().
 * box.ctl.on_schema_init() to return all initialization-trigger functions made for on_schema_init().
+* swim_object:on_member_event() to return all member triggers made for on_member_event().
 
 **Example**
 
