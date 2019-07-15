@@ -66512,7 +66512,7 @@ msgstr "Теперь вывод на экране выглядит следую�
 
 #: ../doc/1.10/tutorials/lua_tutorials.rst:121
 msgid ""
-"tarantool> function string_funciton()\n"
+"tarantool> function string_function()\n"
 "         >   return \"hello world\"\n"
 "         > end\n"
 "---\n"
@@ -66523,7 +66523,7 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
-"tarantool> function string_funciton()\n"
+"tarantool> function string_function()\n"
 "         >   return \"hello world\"\n"
 "         > end\n"
 "---\n"
