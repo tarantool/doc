@@ -59138,10 +59138,10 @@ msgstr "*имя-соединения*:execute(*sql-оператор* [, *пар�
 #: ../doc/1.10/reference/reference_rock/dbms.rst:584
 msgid ""
 "where ``sql-statement`` is a string, and the optional ``parameters`` are extra values that "
-"can be plugged in to replace any question marks (\"?\"s) in the SQL statement."
+"can be plugged in to replace any parameter markers ($1 $2 $3 etc.) in the SQL statement."
 msgstr ""
 "где ``sql-statement`` -- это строка, а необязательные параметры -- это дополнительные "
-"значения, которыми можно заменить любые знаки вопроса (\"?\") в SQL-операторе."
+"значения, которыми можно заменить любые знаки параметров ($1 $2 $3 и т.д.) в SQL-операторе."
 
 #: ../doc/1.10/reference/reference_rock/dbms.rst:248
 msgid ""
