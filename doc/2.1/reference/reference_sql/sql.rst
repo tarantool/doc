@@ -1259,9 +1259,9 @@ Syntax:
 Specify the condition for filtering rows from a table; this is a clause in
 a SELECT or UPDATE or DELETE statement.
 
-The condition may contain any expression that returns a boolean
-(true|false|unknown) value, or returns a value that can be interpreted as
-boolean (for example 1 or 0).
+The condition may contain any expression that returns a BOOLEAN
+(TRUE or FALSE or UNKNOWN) value, or returns a value that can be interpreted as
+BOOLEAN (for example 1 or 0).
 
 For each row in the table:
 
@@ -1548,7 +1548,7 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then numbers (INTEGER or NUMBER), then STRINGs, then BLOBs.
+* NULLs come first, then numbers (INTEGER or NUMBER), then STRINGs, then VARBINARYs.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified within the ORDER BY column-list, or may be default.
 
@@ -2273,9 +2273,10 @@ Tarantool supports 32 built-in functions.
 
         Example: ``COALESCE(NULL, 17, 32)`` is 17
 
-``HEX(string-expression)``
-        Return the hexadecimal code for each byte in
-        *string-expression*. For ASCII characters, this
+``HEX(expression)``
+        Return the hexadecimal code for each byte in *expression*,
+        which may be either a string or a byte sequence.
+        For ASCII characters, this
         is straightforward because the encoding is
         the same as the code point value. For
         non-ASCII characters, since character strings
@@ -2295,20 +2296,22 @@ Tarantool supports 32 built-in functions.
 
         Example: ``IFNULL(NULL, 17)`` is 17
 
-``LENGTH(string-expression)``
-        Return the number of characters in the *string-expression*,
-        or the number of bytes in the *string-expression*.
+``LENGTH(expression)``
+        Return the number of characters in the *expression*,
+        or the number of bytes in the *expression*.
         It depends on the data type:
         strings with data type STRING are counted in characters,
-        strings with data type BLOB
+        byte sequences with data type VARBINARY
         are counted in bytes and are not ended by the nul character.
+        There are two aliases for ``LENGTH(expression)`` -- ``CHAR_LENGTH(expression)``
+        and ``CHARACTER_LENGTH(expression)`` do the same thing.
 
         Examples:
 
         * ``LENGTH('ДД')`` is 2, the string has 2 characters
-        * ``LENGTH(CAST('ДД' AS BLOB))`` is 4, the string has 4 bytes
+        * ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes
         * ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'
-        * ``LENGTH(X'410041')`` is 3, X'...' strings have type BLOB
+        * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY
 
 ``NULLIF(expression-1, expression-2)``
         Return *expression-1* if *expression-1* <> *expression-2*,
