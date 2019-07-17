@@ -2345,6 +2345,17 @@ Tarantool supports 32 built-in functions.
 
         Example: ``QUOTE('a')`` is '''a'''
 
+``SOUNDEX(string-expression)``
+        Return a four-character string which represents the sound
+        of ``string-expression``. Often words and names which have
+        different spellings will have the same Soundex representation
+        if they are pronounced similarly,
+        so it is possible to search by what they sound like.
+        The algorithm works with characters in the Latin alphabet
+        and works best with English words.
+
+        Example: ``SOUNDEX('Crater')`` and ``SOUNDEX('Creature')`` both return 'C636'.
+
 ``UNICODE(string-expression)``
         Return the Unicode code point value of the first character of
         *string-expression*.
