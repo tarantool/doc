@@ -309,10 +309,15 @@ Below is a list of all ``digest`` functions.
 
 .. _digest-murmur_new:
 
-.. function:: digest.murmur.new([seed])
+.. function:: digest.murmur.new(opts)
 
     Initiates incremental MurmurHash.
     See :ref:`incremental methods <digest-incremental_digests>` notes.
+    For example:
+
+    .. code-block:: lua
+
+        murmur.new({seed=0})
 
 .. _digest-incremental_digests:
 
