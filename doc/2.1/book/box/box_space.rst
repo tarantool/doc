@@ -307,6 +307,7 @@ Below is a list of all ``box.space`` functions and members.
             | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
             |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
             |                     |                                                       | ``'number'`` or ``'boolean'`` or |                               |
+            |                     |                                                       | ``'varbinary'`` or               |                               |
             |                     |                                                       | ``'array'`` or ``'scalar'``,     |                               |
             |                     |                                                       | and optional collation or        |                               |
             |                     |                                                       | is_nullable value or path}       |                               |
@@ -369,8 +370,8 @@ Below is a list of all ``box.space`` functions and members.
 
     **Details about index field types:**
 
-    The seven index field types (unsigned | string | integer | number |
-    boolean | array | scalar) differ depending on what values are allowed, and
+    The eight index field types (unsigned | string | integer | number |
+    boolean | varbinary | array | scalar) differ depending on what values are allowed, and
     what index types are allowed.
 
     * **unsigned**: unsigned integers between 0 and 18446744073709551615,
@@ -390,6 +391,11 @@ Below is a list of all ``box.space`` functions and members.
       indexes.
     * **boolean**: true or false. Legal in memtx TREE or HASH indexes, and in
       vinyl TREE indexes.
+    * **varbinary**: any set of octets, up to the :ref:`maximum length
+      <limitations_bytes_in_index_key>`. Legal in
+      memtx TREE or HASH indexes, and in vinyl TREE indexes.
+      A varbinary byte sequence does not have a :ref:`collation <index-collation>`
+      because its contents are not UTF-8 characters.
     * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
     * **scalar**: null (input with ``msgpack.NULL`` or ``yaml.NULL`` or ``json.NULL``),
       booleans (true or false), or integers between
@@ -414,45 +420,48 @@ Below is a list of all ``box.space`` functions and members.
         .. rst-class:: left-align-column-4
         .. rst-class:: top-align-column-1
 
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | Index field type | What can be in it         | Where is it legal                     | Examples          |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **unsigned**     | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|       |
-        |                  | 18446744073709551615      | indexes, |br|                         |                   |
-        |                  |                           | vinyl TREE indexes                    |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        |  **string**      | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|      |
-        |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'  |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        |  **integer**     | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|        |
-        |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                   |
-        |                  | 18446744073709551615      |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **number**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|        |
-        |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|          |
-        |                  | 18446744073709551615,     |                                       | 1.447e+44         |
-        |                  | single-precision          |                                       |                   |
-        |                  | floating point numbers,   |                                       |                   |
-        |                  | double-precision          |                                       |                   |
-        |                  | floating point numbers    |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **boolean**      | true or false             | memtx TREE or HASH indexes, |br|      | false |br|        |
-        |                  |                           | vinyl TREE indexes                    | true              |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|     |
-        |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}     |
-        |                  | 9223372036854775807       |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
-        | **scalar**       | null,                     | memtx TREE or HASH indexes, |br|      | null |br|         |
-        |                  | booleans (true or false), | vinyl TREE indexes                    | true |br|         |
-        |                  | integers between          |                                       | -1 |br|           |
-        |                  | -9223372036854775808 and  |                                       | 1.234 |br|        |
-        |                  | 18446744073709551615,     |                                       | '' |br|           |
-        |                  | single-precision floating |                                       | 'ру'              |
-        |                  | point numbers,            |                                       |                   |
-        |                  | double-precision floating |                                       |                   |
-        |                  | point numbers, strings    |                                       |                   |
-        +------------------+---------------------------+---------------------------------------+-------------------+
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | Index field type | What can be in it         | Where is it legal                     | Examples              |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **unsigned**     | integers between 0 and    | memtx TREE or HASH                    | 123456 |br|           |
+        |                  | 18446744073709551615      | indexes, |br|                         |                       |
+        |                  |                           | vinyl TREE indexes                    |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        |  **string**      | strings -- any set of     | memtx TREE or HASH indexes |br|       | 'A B C' |br|          |
+        |                  | octets                    | vinyl TREE indexes                    | '\\65 \\66 \\67'      |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        |  **varbinary**   | byte sequences -- any set | memtx TREE or HASH indexes |br|       | '\\65 \\66 \\67' |br| |
+        |                  | of octets                 | vinyl TREE indexes                    |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        |  **integer**     | integers between          | memtx TREE or HASH indexes, |br|      | -2^63 |br|            |
+        |                  | -9223372036854775808 and  | vinyl TREE indexes                    |                       |
+        |                  | 18446744073709551615      |                                       |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **number**       | integers between          | memtx TREE or HASH indexes, |br|      | 1.234 |br|            |
+        |                  | -9223372036854775808 and  | vinyl TREE indexes                    | -44 |br|              |
+        |                  | 18446744073709551615,     |                                       | 1.447e+44             |
+        |                  | single-precision          |                                       |                       |
+        |                  | floating point numbers,   |                                       |                       |
+        |                  | double-precision          |                                       |                       |
+        |                  | floating point numbers    |                                       |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **boolean**      | true or false             | memtx TREE or HASH indexes, |br|      | false |br|            |
+        |                  |                           | vinyl TREE indexes                    | true                  |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|         |
+        |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}         |
+        |                  | 9223372036854775807       |                                       |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **scalar**       | null,                     | memtx TREE or HASH indexes, |br|      | null |br|             |
+        |                  | booleans (true or false), | vinyl TREE indexes                    | true |br|             |
+        |                  | integers between          |                                       | -1 |br|               |
+        |                  | -9223372036854775808 and  |                                       | 1.234 |br|            |
+        |                  | 18446744073709551615,     |                                       | '' |br|               |
+        |                  | single-precision floating |                                       | 'ру'                  |
+        |                  | point numbers,            |                                       |                       |
+        |                  | double-precision floating |                                       |                       |
+        |                  | point numbers, strings    |                                       |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
 
     .. _box_space-is_nullable:
 
@@ -662,7 +671,7 @@ Below is a list of all ``box.space`` functions and members.
           have the same name;
         * the ``type`` value may be any of those allowed for
           :ref:`indexed fields <index-box_indexed-field-types>`:
-          unsigned | string | integer | number | boolean | array | scalar
+          unsigned | string | varbinary | integer | number | boolean | array | scalar
           (the same as the requirement in
           :ref:`"Options for space_object:create_index" <box_space-create_index-options>`);
         * the optional ``is_nullable`` value may be either ``true`` or ``false``

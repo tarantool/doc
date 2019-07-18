@@ -160,6 +160,8 @@ Lua vs MsgPack
     +-------------------+----------------------+--------------------------------+----------------------------+
     | scalar            | double               | "`number`_"                    | 1.2345                     |
     +-------------------+----------------------+--------------------------------+----------------------------+
+    | scalar            | bin                  | "`cdata`_"                     | [!!binary 3t7e]            |
+    +-------------------+----------------------+--------------------------------+----------------------------+
     | compound          | map                  | "`table`_" (with string keys)  | {'a': 5, 'b': 6}           |
     +-------------------+----------------------+--------------------------------+----------------------------+
     | compound          | array                | "`table`_" (with integer keys) | [1, 2, 3, 4, 5]            |
@@ -209,6 +211,11 @@ or the ULL (Unsigned Long Long) suffix.
 Here are examples of numbers using regular notation, exponential notation,
 the ULL suffix and the ``tonumber64`` function:
 ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+
+A **bin** (binary) value is not directly supported by Lua but there is
+a Tarantool type ``VARBINARY`` which is encoded as MessagePack binary.
+For an (advanced) example showing how to insert VARBINARY into a database,
+see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`.
 
 Lua **tables** with string keys are stored as MsgPack maps;
 Lua tables with integer keys starting with 1 -- as MsgPack arrays.
@@ -265,64 +272,70 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     .. rst-class:: left-align-column-4
     .. rst-class:: top-align-column-1
 
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | Indexed field type         | MsgPack data type |br|           | Index type           | Examples           |
-    |                            | (and possible values)            |                      |                    |
-    +============================+==================================+======================+====================+
-    | **unsigned**               | **integer**                      | TREE, BITSET or HASH | 123456             |
-    | (may also be called ‘uint’ | (integer between 0 and           |                      |                    |
-    | or ‘num’, but ‘num’ is     | 18446744073709551615, i.e.       |                      |                    |
-    | deprecated)                | about 18 quintillion)            |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **integer**                | **integer**                      | TREE or HASH         | -2^63              |
-    | (may also be called ‘int’) | (integer between                 |                      |                    |
-    |                            | -9223372036854775808 and         |                      |                    |
-    |                            | 18446744073709551615)            |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **number**                 | **integer**                      | TREE or HASH         | 1.234              |
-    |                            | (integer between                 |                      |                    |
-    |                            | -9223372036854775808 and         |                      | -44                |
-    |                            | 18446744073709551615)            |                      |                    |
-    |                            |                                  |                      | 1.447e+44          |
-    |                            | **double**                       |                      |                    |
-    |                            | (single-precision floating       |                      |                    |
-    |                            | point number or double-precision |                      |                    |
-    |                            | floating point number)           |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **string**                 | **string**                       | TREE, BITSET or HASH | ‘A B C’            |
-    | (may also be called ‘str’) | (any set of octets,              |                      |                    |
-    |                            | up to the maximum length)        |                      | ‘\65 \66 \67’      |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **boolean**                | **bool**                         | TREE or HASH         | true               |
-    |                            | (true or false)                  |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **array**                  | **array**                        | RTREE                | {10, 11}           |
-    |                            | (list of numbers representing    |                      |                    |
-    |                            | points in a geometric figure)    |                      | {3, 5, 9, 10}      |
-    |                            |                                  |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **scalar**                 | **null**                         | TREE or HASH         | msgpack.NULL       |
-    |                            |                                  |                      |                    |
-    |                            | **bool**                         |                      | true               |
-    |                            | (true or false)                  |                      |                    |
-    |                            |                                  |                      | -1                 |
-    |                            | **integer**                      |                      |                    |
-    |                            | (integer between                 |                      | 1.234              |
-    |                            | -9223372036854775808 and         |                      |                    |
-    |                            | 18446744073709551615)            |                      | ‘’                 |
-    |                            |                                  |                      |                    |
-    |                            | **double**                       |                      | ‘ру’               |
-    |                            | (single-precision floating       |                      |                    |
-    |                            | point number or double-precision |                      |                    |
-    |                            | floating point number)           |                      |                    |
-    |                            |                                  |                      |                    |
-    |                            | **string** (any set of octets)   |                      |                    |
-    |                            |                                  |                      |                    |
-    |                            | Note: When there is a mix of     |                      |                    |
-    |                            | types, the key order is: null,   |                      |                    |
-    |                            | then booleans, then numbers,     |                      |                    |
-    |                            | then strings.                    |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | Indexed field type         | MsgPack data type |br|            | Index type           | Examples           |
+    |                            | (and possible values)             |                      |                    |
+    +============================+===================================+======================+====================+
+    | **unsigned**               | **integer**                       | TREE, BITSET or HASH | 123456             |
+    | (may also be called ‘uint’ | (integer between 0 and            |                      |                    |
+    | or ‘num’, but ‘num’ is     | 18446744073709551615, i.e.        |                      |                    |
+    | deprecated)                | about 18 quintillion)             |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **integer**                | **integer**                       | TREE or HASH         | -2^63              |
+    | (may also be called ‘int’) | (integer between                  |                      |                    |
+    |                            | -9223372036854775808 and          |                      |                    |
+    |                            | 18446744073709551615)             |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **number**                 | **integer**                       | TREE or HASH         | 1.234              |
+    |                            | (integer between                  |                      |                    |
+    |                            | -9223372036854775808 and          |                      | -44                |
+    |                            | 18446744073709551615)             |                      |                    |
+    |                            |                                   |                      | 1.447e+44          |
+    |                            | **double**                        |                      |                    |
+    |                            | (single-precision floating        |                      |                    |
+    |                            | point number or double-precision  |                      |                    |
+    |                            | floating point number)            |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **string**                 | **string**                        | TREE, BITSET or HASH | ‘A B C’            |
+    | (may also be called ‘str’) | (any set of octets,               |                      |                    |
+    |                            | up to the maximum length)         |                      | ‘\\65 \\66 \\67’   |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **varbinary**              | **bin**                           | TREE or HASH         | ‘\\65 \\66 \\67’   |
+    |                            | (any set of octets,               |                      |                    |
+    |                            | up to the maximum length)         |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **boolean**                | **bool**                          | TREE or HASH         | true               |
+    |                            | (true or false)                   |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **array**                  | **array**                         | RTREE                | {10, 11}           |
+    |                            | (list of numbers representing     |                      |                    |
+    |                            | points in a geometric figure)     |                      | {3, 5, 9, 10}      |
+    |                            |                                   |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **scalar**                 | **null**                          | TREE or HASH         | msgpack.NULL       |
+    |                            |                                   |                      |                    |
+    |                            | **bool**                          |                      | true               |
+    |                            | (true or false)                   |                      |                    |
+    |                            |                                   |                      | -1                 |
+    |                            | **integer**                       |                      |                    |
+    |                            | (integer between                  |                      | 1.234              |
+    |                            | -9223372036854775808 and          |                      |                    |
+    |                            | 18446744073709551615)             |                      | ‘’                 |
+    |                            |                                   |                      |                    |
+    |                            | **double**                        |                      | ‘ру’               |
+    |                            | (single-precision floating        |                      |                    |
+    |                            | point number or double-precision  |                      |                    |
+    |                            | floating point number)            |                      |                    |
+    |                            |                                   |                      |                    |
+    |                            | **string** (any set of octets)    |                      |                    |
+    |                            |                                   |                      |                    |
+    |                            | **varbinary** (any set of octets) |                      |                    |
+    |                            |                                   |                      |                    |
+    |                            | Note: When there is a mix of      |                      |                    |
+    |                            | types, the key order is: null,    |                      |                    |
+    |                            | then booleans, then numbers,      |                      |                    |
+    |                            | then strings, then varbinary.     |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
 
 .. _index-collation:
 
