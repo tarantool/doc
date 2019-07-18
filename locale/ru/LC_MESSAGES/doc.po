@@ -56904,7 +56904,7 @@ msgstr "таблица строк, которые были разделены и
 
 #: ../doc/1.10/reference/reference_lua/string.rst:239
 msgid ""
-"tarantool> fiber = require('string')\n"
+"tarantool> string = require('string')\n"
 "---\n"
 "...\n"
 "tarantool> string.split(\"A*BXX C\", \"XX\")\n"
@@ -56913,7 +56913,7 @@ msgid ""
 "  - ' C'\n"
 "..."
 msgstr ""
-"tarantool> fiber = require('string')\n"
+"tarantool> string = require('string')\n"
 "---\n"
 "...\n"
 "tarantool> string.split(\"A*BXX C\", \"XX\")\n"
