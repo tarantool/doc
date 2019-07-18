@@ -28571,7 +28571,7 @@ msgid ""
 "socket."
 msgstr ""
 "Подключается через стандартный Unix-сокет к Tarantool-серверу, запущенному внутри "
-"контейнера, из-под пользователя 'admin’."
+"контейнера, из-под пользователя '**admin**'."
 
 #: ../doc/1.10/book/getting_started/using_docker.rst:112
 msgid "Tarantool displays a prompt:"
