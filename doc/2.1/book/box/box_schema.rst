@@ -842,6 +842,9 @@ All functions related to sequences require appropriate
       but the maximum value is 999, then that would be considered
       "overflow".
 
+      There is a rule: ``start`` and ``min`` and ``max`` must all
+      be <= 9223372036854775807 which is 2^63 - 1 (not 2^64).
+
     * ``cycle`` -- the CYCLE value. Type = bool. Default = false.
 
       If the sequence generator's next value is an overflow number,
@@ -943,7 +946,7 @@ All functions related to sequences require appropriate
                        'S2',
                        {start=100,
                        min=100,
-                       max=200,
+                       max=tonumber64('9223372036854775807'),
                        cache=100000,
                        cycle=false,
                        step=100
@@ -1033,6 +1036,10 @@ All functions related to sequences require appropriate
         The index key type may be either 'integer' or 'unsigned'.
         If any of the sequence options is a negative number, then
         the index key type should be 'integer'.
+
+        Users should not insert a value greater than 9223372036854775807,
+        which is 2^63 - 1, in the indexed field. The sequence generator
+        will ignore it.
 
         A sequence cannot be dropped if it is associated with an index.
         However, :ref:`index_object:alter() <box_index-alter>`
