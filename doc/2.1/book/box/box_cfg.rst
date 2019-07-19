@@ -70,7 +70,7 @@ If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
       rows_per_wal                 = 500000
       slab_alloc_factor            = 1.05
       snap_io_rate_limit           = nil
-      strip_core                   = false
+      strip_core                   = true
       too_long_threshold           = 0.5
       username                     = nil
       vinyl_bloom_fpr              = 0.05

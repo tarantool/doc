@@ -228,8 +228,9 @@
     Whether coredump files should include memory allocated for tuples.
     (This can be large if Tarantool runs under heavy load.)
     Setting to ``true`` means "do not include".
+    In an older version of Tarantool the default value of this parameter was ``false``.
 
     | Type: boolean
-    | Default: false
+    | Default: true
     | Dynamic: no
 
