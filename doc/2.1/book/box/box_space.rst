@@ -2007,6 +2007,9 @@ Below is a list of all ``box.space`` functions and members.
     * the last value that the sequence generator returned
       (non-persistent information).
 
+    There is no guarantee that this space will be updated immediately
+    after every data-change request.
+
 .. _box_space-space:
 
 .. data:: _space
