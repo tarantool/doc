@@ -23,6 +23,7 @@ This reference covers Tarantool's built-in Lua modules.
     console
     crypto
     csv
+    decimal
     digest
     errno
     fiber
