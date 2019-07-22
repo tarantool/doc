@@ -295,7 +295,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F031-03    | GRANT statement                               |                                                          | Fail. Tarantool doesn't support privileges except       |
     |            |                                               |                                                          | via NoSQL.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-04    | ALTER TABLE statement: add column             | ``alter table t7 add column t7_2 varchar default 'q';``  | Fail. Table alterations aren't working at all.          |
+    | F031-04    | ALTER TABLE statement: add column             | ``alter table t7 add column t7_2 varchar default 'q';``  | Fail. Table alterations work but not this clause.       |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031-13    | DROP TABLE statement: RESTRICT clause         | ``drop table t20 restrict;``                             | Fail. Syntax error, and RESTRICT is not assumed.        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+

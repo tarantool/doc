@@ -21,7 +21,8 @@ Syntax:
 
 |br|
 
-ALTER is used to either change a table's name or to add new constraints.
+ALTER is used to change a table's name or to add new constraints
+or to drop old constraints.
 
 Examples:
 
@@ -38,46 +39,44 @@ exist.
    -- adding a foreign-key constraint definition:
    ALTER TABLE t1 ADD CONSTRAINT c FOREIGN KEY (s1) REFERENCES t1;
 
-For ``ALTER ... ADD CONSTRAINT``, the table must exist, the constraint type must
-be foreign-key or PRIMARY or UNIQUE (not CHECK), the constraint name must not
-already exist for the table.
+For ``ALTER ... ADD CONSTRAINT``, the table must exist, table must be empty,
+the constraint name must not already exist for the table.
 
 It is not possible to say ``CREATE TABLE table_a ... REFERENCES table_b ...``
 if table ``b`` does not exist yet. This is a situation where ``ALTER TABLE`` is
 handy -- users can ``CREATE TABLE table_a`` without the foreign key, then
 ``CREATE TABLE table_b``, then ``ALTER TABLE table_a ... REFERENCES table_b ...``.
-This is only legal if the table is empty.
 
 .. code-block:: sql
 
    -- adding a primary-key constraint definition:
+   -- This is unusual because primary keys are created automatically
+   -- and it is illegal to have two primary keys for the same table.
+   -- However, it is possible to drop a primary-key index, and this
+   -- is a way to restore the primary key if that happens.
    ALTER TABLE t1 ADD CONSTRAINT primary_key PRIMARY KEY (s1);
 
-.. // See "Constraint Definition for foreign keys" foreign-constraint-definition.
-
-.. code-block:: sql
-
    -- adding a unique-constraint definition:
+   -- Alternatively, you can say CREATE UNIQUE INDEX unique_key ON t1 (s1);
    ALTER TABLE t1 ADD CONSTRAINT unique_key UNIQUE (s1);
 
-This is unusual because primary keys are created automatically and it is illegal
-to have two primary keys for the same table. However, it is possible to drop
-a primary-key index, and this is a way to restore the primary key if that happens.
-Alternatively, you can say ``CREATE UNIQUE INDEX unique_key ON t1 (s1);``.
+   -- Adding a check-constraint definition:
+   ALTER TABLE t1 ADD CONSTRAINT check_ CHECK (s1 > 0);
 
 .. _sql_alter_table_drop_constraint:
+
+For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint,
+and Tarantool only looks for names of foreign-key constraints. (Tarantool generates the
+constraint names automatically if the user does not provide them.)
+
+To remove a unique constraint, use DROP INDEX, which will drop the constraint
+as well.
 
 .. code-block:: sql
 
    -- dropping a constraint:
    ALTER TABLE t1 DROP CONSTRAINT c;
 
-It is only legal to drop a named constraint, and only foreign-key constraints
-can have names. (Tarantool generates the constraint names automatically if the
-user does not provide them.)
-
-To remove a unique constraint, use DROP INDEX, which will drop the constraint
-as well.
 
 Limitations:
 
