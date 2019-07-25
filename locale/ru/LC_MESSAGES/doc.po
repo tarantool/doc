@@ -51134,6 +51134,7 @@ msgstr "Открытие файла в процессе подготовки к 
 msgid "Full path to the file to open."
 msgstr "Полный путь к открываемому файлу."
 
+#, fuzzy
 #: ../doc/1.10/reference/reference_lua/fio.rst:751
 msgid ""
 "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', "
