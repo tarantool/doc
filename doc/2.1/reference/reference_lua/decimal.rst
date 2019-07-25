@@ -24,8 +24,10 @@ or any function in the decimal module:
 :ref:`log10(n) <decimal-log10>`
 :ref:`new(n) <decimal-new>`
 :ref:`precision(n) <decimal-precision>`
+:ref:`rescale(decimal-number, new-scale) <decimal-rescale>`
 :ref:`scale(n) <decimal-scale>`
-:ref:`sqrt(n) <decimal-sqrt>`,
+:ref:`sqrt(n) <decimal-sqrt>`
+:ref:`trim(decimal-number) <decimal-trim>`,
 where n can be a string or a non-decimal number or a decimal number.
 If it is a string or a non-decimal number,
 Tarantool converts it to a decimal number before
@@ -52,14 +54,14 @@ post-decimal digits is necessary to get 38-digit precision.
 
 .. _decimal-abs:
 
-.. function:: abs(string-or-number-or-decimal)
+.. function:: abs(string-or-number-or-decimal-number)
 
     Returns absolute value of a decimal number.
     For example if a is -1 then ``decimal.abs(a)`` returns 1.
 
 .. _decimal-exp:
 
-.. function:: exp(string-or-number-or-decimal)
+.. function:: exp(string-or-number-or-decimal-number)
 
     Returns *e* raised to the power of a decimal number.
     For example if a is 1 then ``decimal.exp(a)`` returns
@@ -70,21 +72,21 @@ post-decimal digits is necessary to get 38-digit precision.
 
 .. _decimal-ln:
 
-.. function:: ln(string-or-number-or-decimal)
+.. function:: ln(string-or-number-or-decimal-number)
 
     Returns natural logarithm of a decimal number.
     For example if a is 1 then ``decimal.ln(a)`` returns 0.
 
 .. _decimal-log10:
 
-.. function:: log10(string-or-number-or-decimal)
+.. function:: log10(string-or-number-or-decimal-number)
 
     Returns base-10 logarithm of a decimal number.
     For example if a is 100 then ``decimal.log10(a)`` returns 2.
 
 .. _decimal-new:
 
-.. function:: new(string-or-number-or-decimal)
+.. function:: new(string-or-number-or-decimal-number)
 
     Returns the value of the input as a decimal number.
     For example if a is 1E-1 then
@@ -92,22 +94,43 @@ post-decimal digits is necessary to get 38-digit precision.
 
 .. _decimal-precision:
 
-.. function:: precision(string-or-number-or-decimal)
+.. function:: precision(string-or-number-or-decimal-number)
 
     Returns the number of digits in a decimal number.
     For example if a is 123.4560 then ``decimal.precision(a)`` returns 7.
 
+.. _decimal-rescale:
+
+.. function:: rescale(decimal-number, new-scale)
+
+    Returns the number after possible rounding or padding.
+    If the number of post-decimal digits is greater than new-scale,
+    then rounding occurs. The rounding rule is: round half away from zero.
+    If the number of post-decimal digits is less than new-scale,
+    then padding of zeros occurs.
+    For example if a is -123.4550 then ``decimal.rescale(a, 2)`` returns -123.46,
+    and ``decimal.rescale(a, 5)`` returns -123.45500.
+
 .. _decimal-scale:
 
-.. function:: scale(string-or-number-or-decimal)
+.. function:: scale(string-or-number-or-decimal-number)
 
     Returns the number of post-decimal digits in a decimal number.
     For example if a is 123.4560 then ``decimal.scale(a)`` returns 4.
 
 .. _decimal-sqrt:
 
-.. function:: sqrt(string-or-number-or-decimal)
+.. function:: sqrt(string-or-number-or-decimal-number)
 
     Returns the square root of a decimal number.
     For example if a is 2 then ``decimal.sqrt(a)`` returns 
     1.4142135623730950488016887242096980786.
+
+.. _decimal-trim:
+
+.. function:: trim(decimal-number)
+
+    Returns a decimal number after possible removing of trailing post-decimal zeros.
+    For example if a is 2.20200 then ``decimal.trim(a)`` returns 2.202. 
+
+
