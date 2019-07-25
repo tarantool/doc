@@ -6,7 +6,7 @@ Using a binary package
 
 For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
-You can choose from two Tarantool versions: 1.10 (stable) or 2.0 (alpha).
+You can choose from two Tarantool versions: ``1.10`` (stable) or ``2.0`` (alpha).
 An automatic build system creates, tests and publishes packages for every
 push into a corresponding branch (``1.10`` or ``2.0``) at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
@@ -59,7 +59,7 @@ Here is how to create a simple test database after installation.
    You can delete the directory when the tests are over.
 
 #. Check if the default port the database instance will listen to is vacant.
-   
+
    Depending on the release, during installation Tarantool may start a
    demonstrative global ``example.lua`` instance that listens to the
    ``3301`` port by default. The ``example.lua`` file showcases basic
@@ -67,7 +67,7 @@ Here is how to create a simple test database after installation.
    or ``/etc/tarantool/instances.available`` directories.
 
    However, we encourage you to perform the instance startup manually, so you
-   can learn. 
+   can learn.
 
    Make sure the default port is vacant:
 
@@ -92,7 +92,7 @@ Here is how to create a simple test database after installation.
 
       tarantool> box.cfg{listen = 3301}
 
-#. Create the first :ref:`space <index-box_space>` (named ``'tester'``):
+#. Create the first :ref:`space <index-box_space>` (named ``tester``):
 
    .. code-block:: tarantoolsession
 
@@ -108,7 +108,7 @@ Here is how to create a simple test database after installation.
                > {name = 'year', type = 'unsigned'}
                > })
 
-#. Create the first :ref:`index <index-box_index>` (named ``'primary'``):
+#. Create the first :ref:`index <index-box_index>` (named ``primary``):
 
    .. code-block:: tarantoolsession
 
@@ -119,7 +119,7 @@ Here is how to create a simple test database after installation.
 
    This is a primary index based on the ``id`` field of each tuple.
 
-#. Insert three :ref:`tuples <index-box_tuple>` (our name for "records")
+#. Insert three :ref:`tuples <index-box_tuple>` (our name for records)
    into the space:
 
    .. code-block:: tarantoolsession
@@ -128,7 +128,7 @@ Here is how to create a simple test database after installation.
       tarantool> s:insert{2, 'Scorpions', 2015}
       tarantool> s:insert{3, 'Ace of Base', 1993}
 
-#. To select a tuple using the ``'primary'`` index, say:
+#. To select a tuple using the ``primary`` index, say:
 
    .. code-block:: tarantoolsession
 
@@ -180,7 +180,7 @@ Here is how to create a simple test database after installation.
       - - [3, 'Ace of Base', 1993]
       ...
 
-#. To add a secondary index based on the ``'band_name'`` field, say:
+#. To add a secondary index based on the ``band_name`` field, say:
 
    .. code-block:: tarantoolsession
 
@@ -189,7 +189,7 @@ Here is how to create a simple test database after installation.
                > parts = {'band_name'}
                > })
 
-#. To select tuples using the ``'secondary'`` index, say:
+#. To select tuples using the ``secondary`` index, say:
 
    .. code-block:: tarantoolsession
 
@@ -213,7 +213,7 @@ Connecting remotely
 
 In the request ``box.cfg{listen = 3301}`` that we made earlier, the ``listen``
 value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier).
-In this case, it’s just a local port: port 3301. You can send requests to the
+In this case, it’s just a local port: port ``3301``. You can send requests to the
 listen URI via:
 
 (1) ``telnet``,
