@@ -34,7 +34,14 @@ Observe the following rules when working with transactions:
     :class: FACT
 
     Requests which cause changes to the data definition
-    -- create, alter, drop, truncate -- must not be used.
+    -- create, alter, drop, truncate -- are only allowed with
+    Tarantool version 2.1 or later.
+    Data-definition requests which change an index
+    or change a format, such as
+    :ref:`space_object:create_index() <box_schema-sequence_create_index>` and
+    :ref:`space_object:format() <box_space-format>`,
+    are not allowed inside transactions except as the first request
+    after ``box.begin()``.
 
 ===============================================================================
                                     Index
