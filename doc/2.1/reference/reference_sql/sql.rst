@@ -170,38 +170,62 @@ Limitations:
   configuration option.
 
 ***********************************************
-Column Definition
+Column definition
 ***********************************************
 
-column-name data-type [, column-constraint]
+Syntax:
+
+:samp:`column-name data-type [, column-constraint]`
 
 Define a column, which is a table-element used in a CREATE TABLE statement.
 
-The column-name must be an identifier which is valid according to the rules for identifiers.
-Each column-name must be unique within a table.
+The ``column-name`` must be an identifier which is valid according to the rules
+for identifiers.
+
+Each ``column-name`` must be unique within a table.
 
 ***********************************************
-Column Definition -- Data Type
+Column definition -- data type
 ***********************************************
 
 .. image:: data_type.svg
     :align: left
 
+|br|
+
 Every operand has a data type.
 
-For literals,  the data type is usually determined by the format. For identifiers, the data type is usually determined by the definition.The usual determination may change because of context or because of explicit casting.
+For literals, the data type is usually determined by the format.
 
-For some SQL data type names there are aliases. An alias may be used for data definition. For example VARCHAR(5) and TEXT are aliases of STRING and may appear in CREATE TABLE table_name (column_name VARCHAR(5) PRIMARY KEY); but Tarantool, if asked, will report that the data type of column_name is STRING.
+For identifiers, the data type is usually determined by the definition.
 
-For every SQL data type there is a corresponding NoSQL type, for example an SQL STRING is stored in a NoSQL space as type = 'string'.
+The usual determination may change because of context or because of explicit casting.
 
-To avoid confusion in this manual all references to SQL data type names are in upper case and all similar words which refer to NoSQL types or to other kinds of object are in lower case, for example STRING is a data type name but string is a general term; NUMBER is a data type name but number is a general term. Although it is common to say that a VARBINARY value is a "binary string", this manual will not use that term and will instead say "byte sequence".
+For some SQL data type names there are *aliases*.
+An alias may be used for data definition.
+For example VARCHAR(5) and TEXT are aliases of STRING and may appear in
+`CREATE TABLE table_name (column_name VARCHAR(5) PRIMARY KEY);` but Tarantool,
+if asked, will report that the data type of `column_name` is STRING.
 
-Here are all the SQL data types, their corresponding NoSQL types, their aliases, and minimum / maximum literal examples.
+For every SQL data type there is a corresponding NoSQL type, for example
+an SQL STRING is stored in a NoSQL space as type = 'string'.
+
+To avoid confusion in this manual, all references to SQL data type names are
+in upper case and all similar words which refer to NoSQL types or to other kinds
+of object are in lower case, for example:
+
+* STRING is a data type name, but string is a general term;
+* NUMBER is a data type name, but number is a general term.
+
+Although it is common to say that a VARBINARY value is a "binary string",
+this manual will not use that term and will instead say "byte sequence".
+
+Here are all the SQL data types, their corresponding NoSQL types, their aliases,
+and minimum / maximum literal examples.
 
 .. container:: table
 
-    **Data Types**
+    **Data types**
 
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
@@ -230,58 +254,132 @@ Here are all the SQL data types, their corresponding NoSQL types, their aliases,
 BOOLEAN values are FALSE, TRUE, and UNKNOWN (which is the same as NULL).
 FALSE is less than TRUE.
 
-INTEGER values are numbers that do not contain decimal points and are not expressed with exponential notation. The range of possible values is between -2^63 and +2^64, or NULL.
+INTEGER values are numbers that do not contain decimal points and are
+not expressed with exponential notation. The range of possible values is
+between -2^63 and +2^64, or NULL.
 
-UNSIGNED values are numbers that do not contain decimal points and are not expressed with exponential notation. The range of possible values is between 0 and +2^64, or NULL.
+UNSIGNED values are numbers that do not contain decimal points and are not
+expressed with exponential notation. The range of possible values is
+between 0 and +2^64, or NULL.
 
-NUMBER values are numbers that do contain decimal points (for example 0.5) or are expressed with exponential notation (for example 5E-1). The range of possible values is the same as for the IEEE 754 floating-point standard, or NULL. Numbers outside the range of NUMBER literals may be displayed as -inf or inf.
+NUMBER values are numbers that do contain decimal points (for example 0.5) or
+are expressed with exponential notation (for example 5E-1).
+The range of possible values is the same as for the IEEE 754 floating-point
+standard, or NULL. Numbers outside the range of NUMBER literals may be displayed
+as -inf or inf.
 
-STRING values are any sequence of zero or more characters encoded with UTF-8, or NULL. The possible character values are the same as for the Unicode standard. Byte sequences which are not valid UTF-8 characters are allowed but not recommended. STRING literal values are 
-enclosed within single quotes, for example 'literal'. If the VARCHAR alias is used for column definition, it must include a maximum length, for example column_1 VARCHAR(40).
-However, the maximum length is ignored.
-The data-type may be followed by [COLLATE collation-name]; see section COLLATE clause.
+STRING values are any sequence of zero or more characters encoded with UTF-8,
+or NULL. The possible character values are the same as for the Unicode standard.
+Byte sequences which are not valid UTF-8 characters are allowed but not recommended.
+STRING literal values are enclosed within single quotes, for example 'literal'.
+If the VARCHAR alias is used for column definition, it must include a maximum
+length, for example column_1 VARCHAR(40). However, the maximum length is ignored.
+The data-type may be followed by ``[COLLATE collation-name]``.
+.. // see section COLLATE clause.
 
-VARBINARY values are any sequence of zero or more octets (bytes), or NULL. VARBINARY literal values are expressed as X followed by pairs of hexadecimal digits enclosed within single quotes, for example X'0044'. VARBINARYs NoSQL equivalent is 'varbinary' but not character string -- the MessagePack storage is MP_BIN (MsgPack binary).
+VARBINARY values are any sequence of zero or more octets (bytes), or NULL.
+VARBINARY literal values are expressed as X followed by pairs of hexadecimal
+digits enclosed within single quotes, for example X'0044'.
+VARBINARYs NoSQL equivalent is 'varbinary' but not character string -- the
+MessagePack storage is MP_BIN (MsgPack binary).
 
-SCALAR can be used for column definitions but the individual column values have one of the preceding types -- BOOLEAN, INTEGER, UNSIGNED, NUMBER, STRING, or VARBINARY. More about SCALAR in the next section.
-The data-type may be followed by [COLLATE collation-name]; see section COLLATE clause.
+SCALAR can be used for column definitions but the individual column values have
+one of the preceding types -- BOOLEAN, INTEGER, UNSIGNED, NUMBER, STRING, or VARBINARY.
+See more about SCALAR in the next section.
+The data-type may be followed by ``[COLLATE collation-name]``.
+.. // see section COLLATE clause.
 
-Any value of any data type may be NULL. Ordinarily NULL will be cast to the data type of any operand it is being compared to or to the data type of the column it is in. If the data type of NULL cannot be determined from context, it is BOOLEAN.
+Any value of any data type may be NULL. Ordinarily NULL will be cast to the
+data type of any operand it is being compared to or to the data type of the
+column it is in. If the data type of NULL cannot be determined from context,
+it is BOOLEAN.
 
 ********************************************************
-Column Definition -- the rules for the SCALAR data type
+Column definition -- the rules for the SCALAR data type
 ********************************************************
 
-SCALAR is a "complex" data type, unlike all the other data types which are "primitive". Two column values in a SCALAR column can have two different primitive data types.
+SCALAR is a "complex" data type, unlike all the other data types which are "primitive".
+Two column values in a SCALAR column can have two different primitive data types.
 
-1. Any item defined as SCALAR has an underlying primitive type. For example, after |br|
-CREATE TABLE t (s1 SCALAR PRIMARY KEY); |br|
-INSERT INTO t VALUES (55),('41'); |br|
-The underlying primitive type of the item in the first row is INTEGER because literal 55 has data type INTEGER, and the underlying primitive type in the second row is STRING (the data type of a literal is always clear from its format). An item's primitive type is far more important than its defined type. Incidentally Tarantool might find the primitive type by looking at the way MsgPack stores it, but that is an implementation detail. |br|
-2. A SCALAR definition may not include a maximum length, as there is no suggested restriction. |br|
-3. A SCALAR definition may include a COLLATE clause, which affects any items whose primitive data type is STRING. The default collation is "binary". |br|
-4. Some assignments are illegal when data types differ, but legal  when the target is a SCALAR item. For example UPDATE ... SET column1 = 'a'  is illegal if column1 is defined as INTEGER, but is legal if column1 is defined as SCALAR -- values which happen to be INTEGER will be changed so their data type is STRING. |br|
-5. There is no literal syntax which implies data type SCALAR. |br|
-6. TYPEOF(x) is never SCALAR, it is always the underlying data type. This is true even if x is null (in that case the data type is BOOLEAN. In fact there is no function that is guaranteed to return the defined data type. For example, TYPEOF(CAST(1 AS SCALAR)); returns INTEGER, not SCALAR. |br|
-7. For any operation that requires implicit casting from an item defined as SCALAR, the syntax is legal but the operation may fail at runtime. At runtime, Tarantool detects the underlying primitive data type and applies the rules for that. For example, if a definition is |br|
-CREATE TABLE t (s1 SCALAR PRIMARY KEY, s2 INTEGER); |br|
-and within any row s1 = 'a', that is, its underlying primitive type is STRING to indicate character strings, then UPDATE t SET s2 = s1; is illegal. Tarantool usually does not know that in advance. |br|
-8. For any dyadic operation that requires implicit casting for comparison, the syntax is legal and the operation will not fail at runtime. Take this situation: comparison with a primitive type VARBINARY  and a primitive type STRING. After
-CREATE TABLE t (s1 SCALAR PRIMARY KEY); |br|
-INSERT INTO t VALUES (X'41'); |br|
-SELECT * FROM t WHERE s1 > 'a'; |br|
-The comparison is valid, because Tarantool knows the ordering of X'41' and 'a' in Tarantool/NoSQL 'scalar'. This would be true even if s1 was not defined as SCALAR. |br|
-9. The result data type of min/max operation on a column defined as SCALAR is the data type of the minimum/maximum operand, unless the result value is NULL. For example: |br|
-CREATE TABLE t (s1 INT, s2 SCALAR PRIMARY KEY); |br|
-INSERT INTO t VALUES (1,X'44'),(2,11),(3,1E4),(4,'a');b|br|
-SELECT MIN(s2), HEX(MAX(s2)) FROM t; |br|
-The result is: - - [11, '44',]. |br|
-That is only possible with Tarantool/NoSQL scalar rules, but SELECT SUM(s2) would not be legal because addition would in this case require implicit casting from VARBINARY to integer, which is not sensible.  |br|
-10. The result data type of a primitive combination is never SCALAR because we in effect use TYPEOF(item) not the defined data type. (Here we use the word "combination" in the way that the standard document uses it for section ""Result of data type combinations".) Therefore for
-MAX(1E308, 'a', 0, X'00') the result is X'00'.
+#. Any item defined as SCALAR has an underlying primitive type. For example, here:
+
+   .. code-block:: sql
+
+      CREATE TABLE t (s1 SCALAR PRIMARY KEY);
+      INSERT INTO t VALUES (55),('41');
+
+   the underlying primitive type of the item in the first row is INTEGER
+   because literal 55 has data type INTEGER, and the underlying primitive type
+   in the second row is STRING (the data type of a literal is always clear from
+   its format).
+
+   An item's primitive type is far more important than its defined type.
+   Incidentally Tarantool might find the primitive type by looking at the way
+   MsgPack stores it, but that is an implementation detail.
+
+#. A SCALAR definition may not include a maximum length, as there is no suggested
+   restriction.
+#. A SCALAR definition may include a COLLATE clause, which affects any items
+   whose primitive data type is STRING. The default collation is "binary".
+#. Some assignments are illegal when data types differ, but legal when the
+   target is a SCALAR item. For example ``UPDATE ... SET column1 = 'a'``
+   is illegal if ``column1`` is defined as INTEGER, but is legal if ``column1``
+   is defined as SCALAR -- values which happen to be INTEGER will be changed
+   so their data type is STRING.
+#. There is no literal syntax which implies data type SCALAR.
+#. TYPEOF(x) is never SCALAR, it is always the underlying data type.
+   This is true even if ``x`` is null (in that case the data type is BOOLEAN).
+   In fact there is no function that is guaranteed to return the defined data type.
+   For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns INTEGER, not SCALAR.
+#. For any operation that requires implicit casting from an item defined as SCALAR,
+   the syntax is legal but the operation may fail at runtime.
+   At runtime, Tarantool detects the underlying primitive data type and applies
+   the rules for that. For example, if a definition is:
+
+   .. code-block:: sql
+
+      CREATE TABLE t (s1 SCALAR PRIMARY KEY, s2 INTEGER);
+
+   and within any row ``s1 = 'a'``, that is, its underlying primitive type is
+   STRING to indicate character strings, then ``UPDATE t SET s2 = s1;`` is illegal.
+   Tarantool usually does not know that in advance.
+#. For any dyadic operation that requires implicit casting for comparison, the
+   syntax is legal and the operation will not fail at runtime.
+   Take this situation: comparison with a primitive type VARBINARY and
+   a primitive type STRING.
+
+   .. code-block:: sql
+
+      CREATE TABLE t (s1 SCALAR PRIMARY KEY);
+      INSERT INTO t VALUES (X'41');
+      SELECT * FROM t WHERE s1 > 'a';
+
+   The comparison is valid, because Tarantool knows the ordering of X'41' and 'a'
+   in Tarantool/NoSQL 'scalar'. This would be true even if ``s1`` was not defined
+   as SCALAR.
+#. The result data type of min/max operation on a column defined as SCALAR
+   is the data type of the minimum/maximum operand, unless the result value
+   is NULL. For example:
+
+   .. code-block:: sql
+
+      CREATE TABLE t (s1 INT, s2 SCALAR PRIMARY KEY);
+      INSERT INTO t VALUES (1,X'44'),(2,11),(3,1E4),(4,'a');
+      SELECT MIN(s2), HEX(MAX(s2)) FROM t;
+
+   The result is: ``- - [11, '44',]``
+
+   That is only possible with Tarantool/NoSQL scalar rules, but ``SELECT SUM(s2)``
+   would not be legal because addition would in this case require implicit casting
+   from VARBINARY to integer, which is not sensible.
+#. The result data type of a primitive combination is never SCALAR because we
+   in effect use TYPEOF(item) not the defined data type.
+   (Here we use the word "combination" in the way that the standard document
+   uses it for section "Result of data type combinations".) Therefore for
+   ``MAX(1E308, 'a', 0, X'00')`` the result is X'00'.
 
 ********************************************
-Column Definition -- Relation to NoSQL
+Column definition -- relation to NoSQL
 ********************************************
 
 All the SQL data types correspond to
@@ -293,58 +391,81 @@ in a space with a format column saying that the NoSQL type is 'x'.
 
 The rules for that NoSQL type are applicable to the SQL data type.
 
-If two items have SQL data types that have the same underlying type, then they are compatible for all assignment or comparison purposes.
+If two items have SQL data types that have the same underlying type, then they
+are compatible for all assignment or comparison purposes.
 
 If two items have SQL data types that have different underlying types, then the
-rules for explicit casts, or implicit (assignment) casts, or implicit (comparison) casts, apply.
+rules for explicit casts, or implicit (assignment) casts, or implicit (comparison)
+casts, apply.
 
 There is one floating-point value which is not handled by SQL: -nan is seen as NULL.
 
-There are also some Tarantool/NoSQL data types which have no corresponding SQL data types. For example, SELECT "flags" FROM "_space"; will return a column whose data type is 'map'. Such columns can only be manipulated in SQL by invoking Lua functions.
+There are also some Tarantool/NoSQL data types which have no corresponding
+SQL data types. For example, ``SELECT "flags" FROM "_space";`` will return
+a column whose data type is 'map'. Such columns can only be manipulated in SQL
+by invoking Lua functions.
 
 **********************************************************
-Column Definition -- Column-constraint or default clause
+Column definition -- column-constraint or default clause
 **********************************************************
 
-The column-constraint or default clause may be ...
+The column-constraint or default clause may be as follows:
 
-.. code-block:: none
+.. container:: table
 
-   Type               Comment
-   ----               -------
+    **Data types**
 
-   NOT NULL           NOT NULL means
-                      "it is illegal to assign a NULL to this column"
-   PRIMARY KEY        explained in the later section
-                       "Constraint definition"
-   UNIQUE              explained in the later section
-                       "Constraint definition"
-   CHECK (expression)  explained in the later section
-                       "Constraint definition"
-   DEFAULT expression  means "if INSERT does not assign to this column
-                       then assign expression result to this column" --
-                       if there is no DEFAULT clause then DEFAULT NULL
-                       is assumed.
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-If column-constraint is PRIMARY KEY, this is a shorthand for a separate table-constraint definition: "PRIMARY KEY (column-name)".
+    +--------------------+---------------------------------------------------+
+    | Type               | Comment                                           |
+    +====================+===================================================+
+    | NOT NULL           | means                                             |
+    |                    | "it is illegal to assign a NULL to this column"   |
+    +--------------------+---------------------------------------------------+
+    | PRIMARY KEY        | explained in the later section                    |
+    |                    | "Constraint definition"                           |
+    +--------------------+---------------------------------------------------+
+    | UNIQUE             | explained in the later section                    |
+    |                    | "Constraint definition"                           |
+    +--------------------+---------------------------------------------------+
+    | CHECK (expression) | explained in the later section                    |
+    |                    | "Constraint definition"                           |
+    +--------------------+---------------------------------------------------+
+    | DEFAULT expression | means                                             |
+    |                    | "if INSERT does not assign to this column         |
+    |                    | then assign expression result to this column" --  |
+    |                    | if there is no DEFAULT clause then DEFAULT NULL   |
+    |                    | is assumed.                                       |
+    +--------------------+---------------------------------------------------+
 
-If column-constraint is UNIQUE, this is a shorthand for a separate table-constraint definition: "UNIQUE (column-name)".
+If column-constraint is PRIMARY KEY, this is a shorthand for a separate
+table-constraint definition: "PRIMARY KEY (column-name)".
+
+If column-constraint is UNIQUE, this is a shorthand for a separate
+table-constraint definition: "UNIQUE (column-name)".
 
 Columns defined with PRIMARY KEY are automatically NOT NULL.
 
-To enforce some restrictions that Tarantool does not enforce automatically, add CHECK clauses, like |br|
-CREATE TABLE t ("smallint" INTEGER PRIMARY KEY, CHECK ("smallint" <= 32767 AND "smallint" >= -32768)); |br|
-CREATE TABLE t ("shorttext" CHAR(10) PRIMARY KEY, CHECK (length("shorttext") <= 10)); |br|
+To enforce some restrictions that Tarantool does not enforce automatically,
+add CHECK clauses, like these:
+
+.. code-block:: sql
+
+   CREATE TABLE t ("smallint" INTEGER PRIMARY KEY, CHECK ("smallint" <= 32767 AND "smallint" >= -32768));
+   CREATE TABLE t ("shorttext" CHAR(10) PRIMARY KEY, CHECK (length("shorttext") <= 10));
+
 but this may cause inserts or updates to be slow.
 
 *******************************
-Column Definition -- Examples
+Column definition -- examples
 *******************************
 
 These are shown within CREATE TABLE statements.
 Data types may also appear in CAST functions.
 
-.. code-block:: none
+.. code-block:: sql
 
    -- the simple form with column-name and data-type
    CREATE TABLE t (column1 INTEGER ...);
@@ -352,6 +473,8 @@ Data types may also appear in CAST functions.
    CREATE TABLE t (column1 STRING PRIMARY KEY ...);
    -- with column-name and data-type and collate-clause and two column-constraints
    CREATE TABLE t (column1 SCALAR COLLATE "unicode" ...);
+
+.. code-block:: sql
 
    -- with all possible data types and aliases
    CREATE TABLE t
@@ -363,6 +486,8 @@ Data types may also appear in CAST functions.
     columnb VARCHAR(0), columnc VARCHAR(100000) COLLATE "binary",
     columnd VARBINARY,
     columne SCALAR, columnf SCALAR COLLATE "unicode_uk_s2");
+
+.. code-block:: sql
 
    -- with all possible column constraints and a default clause
    CREATE TABLE t
