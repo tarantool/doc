@@ -168,7 +168,7 @@ Below is a list of all functions for transaction management.
 
 .. _box-atomic:
 
-.. function:: box.atomic(function-name [, function-arguments])
+.. function:: box.atomic(tx-function [, function-arguments])
 
     Execute a function, acting as if the function starts with an implicit
     :ref:`box.begin() <box-begin>` and ends with an implicit

@@ -165,6 +165,10 @@ Below is a list of all ``box.index`` functions and members.
         <c_lua_tutorial-indexed_pattern_search>` shows one way that iterators
         and yields can be used together.
 
+        For information about iterators' internal structures see the
+        `"Lua Functional library" <https://luafun.github.io/index.html>`_
+        documentation.
+
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
         :param scalar/table key: value to be matched against the index key,

@@ -192,7 +192,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
 .. _socket-tcp_server:
 
-.. function:: tcp_server(host, port, handler-function [, timeout])
+.. function:: tcp_server(host, port, handler-function-or-table [, timeout])
 
     The ``socket.tcp_server()`` function makes Tarantool act as a server that
     can accept connections. Usually the same objective
@@ -200,19 +200,31 @@ the function invocations will look like ``sock:function_name(...)``.
 
     :param string         host: host name or IP
     :param number         port: host port, may be 0
-    :param function/table handler: what to execute when a connection
-                                   occurs
+    :param function/table handler-function-or-table: what to execute when a
+                                                     connection occurs
     :param number         timeout: number of seconds to wait before
                                    timing out
 
-    The handler-function parameter may be a function name (for example
-    ``function_55``), a function declaration (for example
-    ``function () print('!') end``), or a table including handler = function
-    (for example ``{handler=function_55, name='A'}``).
+    The handler-function-or-table parameter may be simply a function name
+    / function declaration:
+    :code:`handler_function`. Or it may be a table:
+    :code:`{handler =`
+    :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]`
+    :code:`}`.
+    ``handler_function`` is mandatory; it may have a
+    single parameter = the socket; it is for continuous
+    operation after the connection is made.
+    ``prepare_function`` is optional; it is executed once before
+    any connection is made. Examples:
 
-    Example:
+        .. code-block:: none
 
-    ``socket.tcp_server('localhost', 3302, function () end)``
+            socket.tcp_server('localhost', 3302, function (s) loop_loop() end)
+            socket.tcp_server('localhost', 3302, {handler=hfunc, name='name'})
+            socket.tcp_server('localhost', 3302, {handler=hfunc, prepare=pfunc})
+
+    For a fuller example see
+    :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`.
 
 .. class:: socket_object
 
@@ -693,6 +705,8 @@ computer to communicate with itself, but shows that the system works.
     - true
     ...
 
+.. _socket_socat:
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Use tcp_server to accept file contents sent with socat
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -711,7 +725,9 @@ On the first shell, start Tarantool and say:
 
     box.cfg{}
     socket = require('socket')
-    socket.tcp_server('0.0.0.0', 3302, function(s)
+    socket.tcp_server('0.0.0.0', 3302,
+    {
+      handler = function(s)
         while true do
           local request
           request = s:read("\n");
@@ -720,7 +736,12 @@ On the first shell, start Tarantool and say:
           end
           print(request)
         end
-      end)
+      end,
+      prepare = function()
+        print('Initialized')
+      end
+    }
+    )
 
 The above code means: use `tcp_server()` to wait for a
 connection from any host on port 3302. When it happens,
