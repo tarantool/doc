@@ -1,4 +1,4 @@
-    .. _swim-module:
+.. _swim-module:
 
 -------------------------------------------------------------------------------
                             Module `swim`
@@ -6,37 +6,43 @@
 
 .. module:: swim
 
-The `swim` module contains Tarantool's implementation of
+The ``swim`` module contains Tarantool's implementation of
 SWIM -- Scalable Weakly-consistent Infection-style Process Group Membership
 Protocol. It is recommended for any type of Tarantool cluster where the
 number of nodes can be large. Its job is to discover and monitor
 the other members in the cluster and keep their information in a "member table".
-It works by sending and receiving, in a background
-event loop, periodically, via UDP, messages.
+It works by sending and receiving, in a background event loop, periodically,
+via UDP, messages.
 
-Each message has several parts, including
-the ping such as "I am checking whether you are alive",
-the event such as "I am joining",
-the anti-entropy such as "I know that another member exists",
-and the payload such as "I or another member could have user-generated data".
+Each message has several parts, including:
+
+* the ping such as "I am checking whether you are alive",
+* the event such as "I am joining",
+* the anti-entropy such as "I know that another member exists",
+* the payload such as "I or another member could have user-generated data".
+
 The maximum message size is about 1500 bytes.
+
 SWIM sends messages periodically to a random subset of the member table.
 SWIM processes replies from those members asynchronously.
 
 Each entry in the member table has:
-a UUID, and a status. The status is "alive", "suspected", "dead", or "left".
+
+* a UUID,
+* a status ("alive", "suspected", "dead", or "left").
+
 When a member fails to acknowledge a certain number of pings,
 its status is changed from "alive" to "suspected", that is, suspected of being
-dead. But SWIM tries to avoid false positives (misidentifying members as dead)
+dead. But SWIM tries to **avoid false positives** (misidentifying members as dead)
 which could happen when a member is overloaded and responds to pings too slowly,
 or when there is network trouble and packets can not go through some channels.
 When a member is suspected, SWIM randomly chooses other members and sends
 requests to them: "please ping this suspected member".
-This is called an indirect ping.
-Thus via different routes and additional hops the suspected member gets additional chances to
-reply, and thus "refute" the suspicion.
+This is called an **indirect ping**.
+Thus via different routes and additional hops the suspected member gets
+additional chances to reply, and thus "refute" the suspicion.
 
-Because selection is random there is an even network load of about one message
+Because selection is random there is an **even network load** of about one message
 per member per protocol step, regardless of the cluster size. This is a major
 feature of SWIM. Because the protocol depends on members passing information on,
 also known as "gossiping", members do not need to broadcast messages to every
@@ -45,7 +51,7 @@ where N is the number of members in the cluster. However, selection is not
 entirely random, there is a preference for selecting least-recently-pinged
 members, like a round-robin.
 
-Regarding the anti-entropy part of a message: this is necessary for maintaining
+Regarding the **anti-entropy** part of a message: this is necessary for maintaining
 the status in entries of the member table.
 Consider an example where two members, #1 and #2, are both alive.
 No events happen so only pings are being sent periodically.
@@ -61,7 +67,7 @@ So for this example, #2 will eventually randomly add to a regular message
 the anti-entropy note that #1 is alive, and thus #3 will discover #1
 even though it did not receive a direct "I am alive" event message from #1.
 
-Regarding the UUID part of an entry in the member table:
+Regarding the **UUID** part of an entry in the member table:
 this is necessary for stable identification, because UUID changes more
 rarely than URI (a combination of IP and port number).
 But if the UUID does change,
@@ -69,17 +75,17 @@ SWIM will include both the new and old UUID in messages,
 so all other members will eventually learn about the new UUID
 and change the member table accordingly.
 
-Regarding the payload part of a message:
+Regarding the **payload** part of a message:
 this is not always necessary, it is a feature
 which allows passing user-generated information via SWIM
 instead of via node-to-node communication.
 The swim module has methods for specifying a "payload", which is arbitrary
-user data with a maximum size of about 1.2 KB. 
+user data with a maximum size of about 1.2 KB.
 The payload can be anything, and it will be eventually
 disseminated over the cluster and available at other members.
 Each member can have its own payload.
 
-Messages can be encrypted. Encryption may not be necessary in a closed
+Messages can be **encrypted**. Encryption may not be necessary in a closed
 network but is necessary for safety if the cluster is on the public Internet.
 Users can specify an encryption algorithm, an encryption mode, and a private key.
 All parts of all messages (including ping, acknowledgment, event, payload,
@@ -88,9 +94,10 @@ with that private key, as well as a random public key generated for each message
 prevent pattern attacks.
 
 In theory the event dissemination speed (the number of hops to pass information
-throughout the cluster) is O(log(cluster_size)). For that and other theoretical
-information see the Cornell University paper which originally described SWIM 
-https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
+throughout the cluster) is ``O(log(cluster_size))``. For that and other theoretical
+information see the Cornell University
+`paper <https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf>`_
+which originally described SWIM.
 
 .. _swim-new:
 
@@ -101,26 +108,32 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
     Multiple SWIM instances can be created in a single Tarantool process.
 
     :param table cfg: an optional configuration parameter.
-                      If cfg is not specified or is nil, then
+
+                      If ``cfg`` is not specified or is nil, then
                       the new SWIM instance is not bound to a socket
                       and has nil attributes, so it cannot interact with other
                       members and only a few methods are valid
                       until :ref:`swim_object:cfg() <swim-cfg>` is called.
-                      If cfg is specified, then the effect is the same as
-                      calling :code:`s = swim.new() s:cfg()`.
+
+                      If ``cfg`` is specified, then the effect is the same as
+                      calling ``s = swim.new() s:cfg()``.
                       For configuration description see
                       :ref:`swim_object:cfg() <swim-cfg>`.
 
-    :returns: swim-object :ref:`a swim object <swim-object>`
+    :return: swim-object :ref:`a swim object <swim-object>`
 
-    Example: ``swim_object = swim.new({uri = 3333, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})``
+    Example:
+
+    .. code-block:: lua
+
+        swim_object = swim.new({uri = 3333, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})
 
 .. _swim-object:
 
 .. class:: swim_object
 
     A swim object is an object returned by :ref:`swim.new() <swim-new>`.
-    It has methods
+    It has methods:
     :ref:`cfg() <swim-cfg>`,
     :ref:`delete() <swim-delete>`,
     :ref:`is_configured() <swim-is_configured>`,
@@ -145,38 +158,41 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :param table cfg: the options to describe instance behavior
 
-        The cfg table may have these components:
+        The ``cfg`` table may have these components:
 
-        heartbeat_rate (double) -- rate of sending round messages, in seconds.
-        Setting heartbeat_rate to X does not mean that every member
-        will be checked every X seconds, instead X is the protocol speed.
-        Protocol period depends on member count and heartbeat_rate.
-        Default = 1.
+        * ``heartbeat_rate`` (double) -- rate of sending round messages, in seconds.
+          Setting ``heartbeat_rate`` to X does not mean that every member
+          will be checked every X seconds, instead X is the protocol speed.
+          Protocol period depends on member count and heartbeat_rate.
+          Default = 1.
 
-        ack_timeout (double) -- time in seconds after which a ping is
-        considered to be unacknowledged. Default = 30.
+        * ``ack_timeout`` (double) -- time in seconds after which a ping is
+          considered to be unacknowledged. Default = 30.
 
-        gc_mode (enum) -- dead member collection mode.
-        If gc_mode == 'off' then SWIM never removes dead
-        members from the member table (though users may remove them
-        with :ref:`swim_object:remove_member() <swim-remove_member>`), and
-        SWIM will continue to ping them as if they were alive.
-        If gc_mode == 'on' then SWIM removes dead members
-        from the member table after one round.
-        Default = 'on'.
+        * ``gc_mode`` (enum) -- dead member collection mode.
 
-        uri (string or number) -- either an 'ip:port' address,
-        or just a port number (if ip is omitted then 127.0.0.1 is
-        assumed). If port == 0, then the kernel will select any free
-        port for the IP address.
+          If ``gc_mode == 'off'`` then SWIM never removes dead
+          members from the member table (though users may remove them
+          with :ref:`swim_object:remove_member() <swim-remove_member>`), and
+          SWIM will continue to ping them as if they were alive.
 
-        uuid (string or cdata struct tt_uuid) -- a value which should
-        be unique among SWIM instances. Users may choose any value
-        but the recommendation is: use
-        :ref:`box.cfg.instance_uuid <cfg_replication-instance_uuid>`,
-        the Tarantool instance's UUID.
+          If ``gc_mode == 'on'`` then SWIM removes dead members
+          from the member table after one round.
 
-        All the cfg components are dynamic -- ``swim_object:cfg()``
+          Default = ``'on'``.
+
+        * ``uri`` (string or number) -- either an ``'ip:port'`` address,
+          or just a port number (if ip is omitted then 127.0.0.1 is
+          assumed). If ``port == 0``, then the kernel will select any free
+          port for the IP address.
+
+        * ``uuid`` (string or cdata struct tt_uuid) -- a value which should
+          be unique among SWIM instances. Users may choose any value
+          but the recommendation is: use
+          :ref:`box.cfg.instance_uuid <cfg_replication-instance_uuid>`,
+          the Tarantool instance's UUID.
+
+        All the ``cfg`` components are dynamic -- ``swim_object:cfg()``
         may be called more than once. If it is not being called for
         the first time and a component is not specified, then the
         component retains its previous value. If it is being called
@@ -187,16 +203,20 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         then nothing changes.
 
         :return: true if configuration succeeds
-        :return: nil, err if an error occurred. err is an error object
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object
 
-        Example: ``swim_object:cfg({heartbeat_rate = 0.5})``
+        Example:
 
-        After ``swim_object:cfg()``, all other swim_object methods are callable.
+        .. code-block:: lua
+
+            swim_object:cfg({heartbeat_rate = 0.5})
+
+        After ``swim_object:cfg()``, all other ``swim_object`` methods are callable.
 
     .. data:: cfg.
 
-        Expose all non-nil components of the read-only table which was set up or changed by
-        :ref:`swim_object:cfg() <swim-cfg>`.
+        Expose all non-nil components of the read-only table which was set up
+        or changed by :ref:`swim_object:cfg() <swim-cfg>`.
 
         Example:
 
@@ -214,9 +234,10 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
     .. method:: delete()
 
         Delete a SWIM instance immediately. Its memory is freed,
-        its member table entry is deleted, 
+        its member table entry is deleted,
         and it can no longer be used.
         Other members will treat this member as 'dead'.
+
         After ``swim_object:delete()`` any attempt to use the
         deleted instance will cause an exception to be thrown.
 
@@ -230,7 +251,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         Return false if
         a SWIM instance was created via
-        :ref:`swim.new() <swim-new>` without an optional cfg argument,
+        :ref:`swim.new() <swim-new>` without an optional ``cfg`` argument,
         and was not configured with :ref:`swim_object:cfg() <swim-cfg>`.
         Otherwise return true.
 
@@ -253,13 +274,19 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
     .. method:: quit()
 
-        Leave the cluster. This is a graceful equivalent of
+        Leave the cluster.
+
+        This is a graceful equivalent of
         :ref:`swim_object:delete() <swim-delete>` -- the instance is
         deleted, but before deletion it sends to each member in its
         member table a message, that this instance has left the cluster, and
-        should not be considered dead. Other instances mark such member
+        should not be considered dead.
+
+        Other instances mark such member
         in their tables as 'left', and drop it after one round of
-        dissemination. Consequences to the caller are the same as after
+        dissemination.
+
+        Consequences to the caller are the same as after
         ``swim_object:delete()`` -- the instance is no longer usable,
         and an error will be thrown if there is an attempt to use it.
 
@@ -272,6 +299,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
     .. method:: add_member(cfg)
 
         Explicitly add a member into the member table.
+
         This method is useful when a new member is joining
         the cluster and does not yet know what members already exist.
         In that case it can start interaction explicitly by
@@ -282,13 +310,17 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :param table cfg: description of the member
 
-        The cfg table has two mandatory components, uuid and uri, which have
-        the same format as uuid and uri in the table for :ref:`swim_object:cfg() <swim-cfg>`.
+        The ``cfg`` table has two mandatory components, ``uuid`` and ``uri``, which have
+        the same format as ``uuid`` and ``uri`` in the table for :ref:`swim_object:cfg() <swim-cfg>`.
 
         :return: true if member is added
-        :return: nil, err if an error occurred. err is an error object
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object
 
-        Example: ``swim_member_object = swim_object:add_member({uuid = ..., uri = ...})``
+        Example:
+
+        .. code-block:: lua
+
+            swim_member_object = swim_object:add_member({uuid = ..., uri = ...})
 
     .. _swim-remove_member:
 
@@ -300,7 +332,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         :param string-or-cdata-struct-tt_uuid uuid: UUID
 
         :return: true if member is removed
-        :return: nil, err if an error occurred. err is an error object.
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object.
 
         Example: ``swim_object:delete('00000000-0000-1000-8000-000000000001')``
 
@@ -308,19 +340,21 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
     .. method:: probe_member(uri)
 
-        Send a ping request to the specified uri address. If another member
+        Send a ping request to the specified ``uri`` address. If another member
         is listening at that address, it will receive the ping, and respond with
         an ACK (acknowledgment) message containing information such as UUID.
-        That information will 
-        be added to the
-        member table. ``swim_object:probe_member()`` is similar to
+        That information will be added to the
+        member table.
+
+        ``swim_object:probe_member()`` is similar to
         :ref:`swim_object:add_member() <swim-add_member>`, but it
         does not require UUID, and it is not reliable because it uses UDP.
 
-        :param string-or-number uri: URI. Format is the same as for uri in :ref:`swim_object:cfg() <swim-cfg>`.
+        :param string-or-number uri: URI. Format is the same as for ``uri``
+                                     in :ref:`swim_object:cfg() <swim-cfg>`.
 
         :return: true if member is pinged
-        :return: nil, err if an error occurred. err is an error object.
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object.
 
         Example: ``swim_object:probe_member(3333)``
 
@@ -329,7 +363,9 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
     .. method:: broadcast([port])
 
         Broadcast a ping request to all the network interfaces in the
-        system. ``swim_object:broadcast()`` is like
+        system.
+
+        ``swim_object:broadcast()`` is like
         :ref:`swim_object:probe_member() <swim-probe_member>`
         to many members at once.
 
@@ -338,7 +374,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
                             By default a currently bound port is used.
 
         :return: true if broadcast is sent
-        :return: nil, err if an error occurred. err is an error object.
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object.
 
         **Example:**
 
@@ -372,7 +408,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
             ---
             - 1
             ...
-            
+
             tarantool> fiber.sleep(0.2)
             ---
             ...
@@ -384,7 +420,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
             ---
             - 2
             ...
-            tarantool> s1:remove_member(s2:self():uuid()) s2:remove_member(s1:self():uuid()) 
+            tarantool> s1:remove_member(s2:self():uuid()) s2:remove_member(s1:self():uuid())
             ---
             ...
             tarantool> s1:size()
@@ -411,7 +447,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
             ---
             - 2
             ...
-            tarantool> s1:remove_member(s2:self():uuid()) s2:remove_member(s1:self():uuid()) 
+            tarantool> s1:remove_member(s2:self():uuid()) s2:remove_member(s1:self():uuid())
             ---
             ...
             tarantool> s1:size()
@@ -444,11 +480,13 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
     .. method:: set_payload(payload)
 
         Set a payload, as formatted data.
+
         Payload is arbitrary user defined data up to 1200 bytes in size
         and disseminated over the cluster. So each cluster member
         will eventually learn what is the payload of other members in
         the cluster, because it is stored in the member table and can be
         queried with :ref:`swim_member_object:payload() <swim-payload>`.
+
         Different members may have different payloads.
 
         :param object payload:  Arbitrary Lua object to disseminate. Set to nil
@@ -457,19 +495,25 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
                                 MessagePack.
 
         :return: true if payload is set
-        :return: nil, err if an error occurred. err is an error object
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object
 
-        Example: ``swim_object:set_payload({field1 = 100, field2 = 200})``
+        Example:
+
+        .. code-block:: lua
+
+            swim_object:set_payload({field1 = 100, field2 = 200})
 
     .. _swim-set_payload_raw:
 
     .. method:: set_payload_raw(payload[, size])
 
         Set a payload, as raw data.
+
         Sometimes a payload does not need to be a Lua object.
         For example, a user may already have a well formatted
         MessagePack object and just wants to set it as a payload.
-        Or cdata needs to to be exposed.
+        Or cdata needs to be exposed.
+
         ``set_payload_raw`` allows setting
         a payload as is, without MessagePack serialization.
 
@@ -477,13 +521,13 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :param number size:  Payload size in bytes. If ``payload`` is string then ``size`` is
                              optional, and if specified, then should not be larger
-                             than actual ``payload`` size. If ``size`` is less than actual ``payload`` size,
-                             then only the first ``size``
+                             than actual ``payload`` size. If ``size`` is less than
+                             actual ``payload`` size, then only the first ``size``
                              bytes of ``payload`` are used. If ``payload`` is cdata then
                              ``size`` is mandatory.
 
         :return: true if payload is set
-        :return: nil, err if an error occurred. err is an error object
+        :return: nil, ``err`` if an error occurred. ``err`` is an error object
 
         Example:
 
@@ -573,7 +617,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         For a brief description of encryption
         algorithms see "enum_crypto_algo" and "enum crypto_mode"
-        in the Tarantool source code file 
+        in the Tarantool source code file
         `crypto.h <https://github.com/tarantool/tarantool/blob/master/src/lib/crypto/crypto.h>`_.
 
         When encryption is enabled, all the
@@ -582,26 +626,29 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :param table codec_cfg: description of the encryption
 
-        The components of the codec_cfg table may be:
+        The components of the ``codec_cfg`` table may be:
 
-        algo (string) -- encryption algorithm name.
-        All the names in :ref:`module crypto <crypto>` are supported:
-        'aes128', 'aes192', 'aes256', 'des'.
-        Specify 'none' to disable encryption.
+        * ``algo`` (string) -- encryption algorithm name.
+          All the names in :ref:`module crypto <crypto>` are supported:
+          'aes128', 'aes192', 'aes256', 'des'.
+          Specify 'none' to disable encryption.
 
-        mode (string) -- encryption algorithm mode. All the modes in
-        module crypto are supported: 'ecb', 'cbc', 'cfb', 'ofb'.
-        Default = 'cbc'.
+        * ``mode`` (string) -- encryption algorithm mode. All the modes in
+          module ``crypto`` are supported: 'ecb', 'cbc', 'cfb', 'ofb'.
+          Default = 'cbc'.
 
-        key (cdata or string) -- a private secret key which is kept
-        secret and should never be stored hardcoded in source code.
+        * ``key`` (cdata or string) -- a private secret key which is kept
+          secret and should never be stored hard-coded in source code.
 
-        key_size (integer) -- size of the key in bytes.
-        key_size is mandatory if key is cdata. key_size is optional if key is
-        string, and if key_size is shorter than than actual key size
-        then the key is truncated.
+        * ``key_size`` (integer) -- size of the key in bytes.
 
-        ``algo`` and ``mode`` and ``key`` and ``key_size`` should be
+          ``key_size`` is mandatory if key is cdata.
+
+          ``key_size`` is optional if key is
+          string, and if ``key_size`` is shorter than than actual key size
+          then the key is truncated.
+
+        All of ``algo``, ``mode``, ``key``, and ``key_size`` should be
         the same for all SWIM instances, so that members can understand
         each others' messages.
 
@@ -644,13 +691,17 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         :return: :ref:`swim member object <swim-member_object>`, or nil if not found
 
-        Example: ``swim_member_object = swim_object:member_by_uuid('00000000-0000-1000-8000-000000000001')``
+        Example:
+
+        .. code-block:: lua
+
+            swim_member_object = swim_object:member_by_uuid('00000000-0000-1000-8000-000000000001')
 
     .. _swim-pairs:
 
     .. method:: pairs()
 
-        Set up an iterator for returning 
+        Set up an iterator for returning
         :ref:`swim member objects <swim-member_object>` from the member table,
         or from a cache containing earlier results of ``swim_object:self()`` or
         ``swim_object:member_by_uuid()`` or ``swim_object:pairs()``.
@@ -661,10 +712,9 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         one iterator object is available per SWIM instance.)
 
         :param varies generator+object+key: as for any Lua pairs() iterators.
-                                             generator function, iterator
-                                             object (a swim member object),
-                                             and initial key (a UUID).
-
+                                            generator function, iterator
+                                            object (a swim member object),
+                                            and initial key (a UUID).
 
         Example:
 
@@ -739,20 +789,22 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
 .. class:: swim_member_object
 
-        Methods
-        :ref:`swim_object:member_by_uuid() <swim-member_by_uuid>`,
-        :ref:`swim_object:self() <swim-self>`, and
-        :ref:`swim_object:pairs() <swim-pairs>` return swim
-        member objects. A swim member object has methods for reading
-        its attributes:
-        :ref:`status() <swim-status>`,
-        :ref:`uuid <swim-uuid>`,
-        :ref:`uri() <swim-uri>`,
-        :ref:`incarnation() <swim-incarnation>`,
-        :ref:`payload_cdata <swim-payload_cdata>`,
-        :ref:`payload_str() <swim-payload_str>`,
-        :ref:`payload() <swim-payload>`,
-        :ref:`is_dropped() <swim-is_dropped>`.
+    Methods
+    :ref:`swim_object:member_by_uuid() <swim-member_by_uuid>`,
+    :ref:`swim_object:self() <swim-self>`, and
+    :ref:`swim_object:pairs() <swim-pairs>` return swim
+    member objects.
+
+    A swim member object has methods for reading
+    its attributes:
+    :ref:`status() <swim-status>`,
+    :ref:`uuid <swim-uuid>`,
+    :ref:`uri() <swim-uri>`,
+    :ref:`incarnation() <swim-incarnation>`,
+    :ref:`payload_cdata <swim-payload_cdata>`,
+    :ref:`payload_str() <swim-payload_str>`,
+    :ref:`payload() <swim-payload>`,
+    :ref:`is_dropped() <swim-is_dropped>`.
 
     .. _swim-status:
 
@@ -775,7 +827,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
     .. method:: uri()
 
-        Return the URI as a string 'ip:port'. 
+        Return the URI as a string 'ip:port'.
         Via this method a user
         can learn a real assigned port, if port = 0 was specified in
         :ref:`swim_object:cfg() <swim-cfg>`.
@@ -840,7 +892,6 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         member which has already been dropped from the member table.
 
         :return: boolean true if member is dropped, otherwise false
-
 
         Example:
 
@@ -920,12 +971,17 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
 
         The **trigger-function** should have three parameter declarations
         (Tarantool will pass values for them when it invokes the function):
-        the member which is having the member event,
-        the event object,
-        and the ctx which will be the same value as what is passed to ``swim_object:on_member_event``.
 
-        A **member event** is any of: appearance of a new member,
-        drop of an existing member, or update of an existing member.
+        * the member which is having the member event,
+        * the event object,
+        * the ``ctx`` which will be the same value as what is passed to
+          ``swim_object:on_member_event``.
+
+        A **member event** is any of:
+
+        * appearance of a new member,
+        * drop of an existing member, or
+        * update of an existing member.
 
         An **event object** is an object which the trigger-function
         can use for determining what type of member event has happened.
@@ -933,7 +989,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         ``is_new_incarnation()``, ``is_new_payload()``, ``is_drop()`` --
         return boolean values.
 
-        A member event may have more than one associated trigger.
+        A member event may have more than one associated **trigger**.
         Triggers are executed sequentially.
         Therefore if a trigger function causes yields or sleeps,
         other triggers may be forced to wait.
@@ -994,7 +1050,8 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
         already has a payload, and should not assume that payload size
         says something about the payload's presence or absence.
 
-        Also: functions should not assume that ``is_new()`` and ``is_drop()`` will always be seen.
+        Also: functions should not assume that ``is_new()`` and ``is_drop()``
+        will always be seen.
         If a new member appears but then is dropped before its appearance has
         caused a trigger activation, then there will be no trigger
         activation.
@@ -1011,6 +1068,7 @@ https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf
     .. method:: on_member_event(new-trigger, old-trigger [, ctx])
 
         This is a variation of ``on_member_event(new-trigger, [, ctx])``.
+
         The additional parameter is ``old-trigger``.
         Instead of adding the new-trigger at the end of a
         list of triggers, this function will replace the entry in
@@ -1038,77 +1096,76 @@ or another environment unrelated to Tarantool.
 The protocol is encoded as
 `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_.
 
+.. code-block:: none
 
-        .. code-block:: none
+    SWIM packet structure:
 
-            SWIM packet structure:
-
-            +-----------------Public data, not encrypted------------------+
-            |                                                             |
-            |      Initial vector, size depends on chosen algorithm.      |
-            |                   Next data is encrypted.                   |
-            |                                                             |
-            +----------Meta section, handled by transport level-----------+
-            | map {                                                       |
-            |     0 = SWIM_META_TARANTOOL_VERSION: uint, Tarantool        |
-            |                                      version ID,            |
-            |     1 = SWIM_META_SRC_ADDRESS: uint, ip,                    |
-            |     2 = SWIM_META_SRC_PORT: uint, port,                     |
-            |     3 = SWIM_META_ROUTING: map {                            |
-            |         0 = SWIM_ROUTE_SRC_ADDRESS: uint, ip,               |
-            |         1 = SWIM_ROUTE_SRC_PORT: uint, port,                |
-            |         2 = SWIM_ROUTE_DST_ADDRESS: uint, ip,               |
-            |         3 = SWIM_ROUTE_DST_PORT: uint, port                 |
-            |     }                                                       |
-            | }                                                           |
-            +-------------------Protocol logic section--------------------+
-            | map {                                                       |
-            |     0 = SWIM_SRC_UUID: 16 byte UUID,                        |
-            |                                                             |
-            |                 AND                                         |
-            |                                                             |
-            |     2 = SWIM_FAILURE_DETECTION: map {                       |
-            |         0 = SWIM_FD_MSG_TYPE: uint, enum swim_fd_msg_type,  |
-            |         1 = SWIM_FD_INCARNATION: uint                       |
-            |     },                                                      |
-            |                                                             |
-            |               OR/AND                                        |
-            |                                                             |
-            |     3 = SWIM_DISSEMINATION: array [                         |
-            |         map {                                               |
-            |             0 = SWIM_MEMBER_STATUS: uint,                   |
-            |                                     enum member_status,     |
-            |             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |
-            |             2 = SWIM_MEMBER_PORT: uint, port,               |
-            |             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |
-            |             4 = SWIM_MEMBER_INCARNATION: uint,              |
-            |             5 = SWIM_MEMBER_PAYLOAD: bin                    |
-            |         },                                                  |
-            |         ...                                                 |
-            |     ],                                                      |
-            |                                                             |
-            |               OR/AND                                        |
-            |                                                             |
-            |     1 = SWIM_ANTI_ENTROPY: array [                          |
-            |         map {                                               |
-            |             0 = SWIM_MEMBER_STATUS: uint,                   |
-            |                                     enum member_status,     |
-            |             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |
-            |             2 = SWIM_MEMBER_PORT: uint, port,               |
-            |             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |
-            |             4 = SWIM_MEMBER_INCARNATION: uint,              |
-            |             5 = SWIM_MEMBER_PAYLOAD: bin                    |
-            |         },                                                  |
-            |         ...                                                 |
-            |     ],                                                      |
-            |                                                             |
-            |               OR/AND                                        |
-            |                                                             |
-            |     4 = SWIM_QUIT: map {                                    |
-            |         0 = SWIM_QUIT_INCARNATION: uint                     |
-            |     }                                                       |
-            | }                                                           |
-            +-------------------------------------------------------------+
+    +-----------------Public data, not encrypted------------------+
+    |                                                             |
+    |      Initial vector, size depends on chosen algorithm.      |
+    |                   Next data is encrypted.                   |
+    |                                                             |
+    +----------Meta section, handled by transport level-----------+
+    | map {                                                       |
+    |     0 = SWIM_META_TARANTOOL_VERSION: uint, Tarantool        |
+    |                                      version ID,            |
+    |     1 = SWIM_META_SRC_ADDRESS: uint, ip,                    |
+    |     2 = SWIM_META_SRC_PORT: uint, port,                     |
+    |     3 = SWIM_META_ROUTING: map {                            |
+    |         0 = SWIM_ROUTE_SRC_ADDRESS: uint, ip,               |
+    |         1 = SWIM_ROUTE_SRC_PORT: uint, port,                |
+    |         2 = SWIM_ROUTE_DST_ADDRESS: uint, ip,               |
+    |         3 = SWIM_ROUTE_DST_PORT: uint, port                 |
+    |     }                                                       |
+    | }                                                           |
+    +-------------------Protocol logic section--------------------+
+    | map {                                                       |
+    |     0 = SWIM_SRC_UUID: 16 byte UUID,                        |
+    |                                                             |
+    |                 AND                                         |
+    |                                                             |
+    |     2 = SWIM_FAILURE_DETECTION: map {                       |
+    |         0 = SWIM_FD_MSG_TYPE: uint, enum swim_fd_msg_type,  |
+    |         1 = SWIM_FD_INCARNATION: uint                       |
+    |     },                                                      |
+    |                                                             |
+    |               OR/AND                                        |
+    |                                                             |
+    |     3 = SWIM_DISSEMINATION: array [                         |
+    |         map {                                               |
+    |             0 = SWIM_MEMBER_STATUS: uint,                   |
+    |                                     enum member_status,     |
+    |             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |
+    |             2 = SWIM_MEMBER_PORT: uint, port,               |
+    |             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |
+    |             4 = SWIM_MEMBER_INCARNATION: uint,              |
+    |             5 = SWIM_MEMBER_PAYLOAD: bin                    |
+    |         },                                                  |
+    |         ...                                                 |
+    |     ],                                                      |
+    |                                                             |
+    |               OR/AND                                        |
+    |                                                             |
+    |     1 = SWIM_ANTI_ENTROPY: array [                          |
+    |         map {                                               |
+    |             0 = SWIM_MEMBER_STATUS: uint,                   |
+    |                                     enum member_status,     |
+    |             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |
+    |             2 = SWIM_MEMBER_PORT: uint, port,               |
+    |             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |
+    |             4 = SWIM_MEMBER_INCARNATION: uint,              |
+    |             5 = SWIM_MEMBER_PAYLOAD: bin                    |
+    |         },                                                  |
+    |         ...                                                 |
+    |     ],                                                      |
+    |                                                             |
+    |               OR/AND                                        |
+    |                                                             |
+    |     4 = SWIM_QUIT: map {                                    |
+    |         0 = SWIM_QUIT_INCARNATION: uint                     |
+    |     }                                                       |
+    | }                                                           |
+    +-------------------------------------------------------------+
 
 The **Initial vector section** appears only when encryption
 is enabled. This section contains a public key. For example,
@@ -1122,70 +1179,77 @@ The **Meta section** handles routing and protocol versions compatibility. It
 works at the 'transport' level of the SWIM protocol, and is always present.
 Keys in the meta section are:
 
-SWIM_META_TARANTOOL_VERSION -- mandatory field. Tarantool sets
-here its version as a 3 byte integer: 1 byte for major, 1 byte
-for minor, 1 byte for patch. For example, Tarantool version 2.1.3 would
-be encoded like this: (((2 << 8) | 1) << 8) | 3;. This field
-will be used to support multiple versions of the protocol.
+* SWIM_META_TARANTOOL_VERSION -- mandatory field. Tarantool sets
+  here its version as a 3 byte integer:
 
-SWIM_META_SRC_ADDRESS and SWIM_META_SRC_PORT -- mandatory.
-source IP address and port. IP is encoded as 4 bytes.
-"xxx.xxx.xxx.xxx" where each 'xxx' is encoding of one byte. Port is encoded
-as an integer. Example of how to encode "127.0.0.1:3313":
+  * 1 byte for major,
+  * 1 byte for minor,
+  * 1 byte for patch.
 
-        .. code-block:: none
+  For example, Tarantool version 2.1.3 would
+  be encoded like this: ``(((2 << 8) | 1) << 8) | 3;``. This field
+  will be used to support multiple versions of the protocol.
 
-            struct in_addr addr;
-            inet_aton("127.0.0.1", &addr);
-            pos = mp_encode_uint(pos, SWIM_META_SRC_ADDRESS);
-            pos = mp_encode_uint(pos, addr->s_addr);
-            pos = mp_encode_uint(pos, SWIM_META_SRC_PORT);
-            pos = mp_encode_uint(pos, 3313);
+* SWIM_META_SRC_ADDRESS and SWIM_META_SRC_PORT -- mandatory.
+  source IP address and port. IP is encoded as 4 bytes.
+  "xxx.xxx.xxx.xxx" where each 'xxx' is encoding of one byte. Port is encoded
+  as an integer. Example of how to encode "127.0.0.1:3313":
 
-SWIM_META_ROUTING subsection -- not mandatory.
-Responsible for packet forwarding. Used by SWIM
-suspicion mechanism. Read about suspicion in the SWIM paper.
-If this subsection is present then the following fields are
-mandatory:
-SWIM_ROUTE_SRC_ADDRESS and SWIM_ROUTE_SRC_PORT (source
-IP address and port) (should be an address of the
-message originator (can differ from
-SWIM_META_SRC_ADDRESS and from SWIM_META_SRC_ADDRESS_PORT);
-SWIM_ROUTE_DST_ADDRESS and SWIM_ROUTE_DST_PORT (destination
-IP address and port, for the the message's final destination).
-If a message was sent indirectly with help of SWIM_META_ROUTING,
-then the reply should be sent back by the same route.
+  .. code-block:: none
 
-For an example of how SWIM uses routing for indirect pings ...
-Assume there are 3 nodes: S1, S2, S3. S1 sends a message to
-S3 via S2. The following steps are executed in order to
-deliver the message:
+      struct in_addr addr;
+      inet_aton("127.0.0.1", &addr);
+      pos = mp_encode_uint(pos, SWIM_META_SRC_ADDRESS);
+      pos = mp_encode_uint(pos, addr->s_addr);
+      pos = mp_encode_uint(pos, SWIM_META_SRC_PORT);
+      pos = mp_encode_uint(pos, 3313);
 
-        .. code-block:: none
+* SWIM_META_ROUTING subsection -- not mandatory.
+  Responsible for packet forwarding. Used by SWIM
+  suspicion mechanism. Read about suspicion in the SWIM paper.
 
-            S1 -> S2
-            { src: S1, routing: {src: S1, dst: S3}, body: ... }
+  If this subsection is present then the following fields are
+  mandatory:
 
-S2 receives the message and sees that routing.dst is not equal to S2,
-so it is
-a foreign packet. S2 forwards the packet to S3 preserving all the
-data including body and routing sections.
+  * SWIM_ROUTE_SRC_ADDRESS and SWIM_ROUTE_SRC_PORT (source
+    IP address and port) (should be an address of the
+    message originator (can differ from
+  * SWIM_META_SRC_ADDRESS and from SWIM_META_SRC_ADDRESS_PORT);
+  * SWIM_ROUTE_DST_ADDRESS and SWIM_ROUTE_DST_PORT (destination
+    IP address and port, for the the message's final destination).
 
-        .. code-block:: none
+  If a message was sent indirectly with the help of SWIM_META_ROUTING,
+  then the reply should be sent back by the same route.
 
-            S2 -> S3
+  For an example of how SWIM uses routing for indirect pings ...
+  Assume there are 3 nodes: S1, S2, S3. S1 sends a message to
+  S3 via S2. The following steps are executed in order to
+  deliver the message:
 
-S3 receives the message and sees that routing.dst is equal to S3,
-so the message is delivered. If S3 wants to answer, it sends a
-response via the same proxy. It knows that the message was
-delivered from S2, so it sends an answer via S2.
+  .. code-block:: none
+
+      S1 -> S2
+      { src: S1, routing: {src: S1, dst: S3}, body: ... }
+
+  S2 receives the message and sees that routing.dst is not equal to S2,
+  so it is a foreign packet. S2 forwards the packet to S3 preserving all the
+  data including body and routing sections.
+
+  .. code-block:: none
+
+      S2 -> S3
+
+  S3 receives the message and sees that routing.dst is equal to S3,
+  so the message is delivered. If S3 wants to answer, it sends a
+  response via the same proxy. It knows that the message was
+  delivered from S2, so it sends an answer via S2.
 
 The **Protocol logic section** handles SWIM logical protocol steps and actions.
 
-SWIM_SRC_UUID -- mandatory field. SWIM uses UUID as a unique
-identifier of a member, not IP/port. This field stores UUID of
-sender. Its type is MP_BIN. Size is always 16 bytes. UUID is
-encoded in host byte order, no bswaps are needed.
+* SWIM_SRC_UUID -- mandatory field. SWIM uses UUID as a unique
+  identifier of a member, not IP/port. This field stores UUID of
+  sender. Its type is MP_BIN. Size is always 16 bytes. UUID is
+  encoded in host byte order, no bswaps are needed.
 
 Next sections can all be present, or only some of them. A
 connector should be ready to handle any combinations.
@@ -1213,35 +1277,39 @@ only if it is present in the message. Because of its huge size
 (in comparison with UDP packet max size) payload is not always sent with
 every message.
 
-SWIM_FAILURE_DETECTION subsection -- describes a ping or
-ACK.
-In the SWIM_FAILURE_DETECTION subsection are:
-SWIM_FD_MSG_TYPE (0 is ping, 1 is ack);
-SWIM_FD_INCARNATION (incarnation number of the sender).
+* SWIM_FAILURE_DETECTION subsection -- describes a ping or ACK.
+  In the SWIM_FAILURE_DETECTION subsection are:
 
-SWIM_DISSEMINATION subsection -- a list of
-changed cluster members. It may include only a subset of changed
-cluster members if there are too many changes to fit into one UDP packet;
-In the SWIM_DISSEMINATION subsection are:
-SWIM_MEMBER_STATUS (mandatory) (0 = alive, 1 = suspected, 2 = dead, 3 = left);
-SWIM_MEMBER_ADDRESS and SWIM_MEMBER_PORT (mandatory) member IP and
-port;
-SWIM_MEMBER_UUID (mandatory) (member UUID);
-SWIM_MEMBER_INCARNATION (mandatory) (member incarnation number);
-SWIM_MEMBER_PAYLOAD (not mandatory) (member payload)
-(MessagePack type is MP_BIN).
-Note that absence of SWIM_MEMBER_PAYLOAD means nothing -
-it is not the same as a payload with zero size.
+  * SWIM_FD_MSG_TYPE (0 is ping, 1 is ack);
+  * SWIM_FD_INCARNATION (incarnation number of the sender).
 
-SWIM_ANTI_ENTROPY subsection -- a helper for the
-dissemination. It contains all the same fields as the
-dissemination, but all of them are mandatory, including
-payload even when payload size is 0. Anti-entropy eventually
-spreads changes which for any reason are not spread by the dissemination.
+* SWIM_DISSEMINATION subsection -- a list of
+  changed cluster members. It may include only a subset of changed
+  cluster members if there are too many changes to fit into one UDP packet.
 
-SWIM_QUIT subsection -- statement that the sender has left the
-cluster gracefully, for example via :ref:`swim_object:quit() <swim-quit>`,
-and should not be considered dead. Sender
-status should be changed to 'left'.
-In the SWIM_QUIT subsection is:
-SWIM_QUIT_INCARNATION (sender incarnation number).
+  In the SWIM_DISSEMINATION subsection are:
+
+  * SWIM_MEMBER_STATUS (mandatory) (0 = alive, 1 = suspected, 2 = dead, 3 = left);
+  * SWIM_MEMBER_ADDRESS and SWIM_MEMBER_PORT (mandatory) member IP and port;
+  * SWIM_MEMBER_UUID (mandatory) (member UUID);
+  * SWIM_MEMBER_INCARNATION (mandatory) (member incarnation number);
+  * SWIM_MEMBER_PAYLOAD (not mandatory) (member payload)
+    (MessagePack type is MP_BIN).
+
+  Note that absence of SWIM_MEMBER_PAYLOAD means nothing -
+  it is not the same as a payload with zero size.
+
+* SWIM_ANTI_ENTROPY subsection -- a helper for the
+  dissemination. It contains all the same fields as the
+  dissemination, but all of them are mandatory, including
+  payload even when payload size is 0. Anti-entropy eventually
+  spreads changes which for any reason are not spread by the dissemination.
+
+* SWIM_QUIT subsection -- statement that the sender has left the
+  cluster gracefully, for example via :ref:`swim_object:quit() <swim-quit>`,
+  and should not be considered dead. Sender
+  status should be changed to 'left'.
+
+  In the SWIM_QUIT subsection is:
+
+  * SWIM_QUIT_INCARNATION (sender incarnation number).

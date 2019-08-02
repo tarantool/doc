@@ -169,6 +169,8 @@ Limitations:
   :ref:`vinyl_max_tuple_size  <cfg_storage-memtx_max_tuple_size>`
   configuration option.
 
+.. _sql_column_def:
+
 ***********************************************
 Column definition
 ***********************************************
@@ -183,6 +185,8 @@ The ``column-name`` must be an identifier which is valid according to the rules
 for identifiers.
 
 Each ``column-name`` must be unique within a table.
+
+.. _sql_column_def_data_type:
 
 ***********************************************
 Column definition -- data type

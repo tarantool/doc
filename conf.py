@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
 
-master_doc = 'doc/2.1/index'
+master_doc = 'doc/2.2/index'
 # master_doc = 'index'
 
 extensions = [
@@ -37,24 +37,24 @@ source_suffix = '.rst'
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "2.1.1"
+release = "2.2.1"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
 exclude_patterns = [
     '_build',
-    'doc/2.1/book/connectors/__*',
-    'doc/2.1/book/replication/*_1.rst',
-    'doc/2.1/book/replication/*_2.rst',
-    'doc/2.1/book/admin.rst',
-    'doc/2.1/book/box/box_introspection.rst',
-    'doc/2.1/book/cookbook.rst',
-    'doc/2.1/book/box/engines/vinyl.rst',
-    'doc/2.1/dev_guide/box_protocol.rst',
-    'doc/2.1/dev_guide/internals.rst',
-    'doc/2.1/reference/configuration/cfg_*',
-    'doc/2.1/reference/reference_lua/jit.rst',
-    'doc/2.1/reference/reference_lua/os.rst',
+    'doc/2.2/book/connectors/__*',
+    'doc/2.2/book/replication/*_1.rst',
+    'doc/2.2/book/replication/*_2.rst',
+    'doc/2.2/book/admin.rst',
+    'doc/2.2/book/box/box_introspection.rst',
+    'doc/2.2/book/cookbook.rst',
+    'doc/2.2/book/box/engines/vinyl.rst',
+    'doc/2.2/dev_guide/box_protocol.rst',
+    'doc/2.2/dev_guide/internals.rst',
+    'doc/2.2/reference/configuration/cfg_*',
+    'doc/2.2/reference/reference_lua/jit.rst',
+    'doc/2.2/reference/reference_lua/os.rst',
     'CNAME',
     'robots.txt',
     '_downloads/license.docx',
@@ -119,31 +119,31 @@ html_context = {
         'download/os-installation/1.6/freebsd' : True,
         'download/os-installation/1.6/os-x' : True,
         'download/os-installation/1.6/rhel-centos-6-7' : True,
-        # 1.9
-        'download/os-installation/1.9/ubuntu' : True,
-        'download/os-installation/1.9/amazon-linux' : True,
-        'download/os-installation/1.9/building-from-source' : True,
-        'download/os-installation/1.9/debian' : True,
-        'download/os-installation/1.9/docker-hub' : True,
-        'download/os-installation/1.9/fedora' : True,
-        'download/os-installation/1.9/freebsd' : True,
-        'download/os-installation/1.9/os-x' : True,
-        'download/os-installation/1.9/rhel-centos-6-7' : True,
-        'download/os-installation/1.9/snappy-package' : True,
-        # 2.1
-        'download/os-installation/2.1/ubuntu' : True,
-        'download/os-installation/2.1/amazon-linux' : True,
-        'download/os-installation/2.1/building-from-source' : True,
-        'download/os-installation/2.1/debian' : True,
-        'download/os-installation/2.1/docker-hub' : True,
-        'download/os-installation/2.1/fedora' : True,
-        'download/os-installation/2.1/freebsd' : True,
-        'download/os-installation/2.1/os-x' : True,
-        'download/os-installation/2.1/rhel-centos-6-7' : True,
-        'download/os-installation/2.1/snappy-package' : True
+        # 1.10
+        'download/os-installation/1.10/ubuntu' : True,
+        'download/os-installation/1.10/amazon-linux' : True,
+        'download/os-installation/1.10/building-from-source' : True,
+        'download/os-installation/1.10/debian' : True,
+        'download/os-installation/1.10/docker-hub' : True,
+        'download/os-installation/1.10/fedora' : True,
+        'download/os-installation/1.10/freebsd' : True,
+        'download/os-installation/1.10/os-x' : True,
+        'download/os-installation/1.10/rhel-centos-6-7' : True,
+        'download/os-installation/1.10/snappy-package' : True,
+        # 2.2
+        'download/os-installation/2.2/ubuntu' : True,
+        'download/os-installation/2.2/amazon-linux' : True,
+        'download/os-installation/2.2/building-from-source' : True,
+        'download/os-installation/2.2/debian' : True,
+        'download/os-installation/2.2/docker-hub' : True,
+        'download/os-installation/2.2/fedora' : True,
+        'download/os-installation/2.2/freebsd' : True,
+        'download/os-installation/2.2/os-x' : True,
+        'download/os-installation/2.2/rhel-centos-6-7' : True,
+        'download/os-installation/2.2/snappy-package' : True
     },
     'wp_local': True,
-    'versions': ['1.6', '1.9', '2.1'],
+    'versions': ['1.6', '1.10', '2.2'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:

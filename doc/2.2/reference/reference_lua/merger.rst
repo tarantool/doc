@@ -6,14 +6,16 @@
 
 The ``merger`` module takes a stream of tuples and provides access
 to them as tables. The four functions for creating a merger object instance
-are
-:ref:`merger.new_tuple_source() <merger-new_tuple_source>`,
-:ref:`merger.new_buffer_source() <merger-new_buffer_source>`,
-:ref:`merger.new_table_source <merger-new_table_source>`,
-:ref:`merger.new(merger_source...) <merger-new_merger_source>`.
-The methods for using a merger object are
-:ref:`merger_object:select() <merger-select>`,
-:ref:`merger_object:pairs() <merger-pairs>`.
+are:
+
+* :ref:`merger.new_tuple_source() <merger-new_tuple_source>`,
+* :ref:`merger.new_buffer_source() <merger-new_buffer_source>`,
+* :ref:`merger.new_table_source <merger-new_table_source>`,
+* :ref:`merger.new(merger_source...) <merger-new_merger_source>`.
+
+The methods for using a merger object are:
+* :ref:`merger_object:select() <merger-select>`,
+* :ref:`merger_object:pairs() <merger-pairs>`.
 
 .. module:: merger
 
@@ -21,78 +23,87 @@ The methods for using a merger object are
 
 .. function:: new_tuple_source(gen, param, state)
 
-Create a new merger instance from a tuple source.
+    Create a new merger instance from a tuple source.
 
-A tuple source just returns one tuple.
-The generator function ``gen`` allows creation of multiple tuples via an iterator.
-The ``gen`` function should
-return state, tuple each time it is called and a new tuple is available,
-and return nil when no more tuples are available.
+    A tuple source just returns one tuple.
 
-    :param gen:         function for iteratively returning tuples
-    :param param:       parameter for the gen function
+    The generator function ``gen()`` allows creation of multiple tuples
+    via an iterator.
 
-    :returns: merger-object :ref:`a merger object <merger-object>`
+    The ``gen()`` function should return:
 
-Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
+    * state, tuple each time it is called and a new tuple is available,
+    * nil when no more tuples are available.
+
+    :param gen:   function for iteratively returning tuples
+    :param param: parameter for the gen function
+
+    :return: merger-object :ref:`a merger object <merger-object>`
+
+    Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
 
 .. _merger-new_buffer_source:
 
 .. function:: new_buffer_source(gen, param, state)
 
-Create a new merger instance from a buffer source.
+    Create a new merger instance from a buffer source.
 
-Parameters and return: same as for :ref:`merger.new_tuple_source <merger-new_tuple_source>`.
+    Parameters and return:
+    same as for :ref:`merger.new_tuple_source <merger-new_tuple_source>`.
 
-To set up a buffer, or a series of buffers, use :ref:`the buffer module <buffer-module>`.
+    To set up a buffer, or a series of buffers,
+    use :ref:`the buffer module <buffer-module>`.
 
 .. _merger-new_table_source:
 
 .. function:: new_table_source(gen, param, state)
 
-Create a new merger instance from a table source.
+    Create a new merger instance from a table source.
 
-Parameters and return: same as for :ref:`merger.new_tuple_source <merger-new_tuple_source>`.
+    Parameters and return:
+    same as for :ref:`merger.new_tuple_source <merger-new_tuple_source>`.
 
-Example: see :ref:`merger_object:select() <merger-select>` method.
+    Example: see :ref:`merger_object:select() <merger-select>` method.
 
 .. _merger-new_merger_source:
 
 .. function:: new(key_def, sources, options)
 
-Create a new merger instance from a merger source.
+    Create a new merger instance from a merger source.
 
-A merger source is created from a
-:ref:`key_def <key_def-module>`
-object and a set of (tuple or buffer or table or merger)
-sources. It performs a kind of merge sort.
-It chooses a source with a minimal / maximal tuple on each step,
-consumes a tuple from this source, and repeats.
+    A merger source is created from a
+    :ref:`key_def <key_def-module>`
+    object and a set of (tuple or buffer or table or merger)
+    sources. It performs a kind of merge sort.
+    It chooses a source with a minimal / maximal tuple on each step,
+    consumes a tuple from this source, and repeats.
 
-    :param key_def:     object created with key_def
-    :param source:      parameter for the gen function
-    :param options:     reverse=true if descending), false or nil if ascending
+    :param key_def:     object created with ``key_def``
+    :param source:      parameter for the ``gen()`` function
+    :param options:     ``reverse=true`` if descending, false or nil if ascending
 
-    :returns: merger-object :ref:`a merger object <merger-object>`
+    :return: merger-object :ref:`a merger object <merger-object>`
 
-A key_def can be cached across requests with the same ordering rules
-(typically these would be requests accessing the same space).
+    A ``key_def`` can be cached across requests with the same ordering rules
+    (typically these would be requests accessing the same space).
 
-Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
-  
+    Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
+
 .. _merger-object:
 
 .. class:: merger_object
 
+    A merger object is an object returned by:
 
-    A merger object is an object returned by
-    :ref:`merger.new_tuple_source() <merger-new_tuple_source>` or
-    :ref:`merger.new_buffer_source() <merger-new_buffer_source>` or
-    :ref:`merger.new_table_source <merger-new_table_source>` or
-    :ref:`merger.new(merger_source...) <merger-new_merger_source>`.
-    It has methods
-    :ref:`merger_object:select() <merger-select>` or
-    :ref:`merger_object:pairs() <merger-pairs>`.
+    * :ref:`merger.new_tuple_source() <merger-new_tuple_source>` or
+    * :ref:`merger.new_buffer_source() <merger-new_buffer_source>` or
+    * :ref:`merger.new_table_source <merger-new_table_source>` or
+    * :ref:`merger.new(merger_source...) <merger-new_merger_source>`.
+
+    It has methods:
+
+    * :ref:`merger_object:select() <merger-select>` or
+    * :ref:`merger_object:pairs() <merger-pairs>`.
 
     .. _merger-select:
 
@@ -100,14 +111,14 @@ Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
 
         Access the contents of a merger object with familiar ``select`` syntax.
 
-        :param buffer: as in net.box client :ref:`conn:select <conn-select>` method
-        :param limit: as in net.box client :ref:`conn:select <conn-select>` method
+        :param buffer: as in ``net.box`` client :ref:`conn:select <conn-select>` method
+        :param limit: as in ``net.box`` client :ref:`conn:select <conn-select>` method
 
         :return: a table of tuples, similar to what ``select`` would return
 
-        **Example with new_table_source:**
+        **Example with ``new_table_source``:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Source via new_table_source, simple generator function
             -- tarantool> s:select()
@@ -140,9 +151,9 @@ Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
 
         :return: the tuples that can be found with a standard ``pairs()`` function
 
-        **Example with new_tuple_source:**
+        **Example with ``new_tuple_source``:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Source via new_tuple_source, from a space of tables
             -- The result will look like this:
@@ -161,7 +172,7 @@ Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
 
         **Example with two mergers:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Source via key_def, and table data
 
@@ -188,7 +199,6 @@ Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
             -- i2:is_null() will be true (merger 2 ends)
             i2:is_null()
 
-
         **More examples:**
 
         See
@@ -196,5 +206,3 @@ Example: see :ref:`merger_object:pairs() <merger-pairs>` method.
         which, in addition to discussing the merger API in detail,
         shows Lua code for handling many more situations than are
         in this manual's brief examples.
- 
-
