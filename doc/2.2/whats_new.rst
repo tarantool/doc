@@ -225,15 +225,23 @@ Functionality added or changed:
 
   .. code-block:: lua
 
-      parts = {
-          {2, 'number', path = 'a'}, {2, 'number', path = 'b'}}})
+      s = box.schema.space.create('withdata')
+      pk = s:create_index('pk')
+      sk = s:create_index('sk', {parts = {
+            {2, 'number', path = 'a'},
+            {2, 'number', path = 'b'}}})
       s:insert{1, {a = 1, b = 1}}
       s:insert{2, {a = 1, b = 2}}
-      local key_def = key_def_lib.new(pk.parts)
-      for _, tuple in sk:pairs({1})) do
+      s:insert{3, {a = 3, b = 3}}
+      sk:select(2)
+
+      key_def_lib = require('key_def')
+      key_def = key_def_lib.new(pk.parts)
+      for _, tuple in sk:pairs({1}) do
           local key = key_def:extract_key(tuple)
           pk:delete(key)
       end
+      s:select()
 
 * (Engines) New protocol (called :ref:`SWIM <swim-module>`) implemented to keep
   a table of cluster members.
