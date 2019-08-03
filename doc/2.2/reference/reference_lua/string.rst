@@ -17,6 +17,10 @@ Tarantool extensions.
 In this section we only discuss the additional functions
 that the Tarantool developers have added.
 
+===============================================================================
+                                   Index
+===============================================================================
+
 Below is a list of all additional ``string`` functions.
 
 .. container:: table

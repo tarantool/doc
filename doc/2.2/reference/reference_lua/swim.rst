@@ -4,7 +4,9 @@
                             Module `swim`
 -------------------------------------------------------------------------------
 
-.. module:: swim
+===============================================================================
+                                   Overview
+===============================================================================
 
 The ``swim`` module contains Tarantool's implementation of
 SWIM -- Scalable Weakly-consistent Infection-style Process Group Membership
@@ -98,6 +100,8 @@ throughout the cluster) is ``O(log(cluster_size))``. For that and other theoreti
 information see the Cornell University
 `paper <https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf>`_
 which originally described SWIM.
+
+.. module:: swim
 
 .. _swim-new:
 
@@ -1084,7 +1088,9 @@ which originally described SWIM.
 
         Return the list of on-member triggers.
 
-**SWIM internals**
+===============================================================================
+SWIM internals
+===============================================================================
 
 The SWIM internals section is not necessary for programmers who wish to use the SWIM module,
 it is for programmers who wish to change or replace the SWIM module.

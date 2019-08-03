@@ -4,9 +4,18 @@
                             Module `merger`
 -------------------------------------------------------------------------------
 
+===============================================================================
+                                   Overview
+===============================================================================
+
 The ``merger`` module takes a stream of tuples and provides access
-to them as tables. The four functions for creating a merger object instance
-are:
+to them as tables.
+
+===============================================================================
+                                    Index
+===============================================================================
+
+The four functions for creating a merger object instance are:
 
 * :ref:`merger.new_tuple_source() <merger-new_tuple_source>`,
 * :ref:`merger.new_buffer_source() <merger-new_buffer_source>`,
@@ -14,6 +23,7 @@ are:
 * :ref:`merger.new(merger_source...) <merger-new_merger_source>`.
 
 The methods for using a merger object are:
+
 * :ref:`merger_object:select() <merger-select>`,
 * :ref:`merger_object:pairs() <merger-pairs>`.
 
@@ -116,7 +126,7 @@ The methods for using a merger object are:
 
         :return: a table of tuples, similar to what ``select`` would return
 
-        **Example with ``new_table_source``:**
+        **Example with new_table_source():**
 
         .. code-block:: lua
 
@@ -151,7 +161,7 @@ The methods for using a merger object are:
 
         :return: the tuples that can be found with a standard ``pairs()`` function
 
-        **Example with ``new_tuple_source``:**
+        **Example with new_tuple_source():**
 
         .. code-block:: lua
 

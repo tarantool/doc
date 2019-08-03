@@ -315,7 +315,7 @@ Functionality added or changed:
       unicode_si_s3
       unicode_es_s3
 
-* New function ``touch()`` introduced to the ``fio`` module.
+* New function ``utime()`` introduced to the ``fio`` module.
 
 * :ref:`Merger <merger-module>` for tuples streams added.
 
