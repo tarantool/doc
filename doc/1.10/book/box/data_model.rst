@@ -634,7 +634,7 @@ All of them are implemented as functions in :ref:`box.space <box_space>` submodu
 
   .. code-block:: tarantoolsession
 
-      tarantool> box.space.tester:upsert({999, 'Taranted'}, {{'=', 2, 'Tarantism'}})
+      tarantool> box.space.tester:upsert({999}, {{'=', 2, 'Tarantism'}})
 
 * :ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field.
 

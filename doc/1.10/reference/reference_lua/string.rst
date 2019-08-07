@@ -255,7 +255,7 @@ Below is a list of all additional ``string`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> string = require('string')
+        tarantool> fiber = require('string')
         ---
         ...
         tarantool> string.split("A*BXX C", "XX")

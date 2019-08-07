@@ -17566,7 +17566,7 @@ msgstr ""
 "до замены ``before_replace()``. Если созданы оба типа, то все триггеры до замены "
 "``before_replace`` выполняются до всех триггеров после замены ``on_replace``. Функции для "
 "обоих типов триггеров ``on_replace`` и ``before_replace`` могут вносить изменения в базу "
-"данных, но только функции с триггерами до замены ``before_replace`` могут изменять кортеж, "
+"данных, гл только функции с триггерами до замены ``before_replace`` могут изменять кортеж, "
 "который будет заменен."
 
 #: ../doc/1.10/book/box/box_space.rst:989
@@ -28571,7 +28571,7 @@ msgid ""
 "socket."
 msgstr ""
 "Подключается через стандартный Unix-сокет к Tarantool-серверу, запущенному внутри "
-"контейнера, из-под пользователя '**admin**'."
+"контейнера, из-под пользователя 'admin’."
 
 #: ../doc/1.10/book/getting_started/using_docker.rst:112
 msgid "Tarantool displays a prompt:"
@@ -51134,7 +51134,6 @@ msgstr "Открытие файла в процессе подготовки к 
 msgid "Full path to the file to open."
 msgstr "Полный путь к открываемому файлу."
 
-#, fuzzy
 #: ../doc/1.10/reference/reference_lua/fio.rst:751
 msgid ""
 "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', "
@@ -54139,13 +54138,8 @@ msgid ""
 msgstr "``future:is_ready()`` вернет true (правда), если доступен результат запроса,"
 
 #: ../doc/1.10/reference/reference_lua/net_box.rst:513
-msgid ""
-"``future:result()`` to get the result of the request (returns the "
-"response or Nil in case it's not ready yet or there has been an error),"
-msgstr ""
-"``future:result()`` используется для получения результата запроса "
-"(возвращает ответ на запрос или Nil в случае, если ответ еще не получен "
-"или произошла какая-либо ошибка),"
+msgid "``future:result()`` to get the result of the request,"
+msgstr "``future:result()`` используется для получения результата запроса,"
 
 #: ../doc/1.10/reference/reference_lua/net_box.rst:514
 msgid ""
@@ -56526,7 +56520,7 @@ msgid ""
 msgstr ""
 "Во второй оболочке создайте файл, который содержит несколько строк. Содержимое не имеет "
 "значения. Предположим, что первая строка содержит A, вторая строка содержит B, третья строка "
-"содержит C. Назовите этот файл \"tmp.txt\"."
+"содержит C. Вызвать этот файл \"tmp.txt\"."
 
 #: ../doc/1.10/reference/reference_lua/socket.rst:771
 msgid ""
@@ -56905,7 +56899,7 @@ msgstr "таблица строк, которые были разделены и
 
 #: ../doc/1.10/reference/reference_lua/string.rst:239
 msgid ""
-"tarantool> string = require('string')\n"
+"tarantool> fiber = require('string')\n"
 "---\n"
 "...\n"
 "tarantool> string.split(\"A*BXX C\", \"XX\")\n"
@@ -56914,7 +56908,7 @@ msgid ""
 "  - ' C'\n"
 "..."
 msgstr ""
-"tarantool> string = require('string')\n"
+"tarantool> fiber = require('string')\n"
 "---\n"
 "...\n"
 "tarantool> string.split(\"A*BXX C\", \"XX\")\n"
@@ -59144,10 +59138,10 @@ msgstr "*имя-соединения*:execute(*sql-оператор* [, *пар�
 #: ../doc/1.10/reference/reference_rock/dbms.rst:584
 msgid ""
 "where ``sql-statement`` is a string, and the optional ``parameters`` are extra values that "
-"can be plugged in to replace any placeholders ($1 $2 $3 etc.) in the SQL statement."
+"can be plugged in to replace any question marks (\"?\"s) in the SQL statement."
 msgstr ""
 "где ``sql-statement`` -- это строка, а необязательные параметры -- это дополнительные "
-"значения, которыми можно заменить любые местозаполнители ($1 $2 $3 и т.д.) в SQL-операторе."
+"значения, которыми можно заменить любые знаки вопроса (\"?\") в SQL-операторе."
 
 #: ../doc/1.10/reference/reference_rock/dbms.rst:248
 msgid ""
@@ -66518,7 +66512,7 @@ msgstr "Теперь вывод на экране выглядит следую�
 
 #: ../doc/1.10/tutorials/lua_tutorials.rst:121
 msgid ""
-"tarantool> function string_function()\n"
+"tarantool> function string_funciton()\n"
 "         >   return \"hello world\"\n"
 "         > end\n"
 "---\n"
@@ -66529,7 +66523,7 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
-"tarantool> function string_function()\n"
+"tarantool> function string_funciton()\n"
 "         >   return \"hello world\"\n"
 "         > end\n"
 "---\n"

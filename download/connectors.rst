@@ -86,7 +86,7 @@ Tarantool - Connectors
 
                     .. container:: b-connector-owner
 
-                        Owner: `@rtsisyk <https://github.com/rtsisyk>`_
+                        Owner: `@rtisisyk <https://github.com/rtisisyk>`_
 
             .. _C#:
             .. container:: b-connector

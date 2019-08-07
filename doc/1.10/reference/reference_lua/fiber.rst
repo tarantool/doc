@@ -397,10 +397,6 @@ recommended.
     Check if the current fiber has been cancelled
     and throw an exception if this is the case.
 
-    .. NOTE::
-
-        This exception cannot be caught by pcall or xpcall.
-
     **Example:**
 
     .. code-block:: tarantoolsession

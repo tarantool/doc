@@ -6,8 +6,8 @@ Using a Docker image
 
 For trial and test purposes, we recommend using
 `official Tarantool images for Docker <https://github.com/tarantool/docker>`_.
-An official image contains a particular Tarantool version (``1.6``, ``1.9``,
-``1.10`` or ``2.0``) and all popular external modules for Tarantool.
+An official image contains a particular Tarantool version (1.6, 1.9, 1.10 or 2.0) and
+all popular external modules for Tarantool.
 Everything is already installed and configured in Linux.
 These images are the easiest way to install and use Tarantool.
 
@@ -38,9 +38,9 @@ options:
      -v /data/dir/on/host:/var/lib/tarantool \
      tarantool/tarantool:1
 
-This command runs a new container named ``mytarantool``.
-Docker starts it from an official image named ``tarantool/tarantool:1``,
-with Tarantool version ``1.9`` and all external modules already installed.
+This command runs a new container named 'mytarantool'.
+Docker starts it from an official image named 'tarantool/tarantool:1',
+with Tarantool version 1.9 and all external modules already installed.
 
 Tarantool will be accepting incoming connections on ``localhost:3301``.
 You may start using it as a key-value storage right away.
@@ -72,7 +72,7 @@ To attach to Tarantool that runs inside the container, say:
 This command:
 
 * Instructs Tarantool to open an interactive console port for incoming connections.
-* Attaches to the Tarantool server inside the container under ``admin`` user via
+* Attaches to the Tarantool server inside the container under 'admin' user via
   a standard Unix socket.
 
 Tarantool displays a prompt:
@@ -95,7 +95,7 @@ Creating a database
 
 While you're attached to the console, let's create a simple test database.
 
-First, create the first :ref:`space <index-box_space>` (named ``tester``):
+First, create the first :ref:`space <index-box_space>` (named 'tester'):
 
 .. code-block:: tarantoolsession
 
@@ -111,7 +111,7 @@ Format the created space by specifying field names and types:
                   > {name = 'year', type = 'unsigned'}
                   > })
 
-Create the first :ref:`index <index-box_index>` (named ``primary``):
+Create the first :ref:`index <index-box_index>` (named 'primary'):
 
 .. code-block:: tarantoolsession
 
@@ -120,9 +120,9 @@ Create the first :ref:`index <index-box_index>` (named ``primary``):
                   > parts = {'id'}
                   > })
 
-This is a primary index based on the ``id`` field of each tuple.
+This is a primary index based on the 'id' field of each tuple.
 
-Insert three :ref:`tuples <index-box_tuple>` (our name for records)
+Insert three :ref:`tuples <index-box_tuple>` (our name for "records")
 into the space:
 
 .. code-block:: tarantoolsession
@@ -131,7 +131,7 @@ into the space:
     tarantool.sock> s:insert{2, 'Scorpions', 2015}
     tarantool.sock> s:insert{3, 'Ace of Base', 1993}
 
-To select a tuple using the ``primary`` index, say:
+To select a tuple using the 'primary' index, say:
 
 .. code-block:: tarantoolsession
 
@@ -183,7 +183,7 @@ The terminal screen now looks like this:
     - - [3, 'Ace of Base', 1993]
     ...
 
-To add a secondary index based on the ``band_name`` field, say:
+To add a secondary index based on the 'band_name' field, say:
 
 .. code-block:: tarantoolsession
 
@@ -192,7 +192,7 @@ To add a secondary index based on the ``band_name`` field, say:
                   > parts = {'band_name'}
                   > })
 
-To select tuples using the ``secondary`` index, say:
+To select tuples using the 'secondary' index, say:
 
 .. code-block:: tarantoolsession
 

@@ -86,7 +86,7 @@ The screen now looks like this:
 
 .. code-block:: tarantoolsession
 
-    tarantool> function string_function()
+    tarantool> function string_funciton()
              >   return "hello world"
              > end
     ---
