@@ -15,8 +15,7 @@ A "digest" is a value which is returned by a function (usually a
 module supports several types of cryptographic hash functions (AES_, MD4_,
 MD5_, SHA-1_, SHA-2_, PBKDF2_) as well as a checksum function (CRC32_), two
 functions for base64_, and two non-cryptographic hash functions (guava_, murmur_).
-Some of the digest functionality is also present in the :ref:`crypto <crypto>`
-module.
+Some of the digest functionality is also present in the :ref:`crypto <crypto>`.
 
 ===============================================================================
                                     Index
@@ -309,10 +308,15 @@ Below is a list of all ``digest`` functions.
 
 .. _digest-murmur_new:
 
-.. function:: digest.murmur.new([seed])
+.. function:: digest.murmur.new(opts)
 
     Initiates incremental MurmurHash.
     See :ref:`incremental methods <digest-incremental_digests>` notes.
+    For example:
+
+    .. code-block:: lua
+
+        murmur.new({seed=0})
 
 .. _digest-incremental_digests:
 
