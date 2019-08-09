@@ -548,8 +548,8 @@ For all PostgreSQL statements, the request is:
     *connection-name*:execute(*sql-statement* [, *parameters*])
 
 where ``sql-statement`` is a string, and the optional ``parameters``
-are extra values that can be plugged in to replace any question marks ("?"s)
-in the SQL statement.
+are extra values that can be plugged in to replace any placeholders
+($1 $2 $3 etc.) in the SQL statement.
 
 **Example:**
 
