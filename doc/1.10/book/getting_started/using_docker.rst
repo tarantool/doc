@@ -6,8 +6,8 @@ Using a Docker image
 
 For trial and test purposes, we recommend using
 `official Tarantool images for Docker <https://github.com/tarantool/docker>`_.
-An official image contains a particular Tarantool version (``1.6``, ``1.9``,
-``1.10`` or ``2.0``) and all popular external modules for Tarantool.
+An official image contains a particular Tarantool version and all popular
+external modules for Tarantool.
 Everything is already installed and configured in Linux.
 These images are the easiest way to install and use Tarantool.
 

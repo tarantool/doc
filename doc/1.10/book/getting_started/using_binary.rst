@@ -6,9 +6,9 @@ Using a binary package
 
 For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
-You can choose from two Tarantool versions: ``1.10`` (stable) or ``2.0`` (alpha).
+You can choose from two Tarantool versions: ``1.10`` (stable) or ``2.2`` (beta).
 An automatic build system creates, tests and publishes packages for every
-push into a corresponding branch (``1.10`` or ``2.0``) at
+push into a corresponding branch (``1.10`` or ``2.2``) at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
 To download and install the package that’s appropriate for your OS,
