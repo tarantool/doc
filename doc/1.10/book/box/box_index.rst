@@ -133,7 +133,7 @@ Below is a list of all ``box.index`` functions and members.
 
     .. _box_index-index_pairs:
 
-    .. method:: pairs([key [, iterator-type]])
+    .. method:: pairs([key [,{iterator = iterator-type}]])
 
         Search for a tuple or a set of tuples via the given index,
         and allow iterating over one tuple at a time.
