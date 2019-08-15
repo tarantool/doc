@@ -781,7 +781,7 @@ Below is a list of all ``box.index`` functions and members.
         :param scalar/table key: values to be matched against the index key
         :param         iterator: comparison method
 
-        :return: the number of matching index keys.
+        :return: the number of matching tuples.
         :rtype:  number
 
         **Example:**
