@@ -82,10 +82,7 @@ Below is a list of all functions for transaction management.
     | :ref:`box.on_rollback()              | Define a trigger that will be   |
     | <box-on_rollback>`                   | activated by box.rollback       |
     +--------------------------------------+---------------------------------+
-    | :ref:`is_in_txn()                    | State whether a transaction is  |
-    | <box-is_in_txn>`                     | in progress                     |
-    +--------------------------------------+---------------------------------+
-    | :ref:`is_in_txn()                    | State whether a transaction is  |
+    | :ref:`box.is_in_txn()                | State whether a transaction is  |
     | <box-is_in_txn>`                     | in progress                     |
     +--------------------------------------+---------------------------------+
 
