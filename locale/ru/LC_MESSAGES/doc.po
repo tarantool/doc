@@ -55070,7 +55070,7 @@ msgstr ":ref:`json.cfg() <json-module_cfg>`"
 
 #: ../doc/2.1/reference/reference_lua/json.rst:73
 msgid "Set persistent flags"
-msgstr "Определение постоянных флагов"
+msgstr "Определение глобальных флагов"
 
 #: ../doc/2.1/reference/reference_lua/json.rst:83
 msgid "Convert a Lua object to a JSON string."
