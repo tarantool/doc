@@ -28134,8 +28134,8 @@ msgstr ""
 "         > })"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:145
-msgid "Create the first :ref:`index <index-box_index>` (named ``'primary'``):"
-msgstr "Создайте первый :ref:`индекс <index-box_index>` (с именем``'primary'``):"
+msgid "Create the first :ref:`index <index-box_index>` (named ``primary``):"
+msgstr "Создайте первый :ref:`индекс <index-box_index>` (с именем``primary``):"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:147
 msgid ""
@@ -28155,9 +28155,9 @@ msgstr "Это первичный индекс по полю ``id`` в кажд�
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:156
 #: ../doc/1.10/book/getting_started/using_docker.rst:159
-msgid "Insert three :ref:`tuples <index-box_tuple>` (our name for \"records\") into the space:"
+msgid "Insert three :ref:`tuples <index-box_tuple>` (our name for records) into the space:"
 msgstr ""
-"Вставьте в созданный спейс три :ref:`кортежа <index-box_tuple>` (наш термин для «записей»):"
+"Вставьте в созданный спейс три :ref:`кортежа <index-box_tuple>` (наш термин для записей):"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:159
 msgid ""
@@ -28170,8 +28170,8 @@ msgstr ""
 "tarantool> s:insert{3, 'Ace of Base', 1993}"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:165
-msgid "To select a tuple using the ``'primary'`` index, say:"
-msgstr "Для выборки кортежей по первичному индексу ``'primary'`` выполните команду:"
+msgid "To select a tuple using the ``primary`` index, say:"
+msgstr "Для выборки кортежей по первичному индексу ``primary`` выполните команду:"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:167
 msgid "tarantool> s:select{3}"
@@ -28269,8 +28269,8 @@ msgstr ""
 "..."
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:217
-msgid "To add a secondary index based on the ``'band_name'`` field, say:"
-msgstr "Для добавления вторичного индекса по полю ``'band_name'`` используйте эту команду:"
+msgid "To add a secondary index based on the ``band_name`` field, say:"
+msgstr "Для добавления вторичного индекса по полю ``band_name`` используйте эту команду:"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:219
 msgid ""
@@ -28285,8 +28285,8 @@ msgstr ""
 "         > })"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:226
-msgid "To select tuples using the ``'secondary'`` index, say:"
-msgstr "Для выборки кортежей по вторичному индексу ``'secondary'`` выполните команду:"
+msgid "To select tuples using the ``secondary`` index, say:"
+msgstr "Для выборки кортежей по вторичному индексу ``secondary`` выполните команду:"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:228
 msgid ""
