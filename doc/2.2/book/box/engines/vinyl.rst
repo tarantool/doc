@@ -84,7 +84,7 @@ that’s not larger than the key being searched (recall that elements at each
 level are sorted). If the first level yields no results, the search proceeds to
 the next level. Finally, the search ends up in one of the leaves and probably
 locates the needed key. Blocks are stored and read into RAM one by one, meaning
-the algorithm reads :code:`logB(N)` blocks in a single search, where N is the number of
+the algorithm reads :math:`logB(N)` blocks in a single search, where N is the number of
 elements in the B-tree. In the simplest case, writes are done similarly: the
 algorithm finds the block that holds the necessary element and updates (inserts)
 its value.
@@ -267,10 +267,10 @@ other hand, you need to minimize the compaction-related overhead, then the run
 size ratio can be decreased: the pyramid will grow higher, and even though runs
 will be compacted more often, they will be smaller, which will reduce the total
 amount of work done. In general, write amplification in an LSM tree is described
-by this formula: :code:`log_{x}(\frac {N} {L0}) × x` or, alternatively,
-:code:`x × \frac {ln (\frac {N} {C0})} {ln(x)}`, where N is
+by this formula: :math:`log_{x}(\frac {N} {L0}) × x` or, alternatively,
+:math:`x × \frac {ln (\frac {N} {C0})} {ln(x)}`, where N is
 the total size of all tree elements, L0 is the level zero size, and x is the
-level size ratio (the ``level_size_ratio`` parameter). At :code:`\frac {N} {C0}` = 40 (the disk-to-
+level size ratio (the ``level_size_ratio`` parameter). At :math:`\frac {N} {C0}` = 40 (the disk-to-
 memory ratio), the plot would look something like this:
 
 .. image:: vinyl/curve.png
@@ -399,7 +399,7 @@ Disadvantages of an LSM tree and how to deal with them
 -------------------------------------------------------------------------------
 
 One of the key advantages of the B-tree as a search data structure is its
-predictability: all operations take no longer than :code:`log_{B}(N)` to run.
+predictability: all operations take no longer than :math:`log_{B}(N)` to run.
 Conversely, in a classical LSM tree, both read and write speeds can differ by a
 factor of hundreds (best case scenario) or even thousands (worst case scenario).
 For example, adding just one element to L0 can cause it to overflow, which can

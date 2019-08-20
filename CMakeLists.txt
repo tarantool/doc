@@ -88,7 +88,7 @@ add_custom_target(sphinx-singlehtml ALL
         -c singlehtml/
         "${CMAKE_CURRENT_SOURCE_DIR}"
         "${SPHINX_EN_HTML_DIR}"
-        doc/2.1/singlehtml.rst
+        doc/2.2/singlehtml.rst
     COMMENT "Building HTML single-page documentation with Sphinx"
     DEPENDS sphinx-html
 )
@@ -112,7 +112,7 @@ add_custom_target(sphinx-singlehtml-ru ALL
         -c singlehtml/
         "${CMAKE_CURRENT_SOURCE_DIR}"
         "${SPHINX_RU_HTML_DIR}"
-        doc/2.1/singlehtml.rst
+        doc/2.2/singlehtml.rst
         -Dlanguage=ru
     COMMENT "Building Russian HTML single-page documentation with Sphinx"
     DEPENDS sphinx-html-ru
@@ -159,14 +159,18 @@ if (LATEX_FOUND)
             -Dlanguage=ru
     )
     add_custom_command(TARGET sphinx-pdf-ru
-        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex
+        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex || true
         WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_RU_DIR}
     )
     add_custom_command(TARGET sphinx-pdf-ru
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_RU_HTML_DIR}/doc/2.1/)
+        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex || true
+        WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_RU_DIR}
+    )
     add_custom_command(TARGET sphinx-pdf-ru
-        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_RU_DIR}/Tarantool.pdf
-                                         ${SPHINX_RU_HTML_DIR}/doc/2.1/)
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_RU_HTML_DIR}doc/2.2/)
+    add_custom_command(TARGET sphinx-pdf-ru
+        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_RU_DIR}Tarantool.pdf
+                                         ${SPHINX_RU_HTML_DIR}doc/2.2/)
 
     add_custom_target(sphinx-pdf ALL COMMENT "PDF generation")
     add_custom_command(TARGET sphinx-pdf
@@ -177,16 +181,19 @@ if (LATEX_FOUND)
             "${CMAKE_CURRENT_SOURCE_DIR}"
             "${SPHINX_BUILD_LATEX_DIR}"
     )
-
     add_custom_command(TARGET sphinx-pdf
-        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex
+        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex || true
         WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_DIR}
     )
     add_custom_command(TARGET sphinx-pdf
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_EN_HTML_DIR}/doc/2.1/)
+        COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex || true
+        WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_DIR}
+    )
     add_custom_command(TARGET sphinx-pdf
-        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_DIR}/Tarantool.pdf
-                                         ${SPHINX_EN_HTML_DIR}/doc/2.1/)
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_EN_HTML_DIR}doc/2.2/)
+    add_custom_command(TARGET sphinx-pdf
+        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_DIR}Tarantool.pdf
+                                         ${SPHINX_EN_HTML_DIR}doc/2.2/)
 endif()
 
 add_custom_target(sphinx-webserver
