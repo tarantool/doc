@@ -40,7 +40,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="book/getting_started/">
-                            <button class="getting-started-button btn full_width_480 large_480">
+                            <button class="getting-started-button btn">
                                 Руководство для начинающих
                             </button>
                         </a>
@@ -52,7 +52,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="book/getting_started/">
-                            <button class="getting-started-button btn full_width_480 large_480">
+                            <button class="getting-started-button btn">
                                 Getting started
                             </button>
                         </a>
