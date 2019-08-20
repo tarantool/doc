@@ -2870,6 +2870,19 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
 .documentation-main-page-content .admonition {
   margin-top: 20px;
 }
+.documentation-main-page-content .getting-started-button-container {
+  padding-top: 20px;
+  text-align: center;
+}
+.documentation-main-page-content .getting-started-button {
+  padding: 10px 40px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff2e2f;
+  font-size: 20px;
+  color: #FFFFFF;
+}
 .documentation-main-page .other-sources-menu {
   max-width: 160px;
   margin: 0 auto;

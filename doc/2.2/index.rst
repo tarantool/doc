@@ -36,6 +36,16 @@
                     Документация находится в процессе перевода и может
                     отставать от английской версии.
 
+            .. raw:: html
+
+                <div class="getting-started-button-container">
+                    <a href="book/getting_started/">
+                        <button class="getting-started-button btn full_width_480 large_480">
+                            Getting started
+                        </button>
+                    </a>
+                </div>
+
             .. include:: singlehtml.rst
 
         .. container:: other-sources-menu
