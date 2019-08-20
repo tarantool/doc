@@ -399,7 +399,12 @@ recommended.
 
     .. NOTE::
 
-        This exception cannot be caught by pcall or xpcall.
+        Even if you catch the exception, the fiber will stay cancelled.
+        Most type of calls will check for cancelled status of a fiber and
+        return an error.
+        However, some function (id, status, join) will not return error.
+        It is recommended to develop your applications in such way, that
+        cancelled fibers will stop executing and end as soon as possible.
 
     **Example:**
 
@@ -515,7 +520,7 @@ recommended.
 
         Cancel a fiber. Running and suspended fibers can be cancelled.
         After a fiber has been cancelled, attempts to operate on it will
-        cause errors, for example :ref:`fiber_object:id() <fiber_object-id>`
+        cause errors, for example :ref:`fiber_object:name() <fiber_object-name_get>`
         will cause ``error: the fiber is dead``.
 
         :param fiber_object: generally this is an object referenced in the return
