@@ -38,15 +38,9 @@ options:
      -v /data/dir/on/host:/var/lib/tarantool \
      tarantool/tarantool:2
 
-<<<<<<< HEAD:doc/2.2/book/getting_started/using_docker.rst
-This command runs a new container named 'mytarantool'.
-Docker starts it from an official image named 'tarantool/tarantool:2',
-with Tarantool version 2.1 and all external modules already installed.
-=======
 This command runs a new container named ``mytarantool``.
 Docker starts it from an official image named ``tarantool/tarantool:1``,
 with Tarantool version ``1.9`` and all external modules already installed.
->>>>>>> 1.10:doc/1.10/book/getting_started/using_docker.rst
 
 Tarantool will be accepting incoming connections on ``localhost:3301``.
 You may start using it as a key-value storage right away.
