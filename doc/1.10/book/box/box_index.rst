@@ -210,6 +210,8 @@ Below is a list of all ``box.index`` functions and members.
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
 
+            .. tabularcolumns:: |\Y{0.2}|\Y{0.2}|\Y{0.6}|
+
             +---------------+-----------+---------------------------------------------+
             | Type          | Arguments | Description                                 |
             +===============+===========+=============================================+
@@ -307,6 +309,8 @@ Below is a list of all ``box.index`` functions and members.
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
 
+            .. tabularcolumns:: |\Y{0.2}|\Y{0.2}|\Y{0.6}|
+
             +---------------+-----------+------------------------------------------------+
             | Type          | Arguments | Description                                    |
             +===============+===========+================================================+
@@ -340,6 +344,8 @@ Below is a list of all ``box.index`` functions and members.
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
+
+            .. tabularcolumns:: |\Y{0.4}|\Y{0.2}|\Y{0.4}|
 
             +----------------------------+-----------+----------------------------------------------+
             | Type                       | Arguments | Description                                  |
@@ -377,50 +383,13 @@ Below is a list of all ``box.index`` functions and members.
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
 
-            +--------------------+-----------+---------------------------------------------------------+
-            | Type               | Arguments | Description                                             |
-            +====================+===========+=========================================================+
-            | box.index.ALL      | none      | All keys match.                                         |
-            | or 'ALL'           |           | Tuples are returned in their order within the space.    |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.EQ       | search    | If all points of the rectangle-or-box defined by the    |
-            | or 'EQ'            | value     | search value are the same as the rectangle-or-box       |
-            |                    |           | defined by the index key, it matches.                   |
-            |                    |           | Tuples are returned in their order within the space.    |
-            |                    |           | "Rectangle-or-box" means "rectangle-or-box as           |
-            |                    |           | explained in section about                              |
-            |                    |           | :ref:`RTREE <box_index-rtree>`". This is the default.   |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.GT       | search    | If all points of the rectangle-or-box defined by the    |
-            | or 'GT'            | value     | search value are within the rectangle-or-box            |
-            |                    |           | defined by the index key, it matches.                   |
-            |                    |           | Tuples are returned in their order within the space.    |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.GE       | search    | If all points of the rectangle-or-box defined by the    |
-            | or 'GE'            | value     | search value are within, or at the side of, the         |
-            |                    |           | rectangle-or-box defined by the index key, it matches.  |
-            |                    |           | Tuples are returned in their order within the space.    |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.LT       | search    | If all points of the rectangle-or-box defined by the    |
-            | or 'LT'            | value     | index key are within the rectangle-or-box               |
-            |                    |           | defined by the search key, it matches.                  |
-            |                    |           | Tuples are returned in their order within the space.    |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.LE       | search    | If all points of the rectangle-or-box defined by the    |
-            | or 'LE'            | value     | index key are within, or at the side of, the            |
-            |                    |           | rectangle-or-box defined by the search key, it matches. |
-            |                    |           | Tuples are returned in their order within the space.    |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.OVERLAPS | search    | If some points of the rectangle-or-box defined by the   |
-            | or 'OVERLAPS'      | values    | search value are within the rectangle-or-box            |
-            |                    |           | defined by the index key, it matches.                   |
-            |                    |           | Tuples are returned in their order within the space.    |
-            +--------------------+-----------+---------------------------------------------------------+
-            | box.index.NEIGHBOR | search    | If some points of the rectangle-or-box defined by the   |
-            | or 'NEIGHBOR'      | value     | defined by the key are within, or at the side of,       |
-            |                    |           | defined by the index key, it matches.                   |
-            |                    |           | Tuples are returned in order: nearest neighbor first.   |
-            +--------------------+-----------+---------------------------------------------------------+
+            .. tabularcolumns:: |\Y{0.3}|\Y{0.2}|\Y{0.5}|
+
+            .. csv-table::
+                :file: box_index_rtree.csv
+                :class: longtable
+                :header-rows: 1
+                :delim: 0x3B
 
         **First example of index pairs():**
 

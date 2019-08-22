@@ -276,6 +276,8 @@ Below is a list of all ``box.space`` functions and members.
             .. rst-class:: left-align-column-3
             .. rst-class:: left-align-column-4
 
+            .. tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
+
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | Name                | Effect                                                | Type                             | Default                       |
             +=====================+=======================================================+==================================+===============================+
@@ -393,6 +395,8 @@ Below is a list of all ``box.space`` functions and members.
         .. rst-class:: left-align-column-3
         .. rst-class:: left-align-column-4
         .. rst-class:: top-align-column-1
+
+        .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
 
         +------------------+---------------------------+---------------------------------------+-------------------+
         | Index field type | What can be in it         | Where is it legal                     | Examples          |
@@ -1973,6 +1977,8 @@ Below is a list of all ``box.space`` functions and members.
         .. rst-class:: right-align-column-2
         .. rst-class:: left-align-column-3
         .. rst-class:: left-align-column-4
+
+        .. tabularcolumns:: |\Y{0.2}|\Y{0.1}|\Y{0.1}|\Y{0.6}|
 
         +-------------+----+------+----------------------------------------------------------------+
         | Name        | ID | Type | Description                                                    |

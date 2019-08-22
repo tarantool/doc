@@ -195,6 +195,8 @@ with the MsgPack format name and encoding on the right.
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
+    .. tabularcolumns:: |\Y{0.2}|\Y{0.8}|
+
     +--------------+-------------------------------------------------+
     | {}           | 'fixmap' if metatable is 'map' = 80             |
     |              | otherwise 'fixarray' = 90                       |

@@ -265,6 +265,8 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     .. rst-class:: left-align-column-4
     .. rst-class:: top-align-column-1
 
+    .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
+
     +----------------------------+----------------------------------+----------------------+--------------------+
     | Indexed field type         | MsgPack data type |br|           | Index type           | Examples           |
     |                            | (and possible values)            |                      |                    |
@@ -445,6 +447,8 @@ Options for ``box.schema.sequence.create()``
     .. rst-class:: left-align-column-3
     .. rst-class:: left-align-column-4
     .. rst-class:: top-align-column-1
+
+    .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
 
     +----------------------------+----------------------------------+----------------------+--------------------+
     | Option name                | Type and meaning                 | Default              | Examples           |
