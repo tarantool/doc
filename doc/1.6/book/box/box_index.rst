@@ -106,6 +106,8 @@ API is a direct binding to corresponding methods of index objects of type
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
 
+            .. tabularcolumns:: |\Y{0.2}|\Y{0.2}|\Y{0.6}|
+
             +---------------+-----------+---------------------------------------------+
             | Type          | Arguments | Description                                 |
             +===============+===========+=============================================+
@@ -205,6 +207,8 @@ API is a direct binding to corresponding methods of index objects of type
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
 
+            .. tabularcolumns:: |\Y{0.2}|\Y{0.2}|\Y{0.6}|
+
             +---------------+-----------+------------------------------------------------+
             | Type          | Arguments | Description                                    |
             +===============+===========+================================================+
@@ -238,6 +242,8 @@ API is a direct binding to corresponding methods of index objects of type
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
+
+            .. tabularcolumns:: |\Y{0.4}|\Y{0.2}|\Y{0.4}|
 
             +----------------------------+-----------+----------------------------------------------+
             | Type                       | Arguments | Description                                  |
@@ -274,6 +280,8 @@ API is a direct binding to corresponding methods of index objects of type
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
             .. rst-class:: left-align-column-3
+
+            .. tabularcolumns:: |\Y{0.3}|\Y{0.2}|\Y{0.5}|
 
             +--------------------+-----------+---------------------------------------------------------+
             | Type               | Arguments | Description                                             |

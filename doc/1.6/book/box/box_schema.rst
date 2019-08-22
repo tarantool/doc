@@ -31,6 +31,8 @@ for spaces, users, roles, and function tuples.
         .. rst-class:: left-align-column-3
         .. rst-class:: left-align-column-4
 
+        .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
+
         +---------------+-------------------------------------------------+---------+---------------------+
         | Name          | Effect                                          | Type    | Default             |
         +===============+=================================================+=========+=====================+

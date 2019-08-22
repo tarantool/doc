@@ -195,7 +195,9 @@ intersphinx_mapping = {
 }
 
 latex_elements = {
-    'fontenc': r'\usepackage[T1,T2A]{fontenc}'
+    'fontenc': r'\usepackage[T1,T2A]{fontenc}',
+    'hyperref': r'\usepackage[pdftex,pagebackref=true,backref=true,bookmarksopenlevel=1,colorlinks=true,linkcolor=blue,filecolor=magenta,urlcolor=cyan]{hyperref}',
+    'extraclassoptions': 'openany',
 }
 
 intersphinx_cache_limit = 0

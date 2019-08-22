@@ -559,6 +559,8 @@ resource usage of each function.
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
+    .. tabularcolumns:: |\Y{0.2}|\Y{0.8}|
+
     +-------------------+----------------------------------------------------------+
     | Complexity        | Effect                                                   |
     | factor            |                                                          |
