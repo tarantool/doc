@@ -11,3 +11,4 @@ output
 *.pyc
 _theme/tarantool/static/design.css.map
 .*.swp
+.idea

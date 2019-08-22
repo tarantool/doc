@@ -33,6 +33,8 @@ Below is a list of all ``fio`` functions and members.
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
+    .. tabularcolumns:: |\Y{0.5}|\Y{0.5}|
+
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
     +======================================+=================================+

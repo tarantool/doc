@@ -20,6 +20,8 @@ descriptions of some popular codes. A complete list of errors can be found in fi
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
+    .. tabularcolumns:: |\Y{0.3}|\Y{0.7}|
+
     +-------------------+--------------------------------------------------------+
     | ER_NONMASTER      | (In replication) A server instance cannot modify data  |
     |                   | unless it is a master.                                 |

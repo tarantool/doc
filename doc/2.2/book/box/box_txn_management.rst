@@ -54,6 +54,8 @@ Below is a list of all functions for transaction management.
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
+    .. tabularcolumns:: |\Y{0.4}|\Y{0.6}|
+
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
     +======================================+=================================+
