@@ -399,12 +399,11 @@ recommended.
 
     .. NOTE::
 
-        Even if you catch the exception, the fiber will stay cancelled.
-        Most type of calls will check for cancelled status of a fiber and
-        return an error.
-        However, some function (id, status, join) will not return error.
-        It is recommended to develop your applications in such way, that
-        cancelled fibers will stop executing and end as soon as possible.
+        Even if you catch the exception, the fiber will remain cancelled.
+        Most types of calls will check if the fiber's status is "cancelled".
+        However, some functions (``id``, ``status``, ``join`` etc.) will return no error.
+        We recommend application developers to implement status checks in the code so that
+        cancelled fibers would end as soon as possible.
 
     **Example:**
 
