@@ -51908,6 +51908,7 @@ msgstr "расположение, например 'https://tarantool.org/doc'"
 msgid "optional initial message, for example 'My text string!'"
 msgstr "необязательное начальное сообщение, например 'My text string!'"
 
+#, fuzzy
 #: ../doc/1.10/reference/reference_lua/http.rst:107
 msgid ""
 "table of connection options, with any of these components:   * ``timeout`` - number of "
