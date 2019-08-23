@@ -45013,7 +45013,7 @@ msgstr "Способы ссылки на объект"
 
 #: ../doc/1.10/reference/lua_tips.rst:56
 msgid "First, there are three **object reference variations**:"
-msgstr "Во-первых, есть пять *способов ссылки на объект*:"
+msgstr "Во-первых, есть три **способа ссылки на объект**:"
 
 #: ../doc/1.10/reference/lua_tips.rst:58
 msgid ""
