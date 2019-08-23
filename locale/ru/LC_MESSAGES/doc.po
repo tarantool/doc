@@ -26014,16 +26014,16 @@ msgstr ""
 #: ../doc/1.10/book/box/triggers.rst:50
 msgid ""
 ":ref:`authentication triggers <box_session-on_auth>`, which are executed during "
-"authentication, and"
+"authentication,"
 msgstr ""
 ":ref:`триггеры для обработки аутентификации <box_session-on_auth>`, которые выполняются при "
-"аутентификации, и"
+"аутентификации,"
 
 #: ../doc/1.10/book/box/triggers.rst:53
-msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events."
+msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events, and"
 msgstr ""
 ":ref:`триггеры для обработки замены <box_space-on_replace>`, которые предназначены для "
-"событий в базе данных."
+"событий в базе данных, и"
 
 #: ../doc/1.10/book/box/triggers.rst:56
 msgid ""

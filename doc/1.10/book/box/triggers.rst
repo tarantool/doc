@@ -14,10 +14,10 @@ There are four types of triggers in Tarantool:
   when a session begins or ends,
 
 * :ref:`authentication triggers <box_session-on_auth>`, which are
-  executed during authentication, and
+  executed during authentication,
 
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
-  events.
+  events, and
 
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback.
