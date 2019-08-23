@@ -96,9 +96,9 @@ choose long unobvious passwords, but it is ultimately up to the users to choose
 or change their own passwords.
 
 There are two functions for managing passwords in Tarantool:
-:ref:`box.schema.user.password() <box_schema-user_password>` for changing
-a user's password and :ref:`box.schema.user.passwd() <box_schema-user_passwd>`
-for getting a hash-password.
+:ref:`box.schema.user.passwd() <box_schema-user_passwd>` for changing a user's password and
+:ref:`box.schema.user.password() <box_schema-user_password>` for getting a hash
+of a user's password.
 
 .. _authentication-owners_privileges:
 
