@@ -73,7 +73,7 @@ To get a list of triggers, you can use:
 * on_connect() – with no arguments – to return a table of all connect-trigger functions;
 * on_auth() to return all authentication-trigger functions;
 * on_disconnect() to return all disconnect-trigger functions;
-* on_replace() to return all replace-trigger functions made for on_replace().
+* on_replace() to return all replace-trigger functions made for on_replace();
 * before_replace() to return all replace-trigger functions made for before_replace().
 
 **Example**
