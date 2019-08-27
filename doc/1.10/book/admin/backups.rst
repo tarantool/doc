@@ -21,9 +21,8 @@ backup.start() and backup.stop()
 
 Two functions are helpful for backups in certain situations.
 
-``box.backup.start()`` informs the server that some activities
-that might interfere with backup should be suspended (suspend checkpointing,
-Tarantool garbage collection etc) and returns a table with the names of
+``box.backup.start()`` informs the server that activities related to the removal
+of outdated backups must be suspended and returns a table with the names of
 snapshot and vinyl files that should be copied. Example:
 
 .. code-block:: tarantoolsession
@@ -39,7 +38,8 @@ snapshot and vinyl files that should be copied. Example:
 .. NOTE::
 
     To guarantee an opportunity to copy this files Tarantool will not delete them.
-    But there will be no read-only mode nor checkpoints postponed in this state.
+    But there will be no read-only mode and checkpoints will continue by schedule
+    as usual.
 
 Later ``box.backup.stop()`` informs the server that
 normal operations may resume. Starting with Tarantool 1.10.1 there is a new
