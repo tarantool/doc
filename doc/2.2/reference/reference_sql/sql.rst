@@ -1591,8 +1591,7 @@ Specify the condition for filtering rows from a table; this is a clause in
 a SELECT or UPDATE or DELETE statement.
 
 The condition may contain any expression that returns a BOOLEAN
-(TRUE or FALSE or UNKNOWN) value, or returns a value that can be interpreted as
-BOOLEAN (for example 1 or 0).
+(TRUE or FALSE or UNKNOWN) value.
 
 For each row in the table:
 
