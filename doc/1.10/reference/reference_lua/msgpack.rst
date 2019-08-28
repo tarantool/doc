@@ -39,6 +39,10 @@ Below is a list of all ``msgpack`` functions and members.
     | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
     | <msgpack-null>`                      |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.cfg                    | Change configuration            |
+    | <msgpack-cfg>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+
 
 .. module:: msgpack
 
@@ -226,8 +230,38 @@ with the MsgPack format name and encoding on the right.
     | 1.5          | 'float 64' = cb 3f f8 00 00 00 00 00 00         |
     +--------------+-------------------------------------------------+
 
-Also, some MsgPack configuration settings for encoding can be changed, in the
-same way that they can be changed for :ref:`JSON <json-module_cfg>`.
+.. _msgpack-cfg:
+
+.. function:: cfg(table)
+
+    Some MsgPack configuration settings can be changed, in the
+    same way that they can be changed for json.
+    See :ref:`Module JSON <json-module_cfg>` for a list of some configuration settings.
+    (The same configuration settings exist for json, for MsgPack, and for  :ref:`YAML <yaml-module>`.)
+
+    For example, if ``msgpack.cfg.encode_invalid_numbers = true`` (the default),
+    then nan and inf are legal values. If that is not desirable, then
+    ensure that ``msgpack.encode()`` will not accept them, by saying
+    ``msgpack.cfg{encode_invalid_numbers = false}``, thus:
+
+    .. code-block:: none
+
+        tarantool> msgpack = require('msgpack'); msgpack.cfg{encode_invalid_numbers = true}
+        ---
+        ...
+        tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
+        ---
+        - [1, -nan, inf, false]
+        - 22
+        ...
+        tarantool> msgpack.cfg{encode_invalid_numbers = false}
+       ---
+       ...
+        tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
+        ---
+        - error: ... number must not be NaN or Inf'
+       ...
+
 
 .. _MsgPack: http://msgpack.org/
 .. _Specification: http://github.com/msgpack/msgpack/blob/master/spec.md

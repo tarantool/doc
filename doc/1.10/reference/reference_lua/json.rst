@@ -184,6 +184,14 @@ invalid numbers or types. They are all boolean ``true``/``false`` values
 * ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
   unrecognizable types
 * ``cfg.encode_load_metatables`` (default is false) -- load metatables
+* ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
+* ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
+* ``cfg.decode_use_tostring`` (default is false) -- use tostring for
+  unrecognizable types
+* ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
+  unrecognizable types
+* ``cfg.decode_load_metatables`` (default is false) -- load metatables
+* ``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a structure
 
 For example, the following code will interpret 0/0 (which is "not a number")
 and 1/0 (which is "infinity") as special values rather than nulls or errors:
