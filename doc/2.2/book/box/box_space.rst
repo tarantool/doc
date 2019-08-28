@@ -333,8 +333,11 @@ Below is a list of all ``box.space`` functions and members.
             |                     | :ref:`specifying a sequence in create_index()         |                                  |                               |
             |                     | <box_schema-sequence_create_index>`                   |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | func                | :ref:`functional index <box_space-index_func>`        | string                           | not present                   |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
-        The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
+            The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
+ 
 
         **Note re storage engine:** vinyl has extra options which by default are
         based on configuration parameters
@@ -581,6 +584,118 @@ Below is a list of all ``box.space`` functions and members.
     from different tuples are disallowed but duplicate keys for the same tuple are allowed;
     () As with :ref:`Using the path option for map fields <box_space-path>`, the field's value
     must have the structure that the path definition implies, or be nil (nil is not indexed).
+    
+    .. _box_space-index_func:
+    
+    **Making a functional index with space_object:create_index()**
+    
+    Functional indexes are indexes that call a user-defined function for forming
+    the index key, rather than depending entirely on the Tarantool default formation.
+    Functional indexes are useful for condensing or truncating or reversing or
+    any other way that users want to customize the index.
+    
+    The function definition must expect a tuple (which has the contents of
+    fields at the time a data-change request happens) and must return a tuple
+    (which has the contents that will actually be put in the index).
+
+    The space must have a memtx engine. |br|
+    The function must be :ref:`persistent <box_schema-func_create_with-body>` and deterministic. |br|
+    The key parts must not depend on JSON paths. |br|
+    The ``create_index`` definition must include specification of all
+    key parts, and the function must return a table which has the
+    same number of key parts with the same types. |br|
+    The function must access key-part values by index, not by field name. |br|
+    Functional indexes must not be primary-key indexes. |br|
+    Functional indexes cannot be altered and the function cannot
+    be changed if it is used for an index, so the only way to change
+    them is to drop the index and create it again.
+
+    **Example:**
+    
+    A function could make a key using only the first letter of a string field.
+
+    .. code-block:: none
+    
+        -- Step 1: Make the space.
+        -- The space needs a primary-key field, which is not the field that we
+        -- will use for the functional index.
+        box.schema.space.create('x', {engine = 'memtx'})
+        box.space.x:create_index('i',{parts={1, 'string'}})
+        -- Step 2: Make the function.
+        -- The function expects a tuple. In this example it will work on tuple[2]
+        -- because the key souce is field number 2 in what we will insert.
+        -- Use string.sub() from the string module to get the first character.
+        lua_code = [[function(tuple) return {string.sub(tuple[2],1,1)} end]]
+        -- Step 3: Make the function persistent.
+        -- Use the box.schema.func.create function for this.
+        box.schema.func.create('F',
+            {body = lua_code, is_deterministic = true, is_sandboxed = true})
+        -- Step 4: Make the functional index.
+        -- Specify the fields whose values will be passed to the function.
+        -- Specify the function.
+        box.space.x:create_index('j',{parts={1, 'string'},func = 'F'})
+        -- Step 5: Test.
+        -- Insert a few tuples.
+        -- Select using only the first letter, it will work because that is the key
+        -- Or, select using the same function as was used for insertion
+        box.space.x:insert{'a', 'wombat'}
+        box.space.x:insert{'b', 'rabbit'}
+        -- Select using only the first letter, it will work because that is the key
+        -- Or, select using the same function as was used for insertion
+        box.space.x:insert{'a', 'wombat'}
+        box.space.x:insert{'b', 'rabbit'}
+        box.space.x.index.j:select('w')
+        box.space.x.index.j:select(box.func.F:call({{'x', 'wombat'}}));
+    
+    The results of the two ``select`` requests will look like this:
+    
+    .. code-block:: none
+    
+        tarantool>     box.space.x.index.j:select('w')
+        ---
+        - - ['a', 'wombat']
+        ...
+
+        tarantool>     box.space.x.index.j:select(box.func.F:call({{'x','wombat'}}));
+        ---
+        - - ['a', 'wombat']
+        ...
+
+    Functions for functional indexes can return multiple keys. |br|
+    Such functions are called "multikey" functions. |br|
+    The ``box.func.create`` options must include ``opts = {is_multikey = true}``. |br|
+    The return value must be a table of tuples. |br|
+    If a multikey function returns N tuples, then N keys will be added to the index.
+    
+    **Example:**
+
+    .. code-block:: none
+    
+        s = box.schema.space.create('withdata')
+        s:format({{name = 'name', type = 'string'},
+                  {name = 'address', type = 'string'}})
+        pk = s:create_index('name', {parts = {1, 'string'}})
+        lua_code = [[function(tuple)
+                       local address = string.split(tuple[2])
+                       local ret = {}
+                       for _, v in pairs(address) do
+                         table.insert(ret, {utf8.upper(v)})
+                       end
+                       return ret
+                     end]]
+        box.schema.func.create('address',
+                                {body = lua_code,
+                                 is_deterministic = true,
+                                 is_sandboxed = true,
+                                 opts = {is_multikey = true}})
+        idx = s:create_index('addr', {unique = false,
+                                      func = 'address',
+                                      parts = {{1, 'string',
+                                              collation = 'unicode_ci'}}})
+        s:insert({"James", "SIS Building Lambeth London UK"})
+        s:insert({"Sherlock", "221B Baker St Marylebone London NW1 6XE UK"})
+        idx:select('Uk')
+        -- Both tuples will be returned.
 
     .. _box_space-delete:
 

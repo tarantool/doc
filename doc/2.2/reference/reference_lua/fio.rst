@@ -112,6 +112,9 @@ Below is a list of all ``fio`` functions and members.
     | :ref:`fio.rename()                   | Rename a file or directory      |
     | <fio-rename>`                        |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fio.utime()                    | Change file update time         |
+    | <fio-utime>`                         |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fio.copyfile()                 | Copy a file                     |
     | <fio-copyfile>`                      |                                 |
     +--------------------------------------+---------------------------------+
@@ -615,6 +618,30 @@ functions.
         ---
         - true
         ...
+
+.. _fio-utime:
+
+.. function:: utime(file-name [, accesstime [, updatetime]])
+
+    Change the access time and possibly also change the update time of a file. For details type ``man 2 utime``.
+    Times should be expressed as number of seconds since the epoch.
+
+    :param string     file-name: name.
+    :param number     accesstime: time of last access. default current time.
+    :param number     updatetime: time of last update. default = access time.
+    
+    :return: (If no error) true. |br|
+             (If error) two return values: false, error message.
+    :rtype:  boolean
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.utime('/home/username/tmp.txt')
+        ---
+        - true
+        ...        
 
 .. _fio-copyfile:
 
