@@ -281,7 +281,7 @@ Functionality added or changed:
 * Cluster id check is now the slave’s responsibility.
 
 * It is now possible to set the output format to Lua instead of YAML
-  in the interactive console.
+  in the :ref:`interactive console <interactive_console>`.
 
 * Multiple new collations added.
   New collations follow this naming pattern:

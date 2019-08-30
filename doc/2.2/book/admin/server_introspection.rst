@@ -210,7 +210,7 @@ Once there, load the ``fiber`` module:
 
 After that you can get the required information with ``fiber.info()``.
 
-At this point, you console output should look something like this:
+At this point, your console output should look something like this:
 
 .. code-block:: tarantoolsession
 

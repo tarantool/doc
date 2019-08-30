@@ -79,7 +79,7 @@ Commands for managing Tarantool instances
 
         Supported option:
 
-        * ``--language=language`` to set interactive console language.
+        * ``--language=language`` to set :ref:`interactive console <interactive_console>` language.
           Can be either ``Lua`` or ``SQL``.
 
 ``tarantoolctl eval NAME FILE``

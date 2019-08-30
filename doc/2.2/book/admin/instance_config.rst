@@ -145,7 +145,7 @@ where:
     effective user to this user after becoming a daemon.
 
 * | ``language``
-  | The interactive console language. Can be either ``Lua`` or ``SQL``.
+  | The :ref:`interactive console <interactive_console>` language. Can be either ``Lua`` or ``SQL``.
 
 .. _admin-instance_dir:
 
