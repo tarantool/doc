@@ -41,4 +41,4 @@ For an example of using Python API with
 Also there are several community driven Python connectors:
   * `asynctnt <https://github.com/igorcoding/asynctnt>`_ with asyncio support
   * `aiotarantool <https://github.com/shveenkov/aiotarantool>`_ also with asyncio support
-  * `gtarantool <https://github.com/shveenkov/gtarantool>`_ with gevent support
+  * `gtarantool <https://github.com/shveenkov/gtarantool>`_ with gevent support **no active maintenance**
