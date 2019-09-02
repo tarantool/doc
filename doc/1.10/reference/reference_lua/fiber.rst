@@ -400,10 +400,11 @@ recommended.
     .. NOTE::
 
         Even if you catch the exception, the fiber will remain cancelled.
-        Most types of calls will check if the fiber's status is "cancelled".
+        Most types of calls will check whether the fiber.testcancel().
         However, some functions (``id``, ``status``, ``join`` etc.) will return no error.
-        We recommend application developers to implement status checks in the code so that
-        cancelled fibers would end as soon as possible.
+        We recommend application developers to implement an occasional checks with
+        :ref:`fiber.testcancel() <fiber-testcancel>` and to end fiber's execution
+        as soon as possible in case it has been cancelled.
 
     **Example:**
 
