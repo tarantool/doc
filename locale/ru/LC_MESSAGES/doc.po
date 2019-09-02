@@ -22677,12 +22677,12 @@ msgstr "полям не нужны имена."
 msgid ""
 "Any given tuple may have any number of fields, and the fields may be of different :ref:"
 "`types <index-box_data-types>`. The identifier of a field is the field's number, base 1 (in "
-"Lua and other 1-based languages) or base 0 (in PHP or C/C++). For example, “1” or \"0\" can "
+"Lua and other 1-based languages) or base 0 (in PHP or C/C++). For example, ``1`` or ``0`` can "
 "be used in some contexts to refer to the first field of a tuple."
 msgstr ""
 "В любом кортеже может быть любое количество полей, и это могут быть поля разных :ref:`типов "
 "<index-box_data-types>`. Идентификатором поля является его номер, начиная с 1 (в Lua и "
-"других языках с индексацией с 1) или с 0 (в PHP или C/C++). Например, “1” или \"0\" могут "
+"других языках с индексацией с 1) или с 0 (в PHP или C/C++). Например, ``1`` или ``0`` могут "
 "использоваться в некоторых контекстах для обозначения первого поля кортежа."
 
 #: ../doc/1.10/book/box/data_model.rst:89
@@ -26014,16 +26014,16 @@ msgstr ""
 #: ../doc/1.10/book/box/triggers.rst:50
 msgid ""
 ":ref:`authentication triggers <box_session-on_auth>`, which are executed during "
-"authentication, and"
+"authentication,"
 msgstr ""
 ":ref:`триггеры для обработки аутентификации <box_session-on_auth>`, которые выполняются при "
-"аутентификации, и"
+"аутентификации,"
 
 #: ../doc/1.10/book/box/triggers.rst:53
-msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events."
+msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events, and"
 msgstr ""
 ":ref:`триггеры для обработки замены <box_space-on_replace>`, которые предназначены для "
-"событий в базе данных."
+"событий в базе данных, и"
 
 #: ../doc/1.10/book/box/triggers.rst:56
 msgid ""
@@ -26159,10 +26159,10 @@ msgid "on_disconnect() to return all disconnect-trigger functions;"
 msgstr "on_disconnect(), чтобы вернуть все триггерные функции для обработки отключений;"
 
 #: ../doc/1.10/book/box/triggers.rst:110
-msgid "on_replace() to return all replace-trigger functions made for on_replace()."
+msgid "on_replace() to return all replace-trigger functions made for on_replace();"
 msgstr ""
 "on_replace(), чтобы вернуть все триггерные функции для обработки замены, сделанные для "
-"on_replace()."
+"on_replace();"
 
 #: ../doc/1.10/book/box/triggers.rst:111
 msgid "before_replace() to return all replace-trigger functions made for before_replace()."
@@ -28134,8 +28134,8 @@ msgstr ""
 "         > })"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:145
-msgid "Create the first :ref:`index <index-box_index>` (named ``'primary'``):"
-msgstr "Создайте первый :ref:`индекс <index-box_index>` (с именем``'primary'``):"
+msgid "Create the first :ref:`index <index-box_index>` (named ``primary``):"
+msgstr "Создайте первый :ref:`индекс <index-box_index>` (с именем``primary``):"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:147
 msgid ""
@@ -28155,9 +28155,9 @@ msgstr "Это первичный индекс по полю ``id`` в кажд�
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:156
 #: ../doc/1.10/book/getting_started/using_docker.rst:159
-msgid "Insert three :ref:`tuples <index-box_tuple>` (our name for \"records\") into the space:"
+msgid "Insert three :ref:`tuples <index-box_tuple>` (our name for records) into the space:"
 msgstr ""
-"Вставьте в созданный спейс три :ref:`кортежа <index-box_tuple>` (наш термин для «записей»):"
+"Вставьте в созданный спейс три :ref:`кортежа <index-box_tuple>` (наш термин для записей):"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:159
 msgid ""
@@ -28170,8 +28170,8 @@ msgstr ""
 "tarantool> s:insert{3, 'Ace of Base', 1993}"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:165
-msgid "To select a tuple using the ``'primary'`` index, say:"
-msgstr "Для выборки кортежей по первичному индексу ``'primary'`` выполните команду:"
+msgid "To select a tuple using the ``primary`` index, say:"
+msgstr "Для выборки кортежей по первичному индексу ``primary`` выполните команду:"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:167
 msgid "tarantool> s:select{3}"
@@ -28269,8 +28269,8 @@ msgstr ""
 "..."
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:217
-msgid "To add a secondary index based on the ``'band_name'`` field, say:"
-msgstr "Для добавления вторичного индекса по полю ``'band_name'`` используйте эту команду:"
+msgid "To add a secondary index based on the ``band_name`` field, say:"
+msgstr "Для добавления вторичного индекса по полю ``band_name`` используйте эту команду:"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:219
 msgid ""
@@ -28285,8 +28285,8 @@ msgstr ""
 "         > })"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:226
-msgid "To select tuples using the ``'secondary'`` index, say:"
-msgstr "Для выборки кортежей по вторичному индексу ``'secondary'`` выполните команду:"
+msgid "To select tuples using the ``secondary`` index, say:"
+msgstr "Для выборки кортежей по вторичному индексу ``secondary`` выполните команду:"
 
 #: ../doc/1.10/book/getting_started/using_binary.rst:228
 msgid ""
@@ -45013,7 +45013,7 @@ msgstr "Способы ссылки на объект"
 
 #: ../doc/1.10/reference/lua_tips.rst:56
 msgid "First, there are three **object reference variations**:"
-msgstr "Во-первых, есть пять *способов ссылки на объект*:"
+msgstr "Во-первых, есть три **способа ссылки на объект**:"
 
 #: ../doc/1.10/reference/lua_tips.rst:58
 msgid ""
@@ -45039,7 +45039,7 @@ msgid ""
 "this is a matter of user preference and all the variations exist in the wild."
 msgstr ""
 "Для примеров в документации, как правило, используется вариант синтаксиса №1, например \":"
-"samp:`box.space.{tester}:`\". Но вы можете с тем же успехом пользоваться любым из пяти "
+"samp:`box.space.{tester}:`\". Но вы можете с тем же успехом пользоваться любым из трех "
 "описанных выше вариантов."
 
 #: ../doc/1.10/reference/lua_tips.rst:72
@@ -51908,6 +51908,7 @@ msgstr "расположение, например 'https://tarantool.org/doc'"
 msgid "optional initial message, for example 'My text string!'"
 msgstr "необязательное начальное сообщение, например 'My text string!'"
 
+#, fuzzy
 #: ../doc/1.10/reference/reference_lua/http.rst:107
 msgid ""
 "table of connection options, with any of these components:   * ``timeout`` - number of "
