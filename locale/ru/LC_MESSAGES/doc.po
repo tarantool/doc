@@ -45039,7 +45039,7 @@ msgid ""
 "this is a matter of user preference and all the variations exist in the wild."
 msgstr ""
 "Для примеров в документации, как правило, используется вариант синтаксиса №1, например \":"
-"samp:`box.space.{tester}:`\". Но вы можете с тем же успехом пользоваться любым из пяти "
+"samp:`box.space.{tester}:`\". Но вы можете с тем же успехом пользоваться любым из трех "
 "описанных выше вариантов."
 
 #: ../doc/1.10/reference/lua_tips.rst:72
