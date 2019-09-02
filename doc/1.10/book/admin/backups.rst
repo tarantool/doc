@@ -37,7 +37,7 @@ snapshot and vinyl files that should be copied. Example:
 
 .. NOTE::
 
-    To guarantee an opportunity to copy this files Tarantool will not delete them.
+    To guarantee an opportunity to copy these files Tarantool will not delete them.
     But there will be no read-only mode and checkpoints will continue by schedule
     as usual.
 
