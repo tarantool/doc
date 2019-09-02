@@ -2579,129 +2579,243 @@ Apply a built-in function to one or more expressions and return a scalar value.
 
 Tarantool supports 32 built-in functions.
 
-``CHAR([numeric-expression [,numeric-expression...])``
-        Return the characters whose Unicode code point values are equal
-        to the numeric expressions.
+.. _sql_function_char:
 
-        Short example:
-        The first 128 Unicode characters are the "ASCII" characters,
-        so CHAR(65,66,67) is 'ABC'.
+***********************************************
+CHAR
+***********************************************
 
-        Long example:
-        For the current list of Unicode characters,
-        in order by code point, see
-        `www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_.
-        In that list, there is a line for a Linear B ideogram |br|
-        ``100CC;LINEAR B IDEOGRAM B240 WHEELED CHARIOT ...`` |br|
-        Therefore, for a string with a chariot in the middle,
-        use the concatenation operator ``||`` and the CHAR function
-        ``'start of string ' || CHAR(0X100CC) || ' end of string'``.
+Syntax:
 
-``COALESCE(expression, expression [, expression ...])``
-        Return the value of the first non-NULL expression, or, if all
-        expression values are NULL, return NULL.
+:samp:`CHAR([numeric-expression [,numeric-expression...])`
 
-        Example: ``COALESCE(NULL, 17, 32)`` is 17
+Return the characters whose Unicode code point values are equal
+to the numeric expressions.
 
-``HEX(expression)``
-        Return the hexadecimal code for each byte in *expression*,
-        which may be either a string or a byte sequence.
-        For ASCII characters, this
-        is straightforward because the encoding is
-        the same as the code point value. For
-        non-ASCII characters, since character strings
-        are usually encoded in UTF-8, each character
-        will require two or more bytes.
+Short example:
 
-        Examples:
+The first 128 Unicode characters are the "ASCII" characters,
+so CHAR(65,66,67) is 'ABC'.
 
-        * ``HEX('A')`` will return '41'
-        * ``HEX('Д')`` will return 'D094'
+Long example:
 
-``IFNULL(expression, expression)``
-        Return the value of the first non-NULL expression, or, if both
-        expression values are NULL, return NULL. Thus
-        ``IFNULL(expression,expression)`` is the same as
-        ``COALESCE(expression, expression)``.
+For the current list of Unicode characters,
+in order by code point, see
+`www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt
+<http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_.
+In that list, there is a line for a Linear B ideogram
 
-        Example: ``IFNULL(NULL, 17)`` is 17
+``100CC;LINEAR B IDEOGRAM B240 WHEELED CHARIOT ...``
 
-``LENGTH(expression)``
-        Return the number of characters in the *expression*,
-        or the number of bytes in the *expression*.
-        It depends on the data type:
-        strings with data type STRING are counted in characters,
-        byte sequences with data type VARBINARY
-        are counted in bytes and are not ended by the nul character.
-        There are two aliases for ``LENGTH(expression)`` -- ``CHAR_LENGTH(expression)``
-        and ``CHARACTER_LENGTH(expression)`` do the same thing.
+Therefore, for a string with a chariot in the middle,
+use the concatenation operator ``||`` and the CHAR function
 
-        Examples:
+``'start of string ' || CHAR(0X100CC) || ' end of string'``.
 
-        * ``LENGTH('ДД')`` is 2, the string has 2 characters
-        * ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes
-        * ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'
-        * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY
+.. _sql_function_coalesce:
 
-``NULLIF(expression-1, expression-2)``
-        Return *expression-1* if *expression-1* <> *expression-2*,
-        otherwise return NULL.
+***********************************************
+COALESCE
+***********************************************
 
-        Examples:
+Syntax:
 
-        * ``NULLIF('a','A')`` is 'a'
-        * ``NULLIF(1.00, 1)`` is NULL
+:samp:`COALESCE(expression, expression [, expression ...])`
 
-``PRINTF(string-expression [, expression ...])``
-        Return a string formatted according to the rules of the C
-        ``sprintf()`` function, where ``%d%s`` means the next two arguments
-        are a number and a string, etc.
+Return the value of the first non-NULL expression, or, if all
+expression values are NULL, return NULL.
 
-        If an argument is missing or is NULL, it becomes:
+Example:
+  ``COALESCE(NULL, 17, 32)`` is 17.
 
-        * '0' if the format requires an integer,
-        * '0.0' if the format requires a decimal number,
-        * '' if the format requires a string.
+.. _sql_function_hex:
 
-        Example: ``PRINTF('%da', 5)`` is '5a'
+***********************************************
+HEX
+***********************************************
 
-``QUOTE(string-literal)``
-        Return a string with enclosing quotes if necessary,
-        and with quotes inside the enclosing quotes if necessary.
-        This function is useful for creating strings
-        which are part of SQL statements, because of SQL's rules that
-        string literals are enclosed by single quotes, and single quotes
-        inside such strings are shown as two single quotes in a row.
+Syntax:
 
-        Example: ``QUOTE('a')`` is '''a'''
+:samp:`HEX(expression)`
 
-``SOUNDEX(string-expression)``
-        Return a four-character string which represents the sound
-        of ``string-expression``. Often words and names which have
-        different spellings will have the same Soundex representation
-        if they are pronounced similarly,
-        so it is possible to search by what they sound like.
-        The algorithm works with characters in the Latin alphabet
-        and works best with English words.
+Return the hexadecimal code for each byte in **expression**,
+which may be either a string or a byte sequence.
+For ASCII characters, this
+is straightforward because the encoding is
+the same as the code point value. For
+non-ASCII characters, since character strings
+are usually encoded in UTF-8, each character
+will require two or more bytes.
 
-        Example: ``SOUNDEX('Crater')`` and ``SOUNDEX('Creature')`` both return 'C636'.
+Examples:
 
-``UNICODE(string-expression)``
-        Return the Unicode code point value of the first character of
-        *string-expression*.
-        If *string-expression* is empty, the return is NULL.
-        This is the reverse of CHAR(integer).
+  * ``HEX('A')`` will return ``41``.
+  * ``HEX('Д')`` will return ``D094``.
 
-        Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429)
+.. _sql_function_ifnull:
 
-``UPPER(string-expression)``
-        Return the expression, with lower-case characters converted
-        to upper case.
-        This is the reverse of LOWER(string-expression).
+***********************************************
+IFNULL
+***********************************************
 
-        Example: ``UPPER('-4щl')`` is '-4ЩL'
+Syntax:
 
-``VERSION()``
-        Return the Tarantool version.
+:samp:`IFNULL(expression, expression)`
 
-        Example: for a March 2019 build VERSION() is  '2.1.1-374-g27283debc'
+Return the value of the first non-NULL expression, or, if both
+expression values are NULL, return NULL. Thus
+``IFNULL(expression, expression)`` is the same as
+``COALESCE(expression, expression)``.
+
+Example:
+  ``IFNULL(NULL, 17)`` is 17
+
+.. _sql_function_length:
+
+***********************************************
+LENGTH
+***********************************************
+
+Syntax:
+
+:samp:`LENGTH(expression)`
+
+Return the number of characters in the **expression**,
+or the number of bytes in the **expression**.
+It depends on the data type:
+strings with data type STRING are counted in characters,
+byte sequences with data type VARBINARY
+are counted in bytes and are not ended by the nul character.
+There are two aliases for ``LENGTH(expression)`` -- ``CHAR_LENGTH(expression)``
+and ``CHARACTER_LENGTH(expression)`` do the same thing.
+
+Examples:
+
+  * ``LENGTH('ДД')`` is 2, the string has 2 characters.
+  * ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes.
+  * ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'.
+  * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY.
+
+.. _sql_function_nullif:
+
+***********************************************
+NULLIF
+***********************************************
+
+Syntax:
+
+:samp:`NULLIF(expression-1, expression-2)`
+
+Return *expression-1* if *expression-1* <> *expression-2*,
+otherwise return NULL.
+
+Examples:
+
+  * ``NULLIF('a','A')`` is 'a'.
+  * ``NULLIF(1.00, 1)`` is NULL.
+
+.. _sql_function_printf:
+
+***********************************************
+PRINTF
+***********************************************
+
+Syntax:
+
+:samp:`PRINTF(string-expression [, expression ...])`
+
+Return a string formatted according to the rules of the C
+``sprintf()`` function, where ``%d%s`` means the next two arguments
+are a number and a string, etc.
+
+If an argument is missing or is NULL, it becomes:
+
+  * '0' if the format requires an integer,
+  * '0.0' if the format requires a decimal number,
+  * '' if the format requires a string.
+
+Example: ``PRINTF('%da', 5)`` is '5a'.
+
+.. _sql_function_quote:
+
+***********************************************
+QUOTE
+***********************************************
+
+Syntax:
+
+:samp:`QUOTE(string-literal)`
+
+Return a string with enclosing quotes if necessary,
+and with quotes inside the enclosing quotes if necessary.
+This function is useful for creating strings
+which are part of SQL statements, because of SQL's rules that
+string literals are enclosed by single quotes, and single quotes
+inside such strings are shown as two single quotes in a row.
+
+Example: ``QUOTE('a')`` is ``'a'``.
+
+.. _sql_function_soundex:
+
+***********************************************
+SOUNDEX
+***********************************************
+
+Syntax:
+
+:samp:`SOUNDEX(string-expression)`
+
+Return a four-character string which represents the sound
+of ``string-expression``. Often words and names which have
+different spellings will have the same Soundex representation
+if they are pronounced similarly,
+so it is possible to search by what they sound like.
+The algorithm works with characters in the Latin alphabet
+and works best with English words.
+
+Example: ``SOUNDEX('Crater')`` and ``SOUNDEX('Creature')`` both return ``C636``.
+
+.. _sql_function_unicode:
+
+***********************************************
+UNICODE
+***********************************************
+
+Syntax:
+
+:samp:`UNICODE(string-expression)`
+
+Return the Unicode code point value of the first character of **string-expression**.
+If *string-expression* is empty, the return is NULL.
+This is the reverse of CHAR(integer).
+
+Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429).
+
+.. _sql_function_upper:
+
+***********************************************
+UPPER
+***********************************************
+
+Syntax:
+
+:samp:`UPPER(string-expression)`
+
+Return the expression, with lower-case characters converted to upper case.
+This is the reverse of LOWER(string-expression).
+
+Example: ``UPPER('-4щl')`` is '-4ЩL'.
+
+.. _sql_function_version:
+
+***********************************************
+VERSION
+***********************************************
+
+Syntax:
+
+:samp:`VERSION()`
+
+Return the Tarantool version.
+
+Example: for a March 2019 build VERSION() is ``2.1.1-374-g27283debc``.

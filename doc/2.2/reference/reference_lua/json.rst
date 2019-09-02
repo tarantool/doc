@@ -36,7 +36,7 @@ Below is a list of all ``json`` functions and members.
     | :ref:`json.NULL                      | Analog of Lua's "nil"           |
     | <json-null>`                         |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`json.cfg()                     | Set persistent flags            |
+    | :ref:`json.cfg()                     | Set global flags                |
     | <json-module_cfg>`                   |                                 |
     +--------------------------------------+---------------------------------+
 
