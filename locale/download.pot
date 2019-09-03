@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.1\n"
+"Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-16 17:01+0300\n"
+"POT-Creation-Date: 2019-09-03 12:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,9 +199,10 @@ msgid "A plain msgpack serialization library. Use it if you wish to write your o
 msgstr ""
 
 #: ../download/connectors.rst:123
-#: ../download/connectors_17.rst:123
-#: ../download/connectors_20.rst:123
-msgid "Owner: `@rtisisyk <https://github.com/rtisisyk>`_"
+#: ../download/connectors.rst:508
+#: ../download/connectors_17.rst:508
+#: ../download/connectors_20.rst:508
+msgid "Owner: `@rtsisyk <https://github.com/rtsisyk>`_"
 msgstr ""
 
 #: ../download/connectors.rst:128
@@ -555,12 +556,6 @@ msgstr ""
 msgid "Rust connector for Tarantool 1.6+ |star|"
 msgstr ""
 
-#: ../download/connectors.rst:508
-#: ../download/connectors_17.rst:508
-#: ../download/connectors_20.rst:508
-msgid "Owner: `@rtsisyk <https://github.com/rtsisyk>`_"
-msgstr ""
-
 #: ../download/connectors.rst:513
 #: ../download/connectors_17.rst:513
 #: ../download/connectors_20.rst:513
@@ -711,6 +706,11 @@ msgstr ""
 
 #: ../download/connectors_17.rst:57
 msgid ":currentversion:`1.7 (old stable)`   :doc:`1.9 (stable) <connectors>`   :doc:`2.0 (alpha) <connectors_20>`"
+msgstr ""
+
+#: ../download/connectors_17.rst:123
+#: ../download/connectors_20.rst:123
+msgid "Owner: `@rtisisyk <https://github.com/rtisisyk>`_"
 msgstr ""
 
 #: ../download/connectors_20.rst:51
