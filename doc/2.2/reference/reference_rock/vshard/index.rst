@@ -1477,6 +1477,9 @@ Router public API
 
     :param timeout: a timeout, in seconds
 
+    :return: ``true`` if the dataset was synchronized successfully; or ``nil`` and
+             ``err`` explaining why the dataset cannot be synchronized.
+
 .. _router_api-discovery_wakeup:
 
 .. function:: vshard.router.discovery_wakeup()
@@ -1752,6 +1755,9 @@ Storage public API
     Wait until the dataset is synchronized on replicas.
 
     :param timeout: a timeout, in seconds
+
+    :return: ``true`` if the dataset was synchronized successfully; or ``nil`` and
+             ``err`` explaining why the dataset cannot be synchronized.
 
 .. _storage_api-bucket_pin:
 

@@ -49,7 +49,7 @@ Any given tuple may have any number of fields, and the fields may be of
 different :ref:`types <index-box_data-types>`.
 The identifier of a field is the field's number, base 1
 (in Lua and other 1-based languages) or base 0 (in PHP or C/C++).
-For example, “1” or "0" can be used in some contexts to refer to the first
+For example, ``1`` or ``0`` can be used in some contexts to refer to the first
 field of a tuple.
 
 Tuples in Tarantool are stored as

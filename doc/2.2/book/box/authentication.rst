@@ -39,7 +39,7 @@ the current user, by default, is '**guest**'.
 If the connection is using an :ref:`admin-console port <admin-security>`,
 the current user is '**admin**'.
 When executing a :ref:`Lua initialization script <index-init_label>`,
-the current user is also ‘admin’.
+the current user is also ‘**admin**’.
 
 The current user name can be found with :ref:`box.session.user() <box_session-user>`.
 
@@ -96,9 +96,9 @@ choose long unobvious passwords, but it is ultimately up to the users to choose
 or change their own passwords.
 
 There are two functions for managing passwords in Tarantool:
-:ref:`box.schema.user.password() <box_schema-user_password>` for changing
-a user's password and :ref:`box.schema.user.passwd() <box_schema-user_passwd>`
-for getting a hash-password.
+:ref:`box.schema.user.passwd() <box_schema-user_passwd>` for changing a user's password and
+:ref:`box.schema.user.password() <box_schema-user_password>` for getting a hash
+of a user's password.
 
 .. _authentication-owners_privileges:
 
@@ -112,8 +112,8 @@ spaces, indexes, users, roles, sequences, and functions.
 
 The **owner** of a database object is the user who created it.
 The owner of the database itself, and the owner of objects that
-are created initially -- the system spaces and the default users --
-is 'admin'.
+are created initially (the system spaces and the default users)
+is '**admin**'.
 
 Owners automatically have **privileges** for what they create.
 They can share these privileges with other users or with roles,

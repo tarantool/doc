@@ -28,12 +28,11 @@ There are six types of triggers in Tarantool:
 * :ref:`member triggers <swim-on_member_event>`, which are executed
   when a SWIM member is updated.
 
-
 All triggers have the following characteristics:
 
 * Triggers associate a function with an event.
   The request to "define a trigger" implies passing the
-  trigger’s function to one of the "on_event()" functions:
+  trigger's function to one of the "on_event()" functions:
 
   * :ref:`box.session.on_connect() <box_session-on_connect>` and :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
   * :ref:`box.session.on_auth() <box_session-on_auth>`, or

@@ -29,6 +29,7 @@ In the tables that ``box.stat()`` and ``box.stat.net()`` return:
 ``total`` stands for "total [number processed since the server began]",
 ``current`` stands for "[number of] current [requests in progress, which can be
 limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]".
+"ERROR" is the count of requests that resulted in an error.
 
 .. code-block:: tarantoolsession
 

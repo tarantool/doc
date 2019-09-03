@@ -182,18 +182,27 @@ Below is a list of all ``json`` functions and members.
     and :ref:`json.decode <json-decode>`.
     The values are all either integers or boolean ``true``/``false`` values.
 
-    * ``encode_invalid_as_nil`` -- use null for unrecognizable types; default = ``false``
-    * ``encode_invalid_numbers`` -- allow nan and inf; default = ``true``
-    * ``encode_load_metatables`` -- load metatables; default = ``true``
-    * ``encode_max_depth`` -- how deep nesting can be; default = 32
-    * ``encode_number_precision`` -- maximum post-decimal digits; default = 14
-    * ``encode_sparse_ratio`` -- how sparse an array can be; default = 2
-    * ``encode_sparse_safe`` -- how much can safely be sparse; default = 10
-    * ``encode_use_tostring`` -- use ``tostring`` for unrecognizable types; default = ``false``
-    * ``decode_invalid_numbers`` -- like ``encode_invalid_numbers``; default = ``true``
-    * ``decode_max_depth`` -- like ``encode_max_depth``; default = 32
-    * ``decode_save_metatables`` -- like ``encode_load_metatables``; default = ``true``
-    * ``decode_sparse_convert`` -- like ``encode_sparse_convert``; default = ``true``
+    * ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
+    * ``cfg.encode_use_tostring`` (default is false) -- use tostring for
+      unrecognizable types
+    * ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
+      unrecognizable types
+    * ``cfg.encode_load_metatables`` (default is false) -- load metatables
+    * ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
+    * ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
+    * ``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be
+    * ``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse
+    * ``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for
+      unrecognizable types
+    * ``cfg.decode_save_metatables`` (default is true) -- like ``encode_load_metatables``
+    * ``cfg.decode_sparse_convert`` (default is true) -- like ``encode_sparse_convert``
+    * ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
+    * ``cfg.decode_use_tostring`` (default is false) -- use tostring for
+      unrecognizable types
+    * ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
+      unrecognizable types
+    * ``cfg.decode_load_metatables`` (default is false) -- load metatables
+    * ``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a structure
 
     For example, the following code will encode 0/0 as nan ("not a number")
     and 1/0 as inf ("infinity"), rather than returning nil or an error message:

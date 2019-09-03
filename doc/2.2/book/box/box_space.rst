@@ -337,7 +337,7 @@ Below is a list of all ``box.space`` functions and members.
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
             The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
- 
+
 
         **Note re storage engine:** vinyl has extra options which by default are
         based on configuration parameters
@@ -351,7 +351,7 @@ Below is a list of all ``box.space`` functions and members.
         :ref:`box.space._index <box_space-index>`.
 
         Building or rebuilding a large index will cause occasional
-        :ref:`yields <atomic-cooperative_multitasking>` 
+        :ref:`yields <atomic-cooperative_multitasking>`
         so that other requests will not be blocked.
         If the other requests cause an illegal situation such as a duplicate key
         in a unique index, the index building or rebuilding will fail.
@@ -584,16 +584,16 @@ Below is a list of all ``box.space`` functions and members.
     from different tuples are disallowed but duplicate keys for the same tuple are allowed;
     () As with :ref:`Using the path option for map fields <box_space-path>`, the field's value
     must have the structure that the path definition implies, or be nil (nil is not indexed).
-    
+
     .. _box_space-index_func:
-    
+
     **Making a functional index with space_object:create_index()**
-    
+
     Functional indexes are indexes that call a user-defined function for forming
     the index key, rather than depending entirely on the Tarantool default formation.
     Functional indexes are useful for condensing or truncating or reversing or
     any other way that users want to customize the index.
-    
+
     The function definition must expect a tuple (which has the contents of
     fields at the time a data-change request happens) and must return a tuple
     (which has the contents that will actually be put in the index).
@@ -611,11 +611,11 @@ Below is a list of all ``box.space`` functions and members.
     them is to drop the index and create it again.
 
     **Example:**
-    
+
     A function could make a key using only the first letter of a string field.
 
     .. code-block:: none
-    
+
         -- Step 1: Make the space.
         -- The space needs a primary-key field, which is not the field that we
         -- will use for the functional index.
@@ -646,11 +646,11 @@ Below is a list of all ``box.space`` functions and members.
         box.space.x:insert{'b', 'rabbit'}
         box.space.x.index.j:select('w')
         box.space.x.index.j:select(box.func.F:call({{'x', 'wombat'}}));
-    
+
     The results of the two ``select`` requests will look like this:
-    
+
     .. code-block:: none
-    
+
         tarantool>     box.space.x.index.j:select('w')
         ---
         - - ['a', 'wombat']
@@ -666,11 +666,11 @@ Below is a list of all ``box.space`` functions and members.
     The ``box.func.create`` options must include ``opts = {is_multikey = true}``. |br|
     The return value must be a table of tuples. |br|
     If a multikey function returns N tuples, then N keys will be added to the index.
-    
+
     **Example:**
 
     .. code-block:: none
-    
+
         s = box.schema.space.create('withdata')
         s:format({{name = 'name', type = 'string'},
                   {name = 'address', type = 'string'}})
@@ -902,7 +902,7 @@ Below is a list of all ``box.space`` functions and members.
         ``box.space.tester:format()`` will return ``[{'name': 'x', 'type': 'scalar'}]``.
 
         Formatting or reformatting a large space will cause occasional
-        :ref:`yields <atomic-cooperative_multitasking>` 
+        :ref:`yields <atomic-cooperative_multitasking>`
         so that other requests will not be blocked.
         If the other requests cause an illegal situation such as a field value
         of the wrong type, the formatting or reformatting will fail.
@@ -1151,7 +1151,7 @@ Below is a list of all ``box.space`` functions and members.
                                               trigger function; for the trigger
                                               function's optional parameters see
                                               the description of ``on_replace``.
-                                              
+
         :param function old-trigger-function: existing trigger function which
                                               will be replaced by
                                               ``trigger-function``
