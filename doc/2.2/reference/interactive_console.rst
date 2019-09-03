@@ -33,14 +33,16 @@ The **delimiter** can be changed to any character with :samp:`\set delimiter <ch
 The default is nothing, which means input does not need to end with a delimiter.
 But a common recommendation is to say ``set delimiter ;`` especially if input is SQL.
 
+.. _interactive_console_output:
+
 The **output format** can be changed to Lua with ``\set output lua``
 or changed to YAML (the default) with ``\set output yaml``.
 
 Ordinarily. output from the console has `YAML format <http://yaml.org/spec>`_.
-That means that there is a line for document-start "``---``",
-and each item begins on a separate line starting with "``- ``",
+That means that there is a line for document-start ``"---"``,
+and each item begins on a separate line starting with ``"- "``,
 and each sub-item in a nested structure is indented,
-and there is a line for document-end "``...``".
+and there is a line for document-end ``"..."``.
 
 Optionally, output from the console can have Lua format.
 That means that there are no lines for document-start or document-end,
@@ -51,7 +53,10 @@ So, when input is a Lua object description, output will equal input.
 YAML is good for readability.
 Lua is good for re-using results as requests.
 A third format, MsgPack, is good for database storage.
-Currently the default output format is YAML but it may be Lua in a future version.
+Currently the default output format is YAML but it may be Lua in a future version,
+and it may be Lua if
+the last :ref:`set_default_output <console-set_default_output>`
+call was ``console.set_default_output('lua')``.
 
 .. container:: table
 

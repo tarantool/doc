@@ -41,6 +41,13 @@ Below is a list of all ``console`` functions.
     | :ref:`console.delimiter()            | Set a delimiter                 |
     | <console-delimiter>`                 |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`console.get_default_output()   | Get default output format       |
+    | <console-get_default_output>`        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`console.set_default_output()   | Set default output format       |
+    | <console-set_default_output>`        |                                 |
+    +--------------------------------------+---------------------------------+
+
 
 .. module:: console
 
@@ -187,3 +194,23 @@ Below is a list of all ``console`` functions.
        tarantool> console.delimiter('')!
        ---
        ...
+
+.. _console-get_default_output:
+
+.. function:: get_default_output()
+
+   Return the current default output format. The result will be
+   ``fmt="yaml"``, or it will be ``fmt="lua"`` if
+   the last :ref:`set_default_output <console-set_default_output>`
+   call was ``console.set_default_output('lua')``.  
+
+.. _console-set_default_output:
+
+.. function:: set_default_output('yaml'|'lua')
+
+   Set the default output format.
+   The possible values are 'yaml' (the default default) or 'lua'.
+   The output format can be changed within a session by executing
+   :samp:`console.eval('\\\\set output {yaml}|{lua}')`; see the
+   description of output format in the
+   :ref:`Interactive console <interactive_console_output>` section.
