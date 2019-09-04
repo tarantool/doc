@@ -25,9 +25,12 @@ the preferences can differ. But strategically the steps are always the same.
    * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
    * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
    * `OpenSSL <https://www.openssl.org>`_ library, version 1.0.1+
-   * `cURL <https://curl.haxx.se/>`_ library, version 0.725+
    * `LibYAML <http://pyyaml.org/wiki/LibYAML>`_ library, version 0.1.4+
    * `ICU <http://site.icu-project.org/download>`_ library, recent version
+   * `Autoconf <https://www.gnu.org/software/autoconf/>`_ library, any version
+   * `Automake <https://www.gnu.org/software/automake/>`_ library, any version
+   * `Libtool <https://www.gnu.org/software/libtool/>`_ library, any version
+   * `Zlib-devel <https://www.zlib.net/>`_ library, any version
 
    * Python and modules. |br| Python interpreter is not necessary for building
      Tarantool itself, unless you intend to use the "Run the test suite"
@@ -47,8 +50,9 @@ the preferences can differ. But strategically the steps are always the same.
      .. code-block:: console
 
         $ apt install -y build-essential cmake coreutils sed \
+              autoconf automake libtool zlib1g-dev \
               libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
-              libcurl4-openssl-dev libunwind-dev libicu-dev \
+              libunwind-dev libicu-dev \
               python python-pip python-setuptools python-dev \
               python-msgpack python-yaml python-argparse python-six python-gevent
 
@@ -57,8 +61,9 @@ the preferences can differ. But strategically the steps are always the same.
      .. code-block:: console
 
          $ yum install -y gcc gcc-c++ cmake coreutils sed \
+               autoconf automake libtool zlib-devel \
                readline-devel ncurses-devel libyaml-devel openssl-devel \
-               libcurl-devel libunwind-devel libicu-devel \
+               libunwind-devel libicu-devel \
                python python-pip python-setuptools python-devel \
                python-msgpack python-yaml python-argparse python-six python-gevent
 
@@ -69,9 +74,14 @@ the preferences can differ. But strategically the steps are always the same.
      .. code-block:: console
 
          $ brew install cmake autoconf binutils zlib \
-                readline ncurses libyaml openssl curl libunwind-headers icu4c \
+                autoconf automake libtool \
+                readline ncurses libyaml openssl libunwind-headers icu4c \
                 && pip install python-daemon \
                 msgpack-python pyyaml configargparse six gevent
+
+     .. NOTE::
+
+         You can not install `zlib-devel <https://www.zlib.net/>`_  package this way.
 
      Alternatively, download Apple's default Xcode toolset:
 
@@ -85,7 +95,8 @@ the preferences can differ. But strategically the steps are always the same.
      .. code-block:: console
 
          $ pkg install -y sudo git cmake gmake gcc coreutils \
-               readline ncurses libyaml openssl curl libunwind icu \
+               autoconf automake libtool \
+               readline ncurses libyaml openssl libunwind icu \
                python27 py27-pip py27-setuptools py27-daemon \
                py27-msgpack-python py27-yaml py27-argparse py27-six py27-gevent
 
