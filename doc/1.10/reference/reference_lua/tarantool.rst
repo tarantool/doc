@@ -23,26 +23,27 @@ the tarantool module is recommended.
 
     tarantool> tarantool = require('tarantool')
     ---
-    ...
-    tarantool> tarantool
-    ---
-    - build:
+    - version: 2.3.0-3-g302bb3241
+      build:
         target: Linux-x86_64-RelWithDebInfo
-        options: cmake . -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_BACKTRACE=ON
+        options: cmake . -DCMAKE_INSTALL_PREFIX=/opt/tarantool-install
+    -DENABLE_BACKTRACE=ON
         mod_format: so
-        flags: ' -fno-common -fno-omit-frame-pointer -fno-stack-protector -fexceptions
-          -funwind-tables -fopenmp -msse2 -std=c11 -Wall -Wextra -Wno-sign-compare -Wno-strict-aliasing
-          -fno-gnu89-inline'
-        compiler: /usr/bin/x86_64-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-g++
-      uptime: 'function: 0x408668e0'
-      version: 1.7.0-66-g9093daa
-      pid: 'function: 0x40866900'
+        flags: ' -fexceptions -funwind-tables -fno-omit-frame-pointer
+    -fno-stack-protector
+          -fno-common -fopenmp -msse2 -std=c11 -Wall -Wextra
+    -Wno-strict-aliasing -Wno-char-subscripts
+          -Wno-format-truncation -fno-gnu89-inline -Wno-cast-function-type'
+        compiler: /usr/bin/cc /usr/bin/c++
+      pid: 'function: 0x40016cd0'
+      package: Tarantool
+      uptime: 'function: 0x40016cb0'
     ...
     tarantool> tarantool.pid()
     ---
-    - 30155
+    - 28786
     ...
     tarantool> tarantool.uptime()
     ---
-    - 108.64641499519
+    - 2586.900608
     ...
