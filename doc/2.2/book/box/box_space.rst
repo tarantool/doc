@@ -1655,16 +1655,16 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-upsert:
 
-    .. method:: upsert(tuple_value, {{operator, field_no, value}, ...}, )
+    .. method:: upsert({tuple}, {{operator, field_no, value}, ...}, )
 
         Update or insert a tuple.
 
-        If there is an existing tuple which matches the key fields of ``tuple_value``, then the
+        If there is an existing tuple which matches the key fields of ``tuple``, then the
         request has the same effect as :ref:`space_object:update() <box_space-update>` and the
         ``{{operator, field_no, value}, ...}`` parameter is used.
-        If there is no existing tuple which matches the key fields of ``tuple_value``, then the
+        If there is no existing tuple which matches the key fields of ``tuple``, then the
         request has the same effect as :ref:`space_object:insert() <box_space-insert>` and the
-        ``{tuple_value}`` parameter is used. However, unlike ``insert`` or
+        ``{tuple}`` parameter is used. However, unlike ``insert`` or
         ``update``, ``upsert`` will not read a tuple and perform
         error checks before returning -- this is a design feature which
         enhances throughput but requires more caution on the part of the user.

@@ -22,14 +22,14 @@ analog of the instance file that we created for the first replica in that set:
    -- instance file for replica #2
    box.cfg{
      listen = 3301,
-     replication = ('replicator:password@192.168.0.101:3301',  -- master URI
+     replication = {'replicator:password@192.168.0.101:3301',  -- master URI
                     'replicator:password@192.168.0.102:3301',  -- replica #1 URI
-                    'replicator:password@192.168.0.103:3301'), -- replica #2 URI
+                    'replicator:password@192.168.0.103:3301'}, -- replica #2 URI
      read_only = true
    }
    box.once("schema", function()
       box.schema.user.create('replicator', {password = 'password'})
-      box.schema.user.grant('replicator', 'replication’) -- grant replication role
+      box.schema.user.grant('replicator', 'replication') -- grant replication role
       box.schema.space.create("test")
       box.space.test:create_index("primary")
       print('box.once executed on replica #2')
@@ -95,7 +95,7 @@ instances in that set:
    }
    box.once("schema", function()
       box.schema.user.create('replicator', {password = 'password'})
-      box.schema.user.grant('replicator', 'replication’) -- grant "replication" role
+      box.schema.user.grant('replicator', 'replication') -- grant replication role
       box.schema.space.create("test")
       box.space.test:create_index("primary")
    end)
