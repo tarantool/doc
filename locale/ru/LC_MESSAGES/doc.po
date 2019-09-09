@@ -67755,7 +67755,7 @@ msgstr ""
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:300
 msgid ""
 "A replica set from which the bucket is being migrated is called a "
-"**source**; a target replica set to which the bucket is being migrated is"
+"**source** ; a target replica set to which the bucket is being migrated is"
 " called a **destination**."
 msgstr ""
 "Набор реплик, из которого переносится сегмент, называется **исходный** "

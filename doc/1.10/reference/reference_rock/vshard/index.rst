@@ -263,7 +263,7 @@ A **rebalancer** is a background rebalancing process that ensures an even
 distribution of buckets across the shards. During rebalancing, buckets are being
 migrated among replica sets.
 
-A replica set from which the bucket is being migrated is called a **source**; a
+A replica set from which the bucket is being migrated is called a **source** ; a
 target replica set to which the bucket is being migrated is called a **destination**.
 
 A **replica set lock** makes a replica set invisible to the rebalancer. A locked
