@@ -263,7 +263,7 @@ A **rebalancer** is a background rebalancing process that ensures an even
 distribution of buckets across the shards. During rebalancing, buckets are being
 migrated among replica sets.
 
-A replica set from which the bucket is being migrated is called a **source**; a
+A replica set from which the bucket is being migrated is called a **source** ; a
 target replica set to which the bucket is being migrated is called a **destination**.
 
 A **replica set lock** makes a replica set invisible to the rebalancer. A locked
@@ -277,7 +277,7 @@ While a bucket is being migrated, it can have different states:
 * SENDING – the bucket is currently being copied to the destination replica set;
   read requests to the source replica set are still processed.
 * RECEIVING – the bucket is currently being filled; all requests to it are rejected.
-* SENT – the bucket was migrated to the destination replica set. The `router`
+* SENT – the bucket was migrated to the destination replica set. The ``router``
   uses the SENT state to calculate the new location of the bucket. A bucket in
   the SENT state goes to the GARBAGE state automatically after BUCKET_SENT_GARBAGE_DELAY
   seconds, which by default is :ref:`0.5 seconds <cfg_basic-collect_bucket_garbage_interval>`.
