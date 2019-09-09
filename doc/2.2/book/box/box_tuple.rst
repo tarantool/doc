@@ -203,6 +203,13 @@ Below is a list of all ``box.tuple`` functions.
         If ``t`` is a tuple instance, ``t['field-name']`` will return the field
         named 'field-name' in the tuple. Fields have names if the tuple has
         been retrieved from a space that has an associated :ref:`format <box_space-format>`.
+        :samp:`t[{lua-variable-name}]` will do the same thing if ``lua-variable-name``
+        contains ``'field-name'``.
+
+        There is a variation which the
+        `Lua manual <https://www.lua.org/pil/2.5.html>`_
+        calls "syntactic sugar":
+        use ``t.field-name`` as an equivalent of ``t['field-name']``.
 
         :return: field value.
         :rtype:  lua-value

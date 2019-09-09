@@ -987,8 +987,10 @@ Below is a list of all ``box.space`` functions and members.
 
         **Using field names instead of field numbers:** `get()` can use field names
         described by the optional :ref:`space_object:format() <box_space-format>` clause.
-        This is similar to a standard Lua feature, where a component can be referenced
-        by its name instead of its number.
+        This is true because the object returned by ``get()`` can be used with most of the
+        features described in the :ref:`Submodule box.tuple <box_tuple>` description, including 
+        :ref:`tuple_object[field-name] <box_tuple-field_name>`.
+
         For example, we can format the `tester` space
         with a field named `x` and use the name `x` in the index definition:
 
@@ -997,7 +999,7 @@ Below is a list of all ``box.space`` functions and members.
             box.space.tester:format({{name='x',type='scalar'}})
             box.space.tester:create_index('I',{parts={'x'}})
 
-        Then, if ``get`` or ``select`` retrieve a single tuple,
+        Then, if ``get`` or ``select`` retrieves a single tuple,
         we can reference the field 'x' in the tuple by its name:
 
         .. code-block:: lua

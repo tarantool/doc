@@ -57,7 +57,6 @@ Tuples in Tarantool are stored as
 
 When Tarantool returns a tuple value in the console,
 by default it uses :ref:`YAML <interactive_console>` format,
-`YAML <https://en.wikipedia.org/wiki/YAML>`_ format,
 for example: ``[3, 'Ace of Base', 1993]``.
 
 .. _index-box_index:
