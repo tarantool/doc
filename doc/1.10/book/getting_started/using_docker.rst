@@ -40,7 +40,7 @@ options:
 
 This command runs a new container named ``mytarantool``.
 Docker starts it from an official image named ``tarantool/tarantool:1``,
-with Tarantool version ``1.9`` and all external modules already installed.
+with Tarantool version ``1.10`` and all external modules already installed.
 
 Tarantool will be accepting incoming connections on ``localhost:3301``.
 You may start using it as a key-value storage right away.

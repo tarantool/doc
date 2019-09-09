@@ -26,7 +26,7 @@ these instances, issue a :ref:`box.info.replication <box_info_replication>` requ
             peer: replicator@192.168.0.102:3301
             lag: 0
           downstream:
-         vclock: {1: 31}
+            vclock: {1: 31}
         3:
           id: 3
           uuid: e38ef895-5804-43b9-81ac-9f2cd872b9c4
