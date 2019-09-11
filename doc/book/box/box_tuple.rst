@@ -529,12 +529,12 @@ Below is a list of all ``box.tuple`` functions.
         Update a tuple.
 
         This function updates a tuple which is not in a space. Compare the function
-        :extsamp:`box.space.{*{space-name}*}:update({*{key}*}, {{{*{format}*}, {*{field_no}*}, {*{value}*}}, ...})`
+        :extsamp:`box.space.{*{space-name}*}:update({*{key}*}, {{{*{format}*}, {*{field_identifier}*}, {*{value}*}}, ...})`
         which updates a tuple in a space.
 
-        For details: see the description for ``operator``, ``field_no``, and
+        For details: see the description for ``operator``, ``field_identifier``, and
         ``value`` in the section :ref:`box.space.space-name:update{key, format,
-        {field_number, value}...) <box_space-update>`.
+        {field_identifier, value}...) <box_space-update>`.
 
         If the original tuple comes from a space that has been formatted with a
         :ref:`format clause <box_space-format>`, the formatting will be
