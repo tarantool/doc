@@ -1518,7 +1518,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-update:
 
-    .. method:: update(key, {{operator, field_no, value}, ...})
+    .. method:: update(key, {{operator, field_identifier, value}, ...})
 
         Update a tuple.
 
@@ -1527,7 +1527,7 @@ Below is a list of all ``box.space`` functions and members.
         fragments of a field, deleting or inserting a field. Multiple
         operations can be combined in a single update request, and in this
         case they are performed atomically and sequentially. Each operation
-        requires specification of a field number. When multiple operations
+        requires specification of a field identifier, which is usually a number. When multiple operations
         are present, the field number for each operation is assumed to be
         relative to the most recent state of the tuple, that is, as if all
         previous operations in a multi-operation update have already been
@@ -1547,18 +1547,18 @@ Below is a list of all ``box.space`` functions and members.
             * ``#`` for deletion
             * ``=`` for assignment
 
-        For ``!`` and ``=`` operations the field number can be ``-1``, meaning
-        the last field in the tuple.
+        Possible field_identifiers are:
 
+            * Positive field number. The first field is 1, the second field is 2, and so on.
+            * Negative field number. The last field is -1, the second-last field is -2, and so on. In other words: (#tuple + negative field number + 1).
+            * Name. If the space was formatted with :ref:`space_object:format() <box_space-format>`, then this can be a string for the field 'name'.
+ 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param scalar/table key: primary-key field values, must be passed as a
                                  Lua table if key is multi-part
         :param string  operator: operation type represented in string
-        :param number  field_no: what field the operation will apply to. The
-                                 field number can be negative, meaning the
-                                 position from the end of tuple.
-                                 (#tuple + negative field number + 1)
+        :param number-or-string  field_identifier: what field the operation will apply to.
         :param lua_value  value: what value will be applied
 
         :return: the updated tuple.
@@ -1657,13 +1657,13 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-upsert:
 
-    .. method:: upsert({tuple}, {{operator, field_no, value}, ...}, )
+    .. method:: upsert({tuple}, {{operator, field_identifier, value}, ...}, )
 
         Update or insert a tuple.
 
         If there is an existing tuple which matches the key fields of ``tuple``, then the
         request has the same effect as :ref:`space_object:update() <box_space-update>` and the
-        ``{{operator, field_no, value}, ...}`` parameter is used.
+        ``{{operator, field_identifier, value}, ...}`` parameter is used.
         If there is no existing tuple which matches the key fields of ``tuple``, then the
         request has the same effect as :ref:`space_object:insert() <box_space-insert>` and the
         ``{tuple}`` parameter is used. However, unlike ``insert`` or
@@ -1676,10 +1676,7 @@ Below is a list of all ``box.space`` functions and members.
         :param table/tuple tuple: default tuple to be inserted, if analogue
                                   isn't found
         :param string   operator: operation type represented in string
-        :param number   field_no: what field the operation will apply to. The
-                                  field number can be negative, meaning the
-                                  position from the end of tuple.
-                                  (#tuple + negative field number + 1)
+        :param number   field_identifier: what field the operation will apply to
         :param lua_value   value: what value will be applied
 
         :return: null
