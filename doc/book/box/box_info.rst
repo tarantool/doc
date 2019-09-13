@@ -185,8 +185,7 @@ variables.
     * **replication.downstream.status** is the replication status for downstream
       replications:
 
-      * ``disconnected`` is displayed if the downstream instance disconnects
-        from the upstream instance.
+      * ``stopped`` means that downstream replication has stopped.
       * ``follow`` means that downstream replication is in progress.
 
 .. function:: box.info()
