@@ -610,6 +610,10 @@ Below is a list of all ``box.schema`` functions.
 
     :return: nil
 
+    These functions can be called with :samp:`{function-object}:call({arguments})`; however,
+    unlike the case with ordinary functions, array arguments will not be correctly recognized
+    unless they are enclosed in braces.
+
     **Example:**
 
     .. code-block:: lua

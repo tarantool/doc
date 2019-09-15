@@ -2731,7 +2731,7 @@ are a number and a string, etc.
 If an argument is missing or is NULL, it becomes:
 
   * '0' if the format requires an integer,
-  * '0.0' if the format requires a decimal number,
+  * '0.0' if the format requires a number with a decimal point,
   * '' if the format requires a string.
 
 Example: ``PRINTF('%da', 5)`` is '5a'.
