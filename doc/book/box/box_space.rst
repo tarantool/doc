@@ -291,50 +291,51 @@ Below is a list of all ``box.space`` functions and members.
 
             .. tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
 
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | Name                | Effect                                                | Type                             | Default                            |
-            +=====================+=======================================================+==================================+====================================+
-            | type                | type of index                                         | string                           | 'TREE'                             |
-            |                     |                                                       | ('HASH' or 'TREE' or             |                                    |
-            |                     |                                                       | 'BITSET' or 'RTREE')             |                                    |
-            |                     |                                                       | Note re storage engine:          |                                    |
-            |                     |                                                       | vinyl only supports 'TREE'       |                                    |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | id                  | unique identifier                                     | number                           | last index's id, +1                |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | unique              | index is unique                                       | boolean                          | ``true``                           |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | if_not_exists       | no error if duplicate name                            | boolean                          | ``false``                          |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{field = 1, type = 'unsigned'}`` |
-            |                     |                                                       | ``'string'`` or ``'integer'`` or |                                    |
-            |                     |                                                       | ``'number'`` or ``'boolean'`` or |                                    |
-            |                     |                                                       | ``'varbinary'`` or               |                                    |
-            |                     |                                                       | ``'array'`` or ``'scalar'``,     |                                    |
-            |                     |                                                       | and optional collation or        |                                    |
-            |                     |                                                       | is_nullable value or path}       |                                    |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                                  |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | distance            | affects RTREE only                                    | string ('euclid' or              | 'euclid'                           |
-            |                     |                                                       | 'manhattan')                     |                                    |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | bloom_fpr           | affects vinyl only                                    | number                           | ``vinyl_bloom_fpr``                |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | page_size           | affects vinyl only                                    | number                           | ``vinyl_page_size``                |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | range_size          | affects vinyl only                                    | number                           | ``vinyl_range_size``               |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | run_count_per_level | affects vinyl only                                    | number                           | ``vinyl_run_count_per_level``      |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | run_size_ratio      | affects vinyl only                                    | number                           | ``vinyl_run_size_ratio``           |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | sequence            | see section regarding                                 | string or number                 | not present                        |
-            |                     | :ref:`specifying a sequence in create_index()         |                                  |                                    |
-            |                     | <box_schema-sequence_create_index>`                   |                                  |                                    |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
-            | func                | :ref:`functional index <box_space-index_func>`        | string                           | not present                        |
-            +---------------------+-------------------------------------------------------+----------------------------------+------------------------------------+
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | Name                | Effect                                                | Type                             | Default                       |
+            +=====================+=======================================================+==================================+===============================+
+            | type                | type of index                                         | string                           | 'TREE'                        |
+            |                     |                                                       | ('HASH' or 'TREE' or             |                               |
+            |                     |                                                       | 'BITSET' or 'RTREE')             |                               |
+            |                     |                                                       | Note re storage engine:          |                               |
+            |                     |                                                       | vinyl only supports 'TREE'       |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | id                  | unique identifier                                     | number                           | last index's id, +1           |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | unique              | index is unique                                       | boolean                          | ``true``                      |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | if_not_exists       | no error if duplicate name                            | boolean                          | ``false``                     |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
+            |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
+            |                     |                                                       | ``'number'`` or ``'boolean'`` or |                               |
+            |                     |                                                       | ``'decimal'`` or                 |                               |
+            |                     |                                                       | ``'varbinary'`` or               |                               |
+            |                     |                                                       | ``'array'`` or ``'scalar'``,     |                               |
+            |                     |                                                       | and optional collation or        |                               |
+            |                     |                                                       | is_nullable value or path}       |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | distance            | affects RTREE only                                    | string ('euclid' or              | 'euclid'                      |
+            |                     |                                                       | 'manhattan')                     |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | bloom_fpr           | affects vinyl only                                    | number                           | ``vinyl_bloom_fpr``           |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | page_size           | affects vinyl only                                    | number                           | ``vinyl_page_size``           |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | range_size          | affects vinyl only                                    | number                           | ``vinyl_range_size``          |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | run_count_per_level | affects vinyl only                                    | number                           | ``vinyl_run_count_per_level`` |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | run_size_ratio      | affects vinyl only                                    | number                           | ``vinyl_run_size_ratio``      |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | sequence            | see section regarding                                 | string or number                 | not present                   |
+            |                     | :ref:`specifying a sequence in create_index()         |                                  |                               |
+            |                     | <box_schema-sequence_create_index>`                   |                                  |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | func                | :ref:`functional index <box_space-index_func>`        | string                           | not present                   |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
             The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
 
@@ -375,8 +376,8 @@ Below is a list of all ``box.space`` functions and members.
 
     **Details about index field types:**
 
-    The eight index field types (unsigned | string | integer | number |
-    boolean | varbinary | array | scalar) differ depending on what values are allowed, and
+    The nine index field types (unsigned | string | integer | number |
+    boolean | decimal | varbinary | array | scalar) differ depending on what values are allowed, and
     what index types are allowed.
 
     * **unsigned**: unsigned integers between 0 and 18446744073709551615,
@@ -392,10 +393,13 @@ Below is a list of all ``box.space`` functions and members.
       vinyl TREE indexes.
     * **number**: integers between -9223372036854775808 and 18446744073709551615,
       single-precision floating point numbers, or double-precision floating
-      point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
+      point numbers, or exact numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
     * **boolean**: true or false. Legal in memtx TREE or HASH indexes, and in
       vinyl TREE indexes.
+    * **decimal**: exact number returned from a function in the
+      :ref:`decimal <decimal>` module. Legal in memtx TREE or HASH indexes,
+      and in vinyl TREE indexes.
     * **varbinary**: any set of octets, up to the :ref:`maximum length
       <limitations_bytes_in_index_key>`. Legal in
       memtx TREE or HASH indexes, and in vinyl TREE indexes.
@@ -406,8 +410,9 @@ Below is a list of all ``box.space`` functions and members.
       booleans (true or false), or integers between
       -9223372036854775808 and 18446744073709551615, or single-precision
       floating point numbers, or double-precison floating-point numbers, or
-      strings. When there is a mix of types, the key order is: null, then
-      booleans, then numbers, then strings. Legal in memtx TREE or
+      exact numbers, or strings, or (varbinary) byte arrays.
+      When there is a mix of types, the key order is: null, then
+      booleans, then numbers, then strings, then byte arrays. Legal in memtx TREE or
       HASH indexes, and in vinyl TREE indexes.
 
     Additionally, `nil` is allowed with any index field type if
@@ -450,10 +455,16 @@ Below is a list of all ``box.space`` functions and members.
         |                  | single-precision          |                                       |                       |
         |                  | floating point numbers,   |                                       |                       |
         |                  | double-precision          |                                       |                       |
-        |                  | floating point numbers    |                                       |                       |
+        |                  | floating point numbers,   |                                       |                       |
+        |                  | exact (decimal) numbers   |                                       |                       |
         +------------------+---------------------------+---------------------------------------+-----------------------+
         | **boolean**      | true or false             | memtx TREE or HASH indexes, |br|      | false |br|            |
         |                  |                           | vinyl TREE indexes                    | true                  |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **decimal**      | exact numbers returned by | memtx TREE or HASH indexes, |br|      | decimal.new(1.2) |br| |
+        |                  | a function in the         | vinyl TREE indexes                    |                       |
+        |                  | :ref:`decimal <decimal>`  |                                       |                       |
+        |                  | module                    |                                       |                       |
         +------------------+---------------------------+---------------------------------------+-----------------------+
         | **array**        | array of integers between | memtx RTREE indexes                   | {10, 11} |br|         |
         |                  | -9223372036854775808 and  |                                       | {3, 5, 9, 10}         |
@@ -790,7 +801,7 @@ Below is a list of all ``box.space`` functions and members.
           have the same name;
         * the ``type`` value may be any of those allowed for
           :ref:`indexed fields <index-box_indexed-field-types>`:
-          unsigned | string | varbinary | integer | number | boolean | array | scalar
+          unsigned | string | varbinary | integer | number | boolean | decimal | array | scalar
           (the same as the requirement in
           :ref:`"Options for space_object:create_index" <box_space-create_index-options>`);
         * the optional ``is_nullable`` value may be either ``true`` or ``false``
@@ -863,31 +874,60 @@ Below is a list of all ``box.space`` functions and members.
 
         .. code-block:: tarantoolsession
 
-            tarantool> box.schema.space.create('t')
-            --- ...
-            tarantool> box.space.t:format({{name='1',type='any'},
-                     >                     {name='2',type='unsigned'},
-                     >                     {name='3',type='string'},
-                     >                     {name='4',type='number'},
-                     >                     {name='5',type='integer'},
-                     >                     {name='6',type='boolean'},
-                     >                     {name='7',type='scalar'},
-                     >                     {name='8',type='array'},
-                     >                     {name='9',type='map'}})
-            --- ...
-            tarantool> box.space.t:create_index('i',{parts={field = 2, type = 'unsigned'}})
-            --- ...
-            tarantool> box.space.t:insert{{'a'},      -- any
-                     >                    1,          -- unsigned
-                     >                    'W?',       -- string
-                     >                    5.5,        -- number
-                     >                    -0,         -- integer
-                     >                    true,       -- boolean
-                     >                    true,       -- scalar
-                     >                    {{'a'}},    -- array
-                     >                    {val=1}}    -- map
+            tarantool> decimal = require('decimal')
             ---
-            - [['a'], 1, 'W?', 5.5, 0, true, true, [['a']], {'val': 1}]
+            ...
+            tarantool> box.schema.space.create('t')
+            ---
+            - engine: memtx
+              before_replace: 'function: 0x40650f60'
+              on_replace: 'function: 0x406a3eb8'
+              ck_constraint: []
+              field_count: 0
+              temporary: false
+              index: []
+              is_local: false
+              enabled: false
+              name: t
+              id: 512
+            - created
+            ...
+            tarantool> box.space.t:format({{name='1',type='any'},
+                     >                      {name='2',type='unsigned'},
+                     >                      {name='3',type='string'},
+                     >                      {name='4',type='number'},
+                     >                      {name='5',type='integer'},
+                     >                      {name='6',type='boolean'},
+                     >                      {name='7',type='decimal'},
+                     >                      {name='8',type='scalar'},
+                     >                      {name='9',type='array'},
+                     >                      {name='10',type='map'}})
+            ---
+            ...
+            tarantool> box.space.t:create_index('i',{parts={field = 2, type = 'unsigned'}})
+            ---
+            - unique: true
+              parts:
+              - type: unsigned
+                is_nullable: false
+                fieldno: 2
+              id: 0
+              space_id: 512
+              type: TREE
+              name: i
+            ...
+            tarantool> box.space.t:insert{{'a'},             -- any
+                     >                     1,                -- unsigned
+                     >                     'W?',             -- string
+                     >                     5.5,              -- number
+                     >                     -0,               -- integer
+                     >                     true,             -- boolean
+                     >                     decimal.new(1.2), -- decimal
+                     >                     true,             -- scalar
+                     >                     {{'a'}},          -- array
+                     >                     {val=1}}          -- map
+            ---
+            - [['a'], 1, 'W?', 5.5, 0, true, 1.2, true, [['a']], {'val': 1}]
             ...
 
         Names specified with the format clause can be used in

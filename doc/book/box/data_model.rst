@@ -164,6 +164,8 @@ Lua vs MsgPack
     +-------------------+----------------------+--------------------------------+----------------------------+
     | scalar            | bin                  | "`cdata`_"                     | [!!binary 3t7e]            |
     +-------------------+----------------------+--------------------------------+----------------------------+
+    | scalar            | ext                  | (converted to exact number)    | 1.2                        |
+    +-------------------+----------------------+--------------------------------+----------------------------+
     | compound          | map                  | "`table`_" (with string keys)  | {'a': 5, 'b': 6}           |
     +-------------------+----------------------+--------------------------------+----------------------------+
     | compound          | array                | "`table`_" (with integer keys) | [1, 2, 3, 4, 5]            |
@@ -213,6 +215,11 @@ or the ULL (Unsigned Long Long) suffix.
 Here are examples of numbers using regular notation, exponential notation,
 the ULL suffix and the ``tonumber64`` function:
 ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+
+An **ext** (extension) value is an addition by Tarantool, not part of the
+formal MsgPack definition, for storage of decimal values. Values with the
+decimal type are not floating-point values although they may contain decimal
+points. They are exact.
 
 A **bin** (binary) value is not directly supported by Lua but there is
 a Tarantool type ``VARBINARY`` which is encoded as MessagePack binary.
@@ -311,6 +318,9 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     | **boolean**                | **bool**                          | TREE or HASH         | true               |
     |                            | (true or false)                   |                      |                    |
     +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **decimal**                | **ext**                           | TREE or HASH         | 1.2                |
+    |                            | (extension)                       |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
     | **array**                  | **array**                         | RTREE                | {10, 11}           |
     |                            | (list of numbers representing     |                      |                    |
     |                            | points in a geometric figure)     |                      | {3, 5, 9, 10}      |
@@ -330,6 +340,11 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | (single-precision floating        |                      |                    |
     |                            | point number or double-precision  |                      |                    |
     |                            | floating point number)            |                      |                    |
+    |                            |                                   |                      |                    |
+    |                            | **decimal**                       |                      |                    |
+    |                            | (value returned by a function in  |                      |                    |
+    |                            | the :ref:`decimal <decimal>`      |                      |                    |
+    |                            | module                            |                      |                    |
     |                            |                                   |                      |                    |
     |                            | **string** (any set of octets)    |                      |                    |
     |                            |                                   |                      |                    |

@@ -138,11 +138,15 @@
     .. cpp:enumerator:: ::FIELD_TYPE_ANY
     .. cpp:enumerator:: ::FIELD_TYPE_UNSIGNED
     .. cpp:enumerator:: ::FIELD_TYPE_STRING
-    .. cpp:enumerator:: ::FIELD_TYPE_ARRAY
     .. cpp:enumerator:: ::FIELD_TYPE_NUMBER
     .. cpp:enumerator:: ::FIELD_TYPE_INTEGER
+    .. cpp:enumerator:: ::FIELD_TYPE_BOOLEAN
+    .. cpp:enumerator:: ::FIELD_TYPE_VARBINARY
     .. cpp:enumerator:: ::FIELD_TYPE_SCALAR
-    .. cpp:enumerator:: ::field_type_MAX
+    .. cpp:enumerator:: ::FIELD_TYPE_DECIMAL
+    .. cpp:enumerator:: ::FIELD_TYPE_ARRAY
+    .. cpp:enumerator:; ::FIELD_TYPE_MAP
+    .. cpp:enumerator:: ::FIELD_TYPE_MAX
 
     Possible data types for tuple fields.
 
