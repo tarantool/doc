@@ -1584,16 +1584,16 @@ Below is a list of all ``box.space`` functions and members.
 
         Possible operators are:
 
-            * ``+`` for addition (values must be numeric)
-            * ``-`` for subtraction (values must be numeric)
-            * ``&`` for bitwise AND (values must be unsigned numeric)
-            * ``|`` for bitwise OR (values must be unsigned numeric)
-            * ``^`` for bitwise :abbr:`XOR(exclusive OR)` (values must be
-              unsigned numeric)
-            * ``:`` for string splice
-            * ``!`` for insertion
-            * ``#`` for deletion
-            * ``=`` for assignment
+            * ``+`` for addition. values must be numeric, e.g. unsigned or decimal
+            * ``-`` for subtraction. values must be numeric
+            * ``&`` for bitwise AND. values must be unsigned numeric
+            * ``|`` for bitwise OR. values must be unsigned numeric
+            * ``^`` for bitwise :abbr:`XOR(exclusive OR)`. values must be
+              unsigned numeric
+            * ``:`` for string splice.
+            * ``!`` for insertion of a new field.
+            * ``#`` for deletion.
+            * ``=`` for assignment.
 
         For ``!`` and ``=`` operations the field number can be ``-1``, meaning
         the last field in the tuple.
