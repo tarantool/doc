@@ -183,14 +183,14 @@ msgstr "Для создания смешанной резервной копии
 #: ../doc/1.10/book/admin/backups.rst:124
 msgid ""
 "Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the "
-":ref:`administrative console <admin-security>`. This will suspend garbage"
-" collection till the next ``box.backup.stop()`` and will return a list of"
-" files to back up."
+":ref:`administrative console <admin-security>`. This will
+" return a list of files to back up and suspend garbage"
+" collection of them till the next ``box.backup.stop()``."
 msgstr ""
 "Выполните команду :ref:`box.backup.start() <admin-backups-backup_start>` "
-"в :ref:`административной консоли <admin-security>`. Эта команда "
-"приостановит сборку мусора до вызова ``box.backup.stop()`` и покажет "
-"список файлов для резервирования."
+"в :ref:`административной консоли <admin-security>`. Эта команда покажет "
+"список файлов для резервного копирования и приостановит сборку мусора для этих"
+"файлов до вызова ``box.backup.stop()``."
 
 #: ../doc/1.10/book/admin/backups.rst:129
 msgid ""
@@ -203,10 +203,10 @@ msgstr ""
 "последней контрольной точке."
 
 #: ../doc/1.10/book/admin/backups.rst:133
-msgid "Issue ``box.backup.stop()`` so the garbage collector can continue."
+msgid "Issue ``box.backup.stop()`` so the garbage collector can continue as usual."
 msgstr ""
 "Выполните команду ``box.backup.stop()``, чтобы сборщик мусора мог "
-"продолжить работу."
+"продолжить работу в обычном режиме."
 
 #: ../doc/1.10/book/admin/backups.rst:139
 msgid "Continuous remote backup (memtx)"
