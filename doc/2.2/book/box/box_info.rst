@@ -212,33 +212,37 @@ variables.
 
         tarantool> box.info()
         ---
-        - version: 1.7.6-68-g51fcffb77
+        - vinyl: []
+          version: 2.2.0-482-g8c84932ad
           id: 2
           ro: true
-          vclock: {1: 5}
-          uptime: 917
-          lsn: 0
-          vinyl: []
-          cluster:
-            uuid: 783e2285-55b1-42d4-b93c-68dcbb7a8c18
-          pid: 35341
           status: running
-          signature: 5
+          vclock: {1: 9}
+          uptime: 356
+          lsn: 0
+          memory: []
+          cluster:
+            uuid: e261a5bc-6303-4de3-9873-556f311255e0
+          pid: 160
+          gc: []
+          signature: 9
           replication:
             1:
               id: 1
-              uuid: 471cd36e-cb2e-4447-ac66-2d28e9dd3b67
-              lsn: 5
+              uuid: fce71bb3-0e99-40ec-ab7e-5159487e18d1
+              lsn: 9
               upstream:
                 status: follow
-                idle: 124.98795700073
-                peer: replicator@192.168.0.101:3301
-                lag: 0
+                idle: 0.035709699994186
+                peer: replicator@127.0.0.1:3401
+                lag: 0.00016164779663086
               downstream:
-                vclock: {1: 5}
+                status: follow
+                idle: 0.59840899999836
+                vclock: {1: 9}
             2:
               id: 2
-              uuid: ac45d5d2-8a16-4520-ad5e-1abba6baba0a
+              uuid: bc4629ce-ea31-4f75-b805-a4807bcacc93
               lsn: 0
-          uuid: ac45d5d2-8a16-4520-ad5e-1abba6baba0a
+          uuid: bc4629ce-ea31-4f75-b805-a4807bcacc93
         ...
