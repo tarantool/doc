@@ -1105,17 +1105,16 @@ msgstr ""
 
 #: ../doc/1.10/book/admin/disaster_recovery.rst:149
 msgid ""
-"Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable "
-"checkpointing with :ref:`box.backup.start() <admin-backups-"
-"backup_start>`. Disabling the checkpointing is necessary to prevent the "
-"Tarantool garbage collector from removing files made with older "
-"checkpoints."
+"Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable"
+"deletion of expired checkpoints with :ref:`box.backup.start() <admin-backups-backup_start>`."
+"This will prevent the Tarantool garbage collector from removing files"
+"made with older checkpoints until :ref:`box.backup.stop() <admin-backups-backup_start>`."
 msgstr ""
 "Переключите все узлы в :ref:`режим только для чтения <cfg_basic-"
 "read_only>` и отключите командой :ref:`box.backup.start() <admin-backups-"
-"backup_start>` создание контрольных точек. Последнее действие необходимо,"
+"backup_start>` удаление устаревших контрольных точек. Последнее действие необходимо,"
 " чтобы сборщик мусора автоматически не удалил более старые контрольные "
-"точки."
+"точки до тех пор, пока не будет вызвана команда :ref:`box.backup.stop() <admin-backups-backup_start>`."
 
 #: ../doc/1.10/book/admin/disaster_recovery.rst:155
 msgid ""
