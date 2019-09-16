@@ -42,6 +42,7 @@ MsgPack data types:
 * **MP_FIXSTR** - Fixed size string
 * **MP_OBJECT** - Any MsgPack object
 * **MP_BIN** - MsgPack binary format
+* **MP_BOOL** - true or false
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Greeting packet
@@ -180,8 +181,8 @@ Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When a client connects to the server instance, the instance responds with a 128-byte
-text greeting message. Part of the greeting is base-64 encoded session salt -
-a random string which can be used for authentication. The length of decoded
+text greeting message. Part of the greeting is a base-64 encoded session salt -
+a random string which can be used for authentication. The length of the decoded
 salt (44 bytes) exceeds the amount necessary to sign the authentication
 message (first 20 bytes). An excess is reserved for future authentication
 schemas.
@@ -245,7 +246,7 @@ Requests
                               MP_MAP
 
 * INSERT:  CODE - 0x02
-  Inserts tuple into the space, if no tuple with same unique keys exists. Otherwise throw *duplicate key* error.
+  Insert tuple into the space, if no tuple with same unique key exists. Otherwise throw *duplicate key* error.
 * REPLACE: CODE - 0x03
   Insert a tuple into the space or replace an existing one.
 
@@ -287,9 +288,10 @@ Requests
 .. code-block:: none
 
     OP:
-        Works only for integer fields:
+        Works only for numeric fields:
         * Addition    OP = '+' . space[key][field_no] += argument
         * Subtraction OP = '-' . space[key][field_no] -= argument
+        Works only for unsigned integer fields:
         * Bitwise AND OP = '&' . space[key][field_no] &= argument
         * Bitwise XOR OP = '^' . space[key][field_no] ^= argument
         * Bitwise OR  OP = '|' . space[key][field_no] |= argument
@@ -393,7 +395,7 @@ It is an error to specify an argument of a type that differs from the expected t
 
 
 * UPSERT: CODE - 0x09
-  Update tuple if it would be found elsewhere try to insert tuple. Always use primary index for key.
+  Update tuple. If it is found elsewhere, try to insert tuple. Always use primary index for key.
 
 .. code-block:: none
 
@@ -421,19 +423,19 @@ It is an error to specify an argument of a type that differs from the expected t
 
     Supported operations:
 
-    '+' - add a value to a numeric field. If the filed is not numeric, it's
+    '+' - add a value to a numeric field. If the field is not numeric, it is
           changed to 0 first. If the field does not exist, the operation is
           skipped. There is no error in case of overflow either, the value
           simply wraps around in C style. The range of the integer is MsgPack:
           from -2^63 to 2^64-1
     '-' - same as the previous, but subtract a value
-    '=' - assign a field to a value. The field must exist, if it does not exist,
+    '=' - assign a value to a field. The field must exist, if it does not exist,
           the operation is skipped.
-    '!' - insert a field. It's only possible to insert a field if this create no
+    '!' - insert a field. It is only possible to insert a field if this creates no
           nil "gaps" between fields. E.g. it's possible to add a field between
           existing fields or as the last field of the tuple.
     '#' - delete a field. If the field does not exist, the operation is skipped.
-          It's not possible to change with update operations a part of the primary
+          It is not possible to change with update operations a part of the primary
           key (this is validated before performing upsert).
 
 * CALL: CODE - 0x0a
@@ -573,7 +575,7 @@ Replication packet structure
     +================+
           MP_MAP
 
-    Then you must process every query that'll came through other masters.
+    Then you must process every query that will came through other masters.
     Every request between masters will have Additional LSN and SERVER_ID.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
