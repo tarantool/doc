@@ -182,9 +182,16 @@ variables.
       Even if an instance is :ref:`removed <replication-remove_instances>`,
       its values will still appear here.
 
-    * **replication.downstream.status** ``= disconnected`` is displayed if the
-      downstream instance disconnects from the upstream instance. Otherwise the
-      status is not reported.
+    * **replication.downstream.idle** is the time (in seconds) since the last
+      time this instance sent events through the downstream replication.
+
+    * **replication.downstream.status** is the replication status for downstream
+      replications:
+
+      * ``stopped`` means that downstream replication has stopped.
+      * ``follow`` means that downstream replication is in progress.
+
+
 
 .. function:: box.info()
 
