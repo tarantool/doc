@@ -48,6 +48,18 @@ Commands for managing Tarantool instances
         Additionally, this command sets the TARANTOOLCTL environment variable to
         'true', to mark that the instance was started by ``tarantoolctl``.
 
+        .. NOTE::
+
+            ``tarantoolctl`` works for instances without ``box.cfg{}`` called or
+            with delayed ``box.cfg{}`` call.
+
+            For example, this can be managed instances which receive configuration
+            from external server. For such instances ``tarantoolctl`` start goes to
+            background when ``box.cfg{}`` is called, so it will wait until options
+            for ``box.cfg`` are received. However this is not the case for daemon
+            management systems like ``systemd``, as they handle backgrounding on
+            their side.
+
 ``tarantoolctl stop NAME``
         Stop a Tarantool instance.
 
