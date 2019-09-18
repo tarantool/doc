@@ -667,6 +667,82 @@ When a new shard is added, the configuration can be updated dynamically:
 At this time, the new shard is already present in the ``router``'s pool of
 connections, so redirection is transparent for the application.
 
+.. _vshard-parallel-rebalancing:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parallel rebalancing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``vshard`` from its first release had quite a simple ``rebalancer`` -
+one process on one node calculates who and to whom should send
+how many buckets. The nodes applied these so called routes one by
+one sequentially.
+
+Unfortunately, such a simple schema works not fast enough,
+especially for Vinyl, where costs of reading disk are comparable
+with network costs. In fact, with Vinyl the ``rebalancer`` routes
+applier was sleeping most of the time.
+
+Now each node can send multiple buckets in parallel in a
+round-robin manner to several destinations, or even to one.
+
+To set degree of parallelism a new option is added -
+``rebalancer_max_sending``. It can be specified in a storage
+configuration in the root table:
+
+.. code-block:: none
+
+    cfg.rebalancer_max_sending = 5
+    vshard.storage.cfg(cfg, box.info.uuid)
+
+Default value of this option is ``1``. Maximum value is ``15``.
+
+In routers the option is ignored.
+
+.. NOTE::
+
+    Setting the ``cfg.rebalancer_max_sending = N`` probably won't give N times
+    speed up. It depends on network, disk, number of other fibers in the system.
+
+One another important thing - from this moment ``rebalancer_max_receiving``
+is not useless. It can actually limit load at one storage.
+
+**Example:**
+
+  You have 10 replicasets and a new one is added.
+  Now all the 10 replicasets will try to send buckets to the new one.
+
+  Assume, that each replicaset has 5 max sending. In that case the
+  new replicaset will experience quite a high load of 50 buckets
+  being downloaded at once. If the node needs to do some other
+  work, perhaps such a big load is undesirable. Also too many
+  parallel buckets can lead to timeouts in the rebalancing process
+  itself.
+
+  Then you can set lower value for ``rebalancer_max_sending`` on old
+  replicasets, or decrease ``rebalancer_max_receiving`` on the new one.
+  In the latter case some workers on old nodes will be throttled,
+  and you will see that in the logs.
+
+``rebalancer_max_sending`` is important, if you have restriction on
+how many buckets can be read-only at once in the cluster. As you
+remember, when a bucket is being sent, it does not accept new
+write requests.
+
+**Example:**
+
+  You have 100000 buckets and each
+  bucket stores ~0.001% of your data. The cluster has 10
+  replicasets. And you never can afford > 0.1% of data locked on
+  write. Then you should not set ``rebalancer_max_sending`` > 10 on
+  these nodes. It guarantees that the rebalancer won't send more
+  than 100 buckets at once in the whole cluster.
+
+If ``max_sending`` is set too high with too low ``max_receiving``,
+then some buckets will try to relocate and will fail with that.
+This problem will consume network resources and time. It is important to
+configure these parameters not contradicting to each other.
+
 .. _vshard-lock-pin:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
