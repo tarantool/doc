@@ -98,7 +98,7 @@ the preferences can differ. But strategically the steps are always the same.
                autoconf automake libtool \
                readline ncurses libyaml openssl libunwind icu \
                python27 py27-pip py27-setuptools py27-daemon \
-               py27-msgpack-python py27-yaml py27-argparse py27-six py27-gevent
+               py27-msgpack py27-yaml py27-argparse py27-six py27-gevent
 
    If some Python modules are not available in a repository,
    it is best to set up the modules by getting a tarball and
@@ -185,6 +185,11 @@ the preferences can differ. But strategically the steps are always the same.
        For FreeBSD, use ``gmake`` instead.
 
    This creates the 'tarantool' executable in the ``src/`` directory.
+
+   .. NOTE::
+
+       If you encounter a ``curl`` or ``OpenSSL`` errors on this step try
+       installing openssl111 package of the specific 1.1.1d version.
 
    Next, it's highly recommended to say ``make install`` to install Tarantool to
    the ``/usr/local`` directory and keep your system clean. However, it is
