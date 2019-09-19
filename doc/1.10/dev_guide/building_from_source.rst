@@ -22,6 +22,9 @@ the preferences can differ. But strategically the steps are always the same.
    * A program for managing the build process. |br| For all platforms, this is
      ``CMake`` version 2.8+.
 
+   * A build automation tool. |br| For all platforms, except FreeBSD this is
+     ``BSD Make``, but for FreeBSD this is ``GNU Make``.
+
    * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
    * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
    * `OpenSSL <https://www.openssl.org>`_ library, version 1.0.1+
@@ -49,7 +52,7 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-        $ apt install -y build-essential cmake coreutils sed \
+        $ apt install -y build-essential cmake make coreutils sed \
               autoconf automake libtool zlib1g-dev \
               libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
               libunwind-dev libicu-dev \
@@ -60,7 +63,7 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-         $ yum install -y gcc gcc-c++ cmake coreutils sed \
+         $ yum install -y gcc gcc-c++ cmake make coreutils sed \
                autoconf automake libtool zlib-devel \
                readline-devel ncurses-devel libyaml-devel openssl-devel \
                libunwind-devel libicu-devel \
@@ -73,7 +76,7 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-         $ brew install cmake autoconf binutils zlib \
+         $ brew install cmake make autoconf binutils zlib \
                 autoconf automake libtool \
                 readline ncurses libyaml openssl libunwind-headers icu4c \
                 && pip install python-daemon \
