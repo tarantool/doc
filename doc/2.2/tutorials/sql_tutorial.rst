@@ -32,10 +32,8 @@ for example:
 
     tarantool> box.cfg{}
 
-Before Tarantool 2.0 you needed to say ``box.cfg{...}`` prior to
-performing any database operations.
-Now you can start working with the database outright.
-Tarantool initiates the database module and applies
+In the most recent versions of Tarantool ``box.cfg{}`` may be unnecessary
+because Tarantool should initiate the database module and apply
 :ref:`default settings <box_introspection-box_cfg>`.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,7 +58,7 @@ Start with simple SQL statements just to be sure they're there.
 
 .. code-block:: sql
 
-    CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));
+    CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 STRING);
     INSERT INTO table1 VALUES (1, 'A');
     UPDATE table1 SET column2 = 'B';
     SELECT * FROM table1 WHERE column1 = 1;
@@ -90,9 +88,9 @@ Here is ``CREATE TABLE`` with more details:
 .. code-block:: sql
 
     CREATE TABLE table2 (column1 INTEGER,
-                         column2 VARCHAR(100),
+                         column2 STRING,
                          column3 SCALAR,
-                         column4 FLOAT,
+                         column4 NUMBER,
                          PRIMARY KEY (column1, column2));
 
 The result will be: "``rowcount: 1``" (no error).
@@ -103,8 +101,8 @@ INSERT
 
 Try to put 5 rows in the table:
 
-* The INTEGER and FLOAT columns get numbers.
-* The VARCHAR and SCALAR columns get strings
+* The INTEGER and NUMBER columns get numbers.
+* The STRING and SCALAR columns get strings or byte sequences
   (the SCALAR strings are expressed as hexadecimals).
 
 .. code-block:: sql
@@ -159,9 +157,11 @@ Retrieve some of what you inserted:
 
 .. code-block:: sql
 
-    SELECT column1, column2, column1 * column4 FROM table2 WHERE column2
-    LIKE 'A%';
-    SELECT column1, column2, column3, column4 FROM table2
+    SELECT column1, column2, column1 * column4
+        FROM table2
+        WHERE column2 LIKE 'A%';
+    SELECT column1, column2, column3, column4
+        FROM table2
         WHERE (column1 < 2 AND column4 < 10)
         OR column3 = X'2020';
 
@@ -194,8 +194,8 @@ for ``column4``.
 .. code-block:: sql
 
     SELECT column2, SUM(column4), COUNT(column4), AVG(column4)
-    FROM table2
-    GROUP BY column2;
+        FROM table2
+        GROUP BY column2;
 
 The result will be:
 
@@ -248,7 +248,7 @@ values in ``column4``. However, it is not an error that
 
 .. code-block:: sql
 
-    CREATE UNIQUE INDEX i ON table2 (column4);
+    CREATE UNIQUE INDEX uk_column4_table2_1 ON table2 (column4);
 
 The result will be: "``rowcount: 1``" (no error).
 
@@ -264,8 +264,9 @@ Then select everything in the resultant subset table.
 
 .. code-block:: sql
 
-    CREATE TABLE table3 (column1 INTEGER, column2 VARCHAR(100), PRIMARY KEY
-    (column2));
+    CREATE TABLE table3 (column1 INTEGER,
+                         column2 STRING,
+                         PRIMARY KEY (column2));
     INSERT INTO table3 SELECT column1, column2 FROM table2 WHERE column1 <> 2;
     SELECT * FROM table3;
 
@@ -290,8 +291,10 @@ Here we find all the rows in ``table2`` whose
 
 .. code-block:: sql
 
-    SELECT * FROM table2 WHERE (column1, column2) NOT IN (SELECT column1,
-    column2 FROM table3);
+    SELECT *
+        FROM table2
+        WHERE (column1, column2) NOT IN
+            (SELECT column1, column2 FROM table3);
 
 The result is, unsurprisingly, the single row
 which we deliberately excluded when we inserted
@@ -315,7 +318,8 @@ values from another table.
 
 .. code-block:: sql
 
-    SELECT * FROM table2, table3
+    SELECT *
+        FROM table2, table3
         WHERE table2.column1 = table3.column1 AND table2.column2 = table3.column2
         ORDER BY table2.column4;
 
@@ -345,12 +349,13 @@ that there must not be any rows containing 13 in
 
 .. code-block:: sql
 
-    CREATE TABLE table4 (column1 INTEGER PRIMARY KEY, column2 INTEGER, CHECK
-    (column2 <> 13));
+    CREATE TABLE table4 (column1 INTEGER PRIMARY KEY,
+                         column2 INTEGER,
+                         CHECK (column2 <> 13));
     INSERT INTO table4 VALUES (12, 13);
 
 Result: the insert fails, as it should, with the message
-"``error: 'CHECK constraint failed: TABLE4'``".
+'Check constraint failed ...'.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CREATE TABLE, with a FOREIGN KEY clause
@@ -365,7 +370,9 @@ columns were ``(column1, column2)``.
 
 .. code-block:: sql
 
-    CREATE TABLE table5 (column1 INTEGER, column2 VARCHAR(100),
+    CREATE TABLE table5 (
+        column1 INTEGER,
+        column2 STRING,
         PRIMARY KEY (column1),
         FOREIGN KEY (column1, column2) REFERENCES table2 (column1, column2));
     INSERT INTO table5 VALUES (2,'AB');
@@ -375,8 +382,8 @@ Result:
 
 * The first ``INSERT`` statement succeeds because
   ``table3`` contains a row with ``[2, 'AB', ' ', 12.34567]``.
-* The second INSERT statement, correctly, fails with the message
-  "``error: FOREIGN KEY constraint failed``".
+* The second INSERT statement fails, as it should, with the message
+  '... FOREIGN KEY constraint failed'.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 UPDATE
@@ -460,7 +467,7 @@ The idea of a trigger is: if a change (``INSERT`` or ``UPDATE``
 or ``DELETE``) happens, then a further action -- perhaps
 another ``INSERT`` or ``UPDATE`` or ``DELETE`` -- will happen.
 
-There are many variants, the one we'll illustrate here
+There are many variants, the one we will illustrate here
 is: just after doing an update in ``table3``, do an update
 in ``table2``. We will specify this as ``FOR EACH ROW``, so
 (since there are 5 rows in ``table3``) the trigger will be
@@ -469,8 +476,8 @@ activated 5 times.
 .. code-block:: sql
 
     SELECT column4 FROM table2 WHERE column1 = 2;
-    CREATE TRIGGER tr AFTER UPDATE ON table3 FOR EACH ROW
-    BEGIN UPDATE table2 SET column4 = column4 + 1 WHERE column1 = 2; END;
+    CREATE TRIGGER table2_au AFTER UPDATE ON table3 FOR EACH ROW
+        BEGIN UPDATE table2 SET column4 = column4 + 1 WHERE column1 = 2; END;
     UPDATE table3 SET column2 = column2;
     SELECT column4 FROM table2 WHERE column1 = 2;
 
@@ -494,8 +501,8 @@ Operators and functions
 String operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can manipulate string data (usually defined with CHAR
-or VARCHAR data types) in many ways.
+You can manipulate string data (usually defined with the
+STRING data type) in many ways.
 
 We'll illustrate here:
 
@@ -504,7 +511,8 @@ We'll illustrate here:
 
 .. code-block:: sql
 
-    SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM table2;
+    SELECT column2, column2 || column2, SUBSTR(column2, 2, 1)
+        FROM table2;
 
 The result will be:
 
@@ -522,16 +530,17 @@ Number operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also manipulate number data (usually defined with INTEGER
-or FLOAT data types) in many ways.
+or NUMBER data types) in many ways.
 
-We'll illustrate here:
+We will illustrate here:
 
 * the ``<<`` operator for shift left and
 * the ``%`` operator for modulo.
 
 .. code-block:: sql
 
-    SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM table2;
+    SELECT column1, column1 << 1, column1 << 2, column1 % 2
+        FROM table2;
 
 The result will be:
 
@@ -554,18 +563,23 @@ Tarantool can handle:
 * any Unicode characters, with UTF-8 encoding and a choice of collations.
 
 Here we will insert some such values in a new table, and see what happens
-when we select them, with arithmetic on a number column and
-ordering by a string column.
+when we select them, with arithmetic on a NUMBER column and
+ordering by a STRING column.
 
 .. code-block:: sql
 
-    CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 FLOAT,
-    PRIMARY KEY (column1));
+    CREATE TABLE t6 (
+        column1 INTEGER,
+        column2 STRING,
+        column4 NUMBER,
+        PRIMARY KEY (column1));
     INSERT INTO t6 VALUES (-1234567890, 'АБВГД', 123456.123456);
     INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);
     INSERT INTO t6 VALUES (10, 'FADEW?', 0.000001);
     INSERT INTO t6 VALUES (5, 'ABCDEFG', NULL);
-    SELECT column1 + 1, column2, column4 * 2 FROM t6 ORDER BY column2;
+    SELECT column1 + 1, column2, column4 * 2
+        FROM t6
+        ORDER BY column2;
 
 The result is:
 
@@ -589,8 +603,10 @@ then we select from it.
 
 .. code-block:: sql
 
-    CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE
-    column4 >= 0;
+    CREATE VIEW v3 AS
+        SELECT SUBSTR(column2,1,2), column4
+            FROM t6
+            WHERE column4 >= 0;
     SELECT * FROM v3;
 
 The result is:
@@ -614,8 +630,9 @@ Here we'll select from the sort of temporary view.
 .. code-block:: sql
 
     WITH cte AS (
-                 SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE column4
-                 >= 0)
+        SELECT SUBSTR(column2, 1, 2), column4
+            FROM t6
+            WHERE column4 >= 0)
     SELECT * FROM cte;
 
 Result: the same as the result we got with ``CREATE VIEW`` earlier:
@@ -654,17 +671,19 @@ Metadata
 
 What database objects have we created? We can find out about:
 
-* tables with ``SELECT * FROM "_space";``
+* tables with ``SELECT * FROM "_vspace";``
 * indexes with ``SELECT * FROM "_index";``
 * triggers with ``SELECT * FROM "_trigger";``
   (These names will be familiar to old Tarantool users
   because we're actually selecting from NoSQL "system spaces".)
 
-Here we will select from ``_space``.
+Here we will select from ``_vspace``.
 
 .. code-block:: sql
 
-    SELECT "id", "name", "owner", "engine" FROM "_space" WHERE "name"='TABLE3';
+    SELECT "id", "name", "owner", "engine"
+        FROM "_vspace"
+        WHERE "name" = 'TABLE3';
 
 The result is (we know we will get a row because we created ``table3`` earlier):
 
@@ -691,7 +710,7 @@ This doesn't mean we have left the SQL world though, because we
 can invoke SQL statements using a Lua function:
 ``box.execute(string)``.
 
-Here we'll switch languages,
+Here we will switch languages,
 and ask to select again what's in ``table3``.
 These statements must be entered separately.
 
@@ -720,17 +739,17 @@ Showing both the statements and the results:
 Create a million-row table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We've illustrated a lot of SQL, but does it scale?
-To answer that, let's make a bigger table.
+We have illustrated a lot of SQL, but does it scale?
+To answer that, let us make a bigger table.
 
 For this we are going to use Lua. We will not
-explain the Lua, because that's in the Lua section
+explain the Lua, because that is in the Lua section
 of the Tarantool manual. Just copy-and-paste these
 instructions and wait for about a minute.
 
 .. code-block:: lua
 
-    box.execute("CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))");
+    box.execute("CREATE TABLE tester (s1 INTEGER PRIMARY KEY, s2 STRING)");
 
     function string_function()
        local random_number
@@ -757,7 +776,7 @@ instructions and wait for about a minute.
     'insert done in ' .. end_time - start_time .. ' seconds';
 
 The result is: you now have a table with a million rows, with a message saying
-"``insert done in 88.570578 seconds``".
+"``insert done in [number-of-seconds] seconds``".
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Select from a million-row table
@@ -766,10 +785,10 @@ Select from a million-row table
 Now that we have something a bit larger to play with,
 let's see how long it takes to SELECT.
 
-The first query we'll do will automatically go via
+The first query we will do will automatically go via
 an index, because ``s1`` is the primary key.
 
-The second query we'll do will not go via
+The second query we will do will not go via
 an index, because for ``s2`` we didn't say
 ``CREATE INDEX xxxx ON tester (s2);``.
 
@@ -781,14 +800,14 @@ an index, because for ``s2`` we didn't say
 The result is:
 
 * the first statement will finish instantaneously,
-* the second statement will be noticeably slower but still
-  a fraction of a second.
+* the second statement may be noticeably slower but still
+  require only a fraction of a second.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Cleanup and exit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We're done. We've shown that Tarantool 2.1 has a
+We are done. We have shown that Tarantool has a
 very reasonable subset of SQL, and it works.
 
 The rest of these commands will simply destroy all
@@ -802,7 +821,7 @@ These statements must be entered separately.
     tarantool> DROP TABLE tester;
     tarantool> DROP TABLE table1;
     tarantool> DROP VIEW v3;
-    tarantool> DROP TRIGGER tr;
+    tarantool> DROP TRIGGER table2_au;
     tarantool> DROP TABLE table5;
     tarantool> DROP TABLE table4;
     tarantool> DROP TABLE table3;
