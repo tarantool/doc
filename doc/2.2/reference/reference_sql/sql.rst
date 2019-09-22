@@ -37,7 +37,7 @@ exist.
 .. code-block:: sql
 
    -- adding a foreign-key constraint definition:
-   ALTER TABLE t1 ADD CONSTRAINT c FOREIGN KEY (s1) REFERENCES t1;
+   ALTER TABLE t1 ADD CONSTRAINT fk_s1_t1_1 FOREIGN KEY (s1) REFERENCES t1;
 
 For ``ALTER ... ADD CONSTRAINT``, the table must exist, table must be empty,
 the constraint name must not already exist for the table.
@@ -54,14 +54,14 @@ handy -- users can ``CREATE TABLE table_a`` without the foreign key, then
    -- and it is illegal to have two primary keys for the same table.
    -- However, it is possible to drop a primary-key index, and this
    -- is a way to restore the primary key if that happens.
-   ALTER TABLE t1 ADD CONSTRAINT primary_key PRIMARY KEY (s1);
+   ALTER TABLE t1 ADD CONSTRAINT pk_s1_t1_1 PRIMARY KEY (s1);
 
    -- adding a unique-constraint definition:
    -- Alternatively, you can say CREATE UNIQUE INDEX unique_key ON t1 (s1);
-   ALTER TABLE t1 ADD CONSTRAINT unique_key UNIQUE (s1);
+   ALTER TABLE t1 ADD CONSTRAINT uk_s1_t1_1 UNIQUE (s1);
 
    -- Adding a check-constraint definition:
-   ALTER TABLE t1 ADD CONSTRAINT check_ CHECK (s1 > 0);
+   ALTER TABLE t1 ADD CONSTRAINT ck_s1_t1_1 CHECK (s1 > 0);
 
 .. _sql_alter_table_drop_constraint:
 
@@ -75,7 +75,7 @@ as well.
 .. code-block:: sql
 
    -- dropping a constraint:
-   ALTER TABLE t1 DROP CONSTRAINT c;
+   ALTER TABLE t1 DROP CONSTRAINT ck_s1_t1_1;
 
 
 Limitations:
@@ -159,7 +159,7 @@ Examples:
    CREATE TABLE "T1" ("S1" INT /* synonym of INTEGER */, PRIMARY KEY ("S1"));
 
    -- two columns, one named constraint
-   CREATE TABLE t1 (s1 INTEGER, s2 STRING, CONSTRAINT c1 PRIMARY KEY (s1, s2));
+   CREATE TABLE t1 (s1 INTEGER, s2 STRING, CONSTRAINT pk_s1s2_t1_1 PRIMARY KEY (s1, s2));
 
 Limitations:
 
@@ -310,7 +310,7 @@ Two column values in a SCALAR column can have two different primitive data types
    .. code-block:: sql
 
       CREATE TABLE t (s1 SCALAR PRIMARY KEY);
-      INSERT INTO t VALUES (55),('41');
+      INSERT INTO t VALUES (55), ('41');
 
    the underlying primitive type of the item in the first row is INTEGER
    because literal 55 has data type INTEGER, and the underlying primitive type
@@ -367,9 +367,9 @@ Two column values in a SCALAR column can have two different primitive data types
 
    .. code-block:: sql
 
-      CREATE TABLE t (s1 INT, s2 SCALAR PRIMARY KEY);
-      INSERT INTO t VALUES (1,X'44'),(2,11),(3,1E4),(4,'a');
-      SELECT MIN(s2), HEX(MAX(s2)) FROM t;
+      CREATE TABLE t (s1 INTEGER, s2 SCALAR PRIMARY KEY);
+      INSERT INTO t VALUES (1, X'44'), (2, 11), (3, 1E4), (4, 'a');
+      SELECT min(s2), hex(max(s2)) FROM t;
 
    The result is: ``- - [11, '44',]``
 
@@ -380,7 +380,7 @@ Two column values in a SCALAR column can have two different primitive data types
    in effect use TYPEOF(item) not the defined data type.
    (Here we use the word "combination" in the way that the standard document
    uses it for section "Result of data type combinations".) Therefore for
-   ``MAX(1E308, 'a', 0, X'00')`` the result is X'00'.
+   ``max(1E308, 'a', 0, X'00')`` the result is X'00'.
 
 ********************************************
 Column definition -- relation to NoSQL
@@ -458,7 +458,7 @@ add CHECK clauses, like these:
 .. code-block:: sql
 
    CREATE TABLE t ("smallint" INTEGER PRIMARY KEY, CHECK ("smallint" <= 32767 AND "smallint" >= -32768));
-   CREATE TABLE t ("shorttext" CHAR(10) PRIMARY KEY, CHECK (length("shorttext") <= 10));
+   CREATE TABLE t ("shorttext" STRING PRIMARY KEY, CHECK (length("shorttext") <= 10));
 
 but this may cause inserts or updates to be slow.
 
@@ -495,11 +495,11 @@ Data types may also appear in CAST functions.
 
    -- with all possible column constraints and a default clause
    CREATE TABLE t
-   (column1 INT PRIMARY KEY,
-    column2 INT UNIQUE,
-    column3 INT CHECK (column3 > column2),
-    column4 INT REFERENCES t,
-    column6 INT DEFAULT NULL);
+   (column1 INTEGER PRIMARY KEY,
+    column2 INTEGER UNIQUE,
+    column3 INTEGER CHECK (column3 > column2),
+    column4 INTEGER REFERENCES t,
+    column6 INTEGER DEFAULT NULL);
 
 .. _sql_drop_table:
 
@@ -702,7 +702,7 @@ items:
 #. ``_`` and an ordinal number; the first index is 1, the second index is 2,
    and so on.
 
-For example, after ``CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT, UNIQUE (s2));``
+For example, after ``CREATE TABLE t (s1 INTEGER PRIMARY KEY, s2 INTEGER, UNIQUE (s2));``
 there are two indexes named ``pk_unnamed_T_1`` and ``unique_unnamed_T_2``.
 You can confirm this by saying ``SELECT * FROM "_index";`` which will list all
 indexes on all tables.
@@ -714,11 +714,11 @@ Examples:
 .. code-block:: sql
 
    -- the simple case
-   CREATE INDEX i ON t (column1);
+   CREATE INDEX idx_column1_t_1 ON t (column1);
    -- with IF NOT EXISTS clause
-   CREATE INDEX IF NOT EXISTS i ON t (column1);
+   CREATE INDEX IF NOT EXISTS idx_column1_t_1 ON t (column1);
    -- with UNIQUE specifier and more than one column
-   CREATE UNIQUE INDEX i ON t (column1, column2);
+   CREATE UNIQUE INDEX idx_unnamed_t_1 ON t (column1, column2);
 
 Dropping an automatic index created for a unique constraint will drop
 the unique constraint as well.
@@ -760,7 +760,7 @@ Example:
 .. code-block:: sql
 
    -- the simplest form:
-   DROP INDEX i ON t;
+   DROP INDEX idx_unnamed_t_1 ON t;
 
 .. _sql_insert:
 
@@ -899,7 +899,7 @@ It is legal to say SET (list of columns) = (list of values). For example:
 
 .. code-block:: sql
 
-   UPDATE t SET (column1, column2, column3) = (1,2,3);
+   UPDATE t SET (column1, column2, column3) = (1, 2, 3);
 
 It is not legal to assign to a column more than once. For example:
 
@@ -1067,16 +1067,16 @@ Examples:
 .. code-block:: sql
 
    -- the simple case:
-   CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW
+   CREATE TRIGGER stores_before_insert BEFORE INSERT ON stores FOR EACH ROW
      BEGIN DELETE FROM warehouses; END;
    -- with IF NOT EXISTS clause:
-   CREATE TRIGGER IF NOT EXISTS delete_if_insert BEFORE INSERT ON stores FOR EACH ROW
+   CREATE TRIGGER IF NOT EXISTS stores_before_insert BEFORE INSERT ON stores FOR EACH ROW
      BEGIN DELETE FROM warehouses; END;
    -- with FOR EACH ROW and WHEN clauses:
-   CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW WHEN a=5
+   CREATE TRIGGER stores_before_insert BEFORE INSERT ON stores FOR EACH ROW WHEN a=5
      BEGIN DELETE FROM warehouses; END;
    -- with multiple statements between BEGIN and END:
-   CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW
+   CREATE TRIGGER stores_before_insert BEFORE INSERT ON stores FOR EACH ROW
      BEGIN DELETE FROM warehouses; INSERT INTO inventories VALUES (1); END;
 
 .. _sql_trigger_extra:
@@ -1093,7 +1093,7 @@ Trigger extra clauses
 
   .. code-block:: sql
 
-     CREATE TRIGGER trigger_on_table1
+     CREATE TRIGGER table1_before_update
       BEFORE UPDATE  OF column1, column2 ON table1
       FOR EACH ROW
       BEGIN UPDATE table2 SET column1 = column1 + 1; END;
@@ -1108,7 +1108,7 @@ Trigger extra clauses
 
   .. code-block:: sql
 
-     CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW
+     CREATE TRIGGER table1_before_update BEFORE UPDATE ON table1 FOR EACH ROW
       WHEN (SELECT COUNT(*) FROM table1) > 1
       BEGIN UPDATE table2 SET column1 = column1 + 1; END;
 
@@ -1126,11 +1126,11 @@ Trigger extra clauses
 
   .. code-block:: sql
 
-     CREATE TABLE table1 (column1 VARCHAR(15), column2 INT PRIMARY KEY);
-     CREATE TABLE table2 (column1 VARCHAR(15), column2 VARCHAR(15), column3 INT PRIMARY KEY);
+     CREATE TABLE table1 (column1 STRING, column2 INTEGER PRIMARY KEY);
+     CREATE TABLE table2 (column1 STRING, column2 STRING, column3 INTEGER PRIMARY KEY);
      INSERT INTO table1 VALUES ('old value', 1);
      INSERT INTO table2 VALUES ('', '', 1);
-     CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW
+     CREATE TRIGGER table1_before_update BEFORE UPDATE ON table1 FOR EACH ROW
       BEGIN UPDATE table2 SET column1 = old.column1, column2 = new.column1; END;
      UPDATE table1 SET column1 = 'new value';
      SELECT * FROM table2;
@@ -1157,7 +1157,7 @@ Trigger extra clauses
 
   It is illegal for the trigger action to include a qualified column reference
   other than ``OLD.column-name`` or ``NEW.column-name``. For example,
-  ``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1=5; END;``
+  ``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1 = 5; END;``
   is illegal.
 
   It is illegal for the trigger action to include statements that include a WITH
@@ -1169,11 +1169,11 @@ Trigger extra clauses
 
   .. code-block:: none
 
-     CREATE TRIGGER trigger_on_table1
+     CREATE TRIGGER table1_before_update
       BEFORE UPDATE ON table1
       FOR EACH ROW
       BEGIN UPDATE table2 SET column1 = column1 + 1; END;
-     CREATE TRIGGER trigger_on_table2
+     CREATE TRIGGER table2_before_update
       BEFORE UPDATE ON table2
       FOR EACH ROW
       BEGIN UPDATE table1 SET column1 = column1 + 1; END;
@@ -1207,8 +1207,8 @@ triggered statement. For example, this is legal:
 
 .. code-block:: sql
 
-   CREATE TRIGGER on_t1 BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;
-   CREATE TRIGGER on_t2 BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;
+   CREATE TRIGGER t1_before_delete BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;
+   CREATE TRIGGER t2_before_delete BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;
 
 Activation occurs FOR EACH ROW, not FOR EACH STATEMENT. Therefore, if no rows
 are candidates for insert or update or delete, then no triggers are activated.
@@ -1238,12 +1238,12 @@ This example shows how an INSERT can be done to a view by referring to the
 
 .. code-block:: sql
 
-   CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
+   CREATE TABLE t (s1 INTEGER PRIMARY KEY, s2 INTEGER);
    CREATE VIEW v AS SELECT s1, s2 FROM t;
-   CREATE TRIGGER tv INSTEAD OF INSERT ON v
+   CREATE TRIGGER v_instead_of INSTEAD OF INSERT ON v
      FOR EACH ROW
      BEGIN INSERT INTO t VALUES (new.s1, new.s2); END;
-   INSERT INTO v VALUES (1,2);
+   INSERT INTO v VALUES (1, 2);
 
 Ordinarily saying ``INSERT INTO view_name ...`` is illegal in Tarantool,
 so this is a workaround.
@@ -1255,19 +1255,19 @@ refer to those columns when necessary, as in this example:
 
 .. code-block:: sql
 
-   CREATE TABLE base_table (primary_key_column INT PRIMARY KEY, value_column INT);
+   CREATE TABLE base_table (primary_key_column INTEGER PRIMARY KEY, value_column INTEGER);
    CREATE VIEW viewed_table AS SELECT primary_key_column, value_column FROM base_table;
-   CREATE TRIGGER viewed_insert INSTEAD OF INSERT ON viewed_table FOR EACH ROW
+   CREATE TRIGGER viewed_table_instead_of_insert INSTEAD OF INSERT ON viewed_table FOR EACH ROW
      BEGIN
        INSERT INTO base_table VALUES (new.primary_key_column, new.value_column);
      END;
-   CREATE TRIGGER viewed_update INSTEAD OF UPDATE ON viewed_table FOR EACH ROW
+   CREATE TRIGGER viewed_table_instead_of_update INSTEAD OF UPDATE ON viewed_table FOR EACH ROW
      BEGIN
        UPDATE base_table
        SET primary_key_column = new.primary_key_column, value_column = new.value_column
        WHERE primary_key_column = old.primary_key_column;
      END;
-   CREATE TRIGGER viewed_delete INSTEAD OF DELETE ON viewed_table FOR EACH ROW
+   CREATE TRIGGER viewed_table_instead_of_delete INSTEAD OF DELETE ON viewed_table FOR EACH ROW
      BEGIN
        DELETE FROM base_table WHERE primary_key_column = old.primary_key_column;
      END;
@@ -1315,9 +1315,9 @@ underlying base table:
 
 .. code-block:: sql
 
-   CREATE TABLE t1 (column1 INT PRIMARY KEY, column2 INT);
+   CREATE TABLE t1 (column1 INTEGER PRIMARY KEY, column2 INTEGER);
    CREATE VIEW v1 AS SELECT column1, column2 FROM t1;
-   CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 FOR EACH ROW BEGIN
+   CREATE TRIGGER v1_instead_of INSTEAD OF INSERT ON v1 FOR EACH ROW BEGIN
     INSERT INTO t1 VALUES (NEW.column1, NEW.column2); END;
    INSERT INTO v1 VALUES (1, 1);
    -- ... The result will be: table t1 will contain a new row.
@@ -1336,7 +1336,7 @@ Limitations:
 
 .. code-block:: sql
 
-   CREATE TRIGGER et1
+   CREATE TRIGGER ev1_instead_of_update
      INSTEAD OF UPDATE OF column2,column1 ON ev1
      FOR EACH ROW BEGIN
      INSERT INTO et2 VALUES (NEW.column1, NEW.column2); END;
@@ -1376,9 +1376,9 @@ Examples:
 .. code-block:: sql
 
    -- the simple case:
-   DROP TRIGGER tr;
+   DROP TRIGGER table1_before_insert;
    -- with an IF EXISTS clause:
-   DROP TRIGGER IF EXISTS tr;
+   DROP TRIGGER IF EXISTS table1_before_insert;
 
 .. _sql_truncate:
 
@@ -1412,12 +1412,12 @@ Rules:
 Actions:
 
 #. All rows in the table are removed. Usually this is faster than
-   ``DELETE FROM table-name;``.
+   :samp:`DELETE FROM {table-name};`.
 #. If the table has an autoincrement primary key, its sequence is reset to zero.
 #. There is no effect for any triggers associated with the table.
-#. There is no effect on the counts for the ``row_count()`` function.
+#. There is no effect on the counts for the ``ROW_COUNT()`` function.
 #. Only one action is written to the write-ahead log
-   (with ``DELETE FROM table-name;`` there would be one action for each deleted
+   (with :samp:`DELETE FROM {table-name};` there would be one action for each deleted
    row).
 
 Example:
@@ -1496,8 +1496,8 @@ The column name is useful for two reasons:
   the column names in the new table will be the column names in the *select-list*.
 
 If ``[AS [column-name]]`` is missing, Tarantool makes a name equal to the
-expression, for example ``SELECT 5*88`` will cause the column name to be
-``5*88``, but such names may be ambiguous or illegal in other contexts,
+expression, for example ``SELECT 5 * 88`` will cause the column name to be
+``5 * 88``, but such names may be ambiguous or illegal in other contexts,
 so it is better to say, for example, ``SELECT 5 * 88 AS column1``.
 
 Examples:
@@ -1689,7 +1689,7 @@ Examples:
 
 Limitations:
 
-* ``SELECT s1,s2 FROM t GROUP BY s1;`` is legal.
+* ``SELECT s1, s2 FROM t GROUP BY s1;`` is legal.
 * ``SELECT s1 AS q FROM t GROUP BY q;`` is legal.
 * ``SELECT s1 FROM t GROUP by 1;`` is legal.
 
@@ -1738,7 +1738,7 @@ NULLs are ignored for all aggregate functions except COUNT(*).
              by the *expression-2* value if *expression-2* is
              not omitted.
 
-             Example: :samp:`GROUP_CONCAT({column1})`
+             Example: :samp:`GROUP_CONCAT{column1})`
 
 ``MAX([DISTINCT] expression)``
              Return the maximum value of expression.
@@ -1891,9 +1891,9 @@ Examples:
    -- with two columns:
    SELECT 1 FROM t ORDER BY column1, column2;
    -- with a variety of data:
-   CREATE TABLE h (s1 INT PRIMARY KEY, s2 INT);
-   INSERT INTO h VALUES (7,'A'),(4,'A '),(-4,'AZ'),(17,17),(23,NULL);
-   INSERT INTO h VALUES (17.5,'Д'),(1e+300,'a'),(0,''),(-1,'');
+   CREATE TABLE h (s1 INTEGER PRIMARY KEY, s2 INTEGER);
+   INSERT INTO h VALUES (7, 'A'), (4, 'A '), (-4, 'AZ'), (17, 17), (23, NULL);
+   INSERT INTO h VALUES (17.5, 'Д'), (1e+300, 'a'), (0, ''), (-1, '');
    SELECT * FROM h ORDER BY s2, s1;
    -- The result of the above SELECT will be:
    - - [23, null]
@@ -1940,7 +1940,7 @@ Specify a maximum number of rows and a start row; this is a clause in
 a SELECT statement.
 
 Expressions may contain integers and arithmetic operators or functions,
-for example ``ABS(-3/1)``.
+for example ``ABS(-3 / 1)``.
 However, the result must be an integer value greater than or equal to zero.
 
 Usually the LIMIT clause follows an ORDER BY clause, because otherwise
@@ -2022,7 +2022,7 @@ Subqueries may be the second part of INSERT statements. For example:
 
 .. code-block:: sql
 
-   INSERT INTO t2 SELECT a,b,c FROM t1;
+   INSERT INTO t2 SELECT a, b, c FROM t1;
 
 Subqueries may be in the FROM clause of SELECT statements.
 
@@ -2051,8 +2051,8 @@ update or delete. For example, after:
 
 .. code-block:: sql
 
-   CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);
-   INSERT INTO t VALUES (1,3),(2,1);
+   CREATE TABLE t (s1 INTEGER PRIMARY KEY, s2 INTEGER);
+   INSERT INTO t VALUES (1, 3), (2, 1);
    DELETE FROM t WHERE s2 NOT IN (SELECT s1 FROM t);
 
 only one of the rows is deleted, not both rows.
@@ -2103,7 +2103,7 @@ can be replaced with:
 
 .. code-block:: sql
 
-   WITH S AS (SELECT s1 FROM x) SELECT * FROM t,S WHERE a < S.s1 AND b < S.s1;
+   WITH s AS (SELECT s1 FROM x) SELECT * FROM t,s WHERE a < s.s1 AND b < s.s1;
 
 This "factoring out" of a repeated expression is regarded as good practice.
 
@@ -2111,7 +2111,7 @@ Examples:
 
 .. code-block:: sql
 
-   WITH cte AS (VALUES (7,'') INSERT INTO j SELECT * FROM cte;
+   WITH cte AS (VALUES (7, '') INSERT INTO j SELECT * FROM cte;
    WITH cte AS (SELECT s1 AS x FROM k) SELECT * FROM cte;
    WITH cte AS (SELECT COUNT(*) FROM k WHERE s2 < 'x' GROUP BY s3)
      UPDATE j SET s2 = 5
@@ -2157,29 +2157,29 @@ For example:
 
 .. code-block:: sql
 
-   CREATE TABLE ts (s1 INT PRIMARY KEY);
+   CREATE TABLE ts (s1 INTEGER PRIMARY KEY);
    INSERT INTO ts VALUES (1);
    WITH RECURSIVE w AS (
      SELECT s1 FROM ts
      UNION ALL
-     SELECT s1+1 FROM w WHERE s1 < 4)
+     SELECT s1 + 1 FROM w WHERE s1 < 4)
    SELECT * FROM w;
 
 First, table ``w`` is seeded from ``t1``, so it has one row: [1].
 
-Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which
+Then, ``UNION ALL (SELECT s1 + 1 FROM w)`` takes the row from ``w`` -- which
 contains [1] -- adds 1 because the select list says "s1+1", and so it has
 one row: [2].
 
-Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which
+Then, ``UNION ALL (SELECT s1 + 1 FROM w)`` takes the row from ``w`` -- which
 contains [2] -- adds 1 because the select list says "s1+1", and so it has
 one row: [3].
 
-Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which
+Then, ``UNION ALL (SELECT s1 + 1 FROM w)`` takes the row from ``w`` -- which
 contains [3] -- adds 1 because the select list says "s1+1", and so it has
 one row: [4].
 
-Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which
+Then, ``UNION ALL (SELECT s1 + 1 FROM w)`` takes the row from ``w`` -- which
 contains [4] -- and now the importance of the WHERE clause becomes evident,
 because "s1 < 4" is false for this row, and therefore we have reached the
 "stop" condition.
@@ -2192,7 +2192,7 @@ the result of the statement looks like:
    tarantool> WITH RECURSIVE w AS (
             >   SELECT s1 FROM ts
             >   UNION ALL
-            >   SELECT s1+1 FROM w WHERE s1 < 4)
+            >   SELECT s1 + 1 FROM w WHERE s1 < 4)
             > SELECT * FROM w;
    ---
    - - [1]
@@ -2254,10 +2254,10 @@ Example:
 
 .. code-block:: sql
 
-   CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
-   CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
-   INSERT INTO t1 VALUES (1,'A'),(2,'B'),(3,NULL);
-   INSERT INTO t2 VALUES (1,'A'),(2,'C'),(3,NULL);
+   CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 STRING);
+   CREATE TABLE t2 (s1 INTEGER PRIMARY KEY, s2 STRING);
+   INSERT INTO t1 VALUES (1, 'A'), (2, 'B'), (3, NULL);
+   INSERT INTO t2 VALUES (1, 'A'), (2, 'C'), (3,NULL);
    SELECT s2 FROM t1 UNION SELECT s2 FROM t2;
    SELECT s2 FROM t1 UNION ALL SELECT s2 FROM t2 ORDER BY s2;
    SELECT s2 FROM t1 EXCEPT SELECT s2 FROM t2;
@@ -2279,12 +2279,12 @@ Example:
 
 .. code-block:: sql
 
-   CREATE TABLE t01 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
-   CREATE TABLE t02 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
-   CREATE TABLE t03 (s1 INT PRIMARY KEY, s2 VARCHAR(1));
-   INSERT INTO t01 VALUES (1,'A');
-   INSERT INTO t02 VALUES (1,'B');
-   INSERT INTO t03 VALUES (1,'A');
+   CREATE TABLE t01 (s1 INTEGER PRIMARY KEY, s2 STRING);
+   CREATE TABLE t02 (s1 INTEGER PRIMARY KEY, s2 STRING);
+   CREATE TABLE t03 (s1 INTEGER PRIMARY KEY, s2 STRING);
+   INSERT INTO t01 VALUES (1, 'A');
+   INSERT INTO t02 VALUES (1, 'B');
+   INSERT INTO t03 VALUES (1, 'A');
    SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM t02;
    SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;
    -- ... results are different.
@@ -2340,13 +2340,13 @@ then selects with ``INDEXED BY the-index-on-column-2``.
 
 .. code-block:: sql
 
-   CREATE TABLE t (column1 INT PRIMARY KEY, column2 INT);
-   CREATE INDEX i ON t (column2);
-   INSERT INTO t VALUES (1,2),(2,1);
+   CREATE TABLE t (column1 INTEGER PRIMARY KEY, column2 INTEGER);
+   CREATE INDEX idx_column2_t_1 ON t (column2);
+   INSERT INTO t VALUES (1, 2), (2, 1);
    SELECT * FROM t INDEXED BY "pk_unnamed_T_1";
    SELECT * FROM t INDEXED BY i;
-   -- Result for the first select: (1,2),(2,1)
-   -- Result for the second select: (2,1),(1,2).
+   -- Result for the first select: (1, 2), (2, 1)
+   -- Result for the second select: (2, 1), (1, 2).
 
 .. _sql_transactions:
 
@@ -2418,9 +2418,9 @@ Example of a whole transaction sent to a server on ``localhost:3301`` with
 
    net_box = require('net.box')
    conn = net_box.new('localhost', 3301)
-   s = 'box.execute([[START TRANSACTION; ]]) '
-   s = s .. 'box.execute([[INSERT INTO t VALUES (1); ]]) '
-   s = s .. 'box.execute([[ROLLBACK; ]]) '
+   s = 'box.execute([[START TRANSACTION;]]) '
+   s = s .. 'box.execute([[INSERT INTO t VALUES (1);]]) '
+   s = s .. 'box.execute([[ROLLBACK;]]) '
    conn:eval(s)
 
 .. _sql_commit:
@@ -2555,7 +2555,7 @@ Examples:
    -- containing savepoint and rollback to savepoint.
    function f()
    box.execute([[DROP TABLE IF EXISTS t;]]) -- commits automatically
-   box.execute([[CREATE TABLE t (s1 VARCHAR(20) PRIMARY KEY);]]) -- commits automatically
+   box.execute([[CREATE TABLE t (s1 STRING PRIMARY KEY);]]) -- commits automatically
    box.execute([[START TRANSACTION;]]) -- after this succeeds, a transaction is active
    box.execute([[INSERT INTO t VALUES ('Data change #1');]])
    box.execute([[SAVEPOINT "1";]])
@@ -2595,7 +2595,7 @@ to the numeric expressions.
 Short example:
 
 The first 128 Unicode characters are the "ASCII" characters,
-so CHAR(65,66,67) is 'ABC'.
+so CHAR(65, 66, 67) is 'ABC'.
 
 Long example:
 
@@ -2693,7 +2693,7 @@ Examples:
 
   * ``LENGTH('ДД')`` is 2, the string has 2 characters.
   * ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes.
-  * ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'.
+  * ``LENGTH(CHAR(0, 65))`` is 2, '\0' does not mean 'end of string'.
   * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY.
 
 .. _sql_function_nullif:
@@ -2711,7 +2711,7 @@ otherwise return NULL.
 
 Examples:
 
-  * ``NULLIF('a','A')`` is 'a'.
+  * ``NULLIF('a', 'A')`` is 'a'.
   * ``NULLIF(1.00, 1)`` is NULL.
 
 .. _sql_function_printf:
