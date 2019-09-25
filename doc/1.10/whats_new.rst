@@ -5,6 +5,7 @@ Release Notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool
+:ref:`1.10.4 <whats_new_1104>`,
 :ref:`1.10.3 <whats_new_1103>`,
 :ref:`1.10.2 <whats_new_1102>`,
 :ref:`1.9.0 <whats_new_190>`,
@@ -28,6 +29,208 @@ at GitHub.
 Version 1.10
 --------------------------------------------------------------------------------
 
+.. _whats_new_1104:
+
+**Release 1.10.4**
+
+Release type: stable (lts). Release date: 2019-09-26.  Tag: 1-10-4.
+
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.4.
+
+Overview
+
+1.10.4 is the next :ref:`stable (lts) <release-policy>` release in the 1.10 series.
+The label 'stable' means we have had systems running in production without known crashes,
+bad results or other showstopper bugs for quite a while now.
+
+This release resolves about 50 issues since 1.10.3.
+
+Compatibility
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout,
+client-server protocol and replication protocol.
+Please :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
+procedure to unlock all the new features of the 1.10.x series when migrating
+from 1.9 version.
+
+Functionality added or changed
+
+* (Engines) Improve dump start/stop logging. When initiating memory dump, print
+  how much memory is going to be dumped, expected dump rate, ETA, and the recent
+  write rate. Upon dump completion, print observed dump rate in addition to dump
+  size and duration.
+* (Engines) Look up key in reader thread. If a key isn't found in the tuple cache,
+  we fetch it from a run file. In this case disk read and page decompression is
+  done by a reader thread, however key lookup in the fetched page is still
+  performed by the TX thread. Since pages are immutable, this could as well
+  be done by the reader thread, which would allow us to save some precious CPU
+  cycles for TX.
+  Issue `4257 <https://github.com/tarantool/tarantool/issues/4257>`_.
+* (Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`.
+  Issue `4150 <https://github.com/tarantool/tarantool/issues/4150>`_.
+* (Core) Add ``idle`` to downstream status in ``box.info``.
+  When a relay sends a row it updates ``last_row_time`` value with the
+  current time. When ``box.info()`` is called, ``idle`` is set to
+  ``current_time`` - ``last_row_time``.
+* (Replication) Print corrupted rows on decoding error.
+  Improve row printing to log. Print the header row by row, 16 bytes in a row,
+  and format output to match ``xxd`` output:
+
+  .. code-block:: bash
+
+      [001] 2019-04-05 18:22:46.679 [11859] iproto V> Got a corrupted row:
+      [001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000000: A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53 60 5F 20 3F
+      [001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000010: D8 E2 D6 E2 A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53
+
+* (Lua) Add type of operation to space :ref:`trigger parameters <box_space-on_replace>`.
+  For example, a trigger function may now look like this:
+
+  .. code-block:: lua
+
+      function before_replace_trig(old, new, space_name, op_type)
+          if op_type == 'INSERT' then
+              return old
+          else
+              return new
+          end
+      end
+
+  Issue `4099 <https://github.com/tarantool/tarantool/issues/4099>`_.
+* (Lua) Add ``debug.sourcefile()`` and ``debug.sourcedir()`` helpers
+  (and ``debug.__file__`` and ``debug.__dir__ shortcuts``) to determine
+  the location of a current Lua source file.
+  Part of issue `4193 <https://github.com/tarantool/tarantool/issues/4193>`_.
+* (HTTP client) Add ``max_total_connections`` option in addition to
+  ``total_connection`` to allow more fine-grained tuning of ``libcurl``
+  connection cache. Don't restrict ``total_connections`` with a constant value
+  by default, but use ``libcurl``'s default, which scales the threshold according
+  to easy handles count.
+  Issue `3945 <https://github.com/tarantool/tarantool/issues/3945>`_.
+
+Bugs fixed
+
+* (Vinyl) Fix assertion failure in `vy_tx_handle_deferred_delete`.
+  Issue `4294 <https://github.com/tarantool/tarantool/issues/4294>`_.
+* (Vinyl) Don't purge deleted runs from vylog on compaction.
+  Cherry-picked from issue `4218 <https://github.com/tarantool/tarantool/issues/4218>`_.
+* (Vinyl) Don't throttle DDL.
+  Issue `4238 <https://github.com/tarantool/tarantool/issues/4238>`_.
+* (Vinyl) Fix deferred DELETE statement lost on commit.
+  Issue `4248 <https://github.com/tarantool/tarantool/issues/4248>`_.
+* (Vinyl) Fix assertion while recovering dumped statement.
+  Issue `4222 <https://github.com/tarantool/tarantool/issues/4222>`_.
+* (Vinyl) Reset dump watermark after updating memory limit.
+  Issue `3864 <https://github.com/tarantool/tarantool/issues/3864>`_.
+* (Vinyl) Be pessimistic about write rate when setting dump watermark.
+  Issue `4166 <https://github.com/tarantool/tarantool/issues/4166>`_.
+* (Vinyl) Fix crash if space is dropped while space.get is reading from it.
+  Issue `4109 <https://github.com/tarantool/tarantool/issues/4109>`_.
+* (Vinyl) Fix crash during index build.
+  Issue `4152 <https://github.com/tarantool/tarantool/issues/4152>`_.
+* (Vinyl) Don't compress L1 runs.
+  Issue `2389 <https://github.com/tarantool/tarantool/issues/2389>`_.
+* (Vinyl) Account statements skipped on read.
+* (Vinyl) Take into account primary key lookup in latency accounting.
+* (Vinyl) Fix ``vy_range_update_compaction_priority`` hang.
+* (Vinyl) Free region on vylog commit instead of resetting it and clean up
+  region after allocating surrogate statement.
+* (Vinyl) Increase even more the open file limit in ``systemd`` unit file.
+* (Vinyl) Increment min range size to 128MB
+* (Memtx) Cancel checkpoint thread at exit.
+  Issue `4170 <https://github.com/tarantool/tarantool/issues/4170>`_.
+* (Core) Fix crash for update with empty tuple.
+  Issue `4041 <https://github.com/tarantool/tarantool/issues/4041>`_.
+* (Core) Fix use-after-free in ``space_truncate``.
+  Issue `4093 <https://github.com/tarantool/tarantool/issues/4093>`_.
+* (Core) Fix error while altering index with sequence.
+  Issue `4214 <https://github.com/tarantool/tarantool/issues/4214>`_.
+* (Core) Detect a new invalid json path case.
+  Issue `4419 <https://github.com/tarantool/tarantool/issues/4419>`_.
+* (Core) Fix empty password authentication.
+  Issue `4327 <https://github.com/tarantool/tarantool/issues/4327>`_.
+* (Core) Fix ``txn::sub_stmt_begin`` array size.
+* (Core) Account ``index.pairs`` in ``box.stat.SELECT()``.
+* (Replication) Disallow bootstrap of read-only masters.
+  Issue `4321 <https://github.com/tarantool/tarantool/issues/4321>`_.
+* (Replication) Enter orphan mode on manual replication configuration change.
+  Issue `4424 <https://github.com/tarantool/tarantool/issues/4424>`_.
+* (Replication) Set ``last_row_time`` to ``now`` in ``relay_new`` and ``relay_start``.
+  PR `4431 <https://github.com/tarantool/tarantool/pull/4431>`_.
+* (Replication) Stop relay on subscribe error.
+  Issue `4399 <https://github.com/tarantool/tarantool/issues/4399>`_.
+* (Replication) Init ``coio`` watcher before join/subscribe.
+  Issue `4110 <https://github.com/tarantool/tarantool/issues/4110>`_.
+* (Replication) Allow to change instance id during join.
+  Issue `4107 <https://github.com/tarantool/tarantool/issues/4107>`_.
+* (Replication) Fix garbage collection logic.
+* (Replication) Revert packet boundary checking for iproto.
+* (Replication) Do not abort replication on ER_UNKNOWN_REPLICA.
+* (Replication) Reduce effects of input buffer fragmentation on large ``cfg.readahead``.
+* (Replication) Fix upgrade from 1.7 (it doesn't recognize IPROTO_VOTE request type).
+* (Replication) Fix memory leak in call / eval in the case when a transaction
+  is not committed.
+  Issue `4388 <https://github.com/tarantool/tarantool/issues/4388>`_.
+* (Lua) Fix ``fio.mktree()`` error reporting.
+  Issue `4044 <https://github.com/tarantool/tarantool/issues/4044>`_.
+* (Lua) Fix segfault on ``ffi.C_say()`` without filename.
+  Issue `4336 <https://github.com/tarantool/tarantool/issues/4336>`_.
+* (Lua) Fix segfault on ``json.encode()`` on a recursive table.
+  Issue `4366 <https://github.com/tarantool/tarantool/issues/4366>`_.
+* (Lua) Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6
+  and FreeBSD 12.
+  Issues `4447 <https://github.com/tarantool/tarantool/issues/4447>`_,
+  `4428 <https://github.com/tarantool/tarantool/issues/4428>`_.
+* (Lua) Fix a segfault during initialization of a cipher from ``crypto`` module.
+  Issue `4223 <https://github.com/tarantool/tarantool/issues/4223>`_.
+* (HTTP client) Reduce stack consumption during waiting for a DNS resolving result.
+  Issue `4179 <https://github.com/tarantool/tarantool/issues/4179>`_.
+* (HTTP client) Increase max outgoing header size to 8 KiB.
+  Issue `3959 <https://github.com/tarantool/tarantool/issues/3959>`_.
+* (HTTP client) Verify "headers" option stronger.
+  Issues `4281 <https://github.com/tarantool/tarantool/issues/4281>`_,
+  `3679 <https://github.com/tarantool/tarantool/issues/3679>`_.
+* (HTTP client) Use bundled ``libcurl`` rather than system-wide by default.
+  Issues `4318 <https://github.com/tarantool/tarantool/issues/4318>`_,
+  `4180 <https://github.com/tarantool/tarantool/issues/4180>`_,
+  `4288 <https://github.com/tarantool/tarantool/issues/4288>`_,
+  `4389 <https://github.com/tarantool/tarantool/issues/4389>`_,
+  `4397 <https://github.com/tarantool/tarantool/issues/4397>`_.
+* (HTTP client) This closes several known problems that were fixed in recent
+  ``libcurl`` versions, including segfaults, hangs, memory leaks and performance
+  problems.
+* (LuaJIT) Fix overflow of snapshot map offset.
+  Part of issue `4171 <https://github.com/tarantool/tarantool/issues/4171>`_.
+* (LuaJIT) Fix rechaining of pseudo-resurrected string keys.
+  Part of issue `4171 <https://github.com/tarantool/tarantool/issues/4171>`_.
+* (LuaJIT) Fix fold machinery misbehaves.
+  Issue `4376 <https://github.com/tarantool/tarantool/issues/4376>`_.
+* (LuaJIT) Fix for `debug.getinfo(1,'>S')`.
+  Issue `3833 <https://github.com/tarantool/tarantool/issues/3833>`_.
+* (LuaJIT) Fix `string.find` recording.
+  Issue `4476 <https://github.com/tarantool/tarantool/issues/4476>`_.
+* (LuaJIT) Fixed a segfault when unsinking 64-bit pointers.
+* (Misc) Increase even more the open file limit in ``systemd`` unit file.
+* (Misc) Raise error in ``tarantoolctl`` when ``box.cfg()`` isn't called.
+  Issue `3953 <https://github.com/tarantool/tarantool/issues/3953>`_.
+* (Misc) Support ``systemd``’s NOTIFY_SOCKET on OS X.
+  Issue `4436 <https://github.com/tarantool/tarantool/issues/4436>`_.
+* (Misc) Fix ``coio_getaddrinfo()`` when 0 timeout is passed
+  (affects ``netbox``’s ``connect_timeout``).
+  Issue `4209 <https://github.com/tarantool/tarantool/issues/4209>`_.
+* (Misc) Fix ``coio_do_copyfile()`` to perform truncate of destination
+  (affects ``fio.copyfile()``).
+  Issue `4181 <https://github.com/tarantool/tarantool/issues/4181>`_.
+* (Misc) Make hints in ``coio_getaddrinfo()`` optional.
+* (Misc) Validate ``msgpack.decode()`` cdata size argument.
+  Issue `4224 <https://github.com/tarantool/tarantool/issues/4224>`_.
+* (Misc) Fix linking with static ``openssl`` library.
+  Issue `4437 <https://github.com/tarantool/tarantool/issues/4437>`_.
+
+Deprecations
+
+* (Core) Deprecate ``rows_per_wal`` in favor of ``wal_max_size``.
+  Part of issue `3762 <https://github.com/tarantool/tarantool/issues/3762>`_.
+
 .. _whats_new_1103:
 
 **Release 1.10.3**
@@ -42,8 +245,8 @@ Overview
 The label 'stable' means we have had systems running in production without known crashes,
 bad results or other showstopper bugs for quite a while now.
 
-This release resolves 69 issues since 1.10.2. There may be bugs in less common areas, please feel free to
-file an issue at GitHub.
+This release resolves 69 issues since 1.10.2.
+
 Compatibility
 
 Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol.
@@ -167,7 +370,9 @@ Bugs fixed
 * (Misc) Log can be flooded by warning messages
   Issue `2218 <https://github.com/tarantool/tarantool/issues/2218>`_.
 
-Deprecations: the console=true option for :ref:`net.box.new <net_box-new>` is deprecated.
+Deprecations
+
+* Deprecate ``console=true`` option for :ref:`net.box.new() <net_box-new>`.
 
 .. _whats_new_1102:
 
