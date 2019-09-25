@@ -887,16 +887,22 @@ Below is a list of all ``box.space`` functions and members.
                      > end
             tarantool> box.space.X:on_replace(f)
 
-        The ``trigger-function`` can have two parameters: old tuple, new tuple.
-        For example, the following code causes nil to be printed when the insert
-        request is processed, and causes [1, 'Hi'] to be printed when the delete
-        request is processed:
+         The ``trigger-function`` can have up to four parameters:
+
+         * (tuple) old value which has the contents before the request started,
+         * (tuple) new value which has the contents after the request ended,
+         * (string) space name,
+         * (string) type of request which is 'INSERT', 'DELETE', 'UPDATE', or 'REPLACE'.
+
+         For example, the following code causes nil and 'INSERT' to be printed when the insert
+         request is processed, and causes [1, 'Hi'] and 'DELETE' to be printed when the delete
+         request is processed:
 
         .. code-block:: lua
 
             box.schema.space.create('space_1')
             box.space.space_1:create_index('space_1_index',{})
-            function on_replace_function (old, new) print(old) end
+            function on_replace_function (old, new, s, op) print(old) print(op) end
             box.space.space_1:on_replace(on_replace_function)
             box.space.space_1:insert{1,'Hi'}
             box.space.space_1:delete{1}
@@ -932,7 +938,10 @@ Below is a list of all ``box.space`` functions and members.
         or ``delete()`` happens to a tuple in ``<space-name>``.
 
         :param function     trigger-function: function which will become the
-                                              trigger function
+                                              trigger function; for the trigger
+                                              function's optional parameters see
+                                              the description of
+                                              :ref:`on_replace <box_space-on_replace>`.
         :param function old-trigger-function: existing trigger function which
                                               will be replaced by
                                               ``trigger-function``
