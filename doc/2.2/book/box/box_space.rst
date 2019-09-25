@@ -988,7 +988,7 @@ Below is a list of all ``box.space`` functions and members.
         **Using field names instead of field numbers:** `get()` can use field names
         described by the optional :ref:`space_object:format() <box_space-format>` clause.
         This is true because the object returned by ``get()`` can be used with most of the
-        features described in the :ref:`Submodule box.tuple <box_tuple>` description, including 
+        features described in the :ref:`Submodule box.tuple <box_tuple>` description, including
         :ref:`tuple_object[field-name] <box_tuple-field_name>`.
 
         For example, we can format the `tester` space
@@ -1101,14 +1101,16 @@ Below is a list of all ``box.space`` functions and members.
                      > end
             tarantool> box.space.X:on_replace(f)
 
-        The ``trigger-function`` can have up to four parameters: (tuple) old value
-        which has the contents before the request started,
-        (tuple) new value which has the contents after the request ended,
-        (string) space name, (string) type of request which is 'INSERT' or 'DELETE'
-        or 'UPDATE' or 'REPLACE'.
-        For example, the following code causes nil and 'INSERT' to be printed when the insert
-        request is processed, and causes [1, 'Hi'] and 'DELETE' to be printed when the delete
-        request is processed:
+         The ``trigger-function`` can have up to four parameters:
+
+         * (tuple) old value which has the contents before the request started,
+         * (tuple) new value which has the contents after the request ended,
+         * (string) space name,
+         * (string) type of request which is 'INSERT', 'DELETE', 'UPDATE', or 'REPLACE'.
+
+         For example, the following code causes nil and 'INSERT' to be printed when the insert
+         request is processed, and causes [1, 'Hi'] and 'DELETE' to be printed when the delete
+         request is processed:
 
         .. code-block:: lua
 
@@ -1152,8 +1154,8 @@ Below is a list of all ``box.space`` functions and members.
         :param function     trigger-function: function which will become the
                                               trigger function; for the trigger
                                               function's optional parameters see
-                                              the description of ``on_replace``.
-
+                                              the description of
+                                              :ref:`on_replace <box_space-on_replace>`.
         :param function old-trigger-function: existing trigger function which
                                               will be replaced by
                                               ``trigger-function``
