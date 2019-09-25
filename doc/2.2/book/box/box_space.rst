@@ -1073,22 +1073,26 @@ Below is a list of all ``box.space`` functions and members.
         or ``delete()`` happens to a tuple in ``<space-name>``.
 
         :param function     trigger-function: function which will become the
-                                              trigger function
+                                              trigger function; see Example #2
+                                              below for details about
+                                              trigger function parameters
         :param function old-trigger-function: existing trigger function which
                                               will be replaced by
-                                              trigger-function
+                                              ``trigger-function``
         :return: nil or function pointer
 
         If the parameters are (nil, old-trigger-function), then the old
         trigger is deleted.
 
-        If both parameters are omitted, then the response is a list of existing trigger functions.
+        If both parameters are omitted, then the response is a list of existing
+        trigger functions.
 
         If it is necessary to know whether the trigger activation
         happened due to replication or on a specific connection type,
         the function can refer to :ref:`box.session.type() <box_session-type>`.
 
-        Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+        Details about trigger characteristics are in the
+        :ref:`triggers <triggers-box_triggers>` section.
 
         See also :ref:`space_object:before_replace() <box_space-before_replace>`.
 
@@ -1101,16 +1105,18 @@ Below is a list of all ``box.space`` functions and members.
                      > end
             tarantool> box.space.X:on_replace(f)
 
-         The ``trigger-function`` can have up to four parameters:
+        **Example #2:**
 
-         * (tuple) old value which has the contents before the request started,
-         * (tuple) new value which has the contents after the request ended,
-         * (string) space name,
-         * (string) type of request which is 'INSERT', 'DELETE', 'UPDATE', or 'REPLACE'.
+        The ``trigger-function`` can have up to four parameters:
 
-         For example, the following code causes nil and 'INSERT' to be printed when the insert
-         request is processed, and causes [1, 'Hi'] and 'DELETE' to be printed when the delete
-         request is processed:
+        * (tuple) old value which has the contents before the request started,
+        * (tuple) new value which has the contents after the request ended,
+        * (string) space name,
+        * (string) type of request which is 'INSERT', 'DELETE', 'UPDATE', or 'REPLACE'.
+
+        For example, the following code causes nil and 'INSERT' to be printed when the insert
+        request is processed, and causes [1, 'Hi'] and 'DELETE' to be printed when the delete
+        request is processed:
 
         .. code-block:: lua
 
@@ -1121,7 +1127,7 @@ Below is a list of all ``box.space`` functions and members.
             box.space.space_1:insert{1,'Hi'}
             box.space.space_1:delete{1}
 
-        **Example #2:**
+        **Example #3:**
 
         The following series of requests will create a space, create an index,
         create a function which increments a counter, create a trigger, do two
