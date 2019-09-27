@@ -101,8 +101,8 @@ Functionality added or changed
   the location of a current Lua source file.
   Part of issue `4193 <https://github.com/tarantool/tarantool/issues/4193>`_.
 * (HTTP client) Add ``max_total_connections`` option in addition to
-  ``total_connection`` to allow more fine-grained tuning of ``libcurl``
-  connection cache. Don't restrict ``total_connections`` with a constant value
+  ``max_connections`` to allow more fine-grained tuning of ``libcurl``
+  connection cache. Don't restrict the total connections` with a constant value
   by default, but use ``libcurl``'s default, which scales the threshold according
   to easy handles count.
   Issue `3945 <https://github.com/tarantool/tarantool/issues/3945>`_.

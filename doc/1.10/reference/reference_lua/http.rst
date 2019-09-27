@@ -44,7 +44,38 @@ Below is a list of all ``http`` functions.
 
     Construct a new HTTP client instance.
 
-    :param table options: the maximum number of entries in the connection cache.
+    :param table options: integer settings which are passed to libcurl.
+
+    The two possible options are ``max_connections`` and ``max_total_connections``.
+
+    ``max_connections`` is the maximum number of entries in the cache.
+    It affects libcurl `CURLMOPT_MAXCONNECTS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAXCONNECTS.html>`_.
+    The default is -1.
+
+    ``max_total_connections`` is the maximum number of active connections.
+    It affects libcurl  `CURLMOPT_MAX_TOTAL_CONNECTIONS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAX_TOTAL_CONNECTIONS.html>`_.
+    It is ignored if the curl version is less than 7.30.
+    The default is 0, which allows libcurl to scale according to easy handles count.
+    
+    The default option values are usually good enough but in rare cases it
+    might be good to set them. In that case here are two tips.
+
+    1. You may want to control the maximum number of sockets that a particular http client uses simultaneously.
+    If a system passes many requests to distinct hosts, then libcurl cannot reuse sockets.
+    In this case setting ``max_total_connections`` may be useful,
+    since it causes curl to avoid creating too many sockets which would not be used anyway.
+
+    2. Do not set ``max_connections`` less than ``max_total_connections``
+    unless you are confident about your actions.
+    When ``max_connections`` is less then ``max_total_connections``, in some cases
+    libcurl will not reuse sockets for requests that are going to the same host.
+    If the limit is reached and a new request occurs, then 
+    libcurl will first create a new socket, send the request, wait for the first connection
+    to be free, and close it, in order to avoid exceeding the ``max_connections`` cache size.
+    In the worst case, libcurl will create a new socket for every request,
+    even if all requests are going to the same host.
+    See `this Tarantool issue on github <https://github.com/tarantool/tarantool/issues/3945>`_
+    for details.
 
     :return: a new HTTP client instance
     :rtype:  userdata
