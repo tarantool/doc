@@ -178,20 +178,21 @@ results:
 There are configuration settings which affect the way that Tarantool encodes
 invalid numbers or types. They are all boolean ``true``/``false`` values
 
-* ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
-* ``cfg.encode_use_tostring`` (default is false) -- use tostring for
-  unrecognizable types
+* ``cfg.encode_deep_as_nil`` (default is false) -- see :ref:`below <json-module.cfg_encode_deep_as_nil>`
 * ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
   unrecognizable types
+* ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
 * ``cfg.encode_load_metatables`` (default is false) -- load metatables
 * ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
+* ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
+* ``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse arrays as maps
+* ``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be
+* ``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse
+* ``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for
+  unrecognizable types
 * ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
-* ``cfg.decode_use_tostring`` (default is false) -- use tostring for
-  unrecognizable types
-* ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
-  unrecognizable types
-* ``cfg.decode_load_metatables`` (default is false) -- load metatables
 * ``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a structure
+* ``cfg.decode_save_metatables`` (default is true) -- like ``encode_load_metatables``
 
 For example, the following code will interpret 0/0 (which is "not a number")
 and 1/0 (which is "infinity") as special values rather than nulls or errors:
@@ -216,5 +217,14 @@ The result of the ``json.encode()`` request will look like this:
 The same configuration settings exist for json, for :ref:`MsgPack
 <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
 
+.. _json-module.cfg_encode_deep_as_nil:
+
+Note: behavior change: Before Tarantool version 1.10.4, if a nested structure was deeper than
+``cfg.encode_max_depth``, the deeper levels were cropped (encoded as nil).
+Now, the result is an error suggesting that ``cfg.encode_max_depth`` is not deep enough.
+To return to the old behavior, say ``cfg.encode_deep_as_nil = true``.
+This option is ignored for ``YAML``.
+
 .. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
 .. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html
+
