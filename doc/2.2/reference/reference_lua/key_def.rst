@@ -23,8 +23,8 @@ to extract or compare the index key values.
 
     :returns: key_def-object :ref:`a key_def object <key_def-object>`
 
-    The parts table has components which are the same as 
-    the ``parts`` option in 
+    The parts table has components which are the same as
+    the ``parts`` option in
     :ref:`Options for space_object:create_index() <box_space-create_index-options>`.
 
     fieldno (integer) for example fieldno=1
@@ -197,12 +197,14 @@ to extract or compare the index key values.
 
     .. _key_def-totable:
 
-    .. method:: totable
+    .. method:: totable()
 
         Return a table containing what is in the key_def_object.
-        This is the reverse of ``key_def.new()`` -- ``key_def.new()`` takes
-        a table and returns a key_def object, ``key_def_object:totable()`` takes
-        a key_def object and returns a table.
+        This is the reverse of ``key_def.new()``:
+
+        *  ``key_def.new()`` takes a table and returns a key_def object,
+        *  ``key_def_object:totable()`` takes a key_def object and returns a table.
+
         This is useful for input to ``_serialize`` methods.
 
         :return: table
