@@ -73,7 +73,8 @@ To acquire it, do a separate installation:
 Quick start
 -------------------------------------------------------------------------------
 
-The ``vshard/example/`` directory includes a pre-configured development cluster
+The ``example/`` directory of `the vshard git-repository <https://github.com/tarantool/vshard>`_
+includes a pre-configured development cluster
 of 1 ``router`` and 2 replica sets of 2 nodes (2 ``storages``) each, making 5
 Tarantool instances in total:
 
