@@ -67340,12 +67340,14 @@ msgstr "Краткое руководство"
 
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:110
 msgid ""
-"The ``vshard/example/`` directory includes a pre-configured development "
-"cluster of 1 ``router`` and 2 replica sets of 2 nodes (2 ``storages``) "
+"The ``example/`` directory of `the vshard git-repository <https://github.com/tarantool/vshard>`_"
+"includes a pre-configured development cluster"
+"of 1 ``router`` and 2 replica sets of 2 nodes (2 ``storages``) "
 "each, making 5 Tarantool instances in total:"
 msgstr ""
-"В директории ``vshard/example/`` находится предварительно настроенный "
-"кластер из 1 роутера и 2 наборов реплик из 2 узлов (2 хранилища) в "
+"В директории ``example/`` `гит репозитория vshard <https://github.com/tarantool/vshard>`_ "
+"находится предварительно настроенный "
+"кластер из 1 роутера и 2 наборов реплик из 2 узлов (2 хранилищ) в "
 "каждом, что составляет всего 5 экземпляров Tarantool'а в целом:"
 
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:114
