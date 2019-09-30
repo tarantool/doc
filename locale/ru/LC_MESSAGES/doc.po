@@ -67394,10 +67394,10 @@ msgstr ""
 
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:122
 msgid ""
-"Change the directory to ``example/`` and use make to run the development "
+"Change the directory to ``example/`` and use ``make`` to run the development "
 "cluster:"
 msgstr ""
-"Измените директорию ``example/`` и используйте команду make для запуска "
+"Измените директорию ``example/`` и используйте команду ``make`` для запуска "
 "кластера:"
 
 #: ../doc/1.10/reference/reference_rock/vshard/index.rst:124
