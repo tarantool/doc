@@ -148,6 +148,7 @@ the preferences can differ. But strategically the steps are always the same.
 
    .. code-block:: console
 
+       cd ~/tarantool
        $ git submodule update --init --recursive
 
 3. Use CMake to initiate the build.
