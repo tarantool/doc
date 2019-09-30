@@ -85,7 +85,7 @@ Tarantool instances in total:
 
 All instances are managed using the ``tarantoolctl`` utility which comes with Tarantool.
 
-Change the directory to ``example/`` and use make to run the development cluster:
+Change the directory to ``example/`` and use ``make`` to run the development cluster:
 
 .. code-block:: console
 
