@@ -1,11 +1,11 @@
-.. _cluster:
+.. _cartridge:
 
 ********************************************************************************
-Clustering
+Tarantool Cartridge
 ********************************************************************************
 
 In this chapter, we explain how you can benefit with Tarantool Cartridge,
-a framework for developing, deploying, and managing cluster applications
+a framework for developing, deploying, and managing applications
 based on Tarantool.
 
 This chapter contains the following sections:
@@ -14,6 +14,6 @@ This chapter contains the following sections:
    :maxdepth: 2
    :numbered: 0
 
-   cluster_overview
-   cluster_create_app
-   cluster_manage
+   cartridge_overview
+   cartridge_dev
+   cartridge_admin

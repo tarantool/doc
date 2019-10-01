@@ -1,37 +1,37 @@
-.. _cartridge_create_app:
+.. _cartridge-dev:
 
 ================================================================================
-Creating an application with Tarantool Cartridge
+Tarantool Cartridge developer's guide
 ================================================================================
 
 For a quick start, skip the details below and jump right away to this detailed
 `guide <https://github.com/tarantool/cartridge-cli/blob/master/examples/getting-started-app/README.md>`_
 to creating a cluster-aware Tarantool application.
 
-For a deep dive into what Tarantool Cartridge can do, go on with this section.
+For a deep dive into what you can do with Tarantool Cartridge, go on with this section.
 
 To develop and run an application, in short, you need to go through the
 following steps:
 
-#. :ref:`Install <cartridge_install>` Tarantool Cartridge and other
+#. :ref:`Install <cartridge-install>` Tarantool Cartridge and other
    components of the development environment.
-#. Choose a :ref:`template <cartridge_templates>` for the application and
+#. Choose a :ref:`template <cartridge-templates>` for the application and
    create a project.
 #. Develop the application.
    In case it is a cluster-aware application, implement its logic in
-   a custom (user-defined) :ref:`cluster role <cluster_roles>`
+   a custom (user-defined) :ref:`cluster role <cartridge-roles>`
    to initialize the database in a cluster environment.
 #. Plug all the necessary rock modules.
-#. *OPTIONAL* :ref:`Pack <cluster_pack>` the application and module binaries
-   together with the ``tarantool`` executable.
-#. Upload, install, and start corresponding instantiated services on every
-   server dedicated for Tarantool.
+#. :ref:`Pack <???>` the application code and module binaries
+   as a Lua rock.
+#. Upload, unpack/install, and start corresponding instantiated services
+   on every server dedicated for Tarantool.
 #. In case it is a cluster-aware application,
-   :ref:`deploy the cluster <deploy_cluster>`.
+   :ref:`deploy the cluster <cartridge-deployment>`.
 
 The following sections provide details for each of these steps.
 
-.. _cartridge_install:
+.. _cartridge-install:
 
 --------------------------------------------------------------------------------
 Installing Tarantool Cartridge
@@ -42,7 +42,7 @@ Installing Tarantool Cartridge
 
    .. code-block:: console
 
-       you@yourmachine $ tarantoolctl rocks install cartridge-cli
+       $ tarantoolctl rocks install cartridge-cli
 
    The Cartridge framework will come as a dependency when you create your project.
 
@@ -52,39 +52,45 @@ Installing Tarantool Cartridge
 
 #. Install the ``unzip`` utility.
 
-.. _cartridge_templates:
+.. _cartridge-templates:
 
 --------------------------------------------------------------------------------
 Application templates
 --------------------------------------------------------------------------------
 
-Tarantool Cartridge provides you with two templates that help set up the
-application development environment:
+Tarantool Cartridge provides you with two templates that help
+instantly set up the application development environment:
 
-* ``cluster``, for a cluster-aware application;
-* ``plain``, for an application that runs on a single or multiple
-  independent Tarantool instances, e.g. acting as a proxy to
-  third-party databases.
+* ``plain``, for developing an application that runs on a single or multiple
+  independent Tarantool instances (e.g. acting as a proxy to
+  third-party databases) -- that's what you could do before,
+  :ref:`without Tarantool Cartridge <app_server-creating_app>`,
+  but now it's more convenient.
+* ``cartridge``, for developing a cluster-aware application -- this is an
+  exclusive feature of Tarantool Cartridge.
 
 To create a project based on either template, in any directory say:
 
 .. code-block:: console
 
-    # cluster application
-    you@yourmachine $ .rocks/bin/cartridge create --name <app_name> /path/to/
-
     # plain application
-    you@yourmachine $ .rocks/bin/plain create --name <app_name> /path/to/
+    $ .rocks/bin/plain create --name <app_name> /path/to/
+
+    # - OR -
+
+    # cluster application
+    $ .rocks/bin/cartridge create --name <app_name> /path/to/
 
 This will automatically set up a Git repository in a new ``<app_name>/``
-directory, tag it with :ref:`version <cartridge_versioning>` ``0.1.0``,
-and put the necessary files into it (see default files for each template below).
+directory, tag it with :ref:`version <cartridge-versioning>` ``0.1.0``,
+and put the necessary files into it (read about default files for each template
+below).
 
 In this Git repository, you can develop the application (by simply editing
 the default files provided by the template), plug the necessary
 modules, and then easily pack everything to deploy on your server(s).
 
-.. _cartridge_template_plain:
+.. _cartridge-template-plain:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plain template
@@ -100,7 +106,7 @@ contents:
 * ``.git`` file necessary for a Git repository.
 * ``.gitignore`` file to ignore the unnecessary files.
 
-.. _cartridge_template_cluster:
+.. _cartridge-template-cluster:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Cluster template
@@ -112,18 +118,18 @@ template contains the following:
 * ``env.lua`` file that sets common rock paths so that the application can be
   started from any directory.
 * ``custom-role.lua`` file that is a placeholder for a custom (user-defined)
-  :ref:`cluster role <cluster_roles>`.
+  :ref:`cluster role <cartridge-roles>`.
 
 The entry point file (``init.lua``) of the cluster template differs from the
-plain one. Among other things, it loads the ``cluster`` module and calls its
+plain one. Among other things, it loads the ``cartridge`` module and calls its
 initialization function:
 
 .. code-block:: lua
 
    ...
-   local cluster = require('cluster')
+   local cartridge = require('cartridge')
    ...
-   cluster.cfg({
+   cartridge.cfg({
      workdir = ...,
      advertise_uri = ...,
      cluster_cookie = ...,
@@ -131,21 +137,23 @@ initialization function:
    })
    ...
 
-The ``cluster.cfg()`` call renders the instance operable via the administrative
+The ``cartridge.cfg()`` call renders the instance operable via the administrative
 console but does not call ``box.cfg()`` to configure instances.
 
-.. warning:: Calling the ``box.cfg()`` function is forbidden.
+.. WARNING::
+
+    Calling the ``box.cfg()`` function is forbidden.
 
 The cluster itself will do it for you when it is time to:
 
 * bootstrap the current instance once you:
 
-  * run ``cluster.bootstrap()`` via the administrative console, or
+  * run ``cartridge.bootstrap()`` via the administrative console, or
   * click **Create** in the web interface;
 
 * join the instance to an existing cluster once you:
 
-  * run ``cluster.join_server({uri = 'other_instance_uri'})`` via the console, or
+  * run ``cartridge.join_server({uri = 'other_instance_uri'})`` via the console, or
   * click **Join** (an existing replica set) or **Create** (a new replica set)
     in the web interface.
 
@@ -154,14 +162,14 @@ if you need to run several clusters in the same network. The cookie can be any
 string value.
 
 Before developing a cluster-aware application, familiarize yourself with
-the notion of :ref:`cluster roles <custom_roles>`
+the notion of :ref:`cluster roles <cartridge-roles>`
 and make sure to define a custom role to initialize the database for the cluster
 application.
 
-.. _custom_roles:
+.. _cartridge-roles:
 
 --------------------------------------------------------------------------------
-Custom roles
+Cluster roles
 --------------------------------------------------------------------------------
 
 A Tarantool Cartridge cluster segregates instance functionality in a role-based
@@ -173,14 +181,14 @@ are aware of all the defined roles (and plugged modules), multiple different
 roles can be dynamically enabled and disabled on any number of instances
 without restarts even during cluster operation.
 
-.. _built-in-roles:
+.. _cartridge-built-in-roles:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Built-in roles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The cluster module comes with two built-in roles that implement automatic
-sharding:
+The ``cartridge`` module comes with two *built-in* roles that implement
+automatic sharding:
 
 * ``vshard-router`` that handles the ``vshard``'s *compute-intensive* workload:
   routes requests to storage nodes.
@@ -190,7 +198,7 @@ sharding:
   .. NOTE::
 
      For more information on sharding, see the
-     `vshard module documentation <https://www.tarantool.io/en/doc/1.10/reference/reference_rock/vshard/>`_.
+     :ref:`vshard module documentation <vshard>`.
 
 With the built-in and custom roles, Tarantool Cartridge allows you to develop
 applications with separated compute and transaction handling. Later, the
@@ -210,13 +218,13 @@ Additionally, you can implement several such roles to:
 * implement one or multiple supplementary services such as
   e-mail notifier, replicator, etc.
 
-.. _cluster-custom-roles:
+.. _cartridge-custom-roles:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Implementing and registering custom roles
+Custom roles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To implement a custom cluster role, do the following:
+To implement a *custom* cluster role, do the following:
 
 #. Register the new role in the cluster by modifying the ``cluster.cfg()`` call
    in the ``init.lua`` entry point file:
@@ -225,9 +233,9 @@ To implement a custom cluster role, do the following:
       :emphasize-lines: 7
 
       ...
-      local cluster = require('cluster')
+      local cartridge = require('cartridge')
       ...
-      cluster.cfg({
+      cartridge.cfg({
         workdir = ...,
         advertise_uri = ...,
         roles = {'custom-role'},
@@ -260,7 +268,7 @@ To implement a custom cluster role, do the following:
       }
 
    Where the ``role_name`` may differ from the module name passed to the
-   ``cluster.cfg()`` function. If the ``role_name`` variable is not specified,
+   ``cartridge.cfg()`` function. If the ``role_name`` variable is not specified,
    the module name is the default value.
 
    .. NOTE::
@@ -313,10 +321,10 @@ following ones during the role's life cycle:
   *application* functions that make custom roles configurable. Implement
   them if some configuration data has to be stored cluster-wide.
 
-Next, get a grip on the :ref:`role's life cycle <cluster-role-lifecycle>` to
+Next, get a grip on the :ref:`role's life cycle <cartridge-role-lifecycle>` to
 implement the necessary functions.
 
-.. _cluster-role-dependencies:
+.. _cartridge-role-dependencies:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Defining role dependencies
@@ -341,7 +349,7 @@ For example:
 Here ``vshard-router`` role will be initialized automatically for every
 instance with ``custom-role`` enabled.
 
-.. _cluster-vshard-groups:
+.. _cartridge-vshard-groups:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Using multiple vshard storage groups
@@ -355,7 +363,7 @@ Groups are specified in the cluster's configuration:
 
 .. code-block:: lua
 
-    cluster.cfg({
+    cartridge.cfg({
         vshard_groups = {'hot', 'cold'},
         ...
     })
@@ -368,7 +376,7 @@ enabled must be assigned to a particular group.
 The assignment can never be changed.
 
 Another limitation is that you cannot add groups dynamically
-(will become available in future).
+(this will become available in future).
 
 Finally, mind the new syntax for router access.
 Every instance with a ``vshard-router`` role enabled initializes multiple
@@ -376,7 +384,7 @@ routers. All of them are accessible through the role:
 
 .. code-block:: lua
 
-    local router_role = cluster.service_get('vshard-router')
+    local router_role = cartridge.service_get('vshard-router')
     router_role.get('hot'):call(...)
 
 If you have no roles specified, you can access a static router as before:
@@ -390,11 +398,11 @@ However, when using the new API, you must call a static router with a colon:
 
 .. code-block:: lua
 
-    local router_role = cluster.service_get('vshard-router')
+    local router_role = cartridge.service_get('vshard-router')
     local default_router = router_role.get() -- or router_role.get('default')
     default_router:call(...)
 
-.. _cluster-role-lifecycle:
+.. _cartridge-role-lifecycle:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Role's life cycle and the order of function execution
@@ -407,11 +415,11 @@ API. For example:
 
 .. code-block:: kconfig
 
-   cluster.admin.edit_replicaset('replicaset-uuid', {roles = {'vshard-router', 'custom-role'}})
+    cartridge.admin.edit_replicaset('replicaset-uuid', {roles = {'vshard-router', 'custom-role'}})
 
 If multiple roles are enabled on an instance at the same time, the cluster first
 initializes the built-in roles (if any) and then the custom ones (if any) in the
-order the latter were listed in ``cluster.cfg()``.
+order the latter were listed in ``cartridge.cfg()``.
 
 If a custom role has dependent roles, the dependencies are registered and
 validated first, prior to the role itself.
@@ -447,7 +455,7 @@ will execute the functions listed in the following order:
 
 * Disable role: ``stop()``.
 
-* Upon the ``cluster.confapplier.patch_clusterwide()`` call:
+* Upon the ``cartridge.confapplier.patch_clusterwide()`` call:
 
   #. ``validate_config()``
   #. ``apply_config()``
@@ -464,7 +472,7 @@ Considering the described behavior:
   * Call ``box`` functions.
   * Start a fiber and, in this case, the ``stop()`` function should
     take care of the fiber's termination.
-  * Configure the built-in :ref:`HTTP server <httpd_instance>`.
+  * Configure the built-in :ref:`HTTP server <cartridge-httpd-instance>`.
   * Execute any code related to the role's initialization.
 
 * The ``stop()`` functions must undo any job that has to be undone on role's
@@ -476,9 +484,10 @@ Considering the described behavior:
   change, e.g., take care of an ``expirationd`` fiber.
 
 The validation and application functions together allow you to customize the
-cluster-wide configuration as described in the :ref:`next section <cluster-role-config>`.
+cluster-wide configuration as described in the
+:ref:`next section <cartridge-role-config>`.
 
-.. _cluster-role-config:
+.. _cartridge-role-config:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Configuring custom roles
@@ -503,7 +512,7 @@ You can:
       end
 
 * Download and upload cluster-wide configuration using
-  :ref:`cluster UI <cluster-configuration>` or
+  :ref:`cluster UI <cartridge-configuration>` or
   API (via GET/PUT queries to ``admin/config`` endpoint like
   ``curl localhost:8081/admin/config`` and
   ``curl -X PUT -d "{'my_parameter': 'value'}" localhost:8081/admin/config``).
@@ -511,7 +520,7 @@ You can:
 * Utilize it in your role ``apply_config()`` function.
 
 Every instance in the cluster stores a copy of the configuration file in its
-working directory (configured by ``cluster.cfg({workdir = ...})``):
+working directory (configured by ``cartridge.cfg({workdir = ...})``):
 
 * ``/var/lib/tarantool/<instance_name>/config.yml`` for instances deployed from
   RPM packages and managed by ``systemd``.
@@ -543,12 +552,12 @@ The common way is to define two functions:
 
     The ``validate_config()`` function must detect all configuration
     problems that may lead to ``apply_config()`` errors. For more information,
-    see the :ref:`next section <cluster-role-config-apply>`.
+    see the :ref:`next section <cartridge-role-config-apply>`.
 
 When implementing validation and application functions that call ``box``
 ones for some reason, the following precautions apply:
 
-* Due to the :ref:`role's life cycle <cluster-role-lifecycle>`, the cluster
+* Due to the :ref:`role's life cycle <cartridge-role-lifecycle>`, the cluster
   does not guarantee an automatic ``box.cfg()`` call prior to calling
   ``validate_config()``.
 
@@ -591,7 +600,7 @@ ones for some reason, the following precautions apply:
 
      end
 
-.. _cluster-role-config-example:
+.. _cartridge-role-config-example:
 
 ****************************
 Custom configuration example
@@ -605,15 +614,15 @@ implementation:
    #!/usr/bin/env tarantool
    -- Custom role implementation
 
-   local cluster = require('cluster')
+   local cartridge = require('cartridge')
 
    local role_name = 'custom-role'
 
    -- Modify the config by implementing some setter (an alternative to HTTP PUT)
    local function set_secret(secret)
-       local custom_role_cfg = cluster.confapplier.get_deepcopy(role_name) or {}
+       local custom_role_cfg = cartridge.confapplier.get_deepcopy(role_name) or {}
        custom_role_cfg.secret = secret
-       cluster.confapplier.patch_clusterwide({
+       cartridge.confapplier.patch_clusterwide({
            [role_name] = custom_role_cfg,
        })
    end
@@ -643,21 +652,21 @@ Once the configuration is customized, do one of the following:
 
 * continue developing your application and pay attention to its
   :ref:`versioning <cartridge-versioning>`;
-* (optional) :ref:`enable authorization <auth-enable>` in the web interface.
+* (optional) :ref:`enable authorization <cartridge-auth-enable>` in the web interface.
 * in case the cluster is already deployed,
-  :ref:`apply the configuration <cluster-role-config-apply>` cluster-wide.
+  :ref:`apply the configuration <cartridge-role-config-apply>` cluster-wide.
 
-.. _cluster-role-config-apply:
+.. _cartridge-role-config-apply:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Applying custom role's configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With the implementation showed by the :ref:`example <cluster-role-config-example>`,
+With the implementation showed by the :ref:`example <cartridge-role-config-example>`,
 you can call the ``set_secret()`` function to apply the new configuration via
 the administrative console or an HTTP endpoint if the role exports one.
 
-The ``set_secret()`` function calls ``cluster.confapplier.patch_clusterwide()``
+The ``set_secret()`` function calls ``cartridge.confapplier.patch_clusterwide()``
 which performs a two-phase commit:
 
 #. It patches the active configuration in memory: copies the table and replaces
@@ -695,14 +704,14 @@ they require manual repair.
 You will avoid the repair if the ``validate_config()`` function can detect all
 configuration problems that may lead to ``apply_config()`` errors.
 
-.. _httpd_instance:
+.. _cartridge-httpd-instance:
 
 -------------------------------------------------------------------------------
 Using the built-in HTTP server
 -------------------------------------------------------------------------------
 
 The cluster launches an ``httpd`` server instance during initialization
-(``cluster.cfg()``). You can bind a port to the instance via an environmental
+(``cartridge.cfg()``). You can bind a port to the instance via an environmental
 variable:
 
 .. code-block:: Lua
@@ -710,7 +719,7 @@ variable:
    -- Get the port from an environmental variable or the default one:
    local http_port = os.getenv('HTTP_PORT') or '8080'
 
-   local ok, err = cluster.cfg({
+   local ok, err = cartridge.cfg({
       ...
       -- Pass the port to the cluster:
       http_port = http_port,
@@ -727,7 +736,7 @@ the ``init()`` function of some role, e.g. a role that exposes API over HTTP:
    ...
 
       -- Get the httpd instance:
-      local httpd = cluster.service_get('httpd')
+      local httpd = cartridge.service_get('httpd')
       if httpd ~= nil then
           -- Configure a route to, for example, metrics:
           httpd:route({
@@ -745,7 +754,7 @@ the ``init()`` function of some role, e.g. a role that exposes API over HTTP:
 For more information on the usage of Tarantool's HTTP server, see
 `its documentation <https://github.com/tarantool/http>`_.
 
-.. _cartridge_auth_enable:
+.. _cartridge-auth-enable:
 
 -------------------------------------------------------------------------------
 Implementing authorization in the web interface
@@ -777,14 +786,14 @@ cluster:
       end
       ...
 
-#. Pass the implemented ``auth`` module name as a parameter to ``cluster.cfg()``,
+#. Pass the implemented ``auth`` module name as a parameter to ``cartridge.cfg()``,
    so the cluster can use it:
 
    .. code-block:: Lua
 
       -- init.lua
 
-      local ok, err = cluster.cfg({
+      local ok, err = cartridge.cfg({
           auth_backend_name = 'auth',
           -- The cluster will automatically call 'require()' on the 'auth' module.
           ...
@@ -807,7 +816,7 @@ cluster:
 
       -- init.lua
 
-      local ok, err = cluster.cfg({
+      local ok, err = cartridge.cfg({
           auth_backend_name = 'auth',
           auth_enabled = true,
           ...
@@ -819,7 +828,7 @@ cluster:
    and disabled cluster-wide in the web interface and the ``auth_enabled`` parameter
    is ignored.
 
-.. _cartridge_versioning:
+.. _cartridge-versioning:
 
 -------------------------------------------------------------------------------
 Application versioning
@@ -837,8 +846,8 @@ To retrieve the current version from Git, say:
 
 .. code-block:: console
 
-   $ git describe --long --tags
-   1.2.1-12-g74864f2
+    $ git describe --long --tags
+    1.2.1-12-g74864f2
 
 This output shows that we are 12 commits after the version 1.2.1. If we are
 to package the application at this point, it will have a full version of
@@ -847,20 +856,20 @@ to package the application at this point, it will have a full version of
 Non-semantic tags are prohibited. You will not be able to create a package from
 a branch with the latest tag being non-semantic.
 
-Once you :ref:`package <cartridge-app-package>` your application, the version
+Once you :ref:`package <???>` your application, the version
 is saved in a ``VERSION`` file in the package root.
 
-.. _cartridge_app_ignore:
+.. _cartridge-app-ignore:
 
 -------------------------------------------------------------------------------
-Using .tarantoolapp.ignore files
+Using .cartridge-cli.ignore files
 -------------------------------------------------------------------------------
 
-You can add a ``.tarantoolapp.ignore`` file to your application repository to
+You can add a ``.cartridge-cli.ignore`` file to your application repository to
 exclude particular files and/or directories from package builds.
 
 For the most part, the logic is similar to that of ``.gitignore`` files.
-The major difference is that in ``.tarantoolapp.ignore`` files the order of
+The major difference is that in ``.cartridge-cli.ignore`` files the order of
 exceptions relative to the rest of the templates does not matter, while in
 ``.gitignore`` files the order does matter.
 
@@ -869,89 +878,61 @@ exceptions relative to the rest of the templates does not matter, while in
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
-    +--------------------------------+-------------------------------------------------+
-    | **.tarantoolapp.ignore** entry | ignores every...                                |
-    +================================+=================================================+
-    | ``target/``                    | **folder** (due to the trailing ``/``)          |
-    |                                | named ``target``, recursively                   |
-    +--------------------------------+-------------------------------------------------+
-    | ``target``                     | **file or folder** named ``target``,            |
-    |                                | recursively                                     |
-    +--------------------------------+-------------------------------------------------+
-    | ``/target``                    | **file or folder** named ``target`` in the      |
-    |                                | top-most directory (due to the leading ``/``)   |
-    +--------------------------------+-------------------------------------------------+
-    | ``/target/``                   | **folder** named ``target`` in the top-most     |
-    |                                | directory (leading and trailing ``/``)          |
-    +--------------------------------+-------------------------------------------------+
-    | ``*.class``                    | every **file or folder** ending with            |
-    |                                | ``.class``, recursively                         |
-    +--------------------------------+-------------------------------------------------+
-    | ``#comment``                   | nothing, this is a comment (the first           |
-    |                                | character is a ``#``)                           |
-    +--------------------------------+-------------------------------------------------+
-    | ``\#comment``                  | every **file or folder** with name              |
-    |                                | ``#comment`` (``\`` for escaping)               |
-    +--------------------------------+-------------------------------------------------+
-    | ``target/logs/``               | every **folder** named ``logs`` which is        |
-    |                                | a subdirectory of a folder named ``target``     |
-    +--------------------------------+-------------------------------------------------+
-    | ``target/*/logs/``             | every **folder** named ``logs`` two levels      |
-    |                                | under a folder named ``target`` (``*`` doesn’t  |
-    |                                | include ``/``)                                  |
-    +--------------------------------+-------------------------------------------------+
-    | ``target/**/logs/``            | every **folder** named ``logs`` somewhere       |
-    |                                | under a folder named ``target`` (``**``         |
-    |                                | includes ``/``)                                 |
-    +--------------------------------+-------------------------------------------------+
-    | ``*.py[co]``                   | every **file or folder** ending in ``.pyc`` or  |
-    |                                | ``.pyo``; however, it doesn’t match ``.py!``    |
-    +--------------------------------+-------------------------------------------------+
-    | ``*.py[!co]``                  | every **file or folder** ending in anything     |
-    |                                | other than ``c`` or ``o``                       |
-    +--------------------------------+-------------------------------------------------+
-    | ``*.file[0-9]``                | every **file or folder** ending in digit        |
-    +--------------------------------+-------------------------------------------------+
-    | ``*.file[!0-9]``               | every **file or folder** ending in anything     |
-    |                                | other than digit                                |
-    +--------------------------------+-------------------------------------------------+
-    | ``*``                          | **every**                                       |
-    +--------------------------------+-------------------------------------------------+
-    | ``/*``                         | **everything** in the top-most directory (due   |
-    |                                | to the leading ``/``)                           |
-    +--------------------------------+-------------------------------------------------+
-    | ``**/*.tar.gz``                | every ``*.tar.gz`` file or folder which is      |
-    |                                | **one or more** levels under the starting       |
-    |                                | folder                                          |
-    +--------------------------------+-------------------------------------------------+
-    | ``!file``                      | every **file or folder** will be ignored even   |
-    |                                | if it matches other patterns                    |
-    +--------------------------------+-------------------------------------------------+
-
-
-
-
-
-.. _cartridge_env_independent_apps:
-
---------------------------------------------------------------------------------
-Building environment-independent applications
---------------------------------------------------------------------------------
-
-Tarantool Cartridge allows you to develop environment-independent applications.
-
-An environment-independent application is an assembly (in one directory) of:
-
-* files with Lua code,
-* ``tarantool`` executable,
-* plugged external modules (if necessary).
-
-When started by the ``tarantool`` executable, the application provides a
-service.
-
-The modules are Lua rocks installed into a virtual environment (under the
-application directory) similar to Python's ``virtualenv`` and Ruby's bundler.
-
-Such an application has the same structure both in development and
-production-ready phases. All the application-related code resides in one place,
-ready to be packed and copied over to any server.
+    +---------------------------------+-------------------------------------------------+
+    | **.cartridge-cli.ignore** entry | ignores every...                                |
+    +=================================+=================================================+
+    | ``target/``                     | **folder** (due to the trailing ``/``)          |
+    |                                 | named ``target``, recursively                   |
+    +---------------------------------+-------------------------------------------------+
+    | ``target``                      | **file or folder** named ``target``,            |
+    |                                 | recursively                                     |
+    +---------------------------------+-------------------------------------------------+
+    | ``/target``                     | **file or folder** named ``target`` in the      |
+    |                                 | top-most directory (due to the leading ``/``)   |
+    +---------------------------------+-------------------------------------------------+
+    | ``/target/``                    | **folder** named ``target`` in the top-most     |
+    |                                 | directory (leading and trailing ``/``)          |
+    +---------------------------------+-------------------------------------------------+
+    | ``*.class``                     | every **file or folder** ending with            |
+    |                                 | ``.class``, recursively                         |
+    +---------------------------------+-------------------------------------------------+
+    | ``#comment``                    | nothing, this is a comment (the first           |
+    |                                 | character is a ``#``)                           |
+    +---------------------------------+-------------------------------------------------+
+    | ``\#comment``                   | every **file or folder** with name              |
+    |                                 | ``#comment`` (``\`` for escaping)               |
+    +---------------------------------+-------------------------------------------------+
+    | ``target/logs/``                | every **folder** named ``logs`` which is        |
+    |                                 | a subdirectory of a folder named ``target``     |
+    +---------------------------------+-------------------------------------------------+
+    | ``target/*/logs/``              | every **folder** named ``logs`` two levels      |
+    |                                 | under a folder named ``target`` (``*`` doesn’t  |
+    |                                 | include ``/``)                                  |
+    +---------------------------------+-------------------------------------------------+
+    | ``target/**/logs/``             | every **folder** named ``logs`` somewhere       |
+    |                                 | under a folder named ``target`` (``**``         |
+    |                                 | includes ``/``)                                 |
+    +---------------------------------+-------------------------------------------------+
+    | ``*.py[co]``                    | every **file or folder** ending in ``.pyc`` or  |
+    |                                 | ``.pyo``; however, it doesn’t match ``.py!``    |
+    +---------------------------------+-------------------------------------------------+
+    | ``*.py[!co]``                   | every **file or folder** ending in anything     |
+    |                                 | other than ``c`` or ``o``                       |
+    +---------------------------------+-------------------------------------------------+
+    | ``*.file[0-9]``                 | every **file or folder** ending in digit        |
+    +---------------------------------+-------------------------------------------------+
+    | ``*.file[!0-9]``                | every **file or folder** ending in anything     |
+    |                                 | other than digit                                |
+    +---------------------------------+-------------------------------------------------+
+    | ``*``                           | **every**                                       |
+    +---------------------------------+-------------------------------------------------+
+    | ``/*``                          | **everything** in the top-most directory (due   |
+    |                                 | to the leading ``/``)                           |
+    +---------------------------------+-------------------------------------------------+
+    | ``**/*.tar.gz``                 | every ``*.tar.gz`` file or folder which is      |
+    |                                 | **one or more** levels under the starting       |
+    |                                 | folder                                          |
+    +---------------------------------+-------------------------------------------------+
+    | ``!file``                       | every **file or folder** will be ignored even   |
+    |                                 | if it matches other patterns                    |
+    +---------------------------------+-------------------------------------------------+
