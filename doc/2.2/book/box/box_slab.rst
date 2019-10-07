@@ -209,3 +209,97 @@ Below is a list of all ``box.slab`` functions.
 
    The total ``mem_used`` for all groups in this report equals ``arena_used``
    in :ref:`box.slab.info() <box_slab_info>` report.
+
+.. _box_understanding memory_use:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Understing memory use statistics with memtx
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inserting a tuple will normally cause increased memory use for the data and for the index.
+Let us take an example of a tuple with a 5-digit indexed number and a 5-character string:
+:samp:`{nnnnn}, 'abcde'`.
+
+Calculate the tuple size thus: |br|
+(Size of data + overhead) rounded up to next 8 |br|
+Size of data is the MsgPack size, because Tarantool stores tuples
+in MsgPack format,
+as described in
+`MsgPack specification <http://github.com/msgpack/msgpack/blob/master/spec.md>`_.
+and as illustrated in
+:ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`,
+and as easily calculated with :ref:`tuple_object:bsize() <box_tuple-bsize>`.
+Overhead is always 12.
+Rounded **up** (emphasis on up) means always use the next integer divisible by 8.
+In Lua terms, then we can calculate our storage requirement with:
+
+.. code-block:: none
+
+    tuple_value = {10000, 'abcde'}
+    tuple_size = box.tuple.bsize(box.tuple.new(tuple_value))
+    storage_size = math.ceil((tuple_size + 12 + 1) / 8) * 8
+
+In this case tuple_size = 10, storage_size = 24, so we can predict
+that this tuple requires 24 bytes.
+
+Calculate the index size thus:
+Around 20 to 24 bytes on average.
+This cannot be an exact number because storage for a
+TREE index is in blocks. So inserting a single tuple
+might cause no change to index size, or a large change.
+But we can expect that when we add 10,000 tuples the average
+will be 20 to 24.
+
+Calculate the initial index overhead thus:
+48KB.
+That is the amount that will be allocated the first time that a tuple is
+inserted, no matter how big the tuple is. Therefore, when monitoring the
+growth of memory use, we should ignore the first 48*1024 bytes.
+
+Now let us compare our expectations with Tarantool's statistics.
+Start with a completely empty database, add 10,000 tuples (to ignore),
+and add 10,000 tuples (to compare the growth).
+
+.. code-block:: tarantoolsession
+
+    box.cfg{}
+    box.schema.space.create('T')
+    box.space.T:create_index('I')
+    for i = 0, 9999 do box.space.T:insert{i, 'abcde'} end
+    old_memory_data = box.info.memory().data
+    old_memory_index = box.info.memory().index
+    old_arena_used = box.slab.info().arena_used
+    old_1_item_count = box.slab.stats()[1].item_count
+    old_24_item_count = box.slab.stats()[24].item_count
+    for i = 10000, 19999 do box.space.T:insert{i, 'abcde'} end
+    new_memory_data = box.info.memory().data - old_memory_data
+    new_memory_index = box.info.memory().index - old_memory_index
+    new_arena_used = box.slab.info().arena_used - old_arena_used
+    new_1_item_count = box.slab.stats()[1].item_count - old_1_item_count
+    new_24_item_count = box.slab.stats()[24].item_count - old_24_item_count
+    print('growth in memory().data = ' .. new_memory_data)
+    print('growth in memory().index = ' .. new_memory_index)
+    print('growth in arena_used = ' .. new_arena_used)
+    print('box.slab.stats()[1].item_size = ' .. box.slab.stats()[1].item_size)
+    print('growth in box.slab.stats()[1].item_count = ' .. new_1_item_count)
+    print('box.slab.stats()[24].item_size = ' .. box.slab.stats()[24].item_size)
+    print('growth in box.slab.stats()[24].item_count = ' .. new_24_item_count)
+
+Running that code will result in a display of these values: |br|
+Growth in memory().data =  240000 bytes, which is 24 * 10000. |br|
+Growth in memory().index = 229376, which is approximately 23 * 10000. |br|
+Growth in arena_used = 469376, which is exactly memory().data + memory().index. |br|
+The first slab stats show there are 10000 new items with size = 24 (the data). |br|
+The 24th slab stats show that there are 14 new items with size = 16384 (the index blocks).
+
+There are some complications: |br|
+* The offset of the slab.stats() where item_size = 24 may differ, and the offset of
+the slab.stats() where item_size = 16384 may differ, depending on Tarantool version
+and depending on whether there has been any previous activity (for the example we
+assumed the database is initially empty). |br|
+* The allocated amount can never be less than :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`. |br|
+* If the required size is greater than 128 bytes, then some additional overhead
+will exist, usually less than 5% of the total size.
+See the slightly-outdated article:
+`Memory size calculation <https://github.com/tarantool/tarantool/wiki/Memory-size-calculation>`_.
+
