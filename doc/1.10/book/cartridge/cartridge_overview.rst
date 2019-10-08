@@ -17,7 +17,7 @@ utilities and :ref:`templates <cartridge-templates>` to help:
 * plug the necessary Lua modules.
 
 The resulting package can be installed and started on one or multiple servers
-as one or multiple instantiated services, independent or organized into a
+as one or multiple instantiated services -- independent or organized into a
 **cluster**.
 
 .. NOTE::

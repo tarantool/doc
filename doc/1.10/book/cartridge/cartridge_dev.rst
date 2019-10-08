@@ -21,11 +21,9 @@ following steps:
    In case it is a cluster-aware application, implement its logic in
    a custom (user-defined) :ref:`cluster role <cartridge-roles>`
    to initialize the database in a cluster environment.
-#. Plug all the necessary rock modules.
-#. :ref:`Pack <???>` the application code and module binaries
-   as a Lua rock.
-#. Upload, unpack/install, and start corresponding instantiated services
-   on every server dedicated for Tarantool.
+#. :ref:`Deploy <cartridge-deploy>` the application to target server(s).
+#. :ref:`Configure <cartridge-config>` and :ref:`launch <cartridge-run>`
+   the instance(s).
 #. In case it is a cluster-aware application,
    :ref:`deploy the cluster <cartridge-deployment>`.
 
@@ -45,6 +43,13 @@ Installing Tarantool Cartridge
        $ tarantoolctl rocks install cartridge-cli
 
    The Cartridge framework will come as a dependency when you create your project.
+
+   Everything will be installed to ``.rocks/bin``, so for convenient usage
+   add ``.rocks/bin`` to the executable path:
+
+   .. code-block:: console
+
+       $ export PATH=$PWD/.rocks/bin/:$PATH
 
 #. Install ``git``, a version control system.
 
@@ -74,12 +79,12 @@ To create a project based on either template, in any directory say:
 .. code-block:: console
 
     # plain application
-    $ .rocks/bin/plain create --name <app_name> /path/to/
+    $ plain create --name <app_name> /path/to/
 
     # - OR -
 
     # cluster application
-    $ .rocks/bin/cartridge create --name <app_name> /path/to/
+    $ cartridge create --name <app_name> /path/to/
 
 This will automatically set up a Git repository in a new ``<app_name>/``
 directory, tag it with :ref:`version <cartridge-versioning>` ``0.1.0``,
@@ -512,7 +517,7 @@ You can:
       end
 
 * Download and upload cluster-wide configuration using
-  :ref:`cluster UI <cartridge-configuration>` or
+  :ref:`cluster UI <cartridge-ui-configuration>` or
   API (via GET/PUT queries to ``admin/config`` endpoint like
   ``curl localhost:8081/admin/config`` and
   ``curl -X PUT -d "{'my_parameter': 'value'}" localhost:8081/admin/config``).
@@ -675,7 +680,8 @@ which performs a two-phase commit:
 
 #. The cluster checks if the new configuration can be applied on all instances
    except disabled and expelled. All instances subject to update must be healthy
-   and ``alive`` according to the :ref:`membership module <enterprise-membership-rock>`.
+   and ``alive`` according to the
+   `membership module <https://www.tarantool.io/en/doc/1.10/reference/reference_rock/membership/>`_.
 
 #. (**Preparation phase**) The cluster propagates the patched configuration.
    Every instance validates it with the ``validate_config()`` function of
@@ -856,7 +862,7 @@ to package the application at this point, it will have a full version of
 Non-semantic tags are prohibited. You will not be able to create a package from
 a branch with the latest tag being non-semantic.
 
-Once you :ref:`package <???>` your application, the version
+Once you :ref:`package <cartridge-deploy>` your application, the version
 is saved in a ``VERSION`` file in the package root.
 
 .. _cartridge-app-ignore:
@@ -936,3 +942,279 @@ exceptions relative to the rest of the templates does not matter, while in
     | ``!file``                       | every **file or folder** will be ignored even   |
     |                                 | if it matches other patterns                    |
     +---------------------------------+-------------------------------------------------+
+
+.. _cartridge-deploy:
+
+--------------------------------------------------------------------------------
+Deploying an application
+--------------------------------------------------------------------------------
+
+You have four options to deploy a Tarantool Cartridge application:
+
+* as an :ref:`rpm <cartridge-deploy-rpm>` package (for production);
+* as a :ref:`deb <cartridge-deploy-deb>` package (for production);
+* as a :ref:`tar+gz <cartridge-deploy-tgz>` archive (for testing,
+  or as a workaround for production if root access is unavailable).
+* as a :ref:`rock bundle <cartridge-deploy-rock>` (for local testing only).
+
+.. _cartridge-deploy-rpm:
+.. _cartridge-deploy-deb:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Deploying as an rpm or deb package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Pack the application into a distributable:
+
+   .. code-block:: console
+
+       $ cartridge pack rpm APP_NAME
+       # -- OR --
+       $ cartridge pack deb APP_NAME
+
+   This will create an RPM package (e.g. ``./my_app-0.1.0-1.rpm``) or
+   a DEB package (e.g. ``./my_app-0.1.0-1.deb``).
+
+#. Upload the package to target servers, with ``systemctl`` supported.
+
+#. Install:
+
+   .. code-block:: console
+
+       $ yum install APP_NAME-VERSION.rpm
+       # -- OR --
+       $ dpkg -i APP_NAME-VERSION.deb
+
+#. Start one or multiple Tarantool instances with the corresponding services
+   using ``systemctl``.
+
+#. In case it is a cluster-aware application, proceed to
+   :ref:`deploying the cluster <cartridge-deployment>`.
+
+.. _cartridge-deploy-tgz:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Deploying as a tar+gz archive
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Pack the application into a distributable:
+
+   .. code-block:: console
+
+       $ cartridge pack tgz APP_NAME
+
+   This will create a tar+gz archive (e.g. ``./my_app-0.1.0-1.tgz``).
+
+#. Upload the archive to target servers, with
+   `tarantool <https://www.tarantool.io/en/download/os-installation/1.10/docker-hub/>`
+   and (optionally) :ref:`cartridge-cli <cartridge-install>` installed.
+
+#. Extract the archive:
+
+   .. code-block:: console
+
+       $ tar -xzvf APP_NAME-VERSION.tgz
+
+#. Start Tarantool instance(s), using either ``tarantool`` or
+   ``cartridge``.
+
+.. _cartridge-deploy-rock:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Deploying as a rock bundle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This deployment method is intended for local testing only.
+
+#. Pull all dependencies to the ``.rocks`` directory:
+
+   $ tarantoolctl rocks make
+
+#. Start Tarantool instance(s), using either
+   :ref:`tarantool <cartridge-run-tarantool>` or
+   :ref:`cartridge <cartridge-run-cartridge>`.
+
+.. _cartridge-config:
+
+--------------------------------------------------------------------------------
+Configuring instances
+--------------------------------------------------------------------------------
+
+Instance configuration allows you to specify two parameters for each instance:
+
+* ``advertise_uri`` is the public address of the Tarantool process,
+  which includes the hostname. It is required to tell the cluster nodes how
+  to get connected to each other. Do not specify ``0.0.0.0`` -- this must be
+  an external IP address, not a socket bind.
+* ``http_port`` is the listen port for the cluster administrator's web interface.
+  To disable it, specify ``"http_enabled": False``.
+
+If you :ref:`run instances <cartridge-run>` using ``cartridge`` or ``systemctl``,
+save the configuration as a ``.yml`` file, for example:
+
+.. code-block:: console
+
+    $ sudo tee /etc/tarantool/conf.d/demo.yml <<CONFIG
+    my_app.router: {"advertise_uri": "localhost:3301", "http_port": 8080}
+    my_app.storage_A: {"advertise_uri": "localhost:3302", "http_enabled": False}
+    my_app.storage_B: {"advertise_uri": "localhost:3303", "http_enabled": False}
+    CONFIG
+
+With ``cartridge``, you can pass the path to this file as the ``cfg``
+command-line argument to the ``cartridge start`` command -- or specify the path
+in ``cartridge`` configuration (in ``./.cartridge.yml`` or ``~/.cartridge.yml``):
+
+.. code-block:: kconfig
+
+    run_dir: tmp/run
+    cfg: cartridge.yml
+    apps_path: /usr/local/share/tarantool
+
+If you run instances using ``tarantool``, pass instance configuration as
+command-line parameters:
+
+.. code-block:: console
+
+    $ cartridge start my_app --advertise_uri="localhost:3301" --http_port="8080"
+
+With ``tarantool``, you can also configure the instances using
+environment variables:
+
+* ``TARANTOOL_INSTANCE_NAME`` -- Tarantool uses it to read the instance's
+  configuration from the file provided in ``TARANTOOL_CFG``.
+* ``TARANTOOL_CFG``
+* ``TARANTOOL_PID_FILE`` -- use the format ``%run_dir%/%instance_name%.pid``
+* ``TARANTOOL_CONSOLE_SOCK`` -- use the format ``%run_dir%/%instance_name%.pid``
+* and many more, see the full list in API documentation for
+  `cartridge.argparse module <https://www.tarantool.io/en/rocks/cartridge/1.0/modules/cartridge.argparse/>`_.
+
+For example, environment variables may be useful for developers to define
+``box.cfg`` parameters, or to define parameters for a docker container.
+
+.. _cartridge-run:
+
+--------------------------------------------------------------------------------
+Running/stopping instances
+--------------------------------------------------------------------------------
+
+Depending on your :ref:`deployment method <cartridge-deploy>`, you can start/stop
+the application using :ref:`tarantool <cartridge-run-tarantool>`,
+:ref:`cartridge <cartridge-run-cartridge>`, or
+:ref:`systemctl <cartridge-run-systemctl>`.
+
+.. _cartridge-run-tarantool:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Run/stop using ``tarantool``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With ``tarantool``, you can start only a single instance:
+
+.. code-block:: console
+
+    $ tarantool init.lua
+
+To stop the instance, use Ctrl+C.
+
+.. _cartridge-run-cartridge:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Run/stop using ``cartridge``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With ``cartridge``, you can start one or multiple instances:
+
+.. code-block:: console
+
+    $ cartridge start [APP_NAME[.INSTANCE_NAME]] [options]
+
+The options are:
+
+``--script FILE``
+        Application's entry point.
+        Defaults to:
+
+        *  ``TARANTOOL_SCRIPT``, or
+        * ``./init.lua`` when running from the app's directory, or
+        * ``:apps_path/:app_name/init.lua`` in a multi-app environment.
+
+``--apps_path PATH``
+        Path to apps directory when running in a multi-app environment.
+        Defaults to ``/usr/share/tarantool``.
+
+``--run_dir DIR``
+        Directory with pid and sock files.
+        Defaults to ``TARANTOOL_RUN_DIR`` or ``/var/run/tarantool``.
+
+``--cfg FILE``
+        Cartridge instances configuration file.
+        Defaults to ``TARANTOOL_CFG`` or ``./instances.yml``.
+
+--foreground
+        Do not daemonize.
+
+It starts ``tarantool`` instance(s) in background with enforced
+:ref:`environment variables <cartridge-config>`.
+
+When ``APP_NAME`` is not provided, ``cartridge`` parses it from ``./*.rockspec``
+filename.
+
+When ``INSTANCE_NAME`` is not provided, ``cartridge`` reads ``cfg`` file and
+starts all defined instances:
+
+.. code-block:: console
+
+    # in application directory
+    cartridge start # starts all instances
+    cartridge start .router_1 # start single instance
+
+    # in multi-application environment
+    cartridge start my_app # starts all instances of app_1
+    cartridge start my_app.router # start single instance
+
+To stop the instances, say:
+
+.. code-block:: console
+
+    $ cartridge stop [APP_NAME[.INSTANCE_NAME]] [options]
+
+These options from ``cartridge start`` command are supported:
+
+* ``--run_dir DIR``
+* ``--cfg FILE``
+
+.. _cartridge-run-systemctl:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Run/stop using ``systemctl``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* To run a single instance:
+
+  .. code-block:: console
+
+      $ systemctl start APP_NAME
+
+   This will start an instantiated ``systemd`` service that will listen to the
+   port :ref:`specified in configuration <cartridge-config>`.
+
+* To run multiple instances on one or multiple servers:
+
+  .. code-block:: console
+
+      $ systemctl start APP_NAME@INSTANCE_1
+      $ systemctl start APP_NAME@INSTANCE_2
+      ...
+      $ systemctl start APP_NAME@INSTANCE_N
+
+  where ``APP_NAME@INSTANCE_N`` is the instantiated service name
+  for ``systemd`` with an incremental ``N`` -- a number, unique for every
+  instance, added to the port the instance will listen to
+  (e.g., ``3301``, ``3302``, etc.)
+
+* To stop all services on a server, use the ``systemctl stop`` command
+  and specify instance names one by one. For example:
+
+  .. code-block:: console
+
+      $ systemctl stop APP_NAME@INSTANCE_1 APP_NAME@INSTANCE_2 ... APP_NAME@INSTANCE_<N>

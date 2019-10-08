@@ -14,7 +14,7 @@ Cartridge.
 
 Before deploying the cluster, familiarize yourself with the notion of
 :ref:`cluster roles <cartridge-roles>` and
-:ref:`deploy Tarantool instances <???>` according to the
+:ref:`deploy Tarantool instances <cartridge-deploy>` according to the
 desired cluster topology.
 
 .. _cartridge-deployment:
@@ -160,7 +160,7 @@ In the web interface, do the following:
 From now on, all the necessary cluster configuration can be done via the
 web interface.
 
-.. _cartridge-configuration:
+.. _cartridge-ui-configuration:
 
 -------------------------------------------------------------------------------
 Updating the configuration
@@ -217,11 +217,11 @@ Changing the cluster topology
 Upon adding a newly deployed instance to a new or existing replica set:
 
 #. The cluster validates the configuration update by checking if the new instance
-   is available using the ``membership`` module.
+   is available using the `membership module <https://www.tarantool.io/en/doc/1.10/reference/reference_rock/membership/>`_.
 
    .. NOTE::
 
-       The membership module works over the UDP protocol and can operate before
+       The ``membership`` module works over the UDP protocol and can operate before
        the ``box.cfg`` function is called.
 
    All the nodes in the cluster must be healthy for validation success.
@@ -244,7 +244,7 @@ change, buckets start migrating to new nodes.
 To populate the cluster with more nodes, do the following:
 
 #. Deploy new Tarantool instances as described in the
-   :ref:`deployment section <???>`.
+   :ref:`deployment section <cartridge-deploy>`.
 
    If new nodes do not appear in the Web interface, click **Probe server** and
    specify their URIs manually.
@@ -696,7 +696,7 @@ Potential issues
   be obsolete compared with the data on the master.
 
   **Solution:** Check the replication status of the replica. Further instructions
-  are given in the :ref:`troubleshooting guide <admin-troubleshoot>`.
+  are given in the :ref:`Tarantool troubleshooting guide <admin-troubleshooting-guide>`.
 
 * ``OUT_OF_SYNC`` — Mal-synchronization occured. The lag exceeds T3 threshold (10 sec.).
 
@@ -706,7 +706,7 @@ Potential issues
   obsolete compared with the data on the master.
 
   **Solution:** Check the replication status of the replica. Further instructions
-  are given in the :ref:`troubleshooting guide <admin-troubleshoot>`.
+  are given in the :ref:`Tarantool troubleshooting guide <admin-troubleshooting-guide>`.
 
 .. _unreachable_replica:
 
@@ -850,7 +850,7 @@ Potential issues
 Troubleshooting
 -------------------------------------------------------------------------------
 
-Please see the section `Troubleshooting <troubleshoot>`.
+Please see the :ref:`Troubleshooting guide <admin-troubleshooting-guide>`.
 
 .. _cartridge-recovery:
 
