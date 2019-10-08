@@ -123,14 +123,8 @@ Below is a list of all ``box.space`` functions and members.
     | :ref:`box.space._index                       | (Metadata) List of indexes      |
     | <box_space-index>`                           |                                 |
     +----------------------------------------------+---------------------------------+
-    | :ref:`box.space._vindex                      | (Metadata) List of indexes      |
-    | <box_space-vindex>`                          | accessible for the current user |
-    +----------------------------------------------+---------------------------------+
     | :ref:`box.space._priv                        | (Metadata) List of privileges   |
     | <box_space-priv>`                            |                                 |
-    +----------------------------------------------+---------------------------------+
-    | :ref:`box.space._vpriv                       | (Metadata) List of privileges   |
-    | <box_space-vpriv>`                           | accessible for the current user |
     +----------------------------------------------+---------------------------------+
     | :ref:`box.space._schema                      | (Metadata) List of schemas      |
     | <box_space-schema>`                          |                                 |
@@ -144,25 +138,20 @@ Below is a list of all ``box.space`` functions and members.
     | :ref:`box.space._space                       | (Metadata) List of spaces       |
     | <box_space-space>`                           |                                 |
     +----------------------------------------------+---------------------------------+
-    | :ref:`box.space._vspace                      | (Metadata) List of spaces       |
-    | <box_space-vspace>`                          | accessible for the current user |
-    +----------------------------------------------+---------------------------------+
     | :ref:`box.space._user                        | (Metadata) List of users        |
     | <box_space-user>`                            |                                 |
     +----------------------------------------------+---------------------------------+
     | :ref:`box.space._ck_constraint               | (Metadata) List of check        |
     | <box_space-ck_constraint>`                   | constraints                     |
     +----------------------------------------------+---------------------------------+
-    | :ref:`box.space._vuser                       | (Metadata) List of users        |
-    | <box_space-vuser>`                           | accessible for the current user |
-    +----------------------------------------------+---------------------------------+
     | :ref:`box.space._collation                   | (Metadata) List of collations   |
     | <box_space-collation>`                       |                                 |
     +----------------------------------------------+---------------------------------+
-    | :ref:`box.space._vcollation                  | (Metadata) List of collations   |
-    | <box_space-vcollation>`                      | accessible for the current user |
+    | :ref:`box.space._vcollation, _vfunc,         | (Metadata) System views         |
+    | _vindex <box_space-system_views>` |br|       |                                 |
+    | :ref:`_vpriv, _vsequence, _vspace, _vuser    |                                 |
+    | <box_space-system_views>`                    |                                 |
     +----------------------------------------------+---------------------------------+
-
 
 .. module:: box.space
 
@@ -1998,6 +1987,8 @@ Below is a list of all ``box.space`` functions and members.
       ---
       ...
 
+   The :ref:`system view <box_space-system_views>` for ``_func`` is ``_vfunc``.
+
 .. _box_space-index:
 
 .. data:: _index
@@ -2035,26 +2026,7 @@ Below is a list of all ``box.space`` functions and members.
        ---
        ...
 
-.. _box_space-vindex:
-
-.. data:: _vindex
-
-    ``_vindex`` is a system space that represents a virtual view. The structure
-    of its tuples is identical to that of :ref:`_index <box_space-index>`, but
-    permissions for certain tuples are limited in accordance with user privileges.
-    ``_vindex`` contains only those tuples that are accessible to the current user.
-    See :ref:`Access control <authentication>` for details about user privileges.
-
-    If the user has the full set of privileges (like 'admin'), the contents
-    of ``_vindex`` match the contents of ``_index``. If the user has limited
-    access, ``_vindex`` contains only tuples accessible to this user.
-
-    .. NOTE::
-
-       * ``_vindex`` is a system view, so it allows only read requests.
-
-       * While the ``_index`` space requires proper access privileges, any user
-         can always read from ``_vindex``.
+   The :ref:`system view <box_space-system_views>` for ``_index`` is ``_vindex``.
 
 .. _box_space-priv:
 
@@ -2095,26 +2067,7 @@ Below is a list of all ``box.space`` functions and members.
        * Only the 'admin' user or the creator of a user can change a different
          user’s password.
 
-.. _box_space-vpriv:
-
-.. data:: _vpriv
-
-    ``_vpriv`` is a system space that represents a virtual view. The structure
-    of its tuples is identical to that of :ref:`_priv <box_space-priv>`, but
-    permissions for certain tuples are limited in accordance with user privileges.
-    ``_vpriv`` contains only those tuples that are accessible to the current user.
-    See :ref:`Access control <authentication>` for details about user privileges.
-
-    If the user has the full set of privileges (like 'admin'), the contents
-    of ``_vpriv`` match the contents of ``_priv``. If the user has limited
-    access, ``_vpriv`` contains only tuples accessible to this user.
-
-    .. NOTE::
-
-       * ``_vpriv`` is a system view, so it allows only read requests.
-
-       * While the ``_priv`` space requires proper access privileges, any user
-         can always read from ``_vpriv``.
+   The :ref:`system view <box_space-system_views>` for ``_priv`` is ``__vpriv``.
 
 .. _box_space-schema:
 
@@ -2159,6 +2112,8 @@ Below is a list of all ``box.space`` functions and members.
     It contains persistent information that was established by
     :ref:`box.schema.sequence.create() <box_schema-sequence_create>` or
     :ref:`box.schema.sequence.alter() <box_schema-sequence_alter>`.
+
+    The :ref:`system view <box_space-system_views>` for ``_sequence`` is ``_vsequence``.
 
 .. _box_space-sequence_data:
 
@@ -2271,26 +2226,7 @@ Below is a list of all ``box.space`` functions and members.
         - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
         ...
 
-.. _box_space-vspace:
-
-.. data:: _vspace
-
-    ``_vspace`` is a system space that represents a virtual view. The structure
-    of its tuples is identical to that of :ref:`_space <box_space-space>`, but
-    permissions for certain tuples are limited in accordance with user privileges.
-    ``_vspace`` contains only those tuples that are accessible to the current user.
-    See :ref:`Access control <authentication>` for details about user privileges.
-
-    If the user has the full set of privileges (like 'admin'), the contents
-    of ``_vspace`` match the contents of ``_space``. If the user has limited
-    access, ``_vspace`` contains only tuples accessible to this user.
-
-    .. NOTE::
-
-       * ``_vspace`` is a system view, so it allows only read requests.
-
-       * While the ``_space`` space requires proper access privileges, any user
-         can always read from ``_vspace``.
+   The :ref:`system view <box_space-system_views>` for ``_space`` is ``_vspace``.
 
 .. _box_space-user:
 
@@ -2430,6 +2366,8 @@ Below is a list of all ``box.space`` functions and members.
         tarantool> box.schema.user.drop('JeanMartin')
         ---
         ...
+
+   The :ref:`system view <box_space-system_views>` for ``_user`` is ``_vuser``.
 
 .. _box_space-ck_constraint:
 
@@ -2575,16 +2513,73 @@ organizing:
     ---
     ...
 
-.. _box_space-vuser:
+.. _box_space-collation:
 
-.. data:: _vuser
+.. data:: _collation
 
-    ``_vuser`` is a system space that represents a virtual view. The structure
-    of its tuples is identical to that of :ref:`_user <box_space-user>`, but
-    permissions for certain tuples are limited in accordance with user privileges.
-    ``_vuser`` contains only those tuples that are accessible to the current user.
+    ``_collation`` is a system space with a list of :ref:`collations <index-collation>`.
+    There are over 270 built-in collations and users may add more. Here is one example:
+
+    .. code-block:: tarantoolsession
+
+        localhost:3301> box.space._collation:select(239)
+        ---
+        - - [239, 'unicode_uk_s2', 1, 'ICU', 'uk', {'strength': 'secondary'}]
+        ...
+
+    Explanation of the fields in the example: id = 239 i.e. Tarantool's primary key is 239,
+    name = 'unicode_uk_s2' i.e. according to Tarantool's naming convention this is a
+    Unicode collation + it is for the uk locale + it has secondary strength,
+    owner = 1 i.e. :ref:`the admin user <authentication-owners_privileges>`,
+    type = 'ICU' i.e. the rules are according to `International Components for Unicode <http://site.icu-project.org/home>`_,
+    locale = 'uk' i.e. `Ukrainian <http://www.unicode.org/cldr/charts/29/collation/uk.html>`_,
+    opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary
+    `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_.
+
+    The :ref:`system view <box_space-system_views>` for ``_collation`` is ``_vcollation``.
+
+.. _box_space-system_views:
+
+===============
+System views
+===============
+
+    A system view, also called a 'sysview', is a restricted copy of a system space.
+
+    The system views and the spaces that they are associated with are: |br|
+    ``_vcollation``, a view of :ref:`_collation <box_space-collation>`, |br|
+    ``_vfunc``, a view of :ref:`_func <box_space-func>`, |br|
+    ``_vindex``, a view of :ref:`_index <box_space-index>`, |br|
+    ``_vpriv``, a view of :ref:`_priv <box_space-priv>`, |br|
+    ``_vsequence``, a view of :ref:`_sequence <box_space-sequence>`, |br|
+    ``_vspace``, a view of :ref:`_space <box_space-space>`, |br|
+    ``_vuser``, a view of :ref:`_user <box_space-user>`.
+
+    The structure of a system view's tuples is identical to the
+    structure of the associated space's tuples. However, the privileges for a
+    system view are usually different. By default, ordinary users do not have
+    any privileges for most system spaces, but have a 'read' privilege for system views.
+
+    Typically this is the default situation: |br|
+    * :ref:`The 'public' role <box_space-user>` has 'read' privilege on all system views
+    because that is the situation when the database is first created. |br|
+    * All users have the 'public' role, because it is granted
+    to them automatically during :ref:`box.schema.user.create() <box_schema-user_create>`. |br|
+    * The system view will contain the tuples in the associated system space,
+    if and only if the user has a privilege for the object named in the tuple. |br|
+    Unless administrators change the privileges, the effect is that non-administrator
+    users cannot access the system space, but they can access the system view, which shows
+    only the the objects that they can access.
+
+    For example, typically, the 'admin' user can do anything with ``_space`` and ``_vspace``
+    looks the same as ``_space``. But the 'guest' user can only read ``_vspace``, and
+    ``_vspace`` contains fewer tuples than ``_space``. Therefore in most installations
+    the 'guest' user should select from ``_vspace`` to get a list of spaces.
+
     See :ref:`Access control <authentication>` for details about user privileges.
 
+    Here is an example showing the difference between ``_vuser`` and ``_user``.
+    We have explained that:
     If the user has the full set of privileges (like 'admin'), the contents
     of ``_vuser`` match the contents of ``_user``. If the user has limited
     access, ``_vuser`` contains only tuples accessible to this user.
@@ -2595,8 +2590,8 @@ organizing:
     space, both when the 'guest' user *is* and *is not* allowed to read from the
     database.
 
-    First, start Tarantool and grant the 'guest' user with read, write and execute
-    privileges:
+    First, start Tarantool and grant read, write and execute
+    privileges to the 'guest' user:
 
     .. code-block:: tarantoolsession
 
@@ -2654,45 +2649,6 @@ organizing:
         ---
         - - [0, 1, 'guest', 'user', {}]
         ...
-
-    .. NOTE::
-
-        * ``_vuser`` is a system view, so it allows only read requests.
-        * While the ``_user`` space requires proper access privileges, any user
-          can always read from ``_vuser``.
-
-
-.. _box_space-collation:
-
-.. data:: _collation
-
-    ``_collation`` is a system space with a list of :ref:`collations <index-collation>`.
-    There are over 270 built-in collations and users may add more. Here is one example:
-
-    .. code-block:: tarantoolsession
-
-        localhost:3301> box.space._collation:select(239)
-        ---
-        - - [239, 'unicode_uk_s2', 1, 'ICU', 'uk', {'strength': 'secondary'}]
-        ...
-
-    Explanation of the fields in the example: id = 239 i.e. Tarantool's primary key is 239,
-    name = 'unicode_uk_s2' i.e. according to Tarantool's naming convention this is a
-    Unicode collation + it is for the uk locale + it has secondary strength,
-    owner = 1 i.e. :ref:`the admin user <authentication-owners_privileges>`,
-    type = 'ICU' i.e. the rules are according to `International Components for Unicode <http://site.icu-project.org/home>`_,
-    locale = 'uk' i.e. `Ukrainian <http://www.unicode.org/cldr/charts/29/collation/uk.html>`_,
-    opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary
-    `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_.
-
-.. _box_space-vcollation:
-
-.. data:: _vcollation
-
-    ``_vcollation`` is a system space with a list of :ref:`collations <index-collation>`.
-    The structure
-    of its tuples is identical to that of :ref:`box.space._collation <box_space-collation>`, but
-    permissions for certain tuples are limited in accordance with user privileges.
 
 .. _box_space-operations-detailed-examples:
 
