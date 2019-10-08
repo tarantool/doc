@@ -85,6 +85,7 @@ Below is a list of all ``iconv`` functions.
     use string.hex('Д') to show what Д's encoding looks like in the UTF-8 source,
     and use string.hex('Д'-after-conversion) to show what it looks like in the UTF-16 target.
     Since the result is 0414, we see that iconv conversion works.
+    (Different iconv implementations might use different names, for example UTF-16BE instead of UTF16BE.)
 
     .. code-block:: tarantoolsession
 
