@@ -14,7 +14,7 @@ source(-s). We will refer to this replica, which is starting up due to ``box.cfg
 as the "local" replica to distinguish it from the other replicas in a replica set,
 which we will refer to as "distant" replicas.
 
-*#1. If there is no snapshot .snap file and the ``replication`` parameter is empty*: |br|
+*#1. If there is no snapshot .snap file and the 'replication' parameter is empty and cfg.read_only=false*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
 itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
@@ -24,7 +24,18 @@ replica UUID and the replica set UUID. Therefore, when the local replica restart
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
-*#2. If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*#1a. If there is no snapshot .snap file and the 'replication' parameter is empty and cfg.read_only=true*: |br|
+When an instance is starting with ``box.cfg({... read_only = true})``, it cannot be the
+first replica of a new replica set because the first replica must be a master.
+Therefore an error message will occur: ER_BOOTSTRAP_READONLY.
+To avoid this, change the setting for this (local) instance to ``read_only = false``,
+or ensure that another (distant) instance starts first and has the local instance's
+UUID in its _cluster space. In the latter case, if ER_BOOTSTRAP_READONLY still
+occurs, set the local instance's
+:ref:`box.replication_connect_timeout <cfg_replication-replication_connect_timeout>`
+to a larger value.
+
+*#2. If there is no snapshot .snap file and the 'replication' parameter is not empty
 and the ``_cluster`` space contains no other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, but is not yet part
 of a replica set. It must now join the replica set. It will send its replica UUID to the
@@ -42,7 +53,7 @@ request, it will send back:
     receive this and update its own copy of the data, and add the local replica's
     UUID to its ``_cluster`` space.
 
-*#3. If there is no snapshot .snap file and the ``replication`` parameter is not empty
+*#3. If there is no snapshot .snap file and the 'replication' parameter is not empty
 and the ``_cluster`` space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant

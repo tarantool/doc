@@ -24,9 +24,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +============+===============================================+==========================================================+=========================================================+
     | E011       | Numeric data types                                                                                                                                                 |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-01    | INTEGER and SMALLINT                          | ``create table t (s1 int primary key);``                 | Okay.                                                   |
+    | E011-01    | INTEGER and SMALLINT                          | ``CREATE TABLE t (s1 INTEGER PRIMARY KEY);``             | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-02    | REAL, DOUBLE PRECISION, and FLOAT data types  | ``create table tr (s1 float primary key);``              | Okay.                                                   |
+    | E011-02    | REAL, DOUBLE PRECISION, and FLOAT data types  | ``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``              | Fail, approximate-numeric type names are different.     |
     |            |                                               |                                                          |                                                         |
     |            |                                               |                                                          | **Note:** Floating point SQL types are not planned to   |
     |            |                                               |                                                          | be compatible between 2.1 and 2.2 releases. The reason  |
@@ -38,127 +38,127 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | columns (created from Lua) from FLOAT/DOUBLE/REAL ones  |
     |            |                                               |                                                          | (created from SQL).                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-03    | DECIMAL and NUMERIC data types                | ``create table td (s1 numeric primary key);``            | Fail, DECIMAL and NUMERIC data types are not supported  |
+    | E011-03    | DECIMAL and NUMERIC data types                | ``CREATE TABLE td (s1 DECIMAL PRIMARY KEY);``            | Fail, DECIMAL and NUMERIC data types are not supported  |
     |            |                                               |                                                          | and a number containing post-decimal digits will be     |
     |            |                                               |                                                          | treated as approximate numeric.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-04    | Arithmetic operators                          | ``select 10+1,9-2,8*3,7/2 from t;``                      | Okay.                                                   |
+    | E011-04    | Arithmetic operators                          | ``SELECT 10 + 1, 9 - 2, 8 * 3, 7 / 2 FROM t;``           | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-05    | Numeric comparisons                           | ``select * from t where 1 < 2;``                         | Okay.                                                   |
+    | E011-05    | Numeric comparisons                           | ``SELECT * FROM t WHERE 1 < 2;``                         | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-06    | Implicit casting among the numeric data types | ``select * from t where s1 = 1.00;``                     | Okay, but only because Tarantool doesn't distinguish    |
+    | E011-06    | Implicit casting among the numeric data types | ``SELECT * FROM t WHERE s1 = 1.00;``                     | Okay, but only because Tarantool doesn't distinguish    |
     |            |                                               |                                                          | between numeric data types.                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E021       | Character string types                                                                                                                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-01    | Character data type (including all its        | ``create table t44 (s1 char primary key);``              | Fail, CHAR is not supported. This type of               |
+    | E021-01    | Character data type (including all its        | ``CREATE TABLE t44 (s1 CHAR PRIMARY KEY);``              | Fail, CHAR is not supported. This type of               |
     |            | spellings)                                    |                                                          | Fail will only be counted once.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-02    | CHARACTER VARYING data type (including all    | ``create table t45 (s1 varchar primary key);``           | Fail, only the spelling VARCHAR is allowed.             |
+    | E021-02    | CHARACTER VARYING data type (including all    | ``CREATE TABLE t45 (s1 VARCHAR(1) PRIMARY KEY);``        | Fail, only the spelling VARCHAR is allowed.             |
     |            | its spellings)                                |                                                          |                                                         |
     |            |                                               |                                                          | **Note:** VARCHAR(N) does not check the string length.  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-03    | Character literals                            | ``insert into t45 values ('');``                         | Okay, and the bad practice of accepting ""'s for        |
+    | E021-03    | Character literals                            | ``INSERT INTO t45 VALUES ('');``                         | Okay, and the bad practice of accepting ""'s for        |
     |            |                                               |                                                          | character literals is avoided.                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-04    | CHARACTER_LENGTH function                     | ``select character_length(s1) from t;``                  | Fail. There is no such function. There is a function    |
+    | E021-04    | CHARACTER_LENGTH function                     | ``SELECT character_length(s1) FROM t;``                  | Fail. There is no such function. There is a function    |
     |            |                                               |                                                          | LENGTH(), which is okay.                                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-05    | OCTET_LENGTH                                  | ``select octet_length(s1) from t;``                      | Fail. There is no such function.                        |
+    | E021-05    | OCTET_LENGTH                                  | ``SELECT octet_length(s1) FROM t;``                      | Fail. There is no such function.                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-06    | SUBSTRING function.                           | ``select substring(s1 from 1 for 1) from t;``            | Fail. There is no such function. There is a function    |
+    | E021-06    | SUBSTRING function.                           | ``SELECT substring(s1 FROM 1 FOR 1) FROM t;``            | Fail. There is no such function. There is a function    |
     |            |                                               |                                                          | SUBSTR(x,n,n) which is okay.                            |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-07    | Character concatenation                       | ``select 'a' || 'b' from t;``                            | Okay.                                                   |
+    | E021-07    | Character concatenation                       | ``SELECT 'a' || 'b' FROM t;``                            | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-08    | UPPER and LOWER functions                     | ``select upper('a'),lower('B') from t;``                 | Okay.                                                   |
+    | E021-08    | UPPER and LOWER functions                     | ``SELECT upper('a'), lower('B') FROM t;``                | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-09    | TRIM function                                 | ``select trim('a ') from t;``                            | Okay.                                                   |
+    | E021-09    | TRIM function                                 | ``SELECT trim('a ') FROM t;``                            | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-10    | Implicit casting among the fixed-length and   | ``select * from tm where char_column > varchar_column;`` | Fail, there is no fixed-length character string type.   |
+    | E021-10    | Implicit casting among the fixed-length and   | ``SELECT * FROM tm WHERE char_column > varchar_column;`` | Fail, there is no fixed-length character string type.   |
     |            | variable-length character string types        |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-11    | POSITION function                             | ``select position(x in y) from z;``                      | Fail. Tarantool's function uses ',' rather than 'in'    |
+    | E021-11    | POSITION function                             | ``SELECT position(x in y) FROM z;``                      | Fail. Tarantool's function uses ',' rather than 'in'    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-12    | Character comparison                          | ``select * from t where s1 > 'a';``                      | Okay. We should note here that comparisons use a binary |
+    | E021-12    | Character comparison                          | ``SELECT * FROM t WHERE s1 > 'a';``                      | Okay. We should note here that comparisons use a binary |
     |            |                                               |                                                          | collation by default, but it is easy to specify unicode |
     |            |                                               |                                                          | or unicode_ci collations, or create new collations.     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E031       | Identifiers                                   | ``create table rank (ceil int primary key);``            | Fail. Tarantool's list of reserved words differs from   |
+    | E031       | Identifiers                                   | ``CREATE TABLE rank (ceil INTEGER PRIMARY KEY);``        | Fail. Tarantool's list of reserved words differs from   |
     |            |                                               |                                                          | the standard's list of reserved words.                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E031-01    | Delimited Identifiers                         | ``create table "t47" (s1 int primary key);``             | Okay. And enclosing identifiers inside double quotes    |
+    | E031-01    | Delimited Identifiers                         | ``CREATE TABLE "t47" (s1 INTEGER PRIMARY KEY);``         | Okay. And enclosing identifiers inside double quotes    |
     |            |                                               |                                                          | means they won't be converted to upper case or lower    |
     |            |                                               |                                                          | case, this is behavior that some other DBMSs sadly lack.|
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E031-02    | Lower case identifiers                        | ``create table t48 (s1 int primary key);``               | Okay.                                                   |
+    | E031-02    | Lower case identifiers                        | ``CREATE TABLE t48 (s1 INTEGER PRIMARY KEY);``           | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E031-03    | Trailing underscore                           | ``create table t49_ (s1 int primary key);``              | Okay.                                                   |
+    | E031-03    | Trailing underscore                           | ``CREATE TABLE t49_ (s1 INTEGER PRIMARY KEY);``          | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E051       | Basic query specification                                                                                                                                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-01    | SELECT DISTINCT                               | ``select distinct s1 from t;``                           | Okay.                                                   |
+    | E051-01    | SELECT DISTINCT                               | ``SELECT DISTINCT s1 FROM t;``                           | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-02    | GROUP BY clause                               | ``select distinct s1 from t group by s1;``               | Okay.                                                   |
+    | E051-02    | GROUP BY clause                               | ``SELECT DISTINCT s1 FROM t GROUP BY s1;``               | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-04    | GROUP BY can contain columns not in select    | ``select s1 from t group by lower(s1);``                 | Okay.                                                   |
+    | E051-04    | GROUP BY can contain columns not in select    | ``SELECT s1 FROM t GROUP BY lower(s1);``                 | Okay.                                                   |
     |            | list                                          |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-05    | Select list items can be renamed              | ``select s1 as K from t order by K;``                    | Okay.                                                   |
+    | E051-05    | Select list items can be renamed              | ``SELECT s1 AS k FROM t ORDER BY k;``                    | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-06    | HAVING clause                                 | ``select count(*) from t having count(*) > 0;``          | Okay. GROUP BY is not mandatory before HAVING.          |
+    | E051-06    | HAVING clause                                 | ``SELECT COUNT(*) FROM t HAVING COUNT(*) > 0;``          | Okay. GROUP BY is not mandatory before HAVING.          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-07    | Qualified * in select list                    | ``select t.* from t;``                                   | Okay.                                                   |
+    | E051-07    | Qualified * in select list                    | ``SELECT t.* FROM t;``                                   | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-08    | Correlation names in the FROM clause          | ``select * from t as K;``                                | Okay.                                                   |
+    | E051-08    | Correlation names in the FROM clause          | ``SELECT * FROM t AS k;``                                | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E051-09    | Rename columns in the FROM clause             | ``select * from t as x(q,c);``                           | Fail.                                                   |
+    | E051-09    | Rename columns in the FROM clause             | ``SELECT * FROM t AS x(q,c);``                           | Fail.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061       | Basic predicates and search conditions                                                                                                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-01    | Comparison predicate                          | ``select * from t where 0 = 0;``                         | Okay.                                                   |
+    | E061-01    | Comparison predicate                          | ``SELECT * FROM t WHERE 0 = 0;``                         | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-02    | BETWEEN predicate                             | ``select * from t where ' ' between '' and ' ';``        | Okay.                                                   |
+    | E061-02    | BETWEEN predicate                             | ``SELECT * FROM t WHERE ' ' BETWEEN '' and ' ';``        | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-03    | IN predicate with list of values              | ``select * from t where s1 in ('a',upper('a'));``        | Okay.                                                   |
+    | E061-03    | IN predicate with list of values              | ``SELECT * FROM t WHERE s1 IN ('a', upper('a'));``       | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061-04    | LIKE predicate                                | ``select * from t where s1 like '_';``                   | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E061-05    | LIKE predicate: ESCAPE clause                 | ``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``             | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-06    | NULL predicate                                | ``select * from t where s1 is not null;``                | Okay.                                                   |
+    | E061-06    | NULL predicate                                | ``SELECT * FROM t WHERE s1 IS NOT NULL;``                | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-07    | Quantified comparison predicate               | ``select * from t where s1 = any (select s1 from t);``   | Fail. Syntax error.                                     |
+    | E061-07    | Quantified comparison predicate               | ``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``   | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-08    | EXISTS predicate                              | ``select * from t where not exists (select * from t);``  | Okay.                                                   |
+    | E061-08    | EXISTS predicate                              | ``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``  | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-09    | Subqueries in comparison predicate            | ``select * from t where s1 > (select s1 from t);``       | Okay.                                                   |
+    | E061-09    | Subqueries in comparison predicate            | ``SELECT * FROM t WHERE s1 > (SELECT s1 FROM t);``       | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-11    | Subqueries in IN predicate                    | ``select * from t where s1 in (select s1 from t);``      | Okay.                                                   |
+    | E061-11    | Subqueries in IN predicate                    | ``SELECT * FROM t WHERE s1 IN (SELECT s1 FROM t);``      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-12    | Subqueries in quantified comparison predicate | ``select * from t where s1 >= all (select s1 from t);``  | Fail. Syntax error.                                     |
+    | E061-12    | Subqueries in quantified comparison predicate | ``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``  | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-13    | Correlated subqueries                         | ``select * from t where s1 = (select s1 from t2 where    | Okay.                                                   |
+    | E061-13    | Correlated subqueries                         | ``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE    | Okay.                                                   |
     |            |                                               | t2.s2 = t.s1);``                                         |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E061-14    | Search condition                              | ``select * from t where 0 <> 0 or 'a' < 'b' and s1 is    | Okay.                                                   |
-    |            |                                               | null;``                                                  |                                                         |
+    | E061-14    | Search condition                              | ``SELECT * FROM t WHERE 0 <> 0 OR 'a' < 'b' AND s1 IS    | Okay.                                                   |
+    |            |                                               | NULL;``                                                  |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E071       | Basic query expressions                                                                                                                                            |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E071-01    | UNION DISTINCT table operator                 | ``select * from t union distinct select * from t;``      | Fail. However, "select * from t union select * from t;" |
+    | E071-01    | UNION DISTINCT table operator                 | ``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``      | Fail. However, "SELECT * FROM t UNION SELECT * FROM t;" |
     |            |                                               |                                                          | is okay.                                                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E071-02    | UNION ALL table operator                      | ``select * from t union all select * from t;``           | Okay.                                                   |
+    | E071-02    | UNION ALL table operator                      | ``SELECT * FROM t UNION ALL SELECT * FROM t;``           | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E071-03    | EXCEPT DISTINCT table operator                | ``select * from t except distinct select * from t;``     | Fail. However,                                          |
-    |            |                                               |                                                          | ``select * from t except select * from t;`` is okay.    |
+    | E071-03    | EXCEPT DISTINCT table operator                | ``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``     | Fail. However,                                          |
+    |            |                                               |                                                          | "SELECT * FROM t EXCEPT SELECT * FROM t;" is okay.      |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E071-05    | Columns combined via table operators need not | ``select s1 from t union select 5 from t;``              | Okay, but only because Tarantool doesn't distinguish    |
+    | E071-05    | Columns combined via table operators need not | ``SELECT s1 FROM t UNION SELECT 5 FROM t;``              | Okay, but only because Tarantool doesn't distinguish    |
     |            | have exactly the same data type.              |                                                          | data types very well.                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E071-06    | Table operators in subqueries                 | ``select * from t where 'a' in (select * from t union    | Okay.                                                   |
-    |            |                                               | select * from t);``                                      |                                                         |
+    | E071-06    | Table operators in subqueries                 | ``SELECT * FROM t WHERE 'a' IN (SELECT * FROM t UNION    | Okay.                                                   |
+    |            |                                               | SELECT * FROM t);``                                      |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E081       | Basic privileges                                                                                                                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -185,38 +185,39 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E091       | Set functions                                                                                                                                                      |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-01    | AVG                                           | ``select avg(s1) from t7;``                              | Fail. No warning that nulls were eliminated.            |
+    | E091-01    | AVG                                           | ``SELECT AVG(s1) FROM t7;``                              | Fail. No warning that nulls were eliminated.            |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-02    | COUNT                                         | ``select count(*) from t7 where s1 > 0;``                | Okay.                                                   |
+    | E091-02    | COUNT                                         | ``SELECT COUNT(*) FROM t7 WHERE s1 > 0;``                | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-03    | MAX                                           | ``select max(s1) from t7 where s1 > 0;``                 | Okay.                                                   |
+    | E091-03    | MAX                                           | ``SELECT MAX(s1) FROM t7 WHERE s1 > 0;``                 | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-04    | MIN                                           | ``select min(s1) from t7 where s1 > 0;``                 | Okay.                                                   |
+    | E091-04    | MIN                                           | ``SELECT MIN(s1) FROM t7 WHERE s1 > 0;``                 | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-05    | SUM                                           | ``select sum(1) from t7 where s1 > 0;``                  | Okay.                                                   |
+    | E091-05    | SUM                                           | ``SELECT SUM(1) FROM t7 WHERE s1 > 0;``                  | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-06    | ALL quantifier                                | ``select sum(all s1) from t7 where s1 > 0;``             | Okay.                                                   |
+    | E091-06    | ALL quantifier                                | ``SELECT SUM(ALL s1) FROM t7 WHERE s1 > 0;``             | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E091-07    | DISTINCT quantifier                           | ``select sum(distinct s1) from t7 where s1 > 0;``        | Okay.                                                   |
+    | E091-07    | DISTINCT quantifier                           | ``SELECT SUM(DISTINCT s1) FROM t7 WHERE s1 > 0;``        | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E101       | Basic data manipulation                                                                                                                                            |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E101-01    | INSERT statement                              | ``insert into t (s1,s2) values (1,''),(2,null),(3,55);`` | Okay.                                                   |
+    | E101-01    | INSERT statement                              | ``INSERT INTO t (s1, s2) VALUES (1, ''), (2, NULL),      | Okay.                                                   |
+    |            |                                               | (3, 55);``                                               |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E101-03    | Searched UPDATE statement                     | ``update t set s1 = null where s1 in (select s1 from     | Okay.                                                   |
+    | E101-03    | Searched UPDATE statement                     | ``UPDATE t SET s1 = NULL WHERE s2 IN (SELECT s1 FROM     | Okay.                                                   |
     |            |                                               | t2);``                                                   |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E101-04    | Searched DELETE statement                     | ``delete from t where s1 in (select s1 from t);``        | Okay.                                                   |
+    | E101-04    | Searched DELETE statement                     | ``DELETE FROM t WHERE s1 IN (SELECT s1 FROM t);``        | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E111       | Single row SELECT statement                   | ``select count(*) from t;``                              | Okay.                                                   |
+    | E111       | Single row SELECT statement                   | ``SELECT COUNT(*) FROM t;``                              | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E121       | Basic cursor support                                                                                                                                               |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E121-01    | DECLARE CURSOR                                |                                                          | Fail. Tarantool doesn't support cursors.                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E121-02    | ORDER BY columns need not be in select list   | ``select s1 from t order by s2;``                        | Okay.                                                   |
+    | E121-02    | ORDER BY columns need not be in select list   | ``SELECT s1 FROM t ORDER BY s2;``                        | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E121-03    | Value expressions in select list              | ``select s1 from t7 order by -s1;``                      | Okay.                                                   |
+    | E121-03    | Value expressions in select list              | ``SELECT s1 FROM t7 ORDER BY -s1;``                      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E121-04    | OPEN statement                                |                                                          | Fail. Tarantool doesn't support cursors.                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -230,36 +231,36 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E121-17    | WITH HOLD cursors                             |                                                          | Fail. Tarantool doesn't support cursors.                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E131       | Null value support (nulls in lieu of values)  | ``select s1 from t7 where s1 is null;``                  | Okay.                                                   |
+    | E131       | Null value support (nulls in lieu of values)  | ``SELECT s1 FROM t7 WHERE s1 IS NULL;``                  | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E141       | Basic integrity constraints                                                                                                                                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-01    | NOT NULL constraints                          | ``create table t8 (s1 int primary key, s2 int not        | Okay.                                                   |
-    |            |                                               | null);``                                                 |                                                         |
+    | E141-01    | NOT NULL constraints                          | ``CREATE TABLE t8 (s1 INTEGER PRIMARY KEY, s2 INTEGER    | Okay.                                                   |
+    |            |                                               | NOT NULL);``                                             |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-02    | UNIQUE constraints of NOT NULL columns        | ``create table t9 (s1 int primary key , s2 int not       | Okay.                                                   |
-    |            |                                               | null unique);``                                          |                                                         |
+    | E141-02    | UNIQUE constraints of NOT NULL columns        | ``CREATE TABLE t9 (s1 INTEGER PRIMARY KEY, s2 INTEGER    | Okay.                                                   |
+    |            |                                               | NOT NULL UNIQUE);``                                      |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-03    | PRIMARY KEY constraints                       | ``create table t10 (s1 int primary key);``               | Okay, although Tarantool shouldn't always insist on     |
+    | E141-03    | PRIMARY KEY constraints                       | ``CREATE TABLE t10 (s1 INTEGER PRIMARY KEY);``           | Okay, although Tarantool shouldn't always insist on     |
     |            |                                               |                                                          | having a primary key.                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-04    | Basic FOREIGN KEY constraint with the NO      | ``create table t11 (s0 int primary key, s1 int           | Okay.                                                   |
-    |            | ACTION default for both referential delete    | references t10);``                                       |                                                         |
+    | E141-04    | Basic FOREIGN KEY constraint with the NO      | ``CREATE TABLE t11 (s0 INTEGER PRIMARY KEY, s1 INTEGER   | Okay.                                                   |
+    |            | ACTION default for both referential delete    | REFERENCES t10);``                                       |                                                         |
     |            | action and referential update action.         |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-06    | CHECK constraints                             | ``create table t12 (s1 int primary key, s2 int, check    | Okay.                                                   |
-    |            |                                               | (s1 = s2));``                                            |                                                         |
+    | E141-06    | CHECK constraints                             | ``CREATE TABLE t12 (s1 INTEGER PRIMARY KEY, s2 INTEGER,  | Okay.                                                   |
+    |            |                                               | CHECK (s1 = s2));``                                      |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-07    | Column defaults                               | ``create table t13 (s1 int primary key, s2 int           | Okay.                                                   |
-    |            |                                               | default -1);``                                           |                                                         |
+    | E141-07    | Column defaults                               | ``CREATE TABLE t13 (s1 INTEGER PRIMARY KEY, s2 INTEGER   | Okay.                                                   |
+    |            |                                               | DEFAULT -1);``                                           |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-08    | NOT NULL inferred on primary key              | ``create table t14 (s1 int primary key);``               | Okay. We are unable to insert NULL although we don't    |
+    | E141-08    | NOT NULL inferred on primary key              | ``CREATE TABLE t14 (s1 INTEGER PRIMARY KEY);``           | Okay. We are unable to insert NULL although we don't    |
     |            |                                               |                                                          | explicitly say the column is NOT NULL.                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-10    | Names in a foreign key can be specified in    | ``create table t15 (s1 int, s2 int, primary key          | Okay.                                                   |
+    | E141-10    | Names in a foreign key can be specified in    | ``CREATE TABLE t15 (s1 INTEGER, s2 INTEGER, PRIMARY KEY  | Okay.                                                   |
     |            | any order                                     | (s1,s2));``                                              |                                                         |
-    |            |                                               | ``create table t16 (s1 int primary key, s2 int, foreign  |                                                         |
-    |            |                                               | key (s2,s1) references t15 (s1,s2));``                   |                                                         |
+    |            |                                               | ``CREATE TABLE t16 (s1 INTEGER PRIMARY KEY, s2 INTEGER,  |                                                         |
+    |            |                                               | FOREIGN KEY (s2, s1) REFERENCES t15 (s1, s2));``         |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E151       | Transaction support                                                                                                                                                |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -269,17 +270,17 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E152       | Basic SET TRANSACTION statement                                                                                                                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E152-01    | SET TRANSACTION statement ISOLATION           | ``set transaction isolation level serializable;``        | Fail. Syntax error.                                     |
+    | E152-01    | SET TRANSACTION statement ISOLATION           | ``SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;``        | Fail. Syntax error.                                     |
     |            | SERIALIZABLE clause                           |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E152-02    | SET TRANSACTION statement READ ONLY and READ  | ``set transaction read only;``                           | Fail. Syntax error.                                     |
+    | E152-02    | SET TRANSACTION statement READ ONLY and READ  | ``SET TRANSACTION READ ONLY;``                           | Fail. Syntax error.                                     |
     |            | WRITE clauses                                 |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E153       | Updatable queries with subqueries                                                                                                                                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E161       | SQL comments using leading double minus       | ``--comment;``                                           | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E171       | SQLSTATE support                              | ``drop table no_such_table;``                            | Fail. At least, the error message doesn't hint that     |
+    | E171       | SQLSTATE support                              | ``DROP TABLE no_such_table;``                            | Fail. At least, the error message doesn't hint that     |
     |            |                                               |                                                          | SQLSTATE exists.                                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E182       | Host language binding                         |                                                          | Okay. Any of the Tarantool connectors should be able    |
@@ -287,101 +288,102 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031       | Basic schema manipulation                                                                                                                                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-01    | CREATE TABLE statement to create persistent   | ``create table t20 (t20_1 int not null);``               | Fail. We always have to say PRIMARY KEY (we only        |
+    | F031-01    | CREATE TABLE statement to create persistent   | ``CREATE TABLE t20 (t20_1 INTEGER NOT NULL);``           | Fail. We always have to say PRIMARY KEY (we only        |
     |            | base tables                                   |                                                          | count this flaw once).                                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-02    | CREATE VIEW statement                         | ``create view t21 as select * from t20;``                | Okay.                                                   |
+    | F031-02    | CREATE VIEW statement                         | ``CREATE VIEW t21 AS SELECT * FROM t20;``                | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031-03    | GRANT statement                               |                                                          | Fail. Tarantool doesn't support privileges except       |
     |            |                                               |                                                          | via NoSQL.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-04    | ALTER TABLE statement: add column             | ``alter table t7 add column t7_2 varchar default 'q';``  | Fail. Table alterations work but not this clause.       |
+    | F031-04    | ALTER TABLE statement: add column             | ``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR DEFAULT 'q';``  | Fail. Table alterations work but not this clause.       |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-13    | DROP TABLE statement: RESTRICT clause         | ``drop table t20 restrict;``                             | Fail. Syntax error, and RESTRICT is not assumed.        |
+    | F031-13    | DROP TABLE statement: RESTRICT clause         | ``DROP TABLE t20 RESTRICT;``                             | Fail. Syntax error, and RESTRICT is not assumed.        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-16    | DROP VIEW statement: RESTRICT clause          | ``drop view v2 restrict;``                               | Fail. Syntax error, and RESTRICT is not assumed.        |
+    | F031-16    | DROP VIEW statement: RESTRICT clause          | ``DROP VIEW v2 RESTRICT;``                               | Fail. Syntax error, and RESTRICT is not assumed.        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031-19    | REVOKE statement: RESTRICT clause             |                                                          | Fail. Tarantool does not support privileges except      |
     |            |                                               |                                                          | via NoSQL.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F041       |Basic joined table                                                                                                                                                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-01    | Inner join but not necessarily the INNER      | ``select a.s1 from t7 a join t7 b;``                     | Okay.                                                   |
+    | F041-01    | Inner join but not necessarily the INNER      | ``SELECT a.s1 FROM t7 a JOIN t7 b;``                     | Okay.                                                   |
     |            | keyword                                       |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-02    | INNER keyword                                 | ``select a.s1 from t7 a inner join t7 b;``               | Okay.                                                   |
+    | F041-02    | INNER keyword                                 | ``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``               | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-03    | LEFT OUTER JOIN                               | ``select t7.*,t22.* from t22 left outer join t7 on       | Okay.                                                   |
-    |            |                                               | (t22_1=s1);``                                            |                                                         |
+    | F041-03    | LEFT OUTER JOIN                               | ``SELECT t7.*, t22.* FROM t22 LEFT OUTER JOIN t7 ON      | Okay.                                                   |
+    |            |                                               | (t22_1 = s1);``                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-04    | RIGHT OUTER JOIN                              | ``select t7.*,t22.* from t22 right outer join t7 on      | Fail. Syntax error.                                     |
-    |            |                                               | (t22_1=s1);``                                            |                                                         |
+    | F041-04    | RIGHT OUTER JOIN                              | ``SELECT t7.*, t22.* FROM t22 RIGHT OUTER JOIN t7 ON     | Fail. Syntax error.                                     |
+    |            |                                               | (t22_1 = s1);``                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-05    | Outer joins can be nested                     | ``select t7.*,t22.* from t22 left outer join t7 on       | Okay.                                                   |
-    |            |                                               | (t22_1=s1) left outer join t23;``.                       |                                                         |
+    | F041-05    | Outer joins can be nested                     | ``SELECT t7.*, t22.* FROM t22 LEFT OUTER JOIN t7 ON      | Okay.                                                   |
+    |            |                                               | (t22_1 = s1) LEFT OUTER JOIN t23;``                      |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-07    | The inner table in a left or right outer join | ``select t7.* from t22 left outer join t7 on (t22_1=s1)  | Okay. The query fails due to a syntax error but         |
-    |            | can also be used in an inner join             | inner join t22 on (t22_4=t22_5);``                       | that's expectable.                                      |
+    | F041-07    | The inner table in a left or right outer join | ``SELECT t7.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 =    | Okay. The query fails due to a syntax error but         |
+    |            | can also be used in an inner join             | s1) INNER JOIN t22 ON (t22_4 = t22_5);``                 | that's expectable.                                      |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-08    | All comparison operators are supported        | ``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``     | Okay.                                                   |
+    | F041-08    | All comparison operators are supported        | ``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1          | Okay.                                                   |
+    |            |                                               | OR 0 <> 1;``                                             |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051 Basic date and time                                                                                                                                                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-01    | DATE data type (including support of DATE     | ``create table dates (s1 date);``                        | Fail. Tarantool does not support DATE data type.        |
+    | F051-01    | DATE data type (including support of DATE     | ``CREATE TABLE dates (s1 DATE);``                        | Fail. Tarantool does not support DATE data type.        |
     |            | literal)                                      |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-02    | TIME data type (including support of TIME     | ``create table times (s1 time default time '1:2:3');``   | Fail. Syntax error.                                     |
+    | F051-02    | TIME data type (including support of TIME     | ``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``   | Fail. Syntax error.                                     |
     |            | literal)                                      |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-03    | TIMESTAMP data type (including support of     | ``create table timestamps (s1 timestamp);``              | Fail. Syntax error.                                     |
+    | F051-03    | TIMESTAMP data type (including support of     | ``CREATE TABLE timestamps (s1 TIMESTAMP);``              | Fail. Syntax error.                                     |
     |            | TIMESTAMP literal)                            |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-04    | Comparison predicate on DATE, TIME and        | ``select * from dates where s1 = s1;``                   | Fail. The data types are not supported.                 |
+    | F051-04    | Comparison predicate on DATE, TIME and        | ``SELECT * FROM dates WHERE s1 = s1;``                   | Fail. The data types are not supported.                 |
     |            | TIMESTAMP data types                          |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-05    | Explicit CAST between date-time types and     | ``select cast(s1 as varchar(10)) from dates;``           | Fail. The data types are not supported.                 |
+    | F051-05    | Explicit CAST between date-time types and     | ``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``           | Fail. The data types are not supported.                 |
     |            | character string types                        |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-06    | CURRENT_DATE                                  | ``select current_date from t;``                          | Fail. Syntax error.                                     |
+    | F051-06    | CURRENT_DATE                                  | ``SELECT CURRENT_DATE FROM t;``                          | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-07    | CURRENT_TIME                                  | ``select * from t where current_time < '23:23:23';``     | Fail. Syntax error.                                     |
+    | F051-07    | CURRENT_TIME                                  | ``SELECT * FROM t WHERE CURRENT_TIME < '23:23:23';``     | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-08    | LOCALTIME                                     | ``select localtime from t;``                             | Fail. Syntax error.                                     |
+    | F051-08    | LOCALTIME                                     | ``SELECT LOCALTIME FROM t;``                             | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-09    | LOCALTIMESTAMP                                | ``select localtimestamp from t;``                        | Fail. Syntax error.                                     |
+    | F051-09    | LOCALTIMESTAMP                                | ``SELECT LOCALTIMESTAMP FROM t;``                        | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F081       | UNION and EXCEPT in views                     | ``create view vv as select * from t7 except select *     | Okay.                                                   |
-    |            |                                               | from t15;``                                              |                                                         |
+    | F081       | UNION and EXCEPT in views                     | ``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT *     | Okay.                                                   |
+    |            |                                               | FROM t15;``                                              |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F131       | Grouped operations                                                                                                                                                 |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F131-01    | WHERE, GROUP BY, and HAVING clauses supported | ``create view vv2 as select * from vv group by s1;``     | Okay.                                                   |
+    | F131-01    | WHERE, GROUP BY, and HAVING clauses supported | ``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``     | Okay.                                                   |
     |            | in queries with grouped views                 |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F131-02    | Multiple tables supported in queries with     | ``create view vv3 as select * from vv2,t30;``            | Okay.                                                   |
+    | F131-02    | Multiple tables supported in queries with     | ``CREATE VIEW vv3 AS SELECT * FROM vv2, t30;``           | Okay.                                                   |
     |            | grouped views                                 |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F131-03    | Set functions supported in queries with       | ``create view vv4 as select count(*) from vv2;``         | Okay.                                                   |
+    | F131-03    | Set functions supported in queries with       | ``CREATE VIEW vv4 AS SELECT COUNT(*) FROM vv2;``         | Okay.                                                   |
     |            | grouped views                                 |                                                          |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F131-04    | Subqueries with GROUP BY and HAVING clauses   | ``create view vv5 as select count(*) from vv2 group by   | Okay.                                                   |
-    |            | and grouped views                             | s1 having count(*) > 0;``                                |                                                         |
+    | F131-04    | Subqueries with GROUP BY and HAVING clauses   | ``CREATE VIEW vv5 AS SELECT COUNT(*) FROM vv2 GROUP BY   | Okay.                                                   |
+    |            | and grouped views                             | s1 HAVING COUNT(*) > 0;``                                |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F181       | Multiple module support                       |                                                          | Fail. Tarantool doesn't have modules.                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F201       | CAST function                                 | ``select cast(s1 as int) from t;``                       | Okay.                                                   |
+    | F201       | CAST function                                 | ``SELECT CAST(s1 AS INTEGER) FROM t;``                   | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F221       | Explicit defaults                             | ``update t set s1 = default;``                           | Fail. Syntax error.                                     |
+    | F221       | Explicit defaults                             | ``UPDATE t SET s1 = DEFAULT;``                           | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F261       | CASE expression                                                                                                                                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F261-01    | Simple CASE                                   | ``select case when 1 = 0 then 5 else 7 end from t;``     | Okay.                                                   |
+    | F261-01    | Simple CASE                                   | ``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``     | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F261-02    | Searched CASE                                 | ``select case 1 when 0 then 5 else 7 end from t;``       | Okay.                                                   |
+    | F261-02    | Searched CASE                                 | ``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``       | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F261-03    | NULLIF                                        | ``select nullif(s1,7) from t;``                          | Okay.                                                   |
+    | F261-03    | NULLIF                                        | ``SELECT nullif(s1, 7) FROM t;``                         | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F261-04    | COALESCE                                      | ``select coalesce(s1,7) from t;``                        | Okay.                                                   |
+    | F261-04    | COALESCE                                      | ``SELECT coalesce(s1, 7) FROM t;``                       | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F311       | Schema definition statement                                                                                                                                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -399,39 +401,40 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F311-05    | GRANT statement                               |                                                          | Fail. Tarantool doesn't have GRANT inside CREATE        |
     |            |                                               |                                                          | SCHEMA.                                                 |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F471       | Scalar subquery values                        | ``select s1 from t where s1 = (select count(*) from t);``| Okay.                                                   |
+    | F471       | Scalar subquery values                        | ``SELECT s1 FROM t WHERE s1 = (SELECT COUNT(*)           | Okay.                                                   |
+    |            |                                               | FROM t);``                                               |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F481       | Expanded NULL Predicate                       | ``select * from t where row(s1,s1) is not null;``        | Fail. Syntax error.                                     |
+    | F481       | Expanded NULL Predicate                       | ``SELECT * FROM t WHERE row (s1, s1) IS NOT NULL;``      | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F812       | Basic flagging                                |                                                          | Fail. Tarantool doesn't support any flagging.           |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | S011       | Distinct types                                | ``create type x as float;``                              | Fail. Tarantool doesn't support distinct types.         |
+    | S011       | Distinct types                                | ``CREATE TYPE x AS INTEGER;``                            | Fail. Tarantool doesn't support distinct types.         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | T321       | Basic SQL-invoked routines                                                                                                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T321-01    | User-defined functions with no overloading    | ``create function f () returns int return 5;``           | Fail. Tarantool doesn't support user-defined            |
+    | T321-01    | User-defined functions with no overloading    | ``CREATE FUNCTION f () RETURNS INTEGER RETURN 5;``       | Fail. Tarantool doesn't support user-defined            |
     |            |                                               |                                                          | SQL functions.                                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T321-02    | User-defined procedures with no overloading   | ``create procedure p () begin end;``                     | Fail. Tarantool doesn't support user-defined            |
+    | T321-02    | User-defined procedures with no overloading   | ``CREATE PROCEDURE p () BEGIN END;``                     | Fail. Tarantool doesn't support user-defined            |
     |            |                                               |                                                          | procedures.                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T321-03    | Function invocation                           | ``select f(1) from t;``                                  | Okay. Tarantool can invoke Lua user-defined functions.  |
+    | T321-03    | Function invocation                           | ``SELECT f(1) FROM t;``                                  | Okay. Tarantool can invoke Lua user-defined functions.  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T321-04    | CALL statement.                               | ``call p();``                                            | Fail. Tarantool doesn't support user-defined            |
+    | T321-04    | CALL statement.                               | ``CALL p();``                                            | Fail. Tarantool doesn't support user-defined            |
     |            |                                               |                                                          | procedures.                                             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T321-05    | RETURN statement.                             | ``create function f() returns int return 5;``            | Fail. Tarantool doesn't support user-defined            |
+    | T321-05    | RETURN statement.                             | ``CREATE FUNCTION f() RETURNS INTEGER RETURN 5;``        | Fail. Tarantool doesn't support user-defined            |
     |            |                                               |                                                          | functions.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | T631       | IN predicate with one list element            | ``select * from t where 1 in (1);``                      | Okay.                                                   |
+    | T631       | IN predicate with one list element            | ``SELECT * FROM t WHERE 1 IN (1);``                      | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F021       | Basic information schema                      | ``select * from information_schema.tables;``             | Fail. There is no schema with that name (not counted    |
+    | F021       | Basic information schema                      | ``SELECT * FROM information_schema.tables;``             | Fail. There is no schema with that name (not counted    |
     |            |                                               |                                                          | in the final score).                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
-Total number of items marked "Fail": 69
+Total number of items marked "Fail": 70
 
-Total number of items marked "Okay": 77
+Total number of items marked "Okay": 76
 
 
 

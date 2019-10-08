@@ -73,22 +73,9 @@ Below is a list of all ``http`` functions.
         :param table opts: table of connection options, with any of these
          components:
 
-          * ``timeout`` - number of seconds to wait for a curl API read request
-            before timing out
+          * ``ca_file`` - path to an SSL certificate file to verify the peer with
           * ``ca_path`` - path to a directory holding one or more certificates to
             verify the peer with
-          * ``ca_file`` - path to an SSL certificate file to verify the peer with
-          * ``verify_host`` - set on/off verification of the certificate's name
-            (CN) against host. See also
-            `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_
-          * ``verify_peer`` - set on/off verification of the peer's SSL
-            certificate. See also
-            `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_
-          * ``ssl_key`` - path to a private key file for a TLS and SSL client
-            certificate. See also
-            `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_
-          * ``ssl_cert`` - path to a SSL client certificate file. See also
-            `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_
           * ``headers`` - table of HTTP headers
           * ``keepalive_idle`` - delay, in seconds, that the operating system
             will wait while the connection is idle before sending keepalive
@@ -102,23 +89,67 @@ Below is a list of all ``http`` functions.
             Tarantool will also set HTTP keepalive headers: Connection:Keep-Alive
             and Keep-Alive:timeout=<keepalive_idle>.
             Otherwise Tarantool will send Connection:close
-          * ``low_speed_time`` - set the "low speed time" -- the time that the
-            transfer speed should be below the "low speed limit" for the library
-            to consider it too slow and abort. See also
-            `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_
           * ``low_speed_limit`` - set the "low speed limit" -- the average
             transfer speed in bytes per second that the transfer should be below
             during "low speed time" seconds for the library to consider it to be
             too slow and abort. See also
             `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_
-          * ``verbose`` - set on/off verbose mode
+          * ``low_speed_time`` - set the "low speed time" -- the time that the
+            transfer speed should be below the "low speed limit" for the library
+            to consider it too slow and abort. See also
+            `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_
+          * ``max_header_name_len`` - the maximal length of a header name. If a header
+            name is bigger than this value, it is truncated to this length.
+            The default value is '32'.
+          * ``no_proxy`` - a comma-separated list of hosts that do not require proxies, or '*', or ''.
+            Set :samp:`no_proxy = {host} [, {host} ...]` to specify
+            hosts that can be reached without requiring a proxy, even if ``proxy`` has
+            been set to a non-blank value and/or if a proxy-related environment variable
+            has been set.
+            Set ``no__proxy = '*'`` to specify that all hosts can be reached
+            without requiring a proxy, which is equivalent to setting ``proxy=''``.
+            Set ``no_proxy = ''`` to specify that no hosts can be reached
+            without requiring a proxy, even if a proxy-related environment variable
+            (HTTP_PROXY) is used.
+            If ``no_proxy`` is not set, then a proxy-related environment variable
+            (HTTP_PROXY) may be used. See also
+            `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_
+          * ``proxy`` - a proxy server host or IP address, or ''.
+            If ``proxy`` is a host or IP address, then it may begin with a scheme,
+            for example 'https://' for an https proxy or 'http:// for an http proxy.
+            If ``proxy`` is set to '' an empty string, then proxy use is disabled,
+            and no proxy-related environment variable will be used.
+            If ``proxy`` is not set, then a proxy-related environment variable may be used, such as
+            HTTP_PROXY or HTTPS_PROXY or FTP_PROXY, or ALL_PROXY if the
+            protocol can be any protocol. See also
+            `CURLOPT_PROXY <https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html>`_
+          * ``proxy_port`` -- a proxy server port.
+            The default is 443 for an https proxy and 1080 for a non-https proxy.
+            See also
+            `CURLOPT_PROXYPORT <https://curl.haxx.se/libcurl/c/CURLOPT_PROXYPORT.html>`_
+          * ``proxy_user_pwd`` -- a proxy server user name and/or password.
+            Format: :samp:`proxy_user_pwd = {user_name}:`
+            or :samp:`proxy_user_pwd = :{password}`
+            or :samp:`proxy_user_pwd = {user_name}:{password}`. See also
+            `CURLOPT_USERPWD <https://curl.haxx.se/libcurl/c/CURLOPT_USERPWD.html>`_
+          * ``ssl_cert`` - path to a SSL client certificate file. See also
+            `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_
+          * ``ssl_key`` - path to a private key file for a TLS and SSL client
+            certificate. See also
+            `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_
+          * ``timeout`` - number of seconds to wait for a curl API read request
+            before timing out
           * ``unix_socket`` - a socket name to use instead of an Internet address,
             for a local connection. The Tarantool server must be built with
             ``libcurl`` 7.40 or later. See the :ref:`second example <http-example2>`
             later in this section.
-          * ``max_header_name_len`` - the maximal length of a header name. If a header
-            name is bigger than this value, it is truncated to this length.
-            The default value is '32'.
+          * ``verbose`` - set on/off verbose mode
+          * ``verify_host`` - set on/off verification of the certificate's name
+            (CN) against host. See also
+            `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_
+          * ``verify_peer`` - set on/off verification of the peer's SSL
+            certificate. See also
+            `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_
 
         :return: connection information, with all of these components:
 
@@ -153,7 +184,8 @@ Below is a list of all ``http`` functions.
 
         Requests may be influenced by environment variables, for example
         users can set up an http proxy by setting
-        :samp:`HTTP_PROXY={proxy}` before initiating any requests.
+        :samp:`HTTP_PROXY={proxy}` before initiating any requests,
+        unless a ``proxy`` connection option has priority.
         See the web page document
         `Environment variables libcurl understands <https://curl.haxx.se/libcurl/c/libcurl-env.html>`_.
 
