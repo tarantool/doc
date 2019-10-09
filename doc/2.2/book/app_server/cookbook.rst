@@ -344,7 +344,7 @@ cause the simple "#" operator to deliver improper results.
 The "print(#t)" instruction will print "4";
 the "print(counter)" instruction will print "3";
 the "print(max)" instruction will print "10".
-Other table functions, such as table.sort(), will
+Other table functions, such as :ref:`table.sort() <table-sort>`, will
 also misbehave when "nils" are present.
 
 .. code-block:: lua
