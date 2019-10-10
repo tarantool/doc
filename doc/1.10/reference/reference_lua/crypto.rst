@@ -40,6 +40,9 @@ Below is a list of all ``crypto`` functions.
     | :ref:`crypto.digest.{algorithm}()                        | Get a digest                    |
     | <crypto-digest>`                                         |                                 |
     +----------------------------------------------------------+---------------------------------+
+    | :ref:`crypto.hmac.{algorithm}()                          | Get a hash key                  |
+    | <crypto-hmac>`                                           |                                 |
+    +----------------------------------------------------------+---------------------------------+
 
 .. _crypto-cipher:
 
@@ -103,6 +106,35 @@ Below is a list of all ``crypto`` functions.
 
         crypto.digest.md4('string')
         crypto.digest.sha512('string')
+
+.. module:: crypto.hmac
+
+.. _crypto-hmac:
+
+.. varfunc:: {md4|md5|ripemd160}(key, string)
+             {sha1|sha224|sha256|sha384|sha512}(key, string)
+    :needs_modname: True
+
+    Pass a key and a string. The result is an
+    `HMAC <https://en.wikipedia.org/wiki/HMAC>`_
+    message authentication code. The eight
+    algorithm choices:
+
+    * md4 or md4_hex - md4 (with 128-bit binary strings using MD4)
+    * md5 or md5_hex - md5 (with 128-bit binary strings using MD5)
+    * ripemd160 or ripemd160_hex - ripemd (with 160-bit binary strings using RIPEMD-160)
+    * sha1 or sha1_hex - sha-1 (with 160-bit binary strings using SHA-1)
+    * sha224 or sha224_hex - sha-224 (with 224-bit binary strings using SHA-2)
+    * sha256 or sha256_hex - sha-256 (with 256-bit binary strings using SHA-2)
+    * sha384 or sha384_hex - sha-384 (with 384-bit binary strings using SHA-2)
+    * sha512 or sha512_hex - sha-512(with 512-bit binary strings using SHA-2).
+
+    **Example:**
+
+    .. code-block:: lua
+
+        crypto.hmac.md4('key', 'string')
+        crypto.hmac.md4_hex('key', 'string')
 
 ========================================
 Incremental methods in the crypto module
