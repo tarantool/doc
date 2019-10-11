@@ -102,22 +102,28 @@ Below is a list of all ``log`` functions.
     ``log.debug(...)`` messages will not go to the log file, because they
     correspond to higher levels of detail.
 
-    :param string message: The actual output will be a line containing:
-
-                           * the current timestamp,
-                           * a module name,
-                           * 'E', 'W', 'I', 'V' or 'D' depending on ``log_level_function_name``, and
-                           * ``message``.
-
-                           Output will not occur if ``log_level_function_name``
-                           is for a type greater than :ref:`log_level
-                           <cfg_logging-log_level>`.
+    :param any message:    Usually a string.
 
                            Messages may contain C-style format specifiers %d or
                            %s, so :samp:`log.error('...%d...%s', {x}, {y})`
                            will work if ``x`` is a number and ``y`` is a string.
 
+                           Less commonly, messages may be other scalar data types,
+                           or even tables. So :code:`log.error({'x',18.7,true})`
+                           will work.
+
     :return: nil
+
+    The actual output will be a line in the log, containing:
+
+    * the current timestamp,
+    * a module name,
+    * 'E', 'W', 'I', 'V' or 'D' depending on ``log_level_function_name``, and
+    * ``message``.
+
+    Output will not occur if ``log_level_function_name``
+    is for a type greater than :ref:`log_level
+    <cfg_logging-log_level>`.
 
 .. _log-logger_pid:
 
