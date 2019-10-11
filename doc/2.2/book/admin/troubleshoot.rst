@@ -1,4 +1,5 @@
 .. _admin-troubleshoot:
+.. _admin-troubleshooting-guide:
 
 ================================================================================
 Troubleshooting guide

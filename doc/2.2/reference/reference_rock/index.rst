@@ -9,6 +9,7 @@ This reference covers third-party Lua modules for Tarantool.
 
     dbms
     expirationd
+    membership
     shard
     vshard/index
     tdb
