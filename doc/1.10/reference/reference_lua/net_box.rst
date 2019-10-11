@@ -221,10 +221,11 @@ Below is a list of all ``net.box`` functions.
 
     .. _conn-ping:
 
-    .. method:: ping()
+    .. method:: ping([options])
 
         Execute a PING command.
 
+        :param table options: the supported option is :samp:`timeout={seconds}`
         :return: true on success, false on error
         :rtype:  boolean
 
@@ -232,7 +233,7 @@ Below is a list of all ``net.box`` functions.
 
         .. code-block:: lua
 
-            net_box.self:ping()
+            net_box.self:ping({timeout = 0.5})
 
     .. _conn-wait_connected:
 
