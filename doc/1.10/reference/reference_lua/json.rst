@@ -9,8 +9,9 @@
 ===============================================================================
 
 The ``json`` module provides JSON manipulation routines. It is based on the
-`Lua-CJSON module by Mark Pulford`_. For a complete manual on Lua-CJSON please
-read `the official documentation`_.
+`Lua-CJSON module by Mark Pulford <http://www.kyne.com.au/~mark/software/lua-cjson.php>`_.
+For a complete manual on Lua-CJSON please read
+`the official documentation <http://www.kyne.com.au/~mark/software/lua-cjson-manual.html>`_.
 
 ===============================================================================
                                     Index
@@ -35,16 +36,20 @@ Below is a list of all ``json`` functions and members.
     | :ref:`json.NULL                      | Analog of Lua's "nil"           |
     | <json-null>`                         |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`json.cfg()                     | Set global flags                |
+    | <json-module_cfg>`                   |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: json
 
 .. _json-encode:
 
-.. function:: encode(lua-value)
+.. function:: encode(lua-value [, configuration])
 
     Convert a Lua object to a JSON string.
 
     :param lua_value: either a scalar value or a Lua table value.
+    :param configuration: see :ref:`json.cfg <json-module_cfg>`
     :return: the original value reformatted as a JSON string.
     :rtype: string
 
@@ -78,11 +83,12 @@ Below is a list of all ``json`` functions and members.
 
 .. _json-decode:
 
-.. function:: decode(string)
+.. function:: decode(string [,configuration])
 
     Convert a JSON string to a Lua object.
 
     :param string string: a string formatted as JSON.
+    :param configuration: see :ref:`json.cfg <json-module_cfg>`
     :return: the original contents formatted as a Lua table.
     :rtype: table
 
@@ -141,90 +147,98 @@ Below is a list of all ``json`` functions and members.
         - '{"field2":null,"field1":"a","field3":"c"}'
         ...
 
-The JSON output structure can be specified with ``__serialize``:
+    The JSON output structure can be specified with ``__serialize``:
 
-* ``__serialize="seq"`` for an array
-* ``__serialize="map"`` for a map
+    * ``__serialize="seq"`` for an array
+    * ``__serialize="map"`` for a map
 
-Serializing 'A' and 'B' with different ``__serialize`` values causes different
-results:
+    Serializing 'A' and 'B' with different ``__serialize`` values causes different
+    results:
 
-.. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-    tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="seq"}))
-    ---
-    - '["A","B"]'
-    ...
-    tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="map"}))
-    ---
-    - '{"1":"A","2":"B"}'
-    ...
-    tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})})
-    ---
-    - '[{"f2":"B","f1":"A"}]'
-    ...
-    tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="seq"})})
-    ---
-    - '[[]]'
-    ...
-
+        tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="seq"}))
+        ---
+        - '["A","B"]'
+        ...
+        tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize="map"}))
+        ---
+        - '{"1":"A","2":"B"}'
+        ...
+        tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})})
+        ---
+        - '[{"f2":"B","f1":"A"}]'
+        ...
+        tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="seq"})})
+        ---
+        - '[[]]'
+        ...
 
 .. _json-module_cfg:
 
-================================================================
-                    Configuration settings
-================================================================
+.. function:: cfg(list of parameter assignments)
 
-There are configuration settings which affect the way that Tarantool encodes
-invalid numbers or types. They are all boolean ``true``/``false`` values
+    Set values affecting behavior of :ref:`json.encode <json-encode>`
+    and :ref:`json.decode <json-decode>`.
 
-* ``cfg.encode_deep_as_nil`` (default is false) -- see :ref:`below <json-module.cfg_encode_deep_as_nil>`
-* ``cfg.encode_invalid_as_nil`` (default is false) -- use null for all
-  unrecognizable types
-* ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
-* ``cfg.encode_load_metatables`` (default is false) -- load metatables
-* ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
-* ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
-* ``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse arrays as maps
-* ``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be
-* ``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse
-* ``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for
-  unrecognizable types
-* ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
-* ``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a structure
-* ``cfg.decode_save_metatables`` (default is true) -- like ``encode_load_metatables``
+    The values are all either integers or boolean ``true``/``false`` values.
 
-For example, the following code will interpret 0/0 (which is "not a number")
-and 1/0 (which is "infinity") as special values rather than nulls or errors:
+    * ``cfg.encode_deep_as_nil`` (default is false) -- see :ref:`below <json-module.cfg_encode_deep_as_nil>`
+    * ``cfg.encode_invalid_as_nil`` (default is false) -- use ``null`` for all
+      unrecognizable types
+    * ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
+    * ``cfg.encode_load_metatables`` (default is false) -- load metatables
+    * ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
+    * ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
+    * ``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse arrays as maps
+    * ``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be
+    * ``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse
+    * ``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for
+      unrecognizable types
+    * ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
+    * ``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a structure
+    * ``cfg.decode_save_metatables`` (default is true) -- like ``encode_load_metatables``
 
-.. code-block:: lua
+    For example, the following code will encode 0/0 as nan ("not a number")
+    and 1/0 as inf ("infinity"), rather than returning nil or an error message:
 
-    json = require('json')
-    json.cfg{encode_invalid_numbers = true}
-    x = 0/0
-    y = 1/0
-    json.encode({1, x, y, 2})
+    .. code-block:: lua
 
-The result of the ``json.encode()`` request will look like this:
+        json = require('json')
+        json.cfg{encode_invalid_numbers = true}
+        x = 0/0
+        y = 1/0
+        json.encode({1, x, y, 2})
 
-.. code-block:: tarantoolsession
+    The result of the ``json.encode()`` request will look like this:
 
-    tarantool> json.encode({1, x, y, 2})
-    ---
-    - '[1,nan,inf,2]
-    ...
+    .. code-block:: tarantoolsession
 
-The same configuration settings exist for json, for :ref:`MsgPack
-<msgpack-module>`, and for :ref:`YAML <yaml-module>`.
+        tarantool> json.encode({1, x, y, 2})
+        ---
+        - '[1,nan,inf,2]
+        ...
+
+    To achieve the same effect for only one call to ``json.encode()`` without
+    changing the configuration persistently, one could say
+    ``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
+
+    The same configuration settings exist for json, for :ref:`MsgPack
+    <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
 
 .. _json-module.cfg_encode_deep_as_nil:
 
-Note: behavior change: Before Tarantool version 1.10.4, if a nested structure was deeper than
-``cfg.encode_max_depth``, the deeper levels were cropped (encoded as nil).
-Now, the result is an error suggesting that ``cfg.encode_max_depth`` is not deep enough.
-To return to the old behavior, say ``cfg.encode_deep_as_nil = true``.
-This option is ignored for ``YAML``.
+.. NOTE::
+
+    **Behavior change:** Before Tarantool version 1.10.4,
+    if a nested structure was deeper than ``cfg.encode_max_depth``,
+    the deeper levels were cropped (encoded as nil).
+
+    Now, the result is an error suggesting that ``cfg.encode_max_depth``
+    is not deep enough. To return to the old behavior, say
+    ``cfg.encode_deep_as_nil = true``.
+
+    This option is ignored for ``YAML``.
 
 .. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
 .. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html
-
