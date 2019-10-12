@@ -117,12 +117,25 @@ which originally described SWIM.
                       the new SWIM instance is not bound to a socket
                       and has nil attributes, so it cannot interact with other
                       members and only a few methods are valid
-                      until :ref:`swim_object:cfg() <swim-cfg>` is called.
+                      until :ref:`swim_object:cfg() <swim-object_cfg>` is called.
 
                       If ``cfg`` is specified, then the effect is the same as
-                      calling ``s = swim.new() s:cfg()``.
+                      calling ``s = swim.new() s:cfg()``, except for
+                      generation.
                       For configuration description see
-                      :ref:`swim_object:cfg() <swim-cfg>`.
+                      :ref:`swim_object:cfg() <swim-object_cfg>`.
+
+    The generation part of ``cfg`` can only be specified during ``new()``,
+    it cannot be specified later during ``cfg()``.
+    Generation is part of :ref:`incarnation <swim-incarnation_description>`.
+    Usually generation is not specified because the default value
+    (a timestamp) is sufficient, but if there is reason to mistrust
+    timestamps (because the time is changed or because the instance
+    is started on a different machine), then users may say
+    :samp:`swim.new({generation = {new-value}`. In that case the latest
+    value should be persisted somehow (for example in a file, or in a space,
+    or in a global service), and the new value must be greater than
+    any previous value of generation.
 
     :return: swim-object :ref:`a swim object <swim-object>`
 
@@ -138,7 +151,7 @@ which originally described SWIM.
 
     A swim object is an object returned by :ref:`swim.new() <swim-new>`.
     It has methods:
-    :ref:`cfg() <swim-cfg>`,
+    :ref:`cfg() <swim-object_cfg>`,
     :ref:`delete() <swim-delete>`,
     :ref:`is_configured() <swim-is_configured>`,
     :ref:`size() <swim-size>`,
@@ -154,7 +167,7 @@ which originally described SWIM.
     :ref:`member_by_uuid() <swim-member_by_uuid>`,
     :ref:`pairs() <swim-pairs>`.
 
-    .. _swim-cfg:
+    .. _swim-object_cfg:
 
     .. method:: cfg(cfg)
 
@@ -217,10 +230,10 @@ which originally described SWIM.
 
         After ``swim_object:cfg()``, all other ``swim_object`` methods are callable.
 
-    .. data:: cfg.
+    .. data:: .cfg
 
         Expose all non-nil components of the read-only table which was set up
-        or changed by :ref:`swim_object:cfg() <swim-cfg>`.
+        or changed by :ref:`swim_object:cfg() <swim-object_cfg>`.
 
         Example:
 
@@ -256,7 +269,7 @@ which originally described SWIM.
         Return false if
         a SWIM instance was created via
         :ref:`swim.new() <swim-new>` without an optional ``cfg`` argument,
-        and was not configured with :ref:`swim_object:cfg() <swim-cfg>`.
+        and was not configured with :ref:`swim_object:cfg() <swim-object_cfg>`.
         Otherwise return true.
 
         :return: boolean result, true if configured, otherwise false
@@ -286,7 +299,7 @@ which originally described SWIM.
         member table a message, that this instance has left the cluster, and
         should not be considered dead.
 
-        Other instances mark such member
+        Other instances will mark such a member
         in their tables as 'left', and drop it after one round of
         dissemination.
 
@@ -315,7 +328,7 @@ which originally described SWIM.
         :param table cfg: description of the member
 
         The ``cfg`` table has two mandatory components, ``uuid`` and ``uri``, which have
-        the same format as ``uuid`` and ``uri`` in the table for :ref:`swim_object:cfg() <swim-cfg>`.
+        the same format as ``uuid`` and ``uri`` in the table for :ref:`swim_object:cfg() <swim-object_cfg>`.
 
         :return: true if member is added
         :return: nil, ``err`` if an error occurred. ``err`` is an error object
@@ -355,7 +368,7 @@ which originally described SWIM.
         does not require UUID, and it is not reliable because it uses UDP.
 
         :param string-or-number uri: URI. Format is the same as for ``uri``
-                                     in :ref:`swim_object:cfg() <swim-cfg>`.
+                                     in :ref:`swim_object:cfg() <swim-object_cfg>`.
 
         :return: true if member is pinged
         :return: nil, ``err`` if an error occurred. ``err`` is an error object.
@@ -384,7 +397,7 @@ which originally described SWIM.
 
         .. code-block:: tarantoolsession
 
-            tarantool> tarantool> fiber = require('fiber')
+            tarantool> fiber = require('fiber')
             ---
             ...
             tarantool> swim = require('swim')
@@ -724,7 +737,7 @@ which originally described SWIM.
 
         .. code-block:: tarantoolsession
 
-            tarantool> tarantool> fiber = require('fiber')
+            tarantool> fiber = require('fiber')
             ---
             ...
             tarantool> swim = require('swim')
@@ -745,25 +758,25 @@ which originally described SWIM.
             ...
             tarantool> s1:self()
             ---
-            - uri: 127.0.0.1:62341
+            - uri: 127.0.0.1:55845
               status: alive
-              incarnation: 1
+              incarnation: cdata {generation = 1569353431853325ULL, version = 1ULL}
               uuid: 00000000-0000-1000-8000-000000000001
               payload_size: 0
             ...
             tarantool> s1:member_by_uuid(s1:self():uuid())
             ---
-            - uri: 127.0.0.1:62341
+            - uri: 127.0.0.1:55845
               status: alive
-              incarnation: 1
+              incarnation: cdata {generation = 1569353431853325ULL, version = 1ULL}
               uuid: 00000000-0000-1000-8000-000000000001
               payload_size: 0
             ...
             tarantool> s1:member_by_uuid(s2:self():uuid())
             ---
-            - uri: 127.0.0.1:55435
+            - uri: 127.0.0.1:53666
               status: alive
-              incarnation: 1
+              incarnation: cdata {generation = 1569353431865138ULL, version = 1ULL}
               uuid: 00000000-0000-1000-8000-000000000002
               payload_size: 0
             ...
@@ -776,15 +789,15 @@ which originally described SWIM.
             tarantool> t
             ---
             - - - 00000000-0000-1000-8000-000000000002
-                - uri: 127.0.0.1:55435
+                - uri: 127.0.0.1:53666
                   status: alive
-                  incarnation: 1
+                  incarnation: cdata {generation = 1569353431865138ULL, version = 1ULL}
                   uuid: 00000000-0000-1000-8000-000000000002
                   payload_size: 0
               - - 00000000-0000-1000-8000-000000000001
-                - uri: 127.0.0.1:62341
+                - uri: 127.0.0.1:55845
                   status: alive
-                  incarnation: 1
+                  incarnation: cdata {generation = 1569353431853325ULL, version = 1ULL}
                   uuid: 00000000-0000-1000-8000-000000000001
                   payload_size: 0
             ...
@@ -834,7 +847,7 @@ which originally described SWIM.
         Return the URI as a string 'ip:port'.
         Via this method a user
         can learn a real assigned port, if port = 0 was specified in
-        :ref:`swim_object:cfg() <swim-cfg>`.
+        :ref:`swim_object:cfg() <swim-object_cfg>`.
 
         :return: string ip:port
 
@@ -842,9 +855,17 @@ which originally described SWIM.
 
     .. method:: incarnation()
 
-        Return a number (unsigned integer) which is incremented each time a member is updated.
+        Return a cdata object with the :ref:`incarnation <swim-incarnation_description>`.
+        The cdata object has two attributes: incarnation().generation and
+        incarnation().version.
 
-        :return: unsigned-integer incarnation
+        Incarnations can be compared to each other with
+        any comparison operator (==, <, >, <=, >=, ~=).
+
+        Incarnations, when printed, will appear as
+        strings with both generation and version.
+
+        :return: cdata incarnation
 
     .. _swim-payload_cdata:
 
@@ -924,7 +945,7 @@ which originally described SWIM.
             ...
             tarantool> self:incarnation()
             ---
-            - 1
+            - - cdata {generation = 1569354463981551ULL, version = 1ULL}
             ...
             tarantool> self:is_dropped()
             ---
@@ -1060,6 +1081,33 @@ which originally described SWIM.
         caused a trigger activation, then there will be no trigger
         activation.
 
+        ``is_new_generation()`` will be true if the generation part
+        of :ref:`incarnation <swim-incarnation_description>` changes.
+        ``is_new_version()`` will be true if the version part
+        of incarnation changes.
+        ``is_new_incarnation()`` will be true if either the generation part
+        or the version part of incarnation changes.
+        For example a combination of these methods can be used within a
+        user-defined trigger to check whether a process has restarted,
+        or a member has changed ...
+
+        .. code-block:: none
+
+            swim = require('swim')
+            s = swim.new()
+            s:on_member_event(function(m, e)
+            ...
+                if e:is_new_incarnation() then
+                    if e:is_new_generation() then
+                        -- Process restart.
+                    end
+                    if e:is_new_version() then
+                        -- Process version update. It means
+                        -- the member is somehow changed.
+                    end
+                end
+            end
+
     .. method:: on_member_event(nil, old-trigger)
 
         Delete an on-member trigger.
@@ -1132,7 +1180,8 @@ The protocol is encoded as
     |                                                             |
     |     2 = SWIM_FAILURE_DETECTION: map {                       |
     |         0 = SWIM_FD_MSG_TYPE: uint, enum swim_fd_msg_type,  |
-    |         1 = SWIM_FD_INCARNATION: uint                       |
+    |         1 = SWIM_FD_GENERATION: uint,                       |
+    |         2 = SWIM_FD_VERSION: uint                           |
     |     },                                                      |
     |                                                             |
     |               OR/AND                                        |
@@ -1144,8 +1193,9 @@ The protocol is encoded as
     |             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |
     |             2 = SWIM_MEMBER_PORT: uint, port,               |
     |             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |
-    |             4 = SWIM_MEMBER_INCARNATION: uint,              |
-    |             5 = SWIM_MEMBER_PAYLOAD: bin                    |
+    |             4 = SWIM_MEMBER_GENERATION: uint,               |
+    |             5 = SWIM_MEMBER_VERSION: uint,                  |
+    |             6 = SWIM_MEMBER_PAYLOAD: bin                    |
     |         },                                                  |
     |         ...                                                 |
     |     ],                                                      |
@@ -1159,8 +1209,9 @@ The protocol is encoded as
     |             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |
     |             2 = SWIM_MEMBER_PORT: uint, port,               |
     |             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |
-    |             4 = SWIM_MEMBER_INCARNATION: uint,              |
-    |             5 = SWIM_MEMBER_PAYLOAD: bin                    |
+    |             4 = SWIM_MEMBER_GENERATION: uint,               |
+    |             5 = SWIM_MEMBER_VERSION: uint,                  |
+    |             6 = SWIM_MEMBER_PAYLOAD: bin                    |
     |         },                                                  |
     |         ...                                                 |
     |     ],                                                      |
@@ -1168,7 +1219,8 @@ The protocol is encoded as
     |               OR/AND                                        |
     |                                                             |
     |     4 = SWIM_QUIT: map {                                    |
-    |         0 = SWIM_QUIT_INCARNATION: uint                     |
+    |         0 = SWIM_QUIT_GENERATION: uint,                     |
+    |         1 = SWIM_QUIT_VERSION: uint                         |
     |     }                                                       |
     | }                                                           |
     +-------------------------------------------------------------+
@@ -1257,37 +1309,16 @@ The **Protocol logic section** handles SWIM logical protocol steps and actions.
   sender. Its type is MP_BIN. Size is always 16 bytes. UUID is
   encoded in host byte order, no bswaps are needed.
 
-Next sections can all be present, or only some of them. A
-connector should be ready to handle any combinations.
-
-In each section a
-member or the section as a whole has an incarnation number. This
-number is used so that old messages will be ignored, and false
-messages will be refuted. If the
-member incarnation is less than the locally stored incarnation,
-then the
-message is outdated. This can happen because UDP allows reordering and
-duplication.
-
-Refutation usually happens when a false-positive failure
-detection has happened. In such a case the member thought to be
-dead receives that information from other members, increases its own
-incarnation, and spreads a message saying the member is
-alive (a "refutation").
-
-When a member's incarnation number in a message is larger than the local number,
-all its attributes  (IP,
-port, status) should be updated with the values received in the message.
-Payload is a bit different. Payload can be updated
-only if it is present in the message. Because of its huge size
-(in comparison with UDP packet max size) payload is not always sent with
-every message.
+Following SWIM_SRC_UUID there are four possible subsections:
+SWIM_FAILURE_DETECTION, SWIM_DISSEMINATION, SWIM_ANTI_ENTROPY, SWIM_QUIT.
+Any or all of these subsections may be present.
+A connector should be ready to handle any combination.
 
 * SWIM_FAILURE_DETECTION subsection -- describes a ping or ACK.
   In the SWIM_FAILURE_DETECTION subsection are:
 
   * SWIM_FD_MSG_TYPE (0 is ping, 1 is ack);
-  * SWIM_FD_INCARNATION (incarnation number of the sender).
+  * SWIM_FD_GENERATION + SWIM_FD_VERSION (the :ref:`incarnation <swim-incarnation_description>`).
 
 * SWIM_DISSEMINATION subsection -- a list of
   changed cluster members. It may include only a subset of changed
@@ -1298,7 +1329,7 @@ every message.
   * SWIM_MEMBER_STATUS (mandatory) (0 = alive, 1 = suspected, 2 = dead, 3 = left);
   * SWIM_MEMBER_ADDRESS and SWIM_MEMBER_PORT (mandatory) member IP and port;
   * SWIM_MEMBER_UUID (mandatory) (member UUID);
-  * SWIM_MEMBER_INCARNATION (mandatory) (member incarnation number);
+  * SWIM_MEMBER_GENERATION + SWIM_MEMBER_VERSION (mandatory) (the member :ref:`incarnation <swim-incarnation_description>`);
   * SWIM_MEMBER_PAYLOAD (not mandatory) (member payload)
     (MessagePack type is MP_BIN).
 
@@ -1307,7 +1338,7 @@ every message.
 
 * SWIM_ANTI_ENTROPY subsection -- a helper for the
   dissemination. It contains all the same fields as the
-  dissemination, but all of them are mandatory, including
+  dissemination sub, but all of them are mandatory, including
   payload even when payload size is 0. Anti-entropy eventually
   spreads changes which for any reason are not spread by the dissemination.
 
@@ -1316,6 +1347,52 @@ every message.
   and should not be considered dead. Sender
   status should be changed to 'left'.
 
-  In the SWIM_QUIT subsection is:
+  In the SWIM_QUIT subsection are:
 
-  * SWIM_QUIT_INCARNATION (sender incarnation number).
+  * SWIM_QUIT_GEMERATOPM + SWIM_QUIT_VERSION (the sender :ref:`incarnation <swim-incarnation_description>`).
+
+.. _swim-incarnation_description:
+
+The **incarnation** is a 128-bit cdata value which is part of
+each member's configuration and is present in most messages.
+It has two parts: generation and version.
+
+Generation is persistent. By default it has the number of
+microseconds since the epoch (compare the value returned by
+:ref:`clock_realtime64() <clock-time>`). Optionally a user
+can set generation during :ref:`new() <swim-new>`.
+
+Version is volatile. It is initially 0.
+It is incremented automatically every time that a change occurs.
+
+The incarnation, or sometimes the version alone,
+is useful for deciding to ignore obsolete messages,
+for updating a member's attributes on remote nodes,
+and for refuting messages that say a member is dead.
+
+If the member's incarnation is less than the locally stored incarnation,
+then the message is obsolete.
+This can happen because UDP allows reordering and duplication.
+
+If the member's incarnation in a message is greater than the locally stored incarnation,
+then most of its attributes  (IP,
+port, status) should be updated with the values received in the message.
+However, the payload attribute should not be updated
+unless it is present in the message. Because of its relatively large size,
+payload is not always included in every message.
+
+Refutation usually happens when a false-positive failure
+detection has happened. In such a case the member thought to be
+dead receives that information from other members, increases its own
+incarnation, and spreads a message saying the member is
+alive (a "refutation").
+
+Note: in the original version of Tarantool SWIM, and in the original
+SWIM specification, there is no generation and the incarnation consists
+of only the version. Generation was added because it is useful for
+detecting obsolete messages left over from a previous life of an instance
+that has restarted.
+
+
+
+
