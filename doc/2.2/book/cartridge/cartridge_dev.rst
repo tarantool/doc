@@ -681,7 +681,7 @@ which performs a two-phase commit:
 #. The cluster checks if the new configuration can be applied on all instances
    except disabled and expelled. All instances subject to update must be healthy
    and ``alive`` according to the
-   `membership module <https://www.tarantool.io/en/doc/1.10/reference/reference_rock/membership/>`_.
+   `membership module <https://www.tarantool.io/en/doc/2.2/reference/reference_rock/membership/>`_.
 
 #. (**Preparation phase**) The cluster propagates the patched configuration.
    Every instance validates it with the ``validate_config()`` function of
