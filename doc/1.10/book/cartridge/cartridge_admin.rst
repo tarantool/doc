@@ -10,7 +10,7 @@ Cartridge.
 .. NOTE::
 
     For more information on managing Tarantool instances, see the
-    `Server administration <admin>` section.
+    :ref:`Server administration <admin>` section.
 
 Before deploying the cluster, familiarize yourself with the notion of
 :ref:`cluster roles <cartridge-roles>` and
@@ -23,72 +23,90 @@ desired cluster topology.
 Deploying the cluster
 -------------------------------------------------------------------------------
 
-To deploy the cluster, first, configure all the necessary replica sets according
-to the desired cluster topology, then bootstrap the cluster.
+To deploy the cluster, first, :ref:`configure <cartridge-config>` your
+Tarantool instances according to the desired cluster topology, for example:
 
+.. code-block:: yaml
+
+    my_app.router: {"advertise_uri": "localhost:3301", "http_port": 3301, "workdir": "./tmp/router"}
+    my_app.storage_A_master: {"advertise_uri": "localhost:3302", "http_enabled": False, "workdir": "./tmp/storage-a-master"}
+    my_app.storage_A_replica: {"advertise_uri": "localhost:3303", "http_enabled": False, "workdir": "./tmp/storage-a-replica"}
+    my_app.storage_B_master: {"advertise_uri": "localhost:3304", "http_enabled": False, "workdir": "./tmp/storage-b-master"}
+    my_app.storage_B_replica: {"advertise_uri": "localhost:3305", "http_enabled": False, "workdir": "./tmp/storage-b-replica"}
+
+Then :ref:`start the instances <cartridge-run>`, for example using
+``cartridge`` CLI:
+
+.. code-block:: console
+
+    cartridge start my_app --cfg demo.yml --run_dir ./tmp/run --foreground
+
+And bootstrap the cluster.
 You can do this via the Web interface which is available at
 ``http://<instance_hostname>:<instance_http_port>``
-(e.g., ``http://localhost:8081``).
+(in this example, ``http://localhost:3301``).
 
 In the web interface, do the following:
 
 #. Depending on the authentication state:
 
    * If enabled (in production), enter your credentials and click
-     **Log in**:
+     **Login**:
 
-     .. image:: images/auth_creds.png
-        :align: center
-        :scale: 80%
-
-     And proceed to configuring the cluster.
+     .. image:: images/auth_creds-border-5px.png
+        :align: left
+        :scale: 40%
 
    * If disabled (for easier testing), simply proceed to configuring the
      cluster.
 
-#. Click **Create** next to the first unconfigured server to create the first
-   replica set solely for the router (for *compute-intensive* workloads).
+#. Click **Сonfigure** next to the first unconfigured server to create the first
+   replica set -- solely for the router (intended for *compute-intensive* workloads).
 
-   .. image:: images/unconfigured-router.png
-      :align: center
-      :scale: 80%
+   .. image:: images/unconfigured-router-border-5px.png
+      :align: left
+      :scale: 40%
+
+   |nbsp|
 
    In the pop-up window, check the ``vshard-router`` role -- or any custom role
-   that has ``vshard-router`` as a dependent role (in this example this is
-   a custom role named ``api``).
+   that has ``vshard-router`` as a dependent role (in this example, this is
+   a custom role named ``app.roles.api``).
 
-   .. image:: images/create-router.png
-      :align: center
-      :scale: 80%
+   (Optional) Specify a display name for the replica set, for example ``router``.
+
+   .. image:: images/create-router-border-5px.png
+      :align: left
+      :scale: 40%
+
+   |nbsp|
 
    .. NOTE::
 
-      As described in the :ref:`built-in roles section <cartridge-built-in-roles>`,
-      it is a good practice to enable workload-specific cluster roles on
-      instances running on physical servers with workload-specific hardware.
+       As described in the :ref:`built-in roles section <cartridge-built-in-roles>`,
+       it is a good practice to enable workload-specific cluster roles on
+       instances running on physical servers with workload-specific hardware.
 
-   And click **Submit**.
+   Click **Create replica set** and see the newly-created replica set
+   in the web interface:
 
-#. (Optional) If required by topology, populate the newly created replica set
-   with more routers (and compute nodes in parallel):
+   .. image:: images/router-replica-set-border-5px.png
+      :align: left
+      :scale: 40%
 
-   #. Click **Join** next to other unconfigured instances.
+   |nbsp|
 
-   #. Select the first router (and compute node) and click **Submit**.
+   .. WARNING::
 
-      .. image:: images/join-router.png
-         :align: center
-         :scale: 80%
+       Be careful: after an instance joins a replica set, you **CAN NOT** revert
+       this or make the instance join any other replica set.
 
-      The current instance will inherit cluster roles from the replica
-      set.
-
-#. Create another replica set for a master storage node (for *transaction-intensive*
-   workloads).
+#. Create another replica set -- for a master storage node (intended for
+   *transaction-intensive* workloads).
 
    Check the ``vshard-storage`` role -- or any custom role
-   that has ``vshard-storage`` as a dependent role (in this example this is
-   a custom role named ``storage``).
+   that has ``vshard-storage`` as a dependent role (in this example, this is
+   a custom role named ``app.roles.storage``).
 
    (Optional) Check a specific group, for example ``hot``.
    Replica sets with ``vshard-storage`` roles can belong to different groups.
@@ -97,24 +115,28 @@ In the web interface, do the following:
    :ref:`configuration file <cartridge-vshard-groups>`; by default, a cluster has
    no groups.
 
-   .. image:: images/create-storage.png
-      :align: center
-      :scale: 80%
+   (Optional) Specify a display name for the replica set, for example ``hot-storage``.
 
-   And click **Submit**.
+   Click **Create replica set**.
+
+   .. image:: images/create-storage-border-5px.png
+      :align: left
+      :scale: 40%
 
 #. (Optional) If required by topology, populate the second replica set
    with more storage nodes:
 
-   #. Click **Join** next to another unconfigured server dedicated for
+   #. Click **Configure** next to another unconfigured server dedicated for
       *transaction-intensive* workloads.
 
-   #. Select the second (``vshard-storage``) replica set, and click **Submit** to
+   #. Click **Join Replica Set** tab.
+
+   #. Select the second replica set, and click **Join replica set** to
       add the server to it.
 
-      .. image:: images/join-storage.png
-         :align: center
-         :scale: 80%
+      .. image:: images/join-storage-border-5px.png
+         :align: left
+         :scale: 40%
 
 #. Depending on cluster topology:
 
@@ -124,41 +146,38 @@ In the web interface, do the following:
 
    For example:
 
-   .. image:: images/final-cluster.png
-      :align: center
-      :scale: 80%
+   .. image:: images/final-cluster-border-5px.png
+      :align: left
+      :scale: 40%
 
 #. (Optional) By default, all new ``vshard-storage`` replica sets get a weight
-   of ``1`` before the ``vshard``'s bootstrap in the next step.
+   of ``1`` before the ``vshard`` bootstrap in the next step.
 
    .. NOTE::
 
-      In case you add a new replica set after the bootstrap as described in the
-      :ref:`topology change section <cartridge-change-cluster-topology>`, it will get a
-      weight of 0 by default.
+       In case you add a new replica set after ``vshard`` bootstrap, as described
+       in the :ref:`topology change section <cartridge-change-cluster-topology>`,
+       it will get a weight of 0 by default.
 
    To make different replica sets store different numbers of buckets, click
    **Edit** next to a replica set, change its default weight, and click
-   **Submit**:
+   **Save**:
 
-   .. image:: images/change-weight.png
-      :align: center
-      :scale: 80%
+   .. image:: images/change-weight-border-5px.png
+      :align: left
+      :scale: 40%
+
+   |nbsp|
 
    For more information on buckets and replica set's weights, see the
    :ref:`vshard module documentation <vshard>`.
 
-#. Bootstrap ``vshard`` by clicking the corresponding button and OK, or by saying
+#. Bootstrap ``vshard`` by clicking the corresponding button, or by saying
    ``cartridge.admin.boostrap_vshard()`` over the administrative console.
-
-   .. image:: images/bootstrap-vshard.png
-      :align: center
-      :scale: 80%
 
    This command creates virtual buckets and distributes them among storages.
 
-From now on, all the necessary cluster configuration can be done via the
-web interface.
+   From now on, all cluster configuration can be done via the web interface.
 
 .. _cartridge-ui-configuration:
 
@@ -177,8 +196,9 @@ and distributes **automatically** across the cluster.
 
 To update the configuration:
 
-#. (Optional) Click the link in "Current configuration can be downloaded here"
-   to get hold of the current configuration file.
+#. Click **Configuration files** tab.
+
+#. (Optional) Click **Downloaded** to get hold of the current configuration file.
 
 #. Update the configuration file.
 
@@ -234,7 +254,7 @@ Upon adding a newly deployed instance to a new or existing replica set:
    the ``box.cfg`` function and starts living its life.
 
    For more information, see the
-   `box.cfg submodule reference <box_introspection-box_cfg>`_.
+   :ref:`box.cfg submodule reference <box_introspection-box_cfg>`_.
 
 An optimal strategy for connecting new nodes to the cluster is to deploy a new
 zero-weight replica set instance by instance, and then increase the weight.
@@ -249,50 +269,39 @@ To populate the cluster with more nodes, do the following:
    If new nodes do not appear in the Web interface, click **Probe server** and
    specify their URIs manually.
 
-   .. image:: images/probe-server.png
-      :align: center
-      :scale: 80%
+   .. image:: images/probe-server-border-5px.png
+      :align: left
+      :scale: 40%
 
    If a node is accessible, it will appear in the list.
 
-#. In the Web interface, click **Create** to add an unconfigured instance to a
-   new replica set:
+#. In the Web interface:
 
-   .. image:: images/new-unconfig.png
-      :align: center
-      :scale: 80%
+   * Create a new replica set with one of the new instances:
+     click **Configure** next to an unconfigured server,
+     check the necessary roles, and click **Create replica set**:
 
-   Check the necessary roles and click **Submit**.
+     .. NOTE::
 
-   .. NOTE::
+         In case you are adding a new ``vshard-storage`` instance, remember that
+         all such instances get a ``0`` weight by default after the ``vshard``
+         bootstrap which happened during the initial cluster deployment.
 
-      In case you are adding a new ``vshard-storage`` instance, remember that
-      all such instances get a ``0`` weight by default after the ``vshard``'s
-      bootstrap which happened during the initial cluster deployment.
+         .. image:: images/zero-border-5px.png
+            :align: left
+            :scale: 40%
 
-      .. image:: images/zero.png
-         :align: center
-         :scale: 80%
+   * Or add the instances to existing replica sets:
+     click **Configure** next to an unconfigured server, click **Join replica set**
+     tab, select a replica set, and click **Join replica set**.
 
-#. Click **Join** next to another unconfigured server, select the new replica set,
-   and click **Submit**.
-
-   .. image:: images/join-new-set.png
-      :align: center
-      :scale: 80%
-
-#. If necessary, repeat the above step for more instances to reach the desired
+   If necessary, repeat this for more instances to reach the desired
    redundancy level.
 
 #. In case you are deploying a new ``vshard-storage`` replica set, populate it
-   with data when you are ready.
-
-   .. image:: images/change-weight.png
-      :align: center
-      :scale: 80%
-
-   Click **Edit** next to the replica set in question, increase its weight, and
-   click **Submit** to start :ref:`data rebalancing <cartridge-rebalance-data>`.
+   with data when you are ready:
+   click **Edit** next to the replica set in question, increase its weight, and
+   click **Save** to start :ref:`data rebalancing <cartridge-rebalance-data>`.
 
 As an alternative to the web interface, you can view and change cluster topology
 via GraphQL. The cluster's endpoint for serving GraphQL queries is ``/admin/api``.
@@ -382,10 +391,12 @@ to move all of its buckets to other sets.
 To deactivate a set, do the following:
 
 #. Click **Edit** next to the set in question.
-#. Set its weight to ``0`` and click **Submit**:
 
-   .. image:: images/zero-weight.png
-      :align: center
+#. Set its weight to ``0`` and click **Save**:
+
+   .. image:: images/zero-weight-border-5px.png
+      :align: left
+      :scale: 40%
 
 #. Wait for the rebalancing process to finish migrating all the set's buckets
    away. You can monitor the current bucket number as described in the
@@ -400,13 +411,15 @@ Expelling instances
 .. // Describe how to disable instances when it's implemented in UI and
 .. // explain the difference.
 
-Once an instance is expelled, it can never participate in the cluster again as
+Once an instance is *expelled*, it can never participate in the cluster again as
 every instance will reject it.
 
-To expel an instance, click **Expel** next to it, then **OK**:
+To expel an instance, click **...** next to it, then click **Expel server** and
+**Expel**:
 
-.. image:: images/expelling-instance.png
-   :align: center
+.. image:: images/expelling-instance-border-5px.png
+   :align: left
+   :scale: 40%
 
 .. _cartridge-node-failure:
 
@@ -421,27 +434,40 @@ role (read/write). When the failed master comes back online, its role is
 restored and the active master, again, becomes a replica (read-only). This works
 for any roles.
 
-To set the priority in a replica set, click **Edit** next to the set in
-question, drag replicas to their place in the priority list, and click **Submit**:
+To set the priority in a replica set:
 
-.. image:: images/failover-priority.png
-   :align: center
-   :scale: 70%
+#. Click **Edit** next to the replica set in question.
 
-The failover is disabled by default. To enable it, click **Failover: disabled**:
+#. Scroll to the bottom of the **Edit replica set** box to see the list of
+   servers.
 
-.. image:: images/failover.png
-   :align: center
+#. Drag replicas to their place in the priority list, and click **Save**:
 
-And, in the **Failover control** window, click **Enable**:
+   .. image:: images/failover-priority-border-5px.png
+      :align: left
+      :scale: 40%
 
-.. image:: images/failover-control.png
-   :align: center
+The failover is disabled by default. To enable it:
 
-The failover status will change to **enabled**:
+#. Click **Failover**:
 
-.. image:: images/enabled-failover.png
-   :align: center
+   .. image:: images/failover-border-5px.png
+      :align: left
+      :scale: 40%
+
+#. In the **Failover control** box, click **Enable**:
+
+   .. image:: images/failover-control-border-5px.png
+      :align: left
+      :scale: 40%
+
+The failover status will change to enabled:
+
+.. image:: images/enabled-failover-border-5px.png
+   :align: left
+   :scale: 40%
+
+|nbsp|
 
 For more information, see the :ref:`replication section <replication>`.
 
@@ -451,16 +477,22 @@ For more information, see the :ref:`replication section <replication>`.
 Switching the replica set's master
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To manually switch the master in a replica set, click the **Edit** button next
-to the replica set in question:
+To manually switch the master in a replica set:
 
-.. image:: images/edit-replica-set.png
-   :align: center
+#. Click the **Edit** button next to the replica set in question:
 
-Select another master and click **Submit**:
+   .. image:: images/edit-replica-set-border-5px.png
+      :align: left
+      :scale: 40%
 
-.. image:: images/switch-master.png
-   :align: center
+#. Scroll to the bottom of the **Edit replica set** box to see the list of
+   servers. The server on the top is the master.
+
+   .. image:: images/switch-master-border-5px.png
+      :align: left
+      :scale: 40%
+
+#. Drag a required server to the top position and click **Save**.
 
 The new master will automatically enter the read/write mode, while the ex-master
 will become read-only. This works for any roles.
@@ -474,12 +506,15 @@ Managing users
 On the **Users** tab, you can enable/disable authentication as well as add,
 remove, edit, and view existing users who can access the web interface.
 
-.. image:: images/users-tab.png
-   :align: center
-   :scale: 80%
+.. image:: images/users-tab-border-5px.png
+   :align: left
+   :scale: 60%
+
+|nbsp|
 
 Notice that the **Users** tab is available only if authorization in the web
 interface is :ref:`implemented <cartridge-auth-enable>`.
+
 Also, some features (like deleting users) can be disabled in the cluster
 configuration; this is regulated by the
 `auth_backend_name <https://www.tarantool.io/en/rocks/cluster/1.0/modules/cluster/#cfg-opts-box-opts>`_

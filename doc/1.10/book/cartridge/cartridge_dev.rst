@@ -231,8 +231,8 @@ Custom roles
 
 To implement a *custom* cluster role, do the following:
 
-#. Register the new role in the cluster by modifying the ``cluster.cfg()`` call
-   in the ``init.lua`` entry point file:
+#. Register the new role in the cluster by modifying the ``cartridge.cfg()``
+   call in the ``init.lua`` entry point file:
 
    .. code-block:: lua
       :emphasize-lines: 7
@@ -1041,12 +1041,12 @@ Deploying as a tar+gz archive
      .. code-block:: console
 
          # in application directory
-         cartridge start # starts all instances
-         cartridge start .router_1 # starts a single instance
+         $ cartridge start # starts all instances
+         $ cartridge start .router_1 # starts a single instance
 
          # in multi-application environment
-         cartridge start my_app # starts all instances of my_app
-         cartridge start my_app.router # starts a single instance
+         $ cartridge start my_app # starts all instances of my_app
+         $ cartridge start my_app.router # starts a single instance
 
 #. In case it is a cluster-aware application, proceed to
    :ref:`deploying the cluster <cartridge-deployment>`.
@@ -1224,8 +1224,14 @@ The options are:
 ``--foreground``
         Do not daemonize.
 
-It starts ``tarantool`` instance(s) in background with enforced
-:ref:`environment variables <cartridge-config>`.
+For example:
+
+.. code-block:: console
+
+    cartridge start my_app --cfg demo.yml --run_dir ./tmp/run --foreground
+
+It starts all ``tarantool`` instances specified in ``cfg`` file, in foreground,
+with enforced :ref:`environment variables <cartridge-config>`.
 
 When ``APP_NAME`` is not provided, ``cartridge`` parses it from ``./*.rockspec``
 filename.
