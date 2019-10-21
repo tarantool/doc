@@ -46784,8 +46784,7 @@ msgid ""
 "“Tarantool” is the name of the reusable asynchronous networking "
 "programming framework."
 msgstr ""
-"“Tarantool” -- это название асинхронной сетевой интегрированной среды "
-"программирования многократного использования."
+"“Tarantool” -- это название многократно используемого асинхронного сетевого фреймворка."
 
 #: ../doc/1.10/reference/configuration/index.rst:81
 msgid ""
@@ -49561,7 +49560,7 @@ msgid ""
 "the total amount of memory available and the distribution of item sizes."
 msgstr ""
 "Множитель для вычисления размеров блоков памяти, в которых хранятся "
-"кортежи. Нижнее значение может привести к уменьшению потерь памяти в "
+"кортежи. Уменьшение значения может привести к уменьшению потерь памяти в "
 "зависимости от общего объема доступной памяти и распределения размеров "
 "элементов."
 
@@ -57310,7 +57309,7 @@ msgid ""
 "``http_client:get(url, options)`` - shortcut for "
 "``http_client:request(\"GET\", url, nil, opts)``"
 msgstr ""
-"``http_client:get(url, options)`` -- ускоренный метод для "
+"``http_client:get(url, options)`` -- вспомогательный метод для "
 "``http_client:request(\"GET\", url, nil, opts)``"
 
 #: ../doc/1.10/reference/reference_lua/http.rst:171
