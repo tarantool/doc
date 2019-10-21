@@ -57310,7 +57310,7 @@ msgid ""
 "``http_client:get(url, options)`` - shortcut for "
 "``http_client:request(\"GET\", url, nil, opts)``"
 msgstr ""
-"``http_client:get(url, options)`` -- ускоренный метод для "
+"``http_client:get(url, options)`` -- вспомогательный метод для "
 "``http_client:request(\"GET\", url, nil, opts)``"
 
 #: ../doc/1.10/reference/reference_lua/http.rst:171
