@@ -46784,8 +46784,7 @@ msgid ""
 "“Tarantool” is the name of the reusable asynchronous networking "
 "programming framework."
 msgstr ""
-"“Tarantool” -- это название асинхронной сетевой интегрированной среды "
-"программирования многократного использования."
+"“Tarantool” -- это название многократно используемого асинхронного сетевого фреймворка."
 
 #: ../doc/1.10/reference/configuration/index.rst:81
 msgid ""
