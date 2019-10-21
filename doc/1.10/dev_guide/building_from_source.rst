@@ -193,7 +193,7 @@ the preferences can differ. But strategically the steps are always the same.
    .. NOTE::
 
        If you encounter a ``curl`` or ``OpenSSL`` errors on this step try
-       installing openssl111 package of the specific 1.1.1d version.
+       installing ``openssl111`` package of the specific ``1.1.1d`` version.
 
    Next, it's highly recommended to say ``make install`` to install Tarantool to
    the ``/usr/local`` directory and keep your system clean. However, it is

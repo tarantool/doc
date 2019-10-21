@@ -185,7 +185,7 @@ msgid ""
 "Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the "
 ":ref:`administrative console <admin-security>`. This will
 " return a list of files to back up and suspend garbage"
-" collection of them till the next ``box.backup.stop()``."
+" collection for them till the next ``box.backup.stop()``."
 msgstr ""
 "Выполните команду :ref:`box.backup.start() <admin-backups-backup_start>` "
 "в :ref:`административной консоли <admin-security>`. Эта команда покажет "
