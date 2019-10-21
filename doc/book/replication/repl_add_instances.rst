@@ -198,8 +198,8 @@ is less than or equal to the number of seconds specified in
 If ``replication_sync_lag`` is unset (nil) or set to TIMEOUT_INFINITY, then
 the replica skips the "sync" state and switches to "follow" immediately.
 
-In order to leave orphan mode you need to sync with enough
-(:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`)
+In order to leave orphan mode you need to sync with a sufficient number
+(:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`) of
 instances. To do so, you may either:
 
 * Set :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
@@ -260,7 +260,7 @@ It is being called again in order to perform recovery.
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
        nodes. If failed - set status to 'orphan'.
        (Attempts to sync will continue in the background and when/if they succeed
-       then 'orphan' status will end.)
+       then 'orphan' will be changed to 'connected'.)
 
     3. If connected - sync with all connected nodes, until the difference is not more than
        :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.

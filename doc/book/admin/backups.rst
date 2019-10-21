@@ -89,7 +89,7 @@ To take a mixed backup:
 
 1. Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the
    :ref:`administrative console <admin-security>`. This will return a list of
-   files to back up and suspend garbage collection of them till the next ``box.backup.stop()``.
+   files to back up and suspend garbage collection for them till the next ``box.backup.stop()``.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the
