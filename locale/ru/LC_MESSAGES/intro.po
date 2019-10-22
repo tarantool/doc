@@ -17,11 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ../intro.rst:41
+#: ../doc/intro.rst:3
+msgid "Overview"
+msgstr ""
+
+#: ../doc/intro.rst:7
 msgid "An application server together with a database manager"
 msgstr "Сервер приложений + СУБД"
 
-#: ../intro.rst:43
+#: ../doc/intro.rst:9
 msgid ""
 "Tarantool is a Lua application server integrated with a database "
 "management system. It has a \"fiber\" model which means that many "
@@ -45,7 +49,7 @@ msgstr ""
 "всех тех целей, которые принесли популярность node.js и Twisted, и более "
 "того - поддерживает персистентность данных."
 
-#: ../intro.rst:51
+#: ../doc/intro.rst:17
 msgid ""
 "The code is free. The open-source license is `BSD license`_. The "
 "supported platforms are GNU/Linux, Mac OS and FreeBSD."
@@ -54,7 +58,7 @@ msgstr ""
 "распространяется бесплатно согласно лицензии `BSD license`_. "
 "Поддерживаемые платформы: GNU / Linux, Mac OS и FreeBSD."
 
-#: ../intro.rst:54
+#: ../doc/intro.rst:20
 msgid ""
 "Tarantool's creator and biggest user is `Mail.Ru`_, the largest internet "
 "company in Russia, with 30 million users, 25 million emails per day, and "
@@ -89,7 +93,7 @@ msgstr ""
 "предоставило сотни полезных пакетов, большинство из которых можно "
 "использовать в качестве расширений для Tarantool'а."
 
-#: ../intro.rst:68
+#: ../doc/intro.rst:34
 msgid ""
 "Users can create, modify and drop **Lua functions** at runtime. Or they "
 "can define **Lua programs** that are loaded during startup for triggers, "
@@ -109,7 +113,7 @@ msgstr ""
 "эффективно, т.к. оно использует среду **кооперативной многозадачности** "
 "самого Tarantool'а."
 
-#: ../intro.rst:76
+#: ../doc/intro.rst:42
 msgid ""
 "One of the built-in Lua packages provides an API for the Database "
 "Management System. Thus some developers see Tarantool as a DBMS with a "
@@ -128,11 +132,11 @@ msgstr ""
 "ноутбуке, и ее можно наращивать \"вверх\" или \"вширь\" за счет новых "
 "серверных ферм."
 
-#: ../intro.rst:86
+#: ../doc/intro.rst:52
 msgid "Database features"
 msgstr "Возможности СУБД"
 
-#: ../intro.rst:88
+#: ../doc/intro.rst:54
 msgid ""
 "Tarantool can run without it, but \"The Box\" -- the DBMS server -- is a "
 "strong distinguishing feature."
@@ -140,7 +144,7 @@ msgstr ""
 "Компонент \"box\" -- серверная часть с функциями СУБД -- это важная часть"
 " Tarantool'а, хотя он может работать и без данного компонента."
 
-#: ../intro.rst:91
+#: ../doc/intro.rst:57
 msgid ""
 "The database API allows for permanently storing Lua objects, managing "
 "object collections, creating or dropping secondary keys, making changes "
@@ -157,7 +161,7 @@ msgstr ""
 "к  удаленным (remote) экземплярам баз данных разработан API для вызова "
 "удаленных процедур."
 
-#: ../intro.rst:99
+#: ../doc/intro.rst:65
 msgid ""
 "Tarantool's DBMS server uses the **storage engine** concept, where "
 "different sets of algorithms and data structures can be used for "
@@ -183,7 +187,7 @@ msgstr ""
 "изменения  не считаются завершенными, пока не проходит запись в лог WAL. "
 "Подсистема записи в журнал также поддерживает групповые коммиты."
 
-#: ../intro.rst:110
+#: ../doc/intro.rst:76
 msgid ""
 "**Tarantool's in-memory storage engine** (memtx) keeps all the data in "
 "random-access memory, and therefore has very low read latency. It also "
@@ -202,7 +206,7 @@ msgstr ""
 "память самый свежий снимок и воспроизведет все транзакции из журнала. "
 "Таким образом, данные не теряются."
 
-#: ../intro.rst:119
+#: ../doc/intro.rst:85
 msgid ""
 "**Tarantool's in-memory engine is lock-free** in typical situations. "
 "Instead of the operating system's concurrency primitives, such as "
@@ -231,7 +235,7 @@ msgstr ""
 " Tarantool поддерживает поиск как по первичным, так и по **внешним ключам"
 " в индексах**."
 
-#: ../intro.rst:129
+#: ../doc/intro.rst:95
 msgid ""
 "**Tarantool's disk-based storage engine** is a fusion of ideas from "
 "modern filesystems, log-structured merge trees and classical B-trees. All"
@@ -257,7 +261,7 @@ msgstr ""
 "обновляет данные по принципу дописывания в конец: новые данные никогда не"
 " затирают старые. Дисковый движок базы данных называется *vinyl*."
 
-#: ../intro.rst:140
+#: ../doc/intro.rst:106
 msgid ""
 "Tarantool supports **multi-part index keys**. The possible index types "
 "are HASH, TREE, BITSET, and RTREE."
@@ -265,7 +269,7 @@ msgstr ""
 "Tarantool поддерживает работу с **составными ключами в индексах**. "
 "Возможные типы ключей: HASH, TREE, BITSET и RTREE."
 
-#: ../intro.rst:143
+#: ../doc/intro.rst:109
 msgid ""
 "Tarantool supports **asynchronous replication**, locally or to remote "
 "hosts. The replication architecture can be **master-master**, that is, "
@@ -276,3 +280,4 @@ msgstr ""
 " так и на удаленных серверах. При этом репликацию можно настроить по "
 "принципу **мастер-мастер**, когда несколько узлов могут не только "
 "обрабатывать входящую нагрузку, но и получать данные от других узлов."
+

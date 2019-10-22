@@ -201,5 +201,5 @@ intersphinx_cache_limit = 0
 
 # Localization options
 language = 'en'
-locale_dirs = ['./locale']
+locale_dirs = ['../locale']
 gettext_additional_targets = ['literal-block']

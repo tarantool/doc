@@ -16,115 +16,115 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../tutorials/c_tutorial.rst:3
+#: ../doc/tutorials/c_tutorial.rst:3
 msgid "C tutorial"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:5
+#: ../doc/tutorials/c_tutorial.rst:5
 msgid "Here is one C tutorial: :ref:`C stored procedures <f_c_tutorial-c_stored_procedures>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:12
+#: ../doc/tutorials/c_tutorial.rst:12
 msgid "C stored procedures"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:14
+#: ../doc/tutorials/c_tutorial.rst:14
 msgid "Tarantool can call C code with :ref:`modules <app_server-modules>`, or with :ref:`ffi <cookbook-ffi_printf>`, or with C stored procedures. This tutorial only is about the third option, C stored procedures. In fact the routines are always \"C functions\" but the phrase \"stored procedure\" is commonly used for historical reasons."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:21
+#: ../doc/tutorials/c_tutorial.rst:21
 msgid "In this tutorial, which can be followed by anyone with a Tarantool development package and a C compiler, there are five tasks:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:24
+#: ../doc/tutorials/c_tutorial.rst:24
 msgid ":ref:`easy.c <f_c_tutorial-easy>` -- prints \"hello world\";"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:25
+#: ../doc/tutorials/c_tutorial.rst:25
 msgid ":ref:`harder.c <f_c_tutorial-harder>` -- decodes a passed parameter value;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:26
+#: ../doc/tutorials/c_tutorial.rst:26
 msgid ":ref:`hardest.c <f_c_tutorial-hardest>` -- uses the C API to do a DBMS insert;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:27
+#: ../doc/tutorials/c_tutorial.rst:27
 msgid ":ref:`read.c <f_c_tutorial-read>` -- uses the C API to do a DBMS select;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:28
+#: ../doc/tutorials/c_tutorial.rst:28
 msgid ":ref:`write.c <f_c_tutorial-write>` -- uses the C API to do a DBMS replace."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:30
+#: ../doc/tutorials/c_tutorial.rst:30
 msgid "After following the instructions, and seeing that the results are what is described here, users should feel confident about writing their own stored procedures."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:34
+#: ../doc/tutorials/c_tutorial.rst:34
 msgid "**Preparation**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:36
+#: ../doc/tutorials/c_tutorial.rst:36
 msgid "Check that these items exist on the computer:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:38
+#: ../doc/tutorials/c_tutorial.rst:38
 msgid "Tarantool 1.10"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:39
+#: ../doc/tutorials/c_tutorial.rst:39
 msgid "A gcc compiler, any modern version should work"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:40
+#: ../doc/tutorials/c_tutorial.rst:40
 msgid "``module.h`` and files #included in it"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:41
+#: ../doc/tutorials/c_tutorial.rst:41
 msgid "``msgpuck.h``"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:42
+#: ../doc/tutorials/c_tutorial.rst:42
 msgid "``libmsgpuck.a`` (only for some recent msgpuck versions)"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:44
+#: ../doc/tutorials/c_tutorial.rst:44
 msgid "The ``module.h`` file will exist if Tarantool was installed from source. Otherwise Tarantool's \"developer\" package must be installed. For example on Ubuntu say:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:48
+#: ../doc/tutorials/c_tutorial.rst:48
 msgid "$ sudo apt-get install tarantool-dev"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:52
+#: ../doc/tutorials/c_tutorial.rst:52
 msgid "or on Fedora say:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:54
+#: ../doc/tutorials/c_tutorial.rst:54
 msgid "$ dnf -y install tarantool-devel"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:58
+#: ../doc/tutorials/c_tutorial.rst:58
 msgid "The ``msgpuck.h`` file will exist if Tarantool was installed from source. Otherwise the \"msgpuck\" package must be installed from `https://github.com/rtsisyk/msgpuck <https://github.com/rtsisyk/msgpuck>`_."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:62
+#: ../doc/tutorials/c_tutorial.rst:62
 msgid "Both ``module.h`` and ``msgpuck.h`` must be on the include path for the C compiler to see them. For example, if ``module.h`` address is ``/usr/local/include/tarantool/module.h``, and ``msgpuck.h`` address is ``/usr/local/include/msgpuck/msgpuck.h``, and they are not currently on the include path, say:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:68
+#: ../doc/tutorials/c_tutorial.rst:68
 msgid "$ export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:72
+#: ../doc/tutorials/c_tutorial.rst:72
 msgid "The ``libmsgpuck.a`` static library is necessary with msgpuck versions produced after February 2017. If and only if you encounter linking problems when using the gcc statements in the examples for this tutorial, you should put ``libmsgpuck.a`` on the path (``libmsgpuck.a`` is produced from both msgpuck and Tarantool source downloads so it should be easy to find). For example, instead of \":code:`gcc -shared -o harder.so -fPIC harder.c`\" for the second example below, you will need to say \":code:`gcc -shared -o harder.so -fPIC harder.c libmsgpuck.a`\"."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:81
+#: ../doc/tutorials/c_tutorial.rst:81
 msgid "Requests will be done using Tarantool as a :ref:`client <admin-using_tarantool_as_a_client>`. Start Tarantool, and enter these requests."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:85
+#: ../doc/tutorials/c_tutorial.rst:85
 msgid "box.cfg{listen=3306}\n"
 "box.schema.space.create('capi_test')\n"
 "box.space.capi_test:create_index('primary')\n"
@@ -132,27 +132,27 @@ msgid "box.cfg{listen=3306}\n"
 "capi_connection = net_box:new(3306)"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:93
+#: ../doc/tutorials/c_tutorial.rst:93
 msgid "In plainer language: create a space named ``capi_test``, and make a connection to self named ``capi_connection``."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:96
+#: ../doc/tutorials/c_tutorial.rst:96
 msgid "Leave the client running. It will be necessary to enter more requests later."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:100
+#: ../doc/tutorials/c_tutorial.rst:100
 msgid "**easy.c**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:102
+#: ../doc/tutorials/c_tutorial.rst:102
 msgid "Start another shell. Change directory (``cd``) so that it is the same as the directory that the client is running on."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:105
+#: ../doc/tutorials/c_tutorial.rst:105
 msgid "Create a file. Name it ``easy.c``. Put these six lines in it."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:107
+#: ../doc/tutorials/c_tutorial.rst:107
 msgid "#include \"module.h\"\n"
 "int easy(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
 "{\n"
@@ -166,54 +166,54 @@ msgid "#include \"module.h\"\n"
 "}"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:122
+#: ../doc/tutorials/c_tutorial.rst:122
 msgid "Compile the program, producing a library file named ``easy.so``:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:124
+#: ../doc/tutorials/c_tutorial.rst:124
 msgid "$ gcc -shared -o easy.so -fPIC easy.c"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:128
-#: ../tutorials/c_tutorial.rst:216
-#: ../tutorials/c_tutorial.rst:303
-#: ../tutorials/c_tutorial.rst:407
-#: ../tutorials/c_tutorial.rst:488
+#: ../doc/tutorials/c_tutorial.rst:128
+#: ../doc/tutorials/c_tutorial.rst:216
+#: ../doc/tutorials/c_tutorial.rst:303
+#: ../doc/tutorials/c_tutorial.rst:407
+#: ../doc/tutorials/c_tutorial.rst:488
 msgid "Now go back to the client and execute these requests:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:130
+#: ../doc/tutorials/c_tutorial.rst:130
 msgid "box.schema.func.create('easy', {language = 'C'})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'easy')\n"
 "capi_connection:call('easy')"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:136
+#: ../doc/tutorials/c_tutorial.rst:136
 msgid "If these requests appear unfamiliar, re-read the descriptions of :ref:`box.schema.func.create() <box_schema-func_create>`, :ref:`box.schema.user.grant() <box_schema-user_grant>` and :ref:`conn:call() <net_box-call>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:142
+#: ../doc/tutorials/c_tutorial.rst:142
 msgid "The function that matters is ``capi_connection:call('easy')``."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:144
+#: ../doc/tutorials/c_tutorial.rst:144
 msgid "Its first job is to find the 'easy' function, which should be easy because by default Tarantool looks on the current directory for a file named ``easy.so``."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:148
+#: ../doc/tutorials/c_tutorial.rst:148
 msgid "Its second job is to call the 'easy' function. Since the ``easy()`` function in ``easy.c`` begins with ``printf(\"hello world\\n\")``, the words \"hello world\" will appear on the screen."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:152
+#: ../doc/tutorials/c_tutorial.rst:152
 msgid "Its third job is to check that the call was successful. Since the ``easy()`` function in ``easy.c`` ends with :code:`return 0`, there is no error message to display and the request is over."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:156
-#: ../tutorials/c_tutorial.rst:332
+#: ../doc/tutorials/c_tutorial.rst:156
+#: ../doc/tutorials/c_tutorial.rst:332
 msgid "The result should look like this:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:158
+#: ../doc/tutorials/c_tutorial.rst:158
 msgid "tarantool> capi_connection:call('easy')\n"
 "hello world\n"
 "---\n"
@@ -221,37 +221,37 @@ msgid "tarantool> capi_connection:call('easy')\n"
 "..."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:166
+#: ../doc/tutorials/c_tutorial.rst:166
 msgid "Now let's call the other function in easy.c -- ``easy2()``. This is almost the same as the ``easy()`` function, but there's a detail: when the file name is not the same as the function name, then we have to specify :samp:`{file-name}.{function-name}`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:172
+#: ../doc/tutorials/c_tutorial.rst:172
 msgid "box.schema.func.create('easy.easy2', {language = 'C'})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'easy.easy2')\n"
 "capi_connection:call('easy.easy2')"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:178
+#: ../doc/tutorials/c_tutorial.rst:178
 msgid "... and this time the result will be \"hello world -- easy2\"."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:180
+#: ../doc/tutorials/c_tutorial.rst:180
 msgid "Conclusion: calling a C function is easy."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:184
+#: ../doc/tutorials/c_tutorial.rst:184
 msgid "**harder.c**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:186
+#: ../doc/tutorials/c_tutorial.rst:186
 msgid "Go back to the shell where the ``easy.c`` program was created."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:188
+#: ../doc/tutorials/c_tutorial.rst:188
 msgid "Create a file. Name it ``harder.c``. Put these 17 lines in it:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:190
+#: ../doc/tutorials/c_tutorial.rst:190
 msgid "#include \"module.h\"\n"
 "#include \"msgpuck.h\"\n"
 "int harder(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
@@ -271,15 +271,15 @@ msgid "#include \"module.h\"\n"
 "}"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:210
+#: ../doc/tutorials/c_tutorial.rst:210
 msgid "Compile the program, producing a library file named ``harder.so``:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:212
+#: ../doc/tutorials/c_tutorial.rst:212
 msgid "$ gcc -shared -o harder.so -fPIC harder.c"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:218
+#: ../doc/tutorials/c_tutorial.rst:218
 msgid "box.schema.func.create('harder', {language = 'C'})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'harder')\n"
 "passable_table = {}\n"
@@ -289,27 +289,27 @@ msgid "box.schema.func.create('harder', {language = 'C'})\n"
 "capi_connection:call('harder', passable_table)"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:228
+#: ../doc/tutorials/c_tutorial.rst:228
 msgid "This time the call is passing a Lua table (``passable_table``) to the ``harder()`` function. The ``harder()`` function will see it, it's in the :code:`char *args` parameter."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:232
+#: ../doc/tutorials/c_tutorial.rst:232
 msgid "At this point the ``harder()`` function will start using functions defined in `msgpuck.h <http://rtsisyk.github.io/msgpuck>`_. The routines that begin with \"mp\" are msgpuck functions that handle data formatted according to the MsgPack_ specification. Passes and returns are always done with this format so one must become acquainted with msgpuck to become proficient with the C API."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:240
+#: ../doc/tutorials/c_tutorial.rst:240
 msgid "For now, though, it's enough to know that ``mp_decode_array()`` returns the number of elements in an array, and ``mp_decode_uint`` returns an unsigned integer, from :code:`args`. And there's a side effect: when the decoding finishes, :code:`args` has changed and is now pointing to the next element."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:246
+#: ../doc/tutorials/c_tutorial.rst:246
 msgid "Therefore the first displayed line will be \"arg_count = 1\" because there was only one item passed: ``passable_table``. |br| The second displayed line will be \"field_count = 3\" because there are three items in the table. |br| The next three lines will be \"1\" and \"2\" and \"3\" because those are the values in the items in the table."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:253
+#: ../doc/tutorials/c_tutorial.rst:253
 msgid "And now the screen looks like this:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:255
+#: ../doc/tutorials/c_tutorial.rst:255
 msgid "tarantool> capi_connection:call('harder', passable_table)\n"
 "arg_count = 1\n"
 "field_count = 3\n"
@@ -321,23 +321,23 @@ msgid "tarantool> capi_connection:call('harder', passable_table)\n"
 "..."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:267
+#: ../doc/tutorials/c_tutorial.rst:267
 msgid "Conclusion: decoding parameter values passed to a C function is not easy at first, but there are routines to do the job, and they're documented, and there aren't very many of them."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:274
+#: ../doc/tutorials/c_tutorial.rst:274
 msgid "**hardest.c**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:276
+#: ../doc/tutorials/c_tutorial.rst:276
 msgid "Go back to the shell where the ``easy.c`` and the ``harder.c`` programs were created."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:279
+#: ../doc/tutorials/c_tutorial.rst:279
 msgid "Create a file. Name it ``hardest.c``. Put these 13 lines in it:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:281
+#: ../doc/tutorials/c_tutorial.rst:281
 msgid "#include \"module.h\"\n"
 "#include \"msgpuck.h\"\n"
 "int hardest(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
@@ -353,73 +353,73 @@ msgid "#include \"module.h\"\n"
 "}"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:297
+#: ../doc/tutorials/c_tutorial.rst:297
 msgid "Compile the program, producing a library file named ``hardest.so``:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:299
+#: ../doc/tutorials/c_tutorial.rst:299
 msgid "$ gcc -shared -o hardest.so -fPIC hardest.c"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:305
+#: ../doc/tutorials/c_tutorial.rst:305
 msgid "box.schema.func.create('hardest', {language = \"C\"})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'hardest')\n"
 "box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
 "capi_connection:call('hardest')"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:312
+#: ../doc/tutorials/c_tutorial.rst:312
 msgid "This time the C function is doing three things:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:314
+#: ../doc/tutorials/c_tutorial.rst:314
 msgid "finding the numeric identifier of the ``capi_test`` space by calling ``box_space_id_by_name()``;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:316
+#: ../doc/tutorials/c_tutorial.rst:316
 msgid "formatting a tuple using more ``msgpuck.h`` functions;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:317
+#: ../doc/tutorials/c_tutorial.rst:317
 msgid "inserting a tuple using ``box_insert()``."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:321
+#: ../doc/tutorials/c_tutorial.rst:321
 msgid "``char tuple[1024];`` is used here as just a quick way of saying \"allocate more than enough bytes\". For serious programs the developer must be careful to allow enough space for all the bytes that the ``mp_encode`` routines will use up."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:326
+#: ../doc/tutorials/c_tutorial.rst:326
 msgid "Now, still on the client, execute this request:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:328
+#: ../doc/tutorials/c_tutorial.rst:328
 msgid "box.space.capi_test:select()"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:334
+#: ../doc/tutorials/c_tutorial.rst:334
 msgid "tarantool> box.space.capi_test:select()\n"
 "---\n"
 "- - [10000, 'String 2']\n"
 "..."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:341
+#: ../doc/tutorials/c_tutorial.rst:341
 msgid "This proves that the ``hardest()`` function succeeded, but where did :ref:`box_space_id_by_name() <box-box_space_id_by_name>` and :ref:`box_insert() <box-box_insert>` come from? Answer: the :ref:`C API <index-c_api_reference>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:348
+#: ../doc/tutorials/c_tutorial.rst:348
 msgid "**read.c**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:350
+#: ../doc/tutorials/c_tutorial.rst:350
 msgid "Go back to the shell where the ``easy.c`` and the ``harder.c`` and the ``hardest.c`` programs were created."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:353
+#: ../doc/tutorials/c_tutorial.rst:353
 msgid "Create a file. Name it ``read.c``. Put these 43 lines in it:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:355
+#: ../doc/tutorials/c_tutorial.rst:355
 msgid "#include \"module.h\"\n"
 "#include <msgpuck.h>\n"
 "int read(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
@@ -465,47 +465,47 @@ msgid "#include \"module.h\"\n"
 "}"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:401
+#: ../doc/tutorials/c_tutorial.rst:401
 msgid "Compile the program, producing a library file named ``read.so``:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:403
+#: ../doc/tutorials/c_tutorial.rst:403
 msgid "$ gcc -shared -o read.so -fPIC read.c"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:409
+#: ../doc/tutorials/c_tutorial.rst:409
 msgid "box.schema.func.create('read', {language = \"C\"})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'read')\n"
 "box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
 "capi_connection:call('read')"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:416
+#: ../doc/tutorials/c_tutorial.rst:416
 msgid "This time the C function is doing four things:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:418
-#: ../tutorials/c_tutorial.rst:499
+#: ../doc/tutorials/c_tutorial.rst:418
+#: ../doc/tutorials/c_tutorial.rst:499
 msgid "once again, finding the numeric identifier of the ``capi_test`` space by calling ``box_space_id_by_name()``;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:420
+#: ../doc/tutorials/c_tutorial.rst:420
 msgid "formatting a search key = 10000 using more ``msgpuck.h`` functions;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:421
+#: ../doc/tutorials/c_tutorial.rst:421
 msgid "getting a tuple using ``box_index_get()``;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:422
+#: ../doc/tutorials/c_tutorial.rst:422
 msgid "going through the tuple's fields with ``box_tuple_get()`` and then decoding each field depending on its type. In this case, since what we are getting is the tuple that we inserted with ``hardest.c``, we know in advance that the type is either MP_UINT or MP_STR; however, it's very common to have a case statement here with one option for each possible type."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:429
+#: ../doc/tutorials/c_tutorial.rst:429
 msgid "The result of ``capi_connection:call('read')`` should look like this:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:431
+#: ../doc/tutorials/c_tutorial.rst:431
 msgid "tarantool> capi_connection:call('read')\n"
 "uint value=10000.\n"
 "string value=String 2.\n"
@@ -514,23 +514,23 @@ msgid "tarantool> capi_connection:call('read')\n"
 "..."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:440
+#: ../doc/tutorials/c_tutorial.rst:440
 msgid "This proves that the ``read()`` function succeeded. Once again the important functions that start with `box` -- :ref:`box_index_get() <c_api-box_index-box_index_get>` and :ref:`box_tuple_field() <c_api-tuple-box_tuple_field>` -- came from the :ref:`C API <index-c_api_reference>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:448
+#: ../doc/tutorials/c_tutorial.rst:448
 msgid "**write.c**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:450
+#: ../doc/tutorials/c_tutorial.rst:450
 msgid "Go back to the shell where the programs ``easy.c``, ``harder.c``, ``hardest.c`` and ``read.c`` were created."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:453
+#: ../doc/tutorials/c_tutorial.rst:453
 msgid "Create a file. Name it ``write.c``. Put these 24 lines in it:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:455
+#: ../doc/tutorials/c_tutorial.rst:455
 msgid "#include \"module.h\"\n"
 "#include <msgpuck.h>\n"
 "int write(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
@@ -557,141 +557,141 @@ msgid "#include \"module.h\"\n"
 "}"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:482
+#: ../doc/tutorials/c_tutorial.rst:482
 msgid "Compile the program, producing a library file named ``write.so``:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:484
+#: ../doc/tutorials/c_tutorial.rst:484
 msgid "$ gcc -shared -o write.so -fPIC write.c"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:490
+#: ../doc/tutorials/c_tutorial.rst:490
 msgid "box.schema.func.create('write', {language = \"C\"})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'write')\n"
 "box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
 "capi_connection:call('write')"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:497
+#: ../doc/tutorials/c_tutorial.rst:497
 msgid "This time the C function is doing six things:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:501
+#: ../doc/tutorials/c_tutorial.rst:501
 msgid "making a new tuple;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:502
+#: ../doc/tutorials/c_tutorial.rst:502
 msgid "starting a transaction;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:503
+#: ../doc/tutorials/c_tutorial.rst:503
 msgid "replacing a tuple in ``box.space.capi_test``"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:504
+#: ../doc/tutorials/c_tutorial.rst:504
 msgid "ending a transaction;"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:505
+#: ../doc/tutorials/c_tutorial.rst:505
 msgid "the final line is a replacement for the loop in ``read.c`` -- instead of getting each field and printing it, use the ``box_return_tuple(...)`` function to return the entire tuple to the caller and let the caller display it."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:510
+#: ../doc/tutorials/c_tutorial.rst:510
 msgid "The result of ``capi_connection:call('write')`` should look like this:"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:512
+#: ../doc/tutorials/c_tutorial.rst:512
 msgid "tarantool> capi_connection:call('write')\n"
 "---\n"
 "- [[1, 22]]\n"
 "..."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:519
+#: ../doc/tutorials/c_tutorial.rst:519
 msgid "This proves that the ``write()`` function succeeded. Once again the important functions that start with `box` -- :ref:`box_txn_begin() <txn-box_txn_begin>`, :ref:`box_txn_commit() <txn-box_txn_commit>` and :ref:`box_return_tuple() <box-box_return_tuple>` -- came from the :ref:`C API <index-c_api_reference>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:526
+#: ../doc/tutorials/c_tutorial.rst:526
 msgid "Conclusion: the long description of the whole C API is there for a good reason. All of the functions in it can be called from C functions which are called from Lua. So C \"stored procedures\" have full access to the database."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:532
+#: ../doc/tutorials/c_tutorial.rst:532
 msgid "**Cleaning up**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:534
+#: ../doc/tutorials/c_tutorial.rst:534
 msgid "Get rid of each of the function tuples with :ref:`box.schema.func.drop <box_schema-func_drop>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:536
+#: ../doc/tutorials/c_tutorial.rst:536
 msgid "Get rid of the ``capi_test`` space with :ref:`box.schema.capi_test:drop() <box_space-drop>`."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:538
+#: ../doc/tutorials/c_tutorial.rst:538
 msgid "Remove the ``.c`` and ``.so`` files that were created for this tutorial."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:541
+#: ../doc/tutorials/c_tutorial.rst:541
 msgid "**An example in the test suite**"
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:543
+#: ../doc/tutorials/c_tutorial.rst:543
 msgid "Download the source code of Tarantool. Look in a subdirectory :code:`test/box`. Notice that there is a file named :code:`tuple_bench.test.lua` and another file named :code:`tuple_bench.c`. Examine the Lua file and observe that it is calling a function in the C file, using the same techniques that this tutorial has shown."
 msgstr ""
 
-#: ../tutorials/c_tutorial.rst:550
+#: ../doc/tutorials/c_tutorial.rst:550
 msgid "Conclusion: parts of the standard test suite use C stored procedures, and they must work, because releases don't happen if Tarantool doesn't pass the tests."
 msgstr ""
 
-#: ../tutorials/index.rst:5
+#: ../doc/tutorials/index.rst:5
 msgid "Tutorials"
 msgstr ""
 
-#: ../tutorials/libslave.rst:5
+#: ../doc/tutorials/libslave.rst:5
 msgid "`libslave` tutorial"
 msgstr ""
 
-#: ../tutorials/libslave.rst:7
+#: ../doc/tutorials/libslave.rst:7
 msgid "``libslave`` is a C++ library for reading data changes done by MysQL and, optionally, writing them to a Tarantool database. It works by acting as a replication slave. The MySQL server writes data-change information to a \"binary log\", and transfers the information to any client that says \"I want to see the information starting with this file and this record, continuously\". So, ``libslave`` is primarily good for making a Tarantool database replica (much faster than using a conventional MySQL slave server), and for keeping track of data changes so they can be searched."
 msgstr ""
 
-#: ../tutorials/libslave.rst:18
+#: ../doc/tutorials/libslave.rst:18
 msgid "We will not go into the many details here -- the `API documentation <https://github.com/vozbu/libslave/wiki/API>`_ has them. We will only show an exercise: a minimal program that uses the library."
 msgstr ""
 
-#: ../tutorials/libslave.rst:24
+#: ../doc/tutorials/libslave.rst:24
 msgid "Use a test machine. Do not use a production machine."
 msgstr ""
 
-#: ../tutorials/libslave.rst:26
+#: ../doc/tutorials/libslave.rst:26
 msgid "STEP 1: Make sure you have:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:28
+#: ../doc/tutorials/libslave.rst:28
 msgid "a recent version of Linux (versions such as Ubuntu 14.04 will not do),"
 msgstr ""
 
-#: ../tutorials/libslave.rst:29
+#: ../doc/tutorials/libslave.rst:29
 msgid "a recent version of MySQL 5.6 or MySQL 5.7 server (MariaDB will not do),"
 msgstr ""
 
-#: ../tutorials/libslave.rst:30
+#: ../doc/tutorials/libslave.rst:30
 msgid "MySQL client development package. For example, on Ubuntu you can download it with this command:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:33
+#: ../doc/tutorials/libslave.rst:33
 msgid "$ sudo apt-get install mysql-client-core-5.7"
 msgstr ""
 
-#: ../tutorials/libslave.rst:37
+#: ../doc/tutorials/libslave.rst:37
 msgid "STEP 2: Download ``libslave``."
 msgstr ""
 
-#: ../tutorials/libslave.rst:39
+#: ../doc/tutorials/libslave.rst:39
 msgid "The recommended source is https://github.com/tarantool/libslave/. Downloads include the source code only."
 msgstr ""
 
-#: ../tutorials/libslave.rst:42
+#: ../doc/tutorials/libslave.rst:42
 msgid "$ sudo apt-get install libboost-all-dev\n"
 "$ cd ~\n"
 "$ git clone https://github.com/tarantool/libslave.git tarantool-libslave\n"
@@ -702,51 +702,51 @@ msgid "$ sudo apt-get install libboost-all-dev\n"
 "$ make"
 msgstr ""
 
-#: ../tutorials/libslave.rst:53
+#: ../doc/tutorials/libslave.rst:53
 msgid "If you see an error message mentioning the word \"vector\", edit ``field.h`` and add this line:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:56
+#: ../doc/tutorials/libslave.rst:56
 msgid "#include <vector>"
 msgstr ""
 
-#: ../tutorials/libslave.rst:60
+#: ../doc/tutorials/libslave.rst:60
 msgid "STEP 3: Start the MySQL server. On the command line, add appropriate switches for doing replication. For example:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:63
+#: ../doc/tutorials/libslave.rst:63
 msgid "$ mysqld --log-bin=mysql-bin --server-id=1"
 msgstr ""
 
-#: ../tutorials/libslave.rst:67
+#: ../doc/tutorials/libslave.rst:67
 msgid "STEP 4: For purposes of this exercise, we are assuming you have:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:69
+#: ../doc/tutorials/libslave.rst:69
 msgid "a \"root\" user with password \"root\" with privileges,"
 msgstr ""
 
-#: ../tutorials/libslave.rst:70
+#: ../doc/tutorials/libslave.rst:70
 msgid "a \"test\" database with a table named \"test\","
 msgstr ""
 
-#: ../tutorials/libslave.rst:71
+#: ../doc/tutorials/libslave.rst:71
 msgid "a binary log named \"mysql-bin\","
 msgstr ""
 
-#: ../tutorials/libslave.rst:72
+#: ../doc/tutorials/libslave.rst:72
 msgid "a server with server id = 1."
 msgstr ""
 
-#: ../tutorials/libslave.rst:74
+#: ../doc/tutorials/libslave.rst:74
 msgid "The values are hard-coded in the program, though of course you can change the program -- it's easy to see their settings."
 msgstr ""
 
-#: ../tutorials/libslave.rst:77
+#: ../doc/tutorials/libslave.rst:77
 msgid "STEP 5: Look at the program:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:79
+#: ../doc/tutorials/libslave.rst:79
 msgid "#include <unistd.h>\n"
 "#include <iostream>\n"
 "#include <sstream>\n"
@@ -800,201 +800,201 @@ msgid "#include <unistd.h>\n"
 "}"
 msgstr ""
 
-#: ../tutorials/libslave.rst:133
+#: ../doc/tutorials/libslave.rst:133
 msgid "Everything unnecessary has been stripped so that you can see quickly how it works. At the start of ``main()``, there are some settings used for connecting -- host, port, user, password. Then there is an initialization call with the binary log file name = \"mysql-bin\". Pay particular attention to the ``setCallback`` statement, which passes database name = \"test\", table name = \"test\", and callback function address = callback. The program will be looping and invoking this callback function. See how, earlier in the program, the callback function prints \"UPDATE\" or \"DELETE\" or \"INSERT\" depending on what is passed to it."
 msgstr ""
 
-#: ../tutorials/libslave.rst:144
+#: ../doc/tutorials/libslave.rst:144
 msgid "STEP 5: Put the program in the ``tarantool-libslave`` directory and name it ``example.cpp``."
 msgstr ""
 
-#: ../tutorials/libslave.rst:147
+#: ../doc/tutorials/libslave.rst:147
 msgid "Step 6: Compile and build:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:149
+#: ../doc/tutorials/libslave.rst:149
 msgid "$ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a -ldl -lpthread"
 msgstr ""
 
-#: ../tutorials/libslave.rst:155
+#: ../doc/tutorials/libslave.rst:155
 msgid "Replace ``tarantool-libslave/include`` with the full directory name."
 msgstr ""
 
-#: ../tutorials/libslave.rst:157
+#: ../doc/tutorials/libslave.rst:157
 msgid "Notice that the name of the static library is ``libslave_a.a``, not ``libslave.a``."
 msgstr ""
 
-#: ../tutorials/libslave.rst:160
+#: ../doc/tutorials/libslave.rst:160
 msgid "Step 7: Run:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:162
+#: ../doc/tutorials/libslave.rst:162
 msgid "$ ./example"
 msgstr ""
 
-#: ../tutorials/libslave.rst:166
+#: ../doc/tutorials/libslave.rst:166
 msgid "The result will be nothing -- the program is looping, waiting for the MySQL server to write to the replication binary log."
 msgstr ""
 
-#: ../tutorials/libslave.rst:169
+#: ../doc/tutorials/libslave.rst:169
 msgid "Step 8: Start a MySQL client program -- any client program will do. Enter these statements:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:172
+#: ../doc/tutorials/libslave.rst:172
 msgid "USE test\n"
 "INSERT INTO test VALUES ('A');\n"
 "INSERT INTO test VALUES ('B');\n"
 "DELETE FROM test;"
 msgstr ""
 
-#: ../tutorials/libslave.rst:179
+#: ../doc/tutorials/libslave.rst:179
 msgid "Watch what happens in ``example.cpp`` output -- it displays:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:181
+#: ../doc/tutorials/libslave.rst:181
 msgid "INSERT\n"
 "INSERT\n"
 "DELETE\n"
 "DELETE"
 msgstr ""
 
-#: ../tutorials/libslave.rst:188
+#: ../doc/tutorials/libslave.rst:188
 msgid "This is row-based replication, so you see two DELETEs, because there are two rows."
 msgstr ""
 
-#: ../tutorials/libslave.rst:191
+#: ../doc/tutorials/libslave.rst:191
 msgid "What the exercise has shown is:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:193
+#: ../doc/tutorials/libslave.rst:193
 msgid "the library can be built, and"
 msgstr ""
 
-#: ../tutorials/libslave.rst:194
+#: ../doc/tutorials/libslave.rst:194
 msgid "programs that use the library can access everything that the MySQL server dumps."
 msgstr ""
 
-#: ../tutorials/libslave.rst:197
+#: ../doc/tutorials/libslave.rst:197
 msgid "For the many details and examples of usage in the field, see:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:0
+#: ../doc/tutorials/libslave.rst:0
 msgid "Our downloadable ``libslave`` version:"
 msgstr ""
 
-#: ../tutorials/libslave.rst:0
+#: ../doc/tutorials/libslave.rst:0
 msgid "https://github.com/tarantool/libslave"
 msgstr ""
 
-#: ../tutorials/libslave.rst:0
+#: ../doc/tutorials/libslave.rst:0
 msgid "The version it was forked from (with a different README):"
 msgstr ""
 
-#: ../tutorials/libslave.rst:0
+#: ../doc/tutorials/libslave.rst:0
 msgid "https://github.com/vozbu/libslave/wiki/API"
 msgstr ""
 
-#: ../tutorials/libslave.rst:205
+#: ../doc/tutorials/libslave.rst:205
 msgid "`How to speed up your MySQL with replication to in-memory database <http://highscalability.com/blog/2017/3/29/how-to-speed-up-your-mysql-with-replication-to-in-memory-dat.html>`_ article"
 msgstr ""
 
-#: ../tutorials/libslave.rst:207
+#: ../doc/tutorials/libslave.rst:207
 msgid "`Replicating data from MySQL to Tarantool <https://habrahabr.ru/company/mailru/blog/323870/>`_ article (in Russian)"
 msgstr ""
 
-#: ../tutorials/libslave.rst:209
+#: ../doc/tutorials/libslave.rst:209
 msgid "`Asynchronous replication uncensored <https://habrahabr.ru/company/oleg-bunin/blog/313594/>`_ article (in Russian)"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:5
+#: ../doc/tutorials/lua_tutorials.rst:5
 msgid "Lua tutorials"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:7
+#: ../doc/tutorials/lua_tutorials.rst:7
 msgid "Here are three tutorials on using Lua stored procedures with Tarantool:"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:9
+#: ../doc/tutorials/lua_tutorials.rst:9
 msgid ":ref:`Insert one million tuples with a Lua stored procedure <c_lua_tutorial-insert_one_million_tuples>`,"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:10
+#: ../doc/tutorials/lua_tutorials.rst:10
 msgid ":ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`,"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:11
+#: ../doc/tutorials/lua_tutorials.rst:11
 msgid ":ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:17
+#: ../doc/tutorials/lua_tutorials.rst:17
 msgid "Insert one million tuples with a Lua stored procedure"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:19
+#: ../doc/tutorials/lua_tutorials.rst:19
 msgid "This is an exercise assignment: “Insert one million tuples. Each tuple should have a constantly-increasing numeric primary-key field and a random alphabetic 10-character string field.”"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:23
+#: ../doc/tutorials/lua_tutorials.rst:23
 msgid "The purpose of the exercise is to show what Lua functions look like inside Tarantool. It will be necessary to employ the Lua math library, the Lua string library, the Tarantool box library, the Tarantool box.tuple library, loops, and concatenations. It should be easy to follow even for a person who has not used either Lua or Tarantool before. The only requirement is a knowledge of how other programming languages work and a memory of the first two chapters of this manual. But for better understanding, follow the comments and the links, which point to the Lua manual or to elsewhere in this Tarantool manual. To further enhance learning, type the statements in with the tarantool client while reading along."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:35
+#: ../doc/tutorials/lua_tutorials.rst:35
 msgid "Configure"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:37
+#: ../doc/tutorials/lua_tutorials.rst:37
 msgid "We are going to use the Tarantool sandbox that was created for our :ref:`\"Getting started\" exercises <getting_started>`. So there is a single space, and a numeric primary key, and a running Tarantool server instance which also serves as a client."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:44
+#: ../doc/tutorials/lua_tutorials.rst:44
 msgid "Delimiter"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:46
+#: ../doc/tutorials/lua_tutorials.rst:46
 msgid "In earlier versions of Tarantool, multi-line functions had to be enclosed within \"delimiters\". They are no longer necessary, and so they will not be used in this tutorial. However, they are still supported. Users who wish to use delimiters, or users of older versions of Tarantool, should check the syntax description for :ref:`declaring a delimiter <console-delimiter>` before proceeding."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:55
+#: ../doc/tutorials/lua_tutorials.rst:55
 msgid "Create a function that returns a string"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:57
+#: ../doc/tutorials/lua_tutorials.rst:57
 msgid "We will start by making a function that returns a fixed string, “Hello world”."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:59
+#: ../doc/tutorials/lua_tutorials.rst:59
 msgid "function string_function()\n"
 "  return \"hello world\"\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:65
+#: ../doc/tutorials/lua_tutorials.rst:65
 msgid "The word \"``function``\" is a Lua keyword -- we're about to go into Lua. The function name is string_function. The function has one executable statement, ``return \"hello world\"``. The string \"hello world\" is enclosed in double quotes here, although Lua doesn't care -- one could use single quotes instead. The word \"``end``\" means “this is the end of the Lua function declaration.” To confirm that the function works, we can say"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:72
+#: ../doc/tutorials/lua_tutorials.rst:72
 msgid "string_function()"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:76
+#: ../doc/tutorials/lua_tutorials.rst:76
 msgid "Sending ``function-name()`` means “invoke the Lua function.” The effect is that the string which the function returns will end up on the screen."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:79
+#: ../doc/tutorials/lua_tutorials.rst:79
 msgid "For more about Lua strings see Lua manual `chapter 2.4 \"Strings\"`_ . For more about functions see Lua manual `chapter 5 \"Functions\"`_."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:85
-#: ../tutorials/lua_tutorials.rst:129
-#: ../tutorials/lua_tutorials.rst:181
-#: ../tutorials/lua_tutorials.rst:237
-#: ../tutorials/lua_tutorials.rst:283
-#: ../tutorials/lua_tutorials.rst:343
-#: ../tutorials/lua_tutorials.rst:436
+#: ../doc/tutorials/lua_tutorials.rst:85
+#: ../doc/tutorials/lua_tutorials.rst:129
+#: ../doc/tutorials/lua_tutorials.rst:181
+#: ../doc/tutorials/lua_tutorials.rst:237
+#: ../doc/tutorials/lua_tutorials.rst:283
+#: ../doc/tutorials/lua_tutorials.rst:343
+#: ../doc/tutorials/lua_tutorials.rst:436
 msgid "The screen now looks like this:"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:87
+#: ../doc/tutorials/lua_tutorials.rst:87
 msgid "tarantool> function string_function()\n"
 "         >   return \"hello world\"\n"
 "         > end\n"
@@ -1007,15 +1007,15 @@ msgid "tarantool> function string_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:102
+#: ../doc/tutorials/lua_tutorials.rst:102
 msgid "Create a function that calls another function and sets a variable"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:104
+#: ../doc/tutorials/lua_tutorials.rst:104
 msgid "Now that ``string_function`` exists, we can invoke it from another function."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:107
+#: ../doc/tutorials/lua_tutorials.rst:107
 msgid "function main_function()\n"
 "  local string_value\n"
 "  string_value = string_function()\n"
@@ -1023,19 +1023,19 @@ msgid "function main_function()\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:115
+#: ../doc/tutorials/lua_tutorials.rst:115
 msgid "We begin by declaring a variable \"``string_value``\". The word \"``local``\" means that string_value appears only in ``main_function``. If we didn't use \"``local``\" then ``string_value`` would be visible everywhere - even by other users using other clients connected to this server instance! Sometimes that's a very desirable feature for inter-client communication, but not this time."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:121
+#: ../doc/tutorials/lua_tutorials.rst:121
 msgid "Then we assign a value to ``string_value``, namely, the result of ``string_function()``. Soon we will invoke ``main_function()`` to check that it got the value."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:125
+#: ../doc/tutorials/lua_tutorials.rst:125
 msgid "For more about Lua variables see Lua manual `chapter 4.2 \"Local Variables and Blocks\"`_ ."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:131
+#: ../doc/tutorials/lua_tutorials.rst:131
 msgid "tarantool> function main_function()\n"
 "         >   local string_value\n"
 "         >   string_value = string_function()\n"
@@ -1050,15 +1050,15 @@ msgid "tarantool> function main_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:148
+#: ../doc/tutorials/lua_tutorials.rst:148
 msgid "Modify the function so it returns a one-letter random string"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:150
+#: ../doc/tutorials/lua_tutorials.rst:150
 msgid "Now that it's a bit clearer how to make a variable, we can change ``string_function()`` so that, instead of returning a fixed literal \"Hello world\", it returns a random letter between 'A' and 'Z'."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:154
+#: ../doc/tutorials/lua_tutorials.rst:154
 msgid "function string_function()\n"
 "  local random_number\n"
 "  local random_string\n"
@@ -1068,19 +1068,19 @@ msgid "function string_function()\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:164
+#: ../doc/tutorials/lua_tutorials.rst:164
 msgid "It is not necessary to destroy the old ``string_function()`` contents, they're simply overwritten. The first assignment invokes a random-number function in Lua's math library; the parameters mean “the number must be an integer between 65 and 90.” The second assignment invokes an integer-to-character function in Lua's string library; the parameter is the code point of the character. Luckily the ASCII value of 'A' is 65 and the ASCII value of 'Z' is 90 so the result will always be a letter between A and Z."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:172
+#: ../doc/tutorials/lua_tutorials.rst:172
 msgid "For more about Lua math-library functions see Lua users \"`Math Library Tutorial`_\". For more about Lua string-library functions see Lua users \"`String Library Tutorial`_\" ."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:178
+#: ../doc/tutorials/lua_tutorials.rst:178
 msgid "Once again the ``string_function()`` can be invoked from main_function() which can be invoked with ``main_function()``."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:183
+#: ../doc/tutorials/lua_tutorials.rst:183
 msgid "tarantool> function string_function()\n"
 "         >   local random_number\n"
 "         >   local random_string\n"
@@ -1097,19 +1097,19 @@ msgid "tarantool> function string_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:200
+#: ../doc/tutorials/lua_tutorials.rst:200
 msgid "... Well, actually it won't always look like this because ``math.random()`` produces random numbers. But for the illustration purposes it won't matter what the random string values are."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:206
+#: ../doc/tutorials/lua_tutorials.rst:206
 msgid "Modify the function so it returns a ten-letter random string"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:208
+#: ../doc/tutorials/lua_tutorials.rst:208
 msgid "Now that it's clear how to produce one-letter random strings, we can reach our goal of producing a ten-letter string by concatenating ten one-letter strings, in a loop."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:212
+#: ../doc/tutorials/lua_tutorials.rst:212
 msgid "function string_function()\n"
 "  local random_number\n"
 "  local random_string\n"
@@ -1122,15 +1122,15 @@ msgid "function string_function()\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:225
+#: ../doc/tutorials/lua_tutorials.rst:225
 msgid "The words \"for x = 1,10,1\" mean “start with x equals 1, loop until x equals 10, increment x by 1 for each iteration.” The symbol \"..\" means \"concatenate\", that is, add the string on the right of the \"..\" sign to the string on the left of the \"..\" sign. Since we start by saying that random_string is \"\" (a blank string), the end result is that random_string has 10 random letters. Once again the ``string_function()`` can be invoked from ``main_function()`` which can be invoked with ``main_function()``."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:233
+#: ../doc/tutorials/lua_tutorials.rst:233
 msgid "For more about Lua loops see Lua manual `chapter 4.3.4 \"Numeric for\"`_."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:239
+#: ../doc/tutorials/lua_tutorials.rst:239
 msgid "tarantool> function string_function()\n"
 "         >   local random_number\n"
 "         >   local random_string\n"
@@ -1150,15 +1150,15 @@ msgid "tarantool> function string_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:261
+#: ../doc/tutorials/lua_tutorials.rst:261
 msgid "Make a tuple out of a number and a string"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:263
+#: ../doc/tutorials/lua_tutorials.rst:263
 msgid "Now that it's clear how to make a 10-letter random string, it's possible to make a tuple that contains a number and a 10-letter random string, by invoking a function in Tarantool's library of Lua functions."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:267
+#: ../doc/tutorials/lua_tutorials.rst:267
 msgid "function main_function()\n"
 "  local string_value, t\n"
 "  string_value = string_function()\n"
@@ -1167,15 +1167,15 @@ msgid "function main_function()\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:276
+#: ../doc/tutorials/lua_tutorials.rst:276
 msgid "Once this is done, t will be the value of a new tuple which has two fields. The first field is numeric: 1. The second field is a random string. Once again the ``string_function()`` can be invoked from ``main_function()`` which can be invoked with  ``main_function()``."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:281
+#: ../doc/tutorials/lua_tutorials.rst:281
 msgid "For more about Tarantool tuples see Tarantool manual section :ref:`Submodule box.tuple <box_tuple>`."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:285
+#: ../doc/tutorials/lua_tutorials.rst:285
 msgid "tarantool> function main_function()\n"
 "         > local string_value, t\n"
 "         > string_value = string_function()\n"
@@ -1191,15 +1191,15 @@ msgid "tarantool> function main_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:303
+#: ../doc/tutorials/lua_tutorials.rst:303
 msgid "Modify main_function to insert a tuple into the database"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:305
+#: ../doc/tutorials/lua_tutorials.rst:305
 msgid "Now that it's clear how to make a tuple that contains a number and a 10-letter random string, the only trick remaining is putting that tuple into tester. Remember that tester is the first space that was defined in the sandbox, so it's like a database table."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:310
+#: ../doc/tutorials/lua_tutorials.rst:310
 msgid "function main_function()\n"
 "  local string_value, t\n"
 "  string_value = string_function()\n"
@@ -1208,20 +1208,20 @@ msgid "function main_function()\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:319
+#: ../doc/tutorials/lua_tutorials.rst:319
 msgid "The new line here is ``box.space.tester:replace(t)``. The name contains 'tester' because the insertion is going to be to tester. The second parameter is the tuple value. To be perfectly correct we could have said ``box.space.tester:insert(t)`` here, rather than ``box.space.tester:replace(t)``, but \"replace\" means “insert even if there is already a tuple whose primary-key value is a duplicate”, and that makes it easier to re-run the exercise even if the sandbox database isn't empty. Once this is done, tester will contain a tuple with two fields. The first field will be 1. The second field will be a random 10-letter string. Once again the ``string_function(``) can be invoked from ``main_function()`` which can be invoked with ``main_function()``. But ``main_function()`` won't tell the whole story, because it does not return t, it only puts t into the database. To confirm that something got inserted, we'll use a SELECT request."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:333
+#: ../doc/tutorials/lua_tutorials.rst:333
 msgid "main_function()\n"
 "box.space.tester:select{1}"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:338
+#: ../doc/tutorials/lua_tutorials.rst:338
 msgid "For more about Tarantool insert and replace calls, see Tarantool manual section :ref:`Submodule box.space <box_space>`, :ref:`space_object:insert() <box_space-insert>`, and :ref:`space_object:replace() <box_space-replace>`."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:345
+#: ../doc/tutorials/lua_tutorials.rst:345
 msgid "tarantool> function main_function()\n"
 "         >   local string_value, t\n"
 "         >   string_value = string_function()\n"
@@ -1240,15 +1240,15 @@ msgid "tarantool> function main_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:366
+#: ../doc/tutorials/lua_tutorials.rst:366
 msgid "Modify main_function to insert a million tuples into the database"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:368
+#: ../doc/tutorials/lua_tutorials.rst:368
 msgid "Now that it's clear how to insert one tuple into the database, it's no big deal to figure out how to scale up: instead of inserting with a literal value = 1 for the primary key, insert with a variable value = between 1 and 1 million, in a loop. Since we already saw how to loop, that's a simple thing. The only extra wrinkle that we add here is a timing function."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:374
+#: ../doc/tutorials/lua_tutorials.rst:374
 msgid "function main_function()\n"
 "  local string_value, t\n"
 "  for i = 1,1000000,1 do\n"
@@ -1263,19 +1263,19 @@ msgid "function main_function()\n"
 "'insert done in ' .. end_time - start_time .. ' seconds'"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:389
+#: ../doc/tutorials/lua_tutorials.rst:389
 msgid "The standard Lua function `os.clock() <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_ will return the number of CPU seconds since the start. Therefore, by getting start_time = number of seconds just before the inserting, and then getting end_time = number of seconds just after the inserting, we can calculate (end_time - start_time) = elapsed time in seconds. We will display that value by putting it in a request without any assignments, which causes Tarantool to send the value to the client, which prints it. (Lua's answer to the C ``printf()`` function, which is ``print()``, will also work.)"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:399
+#: ../doc/tutorials/lua_tutorials.rst:399
 msgid "For more on Lua ``os.clock()`` see Lua manual `chapter 22.1 \"Date and Time\"`_. For more on Lua print() see Lua manual `chapter 5 \"Functions\"`_."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:405
+#: ../doc/tutorials/lua_tutorials.rst:405
 msgid "Since this is the grand finale, we will redo the final versions of all the necessary requests: the request that created ``string_function()``, the request that created ``main_function()``, and the request that invokes ``main_function()``."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:410
+#: ../doc/tutorials/lua_tutorials.rst:410
 msgid "function string_function()\n"
 "  local random_number\n"
 "  local random_string\n"
@@ -1301,7 +1301,7 @@ msgid "function string_function()\n"
 "'insert done in ' .. end_time - start_time .. ' seconds'"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:438
+#: ../doc/tutorials/lua_tutorials.rst:438
 msgid "tarantool> function string_function()\n"
 "         >   local random_number\n"
 "         >   local random_string\n"
@@ -1340,23 +1340,23 @@ msgid "tarantool> function string_function()\n"
 "tarantool>"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:477
+#: ../doc/tutorials/lua_tutorials.rst:477
 msgid "What has been shown is that Lua functions are quite expressive (in fact one can do more with Tarantool's Lua stored procedures than one can do with stored procedures in some SQL DBMSs), and that it's straightforward to combine Lua-library functions and Tarantool-library functions."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:482
+#: ../doc/tutorials/lua_tutorials.rst:482
 msgid "What has also been shown is that inserting a million tuples took 37 seconds. The host computer was a Linux laptop. By changing :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to 'none' before running the test, one can reduce the elapsed time to 4 seconds."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:490
+#: ../doc/tutorials/lua_tutorials.rst:490
 msgid "Sum a JSON field for all tuples"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:492
+#: ../doc/tutorials/lua_tutorials.rst:492
 msgid "This is an exercise assignment: “Assume that inside every tuple there is a string formatted as JSON. Inside that string there is a JSON numeric field. For each tuple, find the numeric field's value and add it to a 'sum' variable. At end, return the 'sum' variable.” The purpose of the exercise is to get experience in one way to read and process tuples."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:498
+#: ../doc/tutorials/lua_tutorials.rst:498
 msgid "json = require('json')\n"
 "function sum_json_field(field_name)\n"
 "  local v, t, sum, field_value, is_valid_json, lua_table\n"
@@ -1372,97 +1372,97 @@ msgid "json = require('json')\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:515
+#: ../doc/tutorials/lua_tutorials.rst:515
 msgid "**LINE 3: WHY \"LOCAL\".** This line declares all the variables that will be used in the function. Actually it's not necessary to declare all variables at the start, and in a long function it would be better to declare variables just before using them. In fact it's not even necessary to declare variables at all, but an undeclared variable is \"global\". That's not desirable for any of the variables that are declared in line 1, because all of them are for use only within the function."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:522
+#: ../doc/tutorials/lua_tutorials.rst:522
 msgid "**LINE 5: WHY \"PAIRS()\".** Our job is to go through all the rows and there are two ways to do it: with :ref:`box.space.space_object:pairs() <box_space-pairs>` or with ``variable = select(...)`` followed by :samp:`for i, {n}, 1 do {some-function}(variable[i]) end`. We preferred ``pairs()`` for this example."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:527
+#: ../doc/tutorials/lua_tutorials.rst:527
 msgid "**LINE 5: START THE MAIN LOOP.** Everything inside this \"``for``\" loop will be repeated as long as there is another index key. A tuple is fetched and can be referenced with variable :code:`t`."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:531
+#: ../doc/tutorials/lua_tutorials.rst:531
 msgid "**LINE 6: WHY \"PCALL\".** If we simply said ``lua_table = json.decode(t[2]))``, then the function would abort with an error if it encountered something wrong with the JSON string - a missing colon, for example. By putting the function inside \"``pcall``\" (`protected call`_), we're saying: we want to intercept that sort of error, so if there's a problem just set ``is_valid_json = false`` and we will know what to do about it later."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:538
+#: ../doc/tutorials/lua_tutorials.rst:538
 msgid "**LINE 6: MEANING.** The function is :ref:`json.decode <json-decode>` which means decode a JSON string, and the parameter is t[2] which is a reference to a JSON string. There's a bit of hard coding here, we're assuming that the second field in the tuple is where the JSON string was inserted. For example, we're assuming a tuple looks like"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:582
+#: ../doc/tutorials/lua_tutorials.rst:582
 msgid "field[1]: 444\n"
 "field[2]: '{\"Hello\": \"world\", \"Quantity\": 15}'"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:551
+#: ../doc/tutorials/lua_tutorials.rst:551
 msgid "meaning that the tuple's first field, the primary key field, is a number while the tuple's second field, the JSON string, is a string. Thus the entire statement means \"decode ``t[2]`` (the tuple's second field) as a JSON string; if there's an error set ``is_valid_json = false``; if there's no error set ``is_valid_json = true`` and set ``lua_table =`` a Lua table which has the decoded string\"."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:557
+#: ../doc/tutorials/lua_tutorials.rst:557
 msgid "**LINE 8.** At last we are ready to get the JSON field value from the Lua table that came from the JSON string. The value in field_name, which is the parameter for the whole function, must be a name of a JSON field. For example, inside the JSON string ``'{\"Hello\": \"world\", \"Quantity\": 15}'``, there are two JSON fields: \"Hello\" and \"Quantity\". If the whole function is invoked with ``sum_json_field(\"Quantity\")``, then ``field_value = lua_table[field_name]`` is effectively the same as ``field_value = lua_table[\"Quantity\"]`` or even ``field_value = lua_table.Quantity``. Those are just three different ways of saying: for the Quantity field in the Lua table, get the value and put it in variable :code:`field_value`."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:567
+#: ../doc/tutorials/lua_tutorials.rst:567
 msgid "**LINE 9: WHY \"IF\".** Suppose that the JSON string is well formed but the JSON field is not a number, or is missing. In that case, the function would be aborted when there was an attempt to add it to the sum. By first checking ``type(field_value) == \"number\"``, we avoid that abortion. Anyone who knows that the database is in perfect shape can skip this kind of thing."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:573
+#: ../doc/tutorials/lua_tutorials.rst:573
 msgid "And the function is complete. Time to test it. Starting with an empty database, defined the same way as the sandbox database in our :ref:`\"Getting started\" exercises <getting_started>`,"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:577
+#: ../doc/tutorials/lua_tutorials.rst:577
 msgid "-- if tester is left over from some previous test, destroy it\n"
 "box.space.tester:drop()\n"
 "box.schema.space.create('tester')\n"
 "box.space.tester:create_index('primary', {parts = {1, 'unsigned'}})"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:584
+#: ../doc/tutorials/lua_tutorials.rst:584
 msgid "then add some tuples where the first field is a number and the second field is a string."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:587
+#: ../doc/tutorials/lua_tutorials.rst:587
 msgid "box.space.tester:insert{444, '{\"Item\": \"widget\", \"Quantity\": 15}'}\n"
 "box.space.tester:insert{445, '{\"Item\": \"widget\", \"Quantity\": 7}'}\n"
 "box.space.tester:insert{446, '{\"Item\": \"golf club\", \"Quantity\": \"sunshine\"}'}\n"
 "box.space.tester:insert{447, '{\"Item\": \"waffle iron\", \"Quantit\": 3}'}"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:594
+#: ../doc/tutorials/lua_tutorials.rst:594
 msgid "Since this is a test, there are deliberate errors. The \"golf club\" and the \"waffle iron\" do not have numeric Quantity fields, so must be ignored. Therefore the real sum of the Quantity field in the JSON strings should be: 15 + 7 = 22."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:599
+#: ../doc/tutorials/lua_tutorials.rst:599
 msgid "Invoke the function with ``sum_json_field(\"Quantity\")``."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:601
+#: ../doc/tutorials/lua_tutorials.rst:601
 msgid "tarantool> sum_json_field(\"Quantity\")\n"
 "---\n"
 "- 22\n"
 "..."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:608
+#: ../doc/tutorials/lua_tutorials.rst:608
 msgid "It works. We'll just leave, as exercises for future improvement, the possibility that the \"hard coding\" assumptions could be removed, that there might have to be an overflow check if some field values are huge, and that the function should contain a :ref:`yield <atomic-threads_fibers_yields>` instruction if the count of tuples is huge."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:617
+#: ../doc/tutorials/lua_tutorials.rst:617
 msgid "Indexed pattern search"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:619
+#: ../doc/tutorials/lua_tutorials.rst:619
 msgid "Here is a generic function which takes a field identifier and a search pattern, and returns all tuples that match. |br| * The field must be the first field of a TREE index. |br| * The function will use `Lua pattern matching <http://www.lua.org/manual/5.2/manual.html#6.4.1>`_, which allows \"magic characters\" in regular expressions. |br| * The initial characters in the pattern, as far as the first magic character, will be used as an index search key. For each tuple that is found via the index, there will be a match of the whole pattern. |br| * To be :ref:`cooperative <atomic-cooperative_multitasking>`, the function should yield after every 10 tuples, unless there is a reason to delay yielding. |br| With this function, we can take advantage of Tarantool's indexes for speed, and take advantage of Lua's pattern matching for flexibility. It does everything that an SQL \"LIKE\" search can do, and far more."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:636
+#: ../doc/tutorials/lua_tutorials.rst:636
 msgid "Read the following Lua code to see how it works. The comments that begin with \"SEE NOTE ...\" refer to long explanations that follow the code."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:640
+#: ../doc/tutorials/lua_tutorials.rst:640
 msgid "function indexed_pattern_search(space_name, field_no, pattern)\n"
 "  -- SEE NOTE #1 \"FIND AN APPROPRIATE INDEX\"\n"
 "  if (box.space[space_name] == nil) then\n"
@@ -1553,47 +1553,47 @@ msgid "function indexed_pattern_search(space_name, field_no, pattern)\n"
 "end"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:731
+#: ../doc/tutorials/lua_tutorials.rst:731
 msgid "NOTE #1 \"FIND AN APPROPRIATE INDEX\" |br| The caller has passed space_name (a string) and field_no (a number). The requirements are: |br| (a) index type must be \"TREE\" because for other index types (HASH, BITSET, RTREE) a search with :ref:`iterator=GE <box_index-iterator-types>` will not return strings in order by string value; |br| (b) field_no must be the first index part; |br| (c) the field must contain strings, because for other data types (such as \"unsigned\") pattern searches are not possible; |br| If these requirements are not met by any index, then print an error message and return nil."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:743
+#: ../doc/tutorials/lua_tutorials.rst:743
 msgid "NOTE #2 \"DERIVE INDEX SEARCH KEY FROM PATTERN\" |br| The caller has passed pattern (a string). The index search key will be the characters in the pattern as far as the first magic character. Lua's magic characters are % ^ $ ( ) . [ ] * + - ?. For example, if the pattern is \"ABC.E\", the period is a magic character and therefore the index search key will be \"ABC\". But there is a complication ... If we see \"%\" followed by a punctuation character, that punctuation character is \"escaped\" so remove the \"%\" when making the index search key. For example, if the pattern is \"AB%$E\", the dollar sign is escaped and therefore the index search key will be \"AB$E\". Finally there is a check that the index search key length must be at least three -- this is an arbitrary number, and in fact zero would be okay, but short index search keys will cause long search times."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:760
+#: ../doc/tutorials/lua_tutorials.rst:760
 msgid "NOTE #3 -- \"OUTER LOOP: INITIATE\" |br| The function's job is to return a result set, just as `box.space...select <box_space-select>` would. We will fill it within an outer loop that contains an inner loop. The outer loop's job is to execute the inner loop, and possibly :ref:`yield <atomic-threads_fibers_yields>`, until the search ends. The inner loop's job is to find tuples via the index, and put them in the result set if they match the pattern."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:769
+#: ../doc/tutorials/lua_tutorials.rst:769
 msgid "NOTE #4 \"INNER LOOP: ITERATOR\" |br| The for loop here is using pairs(), see the :ref:`explanation of what index iterators are <box_index-index_pairs>`. Within the inner loop, there will be a local variable named \"tuple\" which contains the latest tuple found via the index search key."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:776
+#: ../doc/tutorials/lua_tutorials.rst:776
 msgid "NOTE #5 \"INNER LOOP: BREAK IF INDEX KEY IS TOO GREAT\" |br| The iterator is GE (Greater or Equal), and we must be more specific: if the search index key has N characters, then the leftmost N characters of the result's index field must not be greater than the search index key. For example, if the search index key is 'ABC', then 'ABCDE' is a potential match, but 'ABD' is a signal that no more matches are possible."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:785
+#: ../doc/tutorials/lua_tutorials.rst:785
 msgid "NOTE #6 \"INNER LOOP: BREAK AFTER EVERY 10 TUPLES -- MAYBE\" |br| This chunk of code is for cooperative multitasking. The number 10 is arbitrary, and usually a larger number would be okay. The simple rule would be \"after checking 10 tuples, yield, and then resume the search (that is, do the inner loop again) starting after the last value that was found\". However, if the index is non-unique or if there is more than one field in the index, then we might have duplicates -- for example {\"ABC\",1}, {\"ABC\", 2}, {\"ABC\", 3}\" -- and it would be difficult to decide which \"ABC\" tuple to resume with. Therefore, if the result's index field is the same as the previous result's index field, there is no break."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:798
+#: ../doc/tutorials/lua_tutorials.rst:798
 msgid "NOTE #7 \"INNER LOOP: ADD TO RESULT SET IF PATTERN MATCHES\" |br| Compare the result's index field to the entire pattern. For example, suppose that the caller passed pattern \"ABC.E\" and there is an indexed field containing \"ABCDE\". Therefore the initial index search key is \"ABC\". Therefore a tuple containing an indexed field with \"ABCDE\" will be found by the iterator, because \"ABCDE\" > \"ABC\". In that case string.match will return a value which is not nil. Therefore this tuple can be added to the result set."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:808
+#: ../doc/tutorials/lua_tutorials.rst:808
 msgid "NOTE #8 \"OUTER LOOP: BREAK, OR YIELD AND CONTINUE\" |br| There are three conditions which will cause a break from the inner loop: (1) the for loop ends naturally because there are no more index keys which are greater than or equal to the index search key, (2) the index key is too great as described in NOTE #5, (3) it is time for a yield as described in NOTE #6. If condition (1) or condition (2) is true, then there is nothing more to do, the outer loop ends too. If and only if condition (3) is true, the outer loop must yield and then continue. If it does continue, then the inner loop -- the iterator search -- will happen again with a new value for the index search key."
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:821
+#: ../doc/tutorials/lua_tutorials.rst:821
 msgid "EXAMPLE:"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:823
+#: ../doc/tutorials/lua_tutorials.rst:823
 msgid "Start Tarantool, cut and paste the code for function ``indexed_pattern_search()``, and try the following:"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:863
+#: ../doc/tutorials/lua_tutorials.rst:863
 msgid "box.space.t:drop()\n"
 "box.schema.space.create('t')\n"
 "box.space.t:create_index('primary',{})\n"
@@ -1609,11 +1609,11 @@ msgid "box.space.t:drop()\n"
 "indexed_pattern_search(\"t\", 2, \"ABC.E.\")"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:843
+#: ../doc/tutorials/lua_tutorials.rst:843
 msgid "The result will be:"
 msgstr ""
 
-#: ../tutorials/lua_tutorials.rst:845
+#: ../doc/tutorials/lua_tutorials.rst:845
 msgid "tarantool> indexed_pattern_search(\"t\", 2, \"ABC.E.\")\n"
 "---\n"
 "- - [7, 'ABCDEF', 'a']\n"

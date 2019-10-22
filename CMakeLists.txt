@@ -70,7 +70,7 @@ add_custom_target(html ALL
         -b html
         -d "${SPHINX_BUILD_HTML_DIR}"
         -c html/
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
     COMMENT "Building HTML documentation with Sphinx"
 )
@@ -80,7 +80,7 @@ add_custom_target(json ALL
         -b json
         -d "${SPHINX_BUILD_JSON_EN_DIR}"
         -c html/
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_JSON_DIR}"
         -D language=en
     COMMENT "Building English JSON documentation with Sphinx"
@@ -91,9 +91,8 @@ add_custom_target(singlehtml ALL
         -b singlehtml
         -d "${SPHINX_BUILD_SINGLEHTML_DIR}"
         -c singlehtml/
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
-        singlehtml.rst
     COMMENT "Building HTML single-page documentation with Sphinx"
 )
 
@@ -102,7 +101,7 @@ add_custom_target(html-ru ALL
         -b html
         -d "${SPHINX_BUILD_HTML_RU_DIR}"
         -c html/
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_HTML_DIR}"
         -D language=ru
     COMMENT "Building Russian HTML documentation with Sphinx"
@@ -113,7 +112,7 @@ add_custom_target(json-ru ALL
         -b json
         -d "${SPHINX_BUILD_JSON_RU_DIR}"
         -c html/
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_JSON_DIR}"
         -D language=ru
     COMMENT "Building Russian JSON documentation with Sphinx"
@@ -125,9 +124,8 @@ add_custom_target(singlehtml-ru ALL
         -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
         -c singlehtml/
         -D language=ru
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_HTML_DIR}"
-        singlehtml.rst
     COMMENT "Building Russian HTML single-page documentation with Sphinx"
 )
 
@@ -136,7 +134,7 @@ add_custom_target(update-pot
         -b gettext
         -d "${SPHINX_BUILD_LOCALE_DIR}"
         -c locale/
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${CMAKE_CURRENT_SOURCE_DIR}/locale"
     COMMENT "Generate localization templates"
 )
@@ -155,7 +153,7 @@ add_custom_target(linkcheck
         -b linkcheck
         -d "${SPHINX_BUILD_HTML_DIR}"
         -c html
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_BUILD_HTML_DIR}"
     COMMENT "Linkcheck filter"
 )
@@ -167,7 +165,7 @@ if (LATEX_FOUND)
             -b latex
             -d "${SPHINX_BUILD_LATEX_RU_DIR}"
             -c singlehtml
-            "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/doc"
             "${SPHINX_BUILD_LATEX_RU_DIR}"
             -D language=ru
     )
@@ -191,7 +189,7 @@ if (LATEX_FOUND)
             -b latex
             -d "${SPHINX_BUILD_LATEX_DIR}"
             -c singlehtml
-            "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${CMAKE_CURRENT_SOURCE_DIR}/doc"
             "${SPHINX_BUILD_LATEX_DIR}"
     )
     add_custom_command(TARGET pdf
