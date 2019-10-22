@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-execfile('../conf.py')
+exec(open('../conf.py').read())
 
-master_doc = 'doc/2.2/singlehtml'
+master_doc = 'singlehtml'
 
-exclude_patterns += [
-        '*.rst',
-]
+locale_dirs = ['../locale']

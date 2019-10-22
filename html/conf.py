@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-execfile('../conf.py')
+exec(open('../conf.py').read())
 
-exclude_patterns += [
-        'doc/singlehtml.rst'
-]
+locale_dirs = ['../locale']

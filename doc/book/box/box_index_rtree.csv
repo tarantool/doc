@@ -1,0 +1,9 @@
+Type;Arguments;Description
+box.index.ALL or 'ALL';none;All keys match. Tuples are returned in their order within the space.
+box.index.EQ or 'EQ';search value;If all points of the rectangle-or-box defined by the search value are the same as the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space. "Rectangle-or-box" means "rectangle-or-box as explained in section about :ref:`RTREE <box_index-rtree>`". This is the default.
+box.index.GT or 'GT';search value;If all points of the rectangle-or-box defined by the search value are within the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space.
+box.index.GE or 'GE';search value;If all points of the rectangle-or-box defined by the search value are within, or at the side of, the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space.
+box.index.LT or 'LT';search value;If all points of the rectangle-or-box defined by the index key are within the rectangle-or-box defined by the search key, it matches. Tuples are returned in their order within the space.
+box.index.LE or 'LE';search value;If all points of the rectangle-or-box defined by the index key are within, or at the side of, the rectangle-or-box defined by the search key, it matches. Tuples are returned in their order within the space.
+box.index.OVERLAPS or 'OVERLAPS';search value;If some points of the rectangle-or-box defined by the search value are within the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space.
+box.index.NEIGHBOR or 'NEIGHBOR';search value;If some points of the rectangle-or-box defined by the defined by the key are within, or at the side of, defined by the index key, it matches. Tuples are returned in order: nearest neighbor first.

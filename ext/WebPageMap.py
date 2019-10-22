@@ -1,10 +1,5 @@
-import os
-import sys
-import time
-
-from pprint import pprint
-
 import xml.etree.ElementTree as ET
+
 
 def add_html_link(app, pagename, templatename, context, doctree):
     """As each page is built, collect page names for the sitemap"""
@@ -26,16 +21,17 @@ def add_html_link(app, pagename, templatename, context, doctree):
     #     entry['lastmod'] = time.strftime("%Y-%m-%dT%H:%M:%S+00:00",
     #                                      time.gmtime(filetime))
 
-    entry['priority']    = context.get('meta', {}).get('priority',   '0.5')
-    entry['changefreq']  = context.get('meta', {}).get('changefreq', 'weekly')
+    entry['priority'] = context.get('meta', {}).get('priority', '0.5')
+    entry['changefreq'] = context.get('meta', {}).get('changefreq', 'weekly')
 
     app.sitemap_links.append(entry)
+
 
 def create_sitemap(app, exception):
     """Generates the sitemap.xml from the collected HTML page links"""
     if (not app.config['html_theme_options'].get('base_url', '') or
-           exception is not None or
-           not app.sitemap_links):
+            exception is not None or
+            not app.sitemap_links):
         return
 
     filename = app.outdir + "/sitemap.xml"
@@ -46,10 +42,11 @@ def create_sitemap(app, exception):
 
     for link in app.sitemap_links:
         url = ET.SubElement(root, "url")
-        for key, val in link.iteritems():
+        for key, val in link.items():
             ET.SubElement(url, key).text = val
 
     ET.ElementTree(root).write(filename)
+
 
 def setup(app):
     """Setup conntects events to the sitemap builder"""

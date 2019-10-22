@@ -1,5 +1,0 @@
-stack (
-  line(
-    ' EXPLAIN ','statement'
-  )
-)

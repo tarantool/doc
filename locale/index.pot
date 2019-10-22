@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-03 12:08+0300\n"
+"POT-Creation-Date: 2019-10-22 14:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,55 +16,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../index.rst:40
-msgid "Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performance."
+#: ../doc/index.rst:6
+msgid "Tarantool - Documentation"
 msgstr ""
 
-#: ../index.rst:85
-msgid "Compatibility"
+#: ../doc/index.rst:13
+msgid "|nbspc|"
 msgstr ""
 
-#: ../index.rst:89
-msgid "A drop-in replacement for Lua 5.1, based on LuaJIT"
+#: ../doc/index.rst:85
+msgid "Tarantool 2.2 manual  This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors.  Документация находится в процессе перевода и может отставать от английской версии.  <div class=\"getting-started-button-container\">     <a href=\"book/getting_started/\">         <button class=\"getting-started-button btn\">             Руководство для начинающих         </button>     </a> </div>  <div class=\"getting-started-button-container\">     <a href=\"book/getting_started/\">         <button class=\"getting-started-button btn\">             Getting started         </button>     </a> </div>      <div class=\"badge-icon\"></div>  Other formats:  Single-page HTML  PDF  /doc/doc/index.rst:72: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  See also:  Documentation archive  Articles  /doc/doc/index.rst:75: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  Support:  Форум в Google  Чат в Telegram  Support:  Google forum  Telegram chat"
 msgstr ""
 
-#: ../index.rst:101
-msgid "Transactions"
+#: ../doc/index.rst:22
+msgid "Tarantool 2.2 manual"
 msgstr ""
 
-#: ../index.rst:105
-msgid ":ref:`ACID transactions <atomic-atomic_execution>`"
+#: ../doc/index.rst:26
+msgid "This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors."
 msgstr ""
 
-#: ../index.rst:117
-msgid "Query language"
+#: ../doc/index.rst:69
+msgid "**Other formats:**"
 msgstr ""
 
-#: ../index.rst:121
-msgid "ANSI SQL, Lua stored procedures and triggers"
+#: ../doc/index.rst:70
+msgid "`Single-page HTML <singlehtml.html>`_"
 msgstr ""
 
-#: ../index.rst:136
-msgid "Extensibility"
+#: ../doc/index.rst:71
+msgid "`PDF <Tarantool.pdf>`_"
 msgstr ""
 
-#: ../index.rst:140
-msgid "Packages for network and file I/O, HTTP, and more"
+#: ../doc/index.rst:72
+msgid "**See also:**"
 msgstr ""
 
-#: ../index.rst:152
-msgid "Security"
+#: ../doc/index.rst:73
+msgid "`Documentation archive`_"
 msgstr ""
 
-#: ../index.rst:156
-msgid ":ref:`Authentication and access control <authentication>`"
+#: ../doc/index.rst:74
+msgid "`Articles`_"
 msgstr ""
 
-#: ../index.rst:168
-msgid "High availability"
+#: ../doc/index.rst:82
+msgid "**Support:**"
 msgstr ""
 
-#: ../index.rst:172
-msgid ":ref:`Master-master replication <replication>` and sharding"
+#: ../doc/index.rst:83
+msgid "`Google forum`_"
+msgstr ""
+
+#: ../doc/index.rst:84
+msgid "`Telegram chat`_"
 msgstr ""
 
