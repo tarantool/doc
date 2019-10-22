@@ -1,5 +1,3 @@
 exec(open('../conf.py').read())
 
-exclude_patterns += [
-        '../singlehtml'
-]
+locale_dirs = ['../locale']
