@@ -1,104 +1,207 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C)
 # This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 1.7\n"
+"Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 12:27+0300\n"
-"PO-Revision-Date: 2016-09-22 21:35+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-10-22 14:30+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"Generated-By: Babel 2.7.0\n"
 
-#: ../tutorials/c_tutorial.rst:28
+#: ../doc/tutorials/c_tutorial.rst:37
 msgid "C tutorial"
 msgstr "Практическое задание на C"
 
-#: ../tutorials/c_tutorial.rst:30
+#: ../doc/tutorials/c_tutorial.rst:39
 msgid ""
 "Here is one C tutorial: :ref:`C stored procedures <f_c_tutorial-"
 "c_stored_procedures>`."
 msgstr ""
+"Ниже приводится практическое занятие на языке C: :ref:`Хранимые процедуры"
+" на языке C <f_c_tutorial-c_stored_procedures>`."
 
-#: ../tutorials/c_tutorial.rst:37
+#: ../doc/tutorials/c_tutorial.rst:46
 msgid "C stored procedures"
 msgstr "Хранимые процедуры на языке C"
 
-#: ../tutorials/c_tutorial.rst:39
+#: ../doc/tutorials/c_tutorial.rst:48
 msgid ""
-"Tarantool can call C code with :ref:`modules <modules-example_c>`, or "
+"Tarantool can call C code with :ref:`modules <app_server-modules>`, or "
 "with :ref:`ffi <cookbook-ffi_printf>`, or with C stored procedures. This "
 "tutorial only is about the third option, C stored procedures. In fact the"
 " routines are always \"C functions\" but the phrase \"stored procedure\" "
 "is commonly used for historical reasons."
 msgstr ""
+"Tarantool может вызывать код на языке C с помощью :ref:`модулей "
+"<app_server-modules>`, :ref:`ffi <cookbook-ffi_printf>` или хранимых "
+"процедур на C. В данном практическом задании рассматривается только "
+"третий метод, хранимые процедуры на языке C. На самом деле, программы "
+"всегда представляют собой функции на языке C, но исторически сложилось "
+"так, что широко используется фраза \"хранимая процедура\"."
 
-#: ../tutorials/c_tutorial.rst:46
+#: ../doc/tutorials/c_tutorial.rst:55
 msgid ""
 "In this tutorial, which can be followed by anyone with a Tarantool "
-"development package and a C compiler, there are three tasks. The first --"
-" :code:`easy.c` -- prints \"hello world\". The second -- :code:`harder.c`"
-" -- decodes a passed parameter value. The third -- :code:`hardest.c` -- "
-"uses the C API to do DBMS work."
+"development package and a C compiler, there are five tasks:"
 msgstr ""
+"Данное практическое задание могут выполнить те, у кого есть пакет "
+"программ для разработки Tarantool'а и компилятор языка программирования "
+"C. Оно состоит из пяти задач:"
 
-#: ../tutorials/c_tutorial.rst:52
+#: ../doc/tutorials/c_tutorial.rst:58
+msgid ":ref:`easy.c <f_c_tutorial-easy>` -- prints \"hello world\";"
+msgstr ":ref:`easy.c <f_c_tutorial-easy>` -- выводит \"hello world\";"
+
+#: ../doc/tutorials/c_tutorial.rst:59
+msgid ":ref:`harder.c <f_c_tutorial-harder>` -- decodes a passed parameter value;"
+msgstr ""
+":ref:`harder.c <f_c_tutorial-harder>` -- декодирует переданное значение "
+"параметра;"
+
+#: ../doc/tutorials/c_tutorial.rst:60
+msgid ""
+":ref:`hardest.c <f_c_tutorial-hardest>` -- uses the C API to do a DBMS "
+"insert;"
+msgstr ""
+":ref:`hardest.c <f_c_tutorial-hardest>` -- использует API для языка C для"
+" вставки в базу данных;"
+
+#: ../doc/tutorials/c_tutorial.rst:61
+msgid ":ref:`read.c <f_c_tutorial-read>` -- uses the C API to do a DBMS select;"
+msgstr ""
+":ref:`read.c <f_c_tutorial-read>` -- использует API для языка C для "
+"выборки из базы данных;"
+
+#: ../doc/tutorials/c_tutorial.rst:62
+msgid ""
+":ref:`write.c <f_c_tutorial-write>` -- uses the C API to do a DBMS "
+"replace."
+msgstr ""
+":ref:`write.c <f_c_tutorial-write>` -- использует API для языка C для "
+"замены в базе данных."
+
+#: ../doc/tutorials/c_tutorial.rst:64
 msgid ""
 "After following the instructions, and seeing that the results are what is"
 " described here, users should feel confident about writing their own "
 "stored procedures."
 msgstr ""
+"По окончании задания, вы увидите описанные здесь результаты и сможете "
+"самостоятельно написать хранимые процедуры."
 
-#: ../tutorials/c_tutorial.rst:56
+#: ../doc/tutorials/c_tutorial.rst:68
 msgid "**Preparation**"
-msgstr ""
+msgstr "**Подготовка**"
 
-#: ../tutorials/c_tutorial.rst:58
-msgid ""
-"Check that these items exist on the computer: |br| * Tarantool 1.7 |br| *"
-" A gcc compiler, any modern version should work |br| * \"module.h\" |br| "
-"* \"msgpuck.h\" |br|"
-msgstr ""
+#: ../doc/tutorials/c_tutorial.rst:70
+msgid "Check that these items exist on the computer:"
+msgstr "Проверьте наличие следующих элементов на компьютере:"
 
-#: ../tutorials/c_tutorial.rst:64
-msgid ""
-"The \"module.h\" file will exist if Tarantool 1.7 was installed from "
-"source. Otherwise Tarantool's \"developer\" package must be installed. "
-"For example on Ubuntu say |br| :code:`sudo apt-get install tarantool-dev`"
-" |br| or on Fedora say |br| :code:`dnf -y install tarantool-devel`"
-msgstr ""
+#: ../doc/tutorials/c_tutorial.rst:72
+msgid "Tarantool 2.1"
+msgstr "Tarantool 2.1"
 
-#: ../tutorials/c_tutorial.rst:71
+#: ../doc/tutorials/c_tutorial.rst:73
+msgid "A gcc compiler, any modern version should work"
+msgstr "Компилятор GCC, подойдет любая современная версия"
+
+#: ../doc/tutorials/c_tutorial.rst:74
+msgid "``module.h`` and files #included in it"
+msgstr "``module.h`` и включенные в него файлы"
+
+#: ../doc/tutorials/c_tutorial.rst:75
+msgid "``msgpuck.h``"
+msgstr "``msgpuck.h``"
+
+#: ../doc/tutorials/c_tutorial.rst:76
+msgid "``libmsgpuck.a`` (only for some recent msgpuck versions)"
+msgstr "``libmsgpuck.a`` (только для некоторых последних версий msgpuck)"
+
+#: ../doc/tutorials/c_tutorial.rst:78
 msgid ""
-"The \"msgpuck.h\" file will exist if Tarantool 1.7 was installed from "
-"source. Otherwise the \"msgpuck\" package must be installed from "
+"The ``module.h`` file will exist if Tarantool was installed from source. "
+"Otherwise Tarantool's \"developer\" package must be installed. For "
+"example on Ubuntu say:"
+msgstr ""
+"Файл ``module.h`` есть в системе, если Tarantool был установлен из "
+"исходных файлов. В противном случае, следует установить пакет Tarantool'а"
+" \"developer\". Например, на Ubuntu введите команду:"
+
+#: ../doc/tutorials/c_tutorial.rst:86
+msgid "or on Fedora say:"
+msgstr "или на Fedora введите команду:"
+
+#: ../doc/tutorials/c_tutorial.rst:88
+msgid "$ dnf -y install tarantool-devel"
+msgstr "$ dnf -y install tarantool-devel"
+
+#: ../doc/tutorials/c_tutorial.rst:92
+msgid ""
+"The ``msgpuck.h`` file will exist if Tarantool was installed from source."
+" Otherwise the \"msgpuck\" package must be installed from "
 "`https://github.com/rtsisyk/msgpuck "
 "<https://github.com/rtsisyk/msgpuck>`_."
 msgstr ""
+"Файл ``msgpuck.h`` есть в системе, если Tarantool был установлен из "
+"исходных файлов. В противном случае, следует установить пакет \"msgpuck\""
+" по ссылке `https://github.com/rtsisyk/msgpuck "
+"<https://github.com/rtsisyk/msgpuck>`_."
 
-#: ../tutorials/c_tutorial.rst:75
+#: ../doc/tutorials/c_tutorial.rst:96
 msgid ""
-"Both module.h and msgpuck.h must be on the include path for the C "
-"compiler to see them. For example, if module.h address is "
-"/usr/local/include/tarantool/module.h, and msgpuck.h address is "
-"/usr/local/include/msgpuck/msgpuck.h, and they are not currently on the "
-"include path, say |br| :code:`export "
-"CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck`"
+"Both ``module.h`` and ``msgpuck.h`` must be on the include path for the C"
+" compiler to see them. For example, if ``module.h`` address is "
+"``/usr/local/include/tarantool/module.h``, and ``msgpuck.h`` address is "
+"``/usr/local/include/msgpuck/msgpuck.h``, and they are not currently on "
+"the include path, say:"
 msgstr ""
+"Чтобы компилятор C увидел файлы ``module.h`` и ``msgpuck.h``, путь к ним "
+"следует сохранить в переменной. Например, если адрес файла ``module.h`` "
+"-- ``/usr/local/include/tarantool/module.h``, а адрес файла ``msgpuck.h``"
+" -- ``/usr/local/include/msgpuck/msgpuck.h``, введите команду:"
 
-#: ../tutorials/c_tutorial.rst:81
+#: ../doc/tutorials/c_tutorial.rst:102
+msgid "$ export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck"
+msgstr "$ export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck"
+
+#: ../doc/tutorials/c_tutorial.rst:106
 msgid ""
-"Requests will be done using tarantool as a :ref:`client <administration-"
-"using_tarantool_as_a_client>`. Start tarantool, and enter these requests."
+"The ``libmsgpuck.a`` static library is necessary with msgpuck versions "
+"produced after February 2017. If and only if you encounter linking "
+"problems when using the gcc statements in the examples for this tutorial,"
+" you should put ``libmsgpuck.a`` on the path (``libmsgpuck.a`` is "
+"produced from both msgpuck and Tarantool source downloads so it should be"
+" easy to find). For example, instead of \":code:`gcc -shared -o harder.so"
+" -fPIC harder.c`\" for the second example below, you will need to say "
+"\":code:`gcc -shared -o harder.so -fPIC harder.c libmsgpuck.a`\"."
 msgstr ""
+"Статическая библиотека ``libmsgpuck.a`` нужна для версий msgpuck старше "
+"февраля 2017 года. Только в том случае, если встречаются проблемы "
+"соединения при использовании операторов GCC в примерах данного "
+"практического задания, в пути следует указывать ``libmsgpuck.a`` "
+"(``libmsgpuck.a`` создан из исходных файлов загрузки msgpuck и Tarantool,"
+" поэтому его легко найти). Например, вместо \":code:`gcc -shared -o "
+"harder.so -fPIC harder.c`\" во втором примере ниже, необходимо ввести "
+"\":code:`gcc -shared -o harder.so -fPIC harder.c libmsgpuck.a`\"."
 
-#: ../tutorials/c_tutorial.rst:84
+#: ../doc/tutorials/c_tutorial.rst:115
+msgid ""
+"Requests will be done using Tarantool as a :ref:`client <admin-"
+"using_tarantool_as_a_client>`. Start Tarantool, and enter these requests."
+msgstr ""
+"Tarantool выполняет запросы в качестве :ref:`клиента <admin-"
+"using_tarantool_as_a_client>`. Запустите Tarantool и введите эти запросы."
+
+#: ../doc/tutorials/c_tutorial.rst:119
 msgid ""
 "box.cfg{listen=3306}\n"
 "box.schema.space.create('capi_test')\n"
@@ -106,34 +209,45 @@ msgid ""
 "net_box = require('net.box')\n"
 "capi_connection = net_box:new(3306)"
 msgstr ""
+"box.cfg{listen=3306}\n"
+"box.schema.space.create('capi_test')\n"
+"box.space.capi_test:create_index('primary')\n"
+"net_box = require('net.box')\n"
+"capi_connection = net_box:new(3306)"
 
-#: ../tutorials/c_tutorial.rst:92
+#: ../doc/tutorials/c_tutorial.rst:127
 msgid ""
-"In plainer language: create a space named capi_test, and make a "
-"connection to self named capi_connection."
+"In plainer language: create a space named ``capi_test``, and make a "
+"connection to self named ``capi_connection``."
 msgstr ""
+"Проще говоря: создайте спейс под названием ``capi_test``, и выполните "
+"соединение с одноименным ``capi_connection``."
 
-#: ../tutorials/c_tutorial.rst:95
+#: ../doc/tutorials/c_tutorial.rst:130
 msgid ""
 "Leave the client running. It will be necessary to enter more requests "
 "later."
-msgstr ""
+msgstr "Не закрывайте клиент. Он понадобится для последующих запросов."
 
-#: ../tutorials/c_tutorial.rst:97
+#: ../doc/tutorials/c_tutorial.rst:134
 msgid "**easy.c**"
-msgstr ""
+msgstr "**easy.c**"
 
-#: ../tutorials/c_tutorial.rst:99
+#: ../doc/tutorials/c_tutorial.rst:136
 msgid ""
-"Start another shell. Change directory (cd) so that it is the same as the "
-"directory that the client is running on."
+"Start another shell. Change directory (``cd``) so that it is the same as "
+"the directory that the client is running on."
 msgstr ""
+"Запустите еще один терминал. Измените директорию (``cd``), чтобы она "
+"совпадала с директорией, где запущен клиент."
 
-#: ../tutorials/c_tutorial.rst:102
-msgid "Create a file. Name it easy.c. Put these six lines in it."
+#: ../doc/tutorials/c_tutorial.rst:139
+msgid "Create a file. Name it ``easy.c``. Put these six lines in it."
 msgstr ""
+"Создайте файл. Назовите его ``easy.c``. Запишите в него следующие шесть "
+"строк."
 
-#: ../tutorials/c_tutorial.rst:104
+#: ../doc/tutorials/c_tutorial.rst:141
 msgid ""
 "#include \"module.h\"\n"
 "int easy(box_function_ctx_t *ctx, const char *args, const char *args_end)"
@@ -141,65 +255,108 @@ msgid ""
 "{\n"
 "  printf(\"hello world\\n\");\n"
 "  return 0;\n"
+"}\n"
+"int easy2(box_function_ctx_t *ctx, const char *args, const char "
+"*args_end)\n"
+"{\n"
+"  printf(\"hello world -- easy2\\n\");\n"
+"  return 0;\n"
 "}"
 msgstr ""
+"#include \"module.h\"\n"
+"int easy(box_function_ctx_t *ctx, const char *args, const char *args_end)"
+"\n"
+"{\n"
+"  printf(\"hello world\\n\");\n"
+"  return 0;\n"
+"}\n"
+"int easy2(box_function_ctx_t *ctx, const char *args, const char "
+"*args_end)\n"
+"{\n"
+"  printf(\"hello world -- easy2\\n\");\n"
+"  return 0;\n"
+"}"
 
-#: ../tutorials/c_tutorial.rst:113
-msgid ""
-"Compile the program, producing a library file named easy.so: |br| "
-":code:`gcc -shared -o easy.so -fPIC easy.c`"
+#: ../doc/tutorials/c_tutorial.rst:156
+msgid "Compile the program, producing a library file named ``easy.so``:"
 msgstr ""
+"Скомпилируйте программу, что создаст файл библиотеки под названием "
+"``easy.so``:"
 
-#: ../tutorials/c_tutorial.rst:116 ../tutorials/c_tutorial.rst:185
-#: ../tutorials/c_tutorial.rst:268
+#: ../doc/tutorials/c_tutorial.rst:158
+msgid "$ gcc -shared -o easy.so -fPIC easy.c"
+msgstr "$ gcc -shared -o easy.so -fPIC easy.c"
+
+#: ../doc/tutorials/c_tutorial.rst:162
+#: ../doc/tutorials/c_tutorial.rst:250
+#: ../doc/tutorials/c_tutorial.rst:337
+#: ../doc/tutorials/c_tutorial.rst:441
+#: ../doc/tutorials/c_tutorial.rst:522
 msgid "Now go back to the client and execute these requests:"
-msgstr ""
+msgstr "Теперь вернитесь в клиент и выполните следующие запросы:"
 
-#: ../tutorials/c_tutorial.rst:118
+#: ../doc/tutorials/c_tutorial.rst:164
 msgid ""
 "box.schema.func.create('easy', {language = 'C'})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'easy')\n"
 "capi_connection:call('easy')"
 msgstr ""
+"box.schema.func.create('easy', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'easy')\n"
+"capi_connection:call('easy')"
 
-#: ../tutorials/c_tutorial.rst:124
+#: ../doc/tutorials/c_tutorial.rst:170
 msgid ""
 "If these requests appear unfamiliar, re-read the descriptions of "
-":ref:`box.schema.func.create <box_schema-func_create>` and "
-":ref:`box.schema.user.grant <box_schema-user_grant>` and :ref:`conn:call "
-"<net_box-call>`."
+":ref:`box.schema.func.create() <box_schema-func_create>`, "
+":ref:`box.schema.user.grant() <box_schema-user_grant>` and "
+":ref:`conn:call() <net_box-call>`."
 msgstr ""
+"Если эти запросы вам незнакомы, перечитайте описание "
+":ref:`box.schema.func.create() <box_schema-func_create>`, "
+":ref:`box.schema.user.grant() <box_schema-user_grant>` и "
+":ref:`conn:call() <net_box-call>`."
 
-#: ../tutorials/c_tutorial.rst:130
-msgid "The function that matters is capi_connection:call('easy')."
-msgstr ""
+#: ../doc/tutorials/c_tutorial.rst:176
+msgid "The function that matters is ``capi_connection:call('easy')``."
+msgstr "Важна функция ``capi_connection:call('easy')``."
 
-#: ../tutorials/c_tutorial.rst:132
+#: ../doc/tutorials/c_tutorial.rst:178
 msgid ""
 "Its first job is to find the 'easy' function, which should be easy "
 "because by default Tarantool looks on the current directory for a file "
-"named easy.so."
+"named ``easy.so``."
 msgstr ""
+"Во-первых, она ищет функцию easy, что должно быть легко, потому что по "
+"умолчанию Tarantool ищет в текущей директории файл под названием "
+"``easy.so``."
 
-#: ../tutorials/c_tutorial.rst:136
+#: ../doc/tutorials/c_tutorial.rst:182
 msgid ""
-"Its second job is to call the 'easy' function. Since the easy() function "
-"in easy.c begins with :code:`printf(\"hello world\\n\")`, the words "
-"\"hello world\" will appear on the screen."
+"Its second job is to call the 'easy' function. Since the ``easy()`` "
+"function in ``easy.c`` begins with ``printf(\"hello world\\n\")``, the "
+"words \"hello world\" will appear on the screen."
 msgstr ""
+"Во-вторых, она вызывает функцию easy. Поскольку функция ``easy()`` в "
+"``easy.c`` начинается с ``printf(\"hello world\\n\")``, слова \"hello "
+"world\" появятся на экране."
 
-#: ../tutorials/c_tutorial.rst:140
+#: ../doc/tutorials/c_tutorial.rst:186
 msgid ""
-"Its third job is to check that the call was successful. Since the easy() "
-"function in easy.c ends with :code:`return 0`, there is no error message "
-"to display and the request is over."
+"Its third job is to check that the call was successful. Since the "
+"``easy()`` function in ``easy.c`` ends with :code:`return 0`, there is no"
+" error message to display and the request is over."
 msgstr ""
+"В-третьих, она проверяет, что вызов прошел успешно. Поскольку функция "
+"``easy()`` в ``easy.c`` оканчивается на :code:`return 0`, сообщение об "
+"ошибке отсутствует, и запрос выполнен."
 
-#: ../tutorials/c_tutorial.rst:144 ../tutorials/c_tutorial.rst:286
+#: ../doc/tutorials/c_tutorial.rst:190
+#: ../doc/tutorials/c_tutorial.rst:366
 msgid "The result should look like this:"
-msgstr ""
+msgstr "Результат должен выглядеть следующим образом:"
 
-#: ../tutorials/c_tutorial.rst:146
+#: ../doc/tutorials/c_tutorial.rst:192
 msgid ""
 "tarantool> capi_connection:call('easy')\n"
 "hello world\n"
@@ -207,24 +364,57 @@ msgid ""
 "- []\n"
 "..."
 msgstr ""
+"tarantool> capi_connection:call('easy')\n"
+"hello world\n"
+"---\n"
+"- []\n"
+"..."
 
-#: ../tutorials/c_tutorial.rst:154
+#: ../doc/tutorials/c_tutorial.rst:200
+msgid ""
+"Now let's call the other function in easy.c -- ``easy2()``. This is "
+"almost the same as the ``easy()`` function, but there's a detail: when "
+"the file name is not the same as the function name, then we have to "
+"specify :samp:`{file-name}.{function-name}`."
+msgstr ""
+"Теперь вызовем другую функцию в easy.c -- ``easy2()``. Она практически "
+"совпадает с функцией ``easy()``, но есть небольшое отличие: если имя "
+"файла не совпадет с именем функции, нужно будет указать "
+":samp:`{имя-файла}.{имя-функции}`."
+
+#: ../doc/tutorials/c_tutorial.rst:206
+msgid ""
+"box.schema.func.create('easy.easy2', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'easy.easy2')\n"
+"capi_connection:call('easy.easy2')"
+msgstr ""
+"box.schema.func.create('easy.easy2', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'easy.easy2')\n"
+"capi_connection:call('easy.easy2')"
+
+#: ../doc/tutorials/c_tutorial.rst:212
+msgid "... and this time the result will be \"hello world -- easy2\"."
+msgstr "... и на этот раз результатом будет: \"hello world -- easy2\"."
+
+#: ../doc/tutorials/c_tutorial.rst:214
 msgid "Conclusion: calling a C function is easy."
-msgstr ""
+msgstr "Вывод: вызвать C-функцию легко."
 
-#: ../tutorials/c_tutorial.rst:156
+#: ../doc/tutorials/c_tutorial.rst:218
 msgid "**harder.c**"
-msgstr ""
+msgstr "**harder.c**"
 
-#: ../tutorials/c_tutorial.rst:158
-msgid "Go back to the shell where the easy.c program was created."
-msgstr ""
+#: ../doc/tutorials/c_tutorial.rst:220
+msgid "Go back to the shell where the ``easy.c`` program was created."
+msgstr "Вернитесь в терминал, где была создана программа ``easy.c``."
 
-#: ../tutorials/c_tutorial.rst:160
-msgid "Create a file. Name it harder.c. Put these 17 lines in it:"
+#: ../doc/tutorials/c_tutorial.rst:222
+msgid "Create a file. Name it ``harder.c``. Put these 17 lines in it:"
 msgstr ""
+"Создайте файл. Назовите его ``harder.c``. Запишите в него следующие 17 "
+"строк:"
 
-#: ../tutorials/c_tutorial.rst:162
+#: ../doc/tutorials/c_tutorial.rst:224
 #, python-format
 msgid ""
 "#include \"module.h\"\n"
@@ -246,14 +436,36 @@ msgid ""
 "  return 0;\n"
 "}"
 msgstr ""
+"#include \"module.h\"\n"
+"#include \"msgpuck.h\"\n"
+"int harder(box_function_ctx_t *ctx, const char *args, const char "
+"*args_end)\n"
+"{\n"
+"  uint32_t arg_count = mp_decode_array(&args);\n"
+"  printf(\"arg_count = %d\\n\", arg_count);\n"
+"  uint32_t field_count = mp_decode_array(&args);\n"
+"  printf(\"field_count = %d\\n\", field_count);\n"
+"  uint32_t val;\n"
+"  int i;\n"
+"  for (i = 0; i < field_count; ++i)\n"
+"  {\n"
+"    val = mp_decode_uint(&args);\n"
+"    printf(\"val=%d.\\n\", val);\n"
+"  }\n"
+"  return 0;\n"
+"}"
 
-#: ../tutorials/c_tutorial.rst:182
-msgid ""
-"Compile the program, producing a library file named harder.so: |br| "
-":code:`gcc -shared -o harder.so -fPIC harder.c`"
+#: ../doc/tutorials/c_tutorial.rst:244
+msgid "Compile the program, producing a library file named ``harder.so``:"
 msgstr ""
+"Скомпилируйте программу, что создаст файл библиотеки под названием "
+"``harder.so``:"
 
-#: ../tutorials/c_tutorial.rst:187
+#: ../doc/tutorials/c_tutorial.rst:246
+msgid "$ gcc -shared -o harder.so -fPIC harder.c"
+msgstr "$ gcc -shared -o harder.so -fPIC harder.c"
+
+#: ../doc/tutorials/c_tutorial.rst:252
 msgid ""
 "box.schema.func.create('harder', {language = 'C'})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'harder')\n"
@@ -263,48 +475,73 @@ msgid ""
 "table.insert(passable_table, 3)\n"
 "capi_connection:call('harder', passable_table)"
 msgstr ""
+"box.schema.func.create('harder', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'harder')\n"
+"passable_table = {}\n"
+"table.insert(passable_table, 1)\n"
+"table.insert(passable_table, 2)\n"
+"table.insert(passable_table, 3)\n"
+"capi_connection:call('harder', passable_table)"
 
-#: ../tutorials/c_tutorial.rst:197
+#: ../doc/tutorials/c_tutorial.rst:262
 msgid ""
-"This time the call is passing a Lua table (passable_table) to the "
-"harder() function. The harder() function will see it, it's in the "
-":code:`char *args` parameter."
+"This time the call is passing a Lua table (``passable_table``) to the "
+"``harder()`` function. The ``harder()`` function will see it, it's in the"
+" :code:`char *args` parameter."
 msgstr ""
+"На этот раз вызов передает Lua-таблицу (``passable_table``) в функцию "
+"``harder()``. Функция``harder()`` увидит это, как указано в параметре "
+":code:`char *args`."
 
-#: ../tutorials/c_tutorial.rst:201
+#: ../doc/tutorials/c_tutorial.rst:266
 msgid ""
-"At this point the harder() function will start using functions defined in"
-" msgpuck.h, which are documented in `http://rtsisyk.github.io/msgpuck "
-"<http://rtsisyk.github.io/msgpuck>`_. The routines that begin with \"mp\""
-" are msgpuck functions that handle data formatted according to the "
-"MsgPack_ specification. Passes and returns are always done with this "
-"format so one must become acquainted with msgpuck to become proficient "
-"with the C API."
+"At this point the ``harder()`` function will start using functions "
+"defined in `msgpuck.h <http://rtsisyk.github.io/msgpuck>`_. The routines "
+"that begin with \"mp\" are msgpuck functions that handle data formatted "
+"according to the MsgPack_ specification. Passes and returns are always "
+"done with this format so one must become acquainted with msgpuck to "
+"become proficient with the C API."
 msgstr ""
+"На данный момент функция ``harder()`` начнет использовать функции, "
+"определенные в `msgpuck.h <http://rtsisyk.github.io/msgpuck>`_. "
+"Процедуры, которые начинаются с \"mp\" -- это функции msgpuck, которые "
+"обрабатывают данные в формате MsgPack_. Передача и возврат всегда "
+"осуществляются в этом формате, поэтому следует ознакомиться с msgpuck для"
+" того, чтобы овладеть навыками работы с API для языка C."
 
-#: ../tutorials/c_tutorial.rst:210
+#: ../doc/tutorials/c_tutorial.rst:274
 msgid ""
-"For now, though, it's enough to know that mp_decode_array() returns the "
-"number of elements in an array, and mp_decode_uint returns an unsigned "
-"integer, from :code:`args`. And there's a side effect: when the decoding "
-"finishes, :code:`args` has changed and is now pointing to the next "
-"element."
+"For now, though, it's enough to know that ``mp_decode_array()`` returns "
+"the number of elements in an array, and ``mp_decode_uint`` returns an "
+"unsigned integer, from :code:`args`. And there's a side effect: when the "
+"decoding finishes, :code:`args` has changed and is now pointing to the "
+"next element."
 msgstr ""
+"Однако, пока достаточно понимать, что функция ``mp_decode_array()`` "
+"возвращает количество элементов в массиве, а функция ``mp_decode_uint`` "
+"возвращает целое число без знака из :code:`args`. Есть также побочный "
+"эффект: по окончании декодирования :code:`args` изменился и теперь "
+"указывает на следующий элемент."
 
-#: ../tutorials/c_tutorial.rst:216
+#: ../doc/tutorials/c_tutorial.rst:280
 msgid ""
 "Therefore the first displayed line will be \"arg_count = 1\" because "
-"there was only one item passed: passable_table. |br| The second displayed"
-" line will be \"field_count = 3\" because there are three items in the "
-"table. |br| The next three lines will be \"1\" and \"2\" and \"3\" "
-"because those are the values in the items in the table."
+"there was only one item passed: ``passable_table``. |br| The second "
+"displayed line will be \"field_count = 3\" because there are three items "
+"in the table. |br| The next three lines will be \"1\" and \"2\" and \"3\""
+" because those are the values in the items in the table."
 msgstr ""
+"Таким образом, первой будет отображена строка \"arg_count = 1\", "
+"поскольку был передан только один элемент: ``passable_table``. |br| "
+"Второй будет отображена строка \"field_count = 3\", потому что в таблице "
+"находятся три элемента. |br| Следующие три строки будут \"1\", \"2\" и "
+"\"3\", потому что это значения элементов в таблице."
 
-#: ../tutorials/c_tutorial.rst:223
+#: ../doc/tutorials/c_tutorial.rst:287
 msgid "And now the screen looks like this:"
-msgstr ""
+msgstr "Теперь вывод на экране выглядит следующим образом:"
 
-#: ../tutorials/c_tutorial.rst:225
+#: ../doc/tutorials/c_tutorial.rst:289
 msgid ""
 "tarantool> capi_connection:call('harder', passable_table)\n"
 "arg_count = 1\n"
@@ -316,29 +553,45 @@ msgid ""
 "- []\n"
 "..."
 msgstr ""
+"tarantool> capi_connection:call('harder', passable_table)\n"
+"arg_count = 1\n"
+"field_count = 3\n"
+"val=1.\n"
+"val=2.\n"
+"val=3.\n"
+"---\n"
+"- []\n"
+"..."
 
-#: ../tutorials/c_tutorial.rst:237
+#: ../doc/tutorials/c_tutorial.rst:301
 msgid ""
 "Conclusion: decoding parameter values passed to a C function is not easy "
 "at first, but there are routines to do the job, and they're documented, "
 "and there aren't very many of them."
 msgstr ""
+"Вывод: на первый взгляд, декодирование значений параметров, переданных в "
+"C-функцию непросто, но существуют документированные процедуры для этих "
+"целей, и их не так много."
 
-#: ../tutorials/c_tutorial.rst:242
+#: ../doc/tutorials/c_tutorial.rst:308
 msgid "**hardest.c**"
-msgstr ""
+msgstr "**hardest.c**"
 
-#: ../tutorials/c_tutorial.rst:244
+#: ../doc/tutorials/c_tutorial.rst:310
 msgid ""
-"Go back to the shell where the easy.c and the harder.c programs were "
-"created."
+"Go back to the shell where the ``easy.c`` and the ``harder.c`` programs "
+"were created."
 msgstr ""
+"Вернитесь в терминал, где были созданы программы ``easy.c`` и "
+"``harder.c``."
 
-#: ../tutorials/c_tutorial.rst:247
-msgid "Create a file. Name it hardest.c. Put these 13 lines in it:"
+#: ../doc/tutorials/c_tutorial.rst:313
+msgid "Create a file. Name it ``hardest.c``. Put these 13 lines in it:"
 msgstr ""
+"Создайте файл. Назовите его ```hardest.c``. Запишите в него следующие 13 "
+"строк:"
 
-#: ../tutorials/c_tutorial.rst:249
+#: ../doc/tutorials/c_tutorial.rst:315
 msgid ""
 "#include \"module.h\"\n"
 "#include \"msgpuck.h\"\n"
@@ -347,7 +600,7 @@ msgid ""
 "{\n"
 "  uint32_t space_id = box_space_id_by_name(\"capi_test\", "
 "strlen(\"capi_test\"));\n"
-"  char tuple[1024];\n"
+"  char tuple[1024]; /* Must be big enough for mp_encode results */\n"
 "  char *tuple_pointer = tuple;\n"
 "  tuple_pointer = mp_encode_array(tuple_pointer, 2);\n"
 "  tuple_pointer = mp_encode_uint(tuple_pointer, 10000);\n"
@@ -356,78 +609,518 @@ msgid ""
 "  return n;\n"
 "}"
 msgstr ""
+"#include \"module.h\"\n"
+"#include \"msgpuck.h\"\n"
+"int hardest(box_function_ctx_t *ctx, const char *args, const char "
+"*args_end)\n"
+"{\n"
+"  uint32_t space_id = box_space_id_by_name(\"capi_test\", "
+"strlen(\"capi_test\"));\n"
+"  char tuple[1024]; /* Must be big enough for mp_encode results */\n"
+"  char *tuple_pointer = tuple;\n"
+"  tuple_pointer = mp_encode_array(tuple_pointer, 2);\n"
+"  tuple_pointer = mp_encode_uint(tuple_pointer, 10000);\n"
+"  tuple_pointer = mp_encode_str(tuple_pointer, \"String 2\", 8);\n"
+"  int n = box_insert(space_id, tuple, tuple_pointer, NULL);\n"
+"  return n;\n"
+"}"
 
-#: ../tutorials/c_tutorial.rst:265
-msgid ""
-"Compile the program, producing a library file named hardest.so: |br| "
-":code:`gcc -shared -o hardest.so -fPIC hardest.c`"
+#: ../doc/tutorials/c_tutorial.rst:331
+msgid "Compile the program, producing a library file named ``hardest.so``:"
 msgstr ""
+"Скомпилируйте программу, что создаст файл библиотеки под названием "
+"``hardest.so``:"
 
-#: ../tutorials/c_tutorial.rst:270
+#: ../doc/tutorials/c_tutorial.rst:333
+msgid "$ gcc -shared -o hardest.so -fPIC hardest.c"
+msgstr "$ gcc -shared -o hardest.so -fPIC hardest.c"
+
+#: ../doc/tutorials/c_tutorial.rst:339
 msgid ""
 "box.schema.func.create('hardest', {language = \"C\"})\n"
 "box.schema.user.grant('guest', 'execute', 'function', 'hardest')\n"
 "box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
 "capi_connection:call('hardest')"
 msgstr ""
+"box.schema.func.create('hardest', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'hardest')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('hardest')"
 
-#: ../tutorials/c_tutorial.rst:277
+#: ../doc/tutorials/c_tutorial.rst:346
+msgid "This time the C function is doing three things:"
+msgstr "На этот раз C-функция выполняет три действия:"
+
+#: ../doc/tutorials/c_tutorial.rst:348
 msgid ""
-"This time the C function is doing three things: (1) finding the numeric "
-"identifier of the \"capi_test\" space by calling box_space_id_by_name(); "
-"|br| (2) formatting a tuple using more msgpuck.h functions; |br| (3) "
-"inserting a row using box_insert."
+"finding the numeric identifier of the ``capi_test`` space by calling "
+"``box_space_id_by_name()``;"
 msgstr ""
+"найдет числовой идентификатор спейса ``capi_test`` путем вызова "
+"``box_space_id_by_name()``;"
 
-#: ../tutorials/c_tutorial.rst:283
+#: ../doc/tutorials/c_tutorial.rst:350
+msgid "formatting a tuple using more ``msgpuck.h`` functions;"
+msgstr "форматирует кортеж, используя другие функции ``msgpuck.h``;"
+
+#: ../doc/tutorials/c_tutorial.rst:351
+msgid "inserting a tuple using ``box_insert()``."
+msgstr "вставит кортеж с помощью ``box_insert()``."
+
+#: ../doc/tutorials/c_tutorial.rst:355
 msgid ""
-"Now, still on the client, execute this request: |br| "
-":code:`box.space.capi_test:select()`"
+"``char tuple[1024];`` is used here as just a quick way of saying "
+"\"allocate more than enough bytes\". For serious programs the developer "
+"must be careful to allow enough space for all the bytes that the "
+"``mp_encode`` routines will use up."
 msgstr ""
+"``char tuple[1024];`` используется здесь просто в качестве быстрого "
+"способа ввода команды \"выделить байтов с запасом\". В серьезных "
+"программах разработчику следует обратить внимание на то, чтобы выделить "
+"достаточно места, которое будут использовать процедуры ``mp_encode``."
 
-#: ../tutorials/c_tutorial.rst:288
+#: ../doc/tutorials/c_tutorial.rst:360
+msgid "Now, still on the client, execute this request:"
+msgstr "Затем всё еще в клиенте выполните следующий запрос:"
+
+#: ../doc/tutorials/c_tutorial.rst:362
+msgid "box.space.capi_test:select()"
+msgstr "box.space.capi_test:select()"
+
+#: ../doc/tutorials/c_tutorial.rst:368
 msgid ""
 "tarantool> box.space.capi_test:select()\n"
 "---\n"
 "- - [10000, 'String 2']\n"
 "..."
 msgstr ""
+"tarantool> box.space.capi_test:select()\n"
+"---\n"
+"- - [10000, 'String 2']\n"
+"..."
 
-#: ../tutorials/c_tutorial.rst:295
+#: ../doc/tutorials/c_tutorial.rst:375
 msgid ""
-"This proves that the hardest() function succeeded, but where did "
-"box_space_id_by_name() and box_insert() come from? Answer: the C API. The"
-" whole C API is documented :ref:`here <index-c_api_reference>`. The "
-"function box_space_id_by_name() is documented :ref:`here <box-"
-"box_space_id_by_name>`. The function box_insert() is documented "
-":ref:`here <box-box_insert>`."
+"This proves that the ``hardest()`` function succeeded, but where did "
+":ref:`box_space_id_by_name() <box-box_space_id_by_name>` and "
+":ref:`box_insert() <box-box_insert>` come from? Answer: the :ref:`C API "
+"<index-c_api_reference>`."
 msgstr ""
+"Это доказывает, что функция ``hardest()`` была успешно выполнена, но "
+"откуда взялись :ref:`box_space_id_by_name() <box-box_space_id_by_name>` и"
+" :ref:`box_insert() <box-box_insert>`? Ответ: :ref:`API для языка C "
+"<index-c_api_reference>`."
 
-#: ../tutorials/c_tutorial.rst:301
+#: ../doc/tutorials/c_tutorial.rst:382
+msgid "**read.c**"
+msgstr "**read.c**"
+
+#: ../doc/tutorials/c_tutorial.rst:384
 msgid ""
-"Conclusion: the long description of the C API is there for a good reason."
-" All of the functions in it can be called from C functions which are "
-"called from Lua. So C \"stored procedures\" have full access to the "
+"Go back to the shell where the ``easy.c`` and the ``harder.c`` and the "
+"``hardest.c`` programs were created."
+msgstr ""
+"Вернитесь в терминал, где были созданы программы ``easy.c``, ``harder.c``"
+" и ``hardest.c``."
+
+#: ../doc/tutorials/c_tutorial.rst:387
+msgid "Create a file. Name it ``read.c``. Put these 43 lines in it:"
+msgstr ""
+"Создайте файл. Назовите его ``read.c``. Запишите в него следующие 43 "
+"строки:"
+
+#: ../doc/tutorials/c_tutorial.rst:389
+#, python-format
+msgid ""
+"#include \"module.h\"\n"
+"#include <msgpuck.h>\n"
+"int read(box_function_ctx_t *ctx, const char *args, const char *args_end)"
+"\n"
+"{\n"
+"  char tuple_buf[1024];      /* where the raw MsgPack tuple will be "
+"stored */\n"
+"  uint32_t space_id = box_space_id_by_name(\"capi_test\", "
+"strlen(\"capi_test\"));\n"
+"  uint32_t index_id = 0;     /* The number of the space's first index */\n"
+"  uint32_t key = 10000;      /* The key value that box_insert() used */\n"
+"  mp_encode_array(tuple_buf, 0); /* clear */\n"
+"  box_tuple_format_t *fmt = box_tuple_format_default();\n"
+"  box_tuple_t *tuple = box_tuple_new(fmt, tuple_buf, tuple_buf+512);\n"
+"  assert(tuple != NULL);\n"
+"  char key_buf[16];          /* Pass key_buf = encoded key = 1000 */\n"
+"  char *key_end = key_buf;\n"
+"  key_end = mp_encode_array(key_end, 1);\n"
+"  key_end = mp_encode_uint(key_end, key);\n"
+"  assert(key_end < key_buf + sizeof(key_buf));\n"
+"  /* Get the tuple. There's no box_select() but there's this. */\n"
+"  int r = box_index_get(space_id, index_id, key_buf, key_end, &tuple);\n"
+"  assert(r == 0);\n"
+"  assert(tuple != NULL);\n"
+"  /* Get each field of the tuple + display what you get. */\n"
+"  int field_no;             /* The first field number is 0. */\n"
+"  for (field_no = 0; field_no < 2; ++field_no)\n"
+"  {\n"
+"    const char *field = box_tuple_field(tuple, field_no);\n"
+"    assert(field != NULL);\n"
+"    assert(mp_typeof(*field) == MP_STR || mp_typeof(*field) == MP_UINT);\n"
+"    if (mp_typeof(*field) == MP_UINT)\n"
+"    {\n"
+"      uint32_t uint_value = mp_decode_uint(&field);\n"
+"      printf(\"uint value=%u.\\n\", uint_value);\n"
+"    }\n"
+"    else /* if (mp_typeof(*field) == MP_STR) */\n"
+"    {\n"
+"      const char *str_value;\n"
+"      uint32_t str_value_length;\n"
+"      str_value = mp_decode_str(&field, &str_value_length);\n"
+"      printf(\"string value=%.*s.\\n\", str_value_length, str_value);\n"
+"    }\n"
+"  }\n"
+"  return 0;\n"
+"}"
+msgstr ""
+"#include \"module.h\"\n"
+"#include <msgpuck.h>\n"
+"int read(box_function_ctx_t *ctx, const char *args, const char *args_end)"
+"\n"
+"{\n"
+"  char tuple_buf[1024];      /* здесь будет храниться тапл в сыром "
+"MsgPack-формате */\n"
+"  uint32_t space_id = box_space_id_by_name(\"capi_test\", "
+"strlen(\"capi_test\"));\n"
+"  uint32_t index_id = 0;     /* номер первого индекса спейса */\n"
+"  uint32_t key = 10000;      /* значение ключа, используемое box_insert()"
+" */\n"
+"  mp_encode_array(tuple_buf, 0); /* clear */\n"
+"  box_tuple_format_t *fmt = box_tuple_format_default();\n"
+"  box_tuple_t *tuple = box_tuple_new(fmt, tuple_buf, tuple_buf+512);\n"
+"  assert(tuple != NULL);\n"
+"  char key_buf[16];          /* передаем key_buf = закодированный ключ = "
+"1000 */\n"
+"  char *key_end = key_buf;\n"
+"  key_end = mp_encode_array(key_end, 1);\n"
+"  key_end = mp_encode_uint(key_end, key);\n"
+"  assert(key_end < key_buf + sizeof(key_buf));\n"
+"  /* Получить тапл. У нас нет box_select(), но есть вот это. */\n"
+"  int r = box_index_get(space_id, index_id, key_buf, key_end, &tuple);\n"
+"  assert(r == 0);\n"
+"  assert(tuple != NULL);\n"
+"  /* Получить каждое поле тапла + показать полученное значение */\n"
+"  int field_no;             /* номер первого поля = 0 */\n"
+"  for (field_no = 0; field_no < 2; ++field_no)\n"
+"  {\n"
+"    const char *field = box_tuple_field(tuple, field_no);\n"
+"    assert(field != NULL);\n"
+"    assert(mp_typeof(*field) == MP_STR || mp_typeof(*field) == MP_UINT);\n"
+"    if (mp_typeof(*field) == MP_UINT)\n"
+"    {\n"
+"      uint32_t uint_value = mp_decode_uint(&field);\n"
+"      printf(\"uint value=%u.\\n\", uint_value);\n"
+"    }\n"
+"    else /* если (mp_typeof(*field) == MP_STR) */\n"
+"    {\n"
+"      const char *str_value;\n"
+"      uint32_t str_value_length;\n"
+"      str_value = mp_decode_str(&field, &str_value_length);\n"
+"      printf(\"string value=%.*s.\\n\", str_value_length, str_value);\n"
+"    }\n"
+"  }\n"
+"  return 0;\n"
+"}"
+
+#: ../doc/tutorials/c_tutorial.rst:435
+msgid "Compile the program, producing a library file named ``read.so``:"
+msgstr ""
+"Скомпилируйте программу, что создаст файл библиотеки под названием "
+"``read.so``:"
+
+#: ../doc/tutorials/c_tutorial.rst:437
+msgid "$ gcc -shared -o read.so -fPIC read.c"
+msgstr "$ gcc -shared -o read.so -fPIC read.c"
+
+#: ../doc/tutorials/c_tutorial.rst:443
+msgid ""
+"box.schema.func.create('read', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'read')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('read')"
+msgstr ""
+"box.schema.func.create('read', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'read')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('read')"
+
+#: ../doc/tutorials/c_tutorial.rst:450
+msgid "This time the C function is doing four things:"
+msgstr "На этот раз C-функция выполняет четыре действия:"
+
+#: ../doc/tutorials/c_tutorial.rst:452
+#: ../doc/tutorials/c_tutorial.rst:533
+msgid ""
+"once again, finding the numeric identifier of the ``capi_test`` space by "
+"calling ``box_space_id_by_name()``;"
+msgstr ""
+"снова найдет числовой идентификатор спейса ``capi_test`` путем вызова "
+"``box_space_id_by_name()``;"
+
+#: ../doc/tutorials/c_tutorial.rst:454
+msgid "formatting a search key = 10000 using more ``msgpuck.h`` functions;"
+msgstr "форматирует ключ поиска = 10 000, используя другие функции ``msgpuck.h``;"
+
+#: ../doc/tutorials/c_tutorial.rst:455
+msgid "getting a tuple using ``box_index_get()``;"
+msgstr "получает кортеж с помощью ``box_index_get()``;"
+
+#: ../doc/tutorials/c_tutorial.rst:456
+msgid ""
+"going through the tuple's fields with ``box_tuple_get()`` and then "
+"decoding each field depending on its type. In this case, since what we "
+"are getting is the tuple that we inserted with ``hardest.c``, we know in "
+"advance that the type is either MP_UINT or MP_STR; however, it's very "
+"common to have a case statement here with one option for each possible "
+"type."
+msgstr ""
+"проходит по полям каждого кортежа с помощью ``box_tuple_get()``. а затем "
+"декодирует каждое поле в зависимости от его типа. В данном случае, "
+"поскольку мы получаем кортеж, который сами вставили с помощью "
+"``hardest.c``, мы знаем заранее, что его тип будет MP_UINT или MP_STR. "
+"Однако, весьма часто здесь употребляется оператор выбора case с одной "
+"опцией для каждого возможного типа."
+
+#: ../doc/tutorials/c_tutorial.rst:463
+msgid "The result of ``capi_connection:call('read')`` should look like this:"
+msgstr "В результате вызова ``capi_connection:call('read')`` должны получить:"
+
+#: ../doc/tutorials/c_tutorial.rst:465
+msgid ""
+"tarantool> capi_connection:call('read')\n"
+"uint value=10000.\n"
+"string value=String 2.\n"
+"---\n"
+"- []\n"
+"..."
+msgstr ""
+"tarantool> capi_connection:call('read')\n"
+"uint value=10000.\n"
+"string value=String 2.\n"
+"---\n"
+"- []\n"
+"..."
+
+#: ../doc/tutorials/c_tutorial.rst:474
+msgid ""
+"This proves that the ``read()`` function succeeded. Once again the "
+"important functions that start with `box` -- :ref:`box_index_get() "
+"<c_api-box_index-box_index_get>` and :ref:`box_tuple_field() <c_api-"
+"tuple-box_tuple_field>` -- came from the :ref:`C API <index-"
+"c_api_reference>`."
+msgstr ""
+"Это доказывает, что функция ``read()`` была успешно выполнена. И снова "
+"важные функции, которые начинаются с `box` -- :ref:`box_index_get() "
+"<c_api-box_index-box_index_get>` и :ref:`box_tuple_field() <c_api-tuple-"
+"box_tuple_field>` -- пришли из :ref:`API для языка C <index-"
+"c_api_reference>`."
+
+#: ../doc/tutorials/c_tutorial.rst:482
+msgid "**write.c**"
+msgstr "**write.c**"
+
+#: ../doc/tutorials/c_tutorial.rst:484
+msgid ""
+"Go back to the shell where the programs ``easy.c``, ``harder.c``, "
+"``hardest.c`` and ``read.c`` were created."
+msgstr ""
+"Вернитесь в терминал, где были созданы программы ``easy.c``, "
+"``harder.c``, ``hardest.c`` и ``read.c``."
+
+#: ../doc/tutorials/c_tutorial.rst:487
+msgid "Create a file. Name it ``write.c``. Put these 24 lines in it:"
+msgstr ""
+"Создайте файл. Назовите его ``write.c``. Запишите в него следующие 24 "
+"строки:"
+
+#: ../doc/tutorials/c_tutorial.rst:489
+#, python-format
+msgid ""
+"#include \"module.h\"\n"
+"#include <msgpuck.h>\n"
+"int write(box_function_ctx_t *ctx, const char *args, const char "
+"*args_end)\n"
+"{\n"
+"  static const char *space = \"capi_test\";\n"
+"  char tuple_buf[1024]; /* Must be big enough for mp_encode results */\n"
+"  uint32_t space_id = box_space_id_by_name(space, strlen(space));\n"
+"  if (space_id == BOX_ID_NIL) {\n"
+"    return box_error_set(__FILE__, __LINE__, ER_PROC_C,\n"
+"    \"Can't find space %s\", \"capi_test\");\n"
+"  }\n"
+"  char *tuple_end = tuple_buf;\n"
+"  tuple_end = mp_encode_array(tuple_end, 2);\n"
+"  tuple_end = mp_encode_uint(tuple_end, 1);\n"
+"  tuple_end = mp_encode_uint(tuple_end, 22);\n"
+"  box_txn_begin();\n"
+"  if (box_replace(space_id, tuple_buf, tuple_end, NULL) != 0)\n"
+"    return -1;\n"
+"  box_txn_commit();\n"
+"  fiber_sleep(0.001);\n"
+"  struct tuple *tuple = box_tuple_new(box_tuple_format_default(),\n"
+"                                      tuple_buf, tuple_end);\n"
+"  return box_return_tuple(ctx, tuple);\n"
+"}"
+msgstr ""
+"#include \"module.h\"\n"
+"#include <msgpuck.h>\n"
+"int write(box_function_ctx_t *ctx, const char *args, const char "
+"*args_end)\n"
+"{\n"
+"  static const char *space = \"capi_test\";\n"
+"  char tuple_buf[1024]; /* Должен быть достаточно большим, чтобы вместить"
+" результат mp_encode */\n"
+"  uint32_t space_id = box_space_id_by_name(space, strlen(space));\n"
+"  if (space_id == BOX_ID_NIL) {\n"
+"    return box_error_set(__FILE__, __LINE__, ER_PROC_C,\n"
+"    \"Can't find space %s\", \"capi_test\");\n"
+"  }\n"
+"  char *tuple_end = tuple_buf;\n"
+"  tuple_end = mp_encode_array(tuple_end, 2);\n"
+"  tuple_end = mp_encode_uint(tuple_end, 1);\n"
+"  tuple_end = mp_encode_uint(tuple_end, 22);\n"
+"  box_txn_begin();\n"
+"  if (box_replace(space_id, tuple_buf, tuple_end, NULL) != 0)\n"
+"    return -1;\n"
+"  box_txn_commit();\n"
+"  fiber_sleep(0.001);\n"
+"  struct tuple *tuple = box_tuple_new(box_tuple_format_default(),\n"
+"                                      tuple_buf, tuple_end);\n"
+"  return box_return_tuple(ctx, tuple);\n"
+"}"
+
+#: ../doc/tutorials/c_tutorial.rst:516
+msgid "Compile the program, producing a library file named ``write.so``:"
+msgstr ""
+"Скомпилируйте программу, что создаст файл библиотеки под названием "
+"``write.so``:"
+
+#: ../doc/tutorials/c_tutorial.rst:518
+msgid "$ gcc -shared -o write.so -fPIC write.c"
+msgstr "$ gcc -shared -o write.so -fPIC write.c"
+
+#: ../doc/tutorials/c_tutorial.rst:524
+msgid ""
+"box.schema.func.create('write', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'write')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('write')"
+msgstr ""
+"box.schema.func.create('write', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'write')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('write')"
+
+#: ../doc/tutorials/c_tutorial.rst:531
+msgid "This time the C function is doing six things:"
+msgstr "На этот раз C-функция выполняет шесть действий:"
+
+#: ../doc/tutorials/c_tutorial.rst:535
+msgid "making a new tuple;"
+msgstr "создает новый кортеж;"
+
+#: ../doc/tutorials/c_tutorial.rst:536
+msgid "starting a transaction;"
+msgstr "начинает транзакцию;"
+
+#: ../doc/tutorials/c_tutorial.rst:537
+msgid "replacing a tuple in ``box.space.capi_test``"
+msgstr "заменяет кортеж в ``box.space.capi_test``"
+
+#: ../doc/tutorials/c_tutorial.rst:538
+msgid "ending a transaction;"
+msgstr "заканчивает транзакцию;"
+
+#: ../doc/tutorials/c_tutorial.rst:539
+msgid ""
+"the final line is a replacement for the loop in ``read.c`` -- instead of "
+"getting each field and printing it, use the ``box_return_tuple(...)`` "
+"function to return the entire tuple to the caller and let the caller "
+"display it."
+msgstr ""
+"последняя строка заменяет цикл ``read.c`` -- вместо получения и вывода "
+"каждого поля, использует функцию ``box_return_tuple(...)`` для возврата "
+"всего кортежа вызывающему клиенту, чтобы вывести его на экран."
+
+#: ../doc/tutorials/c_tutorial.rst:544
+msgid "The result of ``capi_connection:call('write')`` should look like this:"
+msgstr "В результате вызова ``capi_connection:call('write')`` должны получить:"
+
+#: ../doc/tutorials/c_tutorial.rst:546
+msgid ""
+"tarantool> capi_connection:call('write')\n"
+"---\n"
+"- [[1, 22]]\n"
+"..."
+msgstr ""
+"tarantool> capi_connection:call('write')\n"
+"---\n"
+"- [[1, 22]]\n"
+"..."
+
+#: ../doc/tutorials/c_tutorial.rst:553
+msgid ""
+"This proves that the ``write()`` function succeeded. Once again the "
+"important functions that start with `box` -- :ref:`box_txn_begin() <txn-"
+"box_txn_begin>`, :ref:`box_txn_commit() <txn-box_txn_commit>` and "
+":ref:`box_return_tuple() <box-box_return_tuple>` -- came from the :ref:`C"
+" API <index-c_api_reference>`."
+msgstr ""
+"Это доказывает, что функция ``write()`` была успешно выполнена. И снова "
+"важные функции, которые начинаются с `box` -- :ref:`box_txn_begin() <txn-"
+"box_txn_begin>`, :ref:`box_txn_commit() <txn-box_txn_commit>` и "
+":ref:`box_return_tuple() <box-box_return_tuple>` -- пришли из :ref:`API "
+"для языка C <index-c_api_reference>`."
+
+#: ../doc/tutorials/c_tutorial.rst:560
+msgid ""
+"Conclusion: the long description of the whole C API is there for a good "
+"reason. All of the functions in it can be called from C functions which "
+"are called from Lua. So C \"stored procedures\" have full access to the "
 "database."
 msgstr ""
+"Вывод: длинное описание всего API для языка C необходимо в силу весомых "
+"причин. Все функции можно вызвать из C-функций, которые вызываются из "
+"Lua. Таким образом, хранимые процедуры на языке C получают полный доступ "
+"к базе данных."
 
-#: ../tutorials/c_tutorial.rst:307
+#: ../doc/tutorials/c_tutorial.rst:566
 msgid "**Cleaning up**"
-msgstr ""
+msgstr "**Очистка данных**"
 
-#: ../tutorials/c_tutorial.rst:309
+#: ../doc/tutorials/c_tutorial.rst:568
 msgid ""
 "Get rid of each of the function tuples with :ref:`box.schema.func.drop "
-"<box_schema-func_drop>`, and get rid of the capi_test space with "
-":ref:`box.schema.capi_test:drop() <box_space-drop>`, and remove the .c "
-"and .so files that were created for this tutorial."
+"<box_schema-func_drop>`."
 msgstr ""
+"Удалите все кортежи с функцией с помощью :ref:`box.schema.func.drop "
+"<box_schema-func_drop>`."
 
-#: ../tutorials/c_tutorial.rst:314
+#: ../doc/tutorials/c_tutorial.rst:570
+msgid ""
+"Get rid of the ``capi_test`` space with :ref:`box.schema.capi_test:drop()"
+" <box_space-drop>`."
+msgstr ""
+"Удалите спейс ``capi_test`` с помощью :ref:`box.schema.capi_test:drop() "
+"<box_space-drop>`."
+
+#: ../doc/tutorials/c_tutorial.rst:572
+msgid "Remove the ``.c`` and ``.so`` files that were created for this tutorial."
+msgstr ""
+"Удалите файлы с разрешением ``.c`` и ``.so``, созданные для данного "
+"практического задания."
+
+#: ../doc/tutorials/c_tutorial.rst:575
 msgid "**An example in the test suite**"
-msgstr ""
+msgstr "**Пример из набора тестов**"
 
-#: ../tutorials/c_tutorial.rst:316
+#: ../doc/tutorials/c_tutorial.rst:577
 msgid ""
 "Download the source code of Tarantool. Look in a subdirectory "
 ":code:`test/box`. Notice that there is a file named "
@@ -436,52 +1129,516 @@ msgid ""
 "calling a function in the C file, using the same techniques that this "
 "tutorial has shown."
 msgstr ""
+"Скачайте исходный код Tarantool'а. Откройте поддиректорию "
+":code:`test/box`. Проверьте наличие файла под названием "
+":code:`tuple_bench.test.lua` и еще одного файла под названием "
+":code:`tuple_bench.c`. Изучите Lua-файл на предмет вызова функции в "
+"C-файле с использованием методов, описанных в данном практическом "
+"задании."
 
-#: ../tutorials/c_tutorial.rst:323
+#: ../doc/tutorials/c_tutorial.rst:584
 msgid ""
 "Conclusion: parts of the standard test suite use C stored procedures, and"
 " they must work, because releases don't happen if Tarantool doesn't pass "
 "the tests."
 msgstr ""
+"Вывод: некоторые тесты из стандартного набора используют хранимые "
+"процедуры на языке C, а они должны работать, поскольку мы не можем "
+"выпустить Tarantool, если он не прошел тестирование."
 
-#: ../tutorials/index.rst:30
+#: ../doc/tutorials/index.rst:39
 msgid "Tutorials"
 msgstr "Практикум"
 
-#: ../tutorials/lua_tutorials.rst:30
+#: ../doc/tutorials/libslave.rst:39
+msgid "`libslave` tutorial"
+msgstr "Практические задания по `libslave`"
+
+#: ../doc/tutorials/libslave.rst:41
+msgid ""
+"``libslave`` is a C++ library for reading data changes done by MysQL and,"
+" optionally, writing them to a Tarantool database. It works by acting as "
+"a replication slave. The MySQL server writes data-change information to a"
+" \"binary log\", and transfers the information to any client that says "
+"\"I want to see the information starting with this file and this record, "
+"continuously\". So, ``libslave`` is primarily good for making a Tarantool"
+" database replica (much faster than using a conventional MySQL slave "
+"server), and for keeping track of data changes so they can be searched."
+msgstr ""
+"``libslave`` представляет собой библиотеку C++ для считывания изменений "
+"данных, внесенных с помощью MySQL, а также -- опционально -- для записи "
+"их в базу данных Tarantool'а. Она выступает в качестве ведомого в схеме "
+"репликации. Сервер MySQL записывает информацию об изменении данных в "
+"бинарный журнал и передает ее на любой клиент, который запрашивает: "
+"\"Хочу увидеть всю информацию, начиная с этого файла и этой записи, "
+"безостановочно\". Таким образом, библиотека ``libslave``, прежде всего, "
+"используется для создания реплик базы данных Tarantool'а (намного "
+"быстрее, чем используя традиционный ведомый сервер MySQL) и для "
+"отслеживания изменений данных, чтобы они были пригодны для поиска."
+
+#: ../doc/tutorials/libslave.rst:52
+msgid ""
+"We will not go into the many details here -- the `API documentation "
+"<https://github.com/vozbu/libslave/wiki/API>`_ has them. We will only "
+"show an exercise: a minimal program that uses the library."
+msgstr ""
+"Здесь мы не будем подробно рассматривать библиотеку -- информация есть в "
+"`документации по API <https://github.com/vozbu/libslave/wiki/API>`_. Мы "
+"лишь дадим упражнение: минимальная программа с использованием библиотеки."
+
+#: ../doc/tutorials/libslave.rst:58
+msgid "Use a test machine. Do not use a production machine."
+msgstr "Используйте тестовый сервер. Не используйте боевой сервер."
+
+#: ../doc/tutorials/libslave.rst:60
+msgid "STEP 1: Make sure you have:"
+msgstr "ШАГ 1: Убедитесь в наличии следующего:"
+
+#: ../doc/tutorials/libslave.rst:62
+msgid "a recent version of Linux (versions such as Ubuntu 14.04 will not do),"
+msgstr "последняя версия Linux (например, Ubuntu версии 14.04 не подойдет),"
+
+#: ../doc/tutorials/libslave.rst:63
+msgid "a recent version of MySQL 5.6 or MySQL 5.7 server (MariaDB will not do),"
+msgstr "сервер MySQL версии 5.6 или 5.7 (MariaDB не подойдет),"
+
+#: ../doc/tutorials/libslave.rst:64
+msgid ""
+"MySQL client development package. For example, on Ubuntu you can download"
+" it with this command:"
+msgstr ""
+"пакет программ для разработки клиента MySQL. Например, на Ubuntu можно "
+"загрузить его с помощью следующей команды:"
+
+#: ../doc/tutorials/libslave.rst:67
+msgid "$ sudo apt-get install mysql-client-core-5.7"
+msgstr "$ sudo apt-get install mysql-client-core-5.7"
+
+#: ../doc/tutorials/libslave.rst:71
+msgid "STEP 2: Download ``libslave``."
+msgstr "ШАГ 2: Установите ``libslave``."
+
+#: ../doc/tutorials/libslave.rst:73
+msgid ""
+"The recommended source is https://github.com/tarantool/libslave/. "
+"Downloads include the source code only."
+msgstr ""
+"Рекомендуется источник по ссылке https://github.com/tarantool/libslave/. "
+"Загрузки включают в себя только исходный код."
+
+#: ../doc/tutorials/libslave.rst:76
+msgid ""
+"$ sudo apt-get install libboost-all-dev\n"
+"$ cd ~\n"
+"$ git clone https://github.com/tarantool/libslave.git tarantool-libslave\n"
+"$ cd tarantool-libslave\n"
+"$ git submodule init\n"
+"$ git submodule update\n"
+"$ cmake .\n"
+"$ make"
+msgstr ""
+"$ sudo apt-get install libboost-all-dev\n"
+"$ cd ~\n"
+"$ git clone https://github.com/tarantool/libslave.git tarantool-libslave\n"
+"$ cd tarantool-libslave\n"
+"$ git submodule init\n"
+"$ git submodule update\n"
+"$ cmake .\n"
+"$ make"
+
+#: ../doc/tutorials/libslave.rst:87
+msgid ""
+"If you see an error message mentioning the word \"vector\", edit "
+"``field.h`` and add this line:"
+msgstr ""
+"Если система выдаст сообщение с ошибкой со словом \"vector\", "
+"отредактируйте ``field.h``, добавив следующую строку:"
+
+#: ../doc/tutorials/libslave.rst:90
+msgid "#include <vector>"
+msgstr "#include <vector>"
+
+#: ../doc/tutorials/libslave.rst:94
+msgid ""
+"STEP 3: Start the MySQL server. On the command line, add appropriate "
+"switches for doing replication. For example:"
+msgstr ""
+"ШАГ 3: Запустите сервер MySQL. В командной строке добавьте "
+"соответствующие коммутаторы для выполнения репликации. Например:"
+
+#: ../doc/tutorials/libslave.rst:97
+msgid "$ mysqld --log-bin=mysql-bin --server-id=1"
+msgstr "$ mysqld --log-bin=mysql-bin --server-id=1"
+
+#: ../doc/tutorials/libslave.rst:101
+msgid "STEP 4: For purposes of this exercise, we are assuming you have:"
+msgstr "ШАГ 4: Для целей данного упражнения, предполагаем, что у вас есть:"
+
+#: ../doc/tutorials/libslave.rst:103
+msgid "a \"root\" user with password \"root\" with privileges,"
+msgstr "пользователь \"root\" с паролем \"root\" с правами,"
+
+#: ../doc/tutorials/libslave.rst:104
+msgid "a \"test\" database with a table named \"test\","
+msgstr "тестовая база данных \"test\" с тестовой таблицей под названием \"test\","
+
+#: ../doc/tutorials/libslave.rst:105
+msgid "a binary log named \"mysql-bin\","
+msgstr "бинарный журнал под названием \"mysql-bin\","
+
+#: ../doc/tutorials/libslave.rst:106
+msgid "a server with server id = 1."
+msgstr "сервер с идентификатором 1."
+
+#: ../doc/tutorials/libslave.rst:108
+msgid ""
+"The values are hard-coded in the program, though of course you can change"
+" the program -- it's easy to see their settings."
+msgstr ""
+"Значения заданы в программе, хотя программу, конечно, можно изменить -- "
+"посмотреть настройки несложно."
+
+#: ../doc/tutorials/libslave.rst:111
+msgid "STEP 5: Look at the program:"
+msgstr "ШАГ 5: Обратите внимание на программу:"
+
+#: ../doc/tutorials/libslave.rst:113
+msgid ""
+"#include <unistd.h>\n"
+"#include <iostream>\n"
+"#include <sstream>\n"
+"#include \"Slave.h\"\n"
+"#include \"DefaultExtState.h\"\n"
+"\n"
+"slave::Slave* sl = NULL;\n"
+"\n"
+"void callback(const slave::RecordSet& event) {\n"
+"    slave::Slave::binlog_pos_t sBinlogPos = sl->getLastBinlog();\n"
+"    switch (event.type_event) {\n"
+"    case slave::RecordSet::Update: std::cout << \"UPDATE\" << \"\\n\"; "
+"break;\n"
+"    case slave::RecordSet::Delete: std::cout << \"DELETE\" << \"\\n\"; "
+"break;\n"
+"    case slave::RecordSet::Write:  std::cout << \"INSERT\" << \"\\n\"; "
+"break;\n"
+"    default: break;\n"
+"    }\n"
+"}\n"
+"\n"
+"bool isStopping()\n"
+"{\n"
+"    return 0;\n"
+"}\n"
+"\n"
+"int main(int argc, char** argv)\n"
+"{\n"
+"    slave::MasterInfo masterinfo;\n"
+"    masterinfo.conn_options.mysql_host = \"127.0.0.1\";\n"
+"    masterinfo.conn_options.mysql_port = 3306;\n"
+"    masterinfo.conn_options.mysql_user = \"root\";\n"
+"    masterinfo.conn_options.mysql_pass = \"root\";\n"
+"    bool error = false;\n"
+"    try {\n"
+"        slave::DefaultExtState sDefExtState;\n"
+"        slave::Slave slave(masterinfo, sDefExtState);\n"
+"        sl = &slave;\n"
+"        sDefExtState.setMasterLogNamePos(\"mysql-bin\", 0);\n"
+"        slave.setCallback(\"test\", \"test\", callback);\n"
+"        slave.init();\n"
+"        slave.createDatabaseStructure();\n"
+"        try {\n"
+"            slave.get_remote_binlog(isStopping);\n"
+"        } catch (std::exception& ex) {\n"
+"            std::cout << \"Error reading: \" << ex.what() << std::endl;\n"
+"            error = true;\n"
+"        }\n"
+"    } catch (std::exception& ex) {\n"
+"        std::cout << \"Error initializing: \" << ex.what() << std::endl;\n"
+"        error = true;\n"
+"    }\n"
+"    return 0;\n"
+"}"
+msgstr ""
+"#include <unistd.h>\n"
+"#include <iostream>\n"
+"#include <sstream>\n"
+"#include \"Slave.h\"\n"
+"#include \"DefaultExtState.h\"\n"
+"\n"
+"slave::Slave* sl = NULL;\n"
+"\n"
+"void callback(const slave::RecordSet& event) {\n"
+"    slave::Slave::binlog_pos_t sBinlogPos = sl->getLastBinlog();\n"
+"    switch (event.type_event) {\n"
+"    case slave::RecordSet::Update: std::cout << \"UPDATE\" << \"\\n\"; "
+"break;\n"
+"    case slave::RecordSet::Delete: std::cout << \"DELETE\" << \"\\n\"; "
+"break;\n"
+"    case slave::RecordSet::Write:  std::cout << \"INSERT\" << \"\\n\"; "
+"break;\n"
+"    default: break;\n"
+"    }\n"
+"}\n"
+"\n"
+"bool isStopping()\n"
+"{\n"
+"    return 0;\n"
+"}\n"
+"\n"
+"int main(int argc, char** argv)\n"
+"{\n"
+"    slave::MasterInfo masterinfo;\n"
+"    masterinfo.conn_options.mysql_host = \"127.0.0.1\";\n"
+"    masterinfo.conn_options.mysql_port = 3306;\n"
+"    masterinfo.conn_options.mysql_user = \"root\";\n"
+"    masterinfo.conn_options.mysql_pass = \"root\";\n"
+"    bool error = false;\n"
+"    try {\n"
+"        slave::DefaultExtState sDefExtState;\n"
+"        slave::Slave slave(masterinfo, sDefExtState);\n"
+"        sl = &slave;\n"
+"        sDefExtState.setMasterLogNamePos(\"mysql-bin\", 0);\n"
+"        slave.setCallback(\"test\", \"test\", callback);\n"
+"        slave.init();\n"
+"        slave.createDatabaseStructure();\n"
+"        try {\n"
+"            slave.get_remote_binlog(isStopping);\n"
+"        } catch (std::exception& ex) {\n"
+"            std::cout << \"Error reading: \" << ex.what() << std::endl;\n"
+"            error = true;\n"
+"        }\n"
+"    } catch (std::exception& ex) {\n"
+"        std::cout << \"Error initializing: \" << ex.what() << std::endl;\n"
+"        error = true;\n"
+"    }\n"
+"    return 0;\n"
+"}"
+
+#: ../doc/tutorials/libslave.rst:167
+msgid ""
+"Everything unnecessary has been stripped so that you can see quickly how "
+"it works. At the start of ``main()``, there are some settings used for "
+"connecting -- host, port, user, password. Then there is an initialization"
+" call with the binary log file name = \"mysql-bin\". Pay particular "
+"attention to the ``setCallback`` statement, which passes database name = "
+"\"test\", table name = \"test\", and callback function address = "
+"callback. The program will be looping and invoking this callback "
+"function. See how, earlier in the program, the callback function prints "
+"\"UPDATE\" or \"DELETE\" or \"INSERT\" depending on what is passed to it."
+msgstr ""
+"Всё лишнее почистили, чтобы можно было ясно увидеть, как это работает. В "
+"начале функции ``main()`` есть некоторые настройки, используемые для "
+"установки соединения -- хост, порт, пользователь, пароль. Затем есть "
+"вызов инициализации с именем файла бинарного журнала = \"mysql-bin\". "
+"Обратите особое внимание на оператор ``setCallback``, который передает "
+"имя базы данных = \"test\", имя таблицы = \"test\" и адрес функции "
+"обратного вызова = callback. Программа войдет в цикл и будет вызывать эту"
+" функцию обратного вызова. Посмотрите, как на ранних этапах программы "
+"функция обратного вызова выводит \"UPDATE\", \"DELETE\" или \"INSERT\" в "
+"зависимости от переданных данных."
+
+#: ../doc/tutorials/libslave.rst:178
+msgid ""
+"STEP 5: Put the program in the ``tarantool-libslave`` directory and name "
+"it ``example.cpp``."
+msgstr ""
+"ШАГ 5: Поместите программу в директорию ``tarantool-libslave`` и назовите"
+" ее ``example.cpp``."
+
+#: ../doc/tutorials/libslave.rst:181
+msgid "Step 6: Compile and build:"
+msgstr "ШАГ 6: Выполните компиляцию и сборку:"
+
+#: ../doc/tutorials/libslave.rst:183
+msgid ""
+"$ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a "
+"-ldl -lpthread"
+msgstr ""
+"$ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a "
+"-ldl -lpthread"
+
+#: ../doc/tutorials/libslave.rst:189
+msgid "Replace ``tarantool-libslave/include`` with the full directory name."
+msgstr "Замените ``tarantool-libslave/include`` на полное имя директории."
+
+#: ../doc/tutorials/libslave.rst:191
+msgid ""
+"Notice that the name of the static library is ``libslave_a.a``, not "
+"``libslave.a``."
+msgstr ""
+"Обратите внимание, что имя статической библиотеки -- ``libslave_a.a``, а "
+"не ``libslave.a``."
+
+#: ../doc/tutorials/libslave.rst:194
+msgid "Step 7: Run:"
+msgstr "ШАГ 7: Выполните:"
+
+#: ../doc/tutorials/libslave.rst:196
+msgid "$ ./example"
+msgstr "$ ./example"
+
+#: ../doc/tutorials/libslave.rst:200
+msgid ""
+"The result will be nothing -- the program is looping, waiting for the "
+"MySQL server to write to the replication binary log."
+msgstr ""
+"Результат нет -- программа в цикле ожидает, пока сервер MySQL запишет "
+"данные в бинарный журнал репликации."
+
+#: ../doc/tutorials/libslave.rst:203
+msgid ""
+"Step 8: Start a MySQL client program -- any client program will do. Enter"
+" these statements:"
+msgstr ""
+"ШАГ 8: Запустите клиентскую программу MySQL -- подойдет любая клиентская "
+"программа. Введите следующие операторы:"
+
+#: ../doc/tutorials/libslave.rst:206
+msgid ""
+"USE test\n"
+"INSERT INTO test VALUES ('A');\n"
+"INSERT INTO test VALUES ('B');\n"
+"DELETE FROM test;"
+msgstr ""
+"USE test\n"
+"INSERT INTO test VALUES ('A');\n"
+"INSERT INTO test VALUES ('B');\n"
+"DELETE FROM test;"
+
+#: ../doc/tutorials/libslave.rst:213
+msgid "Watch what happens in ``example.cpp`` output -- it displays:"
+msgstr ""
+"Проверьте, что происходит в выводе программы ``example.cpp`` -- "
+"отображается следующее:"
+
+#: ../doc/tutorials/libslave.rst:215
+msgid ""
+"INSERT\n"
+"INSERT\n"
+"DELETE\n"
+"DELETE"
+msgstr ""
+"INSERT\n"
+"INSERT\n"
+"DELETE\n"
+"DELETE"
+
+#: ../doc/tutorials/libslave.rst:222
+msgid ""
+"This is row-based replication, so you see two DELETEs, because there are "
+"two rows."
+msgstr ""
+"Репликация является построчной, поэтому видим DELETE два раза -- потому "
+"что есть две строки."
+
+#: ../doc/tutorials/libslave.rst:225
+msgid "What the exercise has shown is:"
+msgstr "В результате выполнения упражнения видим:"
+
+#: ../doc/tutorials/libslave.rst:227
+msgid "the library can be built, and"
+msgstr "можно собрать библиотеку, а "
+
+#: ../doc/tutorials/libslave.rst:228
+msgid ""
+"programs that use the library can access everything that the MySQL server"
+" dumps."
+msgstr ""
+"программы, которые используют библиотеку, могут получить доступ ко всему,"
+" что сохраняет сервер MySQL."
+
+#: ../doc/tutorials/libslave.rst:231
+msgid "For the many details and examples of usage in the field, see:"
+msgstr "Более подробную информацию и примеры использования см. ниже:"
+
+#: ../doc/tutorials/libslave.rst
+msgid "Our downloadable ``libslave`` version:"
+msgstr "Загрузить нашу версию ``libslave`` можно по ссылке:"
+
+#: ../doc/tutorials/libslave.rst
+msgid "https://github.com/tarantool/libslave"
+msgstr "https://github.com/tarantool/libslave"
+
+#: ../doc/tutorials/libslave.rst
+msgid "The version it was forked from (with a different README):"
+msgstr "Ответвление сделано из версии по ссылке (с другим файлом README):"
+
+#: ../doc/tutorials/libslave.rst
+msgid "https://github.com/vozbu/libslave/wiki/API"
+msgstr "https://github.com/vozbu/libslave/wiki/API"
+
+#: ../doc/tutorials/libslave.rst:239
+msgid ""
+"`How to speed up your MySQL with replication to in-memory database "
+"<http://highscalability.com/blog/2017/3/29/how-to-speed-up-your-mysql-"
+"with-replication-to-in-memory-dat.html>`_ article"
+msgstr ""
+"Статья `How to speed up your MySQL with replication to in-memory database"
+" <http://highscalability.com/blog/2017/3/29/how-to-speed-up-your-mysql-"
+"with-replication-to-in-memory-dat.html>`_ (на английском)"
+
+#: ../doc/tutorials/libslave.rst:241
+msgid ""
+"`Replicating data from MySQL to Tarantool "
+"<https://habrahabr.ru/company/mailru/blog/323870/>`_ article (in Russian)"
+msgstr ""
+"Статья `Репликация из MySQL в Tarantool "
+"<https://habrahabr.ru/company/mailru/blog/323870/>`_"
+
+#: ../doc/tutorials/libslave.rst:243
+msgid ""
+"`Asynchronous replication uncensored <https://habrahabr.ru/company/oleg-"
+"bunin/blog/313594/>`_ article (in Russian)"
+msgstr ""
+"Статья `Асинхронная репликация без цензуры <https://habrahabr.ru/company"
+"/oleg-bunin/blog/313594/>`_"
+
+#: ../doc/tutorials/lua_tutorials.rst:39
 msgid "Lua tutorials"
 msgstr "Практические задания на Lua"
 
-#: ../tutorials/lua_tutorials.rst:32
+#: ../doc/tutorials/lua_tutorials.rst:41
 msgid "Here are three tutorials on using Lua stored procedures with Tarantool:"
 msgstr ""
+"Практические задания по использованию хранимых процедур на языке Lua в "
+"работе с Tarantool'ом:"
 
-#: ../tutorials/lua_tutorials.rst:34
+#: ../doc/tutorials/lua_tutorials.rst:43
 msgid ""
 ":ref:`Insert one million tuples with a Lua stored procedure "
 "<c_lua_tutorial-insert_one_million_tuples>`,"
 msgstr ""
+":ref:`Вставка 1 млн кортежей с помощью хранимой процедуры на языке Lua "
+"<c_lua_tutorial-insert_one_million_tuples>`,"
 
-#: ../tutorials/lua_tutorials.rst:35
+#: ../doc/tutorials/lua_tutorials.rst:44
 msgid ":ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`,"
 msgstr ""
+":ref:`Подсчет суммы по JSON-полям во всех кортежах <c_lua_tutorial-"
+"sum_a_json_field>`,"
 
-#: ../tutorials/lua_tutorials.rst:36
+#: ../doc/tutorials/lua_tutorials.rst:45
 msgid ":ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`."
 msgstr ""
+":ref:`Индексированный поиск по шаблонам <c_lua_tutorial-"
+"indexed_pattern_search>`."
 
-#: ../tutorials/lua_tutorials.rst:42
+#: ../doc/tutorials/lua_tutorials.rst:51
 msgid "Insert one million tuples with a Lua stored procedure"
 msgstr "Вставка 1 млн кортежей с помощью хранимой процедуры на языке Lua"
 
-#: ../tutorials/lua_tutorials.rst:44
+#: ../doc/tutorials/lua_tutorials.rst:53
 msgid ""
 "This is an exercise assignment: “Insert one million tuples. Each tuple "
 "should have a constantly-increasing numeric primary-key field and a "
 "random alphabetic 10-character string field.”"
 msgstr ""
+"Задание по данному практикуму: “Вставьте 1 миллион кортежей. В каждом "
+"кортеже должно быть поле, которое соответствует ключу в первичном "
+"индексе, в виде постоянно возрастающего числа, а также поле в виде "
+"буквенной строки со случайным значением из 10 символов.”"
 
-#: ../tutorials/lua_tutorials.rst:48
+#: ../doc/tutorials/lua_tutorials.rst:57
 msgid ""
 "The purpose of the exercise is to show what Lua functions look like "
 "inside Tarantool. It will be necessary to employ the Lua math library, "
@@ -495,51 +1652,78 @@ msgid ""
 "learning, type the statements in with the tarantool client while reading "
 "along."
 msgstr ""
+"Цель данного упражнения состоит в том, чтобы показать, как выглядят "
+"Lua-функции в Tarantool'е. Необходимо будет работать с математической "
+"библиотекой Lua, библиотекой для работы со строками интерпретатора Lua, "
+"Tarantool-библиотекой ``box``, Tarantool-библиотекой ``box.tuple``, "
+"циклами и конкатенацией. Инструкции легко будет выполнять даже тем, кто "
+"никогда не использовал раньше Lua или Tarantool. Единственное требование "
+"-- знание того, как работают другие языки программирования, и изучение "
+"первых двух глав данного руководства. Но для лучшего понимания можно "
+"следовать по комментариям и ссылкам на руководство по Lua или другим "
+"пунктам в данном руководстве по Tarantool'у. А чтобы облегчить изучение, "
+"читайте инструкции параллельно с вводом операторов в Tarantool-клиент."
 
-#: ../tutorials/lua_tutorials.rst:60
+#: ../doc/tutorials/lua_tutorials.rst:69
 msgid "Configure"
-msgstr ""
+msgstr "Настройка"
 
-#: ../tutorials/lua_tutorials.rst:62
+#: ../doc/tutorials/lua_tutorials.rst:71
 msgid ""
-"We are going to use the \"tarantool_sandbox\" that was created in section"
-" :ref:`first database <user_guide_getting_started-first_database>`. So "
-"there is a single space, and a numeric primary key, and a running "
-"tarantool server which also serves as a client."
+"We are going to use the Tarantool sandbox that was created for our "
+":ref:`\"Getting started\" exercises <getting_started>`. So there is a "
+"single space, and a numeric primary key, and a running Tarantool server "
+"instance which also serves as a client."
 msgstr ""
+"Будем использовать Tarantool-песочницу, которую создавали для "
+":ref:`упражнений раздела \"Руководство для начинающих\" "
+"<getting_started>`. Таким образом, у нас есть один спейс и числовой ключ "
+"первичного индекса, а также экземпляр Tarantool'а, который также "
+"выступает в виде клиента."
 
-#: ../tutorials/lua_tutorials.rst:68
+#: ../doc/tutorials/lua_tutorials.rst:78
 msgid "Delimiter"
-msgstr ""
+msgstr "Разделитель"
 
-#: ../tutorials/lua_tutorials.rst:70
+#: ../doc/tutorials/lua_tutorials.rst:80
 msgid ""
 "In earlier versions of Tarantool, multi-line functions had to be enclosed"
 " within \"delimiters\". They are no longer necessary, and so they will "
 "not be used in this tutorial. However, they are still supported. Users "
 "who wish to use delimiters, or users of older versions of Tarantool, "
 "should check the syntax description for :ref:`declaring a delimiter "
-"<administration-setting_delimiter>` before proceeding."
+"<console-delimiter>` before proceeding."
 msgstr ""
+"В более ранних версиях Tarantool'а многострочные функции обрамляются "
+"символами-разделителями. Сейчас в них нет необходимости, поэтому в данном"
+" практическом задании они использоваться не будут. Однако они все еще "
+"поддерживаются. Если вы хотите использовать разделители или используете "
+"более раннюю версию Tarantool'а, перед работой проверьте описание "
+"синтаксиса для :ref:`объявления разделителя <console-delimiter>`."
 
-#: ../tutorials/lua_tutorials.rst:79
+#: ../doc/tutorials/lua_tutorials.rst:89
 msgid "Create a function that returns a string"
-msgstr ""
+msgstr "Создание функции, которая возвращает строку"
 
-#: ../tutorials/lua_tutorials.rst:81
+#: ../doc/tutorials/lua_tutorials.rst:91
 msgid ""
 "We will start by making a function that returns a fixed string, “Hello "
 "world”."
 msgstr ""
+"Начнем с создания функции, которая возвращает заданную строку -- “Hello "
+"world”."
 
-#: ../tutorials/lua_tutorials.rst:83
+#: ../doc/tutorials/lua_tutorials.rst:93
 msgid ""
 "function string_function()\n"
 "  return \"hello world\"\n"
 "end"
 msgstr ""
+"function string_function()\n"
+"  return \"hello world\"\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:89
+#: ../doc/tutorials/lua_tutorials.rst:99
 msgid ""
 "The word \"``function``\" is a Lua keyword -- we're about to go into Lua."
 " The function name is string_function. The function has one executable "
@@ -549,33 +1733,52 @@ msgid ""
 " the Lua function declaration.” To confirm that the function works, we "
 "can say"
 msgstr ""
+"Слово \"``function``\" (функция) -- ключевое слово в языке Lua. "
+"Рассмотрим подробно работу с языком Lua. Имя функции -- string_function "
+"(строковая_функция). В функции есть один исполняемый оператор, ``return "
+"\"hello world\"`` (вернуть \"hello world\"). Строка \"hello world\" здесь"
+" заключена в двойные кавычки, хотя в Lua это не имеет значения, можно "
+"использовать одинарные кавычки. Слово \"``end``\" означает, что “это "
+"конец объявления Lua-функции.” Чтобы проверить работу функции, можем "
+"выполнить команду"
 
-#: ../tutorials/lua_tutorials.rst:96
+#: ../doc/tutorials/lua_tutorials.rst:106
 msgid "string_function()"
-msgstr ""
+msgstr "string_function()"
 
-#: ../tutorials/lua_tutorials.rst:100
+#: ../doc/tutorials/lua_tutorials.rst:110
 msgid ""
 "Sending ``function-name()`` means “invoke the Lua function.” The effect "
 "is that the string which the function returns will end up on the screen."
 msgstr ""
+"Отправка ``function-name()`` (имя-функции) означает команду вызова "
+"Lua-функции. В результате возвращаемая функцией строка появится на "
+"экране."
 
-#: ../tutorials/lua_tutorials.rst:103
+#: ../doc/tutorials/lua_tutorials.rst:113
 msgid ""
 "For more about Lua strings see Lua manual `chapter 2.4 \"Strings\"`_ . "
 "For more about functions see Lua manual `chapter 5 \"Functions\"`_."
 msgstr ""
+"Для получения подробной информации о строках в языке Lua, см.  `Главу 2.4"
+" \"Строки\"`_ в руководстве по языку Lua. Для получения подробной "
+"информации о функциях см. Главу 5 \"Функции\" в руководстве по языку Lua "
+"(`chapter 5 \"Functions\"`_)."
 
-#: ../tutorials/lua_tutorials.rst:109 ../tutorials/lua_tutorials.rst:153
-#: ../tutorials/lua_tutorials.rst:205 ../tutorials/lua_tutorials.rst:261
-#: ../tutorials/lua_tutorials.rst:307 ../tutorials/lua_tutorials.rst:365
-#: ../tutorials/lua_tutorials.rst:456
+#: ../doc/tutorials/lua_tutorials.rst:119
+#: ../doc/tutorials/lua_tutorials.rst:163
+#: ../doc/tutorials/lua_tutorials.rst:215
+#: ../doc/tutorials/lua_tutorials.rst:271
+#: ../doc/tutorials/lua_tutorials.rst:317
+#: ../doc/tutorials/lua_tutorials.rst:377
+#: ../doc/tutorials/lua_tutorials.rst:470
 msgid "The screen now looks like this:"
-msgstr ""
+msgstr "Теперь вывод на экране выглядит следующим образом:"
 
-#: ../tutorials/lua_tutorials.rst:111
+#: ../doc/tutorials/lua_tutorials.rst:121
+#, fuzzy
 msgid ""
-"tarantool> function string_funciton()\n"
+"tarantool> function string_function()\n"
 "         >   return \"hello world\"\n"
 "         > end\n"
 "---\n"
@@ -586,18 +1789,30 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function string_funciton()\n"
+"         >   return \"hello world\"\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> string_function()\n"
+"---\n"
+"- hello world\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:126
+#: ../doc/tutorials/lua_tutorials.rst:136
 msgid "Create a function that calls another function and sets a variable"
-msgstr ""
+msgstr "Создание функции, которая вызывает другую функцию и определяет переменную"
 
-#: ../tutorials/lua_tutorials.rst:128
+#: ../doc/tutorials/lua_tutorials.rst:138
 msgid ""
 "Now that ``string_function`` exists, we can invoke it from another "
 "function."
 msgstr ""
+"Теперь у нас есть функция ``string_function``, и можно вызвать ее с "
+"помощью другой функции."
 
-#: ../tutorials/lua_tutorials.rst:131
+#: ../doc/tutorials/lua_tutorials.rst:141
 msgid ""
 "function main_function()\n"
 "  local string_value\n"
@@ -605,31 +1820,48 @@ msgid ""
 "  return string_value\n"
 "end"
 msgstr ""
+"function main_function()\n"
+"  local string_value\n"
+"  string_value = string_function()\n"
+"  return string_value\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:139
+#: ../doc/tutorials/lua_tutorials.rst:149
 msgid ""
 "We begin by declaring a variable \"``string_value``\". The word "
 "\"``local``\" means that string_value appears only in ``main_function``. "
 "If we didn't use \"``local``\" then ``string_value`` would be visible "
 "everywhere - even by other users using other clients connected to this "
-"server! Sometimes that's a very desirable feature for inter-client "
-"communication, but not this time."
+"server instance! Sometimes that's a very desirable feature for inter-"
+"client communication, but not this time."
 msgstr ""
+"Сначала объявим переменную \"``string_value``\" (значение_строки). Слово "
+"\"``local``\" (локально) означает, что string_value появится только в "
+"``main_function`` (основная_функция). Если бы мы не использовали "
+"\"``local``\", то ``string_value`` увидели бы даже пользователи других "
+"клиентов, которые подключились к данному экземпляру! Иногда это может "
+"быть очень полезно при взаимодействии клиентов, но не в нашем случае."
 
-#: ../tutorials/lua_tutorials.rst:145
+#: ../doc/tutorials/lua_tutorials.rst:155
 msgid ""
 "Then we assign a value to ``string_value``, namely, the result of "
 "``string_function()``. Soon we will invoke ``main_function()`` to check "
 "that it got the value."
 msgstr ""
+"Затем определим значение для ``string_value``, а именно, результат "
+"функции ``string_function()``. Сейчас вызовем ``main_function()``, чтобы "
+"проверить, что значение определено."
 
-#: ../tutorials/lua_tutorials.rst:149
+#: ../doc/tutorials/lua_tutorials.rst:159
 msgid ""
 "For more about Lua variables see Lua manual `chapter 4.2 \"Local "
 "Variables and Blocks\"`_ ."
 msgstr ""
+"Для получения подробной информации о переменных в языке Lua, см. Главу "
+"4.2 \"Локальные переменные и блоки\" в руководстве по языку Lua (`chapter"
+" 4.2 \"Local Variables and Blocks\"`_)."
 
-#: ../tutorials/lua_tutorials.rst:155
+#: ../doc/tutorials/lua_tutorials.rst:165
 msgid ""
 "tarantool> function main_function()\n"
 "         >   local string_value\n"
@@ -644,19 +1876,35 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function main_function()\n"
+"         >   local string_value\n"
+"         >   string_value = string_function()\n"
+"         >   return string_value\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> main_function()\n"
+"---\n"
+"- hello world\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:172
+#: ../doc/tutorials/lua_tutorials.rst:182
 msgid "Modify the function so it returns a one-letter random string"
-msgstr ""
+msgstr "Изменение функции для возврата строки из одной случайной буквы"
 
-#: ../tutorials/lua_tutorials.rst:174
+#: ../doc/tutorials/lua_tutorials.rst:184
 msgid ""
 "Now that it's a bit clearer how to make a variable, we can change "
 "``string_function()`` so that, instead of returning a fixed literal "
-"'Hello world\", it returns a random letter between 'A' and 'Z'."
+"\"Hello world\", it returns a random letter between 'A' and 'Z'."
 msgstr ""
+"Сейчас стало понятно, как задавать переменную, поэтому можно изменить "
+"функцию ``string_function()`` так, чтобы вместо возврата заданной фразы "
+"\"Hello world\", она возвращала случайным образом выбранную букву от 'A' "
+"до 'Z'."
 
-#: ../tutorials/lua_tutorials.rst:178
+#: ../doc/tutorials/lua_tutorials.rst:188
 msgid ""
 "function string_function()\n"
 "  local random_number\n"
@@ -666,8 +1914,15 @@ msgid ""
 "  return random_string\n"
 "end"
 msgstr ""
+"function string_function()\n"
+"  local random_number\n"
+"  local random_string\n"
+"  random_number = math.random(65, 90)\n"
+"  random_string = string.char(random_number)\n"
+"  return random_string\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:188
+#: ../doc/tutorials/lua_tutorials.rst:198
 msgid ""
 "It is not necessary to destroy the old ``string_function()`` contents, "
 "they're simply overwritten. The first assignment invokes a random-number "
@@ -678,21 +1933,38 @@ msgid ""
 "ASCII value of 'Z' is 90 so the result will always be a letter between A "
 "and Z."
 msgstr ""
+"Нет необходимости стирать содержание старой функции "
+"``string_function()``, оно просто перезаписывается. Первый оператор "
+"вызывает функцию из математической библиотеки Lua, которая возвращает "
+"случайное число; параметры означают, что число должно быть целым от 65 до"
+" 90. Второй оператор вызывает функцию из библиотеки Lua для работы со "
+"строками, которая преобразует число в символ; параметр представляет собой"
+" кодовую точку символа. К счастью, в кодировке ASCII символу 'A' "
+"соответствует значение 65, а 'Z' -- 90, так что в результате всегда "
+"получим букву от A до Z."
 
-#: ../tutorials/lua_tutorials.rst:196
+#: ../doc/tutorials/lua_tutorials.rst:206
 msgid ""
 "For more about Lua math-library functions see Lua users \"`Math Library "
 "Tutorial`_\". For more about Lua string-library functions see Lua users "
 "\"`String Library Tutorial`_\" ."
 msgstr ""
+"Для получения подробной информации о функциях математической библиотеки в"
+" языке Lua, см. Практическое задание по математической библиотеке для "
+"пользователей Lua (`Math Library Tutorial`_). Для получения подробной "
+"информации о функциях библиотеки для работы со строками в языке Lua, см. "
+" Практическое задание по библиотеке для работы со строками для "
+"пользователей Lua (`String Library Tutorial`_)."
 
-#: ../tutorials/lua_tutorials.rst:202
+#: ../doc/tutorials/lua_tutorials.rst:212
 msgid ""
 "Once again the ``string_function()`` can be invoked from main_function() "
 "which can be invoked with ``main_function()``."
 msgstr ""
+"И снова функцию ``string_function()`` можно вызвать из main_function(), "
+"которую можно вызвать с помощью ``main_function()``."
 
-#: ../tutorials/lua_tutorials.rst:207
+#: ../doc/tutorials/lua_tutorials.rst:217
 msgid ""
 "tarantool> function string_function()\n"
 "         >   local random_number\n"
@@ -709,26 +1981,46 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function string_function()\n"
+"         >   local random_number\n"
+"         >   local random_string\n"
+"         >   random_number = math.random(65, 90)\n"
+"         >   random_string = string.char(random_number)\n"
+"         >   return random_string\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> main_function()\n"
+"---\n"
+"- C\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:224
+#: ../doc/tutorials/lua_tutorials.rst:234
 msgid ""
 "... Well, actually it won't always look like this because "
 "``math.random()`` produces random numbers. But for the illustration "
 "purposes it won't matter what the random string values are."
 msgstr ""
+"... На самом деле, вывод не всегда будет именно таким, поскольку функция "
+"``math.random()`` вызывает случайные числа. Но для наглядности случайные "
+"значения в строке не важны."
 
-#: ../tutorials/lua_tutorials.rst:230
+#: ../doc/tutorials/lua_tutorials.rst:240
 msgid "Modify the function so it returns a ten-letter random string"
-msgstr ""
+msgstr "Изменение функции для возврата строки из десяти случайных букв"
 
-#: ../tutorials/lua_tutorials.rst:232
+#: ../doc/tutorials/lua_tutorials.rst:242
 msgid ""
 "Now that it's clear how to produce one-letter random strings, we can "
 "reach our goal of producing a ten-letter string by concatenating ten one-"
 "letter strings, in a loop."
 msgstr ""
+"Сейчас стало понятно, как вызывать строки из одной случайной буквы, "
+"поэтому можно перейти к нашей цели -- возврату строки из десяти букв с "
+"помощью конкатенации десяти строк из одной случайной буквы в цикле."
 
-#: ../tutorials/lua_tutorials.rst:236
+#: ../doc/tutorials/lua_tutorials.rst:246
 msgid ""
 "function string_function()\n"
 "  local random_number\n"
@@ -741,8 +2033,18 @@ msgid ""
 "  return random_string\n"
 "end"
 msgstr ""
+"function string_function()\n"
+"  local random_number\n"
+"  local random_string\n"
+"  random_string = \"\"\n"
+"  for x = 1,10,1 do\n"
+"    random_number = math.random(65, 90)\n"
+"    random_string = random_string .. string.char(random_number)\n"
+"  end\n"
+"  return random_string\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:249
+#: ../doc/tutorials/lua_tutorials.rst:259
 msgid ""
 "The words \"for x = 1,10,1\" mean “start with x equals 1, loop until x "
 "equals 10, increment x by 1 for each iteration.” The symbol \"..\" means "
@@ -753,12 +2055,23 @@ msgid ""
 " can be invoked from ``main_function()`` which can be invoked with "
 "``main_function()``."
 msgstr ""
+"Слова \"for x = 1,10,1\" означают: “начать с x, равного 1, зацикливать до"
+" тех пор, пока x не будет равен 10, увеличивать x на 1 на каждом шаге "
+"цикла”. Символ \"..\" означает \"конкатенацию\", то есть добавление "
+"строки справа от знака \"..\" к строке слева от знака \"..\". Поскольку в"
+" начале определяется, что random_string (случайная_строка) представляет "
+"собой \"\" (пустую строку), в результате получим, что в random_string 10 "
+"случайных букв. И снова функцию ``string_function()`` можно вызвать из "
+"``main_function()``, которую можно вызвать с помощью ``main_function()``."
 
-#: ../tutorials/lua_tutorials.rst:257
+#: ../doc/tutorials/lua_tutorials.rst:267
 msgid "For more about Lua loops see Lua manual `chapter 4.3.4 \"Numeric for\"`_."
 msgstr ""
+"Для получения подробной информации о циклах в языке Lua, см. Главу 4.3.4 "
+"\"Числовой оператор for\" в руководстве по языку Lua (`chapter 4.3.4 "
+"\"Numeric for\"`_)."
 
-#: ../tutorials/lua_tutorials.rst:263
+#: ../doc/tutorials/lua_tutorials.rst:273
 msgid ""
 "tarantool> function string_function()\n"
 "         >   local random_number\n"
@@ -779,19 +2092,40 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function string_function()\n"
+"         >   local random_number\n"
+"         >   local random_string\n"
+"         >   random_string = \"\"\n"
+"         >   for x = 1,10,1 do\n"
+"         >     random_number = math.random(65, 90)\n"
+"         >     random_string = random_string .. "
+"string.char(random_number)\n"
+"         >   end\n"
+"         >   return random_string\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> main_function()\n"
+"---\n"
+"- 'ZUDJBHKEFM'\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:285
+#: ../doc/tutorials/lua_tutorials.rst:295
 msgid "Make a tuple out of a number and a string"
-msgstr ""
+msgstr "Составление кортежа из числа и строки"
 
-#: ../tutorials/lua_tutorials.rst:287
+#: ../doc/tutorials/lua_tutorials.rst:297
 msgid ""
 "Now that it's clear how to make a 10-letter random string, it's possible "
 "to make a tuple that contains a number and a 10-letter random string, by "
 "invoking a function in Tarantool's library of Lua functions."
 msgstr ""
+"Сейчас стало понятно, как создать строку из 10 случайных букв, поэтому "
+"можно создать кортеж, который будет содержать число и строку из 10 "
+"случайных букв, с помощью функции в Tarantool-библиотеке Lua-функций."
 
-#: ../tutorials/lua_tutorials.rst:291
+#: ../doc/tutorials/lua_tutorials.rst:301
 msgid ""
 "function main_function()\n"
 "  local string_value, t\n"
@@ -800,22 +2134,35 @@ msgid ""
 "  return t\n"
 "end"
 msgstr ""
+"function main_function()\n"
+"  local string_value, t\n"
+"  string_value = string_function()\n"
+"  t = box.tuple.new({1, string_value})\n"
+"  return t\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:300
+#: ../doc/tutorials/lua_tutorials.rst:310
 msgid ""
 "Once this is done, t will be the value of a new tuple which has two "
 "fields. The first field is numeric: 1. The second field is a random "
 "string. Once again the ``string_function()`` can be invoked from "
 "``main_function()`` which can be invoked with  ``main_function()``."
 msgstr ""
+"После этого, \"t\" будет представлять собой значение нового кортежа с "
+"двумя полями. Первое поле является числовым: \"1\". Второе поле "
+"представляет собой случайную строку. И снова функцию "
+"``string_function()`` можно вызвать из ``main_function()``, которую можно"
+" вызвать с помощью ``main_function()``."
 
-#: ../tutorials/lua_tutorials.rst:305
+#: ../doc/tutorials/lua_tutorials.rst:315
 msgid ""
 "For more about Tarantool tuples see Tarantool manual section "
 ":ref:`Submodule box.tuple <box_tuple>`."
 msgstr ""
+"Для получения подробной информации о кортежах в Tarantool'е, см. раздел "
+":ref:`Вложенный модуль box.tuple <box_tuple>` руководства по Tarantool'у."
 
-#: ../tutorials/lua_tutorials.rst:309
+#: ../doc/tutorials/lua_tutorials.rst:319
 msgid ""
 "tarantool> function main_function()\n"
 "         > local string_value, t\n"
@@ -831,20 +2178,38 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function main_function()\n"
+"         > local string_value, t\n"
+"         > string_value = string_function()\n"
+"         > t = box.tuple.new({1, string_value})\n"
+"         > return t\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> main_function()\n"
+"---\n"
+"- [1, 'PNPZPCOOKA']\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:327
+#: ../doc/tutorials/lua_tutorials.rst:337
 msgid "Modify main_function to insert a tuple into the database"
-msgstr ""
+msgstr "Изменение основной функции main_function для вставки кортежа в базу данных"
 
-#: ../tutorials/lua_tutorials.rst:329
+#: ../doc/tutorials/lua_tutorials.rst:339
 msgid ""
 "Now that it's clear how to make a tuple that contains a number and a "
 "10-letter random string, the only trick remaining is putting that tuple "
 "into tester. Remember that tester is the first space that was defined in "
 "the sandbox, so it's like a database table."
 msgstr ""
+"Сейчас стало понятно, как создавать кортеж, который содержит число и "
+"строку из десяти случайных букв, поэтому осталось только поместить этот "
+"кортеж в спейс tester. Следует отметить, что tester -- это первый спейс, "
+"определенный в песочнице, поэтому он представляет собой таблицу в базе "
+"данных."
 
-#: ../tutorials/lua_tutorials.rst:334
+#: ../doc/tutorials/lua_tutorials.rst:344
 msgid ""
 "function main_function()\n"
 "  local string_value, t\n"
@@ -853,8 +2218,14 @@ msgid ""
 "  box.space.tester:replace(t)\n"
 "end"
 msgstr ""
+"function main_function()\n"
+"  local string_value, t\n"
+"  string_value = string_function()\n"
+"  t = box.tuple.new({1,string_value})\n"
+"  box.space.tester:replace(t)\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:343
+#: ../doc/tutorials/lua_tutorials.rst:353
 msgid ""
 "The new line here is ``box.space.tester:replace(t)``. The name contains "
 "'tester' because the insertion is going to be to tester. The second "
@@ -871,20 +2242,44 @@ msgid ""
 "return t, it only puts t into the database. To confirm that something got"
 " inserted, we'll use a SELECT request."
 msgstr ""
+"Здесь новая строка -- ``box.space.tester:replace(t)``. Имя содержит слово"
+" 'tester', потому что вставка будет осуществляться в спейс tester. Второй"
+" параметр представляет собой значение в кортеже. Для абсолютной точности "
+"мы могли ввести команду ``box.space.tester:insert(t)``, а не "
+"``box.space.tester:replace(t)``, но слово \"replace\" (заменить) означает"
+" “вставить, даже если уже существует кортеж, у которого значение "
+"первичного ключа совпадает”, и это облегчит повтор упражнения, даже если "
+"песочница не пуста. После того, как это будет выполнено, спейс tester "
+"будет содержать кортеж с двумя полями. Первое поле будет 1. Второе поле "
+"будет представлять собой строку из десяти случайных букв. И снова функцию"
+" ``string_function()`` можно вызвать из ``main_function()``, которую "
+"можно вызвать с помощью ``main_function()``. Но функция "
+"``main_function()`` не может полностью отразить ситуацию, поскольку она "
+"не возвращает t, она только размещает t в базе данных. Чтобы убедиться, "
+"что произошла вставка, используем SELECT-запрос."
 
-#: ../tutorials/lua_tutorials.rst:357
+#: ../doc/tutorials/lua_tutorials.rst:367
 msgid ""
 "main_function()\n"
 "box.space.tester:select{1}"
 msgstr ""
+"main_function()\n"
+"         box.space.tester:select{1}"
 
-#: ../tutorials/lua_tutorials.rst:362
+#: ../doc/tutorials/lua_tutorials.rst:372
 msgid ""
 "For more about Tarantool insert and replace calls, see Tarantool manual "
-"section :ref:`Submodule box.space <box_space>`."
+"section :ref:`Submodule box.space <box_space>`, "
+":ref:`space_object:insert() <box_space-insert>`, and "
+":ref:`space_object:replace() <box_space-replace>`."
 msgstr ""
+"Для получения подробной информации о вызовах insert и replace в "
+"Tarantool'е, см. разделы :ref:`Вложенный модуль box.space <box_space>`, "
+":ref:`space_object:insert() <box_space-insert>` и "
+":ref:`space_object:replace() <box_space-replace>` руководства по "
+"Tarantool'у."
 
-#: ../tutorials/lua_tutorials.rst:367
+#: ../doc/tutorials/lua_tutorials.rst:379
 msgid ""
 "tarantool> function main_function()\n"
 "         >   local string_value, t\n"
@@ -903,12 +2298,30 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function main_function()\n"
+"         >   local string_value, t\n"
+"         >   string_value = string_function()\n"
+"         >   t = box.tuple.new({1,string_value})\n"
+"         >   box.space.tester:replace(t)\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> main_function()\n"
+"---\n"
+"...\n"
+"tarantool> box.space.tester:select{1}\n"
+"---\n"
+"- - [1, 'EUJYVEECIL']\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:388
+#: ../doc/tutorials/lua_tutorials.rst:400
 msgid "Modify main_function to insert a million tuples into the database"
 msgstr ""
+"Изменение основной функции main_function для вставки миллиона кортежей в "
+"базу данных"
 
-#: ../tutorials/lua_tutorials.rst:390
+#: ../doc/tutorials/lua_tutorials.rst:402
 msgid ""
 "Now that it's clear how to insert one tuple into the database, it's no "
 "big deal to figure out how to scale up: instead of inserting with a "
@@ -917,8 +2330,14 @@ msgid ""
 "that's a simple thing. The only extra wrinkle that we add here is a "
 "timing function."
 msgstr ""
+"Сейчас стало понятно, как вставить кортеж в базу данных, поэтому несложно"
+" догадаться, как можно увеличить масштаб: вместо того, чтобы вставлять "
+"значение 1 для первичного ключа, вставьте значение переменной от 1 до "
+"миллиона в цикле. Поскольку уже рассматривалось, как заводить цикл, это "
+"будет несложно. Мы лишь добавим небольшой штрих -- функцию распределения "
+"во времени."
 
-#: ../tutorials/lua_tutorials.rst:396
+#: ../doc/tutorials/lua_tutorials.rst:408
 msgid ""
 "function main_function()\n"
 "  local string_value, t\n"
@@ -933,35 +2352,68 @@ msgid ""
 "end_time = os.clock()\n"
 "'insert done in ' .. end_time - start_time .. ' seconds'"
 msgstr ""
+"function main_function()\n"
+"  local string_value, t\n"
+"  for i = 1,1000000,1 do\n"
+"    string_value = string_function()\n"
+"    t = box.tuple.new({i,string_value})\n"
+"    box.space.tester:replace(t)\n"
+"  end\n"
+"end\n"
+"start_time = os.clock()\n"
+"main_function()\n"
+"end_time = os.clock()\n"
+"'insert done in ' .. end_time - start_time .. ' seconds'"
 
-#: ../tutorials/lua_tutorials.rst:411
+#: ../doc/tutorials/lua_tutorials.rst:423
 msgid ""
-"The :ref:`os.clock() <os-clock>` function will return the number of CPU "
-"seconds since the start. Therefore, by getting start_time = number of "
-"seconds just before the inserting, and then getting end_time = number of "
-"seconds just after the inserting, we can calculate (end_time - "
-"start_time) = elapsed time in seconds. We will display that value by "
-"putting it in a request without any assignments, which causes Tarantool "
-"to send the value to the client, which prints it. (Lua's answer to the C "
-"``printf()`` function, which is ``print()``, will also work.)"
+"The standard Lua function `os.clock() "
+"<http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_ will return "
+"the number of CPU seconds since the start. Therefore, by getting "
+"start_time = number of seconds just before the inserting, and then "
+"getting end_time = number of seconds just after the inserting, we can "
+"calculate (end_time - start_time) = elapsed time in seconds. We will "
+"display that value by putting it in a request without any assignments, "
+"which causes Tarantool to send the value to the client, which prints it. "
+"(Lua's answer to the C ``printf()`` function, which is ``print()``, will "
+"also work.)"
 msgstr ""
+"Стандартная Lua-функция `os.clock() "
+"<http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_ вернет время "
+"ЦП в секундах с момента начала программы. Таким образом, выводя "
+"start_time = number of seconds (время_начала = число секунд) прямо перед "
+"вставкой, а затем выводя end_time = number of seconds (время_окончания = "
+"число секунд) сразу после вставки, можно рассчитать (время_окончания - "
+"время_начала) = затраченное время в секундах. Отобразим это значение "
+"путем ввода в запрос без операторов, что приведет к тому, что Tarantool "
+"отправит значение на клиент, который выведет это значение. (Ответ Lua на "
+"C-функцию ``printf()``, а именно ``print()``, также сработает.)"
 
-#: ../tutorials/lua_tutorials.rst:419
+#: ../doc/tutorials/lua_tutorials.rst:433
 msgid ""
 "For more on Lua ``os.clock()`` see Lua manual `chapter 22.1 \"Date and "
 "Time\"`_. For more on Lua print() see Lua manual `chapter 5 "
 "\"Functions\"`_."
 msgstr ""
+"Для получения подробной информации о функции ``os.clock()`` см. Главу "
+"22.1 \"Дата и время\" в руководстве по языку Lua (`chapter 22.1 \"Date "
+"and Time\"`_). Для получения подробной информации о функции print() см. "
+"Главу 5 \"Функции\" в руководстве по языку Lua (`chapter 5 "
+"\"Functions\"`_)."
 
-#: ../tutorials/lua_tutorials.rst:425
+#: ../doc/tutorials/lua_tutorials.rst:439
 msgid ""
 "Since this is the grand finale, we will redo the final versions of all "
 "the necessary requests: the request that created ``string_function()``, "
 "the request that created ``main_function()``, and the request that "
 "invokes ``main_function()``."
 msgstr ""
+"И поскольку наступает кульминация -- повторно введем окончательные "
+"варианты всех необходимых запросов: запрос, который создает "
+"``string_function()``, запрос, который создает ``main_function()``, и "
+"запрос, который вызывает ``main_function()``."
 
-#: ../tutorials/lua_tutorials.rst:430
+#: ../doc/tutorials/lua_tutorials.rst:444
 msgid ""
 "function string_function()\n"
 "  local random_number\n"
@@ -987,8 +2439,31 @@ msgid ""
 "end_time = os.clock()\n"
 "'insert done in ' .. end_time - start_time .. ' seconds'"
 msgstr ""
+"function string_function()\n"
+"           local random_number\n"
+"           local random_string\n"
+"           random_string = \"\"\n"
+"           for x = 1,10,1 do\n"
+"             random_number = math.random(65, 90)\n"
+"             random_string = random_string .. string.char(random_number)\n"
+"           end\n"
+"           return random_string\n"
+"         end\n"
+"         \n"
+"         function main_function()\n"
+"           local string_value, t\n"
+"           for i = 1,1000000,1 do\n"
+"             string_value = string_function()\n"
+"             t = box.tuple.new({i,string_value})\n"
+"             box.space.tester:replace(t)\n"
+"           end\n"
+"         end\n"
+"         start_time = os.clock()\n"
+"         main_function()\n"
+"         end_time = os.clock()\n"
+"         'insert done in ' .. end_time - start_time .. ' seconds'"
 
-#: ../tutorials/lua_tutorials.rst:458
+#: ../doc/tutorials/lua_tutorials.rst:472
 msgid ""
 "tarantool> function string_function()\n"
 "         >   local random_number\n"
@@ -1028,28 +2503,74 @@ msgid ""
 "...\n"
 "tarantool>"
 msgstr ""
+"tarantool> function string_function()\n"
+"         >   local random_number\n"
+"         >   local random_string\n"
+"         >   random_string = \"\"\n"
+"         >   for x = 1,10,1 do\n"
+"         >     random_number = math.random(65, 90)\n"
+"         >     random_string = random_string .. "
+"string.char(random_number)\n"
+"         >   end\n"
+"         >   return random_string\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> function main_function()\n"
+"         >   local string_value, t\n"
+"         >   for i = 1,1000000,1 do\n"
+"         >     string_value = string_function()\n"
+"         >     t = box.tuple.new({i,string_value})\n"
+"         >     box.space.tester:replace(t)\n"
+"         >   end\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> start_time = os.clock()\n"
+"---\n"
+"...\n"
+"tarantool> main_function()\n"
+"---\n"
+"...\n"
+"tarantool> end_time = os.clock()\n"
+"---\n"
+"...\n"
+"tarantool> 'insert done in ' .. end_time - start_time .. ' seconds'\n"
+"---\n"
+"- insert done in 37.62 seconds\n"
+"...\n"
+"tarantool>"
 
-#: ../tutorials/lua_tutorials.rst:497
+#: ../doc/tutorials/lua_tutorials.rst:511
 msgid ""
 "What has been shown is that Lua functions are quite expressive (in fact "
 "one can do more with Tarantool's Lua stored procedures than one can do "
 "with stored procedures in some SQL DBMSs), and that it's straightforward "
 "to combine Lua-library functions and Tarantool-library functions."
 msgstr ""
+"Итак, мы доказали, что возможности Lua-функций довольно многообразны (на "
+"самом деле, с помощью хранимых процедур на языке Lua в Tarantool'е можно "
+"сделать больше, чем с помощью хранимых процедур в некоторых SQL СУБД), и "
+"несложно комбинировать функции Lua-библиотек и функции "
+"Tarantool-библиотек."
 
-#: ../tutorials/lua_tutorials.rst:502
+#: ../doc/tutorials/lua_tutorials.rst:516
 msgid ""
 "What has also been shown is that inserting a million tuples took 37 "
 "seconds. The host computer was a Linux laptop. By changing :ref:`wal_mode"
 " <cfg_binary_logging_snapshots-wal_mode>` to 'none' before running the "
 "test, one can reduce the elapsed time to 4 seconds."
 msgstr ""
+"Также мы показали, что вставка миллиона кортежей заняла 37 секунд. Хостом"
+" выступил ноутбук с ОС Linux. А изменив значение  :ref:`wal_mode "
+"<cfg_binary_logging_snapshots-wal_mode>` на 'none' перед запуском теста, "
+"можно уменьшить затраченное время до 4 секунд."
 
-#: ../tutorials/lua_tutorials.rst:510
+#: ../doc/tutorials/lua_tutorials.rst:524
 msgid "Sum a JSON field for all tuples"
 msgstr "Подсчет суммы по JSON-полям во всех кортежах"
 
-#: ../tutorials/lua_tutorials.rst:512
+#: ../doc/tutorials/lua_tutorials.rst:526
 msgid ""
 "This is an exercise assignment: “Assume that inside every tuple there is "
 "a string formatted as JSON. Inside that string there is a JSON numeric "
@@ -1057,8 +2578,14 @@ msgid ""
 "'sum' variable. At end, return the 'sum' variable.” The purpose of the "
 "exercise is to get experience in one way to read and process tuples."
 msgstr ""
+"Задание по данному практикуму: “Предположим, что в каждом кортеже есть "
+"строка в формате JSON. В каждой строке есть числовое поле формата JSON. "
+"Для каждого кортежа необходимо найти значение числового поля и прибавить "
+"его к переменной 'sum' (сумма). В конце функция должна вернуть переменную"
+" 'sum'.” Цель данного упражнения -- получить опыт в прочтении и обработке"
+" кортежей одновременно."
 
-#: ../tutorials/lua_tutorials.rst:518
+#: ../doc/tutorials/lua_tutorials.rst:532
 msgid ""
 "json = require('json')\n"
 "function sum_json_field(field_name)\n"
@@ -1075,8 +2602,22 @@ msgid ""
 "  return sum\n"
 "end"
 msgstr ""
+"json = require('json')\n"
+"function sum_json_field(field_name)\n"
+"  local v, t, sum, field_value, is_valid_json, lua_table\n"
+"  sum = 0\n"
+"  for v, t in box.space.tester:pairs() do\n"
+"    is_valid_json, lua_table = pcall(json.decode, t[2])\n"
+"    if is_valid_json then\n"
+"      field_value = lua_table[field_name]\n"
+"      if type(field_value) == \"number\" then sum = sum + field_value end"
+"\n"
+"    end\n"
+"  end\n"
+"  return sum\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:535
+#: ../doc/tutorials/lua_tutorials.rst:549
 msgid ""
 "**LINE 3: WHY \"LOCAL\".** This line declares all the variables that will"
 " be used in the function. Actually it's not necessary to declare all "
@@ -1086,8 +2627,15 @@ msgid ""
 "That's not desirable for any of the variables that are declared in line "
 "1, because all of them are for use only within the function."
 msgstr ""
+"**СТРОКА 3: ЗАЧЕМ НУЖЕН \"LOCAL\".** Эта строка объявляет все переменные,"
+" которые будут использоваться в функции. На самом деле, нет необходимости"
+" в начале объявлять все переменные, а в длинной функции лучше объявить "
+"переменные прямо перед их использованием. Фактически объявлять переменные"
+" вообще необязательно, но необъявленная переменная будет \"глобальной\". "
+"Это представляется нежелательным для всех переменных, объявленных в "
+"строке 1, поскольку все они используются только в рамках функции."
 
-#: ../tutorials/lua_tutorials.rst:542
+#: ../doc/tutorials/lua_tutorials.rst:556
 msgid ""
 "**LINE 5: WHY \"PAIRS()\".** Our job is to go through all the rows and "
 "there are two ways to do it: with :ref:`box.space.space_object:pairs() "
@@ -1095,15 +2643,24 @@ msgid ""
 ":samp:`for i, {n}, 1 do {some-function}(variable[i]) end`. We preferred "
 "``pairs()`` for this example."
 msgstr ""
+"**СТРОКА 5: ЗАЧЕМ НУЖЕН \"PAIRS()\".** Наша задача -- пройти по всем "
+"строкам, что можно сделать двумя способами: с помощью "
+":ref:`box.space.space_object:pairs() <box_space-pairs>` или с помощью "
+"``variable = select(...)`` с указанием :samp:`for i, {n}, 1 do "
+"{некая-функция}(variable[i]) end`. Для данного примера мы предпочли "
+"использовать ``pairs()``."
 
-#: ../tutorials/lua_tutorials.rst:547
+#: ../doc/tutorials/lua_tutorials.rst:561
 msgid ""
 "**LINE 5: START THE MAIN LOOP.** Everything inside this \"``for``\" loop "
 "will be repeated as long as there is another index key. A tuple is "
 "fetched and can be referenced with variable :code:`t`."
 msgstr ""
+"**СТРОКА 5: НАЧАЛО ОСНОВНОГО ЦИКЛА.** Всё внутри цикла \"``for``\" будет "
+"повторяться до тех пор, пока не кончатся индекс-ключи. На полученный "
+"кортеж можно сослаться с помощью переменной :code:`t`."
 
-#: ../tutorials/lua_tutorials.rst:551
+#: ../doc/tutorials/lua_tutorials.rst:565
 msgid ""
 "**LINE 6: WHY \"PCALL\".** If we simply said ``lua_table = "
 "json.decode(t[2]))``, then the function would abort with an error if it "
@@ -1113,8 +2670,15 @@ msgid ""
 "there's a problem just set ``is_valid_json = false`` and we will know "
 "what to do about it later."
 msgstr ""
+"**СТРОКА 6: ЗАЧЕМ НУЖЕН \"PCALL\".** Если бы мы просто ввели ``lua_table "
+"= json.decode(t[2]))``, то функция завершила бы работу с ошибкой, "
+"обнаружив любое несоответствие в JSON-строке, например отсутствие "
+"запятой. Заключив функцию в \"``pcall``\" (`protected call`_ -- "
+"защищенный вызов), мы заявляем следующее: хотим перехватывать ошибки "
+"такого рода, поэтому в случае ошибки следует просто указать "
+"``is_valid_json = false``, и позднее мы решим, что с этим делать."
 
-#: ../tutorials/lua_tutorials.rst:558
+#: ../doc/tutorials/lua_tutorials.rst:572
 msgid ""
 "**LINE 6: MEANING.** The function is :ref:`json.decode <json-decode>` "
 "which means decode a JSON string, and the parameter is t[2] which is a "
@@ -1122,14 +2686,21 @@ msgid ""
 "assuming that the second field in the tuple is where the JSON string was "
 "inserted. For example, we're assuming a tuple looks like"
 msgstr ""
+"**СТРОКА 6: ЗНАЧЕНИЕ.** Функция :ref:`json.decode <json-decode>` означает"
+" декодирование JSON-строки, а параметр t[2] представляет собой ссылку на "
+"JSON-строку. Здесь есть заранее заданные значения, а мы предполагаем, что"
+" JSON-строка была вставлена во второе поле кортежа. Например, "
+"предположим, что кортеж выглядит следующим образом:"
 
-#: ../tutorials/lua_tutorials.rst:568
+#: ../doc/tutorials/lua_tutorials.rst:582
 msgid ""
 "field[1]: 444\n"
 "field[2]: '{\"Hello\": \"world\", \"Quantity\": 15}'"
 msgstr ""
+"field[1]: 444\n"
+"field[2]: '{\"Hello\": \"world\", \"Quantity\": 15}'"
 
-#: ../tutorials/lua_tutorials.rst:571
+#: ../doc/tutorials/lua_tutorials.rst:585
 msgid ""
 "meaning that the tuple's first field, the primary key field, is a number "
 "while the tuple's second field, the JSON string, is a string. Thus the "
@@ -1138,8 +2709,15 @@ msgid ""
 "there's no error set ``is_valid_json = true`` and set ``lua_table =`` a "
 "Lua table which has the decoded string\"."
 msgstr ""
+"что означает, что первое поле кортежа, первичное поле, представляет собой"
+" число, а второе поле кортежа, JSON-строка, является строкой. Таким "
+"образом, значение оператора будет следующим: \"декодировать ``t[2]`` "
+"(второе поле кортежа) как JSON-строку; если обнаружится ошибка, то "
+"указать ``is_valid_json = false``; если ошибок нет, указать "
+"``is_valid_json = true`` и ``lua_table =`` Lua-таблица, в которой "
+"находится декодированная строка\"."
 
-#: ../tutorials/lua_tutorials.rst:577
+#: ../doc/tutorials/lua_tutorials.rst:591
 msgid ""
 "**LINE 8.** At last we are ready to get the JSON field value from the Lua"
 " table that came from the JSON string. The value in field_name, which is "
@@ -1153,8 +2731,20 @@ msgid ""
 "the Quantity field in the Lua table, get the value and put it in variable"
 " :code:`field_value`."
 msgstr ""
+"**СТРОКА 8.** Наконец, мы готовы получить значение JSON-поля из "
+"Lua-таблицы, взятое из JSON-строки. Значение в field_name (имя_поля), "
+"которое является параметром всей функции, должно представлять собой "
+"JSON-поле. Например, в JSON-строке ``'{\"Hello\": \"world\", "
+"\"Quantity\": 15}'`` есть два JSON-поля: \"Hello\" и \"Quantity\". Если "
+"вся функция вызывается с помощью ``sum_json_field(\"Quantity\")``, тогда "
+"``field_value = lua_table[field_name]`` (значение_поля = "
+"Lua_таблица[имя_поля]) по сути аналогично ``field_value = "
+"lua_table[\"Quantity\"]`` или даже ``field_value = lua_table.Quantity``. "
+"Итак, этими тремя способами можно ввести следующую команду: получить "
+"значение поля Quantity в Lua-таблице и поместить его в переменную "
+":code:`field_value`."
 
-#: ../tutorials/lua_tutorials.rst:587
+#: ../doc/tutorials/lua_tutorials.rst:601
 msgid ""
 "**LINE 9: WHY \"IF\".** Suppose that the JSON string is well formed but "
 "the JSON field is not a number, or is missing. In that case, the function"
@@ -1163,30 +2753,45 @@ msgid ""
 "abortion. Anyone who knows that the database is in perfect shape can skip"
 " this kind of thing."
 msgstr ""
+"**СТРОКА 9: ЗАЧЕМ НУЖЕН \"IF\".** Предположим, что JSON-строка не "
+"содержит синтаксических ошибок, но JSON-поле не является числовым или "
+"вовсе отсутствует. В таком случае выполнение функции прервется при "
+"попытке прибавить значение к сумме. Если сначала проверить, "
+"``type(field_value) == \"number\"`` (тип(значение_поля) == \"число\"), "
+"можно избежать прерывания функции. Если вы уверены, что база данных в "
+"идеальном состоянии, этот шаг можно пропустить."
 
-#: ../tutorials/lua_tutorials.rst:593
+#: ../doc/tutorials/lua_tutorials.rst:607
 msgid ""
 "And the function is complete. Time to test it. Starting with an empty "
-"database, defined the same way as the sandbox database that was "
-"introduced in :ref:`first database <user_guide_getting_started-"
-"first_database>`,"
+"database, defined the same way as the sandbox database in our "
+":ref:`\"Getting started\" exercises <getting_started>`,"
 msgstr ""
+"И функция готова. Пора протестировать ее. Начинаем с пустой базы данных "
+"так же, как с песочницы в :ref:`упражнения в \"Руководстве для "
+"начинающих\" <getting_started>`,"
 
-#: ../tutorials/lua_tutorials.rst:597
+#: ../doc/tutorials/lua_tutorials.rst:611
 msgid ""
 "-- if tester is left over from some previous test, destroy it\n"
 "box.space.tester:drop()\n"
 "box.schema.space.create('tester')\n"
 "box.space.tester:create_index('primary', {parts = {1, 'unsigned'}})"
 msgstr ""
+"-- если спейс tester остался от предыдущего задания, удалите его\n"
+"box.space.tester:drop()\n"
+"box.schema.space.create('tester')\n"
+"box.space.tester:create_index('primary', {parts = {1, 'unsigned'}})"
 
-#: ../tutorials/lua_tutorials.rst:604
+#: ../doc/tutorials/lua_tutorials.rst:618
 msgid ""
 "then add some tuples where the first field is a number and the second "
 "field is a string."
 msgstr ""
+"затем добавим несколько кортежей, где первое поле является числовым, а "
+"второе поле представляет собой строку."
 
-#: ../tutorials/lua_tutorials.rst:607
+#: ../doc/tutorials/lua_tutorials.rst:621
 msgid ""
 "box.space.tester:insert{444, '{\"Item\": \"widget\", \"Quantity\": 15}'}\n"
 "box.space.tester:insert{445, '{\"Item\": \"widget\", \"Quantity\": 7}'}\n"
@@ -1195,41 +2800,60 @@ msgid ""
 "box.space.tester:insert{447, '{\"Item\": \"waffle iron\", \"Quantit\": "
 "3}'}"
 msgstr ""
+"box.space.tester:insert{444, '{\"Item\": \"widget\", \"Quantity\": 15}'}\n"
+"box.space.tester:insert{445, '{\"Item\": \"widget\", \"Quantity\": 7}'}\n"
+"box.space.tester:insert{446, '{\"Item\": \"golf club\", \"Quantity\": "
+"\"sunshine\"}'}\n"
+"box.space.tester:insert{447, '{\"Item\": \"waffle iron\", \"Quantit\": "
+"3}'}"
 
-#: ../tutorials/lua_tutorials.rst:614
+#: ../doc/tutorials/lua_tutorials.rst:628
 msgid ""
 "Since this is a test, there are deliberate errors. The \"golf club\" and "
 "the \"waffle iron\" do not have numeric Quantity fields, so must be "
 "ignored. Therefore the real sum of the Quantity field in the JSON strings"
 " should be: 15 + 7 = 22."
 msgstr ""
+"Для целей практики здесь допущены ошибки. В \"golf club\" и \"waffle "
+"iron\" поля Quantity не являются числовыми, поэтому будут игнорироваться."
+" Таким образом, итоговая сумма для полей Quantity в JSON-строках должна "
+"быть следующей: 15 + 7 = 22."
 
-#: ../tutorials/lua_tutorials.rst:619
+#: ../doc/tutorials/lua_tutorials.rst:633
 msgid "Invoke the function with ``sum_json_field(\"Quantity\")``."
-msgstr ""
+msgstr "Вызовите функцию с помощью ``sum_json_field(\"Quantity\")``."
 
-#: ../tutorials/lua_tutorials.rst:621
+#: ../doc/tutorials/lua_tutorials.rst:635
 msgid ""
 "tarantool> sum_json_field(\"Quantity\")\n"
 "---\n"
 "- 22\n"
 "..."
 msgstr ""
+"tarantool> sum_json_field(\"Quantity\")\n"
+"---\n"
+"- 22\n"
+"..."
 
-#: ../tutorials/lua_tutorials.rst:628
+#: ../doc/tutorials/lua_tutorials.rst:642
 msgid ""
 "It works. We'll just leave, as exercises for future improvement, the "
 "possibility that the \"hard coding\" assumptions could be removed, that "
 "there might have to be an overflow check if some field values are huge, "
-"and that the function should contain a \"yield\" instruction if the count"
-" of tuples is huge."
+"and that the function should contain a :ref:`yield <atomic-"
+"threads_fibers_yields>` instruction if the count of tuples is huge."
 msgstr ""
+"Сработало. Для дополнительной отработки материала можно убрать заранее "
+"заданные значения, добавить проверку потенциально возможного "
+"арифметического переполнения при наличии больших значений некоторых "
+"полей, а также команду :ref:`передачи управления <atomic-"
+"threads_fibers_yields>` при огромном количестве кортежей."
 
-#: ../tutorials/lua_tutorials.rst:637
+#: ../doc/tutorials/lua_tutorials.rst:651
 msgid "Indexed pattern search"
 msgstr "Индексированный поиск по шаблонам"
 
-#: ../tutorials/lua_tutorials.rst:639
+#: ../doc/tutorials/lua_tutorials.rst:653
 msgid ""
 "Here is a generic function which takes a field identifier and a search "
 "pattern, and returns all tuples that match. |br| * The field must be the "
@@ -1245,14 +2869,32 @@ msgid ""
 "for speed, and take advantage of Lua's pattern matching for flexibility. "
 "It does everything that an SQL \"LIKE\" search can do, and far more."
 msgstr ""
+"Здесь приведена обобщенная функция, которая берет идентификатор поля и "
+"шаблон поиска, а затем возвращает все кортежи, которые подходят под "
+"критерии. |br| * Поле должно быть первым полем в TREE-индексе. |br| * "
+"Функция применяет `шаблоны в языке Lua "
+"<http://www.lua.org/manual/5.2/manual.html#6.4.1>`_, что позволяет "
+"использовать \"магические символы\" в регулярных выражениях. |br| * "
+"Начальные символы в шаблоне до самого первого магического символа будут "
+"использоваться в качестве ключа поиска по индексу. Каждый кортеж, "
+"обнаруженный по индексу, будет соответствовать всему шаблону. |br| * В "
+"целях :ref:`кооперативной многозадачности <atomic-"
+"cooperative_multitasking>` функция должна передавать управление через "
+"каждые 10 кортежей, если только нет причин отложить передачу управления. "
+"|br| С помощью данной функции можно воспользоваться индексами Tarantool'а"
+" для ускорения и шаблонами на языке Lua для гибкости. Поддерживаются все "
+"возможности поиска LIKE в SQL -- и многие другие."
 
-#: ../tutorials/lua_tutorials.rst:656
+#: ../doc/tutorials/lua_tutorials.rst:670
 msgid ""
 "Read the following Lua code to see how it works. The comments that begin "
 "with \"SEE NOTE ...\" refer to long explanations that follow the code."
 msgstr ""
+"Прочитайте следующий Lua-код, чтобы понять, как он работает. Комментарии,"
+" которые начинаются с \"СМ. ПРИМЕЧАНИЕ ...\" ссылаются на подробные "
+"объяснения, приведенные ниже."
 
-#: ../tutorials/lua_tutorials.rst:660
+#: ../doc/tutorials/lua_tutorials.rst:674
 msgid ""
 "function indexed_pattern_search(space_name, field_no, pattern)\n"
 "  -- SEE NOTE #1 \"FIND AN APPROPRIATE INDEX\"\n"
@@ -1351,21 +2993,129 @@ msgid ""
 "  return result_set\n"
 "end"
 msgstr ""
+"function indexed_pattern_search(space_name, field_no, pattern)\n"
+"  -- СМ. ПРИМЕЧАНИЕ №1 \"ПОИСК НУЖНОГО ИНДЕКСА\"\n"
+"  if (box.space[space_name] == nil) then\n"
+"    print(\"Error: Failed to find the specified space\")\n"
+"    return nil\n"
+"  end\n"
+"  local index_no = -1\n"
+"  for i=0,box.schema.INDEX_MAX,1 do\n"
+"    if (box.space[space_name].index[i] == nil) then break end\n"
+"    if (box.space[space_name].index[i].type == \"TREE\"\n"
+"        and box.space[space_name].index[i].parts[1].fieldno == field_no\n"
+"        and (box.space[space_name].index[i].parts[1].type == \"scalar\"\n"
+"        or box.space[space_name].index[i].parts[1].type == \"string\")) "
+"then\n"
+"      index_no = i\n"
+"      break\n"
+"    end\n"
+"  end\n"
+"  if (index_no == -1) then\n"
+"    print(\"Error: Failed to find an appropriate index\")\n"
+"    return nil\n"
+"  end\n"
+"  -- СМ. ПРИМЕЧАНИЕ №2 \"ПОЛУЧЕНИЕ КЛЮЧА ИНДЕКСНОГО ПОИСКА ИЗ ШАБЛОНА\"\n"
+"  local index_search_key = \"\"\n"
+"  local index_search_key_length = 0\n"
+"  local last_character = \"\"\n"
+"  local c = \"\"\n"
+"  local c2 = \"\"\n"
+"  for i=1,string.len(pattern),1 do\n"
+"    c = string.sub(pattern, i, i)\n"
+"    if (last_character ~= \"%\") then\n"
+"      if (c == '^' or c == \"$\" or c == \"(\" or c == \")\" or c == "
+"\".\"\n"
+"                   or c == \"[\" or c == \"]\" or c == \"*\" or c == "
+"\"+\"\n"
+"                   or c == \"-\" or c == \"?\") then\n"
+"        break\n"
+"      end\n"
+"      if (c == \"%\") then\n"
+"        c2 = string.sub(pattern, i + 1, i + 1)\n"
+"        if (string.match(c2, \"%p\") == nil) then break end\n"
+"        index_search_key = index_search_key .. c2\n"
+"      else\n"
+"        index_search_key = index_search_key .. c\n"
+"      end\n"
+"    end\n"
+"    last_character = c\n"
+"  end\n"
+"  index_search_key_length = string.len(index_search_key)\n"
+"  if (index_search_key_length < 3) then\n"
+"    print(\"Error: index search key \" .. index_search_key .. \" is too "
+"short\")\n"
+"    return nil\n"
+"  end\n"
+"  -- СМ. ПРИМЕЧАНИЕ №3 \"ВНЕШНИЙ ЦИКЛ: НАЧАЛО\"\n"
+"  local result_set = {}\n"
+"  local number_of_tuples_in_result_set = 0\n"
+"  local previous_tuple_field = \"\"\n"
+"  while true do\n"
+"    local number_of_tuples_since_last_yield = 0\n"
+"    local is_time_for_a_yield = false\n"
+"    -- СМ. ПРИМЕЧАНИЕ №4 \"ВНУТРЕННИЙ ЦИКЛ: ИТЕРАТОР\"\n"
+"    for _,tuple in box.space[space_name].index[index_no]:\n"
+"    pairs(index_search_key,{iterator = box.index.GE}) do\n"
+"      -- СМ. ПРИМЕЧАНИЕ №5 \"ВНУТРЕННИЙ ЦИКЛ: ПРЕРЫВАНИЕ, ЕСЛИ КЛЮЧ "
+"ИНДЕКСА СЛИШКОМ БОЛЬШОЙ\"\n"
+"      if (string.sub(tuple[field_no], 1, index_search_key_length)\n"
+"      > index_search_key) then\n"
+"        break\n"
+"      end\n"
+"      -- СМ. ПРИМЕЧАНИЕ №6 \"ВНУТРЕННИЙ ЦИКЛ: ПРЕРЫВАНИЕ ПОСЛЕ КАЖДЫХ "
+"ДЕСЯТИ КОРТЕЖЕЙ -- ВОЗМОЖНО\"\n"
+"      number_of_tuples_since_last_yield = "
+"number_of_tuples_since_last_yield + 1\n"
+"      if (number_of_tuples_since_last_yield >= 10\n"
+"          and tuple[field_no] ~= previous_tuple_field) then\n"
+"        index_search_key = tuple[field_no]\n"
+"        is_time_for_a_yield = true\n"
+"        break\n"
+"        end\n"
+"      previous_tuple_field = tuple[field_no]\n"
+"      -- СМ. ПРИМЕЧАНИЕ №7 \"ВНУТРЕННИЙ ЦИКЛ: ДОБАВЛЕНИЕ В РЕЗУЛЬТАТ, "
+"ЕСЛИ ШАБЛОН СОВПАДЕТ\"\n"
+"      if (string.match(tuple[field_no], pattern) ~= nil) then\n"
+"        number_of_tuples_in_result_set = number_of_tuples_in_result_set +"
+" 1\n"
+"        result_set[number_of_tuples_in_result_set] = tuple\n"
+"      end\n"
+"    end\n"
+"    -- СМ. ПРИМЕЧАНИЕ №8 \"ВНЕШНИЙ ЦИКЛ: ПРЕРЫВАНИЕ ИЛИ ПЕРЕДАЧА "
+"УПРАВЛЕНИЯ И ПРОДОЛЖЕНИЕ\"\n"
+"    if (is_time_for_a_yield ~= true) then\n"
+"      break\n"
+"    end\n"
+"    require('fiber').yield()\n"
+"  end\n"
+"  return result_set\n"
+"end"
 
-#: ../tutorials/lua_tutorials.rst:751
+#: ../doc/tutorials/lua_tutorials.rst:765
 msgid ""
 "NOTE #1 \"FIND AN APPROPRIATE INDEX\" |br| The caller has passed "
 "space_name (a string) and field_no (a number). The requirements are: |br|"
 " (a) index type must be \"TREE\" because for other index types (HASH, "
-"BITSET, RTREE) a search with iterator=GE will not return strings in order"
-" by string value; |br| (b) field_no must be the first index part; |br| "
-"(c) the field must contain strings, because for other data types (such as"
-" \"unsigned\") pattern searches are not possible; |br| If these "
-"requirements are not met by any index, then print an error message and "
-"return nil."
+"BITSET, RTREE) a search with :ref:`iterator=GE <box_index-iterator-"
+"types>` will not return strings in order by string value; |br| (b) "
+"field_no must be the first index part; |br| (c) the field must contain "
+"strings, because for other data types (such as \"unsigned\") pattern "
+"searches are not possible; |br| If these requirements are not met by any "
+"index, then print an error message and return nil."
 msgstr ""
+"ПРИМЕЧАНИЕ №1 \"ПОИСК НУЖНОГО ИНДЕКСА\" |br| Вызывающий клиент передал "
+"space_name (имя_спейса -- строка) и field_no (номер_поля -- число). "
+"Требования следующие: |br| (a) тип индекса должен быть \"TREE\", "
+"поскольку для других типов индекса (HASH, BITSET, RTREE) поиск с "
+":ref:`итератором=GE <box_index-iterator-types>` не вернет строки, "
+"упорядоченные по строковому значению; |br| (b) field_no должен "
+"представлять собой первую часть индекса; |br| (c) поле должно содержать "
+"строки, потому что для других типов данных (как \"unsigned\") шаблоны "
+"поиска не применяются; |br| Если индекс не удовлетворяет этим "
+"требованиям, выдать сообщение об ошибке и вернуть нулевое значение nil."
 
-#: ../tutorials/lua_tutorials.rst:763
+#: ../doc/tutorials/lua_tutorials.rst:777
 msgid ""
 "NOTE #2 \"DERIVE INDEX SEARCH KEY FROM PATTERN\" |br| The caller has "
 "passed pattern (a string). The index search key will be the characters in"
@@ -1381,18 +3131,40 @@ msgid ""
 "and in fact zero would be okay, but short index search keys will cause "
 "long search times."
 msgstr ""
+"ПРИМЕЧАНИЕ №2 \"ПОЛУЧЕНИЕ КЛЮЧА ИНДЕКСНОГО ПОИСКА ИЗ ШАБЛОНА\" |br| "
+"Вызывающий клиент передал шаблон (строку). Ключом поиска по индексу "
+"являются символы в шаблоне до первого магического символа. Магические "
+"символы в Lua: % ^ $ ( ) . [ ] * + - ?. Например, если задан шаблон "
+"\"ABC.E\", точка будет магическим символом, и ключом поиска по индексу "
+"будет \"ABC\". Однако есть затруднение ... Если символ \"%\" будет идти "
+"следом за знаком препинания, этот знак препинания экранируется, поэтому "
+"следует убрать \"%\" из ключа поиска по индексу. Например, если задан "
+"шаблон \"AB%$E\", знак доллара экранируется, поэтому ключом поиска по "
+"индексу будет \"AB$E\". Наконец, есть проверка длины ключа поиска по "
+"индексу -- не менее трех символов, причем это число выбрано произвольно, "
+"и даже ноль здесь подойдет, но по короткому ключу поиск займет длительное"
+" время."
 
-#: ../tutorials/lua_tutorials.rst:780
+#: ../doc/tutorials/lua_tutorials.rst:794
 msgid ""
 "NOTE #3 -- \"OUTER LOOP: INITIATE\" |br| The function's job is to return "
-"a result set, just as box.space.select would. We will fill it within an "
-"outer loop that contains an inner loop. The outer loop's job is to "
-"execute the inner loop, and possibly yield, until the search ends. The "
-"inner loop's job is to find tuples via the index, and put them in the "
-"result set if they match the pattern."
+"a result set, just as `box.space...select <box_space-select>` would. We "
+"will fill it within an outer loop that contains an inner loop. The outer "
+"loop's job is to execute the inner loop, and possibly :ref:`yield "
+"<atomic-threads_fibers_yields>`, until the search ends. The inner loop's "
+"job is to find tuples via the index, and put them in the result set if "
+"they match the pattern."
 msgstr ""
+"ПРИМЕЧАНИЕ №3 \"ВНЕШНИЙ ЦИКЛ: НАЧАЛО\" |br| Назначение функции -- вернуть"
+" результирующий набор данных, как вернул бы запрос `box.space...select "
+"<box_space-select>`. Мы внесем ее во внешний цикл, который включает в "
+"себя внутренний цикл. Назначение внешнего цикла -- выполнять внутренний "
+"цикл и, при необходимости, :ref:`передачу управления <atomic-"
+"threads_fibers_yields>`, пока поиск не будет завершен. Назначение "
+"внутреннего цикла -- находить кортежи по индексу и включать их в "
+"результирующий набор данных, если они подходят под шаблон."
 
-#: ../tutorials/lua_tutorials.rst:789
+#: ../doc/tutorials/lua_tutorials.rst:803
 msgid ""
 "NOTE #4 \"INNER LOOP: ITERATOR\" |br| The for loop here is using pairs(),"
 " see the :ref:`explanation of what index iterators are <box_index-"
@@ -1400,8 +3172,13 @@ msgid ""
 "named \"tuple\" which contains the latest tuple found via the index "
 "search key."
 msgstr ""
+"ПРИМЕЧАНИЕ №4 \"ВНУТРЕННИЙ ЦИКЛ: ИТЕРАТОР\" |br| Цикл for здесь "
+"использует pairs(), см. :ref:`объяснение, что такое итераторы <box_index-"
+"index_pairs>`. Во внутреннем цикле будет локальная переменная под "
+"названием \"tuple\" (кортеж), которая содержит последний кортеж, "
+"обнаруженный в ходе поиска по индексу."
 
-#: ../tutorials/lua_tutorials.rst:796
+#: ../doc/tutorials/lua_tutorials.rst:810
 msgid ""
 "NOTE #5 \"INNER LOOP: BREAK IF INDEX KEY IS TOO GREAT\" |br| The iterator"
 " is GE (Greater or Equal), and we must be more specific: if the search "
@@ -1410,8 +3187,15 @@ msgid ""
 "example, if the search index key is 'ABC', then 'ABCDE' is a potential "
 "match, but 'ABD' is a signal that no more matches are possible."
 msgstr ""
+"ПРИМЕЧАНИЕ №5 \"ВНУТРЕННИЙ ЦИКЛ: ПРЕРЫВАНИЕ, ЕСЛИ КЛЮЧ ИНДЕКСА СЛИШКОМ "
+"БОЛЬШОЙ\" |br| Используется итератор GE (Greater or Equal - больше или "
+"равно), поэтому необходимо уточнить: если ключ поиска по индексу включает"
+" в себя N символов, то крайние N символов слева от найденного поля "
+"индекса не должны быть больше ключа поиска. Например, если ключом поиска "
+"является  'ABC', то 'ABCDE' потенциально подходит, а 'ABD' означает, что "
+"в дальнейшем совпадений не будет."
 
-#: ../tutorials/lua_tutorials.rst:805
+#: ../doc/tutorials/lua_tutorials.rst:819
 msgid ""
 "NOTE #6 \"INNER LOOP: BREAK AFTER EVERY 10 TUPLES -- MAYBE\" |br| This "
 "chunk of code is for cooperative multitasking. The number 10 is "
@@ -1425,8 +3209,19 @@ msgid ""
 "index field is the same as the previous result's index field, there is no"
 " break."
 msgstr ""
+"ПРИМЕЧАНИЕ №6 \"ВНУТРЕННИЙ ЦИКЛ: ПРЕРЫВАНИЕ ПОСЛЕ КАЖДЫХ ДЕСЯТИ КОРТЕЖЕЙ "
+"-- ВОЗМОЖНО\" |br| Эта часть кода предназначена для кооперативной "
+"многозадачности. Число 10 выбрано произвольно, и как правило, большее "
+"число также подойдет. Простое правило гласит: \"после проверки 10 "
+"кортежей передать управление, а затем возобновить поиск (то есть снова "
+"выполнять внутренний цикл), начиная с последнего обнаруженного "
+"значения\". Однако, если индекс не уникален, или в индексе более одного "
+"поля, можно получить дублирующиеся результаты, например, {\"ABC\",1}, "
+"{\"ABC\", 2}, {\"ABC\", 3}\" -- и будет трудно решить, с какого кортежа "
+"\"ABC\" возобновлять поиск. Таким образом, если найденное поле индекса "
+"совпадает с предыдущим найденным полем индекса, цикл не прерывается."
 
-#: ../tutorials/lua_tutorials.rst:818
+#: ../doc/tutorials/lua_tutorials.rst:832
 msgid ""
 "NOTE #7 \"INNER LOOP: ADD TO RESULT SET IF PATTERN MATCHES\" |br| Compare"
 " the result's index field to the entire pattern. For example, suppose "
@@ -1437,8 +3232,16 @@ msgid ""
 "string.match will return a value which is not nil. Therefore this tuple "
 "can be added to the result set."
 msgstr ""
+"ПРИМЕЧАНИЕ №7 \"ВНУТРЕННИЙ ЦИКЛ: ДОБАВЛЕНИЕ В РЕЗУЛЬТАТ, ЕСЛИ ШАБЛОН "
+"СОВПАДЕТ\" |br| Сравнение найденного поля индекса с шаблоном. Например, "
+"предположим, что вызывающий клиент передает шаблон \"ABC.E\", и "
+"существует поле индекса, содержащее \"ABCDE\". В таком случае, начальный "
+"ключ поиска будет \"ABC\". Таким образом, кортеж, содержащий поле индекса"
+" с \"ABCDE\" будет обнаружен итератором, поскольку \"ABCDE\" > \"ABC\". В"
+" этом случае, string.match вернет значение, отличное от нулевого nil. В "
+"итоге, этот кортеж можно добавить в результирующий набор данных."
 
-#: ../tutorials/lua_tutorials.rst:828
+#: ../doc/tutorials/lua_tutorials.rst:842
 msgid ""
 "NOTE #8 \"OUTER LOOP: BREAK, OR YIELD AND CONTINUE\" |br| There are three"
 " conditions which will cause a break from the inner loop: (1) the for "
@@ -1451,18 +3254,32 @@ msgid ""
 "continue, then the inner loop -- the iterator search -- will happen again"
 " with a new value for the index search key."
 msgstr ""
+"ПРИМЕЧАНИЕ №8 \"ВНЕШНИЙ ЦИКЛ: ПРЕРЫВАНИЕ ИЛИ ПЕРЕДАЧА УПРАВЛЕНИЯ И "
+"ПРОДОЛЖЕНИЕ\" |br| Существуют три условия, которые вызовут прерывание из "
+"внутреннего цикла: (1) цикл for заканчивается закономерно, потому что "
+"отсутствуют ключи индекса, которые больше или равны ключу поиска по "
+"индексу, (2) ключ индекса слишком большой, как описано в ПРИМЕЧАНИИ №5, "
+"(3) пора передавать управление, как описано в ПРИМЕЧАНИИ №6. Если условие"
+" (1) или условие (2) соблюдается, другие действия не требуются, и внешний"
+" цикл также заканчивается. Только в том случае, если справедливо условие "
+"(3), внешний цикл должен передать управление, а затем продолжить "
+"выполнение. Если он продолжит выполнение, то внутренний цикл -- поиск с "
+"итератором -- будет выполняться снова с новым значением для ключа поиска "
+"по индексу."
 
-#: ../tutorials/lua_tutorials.rst:841
+#: ../doc/tutorials/lua_tutorials.rst:855
 msgid "EXAMPLE:"
-msgstr ""
+msgstr "ПРИМЕР:"
 
-#: ../tutorials/lua_tutorials.rst:843
+#: ../doc/tutorials/lua_tutorials.rst:857
 msgid ""
 "Start Tarantool, cut and paste the code for function "
-"``indexed_pattern_search``, and try the following:"
+"``indexed_pattern_search()``, and try the following:"
 msgstr ""
+"Запустите Tarantool, скопируйте и вставьте код для функции "
+"``indexed_pattern_search()`` и попробуйте выполнить следующее:"
 
-#: ../tutorials/lua_tutorials.rst:849
+#: ../doc/tutorials/lua_tutorials.rst:863
 msgid ""
 "box.space.t:drop()\n"
 "box.schema.space.create('t')\n"
@@ -1479,28 +3296,1408 @@ msgid ""
 "box.space.t:insert{8,'ABCDF',''}\n"
 "indexed_pattern_search(\"t\", 2, \"ABC.E.\")"
 msgstr ""
+"box.space.t:drop()\n"
+"box.schema.space.create('t')\n"
+"box.space.t:create_index('primary',{})\n"
+"box.space.t:create_index('secondary',{unique=false,parts={2,'string',3,'string'}})"
+"\n"
+"box.space.t:insert{1,'A','a'}\n"
+"box.space.t:insert{2,'AB',''}\n"
+"box.space.t:insert{3,'ABC','a'}\n"
+"box.space.t:insert{4,'ABCD',''}\n"
+"box.space.t:insert{5,'ABCDE','a'}\n"
+"box.space.t:insert{6,'ABCDE',''}\n"
+"box.space.t:insert{7,'ABCDEF','a'}\n"
+"box.space.t:insert{8,'ABCDF',''}\n"
+"indexed_pattern_search(\"t\", 2, \"ABC.E.\")"
 
-#: ../tutorials/lua_tutorials.rst:863
-msgid "The result will be:"
-msgstr ""
-
-#: ../tutorials/lua_tutorials.rst:868
+#: ../doc/tutorials/lua_tutorials.rst:879
 msgid ""
-"tarantool> **indexed_pattern_search(\"t\", 2, \"ABC.E.\")**\n"
+"tarantool> indexed_pattern_search(\"t\", 2, \"ABC.E.\")\n"
 "---\n"
 "- - [7, 'ABCDEF', 'a']\n"
 "..."
 msgstr ""
+"tarantool> indexed_pattern_search(\"t\", 2, \"ABC.E.\")\n"
+"---\n"
+"- - [7, 'ABCDEF', 'a']\n"
+"..."
 
-#~ msgid ""
-#~ "Tarantool can call C code with "
-#~ ":ref:`modules <modules-example_c>`, or with"
-#~ " :ref:`ffi <e_cookbook-ffi_printf>`, or "
-#~ "with C stored procedures. This tutorial"
-#~ " only is about the third option, "
-#~ "C stored procedures. In fact the "
-#~ "routines are always \"C functions\" but"
-#~ " the phrase \"stored procedure\" is "
-#~ "commonly used for historical reasons."
-#~ msgstr ""
+#: ../doc/tutorials/sql_tutorial.rst:39
+msgid "SQL tutorial"
+msgstr "Практическое задание на SQL"
 
+#: ../doc/tutorials/sql_tutorial.rst:41
+msgid ""
+"This tutorial is a demonstration of the SQL feature introduced in "
+"Tarantool 2.x series. There are two ways to go through this tutorial:"
+msgstr ""
+"В данном практическом задании демонстрируется поддержка SQL, добавленная "
+"в серии Tarantool'а 2.x. Задание можно выполнять двумя способами:"
+
+#: ../doc/tutorials/sql_tutorial.rst:44
+msgid "read what we say the results are and take our word for it, or"
+msgstr "просмотреть полученные результаты и принять их на веру, или"
+
+#: ../doc/tutorials/sql_tutorial.rst:45
+msgid "copy and paste each section and see everything work with Tarantool 2.1."
+msgstr ""
+"скопировать и вставить каждый раздел, чтобы проверить работу в "
+"Tarantool'е 2.1."
+
+#: ../doc/tutorials/sql_tutorial.rst:47
+#, fuzzy
+msgid ""
+"You will encounter all the functionality that you'd encounter in an "
+"\"SQL-101\" course."
+msgstr ""
+"Вы познакомитесь со всеми функциями, которые можно встретить в рамках "
+"курса \"SQL-101\"."
+
+#: ../doc/tutorials/sql_tutorial.rst:54
+msgid "Starting up with a first table and SELECTs"
+msgstr "Начнем с первой таблицы и запросов типа SELECT"
+
+#: ../doc/tutorials/sql_tutorial.rst:60
+msgid ""
+"Requests will be done using Tarantool as a :ref:`client <admin-"
+"using_tarantool_as_a_client>`. Start Tarantool and, optionally, enter the"
+" Tarantool configuration request, for example:"
+msgstr ""
+"Tarantool выполняет запросы в качестве :ref:`клиента <admin-"
+"using_tarantool_as_a_client>`. Запустите Tarantool и при желании введите "
+"запрос конфигурации, например."
+
+#: ../doc/tutorials/sql_tutorial.rst:65
+msgid "tarantool> box.cfg{}"
+msgstr "tarantool> box.cfg{}"
+
+#: ../doc/tutorials/sql_tutorial.rst:69
+msgid ""
+"Before Tarantool 2.0 you needed to say ``box.cfg{...}`` prior to "
+"performing any database operations. Now you can start working with the "
+"database outright. Tarantool initiates the database module and applies "
+":ref:`default settings <box_introspection-box_cfg>`."
+msgstr ""
+"До версии Tarantool'а 2.0 перед выполнением любой операции с базой данных"
+" нужно было вызвать ``box.cfg{...}``. Теперь можно сразу же начинать "
+"работу с базой данных. В таком случае Tarantool запускает модуль базы "
+"данных и применяет :ref:`настройки, используемые по умолчанию "
+"<box_introspection-box_cfg>`."
+
+#: ../doc/tutorials/sql_tutorial.rst:77
+msgid "\\set"
+msgstr "\\set"
+
+#: ../doc/tutorials/sql_tutorial.rst:79
+msgid ""
+"A feature of the client console program is that you can switch languages "
+"and specify the end-of-statement delimiter."
+msgstr ""
+"Особенность клиентской консольной программы заключается в том, что можно "
+"переключать языки и указывать разделитель конца оператора."
+
+#: ../doc/tutorials/sql_tutorial.rst:82
+msgid "Here we say: default language is SQL and statements end with semicolons."
+msgstr ""
+"Здесь упомянем: язык по умолчанию -- SQL, а операторы заканчиваются "
+"точкой с запятой."
+
+#: ../doc/tutorials/sql_tutorial.rst:84
+msgid ""
+"tarantool> \\set language sql\n"
+"tarantool> \\set delimiter ;"
+msgstr ""
+"tarantool> \\set language sql\n"
+"tarantool> \\set delimiter ;"
+
+#: ../doc/tutorials/sql_tutorial.rst:91
+msgid "CREATE, INSERT, UPDATE, SELECT"
+msgstr "CREATE, INSERT, UPDATE, SELECT"
+
+#: ../doc/tutorials/sql_tutorial.rst:93
+msgid "Start with simple SQL statements just to be sure they're there."
+msgstr "Начните с простых операторов SQL, чтобы убедиться в их наличии."
+
+#: ../doc/tutorials/sql_tutorial.rst:95
+msgid ""
+"CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));\n"
+"INSERT INTO table1 VALUES (1, 'A');\n"
+"UPDATE table1 SET column2 = 'B';\n"
+"SELECT * FROM table1 WHERE column1 = 1;"
+msgstr ""
+"CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));\n"
+"INSERT INTO table1 VALUES (1, 'A');\n"
+"UPDATE table1 SET column2 = 'B';\n"
+"SELECT * FROM table1 WHERE column1 = 1;"
+
+#: ../doc/tutorials/sql_tutorial.rst:102
+msgid "The result of the ``SELECT`` statement will look like this:"
+msgstr "Результат вызова оператора ``SELECT`` будет следующим:"
+
+#: ../doc/tutorials/sql_tutorial.rst:104
+msgid ""
+"tarantool> SELECT * FROM table1 WHERE column1 = 1;\n"
+"---\n"
+"- - [1, 'B']\n"
+"..."
+msgstr ""
+"tarantool> SELECT * FROM table1 WHERE column1 = 1;\n"
+"---\n"
+"- - [1, 'B']\n"
+"..."
+
+#: ../doc/tutorials/sql_tutorial.rst:111
+msgid ""
+"Reality check: actually the result will include include initial fields "
+"called \"metadata\", the names and data types of each column. For all "
+"SELECT examples we show only the result rows without showing the "
+"metadata."
+msgstr ""
+
+#: ../doc/tutorials/sql_tutorial.rst:119
+#, fuzzy
+msgid "Here is ``CREATE TABLE`` with more details:"
+msgstr "Создайте таблицу с помощью ``CREATE TABLE`` с дополнительной информацией:"
+
+#: ../doc/tutorials/sql_tutorial.rst:121
+msgid "There are multiple columns, with different data types."
+msgstr "Есть несколько столбцов с разными типами данных."
+
+#: ../doc/tutorials/sql_tutorial.rst:122
+msgid "There is a ``PRIMARY KEY`` (unique and not-null) for two of the columns."
+msgstr ""
+"Есть первичный ключ ``PRIMARY KEY`` (уникальный и ненулевой) для двух "
+"столбцов."
+
+#: ../doc/tutorials/sql_tutorial.rst:124
+msgid ""
+"CREATE TABLE table2 (column1 INTEGER,\n"
+"                     column2 VARCHAR(100),\n"
+"                     column3 SCALAR,\n"
+"                     column4 FLOAT,\n"
+"                     PRIMARY KEY (column1, column2));"
+msgstr ""
+"CREATE TABLE table2 (column1 INTEGER,\n"
+"                     column2 VARCHAR(100),\n"
+"                     column3 SCALAR,\n"
+"                     column4 FLOAT,\n"
+"                     PRIMARY KEY (column1, column2));"
+
+#: ../doc/tutorials/sql_tutorial.rst:132
+#: ../doc/tutorials/sql_tutorial.rst:287
+#, fuzzy
+msgid "The result will be: \"``rowcount: 1``\" (no error)."
+msgstr "Получите следующий результат: \"``---``\" (без ошибки)."
+
+#: ../doc/tutorials/sql_tutorial.rst:138
+msgid "Try to put 5 rows in the table:"
+msgstr "Попытайтесь вставить 5 строк в таблицу:"
+
+#: ../doc/tutorials/sql_tutorial.rst:140
+msgid "The INTEGER and FLOAT columns get numbers."
+msgstr "В столбцах INTEGER и FLOAT будут числа."
+
+#: ../doc/tutorials/sql_tutorial.rst:141
+msgid ""
+"The VARCHAR and SCALAR columns get strings (the SCALAR strings are "
+"expressed as hexadecimals)."
+msgstr ""
+"В столбцах VARCHAR и SCALAR будут строки (строки в SCALAR выражены "
+"шестнадцатеричными значениями)."
+
+#: ../doc/tutorials/sql_tutorial.rst:144
+msgid ""
+"INSERT INTO table2 VALUES (1, 'AB', X'4142', 5.5);\n"
+"INSERT INTO table2 VALUES (1, 'CD', X'2020', 1E4);\n"
+"INSERT INTO table2 VALUES (1, 'AB', X'A5', -5.5);\n"
+"INSERT INTO table2 VALUES (2, 'AB', X'2020', 12.34567);\n"
+"INSERT INTO table2 VALUES (-1000, '', X'', 0.0);"
+msgstr ""
+"INSERT INTO table2 VALUES (1, 'AB', X'4142', 5.5);\n"
+"INSERT INTO table2 VALUES (1, 'CD', X'2020', 1E4);\n"
+"INSERT INTO table2 VALUES (1, 'AB', X'A5', -5.5);\n"
+"INSERT INTO table2 VALUES (2, 'AB', X'2020', 12.34567);\n"
+"INSERT INTO table2 VALUES (-1000, '', X'', 0.0);"
+
+#: ../doc/tutorials/sql_tutorial.rst:154
+msgid ""
+"The third ``INSERT`` will fail because of a primary-key violation (``1, "
+"'AB'`` is a duplication)."
+msgstr ""
+"Третья операция вставки ``INSERT`` завершится ошибкой по причине "
+"нарушения ограничений по первичному ключу (``1, 'AB'`` -- повтор)."
+
+#: ../doc/tutorials/sql_tutorial.rst:156
+msgid "The other four ``INSERT`` statements will succeed."
+msgstr "Остальные четыре операции вставки ``INSERT`` будут выполнены."
+
+#: ../doc/tutorials/sql_tutorial.rst:160
+msgid "SELECT with ORDER BY clause"
+msgstr "SELECT с условием ORDER BY"
+
+#: ../doc/tutorials/sql_tutorial.rst:162
+msgid ""
+"Retrieve the 4 rows in the table, in descending order by ``column2``, "
+"then (where the ``column2`` values are the same) in ascending order by "
+"column4."
+msgstr ""
+"Осуществите выборку 4 строк в таблице в порядке убывания по ``column2``, "
+"затем в порядке возрастания по column4 (где значения ``column2`` "
+"одинаковы)."
+
+#: ../doc/tutorials/sql_tutorial.rst:166
+msgid "\"*\" is short for \"all columns\"."
+msgstr "\"*\" расшифровывается как \"все столбцы\"."
+
+#: ../doc/tutorials/sql_tutorial.rst:168
+msgid "SELECT * FROM table2 ORDER BY column2 DESC, column4 ASC;"
+msgstr "SELECT * FROM table2 ORDER BY column2 DESC, column4 ASC;"
+
+#: ../doc/tutorials/sql_tutorial.rst:174
+msgid ""
+"- - [1, 'CD', '  ', 10000]\n"
+"  - [1, 'AB', 'AB', 5.5]\n"
+"  - [2, 'AB', '  ', 12.34567]\n"
+"  - [-1000, '', '', 0]"
+msgstr ""
+"- - [1, 'CD', '  ', 10000]\n"
+"  - [1, 'AB', 'AB', 5.5]\n"
+"  - [2, 'AB', '  ', 12.34567]\n"
+"  - [-1000, '', '', 0]"
+
+#: ../doc/tutorials/sql_tutorial.rst:183
+msgid "SELECT with WHERE clauses"
+msgstr "SELECT с условиями WHERE"
+
+#: ../doc/tutorials/sql_tutorial.rst:185
+msgid "Retrieve some of what you inserted:"
+msgstr "Осуществите выборку некоторых вставленных данных:"
+
+#: ../doc/tutorials/sql_tutorial.rst:187
+msgid ""
+"The first statement uses the ``LIKE`` comparison operator which is asking"
+" for \"first character must be 'A', the next characters can be "
+"anything.\""
+msgstr ""
+"В первом операторе используется оператор сравнения ``LIKE``, который "
+"требует, чтобы \"первый символ был 'A', следующие символы могут быть чем "
+"угодно\"."
+
+#: ../doc/tutorials/sql_tutorial.rst:190
+msgid ""
+"The second statement uses logical operators and parentheses, so the ANDed"
+" expressions must be true, or the ORed expression must be true. Notice "
+"the columns don't have to be indexed."
+msgstr ""
+"Во втором операторе используются логические операторы и круглые скобки, "
+"поэтому выражения с AND должны быть правдой, или выражение OR должно быть"
+" правдой. Обратите внимание, что столбцы не должны быть проиндексированы."
+
+#: ../doc/tutorials/sql_tutorial.rst:194
+msgid ""
+"SELECT column1, column2, column1 * column4 FROM table2 WHERE column2\n"
+"LIKE 'A%';\n"
+"SELECT column1, column2, column3, column4 FROM table2\n"
+"    WHERE (column1 < 2 AND column4 < 10)\n"
+"    OR column3 = X'2020';"
+msgstr ""
+"SELECT column1, column2, column1 * column4 FROM table2 WHERE column2\n"
+"LIKE 'A%';\n"
+"SELECT column1, column2, column3, column4 FROM table2\n"
+"    WHERE (column1 < 2 AND column4 < 10)\n"
+"    OR column3 = X'2020';"
+
+#: ../doc/tutorials/sql_tutorial.rst:202
+msgid "The results will be:"
+msgstr "Получим следующие результаты:"
+
+#: ../doc/tutorials/sql_tutorial.rst:204
+msgid ""
+"- - [1, 'AB', 5.5]\n"
+"  - [2, 'AB', 24.69134]"
+msgstr ""
+"- - [1, 'AB', 5.5]\n"
+"  - [2, 'AB', 24.69134]"
+
+#: ../doc/tutorials/sql_tutorial.rst:211
+msgid ""
+"- - [-1000, '', '', 0]\n"
+"  - [1, 'AB', 'AB', 5.5]\n"
+"  - [1, 'CD', '  ', 10000]\n"
+"  - [2, 'AB', '  ', 12.34567]"
+msgstr ""
+"- - [-1000, '', '', 0]\n"
+"  - [1, 'AB', 'AB', 5.5]\n"
+"  - [1, 'CD', '  ', 10000]\n"
+"  - [2, 'AB', '  ', 12.34567]"
+
+#: ../doc/tutorials/sql_tutorial.rst:220
+msgid "SELECT with GROUP BY and aggregating"
+msgstr "SELECT с GROUP BY и агрегация"
+
+#: ../doc/tutorials/sql_tutorial.rst:222
+msgid "Retrieve with grouping."
+msgstr "Осуществите выборку с группировкой данных."
+
+#: ../doc/tutorials/sql_tutorial.rst:224
+msgid ""
+"The rows which have the same values for ``column2`` are grouped and are "
+"aggregated -- summed, counted, averaged -- for ``column4``."
+msgstr ""
+"Строки с одинаковыми значениями для ``column2`` сгруппированы и "
+"агрегированы: сложены, подсчитаны, усреднены для ``column4``."
+
+#: ../doc/tutorials/sql_tutorial.rst:228
+msgid ""
+"SELECT column2, SUM(column4), COUNT(column4), AVG(column4)\n"
+"FROM table2\n"
+"GROUP BY column2;"
+msgstr ""
+"SELECT column2, SUM(column4), COUNT(column4), AVG(column4)\n"
+"FROM table2\n"
+"GROUP BY column2;"
+
+#: ../doc/tutorials/sql_tutorial.rst:236
+msgid ""
+"- - ['', 0, 1, 0]\n"
+"  - ['AB', 17.84567, 2, 8.922835]\n"
+"  - ['CD', 10000, 1, 10000]"
+msgstr ""
+"- - ['', 0, 1, 0]\n"
+"  - ['AB', 17.84567, 2, 8.922835]\n"
+"  - ['CD', 10000, 1, 10000]"
+
+#: ../doc/tutorials/sql_tutorial.rst:246
+msgid "Complications and complex SELECTs"
+msgstr "Усложненные действия и сложные операции выборки SELECT"
+
+#: ../doc/tutorials/sql_tutorial.rst:250
+msgid "NULLs"
+msgstr "NULL"
+
+#: ../doc/tutorials/sql_tutorial.rst:252
+msgid "Insert more rows, containing NULL values."
+msgstr "Вставьте еще строки с нулевыми значениями NULL."
+
+#: ../doc/tutorials/sql_tutorial.rst:254
+msgid ""
+"NULL is not the same as Lua nil; it commonly is used in SQL for unknown "
+"or not-applicable."
+msgstr ""
+"NULL -- это не то же самое, что nil в Lua; как правило, он используется в"
+" SQL для неизвестных или неприменимых случаев."
+
+#: ../doc/tutorials/sql_tutorial.rst:257
+msgid ""
+"INSERT INTO table2 VALUES (1, NULL, X'4142', 5.5);\n"
+"INSERT INTO table2 VALUES (0, '!!@', NULL, NULL);\n"
+"INSERT INTO table2 VALUES (0, '!!!', X'00', NULL);"
+msgstr ""
+"INSERT INTO table2 VALUES (1, NULL, X'4142', 5.5);\n"
+"INSERT INTO table2 VALUES (0, '!!@', NULL, NULL);\n"
+"INSERT INTO table2 VALUES (0, '!!!', X'00', NULL);"
+
+#: ../doc/tutorials/sql_tutorial.rst:265
+msgid ""
+"The first ``INSERT`` will fail because NULL is not permitted for a column"
+" that was defined with a ``PRIMARY KEY`` clause."
+msgstr ""
+"Первая вставка ``INSERT`` завершится ошибкой, поскольку запрещается "
+"вставлять NULL в столбец по ``PRIMARY KEY``."
+
+#: ../doc/tutorials/sql_tutorial.rst:268
+msgid "The other ``INSERT`` statements will succeed."
+msgstr "Остальные операции вставки ``INSERT`` будут выполнены."
+
+#: ../doc/tutorials/sql_tutorial.rst:272
+msgid "Indexes"
+msgstr "Индексы"
+
+#: ../doc/tutorials/sql_tutorial.rst:274
+msgid "Make a new index on column4."
+msgstr "Создайте новый индекс для column4."
+
+#: ../doc/tutorials/sql_tutorial.rst:276
+msgid ""
+"There already is an index for the primary key. Indexes are useful for "
+"making queries faster. In this case, the index also acts as a constraint,"
+" because it prevents two rows from having the same values in ``column4``."
+" However, it is not an error that ``column4`` has multiple occurrences of"
+" NULLs."
+msgstr ""
+"Индекс для первичного ключа уже есть. Индексы используются для ускорения "
+"запросов. В данном случае индекс также действует как ограничение, потому "
+"что он не допускает одинаковые значения в ``column4`` в разных строках. "
+"Однако ошибкой не считаются несколько значений NULL в `` column4``."
+
+#: ../doc/tutorials/sql_tutorial.rst:283
+msgid "CREATE UNIQUE INDEX i ON table2 (column4);"
+msgstr "CREATE UNIQUE INDEX i ON table2 (column4);"
+
+#: ../doc/tutorials/sql_tutorial.rst:291
+msgid "Create a subset table"
+msgstr "Создание таблицы с собственным подмножеством значений"
+
+#: ../doc/tutorials/sql_tutorial.rst:293
+msgid ""
+"Make a table which will have some of the columns of ``table2``, and some "
+"of the rows of ``table2``."
+msgstr ""
+"Создайте таблицу, которая будет включать в себя некоторые столбцы из "
+"таблицы ``table2`` и некоторые строки из ``table2``."
+
+#: ../doc/tutorials/sql_tutorial.rst:296
+msgid ""
+"You can do this by combining ``INSERT`` with ``SELECT``. Then select "
+"everything in the resultant subset table."
+msgstr ""
+"Это можно сделать путем комбинации ``INSERT`` и ``SELECT``. Затем "
+"осуществите выборку всего из полученной таблицы подмножеств."
+
+#: ../doc/tutorials/sql_tutorial.rst:299
+msgid ""
+"CREATE TABLE table3 (column1 INTEGER, column2 VARCHAR(100), PRIMARY KEY\n"
+"(column2));\n"
+"INSERT INTO table3 SELECT column1, column2 FROM table2 WHERE column1 <> "
+"2;\n"
+"SELECT * FROM table3;"
+msgstr ""
+"CREATE TABLE table3 (column1 INTEGER, column2 VARCHAR(100), PRIMARY KEY\n"
+"(column2));\n"
+"INSERT INTO table3 SELECT column1, column2 FROM table2 WHERE column1 <> "
+"2;\n"
+"SELECT * FROM table3;"
+
+#: ../doc/tutorials/sql_tutorial.rst:308
+msgid ""
+"- - [-1000, '']\n"
+"  - [0, '!!!']\n"
+"  - [0, '!!@']\n"
+"  - [1, 'AB']\n"
+"  - [1, 'CD']"
+msgstr ""
+"- - [-1000, '']\n"
+"  - [0, '!!!']\n"
+"  - [0, '!!@']\n"
+"  - [1, 'AB']\n"
+"  - [1, 'CD']"
+
+#: ../doc/tutorials/sql_tutorial.rst:318
+msgid "SELECT with a subquery"
+msgstr "SELECT с подзапросом"
+
+#: ../doc/tutorials/sql_tutorial.rst:320
+msgid "A subquery is a query within a query."
+msgstr "Подзапрос -- это запрос внутри запроса."
+
+#: ../doc/tutorials/sql_tutorial.rst:322
+msgid ""
+"Here we find all the rows in ``table2`` whose ``(column1, column2)`` "
+"values are not in ``table3``."
+msgstr ""
+"Здесь мы найдем все строки из таблицы ``table2``, где значения в столбцах"
+" ``(column1, column2)`` не обнаруживаются в таблице ``table3``."
+
+#: ../doc/tutorials/sql_tutorial.rst:325
+msgid ""
+"SELECT * FROM table2 WHERE (column1, column2) NOT IN (SELECT column1,\n"
+"column2 FROM table3);"
+msgstr ""
+"SELECT * FROM table2 WHERE (column1, column2) NOT IN (SELECT column1,\n"
+"column2 FROM table3);"
+
+#: ../doc/tutorials/sql_tutorial.rst:330
+msgid ""
+"The result is, unsurprisingly, the single row which we deliberately "
+"excluded when we inserted the rows in the ``INSERT ... SELECT`` "
+"statement:"
+msgstr ""
+"Неудивительно, что в результате получим единственную строку, которую "
+"намеренно исключили при вставке строк в операторе ``INSERT ... SELECT``:"
+
+#: ../doc/tutorials/sql_tutorial.rst:334
+msgid "- - [2, 'AB', '  ', 12.34567]"
+msgstr "- - [2, 'AB', '  ', 12.34567]"
+
+#: ../doc/tutorials/sql_tutorial.rst:340
+msgid "SELECT with a join"
+msgstr "SELECT с объединением"
+
+#: ../doc/tutorials/sql_tutorial.rst:342
+msgid ""
+"A join is a combination of two tables. There is more than one way to do "
+"them in Tarantool: \"Cartesian joins\", \"left outer joins\", etc."
+msgstr ""
+"Объединение -- это сочетание двух таблиц. В Tarantool'е есть несколько "
+"способов объединений: \"декартово произведение\", \"левое внешнее "
+"соединение\" и т.д."
+
+#: ../doc/tutorials/sql_tutorial.rst:346
+msgid ""
+"Here we're just showing the most typical case, where column values from "
+"one table match column values from another table."
+msgstr ""
+"Здесь мы покажем лишь наиболее типичный случай, когда значения столбцов "
+"из одной таблицы соответствуют значениям столбцов из другой таблицы."
+
+#: ../doc/tutorials/sql_tutorial.rst:350
+msgid ""
+"SELECT * FROM table2, table3\n"
+"    WHERE table2.column1 = table3.column1 AND table2.column2 = "
+"table3.column2\n"
+"    ORDER BY table2.column4;"
+msgstr ""
+"SELECT * FROM table2, table3\n"
+"    WHERE table2.column1 = table3.column1 AND table2.column2 = "
+"table3.column2\n"
+"    ORDER BY table2.column4;"
+
+#: ../doc/tutorials/sql_tutorial.rst:358
+msgid ""
+"- - [0, '!!!', \"\\0\", null, 0, '!!!']\n"
+"  - [0, '!!@', null, null, 0, '!!@']\n"
+"  - [-1000, '', '', 0, -1000, '']\n"
+"  - [1, 'AB', 'AB', 5.5, 1, 'AB']\n"
+"  - [1, 'CD', ' ', 10000, 1, 'CD']"
+msgstr ""
+"- - [0, '!!!', \"\\0\", null, 0, '!!!']\n"
+"  - [0, '!!@', null, null, 0, '!!@']\n"
+"  - [-1000, '', '', 0, -1000, '']\n"
+"  - [1, 'AB', 'AB', 5.5, 1, 'AB']\n"
+"  - [1, 'CD', ' ', 10000, 1, 'CD']"
+
+#: ../doc/tutorials/sql_tutorial.rst:370
+msgid "Constraints affecting updates"
+msgstr "Ограничения, влияющие на обновления"
+
+#: ../doc/tutorials/sql_tutorial.rst:374
+msgid "CREATE TABLE, with a CHECK clause"
+msgstr "CREATE TABLE с условием CHECK"
+
+#: ../doc/tutorials/sql_tutorial.rst:376
+msgid ""
+"First we make a table which includes a \"constraint\" that there must not"
+" be any rows containing 13 in ``column2``. Then we try to insert such a "
+"row."
+msgstr ""
+"Сначала создадим таблицу, которая содержит \"ограничение\": в столбце "
+"``column2`` не должно быть строк, содержащих значение \"13\". Затем мы "
+"пытаемся вставить такой ряд."
+
+#: ../doc/tutorials/sql_tutorial.rst:380
+msgid ""
+"CREATE TABLE table4 (column1 INTEGER PRIMARY KEY, column2 INTEGER, CHECK\n"
+"(column2 <> 13));\n"
+"INSERT INTO table4 VALUES (12, 13);"
+msgstr ""
+"CREATE TABLE table4 (column1 INTEGER PRIMARY KEY, column2 INTEGER, CHECK\n"
+"(column2 <> 13));\n"
+"INSERT INTO table4 VALUES (12, 13);"
+
+#: ../doc/tutorials/sql_tutorial.rst:386
+msgid ""
+"Result: the insert fails, as it should, with the message \"``error: "
+"'CHECK constraint failed: TABLE4'``\"."
+msgstr ""
+"Результат: как и должно быть, вставка завершается ошибкой с сообщением "
+"\"``error: 'CHECK constraint failed: TABLE4'``\" (ошибка по ограничению)."
+
+#: ../doc/tutorials/sql_tutorial.rst:391
+msgid "CREATE TABLE, with a FOREIGN KEY clause"
+msgstr "CREATE TABLE с условием FOREIGN KEY"
+
+#: ../doc/tutorials/sql_tutorial.rst:393
+msgid ""
+"First we make a table which includes a \"constraint\" that there must not"
+" be any rows containing values that do not appear in ``table2``."
+msgstr ""
+"Сначала создадим таблицу, которая содержит \"ограничение\": не должно "
+"быть никаких строк, содержащих значения, которых нет в таблице "
+"``table2``."
+
+#: ../doc/tutorials/sql_tutorial.rst:397
+msgid ""
+"When we made ``table2``, we specified that its \"primary key\" columns "
+"were ``(column1, column2)``."
+msgstr ""
+"Когда мы создавали таблицу ``table2``, то указали, что столбцы с "
+"первичным ключом \"primary key\" -- ``(column1, column2)``."
+
+#: ../doc/tutorials/sql_tutorial.rst:400
+msgid ""
+"CREATE TABLE table5 (column1 INTEGER, column2 VARCHAR(100),\n"
+"    PRIMARY KEY (column1),\n"
+"    FOREIGN KEY (column1, column2) REFERENCES table2 (column1, column2));"
+"\n"
+"INSERT INTO table5 VALUES (2,'AB');\n"
+"INSERT INTO table5 VALUES (3,'AB');"
+msgstr ""
+
+#: ../doc/tutorials/sql_tutorial.rst:408
+#: ../doc/tutorials/sql_tutorial.rst:511
+msgid "Result:"
+msgstr "Результат:"
+
+#: ../doc/tutorials/sql_tutorial.rst:410
+msgid ""
+"The first ``INSERT`` statement succeeds because ``table3`` contains a row"
+" with ``[2, 'AB', ' ', 12.34567]``."
+msgstr ""
+"Первый запрос вставки ``INSERT`` выполнен успешно, поскольку таблица "
+"``table3`` содержит строку ``[2, 'AB', ' ', 12.34567]``."
+
+#: ../doc/tutorials/sql_tutorial.rst:412
+msgid ""
+"The second INSERT statement, correctly, fails with the message \"``error:"
+" FOREIGN KEY constraint failed``\"."
+msgstr ""
+"Второй запрос вставки INSERT, как и должно быть, завершается ошибкой с "
+"сообщением \"``error: FOREIGN KEY constraint failed``\" (ошибка по "
+"ограничению)."
+
+#: ../doc/tutorials/sql_tutorial.rst:419
+msgid ""
+"Due to earlier INSERT statements, these values are in ``table2 column4``:"
+" ``{0, NULL, NULL, 5.5, 10000, 12.34567}``. We will add 5 to every one of"
+" them except the one with 0. (Adding 5 to NULL will result in NULL, as "
+"SQL arithmetic requires.) Then we'll use ``SELECT`` to see what happened "
+"to ``column4``."
+msgstr ""
+"Ранее были вставлены с помощью INSERT следующие значения в столбец 4 "
+"таблицы 2 ``table2 column4``: ``{0, NULL, NULL, 5.5, 10000, 12.34567}``. "
+"Прибавим 5 к каждому значению, кроме 0. (По правилам SQL-арифметики, при "
+"сложении 5 и NULL результатом будет NULL.) Затем осуществим выборку "
+"``SELECT``, чтобы посмотреть, как выглядит столбец ``column4``."
+
+#: ../doc/tutorials/sql_tutorial.rst:425
+msgid ""
+"UPDATE table2 SET column4 = column4 + 5 WHERE column4 <> 0;\n"
+"SELECT column4 FROM table2 ORDER BY column4;"
+msgstr ""
+"UPDATE table2 SET column4 = column4 + 5 WHERE column4 <> 0;\n"
+"SELECT column4 FROM table2 ORDER BY column4;"
+
+#: ../doc/tutorials/sql_tutorial.rst:430
+msgid "The result is: ``{NULL, NULL, 0, 10.5, 17.34567, 10005}``."
+msgstr "Результат: ``{NULL, NULL, 0, 10.5, 17.34567, 10005}``."
+
+#: ../doc/tutorials/sql_tutorial.rst:436
+msgid "Due to earlier ``INSERT`` statements, there are now 6 rows in ``table2``:"
+msgstr ""
+"Итак, после запросов вставки ``INSERT`` имеем 6 строк в таблице "
+"``table2``:"
+
+#: ../doc/tutorials/sql_tutorial.rst:438
+msgid ""
+"- - [-1000, '', '', 0]\n"
+"  - [0, '!!!', \"\\0\", null]\n"
+"  - [0, '!!@', null, null]\n"
+"  - [1, 'AB', 'AB', 10.5]\n"
+"  - [1, 'CD', '  ', 10005]\n"
+"  - [2, 'AB', '  ', 17.34567]"
+msgstr ""
+"- - [-1000, '', '', 0]\n"
+"  - [0, '!!!', \"\\0\", null]\n"
+"  - [0, '!!@', null, null]\n"
+"  - [1, 'AB', 'AB', 10.5]\n"
+"  - [1, 'CD', '  ', 10005]\n"
+"  - [2, 'AB', '  ', 17.34567]"
+
+#: ../doc/tutorials/sql_tutorial.rst:447
+msgid "We will try to delete the last and first of these rows."
+msgstr "Попробуем удалить первую и последнюю строки."
+
+#: ../doc/tutorials/sql_tutorial.rst:449
+msgid ""
+"DELETE FROM table2 WHERE column1 = 2;\n"
+"DELETE FROM table2 WHERE column1 = -1000;\n"
+"SELECT COUNT(column1) FROM table2;"
+msgstr ""
+"DELETE FROM table2 WHERE column1 = 2;\n"
+"DELETE FROM table2 WHERE column1 = -1000;\n"
+"SELECT COUNT(column1) FROM table2;"
+
+#: ../doc/tutorials/sql_tutorial.rst:457
+msgid ""
+"The first ``DELETE`` statement causes an error message because "
+"(remember?) there's a foreign-key constraint."
+msgstr ""
+"Первый запрос ``DELETE`` вызовет сообщение с ошибкой, поскольку "
+"(помните?) есть ограничение по внешнему ключу."
+
+#: ../doc/tutorials/sql_tutorial.rst:459
+msgid "The second ``DELETE`` statement succeeds."
+msgstr "Второй запрос ``DELETE`` будет выполнен."
+
+#: ../doc/tutorials/sql_tutorial.rst:460
+msgid "The ``SELECT`` statement shows that there are now only 5 rows remaining."
+msgstr "Запрос выборки ``SELECT`` показывает, что осталось лишь 5 строк."
+
+#: ../doc/tutorials/sql_tutorial.rst:464
+msgid "ALTER TABLE, with a FOREIGN KEY clause"
+msgstr "ALTER TABLE с условием FOREIGN KEY"
+
+#: ../doc/tutorials/sql_tutorial.rst:466
+msgid ""
+"Now we want to make another \"constraint\", that there must not be any "
+"rows in ``table1`` containing values that do not appear in ``table5``. We"
+" couldn't do this when we created ``table1`` because at that time "
+"``table5`` did not exist. But we can add constraints to existing tables "
+"with the ALTER TABLE statement."
+msgstr ""
+"Теперь создадим еще одно \"ограничение\": чтобы в таблице ``table1`` не "
+"было строк, содержащих значения, которые нет в ``table5``. Мы не могли "
+"этого сделать, когда создавали ``table1``, потому что в то время "
+"``table5`` не было. Но мы можем добавлять ограничения к существующим "
+"таблицам с помощью инструкции ALTER TABLE."
+
+#: ../doc/tutorials/sql_tutorial.rst:474
+msgid ""
+"ALTER TABLE table1 ADD CONSTRAINT c\n"
+"    FOREIGN KEY (column1) REFERENCES table5 (column1);\n"
+"DELETE FROM table1;\n"
+"ALTER TABLE table1 ADD CONSTRAINT c\n"
+"    FOREIGN KEY (column1) REFERENCES table5 (column1);"
+msgstr ""
+"ALTER TABLE table1 ADD CONSTRAINT c\n"
+"    FOREIGN KEY (column1) REFERENCES table5 (column1);\n"
+"DELETE FROM table1;\n"
+"ALTER TABLE table1 ADD CONSTRAINT c\n"
+"    FOREIGN KEY (column1) REFERENCES table5 (column1);"
+
+#: ../doc/tutorials/sql_tutorial.rst:482
+msgid ""
+"Result: the ``ALTER TABLE`` statement fails the first time because there "
+"is a row in ``table1``, and ADD CONSTRAINT requires that the table be "
+"empty. But after we delete that row, the ``ALTER TABLE`` statement "
+"succeeds the second time. Thus we have set up a chain of references, from"
+" ``table1`` to ``table5`` and from ``table5`` to ``table2``."
+msgstr ""
+"Результат: оператор ``ALTER TABLE`` в первый раз завершается ошибкой, "
+"поскольку в ``table1`` есть строка, а ADD CONSTRAINT требует, чтобы "
+"таблица была пустой. Но после того, как мы удалили эту строку, ``ALTER "
+"TABLE`` завершается успешно во второй раз. Таким образом, мы создали "
+"цепочку ссылок от ``table1`` до ``table5`` и от ``table5`` до ``table2``."
+
+#: ../doc/tutorials/sql_tutorial.rst:493
+msgid ""
+"The idea of a trigger is: if a change (``INSERT`` or ``UPDATE`` or "
+"``DELETE``) happens, then a further action -- perhaps another ``INSERT`` "
+"or ``UPDATE`` or ``DELETE`` -- will happen."
+msgstr ""
+"Идея триггера такова: если происходит изменение (``INSERT``, ``UPDATE`` "
+"или `` DELETE``), то произойдет еще одно действие -- возможно, другая "
+"операция `` INSERT``, ``UPDATE`` или ``DELETE``."
+
+#: ../doc/tutorials/sql_tutorial.rst:497
+msgid ""
+"There are many variants, the one we'll illustrate here is: just after "
+"doing an update in ``table3``, do an update in ``table2``. We will "
+"specify this as ``FOR EACH ROW``, so (since there are 5 rows in "
+"``table3``) the trigger will be activated 5 times."
+msgstr ""
+"Есть много вариантов, один из которых мы продемонстрируем здесь: сразу "
+"после обновления в ``table3`` выполнить обновление в ``table2``. Мы "
+"укажем это для каждой строки (``FOR EACH ROW``), поэтому триггер будет "
+"активирован 5 раз (поскольку в ``table3`` 5 строк)."
+
+#: ../doc/tutorials/sql_tutorial.rst:503
+msgid ""
+"SELECT column4 FROM table2 WHERE column1 = 2;\n"
+"CREATE TRIGGER tr AFTER UPDATE ON table3 FOR EACH ROW\n"
+"BEGIN UPDATE table2 SET column4 = column4 + 1 WHERE column1 = 2; END;\n"
+"UPDATE table3 SET column2 = column2;\n"
+"SELECT column4 FROM table2 WHERE column1 = 2;"
+msgstr ""
+"SELECT column4 FROM table2 WHERE column1 = 2;\n"
+"CREATE TRIGGER tr AFTER UPDATE ON table3 FOR EACH ROW\n"
+"BEGIN UPDATE table2 SET column4 = column4 + 1 WHERE column1 = 2; END;\n"
+"UPDATE table3 SET column2 = column2;\n"
+"SELECT column4 FROM table2 WHERE column1 = 2;"
+
+#: ../doc/tutorials/sql_tutorial.rst:513
+msgid ""
+"The first ``SELECT`` shows that the original value of ``column4`` in "
+"``table2`` where ``column1 = 2`` was: 17.34567."
+msgstr ""
+"Первый запрос выборки ``SELECT`` показывает, что исходное значение "
+"``column4`` в таблице ``table2``, где ``column1 = 2`` было: 17.34567."
+
+#: ../doc/tutorials/sql_tutorial.rst:515
+msgid "The second ``SELECT`` returns:"
+msgstr "Второй вызов ``SELECT`` возвращает:"
+
+#: ../doc/tutorials/sql_tutorial.rst:517
+msgid "- - [22.34567]"
+msgstr "- - [22.34567]"
+
+#: ../doc/tutorials/sql_tutorial.rst:525
+msgid "Operators and functions"
+msgstr "Операторы и функции"
+
+#: ../doc/tutorials/sql_tutorial.rst:529
+msgid "String operations"
+msgstr "Операции со строками"
+
+#: ../doc/tutorials/sql_tutorial.rst:531
+msgid ""
+"You can manipulate string data (usually defined with CHAR or VARCHAR data"
+" types) in many ways."
+msgstr ""
+"Можно производить множество различных операций со строковыми данными (как"
+" правило, тип данных будет CHAR или VARCHAR)."
+
+#: ../doc/tutorials/sql_tutorial.rst:534
+#: ../doc/tutorials/sql_tutorial.rst:561
+msgid "We'll illustrate here:"
+msgstr "Здесь мы покажем:"
+
+#: ../doc/tutorials/sql_tutorial.rst:536
+msgid "the ``||`` operator for concatenation and"
+msgstr "оператор ``||`` для конкатенации, а также"
+
+#: ../doc/tutorials/sql_tutorial.rst:537
+msgid "the ``SUBSTR`` function for extraction."
+msgstr "функцию ``SUBSTR`` для извлечения данных."
+
+#: ../doc/tutorials/sql_tutorial.rst:539
+msgid "SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM table2;"
+msgstr "SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM table2;"
+
+#: ../doc/tutorials/sql_tutorial.rst:545
+msgid ""
+"- - ['!!!', '!!!!!!', '!']\n"
+"  - ['!!@', '!!@!!@', '!']\n"
+"  - ['AB', 'ABAB', 'B']\n"
+"  - ['CD', 'CDCD', 'D']\n"
+"  - ['AB', 'ABAB', 'B']"
+msgstr ""
+"- - ['!!!', '!!!!!!', '!']\n"
+"  - ['!!@', '!!@!!@', '!']\n"
+"  - ['AB', 'ABAB', 'B']\n"
+"  - ['CD', 'CDCD', 'D']\n"
+"  - ['AB', 'ABAB', 'B']"
+
+#: ../doc/tutorials/sql_tutorial.rst:556
+msgid "Number operations"
+msgstr "Операции с числами"
+
+#: ../doc/tutorials/sql_tutorial.rst:558
+msgid ""
+"You can also manipulate number data (usually defined with INTEGER or "
+"FLOAT data types) in many ways."
+msgstr ""
+"Кроме того, можно производить множество различных операций со числовыми "
+"данными (как правило, тип данных будет INTEGER или FLOAT)."
+
+#: ../doc/tutorials/sql_tutorial.rst:563
+msgid "the ``<<`` operator for shift left and"
+msgstr "оператор ``<<`` для сдвига влево и"
+
+#: ../doc/tutorials/sql_tutorial.rst:564
+msgid "the ``%`` operator for modulo."
+msgstr "оператор ``%`` для модуля числа."
+
+#: ../doc/tutorials/sql_tutorial.rst:566
+msgid "SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM table2;"
+msgstr "SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM table2;"
+
+#: ../doc/tutorials/sql_tutorial.rst:572
+msgid ""
+"- - [0, 0, 0, 0]\n"
+"  - [0, 0, 0, 0]\n"
+"  - [1, 2, 4, 1]\n"
+"  - [1, 2, 4, 1]\n"
+"  - [2, 4, 8, 0]"
+msgstr ""
+"- - [0, 0, 0, 0]\n"
+"  - [0, 0, 0, 0]\n"
+"  - [1, 2, 4, 1]\n"
+"  - [1, 2, 4, 1]\n"
+"  - [2, 4, 8, 0]"
+
+#: ../doc/tutorials/sql_tutorial.rst:582
+msgid "Ranges and limits"
+msgstr "Диапазоны и пределы"
+
+#: ../doc/tutorials/sql_tutorial.rst:584
+msgid "Tarantool can handle:"
+msgstr "Tarantool может работать с:"
+
+#: ../doc/tutorials/sql_tutorial.rst:586
+msgid "integers anywhere in the 4-byte integer range,"
+msgstr "целыми числами в пределах диапазона 4-байтных целых чисел,"
+
+#: ../doc/tutorials/sql_tutorial.rst:587
+msgid "approximate-numerics anywhere in the 8-byte IEEE floating point range,"
+msgstr ""
+"приближенные числа в диапазоне 8-байтных чисел с плавающей запятой по "
+"IEEE,"
+
+#: ../doc/tutorials/sql_tutorial.rst:588
+msgid "any Unicode characters, with UTF-8 encoding and a choice of collations."
+msgstr "любые символы Unicode в кодировке UTF-8 с возможностью выбора сортировки."
+
+#: ../doc/tutorials/sql_tutorial.rst:590
+msgid ""
+"Here we will insert some such values in a new table, and see what happens"
+" when we select them, with arithmetic on a number column and ordering by "
+"a string column."
+msgstr ""
+"Здесь мы вставим некоторые такие значения в новую таблицу и посмотрим, "
+"что произойдет, когда мы их выберем (с арифметикой в числовом столбце и "
+"упорядочением по строковому столбцу)."
+
+#: ../doc/tutorials/sql_tutorial.rst:594
+msgid ""
+"CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 FLOAT,\n"
+"PRIMARY KEY (column1));\n"
+"INSERT INTO t6 VALUES (-1234567890, 'АБВГД', 123456.123456);\n"
+"INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);\n"
+"INSERT INTO t6 VALUES (10, 'FADEW?', 0.000001);\n"
+"INSERT INTO t6 VALUES (5, 'ABCDEFG', NULL);\n"
+"SELECT column1 + 1, column2, column4 * 2 FROM t6 ORDER BY column2;"
+msgstr ""
+"CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 FLOAT,\n"
+"PRIMARY KEY (column1));\n"
+"INSERT INTO t6 VALUES (-1234567890, 'АБВГД', 123456.123456);\n"
+"INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);\n"
+"INSERT INTO t6 VALUES (10, 'FADEW?', 0.000001);\n"
+"INSERT INTO t6 VALUES (5, 'ABCDEFG', NULL);\n"
+"SELECT column1 + 1, column2, column4 * 2 FROM t6 ORDER BY column2;"
+
+#: ../doc/tutorials/sql_tutorial.rst:604
+#: ../doc/tutorials/sql_tutorial.rst:630
+#: ../doc/tutorials/sql_tutorial.rst:815
+msgid "The result is:"
+msgstr "Результат будет:"
+
+#: ../doc/tutorials/sql_tutorial.rst:606
+msgid ""
+"- - [6, 'ABCDEFG', null]\n"
+"  - [11, 'FADEW?', 2e-06]\n"
+"  - [1234567891, 'GD', 2e+30]\n"
+"  - [-1234567889, 'АБВГД', 246912.246912]"
+msgstr ""
+"- - [6, 'ABCDEFG', null]\n"
+"  - [11, 'FADEW?', 2e-06]\n"
+"  - [1234567891, 'GD', 2e+30]\n"
+"  - [-1234567889, 'АБВГД', 246912.246912]"
+
+#: ../doc/tutorials/sql_tutorial.rst:615
+msgid "Views"
+msgstr "Представления"
+
+#: ../doc/tutorials/sql_tutorial.rst:617
+msgid ""
+"A view, or \"viewed table\", is virtual, that is, its rows aren't "
+"physically in the database, their values are calculated from other "
+"tables."
+msgstr ""
+"Представление -- это \"виртуальная таблица\", строки которой не находятся"
+" в базе данных физически, их значения вычисляются из других таблиц."
+
+#: ../doc/tutorials/sql_tutorial.rst:621
+msgid ""
+"Here we'll create a view ``v3`` based on ``table3``, then we select from "
+"it."
+msgstr ""
+"Здесь создадим представление ``v3`` на основе таблицы ``table3``, а затем"
+" осуществим выборку из него."
+
+#: ../doc/tutorials/sql_tutorial.rst:624
+msgid ""
+"CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE\n"
+"column4 >= 0;\n"
+"SELECT * FROM v3;"
+msgstr ""
+"CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE\n"
+"column4 >= 0;\n"
+"SELECT * FROM v3;"
+
+#: ../doc/tutorials/sql_tutorial.rst:632
+#: ../doc/tutorials/sql_tutorial.rst:657
+msgid ""
+"- - ['АБ', 123456.123456]\n"
+"  - ['FA', 1e-06]\n"
+"  - ['GD', 1e+30]"
+msgstr ""
+"- - ['АБ', 123456.123456]\n"
+"  - ['FA', 1e-06]\n"
+"  - ['GD', 1e+30]"
+
+#: ../doc/tutorials/sql_tutorial.rst:640
+msgid "Common table expressions"
+msgstr "Стандартные табличные выражения"
+
+#: ../doc/tutorials/sql_tutorial.rst:642
+msgid ""
+"By putting ``WITH`` + ``SELECT`` in front of a ``SELECT``, we can make a "
+"sort of temporary view that lasts for the duration of the statement."
+msgstr ""
+"Указав ``WITH`` + ``SELECT`` перед ``SELECT``, можно создать своего рода "
+"временное представление, которое существует во время выполнения запроса."
+
+#: ../doc/tutorials/sql_tutorial.rst:646
+msgid "Here we'll select from the sort of temporary view."
+msgstr "Здесь осуществим выборку из временного вида."
+
+#: ../doc/tutorials/sql_tutorial.rst:648
+msgid ""
+"WITH cte AS (\n"
+"             SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE column4\n"
+"             >= 0)\n"
+"SELECT * FROM cte;"
+msgstr ""
+"WITH cte AS (\n"
+"             SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE column4\n"
+"             >= 0)\n"
+"SELECT * FROM cte;"
+
+#: ../doc/tutorials/sql_tutorial.rst:655
+msgid "Result: the same as the result we got with ``CREATE VIEW`` earlier:"
+msgstr "Результат: тот же, что и ранее по ``CREATE VIEW``:"
+
+#: ../doc/tutorials/sql_tutorial.rst:667
+msgid ""
+"Tarantool can handle statements like ``SELECT 55;`` (select without "
+"``FROM``) like some other popular DBMSs. But it also handles the more "
+"standard statement ``VALUES (expression [, expression ...]);``."
+msgstr ""
+"Tarantool может обрабатывать запросы типа ``SELECT 55; `` (выборка без "
+"``FROM``), как и некоторые другие распространенные СУБД. Но он также "
+"обрабатывает более стандартный запрос ``VALUES (expression [, expression "
+"...]);``."
+
+#: ../doc/tutorials/sql_tutorial.rst:672
+msgid "Here we'll use both styles."
+msgstr "Здесь используем оба типа запросов."
+
+#: ../doc/tutorials/sql_tutorial.rst:674
+msgid ""
+"SELECT 55 * 55, 'The rain in Spain';\n"
+"VALUES (55 * 55, 'The rain in Spain');"
+msgstr ""
+"SELECT 55 * 55, 'The rain in Spain';\n"
+"VALUES (55 * 55, 'The rain in Spain');"
+
+#: ../doc/tutorials/sql_tutorial.rst:679
+msgid "The result of either statement will be:"
+msgstr "Результат будет следующим:"
+
+#: ../doc/tutorials/sql_tutorial.rst:681
+msgid "- - [3025, 'The rain in Spain']"
+msgstr "- - [3025, 'The rain in Spain']"
+
+#: ../doc/tutorials/sql_tutorial.rst:687
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: ../doc/tutorials/sql_tutorial.rst:689
+msgid "What database objects have we created? We can find out about:"
+msgstr "Какие объекты базы данных мы уже создали? Можно узнать о:"
+
+#: ../doc/tutorials/sql_tutorial.rst:691
+msgid "tables with ``SELECT * FROM \"_space\";``"
+msgstr "таблицах с помощью ``SELECT * FROM \"_space\";``"
+
+#: ../doc/tutorials/sql_tutorial.rst:692
+msgid "indexes with ``SELECT * FROM \"_index\";``"
+msgstr "индексах с помощью ``SELECT * FROM \"_index\";``"
+
+#: ../doc/tutorials/sql_tutorial.rst:693
+msgid ""
+"triggers with ``SELECT * FROM \"_trigger\";`` (These names will be "
+"familiar to old Tarantool users because we're actually selecting from "
+"NoSQL \"system spaces\".)"
+msgstr ""
+"триггерах с помощью ``SELECT * FROM \"_trigger\";`` (Эти имена знакомы "
+"старым пользователям Tarantool'а, потому что на самом деле мы выбираем из"
+" системных спейсов NoSQL.)"
+
+#: ../doc/tutorials/sql_tutorial.rst:697
+msgid "Here we will select from ``_space``."
+msgstr "Здесь выбираем из ``_space``."
+
+#: ../doc/tutorials/sql_tutorial.rst:699
+msgid ""
+"SELECT \"id\", \"name\", \"owner\", \"engine\" FROM \"_space\" WHERE "
+"\"name\"='TABLE3';"
+msgstr ""
+"SELECT \"id\", \"name\", \"owner\", \"engine\" FROM \"_space\" WHERE "
+"\"name\"='TABLE3';"
+
+#: ../doc/tutorials/sql_tutorial.rst:703
+msgid ""
+"The result is (we know we will get a row because we created ``table3`` "
+"earlier):"
+msgstr ""
+"В результате (мы знаем, что получим строку, потому что сами создали "
+"``table3`` ранее):"
+
+#: ../doc/tutorials/sql_tutorial.rst:705
+msgid "- - [517, 'table3', 1, 'memtx']"
+msgstr "- - [517, 'table3', 1, 'memtx']"
+
+#: ../doc/tutorials/sql_tutorial.rst:713
+msgid "Calling from a host language to make a big table"
+msgstr "Вызов из языка реализации, чтобы создать большую таблицу"
+
+#: ../doc/tutorials/sql_tutorial.rst:717
+#, fuzzy
+msgid "box.execute()"
+msgstr "box.sql.execute()"
+
+#: ../doc/tutorials/sql_tutorial.rst:719
+msgid ""
+"Now we will change the settings so that the console accepts statements "
+"written in Lua instead of statements written in SQL. (More ways to switch"
+" languages will exist in Tarantool clients in our next version.)"
+msgstr ""
+"Теперь мы изменим настройки так, чтобы консоль принимала операторы, "
+"написанные на Lua, вместо операторов, написанных на SQL. (В следующей "
+"версии в клиентах Tarantool'а будет больше способов переключения языков.)"
+
+#: ../doc/tutorials/sql_tutorial.rst:724
+#, fuzzy
+msgid ""
+"This doesn't mean we have left the SQL world though, because we can "
+"invoke SQL statements using a Lua function: ``box.execute(string)``."
+msgstr ""
+"Это не означает, что мы покинули мир SQL, потому что мы можем вызывать "
+"операторы SQL, используя функцию в Lua: ``box.sql.execute(string)``."
+
+#: ../doc/tutorials/sql_tutorial.rst:728
+msgid ""
+"Here we'll switch languages, and ask to select again what's in "
+"``table3``. These statements must be entered separately."
+msgstr ""
+"Здесь мы переключим языки и осуществим выборку содержимого таблицы "
+"``table3``. Эти запросы следует вводить по отдельности."
+
+#: ../doc/tutorials/sql_tutorial.rst:732
+#, fuzzy
+msgid ""
+"tarantool> \\set language lua\n"
+"tarantool> box.execute([[SELECT * FROM table3;]]);"
+msgstr ""
+"tarantool> \\set language lua\n"
+"tarantool> box.sql.execute([[SELECT * FROM table3;]]);"
+
+#: ../doc/tutorials/sql_tutorial.rst:737
+msgid "Showing both the statements and the results:"
+msgstr "Покажем запросы и результаты вместе:"
+
+#: ../doc/tutorials/sql_tutorial.rst:739
+#, fuzzy
+msgid ""
+"tarantool> \\set language lua\n"
+"---\n"
+"...\n"
+"tarantool> box.execute([[SELECT * FROM table3;]]);\n"
+"---\n"
+"- - [-1000, '']\n"
+"  - [0, '!!!']\n"
+"  - [0, '!!@']\n"
+"  - [1, 'AB']\n"
+"  - [1, 'CD']\n"
+"..."
+msgstr ""
+"tarantool> \\set language lua\n"
+"---\n"
+"...\n"
+"tarantool> box.sql.execute([[SELECT * FROM table3;]]);\n"
+"---\n"
+"- - [-1000, '']\n"
+"  - [0, '!!!']\n"
+"  - [0, '!!@']\n"
+"  - [1, 'AB']\n"
+"  - [1, 'CD']\n"
+"..."
+
+#: ../doc/tutorials/sql_tutorial.rst:755
+msgid "Create a million-row table"
+msgstr "Создание таблицы с миллионом строк"
+
+#: ../doc/tutorials/sql_tutorial.rst:757
+msgid ""
+"We've illustrated a lot of SQL, but does it scale? To answer that, let's "
+"make a bigger table."
+msgstr ""
+"Итак, мы продемонстрировали множество функций SQL, но масштабируется ли "
+"он? Чтобы ответить на этот вопрос, создадим большую таблицу."
+
+#: ../doc/tutorials/sql_tutorial.rst:760
+msgid ""
+"For this we are going to use Lua. We will not explain the Lua, because "
+"that's in the Lua section of the Tarantool manual. Just copy-and-paste "
+"these instructions and wait for about a minute."
+msgstr ""
+"Для этого используем Lua. Мы не будем объяснять эту часть, потому что все"
+" пояснения есть в разделе руководства по Lua. Просто скопируйте и "
+"вставьте эти инструкции и подождите около минуты."
+
+#: ../doc/tutorials/sql_tutorial.rst:765
+#, fuzzy
+msgid ""
+"box.execute(\"CREATE TABLE tester (s1 INT PRIMARY KEY, s2 "
+"VARCHAR(10))\");\n"
+"\n"
+"function string_function()\n"
+"   local random_number\n"
+"   local random_string\n"
+"   random_string = \"\"\n"
+"   for x = 1,10,1 do\n"
+"     random_number = math.random(65, 90)\n"
+"     random_string = random_string .. string.char(random_number)\n"
+"   end\n"
+"   return random_string\n"
+"end;\n"
+"\n"
+"function main_function()\n"
+"   local string_value, t, sql_statement\n"
+"   for i = 1,1000000,1 do\n"
+"     string_value = string_function()\n"
+"     sql_statement = \"INSERT INTO tester VALUES (\" .. i .. \",'\" .. "
+"string_value .. \"')\"\n"
+"     box.execute(sql_statement)\n"
+"   end\n"
+"end;\n"
+"start_time = os.clock();\n"
+"main_function();\n"
+"end_time = os.clock();\n"
+"'insert done in ' .. end_time - start_time .. ' seconds';"
+msgstr ""
+"box.sql.execute(\"CREATE TABLE tester (s1 INT PRIMARY KEY, s2 "
+"VARCHAR(10))\");\n"
+"\n"
+"function string_function()\n"
+"   local random_number\n"
+"   local random_string\n"
+"   random_string = \"\"\n"
+"   for x = 1,10,1 do\n"
+"     random_number = math.random(65, 90)\n"
+"     random_string = random_string .. string.char(random_number)\n"
+"   end\n"
+"   return random_string\n"
+"end;\n"
+"\n"
+"function main_function()\n"
+"   local string_value, t, sql_statement\n"
+"   for i = 1,1000000,1 do\n"
+"     string_value = string_function()\n"
+"     sql_statement = \"INSERT INTO tester VALUES (\" .. i .. \",'\" .. "
+"string_value .. \"')\"\n"
+"     box.sql.execute(sql_statement)\n"
+"   end\n"
+"end;\n"
+"start_time = os.clock();\n"
+"main_function();\n"
+"end_time = os.clock();\n"
+"'insert done in ' .. end_time - start_time .. ' seconds';"
+
+#: ../doc/tutorials/sql_tutorial.rst:793
+msgid ""
+"The result is: you now have a table with a million rows, with a message "
+"saying \"``insert done in 88.570578 seconds``\"."
+msgstr ""
+"Результат: теперь у вас есть таблица с миллионом строк с сообщением "
+"\"``insert done in 88.570578 seconds``\" (выполнено за 88,570578 секунд)."
+
+#: ../doc/tutorials/sql_tutorial.rst:798
+msgid "Select from a million-row table"
+msgstr "Выборка из таблицы с миллионом строк"
+
+#: ../doc/tutorials/sql_tutorial.rst:800
+msgid ""
+"Now that we have something a bit larger to play with, let's see how long "
+"it takes to SELECT."
+msgstr ""
+"Теперь можно экспериментировать с большим объемом данных -- давайте "
+"посмотрим, сколько времени занимает SELECT."
+
+#: ../doc/tutorials/sql_tutorial.rst:803
+msgid ""
+"The first query we'll do will automatically go via an index, because "
+"``s1`` is the primary key."
+msgstr ""
+"Первый сделанный запрос автоматически пойдет через индекс, потому что "
+"``s1`` является первичным ключом."
+
+#: ../doc/tutorials/sql_tutorial.rst:806
+msgid ""
+"The second query we'll do will not go via an index, because for ``s2`` we"
+" didn't say ``CREATE INDEX xxxx ON tester (s2);``."
+msgstr ""
+"Второй сделанный запрос не пойдет через индекс, потому что для ``s2`` мы "
+"не сказали ``CREATE INDEX xxxx ON tester (s2);``."
+
+#: ../doc/tutorials/sql_tutorial.rst:810
+#, fuzzy
+msgid ""
+"box.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);\n"
+"box.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%';]]);"
+msgstr ""
+"box.sql.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);\n"
+"box.sql.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%';]]);"
+
+#: ../doc/tutorials/sql_tutorial.rst:817
+msgid "the first statement will finish instantaneously,"
+msgstr "первый запрос будет выполнен сразу же,"
+
+#: ../doc/tutorials/sql_tutorial.rst:818
+msgid ""
+"the second statement will be noticeably slower but still a fraction of a "
+"second."
+msgstr "второй запрос будет заметно медленнее, но все равно займет доли секунды."
+
+#: ../doc/tutorials/sql_tutorial.rst:823
+msgid "Cleanup and exit"
+msgstr "Очистка и выход"
+
+#: ../doc/tutorials/sql_tutorial.rst:825
+msgid ""
+"We're done. We've shown that Tarantool 2.1 has a very reasonable subset "
+"of SQL, and it works."
+msgstr ""
+"Итак, мы закончили: мы продемонстрировали работу подмножества SQL в "
+"Tarantool'е 2.1."
+
+#: ../doc/tutorials/sql_tutorial.rst:828
+msgid ""
+"The rest of these commands will simply destroy all the database objects "
+"that were created so that you can do the demonstration again. These "
+"statements must be entered separately."
+msgstr ""
+"Остальные команды просто удалят все созданные объекты базы данных, чтобы "
+"вы смогли снова выполнить практические задания. Эти запросы следует "
+"вводить по отдельности."
+
+#: ../doc/tutorials/sql_tutorial.rst:833
+msgid ""
+"tarantool> \\set language sql\n"
+"tarantool> DROP TABLE tester;\n"
+"tarantool> DROP TABLE table1;\n"
+"tarantool> DROP VIEW v3;\n"
+"tarantool> DROP TRIGGER tr;\n"
+"tarantool> DROP TABLE table5;\n"
+"tarantool> DROP TABLE table4;\n"
+"tarantool> DROP TABLE table3;\n"
+"tarantool> DROP TABLE table2;\n"
+"tarantool> DROP TABLE t6;\n"
+"tarantool> \\set language lua\n"
+"tarantool> os.exit();"
+msgstr ""
+"tarantool> \\set language sql\n"
+"tarantool> DROP TABLE tester;\n"
+"tarantool> DROP TABLE table1;\n"
+"tarantool> DROP VIEW v3;\n"
+"tarantool> DROP TRIGGER tr;\n"
+"tarantool> DROP TABLE table5;\n"
+"tarantool> DROP TABLE table4;\n"
+"tarantool> DROP TABLE table3;\n"
+"tarantool> DROP TABLE table2;\n"
+"tarantool> DROP TABLE t6;\n"
+"tarantool> \\set language lua\n"
+"tarantool> os.exit();"

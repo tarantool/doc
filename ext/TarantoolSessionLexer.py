@@ -7,7 +7,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error
 from pygments import unistring as uni
 
-from LuaLexer import LuaLexer
+from ext.LuaLexer import LuaLexer
 from pygments.lexers import YamlLexer, BashSessionLexer
 
 import re
