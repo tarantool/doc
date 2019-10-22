@@ -1,151 +1,93 @@
 :orphan:
-:priority: 1
+:priority: 0.95
 
------------------------------------------------------------------------------------
-Tarantool - Get your data in RAM. Get compute close to data. Enjoy the performance.
------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+                           Tarantool - Documentation
+-------------------------------------------------------------------------------
 
-.. container:: p-mainpage
+.. wp_section::
+    :class: documentation-main-page-header
 
-    .. wp_section::
-        :class: b-block-gray b-mainhead
+    .. container:: documentation-main-page-header-path
 
-        .. raw:: html
+        |nbspc|
 
-            <h2 class="b-mainhead__header-title">Get your data in RAM. Get compute close to data. Enjoy the performance.</h2>
-            <div class="b-mainhead__header-editions">
-                <div class="b-header-edition">
-                    <div class="b-header-edition__commercial-icon"></div>
-                    <div class="b-header-edition__title">Commercial Editions</div>
-                    <div class="b-header-edition__subtitle">For critical deployments</div>
-                    <a href="https://tarantool.io/en/product/enterprise.html" class="b-header-edition__button commercial">Enterprise</a>
-                </div>
-                <div class="delimiter-line"></div>
-                <div class="b-header-edition">
-                    <div class="b-header-edition__community-icon"></div>
-                    <div class="b-header-edition__title">Community Edition</div>
-                    <div class="b-header-edition__subtitle">For emerging businesses</div>
-                    <a href="download/download.html" class="b-header-edition__button community">
-                      Download
-                      <i class="download-icon"></i>
-                    </a>
-                </div>
-            </div>
+.. wp_section::
+    :class: b-documentation-toc
 
-    .. wp_section::
-        :class: b-block b-features
-        :title: Community features
+    .. container:: documentation-main-page
 
-        .. container:: b-features-container
+        .. container:: documentation-main-page-title
 
-            .. container:: b-feature
+            Tarantool 1.10 manual
+
+        .. container:: documentation-main-page-description
+
+            This manual embraces all aspects of using Tarantool: from introductory
+            information and exercises for beginners -- to advanced instructions and
+            detailed references for power users and contributors.
+
+        .. container:: documentation-main-page-content
+
+            .. ifconfig:: language == 'ru'
+
+                .. NOTE::
+
+                    Документация находится в процессе перевода и может
+                    отставать от английской версии.
 
                 .. raw:: html
 
-                    <div class="b-feature__icon replacement-icon"></div>
+                    <div class="getting-started-button-container">
+                        <a href="book/getting_started/">
+                            <button class="getting-started-button btn">
+                                Руководство для начинающих
+                            </button>
+                        </a>
+                    </div>
 
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        Compatibility
-
-                    .. container:: b-feature-description
-
-                        A drop-in replacement for Lua 5.1, based on LuaJIT
-
-            .. container:: b-feature
+            .. ifconfig:: language == 'en'
 
                 .. raw:: html
 
-                    <div class="b-feature__icon transactions-icon"></div>
+                    <div class="getting-started-button-container">
+                        <a href="book/getting_started/">
+                            <button class="getting-started-button btn">
+                                Getting started
+                            </button>
+                        </a>
+                    </div>
 
-                .. container::
+            .. include:: singlehtml.rst
 
-                    .. container:: b-feature-title
+        .. container:: other-sources-menu
 
-                        Transactions
+            .. raw:: html
 
-                    .. container:: b-feature-description
+                <div class="badge-icon"></div>
 
-                        :ref:`ACID transactions <atomic-atomic_execution>`
+            * **Other formats:**
+            * `Single-page HTML <singlehtml.html>`_
+            * `PDF <Tarantool.pdf>`_
+            - **See also:**
+            - `Documentation archive`_
+            - `Articles`_
+            .. ifconfig:: language == 'ru'
 
-            .. container:: b-feature
+                * **Support:**
+                * `Форум в Google`_
+                * `Чат в Telegram`_
+            .. ifconfig:: language == 'en'
 
-                .. raw:: html
+                * **Support:**
+                * `Google forum`_
+                * `Telegram chat`_
 
-                    <div class="b-feature__icon query-icon"></div>
-
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        Query language
-
-                    .. container:: b-feature-description
-
-                        ANSI SQL, Lua stored procedures and triggers
-
-                        ..
-                            :ref:`server-side scripting and stored procedures <lua_tutorials>`
-
-            .. container:: b-feature
-
-                .. raw:: html
-
-                    <div class="b-feature__icon product-icon"></div>
-
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        Extensibility
-
-                    .. container:: b-feature-description
-
-                        Packages for network and file I/O, HTTP, and more
-
-            .. container:: b-feature
-
-                .. raw:: html
-
-                    <div class="b-feature__icon security-icon"></div>
-
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        Security
-
-                    .. container:: b-feature-description
-
-                        :ref:`Authentication and access control <authentication>`
-
-            .. container:: b-feature
-
-                .. raw:: html
-
-                    <div class="b-feature__icon replication-icon"></div>
-
-                .. container::
-
-                    .. container:: b-feature-title
-
-                        High availability
-
-                    .. container:: b-feature-description
-
-                        :ref:`Master-master replication <replication>` and sharding
-
-.. _secondary indexes: doc/book/box/box_index.html
-.. _range queries: doc/book/box/box_index.html
-.. _index iterators: doc/book/box/box_index.html
-
-.. _ACID transactions: doc/book/box/index.html?highlight=transactions#transaction-control
-
-.. _master-slave: doc/book/administration.html#replication
-.. _master-master: doc/book/administration.html#replication
-
-.. _server-side scripting and stored procedures: doc/tutorials/lua_tutorials.html
-
-.. _authentication and access control: doc/book/box/index.html#access-control
+.. _Documentation archive: https://tarantool.io/dist/pdf/
+.. _Articles: https://tarantool.io/learn/
+.. _Google forum: https://groups.google.com/forum/#!forum/tarantool
+.. _Форум в Google: https://googlegroups.com/group/tarantool-ru
+.. _Telegram chat: https://t.me/tarantool
+.. _Чат в Telegram: https://t.me/tarantoolru
+.. |nbspc| unicode:: U+00A0
+.. |space| unicode:: U+0020

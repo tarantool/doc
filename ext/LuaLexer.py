@@ -1,11 +1,10 @@
-import re
-
 from pygments.lexer import RegexLexer, include, bygroups, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String
 from pygments.token import Number, Punctuation
-from pygments.util import get_bool_opt, get_list_opt, iteritems
+from pygments.util import get_bool_opt, get_list_opt
 
 __all__ = ['LuaLexer']
+
 
 class LuaLexer(RegexLexer):
     """
@@ -109,14 +108,14 @@ class LuaLexer(RegexLexer):
         self._functions = set()
         if self.func_name_highlighting:
             from pygments.lexers._lua_builtins import MODULES
-            for mod, func in MODULES.iteritems():
+            for mod, func in MODULES.items():
                 if mod not in self.disabled_modules:
                     self._functions.update(func)
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
-            RegexLexer.get_tokens_unprocessed(self, text):
+                RegexLexer.get_tokens_unprocessed(self, text):
             if token is Name:
                 if value in self._functions:
                     yield index, Name.Builtin, value
@@ -128,6 +127,7 @@ class LuaLexer(RegexLexer):
                     yield index + len(a) + 1, Name, b
                     continue
             yield index, token, value
+
 
 def setup(app):
     app.add_lexer("lua_tarantool", LuaLexer())

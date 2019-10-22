@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-execfile('../conf.py')
+exec(open('../conf.py').read())
 
-master_doc = 'doc/1.10/singlehtml'
-
-exclude_patterns += [
-        '*.rst',
-]
+master_doc = 'singlehtml'

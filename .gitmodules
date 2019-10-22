@@ -1,3 +1,0 @@
-[submodule "rocks"]
-	path = rocks
-	url = https://github.com/tarantool/rocks

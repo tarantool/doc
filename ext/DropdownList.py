@@ -4,11 +4,14 @@ from docutils.parsers.rst import Directive
 # from docutils.parsers.rst.roles import set_classes
 from sphinx.util.nodes import nested_parse_with_titles
 
+
 class ddlistitem(nodes.Part, nodes.TextElement): pass
+
+
 class ddlist(nodes.Sequential, nodes.FixedTextElement): pass
 
-class DDListDirective(Directive):
 
+class DDListDirective(Directive):
     required_arguments = 0
     optional_arguments = 0
     # This enable content in directive
@@ -16,7 +19,7 @@ class DDListDirective(Directive):
 
     def run(self):
         self.assert_has_content()
-        node = nodes.Element() # make anonymous container for text parsing
+        node = nodes.Element()  # make anonymous container for text parsing
         self.state.nested_parse(self.content, self.content_offset, node)
         ddnode = self.build_ddmenu_from_list(node)
         self.add_name(ddnode)
@@ -37,7 +40,7 @@ class DDListDirective(Directive):
                                         ids=['node%d' % id])
             title_ref += title
 
-            content = nodes.container('',  classes=['dropdown-list-item-content'])
+            content = nodes.container('', classes=['dropdown-list-item-content'])
             content += item.children
 
             new_item += [title_ref, content]
@@ -45,23 +48,29 @@ class DDListDirective(Directive):
             ddnode += new_item
         return ddnode
 
+
 def visit_print_elem(node, tab):
     for child in node.children:
-        print '\t' * tab, type(child)
+        print('\t' * tab, type(child))
         visit_print_elem(child, tab + 1)
+
 
 def visit_ddlist_node(self, node):
     self.body.append(self.starttag(node, 'ul', CLASS='dropdown-list'))
     # visit_print_elem(node, 1)
 
+
 def depart_ddlist_node(self, node):
     self.body.append('\n</ul>\n')
+
 
 def visit_ddlistitem_node(self, node):
     self.body.append(self.starttag(node, 'li', CLASS='dropdown-list-item'))
 
+
 def depart_ddlistitem_node(self, node):
     self.body.append('\n</li>\n')
+
 
 def setup(app):
     app.add_directive('ddlist', DDListDirective)

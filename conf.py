@@ -1,17 +1,11 @@
-# -*- coding: utf-8 -*-
-
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-
 import os
 
 sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
 
-master_doc = 'doc/1.10/index'
-# master_doc = 'index'
+master_doc = 'index'
 
 extensions = [
     'sphinx.ext.todo',
