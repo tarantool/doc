@@ -1,5 +1,5 @@
 # doc
-Tarantool documentation
+Tarantool documentation source, published at https://www.tarantool.io/en/doc/1.10/
 
 ## How to build Tarantool documentation using [Docker](https://www.docker.com)
 
