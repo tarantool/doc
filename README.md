@@ -38,3 +38,26 @@ cd output/html
 python -m SimpleHTTPServer
 ```
 then go to [localhost:8000](http://localhost:8000) in your browser.
+
+## How to contribute
+
+To contribute to documentation, use the
+[REST](http://docutils.sourceforge.net/docs/user/rst/quickstart.html)
+format for drafting and submit your updates as a
+[pull request](https://help.github.com/articles/creating-a-pull-request)
+via GitHub.
+
+To comply with the writing and formatting style, use the
+[guidelines](https://www.tarantool.io/en/doc/2.2/dev_guide/documentation_guidelines/)
+provided in the documentation, common sense and existing documents.
+
+Notes:
+
+* If you suggest creating a new documentation section (a whole new
+  page), it has to be saved to the relevant section at GitHub.
+
+* If you want to contribute to localizing this documentation (for example into
+  Russian), add your translation strings to `.po` files stored in the
+  corresponding locale directory (for example `/locale/ru/LC_MESSAGES/`
+  for Russian). See more about localizing with Sphinx at
+  http://www.sphinx-doc.org/en/stable/intl.html
