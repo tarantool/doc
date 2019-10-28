@@ -284,7 +284,9 @@ Below is a list of all additional ``string`` functions.
     :param input-string: (string) the string to split
     :param split-string: (string) the string to find within ``input-string``.
                          Default = space.
-    :param max: (integer) maximum number of delimiters to process counting from the beginning of the input string. Result will contain max + 1 parts maximum.
+    :param max: (integer) maximum number of delimiters to process counting 
+                          from the beginning of the input string. Result will 
+                          contain max + 1 parts maximum.
 
     :Return: table of strings that were split from ``input-string``
     :Rtype: table
