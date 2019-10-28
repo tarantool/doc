@@ -8,7 +8,7 @@ COMMIT_AUTHOR_EMAIL="${COMMIT_AUTHOR_EMAIL:-build@tarantool.org}"
 
 function doCompile {
     cmake .
-    make all copy-static
+    make all
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just
