@@ -18,8 +18,6 @@ there are comparison functions which understand the default ordering
 for Cyrillic (Capital Letter Zhe Ж = Small Letter Zhe ж)
 and Japanese (Hiragana A = Katakana A).
 
-The module is fully built-in so ``require('utf8')`` is not necessary.
-
 .. container:: table
 
     .. rst-class:: left-align-column-1
