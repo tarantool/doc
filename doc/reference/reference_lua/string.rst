@@ -238,7 +238,7 @@ Below is a list of all additional ``string`` functions.
 
 .. _string-split:
 
-.. function:: split(input-string [, split-string])
+.. function:: split(input-string [, split-string[, max]])
 
     Split ``input-string`` into one or more output strings
     in a table. The places to split are the places where
@@ -247,6 +247,9 @@ Below is a list of all additional ``string`` functions.
     :param input-string: (string) the string to split
     :param split-string: (string) the string to find within ``input-string``.
                          Default = space.
+    :param max: (integer) maximum number of delimiters to process counting 
+                          from the beginning of the input string. Result will contain 
+                          max + 1 parts maximum.
 
     :Return: table of strings that were split from ``input-string``
     :Rtype: table
@@ -258,10 +261,11 @@ Below is a list of all additional ``string`` functions.
         tarantool> string = require('string')
         ---
         ...
-        tarantool> string.split("A*BXX C", "XX")
+        tarantool> string.split("A:B C:D", ":", 2)
         ---
-        - - A*B
-          - ' C'
+        - - A
+          - B
+          - ' C:D'
         ...
 
 .. _string-strip:
