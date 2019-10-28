@@ -306,7 +306,7 @@ Below is a list of all ``box.space`` functions and members.
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | if_not_exists       | no error if duplicate name                            | boolean                          | ``false``                     |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
+            | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{field = 1, type = 'unsigned'}``           |
             |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
             |                     |                                                       | ``'number'`` or ``'boolean'`` or |                               |
             |                     |                                                       | ``'varbinary'`` or               |                               |
@@ -367,7 +367,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.space.tester
             ---
             ...
-            tarantool> s:create_index('primary', {unique = true, parts = {1, 'unsigned', 2, 'string'}})
+            tarantool> s:create_index('primary', {unique = true, parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})
             ---
             ...
 
@@ -483,7 +483,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. code-block:: lua
 
-        box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})
+        box.space.tester:create_index('I',{unique=true,parts={{field = 2, type = 'number', is_nullable = true}}})
 
     .. WARNING::
 
@@ -507,7 +507,7 @@ Below is a list of all ``box.space`` functions and members.
     .. code-block:: lua
 
         box.space.tester:format({{name='x', type='scalar'}, {name='y', type='integer'}})
-        box.space.tester:create_index('I2',{parts={{'x','scalar'}}})
+        box.space.tester:create_index('I2',{parts={{'x', 'scalar'}}})
         box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
         box.space.tester:create_index('I4',{parts={1,'scalar'}})
         box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})
@@ -531,7 +531,7 @@ Below is a list of all ``box.space`` functions and members.
         -- Example 1 -- The simplest use of path:
         -- Result will be - - [{'age': 44}]
         box.schema.space.create('T')
-        box.space.T:create_index('I',{parts={{1, 'scalar', path='age'}}})
+        box.space.T:create_index('I',{parts={{field = 1, type = 'scalar', path = 'age'}}})
         box.space.T:insert{{age=44}}
         box.space.T:select(44)
         -- Example 2 -- path plus format() plus JSON syntax to add clarity
@@ -553,7 +553,7 @@ Below is a list of all ``box.space`` functions and members.
     Indexes defined with this are useful for JSON documents that all have the same structure.
     For example, when creating an index on field#2 for a string document that will start
     with ``{'data': [{'name': '...'}, {'name': '...'}]``, the parts section in the
-    create_index request could look like: ``parts = {{2, 'str', path = 'data[*].name'}}``.
+    create_index request could look like: ``parts = {{field = 2, type = 'str', path = 'data[*].name'}}``.
     Then tuples containing names can be retrieved quickly with ``index_object:select({key-value})``.
     In fact a single field can have multiple keys, as in this example which retrieves the
     same tuple twice because there are two keys 'A' and 'B' which both match the request:
@@ -562,7 +562,7 @@ Below is a list of all ``box.space`` functions and members.
 
         s = box.schema.space.create('json_documents')
         s:create_index('primarykey')
-        i = s:create_index('multikey', {parts = {{2, 'str', path = 'data[*].name'}}})
+        i = s:create_index('multikey', {parts = {{field = 2, type = 'str', path = 'data[*].name'}}})
         s:insert({1,
                  {data = {{name='A'},
                           {name='B'}},
@@ -620,7 +620,7 @@ Below is a list of all ``box.space`` functions and members.
         -- The space needs a primary-key field, which is not the field that we
         -- will use for the functional index.
         box.schema.space.create('x', {engine = 'memtx'})
-        box.space.x:create_index('i',{parts={1, 'string'}})
+        box.space.x:create_index('i',{parts={field = 1, type = 'string'}})
         -- Step 2: Make the function.
         -- The function expects a tuple. In this example it will work on tuple[2]
         -- because the key souce is field number 2 in what we will insert.
@@ -633,7 +633,7 @@ Below is a list of all ``box.space`` functions and members.
         -- Step 4: Make the functional index.
         -- Specify the fields whose values will be passed to the function.
         -- Specify the function.
-        box.space.x:create_index('j',{parts={1, 'string'},func = 'F'})
+        box.space.x:create_index('j',{parts={field = 1, type = 'string'},func = 'F'})
         -- Step 5: Test.
         -- Insert a few tuples.
         -- Select using only the first letter, it will work because that is the key
@@ -674,7 +674,7 @@ Below is a list of all ``box.space`` functions and members.
         s = box.schema.space.create('withdata')
         s:format({{name = 'name', type = 'string'},
                   {name = 'address', type = 'string'}})
-        pk = s:create_index('name', {parts = {1, 'string'}})
+        pk = s:create_index('name', {parts = {field = 1, type = 'string'}})
         lua_code = [[function(tuple)
                        local address = string.split(tuple[2])
                        local ret = {}
@@ -690,7 +690,7 @@ Below is a list of all ``box.space`` functions and members.
                                  opts = {is_multikey = true}})
         idx = s:create_index('addr', {unique = false,
                                       func = 'address',
-                                      parts = {{1, 'string',
+                                      parts = {{field = 1, type = 'string',
                                               collation = 'unicode_ci'}}})
         s:insert({"James", "SIS Building Lambeth London UK"})
         s:insert({"Sherlock", "221B Baker St Marylebone London NW1 6XE UK"})
@@ -875,7 +875,7 @@ Below is a list of all ``box.space`` functions and members.
                      >                     {name='8',type='array'},
                      >                     {name='9',type='map'}})
             --- ...
-            tarantool> box.space.t:create_index('i',{parts={2,'unsigned'}})
+            tarantool> box.space.t:create_index('i',{parts={field = 2, type = 'unsigned'}})
             --- ...
             tarantool> box.space.t:insert{{'a'},      -- any
                      >                    1,          -- unsigned
@@ -1137,7 +1137,7 @@ Below is a list of all ``box.space`` functions and members.
         .. code-block:: tarantoolsession
 
             tarantool> s = box.schema.space.create('space53')
-            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
+            tarantool> s:create_index('primary', {parts = {field = 1, type = 'unsigned'}})
             tarantool> function replace_trigger()
                      >   replace_counter = replace_counter + 1
                      > end
@@ -1431,7 +1431,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.schema.space.create('tmp', {temporary=true})
             ---
             ...
-            tarantool> s:create_index('primary',{parts = {1,'unsigned', 2, 'string'}})
+            tarantool> s:create_index('primary',{parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})
             ---
             ...
             tarantool> s:insert{1,'A'}
@@ -2690,11 +2690,11 @@ for each :ref:`data operation <index-box_data-operations>` in Tarantool:
     format[3] = {'field3', 'unsigned'}
     s = box.schema.create_space('test', {format = format})
     -- Create a primary index --
-    pk = s:create_index('pk', {parts = {{'field1'}}})
+    pk = s:create_index('pk', {parts = {{field = 'field1'}}})
     -- Create a unique secondary index --
-    sk_uniq = s:create_index('sk_uniq', {parts = {{'field2'}}})
+    sk_uniq = s:create_index('sk_uniq', {parts = {{field = 'field2'}}})
     -- Create a non-unique secondary index --
-    sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{'field3'}}, unique = false})
+    sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{field = 'field3'}}, unique = false})
 
 .. _box_space-operations-insert:
 
@@ -2820,7 +2820,7 @@ The key must be full: ``delete`` cannot work with partial keys.
     tarantool> s2 = box.schema.create_space('test2')
     ---
     ...
-    tarantool> pk2 = s2:create_index('pk2', {parts = {{1, 'unsigned'}, {2, 'unsigned'}}})
+    tarantool> pk2 = s2:create_index('pk2', {parts = {{field = 1, type = 'unsigned'}, {field = 2, type = 'unsigned'}}})
     ---
     ...
     tarantool> s2:insert{1, 1}

@@ -95,7 +95,7 @@ field #1 of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+   tarantool> i = s:create_index('primary', {type = 'hash', parts = {field = 1, type = 'unsigned'}})
 
 The effect is that, for all tuples in space 'tester', field #1 must exist and
 must contain an unsigned integer.
@@ -107,7 +107,7 @@ of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, 'string'}})
+   tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field = 2, type = 'string'}})
 
 The effect is that, for all tuples in space 'tester', field #2 must exist and
 must contain a string.
@@ -389,7 +389,7 @@ As an example, take some Russian words:
 
   .. code-block:: tarantoolsession
 
-      tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode'}}})
+      tarantool> box.space.T:create_index('I', {parts = {{field = 1, type = 'str', collation='unicode'}}})
       ...
       tarantool> box.space.T.index.I:select()
       ---
@@ -412,7 +412,7 @@ As an example, take some Russian words:
 
   .. code-block:: tarantoolsession
 
-      tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode_ci'}}})
+      tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str', collation='unicode_ci'}}})
       ...
       tarantool> box.space.S.index.I:select()
       ---
@@ -841,7 +841,7 @@ The following SELECT variations exist:
 
       tarantool> box.schema.space.create('bitset_example')
       tarantool> box.space.bitset_example:create_index('primary')
-      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'unsigned'}})
+      tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={field = 2, type = 'unsigned'}})
       tarantool> box.space.bitset_example:insert{1,1}
       tarantool> box.space.bitset_example:insert{2,4}
       tarantool> box.space.bitset_example:insert{3,7}
@@ -865,7 +865,7 @@ The following SELECT variations exist:
 
       tarantool> box.schema.space.create('rtree_example')
       tarantool> box.space.rtree_example:create_index('primary')
-      tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})
+      tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={field = 2, type = 'ARRAY'}})
       tarantool> box.space.rtree_example:insert{1, {3, 5, 9, 10}}
       tarantool> box.space.rtree_example:insert{2, {10, 11}}
       tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})
