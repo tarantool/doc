@@ -62,9 +62,9 @@ Below is a list of all additional ``string`` functions.
 
     Return the string left-justified in a string of length ``width``.
 
-    :param input-string: (string) the string to left-justify
-    :param width: (integer) the width of the string after left-justifying
-    :param pad-character: (string) a single character, default = 1 space
+    :param string input-string: the string to left-justify
+    :param integer width: the width of the string after left-justifying
+    :param string pad-character: a single character, default = 1 space
 
     :Return: left-justified string (unchanged if width <= string length)
     :Rtype: string
@@ -87,9 +87,9 @@ Below is a list of all additional ``string`` functions.
 
     Return the string right-justified in a string of length ``width``.
 
-    :param input-string: (string) the string to right-justify
-    :param width: (integer) the width of the string after right-justifying
-    :param pad-character: (string) a single character, default = 1 space
+    :param string input-string: the string to right-justify
+    :param integer width: the width of the string after right-justifying
+    :param string pad-character: a single character, default = 1 space
 
     :Return: right-justified string (unchanged if width <= string length)
     :Rtype: string
@@ -112,7 +112,7 @@ Below is a list of all additional ``string`` functions.
 
     Return the hexadecimal value of the input string.
 
-    :param input-string: (string) the string to process
+    :param string input-string: the string to process
 
     :Return: hexadecimal, 2 hex-digit characters for each input character
     :Rtype: string
@@ -136,10 +136,10 @@ Below is a list of all additional ``string`` functions.
     Return True if ``input-string`` starts with ``start-string``, otherwise return
     False.
 
-    :param input-string: (string) the string where ``start-string`` should be looked for
-    :param start-string: (string) the string to look for
-    :param start-pos: (integer) position: where to start looking within ``input-string``
-    :param end-pos: (integer) position: where to end looking within ``input-string``
+    :param string input-string: the string where ``start-string`` should be looked for
+    :param string start-string: the string to look for
+    :param integer start-pos: position: where to start looking within ``input-string``
+    :param integer end-pos: position: where to end looking within ``input-string``
 
     :Return: true or false
     :Rtype: boolean
@@ -166,10 +166,10 @@ Below is a list of all additional ``string`` functions.
     Return True if ``input-string`` ends with ``end-string``, otherwise return
     False.
 
-    :param input-string: (string) the string where ``end-string`` should be looked for
-    :param end-string: (string) the string to look for
-    :param start-pos: (integer) position: where to start looking within ``input-string``
-    :param end-pos: (integer) position: where to end looking within ``input-string``
+    :param string input-string: the string where ``end-string`` should be looked for
+    :param string end-string: the string to look for
+    :param integer start-pos: position: where to start looking within ``input-string``
+    :param integer end-pos: position: where to end looking within ``input-string``
 
     :Return: true or false
     :Rtype: boolean
@@ -196,7 +196,7 @@ Below is a list of all additional ``string`` functions.
 
     Return the value of the input string, but without spaces on the left.
 
-    :param input-string: (string) the string to process
+    :param string input-string: the string to process
 
     :Return: result after stripping spaces from input string
     :Rtype: string
@@ -219,7 +219,7 @@ Below is a list of all additional ``string`` functions.
 
     Return the value of the input string, but without spaces on the right.
 
-    :param input-string: (string) the string to process
+    :param string input-string: the string to process
 
     :Return: result after stripping spaces from input string
     :Rtype: string
@@ -244,12 +244,12 @@ Below is a list of all additional ``string`` functions.
     in a table. The places to split are the places where
     ``split-string`` occurs.
 
-    :param input-string: (string) the string to split
-    :param split-string: (string) the string to find within ``input-string``.
-                         Default = space.
-    :param max: (integer) maximum number of delimiters to process counting 
-                          from the beginning of the input string. Result will contain 
-                          max + 1 parts maximum.
+    :param string input-string: the string to split
+    :param integer split-string: the string to find within ``input-string``.
+                                 Default = space.
+    :param integer max: maximum number of delimiters to process counting
+                        from the beginning of the input string. Result will
+                        contain max + 1 parts maximum.
 
     :Return: table of strings that were split from ``input-string``
     :Rtype: table
@@ -274,7 +274,7 @@ Below is a list of all additional ``string`` functions.
 
     Return the value of the input string, but without spaces on the left or the right.
 
-    :param input-string: (string) the string to process
+    :param string input-string: the string to process
 
     :Return: result after stripping spaces from input string
     :Rtype: string
