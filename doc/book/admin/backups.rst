@@ -15,7 +15,7 @@ any time, with minimal overhead on database performance.
 
 Two functions are helpful for backups in certain situations:
 
-* :ref:`box.backup.start([n]) <reference_lua-box_backup-backup_start>` informs
+* :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` informs
   the server that activities related to the removal of outdated backups must
   be suspended and returns a table with the names of snapshot and vinyl files
   that should be copied.
