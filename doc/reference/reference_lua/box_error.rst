@@ -46,8 +46,8 @@ Below is a list of all ``box.error`` functions.
     When called with a Lua-table argument, the code and reason have any
     user-desired values. The result will be those values.
 
-    :param string reason: description of an error, defines by user
-    :param integer  code: number code for this error, also defines by user
+    :param string reason: description of an error, defined by user
+    :param integer  code: numeric code for this error, defined by user
 
 .. function:: box.error()
 
