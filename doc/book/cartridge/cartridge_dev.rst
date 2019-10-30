@@ -500,16 +500,18 @@ Configuring custom roles
 
 You can:
 
-* Store your custom roles as sections in cluster-wide configuration,
-  for example:
+* Store configurations for your custom roles as sections in cluster-wide
+  configuration, for example:
 
   .. code-block:: yaml
 
+      # YAML configuration file
       my_role:
         notify_url: "https://localhost:8080"
 
   .. code-block:: lua
 
+      -- init.lua file
       local notify_url = 'http://localhost'
       function my_role.apply_config(conf, opts)
         local conf = conf['my_role'] or {}
