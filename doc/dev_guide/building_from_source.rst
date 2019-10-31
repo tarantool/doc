@@ -242,7 +242,7 @@ the preferences can differ. But strategically the steps are always the same.
    ``dpkg-buildpackage`` or ``rpmbuild`` tools. Please consult
    ``dpkg`` or ``rpmbuild`` documentation for details.
 
-7. Verify your Tarantool installation.
+7. Verify your Tarantool installation:
 
    .. code-block:: bash
 
