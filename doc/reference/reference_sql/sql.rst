@@ -127,9 +127,9 @@ definition.
 Rules:
 
 * A primary key is necessary; it can be specified with a table constraint
-  PRIMARY KEY.
+  ``PRIMARY KEY``.
 * There must be at least one column.
-* When IF NOT EXISTS is specified, and there is already a table with the same
+* When ``IF NOT EXISTS`` is specified, and there is already a table with the same
   name, the statement is ignored.
 
 Actions:
@@ -137,7 +137,7 @@ Actions:
 #. Tarantool evaluates each column definition and *table-constraint*,
    and returns an error if any of the rules is violated.
 #. Tarantool makes a new definition in the schema.
-#. Tarantool makes new indexes for PRIMARY KEY or UNIQUE constraints.
+#. Tarantool makes new indexes for ``PRIMARY KEY`` or ``UNIQUE`` constraints.
    A unique index name is created automatically.
 #. Tarantool effectively executes a ``COMMIT`` statement.
 
@@ -1717,20 +1717,28 @@ GROUP BY clause is omitted, then Tarantool assumes
 
 NULLs are ignored for all aggregate functions except COUNT(*).
 
+.. _sql_aggregate_avg:
+
 ``AVG([DISTINCT] expression)``
              Return the average value of expression.
 
              Example: :samp:`AVG({column1})`
+
+.. _sql_aggregate_count_exp:
 
 ``COUNT([DISTINCT] expression)``
              Return the number of occurrences of expression.
 
              Example: :samp:`COUNT({column1})`
 
+.. _sql_aggregate_count_row:
+
 ``COUNT(*)``
              Return the number of occurrences of a row.
 
              Example: :samp:`COUNT(*)`
+
+.. _sql_aggregate_group_concat:
 
 ``GROUP_CONCAT(expression-1 [, expression-2])``
              Return a list of *expression-1* values, separated
@@ -1740,20 +1748,28 @@ NULLs are ignored for all aggregate functions except COUNT(*).
 
              Example: :samp:`GROUP_CONCAT({column1})`
 
+.. _sql_aggregate_max:
+
 ``MAX([DISTINCT] expression)``
              Return the maximum value of expression.
 
              Example: :samp:`MAX({column1})`
+
+.. _sql_aggregate_min:
 
 ``MIN([DISTINCT] expression)``
              Return the minimum value of expression.
 
              Example: :samp:`MIN({column1})`
 
+.. _sql_aggregate_sum:
+
 ``SUM([DISTINCT] expression)``
              Return the sum of values of expression.
 
              Example: :samp:`SUM({column1})`
+
+.. _sql_aggregate_total:
 
 ``TOTAL([DISTINCT] expression)``
              Return the sum of values of expression.
@@ -2665,7 +2681,7 @@ Syntax:
 Return the value of the first non-NULL expression, or, if both
 expression values are NULL, return NULL. Thus
 ``IFNULL(expression, expression)`` is the same as
-``COALESCE(expression, expression)``.
+:ref:`COALESCE(expression, expression) <sql_function_coalesce>`.
 
 Example:
   ``IFNULL(NULL, 17)`` is 17
@@ -2695,6 +2711,21 @@ Examples:
   * ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes.
   * ``LENGTH(CHAR(0,65))`` is 2, '\0' does not mean 'end of string'.
   * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY.
+
+.. _sql_function_lower:
+
+***********************************************
+LOWER
+***********************************************
+
+Syntax:
+
+:samp:`LOWER(string-expression)`
+
+Return the expression, with upper-case characters converted to lower case.
+This is the reverse of :ref:`UPPER(string-expression) <sql_function_upper>`.
+
+Example: ``LOWER('-4ЩL')`` is '-4щl'.
 
 .. _sql_function_nullif:
 
@@ -2787,7 +2818,7 @@ Syntax:
 
 Return the Unicode code point value of the first character of **string-expression**.
 If *string-expression* is empty, the return is NULL.
-This is the reverse of CHAR(integer).
+This is the reverse of :ref:`CHAR(integer) <sql_function_char>`.
 
 Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429).
 
@@ -2802,7 +2833,7 @@ Syntax:
 :samp:`UPPER(string-expression)`
 
 Return the expression, with lower-case characters converted to upper case.
-This is the reverse of LOWER(string-expression).
+This is the reverse of :ref:`LOWER(string-expression)<sql_function_lower>`.
 
 Example: ``UPPER('-4щl')`` is '-4ЩL'.
 
