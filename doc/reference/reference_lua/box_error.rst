@@ -41,13 +41,13 @@ Below is a list of all ``box.error`` functions.
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
 
-.. function:: box.error{reason=string [, code=number]}
+.. function:: box.error{reason = string [, code = number]}
 
     When called with a Lua-table argument, the code and reason have any
     user-desired values. The result will be those values.
 
-    :param integer  code:
-    :param string reason:
+    :param string reason: description of an error, defined by user
+    :param integer  code: numeric code for this error, defined by user
 
 .. function:: box.error()
 

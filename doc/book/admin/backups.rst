@@ -13,42 +13,15 @@ by configuring the
 :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at
 any time, with minimal overhead on database performance.
 
-.. _admin-backups-backup_start:
+Two functions are helpful for backups in certain situations:
 
---------------------------------------------------------------------------------
-backup.start() and backup.stop()
---------------------------------------------------------------------------------
+* :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` informs
+  the server that activities related to the removal of outdated backups must
+  be suspended and returns a table with the names of snapshot and vinyl files
+  that should be copied.
 
-Two functions are helpful for backups in certain situations.
-
-``box.backup.start()`` informs the server that activities related to the removal
-of outdated backups must be suspended and returns a table with the names of
-snapshot and vinyl files that should be copied. Example:
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.backup.start()
-    ---
-    - - ./00000000000000000015.snap
-      - ./00000000000000000000.vylog
-      - ./513/0/00000000000000000002.index
-      - ./513/0/00000000000000000002.run
-    ...
-
-.. NOTE::
-
-    To guarantee an opportunity to copy these files Tarantool will not delete them.
-    But there will be no read-only mode and checkpoints will continue by schedule
-    as usual.
-
-Later ``box.backup.stop()`` informs the server that
-normal operations may resume. Starting with Tarantool 1.10.1 there is a new
-optional argument, ``box.backup.start(n)``, where ``n`` indicates the checkpoint
-to use relative to the latest checkpoint -- for example ``n = 0`` means
-"backup will be based on the latest checkpoint", ``n = 1`` means "backup will
-be based on the first checkpoint before the latest checkpoint
-(counting backwards)", and so on,
-and the default value for ``n`` is zero.
+* :ref:`box.backup.stop() <reference_lua-box_backup-backup_stop>` later informs
+  the server that normal operations may resume.
 
 .. _admin-backups-hot_backup_memtx:
 
