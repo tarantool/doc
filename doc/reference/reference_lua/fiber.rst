@@ -521,7 +521,8 @@ recommended.
         Cancel a fiber. Running and suspended fibers can be cancelled.
         After a fiber has been cancelled, attempts to operate on it will
         cause errors, for example :ref:`fiber_object:name() <fiber_object-name_get>`
-        will cause ``error: the fiber is dead``.
+        will cause ``error: the fiber is dead``. But a dead fiber can still
+        report its id and status.
 
         :param fiber_object: generally this is an object referenced in the return
                              from :ref:`fiber.create <fiber-create>`
@@ -537,7 +538,18 @@ recommended.
 
             tarantool> fiber.self():cancel() -- kill self, may make program end
             ---
+            ...
+            tarantool> fiber.self():cancel()
+            ---
             - error: fiber is cancelled
+            ...
+            tarantool> fiber.self:id()
+            ---
+            - 163
+            ...
+            tarantool> fiber.self:status()
+            ---
+            - dead
             ...
 
     .. _fiber_object-storage:
