@@ -116,6 +116,11 @@ Below is a list of all ``box.schema`` functions.
     :return: space object
     :rtype: userdata
 
+    You can also use another syntax for this method:
+    box.schema.create_space(space-name [, {options}]). For example,
+    ``s = box.schema.space.create('tester')`` is equal to
+    ``box.schema.space.create('tester')``.
+
     .. container:: table
 
         **Options for box.schema.space.create**
@@ -886,4 +891,4 @@ All functions related to sequences require appropriate
         can be used to say that a sequence
         is not associated with an index, for example
         ``box.space.T.index.I:alter({sequence=false})``.
-        
+
