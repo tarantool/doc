@@ -22,8 +22,7 @@ the preferences can differ. But strategically the steps are always the same.
    * A program for managing the build process. |br| For all platforms, this is
      ``CMake`` version 2.8+.
 
-   * A build automation tool. |br| For all platforms, except FreeBSD this is
-     ``BSD Make``, but for FreeBSD this is ``GNU Make``.
+   * A build automation tool. |br| For all platforms this is ``GNU Make``.
 
    * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
    * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
@@ -93,7 +92,7 @@ the preferences can differ. But strategically the steps are always the same.
          $ xcode-select --install
          $ xcode-select -switch /Applications/Xcode.app/Contents/Developer
 
-   * For FreeBSD (instructions below are for FreeBSD 10.1 release), say:
+   * For FreeBSD (instructions below are for FreeBSD 10.1+ release), say:
 
      .. code-block:: console
 
