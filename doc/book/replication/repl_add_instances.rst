@@ -198,6 +198,16 @@ is less than or equal to the number of seconds specified in
 If ``replication_sync_lag`` is unset (nil) or set to TIMEOUT_INFINITY, then
 the replica skips the "sync" state and switches to "follow" immediately.
 
+In order to leave orphan mode you need to sync with a sufficient number
+(:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`) of
+instances. To do so, you may either:
+
+* Set :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
+  to a lower value.
+* Reset ``box.cfg.replication`` to exclude instances that cannot be reached
+  or synced with.
+* Set ``box.cfg.replication`` to ``""`` (empty string).
+
 The following situations are possible.
 
 .. _replication-leader:
@@ -215,7 +225,7 @@ A replica is joining but no replica set exists yet.
        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
        is overridden.
 
-    3. Abort if not connected to all nodes in ``box.cfg.replication`` or
+    3. Abort and throw an error if not connected to all nodes in ``box.cfg.replication`` or
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`.
 
     4. This instance might be elected as the replica set 'leader'.
@@ -248,9 +258,11 @@ It is being called again in order to perform recovery.
 
     2. Connect to at least
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-       nodes.
+       nodes. If failed - set status to 'orphan'.
+       (Attempts to sync will continue in the background and when/if they succeed
+       then 'orphan' will be changed to 'connected'.)
 
-    3. Sync with all connected nodes, until the difference is not more than
+    3. If connected - sync with all connected nodes, until the difference is not more than
        :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.
 
 .. _replication-configuration_update:

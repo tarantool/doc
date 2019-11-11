@@ -22,6 +22,8 @@ the preferences can differ. But strategically the steps are always the same.
    * A program for managing the build process. |br| For all platforms, this is
      ``CMake`` version 2.8+.
 
+   * A build automation tool. |br| For all platforms this is ``GNU Make``.
+
    * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
    * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
    * `OpenSSL <https://www.openssl.org>`_ library, version 1.0.1+
@@ -49,7 +51,7 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-        $ apt install -y build-essential cmake coreutils sed \
+        $ apt install -y build-essential cmake make coreutils sed \
               autoconf automake libtool zlib1g-dev \
               libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
               libunwind-dev libicu-dev \
@@ -60,7 +62,7 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-         $ yum install -y gcc gcc-c++ cmake coreutils sed \
+         $ yum install -y gcc gcc-c++ cmake make coreutils sed \
                autoconf automake libtool zlib-devel \
                readline-devel ncurses-devel libyaml-devel openssl-devel \
                libunwind-devel libicu-devel \
@@ -73,7 +75,7 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-         $ brew install cmake autoconf binutils zlib \
+         $ brew install cmake make autoconf binutils zlib \
                 autoconf automake libtool \
                 readline ncurses libyaml openssl libunwind-headers icu4c \
                 && pip install python-daemon \
@@ -90,7 +92,7 @@ the preferences can differ. But strategically the steps are always the same.
          $ xcode-select --install
          $ xcode-select -switch /Applications/Xcode.app/Contents/Developer
 
-   * For FreeBSD (instructions below are for FreeBSD 10.1 release), say:
+   * For FreeBSD (instructions below are for FreeBSD 10.1+ release), say:
 
      .. code-block:: console
 
@@ -98,7 +100,7 @@ the preferences can differ. But strategically the steps are always the same.
                autoconf automake libtool \
                readline ncurses libyaml openssl libunwind icu \
                python27 py27-pip py27-setuptools py27-daemon \
-               py27-msgpack-python py27-yaml py27-argparse py27-six py27-gevent
+               py27-msgpack py27-yaml py27-argparse py27-six py27-gevent
 
    If some Python modules are not available in a repository,
    it is best to set up the modules by getting a tarball and
@@ -145,6 +147,7 @@ the preferences can differ. But strategically the steps are always the same.
 
    .. code-block:: console
 
+       cd ~/tarantool
        $ git submodule update --init --recursive
 
 3. Use CMake to initiate the build.
@@ -185,6 +188,11 @@ the preferences can differ. But strategically the steps are always the same.
        For FreeBSD, use ``gmake`` instead.
 
    This creates the 'tarantool' executable in the ``src/`` directory.
+
+   .. NOTE::
+
+       If you encounter a ``curl`` or ``OpenSSL`` errors on this step try
+       installing ``openssl111`` package of the specific ``1.1.1d`` version.
 
    Next, it's highly recommended to say ``make install`` to install Tarantool to
    the ``/usr/local`` directory and keep your system clean. However, it is

@@ -113,13 +113,12 @@ The following steps are applicable only to data in memtx storage engine.
 Your actions:
 
 1. Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable
-   checkpointing with :ref:`box.backup.start() <admin-backups-backup_start>`.
-   Disabling the checkpointing is
-   necessary to prevent the Tarantool garbage collector from removing files
-   made with older checkpoints.
+   deletion of expired checkpoints with :ref:`box.backup.start() <admin-backups-backup_start>`.
+   This will prevent the Tarantool garbage collector from removing files
+   made with older checkpoints until :ref:`box.backup.stop() <admin-backups-backup_start>` is called.
 
-2. Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tarantoolctl cat`` command to
-   calculate at which lsn the data loss occurred.
+2. Get the latest valid :ref:`.snap file <internals-snapshot>` and
+   use ``tarantoolctl cat`` command to calculate at which lsn the data loss occurred.
 
 3. Start a new instance (instance#1) and use ``tarantoolctl play`` command to
    play to it the contents of .snap/.xlog files up to the calculated lsn.
