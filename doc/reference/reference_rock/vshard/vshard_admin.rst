@@ -29,11 +29,12 @@ Configuration
 
 Any viable sharded cluster consists of:
 
-* one or more replica sets, each containing two or more ``storage`` instances,
-* one or more ``router`` instances.
+* one or more replica sets, each containing two or more :ref:`storage <vshard-storage>
+  instances,
+* one or more :ref:`router <vshard-router>` instances.
 
 The number of ``storage`` instances in a replica set defines the redundancy factor
-of the data. The recommended value is ``3`` or more. The number of ``router`` instances
+of the data. The recommended value is 3 or more. The number of ``router`` instances
 is not limited, because routers are completely stateless. We recommend increasing
 the number of routers when an existing ``router`` instance becomes CPU or I/O bound.
 

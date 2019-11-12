@@ -13,8 +13,8 @@ shards, each storing some part of data. Each shard, in its turn, constitutes
 a replica set consisting of several replicas, one of which serves as a master
 node that processes all read and write requests.
 
-The whole dataset is logically partitioned into a predefined number of virtual
-buckets (vbuckets), each assigned a unique number ranging from 1 to N, where N
+The whole dataset is logically partitioned into a predefined number of :ref:`virtual
+buckets (vbuckets) <vshard-vbuckets>`, each assigned a unique number ranging from 1 to N, where N
 is the total number of vbuckets. The number of vbuckets is specifically chosen
 to be several orders of magnitude larger than the potential number of cluster
 nodes, even given future cluster scaling. For example, with M projected nodes
@@ -26,10 +26,8 @@ the granularity of rebalancing.
 Each shard stores a unique subset of vbuckets, which means that a vbucket cannot
 belong to several shards at once, as illustrated below:
 
-```
-vb1 vb2 vb3 vb4 vb5 vb6 vb7 vb8 vb9 vb10 vb11
-    sh1         sh2        sh3       sh4
-```
+.. image:: hierarchy.png
+    :align: center
 
 This shard-to-vbucket mapping is stored in a table in one of Tarantool’s system
 spaces, with each shard holding only a specific part of the mapping that covers
@@ -90,6 +88,7 @@ Structure
 ------------------------------------------------------------------------------
 
 A sharded cluster in Tarantool consists of:
+
 * storages,
 * routers,
 * and a rebalancer.
@@ -150,20 +149,22 @@ systems and passes sharding parameters. That said, the configuration can be
 changed dynamically - for example, when adding or deleting one or several shards:
 
 #. to add a new shard to the cluster, a system administrator first changes the
-    configuration of all the routers and then the configuration of all the storages;
+   configuration of all the routers and then the configuration of all the storages;
 #. the new shard becomes available to the storage layer for rebalancing;
 #. as a result of rebalancing, one of the vbuckets is moved to the new shard;
 #. when trying to access the vbucket, a router receives a special error code
-    that specifies the new vbucket location.
+   that specifies the new vbucket location.
 
-##### CRUD (create, replace, update, delete) operations
+**CRUD (create, replace, update, delete) operations**
+
 CRUD operations can either be executed in a stored procedure inside a storage or
 initialized by the application. In any case, the application must include the
 operation bucket id in a request. When executing an INSERT request, the operation
 bucket id is stored in a newly created tuple. In other cases, it is checked if
 the specified operation bucket id matches the bucket id of a tuple being modified.
 
-##### SELECT requests
+**SELECT requests**
+
 Since a storage is not aware of the mapping between a bucket id and a primary
 key, all the SELECT requests executed in stored procedures inside a storage are
 only executed locally. Those SELECT requests that were initialized by the

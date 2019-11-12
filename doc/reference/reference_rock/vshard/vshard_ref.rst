@@ -258,7 +258,8 @@ Router public API
 
 .. function:: vshard.router.call(bucket_id, mode, function_name, {argument_list}, {options})
 
-    Call the function identified by function-name on the shard storing the bucket identified by bucket_id.
+    Call the function identified by function-name on the shard storing the bucket
+    identified by bucket_id.
     See the :ref:`Processing requests <vshard-process-requests>` section
     for details on function operation.
 
@@ -273,14 +274,19 @@ Router public API
           timeout is reached.
 
     The mode parameter has two possible forms: a string or a map. Examples of the string form are:
-    'read', 'write'. Examples of the map form are: {mode='read'}, {mode='write'},
-    {mode='read', prefer_replica=true}, {mode='read', balance=true}, {mode='read', prefer_replica=true, balance=true}.
-    If 'write' is specified then the target is the master.
-    If prefer_replica=true is specified then the preferred target is one of the replicas, but
+    ``'read'``, ``'write'``. Examples of the map form are: ``{mode='read'}``, ``{mode='write'}``,
+    ``{mode='read', prefer_replica=true}``, ``{mode='read', balance=true}``,
+    ``{mode='read', prefer_replica=true, balance=true}``.
+
+    If ``'write'`` is specified then the target is the master.
+
+    If ``prefer_replica=true`` is specified then the preferred target is one of the replicas, but
     the target is the master if there is no conveniently available replica.
+
     It may be good to specify prefer_replica=true for functions which are expensive in terms
     of resource use, to avoid slowing down the master.
-    If balance=true then there is load balancing -- reads are distributed over all the nodes
+
+    If ``balance=true`` then there is load balancing -- reads are distributed over all the nodes
     in the replica set in round-robin fashion, with a preference for replicas if
     prefer_replica=true is also set.
 
@@ -375,9 +381,9 @@ Router public API
 .. function:: vshard.router.callre(bucket_id, function_name, {argument_list}, {options})
 
     Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
-    in read-only mode (similar to calling vshard.router.call
-    with mode='read'), with preference for a replica rather than a master
-    (similar to calling vshard.router.call with prefer_replica = true). See the
+    in read-only mode (similar to calling ``vshard.router.call``
+    with ``mode='read'``), with preference for a replica rather than a master
+    (similar to calling ``vshard.router.call`` with ``prefer_replica = true``). See the
     :ref:`Processing requests <vshard-process-requests>` section for details on
     function operation.
 
@@ -417,7 +423,7 @@ Router public API
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
-    with mode parameter = {mode='read', balance=true, prefer_replica=true}.
+    with mode ``parameter = {mode='read', balance=true, prefer_replica=true}``.
 
 .. _router_api-route:
 
