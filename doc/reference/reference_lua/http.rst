@@ -56,7 +56,7 @@ Below is a list of all ``http`` functions.
     It affects libcurl  `CURLMOPT_MAX_TOTAL_CONNECTIONS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAX_TOTAL_CONNECTIONS.html>`_.
     It is ignored if the curl version is less than 7.30.
     The default is 0, which allows libcurl to scale according to easy handles count.
-    
+
     The default option values are usually good enough but in rare cases it
     might be good to set them. In that case here are two tips.
 
@@ -69,7 +69,7 @@ Below is a list of all ``http`` functions.
     unless you are confident about your actions.
     When ``max_connections`` is less then ``max_total_connections``, in some cases
     libcurl will not reuse sockets for requests that are going to the same host.
-    If the limit is reached and a new request occurs, then 
+    If the limit is reached and a new request occurs, then
     libcurl will first create a new socket, send the request, wait for the first connection
     to be free, and close it, in order to avoid exceeding the ``max_connections`` cache size.
     In the worst case, libcurl will create a new socket for every request,
@@ -150,6 +150,14 @@ Below is a list of all ``http`` functions.
           * ``max_header_name_len`` - the maximal length of a header name. If a header
             name is bigger than this value, it is truncated to this length.
             The default value is '32'.
+          * ``follow_location`` - when the option is set to ``true`` (default) and a
+            response has 3xx code the http client will automatically issue
+            another request to a location that a server sends in 'Location'
+            header. If the new response is 3xx again, the http.client will
+            issue a next request and so on in a loop until a non-3xx response
+            will be received. This last response will be returned as a result.
+            Setting this option to ``false`` allows to disable this behaviour.
+            In this case the http client will return a 3xx response itself.
 
         :return: connection information, with all of these components:
 
