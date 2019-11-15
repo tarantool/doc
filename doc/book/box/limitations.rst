@@ -9,7 +9,7 @@ Limitations
     For TREE or HASH indexes, the maximum
     is 255 (``box.schema.INDEX_PART_MAX``). For :ref:`RTREE <box_index-rtree>` indexes, the
     maximum is 1 but the field is an ARRAY of up to 20 dimensions.
-    For BITSET indexes, the maximum is 1. 
+    For BITSET indexes, the maximum is 1.
 
 .. _limitations_indexes_in_space:
 
@@ -30,7 +30,7 @@ Limitations
 
 **Number of bytes in a tuple**
 
-    The maximal number of bytes in a tuple is roughly equal to 
+    The maximal number of bytes in a tuple is roughly equal to
     :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` or
     :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`
     (with a metadata
@@ -75,7 +75,7 @@ Limitations
 
 **Update operations count**
 
-    The maximum number of operations that can be in a single update
+    The maximum number of operations per tuple that can be in a single update
     is 4000 (``BOX_UPDATE_OP_CNT_MAX``).
 
 .. _limitations_users_and_roles:

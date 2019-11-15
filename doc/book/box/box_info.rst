@@ -191,8 +191,6 @@ variables.
       * ``stopped`` means that downstream replication has stopped.
       * ``follow`` means that downstream replication is in progress.
 
-
-
 .. function:: box.info()
 
     Since ``box.info`` contents are dynamic, it's not possible to iterate over

@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.2\n"
+"Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 14:28+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2019-11-15 11:04+0000\n"
+"PO-Revision-Date: 2019-10-23 18:50+0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,15 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ../doc/index.rst:40
+#: ../doc/index.rst:6
 msgid "Tarantool - Documentation"
 msgstr "Tarantool - Документация"
 
-#: ../doc/index.rst:47
+#: ../doc/index.rst:13
 msgid "|nbspc|"
 msgstr "|nbspc|"
 
-#: ../doc/index.rst:119
+#: ../doc/index.rst:85
+#, fuzzy
 msgid ""
 "Tarantool 2.2 manual  This manual embraces all aspects of using "
 "Tarantool: from introductory information and exercises for beginners -- "
@@ -38,21 +39,36 @@ msgid ""
 "container\">     <a href=\"book/getting_started/\">         <button class"
 "=\"getting-started-button btn\">             Getting started         "
 "</button>     </a> </div>      <div class=\"badge-icon\"></div>  Other "
-"formats:  Single-page HTML  PDF  /Users/e.shebunyaeva/work/tarantool-"
-"doc/doc/2.2/index.rst:106: (WARNING/2) Bullet list ends without a blank "
-"line; unexpected unindent.  See also:  Documentation archive  Articles  "
-"/Users/e.shebunyaeva/work/tarantool-doc/doc/2.2/index.rst:109: "
-"(WARNING/2) Bullet list ends without a blank line; unexpected unindent.  "
-"Support:  Форум в Google  Чат в Telegram  Support:  Google forum  "
-"Telegram chat"
+"formats:  Single-page HTML  PDF  /doc/doc/index.rst:72: (WARNING/2) "
+"Bullet list ends without a blank line; unexpected unindent.  See also:  "
+"Documentation archive  Articles  /doc/doc/index.rst:75: (WARNING/2) "
+"Bullet list ends without a blank line; unexpected unindent.  Support:  "
+"Форум в Google  Чат в Telegram  Support:  Google forum  Telegram chat"
 msgstr ""
+"Руководство по Tarantool 1.10 Данное руководство охватывает все "
+"аспекты использования Tarantool'а: от вводной информации и упражнений для"
+" начинающих -- до продвинутых инструкций и подробных справочников для "
+"опытных пользователей и сторонних разработчиков.  Документация находится "
+"в процессе перевода и может отставать от английской версии.      <div "
+"class=\"getting-started-button-container\">     <a "
+"href=\"book/getting_started/\">         <button class=\"getting-started-"
+"button btn\">             Руководство для начинающих         </button>"
+"     </a> </div>  <div class=\"getting-started-button-container\">     <a"
+" href=\"book/getting_started/\">         <button class=\"getting-started-"
+"button btn\">             Getting started         </button>     </a> "
+"</div>      <div class=\"badge-icon\"></div>  Другие форматы:  HTML одной"
+" страницей  PDF  /doc/doc/index.rst:72: (WARNING/2) Bullet list ends "
+"without a blank line; unexpected unindent.  См. также:  Архив "
+"документации  Статьи  /doc/doc/index.rst:75: (WARNING/2) Bullet list ends"
+" without a blank line; unexpected unindent. Поддержка:  Форум в Google  "
+"Чат в Telegram  Поддержка:  Форум в Google  Чат в Telegram"
 
-#: ../doc/index.rst:56
+#: ../doc/index.rst:22
 #, fuzzy
 msgid "Tarantool 2.2 manual"
 msgstr "Руководство по Tarantool 2.1"
 
-#: ../doc/index.rst:60
+#: ../doc/index.rst:26
 msgid ""
 "This manual embraces all aspects of using Tarantool: from introductory "
 "information and exercises for beginners -- to advanced instructions and "
@@ -63,38 +79,78 @@ msgstr ""
 "инструкций и подробных справочников для опытных пользователей и сторонних"
 " разработчиков."
 
-#: ../doc/index.rst:103
+#: ../doc/index.rst:69
 msgid "**Other formats:**"
 msgstr "**Другие форматы:**"
 
-#: ../doc/index.rst:104
+#: ../doc/index.rst:70
 msgid "`Single-page HTML <singlehtml.html>`_"
 msgstr "`HTML одной страницей <singlehtml.html>`_"
 
-#: ../doc/index.rst:105
+#: ../doc/index.rst:71
 msgid "`PDF <Tarantool.pdf>`_"
 msgstr "`PDF <Tarantool.pdf>`_"
 
-#: ../doc/index.rst:106
+#: ../doc/index.rst:72
 msgid "**See also:**"
 msgstr "**См. также:**"
 
-#: ../doc/index.rst:107
+#: ../doc/index.rst:73
 msgid "`Documentation archive`_"
 msgstr "`Архив документации`_"
 
-#: ../doc/index.rst:108
+#: ../doc/index.rst:74
 msgid "`Articles`_"
 msgstr "`Статьи`_"
 
-#: ../doc/index.rst:116
+#: ../doc/index.rst:82
 msgid "**Support:**"
 msgstr "**Поддержка:**"
 
-#: ../doc/index.rst:117
+#: ../doc/index.rst:83
 msgid "`Google forum`_"
 msgstr ""
 
-#: ../doc/index.rst:118
+#: ../doc/index.rst:84
 msgid "`Telegram chat`_"
 msgstr ""
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"X-Generator: Poedit 1.8.13\n"
+
+#~ msgid ""
+#~ "Tarantool 2.2 manual  This manual "
+#~ "embraces all aspects of using Tarantool:"
+#~ " from introductory information and "
+#~ "exercises for beginners -- to advanced"
+#~ " instructions and detailed references for"
+#~ " power users and contributors.  "
+#~ "Документация находится в процессе перевода "
+#~ "и может отставать от английской версии."
+#~ "  <div class=\"getting-started-button-"
+#~ "container\">     <a href=\"book/getting_started/\">"
+#~ "         <button class=\"getting-started-button"
+#~ " btn\">             Руководство для начинающих"
+#~ "         </button>     </a> </div>  <div "
+#~ "class=\"getting-started-button-container\">     "
+#~ "<a href=\"book/getting_started/\">         <button "
+#~ "class=\"getting-started-button btn\">"
+#~ "             Getting started         </button>     "
+#~ "</a> </div>      <div class=\"badge-"
+#~ "icon\"></div>  Other formats:  Single-page "
+#~ "HTML  PDF  /Users/e.shebunyaeva/work/tarantool-"
+#~ "doc/doc/2.2/index.rst:106: (WARNING/2) Bullet list"
+#~ " ends without a blank line; "
+#~ "unexpected unindent.  See also:  Documentation"
+#~ " archive  Articles  /Users/e.shebunyaeva/work"
+#~ "/tarantool-doc/doc/2.2/index.rst:109: (WARNING/2) "
+#~ "Bullet list ends without a blank "
+#~ "line; unexpected unindent.  Support:  Форум"
+#~ " в Google  Чат в Telegram  Support:"
+#~ "  Google forum  Telegram chat"
+#~ msgstr ""
+
+#~ msgid "Tarantool 1.10 manual"
+#~ msgstr "Руководство по Tarantool 1.10"
+

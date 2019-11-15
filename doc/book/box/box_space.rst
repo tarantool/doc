@@ -2151,7 +2151,8 @@ Below is a list of all ``box.space`` functions and members.
 
 .. data:: _space
 
-    ``_space`` is a system space.
+    ``_space`` is a system space. It contains all spaces hosted on the current 
+    Tarantool instance, both system ones and created by users.
 
     Tuples in this space contain the following fields:
 
@@ -2166,7 +2167,7 @@ Below is a list of all ``box.space`` functions and members.
 
     **Example #1:**
 
-    The following function will display all simple fields in all tuples of
+    The following function will display every simple field in all tuples of
     ``_space``.
 
     .. code-block:: lua

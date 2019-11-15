@@ -65,7 +65,6 @@ Some of this information is also available from the :ref:`tarantool module <tara
 The replication fields are blank unless the instance is a :ref:`replica <index-box_replication>`.
 The replication fields are in an array if the instance is a replica for more than one master.
 
-
 .. function:: box.info()
 
     Since ``box.info`` contents are dynamic, it's not possible to iterate over
@@ -128,6 +127,7 @@ to monitor the total memory use and memory fragmentation.
 The display of slabs is broken down by the slab size -- 64-byte, 136-byte,
 and so on. The example omits the slabs which are empty. The example display
 is saying that:
+
 * there are 16 items stored in the 64-byte slab (and 16*64=102 so bytes_used = 1024);
 * there is 1 item stored in the 136-byte slab (and 136*1=136 so bytes_used = 136);
 * the ``arena_used`` value is the total of all the bytes_used values (1024+136 = 1160);

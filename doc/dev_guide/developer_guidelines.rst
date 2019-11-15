@@ -112,9 +112,9 @@ How to submit a patch for review
 ===========================================================
 
 We don't accept GitHub pull requests. Instead, all patches
-should be sent as plain-text messages to tarantool-patches@freelists.org.
+should be sent as plain-text messages to tarantool-patches@dev.tarantool.org.
 Please subscribe to our mailing list
-at https://www.freelists.org/list/tarantool-patches
+at https://lists.tarantool.org/mailman/listinfo/tarantool-patches
 to ensure that your messages are added to the archive.
 
 1. **Preparing a patch**
@@ -235,7 +235,7 @@ Once configured, use the following command to send your patches:
 
 .. code-block:: console
 
-    $ git send-email --to tarantool-patches@freelists.org 00*
+    $ git send-email --to tarantool-patches@dev.tarantool.org 00*
 
 (``00*`` wildcard will be expanded by your shell to the list of patches
 generated at the previous step.)

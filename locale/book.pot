@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 14:28+0000\n"
+"POT-Creation-Date: 2019-11-15 13:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,113 +25,95 @@ msgstr ""
 msgid "Tarantool has an append-only storage architecture: it appends data to files but it never overwrites earlier data. The :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` removes old files after a checkpoint. You can prevent or delay the garbage collector's action by configuring the :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at any time, with minimal overhead on database performance."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:20
-msgid "backup.start() and backup.stop()"
+#: ../doc/book/admin/backups.rst:16
+msgid "Two functions are helpful for backups in certain situations:"
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:22
-msgid "Two functions are helpful for backups in certain situations."
+#: ../doc/book/admin/backups.rst:18
+msgid ":ref:`box.backup.start() <reference_lua-box_backup-backup_start>` informs the server that activities related to the removal of outdated backups must be suspended and returns a table with the names of snapshot and vinyl files that should be copied."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:24
-msgid "``box.backup.start()`` informs the server that activities related to the removal of outdated backups must be suspended and returns a table with the names of snapshot and vinyl files that should be copied. Example:"
+#: ../doc/book/admin/backups.rst:23
+msgid ":ref:`box.backup.stop() <reference_lua-box_backup-backup_stop>` later informs the server that normal operations may resume."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:28
-msgid "tarantool> box.backup.start()\n"
-"---\n"
-"- - ./00000000000000000015.snap\n"
-"  - ./00000000000000000000.vylog\n"
-"  - ./513/0/00000000000000000002.index\n"
-"  - ./513/0/00000000000000000002.run\n"
-"..."
-msgstr ""
-
-#: ../doc/book/admin/backups.rst:40
-msgid "To guarantee an opportunity to copy these files Tarantool will not delete them. But there will be no read-only mode and checkpoints will continue by schedule as usual."
-msgstr ""
-
-#: ../doc/book/admin/backups.rst:44
-msgid "Later ``box.backup.stop()`` informs the server that normal operations may resume. Starting with Tarantool 1.10.1 there is a new optional argument, ``box.backup.start(n)``, where ``n`` indicates the checkpoint to use relative to the latest checkpoint -- for example ``n = 0`` means \"backup will be based on the latest checkpoint\", ``n = 1`` means \"backup will be based on the first checkpoint before the latest checkpoint (counting backwards)\", and so on, and the default value for ``n`` is zero."
-msgstr ""
-
-#: ../doc/book/admin/backups.rst:57
+#: ../doc/book/admin/backups.rst:30
 msgid "Hot backup (memtx)"
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:59
+#: ../doc/book/admin/backups.rst:32
 msgid "This is a special case when there are only in-memory tables."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:61
+#: ../doc/book/admin/backups.rst:34
 msgid "The last :ref:`snapshot file <index-box_persistence>` is a backup of the entire database; and the :ref:`WAL <internals-wal>` files that are made after the last snapshot are incremental backups. Therefore taking a backup is a matter of copying the snapshot and WAL files."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:66
+#: ../doc/book/admin/backups.rst:39
 msgid "Use ``tar`` to make a (possibly compressed) copy of the latest .snap and .xlog files on the :ref:`memtx_dir <cfg_basic-memtx_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>` directories."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:70
+#: ../doc/book/admin/backups.rst:43
 msgid "If there is a security policy, encrypt the .tar file."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:72
+#: ../doc/book/admin/backups.rst:45
 msgid "Copy the .tar file to a safe place."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:74
+#: ../doc/book/admin/backups.rst:47
 msgid "Later, restoring the database is a matter of taking the .tar file and putting its contents back in the ``memtx_dir`` and ``wal_dir`` directories."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:81
+#: ../doc/book/admin/backups.rst:54
 msgid "Hot backup (vinyl/memtx)"
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:83
+#: ../doc/book/admin/backups.rst:56
 msgid "Vinyl stores its files in :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, and creates a folder for each database space. Dump and compaction processes are append-only and create new files. The Tarantool garbage collector may remove old files after each checkpoint."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:88
+#: ../doc/book/admin/backups.rst:61
 msgid "To take a mixed backup:"
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:90
-msgid "Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the :ref:`administrative console <admin-security>`. This will suspend garbage collection till the next ``box.backup.stop()`` and will return a list of files to back up."
+#: ../doc/book/admin/backups.rst:63
+msgid "Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the :ref:`administrative console <admin-security>`. This will return a list of files to back up and suspend garbage collection for them till the next ``box.backup.stop()``."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:95
+#: ../doc/book/admin/backups.rst:67
 msgid "Copy the files from the list to a safe location. This will include memtx snapshot files, vinyl run and index files, at a state consistent with the last checkpoint."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:99
-msgid "Issue ``box.backup.stop()`` so the garbage collector can continue."
+#: ../doc/book/admin/backups.rst:71
+msgid "Issue ``box.backup.stop()`` so the garbage collector can continue as usual."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:105
+#: ../doc/book/admin/backups.rst:77
 msgid "Continuous remote backup (memtx)"
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:107
+#: ../doc/book/admin/backups.rst:79
 msgid "The :ref:`replication <replication>` feature is useful for backup as well as for load balancing."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:110
+#: ../doc/book/admin/backups.rst:82
 msgid "Therefore taking a backup is a matter of ensuring that any given replica is up to date, and doing a cold backup on it. Since all the other replicas continue to operate, this is not a cold backup from the end user’s point of view. This could be done on a regular basis, with a ``cron`` job or with a Tarantool fiber."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:119
+#: ../doc/book/admin/backups.rst:91
 msgid "Continuous backup (memtx)"
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:121
+#: ../doc/book/admin/backups.rst:93
 msgid "The logged changes done since the last cold backup must be secured, while the system is running."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:124
+#: ../doc/book/admin/backups.rst:96
 msgid "For this purpose, you need a file copy utility that will do the copying remotely and continuously, copying only the parts of a write ahead log file that are changing. One such utility is `rsync <https://en.wikipedia.org/wiki/Rsync>`_."
 msgstr ""
 
-#: ../doc/book/admin/backups.rst:129
+#: ../doc/book/admin/backups.rst:101
 msgid "Alternatively, you need an ordinary file copy utility, but there should be frequent production of new snapshot files or new WAL files as changes occur, so that only the new files need to be copied."
 msgstr ""
 
@@ -616,18 +598,18 @@ msgid "The following steps are applicable only to data in memtx storage engine. 
 msgstr ""
 
 #: ../doc/book/admin/disaster_recovery.rst:115
-msgid "Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable checkpointing with :ref:`box.backup.start() <admin-backups-backup_start>`. Disabling the checkpointing is necessary to prevent the Tarantool garbage collector from removing files made with older checkpoints."
+msgid "Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable deletion of expired checkpoints with :ref:`box.backup.start() <admin-backups-backup_start>`. This will prevent the Tarantool garbage collector from removing files made with older checkpoints until :ref:`box.backup.stop() <admin-backups-backup_start>` is called."
 msgstr ""
 
-#: ../doc/book/admin/disaster_recovery.rst:121
+#: ../doc/book/admin/disaster_recovery.rst:120
 msgid "Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tarantoolctl cat`` command to calculate at which lsn the data loss occurred."
 msgstr ""
 
-#: ../doc/book/admin/disaster_recovery.rst:124
+#: ../doc/book/admin/disaster_recovery.rst:123
 msgid "Start a new instance (instance#1) and use ``tarantoolctl play`` command to play to it the contents of .snap/.xlog files up to the calculated lsn."
 msgstr ""
 
-#: ../doc/book/admin/disaster_recovery.rst:127
+#: ../doc/book/admin/disaster_recovery.rst:126
 msgid "Bootstrap a new replica from the recovered master (instance#1)."
 msgstr ""
 
@@ -4479,7 +4461,7 @@ msgstr ""
 #: ../doc/book/box/engines/vinyl.rst:548
 #: ../doc/book/cartridge/cartridge_admin.rst:147
 #: ../doc/book/cartridge/cartridge_dev.rst:341
-#: ../doc/book/cartridge/cartridge_dev.rst:1227
+#: ../doc/book/cartridge/cartridge_dev.rst:1229
 msgid "For example:"
 msgstr ""
 
@@ -5396,26 +5378,21 @@ msgid "Submodule `box.ctl`"
 msgstr ""
 
 #: ../doc/book/box/box_ctl.rst:9
-msgid "The ``box.ctl`` submodule contains two wait functions and two functions related to triggers."
+msgid "The ``box.ctl`` submodule contains two functions: ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write). The functions are useful during initialization of a server."
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:12
-msgid "The wait functions ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write) are useful during initialization of a server."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:15
+#: ../doc/book/box/box_ctl.rst:14
 msgid "A particular use is for :ref:`box_once() <box-once>`. For example, when a replica is initializing, it may call a ``box.once()`` function while the server is still in read-only mode, and fail to make changes that are necessary only once before the replica is fully initialized. This could cause conflicts between a master and a replica if the master is in read-write mode and the replica is in read-only mode. Waiting until \"read only mode = false\" solves this problem."
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:25
+#: ../doc/book/box/box_ctl.rst:24
 msgid "To see whether a function is already in read-only or read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`."
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:32
+#: ../doc/book/box/box_ctl.rst:31
 msgid "Wait until ``box.info.ro`` is true."
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_index.rst:0
@@ -5489,12 +5466,11 @@ msgstr ""
 msgid "Parameters"
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:34
-#: ../doc/book/box/box_ctl.rst:57
+#: ../doc/book/box/box_ctl.rst:33
+#: ../doc/book/box/box_ctl.rst:56
 msgid "maximum number of seconds to wait"
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_index.rst:0
@@ -5576,14 +5552,13 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:35
-#: ../doc/book/box/box_ctl.rst:58
-msgid "nil, or error (errors may be due to timeout or fiber cancellation)"
+#: ../doc/book/box/box_ctl.rst:34
+#: ../doc/book/box/box_ctl.rst:57
+msgid "nil, or error may be thrown due to timeout or fiber cancellation"
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:37
-#: ../doc/book/box/box_ctl.rst:61
-#: ../doc/book/box/box_ctl.rst:104
+#: ../doc/book/box/box_ctl.rst:36
+#: ../doc/book/box/box_ctl.rst:60
 #: ../doc/book/box/box_index.rst:117
 #: ../doc/book/box/box_index.rst:503
 #: ../doc/book/box/box_index.rst:643
@@ -5596,9 +5571,9 @@ msgstr ""
 #: ../doc/book/box/box_index.rst:893
 #: ../doc/book/box/box_index.rst:991
 #: ../doc/book/box/box_index.rst:1004
-#: ../doc/book/box/box_info.rst:206
+#: ../doc/book/box/box_info.rst:204
 #: ../doc/book/box/box_introspection.rst:14
-#: ../doc/book/box/box_introspection.rst:79
+#: ../doc/book/box/box_introspection.rst:78
 #: ../doc/book/box/box_introspection.rst:141
 #: ../doc/book/box/box_schema.rst:280
 #: ../doc/book/box/box_schema.rst:318
@@ -5648,14 +5623,14 @@ msgstr ""
 #: ../doc/book/box/box_space.rst:1879
 #: ../doc/book/box/box_space.rst:1949
 #: ../doc/book/box/box_space.rst:2109
-#: ../doc/book/box/box_space.rst:2387
-#: ../doc/book/box/box_space.rst:2419
+#: ../doc/book/box/box_space.rst:2388
+#: ../doc/book/box/box_space.rst:2420
 #: ../doc/book/box/box_tuple.rst:95
 #: ../doc/book/box/box_txn_management.rst:155
 msgid "**Example:**"
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:39
+#: ../doc/book/box/box_ctl.rst:38
 msgid "tarantool> box.info().ro\n"
 "---\n"
 "- false\n"
@@ -5667,110 +5642,14 @@ msgid "tarantool> box.info().ro\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:55
+#: ../doc/book/box/box_ctl.rst:54
 msgid "Wait until box.info.ro is false."
 msgstr ""
 
-#: ../doc/book/box/box_ctl.rst:63
+#: ../doc/book/box/box_ctl.rst:62
 msgid "tarantool> box.ctl.wait_rw(0.1)\n"
 "---\n"
 "..."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:71
-msgid "The ``box.ctl`` submodule also contains two functions for the two :ref:`server trigger <triggers>` definitions: ``on_schema_init`` and ``on_shutdown``."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:76
-msgid "Create a \"schema_init :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed when :ref:`box.cfg{} <index-book_cfg>` happens for the first time. That is, the ``schema_init`` trigger is called before the server's configuration and recovery begins, and therefore ``box.ctl.on_schema_init`` must be called before ``box.cfg`` is called."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:83
-msgid "Parameter: trigger-function (function) – function which will become the trigger function"
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:85
-msgid "Parameter: old-trigger-function (function) – existing trigger function which will be replaced by trigger-function"
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:87
-msgid "Return:     nil or function pointer"
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:89
-#: ../doc/book/box/box_ctl.rst:152
-#: ../doc/book/box/box_session.rst:310
-#: ../doc/book/box/box_session.rst:346
-#: ../doc/book/box/box_session.rst:421
-#: ../doc/book/box/box_space.rst:1084
-msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:92
-msgid "A common use is: make a ``schema_init`` trigger function which creates a ``before_replace`` trigger function on a system space. Thus, since system spaces are created when the server starts, the ``before_replace`` triggers will be activated for each tuple in each system space. For example, such a trigger could change the storage engine of a given space, or make a given space replica-local while a replica is being bootstrapped. Making such a change after ``box.cfg`` is not reliable because other connections might use the database before the change can be made."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:102
-#: ../doc/book/box/box_ctl.rst:155
-#: ../doc/book/box/box_session.rst:314
-#: ../doc/book/box/box_session.rst:350
-#: ../doc/book/box/box_session.rst:425
-#: ../doc/book/box/box_space.rst:1094
-#: ../doc/book/box/box_space.rst:1179
-#: ../doc/book/box/box_txn_management.rst:210
-msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:106
-msgid "Suppose that, before the server is fully up and ready for connections, you want to make sure that the engine of space ``space_name`` is vinyl. So you want to make a trigger that will be activated when a tuple is inserted in the ``_space`` system space. In this case you could end up with a master that has space-name with ``engine='memtx'`` and a replica that has space_name with ``engine='vinyl'``, with the same contents."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:115
-msgid "function function_for_before_replace(old, new)\n"
-"  if new[3] == 'space_name' and new[4] ~= 'vinyl' then\n"
-"    return new:update{{'=', 4, 'vinyl'}}\n"
-"  end\n"
-"end\n"
-"\n"
-"box.ctl.on_schema_init(function()\n"
-"  box.space._space:before_replace(function_for_before_replace)\n"
-"end)\n"
-"\n"
-"box.cfg{replication='master_uri', ...}"
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:133
-msgid "Create a \"shutdown :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed whenever   :ref:`os.exit() <os-exit>` happens, or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination). The trigger function is actually called just before shutdown, so the trigger function can still refer to any methods and members in other Tarantool modules."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:142
-msgid "Like :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>`, ``box.ctl.on_shutdown()`` may be done before ``box.cfg{}`` is invoked."
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:145
-#: ../doc/book/box/box_session.rst:306
-#: ../doc/book/box/box_session.rst:342
-#: ../doc/book/box/box_session.rst:417
-#: ../doc/book/box/box_txn_management.rst:201
-msgid "function which will become the trigger function"
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:147
-#: ../doc/book/box/box_session.rst:307
-#: ../doc/book/box/box_session.rst:343
-#: ../doc/book/box/box_session.rst:418
-#: ../doc/book/box/box_txn_management.rst:203
-msgid "existing trigger function which will be replaced by trigger-function"
-msgstr ""
-
-#: ../doc/book/box/box_ctl.rst:150
-#: ../doc/book/box/box_session.rst:308
-#: ../doc/book/box/box_session.rst:344
-#: ../doc/book/box/box_session.rst:419
-#: ../doc/book/box/box_space.rst:1082
-#: ../doc/book/box/box_space.rst:1168
-#: ../doc/book/box/box_txn_management.rst:205
-msgid "nil or function pointer"
 msgstr ""
 
 #: ../doc/book/box/box_index.rst:5
@@ -5813,7 +5692,7 @@ msgstr ""
 #: ../doc/book/box/box_slab.rst:29
 #: ../doc/book/box/box_space.rst:29
 #: ../doc/book/box/box_space.rst:295
-#: ../doc/book/box/box_space.rst:2293
+#: ../doc/book/box/box_space.rst:2294
 #: ../doc/book/box/box_tuple.rst:30
 #: ../doc/book/box/box_txn_management.rst:60
 msgid "Name"
@@ -6071,8 +5950,8 @@ msgstr ""
 
 #: ../doc/book/box/box_index.rst:115
 #: ../doc/book/box/box_index.rst:945
-#: ../doc/book/box/box_info.rst:204
-#: ../doc/book/box/box_introspection.rst:77
+#: ../doc/book/box/box_info.rst:202
+#: ../doc/book/box/box_introspection.rst:76
 #: ../doc/book/box/box_schema.rst:141
 #: ../doc/book/box/box_slab.rst:53
 #: ../doc/book/box/box_slab.rst:112
@@ -6201,7 +6080,7 @@ msgstr ""
 #: ../doc/book/box/box_index_rtree.csv:1
 #: ../doc/book/box/box_schema.rst:131
 #: ../doc/book/box/box_space.rst:295
-#: ../doc/book/box/box_space.rst:2293
+#: ../doc/book/box/box_space.rst:2294
 msgid "Type"
 msgstr ""
 
@@ -6216,7 +6095,7 @@ msgstr ""
 #: ../doc/book/box/box_index.rst:315
 #: ../doc/book/box/box_index.rst:351
 #: ../doc/book/box/box_index_rtree.csv:1
-#: ../doc/book/box/box_space.rst:2293
+#: ../doc/book/box/box_space.rst:2294
 msgid "Description"
 msgstr ""
 
@@ -7649,20 +7528,20 @@ msgstr ""
 msgid "``follow`` means that downstream replication is in progress."
 msgstr ""
 
-#: ../doc/book/box/box_info.rst:198
-#: ../doc/book/box/box_introspection.rst:71
+#: ../doc/book/box/box_info.rst:196
+#: ../doc/book/box/box_introspection.rst:70
 msgid "Since ``box.info`` contents are dynamic, it's not possible to iterate over keys with the Lua ``pairs()`` function. For this purpose, ``box.info()`` builds and returns a Lua table with all keys and values provided in the submodule."
 msgstr ""
 
-#: ../doc/book/box/box_info.rst:203
+#: ../doc/book/box/box_info.rst:201
 msgid "keys and values in the submodule"
 msgstr ""
 
-#: ../doc/book/box/box_info.rst:208
+#: ../doc/book/box/box_info.rst:206
 msgid "This example is for a master-replica set that contains one master instance and one replica instance. The request was issued at the replica instance."
 msgstr ""
 
-#: ../doc/book/box/box_info.rst:211
+#: ../doc/book/box/box_info.rst:209
 msgid "tarantool> box.info()\n"
 "---\n"
 "- vinyl: []\n"
@@ -7777,11 +7656,11 @@ msgstr ""
 msgid "The replication fields are blank unless the instance is a :ref:`replica <index-box_replication>`. The replication fields are in an array if the instance is a replica for more than one master."
 msgstr ""
 
-#: ../doc/book/box/box_introspection.rst:76
+#: ../doc/book/box/box_introspection.rst:75
 msgid "keys and values in the submodule."
 msgstr ""
 
-#: ../doc/book/box/box_introspection.rst:81
+#: ../doc/book/box/box_introspection.rst:80
 msgid "tarantool> box.info()\n"
 "---\n"
 "- server:\n"
@@ -7816,21 +7695,33 @@ msgid "tarantool> box.info()\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_introspection.rst:120
+#: ../doc/book/box/box_introspection.rst:119
 #: ../doc/book/box/box_slab.rst:5
 msgid "Submodule `box.slab`"
 msgstr ""
 
-#: ../doc/book/box/box_introspection.rst:124
+#: ../doc/book/box/box_introspection.rst:123
 msgid "The ``box.slab`` submodule provides access to slab allocator statistics. The slab allocator is the main allocator used to store tuples. This can be used to monitor the total memory use and memory fragmentation."
 msgstr ""
 
-#: ../doc/book/box/box_introspection.rst:128
-msgid "The display of slabs is broken down by the slab size -- 64-byte, 136-byte, and so on. The example omits the slabs which are empty. The example display is saying that: * there are 16 items stored in the 64-byte slab (and 16*64=102 so bytes_used = 1024); * there is 1 item stored in the 136-byte slab (and 136*1=136 so bytes_used = 136); * the ``arena_used`` value is the total of all the bytes_used values (1024+136 = 1160); * the ``arena_size`` value is the ``arena_used`` value plus the total of all the"
+#: ../doc/book/box/box_introspection.rst:127
+msgid "The display of slabs is broken down by the slab size -- 64-byte, 136-byte, and so on. The example omits the slabs which are empty. The example display is saying that:"
 msgstr ""
 
-#: ../doc/book/box/box_introspection.rst:135
-msgid "bytes_free values (1160+4193200+4194088 = 8388448)."
+#: ../doc/book/box/box_introspection.rst:131
+msgid "there are 16 items stored in the 64-byte slab (and 16*64=102 so bytes_used = 1024);"
+msgstr ""
+
+#: ../doc/book/box/box_introspection.rst:132
+msgid "there is 1 item stored in the 136-byte slab (and 136*1=136 so bytes_used = 136);"
+msgstr ""
+
+#: ../doc/book/box/box_introspection.rst:133
+msgid "the ``arena_used`` value is the total of all the bytes_used values (1024+136 = 1160);"
+msgstr ""
+
+#: ../doc/book/box/box_introspection.rst:134
+msgid "the ``arena_size`` value is the ``arena_used`` value plus the total of all the bytes_free values (1160+4193200+4194088 = 8388448)."
 msgstr ""
 
 #: ../doc/book/box/box_introspection.rst:137
@@ -8280,8 +8171,8 @@ msgid "space contents are temporary: changes are not stored in the :ref:`write-a
 msgstr ""
 
 #: ../doc/book/box/box_schema.rst:173
-#: ../doc/book/box/box_space.rst:2295
-#: ../doc/book/box/box_space.rst:2298
+#: ../doc/book/box/box_space.rst:2296
+#: ../doc/book/box/box_space.rst:2299
 msgid "user"
 msgstr ""
 
@@ -8339,7 +8230,7 @@ msgid "``password`` (default = '') - string; the ``password`` = *password* speci
 msgstr ""
 
 #: ../doc/book/box/box_schema.rst:232
-#: ../doc/book/box/box_space.rst:2385
+#: ../doc/book/box/box_space.rst:2386
 msgid "The maximum number of users is 32."
 msgstr ""
 
@@ -9373,12 +9264,51 @@ msgstr ""
 msgid "Define a trigger for execution when a new session is created due to an event such as :ref:`console.connect <console-connect>`. The trigger function will be the first thing executed after a new session is created. If the trigger execution fails and raises an error, the error is sent to the client and the connection is closed."
 msgstr ""
 
+#: ../doc/book/box/box_session.rst:306
+#: ../doc/book/box/box_session.rst:342
+#: ../doc/book/box/box_session.rst:417
+#: ../doc/book/box/box_txn_management.rst:201
+msgid "function which will become the trigger function"
+msgstr ""
+
+#: ../doc/book/box/box_session.rst:307
+#: ../doc/book/box/box_session.rst:343
+#: ../doc/book/box/box_session.rst:418
+#: ../doc/book/box/box_txn_management.rst:203
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+#: ../doc/book/box/box_session.rst:308
+#: ../doc/book/box/box_session.rst:344
+#: ../doc/book/box/box_session.rst:419
+#: ../doc/book/box/box_space.rst:1082
+#: ../doc/book/box/box_space.rst:1168
+#: ../doc/book/box/box_txn_management.rst:205
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../doc/book/box/box_session.rst:310
+#: ../doc/book/box/box_session.rst:346
+#: ../doc/book/box/box_session.rst:421
+#: ../doc/book/box/box_space.rst:1084
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
 #: ../doc/book/box/box_session.rst:312
 #: ../doc/book/box/box_session.rst:348
 #: ../doc/book/box/box_session.rst:423
 #: ../doc/book/box/box_space.rst:1087
 #: ../doc/book/box/box_space.rst:1173
 msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+#: ../doc/book/box/box_session.rst:314
+#: ../doc/book/box/box_session.rst:350
+#: ../doc/book/box/box_session.rst:425
+#: ../doc/book/box/box_space.rst:1094
+#: ../doc/book/box/box_space.rst:1179
+#: ../doc/book/box/box_txn_management.rst:210
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
 msgstr ""
 
 #: ../doc/book/box/box_session.rst:318
@@ -10395,7 +10325,7 @@ msgid "{field_no, ``'unsigned'`` or ``'string'`` or ``'integer'`` or ``'number'`
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:309
-msgid "``{1, 'unsigned'}``"
+msgid "``{field = 1, type = 'unsigned'}``"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:317
@@ -10407,7 +10337,7 @@ msgid "affects :ref:`RTREE <box_index-rtree>` only"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:317
-#: ../doc/book/box/box_space.rst:2303
+#: ../doc/book/box/box_space.rst:2304
 #: ../doc/book/cartridge/cartridge_admin.rst:658
 #: ../doc/book/cartridge/cartridge_admin.rst:826
 msgid "2"
@@ -10530,7 +10460,7 @@ msgstr ""
 msgid "tarantool> s = box.space.tester\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary', {unique = true, parts = {1, 'unsigned', 2, 'string'}})\n"
+"tarantool> s:create_index('primary', {unique = true, parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})\n"
 "---\n"
 "..."
 msgstr ""
@@ -10724,7 +10654,7 @@ msgid "**Allowing null for an indexed key:** If the index type is TREE, and the 
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:484
-msgid "box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})"
+msgid "box.space.tester:create_index('I',{unique=true,parts={{field = 2, type = 'number', is_nullable = true}}})"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:490
@@ -10737,7 +10667,7 @@ msgstr ""
 
 #: ../doc/book/box/box_space.rst:507
 msgid "box.space.tester:format({{name='x', type='scalar'}, {name='y', type='integer'}})\n"
-"box.space.tester:create_index('I2',{parts={{'x','scalar'}}})\n"
+"box.space.tester:create_index('I2',{parts={{'x', 'scalar'}}})\n"
 "box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})\n"
 "box.space.tester:create_index('I4',{parts={1,'scalar'}})\n"
 "box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})\n"
@@ -10757,7 +10687,7 @@ msgstr ""
 msgid "-- Example 1 -- The simplest use of path:\n"
 "-- Result will be - - [{'age': 44}]\n"
 "box.schema.space.create('T')\n"
-"box.space.T:create_index('I',{parts={{1, 'scalar', path='age'}}})\n"
+"box.space.T:create_index('I',{parts={{field = 1, type = 'scalar', path = 'age'}}})\n"
 "box.space.T:insert{{age=44}}\n"
 "box.space.T:select(44)\n"
 "-- Example 2 -- path plus format() plus JSON syntax to add clarity\n"
@@ -10775,13 +10705,13 @@ msgid "**Note re storage engine:** vinyl supports only the TREE index type, and 
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:551
-msgid "**Using the path option with [*]**  The string in a path option can contain '[*]' which is called an array index placeholder. Indexes defined with this are useful for JSON documents that all have the same structure. For example, when creating an index on field#2 for a string document that will start with ``{'data': [{'name': '...'}, {'name': '...'}]``, the parts section in the create_index request could look like: ``parts = {{2, 'str', path = 'data[*].name'}}``. Then tuples containing names can be retrieved quickly with ``index_object:select({key-value})``. In fact a single field can have multiple keys, as in this example which retrieves the same tuple twice because there are two keys 'A' and 'B' which both match the request:"
+msgid "**Using the path option with [*]**  The string in a path option can contain '[*]' which is called an array index placeholder. Indexes defined with this are useful for JSON documents that all have the same structure. For example, when creating an index on field#2 for a string document that will start with ``{'data': [{'name': '...'}, {'name': '...'}]``, the parts section in the create_index request could look like: ``parts = {{field = 2, type = 'str', path = 'data[*].name'}}``. Then tuples containing names can be retrieved quickly with ``index_object:select({key-value})``. In fact a single field can have multiple keys, as in this example which retrieves the same tuple twice because there are two keys 'A' and 'B' which both match the request:"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:561
 msgid "s = box.schema.space.create('json_documents')\n"
 "s:create_index('primarykey')\n"
-"i = s:create_index('multikey', {parts = {{2, 'str', path = 'data[*].name'}}})\n"
+"i = s:create_index('multikey', {parts = {{field = 2, type = 'str', path = 'data[*].name'}}})\n"
 "s:insert({1,\n"
 "         {data = {{name='A'},\n"
 "                  {name='B'}},\n"
@@ -10824,7 +10754,7 @@ msgid "-- Step 1: Make the space.\n"
 "-- The space needs a primary-key field, which is not the field that we\n"
 "-- will use for the functional index.\n"
 "box.schema.space.create('x', {engine = 'memtx'})\n"
-"box.space.x:create_index('i',{parts={1, 'string'}})\n"
+"box.space.x:create_index('i',{parts={field = 1, type = 'string'}})\n"
 "-- Step 2: Make the function.\n"
 "-- The function expects a tuple. In this example it will work on tuple[2]\n"
 "-- because the key souce is field number 2 in what we will insert.\n"
@@ -10837,7 +10767,7 @@ msgid "-- Step 1: Make the space.\n"
 "-- Step 4: Make the functional index.\n"
 "-- Specify the fields whose values will be passed to the function.\n"
 "-- Specify the function.\n"
-"box.space.x:create_index('j',{parts={1, 'string'},func = 'F'})\n"
+"box.space.x:create_index('j',{parts={field = 1, type = 'string'},func = 'F'})\n"
 "-- Step 5: Test.\n"
 "-- Insert a few tuples.\n"
 "-- Select using only the first letter, it will work because that is the key\n"
@@ -10876,7 +10806,7 @@ msgstr ""
 msgid "s = box.schema.space.create('withdata')\n"
 "s:format({{name = 'name', type = 'string'},\n"
 "          {name = 'address', type = 'string'}})\n"
-"pk = s:create_index('name', {parts = {1, 'string'}})\n"
+"pk = s:create_index('name', {parts = {field = 1, type = 'string'}})\n"
 "lua_code = [[function(tuple)\n"
 "               local address = string.split(tuple[2])\n"
 "               local ret = {}\n"
@@ -10892,7 +10822,7 @@ msgid "s = box.schema.space.create('withdata')\n"
 "                         opts = {is_multikey = true}})\n"
 "idx = s:create_index('addr', {unique = false,\n"
 "                              func = 'address',\n"
-"                              parts = {{1, 'string',\n"
+"                              parts = {{field = 1, type = 'string',\n"
 "                                      collation = 'unicode_ci'}}})\n"
 "s:insert({\"James\", \"SIS Building Lambeth London UK\"})\n"
 "s:insert({\"Sherlock\", \"221B Baker St Marylebone London NW1 6XE UK\"})\n"
@@ -11083,7 +11013,7 @@ msgid "tarantool> box.schema.space.create('t')\n"
 "         >                     {name='8',type='array'},\n"
 "         >                     {name='9',type='map'}})\n"
 "--- ...\n"
-"tarantool> box.space.t:create_index('i',{parts={2,'unsigned'}})\n"
+"tarantool> box.space.t:create_index('i',{parts={field = 2, type = 'unsigned'}})\n"
 "--- ...\n"
 "tarantool> box.space.t:insert{{'a'},      -- any\n"
 "         >                    1,          -- unsigned\n"
@@ -11266,7 +11196,7 @@ msgid "See also :ref:`space_object:before_replace() <box_space-before_replace>`.
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:1099
-#: ../doc/book/box/box_space.rst:2167
+#: ../doc/book/box/box_space.rst:2168
 msgid "**Example #1:**"
 msgstr ""
 
@@ -11278,7 +11208,7 @@ msgid "tarantool> function f ()\n"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:1108
-#: ../doc/book/box/box_space.rst:2212
+#: ../doc/book/box/box_space.rst:2213
 msgid "**Example #2:**"
 msgstr ""
 
@@ -11325,7 +11255,7 @@ msgstr ""
 
 #: ../doc/book/box/box_space.rst:1137
 msgid "tarantool> s = box.schema.space.create('space53')\n"
-"tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})\n"
+"tarantool> s:create_index('primary', {parts = {field = 1, type = 'unsigned'}})\n"
 "tarantool> function replace_trigger()\n"
 "         >   replace_counter = replace_counter + 1\n"
 "         > end\n"
@@ -11536,7 +11466,7 @@ msgstr ""
 msgid "tarantool> s = box.schema.space.create('tmp', {temporary=true})\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary',{parts = {1,'unsigned', 2, 'string'}})\n"
+"tarantool> s:create_index('primary',{parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})\n"
 "---\n"
 "...\n"
 "tarantool> s:insert{1,'A'}\n"
@@ -11904,9 +11834,9 @@ msgstr ""
 #: ../doc/book/box/box_space.rst:1912
 #: ../doc/book/box/box_space.rst:1978
 #: ../doc/book/box/box_space.rst:2037
-#: ../doc/book/box/box_space.rst:2156
-#: ../doc/book/box/box_space.rst:2272
-#: ../doc/book/box/box_space.rst:2411
+#: ../doc/book/box/box_space.rst:2157
+#: ../doc/book/box/box_space.rst:2273
+#: ../doc/book/box/box_space.rst:2412
 msgid "Tuples in this space contain the following fields:"
 msgstr ""
 
@@ -12189,38 +12119,38 @@ msgid "There is no guarantee that this space will be updated immediately after e
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2154
-msgid "``_space`` is a system space."
-msgstr ""
-
-#: ../doc/book/box/box_space.rst:2158
-msgid "``id``,"
+msgid "``_space`` is a system space. It contains all spaces hosted on the current Tarantool instance, both system ones and created by users."
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2159
-msgid "``owner`` (= id of user who owns the space),"
+msgid "``id``,"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2160
-msgid "``name``, ``engine``, ``field_count``,"
+msgid "``owner`` (= id of user who owns the space),"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2161
-msgid "``flags`` (e.g. temporary),"
+msgid "``name``, ``engine``, ``field_count``,"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2162
+msgid "``flags`` (e.g. temporary),"
+msgstr ""
+
+#: ../doc/book/box/box_space.rst:2163
 msgid "``format`` (as made by a :ref:`format clause <box_space-format>`)."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2164
+#: ../doc/book/box/box_space.rst:2165
 msgid "These fields are established by :ref:`space.create() <box_schema-space_create>`."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2169
-msgid "The following function will display all simple fields in all tuples of ``_space``."
+#: ../doc/book/box/box_space.rst:2170
+msgid "The following function will display every simple field in all tuples of ``_space``."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2172
+#: ../doc/book/box/box_space.rst:2173
 msgid "function example()\n"
 "  local ta = {}\n"
 "  local i, line\n"
@@ -12239,11 +12169,11 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2191
+#: ../doc/book/box/box_space.rst:2192
 msgid "Here is what ``example()`` returns in a typical installation:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2193
+#: ../doc/book/box/box_space.rst:2194
 msgid "tarantool> example()\n"
 "---\n"
 "- - '272 1 _schema memtx 0  '\n"
@@ -12262,11 +12192,11 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2214
+#: ../doc/book/box/box_space.rst:2215
 msgid "The following requests will create a space using ``box.schema.space.create()`` with a :ref:`format clause <box_space-format>`, then retrieve the ``_space`` tuple for the new space. This illustrates the typical use of the ``format`` clause, it shows the recommended names and data types for the fields."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2220
+#: ../doc/book/box/box_space.rst:2221
 msgid "tarantool> box.schema.space.create('TM', {\n"
 "         >   id = 12345,\n"
 "         >   format = {\n"
@@ -12291,75 +12221,75 @@ msgid "tarantool> box.schema.space.create('TM', {\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2249
+#: ../doc/book/box/box_space.rst:2250
 msgid "``_vspace`` is a system space that represents a virtual view. The structure of its tuples is identical to that of :ref:`_space <box_space-space>`, but permissions for certain tuples are limited in accordance with user privileges. ``_vspace`` contains only those tuples that are accessible to the current user. See :ref:`Access control <authentication>` for details about user privileges."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2255
+#: ../doc/book/box/box_space.rst:2256
 msgid "If the user has the full set of privileges (like 'admin'), the contents of ``_vspace`` match the contents of ``_space``. If the user has limited access, ``_vspace`` contains only tuples accessible to this user."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2261
+#: ../doc/book/box/box_space.rst:2262
 msgid "``_vspace`` is a system view, so it allows only read requests."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2263
+#: ../doc/book/box/box_space.rst:2264
 msgid "While the ``_space`` space requires proper access privileges, any user can always read from ``_vspace``."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2270
+#: ../doc/book/box/box_space.rst:2271
 msgid "``_user`` is a system space where user-names and password hashes are stored."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2274
+#: ../doc/book/box/box_space.rst:2275
 msgid "the numeric id of the tuple (\"id\"),"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2275
+#: ../doc/book/box/box_space.rst:2276
 msgid "the numeric id of the tuple’s creator,"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2276
-#: ../doc/book/box/box_space.rst:2414
+#: ../doc/book/box/box_space.rst:2277
+#: ../doc/book/box/box_space.rst:2415
 msgid "the name,"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2277
+#: ../doc/book/box/box_space.rst:2278
 msgid "the type: 'user' or 'role',"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2278
+#: ../doc/book/box/box_space.rst:2279
 msgid "optional password."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2280
+#: ../doc/book/box/box_space.rst:2281
 msgid "There are five special tuples in the ``_user`` space: 'guest', 'admin', 'public', 'replication', and 'super'."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2293
+#: ../doc/book/box/box_space.rst:2294
 msgid "ID"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2295
+#: ../doc/book/box/box_space.rst:2296
 msgid "guest"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2295
+#: ../doc/book/box/box_space.rst:2296
 #: ../doc/book/box/data_model.rst:513
 #: ../doc/book/cartridge/cartridge_admin.rst:651
 #: ../doc/book/cartridge/cartridge_admin.rst:821
 msgid "0"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2295
+#: ../doc/book/box/box_space.rst:2296
 msgid "Default user when connecting remotely. Usually an untrusted user with few privileges."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2298
+#: ../doc/book/box/box_space.rst:2299
 msgid "admin"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2298
+#: ../doc/book/box/box_space.rst:2299
 #: ../doc/book/box/data_model.rst:500
 #: ../doc/book/box/data_model.rst:504
 #: ../doc/book/box/data_model.rst:516
@@ -12368,80 +12298,80 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2298
+#: ../doc/book/box/box_space.rst:2299
 msgid "Default user when using Tarantool as a console. Usually an :ref:`administrative user <authentication-owners_privileges>` with all privileges."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2303
+#: ../doc/book/box/box_space.rst:2304
 msgid "public"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2303
-#: ../doc/book/box/box_space.rst:2311
-#: ../doc/book/box/box_space.rst:2315
+#: ../doc/book/box/box_space.rst:2304
+#: ../doc/book/box/box_space.rst:2312
+#: ../doc/book/box/box_space.rst:2316
 msgid "role"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2303
+#: ../doc/book/box/box_space.rst:2304
 msgid "Pre-defined :ref:`role <authentication-roles>`, automatically granted to new users when they are created with ``box.schema.user.create(user-name)``. Therefore a convenient way to grant 'read' on space 't' to every user that will ever exist is with ``box.schema.role.grant('public','read','space','t')``."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2311
+#: ../doc/book/box/box_space.rst:2312
 msgid "replication"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2311
+#: ../doc/book/box/box_space.rst:2312
 #: ../doc/book/cartridge/cartridge_admin.rst:660
 #: ../doc/book/cartridge/cartridge_admin.rst:828
 msgid "3"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2311
+#: ../doc/book/box/box_space.rst:2312
 msgid "Pre-defined :ref:`role <authentication-roles>`, which the 'admin' user can grant to users who need to use :ref:`replication <replication>` features."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2315
+#: ../doc/book/box/box_space.rst:2316
 msgid "super"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2315
+#: ../doc/book/box/box_space.rst:2316
 msgid "31"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2315
+#: ../doc/book/box/box_space.rst:2316
 msgid "Pre-defined :ref:`role <authentication-roles>`, which the 'admin' user can grant to users who need all privileges on all objects. The 'super' role has these privileges on 'universe': read, write, execute, create, drop, alter."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2323
+#: ../doc/book/box/box_space.rst:2324
 msgid "To select a tuple from the ``_user`` space, use ``box.space._user:select()``. For example, here is what happens with a select for user id = 0, which is the 'guest' user, which by default has no password:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2327
+#: ../doc/book/box/box_space.rst:2328
 msgid "tarantool> box.space._user:select{0}\n"
 "---\n"
 "- - [0, 1, 'guest', 'user']\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2336
+#: ../doc/book/box/box_space.rst:2337
 msgid "To change tuples in the ``_user`` space, do not use ordinary ``box.space`` functions for insert or update or delete. The ``_user`` space is special, so there are special functions which have appropriate error checking."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2340
+#: ../doc/book/box/box_space.rst:2341
 msgid "To create a new user, use :ref:`box.schema.user.create() <box_schema-user_create>`:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2379
+#: ../doc/book/box/box_space.rst:2380
 msgid "box.schema.user.create(*user-name*)\n"
 "box.schema.user.create(*user-name*, {if_not_exists = true})\n"
 "box.schema.user.create(*user-name*, {password = *password*})"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2349
+#: ../doc/book/box/box_space.rst:2350
 msgid "To change the user's password, use :ref:`box.schema.user.password() <box_schema-user_password>`:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2388
+#: ../doc/book/box/box_space.rst:2389
 msgid "-- To change the current user's password\n"
 "box.schema.user.passwd(*password*)\n"
 "\n"
@@ -12450,35 +12380,35 @@ msgid "-- To change the current user's password\n"
 "box.schema.user.passwd(*user-name*, *password*)"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2361
+#: ../doc/book/box/box_space.rst:2362
 msgid "To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2400
+#: ../doc/book/box/box_space.rst:2401
 msgid "box.schema.user.drop(*user-name*)"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2368
+#: ../doc/book/box/box_space.rst:2369
 msgid "To check whether a user exists, use :ref:`box.schema.user.exists() <box_schema-user_exists>`, which returns ``true`` or ``false``:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2408
+#: ../doc/book/box/box_space.rst:2409
 msgid "box.schema.user.exists(*user-name*)"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2376
+#: ../doc/book/box/box_space.rst:2377
 msgid "To find what privileges a user has, use :ref:`box.schema.user.info() <box_schema-user_info>`:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2415
+#: ../doc/book/box/box_space.rst:2416
 msgid "box.schema.user.info(*user-name*)"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2389
+#: ../doc/book/box/box_space.rst:2390
 msgid "Here is a session which creates a new user with a strong password, selects a tuple in the ``_user`` space, and then drops the user."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2392
+#: ../doc/book/box/box_space.rst:2393
 msgid "tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$'})\n"
 "---\n"
 "...\n"
@@ -12491,27 +12421,27 @@ msgid "tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2409
+#: ../doc/book/box/box_space.rst:2410
 msgid "``_ck_constraint`` is a system space where check constraints are stored."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2413
+#: ../doc/book/box/box_space.rst:2414
 msgid "the numeric id of the space (\"space_id\"),"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2415
+#: ../doc/book/box/box_space.rst:2416
 msgid "whether the check is deferred (\"is_deferred\"),"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2416
+#: ../doc/book/box/box_space.rst:2417
 msgid "the language of the expression, such as 'SQL',"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2417
+#: ../doc/book/box/box_space.rst:2418
 msgid "the expression (\"code\")"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2421
+#: ../doc/book/box/box_space.rst:2422
 msgid "tarantool> box.space._ck_constraint:select()\n"
 "---\n"
 "- - [527, 'c1', false, 'SQL', '\"f2\" > ''A''']\n"
@@ -12519,15 +12449,15 @@ msgid "tarantool> box.space._ck_constraint:select()\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2431
+#: ../doc/book/box/box_space.rst:2432
 msgid "Example: using box.space functions to read _space tuples"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2433
+#: ../doc/book/box/box_space.rst:2434
 msgid "This function will illustrate how to look at all the spaces, and for each display: approximately how many tuples it contains, and the first field of its first tuple. The function uses Tarantool ``box.space`` functions ``len()`` and ``pairs()``. The iteration through the spaces is coded as a scan of the ``_space`` system space, which contains metadata. The third field in ``_space`` contains the space name, so the key instruction ``space_name = v[3]`` means ``space_name`` is the ``space_name`` field in the tuple of ``_space`` that we've just fetched with ``pairs()``. The function returns a table:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2443
+#: ../doc/book/box/box_space.rst:2444
 msgid "function example()\n"
 "  local tuple_count, space_name, line\n"
 "  local ta = {}\n"
@@ -12551,11 +12481,11 @@ msgid "function example()\n"
 "end"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2467
+#: ../doc/book/box/box_space.rst:2468
 msgid "And here is what happens when one invokes the function:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2469
+#: ../doc/book/box/box_space.rst:2470
 msgid "tarantool> example()\n"
 "---\n"
 "- - _schema tuple_count =1 or more. first field in first tuple = cluster\n"
@@ -12573,41 +12503,41 @@ msgid "tarantool> example()\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2489
+#: ../doc/book/box/box_space.rst:2490
 msgid "Example: using box.space functions to organize a _space tuple"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2491
+#: ../doc/book/box/box_space.rst:2492
 msgid "The objective is to display field names and field types of a system space -- using metadata to find metadata."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2494
+#: ../doc/book/box/box_space.rst:2495
 msgid "To begin: how can one select the ``_space`` tuple that describes ``_space``?"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2496
+#: ../doc/book/box/box_space.rst:2497
 msgid "A simple way is to look at the constants in ``box.schema``, which tell us that there is an item named SPACE_ID == 288, so these statements will retrieve the correct tuple:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2500
+#: ../doc/book/box/box_space.rst:2501
 msgid "box.space._space:select{ 288 }\n"
 "-- or --\n"
 "box.space._space:select{ box.schema.SPACE_ID }"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2506
+#: ../doc/book/box/box_space.rst:2507
 msgid "Another way is to look at the tuples in ``box.space._index``, which tell us that there is a secondary index named 'name' for space number 288, so this statement also will retrieve the correct tuple:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2510
+#: ../doc/book/box/box_space.rst:2511
 msgid "box.space._space.index.name:select{ '_space' }"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2514
+#: ../doc/book/box/box_space.rst:2515
 msgid "However, the retrieved tuple is not easy to read:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2516
+#: ../doc/book/box/box_space.rst:2517
 msgid "tarantool> box.space._space.index.name:select{'_space'}\n"
 "---\n"
 "- - [280, 1, '_space', 'memtx', 0, {}, [{'name': 'id', 'type': 'num'}, {'name': 'owner',\n"
@@ -12617,11 +12547,11 @@ msgid "tarantool> box.space._space.index.name:select{'_space'}\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2526
+#: ../doc/book/box/box_space.rst:2527
 msgid "It looks disorganized because field number 7 has been formatted with recommended names and data types. How can one get those specific sub-fields? Since it's visible that field number 7 is an array of maps, this `for` loop will do the organizing:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2531
+#: ../doc/book/box/box_space.rst:2532
 msgid "tarantool> do\n"
 "         >   local tuple_of_space = box.space._space.index.name:get{'_space'}\n"
 "         >   for _, field in ipairs(tuple_of_space[7]) do\n"
@@ -12639,23 +12569,23 @@ msgid "tarantool> do\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2553
+#: ../doc/book/box/box_space.rst:2554
 msgid "``_vuser`` is a system space that represents a virtual view. The structure of its tuples is identical to that of :ref:`_user <box_space-user>`, but permissions for certain tuples are limited in accordance with user privileges. ``_vuser`` contains only those tuples that are accessible to the current user. See :ref:`Access control <authentication>` for details about user privileges."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2559
+#: ../doc/book/box/box_space.rst:2560
 msgid "If the user has the full set of privileges (like 'admin'), the contents of ``_vuser`` match the contents of ``_user``. If the user has limited access, ``_vuser`` contains only tuples accessible to this user."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2563
+#: ../doc/book/box/box_space.rst:2564
 msgid "To see how ``_vuser`` works, :ref:`connect to a Tarantool database remotely <connecting-remotely>` via ``tarantoolctl`` and select all tuples from the ``_user`` space, both when the 'guest' user *is* and *is not* allowed to read from the database."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2569
+#: ../doc/book/box/box_space.rst:2570
 msgid "First, start Tarantool and grant the 'guest' user with read, write and execute privileges:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2572
+#: ../doc/book/box/box_space.rst:2573
 msgid "tarantool> box.cfg{listen = 3301}\n"
 "---\n"
 "...\n"
@@ -12664,11 +12594,11 @@ msgid "tarantool> box.cfg{listen = 3301}\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2581
+#: ../doc/book/box/box_space.rst:2582
 msgid "Switch to the other terminal, connect to the Tarantool instance and select all tuples from the ``_user`` space:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2584
+#: ../doc/book/box/box_space.rst:2585
 msgid "$ tarantoolctl connect 3301\n"
 "localhost:3301> box.space._user:select{}\n"
 "---\n"
@@ -12680,25 +12610,25 @@ msgid "$ tarantoolctl connect 3301\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2596
+#: ../doc/book/box/box_space.rst:2597
 msgid "This result contains the same set of users as if you made the request from your Tarantool instance as 'admin'."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2599
+#: ../doc/book/box/box_space.rst:2600
 msgid "Switch to the first terminal and revoke the read privileges from the 'guest' user:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2601
+#: ../doc/book/box/box_space.rst:2602
 msgid "tarantool> box.schema.user.revoke('guest', 'read', 'universe')\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2607
+#: ../doc/book/box/box_space.rst:2608
 msgid "Switch to the other terminal, stop the session (to stop ``tarantoolctl``, type Ctrl+C or Ctrl+D) and repeat the ``box.space._user:select{}`` request. The access is denied:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2611
+#: ../doc/book/box/box_space.rst:2612
 msgid "$ tarantoolctl connect 3301\n"
 "localhost:3301> box.space._user:select{}\n"
 "---\n"
@@ -12706,53 +12636,53 @@ msgid "$ tarantoolctl connect 3301\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2619
+#: ../doc/book/box/box_space.rst:2620
 msgid "However, if you select from ``_vuser`` instead, the users' data available for the 'guest' user is displayed:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2622
+#: ../doc/book/box/box_space.rst:2623
 msgid "localhost:3301> box.space._vuser:select{}\n"
 "---\n"
 "- - [0, 1, 'guest', 'user', {}]\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2631
+#: ../doc/book/box/box_space.rst:2632
 msgid "``_vuser`` is a system view, so it allows only read requests."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2632
+#: ../doc/book/box/box_space.rst:2633
 msgid "While the ``_user`` space requires proper access privileges, any user can always read from ``_vuser``."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2640
+#: ../doc/book/box/box_space.rst:2641
 msgid "``_collation`` is a system space with a list of :ref:`collations <index-collation>`. There are over 270 built-in collations and users may add more. Here is one example:"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2643
+#: ../doc/book/box/box_space.rst:2644
 msgid "localhost:3301> box.space._collation:select(239)\n"
 "---\n"
 "- - [239, 'unicode_uk_s2', 1, 'ICU', 'uk', {'strength': 'secondary'}]\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2650
+#: ../doc/book/box/box_space.rst:2651
 msgid "Explanation of the fields in the example: id = 239 i.e. Tarantool's primary key is 239, name = 'unicode_uk_s2' i.e. according to Tarantool's naming convention this is a Unicode collation + it is for the uk locale + it has secondary strength, owner = 1 i.e. :ref:`the admin user <authentication-owners_privileges>`, type = 'ICU' i.e. the rules are according to `International Components for Unicode <http://site.icu-project.org/home>`_, locale = 'uk' i.e. `Ukrainian <http://www.unicode.org/cldr/charts/29/collation/uk.html>`_, opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2663
+#: ../doc/book/box/box_space.rst:2664
 msgid "``_vcollation`` is a system space with a list of :ref:`collations <index-collation>`. The structure of its tuples is identical to that of :ref:`box.space._collation <box_space-collation>`, but permissions for certain tuples are limited in accordance with user privileges."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2672
+#: ../doc/book/box/box_space.rst:2673
 msgid "Example: using data operations"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2674
+#: ../doc/book/box/box_space.rst:2675
 msgid "This example demonstrates all legal scenarios -- as well as typical errors -- for each :ref:`data operation <index-box_data-operations>` in Tarantool: :ref:`INSERT <box_space-operations-insert>`, :ref:`DELETE <box_space-operations-delete>`, :ref:`UPDATE <box_space-operations-update>`, :ref:`UPSERT <box_space-operations-upsert>`, :ref:`REPLACE <box_space-operations-replace>`, and :ref:`SELECT <box_space-operations-select>`."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2683
+#: ../doc/book/box/box_space.rst:2684
 msgid "-- Bootstrap the database --\n"
 "box.cfg{}\n"
 "format = {}\n"
@@ -12761,22 +12691,22 @@ msgid "-- Bootstrap the database --\n"
 "format[3] = {'field3', 'unsigned'}\n"
 "s = box.schema.create_space('test', {format = format})\n"
 "-- Create a primary index --\n"
-"pk = s:create_index('pk', {parts = {{'field1'}}})\n"
+"pk = s:create_index('pk', {parts = {{field = 'field1'}}})\n"
 "-- Create a unique secondary index --\n"
-"sk_uniq = s:create_index('sk_uniq', {parts = {{'field2'}}})\n"
+"sk_uniq = s:create_index('sk_uniq', {parts = {{field = 'field2'}}})\n"
 "-- Create a non-unique secondary index --\n"
-"sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{'field3'}}, unique = false})"
+"sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{field = 'field3'}}, unique = false})"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2703
+#: ../doc/book/box/box_space.rst:2704
 msgid "INSERT"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2705
+#: ../doc/book/box/box_space.rst:2706
 msgid "``insert`` accepts a well-formatted tuple and checks all keys for duplicates."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2707
+#: ../doc/book/box/box_space.rst:2708
 msgid "tarantool> -- Unique indexes: ok --\n"
 "tarantool> s:insert({1, 1, 1})\n"
 "---\n"
@@ -12802,21 +12732,21 @@ msgid "tarantool> -- Unique indexes: ok --\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2737
+#: ../doc/book/box/box_space.rst:2738
 #: ../doc/book/box/engines/vinyl.rst:139
 #: ../doc/book/box/engines/vinyl.rst:139
 msgid "DELETE"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2739
+#: ../doc/book/box/box_space.rst:2740
 msgid "``delete`` accepts a full key of any unique index."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2741
+#: ../doc/book/box/box_space.rst:2742
 msgid "``space:delete`` is an alias for \"delete by primary key\"."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2743
+#: ../doc/book/box/box_space.rst:2744
 msgid "tarantool> -- Insert some test data --\n"
 "tarantool> s:insert{3, 4, 5}\n"
 "---\n"
@@ -12889,15 +12819,15 @@ msgid "tarantool> -- Insert some test data --\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2816
+#: ../doc/book/box/box_space.rst:2817
 msgid "The key must be full: ``delete`` cannot work with partial keys."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2818
+#: ../doc/book/box/box_space.rst:2819
 msgid "tarantool> s2 = box.schema.create_space('test2')\n"
 "---\n"
 "...\n"
-"tarantool> pk2 = s2:create_index('pk2', {parts = {{1, 'unsigned'}, {2, 'unsigned'}}})\n"
+"tarantool> pk2 = s2:create_index('pk2', {parts = {{field = 1, type = 'unsigned'}, {field = 2, type = 'unsigned'}}})\n"
 "---\n"
 "...\n"
 "tarantool> s2:insert{1, 1}\n"
@@ -12923,19 +12853,19 @@ msgid "tarantool> s2 = box.schema.create_space('test2')\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2852
+#: ../doc/book/box/box_space.rst:2853
 msgid "UPDATE"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2854
+#: ../doc/book/box/box_space.rst:2855
 msgid "Similarly to ``delete``, ``update`` accepts a full key of any unique index, and also the operations to execute."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2857
+#: ../doc/book/box/box_space.rst:2858
 msgid "``space:update`` is an alias for \"update by primary key\"."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2859
+#: ../doc/book/box/box_space.rst:2860
 msgid "tarantool> -- Insert some test data --\n"
 "tarantool> s:insert{3, 4, 5}\n"
 "---\n"
@@ -13017,29 +12947,29 @@ msgid "tarantool> -- Insert some test data --\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2945
+#: ../doc/book/box/box_space.rst:2946
 #: ../doc/book/box/engines/vinyl.rst:140
 #: ../doc/book/box/engines/vinyl.rst:140
 msgid "UPSERT"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2947
+#: ../doc/book/box/box_space.rst:2948
 msgid "``upsert`` accepts a well-formatted tuple and update operations."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2949
+#: ../doc/book/box/box_space.rst:2950
 msgid "If an old tuple is found by the primary key of the specified tuple, then the update operations are applied to the old tuple, and the new tuple is ignored."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2953
+#: ../doc/book/box/box_space.rst:2954
 msgid "If no old tuple is found, then the new tuple is inserted, and the update operations are **ignored**."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2956
+#: ../doc/book/box/box_space.rst:2957
 msgid "Indexes have no ``upsert`` method - this is a method of a space."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2958
+#: ../doc/book/box/box_space.rst:2959
 msgid "tarantool> s.index.pk.upsert == nil\n"
 "---\n"
 "- true\n"
@@ -13073,11 +13003,11 @@ msgid "tarantool> s.index.pk.upsert == nil\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2992
+#: ../doc/book/box/box_space.rst:2993
 msgid "``upsert`` turns into ``insert`` when no old tuple is found by the primary key."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:2994
+#: ../doc/book/box/box_space.rst:2995
 msgid "tarantool> s:upsert({1, 2, 3}, {{'=', 2, 200}})\n"
 "---\n"
 "...\n"
@@ -13101,11 +13031,11 @@ msgid "tarantool> s:upsert({1, 2, 3}, {{'=', 2, 200}})\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3018
+#: ../doc/book/box/box_space.rst:3019
 msgid "``upsert`` searches for an old tuple by the primary index, NOT by a secondary index. This can lead to a duplication error if the new tuple ruins the uniqueness of a secondary index."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3022
+#: ../doc/book/box/box_space.rst:3023
 msgid "tarantool> s:upsert({2, 200, 3}, {{'=', 3, 300}})\n"
 "---\n"
 "- error: Duplicate key exists in unique index 'sk_uniq' in space 'test'\n"
@@ -13128,25 +13058,25 @@ msgid "tarantool> s:upsert({2, 200, 3}, {{'=', 3, 300}})\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3049
+#: ../doc/book/box/box_space.rst:3050
 #: ../doc/book/box/engines/vinyl.rst:138
 #: ../doc/book/box/engines/vinyl.rst:138
 msgid "REPLACE"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3051
+#: ../doc/book/box/box_space.rst:3052
 msgid "``replace`` accepts a well-formatted tuple and searches for an old tuple by the primary key of the new tuple."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3054
+#: ../doc/book/box/box_space.rst:3055
 msgid "If the old tuple is found, then it is deleted, and the new tuple is inserted."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3056
+#: ../doc/book/box/box_space.rst:3057
 msgid "If the old tuple was not found, then just the new tuple is inserted."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3058
+#: ../doc/book/box/box_space.rst:3059
 msgid "tarantool> s:replace{1, 2, 3}\n"
 "---\n"
 "- [1, 2, 3]\n"
@@ -13168,11 +13098,11 @@ msgid "tarantool> s:replace{1, 2, 3}\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3080
+#: ../doc/book/box/box_space.rst:3081
 msgid "``replace`` can ruin unique constraints, like ``upsert`` does."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3082
+#: ../doc/book/box/box_space.rst:3083
 msgid "tarantool> s:insert{1, 1, 1}\n"
 "---\n"
 "- [1, 1, 1]\n"
@@ -13194,19 +13124,19 @@ msgid "tarantool> s:insert{1, 1, 1}\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3108
+#: ../doc/book/box/box_space.rst:3109
 msgid "SELECT"
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3110
+#: ../doc/book/box/box_space.rst:3111
 msgid "``select`` works with any indexes (primary/secondary) and with any keys (unique/non-unique, full/partial)."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3113
+#: ../doc/book/box/box_space.rst:3114
 msgid "If a key is partial, then ``select`` searches by all keys, where the prefix matches the specified key part."
 msgstr ""
 
-#: ../doc/book/box/box_space.rst:3116
+#: ../doc/book/box/box_space.rst:3117
 msgid "tarantool> s:insert{1, 2, 3}\n"
 "---\n"
 "- [1, 2, 3]\n"
@@ -14591,7 +14521,7 @@ msgid "In our example, we first defined the primary index (named 'primary') base
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:96
-msgid "tarantool> i = s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})"
+msgid "tarantool> i = s:create_index('primary', {type = 'hash', parts = {field = 1, type = 'unsigned'}})"
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:100
@@ -14603,7 +14533,7 @@ msgid "After that, we defined a secondary index (named 'secondary') based on fie
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:108
-msgid "tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, 'string'}})"
+msgid "tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field = 2, type = 'string'}})"
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:112
@@ -15001,7 +14931,7 @@ msgid "with ``unicode`` collation:"
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:390
-msgid "tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode'}}})\n"
+msgid "tarantool> box.space.T:create_index('I', {parts = {{field = 1, type = 'str', collation='unicode'}}})\n"
 "...\n"
 "tarantool> box.space.T.index.I:select()\n"
 "---\n"
@@ -15026,7 +14956,7 @@ msgid "with ``unicode_ci`` collation:"
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:413
-msgid "tarantool> box.space.T:create_index('I', {parts = {{1,'str', collation='unicode_ci'}}})\n"
+msgid "tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str', collation='unicode_ci'}}})\n"
 "...\n"
 "tarantool> box.space.S.index.I:select()\n"
 "---\n"
@@ -15529,7 +15459,7 @@ msgstr ""
 #: ../doc/book/box/data_model.rst:840
 msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example:create_index('primary')\n"
-"tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'unsigned'}})\n"
+"tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={field = 2, type = 'unsigned'}})\n"
 "tarantool> box.space.bitset_example:insert{1,1}\n"
 "tarantool> box.space.bitset_example:insert{2,4}\n"
 "tarantool> box.space.bitset_example:insert{3,7}\n"
@@ -15560,7 +15490,7 @@ msgstr ""
 #: ../doc/book/box/data_model.rst:864
 msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example:create_index('primary')\n"
-"tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})\n"
+"tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={field = 2, type = 'ARRAY'}})\n"
 "tarantool> box.space.rtree_example:insert{1, {3, 5, 9, 10}}\n"
 "tarantool> box.space.rtree_example:insert{2, {10, 11}}\n"
 "tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})"
@@ -16525,7 +16455,7 @@ msgid "**Update operations count**"
 msgstr ""
 
 #: ../doc/book/box/limitations.rst:78
-msgid "The maximum number of operations that can be in a single update is 4000 (``BOX_UPDATE_OP_CNT_MAX``)."
+msgid "The maximum number of operations per tuple that can be in a single update is 4000 (``BOX_UPDATE_OP_CNT_MAX``)."
 msgstr ""
 
 #: ../doc/book/box/limitations.rst:83
@@ -16749,7 +16679,7 @@ msgid "Then :ref:`start the instances <cartridge-run>`, for example using ``cart
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_admin.rst:40
-#: ../doc/book/cartridge/cartridge_dev.rst:1229
+#: ../doc/book/cartridge/cartridge_dev.rst:1231
 msgid "cartridge start my_app --cfg demo.yml --run_dir ./tmp/run --foreground"
 msgstr ""
 
@@ -18261,79 +18191,81 @@ msgid "Configuring custom roles"
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_dev.rst:503
-msgid "Store your custom roles as sections in cluster-wide configuration, for example:"
+msgid "Store configurations for your custom roles as sections in cluster-wide configuration, for example:"
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_dev.rst:506
-msgid "my_role:\n"
+msgid "# YAML configuration file\n"
+"my_role:\n"
 "  notify_url: \"https://localhost:8080\""
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:511
-msgid "local notify_url = 'http://localhost'\n"
+#: ../doc/book/cartridge/cartridge_dev.rst:512
+msgid "-- init.lua file\n"
+"local notify_url = 'http://localhost'\n"
 "function my_role.apply_config(conf, opts)\n"
 "  local conf = conf['my_role'] or {}\n"
 "  notify_url = conf.notify_url or 'default'\n"
 "end"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:519
+#: ../doc/book/cartridge/cartridge_dev.rst:521
 msgid "Download and upload cluster-wide configuration using :ref:`cluster UI <cartridge-ui-configuration>` or API (via GET/PUT queries to ``admin/config`` endpoint like ``curl localhost:8081/admin/config`` and ``curl -X PUT -d \"{'my_parameter': 'value'}\" localhost:8081/admin/config``)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:525
+#: ../doc/book/cartridge/cartridge_dev.rst:527
 msgid "Utilize it in your role ``apply_config()`` function."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:527
+#: ../doc/book/cartridge/cartridge_dev.rst:529
 msgid "Every instance in the cluster stores a copy of the configuration file in its working directory (configured by ``cartridge.cfg({workdir = ...})``):"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:530
+#: ../doc/book/cartridge/cartridge_dev.rst:532
 msgid "``/var/lib/tarantool/<instance_name>/config.yml`` for instances deployed from RPM packages and managed by ``systemd``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:532
+#: ../doc/book/cartridge/cartridge_dev.rst:534
 msgid "``/home/<username>/tarantool_state/var/lib/tarantool/config.yml`` for instances deployed from archives."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:535
+#: ../doc/book/cartridge/cartridge_dev.rst:537
 msgid "The cluster's configuration is a Lua table, downloaded and uploaded as YAML. If some application-specific configuration data, e.g., a database schema as defined by DDL (data definition language), has to be stored on every instance in the cluster, you can implement your own API by adding a custom section to the table. The cluster will help you spread it safely across all instances."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:541
+#: ../doc/book/cartridge/cartridge_dev.rst:543
 msgid "Such section goes in parallel (in the same file) with the topology-specific and ``vshard``-specific ones the cluster automatically generates. Unlike the generated, the custom section's modification, validation, and application logic has to be defined."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:546
+#: ../doc/book/cartridge/cartridge_dev.rst:548
 msgid "The common way is to define two functions:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:548
+#: ../doc/book/cartridge/cartridge_dev.rst:550
 msgid "``validate_config(conf_new, conf_old)`` to validate changes made in the new configuration (``conf_new``) versus the old configuration (``conf_old``)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:550
+#: ../doc/book/cartridge/cartridge_dev.rst:552
 msgid "``apply_config(conf, opts)`` to execute any code related to a configuration change. As input, this function takes the configuration to apply (``conf``, which is actually the new configuration that you validated earlier with ``validate_config()``) and options (the ``opts`` argument that includes ``is_master``, a Boolean flag described later)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:558
+#: ../doc/book/cartridge/cartridge_dev.rst:560
 msgid "The ``validate_config()`` function must detect all configuration problems that may lead to ``apply_config()`` errors. For more information, see the :ref:`next section <cartridge-role-config-apply>`."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:562
+#: ../doc/book/cartridge/cartridge_dev.rst:564
 msgid "When implementing validation and application functions that call ``box`` ones for some reason, the following precautions apply:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:565
+#: ../doc/book/cartridge/cartridge_dev.rst:567
 msgid "Due to the :ref:`role's life cycle <cartridge-role-lifecycle>`, the cluster does not guarantee an automatic ``box.cfg()`` call prior to calling ``validate_config()``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:569
+#: ../doc/book/cartridge/cartridge_dev.rst:571
 msgid "If the validation function is to call any ``box`` functions (e.g., to check a format), make sure the calls are wrapped in a protective conditional statement that checks if ``box.cfg()`` has already happened:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:573
+#: ../doc/book/cartridge/cartridge_dev.rst:575
 msgid "-- Inside the validation function:\n"
 "\n"
 "if type(box.cfg) == 'function' then\n"
@@ -18343,19 +18275,19 @@ msgid "-- Inside the validation function:\n"
 "end"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:584
+#: ../doc/book/cartridge/cartridge_dev.rst:586
 msgid "Unlike the validation and similar to initialization function, ``apply_config()`` can call ``box`` functions freely as the cluster applies custom configuration after the automatic ``box.cfg()`` call."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:588
+#: ../doc/book/cartridge/cartridge_dev.rst:590
 msgid "However, creating spaces, users, etc., can cause replication collisions when performed on both master and replica instances simultaneously. The appropriate way is to call such ``box`` functions on masters only and let the changes propagate to replicas automatically."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:593
+#: ../doc/book/cartridge/cartridge_dev.rst:595
 msgid "Upon the ``apply_config(conf, opts)`` execution, the cluster passes an ``is_master`` flag in the ``opts`` table which you can use to wrap collision-inducing ``box`` functions in a protective conditional statement:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:597
+#: ../doc/book/cartridge/cartridge_dev.rst:599
 msgid "-- Inside the configuration application function:\n"
 "\n"
 "if opts.is_master then\n"
@@ -18365,15 +18297,15 @@ msgid "-- Inside the configuration application function:\n"
 "end"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:612
+#: ../doc/book/cartridge/cartridge_dev.rst:614
 msgid "Custom configuration example"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:614
+#: ../doc/book/cartridge/cartridge_dev.rst:616
 msgid "Consider the following code as part of the role's module (``custom-role.lua``) implementation:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:617
+#: ../doc/book/cartridge/cartridge_dev.rst:619
 msgid "#!/usr/bin/env tarantool\n"
 "-- Custom role implementation\n"
 "\n"
@@ -18412,87 +18344,87 @@ msgid "#!/usr/bin/env tarantool\n"
 "}"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:656
+#: ../doc/book/cartridge/cartridge_dev.rst:658
 msgid "Once the configuration is customized, do one of the following:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:658
+#: ../doc/book/cartridge/cartridge_dev.rst:660
 msgid "continue developing your application and pay attention to its :ref:`versioning <cartridge-versioning>`;"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:660
+#: ../doc/book/cartridge/cartridge_dev.rst:662
 msgid "(optional) :ref:`enable authorization <cartridge-auth-enable>` in the web interface."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:661
+#: ../doc/book/cartridge/cartridge_dev.rst:663
 msgid "in case the cluster is already deployed, :ref:`apply the configuration <cartridge-role-config-apply>` cluster-wide."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:668
+#: ../doc/book/cartridge/cartridge_dev.rst:670
 msgid "Applying custom role's configuration"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:670
+#: ../doc/book/cartridge/cartridge_dev.rst:672
 msgid "With the implementation showed by the :ref:`example <cartridge-role-config-example>`, you can call the ``set_secret()`` function to apply the new configuration via the administrative console or an HTTP endpoint if the role exports one."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:674
+#: ../doc/book/cartridge/cartridge_dev.rst:676
 msgid "The ``set_secret()`` function calls ``cartridge.confapplier.patch_clusterwide()`` which performs a two-phase commit:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:677
+#: ../doc/book/cartridge/cartridge_dev.rst:679
 msgid "It patches the active configuration in memory: copies the table and replaces the ``\"custom-role\"`` section in the copy with the one given by the ``set_secret()`` function."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:681
+#: ../doc/book/cartridge/cartridge_dev.rst:683
 msgid "The cluster checks if the new configuration can be applied on all instances except disabled and expelled. All instances subject to update must be healthy and ``alive`` according to the `membership module <https://www.tarantool.io/en/doc/2.2/reference/reference_rock/membership/>`_."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:686
+#: ../doc/book/cartridge/cartridge_dev.rst:688
 msgid "(**Preparation phase**) The cluster propagates the patched configuration. Every instance validates it with the ``validate_config()`` function of every registered role. Depending on the validation's result:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:690
+#: ../doc/book/cartridge/cartridge_dev.rst:692
 msgid "If successful (i.e., returns ``true``), the instance saves the new configuration to a temporary file named ``config.prepare.yml`` within the working directory."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:693
+#: ../doc/book/cartridge/cartridge_dev.rst:695
 msgid "(**Abort phase**) Otherwise, the instance reports an error and all other instances roll back the update: remove the file they may have already prepared."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:697
+#: ../doc/book/cartridge/cartridge_dev.rst:699
 msgid "(**Commit phase**) Upon successful preparation of all instances, the cluster commits the changes. Every instance:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:700
+#: ../doc/book/cartridge/cartridge_dev.rst:702
 msgid "Creates the active configuration's hard-link."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:701
+#: ../doc/book/cartridge/cartridge_dev.rst:703
 msgid "Atomically replaces the active one with the prepared. The atomic replacement is indivisible -- it can either succeed or fail entirely, never partially."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:704
+#: ../doc/book/cartridge/cartridge_dev.rst:706
 msgid "Calls the ``apply_config()`` function of every registered role."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:706
+#: ../doc/book/cartridge/cartridge_dev.rst:708
 msgid "If any of these steps fail, an error pops up in the web interface next to the corresponding instance. The cluster does not handle such errors automatically, they require manual repair."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:710
+#: ../doc/book/cartridge/cartridge_dev.rst:712
 msgid "You will avoid the repair if the ``validate_config()`` function can detect all configuration problems that may lead to ``apply_config()`` errors."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:717
+#: ../doc/book/cartridge/cartridge_dev.rst:719
 msgid "Using the built-in HTTP server"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:719
+#: ../doc/book/cartridge/cartridge_dev.rst:721
 msgid "The cluster launches an ``httpd`` server instance during initialization (``cartridge.cfg()``). You can bind a port to the instance via an environmental variable:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:723
+#: ../doc/book/cartridge/cartridge_dev.rst:725
 msgid "-- Get the port from an environmental variable or the default one:\n"
 "local http_port = os.getenv('HTTP_PORT') or '8080'\n"
 "\n"
@@ -18504,11 +18436,11 @@ msgid "-- Get the port from an environmental variable or the default one:\n"
 "})"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:735
+#: ../doc/book/cartridge/cartridge_dev.rst:737
 msgid "To make use of the ``httpd`` instance, access it and configure routes inside the ``init()`` function of some role, e.g. a role that exposes API over HTTP:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:738
+#: ../doc/book/cartridge/cartridge_dev.rst:740
 msgid "local function init(opts)\n"
 "\n"
 "...\n"
@@ -18530,27 +18462,27 @@ msgid "local function init(opts)\n"
 "end"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:760
+#: ../doc/book/cartridge/cartridge_dev.rst:762
 msgid "For more information on the usage of Tarantool's HTTP server, see `its documentation <https://github.com/tarantool/http>`_."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:767
+#: ../doc/book/cartridge/cartridge_dev.rst:769
 msgid "Implementing authorization in the web interface"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:769
+#: ../doc/book/cartridge/cartridge_dev.rst:771
 msgid "To implement authorization in the web interface of every instance in Tarantool cluster:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:772
+#: ../doc/book/cartridge/cartridge_dev.rst:774
 msgid "Implement a new, say, ``auth`` module with a ``check_password`` function. It should check the credentials of any user trying to log in to the web interface."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:775
+#: ../doc/book/cartridge/cartridge_dev.rst:777
 msgid "The ``check_password`` function accepts a username and password and returns an authentication success or failure."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:778
+#: ../doc/book/cartridge/cartridge_dev.rst:780
 msgid "-- auth.lua\n"
 "\n"
 "-- Add a function to check the credentials\n"
@@ -18567,11 +18499,11 @@ msgid "-- auth.lua\n"
 "..."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:795
+#: ../doc/book/cartridge/cartridge_dev.rst:797
 msgid "Pass the implemented ``auth`` module name as a parameter to ``cartridge.cfg()``, so the cluster can use it:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:798
+#: ../doc/book/cartridge/cartridge_dev.rst:800
 msgid "-- init.lua\n"
 "\n"
 "local ok, err = cartridge.cfg({\n"
@@ -18581,19 +18513,19 @@ msgid "-- init.lua\n"
 "})"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:808
+#: ../doc/book/cartridge/cartridge_dev.rst:810
 msgid "This adds a **Log in** button to the upper right corner of the web interface but still lets the unsigned users interact with the interface. This is convenient for testing."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:814
+#: ../doc/book/cartridge/cartridge_dev.rst:816
 msgid "Also, to authorize requests to cluster API, you can use the HTTP basic authorization header."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:817
+#: ../doc/book/cartridge/cartridge_dev.rst:819
 msgid "To require the authorization of every user in the web interface even before the cluster bootstrap, add the following line:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:820
+#: ../doc/book/cartridge/cartridge_dev.rst:822
 msgid "-- init.lua\n"
 "\n"
 "local ok, err = cartridge.cfg({\n"
@@ -18603,275 +18535,275 @@ msgid "-- init.lua\n"
 "})"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:831
+#: ../doc/book/cartridge/cartridge_dev.rst:833
 msgid "With the authentication enabled and the ``auth`` module implemented, the user will not be able to even bootstrap the cluster without logging in. After the successful login and bootstrap, the authentication can be enabled and disabled cluster-wide in the web interface and the ``auth_enabled`` parameter is ignored."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:841
+#: ../doc/book/cartridge/cartridge_dev.rst:843
 msgid "Application versioning"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:843
+#: ../doc/book/cartridge/cartridge_dev.rst:845
 msgid "Tarantool Cartridge understands semantic versioning as described at `semver.org <https://semver.org>`_. When developing an application, create new Git branches and tag them appropriately. These tags are used to calculate version increments for subsequent packaging."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:848
+#: ../doc/book/cartridge/cartridge_dev.rst:850
 msgid "For example, if your application has version 1.2.1, tag your current branch with ``1.2.1`` (annotated or not)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:851
+#: ../doc/book/cartridge/cartridge_dev.rst:853
 msgid "To retrieve the current version from Git, say:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:853
+#: ../doc/book/cartridge/cartridge_dev.rst:855
 msgid "$ git describe --long --tags\n"
 "1.2.1-12-g74864f2"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:858
+#: ../doc/book/cartridge/cartridge_dev.rst:860
 msgid "This output shows that we are 12 commits after the version 1.2.1. If we are to package the application at this point, it will have a full version of ``1.2.1-12`` and its package will be named ``<app_name>-1.2.1-12.rpm``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:862
+#: ../doc/book/cartridge/cartridge_dev.rst:864
 msgid "Non-semantic tags are prohibited. You will not be able to create a package from a branch with the latest tag being non-semantic."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:865
+#: ../doc/book/cartridge/cartridge_dev.rst:867
 msgid "Once you :ref:`package <cartridge-deploy>` your application, the version is saved in a ``VERSION`` file in the package root."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:872
+#: ../doc/book/cartridge/cartridge_dev.rst:874
 msgid "Using .cartridge-cli.ignore files"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:874
+#: ../doc/book/cartridge/cartridge_dev.rst:876
 msgid "You can add a ``.cartridge-cli.ignore`` file to your application repository to exclude particular files and/or directories from package builds."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:877
+#: ../doc/book/cartridge/cartridge_dev.rst:879
 msgid "For the most part, the logic is similar to that of ``.gitignore`` files. The major difference is that in ``.cartridge-cli.ignore`` files the order of exceptions relative to the rest of the templates does not matter, while in ``.gitignore`` files the order does matter."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:888
+#: ../doc/book/cartridge/cartridge_dev.rst:890
 msgid "**.cartridge-cli.ignore** entry"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:888
+#: ../doc/book/cartridge/cartridge_dev.rst:890
 msgid "ignores every..."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:890
+#: ../doc/book/cartridge/cartridge_dev.rst:892
 msgid "``target/``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:890
+#: ../doc/book/cartridge/cartridge_dev.rst:892
 msgid "**folder** (due to the trailing ``/``) named ``target``, recursively"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:893
+#: ../doc/book/cartridge/cartridge_dev.rst:895
 msgid "``target``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:893
+#: ../doc/book/cartridge/cartridge_dev.rst:895
 msgid "**file or folder** named ``target``, recursively"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:896
+#: ../doc/book/cartridge/cartridge_dev.rst:898
 msgid "``/target``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:896
+#: ../doc/book/cartridge/cartridge_dev.rst:898
 msgid "**file or folder** named ``target`` in the top-most directory (due to the leading ``/``)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:899
+#: ../doc/book/cartridge/cartridge_dev.rst:901
 msgid "``/target/``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:899
+#: ../doc/book/cartridge/cartridge_dev.rst:901
 msgid "**folder** named ``target`` in the top-most directory (leading and trailing ``/``)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:902
+#: ../doc/book/cartridge/cartridge_dev.rst:904
 msgid "``*.class``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:902
+#: ../doc/book/cartridge/cartridge_dev.rst:904
 msgid "every **file or folder** ending with ``.class``, recursively"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:905
+#: ../doc/book/cartridge/cartridge_dev.rst:907
 msgid "``#comment``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:905
+#: ../doc/book/cartridge/cartridge_dev.rst:907
 msgid "nothing, this is a comment (the first character is a ``#``)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:908
+#: ../doc/book/cartridge/cartridge_dev.rst:910
 msgid "``\\#comment``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:908
+#: ../doc/book/cartridge/cartridge_dev.rst:910
 msgid "every **file or folder** with name ``#comment`` (``\\`` for escaping)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:911
+#: ../doc/book/cartridge/cartridge_dev.rst:913
 msgid "``target/logs/``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:911
+#: ../doc/book/cartridge/cartridge_dev.rst:913
 msgid "every **folder** named ``logs`` which is a subdirectory of a folder named ``target``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:914
+#: ../doc/book/cartridge/cartridge_dev.rst:916
 msgid "``target/*/logs/``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:914
+#: ../doc/book/cartridge/cartridge_dev.rst:916
 msgid "every **folder** named ``logs`` two levels under a folder named ``target`` (``*`` doesn’t include ``/``)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:918
+#: ../doc/book/cartridge/cartridge_dev.rst:920
 msgid "``target/**/logs/``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:918
+#: ../doc/book/cartridge/cartridge_dev.rst:920
 msgid "every **folder** named ``logs`` somewhere under a folder named ``target`` (``**`` includes ``/``)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:922
+#: ../doc/book/cartridge/cartridge_dev.rst:924
 msgid "``*.py[co]``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:922
+#: ../doc/book/cartridge/cartridge_dev.rst:924
 msgid "every **file or folder** ending in ``.pyc`` or ``.pyo``; however, it doesn’t match ``.py!``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:925
+#: ../doc/book/cartridge/cartridge_dev.rst:927
 msgid "``*.py[!co]``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:925
+#: ../doc/book/cartridge/cartridge_dev.rst:927
 msgid "every **file or folder** ending in anything other than ``c`` or ``o``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:928
+#: ../doc/book/cartridge/cartridge_dev.rst:930
 msgid "``*.file[0-9]``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:928
+#: ../doc/book/cartridge/cartridge_dev.rst:930
 msgid "every **file or folder** ending in digit"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:930
+#: ../doc/book/cartridge/cartridge_dev.rst:932
 msgid "``*.file[!0-9]``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:930
+#: ../doc/book/cartridge/cartridge_dev.rst:932
 msgid "every **file or folder** ending in anything other than digit"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:933
+#: ../doc/book/cartridge/cartridge_dev.rst:935
 msgid "``*``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:933
+#: ../doc/book/cartridge/cartridge_dev.rst:935
 msgid "**every**"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:935
+#: ../doc/book/cartridge/cartridge_dev.rst:937
 msgid "``/*``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:935
+#: ../doc/book/cartridge/cartridge_dev.rst:937
 msgid "**everything** in the top-most directory (due to the leading ``/``)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:938
+#: ../doc/book/cartridge/cartridge_dev.rst:940
 msgid "``**/*.tar.gz``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:938
+#: ../doc/book/cartridge/cartridge_dev.rst:940
 msgid "every ``*.tar.gz`` file or folder which is **one or more** levels under the starting folder"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:942
+#: ../doc/book/cartridge/cartridge_dev.rst:944
 msgid "``!file``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:942
+#: ../doc/book/cartridge/cartridge_dev.rst:944
 msgid "every **file or folder** will be ignored even if it matches other patterns"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:950
+#: ../doc/book/cartridge/cartridge_dev.rst:952
 msgid "Deploying an application"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:952
+#: ../doc/book/cartridge/cartridge_dev.rst:954
 msgid "You have four options to deploy a Tarantool Cartridge application:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:954
+#: ../doc/book/cartridge/cartridge_dev.rst:956
 msgid "as an :ref:`rpm <cartridge-deploy-rpm>` package (for production);"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:955
+#: ../doc/book/cartridge/cartridge_dev.rst:957
 msgid "as a :ref:`deb <cartridge-deploy-deb>` package (for production);"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:956
+#: ../doc/book/cartridge/cartridge_dev.rst:958
 msgid "as a :ref:`tar+gz <cartridge-deploy-tgz>` archive (for testing, or as a workaround for production if root access is unavailable)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:958
+#: ../doc/book/cartridge/cartridge_dev.rst:960
 msgid ":ref:`from sources <cartridge-deploy-rock>` (for local testing only)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:965
+#: ../doc/book/cartridge/cartridge_dev.rst:967
 msgid "Deploying as an rpm or deb package"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:967
-#: ../doc/book/cartridge/cartridge_dev.rst:1012
+#: ../doc/book/cartridge/cartridge_dev.rst:969
+#: ../doc/book/cartridge/cartridge_dev.rst:1014
 msgid "Pack the application into a distributable:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:969
-msgid "$ cartridge pack rpm APP_NAME\n"
+#: ../doc/book/cartridge/cartridge_dev.rst:971
+msgid "$ cartridge pack rpm /path/to/<app_name>\n"
 "# -- OR --\n"
-"$ cartridge pack deb APP_NAME"
+"$ cartridge pack deb /path/to/<app_name>"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:975
+#: ../doc/book/cartridge/cartridge_dev.rst:977
 msgid "This will create an RPM package (e.g. ``./my_app-0.1.0-1.rpm``) or a DEB package (e.g. ``./my_app-0.1.0-1.deb``)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:978
+#: ../doc/book/cartridge/cartridge_dev.rst:980
 msgid "Upload the package to target servers, with ``systemctl`` supported."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:980
+#: ../doc/book/cartridge/cartridge_dev.rst:982
 msgid "Install:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:982
+#: ../doc/book/cartridge/cartridge_dev.rst:984
 msgid "$ yum install APP_NAME-VERSION.rpm\n"
 "# -- OR --\n"
 "$ dpkg -i APP_NAME-VERSION.deb"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:988
-#: ../doc/book/cartridge/cartridge_dev.rst:1029
-#: ../doc/book/cartridge/cartridge_dev.rst:1066
+#: ../doc/book/cartridge/cartridge_dev.rst:990
+#: ../doc/book/cartridge/cartridge_dev.rst:1031
+#: ../doc/book/cartridge/cartridge_dev.rst:1068
 msgid ":ref:`Configure the instance(s) <cartridge-config>`."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:990
+#: ../doc/book/cartridge/cartridge_dev.rst:992
 msgid "Start Tarantool instances with the corresponding services. You can do it using :ref:`systemctl <cartridge-run-systemctl>`, for example:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:993
+#: ../doc/book/cartridge/cartridge_dev.rst:995
 msgid "# starts a single instance\n"
 "$ systemctl start my_app\n"
 "\n"
@@ -18881,57 +18813,57 @@ msgid "# starts a single instance\n"
 "$ systemctl start my_app@storage_B"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1003
-#: ../doc/book/cartridge/cartridge_dev.rst:1051
-#: ../doc/book/cartridge/cartridge_dev.rst:1088
+#: ../doc/book/cartridge/cartridge_dev.rst:1005
+#: ../doc/book/cartridge/cartridge_dev.rst:1053
+#: ../doc/book/cartridge/cartridge_dev.rst:1090
 msgid "In case it is a cluster-aware application, proceed to :ref:`deploying the cluster <cartridge-deployment>`."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1010
+#: ../doc/book/cartridge/cartridge_dev.rst:1012
 msgid "Deploying as a tar+gz archive"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1014
-msgid "$ cartridge pack tgz APP_NAME"
-msgstr ""
-
-#: ../doc/book/cartridge/cartridge_dev.rst:1018
-msgid "This will create a tar+gz archive (e.g. ``./my_app-0.1.0-1.tgz``)."
+#: ../doc/book/cartridge/cartridge_dev.rst:1016
+msgid "$ cartridge pack tgz /path/to/<app_name>"
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_dev.rst:1020
+msgid "This will create a tar+gz archive (e.g. ``./my_app-0.1.0-1.tgz``)."
+msgstr ""
+
+#: ../doc/book/cartridge/cartridge_dev.rst:1022
 msgid "Upload the archive to target servers, with ``tarantool`` and (optionally) :ref:`cartridge-cli <cartridge-install>` installed."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1023
+#: ../doc/book/cartridge/cartridge_dev.rst:1025
 msgid "Extract the archive:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1025
+#: ../doc/book/cartridge/cartridge_dev.rst:1027
 msgid "$ tar -xzvf APP_NAME-VERSION.tgz"
-msgstr ""
-
-#: ../doc/book/cartridge/cartridge_dev.rst:1031
-#: ../doc/book/cartridge/cartridge_dev.rst:1068
-msgid "Start Tarantool instance(s). You can do it using:"
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_dev.rst:1033
 #: ../doc/book/cartridge/cartridge_dev.rst:1070
-msgid ":ref:`tarantool <cartridge-run-tarantool>`, for example:"
+msgid "Start Tarantool instance(s). You can do it using:"
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_dev.rst:1035
 #: ../doc/book/cartridge/cartridge_dev.rst:1072
+msgid ":ref:`tarantool <cartridge-run-tarantool>`, for example:"
+msgstr ""
+
+#: ../doc/book/cartridge/cartridge_dev.rst:1037
+#: ../doc/book/cartridge/cartridge_dev.rst:1074
 msgid "$ tarantool init.lua # starts a single instance"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1039
-#: ../doc/book/cartridge/cartridge_dev.rst:1076
+#: ../doc/book/cartridge/cartridge_dev.rst:1041
+#: ../doc/book/cartridge/cartridge_dev.rst:1078
 msgid "or :ref:`cartridge <cartridge-run-cartridge>`, for example:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1041
+#: ../doc/book/cartridge/cartridge_dev.rst:1043
 msgid "# in application directory\n"
 "$ cartridge start # starts all instances\n"
 "$ cartridge start .router_1 # starts a single instance\n"
@@ -18941,23 +18873,23 @@ msgid "# in application directory\n"
 "$ cartridge start my_app.router # starts a single instance"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1058
+#: ../doc/book/cartridge/cartridge_dev.rst:1060
 msgid "Deploying from sources"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1060
+#: ../doc/book/cartridge/cartridge_dev.rst:1062
 msgid "This deployment method is intended for local testing only."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1062
+#: ../doc/book/cartridge/cartridge_dev.rst:1064
 msgid "Pull all dependencies to the ``.rocks`` directory:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1064
+#: ../doc/book/cartridge/cartridge_dev.rst:1066
 msgid "$ tarantoolctl rocks make"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1078
+#: ../doc/book/cartridge/cartridge_dev.rst:1080
 msgid "# in application directory\n"
 "cartridge start # starts all instances\n"
 "cartridge start .router_1 # starts a single instance\n"
@@ -18967,205 +18899,205 @@ msgid "# in application directory\n"
 "cartridge start my_app.router # starts a single instance"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1095
+#: ../doc/book/cartridge/cartridge_dev.rst:1097
 msgid "Configuring instances"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1097
+#: ../doc/book/cartridge/cartridge_dev.rst:1099
 msgid "Instance configuration includes two sets of parameters:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1099
+#: ../doc/book/cartridge/cartridge_dev.rst:1101
 msgid "`cartridge.cfg() parameters <https://www.tarantool.io/en/rocks/cartridge/1.0/modules/cartridge.argparse/#cluster-opts>`_;"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1100
+#: ../doc/book/cartridge/cartridge_dev.rst:1102
 msgid "`box.cfg() parameters <https://www.tarantool.io/en/rocks/cartridge/1.0/modules/cartridge.argparse/#box-opts>`_."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1102
+#: ../doc/book/cartridge/cartridge_dev.rst:1104
 msgid "You can set any of these parameters in:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1104
+#: ../doc/book/cartridge/cartridge_dev.rst:1106
 msgid "Command line arguments."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1105
+#: ../doc/book/cartridge/cartridge_dev.rst:1107
 msgid "Environment variables."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1106
+#: ../doc/book/cartridge/cartridge_dev.rst:1108
 msgid "YAML configuration file."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1107
+#: ../doc/book/cartridge/cartridge_dev.rst:1109
 msgid "``init.lua`` file."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1109
+#: ../doc/book/cartridge/cartridge_dev.rst:1111
 msgid "The order here indicates the priority: command-line arguments override environment variables, and so forth."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1112
+#: ../doc/book/cartridge/cartridge_dev.rst:1114
 msgid "No matter how you :ref:`start the instances <cartridge-run>`, you need to set the following ``cartridge.cfg()`` parameters for each instance:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1115
+#: ../doc/book/cartridge/cartridge_dev.rst:1117
 msgid "``advertise_uri`` -- either ``<HOST>:<PORT>``, or ``<HOST>:``, or ``<PORT>``. Used by other instances to connect to the current one. **DO NOT** specify ``0.0.0.0`` -- this must be an external IP address, not a socket bind."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1119
+#: ../doc/book/cartridge/cartridge_dev.rst:1121
 msgid "``http_port`` -- port to open administrative web interface and API on. Defaults to ``8081``. To disable it, specify ``\"http_enabled\": False``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1122
+#: ../doc/book/cartridge/cartridge_dev.rst:1124
 msgid "``workdir`` -- a directory where all data will be stored: snapshots, wal logs, and ``cartridge`` configuration file. Defaults to ``.``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1129
+#: ../doc/book/cartridge/cartridge_dev.rst:1131
 msgid "If you start instances using ``cartridge`` CLI or ``systemctl``, save the configuration as a YAML file, for example:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1132
+#: ../doc/book/cartridge/cartridge_dev.rst:1134
 msgid "my_app.router: {\"advertise_uri\": \"localhost:3301\", \"http_port\": 8080}\n"
 "my_app.storage_A: {\"advertise_uri\": \"localhost:3302\", \"http_enabled\": False}\n"
 "my_app.storage_B: {\"advertise_uri\": \"localhost:3303\", \"http_enabled\": False}"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1138
+#: ../doc/book/cartridge/cartridge_dev.rst:1140
 msgid "With ``cartridge`` CLI, you can pass the path to this file as the ``--cfg`` command-line argument to the ``cartridge start`` command -- or specify the path in ``cartridge`` CLI configuration (in ``./.cartridge.yml`` or ``~/.cartridge.yml``):"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1142
+#: ../doc/book/cartridge/cartridge_dev.rst:1144
 msgid "cfg: cartridge.yml\n"
 "run_dir: tmp/run\n"
 "apps_path: /usr/local/share/tarantool"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1148
+#: ../doc/book/cartridge/cartridge_dev.rst:1150
 msgid "With ``systemctl``, save the YAML file to ``/etc/tarantool/conf.d/`` (the default ``systemd`` path) or to a location set in the ``TARANTOOL_CFG`` environment variable."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1154
+#: ../doc/book/cartridge/cartridge_dev.rst:1156
 msgid "If you start instances with ``tarantool init.lua``, you need to pass other configuration options as command-line parameters and environment variables, for example:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1158
+#: ../doc/book/cartridge/cartridge_dev.rst:1160
 msgid "$ tarantool init.lua --alias router --memtx-memory 100 --workdir \"~/db/3301\" --advertise_uri \"localhost:3301\" --http_port \"8080\""
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1166
+#: ../doc/book/cartridge/cartridge_dev.rst:1168
 msgid "Starting/stopping instances"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1168
+#: ../doc/book/cartridge/cartridge_dev.rst:1170
 msgid "Depending on your :ref:`deployment method <cartridge-deploy>`, you can start/stop the instances using :ref:`tarantool <cartridge-run-tarantool>`, :ref:`cartridge CLI <cartridge-run-cartridge>`, or :ref:`systemctl <cartridge-run-systemctl>`."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1177
+#: ../doc/book/cartridge/cartridge_dev.rst:1179
 msgid "Start/stop using ``tarantool``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1179
+#: ../doc/book/cartridge/cartridge_dev.rst:1181
 msgid "With ``tarantool``, you can start only a single instance:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1181
+#: ../doc/book/cartridge/cartridge_dev.rst:1183
 msgid "$ tarantool init.lua # the simplest command"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1185
+#: ../doc/book/cartridge/cartridge_dev.rst:1187
 msgid "You can also :ref:`specify more options <cartridge-config-tarantool>` on the command line or in environment variables."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1188
+#: ../doc/book/cartridge/cartridge_dev.rst:1190
 msgid "To stop the instance, use Ctrl+C."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1194
+#: ../doc/book/cartridge/cartridge_dev.rst:1196
 msgid "Start/stop using ``cartridge`` CLI"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1196
+#: ../doc/book/cartridge/cartridge_dev.rst:1198
 msgid "With ``cartridge`` CLI, you can start one or multiple instances:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1198
+#: ../doc/book/cartridge/cartridge_dev.rst:1200
 msgid "$ cartridge start [APP_NAME[.INSTANCE_NAME]] [options]"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1202
+#: ../doc/book/cartridge/cartridge_dev.rst:1204
 msgid "The options are:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1210
+#: ../doc/book/cartridge/cartridge_dev.rst:1212
 msgid "``--script FILE``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1205
+#: ../doc/book/cartridge/cartridge_dev.rst:1207
 msgid "Application's entry point. Defaults to:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1208
+#: ../doc/book/cartridge/cartridge_dev.rst:1210
 msgid "``TARANTOOL_SCRIPT``, or"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1209
+#: ../doc/book/cartridge/cartridge_dev.rst:1211
 msgid "``./init.lua`` when running from the app's directory, or"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1210
+#: ../doc/book/cartridge/cartridge_dev.rst:1212
 msgid "``:apps_path/:app_name/init.lua`` in a multi-app environment."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1214
+#: ../doc/book/cartridge/cartridge_dev.rst:1216
 msgid "``--apps_path PATH``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1213
+#: ../doc/book/cartridge/cartridge_dev.rst:1215
 msgid "Path to apps directory when running in a multi-app environment. Defaults to ``/usr/share/tarantool``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1218
-#: ../doc/book/cartridge/cartridge_dev.rst:1260
+#: ../doc/book/cartridge/cartridge_dev.rst:1220
+#: ../doc/book/cartridge/cartridge_dev.rst:1262
 msgid "``--run_dir DIR``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1217
+#: ../doc/book/cartridge/cartridge_dev.rst:1219
 msgid "Directory with pid and sock files. Defaults to ``TARANTOOL_RUN_DIR`` or ``/var/run/tarantool``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1222
-#: ../doc/book/cartridge/cartridge_dev.rst:1261
+#: ../doc/book/cartridge/cartridge_dev.rst:1224
+#: ../doc/book/cartridge/cartridge_dev.rst:1263
 msgid "``--cfg FILE``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1221
+#: ../doc/book/cartridge/cartridge_dev.rst:1223
 msgid "Cartridge instances YAML configuration file. Defaults to ``TARANTOOL_CFG`` or ``./instances.yml``."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1225
+#: ../doc/book/cartridge/cartridge_dev.rst:1227
 msgid "``--foreground``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1225
+#: ../doc/book/cartridge/cartridge_dev.rst:1227
 msgid "Do not daemonize."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1233
+#: ../doc/book/cartridge/cartridge_dev.rst:1235
 msgid "It starts all ``tarantool`` instances specified in ``cfg`` file, in foreground, with enforced :ref:`environment variables <cartridge-config>`."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1236
+#: ../doc/book/cartridge/cartridge_dev.rst:1238
 msgid "When ``APP_NAME`` is not provided, ``cartridge`` parses it from ``./*.rockspec`` filename."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1239
+#: ../doc/book/cartridge/cartridge_dev.rst:1241
 msgid "When ``INSTANCE_NAME`` is not provided, ``cartridge`` reads ``cfg`` file and starts all defined instances:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1242
+#: ../doc/book/cartridge/cartridge_dev.rst:1244
 msgid "# in application directory\n"
 "cartridge start # starts all instances\n"
 "cartridge start .router_1 # start single instance\n"
@@ -19175,54 +19107,54 @@ msgid "# in application directory\n"
 "cartridge start my_app.router # start a single instance"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1252
+#: ../doc/book/cartridge/cartridge_dev.rst:1254
 msgid "To stop the instances, say:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1254
+#: ../doc/book/cartridge/cartridge_dev.rst:1256
 msgid "$ cartridge stop [APP_NAME[.INSTANCE_NAME]] [options]"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1258
+#: ../doc/book/cartridge/cartridge_dev.rst:1260
 msgid "These options from the ``cartridge start`` command are supported:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1267
+#: ../doc/book/cartridge/cartridge_dev.rst:1269
 msgid "Start/stop using ``systemctl``"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1269
+#: ../doc/book/cartridge/cartridge_dev.rst:1271
 msgid "To run a single instance:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1271
+#: ../doc/book/cartridge/cartridge_dev.rst:1273
 msgid "$ systemctl start APP_NAME"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1275
+#: ../doc/book/cartridge/cartridge_dev.rst:1277
 msgid "This will start a  ``systemd`` service that will listen to the port specified in :ref:`instance configuration <cartridge-config>` (``http_port`` parameter)."
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1279
+#: ../doc/book/cartridge/cartridge_dev.rst:1281
 msgid "To run multiple instances on one or multiple servers:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1281
+#: ../doc/book/cartridge/cartridge_dev.rst:1283
 msgid "$ systemctl start APP_NAME@INSTANCE_1\n"
 "$ systemctl start APP_NAME@INSTANCE_2\n"
 "...\n"
 "$ systemctl start APP_NAME@INSTANCE_N"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1288
+#: ../doc/book/cartridge/cartridge_dev.rst:1290
 msgid "where ``APP_NAME@INSTANCE_N`` is the instantiated service name for ``systemd`` with an incremental ``N`` -- a number, unique for every instance, added to the port the instance will listen to (e.g., ``3301``, ``3302``, etc.)"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1293
+#: ../doc/book/cartridge/cartridge_dev.rst:1295
 msgid "To stop all services on a server, use the ``systemctl stop`` command and specify instance names one by one. For example:"
 msgstr ""
 
-#: ../doc/book/cartridge/cartridge_dev.rst:1296
+#: ../doc/book/cartridge/cartridge_dev.rst:1298
 msgid "$ systemctl stop APP_NAME@INSTANCE_1 APP_NAME@INSTANCE_2 ... APP_NAME@INSTANCE_<N>"
 msgstr ""
 
@@ -21465,174 +21397,190 @@ msgid "\"Sync\" means receive updates from the master in order to make a local d
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:201
-msgid "The following situations are possible."
+msgid "In order to leave orphan mode you need to sync with a sufficient number (:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`) of instances. To do so, you may either:"
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:205
-msgid "**Situation 1: bootstrap**"
+msgid "Set :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` to a lower value."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:207
-msgid "Here ``box.cfg{}`` is being called for the first time. A replica is joining but no replica set exists yet."
+msgid "Reset ``box.cfg.replication`` to exclude instances that cannot be reached or synced with."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:210
-msgid "Set status to 'orphan'."
+#: ../doc/book/replication/repl_add_instances.rst:209
+msgid "Set ``box.cfg.replication`` to ``\"\"`` (empty string)."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:211
-msgid "Try to connect to all nodes from ``box.cfg.replication``, or to the number of nodes required by :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`. Retrying up to 3 times in 30 seconds is possible because this is bootstrap, :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>` is overridden."
+msgid "The following situations are possible."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:218
-msgid "Abort if not connected to all nodes in ``box.cfg.replication`` or :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`."
+#: ../doc/book/replication/repl_add_instances.rst:215
+msgid "**Situation 1: bootstrap**"
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:217
+msgid "Here ``box.cfg{}`` is being called for the first time. A replica is joining but no replica set exists yet."
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:220
+msgid "Set status to 'orphan'."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:221
-msgid "This instance might be elected as the replica set 'leader'. Criteria for electing a leader include vclock value (largest is best), and whether it is read-only or read-write (read-write is best unless there is no other choice). The leader is the master that other instances must join. The leader is the master that executes :ref:`box_once() <box-once>` functions."
+msgid "Try to connect to all nodes from ``box.cfg.replication``, or to the number of nodes required by :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`. Retrying up to 3 times in 30 seconds is possible because this is bootstrap, :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>` is overridden."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:227
-msgid "If this instance is elected as the replica set leader, then perform an \"automatic bootstrap\":"
+#: ../doc/book/replication/repl_add_instances.rst:228
+msgid "Abort and throw an error if not connected to all nodes in ``box.cfg.replication`` or :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:231
-msgid "Set status to 'running'."
-msgstr ""
-
-#: ../doc/book/replication/repl_add_instances.rst:232
-msgid "Return from ``box.cfg{}``."
-msgstr ""
-
-#: ../doc/book/replication/repl_add_instances.rst:234
-msgid "Otherwise this instance will be a replica joining an existing replica set, so:"
+msgid "This instance might be elected as the replica set 'leader'. Criteria for electing a leader include vclock value (largest is best), and whether it is read-only or read-write (read-write is best unless there is no other choice). The leader is the master that other instances must join. The leader is the master that executes :ref:`box_once() <box-once>` functions."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:237
-msgid "Bootstrap from the leader. See examples in section :ref:`Bootstrapping a replica set <replication-bootstrap>`."
-msgstr ""
-
-#: ../doc/book/replication/repl_add_instances.rst:239
-msgid "In background, sync with all the other nodes in the replication set."
+msgid "If this instance is elected as the replica set leader, then perform an \"automatic bootstrap\":"
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:241
-msgid "**Situation 2: recovery**"
+msgid "Set status to 'running'."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:243
-msgid "Here ``box.cfg{}`` is not being called for the first time. It is being called again in order to perform recovery."
+#: ../doc/book/replication/repl_add_instances.rst:242
+msgid "Return from ``box.cfg{}``."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:246
-msgid "Perform :ref:`recovery <internals-recovery_process>` from the last local snapshot and the WAL files."
+#: ../doc/book/replication/repl_add_instances.rst:244
+msgid "Otherwise this instance will be a replica joining an existing replica set, so:"
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:247
+msgid "Bootstrap from the leader. See examples in section :ref:`Bootstrapping a replica set <replication-bootstrap>`."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:249
-msgid "Connect to at least :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` nodes."
+msgid "In background, sync with all the other nodes in the replication set."
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:251
+msgid "**Situation 2: recovery**"
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:253
-msgid "Sync with all connected nodes, until the difference is not more than :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds."
+msgid "Here ``box.cfg{}`` is not being called for the first time. It is being called again in order to perform recovery."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:258
-msgid "**Situation 3: configuration update**"
+#: ../doc/book/replication/repl_add_instances.rst:256
+msgid "Perform :ref:`recovery <internals-recovery_process>` from the last local snapshot and the WAL files."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:260
-msgid "Here ``box.cfg{}`` is not being called for the first time. It is being called again because some replication parameter or something in the replica set has changed."
+#: ../doc/book/replication/repl_add_instances.rst:259
+msgid "Connect to at least :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` nodes. If failed - set status to 'orphan'. (Attempts to sync will continue in the background and when/if they succeed then 'orphan' will be changed to 'connected'.)"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:264
-msgid "Try to connect to all nodes from ``box.cfg.replication``, or to the number of nodes required by :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`, within the time period specified in :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`."
+#: ../doc/book/replication/repl_add_instances.rst:265
+msgid "If connected - sync with all connected nodes, until the difference is not more than :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:270
-msgid "Try to sync with the connected nodes, within the time period specified in :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`."
+msgid "**Situation 3: configuration update**"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:274
-msgid "If earlier steps fail, change status to 'orphan'. (Attempts to sync will continue in the background and when/if they succeed then 'orphan' status will end.)"
+#: ../doc/book/replication/repl_add_instances.rst:272
+msgid "Here ``box.cfg{}`` is not being called for the first time. It is being called again because some replication parameter or something in the replica set has changed."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:278
-msgid "If earlier steps succeed, set status to 'running' (master) or 'follow' (replica)."
+#: ../doc/book/replication/repl_add_instances.rst:276
+msgid "Try to connect to all nodes from ``box.cfg.replication``, or to the number of nodes required by :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`, within the time period specified in :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`."
 msgstr ""
 
 #: ../doc/book/replication/repl_add_instances.rst:282
+msgid "Try to sync with the connected nodes, within the time period specified in :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`."
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:286
+msgid "If earlier steps fail, change status to 'orphan'. (Attempts to sync will continue in the background and when/if they succeed then 'orphan' status will end.)"
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:290
+msgid "If earlier steps succeed, set status to 'running' (master) or 'follow' (replica)."
+msgstr ""
+
+#: ../doc/book/replication/repl_add_instances.rst:294
 msgid "**Situation 4: rebootstrap**"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:284
+#: ../doc/book/replication/repl_add_instances.rst:296
 msgid "Here ``box.cfg{}`` is not being called. The replica connected successfully at some point in the past, and is now ready for an update from the master. But the master cannot provide an update. This can happen by accident, or more likely can happen because the replica is slow (its :ref:`lag <cfg_replication-replication_sync_lag>` is large), and the WAL (.xlog) files containing the updates have been deleted. This is not crippling. The replica can discard what it received earlier, and then ask for the master's latest snapshot (.snap) file contents. Since it is effectively going through the bootstrap process a second time, this is called \"rebootstrapping\". However, there has to be one difference from an ordinary bootstrap -- the replica's :ref:`replica id <replication-replica-id>` will remain the same. If it changed, then the master would think that the replica is a new addition to the cluster, and would maintain a record of an instance ID of a replica that has ceased to exist. Rebootstrapping was introduced in Tarantool version 1.10.2 and is completely automatic."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:305
+#: ../doc/book/replication/repl_add_instances.rst:317
 msgid "Server startup with replication"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:307
+#: ../doc/book/replication/repl_add_instances.rst:319
 msgid "In addition to the recovery process described in the section :ref:`Recovery process <internals-recovery_process>`, the server must take additional steps and precautions if :ref:`replication <replication>` is enabled."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:311
+#: ../doc/book/replication/repl_add_instances.rst:323
 msgid "Once again the startup procedure is initiated by the ``box.cfg{}`` request. One of the ``box.cfg`` parameters may be :ref:`replication <cfg_replication-replication>` which specifies replication source(-s). We will refer to this replica, which is starting up due to ``box.cfg``, as the \"local\" replica to distinguish it from the other replicas in a replica set, which we will refer to as \"distant\" replicas."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:318
+#: ../doc/book/replication/repl_add_instances.rst:330
 msgid "*If there is no snapshot .snap file and the 'replication' parameter is empty*: |br| then the local replica assumes it is an unreplicated \"standalone\" instance, or is the first replica of a new replica set. It will generate new UUIDs for itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the replica set UUID is stored in the ``_schema`` space. Since a snapshot contains all the data in all the spaces, that means the local replica's snapshot will contain the replica UUID and the replica set UUID. Therefore, when the local replica restarts on later occasions, it will be able to recover these UUIDs when it reads the .snap file."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:328
+#: ../doc/book/replication/repl_add_instances.rst:340
 msgid "*If there is no snapshot .snap file and the 'replication' parameter is not empty and the '_cluster' space contains no other replica UUIDs*: |br| then the local replica assumes it is not a standalone instance, but is not yet part of a replica set. It must now join the replica set. It will send its replica UUID to the first distant replica which is listed in ``replication`` and which will act as a master. This is called the \"join request\". When a distant replica receives a join request, it will send back:"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:336
+#: ../doc/book/replication/repl_add_instances.rst:348
 msgid "the distant replica's replica set UUID,"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:337
+#: ../doc/book/replication/repl_add_instances.rst:349
 msgid "the contents of the distant replica's .snap file. |br| When the local replica receives this information, it puts the replica set UUID in its ``_schema`` space, puts the distant replica's UUID and connection information in its ``_cluster`` space, and makes a snapshot containing all the data sent by the distant replica. Then, if the local replica has data in its WAL .xlog files, it sends that data to the distant replica. The distant replica will receive this and update its own copy of the data, and add the local replica's UUID to its ``_cluster`` space."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:346
+#: ../doc/book/replication/repl_add_instances.rst:358
 msgid "*If there is no snapshot .snap file and the 'replication' parameter is not empty and the ``_cluster`` space contains other replica UUIDs*: |br| then the local replica assumes it is not a standalone instance, and is already part of a replica set. It will send its replica UUID and replica set UUID to all the distant replicas which are listed in ``replication``. This is called the \"on-connect handshake\". When a distant replica receives an on-connect handshake: |br|"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:353
+#: ../doc/book/replication/repl_add_instances.rst:365
 msgid "the distant replica compares its own copy of the replica set UUID to the one in the on-connect handshake. If there is no match, then the handshake fails and the local replica will display an error."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:356
+#: ../doc/book/replication/repl_add_instances.rst:368
 msgid "the distant replica looks for a record of the connecting instance in its ``_cluster`` space. If there is none, then the handshake fails. |br| Otherwise the handshake is successful. The distant replica will read any new information from its own .snap and .xlog files, and send the new requests to the local replica."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:362
+#: ../doc/book/replication/repl_add_instances.rst:374
 msgid "In the end, the local replica knows what replica set it belongs to, the distant replica knows that the local replica is a member of the replica set, and both replicas have the same database contents."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:368
+#: ../doc/book/replication/repl_add_instances.rst:380
 msgid "*If there is a snapshot file and replication source is not empty*: |br| first the local replica goes through the recovery process described in the previous section, using its own .snap and .xlog files. Then it sends a \"subscribe\" request to all the other replicas of the replica set. The subscribe request contains the server vector clock. The vector clock has a collection of pairs 'server id, lsn' for every replica in the ``_cluster`` system space. Each distant replica, upon receiving a subscribe request, will read its .xlog files' requests and send them to the local replica if (lsn of .xlog file request) is greater than (lsn of the vector clock in the subscribe request). After all the other replicas of the replica set have responded to the local replica's subscribe request, the replica startup is complete."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:380
+#: ../doc/book/replication/repl_add_instances.rst:392
 msgid "The following temporary limitations applied for Tarantool versions earlier than 1.7.7:"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:383
+#: ../doc/book/replication/repl_add_instances.rst:395
 msgid "The URIs in the ``replication`` parameter should all be in the same order on all replicas. This is not mandatory but is an aid to consistency."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:385
+#: ../doc/book/replication/repl_add_instances.rst:397
 msgid "The replicas of a replica set should be started up at slightly different times. This is not mandatory but prevents a situation where each replica is waiting for the other replica to be ready."
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:389
+#: ../doc/book/replication/repl_add_instances.rst:401
 msgid "The following limitation still applies for the current Tarantool version:"
 msgstr ""
 
-#: ../doc/book/replication/repl_add_instances.rst:391
+#: ../doc/book/replication/repl_add_instances.rst:403
 msgid "The maximum number of entries in the ``_cluster`` space is :ref:`32 <limitations_replicas>`. Tuples for out-of-date replicas are not automatically re-used, so if this 32-replica limit is reached, users may have to reorganize the ``_cluster`` space manually."
 msgstr ""
 
@@ -22691,68 +22639,67 @@ msgstr ""
 #: ../doc/book/sql.rst:45
 #: ../doc/book/sql.rst:47
 #: ../doc/book/sql.rst:72
-#: ../doc/book/sql.rst:74
-#: ../doc/book/sql.rst:76
-#: ../doc/book/sql.rst:94
-#: ../doc/book/sql.rst:96
-#: ../doc/book/sql.rst:100
-#: ../doc/book/sql.rst:102
-#: ../doc/book/sql.rst:104
-#: ../doc/book/sql.rst:107
-#: ../doc/book/sql.rst:111
-#: ../doc/book/sql.rst:113
-#: ../doc/book/sql.rst:119
-#: ../doc/book/sql.rst:121
-#: ../doc/book/sql.rst:123
-#: ../doc/book/sql.rst:125
-#: ../doc/book/sql.rst:127
-#: ../doc/book/sql.rst:129
-#: ../doc/book/sql.rst:133
-#: ../doc/book/sql.rst:135
-#: ../doc/book/sql.rst:137
-#: ../doc/book/sql.rst:141
-#: ../doc/book/sql.rst:144
-#: ../doc/book/sql.rst:152
-#: ../doc/book/sql.rst:160
-#: ../doc/book/sql.rst:190
-#: ../doc/book/sql.rst:192
-#: ../doc/book/sql.rst:194
-#: ../doc/book/sql.rst:196
-#: ../doc/book/sql.rst:198
-#: ../doc/book/sql.rst:200
-#: ../doc/book/sql.rst:204
-#: ../doc/book/sql.rst:206
-#: ../doc/book/sql.rst:209
-#: ../doc/book/sql.rst:211
-#: ../doc/book/sql.rst:217
-#: ../doc/book/sql.rst:219
-#: ../doc/book/sql.rst:233
-#: ../doc/book/sql.rst:237
-#: ../doc/book/sql.rst:240
-#: ../doc/book/sql.rst:246
-#: ../doc/book/sql.rst:250
-#: ../doc/book/sql.rst:253
-#: ../doc/book/sql.rst:259
-#: ../doc/book/sql.rst:268
-#: ../doc/book/sql.rst:280
-#: ../doc/book/sql.rst:293
-#: ../doc/book/sql.rst:309
-#: ../doc/book/sql.rst:312
-#: ../doc/book/sql.rst:314
-#: ../doc/book/sql.rst:320
-#: ../doc/book/sql.rst:326
-#: ../doc/book/sql.rst:353
-#: ../doc/book/sql.rst:358
-#: ../doc/book/sql.rst:361
-#: ../doc/book/sql.rst:364
-#: ../doc/book/sql.rst:367
-#: ../doc/book/sql.rst:372
-#: ../doc/book/sql.rst:378
-#: ../doc/book/sql.rst:380
-#: ../doc/book/sql.rst:382
-#: ../doc/book/sql.rst:384
-#: ../doc/book/sql.rst:402
-#: ../doc/book/sql.rst:426
+#: ../doc/book/sql.rst:77
+#: ../doc/book/sql.rst:95
+#: ../doc/book/sql.rst:97
+#: ../doc/book/sql.rst:101
+#: ../doc/book/sql.rst:103
+#: ../doc/book/sql.rst:105
+#: ../doc/book/sql.rst:108
+#: ../doc/book/sql.rst:112
+#: ../doc/book/sql.rst:114
+#: ../doc/book/sql.rst:120
+#: ../doc/book/sql.rst:122
+#: ../doc/book/sql.rst:124
+#: ../doc/book/sql.rst:126
+#: ../doc/book/sql.rst:128
+#: ../doc/book/sql.rst:130
+#: ../doc/book/sql.rst:134
+#: ../doc/book/sql.rst:136
+#: ../doc/book/sql.rst:138
+#: ../doc/book/sql.rst:142
+#: ../doc/book/sql.rst:145
+#: ../doc/book/sql.rst:153
+#: ../doc/book/sql.rst:161
+#: ../doc/book/sql.rst:191
+#: ../doc/book/sql.rst:193
+#: ../doc/book/sql.rst:195
+#: ../doc/book/sql.rst:197
+#: ../doc/book/sql.rst:199
+#: ../doc/book/sql.rst:201
+#: ../doc/book/sql.rst:205
+#: ../doc/book/sql.rst:207
+#: ../doc/book/sql.rst:210
+#: ../doc/book/sql.rst:212
+#: ../doc/book/sql.rst:218
+#: ../doc/book/sql.rst:220
+#: ../doc/book/sql.rst:234
+#: ../doc/book/sql.rst:238
+#: ../doc/book/sql.rst:241
+#: ../doc/book/sql.rst:247
+#: ../doc/book/sql.rst:251
+#: ../doc/book/sql.rst:254
+#: ../doc/book/sql.rst:260
+#: ../doc/book/sql.rst:269
+#: ../doc/book/sql.rst:281
+#: ../doc/book/sql.rst:294
+#: ../doc/book/sql.rst:310
+#: ../doc/book/sql.rst:313
+#: ../doc/book/sql.rst:315
+#: ../doc/book/sql.rst:321
+#: ../doc/book/sql.rst:327
+#: ../doc/book/sql.rst:354
+#: ../doc/book/sql.rst:359
+#: ../doc/book/sql.rst:362
+#: ../doc/book/sql.rst:365
+#: ../doc/book/sql.rst:368
+#: ../doc/book/sql.rst:373
+#: ../doc/book/sql.rst:379
+#: ../doc/book/sql.rst:381
+#: ../doc/book/sql.rst:383
+#: ../doc/book/sql.rst:385
+#: ../doc/book/sql.rst:403
+#: ../doc/book/sql.rst:427
 msgid "Okay."
 msgstr ""
 
@@ -22893,7 +22840,7 @@ msgid "E021-04"
 msgstr ""
 
 #: ../doc/book/sql.rst:64
-msgid "CHARACTER_LENGTH function"
+msgid ":ref:`CHARACTER_LENGTH <sql_function_length>` function"
 msgstr ""
 
 #: ../doc/book/sql.rst:64
@@ -22953,1809 +22900,1813 @@ msgid "E021-08"
 msgstr ""
 
 #: ../doc/book/sql.rst:74
-msgid "UPPER and LOWER functions"
+msgid ":ref:`UPPER <sql_function_upper>` and :ref:`LOWER <sql_function_lower>` functions"
 msgstr ""
 
 #: ../doc/book/sql.rst:74
 msgid "``select upper('a'),lower('B') from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:76
+#: ../doc/book/sql.rst:74
+msgid "Okay. SUBSTR(x,n,n) which is okay."
+msgstr ""
+
+#: ../doc/book/sql.rst:77
 msgid "E021-09"
 msgstr ""
 
-#: ../doc/book/sql.rst:76
+#: ../doc/book/sql.rst:77
 msgid "TRIM function"
 msgstr ""
 
-#: ../doc/book/sql.rst:76
+#: ../doc/book/sql.rst:77
 msgid "``select trim('a ') from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:78
+#: ../doc/book/sql.rst:79
 msgid "E021-10"
 msgstr ""
 
-#: ../doc/book/sql.rst:78
+#: ../doc/book/sql.rst:79
 msgid "Implicit casting among the fixed-length and variable-length character string types"
 msgstr ""
 
-#: ../doc/book/sql.rst:78
+#: ../doc/book/sql.rst:79
 msgid "``select * from tm where char_column > varchar_column;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:78
+#: ../doc/book/sql.rst:79
 msgid "Fail, there is no fixed-length character string type."
 msgstr ""
 
-#: ../doc/book/sql.rst:81
+#: ../doc/book/sql.rst:82
 msgid "E021-11"
 msgstr ""
 
-#: ../doc/book/sql.rst:81
+#: ../doc/book/sql.rst:82
 msgid "POSITION function"
 msgstr ""
 
-#: ../doc/book/sql.rst:81
+#: ../doc/book/sql.rst:82
 msgid "``select position(x in y) from z;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:81
+#: ../doc/book/sql.rst:82
 msgid "Fail. Tarantool's function uses ',' rather than 'in'"
 msgstr ""
 
-#: ../doc/book/sql.rst:83
+#: ../doc/book/sql.rst:84
 msgid "E021-12"
 msgstr ""
 
-#: ../doc/book/sql.rst:83
+#: ../doc/book/sql.rst:84
 msgid "Character comparison"
 msgstr ""
 
-#: ../doc/book/sql.rst:83
+#: ../doc/book/sql.rst:84
 msgid "``select * from t where s1 > 'a';``"
 msgstr ""
 
-#: ../doc/book/sql.rst:83
+#: ../doc/book/sql.rst:84
 msgid "Okay. We should note here that comparisons use a binary collation by default, but it is easy to specify unicode or unicode_ci collations, or create new collations."
 msgstr ""
 
-#: ../doc/book/sql.rst:87
+#: ../doc/book/sql.rst:88
 msgid "E031"
 msgstr ""
 
-#: ../doc/book/sql.rst:87
+#: ../doc/book/sql.rst:88
 msgid "Identifiers"
 msgstr ""
 
-#: ../doc/book/sql.rst:87
+#: ../doc/book/sql.rst:88
 msgid "``create table rank (ceil int primary key);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:87
+#: ../doc/book/sql.rst:88
 msgid "Fail. Tarantool's list of reserved words differs from the standard's list of reserved words."
 msgstr ""
 
-#: ../doc/book/sql.rst:90
+#: ../doc/book/sql.rst:91
 msgid "E031-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:90
+#: ../doc/book/sql.rst:91
 msgid "Delimited Identifiers"
 msgstr ""
 
-#: ../doc/book/sql.rst:90
+#: ../doc/book/sql.rst:91
 msgid "``create table \"t47\" (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:90
+#: ../doc/book/sql.rst:91
 msgid "Okay. And enclosing identifiers inside double quotes means they won't be converted to upper case or lower case, this is behavior that some other DBMSs sadly lack."
 msgstr ""
 
-#: ../doc/book/sql.rst:94
+#: ../doc/book/sql.rst:95
 msgid "E031-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:94
+#: ../doc/book/sql.rst:95
 msgid "Lower case identifiers"
 msgstr ""
 
-#: ../doc/book/sql.rst:94
+#: ../doc/book/sql.rst:95
 msgid "``create table t48 (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:96
+#: ../doc/book/sql.rst:97
 msgid "E031-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:96
+#: ../doc/book/sql.rst:97
 msgid "Trailing underscore"
 msgstr ""
 
-#: ../doc/book/sql.rst:96
+#: ../doc/book/sql.rst:97
 msgid "``create table t49_ (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:98
+#: ../doc/book/sql.rst:99
 msgid "E051"
 msgstr ""
 
-#: ../doc/book/sql.rst:98
+#: ../doc/book/sql.rst:99
 msgid "Basic query specification"
 msgstr ""
 
-#: ../doc/book/sql.rst:100
+#: ../doc/book/sql.rst:101
 msgid "E051-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:100
+#: ../doc/book/sql.rst:101
 msgid "SELECT DISTINCT"
 msgstr ""
 
-#: ../doc/book/sql.rst:100
+#: ../doc/book/sql.rst:101
 msgid "``select distinct s1 from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:102
+#: ../doc/book/sql.rst:103
 msgid "E051-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:102
-msgid "GROUP BY clause"
+#: ../doc/book/sql.rst:103
+msgid ":ref:`GROUP BY <sql_group_by>` clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:102
+#: ../doc/book/sql.rst:103
 msgid "``select distinct s1 from t group by s1;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:104
+#: ../doc/book/sql.rst:105
 msgid "E051-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:104
+#: ../doc/book/sql.rst:105
 msgid "GROUP BY can contain columns not in select list"
 msgstr ""
 
-#: ../doc/book/sql.rst:104
+#: ../doc/book/sql.rst:105
 msgid "``select s1 from t group by lower(s1);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:107
+#: ../doc/book/sql.rst:108
 msgid "E051-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:107
+#: ../doc/book/sql.rst:108
 msgid "Select list items can be renamed"
 msgstr ""
 
-#: ../doc/book/sql.rst:107
+#: ../doc/book/sql.rst:108
 msgid "``select s1 as K from t order by K;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:109
+#: ../doc/book/sql.rst:110
 msgid "E051-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:109
-msgid "HAVING clause"
+#: ../doc/book/sql.rst:110
+msgid ":ref:`HAVING <sql_having>` clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:109
+#: ../doc/book/sql.rst:110
 msgid "``select count(*) from t having count(*) > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:109
+#: ../doc/book/sql.rst:110
 msgid "Okay. GROUP BY is not mandatory before HAVING."
 msgstr ""
 
-#: ../doc/book/sql.rst:111
+#: ../doc/book/sql.rst:112
 msgid "E051-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:111
+#: ../doc/book/sql.rst:112
 msgid "Qualified * in select list"
 msgstr ""
 
-#: ../doc/book/sql.rst:111
+#: ../doc/book/sql.rst:112
 msgid "``select t.* from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:113
+#: ../doc/book/sql.rst:114
 msgid "E051-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:113
+#: ../doc/book/sql.rst:114
 msgid "Correlation names in the FROM clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:113
+#: ../doc/book/sql.rst:114
 msgid "``select * from t as K;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:115
+#: ../doc/book/sql.rst:116
 msgid "E051-09"
 msgstr ""
 
-#: ../doc/book/sql.rst:115
+#: ../doc/book/sql.rst:116
 msgid "Rename columns in the FROM clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:115
+#: ../doc/book/sql.rst:116
 msgid "``select * from t as x(q,c);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:115
+#: ../doc/book/sql.rst:116
 msgid "Fail."
 msgstr ""
 
-#: ../doc/book/sql.rst:117
+#: ../doc/book/sql.rst:118
 msgid "E061"
 msgstr ""
 
-#: ../doc/book/sql.rst:117
+#: ../doc/book/sql.rst:118
 msgid "Basic predicates and search conditions"
 msgstr ""
 
-#: ../doc/book/sql.rst:119
+#: ../doc/book/sql.rst:120
 msgid "E061-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:119
+#: ../doc/book/sql.rst:120
 msgid "Comparison predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:119
+#: ../doc/book/sql.rst:120
 msgid "``select * from t where 0 = 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:121
+#: ../doc/book/sql.rst:122
 msgid "E061-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:121
+#: ../doc/book/sql.rst:122
 msgid "BETWEEN predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:121
+#: ../doc/book/sql.rst:122
 msgid "``select * from t where ' ' between '' and ' ';``"
 msgstr ""
 
-#: ../doc/book/sql.rst:123
+#: ../doc/book/sql.rst:124
 msgid "E061-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:123
+#: ../doc/book/sql.rst:124
 msgid "IN predicate with list of values"
 msgstr ""
 
-#: ../doc/book/sql.rst:123
+#: ../doc/book/sql.rst:124
 msgid "``select * from t where s1 in ('a',upper('a'));``"
 msgstr ""
 
-#: ../doc/book/sql.rst:125
+#: ../doc/book/sql.rst:126
 msgid "E061-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:125
+#: ../doc/book/sql.rst:126
 msgid "LIKE predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:125
+#: ../doc/book/sql.rst:126
 msgid "``select * from t where s1 like '_';``"
 msgstr ""
 
-#: ../doc/book/sql.rst:127
+#: ../doc/book/sql.rst:128
 msgid "E061-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:127
+#: ../doc/book/sql.rst:128
 msgid "LIKE predicate: ESCAPE clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:127
+#: ../doc/book/sql.rst:128
 msgid "``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``"
 msgstr ""
 
-#: ../doc/book/sql.rst:129
+#: ../doc/book/sql.rst:130
 msgid "E061-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:129
+#: ../doc/book/sql.rst:130
 msgid "NULL predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:129
+#: ../doc/book/sql.rst:130
 msgid "``select * from t where s1 is not null;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:131
+#: ../doc/book/sql.rst:132
 msgid "E061-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:131
+#: ../doc/book/sql.rst:132
 msgid "Quantified comparison predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:131
+#: ../doc/book/sql.rst:132
 msgid "``select * from t where s1 = any (select s1 from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:131
-#: ../doc/book/sql.rst:139
-#: ../doc/book/sql.rst:272
-#: ../doc/book/sql.rst:275
-#: ../doc/book/sql.rst:317
-#: ../doc/book/sql.rst:333
-#: ../doc/book/sql.rst:336
-#: ../doc/book/sql.rst:345
-#: ../doc/book/sql.rst:347
-#: ../doc/book/sql.rst:349
-#: ../doc/book/sql.rst:351
-#: ../doc/book/sql.rst:374
-#: ../doc/book/sql.rst:404
+#: ../doc/book/sql.rst:132
+#: ../doc/book/sql.rst:140
+#: ../doc/book/sql.rst:273
+#: ../doc/book/sql.rst:276
+#: ../doc/book/sql.rst:318
+#: ../doc/book/sql.rst:334
+#: ../doc/book/sql.rst:337
+#: ../doc/book/sql.rst:346
+#: ../doc/book/sql.rst:348
+#: ../doc/book/sql.rst:350
+#: ../doc/book/sql.rst:352
+#: ../doc/book/sql.rst:375
+#: ../doc/book/sql.rst:405
 msgid "Fail. Syntax error."
 msgstr ""
 
-#: ../doc/book/sql.rst:133
+#: ../doc/book/sql.rst:134
 msgid "E061-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:133
+#: ../doc/book/sql.rst:134
 msgid "EXISTS predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:133
+#: ../doc/book/sql.rst:134
 msgid "``select * from t where not exists (select * from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:135
+#: ../doc/book/sql.rst:136
 msgid "E061-09"
 msgstr ""
 
-#: ../doc/book/sql.rst:135
+#: ../doc/book/sql.rst:136
 msgid "Subqueries in comparison predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:135
+#: ../doc/book/sql.rst:136
 msgid "``select * from t where s1 > (select s1 from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:137
+#: ../doc/book/sql.rst:138
 msgid "E061-11"
 msgstr ""
 
-#: ../doc/book/sql.rst:137
+#: ../doc/book/sql.rst:138
 msgid "Subqueries in IN predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:137
+#: ../doc/book/sql.rst:138
 msgid "``select * from t where s1 in (select s1 from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:139
+#: ../doc/book/sql.rst:140
 msgid "E061-12"
 msgstr ""
 
-#: ../doc/book/sql.rst:139
+#: ../doc/book/sql.rst:140
 msgid "Subqueries in quantified comparison predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:139
+#: ../doc/book/sql.rst:140
 msgid "``select * from t where s1 >= all (select s1 from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:141
+#: ../doc/book/sql.rst:142
 msgid "E061-13"
 msgstr ""
 
-#: ../doc/book/sql.rst:141
+#: ../doc/book/sql.rst:142
 msgid "Correlated subqueries"
 msgstr ""
 
-#: ../doc/book/sql.rst:141
+#: ../doc/book/sql.rst:142
 msgid "``select * from t where s1 = (select s1 from t2 where t2.s2 = t.s1);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:144
+#: ../doc/book/sql.rst:145
 msgid "E061-14"
 msgstr ""
 
-#: ../doc/book/sql.rst:144
+#: ../doc/book/sql.rst:145
 msgid "Search condition"
 msgstr ""
 
-#: ../doc/book/sql.rst:144
+#: ../doc/book/sql.rst:145
 msgid "``select * from t where 0 <> 0 or 'a' < 'b' and s1 is null;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:147
+#: ../doc/book/sql.rst:148
 msgid "E071"
 msgstr ""
 
-#: ../doc/book/sql.rst:147
+#: ../doc/book/sql.rst:148
 msgid "Basic query expressions"
 msgstr ""
 
-#: ../doc/book/sql.rst:149
+#: ../doc/book/sql.rst:150
 msgid "E071-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:149
+#: ../doc/book/sql.rst:150
 msgid "UNION DISTINCT table operator"
 msgstr ""
 
-#: ../doc/book/sql.rst:149
+#: ../doc/book/sql.rst:150
 msgid "``select * from t union distinct select * from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:149
+#: ../doc/book/sql.rst:150
 msgid "Fail. However, \"select * from t union select * from t;\" is okay."
 msgstr ""
 
-#: ../doc/book/sql.rst:152
+#: ../doc/book/sql.rst:153
 msgid "E071-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:152
+#: ../doc/book/sql.rst:153
 msgid "UNION ALL table operator"
 msgstr ""
 
-#: ../doc/book/sql.rst:152
+#: ../doc/book/sql.rst:153
 msgid "``select * from t union all select * from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:154
+#: ../doc/book/sql.rst:155
 msgid "E071-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:154
+#: ../doc/book/sql.rst:155
 msgid "EXCEPT DISTINCT table operator"
 msgstr ""
 
-#: ../doc/book/sql.rst:154
+#: ../doc/book/sql.rst:155
 msgid "``select * from t except distinct select * from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:154
+#: ../doc/book/sql.rst:155
 msgid "Fail. However, ``select * from t except select * from t;`` is okay."
 msgstr ""
 
-#: ../doc/book/sql.rst:157
+#: ../doc/book/sql.rst:158
 msgid "E071-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:157
+#: ../doc/book/sql.rst:158
 msgid "Columns combined via table operators need not have exactly the same data type."
 msgstr ""
 
-#: ../doc/book/sql.rst:157
+#: ../doc/book/sql.rst:158
 msgid "``select s1 from t union select 5 from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:157
+#: ../doc/book/sql.rst:158
 msgid "Okay, but only because Tarantool doesn't distinguish data types very well."
 msgstr ""
 
-#: ../doc/book/sql.rst:160
+#: ../doc/book/sql.rst:161
 msgid "E071-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:160
+#: ../doc/book/sql.rst:161
 msgid "Table operators in subqueries"
 msgstr ""
 
-#: ../doc/book/sql.rst:160
+#: ../doc/book/sql.rst:161
 msgid "``select * from t where 'a' in (select * from t union select * from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:163
+#: ../doc/book/sql.rst:164
 msgid "E081"
 msgstr ""
 
-#: ../doc/book/sql.rst:163
+#: ../doc/book/sql.rst:164
 msgid "Basic privileges"
 msgstr ""
 
-#: ../doc/book/sql.rst:165
+#: ../doc/book/sql.rst:166
 msgid "E081-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:165
+#: ../doc/book/sql.rst:166
 msgid "Select privilege at the table level"
 msgstr ""
 
-#: ../doc/book/sql.rst:165
+#: ../doc/book/sql.rst:166
 msgid "Fail. Syntax error. (Tarantool doesn't support privileges.)"
 msgstr ""
 
-#: ../doc/book/sql.rst:168
+#: ../doc/book/sql.rst:169
 msgid "E081-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:168
+#: ../doc/book/sql.rst:169
 msgid "DELETE privilege"
 msgstr ""
 
-#: ../doc/book/sql.rst:168
-#: ../doc/book/sql.rst:170
-#: ../doc/book/sql.rst:172
-#: ../doc/book/sql.rst:174
-#: ../doc/book/sql.rst:176
-#: ../doc/book/sql.rst:178
-#: ../doc/book/sql.rst:180
-#: ../doc/book/sql.rst:182
-#: ../doc/book/sql.rst:184
+#: ../doc/book/sql.rst:169
+#: ../doc/book/sql.rst:171
+#: ../doc/book/sql.rst:173
+#: ../doc/book/sql.rst:175
+#: ../doc/book/sql.rst:177
+#: ../doc/book/sql.rst:179
+#: ../doc/book/sql.rst:181
+#: ../doc/book/sql.rst:183
+#: ../doc/book/sql.rst:185
 msgid "Fail. (Tarantool doesn't support privileges.)"
 msgstr ""
 
-#: ../doc/book/sql.rst:170
+#: ../doc/book/sql.rst:171
 msgid "E081-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:170
+#: ../doc/book/sql.rst:171
 msgid "INSERT privilege at the table level"
 msgstr ""
 
-#: ../doc/book/sql.rst:172
+#: ../doc/book/sql.rst:173
 msgid "E081-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:172
+#: ../doc/book/sql.rst:173
 msgid "UPDATE privilege at the table level"
 msgstr ""
 
-#: ../doc/book/sql.rst:174
+#: ../doc/book/sql.rst:175
 msgid "E081-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:174
+#: ../doc/book/sql.rst:175
 msgid "UPDATE privilege at column level"
 msgstr ""
 
-#: ../doc/book/sql.rst:176
+#: ../doc/book/sql.rst:177
 msgid "E081-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:176
+#: ../doc/book/sql.rst:177
 msgid "REFERENCES privilege at the table level"
 msgstr ""
 
-#: ../doc/book/sql.rst:178
+#: ../doc/book/sql.rst:179
 msgid "E081-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:178
+#: ../doc/book/sql.rst:179
 msgid "REFERENCES privilege at column level"
 msgstr ""
 
-#: ../doc/book/sql.rst:180
+#: ../doc/book/sql.rst:181
 msgid "E081-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:180
+#: ../doc/book/sql.rst:181
 msgid "WITH GRANT OPTION"
 msgstr ""
 
-#: ../doc/book/sql.rst:182
+#: ../doc/book/sql.rst:183
 msgid "E081-09"
 msgstr ""
 
-#: ../doc/book/sql.rst:182
+#: ../doc/book/sql.rst:183
 msgid "USAGE privilege"
 msgstr ""
 
-#: ../doc/book/sql.rst:184
+#: ../doc/book/sql.rst:185
 msgid "E081-10"
 msgstr ""
 
-#: ../doc/book/sql.rst:184
+#: ../doc/book/sql.rst:185
 msgid "EXECUTE privilege"
 msgstr ""
 
-#: ../doc/book/sql.rst:186
+#: ../doc/book/sql.rst:187
 msgid "E091"
 msgstr ""
 
-#: ../doc/book/sql.rst:186
+#: ../doc/book/sql.rst:187
 msgid "Set functions"
 msgstr ""
 
-#: ../doc/book/sql.rst:188
+#: ../doc/book/sql.rst:189
 msgid "E091-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:188
-msgid "AVG"
+#: ../doc/book/sql.rst:189
+msgid ":ref:`AVG <sql_aggregate_avg>`"
 msgstr ""
 
-#: ../doc/book/sql.rst:188
+#: ../doc/book/sql.rst:189
 msgid "``select avg(s1) from t7;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:188
+#: ../doc/book/sql.rst:189
 msgid "Fail. No warning that nulls were eliminated."
 msgstr ""
 
-#: ../doc/book/sql.rst:190
+#: ../doc/book/sql.rst:191
 msgid "E091-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:190
-msgid "COUNT"
+#: ../doc/book/sql.rst:191
+msgid ":ref:`COUNT <sql_aggregate_count_row>`"
 msgstr ""
 
-#: ../doc/book/sql.rst:190
+#: ../doc/book/sql.rst:191
 msgid "``select count(*) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:192
+#: ../doc/book/sql.rst:193
 msgid "E091-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:192
-msgid "MAX"
+#: ../doc/book/sql.rst:193
+msgid ":ref:`MAX <sql_aggregate_max>`"
 msgstr ""
 
-#: ../doc/book/sql.rst:192
+#: ../doc/book/sql.rst:193
 msgid "``select max(s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:194
+#: ../doc/book/sql.rst:195
 msgid "E091-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:194
-msgid "MIN"
+#: ../doc/book/sql.rst:195
+msgid ":ref:`MIN <sql_aggregate_min>`"
 msgstr ""
 
-#: ../doc/book/sql.rst:194
+#: ../doc/book/sql.rst:195
 msgid "``select min(s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:196
+#: ../doc/book/sql.rst:197
 msgid "E091-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:196
-msgid "SUM"
+#: ../doc/book/sql.rst:197
+msgid ":ref:`SUM <sql_aggregate_sum>`"
 msgstr ""
 
-#: ../doc/book/sql.rst:196
+#: ../doc/book/sql.rst:197
 msgid "``select sum(1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:198
+#: ../doc/book/sql.rst:199
 msgid "E091-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:198
+#: ../doc/book/sql.rst:199
 msgid "ALL quantifier"
 msgstr ""
 
-#: ../doc/book/sql.rst:198
+#: ../doc/book/sql.rst:199
 msgid "``select sum(all s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:200
+#: ../doc/book/sql.rst:201
 msgid "E091-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:200
+#: ../doc/book/sql.rst:201
 msgid "DISTINCT quantifier"
 msgstr ""
 
-#: ../doc/book/sql.rst:200
+#: ../doc/book/sql.rst:201
 msgid "``select sum(distinct s1) from t7 where s1 > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:202
+#: ../doc/book/sql.rst:203
 msgid "E101"
 msgstr ""
 
-#: ../doc/book/sql.rst:202
+#: ../doc/book/sql.rst:203
 msgid "Basic data manipulation"
 msgstr ""
 
-#: ../doc/book/sql.rst:204
+#: ../doc/book/sql.rst:205
 msgid "E101-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:204
+#: ../doc/book/sql.rst:205
 msgid "INSERT statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:204
+#: ../doc/book/sql.rst:205
 msgid "``insert into t (s1,s2) values (1,''),(2,null),(3,55);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:206
+#: ../doc/book/sql.rst:207
 msgid "E101-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:206
+#: ../doc/book/sql.rst:207
 msgid "Searched UPDATE statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:206
+#: ../doc/book/sql.rst:207
 msgid "``update t set s1 = null where s1 in (select s1 from t2);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:209
+#: ../doc/book/sql.rst:210
 msgid "E101-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:209
+#: ../doc/book/sql.rst:210
 msgid "Searched DELETE statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:209
+#: ../doc/book/sql.rst:210
 msgid "``delete from t where s1 in (select s1 from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:211
+#: ../doc/book/sql.rst:212
 msgid "E111"
 msgstr ""
 
-#: ../doc/book/sql.rst:211
+#: ../doc/book/sql.rst:212
 msgid "Single row SELECT statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:211
+#: ../doc/book/sql.rst:212
 msgid "``select count(*) from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:213
+#: ../doc/book/sql.rst:214
 msgid "E121"
 msgstr ""
 
-#: ../doc/book/sql.rst:213
+#: ../doc/book/sql.rst:214
 msgid "Basic cursor support"
 msgstr ""
 
-#: ../doc/book/sql.rst:215
+#: ../doc/book/sql.rst:216
 msgid "E121-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:215
+#: ../doc/book/sql.rst:216
 msgid "DECLARE CURSOR"
 msgstr ""
 
-#: ../doc/book/sql.rst:215
-#: ../doc/book/sql.rst:221
-#: ../doc/book/sql.rst:223
-#: ../doc/book/sql.rst:225
-#: ../doc/book/sql.rst:227
-#: ../doc/book/sql.rst:229
-#: ../doc/book/sql.rst:231
+#: ../doc/book/sql.rst:216
+#: ../doc/book/sql.rst:222
+#: ../doc/book/sql.rst:224
+#: ../doc/book/sql.rst:226
+#: ../doc/book/sql.rst:228
+#: ../doc/book/sql.rst:230
+#: ../doc/book/sql.rst:232
 msgid "Fail. Tarantool doesn't support cursors."
 msgstr ""
 
-#: ../doc/book/sql.rst:217
+#: ../doc/book/sql.rst:218
 msgid "E121-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:217
+#: ../doc/book/sql.rst:218
 msgid "ORDER BY columns need not be in select list"
 msgstr ""
 
-#: ../doc/book/sql.rst:217
+#: ../doc/book/sql.rst:218
 msgid "``select s1 from t order by s2;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:219
+#: ../doc/book/sql.rst:220
 msgid "E121-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:219
+#: ../doc/book/sql.rst:220
 msgid "Value expressions in select list"
 msgstr ""
 
-#: ../doc/book/sql.rst:219
+#: ../doc/book/sql.rst:220
 msgid "``select s1 from t7 order by -s1;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:221
+#: ../doc/book/sql.rst:222
 msgid "E121-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:221
+#: ../doc/book/sql.rst:222
 msgid "OPEN statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:223
+#: ../doc/book/sql.rst:224
 msgid "E121-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:223
+#: ../doc/book/sql.rst:224
 msgid "Positioned UPDATE statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:225
+#: ../doc/book/sql.rst:226
 msgid "E121-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:225
+#: ../doc/book/sql.rst:226
 msgid "Positioned DELETE statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:227
+#: ../doc/book/sql.rst:228
 msgid "E121-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:227
+#: ../doc/book/sql.rst:228
 msgid "CLOSE statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:229
+#: ../doc/book/sql.rst:230
 msgid "E121-10"
 msgstr ""
 
-#: ../doc/book/sql.rst:229
+#: ../doc/book/sql.rst:230
 msgid "FETCH statement implicit next"
 msgstr ""
 
-#: ../doc/book/sql.rst:231
+#: ../doc/book/sql.rst:232
 msgid "E121-17"
 msgstr ""
 
-#: ../doc/book/sql.rst:231
+#: ../doc/book/sql.rst:232
 msgid "WITH HOLD cursors"
 msgstr ""
 
-#: ../doc/book/sql.rst:233
+#: ../doc/book/sql.rst:234
 msgid "E131"
 msgstr ""
 
-#: ../doc/book/sql.rst:233
+#: ../doc/book/sql.rst:234
 msgid "Null value support (nulls in lieu of values)"
 msgstr ""
 
-#: ../doc/book/sql.rst:233
+#: ../doc/book/sql.rst:234
 msgid "``select s1 from t7 where s1 is null;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:235
+#: ../doc/book/sql.rst:236
 msgid "E141"
 msgstr ""
 
-#: ../doc/book/sql.rst:235
+#: ../doc/book/sql.rst:236
 msgid "Basic integrity constraints"
 msgstr ""
 
-#: ../doc/book/sql.rst:237
+#: ../doc/book/sql.rst:238
 msgid "E141-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:237
+#: ../doc/book/sql.rst:238
 msgid "NOT NULL constraints"
 msgstr ""
 
-#: ../doc/book/sql.rst:237
+#: ../doc/book/sql.rst:238
 msgid "``create table t8 (s1 int primary key, s2 int not null);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:240
+#: ../doc/book/sql.rst:241
 msgid "E141-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:240
+#: ../doc/book/sql.rst:241
 msgid "UNIQUE constraints of NOT NULL columns"
 msgstr ""
 
-#: ../doc/book/sql.rst:240
+#: ../doc/book/sql.rst:241
 msgid "``create table t9 (s1 int primary key , s2 int not null unique);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:243
+#: ../doc/book/sql.rst:244
 msgid "E141-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:243
+#: ../doc/book/sql.rst:244
 msgid "PRIMARY KEY constraints"
 msgstr ""
 
-#: ../doc/book/sql.rst:243
+#: ../doc/book/sql.rst:244
 msgid "``create table t10 (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:243
+#: ../doc/book/sql.rst:244
 msgid "Okay, although Tarantool shouldn't always insist on having a primary key."
 msgstr ""
 
-#: ../doc/book/sql.rst:246
+#: ../doc/book/sql.rst:247
 msgid "E141-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:246
+#: ../doc/book/sql.rst:247
 msgid "Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action."
 msgstr ""
 
-#: ../doc/book/sql.rst:246
+#: ../doc/book/sql.rst:247
 msgid "``create table t11 (s0 int primary key, s1 int references t10);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:250
+#: ../doc/book/sql.rst:251
 msgid "E141-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:250
+#: ../doc/book/sql.rst:251
 msgid "CHECK constraints"
 msgstr ""
 
-#: ../doc/book/sql.rst:250
+#: ../doc/book/sql.rst:251
 msgid "``create table t12 (s1 int primary key, s2 int, check (s1 = s2));``"
 msgstr ""
 
-#: ../doc/book/sql.rst:253
+#: ../doc/book/sql.rst:254
 msgid "E141-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:253
+#: ../doc/book/sql.rst:254
 msgid "Column defaults"
 msgstr ""
 
-#: ../doc/book/sql.rst:253
+#: ../doc/book/sql.rst:254
 msgid "``create table t13 (s1 int primary key, s2 int default -1);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:256
+#: ../doc/book/sql.rst:257
 msgid "E141-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:256
+#: ../doc/book/sql.rst:257
 msgid "NOT NULL inferred on primary key"
 msgstr ""
 
-#: ../doc/book/sql.rst:256
+#: ../doc/book/sql.rst:257
 msgid "``create table t14 (s1 int primary key);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:256
+#: ../doc/book/sql.rst:257
 msgid "Okay. We are unable to insert NULL although we don't explicitly say the column is NOT NULL."
 msgstr ""
 
-#: ../doc/book/sql.rst:259
+#: ../doc/book/sql.rst:260
 msgid "E141-10"
 msgstr ""
 
-#: ../doc/book/sql.rst:259
+#: ../doc/book/sql.rst:260
 msgid "Names in a foreign key can be specified in any order"
 msgstr ""
 
-#: ../doc/book/sql.rst:259
+#: ../doc/book/sql.rst:260
 msgid "``create table t15 (s1 int, s2 int, primary key (s1,s2));`` ``create table t16 (s1 int primary key, s2 int, foreign key (s2,s1) references t15 (s1,s2));``"
 msgstr ""
 
-#: ../doc/book/sql.rst:264
+#: ../doc/book/sql.rst:265
 msgid "E151"
 msgstr ""
 
-#: ../doc/book/sql.rst:264
+#: ../doc/book/sql.rst:265
 msgid "Transaction support"
 msgstr ""
 
-#: ../doc/book/sql.rst:266
+#: ../doc/book/sql.rst:267
 msgid "E151-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:266
+#: ../doc/book/sql.rst:267
 msgid "COMMIT statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:266
+#: ../doc/book/sql.rst:267
 msgid "``commit;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:266
+#: ../doc/book/sql.rst:267
 msgid "Fail. We have to say START TRANSACTION first."
 msgstr ""
 
-#: ../doc/book/sql.rst:268
+#: ../doc/book/sql.rst:269
 msgid "E151-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:268
+#: ../doc/book/sql.rst:269
 msgid "ROLLBACK statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:268
+#: ../doc/book/sql.rst:269
 msgid "``rollback;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:270
+#: ../doc/book/sql.rst:271
 msgid "E152"
 msgstr ""
 
-#: ../doc/book/sql.rst:270
+#: ../doc/book/sql.rst:271
 msgid "Basic SET TRANSACTION statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:272
+#: ../doc/book/sql.rst:273
 msgid "E152-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:272
+#: ../doc/book/sql.rst:273
 msgid "SET TRANSACTION statement ISOLATION SERIALIZABLE clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:272
+#: ../doc/book/sql.rst:273
 msgid "``set transaction isolation level serializable;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:275
+#: ../doc/book/sql.rst:276
 msgid "E152-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:275
+#: ../doc/book/sql.rst:276
 msgid "SET TRANSACTION statement READ ONLY and READ WRITE clauses"
 msgstr ""
 
-#: ../doc/book/sql.rst:275
+#: ../doc/book/sql.rst:276
 msgid "``set transaction read only;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:278
+#: ../doc/book/sql.rst:279
 msgid "E153"
 msgstr ""
 
-#: ../doc/book/sql.rst:278
+#: ../doc/book/sql.rst:279
 msgid "Updatable queries with subqueries"
 msgstr ""
 
-#: ../doc/book/sql.rst:280
+#: ../doc/book/sql.rst:281
 msgid "E161"
 msgstr ""
 
-#: ../doc/book/sql.rst:280
+#: ../doc/book/sql.rst:281
 msgid "SQL comments using leading double minus"
 msgstr ""
 
-#: ../doc/book/sql.rst:280
+#: ../doc/book/sql.rst:281
 msgid "``--comment;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:282
+#: ../doc/book/sql.rst:283
 msgid "E171"
 msgstr ""
 
-#: ../doc/book/sql.rst:282
+#: ../doc/book/sql.rst:283
 msgid "SQLSTATE support"
 msgstr ""
 
-#: ../doc/book/sql.rst:282
+#: ../doc/book/sql.rst:283
 msgid "``drop table no_such_table;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:282
+#: ../doc/book/sql.rst:283
 msgid "Fail. At least, the error message doesn't hint that SQLSTATE exists."
 msgstr ""
 
-#: ../doc/book/sql.rst:285
+#: ../doc/book/sql.rst:286
 msgid "E182"
 msgstr ""
 
-#: ../doc/book/sql.rst:285
+#: ../doc/book/sql.rst:286
 msgid "Host language binding"
 msgstr ""
 
-#: ../doc/book/sql.rst:285
+#: ../doc/book/sql.rst:286
 msgid "Okay. Any of the Tarantool connectors should be able to call ``box.execute()``."
 msgstr ""
 
-#: ../doc/book/sql.rst:288
+#: ../doc/book/sql.rst:289
 msgid "F031"
 msgstr ""
 
-#: ../doc/book/sql.rst:288
+#: ../doc/book/sql.rst:289
 msgid "Basic schema manipulation"
 msgstr ""
 
-#: ../doc/book/sql.rst:290
+#: ../doc/book/sql.rst:291
 msgid "F031-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:290
+#: ../doc/book/sql.rst:291
 msgid "CREATE TABLE statement to create persistent base tables"
 msgstr ""
 
-#: ../doc/book/sql.rst:290
+#: ../doc/book/sql.rst:291
 msgid "``create table t20 (t20_1 int not null);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:290
+#: ../doc/book/sql.rst:291
 msgid "Fail. We always have to say PRIMARY KEY (we only count this flaw once)."
 msgstr ""
 
-#: ../doc/book/sql.rst:293
+#: ../doc/book/sql.rst:294
 msgid "F031-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:293
+#: ../doc/book/sql.rst:294
 msgid "CREATE VIEW statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:293
+#: ../doc/book/sql.rst:294
 msgid "``create view t21 as select * from t20;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:295
+#: ../doc/book/sql.rst:296
 msgid "F031-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:295
-#: ../doc/book/sql.rst:399
+#: ../doc/book/sql.rst:296
+#: ../doc/book/sql.rst:400
 msgid "GRANT statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:295
+#: ../doc/book/sql.rst:296
 msgid "Fail. Tarantool doesn't support privileges except via NoSQL."
 msgstr ""
 
-#: ../doc/book/sql.rst:298
+#: ../doc/book/sql.rst:299
 msgid "F031-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:298
+#: ../doc/book/sql.rst:299
 msgid "ALTER TABLE statement: add column"
 msgstr ""
 
-#: ../doc/book/sql.rst:298
+#: ../doc/book/sql.rst:299
 msgid "``alter table t7 add column t7_2 varchar default 'q';``"
 msgstr ""
 
-#: ../doc/book/sql.rst:298
+#: ../doc/book/sql.rst:299
 msgid "Fail. Table alterations work but not this clause."
 msgstr ""
 
-#: ../doc/book/sql.rst:300
+#: ../doc/book/sql.rst:301
 msgid "F031-13"
 msgstr ""
 
-#: ../doc/book/sql.rst:300
+#: ../doc/book/sql.rst:301
 msgid "DROP TABLE statement: RESTRICT clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:300
+#: ../doc/book/sql.rst:301
 msgid "``drop table t20 restrict;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:300
-#: ../doc/book/sql.rst:302
+#: ../doc/book/sql.rst:301
+#: ../doc/book/sql.rst:303
 msgid "Fail. Syntax error, and RESTRICT is not assumed."
 msgstr ""
 
-#: ../doc/book/sql.rst:302
+#: ../doc/book/sql.rst:303
 msgid "F031-16"
 msgstr ""
 
-#: ../doc/book/sql.rst:302
+#: ../doc/book/sql.rst:303
 msgid "DROP VIEW statement: RESTRICT clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:302
+#: ../doc/book/sql.rst:303
 msgid "``drop view v2 restrict;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:304
+#: ../doc/book/sql.rst:305
 msgid "F031-19"
 msgstr ""
 
-#: ../doc/book/sql.rst:304
+#: ../doc/book/sql.rst:305
 msgid "REVOKE statement: RESTRICT clause"
 msgstr ""
 
-#: ../doc/book/sql.rst:304
+#: ../doc/book/sql.rst:305
 msgid "Fail. Tarantool does not support privileges except via NoSQL."
 msgstr ""
 
-#: ../doc/book/sql.rst:307
+#: ../doc/book/sql.rst:308
 msgid "F041"
 msgstr ""
 
-#: ../doc/book/sql.rst:307
+#: ../doc/book/sql.rst:308
 msgid "Basic joined table"
 msgstr ""
 
-#: ../doc/book/sql.rst:309
+#: ../doc/book/sql.rst:310
 msgid "F041-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:309
+#: ../doc/book/sql.rst:310
 msgid "Inner join but not necessarily the INNER keyword"
 msgstr ""
 
-#: ../doc/book/sql.rst:309
+#: ../doc/book/sql.rst:310
 msgid "``select a.s1 from t7 a join t7 b;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:312
+#: ../doc/book/sql.rst:313
 msgid "F041-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:312
+#: ../doc/book/sql.rst:313
 msgid "INNER keyword"
 msgstr ""
 
-#: ../doc/book/sql.rst:312
+#: ../doc/book/sql.rst:313
 msgid "``select a.s1 from t7 a inner join t7 b;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:314
+#: ../doc/book/sql.rst:315
 msgid "F041-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:314
+#: ../doc/book/sql.rst:315
 msgid "LEFT OUTER JOIN"
 msgstr ""
 
-#: ../doc/book/sql.rst:314
+#: ../doc/book/sql.rst:315
 msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:317
+#: ../doc/book/sql.rst:318
 msgid "F041-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:317
+#: ../doc/book/sql.rst:318
 msgid "RIGHT OUTER JOIN"
 msgstr ""
 
-#: ../doc/book/sql.rst:317
+#: ../doc/book/sql.rst:318
 msgid "``select t7.*,t22.* from t22 right outer join t7 on (t22_1=s1);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:320
+#: ../doc/book/sql.rst:321
 msgid "F041-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:320
+#: ../doc/book/sql.rst:321
 msgid "Outer joins can be nested"
 msgstr ""
 
-#: ../doc/book/sql.rst:320
+#: ../doc/book/sql.rst:321
 msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1) left outer join t23;``."
 msgstr ""
 
-#: ../doc/book/sql.rst:323
+#: ../doc/book/sql.rst:324
 msgid "F041-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:323
+#: ../doc/book/sql.rst:324
 msgid "The inner table in a left or right outer join can also be used in an inner join"
 msgstr ""
 
-#: ../doc/book/sql.rst:323
+#: ../doc/book/sql.rst:324
 msgid "``select t7.* from t22 left outer join t7 on (t22_1=s1) inner join t22 on (t22_4=t22_5);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:323
+#: ../doc/book/sql.rst:324
 msgid "Okay. The query fails due to a syntax error but that's expectable."
 msgstr ""
 
-#: ../doc/book/sql.rst:326
+#: ../doc/book/sql.rst:327
 msgid "F041-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:326
+#: ../doc/book/sql.rst:327
 msgid "All comparison operators are supported"
 msgstr ""
 
-#: ../doc/book/sql.rst:326
+#: ../doc/book/sql.rst:327
 msgid "``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:328
+#: ../doc/book/sql.rst:329
 msgid "F051 Basic date and time"
 msgstr ""
 
-#: ../doc/book/sql.rst:330
+#: ../doc/book/sql.rst:331
 msgid "F051-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:330
+#: ../doc/book/sql.rst:331
 msgid "DATE data type (including support of DATE literal)"
 msgstr ""
 
-#: ../doc/book/sql.rst:330
+#: ../doc/book/sql.rst:331
 msgid "``create table dates (s1 date);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:330
+#: ../doc/book/sql.rst:331
 msgid "Fail. Tarantool does not support DATE data type."
 msgstr ""
 
-#: ../doc/book/sql.rst:333
+#: ../doc/book/sql.rst:334
 msgid "F051-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:333
+#: ../doc/book/sql.rst:334
 msgid "TIME data type (including support of TIME literal)"
 msgstr ""
 
-#: ../doc/book/sql.rst:333
+#: ../doc/book/sql.rst:334
 msgid "``create table times (s1 time default time '1:2:3');``"
 msgstr ""
 
-#: ../doc/book/sql.rst:336
+#: ../doc/book/sql.rst:337
 msgid "F051-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:336
+#: ../doc/book/sql.rst:337
 msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
 msgstr ""
 
-#: ../doc/book/sql.rst:336
+#: ../doc/book/sql.rst:337
 msgid "``create table timestamps (s1 timestamp);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:339
+#: ../doc/book/sql.rst:340
 msgid "F051-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:339
+#: ../doc/book/sql.rst:340
 msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
 msgstr ""
 
-#: ../doc/book/sql.rst:339
+#: ../doc/book/sql.rst:340
 msgid "``select * from dates where s1 = s1;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:339
-#: ../doc/book/sql.rst:342
+#: ../doc/book/sql.rst:340
+#: ../doc/book/sql.rst:343
 msgid "Fail. The data types are not supported."
 msgstr ""
 
-#: ../doc/book/sql.rst:342
+#: ../doc/book/sql.rst:343
 msgid "F051-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:342
+#: ../doc/book/sql.rst:343
 msgid "Explicit CAST between date-time types and character string types"
 msgstr ""
 
-#: ../doc/book/sql.rst:342
+#: ../doc/book/sql.rst:343
 msgid "``select cast(s1 as varchar(10)) from dates;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:345
+#: ../doc/book/sql.rst:346
 msgid "F051-06"
 msgstr ""
 
-#: ../doc/book/sql.rst:345
+#: ../doc/book/sql.rst:346
 msgid "CURRENT_DATE"
 msgstr ""
 
-#: ../doc/book/sql.rst:345
+#: ../doc/book/sql.rst:346
 msgid "``select current_date from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:347
+#: ../doc/book/sql.rst:348
 msgid "F051-07"
 msgstr ""
 
-#: ../doc/book/sql.rst:347
+#: ../doc/book/sql.rst:348
 msgid "CURRENT_TIME"
 msgstr ""
 
-#: ../doc/book/sql.rst:347
+#: ../doc/book/sql.rst:348
 msgid "``select * from t where current_time < '23:23:23';``"
 msgstr ""
 
-#: ../doc/book/sql.rst:349
+#: ../doc/book/sql.rst:350
 msgid "F051-08"
 msgstr ""
 
-#: ../doc/book/sql.rst:349
+#: ../doc/book/sql.rst:350
 msgid "LOCALTIME"
 msgstr ""
 
-#: ../doc/book/sql.rst:349
+#: ../doc/book/sql.rst:350
 msgid "``select localtime from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:351
+#: ../doc/book/sql.rst:352
 msgid "F051-09"
 msgstr ""
 
-#: ../doc/book/sql.rst:351
+#: ../doc/book/sql.rst:352
 msgid "LOCALTIMESTAMP"
 msgstr ""
 
-#: ../doc/book/sql.rst:351
+#: ../doc/book/sql.rst:352
 msgid "``select localtimestamp from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:353
+#: ../doc/book/sql.rst:354
 msgid "F081"
 msgstr ""
 
-#: ../doc/book/sql.rst:353
+#: ../doc/book/sql.rst:354
 msgid "UNION and EXCEPT in views"
 msgstr ""
 
-#: ../doc/book/sql.rst:353
+#: ../doc/book/sql.rst:354
 msgid "``create view vv as select * from t7 except select * from t15;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:356
+#: ../doc/book/sql.rst:357
 msgid "F131"
 msgstr ""
 
-#: ../doc/book/sql.rst:356
+#: ../doc/book/sql.rst:357
 msgid "Grouped operations"
 msgstr ""
 
-#: ../doc/book/sql.rst:358
+#: ../doc/book/sql.rst:359
 msgid "F131-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:358
+#: ../doc/book/sql.rst:359
 msgid "WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
 msgstr ""
 
-#: ../doc/book/sql.rst:358
+#: ../doc/book/sql.rst:359
 msgid "``create view vv2 as select * from vv group by s1;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:361
+#: ../doc/book/sql.rst:362
 msgid "F131-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:361
+#: ../doc/book/sql.rst:362
 msgid "Multiple tables supported in queries with grouped views"
 msgstr ""
 
-#: ../doc/book/sql.rst:361
+#: ../doc/book/sql.rst:362
 msgid "``create view vv3 as select * from vv2,t30;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:364
+#: ../doc/book/sql.rst:365
 msgid "F131-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:364
+#: ../doc/book/sql.rst:365
 msgid "Set functions supported in queries with grouped views"
 msgstr ""
 
-#: ../doc/book/sql.rst:364
+#: ../doc/book/sql.rst:365
 msgid "``create view vv4 as select count(*) from vv2;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:367
+#: ../doc/book/sql.rst:368
 msgid "F131-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:367
+#: ../doc/book/sql.rst:368
 msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
 msgstr ""
 
-#: ../doc/book/sql.rst:367
+#: ../doc/book/sql.rst:368
 msgid "``create view vv5 as select count(*) from vv2 group by s1 having count(*) > 0;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:370
+#: ../doc/book/sql.rst:371
 msgid "F181"
 msgstr ""
 
-#: ../doc/book/sql.rst:370
+#: ../doc/book/sql.rst:371
 msgid "Multiple module support"
 msgstr ""
 
-#: ../doc/book/sql.rst:370
+#: ../doc/book/sql.rst:371
 msgid "Fail. Tarantool doesn't have modules."
 msgstr ""
 
-#: ../doc/book/sql.rst:372
+#: ../doc/book/sql.rst:373
 msgid "F201"
 msgstr ""
 
-#: ../doc/book/sql.rst:372
+#: ../doc/book/sql.rst:373
 msgid "CAST function"
 msgstr ""
 
-#: ../doc/book/sql.rst:372
+#: ../doc/book/sql.rst:373
 msgid "``select cast(s1 as int) from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:374
+#: ../doc/book/sql.rst:375
 msgid "F221"
 msgstr ""
 
-#: ../doc/book/sql.rst:374
+#: ../doc/book/sql.rst:375
 msgid "Explicit defaults"
 msgstr ""
 
-#: ../doc/book/sql.rst:374
+#: ../doc/book/sql.rst:375
 msgid "``update t set s1 = default;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:376
+#: ../doc/book/sql.rst:377
 msgid "F261"
 msgstr ""
 
-#: ../doc/book/sql.rst:376
+#: ../doc/book/sql.rst:377
 msgid "CASE expression"
 msgstr ""
 
-#: ../doc/book/sql.rst:378
+#: ../doc/book/sql.rst:379
 msgid "F261-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:378
+#: ../doc/book/sql.rst:379
 msgid "Simple CASE"
 msgstr ""
 
-#: ../doc/book/sql.rst:378
+#: ../doc/book/sql.rst:379
 msgid "``select case when 1 = 0 then 5 else 7 end from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:380
+#: ../doc/book/sql.rst:381
 msgid "F261-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:380
+#: ../doc/book/sql.rst:381
 msgid "Searched CASE"
 msgstr ""
 
-#: ../doc/book/sql.rst:380
+#: ../doc/book/sql.rst:381
 msgid "``select case 1 when 0 then 5 else 7 end from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:382
+#: ../doc/book/sql.rst:383
 msgid "F261-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:382
+#: ../doc/book/sql.rst:383
 msgid "NULLIF"
 msgstr ""
 
-#: ../doc/book/sql.rst:382
+#: ../doc/book/sql.rst:383
 msgid "``select nullif(s1,7) from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:384
+#: ../doc/book/sql.rst:385
 msgid "F261-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:384
+#: ../doc/book/sql.rst:385
 msgid "COALESCE"
 msgstr ""
 
-#: ../doc/book/sql.rst:384
+#: ../doc/book/sql.rst:385
 msgid "``select coalesce(s1,7) from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:386
+#: ../doc/book/sql.rst:387
 msgid "F311"
 msgstr ""
 
-#: ../doc/book/sql.rst:386
+#: ../doc/book/sql.rst:387
 msgid "Schema definition statement"
 msgstr ""
 
-#: ../doc/book/sql.rst:388
+#: ../doc/book/sql.rst:389
 msgid "F311-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:388
+#: ../doc/book/sql.rst:389
 msgid "CREATE SCHEMA"
 msgstr ""
 
-#: ../doc/book/sql.rst:388
+#: ../doc/book/sql.rst:389
 msgid "Fail. Tarantool doesn't have schemas or databases."
 msgstr ""
 
-#: ../doc/book/sql.rst:390
+#: ../doc/book/sql.rst:391
 msgid "F311-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:390
+#: ../doc/book/sql.rst:391
 msgid "CREATE TABLE for persistent base tables"
 msgstr ""
 
-#: ../doc/book/sql.rst:390
+#: ../doc/book/sql.rst:391
 msgid "Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA."
 msgstr ""
 
-#: ../doc/book/sql.rst:393
+#: ../doc/book/sql.rst:394
 msgid "F311-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:393
+#: ../doc/book/sql.rst:394
 msgid "CREATE VIEW"
 msgstr ""
 
-#: ../doc/book/sql.rst:393
-#: ../doc/book/sql.rst:396
+#: ../doc/book/sql.rst:394
+#: ../doc/book/sql.rst:397
 msgid "Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA."
 msgstr ""
 
-#: ../doc/book/sql.rst:396
+#: ../doc/book/sql.rst:397
 msgid "F311-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:396
+#: ../doc/book/sql.rst:397
 msgid "CREATE VIEW: WITH CHECK OPTION"
 msgstr ""
 
-#: ../doc/book/sql.rst:399
+#: ../doc/book/sql.rst:400
 msgid "F311-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:399
+#: ../doc/book/sql.rst:400
 msgid "Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA."
 msgstr ""
 
-#: ../doc/book/sql.rst:402
+#: ../doc/book/sql.rst:403
 msgid "F471"
 msgstr ""
 
-#: ../doc/book/sql.rst:402
+#: ../doc/book/sql.rst:403
 msgid "Scalar subquery values"
 msgstr ""
 
-#: ../doc/book/sql.rst:402
+#: ../doc/book/sql.rst:403
 msgid "``select s1 from t where s1 = (select count(*) from t);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:404
+#: ../doc/book/sql.rst:405
 msgid "F481"
 msgstr ""
 
-#: ../doc/book/sql.rst:404
+#: ../doc/book/sql.rst:405
 msgid "Expanded NULL Predicate"
 msgstr ""
 
-#: ../doc/book/sql.rst:404
+#: ../doc/book/sql.rst:405
 msgid "``select * from t where row(s1,s1) is not null;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:406
+#: ../doc/book/sql.rst:407
 msgid "F812"
 msgstr ""
 
-#: ../doc/book/sql.rst:406
+#: ../doc/book/sql.rst:407
 msgid "Basic flagging"
 msgstr ""
 
-#: ../doc/book/sql.rst:406
+#: ../doc/book/sql.rst:407
 msgid "Fail. Tarantool doesn't support any flagging."
 msgstr ""
 
-#: ../doc/book/sql.rst:408
+#: ../doc/book/sql.rst:409
 msgid "S011"
 msgstr ""
 
-#: ../doc/book/sql.rst:408
+#: ../doc/book/sql.rst:409
 msgid "Distinct types"
 msgstr ""
 
-#: ../doc/book/sql.rst:408
+#: ../doc/book/sql.rst:409
 msgid "``create type x as float;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:408
+#: ../doc/book/sql.rst:409
 msgid "Fail. Tarantool doesn't support distinct types."
 msgstr ""
 
-#: ../doc/book/sql.rst:410
+#: ../doc/book/sql.rst:411
 msgid "T321"
 msgstr ""
 
-#: ../doc/book/sql.rst:410
+#: ../doc/book/sql.rst:411
 msgid "Basic SQL-invoked routines"
 msgstr ""
 
-#: ../doc/book/sql.rst:412
+#: ../doc/book/sql.rst:413
 msgid "T321-01"
 msgstr ""
 
-#: ../doc/book/sql.rst:412
+#: ../doc/book/sql.rst:413
 msgid "User-defined functions with no overloading"
 msgstr ""
 
-#: ../doc/book/sql.rst:412
+#: ../doc/book/sql.rst:413
 msgid "``create function f () returns int return 5;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:412
+#: ../doc/book/sql.rst:413
 msgid "Fail. Tarantool doesn't support user-defined SQL functions."
 msgstr ""
 
-#: ../doc/book/sql.rst:415
+#: ../doc/book/sql.rst:416
 msgid "T321-02"
 msgstr ""
 
-#: ../doc/book/sql.rst:415
+#: ../doc/book/sql.rst:416
 msgid "User-defined procedures with no overloading"
 msgstr ""
 
-#: ../doc/book/sql.rst:415
+#: ../doc/book/sql.rst:416
 msgid "``create procedure p () begin end;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:415
-#: ../doc/book/sql.rst:420
+#: ../doc/book/sql.rst:416
+#: ../doc/book/sql.rst:421
 msgid "Fail. Tarantool doesn't support user-defined procedures."
 msgstr ""
 
-#: ../doc/book/sql.rst:418
+#: ../doc/book/sql.rst:419
 msgid "T321-03"
 msgstr ""
 
-#: ../doc/book/sql.rst:418
+#: ../doc/book/sql.rst:419
 msgid "Function invocation"
 msgstr ""
 
-#: ../doc/book/sql.rst:418
+#: ../doc/book/sql.rst:419
 msgid "``select f(1) from t;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:418
+#: ../doc/book/sql.rst:419
 msgid "Okay. Tarantool can invoke Lua user-defined functions."
 msgstr ""
 
-#: ../doc/book/sql.rst:420
+#: ../doc/book/sql.rst:421
 msgid "T321-04"
 msgstr ""
 
-#: ../doc/book/sql.rst:420
+#: ../doc/book/sql.rst:421
 msgid "CALL statement."
 msgstr ""
 
-#: ../doc/book/sql.rst:420
+#: ../doc/book/sql.rst:421
 msgid "``call p();``"
 msgstr ""
 
-#: ../doc/book/sql.rst:423
+#: ../doc/book/sql.rst:424
 msgid "T321-05"
 msgstr ""
 
-#: ../doc/book/sql.rst:423
+#: ../doc/book/sql.rst:424
 msgid "RETURN statement."
 msgstr ""
 
-#: ../doc/book/sql.rst:423
+#: ../doc/book/sql.rst:424
 msgid "``create function f() returns int return 5;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:423
+#: ../doc/book/sql.rst:424
 msgid "Fail. Tarantool doesn't support user-defined functions."
 msgstr ""
 
-#: ../doc/book/sql.rst:426
+#: ../doc/book/sql.rst:427
 msgid "T631"
 msgstr ""
 
-#: ../doc/book/sql.rst:426
+#: ../doc/book/sql.rst:427
 msgid "IN predicate with one list element"
 msgstr ""
 
-#: ../doc/book/sql.rst:426
+#: ../doc/book/sql.rst:427
 msgid "``select * from t where 1 in (1);``"
 msgstr ""
 
-#: ../doc/book/sql.rst:428
+#: ../doc/book/sql.rst:429
 msgid "F021"
 msgstr ""
 
-#: ../doc/book/sql.rst:428
+#: ../doc/book/sql.rst:429
 msgid "Basic information schema"
 msgstr ""
 
-#: ../doc/book/sql.rst:428
+#: ../doc/book/sql.rst:429
 msgid "``select * from information_schema.tables;``"
 msgstr ""
 
-#: ../doc/book/sql.rst:428
+#: ../doc/book/sql.rst:429
 msgid "Fail. There is no schema with that name (not counted in the final score)."
 msgstr ""
 
-#: ../doc/book/sql.rst:432
+#: ../doc/book/sql.rst:433
 msgid "Total number of items marked \"Fail\": 69"
 msgstr ""
 
-#: ../doc/book/sql.rst:434
+#: ../doc/book/sql.rst:435
 msgid "Total number of items marked \"Okay\": 77"
 msgstr ""
 
