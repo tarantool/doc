@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-13 14:40+0000\n"
-"PO-Revision-Date: 2019-11-15 12:50+0300\n"
+"PO-Revision-Date: 2019-11-15 13:14+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -26081,7 +26081,7 @@ msgstr "``tarantoolctl eval NAME FILE``"
 
 #: ../doc/reference/tarantoolctl.rst:93
 msgid "Evaluate a local Lua file on a running Tarantool instance."
-msgstr "Оценка локального Lua-файла на работающем экземпляре Tarantool'а."
+msgstr "Выполнение локального Lua-файла на работающем экземпляре Tarantool'а."
 
 #: ../doc/reference/tarantoolctl.rst:97
 msgid "``tarantoolctl connect URI``"
