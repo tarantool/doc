@@ -26,7 +26,7 @@ the granularity of rebalancing.
 Each shard stores a unique subset of vbuckets, which means that a vbucket cannot
 belong to several shards at once, as illustrated below:
 
-.. image:: hierarchy.png
+.. image:: bucket.svg
     :align: center
 
 This shard-to-vbucket mapping is stored in a table in one of Tarantool’s system
@@ -155,21 +155,33 @@ changed dynamically - for example, when adding or deleting one or several shards
 #. when trying to access the vbucket, a router receives a special error code
    that specifies the new vbucket location.
 
-**CRUD (create, replace, update, delete) operations**
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CRUD (create, replace, update, delete) operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CRUD operations can either be executed in a stored procedure inside a storage or
 initialized by the application. In any case, the application must include the
 operation bucket id in a request. When executing an INSERT request, the operation
 bucket id is stored in a newly created tuple. In other cases, it is checked if
 the specified operation bucket id matches the bucket id of a tuple being modified.
 
-**SELECT requests**
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SELECT requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Since a storage is not aware of the mapping between a bucket id and a primary
 key, all the SELECT requests executed in stored procedures inside a storage are
 only executed locally. Those SELECT requests that were initialized by the
 application are forwarded to a router. Then, if the application has passed
 a bucket id, a router uses it for shard calculation.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Calling stored procedures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There are several ways of calling stored procedures in cluster replicasets.
+Stored procedures can be called on a specific vbucket located in a replicaset or
+without specifying any particular vbucket. In the former case, it is necessary
+to differentiate between read and write procedures, as write procedures are not
+applicable to vbuckets that are being migrated. All the routing validity checks
+performed for sharded DML operations hold true for vbucket-bound stored procedures as well.
 
 .. _vshard-rebalancer:
 
