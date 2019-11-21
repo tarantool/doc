@@ -70,9 +70,6 @@ buckets.
 Each replica set stores a unique subset of buckets. One bucket cannot belong to
 multiple replica sets at a time.
 
-.. image:: vbuckets.svg
-    :align: center
-
 The total number of buckets is determined by the administrator who sets up the
 initial cluster configuration.
 
