@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 08:12+0000\n"
+"POT-Creation-Date: 2019-11-13 14:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,7 +101,7 @@ msgstr ""
 #: ../doc/reference/configuration/cfg_deprecated.rst:25
 #: ../doc/reference/configuration/cfg_deprecated.rst:55
 #: ../doc/reference/configuration/cfg_deprecated.rst:66
-#: ../doc/reference/reference_rock/vshard/index.rst:1087
+#: ../doc/reference/reference_rock/vshard/index.rst:1088
 msgid "Type: boolean"
 msgstr ""
 
@@ -117,8 +117,8 @@ msgstr ""
 #: ../doc/reference/configuration/cfg_hot_standby.rst:49
 #: ../doc/reference/configuration/cfg_replication.rst:125
 #: ../doc/reference/configuration/cfg_deprecated.rst:26
-#: ../doc/reference/reference_rock/vshard/index.rst:1023
-#: ../doc/reference/reference_rock/vshard/index.rst:1034
+#: ../doc/reference/reference_rock/vshard/index.rst:1024
+#: ../doc/reference/reference_rock/vshard/index.rst:1035
 msgid "Default: false"
 msgstr ""
 
@@ -184,8 +184,8 @@ msgstr ""
 #: ../doc/reference/configuration/cfg_deprecated.rst:57
 #: ../doc/reference/configuration/cfg_deprecated.rst:95
 #: ../doc/reference/configuration/cfg_deprecated.rst:110
-#: ../doc/reference/reference_rock/vshard/index.rst:1045
-#: ../doc/reference/reference_rock/vshard/index.rst:1069
+#: ../doc/reference/reference_rock/vshard/index.rst:1046
+#: ../doc/reference/reference_rock/vshard/index.rst:1070
 msgid "Dynamic: no"
 msgstr ""
 
@@ -290,13 +290,13 @@ msgstr ""
 #: ../doc/reference/configuration/cfg_snapshot_daemon.rst:70
 #: ../doc/reference/configuration/cfg_snapshot_daemon.rst:99
 #: ../doc/reference/configuration/cfg_deprecated.rst:68
-#: ../doc/reference/reference_rock/vshard/index.rst:1024
-#: ../doc/reference/reference_rock/vshard/index.rst:1035
-#: ../doc/reference/reference_rock/vshard/index.rst:1079
-#: ../doc/reference/reference_rock/vshard/index.rst:1089
-#: ../doc/reference/reference_rock/vshard/index.rst:1101
-#: ../doc/reference/reference_rock/vshard/index.rst:1116
-#: ../doc/reference/reference_rock/vshard/index.rst:1137
+#: ../doc/reference/reference_rock/vshard/index.rst:1025
+#: ../doc/reference/reference_rock/vshard/index.rst:1036
+#: ../doc/reference/reference_rock/vshard/index.rst:1080
+#: ../doc/reference/reference_rock/vshard/index.rst:1090
+#: ../doc/reference/reference_rock/vshard/index.rst:1102
+#: ../doc/reference/reference_rock/vshard/index.rst:1117
+#: ../doc/reference/reference_rock/vshard/index.rst:1138
 msgid "Dynamic: yes"
 msgstr ""
 
@@ -1084,7 +1084,7 @@ msgstr ""
 
 #: ../doc/reference/configuration/cfg_logging.rst:140
 #: ../doc/reference/configuration/cfg_logging.rst:140
-#: ../doc/reference/reference_rock/vshard/index.rst:1078
+#: ../doc/reference/reference_rock/vshard/index.rst:1079
 msgid "Default: 0.5"
 msgstr ""
 
@@ -1468,9 +1468,9 @@ msgstr ""
 
 #: ../doc/reference/configuration/cfg_replication.rst:59
 #: ../doc/reference/configuration/cfg_replication.rst:59
-#: ../doc/reference/reference_rock/vshard/index.rst:1100
-#: ../doc/reference/reference_rock/vshard/index.rst:1115
-#: ../doc/reference/reference_rock/vshard/index.rst:1166
+#: ../doc/reference/reference_rock/vshard/index.rst:1101
+#: ../doc/reference/reference_rock/vshard/index.rst:1116
+#: ../doc/reference/reference_rock/vshard/index.rst:1167
 msgid "Default: 1"
 msgstr ""
 
@@ -1691,7 +1691,7 @@ msgstr ""
 #: ../doc/reference/reference_lua/digest.rst:227
 #: ../doc/reference/reference_rock/dbms.rst:82
 #: ../doc/reference/reference_rock/dbms.rst:435
-#: ../doc/reference/reference_rock/vshard/index.rst:843
+#: ../doc/reference/reference_rock/vshard/index.rst:844
 msgid "For example:"
 msgstr ""
 
@@ -1942,7 +1942,7 @@ msgid "The maximum number of write threads that vinyl can use for some concurren
 msgstr ""
 
 #: ../doc/reference/configuration/index.rst:5
-#: ../doc/reference/reference_rock/vshard/index.rst:998
+#: ../doc/reference/reference_rock/vshard/index.rst:999
 msgid "Configuration reference"
 msgstr ""
 
@@ -2131,7 +2131,7 @@ msgid "The following sections describe all parameters for basic operation, for s
 msgstr ""
 
 #: ../doc/reference/configuration/index.rst:190
-#: ../doc/reference/reference_rock/vshard/index.rst:1004
+#: ../doc/reference/reference_rock/vshard/index.rst:1005
 msgid "Basic parameters"
 msgstr ""
 
@@ -2310,172 +2310,23 @@ msgstr ""
 msgid "The contents of the ``box`` module can be inspected at runtime with ``box``, with no arguments. The ``box`` module contains:"
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:3
-msgid "Submodule `box.error`"
+#: ../doc/reference/reference_lua/box_backup.rst:3
+msgid "Submodule box.backup"
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:9
-#: ../doc/reference/reference_lua/clock.rst:9
-#: ../doc/reference/reference_lua/console.rst:9
-#: ../doc/reference/reference_lua/crypto.rst:11
-#: ../doc/reference/reference_lua/csv.rst:9
-#: ../doc/reference/reference_lua/debug_facilities.rst:9
-#: ../doc/reference/reference_lua/digest.rst:11
-#: ../doc/reference/reference_lua/errno.rst:11
-#: ../doc/reference/reference_lua/fiber.rst:9
-#: ../doc/reference/reference_lua/fio.rst:11
-#: ../doc/reference/reference_lua/http.rst:11
-#: ../doc/reference/reference_lua/iconv.rst:11
-#: ../doc/reference/reference_lua/jit.rst:11
-#: ../doc/reference/reference_lua/json.rst:9
-#: ../doc/reference/reference_lua/log.rst:11
-#: ../doc/reference/reference_lua/msgpack.rst:9
-#: ../doc/reference/reference_lua/net_box.rst:9
-#: ../doc/reference/reference_lua/osmodule.rst:11
-#: ../doc/reference/reference_lua/socket.rst:9
-#: ../doc/reference/reference_lua/string.rst:9
-#: ../doc/reference/reference_lua/tap.rst:7
-#: ../doc/reference/reference_lua/uri.rst:7
-#: ../doc/reference/reference_lua/utf8.rst:9
-#: ../doc/reference/reference_lua/uuid.rst:7
-#: ../doc/reference/reference_lua/yaml.rst:9
-msgid "Overview"
+#: ../doc/reference/reference_lua/box_backup.rst:5
+msgid "The box.backup submodule contains two functions that are helpful for :ref:`backup <admin-backups>` in certain situations."
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:11
-msgid "The ``box.error`` function is for raising an error. The difference between this function and Lua's built-in `error <https://www.lua.org/pil/8.3.html>`_ function is that when the error reaches the client, its error code is preserved. In contrast, a Lua error would always be presented to the client as :errcode:`ER_PROC_LUA`."
+#: ../doc/reference/reference_lua/box_backup.rst:12
+msgid "Informs the server that activities related to the removal of outdated backups must be suspended."
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:19
-#: ../doc/reference/reference_lua/clock.rst:18
-#: ../doc/reference/reference_lua/console.rst:17
-#: ../doc/reference/reference_lua/crypto.rst:22
-#: ../doc/reference/reference_lua/csv.rst:41
-#: ../doc/reference/reference_lua/debug_facilities.rst:33
-#: ../doc/reference/reference_lua/digest.rst:22
-#: ../doc/reference/reference_lua/errno.rst:19
-#: ../doc/reference/reference_lua/fiber.rst:22
-#: ../doc/reference/reference_lua/fio.rst:27
-#: ../doc/reference/reference_lua/http.rst:19
-#: ../doc/reference/reference_lua/iconv.rst:24
-#: ../doc/reference/reference_lua/jit.rst:20
-#: ../doc/reference/reference_lua/json.rst:18
-#: ../doc/reference/reference_lua/log.rst:46
-#: ../doc/reference/reference_lua/msgpack.rst:18
-#: ../doc/reference/reference_lua/net_box.rst:71
-#: ../doc/reference/reference_lua/osmodule.rst:28
-#: ../doc/reference/reference_lua/other.rst:7
-#: ../doc/reference/reference_lua/pickle.rst:7
-#: ../doc/reference/reference_lua/socket.rst:28
-#: ../doc/reference/reference_lua/tap.rst:17
-#: ../doc/reference/reference_lua/uri.rst:35
-#: ../doc/reference/reference_lua/uuid.rst:17
-#: ../doc/reference/reference_lua/yaml.rst:16
-msgid "Index"
+#: ../doc/reference/reference_lua/box_backup.rst:15
+msgid "To guarantee an opportunity to copy these files, Tarantool will not delete them. But there will be no read-only mode and checkpoints will continue by schedule as usual."
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:21
-msgid "Below is a list of all ``box.error`` functions."
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:29
-#: ../doc/reference/reference_lua/clock.rst:28
-#: ../doc/reference/reference_lua/console.rst:27
-#: ../doc/reference/reference_lua/crypto.rst:32
-#: ../doc/reference/reference_lua/csv.rst:51
-#: ../doc/reference/reference_lua/debug_facilities.rst:43
-#: ../doc/reference/reference_lua/digest.rst:32
-#: ../doc/reference/reference_lua/errno.rst:29
-#: ../doc/reference/reference_lua/fiber.rst:32
-#: ../doc/reference/reference_lua/fio.rst:39
-#: ../doc/reference/reference_lua/http.rst:29
-#: ../doc/reference/reference_lua/iconv.rst:34
-#: ../doc/reference/reference_lua/jit.rst:30
-#: ../doc/reference/reference_lua/json.rst:28
-#: ../doc/reference/reference_lua/log.rst:56
-#: ../doc/reference/reference_lua/msgpack.rst:28
-#: ../doc/reference/reference_lua/net_box.rst:81
-#: ../doc/reference/reference_lua/osmodule.rst:38
-#: ../doc/reference/reference_lua/other.rst:17
-#: ../doc/reference/reference_lua/pickle.rst:17
-#: ../doc/reference/reference_lua/socket.rst:38
-#: ../doc/reference/reference_lua/string.rst:28
-#: ../doc/reference/reference_lua/tap.rst:27
-#: ../doc/reference/reference_lua/uri.rst:45
-#: ../doc/reference/reference_lua/utf8.rst:29
-#: ../doc/reference/reference_lua/uuid.rst:27
-#: ../doc/reference/reference_lua/yaml.rst:26
-#: ../doc/reference/reference_rock/membership.rst:78
-msgid "Name"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:29
-#: ../doc/reference/reference_lua/clock.rst:28
-#: ../doc/reference/reference_lua/console.rst:27
-#: ../doc/reference/reference_lua/crypto.rst:32
-#: ../doc/reference/reference_lua/csv.rst:51
-#: ../doc/reference/reference_lua/debug_facilities.rst:43
-#: ../doc/reference/reference_lua/digest.rst:32
-#: ../doc/reference/reference_lua/errno.rst:29
-#: ../doc/reference/reference_lua/fiber.rst:32
-#: ../doc/reference/reference_lua/fio.rst:39
-#: ../doc/reference/reference_lua/http.rst:29
-#: ../doc/reference/reference_lua/iconv.rst:34
-#: ../doc/reference/reference_lua/jit.rst:30
-#: ../doc/reference/reference_lua/json.rst:28
-#: ../doc/reference/reference_lua/log.rst:56
-#: ../doc/reference/reference_lua/msgpack.rst:28
-#: ../doc/reference/reference_lua/net_box.rst:81
-#: ../doc/reference/reference_lua/osmodule.rst:38
-#: ../doc/reference/reference_lua/other.rst:17
-#: ../doc/reference/reference_lua/pickle.rst:17
-#: ../doc/reference/reference_lua/socket.rst:38
-#: ../doc/reference/reference_lua/string.rst:28
-#: ../doc/reference/reference_lua/tap.rst:27
-#: ../doc/reference/reference_lua/uri.rst:45
-#: ../doc/reference/reference_lua/utf8.rst:29
-#: ../doc/reference/reference_lua/uuid.rst:27
-#: ../doc/reference/reference_lua/yaml.rst:26
-#: ../doc/reference/reference_rock/membership.rst:78
-msgid "Use"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:31
-msgid ":ref:`box.error() <box_error-error>`"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:31
-msgid "Throw an error"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:34
-msgid ":ref:`box.error.last() <box_error-last>`"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:34
-msgid "Get a description of the last error"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:37
-msgid ":ref:`box.error.clear() <box_error-clear>`"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:37
-msgid "Clear the record of errors"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:40
-msgid ":ref:`box.error.new() <box_error-new>`"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:40
-msgid "Create an error but do not throw"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:46
-msgid "When called with a Lua-table argument, the code and reason have any user-desired values. The result will be those values."
-msgstr ""
-
+#: ../doc/reference/reference_lua/box_backup.rst:0
 #: ../doc/reference/reference_lua/box_error.rst:0
 #: ../doc/reference/reference_lua/box_error.rst:0
 #: ../doc/reference/reference_lua/box_error.rst:0
@@ -2660,36 +2511,15 @@ msgstr ""
 msgid "Parameters"
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:54
-msgid "When called without arguments, ``box.error()`` re-throws whatever the last error was."
+#: ../doc/reference/reference_lua/box_backup.rst:19
+msgid "optional argument starting with Tarantool 1.10.1 that indicates the checkpoint to use relative to the latest checkpoint. For example ``n = 0`` means “backup will be based on the latest checkpoint”, ``n = 1`` means \"backup will be based on the first checkpoint before the latest checkpoint (counting backwards)\", and so on. The default value for n is zero."
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:61
-msgid "Emulate a request error, with text based on one of the pre-defined Tarantool errors defined in the file `errcode.h <https://github.com/tarantool/tarantool/blob/1.10/src/box/errcode.h>`_ in the source tree. Lua constants which correspond to those Tarantool errors are defined as members of ``box.error``, for example ``box.error.NO_SUCH_USER == 45``."
+#: ../doc/reference/reference_lua/box_backup.rst:26
+msgid "**Return:**  a table with the names of snapshot and vinyl files that should be copied"
 msgstr ""
 
-#: ../doc/reference/reference_lua/box_error.rst:67
-#: ../doc/reference/reference_lua/box_error.rst:157
-msgid "number of a pre-defined error"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:68
-#: ../doc/reference/reference_lua/box_error.rst:158
-msgid "part of the message which will accompany the error"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:72
-msgid "the ``NO_SUCH_USER`` message is \"``User '%s' is not found``\" -- it includes one \"``%s``\" component which will be replaced with errtext. Thus a call to ``box.error(box.error.NO_SUCH_USER, 'joe')`` or ``box.error(45, 'joe')`` will result in an error with the accompanying message \"``User 'joe' is not found``\"."
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:0
-msgid "except"
-msgstr ""
-
-#: ../doc/reference/reference_lua/box_error.rst:78
-msgid "whatever is specified in errcode-number."
-msgstr ""
-
+#: ../doc/reference/reference_lua/box_backup.rst:29
 #: ../doc/reference/reference_lua/box_error.rst:80
 #: ../doc/reference/reference_lua/box_error.rst:120
 #: ../doc/reference/reference_lua/box_error.rst:160
@@ -2812,26 +2642,26 @@ msgstr ""
 #: ../doc/reference/reference_lua/string.rst:180
 #: ../doc/reference/reference_lua/string.rst:204
 #: ../doc/reference/reference_lua/string.rst:227
-#: ../doc/reference/reference_lua/string.rst:254
-#: ../doc/reference/reference_lua/string.rst:278
+#: ../doc/reference/reference_lua/string.rst:257
+#: ../doc/reference/reference_lua/string.rst:282
 #: ../doc/reference/reference_lua/table.rst:44
 #: ../doc/reference/reference_lua/tap.rst:179
 #: ../doc/reference/reference_lua/tap.rst:225
 #: ../doc/reference/reference_lua/tarantool.rst:20
 #: ../doc/reference/reference_lua/uri.rst:65
 #: ../doc/reference/reference_lua/uri.rst:92
-#: ../doc/reference/reference_lua/utf8.rst:74
-#: ../doc/reference/reference_lua/utf8.rst:103
-#: ../doc/reference/reference_lua/utf8.rst:132
-#: ../doc/reference/reference_lua/utf8.rst:156
-#: ../doc/reference/reference_lua/utf8.rst:178
-#: ../doc/reference/reference_lua/utf8.rst:200
-#: ../doc/reference/reference_lua/utf8.rst:222
-#: ../doc/reference/reference_lua/utf8.rst:254
-#: ../doc/reference/reference_lua/utf8.rst:278
-#: ../doc/reference/reference_lua/utf8.rst:299
-#: ../doc/reference/reference_lua/utf8.rst:337
-#: ../doc/reference/reference_lua/utf8.rst:359
+#: ../doc/reference/reference_lua/utf8.rst:72
+#: ../doc/reference/reference_lua/utf8.rst:101
+#: ../doc/reference/reference_lua/utf8.rst:130
+#: ../doc/reference/reference_lua/utf8.rst:154
+#: ../doc/reference/reference_lua/utf8.rst:176
+#: ../doc/reference/reference_lua/utf8.rst:198
+#: ../doc/reference/reference_lua/utf8.rst:220
+#: ../doc/reference/reference_lua/utf8.rst:252
+#: ../doc/reference/reference_lua/utf8.rst:276
+#: ../doc/reference/reference_lua/utf8.rst:297
+#: ../doc/reference/reference_lua/utf8.rst:335
+#: ../doc/reference/reference_lua/utf8.rst:357
 #: ../doc/reference/reference_lua/xlog.rst:27
 #: ../doc/reference/reference_rock/dbms.rst:188
 #: ../doc/reference/reference_rock/dbms.rst:212
@@ -2839,13 +2669,231 @@ msgstr ""
 #: ../doc/reference/reference_rock/dbms.rst:530
 #: ../doc/reference/reference_rock/dbms.rst:554
 #: ../doc/reference/reference_rock/dbms.rst:577
-#: ../doc/reference/reference_rock/vshard/index.rst:1056
-#: ../doc/reference/reference_rock/vshard/index.rst:1127
-#: ../doc/reference/reference_rock/vshard/index.rst:1425
-#: ../doc/reference/reference_rock/vshard/index.rst:1440
-#: ../doc/reference/reference_rock/vshard/index.rst:1457
-#: ../doc/reference/reference_rock/vshard/index.rst:1518
+#: ../doc/reference/reference_rock/vshard/index.rst:1057
+#: ../doc/reference/reference_rock/vshard/index.rst:1128
+#: ../doc/reference/reference_rock/vshard/index.rst:1426
+#: ../doc/reference/reference_rock/vshard/index.rst:1441
+#: ../doc/reference/reference_rock/vshard/index.rst:1458
+#: ../doc/reference/reference_rock/vshard/index.rst:1519
 msgid "**Example:**"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_backup.rst:31
+msgid "tarantool> box.backup.start()\n"
+"---\n"
+"- - ./00000000000000000015.snap\n"
+"  - ./00000000000000000000.vylog\n"
+"  - ./513/0/00000000000000000002.index\n"
+"  - ./513/0/00000000000000000002.run\n"
+"..."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_backup.rst:45
+msgid "informs the server that normal operations may resume."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:3
+msgid "Submodule `box.error`"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:9
+#: ../doc/reference/reference_lua/clock.rst:9
+#: ../doc/reference/reference_lua/console.rst:9
+#: ../doc/reference/reference_lua/crypto.rst:11
+#: ../doc/reference/reference_lua/csv.rst:9
+#: ../doc/reference/reference_lua/debug_facilities.rst:9
+#: ../doc/reference/reference_lua/digest.rst:11
+#: ../doc/reference/reference_lua/errno.rst:11
+#: ../doc/reference/reference_lua/fiber.rst:9
+#: ../doc/reference/reference_lua/fio.rst:11
+#: ../doc/reference/reference_lua/http.rst:11
+#: ../doc/reference/reference_lua/iconv.rst:11
+#: ../doc/reference/reference_lua/jit.rst:11
+#: ../doc/reference/reference_lua/json.rst:9
+#: ../doc/reference/reference_lua/log.rst:11
+#: ../doc/reference/reference_lua/msgpack.rst:9
+#: ../doc/reference/reference_lua/net_box.rst:9
+#: ../doc/reference/reference_lua/osmodule.rst:11
+#: ../doc/reference/reference_lua/socket.rst:9
+#: ../doc/reference/reference_lua/string.rst:9
+#: ../doc/reference/reference_lua/tap.rst:7
+#: ../doc/reference/reference_lua/uri.rst:7
+#: ../doc/reference/reference_lua/utf8.rst:9
+#: ../doc/reference/reference_lua/uuid.rst:7
+#: ../doc/reference/reference_lua/yaml.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:11
+msgid "The ``box.error`` function is for raising an error. The difference between this function and Lua's built-in `error <https://www.lua.org/pil/8.3.html>`_ function is that when the error reaches the client, its error code is preserved. In contrast, a Lua error would always be presented to the client as :errcode:`ER_PROC_LUA`."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:19
+#: ../doc/reference/reference_lua/clock.rst:18
+#: ../doc/reference/reference_lua/console.rst:17
+#: ../doc/reference/reference_lua/crypto.rst:22
+#: ../doc/reference/reference_lua/csv.rst:41
+#: ../doc/reference/reference_lua/debug_facilities.rst:33
+#: ../doc/reference/reference_lua/digest.rst:22
+#: ../doc/reference/reference_lua/errno.rst:19
+#: ../doc/reference/reference_lua/fiber.rst:22
+#: ../doc/reference/reference_lua/fio.rst:27
+#: ../doc/reference/reference_lua/http.rst:19
+#: ../doc/reference/reference_lua/iconv.rst:24
+#: ../doc/reference/reference_lua/jit.rst:20
+#: ../doc/reference/reference_lua/json.rst:18
+#: ../doc/reference/reference_lua/log.rst:46
+#: ../doc/reference/reference_lua/msgpack.rst:18
+#: ../doc/reference/reference_lua/net_box.rst:71
+#: ../doc/reference/reference_lua/osmodule.rst:28
+#: ../doc/reference/reference_lua/other.rst:7
+#: ../doc/reference/reference_lua/pickle.rst:7
+#: ../doc/reference/reference_lua/socket.rst:28
+#: ../doc/reference/reference_lua/tap.rst:17
+#: ../doc/reference/reference_lua/uri.rst:35
+#: ../doc/reference/reference_lua/uuid.rst:17
+#: ../doc/reference/reference_lua/yaml.rst:16
+msgid "Index"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:21
+msgid "Below is a list of all ``box.error`` functions."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:29
+#: ../doc/reference/reference_lua/clock.rst:28
+#: ../doc/reference/reference_lua/console.rst:27
+#: ../doc/reference/reference_lua/crypto.rst:32
+#: ../doc/reference/reference_lua/csv.rst:51
+#: ../doc/reference/reference_lua/debug_facilities.rst:43
+#: ../doc/reference/reference_lua/digest.rst:32
+#: ../doc/reference/reference_lua/errno.rst:29
+#: ../doc/reference/reference_lua/fiber.rst:32
+#: ../doc/reference/reference_lua/fio.rst:39
+#: ../doc/reference/reference_lua/http.rst:29
+#: ../doc/reference/reference_lua/iconv.rst:34
+#: ../doc/reference/reference_lua/jit.rst:30
+#: ../doc/reference/reference_lua/json.rst:28
+#: ../doc/reference/reference_lua/log.rst:56
+#: ../doc/reference/reference_lua/msgpack.rst:28
+#: ../doc/reference/reference_lua/net_box.rst:81
+#: ../doc/reference/reference_lua/osmodule.rst:38
+#: ../doc/reference/reference_lua/other.rst:17
+#: ../doc/reference/reference_lua/pickle.rst:17
+#: ../doc/reference/reference_lua/socket.rst:38
+#: ../doc/reference/reference_lua/string.rst:28
+#: ../doc/reference/reference_lua/tap.rst:27
+#: ../doc/reference/reference_lua/uri.rst:45
+#: ../doc/reference/reference_lua/utf8.rst:27
+#: ../doc/reference/reference_lua/uuid.rst:27
+#: ../doc/reference/reference_lua/yaml.rst:26
+#: ../doc/reference/reference_rock/membership.rst:78
+msgid "Name"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:29
+#: ../doc/reference/reference_lua/clock.rst:28
+#: ../doc/reference/reference_lua/console.rst:27
+#: ../doc/reference/reference_lua/crypto.rst:32
+#: ../doc/reference/reference_lua/csv.rst:51
+#: ../doc/reference/reference_lua/debug_facilities.rst:43
+#: ../doc/reference/reference_lua/digest.rst:32
+#: ../doc/reference/reference_lua/errno.rst:29
+#: ../doc/reference/reference_lua/fiber.rst:32
+#: ../doc/reference/reference_lua/fio.rst:39
+#: ../doc/reference/reference_lua/http.rst:29
+#: ../doc/reference/reference_lua/iconv.rst:34
+#: ../doc/reference/reference_lua/jit.rst:30
+#: ../doc/reference/reference_lua/json.rst:28
+#: ../doc/reference/reference_lua/log.rst:56
+#: ../doc/reference/reference_lua/msgpack.rst:28
+#: ../doc/reference/reference_lua/net_box.rst:81
+#: ../doc/reference/reference_lua/osmodule.rst:38
+#: ../doc/reference/reference_lua/other.rst:17
+#: ../doc/reference/reference_lua/pickle.rst:17
+#: ../doc/reference/reference_lua/socket.rst:38
+#: ../doc/reference/reference_lua/string.rst:28
+#: ../doc/reference/reference_lua/tap.rst:27
+#: ../doc/reference/reference_lua/uri.rst:45
+#: ../doc/reference/reference_lua/utf8.rst:27
+#: ../doc/reference/reference_lua/uuid.rst:27
+#: ../doc/reference/reference_lua/yaml.rst:26
+#: ../doc/reference/reference_rock/membership.rst:78
+msgid "Use"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:31
+msgid ":ref:`box.error() <box_error-error>`"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:31
+msgid "Throw an error"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:34
+msgid ":ref:`box.error.last() <box_error-last>`"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:34
+msgid "Get a description of the last error"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:37
+msgid ":ref:`box.error.clear() <box_error-clear>`"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:37
+msgid "Clear the record of errors"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:40
+msgid ":ref:`box.error.new() <box_error-new>`"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:40
+msgid "Create an error but do not throw"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:46
+msgid "When called with a Lua-table argument, the code and reason have any user-desired values. The result will be those values."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:49
+msgid "description of an error, defined by user"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:50
+msgid "numeric code for this error, defined by user"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:54
+msgid "When called without arguments, ``box.error()`` re-throws whatever the last error was."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:61
+msgid "Emulate a request error, with text based on one of the pre-defined Tarantool errors defined in the file `errcode.h <https://github.com/tarantool/tarantool/blob/1.10/src/box/errcode.h>`_ in the source tree. Lua constants which correspond to those Tarantool errors are defined as members of ``box.error``, for example ``box.error.NO_SUCH_USER == 45``."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:67
+#: ../doc/reference/reference_lua/box_error.rst:157
+msgid "number of a pre-defined error"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:68
+#: ../doc/reference/reference_lua/box_error.rst:158
+msgid "part of the message which will accompany the error"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:72
+msgid "the ``NO_SUCH_USER`` message is \"``User '%s' is not found``\" -- it includes one \"``%s``\" component which will be replaced with errtext. Thus a call to ``box.error(box.error.NO_SUCH_USER, 'joe')`` or ``box.error(45, 'joe')`` will result in an error with the accompanying message \"``User 'joe' is not found``\"."
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:0
+msgid "except"
+msgstr ""
+
+#: ../doc/reference/reference_lua/box_error.rst:78
+msgid "whatever is specified in errcode-number."
 msgstr ""
 
 #: ../doc/reference/reference_lua/box_error.rst:82
@@ -4090,9 +4138,9 @@ msgstr ""
 #: ../doc/reference/reference_lua/socket.rst:173
 #: ../doc/reference/reference_lua/socket.rst:561
 #: ../doc/reference/reference_lua/socket.rst:573
-#: ../doc/reference/reference_lua/string.rst:252
+#: ../doc/reference/reference_lua/string.rst:255
 #: ../doc/reference/reference_lua/table.rst:42
-#: ../doc/reference/reference_lua/utf8.rst:294
+#: ../doc/reference/reference_lua/utf8.rst:292
 #: ../doc/reference/reference_lua/yaml.rst:58
 #: ../doc/reference/reference_rock/membership.rst:181
 #: ../doc/reference/reference_rock/membership.rst:190
@@ -5299,12 +5347,12 @@ msgstr ""
 #: ../doc/reference/reference_lua/string.rst:118
 #: ../doc/reference/reference_lua/string.rst:202
 #: ../doc/reference/reference_lua/string.rst:225
-#: ../doc/reference/reference_lua/string.rst:276
+#: ../doc/reference/reference_lua/string.rst:280
 #: ../doc/reference/reference_lua/uri.rst:90
-#: ../doc/reference/reference_lua/utf8.rst:90
-#: ../doc/reference/reference_lua/utf8.rst:276
-#: ../doc/reference/reference_lua/utf8.rst:328
-#: ../doc/reference/reference_lua/utf8.rst:352
+#: ../doc/reference/reference_lua/utf8.rst:88
+#: ../doc/reference/reference_lua/utf8.rst:274
+#: ../doc/reference/reference_lua/utf8.rst:326
+#: ../doc/reference/reference_lua/utf8.rst:350
 #: ../doc/reference/reference_lua/yaml.rst:48
 #: ../doc/reference/reference_rock/membership.rst:314
 msgid "string"
@@ -5657,7 +5705,7 @@ msgid "Wake up all fibers"
 msgstr ""
 
 #: ../doc/reference/reference_lua/fiber.rst:142
-#: ../doc/reference/reference_rock/vshard/index.rst:935
+#: ../doc/reference/reference_rock/vshard/index.rst:936
 msgid "Fibers"
 msgstr ""
 
@@ -5974,11 +6022,11 @@ msgstr ""
 #: ../doc/reference/reference_lua/fio.rst:992
 #: ../doc/reference/reference_lua/socket.rst:274
 #: ../doc/reference/reference_lua/socket.rst:400
-#: ../doc/reference/reference_lua/utf8.rst:57
-#: ../doc/reference/reference_lua/utf8.rst:118
-#: ../doc/reference/reference_lua/utf8.rst:241
-#: ../doc/reference/reference_rock/vshard/index.rst:1455
-#: ../doc/reference/reference_rock/vshard/index.rst:1470
+#: ../doc/reference/reference_lua/utf8.rst:55
+#: ../doc/reference/reference_lua/utf8.rst:116
+#: ../doc/reference/reference_lua/utf8.rst:239
+#: ../doc/reference/reference_rock/vshard/index.rst:1456
+#: ../doc/reference/reference_rock/vshard/index.rst:1471
 msgid "number"
 msgstr ""
 
@@ -6387,10 +6435,10 @@ msgstr ""
 #: ../doc/reference/reference_lua/tap.rst:284
 #: ../doc/reference/reference_lua/tap.rst:305
 #: ../doc/reference/reference_lua/tap.rst:324
-#: ../doc/reference/reference_lua/utf8.rst:149
-#: ../doc/reference/reference_lua/utf8.rst:174
-#: ../doc/reference/reference_lua/utf8.rst:196
-#: ../doc/reference/reference_lua/utf8.rst:218
+#: ../doc/reference/reference_lua/utf8.rst:147
+#: ../doc/reference/reference_lua/utf8.rst:172
+#: ../doc/reference/reference_lua/utf8.rst:194
+#: ../doc/reference/reference_lua/utf8.rst:216
 #: ../doc/reference/reference_rock/membership.rst:172
 #: ../doc/reference/reference_rock/membership.rst:232
 #: ../doc/reference/reference_rock/membership.rst:244
@@ -9387,7 +9435,7 @@ msgstr ""
 #: ../doc/reference/reference_lua/net_box.rst:280
 #: ../doc/reference/reference_lua/net_box.rst:411
 #: ../doc/reference/reference_lua/net_box.rst:445
-#: ../doc/reference/reference_rock/vshard/index.rst:1293
+#: ../doc/reference/reference_rock/vshard/index.rst:1294
 msgid "**Examples:**"
 msgstr ""
 
@@ -11389,16 +11437,16 @@ msgid "Return the string left-justified in a string of length ``width``."
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:65
-msgid "(string) the string to left-justify"
+msgid "the string to left-justify"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:66
-msgid "(integer) the width of the string after left-justifying"
+msgid "the width of the string after left-justifying"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:67
 #: ../doc/reference/reference_lua/string.rst:92
-msgid "(string) a single character, default = 1 space"
+msgid "a single character, default = 1 space"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:69
@@ -11420,11 +11468,11 @@ msgid "Return the string right-justified in a string of length ``width``."
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:90
-msgid "(string) the string to right-justify"
+msgid "the string to right-justify"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:91
-msgid "(integer) the width of the string after right-justifying"
+msgid "the width of the string after right-justifying"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:94
@@ -11448,8 +11496,8 @@ msgstr ""
 #: ../doc/reference/reference_lua/string.rst:115
 #: ../doc/reference/reference_lua/string.rst:199
 #: ../doc/reference/reference_lua/string.rst:222
-#: ../doc/reference/reference_lua/string.rst:273
-msgid "(string) the string to process"
+#: ../doc/reference/reference_lua/string.rst:277
+msgid "the string to process"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:117
@@ -11471,30 +11519,30 @@ msgid "Return True if ``input-string`` starts with ``start-string``, otherwise r
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:139
-msgid "(string) the string where ``start-string`` should be looked for"
+msgid "the string where ``start-string`` should be looked for"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:140
 #: ../doc/reference/reference_lua/string.rst:170
-msgid "(string) the string to look for"
+msgid "the string to look for"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:141
 #: ../doc/reference/reference_lua/string.rst:171
-msgid "(integer) position: where to start looking within ``input-string``"
+msgid "position: where to start looking within ``input-string``"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:142
 #: ../doc/reference/reference_lua/string.rst:172
-msgid "(integer) position: where to end looking within ``input-string``"
+msgid "position: where to end looking within ``input-string``"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:144
 #: ../doc/reference/reference_lua/string.rst:174
-#: ../doc/reference/reference_lua/utf8.rst:148
-#: ../doc/reference/reference_lua/utf8.rst:173
-#: ../doc/reference/reference_lua/utf8.rst:195
-#: ../doc/reference/reference_lua/utf8.rst:217
+#: ../doc/reference/reference_lua/utf8.rst:146
+#: ../doc/reference/reference_lua/utf8.rst:171
+#: ../doc/reference/reference_lua/utf8.rst:193
+#: ../doc/reference/reference_lua/utf8.rst:215
 msgid "true or false"
 msgstr ""
 
@@ -11518,7 +11566,7 @@ msgid "Return True if ``input-string`` ends with ``end-string``, otherwise retur
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:169
-msgid "(string) the string where ``end-string`` should be looked for"
+msgid "the string where ``end-string`` should be looked for"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:182
@@ -11537,7 +11585,7 @@ msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:201
 #: ../doc/reference/reference_lua/string.rst:224
-#: ../doc/reference/reference_lua/string.rst:275
+#: ../doc/reference/reference_lua/string.rst:279
 msgid "result after stripping spaces from input string"
 msgstr ""
 
@@ -11570,33 +11618,38 @@ msgid "Split ``input-string`` into one or more output strings in a table. The pl
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:247
-msgid "(string) the string to split"
+msgid "the string to split"
 msgstr ""
 
 #: ../doc/reference/reference_lua/string.rst:248
-msgid "(string) the string to find within ``input-string``. Default = space."
+msgid "the string to find within ``input-string``. Default = space."
 msgstr ""
 
-#: ../doc/reference/reference_lua/string.rst:251
+#: ../doc/reference/reference_lua/string.rst:250
+msgid "maximum number of delimiters to process counting from the beginning of the input string. Result will contain max + 1 parts maximum."
+msgstr ""
+
+#: ../doc/reference/reference_lua/string.rst:254
 msgid "table of strings that were split from ``input-string``"
 msgstr ""
 
-#: ../doc/reference/reference_lua/string.rst:256
+#: ../doc/reference/reference_lua/string.rst:259
 msgid "tarantool> string = require('string')\n"
 "---\n"
 "...\n"
-"tarantool> string.split(\"A*BXX C\", \"XX\")\n"
+"tarantool> string.split(\"A:B C:D\", \":\", 2)\n"
 "---\n"
-"- - A*B\n"
-"  - ' C'\n"
+"- - A\n"
+"  - B\n"
+"  - ' C:D'\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/string.rst:271
+#: ../doc/reference/reference_lua/string.rst:275
 msgid "Return the value of the input string, but without spaces on the left or the right."
 msgstr ""
 
-#: ../doc/reference/reference_lua/string.rst:280
+#: ../doc/reference/reference_lua/string.rst:284
 msgid "tarantool> string = require('string')\n"
 "---\n"
 "...\n"
@@ -12192,81 +12245,77 @@ msgstr ""
 msgid "``utf8`` is Tarantool's module for handling UTF-8 strings. It includes some functions which are compatible with ones in `Lua 5.3 <https://www.lua.org/manual/5.3/manual.html#6.5>`_ but Tarantool has much more. For example, because internally Tarantool contains a complete copy of the \"International Components For Unicode\" library, there are comparison functions which understand the default ordering for Cyrillic (Capital Letter Zhe Ж = Small Letter Zhe ж) and Japanese (Hiragana A = Katakana A)."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:21
-msgid "The module is fully built-in so ``require('utf8')`` is not necessary."
-msgstr ""
-
-#: ../doc/reference/reference_lua/utf8.rst:31
+#: ../doc/reference/reference_lua/utf8.rst:29
 msgid ":ref:`casecmp <utf8-casecmp>` and |br| :ref:`cmp <utf8-cmp>`"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:31
+#: ../doc/reference/reference_lua/utf8.rst:29
 msgid "Comparisons"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:34
+#: ../doc/reference/reference_lua/utf8.rst:32
 msgid ":ref:`lower <utf8-islower>` and |br| :ref:`upper <utf8-isupper>`"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:34
+#: ../doc/reference/reference_lua/utf8.rst:32
 msgid "Case conversions"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:37
+#: ../doc/reference/reference_lua/utf8.rst:35
 msgid ":ref:`isalpha <utf8-isalpha>`, |br| :ref:`isdigit <utf8-isdigit>`, |br| :ref:`islower <utf8-islower>` and |br| :ref:`isupper <utf8-isupper>`"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:37
+#: ../doc/reference/reference_lua/utf8.rst:35
 msgid "Determine character types"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:42
+#: ../doc/reference/reference_lua/utf8.rst:40
 msgid ":ref:`sub <utf8-sub>`"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:42
+#: ../doc/reference/reference_lua/utf8.rst:40
 msgid "Substrings"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:44
+#: ../doc/reference/reference_lua/utf8.rst:42
 msgid ":ref:`length <utf8-length>`"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:44
+#: ../doc/reference/reference_lua/utf8.rst:42
 msgid "Length in characters"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:46
+#: ../doc/reference/reference_lua/utf8.rst:44
 msgid ":ref:`next <utf8-next>`"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:46
+#: ../doc/reference/reference_lua/utf8.rst:44
 msgid "Character-at-a-time iterations"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:55
-#: ../doc/reference/reference_lua/utf8.rst:116
-#: ../doc/reference/reference_lua/utf8.rst:237
-#: ../doc/reference/reference_lua/utf8.rst:274
-#: ../doc/reference/reference_lua/utf8.rst:291
-#: ../doc/reference/reference_lua/utf8.rst:350
+#: ../doc/reference/reference_lua/utf8.rst:53
+#: ../doc/reference/reference_lua/utf8.rst:114
+#: ../doc/reference/reference_lua/utf8.rst:235
+#: ../doc/reference/reference_lua/utf8.rst:272
+#: ../doc/reference/reference_lua/utf8.rst:289
+#: ../doc/reference/reference_lua/utf8.rst:348
 msgid "a string encoded with UTF-8"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:56
-#: ../doc/reference/reference_lua/utf8.rst:117
+#: ../doc/reference/reference_lua/utf8.rst:54
+#: ../doc/reference/reference_lua/utf8.rst:115
 msgid "-1 meaning \"less\", 0 meaning \"equal\", +1 meaning \"greater\""
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:59
+#: ../doc/reference/reference_lua/utf8.rst:57
 msgid "Compare two strings with the Default Unicode Collation Element Table (DUCET) for the `Unicode Collation Algorithm <http://www.unicode.org/Public/UCA/10.0.0/allkeys.txt>`_. Thus 'å' is less than 'B', even though the code-point value of å (229) is greater than the code-point value of B (66), because the algorithm depends on the values in the Collation Element Table, not the code-point values."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:66
+#: ../doc/reference/reference_lua/utf8.rst:64
 msgid "The comparison is done with primary weights. Therefore the elements which affect secondary or later weights (such as \"case\" in Latin or Cyrillic alphabets, or \"kana differentiation\" in Japanese) are ignored. If asked \"is this like a Microsoft case-insensitive accent-insensitive collation\" we tend to answer \"yes\", though the Unicode Collation Algorithm is far more sophisticated than those terms imply."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:76
+#: ../doc/reference/reference_lua/utf8.rst:74
 msgid "tarantool> utf8.casecmp('é','e'),utf8.casecmp('E','e')\n"
 "---\n"
 "- 0\n"
@@ -12274,38 +12323,38 @@ msgid "tarantool> utf8.casecmp('é','e'),utf8.casecmp('E','e')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:88
+#: ../doc/reference/reference_lua/utf8.rst:86
 msgid "a Unicode code point value, repeatable"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:89
+#: ../doc/reference/reference_lua/utf8.rst:87
 msgid "a UTF-8 string"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:92
+#: ../doc/reference/reference_lua/utf8.rst:90
 msgid "The code-point number is the value that corresponds to a character in the `Unicode Character Database <http://www.unicode.org/Public/5.2.0/ucd/UnicodeData.txt>`_ This is not the same as the byte values of the encoded character, because the UTF-8 encoding scheme is more complex than a simple copy of the code-point number."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:99
+#: ../doc/reference/reference_lua/utf8.rst:97
 msgid "Another way to construct a string with Unicode characters is with the \\\\u{hex-digits} escape mechanism, for example '\\\\u{41}\\\\u{42}' and ``utf8.char(65,66)`` both produce the string 'AB'."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:105
+#: ../doc/reference/reference_lua/utf8.rst:103
 msgid "tarantool> utf8.char(229)\n"
 "---\n"
 "- å\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:120
+#: ../doc/reference/reference_lua/utf8.rst:118
 msgid "Compare two strings with the Default Unicode Collation Element Table (DUCET) for the `Unicode Collation Algorithm <http://www.unicode.org/Public/UCA/10.0.0/allkeys.txt>`_. Thus 'å' is less than 'B', even though the code-point value of å (229) is greater than the code-point value of B (66), because the algorithm depends on the values in the Collation Element Table, not the code values."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:127
+#: ../doc/reference/reference_lua/utf8.rst:125
 msgid "The comparison is done with at least three weights. Therefore the elements which affect secondary or later weights (such as \"case\" in Latin or Cyrillic alphabets, or \"kana differentiation\" in Japanese) are not ignored. and upper case comes after lower case."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:134
+#: ../doc/reference/reference_lua/utf8.rst:132
 msgid "tarantool> utf8.cmp('é','e'),utf8.cmp('E','e')\n"
 "---\n"
 "- 1\n"
@@ -12313,18 +12362,18 @@ msgid "tarantool> utf8.cmp('é','e'),utf8.cmp('E','e')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:146
-#: ../doc/reference/reference_lua/utf8.rst:171
-#: ../doc/reference/reference_lua/utf8.rst:193
-#: ../doc/reference/reference_lua/utf8.rst:215
+#: ../doc/reference/reference_lua/utf8.rst:144
+#: ../doc/reference/reference_lua/utf8.rst:169
+#: ../doc/reference/reference_lua/utf8.rst:191
+#: ../doc/reference/reference_lua/utf8.rst:213
 msgid "a single UTF8 character, expressed as a one-byte string or a code point value"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:151
+#: ../doc/reference/reference_lua/utf8.rst:149
 msgid "Return true if the input character is an \"alphabetic-like\" character, otherwise return false. Generally speaking a character will be considered alphabetic-like provided it is typically used within a word, as opposed to a digit or punctuation. It does not have to be a character in an alphabet."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:158
+#: ../doc/reference/reference_lua/utf8.rst:156
 msgid "tarantool> utf8.isalpha('Ж'),utf8.isalpha('å'),utf8.isalpha('9')\n"
 "---\n"
 "- true\n"
@@ -12333,11 +12382,11 @@ msgid "tarantool> utf8.isalpha('Ж'),utf8.isalpha('å'),utf8.isalpha('9')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:176
+#: ../doc/reference/reference_lua/utf8.rst:174
 msgid "Return true if the input character is a digit, otherwise return false."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:180
+#: ../doc/reference/reference_lua/utf8.rst:178
 msgid "tarantool> utf8.isdigit('Ж'),utf8.isdigit('å'),utf8.isdigit('9')\n"
 "---\n"
 "- false\n"
@@ -12346,11 +12395,11 @@ msgid "tarantool> utf8.isdigit('Ж'),utf8.isdigit('å'),utf8.isdigit('9')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:198
+#: ../doc/reference/reference_lua/utf8.rst:196
 msgid "Return true if the input character is lower case, otherwise return false."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:202
+#: ../doc/reference/reference_lua/utf8.rst:200
 msgid "tarantool> utf8.islower('Ж'),utf8.islower('å'),utf8.islower('9')\n"
 "---\n"
 "- false\n"
@@ -12359,11 +12408,11 @@ msgid "tarantool> utf8.islower('Ж'),utf8.islower('å'),utf8.islower('9')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:220
+#: ../doc/reference/reference_lua/utf8.rst:218
 msgid "Return true if the input character is upper case, otherwise return false."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:224
+#: ../doc/reference/reference_lua/utf8.rst:222
 msgid "tarantool> utf8.isupper('Ж'),utf8.isupper('å'),utf8.isupper('9')\n"
 "---\n"
 "- true\n"
@@ -12372,31 +12421,31 @@ msgid "tarantool> utf8.isupper('Ж'),utf8.isupper('å'),utf8.isupper('9')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:238
+#: ../doc/reference/reference_lua/utf8.rst:236
 msgid "byte position of the first character"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:239
+#: ../doc/reference/reference_lua/utf8.rst:237
 msgid "byte position where to stop"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:240
+#: ../doc/reference/reference_lua/utf8.rst:238
 msgid "the number of characters in the string, or between start and end"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:243
+#: ../doc/reference/reference_lua/utf8.rst:241
 msgid "Byte positions for start and end can be negative, which indicates \"calculate from end of string\" rather than \"calculate from start of string\"."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:246
+#: ../doc/reference/reference_lua/utf8.rst:244
 msgid "If the string contains a byte sequence which is not valid in UTF-8, each byte in the invalid byte sequence will be counted as one character."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:249
+#: ../doc/reference/reference_lua/utf8.rst:247
 msgid "UTF-8 is a variable-size encoding scheme. Typically a simple Latin letter takes one byte, a Cyrillic letter takes two bytes, a Chinese/Japanese character takes three bytes, and the maximum is four bytes."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:256
+#: ../doc/reference/reference_lua/utf8.rst:254
 msgid "tarantool> utf8.len('G'),utf8.len('ж')\n"
 "---\n"
 "- 1\n"
@@ -12410,34 +12459,34 @@ msgid "tarantool> utf8.len('G'),utf8.len('ж')\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:275
+#: ../doc/reference/reference_lua/utf8.rst:273
 msgid "the same string, lower case"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:280
+#: ../doc/reference/reference_lua/utf8.rst:278
 msgid "tarantool> utf8.lower('ÅΓÞЖABCDEFG')\n"
 "---\n"
 "- åγþжabcdefg\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:292
+#: ../doc/reference/reference_lua/utf8.rst:290
 msgid "byte position where to start within the string, default is 1"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:293
+#: ../doc/reference/reference_lua/utf8.rst:291
 msgid "byte position of the next character and the code point value of the next character"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:296
+#: ../doc/reference/reference_lua/utf8.rst:294
 msgid "The ``next`` function is often used in a loop to get one character at a time from a UTF-8 string."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:301
+#: ../doc/reference/reference_lua/utf8.rst:299
 msgid "In the string 'åa' the first character is 'å', it starts at position 1, it takes two bytes to store so the character after it will be at position 3, its Unicode code point value is (decimal) 229."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:306
+#: ../doc/reference/reference_lua/utf8.rst:304
 msgid "tarantool> -- show next-character position + first-character codepoint\n"
 "tarantool> utf8.next('åa', 1)\n"
 "---\n"
@@ -12451,46 +12500,46 @@ msgid "tarantool> -- show next-character position + first-character codepoint\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:324
+#: ../doc/reference/reference_lua/utf8.rst:322
 msgid "a string encoded as UTF-8"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:325
+#: ../doc/reference/reference_lua/utf8.rst:323
 msgid "the position of the first character"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:326
+#: ../doc/reference/reference_lua/utf8.rst:324
 msgid "the position of the last character"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:327
+#: ../doc/reference/reference_lua/utf8.rst:325
 msgid "a UTF-8 string, the \"substring\" of the input value"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:330
+#: ../doc/reference/reference_lua/utf8.rst:328
 msgid "Character positions for start and end can be negative, which indicates \"calculate from end of string\" rather than \"calculate from start of string\"."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:333
+#: ../doc/reference/reference_lua/utf8.rst:331
 msgid "The default value for end-character is the length of the input string. Therefore, saying ``utf8.sub(1, 'abc')`` will return 'abc', the same as the input string."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:339
+#: ../doc/reference/reference_lua/utf8.rst:337
 msgid "tarantool> utf8.sub('åγþжabcdefg', 5, 8)\n"
 "---\n"
 "- abcd\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:351
+#: ../doc/reference/reference_lua/utf8.rst:349
 msgid "the same string, upper case"
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:356
+#: ../doc/reference/reference_lua/utf8.rst:354
 msgid "In rare cases the upper-case result may be longer than the lower-case input, for example ``utf8.upper('ß')`` is 'SS'."
 msgstr ""
 
-#: ../doc/reference/reference_lua/utf8.rst:361
+#: ../doc/reference/reference_lua/utf8.rst:359
 msgid "tarantool> utf8.upper('åγþжabcdefg')\n"
 "---\n"
 "- ÅΓÞЖABCDEFG\n"
@@ -13871,7 +13920,7 @@ msgid "tarantool> membership.myself()\n"
 msgstr ""
 
 #: ../doc/reference/reference_rock/membership.rst:67
-#: ../doc/reference/reference_rock/vshard/index.rst:1173
+#: ../doc/reference/reference_rock/vshard/index.rst:1174
 msgid "API reference"
 msgstr ""
 
@@ -14340,7 +14389,7 @@ msgid "The number of replicated data copies in each shard."
 msgstr ""
 
 #: ../doc/reference/reference_rock/shard.rst:47
-#: ../doc/reference/reference_rock/vshard/index.rst:2088
+#: ../doc/reference/reference_rock/vshard/index.rst:2089
 msgid "**Replica**"
 msgstr ""
 
@@ -14349,7 +14398,7 @@ msgid "An instance which is part of a replica set."
 msgstr ""
 
 #: ../doc/reference/reference_rock/shard.rst:50
-#: ../doc/reference/reference_rock/vshard/index.rst:2077
+#: ../doc/reference/reference_rock/vshard/index.rst:2078
 msgid "**Replica set**"
 msgstr ""
 
@@ -14983,38 +15032,38 @@ msgid "Quick start"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:76
-msgid "The ``vshard/example/`` directory includes a pre-configured development cluster of 1 ``router`` and 2 replica sets of 2 nodes (2 ``storages``) each, making 5 Tarantool instances in total:"
-msgstr ""
-
-#: ../doc/reference/reference_rock/vshard/index.rst:80
-msgid "``router_1`` – a ``router`` instance"
+msgid "The ``example/`` directory of `the vshard git-repository <https://github.com/tarantool/vshard>`_ includes a pre-configured development cluster of 1 ``router`` and 2 replica sets of 2 nodes (2 ``storages``) each, making 5 Tarantool instances in total:"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:81
-msgid "``storage_1_a`` – a ``storage`` instance, the master of the first replica set"
+msgid "``router_1`` – a ``router`` instance"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:82
-msgid "``storage_1_b`` – a ``storage`` instance, the replica of the first replica set"
+msgid "``storage_1_a`` – a ``storage`` instance, the master of the first replica set"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:83
-msgid "``storage_2_a`` – a ``storage`` instance, the master of the second replica set"
+msgid "``storage_1_b`` – a ``storage`` instance, the replica of the first replica set"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:84
+msgid "``storage_2_a`` – a ``storage`` instance, the master of the second replica set"
+msgstr ""
+
+#: ../doc/reference/reference_rock/vshard/index.rst:85
 msgid "``storage_2_b`` – a ``storage`` instance, the replica of the second replica set"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:86
+#: ../doc/reference/reference_rock/vshard/index.rst:87
 msgid "All instances are managed using the ``tarantoolctl`` utility which comes with Tarantool."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:88
-msgid "Change the directory to ``example/`` and use make to run the development cluster:"
+#: ../doc/reference/reference_rock/vshard/index.rst:89
+msgid "Change the directory to ``example/`` and use ``make`` to run the development cluster:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:90
+#: ../doc/reference/reference_rock/vshard/index.rst:91
 msgid "$ cd example/\n"
 "$ make\n"
 "tarantoolctl stop storage_1_a  # stop the first storage instance\n"
@@ -15052,59 +15101,59 @@ msgid "$ cd example/\n"
 "unix/:./data/router_1.control>"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:128
+#: ../doc/reference/reference_rock/vshard/index.rst:129
 msgid "Some ``tarantoolctl`` commands:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:130
+#: ../doc/reference/reference_rock/vshard/index.rst:131
 msgid "``tarantoolctl start router_1`` – start the router instance"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:131
+#: ../doc/reference/reference_rock/vshard/index.rst:132
 msgid "``tarantoolctl enter router_1``  – enter the admin console"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:133
+#: ../doc/reference/reference_rock/vshard/index.rst:134
 msgid "The full list of ``tarantoolctl`` commands for managing Tarantool instances is available in the :ref:`tarantoolctl reference <tarantoolctl>`."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:136
+#: ../doc/reference/reference_rock/vshard/index.rst:137
 msgid "Essential make commands you need to know:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:138
+#: ../doc/reference/reference_rock/vshard/index.rst:139
 msgid "``make start`` – start all Tarantool instances"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:139
+#: ../doc/reference/reference_rock/vshard/index.rst:140
 msgid "``make stop`` – stop all Tarantool instances"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:140
+#: ../doc/reference/reference_rock/vshard/index.rst:141
 msgid "``make logcat`` – show logs from all instances"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:141
+#: ../doc/reference/reference_rock/vshard/index.rst:142
 msgid "``make enter`` – enter the admin console on router_1"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:142
+#: ../doc/reference/reference_rock/vshard/index.rst:143
 msgid "``make clean`` – clean up all persistent data"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:143
+#: ../doc/reference/reference_rock/vshard/index.rst:144
 msgid "``make test`` – run the test suite (you can also run test-run.py in the test directory)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:144
+#: ../doc/reference/reference_rock/vshard/index.rst:145
 msgid "``make`` – execute ``make stop``, ``make clean``, ``make start`` and ``make enter``"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:146
+#: ../doc/reference/reference_rock/vshard/index.rst:147
 msgid "For example, to start all instances, use ``make start``:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:148
+#: ../doc/reference/reference_rock/vshard/index.rst:149
 msgid "$ make start\n"
 "$ ps x|grep tarantool\n"
 "46564   ??  Ss     0:00.34 tarantool storage_1_a.lua <running>\n"
@@ -15114,11 +15163,11 @@ msgid "$ make start\n"
 "46572   ??  Ss     0:00.25 tarantool router_1.lua <running>"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:158
+#: ../doc/reference/reference_rock/vshard/index.rst:159
 msgid "To perform commands in the admin console, use the ``router`` API:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:160
+#: ../doc/reference/reference_rock/vshard/index.rst:161
 msgid "unix/:./data/router_1.control> vshard.router.info()\n"
 "---\n"
 "- replicasets:\n"
@@ -15148,310 +15197,310 @@ msgid "unix/:./data/router_1.control> vshard.router.info()\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:194
+#: ../doc/reference/reference_rock/vshard/index.rst:195
 msgid "Architecture"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:196
+#: ../doc/reference/reference_rock/vshard/index.rst:197
 msgid "A sharded cluster in Tarantool consists of storages, routers, and a rebalancer."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:198
+#: ../doc/reference/reference_rock/vshard/index.rst:199
 msgid "A **storage** is a node storing a subset of a dataset. Multiple replicated storages are deployed as replica sets to provide redundancy (a replica set can also be called a shard)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:202
+#: ../doc/reference/reference_rock/vshard/index.rst:203
 msgid "A **router** is a standalone software component that routes read and write requests from the client application to shards."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:205
+#: ../doc/reference/reference_rock/vshard/index.rst:206
 msgid "A **rebalancer** is an internal component that distributes the dataset among all shards evenly in case some servers are added or removed. It also balances the load considering the capacities of existing replica sets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:216
+#: ../doc/reference/reference_rock/vshard/index.rst:217
 msgid "Storage"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:218
+#: ../doc/reference/reference_rock/vshard/index.rst:219
 msgid "**Storage** is a node storing a subset of a dataset. Multiple replicated storages comprise a replica set. Each storage in a replica set has a role, **master** or **replica**. A master processes read and write requests. A replica processes read requests but cannot process write requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:230
+#: ../doc/reference/reference_rock/vshard/index.rst:231
 msgid "Virtual buckets"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:232
+#: ../doc/reference/reference_rock/vshard/index.rst:233
 msgid "The sharded dataset is partitioned into a large number of abstract nodes called **virtual buckets** (further referred to as **buckets**)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:235
+#: ../doc/reference/reference_rock/vshard/index.rst:236
 msgid "The dataset is partitioned using the sharding key (or **bucket id**, in Tarantool terminology). Bucket id is a number from 1 to N, where N is the total number of buckets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:242
+#: ../doc/reference/reference_rock/vshard/index.rst:243
 msgid "Each replica set stores a unique subset of buckets. One bucket cannot belong to multiple replica sets at a time."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:248
+#: ../doc/reference/reference_rock/vshard/index.rst:249
 msgid "The total number of buckets is determined by the administrator who sets up the initial cluster configuration."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:251
+#: ../doc/reference/reference_rock/vshard/index.rst:252
 msgid "Every Tarantool space you plan to shard must have a bucket id field indexed by the bucket id ``index``. Spaces without the bucket id indexes don’t participate in sharding but can be used as regular spaces. By default, the name of the index coincides with the bucket id."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:260
+#: ../doc/reference/reference_rock/vshard/index.rst:261
 msgid "Migration of buckets"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:262
+#: ../doc/reference/reference_rock/vshard/index.rst:263
 msgid "A **rebalancer** is a background rebalancing process that ensures an even distribution of buckets across the shards. During rebalancing, buckets are being migrated among replica sets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:266
+#: ../doc/reference/reference_rock/vshard/index.rst:267
 msgid "A replica set from which the bucket is being migrated is called a **source** ; a target replica set to which the bucket is being migrated is called a **destination**."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:269
+#: ../doc/reference/reference_rock/vshard/index.rst:270
 msgid "A **replica set lock** makes a replica set invisible to the rebalancer. A locked replica set can neither receive new buckets nor migrate its own buckets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:272
+#: ../doc/reference/reference_rock/vshard/index.rst:273
 msgid "While a bucket is being migrated, it can have different states:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:274
+#: ../doc/reference/reference_rock/vshard/index.rst:275
 msgid "ACTIVE – the bucket is available for read and write requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:275
+#: ../doc/reference/reference_rock/vshard/index.rst:276
 msgid "PINNED – the bucket is locked for migrating to another replica set. Otherwise pinned buckets are similar to buckets in the ACTIVE state."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:277
+#: ../doc/reference/reference_rock/vshard/index.rst:278
 msgid "SENDING – the bucket is currently being copied to the destination replica set; read requests to the source replica set are still processed."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:279
+#: ../doc/reference/reference_rock/vshard/index.rst:280
 msgid "RECEIVING – the bucket is currently being filled; all requests to it are rejected."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:280
+#: ../doc/reference/reference_rock/vshard/index.rst:281
 msgid "SENT – the bucket was migrated to the destination replica set. The `router` uses the SENT state to calculate the new location of the bucket. A bucket in the SENT state goes to the GARBAGE state automatically after BUCKET_SENT_GARBAGE_DELAY seconds, which by default is :ref:`0.5 seconds <cfg_basic-collect_bucket_garbage_interval>`."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:284
+#: ../doc/reference/reference_rock/vshard/index.rst:285
 msgid "GARBAGE – the bucket was already migrated to the destination replica set during rebalancing; or the bucket was initially in the RECEIVING state, but some error occurred during the migration."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:288
+#: ../doc/reference/reference_rock/vshard/index.rst:289
 msgid "Buckets in the GARBAGE state are deleted by the garbage collector."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:293
+#: ../doc/reference/reference_rock/vshard/index.rst:294
 msgid "Migration is performed as follows:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:295
+#: ../doc/reference/reference_rock/vshard/index.rst:296
 msgid "At the destination replica set, a new bucket is created and assigned the RECEIVING state, the data copying starts, and the bucket rejects all requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:297
+#: ../doc/reference/reference_rock/vshard/index.rst:298
 msgid "The source bucket in the source replica set is assigned the SENDING state, and the bucket continues to process read requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:299
+#: ../doc/reference/reference_rock/vshard/index.rst:300
 msgid "Once the data is copied, the bucket on the source replica set is assigned the SENT and it starts rejecting all requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:301
+#: ../doc/reference/reference_rock/vshard/index.rst:302
 msgid "The bucket on the destination replica set is assigned the ACTIVE state and starts accepting all requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:308
+#: ../doc/reference/reference_rock/vshard/index.rst:309
 msgid "The `_bucket` system space"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:310
+#: ../doc/reference/reference_rock/vshard/index.rst:311
 msgid "The ``_bucket`` system space of each replica set stores the ids of buckets present in the replica set. The space contains the following fields:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:313
+#: ../doc/reference/reference_rock/vshard/index.rst:314
 msgid "``bucket`` – bucket id"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:314
+#: ../doc/reference/reference_rock/vshard/index.rst:315
 msgid "``status`` – state of the bucket"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:315
+#: ../doc/reference/reference_rock/vshard/index.rst:316
 msgid "``destination`` – UUID of the destination replica set"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:317
+#: ../doc/reference/reference_rock/vshard/index.rst:318
 msgid "An example of ``_bucket.select{}``:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:319
+#: ../doc/reference/reference_rock/vshard/index.rst:320
 msgid "---\n"
 "- - [1, ACTIVE, abfe2ef6-9d11-4756-b668-7f5bc5108e2a]\n"
 "  - [2, SENT, 19f83dcb-9a01-45bc-a0cf-b0c5060ff82c]\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:326
+#: ../doc/reference/reference_rock/vshard/index.rst:327
 msgid "Once the bucket is migrated, the destination replica set identified by UUID is filled in the table. While the bucket is still located on the source replica set, the value of the destination replica set UUID is equal to ``NULL``."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:334
+#: ../doc/reference/reference_rock/vshard/index.rst:335
 msgid "Router"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:336
+#: ../doc/reference/reference_rock/vshard/index.rst:337
 msgid "All requests from the application come to the sharded cluster through a ``router``. The ``router`` keeps the topology of a sharded cluster transparent for the application, thus keeping the application unaware of:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:340
+#: ../doc/reference/reference_rock/vshard/index.rst:341
 msgid "the number and location of shards,"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:341
+#: ../doc/reference/reference_rock/vshard/index.rst:342
 msgid "data rebalancing process,"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:342
+#: ../doc/reference/reference_rock/vshard/index.rst:343
 msgid "the fact and the process of a failover that occurred after a replica's failure."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:344
+#: ../doc/reference/reference_rock/vshard/index.rst:345
 msgid "The ``router`` does not have a persistent state, nor does it store the cluster topology or balance the data. The ``router`` is a standalone software component that can run in the storage layer or application layer depending on the application features."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:352
+#: ../doc/reference/reference_rock/vshard/index.rst:353
 msgid "The routing table"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:354
+#: ../doc/reference/reference_rock/vshard/index.rst:355
 msgid "А routing table on the ``router`` stores the map of all bucket ids to replica sets. It ensures the consistency of sharding in case of failover."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:357
+#: ../doc/reference/reference_rock/vshard/index.rst:358
 msgid "The ``router`` keeps a persistent pool of connections to all the storages that are created at startup. This helps prevent configuration errors. Once the connection pool is created, the ``router`` caches the current state of the routing table in order to speed up routing. If a bucket migrated to another ``storage`` after rebalancing, or a failover occurred and caused one of the shards switching to another replica, the ``discovery fiber`` on the ``router`` updates the routing table automatically."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:364
+#: ../doc/reference/reference_rock/vshard/index.rst:365
 msgid "As the bucket id is explicitly indicated both in the data and in the mapping table on the ``router``, the data is consistent regardless of the application logic. It also makes rebalancing transparent for the application."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:372
+#: ../doc/reference/reference_rock/vshard/index.rst:373
 msgid "Processing requests"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:374
+#: ../doc/reference/reference_rock/vshard/index.rst:375
 msgid "Requests to the database can be performed by the application or using stored procedures. Either way, the bucket id should be explicitly specified in the request."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:377
+#: ../doc/reference/reference_rock/vshard/index.rst:378
 msgid "All requests are forwarded to the ``router`` first. The only operation supported by the ``router`` is ``call``. The operation is performed via the ``vshard.router.call()`` function:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:381
+#: ../doc/reference/reference_rock/vshard/index.rst:382
 msgid "result = vshard.router.call(<bucket_id>, <mode>, <function_name>, {<argument_list>}, {<opts>})"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:385
+#: ../doc/reference/reference_rock/vshard/index.rst:386
 msgid "Requests are processed as follows:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:387
+#: ../doc/reference/reference_rock/vshard/index.rst:388
 msgid "The ``router`` uses the bucket id to search for a replica set with the corresponding bucket in the routing table."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:390
+#: ../doc/reference/reference_rock/vshard/index.rst:391
 msgid "If the map of the bucket id to the replica set is not known to the ``router`` (the discovery fiber hasn’t filled the table yet), the ``router`` makes requests to all ``storages`` to find out where the bucket is located."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:393
+#: ../doc/reference/reference_rock/vshard/index.rst:394
 msgid "Once the bucket is located, the shard checks:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:395
+#: ../doc/reference/reference_rock/vshard/index.rst:396
 msgid "whether the bucket is stored in the ``_bucket`` system space of the replica set;"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:396
+#: ../doc/reference/reference_rock/vshard/index.rst:397
 msgid "whether the bucket is ACTIVE or PINNED (for a read request, it can also be SENDING)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:397
+#: ../doc/reference/reference_rock/vshard/index.rst:398
 msgid "If all the checks succeed, the request is executed. Otherwise, it is terminated with the error: ``“wrong bucket”``."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:404
+#: ../doc/reference/reference_rock/vshard/index.rst:405
 msgid "Administration"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:410
+#: ../doc/reference/reference_rock/vshard/index.rst:411
 msgid "Configuring a sharded cluster"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:412
+#: ../doc/reference/reference_rock/vshard/index.rst:413
 msgid "A minimal viable sharded cluster should consist of:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:414
+#: ../doc/reference/reference_rock/vshard/index.rst:415
 msgid "one or more replica sets, each containing two or more ``storage`` instances"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:415
+#: ../doc/reference/reference_rock/vshard/index.rst:416
 msgid "one or more ``router`` instances"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:417
+#: ../doc/reference/reference_rock/vshard/index.rst:418
 msgid "The number of ``storage`` instances in a replica set defines the redundancy factor of the data. The recommended value is 3 or more. The number of ``router`` instances is not limited, because routers are completely stateless. We recommend increasing the number of routers when an existing ``router`` instance becomes CPU or I/O bound."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:422
+#: ../doc/reference/reference_rock/vshard/index.rst:423
 msgid "``vshard`` supports multiple ``router`` instances on a single Tarantool instance. Each ``router`` can be connected to any ``vshard`` cluster. Multiple ``router`` instances can be connected to the same cluster."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:426
+#: ../doc/reference/reference_rock/vshard/index.rst:427
 msgid "As the ``router`` and ``storage`` applications perform completely different sets of functions, they should be deployed to different Tarantool instances. Although it is technically possible to place the router application on every ``storage`` node, this approach is highly discouraged and should be avoided on production deployments."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:431
+#: ../doc/reference/reference_rock/vshard/index.rst:432
 msgid "All ``storage`` instances can be deployed using identical instance (configuration) files."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:434
+#: ../doc/reference/reference_rock/vshard/index.rst:435
 msgid "Self-identification is currently performed using ``tarantoolctl``:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:436
+#: ../doc/reference/reference_rock/vshard/index.rst:437
 msgid "$ tarantoolctl instance_name"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:440
+#: ../doc/reference/reference_rock/vshard/index.rst:441
 msgid "All ``router`` instances can also be deployed using identical instance (configuration) files."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:443
+#: ../doc/reference/reference_rock/vshard/index.rst:444
 msgid "All cluster nodes must share a common topology. An administrator must ensure that the configurations are identical. We suggest using a configuration management tool like Ansible or Puppet to deploy the cluster."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:447
+#: ../doc/reference/reference_rock/vshard/index.rst:448
 msgid "Sharding is not integrated into any system for centralized configuration management. It is expected that the application itself is responsible for interacting with such a system and passing the sharding parameters."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:455
+#: ../doc/reference/reference_rock/vshard/index.rst:456
 msgid "Sample configuration"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:457
+#: ../doc/reference/reference_rock/vshard/index.rst:458
 msgid "The configuration of a simple sharded cluster can look like this:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:459
+#: ../doc/reference/reference_rock/vshard/index.rst:460
 msgid "local cfg = {\n"
 "    memtx_memory = 100 * 1024 * 1024,\n"
 "    replication_connect_quorum = 0,\n"
@@ -15489,19 +15538,19 @@ msgid "local cfg = {\n"
 "}"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:497
+#: ../doc/reference/reference_rock/vshard/index.rst:498
 msgid "This cluster includes one ``router`` instance and two ``storage`` instances. Each ``storage`` instance includes one master and one replica."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:500
+#: ../doc/reference/reference_rock/vshard/index.rst:501
 msgid "The sharding field defines the logical topology of a sharded Tarantool cluster. All the other fields are passed to ``box.cfg()`` as they are, without modifications. See the :ref:`Configuration reference <vshard-config-reference>` section for details."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:504
+#: ../doc/reference/reference_rock/vshard/index.rst:505
 msgid "On routers call ``vshard.router.cfg(cfg)``:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:506
+#: ../doc/reference/reference_rock/vshard/index.rst:507
 msgid "cfg.listen = 3300\n"
 "\n"
 "-- Start the database with sharding\n"
@@ -15509,11 +15558,11 @@ msgid "cfg.listen = 3300\n"
 "vshard.router.cfg(cfg)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:514
+#: ../doc/reference/reference_rock/vshard/index.rst:515
 msgid "On storages call ``vshard.storage.cfg(cfg, instance_uuid)``:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:516
+#: ../doc/reference/reference_rock/vshard/index.rst:517
 msgid "-- Get instance name\n"
 "local MY_UUID = \"de0ea826-e71d-4a82-bbf3-b04a6413e417\"\n"
 "\n"
@@ -15525,39 +15574,39 @@ msgid "-- Get instance name\n"
 "vshard.storage.cfg(cfg, MY_UUID)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:528
+#: ../doc/reference/reference_rock/vshard/index.rst:529
 msgid "``vshard.storage.cfg()`` automatically calls ``box.cfg()`` and configures the listen port and replication parameters."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:531
+#: ../doc/reference/reference_rock/vshard/index.rst:532
 msgid "See ``router.lua`` and ``storage.lua`` in the ``vshard/example`` directory for a sample configuration."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:538
+#: ../doc/reference/reference_rock/vshard/index.rst:539
 msgid "Replica weights"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:540
+#: ../doc/reference/reference_rock/vshard/index.rst:541
 msgid "The ``router`` sends all requests to the master instance only. Setting replica weights allows sending read requests not only to the master instance, but to any available replica that is the 'nearest' to the ``router``. Weights are used to define distances between replicas within a replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:545
+#: ../doc/reference/reference_rock/vshard/index.rst:546
 msgid "Weights can be used, for example, to define the physical distance between the ``router`` and each replica in each replica set. In such a case read requests are sent to the nearest replica."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:549
+#: ../doc/reference/reference_rock/vshard/index.rst:550
 msgid "Setting weights can also help to define the most powerful replicas: the ones that can process the largest number of requests per second."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:552
+#: ../doc/reference/reference_rock/vshard/index.rst:553
 msgid "The idea is to specify the zone for every ``router`` and every replica, therefore filling a matrix of relative zone weights. This approach allows setting different weights in different zones for the same replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:556
+#: ../doc/reference/reference_rock/vshard/index.rst:557
 msgid "To set weights, use the zone attribute for each replica during configuration:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:558
+#: ../doc/reference/reference_rock/vshard/index.rst:559
 msgid "local cfg = {\n"
 "   sharding = {\n"
 "      ['...replicaset_uuid...'] = {\n"
@@ -15572,11 +15621,11 @@ msgid "local cfg = {\n"
 "}"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:573
+#: ../doc/reference/reference_rock/vshard/index.rst:574
 msgid "Then, specify relative weights for each zone pair in the weights parameter of ``vshard.router.cfg``. For example:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:576
+#: ../doc/reference/reference_rock/vshard/index.rst:577
 msgid "weights = {\n"
 "    [1] = {\n"
 "        [2] = 1, -- routers of the 1st zone see the weight of the 2nd zone as 1\n"
@@ -15601,184 +15650,184 @@ msgid "weights = {\n"
 "local cfg = vshard.router.cfg({weights = weights, sharding = ...})"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:605
+#: ../doc/reference/reference_rock/vshard/index.rst:606
 msgid "Replica set weights"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:607
+#: ../doc/reference/reference_rock/vshard/index.rst:608
 msgid "A replica set weight is not the same as the replica weight. The weight of a replica set defines the capacity of the replica set: the larger the weight, the more buckets the replica set can store. The total size of all sharded spaces in the replica set is also its capacity metric."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:612
+#: ../doc/reference/reference_rock/vshard/index.rst:613
 msgid "You can consider replica set weights as the relative amount of data within a replica set. For example, if ``replicaset_1 = 100``, and ``replicaset_2 = 200``, the second replica set stores twice as many buckets as the first one. By default, all weights of all replica sets are equal."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:617
+#: ../doc/reference/reference_rock/vshard/index.rst:618
 msgid "You can use weights, for example, to store the prevailing amount of data on a replica set with more memory space."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:624
+#: ../doc/reference/reference_rock/vshard/index.rst:625
 msgid "Rebalancing process"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:626
+#: ../doc/reference/reference_rock/vshard/index.rst:627
 msgid "There is an **etalon number** of buckets for a replica set. (Etalon in this context means \"ideal\".) If there is no deviation from this number in the whole replica set, then the buckets are distributed evenly."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:631
+#: ../doc/reference/reference_rock/vshard/index.rst:632
 msgid "The etalon number is calculated automatically considering the number of buckets in the cluster and weights of the replica sets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:634
+#: ../doc/reference/reference_rock/vshard/index.rst:635
 msgid "For example: The user specified the number of buckets is 3000, and weights of 3 replica sets are 1, 0.5, and 1.5. The resulting etalon numbers of buckets for the replica sets are: 1st replica set – 1000, 2nd replica set – 500, 3rd replica set – 1500."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:639
+#: ../doc/reference/reference_rock/vshard/index.rst:640
 msgid "This approach allows assigning a zero weight to a replica set, which initiates migration of its buckets to the remaining cluster nodes. It also allows adding a new zero-load replica set, which initiates migration of the buckets from the loaded replica sets to the zero-load replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:646
+#: ../doc/reference/reference_rock/vshard/index.rst:647
 msgid "A new zero-load replica set should be assigned a weight for rebalancing to start."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:648
+#: ../doc/reference/reference_rock/vshard/index.rst:649
 msgid "The ``rebalancer`` wakes up periodically and redistributes data from the most loaded nodes to less loaded nodes. Rebalancing starts if the disbalance threshold of a replica set exceeds a disbalance threshold specified in the configuration."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:652
+#: ../doc/reference/reference_rock/vshard/index.rst:653
 msgid "The disbalance threshold is calculated as follows:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:654
+#: ../doc/reference/reference_rock/vshard/index.rst:655
 msgid "|etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:658
+#: ../doc/reference/reference_rock/vshard/index.rst:659
 msgid "When a new shard is added, the configuration can be updated dynamically:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:660
+#: ../doc/reference/reference_rock/vshard/index.rst:661
 msgid "The configuration should be updated on all the ``routers`` first, and then on all the ``storages``."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:662
+#: ../doc/reference/reference_rock/vshard/index.rst:663
 msgid "The new shard becomes available for rebalancing in the ``storage`` layer."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:663
+#: ../doc/reference/reference_rock/vshard/index.rst:664
 msgid "As a result of rebalancing, buckets are migrated to the new shard."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:664
+#: ../doc/reference/reference_rock/vshard/index.rst:665
 msgid "If a migrated bucket is requested, ``router`` receives an error code containing information about the new location of the bucket."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:667
+#: ../doc/reference/reference_rock/vshard/index.rst:668
 msgid "At this time, the new shard is already present in the ``router``'s pool of connections, so redirection is transparent for the application."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:674
+#: ../doc/reference/reference_rock/vshard/index.rst:675
 msgid "Replica set lock and bucket pin"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:676
+#: ../doc/reference/reference_rock/vshard/index.rst:677
 msgid "A replica set lock makes a replica set invisible to the ``rebalancer``: a locked replica set can neither receive new buckets nor migrate its own buckets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:679
+#: ../doc/reference/reference_rock/vshard/index.rst:680
 msgid "A bucket pin blocks a specific bucket from migrating: a pinned bucket stays on the replica set to which it is pinned, until it is unpinned."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:682
+#: ../doc/reference/reference_rock/vshard/index.rst:683
 msgid "Pinning all replica set buckets is not equivalent to locking a replica set. Even if you pin all buckets, a non-locked replica set can still receive new buckets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:685
+#: ../doc/reference/reference_rock/vshard/index.rst:686
 msgid "Replica set lock is helpful, for example, to separate a replica set from production replica sets for testing, or to preserve some application metadata that must not be sharded for a while. A bucket pin is used for similar cases but in a smaller scope."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:690
+#: ../doc/reference/reference_rock/vshard/index.rst:691
 msgid "By both locking a replica set and pinning all buckets, one can isolate an entire replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:693
+#: ../doc/reference/reference_rock/vshard/index.rst:694
 msgid "Locked replica sets and pinned buckets affect the rebalancing algorithm as the ``rebalancer`` must ignore locked replica sets and consider pinned buckets when attempting to reach the best possible balance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:697
+#: ../doc/reference/reference_rock/vshard/index.rst:698
 msgid "The issue is not trivial as a user can pin too many buckets to a replica set, so a perfect balance becomes unreachable. For example, consider the following cluster (assume all replica set weights are equal to 1)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:701
+#: ../doc/reference/reference_rock/vshard/index.rst:702
 msgid "The initial configuration:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:703
+#: ../doc/reference/reference_rock/vshard/index.rst:704
 msgid "rs1: bucket_count = 150\n"
 "rs2: bucket_count = 150, pinned_count = 120"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:708
+#: ../doc/reference/reference_rock/vshard/index.rst:709
 msgid "Adding a new replica set:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:710
+#: ../doc/reference/reference_rock/vshard/index.rst:711
 msgid "rs1: bucket_count = 150\n"
 "rs2: bucket_count = 150, pinned_count = 120\n"
 "rs3: bucket_count = 0"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:716
+#: ../doc/reference/reference_rock/vshard/index.rst:717
 msgid "The perfect balance would be ``100 - 100 - 100``, which is impossible since the ``rs2`` replica set has 120 pinned buckets. The best possible balance here is the following:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:720
+#: ../doc/reference/reference_rock/vshard/index.rst:721
 msgid "rs1: bucket_count = 90\n"
 "rs2: bucket_count = 120, pinned_count 120\n"
 "rs3: bucket_count = 90"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:726
+#: ../doc/reference/reference_rock/vshard/index.rst:727
 msgid "The ``rebalancer`` moved as many buckets as possible from ``rs2`` to decrease the disbalance. At the same time it respected equal weights of ``rs1`` and ``rs3``."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:729
+#: ../doc/reference/reference_rock/vshard/index.rst:730
 msgid "The algorithms for implementing locks and pins are completely different, although they look similar in terms of functionality."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:736
+#: ../doc/reference/reference_rock/vshard/index.rst:737
 msgid "Replica set lock and rebalancing"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:738
+#: ../doc/reference/reference_rock/vshard/index.rst:739
 msgid "Locked replica sets simply do not participate in rebalancing. This means that even if the actual total number of buckets is not equal to the etalon number, the disbalance cannot be fixed due to the lock. When the rebalancer detects that one of the replica sets is locked, it recalculates the etalon number of buckets of the non-locked replica sets as if the locked replica set and its buckets did not exist at all."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:749
+#: ../doc/reference/reference_rock/vshard/index.rst:750
 msgid "Bucket pin and rebalancing"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:751
+#: ../doc/reference/reference_rock/vshard/index.rst:752
 msgid "Rebalancing replica sets with pinned buckets requires a more complex algorithm. Here pinned_count[o] is the number of pinned buckets, and ``etalon_count`` is the etalon number of buckets for a replica set:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:755
+#: ../doc/reference/reference_rock/vshard/index.rst:756
 msgid "The ``rebalancer`` calculates the etalon number of buckets as if all buckets were not pinned. Then the rebalancer checks each replica set and compares the etalon number of buckets with the number of pinned buckets in a replica set. If ``pinned_count < etalon_count``, non-locked replica sets (at this point all locked replica sets already are filtered out) with pinned buckets can receive new buckets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:761
+#: ../doc/reference/reference_rock/vshard/index.rst:762
 msgid "If ``pinned_count > etalon_count``, the disbalance cannot be fixed, as the ``rebalancer`` cannot move pinned buckets out of this replica set. In such a case the etalon number is updated and set equal to the number of pinned buckets. The replica sets with ``pinned_count > etalon_count`` are not processed by the ``rebalancer``, and the number of pinned buckets is subtracted from the total number of buckets. The rebalancer tries to move out as many buckets as possible from such replica sets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:768
+#: ../doc/reference/reference_rock/vshard/index.rst:769
 msgid "This procedure is restarted from step 1 for replica sets with ``pinned_count >= etalon_count`` until ``pinned_count <= etalon_count`` on all replica sets. The procedure is also restarted when the total number of buckets is changed."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:773
+#: ../doc/reference/reference_rock/vshard/index.rst:774
 msgid "Here is the pseudocode for the algorithm:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:775
+#: ../doc/reference/reference_rock/vshard/index.rst:776
 msgid "function cluster_calculate_perfect_balance(replicasets, bucket_count)\n"
 "        -- rebalance the buckets using weights of the still viable replica sets --\n"
 "end;\n"
@@ -15802,52 +15851,52 @@ msgid "function cluster_calculate_perfect_balance(replicasets, bucket_count)\n"
 "cluster_calculate_perfect_balance(cluster, bucket_count);"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:799
+#: ../doc/reference/reference_rock/vshard/index.rst:800
 msgid "The complexity of the algorithm is ``O(N^2)``, where N is the number of replica sets. On each step, the algorithm either finishes the calculation, or ignores at least one new replica set overloaded with the pinned buckets, and updates the etalon number of buckets on other replica sets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:808
+#: ../doc/reference/reference_rock/vshard/index.rst:809
 msgid "Bucket ref"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:810
+#: ../doc/reference/reference_rock/vshard/index.rst:811
 msgid "Bucket ref is an in-memory counter that is similar to the :ref:`bucket pin <vshard-lock-pin>`, but has the following differences:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:813
+#: ../doc/reference/reference_rock/vshard/index.rst:814
 msgid "Bucket ref is not persistent. Refs are intended for forbidding bucket transfer during request execution, but on restart all requests are dropped."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:816
+#: ../doc/reference/reference_rock/vshard/index.rst:817
 msgid "There are two types of bucket refs: read-only (RO) and read-write (RW)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:818
+#: ../doc/reference/reference_rock/vshard/index.rst:819
 msgid "If a bucket has RW refs, it can not be moved. However, when the rebalancer needs it to be sent, it locks the bucket for new write requests, waits until all current requests are finished, and then sends the bucket."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:823
+#: ../doc/reference/reference_rock/vshard/index.rst:824
 msgid "If a bucket has RO refs, it can be sent, but cannot be dropped. Such a bucket can even enter GARBAGE or SENT state, but its data is kept until the last reader is gone."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:827
+#: ../doc/reference/reference_rock/vshard/index.rst:828
 msgid "A single bucket can have both RO and RW refs."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:829
+#: ../doc/reference/reference_rock/vshard/index.rst:830
 msgid "Bucket ref is countable."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:831
+#: ../doc/reference/reference_rock/vshard/index.rst:832
 msgid "The :ref:`vshard.storage.bucket_ref/unref()<storage_api-bucket_ref>` methods are called automatically when :ref:`vshard.router.call() <router_api-call>` or :ref:`vshard.storage.call() <storage_api-call>` is used. For raw API like ``r = vshard.router.route() r:callro/callrw`` you should explicitly call the ``bucket_ref()`` method inside the function. Also, make sure that you call ``bucket_unref()`` after ``bucket_ref()``, otherwise the bucket cannot be moved from the storage until the instance restart."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:839
+#: ../doc/reference/reference_rock/vshard/index.rst:840
 msgid "To see how many refs there are for a bucket, use :ref:`vshard.storage.buckets_info([bucket_id]) <storage_api-buckets_info>` (the ``bucket_id`` parameter is optional)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:845
-#: ../doc/reference/reference_rock/vshard/index.rst:1857
+#: ../doc/reference/reference_rock/vshard/index.rst:846
+#: ../doc/reference/reference_rock/vshard/index.rst:1858
 msgid "vshard.storage.buckets_info(1)\n"
 "---\n"
 "- 1:\n"
@@ -15859,15 +15908,15 @@ msgid "vshard.storage.buckets_info(1)\n"
 "    id: 1"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:861
+#: ../doc/reference/reference_rock/vshard/index.rst:862
 msgid "Defining spaces"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:863
+#: ../doc/reference/reference_rock/vshard/index.rst:864
 msgid "Spaces should be defined within a storage application using ``box.once()``. For example:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:866
+#: ../doc/reference/reference_rock/vshard/index.rst:867
 msgid "box.once(\"testapp:schema:1\", function()\n"
 "    local customer = box.schema.space.create('customer')\n"
 "    customer:format({\n"
@@ -15897,672 +15946,672 @@ msgid "box.once(\"testapp:schema:1\", function()\n"
 "end)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:900
+#: ../doc/reference/reference_rock/vshard/index.rst:901
 msgid "Bootstrapping and restarting a storage"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:902
+#: ../doc/reference/reference_rock/vshard/index.rst:903
 msgid "If a replica set master fails, it is recommended to:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:904
+#: ../doc/reference/reference_rock/vshard/index.rst:905
 msgid "Switch one of the replicas into the master mode. This allows the new master to process all the incoming requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:906
+#: ../doc/reference/reference_rock/vshard/index.rst:907
 msgid "Update the configuration of all the cluster members. This forwards all the requests to the new master."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:909
+#: ../doc/reference/reference_rock/vshard/index.rst:910
 msgid "Monitoring the master and switching the instance modes can be handled by any external utility."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:912
+#: ../doc/reference/reference_rock/vshard/index.rst:913
 msgid "To perform a scheduled downtime of a replica set master, it is recommended to:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:914
+#: ../doc/reference/reference_rock/vshard/index.rst:915
 msgid "Update the configuration of the master and wait for the replicas to get into sync. All the requests then are forwarded to a new master."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:916
+#: ../doc/reference/reference_rock/vshard/index.rst:917
 msgid "Switch another instance into the master mode."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:917
-#: ../doc/reference/reference_rock/vshard/index.rst:923
+#: ../doc/reference/reference_rock/vshard/index.rst:918
+#: ../doc/reference/reference_rock/vshard/index.rst:924
 msgid "Update the configuration of all the nodes."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:918
+#: ../doc/reference/reference_rock/vshard/index.rst:919
 msgid "Shut down the old master."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:920
+#: ../doc/reference/reference_rock/vshard/index.rst:921
 msgid "To perform a scheduled downtime of a replica set, it is recommended to:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:922
+#: ../doc/reference/reference_rock/vshard/index.rst:923
 msgid "Migrate all the buckets to the other cluster storages."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:924
+#: ../doc/reference/reference_rock/vshard/index.rst:925
 msgid "Shut down the replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:926
+#: ../doc/reference/reference_rock/vshard/index.rst:927
 msgid "In case a whole replica set fails, some part of the dataset becomes inaccessible. Meanwhile, the ``router`` tries to reconnect to the master of the failed replica set. This way, once the replica set is up and running again, the cluster is automatically restored."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:937
+#: ../doc/reference/reference_rock/vshard/index.rst:938
 msgid "Searches for buckets, buckets recovery, and buckets rebalancing are performed automatically and do not require human intervention."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:940
+#: ../doc/reference/reference_rock/vshard/index.rst:941
 msgid "Technically, there are multiple fibers responsible for different types of operations:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:943
+#: ../doc/reference/reference_rock/vshard/index.rst:944
 msgid "a **discovery** fiber on the ``router`` searches for buckets in the background"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:944
+#: ../doc/reference/reference_rock/vshard/index.rst:945
 msgid "a **failover** fiber on the ``router`` maintains replica connections"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:945
+#: ../doc/reference/reference_rock/vshard/index.rst:946
 msgid "a **garbage collector** fiber on each master ``storage`` removes the contents of buckets that were moved"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:947
+#: ../doc/reference/reference_rock/vshard/index.rst:948
 msgid "a **bucket recovery** fiber on each master ``storage`` recovers buckets in the SENDING and RECEIVING states in case of reboot"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:949
+#: ../doc/reference/reference_rock/vshard/index.rst:950
 msgid "a **rebalancer** on a single master ``storage`` among all replica sets executes the rebalancing process."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:952
+#: ../doc/reference/reference_rock/vshard/index.rst:953
 msgid "See the :ref:`Rebalancing process <vshard-rebalancing>` section for details."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:958
+#: ../doc/reference/reference_rock/vshard/index.rst:959
 msgid "Garbage collector"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:960
+#: ../doc/reference/reference_rock/vshard/index.rst:961
 msgid "A **garbage collector** fiber runs in the background on the master storages of each replica set. It starts deleting the contents of the bucket in the GARBAGE state part by part. Once the bucket is empty, its record is deleted from the ``_bucket`` system space."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:969
+#: ../doc/reference/reference_rock/vshard/index.rst:970
 msgid "Bucket recovery"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:971
+#: ../doc/reference/reference_rock/vshard/index.rst:972
 msgid "A **bucket recovery** fiber runs on the master storages. It helps to recover buckets in the SENDING and RECEIVING states in case of reboot."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:974
+#: ../doc/reference/reference_rock/vshard/index.rst:975
 msgid "Buckets in the SENDING state are recovered as follows:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:976
+#: ../doc/reference/reference_rock/vshard/index.rst:977
 msgid "The system first searches for buckets in the SENDING state."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:977
+#: ../doc/reference/reference_rock/vshard/index.rst:978
 msgid "If such a bucket is found, the system sends a request to the destination replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:979
+#: ../doc/reference/reference_rock/vshard/index.rst:980
 msgid "If the bucket on the destination replica set is ACTIVE, the original bucket is deleted from the source node."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:982
+#: ../doc/reference/reference_rock/vshard/index.rst:983
 msgid "Buckets in the RECEIVING state are deleted without extra checks."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:988
+#: ../doc/reference/reference_rock/vshard/index.rst:989
 msgid "Failover"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:990
+#: ../doc/reference/reference_rock/vshard/index.rst:991
 msgid "A **failover** fiber runs on every ``router``. If a master of a replica set becomes unavailable, the failover fiber redirects read requests to the replicas. Write requests are rejected with an error until the master becomes available."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1006
+#: ../doc/reference/reference_rock/vshard/index.rst:1007
 msgid ":ref:`sharding <cfg_basic-sharding>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1007
+#: ../doc/reference/reference_rock/vshard/index.rst:1008
 msgid ":ref:`weights <cfg_basic-weights>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1008
+#: ../doc/reference/reference_rock/vshard/index.rst:1009
 msgid ":ref:`shard_index <cfg_basic-shard_index>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1009
+#: ../doc/reference/reference_rock/vshard/index.rst:1010
 msgid ":ref:`bucket_count <cfg_basic-bucket_count>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1010
+#: ../doc/reference/reference_rock/vshard/index.rst:1011
 msgid ":ref:`collect_bucket_garbage_interval <cfg_basic-collect_bucket_garbage_interval>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1011
+#: ../doc/reference/reference_rock/vshard/index.rst:1012
 msgid ":ref:`collect_lua_garbage <cfg_basic-collect_lua_garbage>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1012
+#: ../doc/reference/reference_rock/vshard/index.rst:1013
 msgid ":ref:`sync_timeout <cfg_basic-sync_timeout>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1013
+#: ../doc/reference/reference_rock/vshard/index.rst:1014
 msgid ":ref:`rebalancer_disbalance_threshold <cfg_basic-rebalancer_disbalance_threshold>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1014
+#: ../doc/reference/reference_rock/vshard/index.rst:1015
 msgid ":ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1020
+#: ../doc/reference/reference_rock/vshard/index.rst:1021
 msgid "A field defining the logical topology of the sharded Tarantool cluster."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1022
-#: ../doc/reference/reference_rock/vshard/index.rst:1033
+#: ../doc/reference/reference_rock/vshard/index.rst:1023
+#: ../doc/reference/reference_rock/vshard/index.rst:1034
 msgid "Type: table"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1030
+#: ../doc/reference/reference_rock/vshard/index.rst:1031
 msgid "A field defining the configuration of relative weights for each zone pair in a replica set. See the :ref:`Replica weights <vshard-replica-weights>` section."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1041
+#: ../doc/reference/reference_rock/vshard/index.rst:1042
 msgid "An index over the bucket id."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1043
+#: ../doc/reference/reference_rock/vshard/index.rst:1044
 msgid "Type: non-empty string or non-negative integer"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1044
+#: ../doc/reference/reference_rock/vshard/index.rst:1045
 msgid "Default: coincides with the bucket id number"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1051
+#: ../doc/reference/reference_rock/vshard/index.rst:1052
 msgid "The total number of buckets in a cluster."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1053
+#: ../doc/reference/reference_rock/vshard/index.rst:1054
 msgid "This number should be several orders of magnitude larger than the potential number of cluster nodes, considering potential scaling out in the foreseeable future."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1058
+#: ../doc/reference/reference_rock/vshard/index.rst:1059
 msgid "If the estimated number of nodes is M, then the data set should be divided into 100M or even 1000M buckets, depending on the planned scaling out. This number is certainly greater than the potential number of cluster nodes in the system being designed."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1063
+#: ../doc/reference/reference_rock/vshard/index.rst:1064
 msgid "Keep in mind that too many buckets can cause a need to allocate more memory to store routing information. On the other hand, an insufficient number of buckets can lead to decreased granularity when rebalancing."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1067
-#: ../doc/reference/reference_rock/vshard/index.rst:1077
-#: ../doc/reference/reference_rock/vshard/index.rst:1099
-#: ../doc/reference/reference_rock/vshard/index.rst:1114
-#: ../doc/reference/reference_rock/vshard/index.rst:1135
+#: ../doc/reference/reference_rock/vshard/index.rst:1068
+#: ../doc/reference/reference_rock/vshard/index.rst:1078
+#: ../doc/reference/reference_rock/vshard/index.rst:1100
+#: ../doc/reference/reference_rock/vshard/index.rst:1115
+#: ../doc/reference/reference_rock/vshard/index.rst:1136
 msgid "Type: number"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1068
+#: ../doc/reference/reference_rock/vshard/index.rst:1069
 msgid "Default: 3000"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1075
+#: ../doc/reference/reference_rock/vshard/index.rst:1076
 msgid "The interval between garbage collector actions, in seconds."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1085
+#: ../doc/reference/reference_rock/vshard/index.rst:1086
 msgid "If set to true, the Lua collectgarbage() function is called periodically."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1088
+#: ../doc/reference/reference_rock/vshard/index.rst:1089
 msgid "Default: no"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1095
+#: ../doc/reference/reference_rock/vshard/index.rst:1096
 msgid "Timeout to wait for synchronization of the old master with replicas before demotion. Used when switching a master or when manually calling the ``sync()`` function."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1107
+#: ../doc/reference/reference_rock/vshard/index.rst:1108
 msgid "A maximum bucket disbalance threshold, in percent. The threshold is calculated for each replica set using the following formula:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1110
+#: ../doc/reference/reference_rock/vshard/index.rst:1111
 msgid "|etalon_bucket_count - real_bucket_count| / etalon_bucket_count * 100"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1122
+#: ../doc/reference/reference_rock/vshard/index.rst:1123
 msgid "The maximum number of buckets that can be received in parallel by a single replica set. This number must be limited, because when a new replica set is added to a cluster, the rebalancer sends a very large amount of buckets from the existing replica sets to the new replica set. This produces a heavy load on a new replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1129
+#: ../doc/reference/reference_rock/vshard/index.rst:1130
 msgid "Suppose ``rebalancer_max_receiving`` is equal to 100, ``bucket_count`` is equal to 1000. There are 3 replica sets with 333, 333 and 334 buckets on each respectively. When a new replica set is added, each replica set’s ``etalon_bucket_count`` becomes equal to 250. Rather than receiving all 250 buckets at once, the new replica set receives 100, 100 and 50 buckets sequentially."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1136
+#: ../doc/reference/reference_rock/vshard/index.rst:1137
 msgid "Default: 100"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1143
+#: ../doc/reference/reference_rock/vshard/index.rst:1144
 msgid "Replica set functions"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1145
+#: ../doc/reference/reference_rock/vshard/index.rst:1146
 msgid ":ref:`uuid <cfg_replica_set-uuid>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1146
+#: ../doc/reference/reference_rock/vshard/index.rst:1147
 msgid ":ref:`weight <cfg_replica_set-weight>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1152
+#: ../doc/reference/reference_rock/vshard/index.rst:1153
 msgid "A unique identifier of a replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1154
-#: ../doc/reference/reference_rock/vshard/index.rst:1165
+#: ../doc/reference/reference_rock/vshard/index.rst:1155
+#: ../doc/reference/reference_rock/vshard/index.rst:1166
 msgid "Type:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1155
+#: ../doc/reference/reference_rock/vshard/index.rst:1156
 msgid "Default:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1156
-#: ../doc/reference/reference_rock/vshard/index.rst:1167
+#: ../doc/reference/reference_rock/vshard/index.rst:1157
+#: ../doc/reference/reference_rock/vshard/index.rst:1168
 msgid "Dynamic:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1162
+#: ../doc/reference/reference_rock/vshard/index.rst:1163
 msgid "A weight of a replica set. See the :ref:`Replica set weights <vshard-replica-set-weights>` section for details."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1179
+#: ../doc/reference/reference_rock/vshard/index.rst:1180
 msgid "Router public API"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1181
+#: ../doc/reference/reference_rock/vshard/index.rst:1182
 msgid ":ref:`vshard.router.bootstrap() <router_api-bootstrap>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1182
+#: ../doc/reference/reference_rock/vshard/index.rst:1183
 msgid ":ref:`vshard.router.cfg(cfg) <router_api-cfg>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1183
+#: ../doc/reference/reference_rock/vshard/index.rst:1184
 msgid ":ref:`vshard.router.new(name, cfg) <router_api-new>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1184
+#: ../doc/reference/reference_rock/vshard/index.rst:1185
 msgid ":ref:`vshard.router.call(bucket_id, mode, function_name, {argument_list}, {options}) <router_api-call>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1185
+#: ../doc/reference/reference_rock/vshard/index.rst:1186
 msgid ":ref:`vshard.router.callro(bucket_id, function_name, {argument_list}, {options}) <router_api-callro>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1186
+#: ../doc/reference/reference_rock/vshard/index.rst:1187
 msgid ":ref:`vshard.router.callrw(bucket_id, function_name, {argument_list}, {options}) <router_api-callrw>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1187
+#: ../doc/reference/reference_rock/vshard/index.rst:1188
 msgid ":ref:`vshard.router.callre(bucket_id, function_name, {argument_list}, {options}) <router_api-callre>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1188
+#: ../doc/reference/reference_rock/vshard/index.rst:1189
 msgid ":ref:`vshard.router.callbro(bucket_id, function_name, {argument_list}, {options}) <router_api-callbro>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1189
+#: ../doc/reference/reference_rock/vshard/index.rst:1190
 msgid ":ref:`vshard.router.callbre(bucket_id, function_name, {argument_list}, {options}) <router_api-callbre>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1190
+#: ../doc/reference/reference_rock/vshard/index.rst:1191
 msgid ":ref:`vshard.router.route(bucket_id) <router_api-route>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1191
+#: ../doc/reference/reference_rock/vshard/index.rst:1192
 msgid ":ref:`vshard.router.routeall() <router_api-routeall>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1192
+#: ../doc/reference/reference_rock/vshard/index.rst:1193
 msgid ":ref:`vshard.router.bucket_id(key) <router_api-bucket_id>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1193
+#: ../doc/reference/reference_rock/vshard/index.rst:1194
 msgid ":ref:`vshard.router.bucket_count() <router_api-bucket_count>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1194
+#: ../doc/reference/reference_rock/vshard/index.rst:1195
 msgid ":ref:`vshard.router.sync(timeout) <router_api-sync>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1195
+#: ../doc/reference/reference_rock/vshard/index.rst:1196
 msgid ":ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1196
+#: ../doc/reference/reference_rock/vshard/index.rst:1197
 msgid ":ref:`vshard.router.info() <router_api-info>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1197
+#: ../doc/reference/reference_rock/vshard/index.rst:1198
 msgid ":ref:`vshard.router.buckets_info() <router_api-buckets_info>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1198
+#: ../doc/reference/reference_rock/vshard/index.rst:1199
 msgid ":ref:`replicaset.call() <router_api-replicaset_call>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1199
+#: ../doc/reference/reference_rock/vshard/index.rst:1200
 msgid ":ref:`replicaset.callro() <router_api-replicaset_callro>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1200
+#: ../doc/reference/reference_rock/vshard/index.rst:1201
 msgid ":ref:`replicaset.callrw() <router_api-replicaset_callrw>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1201
+#: ../doc/reference/reference_rock/vshard/index.rst:1202
 msgid ":ref:`replicaset.callre() <router_api-replicaset_callre>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1207
+#: ../doc/reference/reference_rock/vshard/index.rst:1208
 msgid "Perform the initial cluster bootstrap and distribute all buckets across the replica sets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1214
+#: ../doc/reference/reference_rock/vshard/index.rst:1215
 msgid "Configure the database and start sharding for the specified ``router`` instance. See the :ref:`sample configuration <vshard-config-cluster-example>` above."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1218
+#: ../doc/reference/reference_rock/vshard/index.rst:1219
 msgid "a configuration table"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1224
+#: ../doc/reference/reference_rock/vshard/index.rst:1225
 msgid "Create a new router instance. ``vshard`` supports multiple routers in a single Tarantool instance. Each router can be connected to any ``vshard`` cluster, and multiple routers can be connected to the same cluster."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1228
+#: ../doc/reference/reference_rock/vshard/index.rst:1229
 msgid "A router created via ``vshard.router.new()`` works in the same way as a static router, but the method name is preceded by a colon (``vshard.router:method_name(...)``), while for a static router the method name is preceded by a period (``vshard.router.method_name(...)``)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1233
+#: ../doc/reference/reference_rock/vshard/index.rst:1234
 msgid "A static router can be obtained via the ``vshard.router.static()`` method and then used like a router created via the ``vshard.router.new()`` method."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1239
+#: ../doc/reference/reference_rock/vshard/index.rst:1240
 msgid "``box.cfg`` is shared among all the routers of a single instance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1241
+#: ../doc/reference/reference_rock/vshard/index.rst:1242
 msgid "a router instance name. This name is used as a prefix in logs of the router and must be unique within the instance"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1243
+#: ../doc/reference/reference_rock/vshard/index.rst:1244
 msgid "a configuration table. The :ref:`sample configuration <vshard-config-cluster-example>` is described above."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1247
+#: ../doc/reference/reference_rock/vshard/index.rst:1248
 msgid "a router instance, if created successfully; otherwise, nil and an error object"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1254
+#: ../doc/reference/reference_rock/vshard/index.rst:1255
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id. See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1258
-#: ../doc/reference/reference_rock/vshard/index.rst:1313
-#: ../doc/reference/reference_rock/vshard/index.rst:1344
-#: ../doc/reference/reference_rock/vshard/index.rst:1377
-#: ../doc/reference/reference_rock/vshard/index.rst:1421
-#: ../doc/reference/reference_rock/vshard/index.rst:1454
-#: ../doc/reference/reference_rock/vshard/index.rst:1661
-#: ../doc/reference/reference_rock/vshard/index.rst:1741
-#: ../doc/reference/reference_rock/vshard/index.rst:1769
-#: ../doc/reference/reference_rock/vshard/index.rst:1780
-#: ../doc/reference/reference_rock/vshard/index.rst:1791
-#: ../doc/reference/reference_rock/vshard/index.rst:1817
-#: ../doc/reference/reference_rock/vshard/index.rst:1936
-#: ../doc/reference/reference_rock/vshard/index.rst:1956
-#: ../doc/reference/reference_rock/vshard/index.rst:1965
-#: ../doc/reference/reference_rock/vshard/index.rst:1990
-#: ../doc/reference/reference_rock/vshard/index.rst:2008
-msgid "a bucket identifier"
-msgstr ""
-
 #: ../doc/reference/reference_rock/vshard/index.rst:1259
-msgid "either a string = 'read'|'write', or a map with mode='read'|'write' and/or prefer_replica=true|false and/or balance=true|false."
-msgstr ""
-
-#: ../doc/reference/reference_rock/vshard/index.rst:1260
 #: ../doc/reference/reference_rock/vshard/index.rst:1314
 #: ../doc/reference/reference_rock/vshard/index.rst:1345
 #: ../doc/reference/reference_rock/vshard/index.rst:1378
-msgid "a function to execute"
+#: ../doc/reference/reference_rock/vshard/index.rst:1422
+#: ../doc/reference/reference_rock/vshard/index.rst:1455
+#: ../doc/reference/reference_rock/vshard/index.rst:1662
+#: ../doc/reference/reference_rock/vshard/index.rst:1742
+#: ../doc/reference/reference_rock/vshard/index.rst:1770
+#: ../doc/reference/reference_rock/vshard/index.rst:1781
+#: ../doc/reference/reference_rock/vshard/index.rst:1792
+#: ../doc/reference/reference_rock/vshard/index.rst:1818
+#: ../doc/reference/reference_rock/vshard/index.rst:1937
+#: ../doc/reference/reference_rock/vshard/index.rst:1957
+#: ../doc/reference/reference_rock/vshard/index.rst:1966
+#: ../doc/reference/reference_rock/vshard/index.rst:1991
+#: ../doc/reference/reference_rock/vshard/index.rst:2009
+msgid "a bucket identifier"
+msgstr ""
+
+#: ../doc/reference/reference_rock/vshard/index.rst:1260
+msgid "either a string = 'read'|'write', or a map with mode='read'|'write' and/or prefer_replica=true|false and/or balance=true|false."
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:1261
 #: ../doc/reference/reference_rock/vshard/index.rst:1315
 #: ../doc/reference/reference_rock/vshard/index.rst:1346
 #: ../doc/reference/reference_rock/vshard/index.rst:1379
-msgid "an array of the function's arguments"
+msgid "a function to execute"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:1262
+#: ../doc/reference/reference_rock/vshard/index.rst:1316
+#: ../doc/reference/reference_rock/vshard/index.rst:1347
+#: ../doc/reference/reference_rock/vshard/index.rst:1380
+msgid "an array of the function's arguments"
+msgstr ""
+
+#: ../doc/reference/reference_rock/vshard/index.rst:1263
 msgid "* ``timeout`` – a request timeout, in seconds. If the router cannot identify a   shard with the specified bucket_id, the operation will be repeated until the   timeout is reached."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1264
+#: ../doc/reference/reference_rock/vshard/index.rst:1265
 msgid "``timeout`` – a request timeout, in seconds. If the router cannot identify a shard with the specified bucket_id, the operation will be repeated until the timeout is reached."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1268
+#: ../doc/reference/reference_rock/vshard/index.rst:1269
 msgid "The mode parameter has two possible forms: a string or a map. Examples of the string form are: 'read', 'write'. Examples of the map form are: {mode='read'}, {mode='write'}, {mode='read', prefer_replica=true}, {mode='read', balance=true}, {mode='read', prefer_replica=true, balance=true}. If 'write' is specified then the target is the master. If prefer_replica=true is specified then the preferred target is one of the replicas, but the target is the master if there is no conveniently available replica. It may be good to specify prefer_replica=true for functions which are expensive in terms of resource use, to avoid slowing down the master. If balance=true then there is load balancing -- reads are distributed over all the nodes in the replica set in round-robin fashion, with a preference for replicas if prefer_replica=true is also set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1282
-#: ../doc/reference/reference_rock/vshard/index.rst:1324
-#: ../doc/reference/reference_rock/vshard/index.rst:1355
-#: ../doc/reference/reference_rock/vshard/index.rst:1388
+#: ../doc/reference/reference_rock/vshard/index.rst:1283
+#: ../doc/reference/reference_rock/vshard/index.rst:1325
+#: ../doc/reference/reference_rock/vshard/index.rst:1356
+#: ../doc/reference/reference_rock/vshard/index.rst:1389
 msgid "The original return value of the executed function, or ``nil`` and error object. The error object has a type attribute equal to ``ShardingError`` or one of the regular Tarantool errors (``ClientError``, ``OutOfMemory``, ``SocketError``, etc.)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1287
+#: ../doc/reference/reference_rock/vshard/index.rst:1288
 msgid "``ShardingError`` is returned on errors specific for sharding: the replica set is not available, the master is missing, wrong bucket id, etc. It has an attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an optional attribute containing a message with the human-readable error description, and other attributes specific for the error code."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1295
+#: ../doc/reference/reference_rock/vshard/index.rst:1296
 msgid "To call ``customer_add`` function from ``vshard/example``, say:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1297
+#: ../doc/reference/reference_rock/vshard/index.rst:1298
 msgid "vshard.router.call(100, 'write', 'customer_add', {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}}, {timeout = 100})\n"
 "-- or, the same thing but with a map for the second argument\n"
 "vshard.router.call(100, {mode='write'}, 'customer_add', {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}}, {timeout = 100})"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1307
+#: ../doc/reference/reference_rock/vshard/index.rst:1308
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id, in read-only mode (similar to calling vshard.router.call with mode='read'). See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1316
-#: ../doc/reference/reference_rock/vshard/index.rst:1347
-#: ../doc/reference/reference_rock/vshard/index.rst:1380
-#: ../doc/reference/reference_rock/vshard/index.rst:1577
-#: ../doc/reference/reference_rock/vshard/index.rst:1598
-#: ../doc/reference/reference_rock/vshard/index.rst:1617
-#: ../doc/reference/reference_rock/vshard/index.rst:1639
+#: ../doc/reference/reference_rock/vshard/index.rst:1317
+#: ../doc/reference/reference_rock/vshard/index.rst:1348
+#: ../doc/reference/reference_rock/vshard/index.rst:1381
+#: ../doc/reference/reference_rock/vshard/index.rst:1578
+#: ../doc/reference/reference_rock/vshard/index.rst:1599
+#: ../doc/reference/reference_rock/vshard/index.rst:1618
+#: ../doc/reference/reference_rock/vshard/index.rst:1640
 msgid "* ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a   shard with the bucket id, the operation will be repeated until the   timeout is reached."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1318
-#: ../doc/reference/reference_rock/vshard/index.rst:1349
-#: ../doc/reference/reference_rock/vshard/index.rst:1382
-#: ../doc/reference/reference_rock/vshard/index.rst:1579
-#: ../doc/reference/reference_rock/vshard/index.rst:1600
-#: ../doc/reference/reference_rock/vshard/index.rst:1619
-#: ../doc/reference/reference_rock/vshard/index.rst:1641
+#: ../doc/reference/reference_rock/vshard/index.rst:1319
+#: ../doc/reference/reference_rock/vshard/index.rst:1350
+#: ../doc/reference/reference_rock/vshard/index.rst:1383
+#: ../doc/reference/reference_rock/vshard/index.rst:1580
+#: ../doc/reference/reference_rock/vshard/index.rst:1601
+#: ../doc/reference/reference_rock/vshard/index.rst:1620
+#: ../doc/reference/reference_rock/vshard/index.rst:1642
 msgid "``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a shard with the bucket id, the operation will be repeated until the timeout is reached."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1329
-#: ../doc/reference/reference_rock/vshard/index.rst:1360
-#: ../doc/reference/reference_rock/vshard/index.rst:1393
+#: ../doc/reference/reference_rock/vshard/index.rst:1330
+#: ../doc/reference/reference_rock/vshard/index.rst:1361
+#: ../doc/reference/reference_rock/vshard/index.rst:1394
 msgid "``ShardingError`` is returned on errors specific for sharding: the replica set is not available, the master is missing, wrong bucket id, etc. It has an attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an optional attribute containing a message with the human-readable error description, and other attributes specific for this error code."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1339
+#: ../doc/reference/reference_rock/vshard/index.rst:1340
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id, in read-write mode (similar to calling vshard.router.call with mode='write'). See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1370
+#: ../doc/reference/reference_rock/vshard/index.rst:1371
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id, in read-only mode (similar to calling vshard.router.call with mode='read'), with preference for a replica rather than a master (similar to calling vshard.router.call with prefer_replica = true). See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1403
+#: ../doc/reference/reference_rock/vshard/index.rst:1404
 msgid "This has the same effect as :ref:`vshard.router.call() <router_api-call>` with mode parameter = {mode='read', balance=true}."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1411
+#: ../doc/reference/reference_rock/vshard/index.rst:1412
 msgid "This has the same effect as :ref:`vshard.router.call() <router_api-call>` with mode parameter = {mode='read', balance=true, prefer_replica=true}."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1419
+#: ../doc/reference/reference_rock/vshard/index.rst:1420
 msgid "Return the replica set object for the bucket with the specified bucket id value."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1423
-#: ../doc/reference/reference_rock/vshard/index.rst:1438
+#: ../doc/reference/reference_rock/vshard/index.rst:1424
+#: ../doc/reference/reference_rock/vshard/index.rst:1439
 msgid "a replica set object"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1427
+#: ../doc/reference/reference_rock/vshard/index.rst:1428
 msgid "replicaset = vshard.router.route(123)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1435
+#: ../doc/reference/reference_rock/vshard/index.rst:1436
 msgid "Return all available replica set objects."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1437
+#: ../doc/reference/reference_rock/vshard/index.rst:1438
 msgid "a map of the following type: ``{UUID = replicaset}``"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1442
+#: ../doc/reference/reference_rock/vshard/index.rst:1443
 msgid "replicaset = vshard.router.routeall()"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1450
+#: ../doc/reference/reference_rock/vshard/index.rst:1451
 msgid "Calculate the bucket id using a simple built-in hash function."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1452
+#: ../doc/reference/reference_rock/vshard/index.rst:1453
 msgid "a hash key. This can be any Lua object (number, table, string)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1459
+#: ../doc/reference/reference_rock/vshard/index.rst:1460
 msgid "bucket_id = vshard.router.bucket_id(18374927634039)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1467
+#: ../doc/reference/reference_rock/vshard/index.rst:1468
 msgid "Return the total number of buckets specified in ``vshard.router.cfg()``."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1469
+#: ../doc/reference/reference_rock/vshard/index.rst:1470
 msgid "the total number of buckets"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1476
-#: ../doc/reference/reference_rock/vshard/index.rst:1755
+#: ../doc/reference/reference_rock/vshard/index.rst:1477
+#: ../doc/reference/reference_rock/vshard/index.rst:1756
 msgid "Wait until the dataset is synchronized on replicas."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1478
-#: ../doc/reference/reference_rock/vshard/index.rst:1757
+#: ../doc/reference/reference_rock/vshard/index.rst:1479
+#: ../doc/reference/reference_rock/vshard/index.rst:1758
 msgid "a timeout, in seconds"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1480
-#: ../doc/reference/reference_rock/vshard/index.rst:1759
+#: ../doc/reference/reference_rock/vshard/index.rst:1481
+#: ../doc/reference/reference_rock/vshard/index.rst:1760
 msgid "``true`` if the dataset was synchronized successfully; or ``nil`` and ``err`` explaining why the dataset cannot be synchronized."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1487
+#: ../doc/reference/reference_rock/vshard/index.rst:1488
 msgid "Force wakeup of the bucket discovery fiber."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1493
+#: ../doc/reference/reference_rock/vshard/index.rst:1494
 msgid "Return information about each instance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1497
+#: ../doc/reference/reference_rock/vshard/index.rst:1498
 msgid "Replica set parameters:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1499
+#: ../doc/reference/reference_rock/vshard/index.rst:1500
 msgid "replica set uuid"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1500
+#: ../doc/reference/reference_rock/vshard/index.rst:1501
 msgid "master instance parameters"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1501
+#: ../doc/reference/reference_rock/vshard/index.rst:1502
 msgid "replica instance parameters"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1503
+#: ../doc/reference/reference_rock/vshard/index.rst:1504
 msgid "Instance parameters:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1505
+#: ../doc/reference/reference_rock/vshard/index.rst:1506
 msgid "``uri`` — URI of the instance"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1506
+#: ../doc/reference/reference_rock/vshard/index.rst:1507
 msgid "``uuid`` — UUID of the instance"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1507
+#: ../doc/reference/reference_rock/vshard/index.rst:1508
 msgid "``status`` – status of the instance (``available``, ``unreachable``, ``missing``)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1508
+#: ../doc/reference/reference_rock/vshard/index.rst:1509
 msgid "``network_timeout`` – a timeout for the request. The value is updated automatically on each 10th successful request and each 2nd failed request."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1511
+#: ../doc/reference/reference_rock/vshard/index.rst:1512
 msgid "Bucket parameters:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1513
+#: ../doc/reference/reference_rock/vshard/index.rst:1514
 msgid "``available_ro`` – the number of buckets known to the ``router`` and available for read requests"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1514
+#: ../doc/reference/reference_rock/vshard/index.rst:1515
 msgid "``available_rw`` – the number of buckets known to the router and available for read and write requests"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1515
+#: ../doc/reference/reference_rock/vshard/index.rst:1516
 msgid "``unavailable`` – the number of buckets known to the ``router`` but unavailable for any requests"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1516
+#: ../doc/reference/reference_rock/vshard/index.rst:1517
 msgid "``unreachable`` – the number of buckets whose replica sets are not known to the ``router``"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1520
+#: ../doc/reference/reference_rock/vshard/index.rst:1521
 msgid "tarantool> vshard.router.info()\n"
 "---\n"
 "- replicasets:\n"
@@ -16592,43 +16641,35 @@ msgid "tarantool> vshard.router.info()\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1554
+#: ../doc/reference/reference_rock/vshard/index.rst:1555
 msgid "Return information about each bucket. Since a bucket map can be huge, only the required range of buckets can be specified."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1557
+#: ../doc/reference/reference_rock/vshard/index.rst:1558
 msgid "the offset in a bucket map of the first bucket to show"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1558
+#: ../doc/reference/reference_rock/vshard/index.rst:1559
 msgid "the maximum number of buckets to show"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1560
+#: ../doc/reference/reference_rock/vshard/index.rst:1561
 msgid "a map of the following type: ``{bucket_id = 'unknown'/replicaset_uuid}``"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1566
+#: ../doc/reference/reference_rock/vshard/index.rst:1567
 msgid "Call a function on a nearest available master (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1572
+#: ../doc/reference/reference_rock/vshard/index.rst:1573
 msgid "The ``replicaset.call`` method is similar to ``replicaset.callrw``."
-msgstr ""
-
-#: ../doc/reference/reference_rock/vshard/index.rst:1574
-#: ../doc/reference/reference_rock/vshard/index.rst:1595
-#: ../doc/reference/reference_rock/vshard/index.rst:1614
-#: ../doc/reference/reference_rock/vshard/index.rst:1636
-msgid "UUID of a replica set"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:1575
 #: ../doc/reference/reference_rock/vshard/index.rst:1596
 #: ../doc/reference/reference_rock/vshard/index.rst:1615
 #: ../doc/reference/reference_rock/vshard/index.rst:1637
-#: ../doc/reference/reference_rock/vshard/index.rst:1743
-msgid "function to execute"
+msgid "UUID of a replica set"
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/index.rst:1576
@@ -16636,138 +16677,146 @@ msgstr ""
 #: ../doc/reference/reference_rock/vshard/index.rst:1616
 #: ../doc/reference/reference_rock/vshard/index.rst:1638
 #: ../doc/reference/reference_rock/vshard/index.rst:1744
+msgid "function to execute"
+msgstr ""
+
+#: ../doc/reference/reference_rock/vshard/index.rst:1577
+#: ../doc/reference/reference_rock/vshard/index.rst:1598
+#: ../doc/reference/reference_rock/vshard/index.rst:1617
+#: ../doc/reference/reference_rock/vshard/index.rst:1639
+#: ../doc/reference/reference_rock/vshard/index.rst:1745
 msgid "array of the function's arguments"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1587
+#: ../doc/reference/reference_rock/vshard/index.rst:1588
 msgid "Call a function on a nearest available master (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with a specified arguments."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1593
+#: ../doc/reference/reference_rock/vshard/index.rst:1594
 msgid "The ``replicaset.callrw`` method is similar to ``replicaset.call``."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1608
+#: ../doc/reference/reference_rock/vshard/index.rst:1609
 msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to call only read-only functions using ``replicaset.callro()``, as the function can be executed not only on a master, but also on replicas."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1627
+#: ../doc/reference/reference_rock/vshard/index.rst:1628
 msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments, with preference for a replica rather than a master (similar to calling vshard.router.call with prefer_replica = true). It is recommended to call only read-only functions using ``replicaset.callre()``, as the function can be executed not only on a master, but also on replicas."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1649
+#: ../doc/reference/reference_rock/vshard/index.rst:1650
 msgid "Router internal API"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1651
+#: ../doc/reference/reference_rock/vshard/index.rst:1652
 msgid ":ref:`vshard.router.bucket_discovery(bucket_id) <router_api-bucket_discovery>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1657
+#: ../doc/reference/reference_rock/vshard/index.rst:1658
 msgid "Search for the bucket in the whole cluster. If the bucket is not found, it is likely that it does not exist. The bucket might also be moved during rebalancing and currently is in the RECEIVING state."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1667
+#: ../doc/reference/reference_rock/vshard/index.rst:1668
 msgid "Storage public API"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1669
+#: ../doc/reference/reference_rock/vshard/index.rst:1670
 msgid ":ref:`vshard.storage.cfg(cfg, name) <storage_api-cfg>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1670
+#: ../doc/reference/reference_rock/vshard/index.rst:1671
 msgid ":ref:`vshard.storage.info() <storage_api-info>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1671
+#: ../doc/reference/reference_rock/vshard/index.rst:1672
 msgid ":ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1672
+#: ../doc/reference/reference_rock/vshard/index.rst:1673
 msgid ":ref:`vshard.storage.sync(timeout) <storage_api-sync>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1673
+#: ../doc/reference/reference_rock/vshard/index.rst:1674
 msgid ":ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1674
+#: ../doc/reference/reference_rock/vshard/index.rst:1675
 msgid ":ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1675
+#: ../doc/reference/reference_rock/vshard/index.rst:1676
 msgid ":ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1676
+#: ../doc/reference/reference_rock/vshard/index.rst:1677
 msgid ":ref:`vshard.storage.bucket_refro() <storage_api-bucket_refro>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1677
+#: ../doc/reference/reference_rock/vshard/index.rst:1678
 msgid ":ref:`vshard.storage.bucket_refrw() <storage_api-bucket_refrw>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1678
+#: ../doc/reference/reference_rock/vshard/index.rst:1679
 msgid ":ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1679
+#: ../doc/reference/reference_rock/vshard/index.rst:1680
 msgid ":ref:`vshard.storage.bucket_unrefro() <storage_api-bucket_unrefro>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1680
+#: ../doc/reference/reference_rock/vshard/index.rst:1681
 msgid ":ref:`vshard.storage.bucket_unrefrw() <storage_api-bucket_unrefrw>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1681
+#: ../doc/reference/reference_rock/vshard/index.rst:1682
 msgid ":ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1682
+#: ../doc/reference/reference_rock/vshard/index.rst:1683
 msgid ":ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1683
+#: ../doc/reference/reference_rock/vshard/index.rst:1684
 msgid ":ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1684
+#: ../doc/reference/reference_rock/vshard/index.rst:1685
 msgid ":ref:`vshard.storage.is_locked() <storage_api-is_locked>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1685
+#: ../doc/reference/reference_rock/vshard/index.rst:1686
 msgid ":ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-rebalancing_is_in_progress>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1686
+#: ../doc/reference/reference_rock/vshard/index.rst:1687
 msgid ":ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1687
+#: ../doc/reference/reference_rock/vshard/index.rst:1688
 msgid ":ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1688
+#: ../doc/reference/reference_rock/vshard/index.rst:1689
 msgid ":ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1694
+#: ../doc/reference/reference_rock/vshard/index.rst:1695
 msgid "Configure the database and start sharding for the specified ``storage`` instance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1697
+#: ../doc/reference/reference_rock/vshard/index.rst:1698
 msgid "a ``storage`` configuration"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1698
+#: ../doc/reference/reference_rock/vshard/index.rst:1699
 msgid "UUID of the instance"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1704
+#: ../doc/reference/reference_rock/vshard/index.rst:1705
 msgid "Return information about the storage instance in the following format:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1706
+#: ../doc/reference/reference_rock/vshard/index.rst:1707
 msgid "tarantool> vshard.storage.info()\n"
 "---\n"
 "- buckets:\n"
@@ -16796,176 +16845,176 @@ msgid "tarantool> vshard.storage.info()\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1739
+#: ../doc/reference/reference_rock/vshard/index.rst:1740
 msgid "Call the specified function on the current ``storage`` instance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1742
+#: ../doc/reference/reference_rock/vshard/index.rst:1743
 msgid "a type of the function: 'read' or 'write'"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1748
+#: ../doc/reference/reference_rock/vshard/index.rst:1749
 msgid "The original return value of the executed function, or ``nil`` and error object."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1766
+#: ../doc/reference/reference_rock/vshard/index.rst:1767
 msgid "Pin a bucket to a replica set. A pinned bucket cannot be moved even if it breaks the cluster balance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1771
+#: ../doc/reference/reference_rock/vshard/index.rst:1772
 msgid "``true`` if the bucket is pinned successfully; or ``nil`` and ``err`` explaining why the bucket cannot be pinned"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1778
+#: ../doc/reference/reference_rock/vshard/index.rst:1779
 msgid "Return a pinned bucket back into the active state."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1782
+#: ../doc/reference/reference_rock/vshard/index.rst:1783
 msgid "``true`` if the bucket is unpinned successfully; or ``nil`` and ``err`` explaining why the bucket cannot be unpinned"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1789
+#: ../doc/reference/reference_rock/vshard/index.rst:1790
 msgid "Create an RO or RW :ref:`ref <vshard-ref>`."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1792
-#: ../doc/reference/reference_rock/vshard/index.rst:1818
+#: ../doc/reference/reference_rock/vshard/index.rst:1793
+#: ../doc/reference/reference_rock/vshard/index.rst:1819
 msgid "'read' or 'write'"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1794
+#: ../doc/reference/reference_rock/vshard/index.rst:1795
 msgid "``true`` if the bucket ref is created successfully; or ``nil`` and ``err`` explaining why the ref cannot be created"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1801
+#: ../doc/reference/reference_rock/vshard/index.rst:1802
 msgid "An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in the RO mode."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1808
+#: ../doc/reference/reference_rock/vshard/index.rst:1809
 msgid "An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in the RW mode."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1815
+#: ../doc/reference/reference_rock/vshard/index.rst:1816
 msgid "Remove a RO/RW :ref:`ref <vshard-ref>`."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1820
+#: ../doc/reference/reference_rock/vshard/index.rst:1821
 msgid "``true`` if the bucket ref is removed successfully; or ``nil`` and ``err`` explaining why the ref cannot be removed"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1827
+#: ../doc/reference/reference_rock/vshard/index.rst:1828
 msgid "An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in the RO mode."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1834
+#: ../doc/reference/reference_rock/vshard/index.rst:1835
 msgid "An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in the RW mode."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1841
+#: ../doc/reference/reference_rock/vshard/index.rst:1842
 msgid "Find a bucket which has data in a space but is not stored in a ``_bucket`` space; or is in a GARBAGE state."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1844
+#: ../doc/reference/reference_rock/vshard/index.rst:1845
 msgid "index of a space with the part of a bucket id"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1845
+#: ../doc/reference/reference_rock/vshard/index.rst:1846
 msgid "a garbage collector controller. If there is an increased buckets generation, then the search should be interrupted."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1848
+#: ../doc/reference/reference_rock/vshard/index.rst:1849
 msgid "an identifier of the bucket in the garbage state, if found; otherwise, nil"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1855
+#: ../doc/reference/reference_rock/vshard/index.rst:1856
 msgid "Return information about each bucket located in storage. For example:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1873
+#: ../doc/reference/reference_rock/vshard/index.rst:1874
 msgid "Return the number of buckets located in storage."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1879
+#: ../doc/reference/reference_rock/vshard/index.rst:1880
 msgid "Immediately wake up a recovery fiber, if it exists."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1885
+#: ../doc/reference/reference_rock/vshard/index.rst:1886
 msgid "Return a flag indicating whether rebalancing is in progress. The result is true if the node is currently applying routes received from a rebalancer node in the special fiber."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1893
+#: ../doc/reference/reference_rock/vshard/index.rst:1894
 msgid "Return a flag indicating whether storage is invisible to the rebalancer."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1899
+#: ../doc/reference/reference_rock/vshard/index.rst:1900
 msgid "Disable rebalancing. A disabled rebalancer sleeps until it is enabled again with vshard.storage.rebalancer_enable()."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1906
+#: ../doc/reference/reference_rock/vshard/index.rst:1907
 msgid "Enable rebalancing."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1912
+#: ../doc/reference/reference_rock/vshard/index.rst:1913
 msgid "Show the spaces that are visible to rebalancer and garbage collector fibers."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1918
+#: ../doc/reference/reference_rock/vshard/index.rst:1919
 msgid "Storage internal API"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1920
+#: ../doc/reference/reference_rock/vshard/index.rst:1921
 msgid ":ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1921
+#: ../doc/reference/reference_rock/vshard/index.rst:1922
 msgid ":ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-bucket_recv>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1922
+#: ../doc/reference/reference_rock/vshard/index.rst:1923
 msgid ":ref:`vshard.storage.bucket_delete_garbage(bucket_id) <storage_api-bucket_delete_garbage>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1923
+#: ../doc/reference/reference_rock/vshard/index.rst:1924
 msgid ":ref:`vshard.storage.bucket_collect(bucket_id) <storage_api-bucket_collect>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1924
+#: ../doc/reference/reference_rock/vshard/index.rst:1925
 msgid ":ref:`vshard.storage.bucket_force_create(first_bucket_id, count) <storage_api-bucket_force_create>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1925
+#: ../doc/reference/reference_rock/vshard/index.rst:1926
 msgid ":ref:`vshard.storage.bucket_force_drop(bucket_id, to) <storage_api-bucket_force_drop>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1926
+#: ../doc/reference/reference_rock/vshard/index.rst:1927
 msgid ":ref:`vshard.storage.bucket_send(bucket_id, to) <storage_api-bucket_send>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1927
+#: ../doc/reference/reference_rock/vshard/index.rst:1928
 msgid ":ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1928
+#: ../doc/reference/reference_rock/vshard/index.rst:1929
 msgid ":ref:`vshard.storage.rebalancer_request_state() <storage_api-rebalancer_request_state>`"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1934
+#: ../doc/reference/reference_rock/vshard/index.rst:1935
 msgid "Receive a bucket identified by bucket id from a remote replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1937
+#: ../doc/reference/reference_rock/vshard/index.rst:1938
 msgid "UUID of source replica set"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1938
+#: ../doc/reference/reference_rock/vshard/index.rst:1939
 msgid "data logically stored in a bucket identified by bucket_id, in the same format as the return value from ``bucket_collect() <storage_api-bucket_collect>``"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1945
+#: ../doc/reference/reference_rock/vshard/index.rst:1946
 msgid "Return information about the bucket id:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1947
+#: ../doc/reference/reference_rock/vshard/index.rst:1948
 msgid "tarantool> vshard.storage.bucket_stat(1)\n"
 "---\n"
 "- 0\n"
@@ -16974,15 +17023,15 @@ msgid "tarantool> vshard.storage.bucket_stat(1)\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1962
+#: ../doc/reference/reference_rock/vshard/index.rst:1963
 msgid "Force garbage collection for the bucket identified by bucket_id in case the bucket was transferred to a different replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1971
+#: ../doc/reference/reference_rock/vshard/index.rst:1972
 msgid "Collect all the data that is logically stored in the bucket identified by bucket_id:"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1973
+#: ../doc/reference/reference_rock/vshard/index.rst:1974
 msgid "tarantool> vshard.storage.bucket_collect(1)\n"
 "---\n"
 "- 0\n"
@@ -16999,151 +17048,151 @@ msgid "tarantool> vshard.storage.bucket_collect(1)\n"
 "..."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1996
+#: ../doc/reference/reference_rock/vshard/index.rst:1997
 msgid "Force creation of the buckets (single or multiple) on the current replica set. Use only for manual emergency recovery or for initial bootstrap."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:1999
+#: ../doc/reference/reference_rock/vshard/index.rst:2000
 msgid "an identifier of the first bucket in a range"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2000
+#: ../doc/reference/reference_rock/vshard/index.rst:2001
 msgid "the number of buckets to insert (default = 1)"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2006
+#: ../doc/reference/reference_rock/vshard/index.rst:2007
 msgid "Drop a bucket manually for tests or emergency cases."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2014
+#: ../doc/reference/reference_rock/vshard/index.rst:2015
 msgid "Send a specified bucket from the current replica set to a remote replica set."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2016
+#: ../doc/reference/reference_rock/vshard/index.rst:2017
 msgid "bucket identifier"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2017
+#: ../doc/reference/reference_rock/vshard/index.rst:2018
 msgid "UUID of a remote replica set"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2023
+#: ../doc/reference/reference_rock/vshard/index.rst:2024
 msgid "Check all buckets of the host storage that have the SENT or ACTIVE state, return the number of active buckets."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2026
+#: ../doc/reference/reference_rock/vshard/index.rst:2027
 msgid "the number of buckets in the active state, if found; otherwise, nil"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2032
+#: ../doc/reference/reference_rock/vshard/index.rst:2033
 msgid "Collect an array of active bucket identifiers for discovery."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2038
+#: ../doc/reference/reference_rock/vshard/index.rst:2039
 msgid "Glossary"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2043
+#: ../doc/reference/reference_rock/vshard/index.rst:2044
 msgid "**Vertical scaling**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2045
+#: ../doc/reference/reference_rock/vshard/index.rst:2046
 msgid "Adding more power to a single server: using a more powerful CPU, adding more capacity to RAM, adding more storage space, etc."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2049
+#: ../doc/reference/reference_rock/vshard/index.rst:2050
 msgid "**Horizontal scaling**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2051
+#: ../doc/reference/reference_rock/vshard/index.rst:2052
 msgid "Adding more servers to the pool of resources, then partitioning and distributing a dataset across the servers."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2055
+#: ../doc/reference/reference_rock/vshard/index.rst:2056
 msgid "**Sharding**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2057
+#: ../doc/reference/reference_rock/vshard/index.rst:2058
 msgid "A database architecture that allows partitioning a dataset using a sharding key and distributing a dataset across multiple servers. Sharding is a special case of horizontal scaling."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2062
+#: ../doc/reference/reference_rock/vshard/index.rst:2063
 msgid "**Node**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2064
+#: ../doc/reference/reference_rock/vshard/index.rst:2065
 msgid "A virtual or physical server instance."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2067
+#: ../doc/reference/reference_rock/vshard/index.rst:2068
 msgid "**Cluster**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2069
+#: ../doc/reference/reference_rock/vshard/index.rst:2070
 msgid "A set of nodes that make up a single group."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2072
+#: ../doc/reference/reference_rock/vshard/index.rst:2073
 msgid "**Storage**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2074
+#: ../doc/reference/reference_rock/vshard/index.rst:2075
 msgid "A node storing a subset of a dataset."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2079
+#: ../doc/reference/reference_rock/vshard/index.rst:2080
 msgid "A set of storage nodes storing copies of a dataset. Each storage in a replica set has a role, master or replica."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2083
+#: ../doc/reference/reference_rock/vshard/index.rst:2084
 msgid "**Master**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2085
+#: ../doc/reference/reference_rock/vshard/index.rst:2086
 msgid "A storage in a replica set processing read and write requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2090
+#: ../doc/reference/reference_rock/vshard/index.rst:2091
 msgid "A storage in a replica set processing only read requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2093
+#: ../doc/reference/reference_rock/vshard/index.rst:2094
 msgid "**Read requests**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2095
+#: ../doc/reference/reference_rock/vshard/index.rst:2096
 msgid "Read-only requests, that is, select requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2098
+#: ../doc/reference/reference_rock/vshard/index.rst:2099
 msgid "**Write requests**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2100
+#: ../doc/reference/reference_rock/vshard/index.rst:2101
 msgid "Data-change operations, that is create, replace, update, delete requests."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2103
+#: ../doc/reference/reference_rock/vshard/index.rst:2104
 msgid "**Buckets (virtual buckets)**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2105
+#: ../doc/reference/reference_rock/vshard/index.rst:2106
 msgid "The abstract virtual nodes into which the dataset is partitioned by the sharding key (bucket id)."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2109
+#: ../doc/reference/reference_rock/vshard/index.rst:2110
 msgid "**Bucket id**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2111
+#: ../doc/reference/reference_rock/vshard/index.rst:2112
 msgid "A sharding key defining which bucket belongs to which replica set. A bucket id may be calculated from a :ref:`hash key <router_api-bucket_id>`."
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2115
+#: ../doc/reference/reference_rock/vshard/index.rst:2116
 msgid "**Router**"
 msgstr ""
 
-#: ../doc/reference/reference_rock/vshard/index.rst:2117
+#: ../doc/reference/reference_rock/vshard/index.rst:2118
 msgid "A proxy server responsible for routing requests from an application to nodes in a cluster."
 msgstr ""
 
