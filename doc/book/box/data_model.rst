@@ -52,12 +52,15 @@ The identifier of a field is the field's number, base 1
 For example, ``1`` or ``0`` can be used in some contexts to refer to the first
 field of a tuple.
 
+The number of tuples in a space is unlimited.
+
 Tuples in Tarantool are stored as
 `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays.
 
 When Tarantool returns a tuple value in console, it uses the
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ format,
 for example: ``[3, 'Ace of Base', 1993]``.
+
 
 .. _index-box_index:
 
