@@ -147,6 +147,14 @@ Below is a list of all ``digest`` functions.
     at least several thousand. The ``digest-length`` value
     determines the length of the resulting binary string.
 
+    .. NOTE::
+
+        ``digest.pbkdf2()`` yields and should not be used in a transaction (between
+        ``box.begin()`` and ``box.commit()``/``box.rollback()``).
+        PBKDF2 is a time-consuming hash algorithm. It runs in a separate coio thread.
+        While calculations are performed, the fiber that calls ``digest.pbkdf2()``
+        yields and another fiber continues working in the tx thread.
+
 .. _digest-sha1:
 
 .. function:: sha1(string)
