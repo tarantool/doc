@@ -149,11 +149,11 @@ Below is a list of all ``digest`` functions.
 
     .. NOTE::
 
-        digest.pbkdf2() yields and should not be used in a transaction (between
-        box.begin() and box.commit()/box.rollback()). PBKDF2 is time-consuming
-        hash algorithm and run in a separate coio thread. While it doing the
-        calculations the fiber that calls digest.pbkdf2() yields and another
-        fiber continue work in tx thread.
+        ``digest.pbkdf2()`` yields and should not be used in a transaction (between
+        ``box.begin()`` and ``box.commit()``/``box.rollback()``).
+        PBKDF2 is a time-consuming hash algorithm. It runs in a separate coio thread.
+        While calculations are performed, the fiber that calls ``digest.pbkdf2()``
+        yields and another fiber continues working in the tx thread.
 
 .. _digest-sha1:
 
