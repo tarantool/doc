@@ -121,7 +121,7 @@ Below is a list of all ``box.schema`` functions.
 
     You can use either syntax. For example,
     ``s = box.schema.space.create('tester')`` has the same effect as
-    ``box.schema.space.create('tester')``.
+    ``s = box.schema.create_space('tester')``.
 
     .. container:: table
 
