@@ -344,7 +344,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.space.tester
             ---
             ...
-            tarantool> s:create_index('primary', {unique = true, parts = {1, 'unsigned', 2, 'string'}})
+            tarantool> s:create_index('primary', {unique = true, parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })
             ---
             ...
 
@@ -923,7 +923,7 @@ Below is a list of all ``box.space`` functions and members.
         .. code-block:: tarantoolsession
 
             tarantool> s = box.schema.space.create('space53')
-            tarantool> s:create_index('primary', {parts = {1, 'unsigned'}})
+            tarantool> s:create_index('primary', {parts = {{field = 1, type = 'unsigned'}}})
             tarantool> function replace_trigger()
                      >   replace_counter = replace_counter + 1
                      > end
@@ -1217,7 +1217,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.schema.space.create('tmp', {temporary=true})
             ---
             ...
-            tarantool> s:create_index('primary',{parts = {1,'unsigned', 2, 'string'}})
+            tarantool> s:create_index('primary',{parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })
             ---
             ...
             tarantool> s:insert{1,'A'}
@@ -1857,7 +1857,7 @@ Below is a list of all ``box.space`` functions and members.
 
 .. data:: _space
 
-    ``_space`` is a system space. It contains all spaces hosted on the current 
+    ``_space`` is a system space. It contains all spaces hosted on the current
     Tarantool instance, both system ones and created by users.
 
     Tuples in this space contain the following fields:

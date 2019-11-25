@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 08:12+0000\n"
+"POT-Creation-Date: 2019-12-06 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -690,7 +690,7 @@ msgid "(Server) allow different nullability in indexes and format. Issue `3430 <
 msgstr ""
 
 #: ../doc/whats_new.rst:414
-msgid "(Server) allow to :ref:`back up any checkpoint <admin-backups-backup_start>`, not just the last one. Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_."
+msgid "(Server) allow to :ref:`back up any checkpoint <reference_lua-box_backup-backup_start>`, not just the last one. Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_."
 msgstr ""
 
 #: ../doc/whats_new.rst:418
@@ -1419,7 +1419,7 @@ msgid "(Vinyl) implemented consistent secondary keys. Issue `2410 <https://githu
 msgstr ""
 
 #: ../doc/whats_new.rst:965
-msgid "(Memtx+Vinyl) implemented low-level Lua API to create consistent backups. of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()`` functions to create backups of all spaces. :ref:`box.backup.start() <admin-backups-backup_start>` pauses the Tarantool garbage collector and returns the list of files to copy. These files then can be copied be any third-party tool, like cp, ln, tar, rsync, etc. ``box.backup.stop()`` lets the garbage collector continue. Created backups can be restored instantly by copying into a new directory and starting a new Tarantool instance. No special preparation, conversion or unpacking is needed. Issue `1916 <https://github.com/tarantool/tarantool/issues/1916>`_."
+msgid "(Memtx+Vinyl) implemented low-level Lua API to create consistent backups. of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()`` functions to create backups of all spaces. :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` pauses the Tarantool garbage collector and returns the list of files to copy. These files then can be copied be any third-party tool, like cp, ln, tar, rsync, etc. ``box.backup.stop()`` lets the garbage collector continue. Created backups can be restored instantly by copying into a new directory and starting a new Tarantool instance. No special preparation, conversion or unpacking is needed. Issue `1916 <https://github.com/tarantool/tarantool/issues/1916>`_."
 msgstr ""
 
 #: ../doc/whats_new.rst:976
