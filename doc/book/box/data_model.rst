@@ -95,7 +95,7 @@ field #1 of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('primary', {type = 'hash', parts = {field = 1, type = 'unsigned'}})
+   tarantool> i = s:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}
 
 The effect is that, for all tuples in space 'tester', field #1 must exist and
 must contain an unsigned integer.

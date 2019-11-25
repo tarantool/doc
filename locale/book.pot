@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 
+# Copyright (C)
 # This file is distributed under the same license as the Tarantool package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -10460,7 +10460,7 @@ msgstr ""
 msgid "tarantool> s = box.space.tester\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary', {unique = true, parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})\n"
+"tarantool> s:create_index('primary', {unique = true, parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })\n"
 "---\n"
 "..."
 msgstr ""
@@ -10806,7 +10806,7 @@ msgstr ""
 msgid "s = box.schema.space.create('withdata')\n"
 "s:format({{name = 'name', type = 'string'},\n"
 "          {name = 'address', type = 'string'}})\n"
-"pk = s:create_index('name', {parts = {field = 1, type = 'string'}})\n"
+"pk = s:create_index('name', {parts = {{field = 1, type = 'string'}}})\n"
 "lua_code = [[function(tuple)\n"
 "               local address = string.split(tuple[2])\n"
 "               local ret = {}\n"
@@ -11255,7 +11255,7 @@ msgstr ""
 
 #: ../doc/book/box/box_space.rst:1137
 msgid "tarantool> s = box.schema.space.create('space53')\n"
-"tarantool> s:create_index('primary', {parts = {field = 1, type = 'unsigned'}})\n"
+"tarantool> s:create_index('primary', {parts = {{field = 1, type = 'unsigned'}}})\n"
 "tarantool> function replace_trigger()\n"
 "         >   replace_counter = replace_counter + 1\n"
 "         > end\n"
@@ -11466,7 +11466,7 @@ msgstr ""
 msgid "tarantool> s = box.schema.space.create('tmp', {temporary=true})\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary',{parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})\n"
+"tarantool> s:create_index('primary',{parts = {{field = 1, type = 'unsigned'}, {field = 2, type = 'string'}}})\n"
 "---\n"
 "...\n"
 "tarantool> s:insert{1,'A'}\n"
@@ -14521,7 +14521,7 @@ msgid "In our example, we first defined the primary index (named 'primary') base
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:96
-msgid "tarantool> i = s:create_index('primary', {type = 'hash', parts = {field = 1, type = 'unsigned'}})"
+msgid "tarantool> i = s:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}})"
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:100

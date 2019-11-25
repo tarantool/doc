@@ -367,7 +367,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.space.tester
             ---
             ...
-            tarantool> s:create_index('primary', {unique = true, parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})
+            tarantool> s:create_index('primary', {unique = true, parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })
             ---
             ...
 
@@ -620,7 +620,7 @@ Below is a list of all ``box.space`` functions and members.
         -- The space needs a primary-key field, which is not the field that we
         -- will use for the functional index.
         box.schema.space.create('x', {engine = 'memtx'})
-        box.space.x:create_index('i',{parts={field = 1, type = 'string'}})
+        box.space.x:create_index('i',{parts={{field = 1, type = 'string'}}})
         -- Step 2: Make the function.
         -- The function expects a tuple. In this example it will work on tuple[2]
         -- because the key souce is field number 2 in what we will insert.
@@ -633,7 +633,7 @@ Below is a list of all ``box.space`` functions and members.
         -- Step 4: Make the functional index.
         -- Specify the fields whose values will be passed to the function.
         -- Specify the function.
-        box.space.x:create_index('j',{parts={field = 1, type = 'string'},func = 'F'})
+        box.space.x:create_index('j',{parts={{field = 1, type = 'string'}},func = 'F'})
         -- Step 5: Test.
         -- Insert a few tuples.
         -- Select using only the first letter, it will work because that is the key
@@ -674,7 +674,7 @@ Below is a list of all ``box.space`` functions and members.
         s = box.schema.space.create('withdata')
         s:format({{name = 'name', type = 'string'},
                   {name = 'address', type = 'string'}})
-        pk = s:create_index('name', {parts = {field = 1, type = 'string'}})
+        pk = s:create_index('name', {parts = {{field = 1, type = 'string'}}})
         lua_code = [[function(tuple)
                        local address = string.split(tuple[2])
                        local ret = {}
@@ -1137,7 +1137,7 @@ Below is a list of all ``box.space`` functions and members.
         .. code-block:: tarantoolsession
 
             tarantool> s = box.schema.space.create('space53')
-            tarantool> s:create_index('primary', {parts = {field = 1, type = 'unsigned'}})
+            tarantool> s:create_index('primary', {parts = {{field = 1, type = 'unsigned'}}})
             tarantool> function replace_trigger()
                      >   replace_counter = replace_counter + 1
                      > end
@@ -1431,7 +1431,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.schema.space.create('tmp', {temporary=true})
             ---
             ...
-            tarantool> s:create_index('primary',{parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})
+            tarantool> s:create_index('primary',{parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })
             ---
             ...
             tarantool> s:insert{1,'A'}
@@ -2151,7 +2151,7 @@ Below is a list of all ``box.space`` functions and members.
 
 .. data:: _space
 
-    ``_space`` is a system space. It contains all spaces hosted on the current 
+    ``_space`` is a system space. It contains all spaces hosted on the current
     Tarantool instance, both system ones and created by users.
 
     Tuples in this space contain the following fields:
