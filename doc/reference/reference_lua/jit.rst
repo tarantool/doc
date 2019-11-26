@@ -23,8 +23,10 @@ Below is a list of all ``jit`` functions.
 
 .. NOTE::
 
-     Hereinafter, we will use ``jit_v`` for ``require('jit.v')``, ``jit_dis_x64`` for
-     ``require('jit.dis_x64')`` and ``jit_dump`` for ``require('jit.dump')``.
+     In this document we will use
+        * ``jit_dis_x64`` for ``require('jit.dis_x64')``,
+        * ``jit_v`` for ``require('jit.v')``,
+        * ``jit_dump`` for ``require('jit.dump')``.
 
 
 .. container:: table
