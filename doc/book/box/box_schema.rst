@@ -28,6 +28,8 @@ Below is a list of all ``box.schema`` functions.
     | Name                                 | Use                             |
     +======================================+=================================+
     | :ref:`box.schema.space.create()      | Create a space                  |
+    | <box_schema-space_create>` or        |                                 |
+    | :ref:`box.schema.create_space()      |                                 |
     | <box_schema-space_create>`           |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`box.schema.user.create()       | Create a user                   |
@@ -106,6 +108,7 @@ Below is a list of all ``box.schema`` functions.
 .. _box_schema-space_create:
 
 .. function:: box.schema.space.create(space-name [, {options}])
+              box.schema.create_space(space-name [, {options}])
 
     Create a :ref:`space <index-box_space>`.
 
@@ -115,6 +118,10 @@ Below is a list of all ``box.schema`` functions.
 
     :return: space object
     :rtype: userdata
+
+    You can use either syntax. For example,
+    ``s = box.schema.space.create('tester')`` has the same effect as
+    ``s = box.schema.create_space('tester')``.
 
     .. container:: table
 
@@ -1072,6 +1079,3 @@ All functions related to sequences require appropriate
             s:replace{{a = {b = {}}}} -- error
             s:replace{{a = {b = {nil}}}} -- error
             s:replace{{a = {b = {box.NULL}}}} -- ok
-
-
-        
