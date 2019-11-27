@@ -19,6 +19,7 @@ Basic parameters
 * :ref:`sync_timeout <cfg_basic-sync_timeout>`
 * :ref:`rebalancer_disbalance_threshold <cfg_basic-rebalancer_disbalance_threshold>`
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
+* :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
 
 .. _cfg_basic-sharding:
 
@@ -89,7 +90,7 @@ Basic parameters
 
 .. confval:: collect_lua_garbage
 
-    If set to true, the Lua collectgarbage() function is called periodically.
+    If set to true, the Lua ``collectgarbage()`` function is called periodically.
 
     | Type: boolean
     | Default: no
@@ -141,6 +142,20 @@ Basic parameters
 
     | Type: number
     | Default: 100
+    | Dynamic: yes
+
+.. _cfg_basic-rebalancer_max_sending:
+
+.. confval:: rebalancer_max_sending
+
+    The degree of parallelism for :ref:`parallel rebalancing <vshard-parallel-rebalancing>`.
+
+    Works for storages only, ignored for routers.
+
+    The maximum value is ``15``.
+
+    | Type: number
+    | Default: 1
     | Dynamic: yes
 
 .. _vshard-config-replica-set-funcs:
@@ -270,7 +285,7 @@ Router public API
     :param options:
 
         * ``timeout`` – a request timeout, in seconds. If the router cannot identify a
-          shard with the specified bucket_id, the operation will be repeated until the
+          shard with the specified ``bucket_id``, the operation will be repeated until the
           timeout is reached.
 
     The mode parameter has two possible forms: a string or a map. Examples of the string form are:
@@ -1043,89 +1058,3 @@ Storage internal API
 .. function:: vshard.storage.buckets_discovery()
 
     Collect an array of active bucket identifiers for discovery.
-
-.. _vshard-glossary:
-
--------------------------------------------------------------------------------
-Glossary
--------------------------------------------------------------------------------
-
-.. glossary::
-
-    .. vshard-vertical_scaling:
-
-    **Vertical scaling**
-        Adding more power to a single server: using a more powerful CPU, adding
-        more capacity to RAM, adding more storage space, etc.
-
-    .. vshard-horizontal_scaling:
-
-    **Horizontal scaling**
-        Adding more servers to the pool of resources, then partitioning and
-        distributing a dataset across the servers.
-
-    .. vshard-sharding:
-
-    **Sharding**
-        A database architecture that allows partitioning a dataset using a sharding
-        key and distributing a dataset across multiple servers. Sharding is a
-        special case of horizontal scaling.
-
-    .. vshard-node:
-
-    **Node**
-        A virtual or physical server instance.
-
-    .. vshard-cluster:
-
-    **Cluster**
-        A set of nodes that make up a single group.
-
-    .. vshard-storage:
-
-    **Storage**
-        A node storing a subset of a dataset.
-
-    .. vshard-replica_set:
-
-    **Replica set**
-        A set of storage nodes storing copies of a dataset. Each storage in a
-        replica set has a role, master or replica.
-
-    .. vshard-master:
-
-    **Master**
-        A storage in a replica set processing read and write requests.
-
-    .. vshard-replica:
-
-    **Replica**
-        A storage in a replica set processing only read requests.
-
-    .. vshard-read_requests:
-
-    **Read requests**
-        Read-only requests, that is, select requests.
-
-    .. vshard-write_requests:
-
-    **Write requests**
-        Data-change operations, that is create, replace, update, delete requests.
-
-    .. vshard-bucket:
-
-    **Buckets (virtual buckets)**
-        The abstract virtual nodes into which the dataset is partitioned by the
-        sharding key (bucket id).
-
-    .. vshard-bucket-id:
-
-    **Bucket id**
-        A sharding key defining which bucket belongs to which replica set.
-        A bucket id may be calculated from a :ref:`hash key <router_api-bucket_id>`.
-
-    .. vshard-router:
-
-    **Router**
-        A proxy server responsible for routing requests from an application to
-        nodes in a cluster.

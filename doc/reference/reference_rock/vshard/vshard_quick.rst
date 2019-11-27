@@ -4,12 +4,11 @@
 Quick start guide
 ===============================================================================
 
-To install the ``vshard`` module see :ref:`installation manual <vshard-install>`.
+For installation instructions, check out the :ref:`vshard installation manual <vshard-install>`.
 
-For a pre-configured development cluster check the ``example/`` directory in
-the `vshard repository <https://github.com/tarantool/vshard/>`_
-This example includes 1 ``router`` and 2 replica sets
-of 2 nodes (2 ``storages``) each, making 5 Tarantool instances in total:
+For a pre-configured development cluster, check out the ``example/`` directory in
+the `vshard repository <https://github.com/tarantool/vshard/>`_.
+This example includes 5 Tarantool instances and 2 replica sets:
 
 * ``router_1`` – a ``router`` instance
 * ``storage_1_a`` – a ``storage`` instance, the **master** of the **first** replica set
@@ -67,14 +66,14 @@ Some ``tarantoolctl`` commands:
 The full list of ``tarantoolctl`` commands for managing Tarantool instances is
 available in the :ref:`tarantoolctl reference <tarantoolctl>`.
 
-Essential make commands you need to know:
+Essential ``make`` commands you need to know:
 
 * ``make start`` – start all Tarantool instances
 * ``make stop`` – stop all Tarantool instances
 * ``make logcat`` – show logs from all instances
-* ``make enter`` – enter the admin console on router_1
+* ``make enter`` – enter the admin console on ``router_1``
 * ``make clean`` – clean up all persistent data
-* ``make test`` – run the test suite (you can also run test-run.py in the test directory)
+* ``make test`` – run the test suite (you can also run ``test-run.py`` in the ``test`` directory)
 * ``make`` – execute ``make stop``, ``make clean``, ``make start`` and ``make enter``
 
 For example, to start all instances, use ``make start``:
@@ -89,7 +88,8 @@ For example, to start all instances, use ``make start``:
     46570   ??  Ss     0:00.20 tarantool storage_2_b.lua <running>
     46572   ??  Ss     0:00.25 tarantool router_1.lua <running>
 
-To perform commands in the admin console, use the ``router`` API:
+To perform commands in the admin console, use the router's
+:ref:`public API <vshard_api_reference-router_public_api>`:
 
 .. code-block:: tarantoolsession
 
@@ -169,12 +169,11 @@ The configuration of a simple sharded cluster can look like this:
 
 This cluster includes one ``router`` instance and two ``storage`` instances.
 Each ``storage`` instance includes one master and one replica.
-
-The sharding field defines the logical topology of a sharded Tarantool cluster.
+The ``sharding`` field defines the logical topology of a sharded Tarantool cluster.
 All the other fields are passed to ``box.cfg()`` as they are, without modifications.
 See the :ref:`Configuration reference <vshard-config-reference>` section for details.
 
-On routers call ``vshard.router.cfg(cfg)``:
+On routers, call ``vshard.router.cfg(cfg)``:
 
 .. code-block:: lua
 
@@ -184,7 +183,7 @@ On routers call ``vshard.router.cfg(cfg)``:
     vshard = require('vshard')
     vshard.router.cfg(cfg)
 
-On storages call ``vshard.storage.cfg(cfg, instance_uuid)``:
+On storages, call ``vshard.storage.cfg(cfg, instance_uuid)``:
 
 .. code-block:: lua
 
@@ -201,5 +200,5 @@ On storages call ``vshard.storage.cfg(cfg, instance_uuid)``:
 ``vshard.storage.cfg()`` automatically calls ``box.cfg()`` and configures the listen
 port and replication parameters.
 
-For a sample configuration see ``router.lua`` and ``storage.lua`` in the ``example/`` directory of the
-`vshard repository <https://github.com/tarantool/vshard>`_.
+For a sample configuration, see ``router.lua`` and ``storage.lua`` in the
+``example/`` directory of the `vshard repository <https://github.com/tarantool/vshard>`_.
