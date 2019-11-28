@@ -167,6 +167,15 @@ from this number in the whole replica set, then the buckets are distributed even
 The etalon number is calculated automatically considering the number of buckets
 in the cluster and weights of the replica sets.
 
+Rebalancing starts if the **disbalance threshold of a replica set** exceeds a
+disbalance threshold :ref:`specified in the configuration <cfg_basic-rebalancer_disbalance_threshold>`.
+
+The disbalance threshol of a replica set is calculated as follows:
+
+.. code-block:: none
+
+    |etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100
+
 For example: The user specified the number of buckets is 3000, and weights
 of 3 replica sets are 1, 0.5, and 1.5. The resulting etalon numbers of buckets
 for the replica sets are: 1st replica set – 1000, 2nd replica set – 500, 3rd
