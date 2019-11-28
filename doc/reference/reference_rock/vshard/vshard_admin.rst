@@ -181,16 +181,6 @@ loaded replica sets to the zero-load replica set.
 
     A new zero-load replica set should be assigned a weight for rebalancing to start.
 
-The ``rebalancer`` wakes up periodically and redistributes data from the most
-loaded nodes to less loaded nodes. Rebalancing starts if the disbalance threshold
-of a replica set exceeds a disbalance threshold specified in the configuration.
-
-The disbalance threshold is calculated as follows:
-
-.. code-block:: none
-
-    |etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100
-
 When a new shard is added, the configuration can be updated dynamically:
 
 1. The configuration should be updated on all the ``routers`` first, and then on all
