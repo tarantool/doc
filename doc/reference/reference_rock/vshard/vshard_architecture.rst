@@ -244,6 +244,12 @@ Migration is performed as follows:
 4. The bucket on the destination replica set is assigned the ACTIVE state and starts
    accepting all requests.
 
+.. NOTE::
+
+    There is a specific error ``vshard.error.code.TRANSFER_IS_IN_PROGRESS`` that
+    returns in case request tries to make an action not applicable to a bucket
+    whose relocation is in progress.
+
 .. _vshard-bucket-space:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
