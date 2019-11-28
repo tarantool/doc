@@ -297,8 +297,8 @@ Router public API
     or one of the regular Tarantool errors (``ClientError``, ``OutOfMemory``,
     ``SocketError``, etc.).
 
-    ``ShardingError`` is returned on errors specific for sharding: the replica
-    set is not available, the master is missing, wrong bucket id, etc. It has an
+    ``ShardingError`` is returned on errors specific for sharding:
+    the master is missing, wrong bucket id, etc. It has an
     attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for the error code.
