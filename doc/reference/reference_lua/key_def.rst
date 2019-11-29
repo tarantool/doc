@@ -27,13 +27,16 @@ to extract or compare the index key values.
     the ``parts`` option in 
     :ref:`Options for space_object:create_index() <box_space-create_index-options>`.
 
-    fieldno (integer) for example fieldno=1
+    fieldno (integer) for example fieldno = 1. It is legal to say field instead of fieldno.
 
-    type (string) for example type='string'
+    type (string) for example type = 'string'.
 
     Other components are optional.
 
     Example: ``key_def.new({{type = 'unsigned', fieldno = 1}})``
+
+    Example: ``key_def.new({{type = 'string', collation = 'unicode', field = 2}})``
+
 
 .. _key_def-object:
 
