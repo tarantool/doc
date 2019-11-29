@@ -5,11 +5,11 @@ Module `vshard`
 ===============================================================================
 
 The ``vshard`` module introduces an advanced sharding feature based on
-:ref:`Virtual Buckets <vshard-vbuckets>` concept and enables horizontal
+the concept of :ref:`virtual buckets <vshard-vbuckets>` and enables horizontal
 scaling in Tarantool.
 
-Check our :ref:`Quick start guide <vshard-quick-start>` or see the full contents
-of ``vshard`` documentation:
+Check out the :ref:`Quick start guide <vshard-quick-start>` -- or dive into the
+complete ``vshard`` documentation:
 
 .. toctree::
    :maxdepth: 2

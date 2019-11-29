@@ -4,36 +4,39 @@
 Architecture
 ===============================================================================
 
+.. _vshard-architecture-overview:
+
 ------------------------------------------------------------------------------
 Overview
 ------------------------------------------------------------------------------
 
 Consider a distributed Tarantool cluster that consists of subclusters called
-shards, each storing some part of data. Each shard, in its turn, constitutes
-a replica set consisting of several replicas, one of which serves as a master
+**shards**, each storing some part of data. Each shard, in its turn, constitutes
+a **replica set** consisting of several **replicas**, one of which serves as a master
 node that processes all read and write requests.
 
 The whole dataset is logically partitioned into a predefined number of :ref:`virtual
-buckets (vbuckets) <vshard-vbuckets>`, each assigned a unique number ranging from 1 to N, where N
-is the total number of vbuckets. The number of vbuckets is specifically chosen
+buckets <vshard-vbuckets>` (further just **buckets**), each assigned a unique number
+ranging from 1 to N, where N is the total number of buckets.
+The number of buckets is specifically chosen
 to be several orders of magnitude larger than the potential number of cluster
 nodes, even given future cluster scaling. For example, with M projected nodes
-the dataset may be split into 100 * M or even 1,000 * M vbuckets. Care should
-be taken when picking the number of vbuckets: if too large, it may require extra
+the dataset may be split into 100 * M or even 1,000 * M buckets. Care should
+be taken when picking the number of buckets: if too large, it may require extra
 memory for storing the routing information; if too small, it may decrease
 the granularity of rebalancing.
 
-Each shard stores a unique subset of vbuckets, which means that a vbucket cannot
+Each shard stores a unique subset of buckets, which means that a bucket cannot
 belong to several shards at once, as illustrated below:
 
 .. image:: bucket.svg
     :align: center
 
-This shard-to-vbucket mapping is stored in a table in one of Tarantool’s system
+This shard-to-bucket mapping is stored in a table in one of Tarantool’s system
 spaces, with each shard holding only a specific part of the mapping that covers
-those vbuckets that were assigned to this shard.
+those buckets that were assigned to this shard.
 
-Apart from the mapping table, the bucket id is also stored in a special field of
+Apart from the mapping table, the **bucket id** is also stored in a special field of
 every tuple of every table participating in sharding.
 
 Once a shard receives any request (except for SELECT) from an
@@ -58,7 +61,7 @@ Virtual buckets
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 The sharded dataset is partitioned into a large number of abstract nodes called
-**virtual buckets** (further referred to as **buckets**).
+**virtual buckets** (further just **buckets**).
 
 The dataset is partitioned using the sharding key (or **bucket id**, in Tarantool
 terminology). Bucket id is a number from 1 to N, where N is the total number of
@@ -74,7 +77,7 @@ The total number of buckets is determined by the administrator who sets up the
 initial cluster configuration.
 
 Every Tarantool space you plan to shard must have a bucket id field indexed by the
-bucket id ``index``. Spaces without the bucket id indexes don’t participate in sharding
+bucket id index. Spaces without bucket id indexes do not participate in sharding
 but can be used as regular spaces. By default, the name of the index coincides with
 the bucket id.
 
@@ -99,8 +102,8 @@ A sharded cluster in Tarantool consists of:
 Storage
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-**Storage** is a node storing a subset of a dataset. Multiple replicated (for
-redundancy) storages comprise a replica set (also called shard).
+**Storage** is a node storing a subset of the dataset. Multiple replicated (for
+redundancy) storages comprise a **replica set** (also called **shard**).
 
 Each storage in a replica set has a role, **master** or **replica**. A master
 processes read and write requests. A replica processes read requests but cannot
@@ -135,9 +138,9 @@ in the storage layer or application layer depending on the application features.
 
 A router maintains a constant pool of connections to all the storages that is
 created at startup. Creating it this way helps avoid configuration errors. Once
-a pool is created, a router caches the current state of the \_vbucket table to
+a pool is created, a router caches the current state of the ``_vbucket`` table to
 speed up the routing. In case a bucket id is moved to another storage as
-a result of data rebalancing or one of the shards fails over to a replica,
+a result of data rebalancing, or one of the shards fails over to a replica,
 a router updates the routing table in a way that's transparent for the application.
 
 Sharding is not integrated into any centralized configuration storage system.
@@ -145,25 +148,31 @@ It is assumed that the application itself handles all the interactions with such
 systems and passes sharding parameters. That said, the configuration can be
 changed dynamically - for example, when adding or deleting one or several shards:
 
-#. to add a new shard to the cluster, a system administrator first changes the
-   configuration of all the routers and then the configuration of all the storages;
-#. the new shard becomes available to the storage layer for rebalancing;
-#. as a result of rebalancing, one of the vbuckets is moved to the new shard;
-#. when trying to access the vbucket, a router receives a special error code
+#. To add a new shard to the cluster, a system administrator first changes the
+   configuration of all the routers and then the configuration of all the storages.
+#. The new shard becomes available to the storage layer for rebalancing.
+#. As a result of rebalancing, one of the vbuckets is moved to the new shard.
+#. When trying to access the vbucket, a router receives a special error code
    that specifies the new vbucket location.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CRUD (create, replace, update, delete) operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CRUD operations can either be executed in a stored procedure inside a storage or
-initialized by the application. In any case, the application must include the
-operation bucket id in a request. When executing an INSERT request, the operation
-bucket id is stored in a newly created tuple. In other cases, it is checked if
-the specified operation bucket id matches the bucket id of a tuple being modified.
+
+CRUD operations can be:
+
+* executed in a stored procedure inside a storage, or
+* initialized by the application.
+
+In any case, the application must include the operation bucket id in a request.
+When executing an INSERT request, the operation bucket id is stored in a newly
+created tuple. In other cases, it is checked if the specified operation
+bucket id matches the bucket id of a tuple being modified.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SELECT requests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Since a storage is not aware of the mapping between a bucket id and a primary
 key, all the SELECT requests executed in stored procedures inside a storage are
 only executed locally. Those SELECT requests that were initialized by the
@@ -173,12 +182,17 @@ a bucket id, a router uses it for shard calculation.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Calling stored procedures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-There are several ways of calling stored procedures in cluster replicasets.
-Stored procedures can be called on a specific vbucket located in a replicaset or
-without specifying any particular vbucket. In the former case, it is necessary
-to differentiate between read and write procedures, as write procedures are not
-applicable to vbuckets that are being migrated. All the routing validity checks
-performed for sharded DML operations hold true for vbucket-bound stored procedures as well.
+
+There are several ways of calling stored procedures in cluster replica sets.
+Stored procedures can be called:
+
+* on a specific vbucket located in a replica set (in this case, it is necessary
+  to differentiate between read and write procedures, as write procedures are not
+  applicable to vbuckets that are being migrated), or
+* without specifying any particular vbucket.
+
+All the routing validity checks performed for sharded DML operations hold true
+for vbucket-bound stored procedures as well.
 
 .. _vshard-rebalancer:
 
@@ -190,8 +204,8 @@ Rebalancer
 distribution of buckets across the shards. During rebalancing, buckets are being
 migrated among replica sets.
 
-The ``rebalancer`` wakes up periodically and redistributes data from the most
-loaded nodes to less loaded nodes. Rebalancing starts if the disbalance threshold
+The rebalancer "wakes up" periodically and redistributes data from the most
+loaded nodes to less loaded nodes. Rebalancing starts if the **disbalance threshold**
 of a replica set exceeds a disbalance threshold specified in the configuration.
 
 The disbalance threshold is calculated as follows:
@@ -319,5 +333,92 @@ Requests are processed as follows:
 
    * whether the bucket is stored in the ``_bucket`` system space of the replica set;
    * whether the bucket is ACTIVE or PINNED (for a read request, it can also be SENDING).
+
 3. If all the checks succeed, the request is executed. Otherwise, it is terminated
    with the error: ``“wrong bucket”``.
+
+.. _vshard-glossary:
+
+-------------------------------------------------------------------------------
+Glossary
+-------------------------------------------------------------------------------
+
+.. glossary::
+
+    .. vshard-vertical_scaling:
+
+    **Vertical scaling**
+        Adding more power to a single server: using a more powerful CPU, adding
+        more capacity to RAM, adding more storage space, etc.
+
+    .. vshard-horizontal_scaling:
+
+    **Horizontal scaling**
+        Adding more servers to the pool of resources, then partitioning and
+        distributing a dataset across the servers.
+
+    .. vshard-sharding:
+
+    **Sharding**
+        A database architecture that allows partitioning a dataset using a sharding
+        key and distributing a dataset across multiple servers. Sharding is a
+        special case of horizontal scaling.
+
+    .. vshard-node:
+
+    **Node**
+        A virtual or physical server instance.
+
+    .. vshard-cluster:
+
+    **Cluster**
+        A set of nodes that make up a single group.
+
+    .. vshard-storage:
+
+    **Storage**
+        A node storing a subset of a dataset.
+
+    .. vshard-replica_set:
+
+    **Replica set**
+        A set of storage nodes storing copies of a dataset. Each storage in a
+        replica set has a role, master or replica.
+
+    .. vshard-master:
+
+    **Master**
+        A storage in a replica set processing read and write requests.
+
+    .. vshard-replica:
+
+    **Replica**
+        A storage in a replica set processing only read requests.
+
+    .. vshard-read_requests:
+
+    **Read requests**
+        Read-only requests, that is, select requests.
+
+    .. vshard-write_requests:
+
+    **Write requests**
+        Data-change operations, that is create, replace, update, delete requests.
+
+    .. vshard-bucket:
+
+    **Buckets (virtual buckets)**
+        The abstract virtual nodes into which the dataset is partitioned by the
+        sharding key (bucket id).
+
+    .. vshard-bucket-id:
+
+    **Bucket id**
+        A sharding key defining which bucket belongs to which replica set.
+        A bucket id may be calculated from a :ref:`hash key <router_api-bucket_id>`.
+
+    .. vshard-router:
+
+    **Router**
+        A proxy server responsible for routing requests from an application to
+        nodes in a cluster.
