@@ -226,9 +226,9 @@ applier was sleeping most of the time.
 Now each node can send multiple buckets in parallel in a
 round-robin manner to multiple destinations, or to just one.
 
-To set the degree of parallelism, a new option is available --
+To set the degree of parallelism, a new option was added --
 :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`.
-It can be specified in a storage configuration in the root table:
+You can specify it in a storage configuration in the root table:
 
 .. code-block:: lua
 
@@ -242,9 +242,6 @@ In routers, this option is ignored.
     Specifying ``cfg.rebalancer_max_sending = N`` probably won't give N times
     speed up. It depends on network, disk, number of other fibers in the system.
 
-Another important thing: from this moment on, ``rebalancer_max_receiving``
-is not useless. It can actually limit the workload at one storage.
-
 **Example #1:**
 
   You have 10 replica sets and a new one is added.
@@ -257,8 +254,8 @@ is not useless. It can actually limit the workload at one storage.
   parallel buckets can cause timeouts in the rebalancing process
   itself.
 
-  To fix the problem, you can set a lower value for ``rebalancer_max_sending`` for old
-  replica sets, or decrease ``rebalancer_max_receiving`` for the new one.
+  To fix the problem, you can set a lower value for ``rebalancer_max_sending``
+  for old replica sets, or decrease ``rebalancer_max_receiving`` for the new one.
   In the latter case some workers on old nodes will be throttled,
   and you will see that in the logs.
 

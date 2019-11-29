@@ -130,7 +130,7 @@ Basic parameters
     The maximum number of buckets that can be received in parallel by a single
     replica set. This number must be limited, because when a new replica set is added to
     a cluster, the rebalancer sends a very large amount of buckets from the existing
-    replica sets to the new replica set. This produces a heavy load on a new replica set.
+    replica sets to the new replica set. This produces a heavy load on the new replica set.
 
     **Example:**
 
@@ -148,7 +148,8 @@ Basic parameters
 
 .. confval:: rebalancer_max_sending
 
-    The degree of parallelism for :ref:`parallel rebalancing <vshard-parallel-rebalancing>`.
+    The degree of parallelism for
+    :ref:`parallel rebalancing <vshard-parallel-rebalancing>`.
 
     Works for storages only, ignored for routers.
 
