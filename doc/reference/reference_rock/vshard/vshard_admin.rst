@@ -11,7 +11,7 @@ Installation
 -------------------------------------------------------------------------------
 
 The ``vshard`` module is distributed separately from the main Tarantool package.
-To install it, use the following:
+To install it, say this:
 
 .. code-block:: console
 
@@ -67,7 +67,8 @@ Sharding is not integrated into any system for centralized configuration managem
 It is expected that the application itself is responsible for interacting with such
 a system and passing the sharding parameters.
 
-The configuration example of a simple sharded cluster available :ref:`here <vshard-config-cluster-example>`.
+The configuration example of a simple sharded cluster is available
+:ref:`here <vshard-config-cluster-example>`.
 
 .. _vshard-replica-weights:
 
@@ -108,15 +109,15 @@ To set weights, use the zone attribute for each replica during configuration:
        }
     }
 
-Then, specify relative weights for each zone pair in the weights parameter of
+Then, specify relative weights for each zone pair in the ``weights`` parameter of
 ``vshard.router.cfg``. For example:
 
 .. code-block:: kconfig
 
     weights = {
         [1] = {
-            [2] = 1, -- routers of the 1st zone see the weight of the 2nd zone as 1
-            [3] = 2, -- routers of the 1st zone see the weight of the 3rd zone as 2
+            [2] = 1, -- Routers of the 1st zone see the weight of the 2nd zone as 1.
+            [3] = 2, -- Routers of the 1st zone see the weight of the 3rd zone as 2.
             [4] = 3, -- ...
         },
         [2] = {
@@ -127,7 +128,9 @@ Then, specify relative weights for each zone pair in the weights parameter of
         },
         [3] = {
             [1] = 100,
-            [2] = 200, -- routers of the 3rd zone see the weight of the 2nd zone as 200. Mind that it is not equal to the weight of the 2nd zone visible from the 1st zone (= 1)
+            [2] = 200, -- Routers of the 3rd zone see the weight of the 2nd zone as 200.
+                       -- Mind that it is not equal to the weight of the 2nd zone visible
+                       -- from the 1st zone (= 1).
             [4] = 1000,
         }
     }
@@ -183,7 +186,8 @@ loaded replica sets to the zero-load replica set.
 
 The ``rebalancer`` wakes up periodically and redistributes data from the most
 loaded nodes to less loaded nodes. Rebalancing starts if the disbalance threshold
-of a replica set exceeds a disbalance threshold specified in the configuration.
+of a replica set exceeds a :ref:`disbalance threshold <cfg_basic-rebalancer_disbalance_threshold>`
+specified in the configuration.
 
 The disbalance threshold is calculated as follows:
 
@@ -210,7 +214,7 @@ Parallel rebalancing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Originally, ``vshard`` had quite a simple ``rebalancer`` –
-one process on one node that calculated *routes* who should send buckets, how
+one process on one node that calculated *routes* which should send buckets, how
 many, and to whom. The nodes applied these routes one by
 one sequentially.
 
@@ -222,16 +226,14 @@ applier was sleeping most of the time.
 Now each node can send multiple buckets in parallel in a
 round-robin manner to multiple destinations, or to just one.
 
-To set the degree of parallelism a new option is available -
-``rebalancer_max_sending``. It can be specified in a storage
-configuration in the root table:
+To set the degree of parallelism, a new option was added --
+:ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`.
+You can specify it in a storage configuration in the root table:
 
 .. code-block:: lua
 
     cfg.rebalancer_max_sending = 5
     vshard.storage.cfg(cfg, box.info.uuid)
-
-The default value  is ``1``. The maximum value is ``15``.
 
 In routers, this option is ignored.
 
@@ -240,10 +242,7 @@ In routers, this option is ignored.
     Specifying ``cfg.rebalancer_max_sending = N`` probably won't give N times
     speed up. It depends on network, disk, number of other fibers in the system.
 
-Another important thing: from this moment on, ``rebalancer_max_receiving``
-is not useless. It can actually limit the workload at one storage.
-
-**Example:**
+**Example #1:**
 
   You have 10 replica sets and a new one is added.
   Now all the 10 replica sets will try to send buckets to the new one.
@@ -255,8 +254,8 @@ is not useless. It can actually limit the workload at one storage.
   parallel buckets can cause timeouts in the rebalancing process
   itself.
 
-  To fix the problem, you can set a lower value for ``rebalancer_max_sending`` for old
-  replica sets, or decrease ``rebalancer_max_receiving`` for the new one.
+  To fix the problem, you can set a lower value for ``rebalancer_max_sending``
+  for old replica sets, or decrease ``rebalancer_max_receiving`` for the new one.
   In the latter case some workers on old nodes will be throttled,
   and you will see that in the logs.
 
@@ -265,7 +264,7 @@ the maximal number of buckets that can be read-only at once in the cluster. As y
 remember, when a bucket is being sent, it does not accept new
 write requests.
 
-**Example:**
+**Example #2:**
 
   You have 100000 buckets and each
   bucket stores ~0.001% of your data. The cluster has 10
@@ -361,7 +360,7 @@ Bucket pin and rebalancing
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Rebalancing replica sets with pinned buckets requires a more complex algorithm.
-Here pinned_count[o] is the number of pinned buckets, and ``etalon_count`` is
+Here ``pinned_count[o]`` is the number of pinned buckets, and ``etalon_count`` is
 the etalon number of buckets for a replica set:
 
 1. The ``rebalancer`` calculates the etalon number of buckets as if all buckets
@@ -427,8 +426,7 @@ Bucket ref is an in-memory counter that is similar to the
 
 #. There are two types of bucket refs: read-only (RO) and read-write (RW).
 
-   If a
-   bucket has RW refs, it can not be moved. However, when the rebalancer
+   If a bucket has RW refs, it cannot be moved. However, when the rebalancer
    needs it to be sent, it locks the bucket for new write requests, waits
    until all current requests are finished, and then sends the bucket.
 
@@ -472,7 +470,7 @@ For example:
 Defining spaces
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Database Schema is stored on ``storages``, ``routers`` know nothing about
+Database Schema is stored on ``storages``, while ``routers`` know nothing about
 spaces and tuples.
 
 Spaces should be defined within a storage application using ``box.once()``.
@@ -509,8 +507,8 @@ For example:
     end)
 
 Every space you plan to shard must have ``bucket_id`` unsigned field indexed
-by ``bucket_id`` TREE index. Spaces without ``bucket_id`` index doesn't
-participate in sharded Tarantool cluster and can be used as a regular
+by ``bucket_id`` TREE index. Spaces without ``bucket_id`` index don't
+participate in a sharded Tarantool cluster and can be used as regular
 spaces if needed.
 
 .. _vshard-adding-data:
@@ -520,7 +518,7 @@ Adding data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All DML operations with data should be performed via ``router``. The
-only operation is supported by ``router`` is `CALL` via ``bucket_id``:
+only operation supported by ``router`` is `CALL` via ``bucket_id``:
 
 .. code-block:: lua
 
@@ -529,9 +527,9 @@ only operation is supported by ``router`` is `CALL` via ``bucket_id``:
 ``vshard.router.call()`` routes ``result = func(unpack(args))`` call to a shard
 which serves ``bucket_id``.
 
-``bucket_id`` is just a regular number in range 1..``bucket_count``, where
-``bucket_count`` is configuration parameter. This number can be assigned in
-arbitrary way by client application. Sharded Tarantool cluster uses this
+``bucket_id`` is just a regular number in the range
+``1..``:ref:`bucket_count<cfg_basic-bucket_count>`. This number can be assigned in
+an arbitrary way by the client application. A sharded Tarantool cluster uses this
 number as an opaque unique identifier to distribute data across replica sets. It
 is guaranteed that all records with the same ``bucket_id`` will be stored on the
 same replica set.
@@ -592,8 +590,8 @@ operations:
 * a **rebalancer** on a single master ``storage`` among all replica sets executes
   the rebalancing process.
 
-  See the :ref:`Rebalancing process <vshard-rebalancing>` and
-  :ref:`Migration of buckets <vshard-migrate-buckets>` sections for details.
+See the :ref:`Rebalancing process <vshard-rebalancing>` and
+:ref:`Migration of buckets <vshard-migrate-buckets>` sections for details.
 
 .. _vshard-gc:
 
