@@ -13,6 +13,8 @@ Syntax:
 * :samp:`ALTER TABLE {table-name} RENAME TO {new-table-name};`
 * :samp:`ALTER TABLE {table-name} ADD CONSTRAINT {constraint-name} {constraint-definition};`
 * :samp:`ALTER TABLE {table-name} DROP CONSTRAINT {constraint-name};`
+* :samp:`ALTER TABLE {table-name} ENABLE|DISABLE CHECK CONSTRAINT {constraint-name};`
+
 
 |br|
 
@@ -21,8 +23,7 @@ Syntax:
 
 |br|
 
-ALTER is used to change a table's name or to add new constraints
-or to drop old constraints.
+ALTER is used to change a table's name or a table's constraints.
 
 Examples:
 
@@ -77,6 +78,16 @@ as well.
    -- dropping a constraint:
    ALTER TABLE t1 DROP CONSTRAINT ck_s1_t1_1;
 
+For ``ALTER ... ENABLE|DISABLE CHECK CONSTRAINT``, it is only legal to enable or disable a named constraint,
+and Tarantool only looks for names of check constraints.
+By default a constraint is enabled.
+If a constraint is disabled, then the check will not be performed.
+
+.. code-block:: sql
+
+   -- disabling and re-enabling a constraint:
+   ALTER TABLE t1 DISABLE CHECK CONSTRAINT c;
+   ALTER TABLE t1 ENABLE CHECK CONSTRAINT c;
 
 Limitations:
 

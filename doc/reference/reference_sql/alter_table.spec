@@ -11,6 +11,9 @@ stack (
     ),
     line(
       ' DROP ', ' CONSTRAINT ', 'constraint-name'
+    ),
+    line(
+      choice(' ENABLE ', ' DISABLE '), ' CHECK ', ' CONSTRAINT ', 'constraint-name'
     )
-  )
+   )
 )
