@@ -3,7 +3,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink"
 xml:space="preserve"
-width="850" height="160" version="1.1">
+width="850" height="220" version="1.1">
 <style type="text/css">
 <![CDATA[
 .box_font {fill:#000000; text-anchor:middle;
@@ -42,6 +42,11 @@ width="850" height="160" version="1.1">
 <path d="M105.0,157.0 A13.0,13.0 0 0,1 105.0,131.0 H165.0 A13.0,13.0 0 0,1 165.0,157.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <path d="M208.0,157.0 A13.0,13.0 0 0,1 208.0,131.0 H334.0 A13.0,13.0 0 0,1 334.0,157.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <path d="M377.0,157.0 A13.0,13.0 0 0,1 377.0,131.0 H536.0 A13.0,13.0 0 0,1 536.0,157.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M133.0,187.0 A13.0,13.0 0 0,1 133.0,161.0 H215.0 A13.0,13.0 0 0,1 215.0,187.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M133.0,217.0 A13.0,13.0 0 0,1 133.0,191.0 H226.0 A13.0,13.0 0 0,1 226.0,217.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M297.0,187.0 A13.0,13.0 0 0,1 297.0,161.0 H368.0 A13.0,13.0 0 0,1 368.0,187.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M411.0,187.0 A13.0,13.0 0 0,1 411.0,161.0 H537.0 A13.0,13.0 0 0,1 537.0,187.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M580.0,187.0 A13.0,13.0 0 0,1 580.0,161.0 H739.0 A13.0,13.0 0 0,1 739.0,187.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <circle cx="7" cy="17.0" r="2" stroke="#FF0000" stroke-width="1" fill="#FFFFFF"/>
 <path d="M39.0,31.0 A13.0,13.0 0 0,1 39.0,5.0 H110.0 A13.0,13.0 0 0,1 110.0,31.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="token_font" x="74.5" y="24.0"> ALTER </text>
@@ -78,6 +83,29 @@ width="850" height="160" version="1.1">
 <path d="M375.0,155.0 A13.0,13.0 0 0,1 375.0,129.0 H534.0 A13.0,13.0 0 0,1 534.0,155.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="name_font" x="454.5" y="148.0">constraint-name</text>
 <line x1="344.0" y1="141.0" x2="358.0" y2="141.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M131.0,185.0 A13.0,13.0 0 0,1 131.0,159.0 H213.0 A13.0,13.0 0 0,1 213.0,185.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="token_font" x="172.0" y="178.0"> ENABLE </text>
+<path d="M131.0,215.0 A13.0,13.0 0 0,1 131.0,189.0 H224.0 A13.0,13.0 0 0,1 224.0,215.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="token_font" x="177.5" y="208.0"> DISABLE </text>
+<line x1="90" y1="171.0" x2="114.0" y2="171.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="226.0" y1="171.0" x2="266.0" y2="171.0" stroke="#FF0000" stroke-width="1" />
+<path d="M99.0,180.0 A9,9 0 0,0 90.0,171.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="108" y1="201.0" x2="114.0" y2="201.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="237.0" y1="201.0" x2="243.0" y2="201.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M99.0,192.0 A9,9 0 0,0 108.0,201.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M247.0,201.0 A9.0,9.0 0 0,0 256.0,192.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M265.0,171.0 A9.0,9.0 0 0,0 256.0,180.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="99" y1="192.0" x2="99" y2="180.0" stroke="#FF0000" stroke-width="1" />
+<line x1="256.0" y1="192.0" x2="256.0" y2="180.0" stroke="#FF0000" stroke-width="1" />
+<path d="M295.0,185.0 A13.0,13.0 0 0,1 295.0,159.0 H366.0 A13.0,13.0 0 0,1 366.0,185.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="token_font" x="330.5" y="178.0"> CHECK </text>
+<line x1="264.0" y1="171.0" x2="278.0" y2="171.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M409.0,185.0 A13.0,13.0 0 0,1 409.0,159.0 H535.0 A13.0,13.0 0 0,1 535.0,185.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="token_font" x="472.0" y="178.0"> CONSTRAINT </text>
+<line x1="378.0" y1="171.0" x2="392.0" y2="171.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M578.0,185.0 A13.0,13.0 0 0,1 578.0,159.0 H737.0 A13.0,13.0 0 0,1 737.0,185.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="name_font" x="657.5" y="178.0">constraint-name</text>
+<line x1="547.0" y1="171.0" x2="561.0" y2="171.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <line x1="62" y1="81.0" x2="86.0" y2="81.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <line x1="470.0" y1="81.0" x2="825.0" y2="81.0" stroke="#FF0000" stroke-width="1" />
 <path d="M71.0,90.0 A9,9 0 0,0 62.0,81.0" stroke="#FF0000" stroke-width="1" fill="none"/>
@@ -89,9 +117,13 @@ width="850" height="160" version="1.1">
 <line x1="547.0" y1="141.0" x2="802.0" y2="141.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <path d="M71.0,132.0 A9,9 0 0,0 80.0,141.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <path d="M806.0,141.0 A9.0,9.0 0 0,0 815.0,132.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="80" y1="171.0" x2="86.0" y2="171.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="750.0" y1="171.0" x2="802.0" y2="171.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M71.0,162.0 A9,9 0 0,0 80.0,171.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M806.0,171.0 A9.0,9.0 0 0,0 815.0,162.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <path d="M824.0,81.0 A9.0,9.0 0 0,0 815.0,90.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<line x1="71" y1="132.0" x2="71" y2="90.0" stroke="#FF0000" stroke-width="1" />
-<line x1="815.0" y1="132.0" x2="815.0" y2="90.0" stroke="#FF0000" stroke-width="1" />
+<line x1="71" y1="162.0" x2="71" y2="90.0" stroke="#FF0000" stroke-width="1" />
+<line x1="815.0" y1="162.0" x2="815.0" y2="90.0" stroke="#FF0000" stroke-width="1" />
 <line x1="428.0" y1="17.0" x2="446.0" y2="17.0" stroke="#FF0000" stroke-width="1" />
 <path d="M455.0,26.0 A9.0,9.0 0 0,0 446.0,17.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <line x1="455.0" y1="26.0" x2="455.0" y2="41.0" stroke="#FF0000" stroke-width="1" />

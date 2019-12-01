@@ -1824,7 +1824,20 @@ Below is a list of all ``box.space`` functions and members.
         (This is a change from the earlier behavior of check constraints,
         which caused checking before the tuple was formed.)
 
-        Check constraints can be dropped with :samp:`space_object:{check_constraint_name}:drop()`.
+        Check constraints can be dropped with :samp:`{space_object}.ck_constraint.{check_constraint_name}:drop()`.
+
+        Check constraints can be disabled with :samp:`{space_object}.ck_constraint.{check_constraint_name}:enable(false)`
+        or :samp:`{check_constraint_object}:enable(false)`.
+        Check constraints can be enabled with :samp:`{space_object}.ck_constraint.{check_constraint_name}:enable(true)`
+        or :samp:`{check_constraint_object}:enable(true)`.
+        By default a check constraint is 'enabled' which means that the check is performed
+        whenever the request is performed, but can be changed to 'disabled' which means that
+        the check is not performed.
+
+        During the recovery process, for example when the Tarantool server is starting,
+        the check is not performed unless
+        :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
+        is specified.
 
         **Example:**
 
