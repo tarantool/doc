@@ -214,6 +214,9 @@ Router public API
     Perform the initial cluster bootstrap and distribute all buckets across the
     replica sets.
 
+    :param timeout: a number of seconds before ending a bootstrap attempt unsuccessfully.
+                    Recreate the cluster in case of bootstrap timeout.
+
 .. _router_api-cfg:
 
 .. function:: vshard.router.cfg(cfg)
