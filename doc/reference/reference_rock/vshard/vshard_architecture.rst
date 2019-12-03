@@ -113,6 +113,7 @@ process write requests.
     :align: center
 
 .. _vshard-router:
+
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Router
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -257,6 +258,12 @@ Migration is performed as follows:
    and it starts rejecting all requests.
 4. The bucket on the destination replica set is assigned the ACTIVE state and starts
    accepting all requests.
+
+.. NOTE::
+
+    There is a specific error ``vshard.error.code.TRANSFER_IS_IN_PROGRESS`` that
+    returns in case a request tries to perform an action not applicable to a bucket
+    which is being relocated. You need to retry the request in this case.
 
 .. _vshard-bucket-space:
 

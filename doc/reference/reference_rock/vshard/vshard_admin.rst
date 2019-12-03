@@ -29,8 +29,8 @@ Configuration
 
 Any viable sharded cluster consists of:
 
-* one or more replica sets, each containing two or more :ref:`storage <vshard-storage>
-  instances,
+* one or more replica sets, each containing two or more
+  :ref:`storage <vshard-storage>` instances,
 * one or more :ref:`router <vshard-router>` instances.
 
 The number of ``storage`` instances in a replica set defines the redundancy factor
@@ -170,6 +170,16 @@ from this number in the whole replica set, then the buckets are distributed even
 The etalon number is calculated automatically considering the number of buckets
 in the cluster and weights of the replica sets.
 
+Rebalancing starts if the **disbalance threshold of a replica set**
+exceeds the disbalance threshold
+:ref:`specified in the configuration <cfg_basic-rebalancer_disbalance_threshold>`.
+
+The disbalance threshold of a replica set is calculated as follows:
+
+.. code-block:: none
+
+    |etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100
+
 For example: The user specified the number of buckets is 3000, and weights
 of 3 replica sets are 1, 0.5, and 1.5. The resulting etalon numbers of buckets
 for the replica sets are: 1st replica set – 1000, 2nd replica set – 500, 3rd
@@ -183,17 +193,6 @@ loaded replica sets to the zero-load replica set.
 .. NOTE::
 
     A new zero-load replica set should be assigned a weight for rebalancing to start.
-
-The ``rebalancer`` wakes up periodically and redistributes data from the most
-loaded nodes to less loaded nodes. Rebalancing starts if the disbalance threshold
-of a replica set exceeds a :ref:`disbalance threshold <cfg_basic-rebalancer_disbalance_threshold>`
-specified in the configuration.
-
-The disbalance threshold is calculated as follows:
-
-.. code-block:: none
-
-    |etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100
 
 When a new shard is added, the configuration can be updated dynamically:
 

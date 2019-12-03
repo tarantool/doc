@@ -230,6 +230,10 @@ Router public API
     Perform the initial cluster bootstrap and distribute all buckets across the
     replica sets.
 
+    :param timeout: a number of seconds before ending a bootstrap attempt as
+                    unsuccessful.
+                    Recreate the cluster in case of bootstrap timeout.
+
 .. _router_api-cfg:
 
 .. function:: vshard.router.cfg(cfg)
@@ -306,18 +310,16 @@ Router public API
     in the replica set in round-robin fashion, with a preference for replicas if
     prefer_replica=true is also set.
 
-    :Return:
+    :Return: The original return value of the executed function, or ``nil`` and
+             error object. The error object has a type attribute equal to
+             ``ShardingError`` or one of the regular Tarantool errors
+             (``ClientError``, ``OutOfMemory``, ``SocketError``, etc.).
 
-    The original return value of the executed function, or ``nil`` and
-    error object. The error object has a type attribute equal to ``ShardingError``
-    or one of the regular Tarantool errors (``ClientError``, ``OutOfMemory``,
-    ``SocketError``, etc.).
-
-    ``ShardingError`` is returned on errors specific for sharding: the replica
-    set is not available, the master is missing, wrong bucket id, etc. It has an
-    attribute code containing one of the values from the ``vshard.error.code.*`` LUA table, an
-    optional attribute containing a message with the human-readable error description,
-    and other attributes specific for the error code.
+             ``ShardingError`` is returned on errors specific for sharding:
+             the master is missing, wrong bucket id, etc. It has an attribute code
+             containing one of the values from the ``vshard.error.code.*`` LUA table, an
+             optional attribute containing a message with the human-readable error description,
+             and other attributes specific for the error code.
 
     **Examples:**
 

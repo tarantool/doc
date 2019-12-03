@@ -60,7 +60,7 @@ checkpoint.
 
 To take a mixed backup:
 
-1. Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the
+1. Issue :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` on the
    :ref:`administrative console <admin-security>`. This will return a list of
    files to back up and suspend garbage collection for them till the next ``box.backup.stop()``.
 

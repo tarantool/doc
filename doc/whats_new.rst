@@ -894,7 +894,7 @@ Functionality added or changed:
   * (Server) allow different nullability in indexes and format.
     Issue `3430 <https://github.com/tarantool/tarantool/issues/3430>`_.
   * (Server) allow to
-    :ref:`back up any checkpoint <admin-backups-backup_start>`,
+    :ref:`back up any checkpoint <reference_lua-box_backup-backup_start>`,
     not just the last one.
     Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_.
   * (Server) a way to detect that a Tarantool process was
@@ -1522,7 +1522,7 @@ Functionality added or changed:
   * (Memtx+Vinyl) implemented low-level Lua API to create consistent backups.
     of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()``
     functions to create backups of all spaces.
-    :ref:`box.backup.start() <admin-backups-backup_start>` pauses the
+    :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` pauses the
     Tarantool garbage collector and returns the list of files to copy. These files then
     can be copied be any third-party tool, like cp, ln, tar, rsync, etc.
     ``box.backup.stop()`` lets the garbage collector continue.

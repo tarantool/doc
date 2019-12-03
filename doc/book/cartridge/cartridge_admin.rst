@@ -254,7 +254,7 @@ Upon adding a newly deployed instance to a new or existing replica set:
    the ``box.cfg`` function and starts living its life.
 
    For more information, see the
-   :ref:`box.cfg submodule reference <box_introspection-box_cfg>`_.
+   :ref:`box.cfg submodule reference <box_introspection-box_cfg>`.
 
 An optimal strategy for connecting new nodes to the cluster is to deploy a new
 zero-weight replica set instance by instance, and then increase the weight.
