@@ -170,8 +170,9 @@ from this number in the whole replica set, then the buckets are distributed even
 The etalon number is calculated automatically considering the number of buckets
 in the cluster and weights of the replica sets.
 
-Rebalancing starts if the **disbalance threshold of a replica set** exceeds a
-disbalance threshold :ref:`specified in the configuration <cfg_basic-rebalancer_disbalance_threshold>`.
+Rebalancing starts if the **disbalance threshold of a replica set**
+exceeds the disbalance threshold
+:ref:`specified in the configuration <cfg_basic-rebalancer_disbalance_threshold>`.
 
 The disbalance threshold of a replica set is calculated as follows:
 

@@ -261,8 +261,8 @@ Migration is performed as follows:
 .. NOTE::
 
     There is a specific error ``vshard.error.code.TRANSFER_IS_IN_PROGRESS`` that
-    returns in case request tries to make an action not applicable to a bucket
-    whose relocation is in progress. Retry the request in such cases.
+    returns in case a request tries to perform an action not applicable to a bucket
+    which is being relocated. You need to retry the request in this case.
 
 .. _vshard-bucket-space:
 
