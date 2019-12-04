@@ -124,8 +124,8 @@ def _pseudo_parse_arglist(signode, argstart, arglist, argend):
                 stack.pop()
                 ends_close -= 1
 
-    if len(stack) != 1:
-        raise IndexError
+    # if len(stack) != 1:
+    #     raise IndexError
 
     signode += paramlist
 

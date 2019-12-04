@@ -10,14 +10,14 @@ executes when certain events happen.
 
 There are four types of triggers in Tarantool:
 
-* :ref:`connection triggers <box_session-on_connect>`, which are executed
-  when a session begins or ends,
-
-* :ref:`authentication triggers <box_session-on_auth>`, which are
-  executed during authentication,
+* :ref:`session triggers <box_session-on_connect>`, which are executed
+  when a session begins or ends and during authentication,
 
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
-  events, and
+  events,
+
+* :ref:`connection triggers <net_box-on_connect>`, which are for ``net.box``
+  connections,
 
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback.
@@ -28,12 +28,16 @@ All triggers have the following characteristics:
   The request to "define a trigger" implies passing the
   trigger’s function to one of the "on_event()" functions:
 
-  * :ref:`box.session.on_connect() <box_session-on_connect>`,
-  * :ref:`box.session.on_auth() <box_session-on_auth>`,
-  * :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
-  * :ref:`space_object:on_replace() <box_space-on_replace>` plus
-    :ref:`space_object:before_replace() <box_space-before_replace>` plus
-    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`.
+  * :ref:`box.session.on_connect() <box_session-on_connect>` or
+    :ref:`box.session.on_disconnect() <box_session-on_disconnect>` or
+  * :ref:`box.session.on_auth() <box_session-on_auth>` or
+  * :ref:`space_object:on_replace() <box_space-on_replace>` or
+    :ref:`space_object:before_replace() <box_space-before_replace>` or
+  * :ref:`box.on_commit() <box-on_commit>` or
+    :ref:`box.on_rollback() <box-on_rollback>` or
+  * :ref:`net.box.on_connect() <net_box-on_connect>` or
+    :ref:`net.box.on_disconnect() <net_box-on_disconnect>` or
+  * :ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
@@ -68,13 +72,9 @@ All triggers have the following characteristics:
   "trigger = box.session.on_connect(function () x = x + 1 end)" -- in both cases
   ``trigger`` gets the function pointer which was passed.
 
-To get a list of triggers, you can use:
-
-* on_connect() – with no arguments – to return a table of all connect-trigger functions;
-* on_auth() to return all authentication-trigger functions;
-* on_disconnect() to return all disconnect-trigger functions;
-* on_replace() to return all replace-trigger functions made for on_replace();
-* before_replace() to return all replace-trigger functions made for before_replace().
+* You can call any "on_event()" function with no arguments to get a list of its
+  triggers. For example, use ``box.session.on_connect()`` to return a table of all
+  connect-trigger functions.
 
 **Example**
 
