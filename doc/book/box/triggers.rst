@@ -16,7 +16,8 @@ There are four types of triggers in Tarantool:
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
   events,
 
-* :ref:`connection triggers <net_box-on_connect>`, which are for net.box connections,
+* :ref:`connection triggers <net_box-on_connect>`, which are for ``net.box``
+  connections,
 
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback.
@@ -27,15 +28,15 @@ All triggers have the following characteristics:
   The request to "define a trigger" implies passing the
   trigger’s function to one of the "on_event()" functions:
 
-  * :ref:`box.session.on_connect() <box_session-on_connect>` and
-    :ref:`box.session.on_disconnect() <box_session-on_disconnect>`,
-  * :ref:`box.session.on_auth() <box_session-on_auth>`,
-  * :ref:`space_object:on_replace() <box_space-on_replace>` and
-    :ref:`space_object:before_replace() <box_space-before_replace>`,
-  * :ref:`box.on_commit() <box-on_commit>` and
-    :ref:`box.on_rollback() <box-on_rollback>`,
-  * :ref:`net.box.on_connect() <net_box-on_connect>` and
-    :ref:`net.box.on_disconnect() <net_box-on_disconnect>`,
+  * :ref:`box.session.on_connect() <box_session-on_connect>` or
+    :ref:`box.session.on_disconnect() <box_session-on_disconnect>` or
+  * :ref:`box.session.on_auth() <box_session-on_auth>` or
+  * :ref:`space_object:on_replace() <box_space-on_replace>` or
+    :ref:`space_object:before_replace() <box_space-before_replace>` or
+  * :ref:`box.on_commit() <box-on_commit>` or
+    :ref:`box.on_rollback() <box-on_rollback>` or
+  * :ref:`net.box.on_connect() <net_box-on_connect>` or
+    :ref:`net.box.on_disconnect() <net_box-on_disconnect>` or
   * :ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.

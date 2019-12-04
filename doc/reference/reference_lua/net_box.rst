@@ -573,14 +573,15 @@ Below is a list of all ``net.box`` functions.
 Triggers
 ============================================================================
 
-You can also use these :ref:`triggers <triggers-box_triggers>` for this module:
+With the ``net.box`` module, you can use the following
+:ref:`triggers <triggers-box_triggers>`:
 
 .. _net_box-on_connect:
 
 .. function:: net_box.on_connect([trigger-function[, old-trigger-function]]){option[s]}])
 
     Define a trigger for execution when a new connection is created due to an
-    event such as net_box.connect. The trigger function will be the first thing
+    event such as ``net_box.connect``. The trigger function will be the first thing
     executed after a new connection is created. If the trigger execution fails
     and raises an error, the error is sent to the client and the connection is closed.
 
@@ -615,11 +616,14 @@ You can also use these :ref:`triggers <triggers-box_triggers>` for this module:
 
         .. NOTE::
 
-            If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+            If the parameters are ``(nil, old-trigger-function)``,
+            then the old trigger is deleted.
 
-            If both parameters are omitted, then the response is a list of existing trigger functions.
+            If both parameters are omitted, then the response is a list of
+            existing trigger functions.
 
-            Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+            Details about trigger characteristics are in the
+            :ref:`triggers <triggers-box_triggers>` section.
 
 ============================================================================
 Example
