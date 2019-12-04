@@ -23,7 +23,7 @@ Below is a list of all ``jit`` functions.
 
 .. NOTE::
 
-     In this document we will use
+     In this document, we will use:
         * ``jit_dis_x64`` for ``require('jit.dis_x64')``,
         * ``jit_v`` for ``require('jit.v')``,
         * ``jit_dump`` for ``require('jit.dump')``.
@@ -57,8 +57,6 @@ Below is a list of all ``jit`` functions.
     | <jit-v-off>`                         |                                 |
     +--------------------------------------+---------------------------------+
 
-
-
 .. _jit-bc-dump:
 
 .. function:: jit_bc.dump(function)
@@ -89,12 +87,12 @@ Below is a list of all ``jit`` functions.
         ---
         ...
 
-    .. .. code-block:: lua
+    .. code-block:: lua
 
-    ..     function f()
-    ..       print("D")
-    ..     end
-    ..     require('jit.bc').dump(f)
+        function f()
+          print("D")
+        end
+        require('jit.bc').dump(f)
 
     For a list of available options, read `the source code of bc.lua
     <https://github.com/tarantool/luajit/tree/tarantool-1.7/src/jit/bc.lua>`_.
@@ -243,22 +241,10 @@ Below is a list of all ``jit`` functions.
 
     .. code-block:: tarantoolsession
 
-         tarantool> -- Show what LuaJIT is doing for a Lua "for" loop
-        ---
-        ...
-
-         tarantool> jit_v = require('jit.v')
-        ---
-        ...
-
+        tarantool> -- Show what LuaJIT is doing for a Lua "for" loop
+        tarantool> jit_v = require('jit.v')
         tarantool> jit_v.on()
-        ---
-        ...
-
         tarantool> l = 0
-        ---
-        ...
-
         tarantool> for i = 1, 1e6 do
                  >     l = l + i
                  > end
