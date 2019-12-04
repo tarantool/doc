@@ -10,14 +10,13 @@ executes when certain events happen.
 
 There are four types of triggers in Tarantool:
 
-* :ref:`connection triggers <box_session-on_connect>`, which are executed
-  when a session begins or ends,
-
-* :ref:`authentication triggers <box_session-on_auth>`, which are
-  executed during authentication,
+* :ref:`session triggers <box_session-on_connect>`, which are executed
+  when a session begins or ends and during authentication,
 
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
-  events, and
+  events,
+
+* :ref:`connection triggers <net_box-on_connect>`, which are for net.box connections,
 
 * :ref:`transaction triggers <box-on_commit>`, which are executed
   during commit or rollback.
@@ -33,7 +32,10 @@ All triggers have the following characteristics:
   * :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or
   * :ref:`space_object:on_replace() <box_space-on_replace>` plus
     :ref:`space_object:before_replace() <box_space-before_replace>` plus
-    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`.
+    :ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`
+  * :ref:`net.box.on_connect() <net_box-on_connect>`,
+  * :ref:`net.box.on_disconnect() <net_box-on_disconnect>`,
+  * :ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 

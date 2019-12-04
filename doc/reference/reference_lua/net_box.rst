@@ -130,7 +130,15 @@ Below is a list of all ``net.box`` functions.
     | :ref:`conn:timeout()                               | Set a timeout             |
     | <conn-timeout>`                                    |                           |
     +----------------------------------------------------+---------------------------+
-
+    | :ref:`net_box.on_connect()                         | Define a connect          |
+    | <net_box-on_connect>`                              | trigger                   |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`net_box.on_disconnect()                      | Define a disconnect       |
+    | <net_box-on_disconnect>`                           | trigger                   |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`net_box.on_schema_reload()                   | Define a trigger when     |
+    | <net_box-on_schema_reload>`                        | schema is modified        |
+    +----------------------------------------------------+---------------------------+
 .. module:: net_box
 
 .. _net_box-connect:
@@ -559,11 +567,13 @@ Below is a list of all ``net.box`` functions.
             the result of a sync request, it is structured differently: as a
             table, instead of as the unpacked values.
 
+.. _net_box-triggers:
+
 ============================================================================
 Triggers
 ============================================================================
 
-You can also use these :ref: `triggers <triggers>` for this module.
+You can also use these :ref:`triggers <triggers-box_triggers>` for this module:
 
 .. _net_box-on_connect:
 
@@ -578,12 +588,6 @@ You can also use these :ref: `triggers <triggers>` for this module.
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
 
-    If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
-
-    If both parameters are omitted, then the response is a list of existing trigger functions.
-
-    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
-
 .. _net_box-on_disconnect:
 
 .. function:: net_box.on_disconnect([trigger-function[, old-trigger-function]]){option[s]}])
@@ -597,11 +601,25 @@ You can also use these :ref: `triggers <triggers>` for this module.
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
 
-    If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+.. _net_box-on_schema_reload:
 
-    If both parameters are omitted, then the response is a list of existing trigger functions.
+.. function:: net_box.on_schema_reload([trigger-function[, old-trigger-function]]){option[s]}])
 
-    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+    Define a trigger executed when some operation has been performed on the remote
+    server after schema has been updated. So, if a server request fails due to a schema
+    version mismatch error, schema reload is triggered.
+
+    :param function trigger-function: function which will become the trigger function
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
+
+        .. NOTE::
+
+            If the parameters are (nil, old-trigger-function), then the old trigger is deleted.
+
+            If both parameters are omitted, then the response is a list of existing trigger functions.
+
+            Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
 ============================================================================
 Example
