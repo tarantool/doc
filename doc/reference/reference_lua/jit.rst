@@ -162,21 +162,9 @@ Below is a list of all ``jit`` functions.
     .. code-block:: tarantoolsession
 
         tarantool> -- Show the machine code of a Lua "for" loop
-        ---
-        ...
-
         tarantool> jit_dump = require('jit.dump')
-        ---
-        ...
-
         tarantool> jit_dump.on('m')
-        ---
-        ...
-
         tarantool> x = 0;
-        ---
-        ...
-
         tarantool> for i = 1, 1e6 do
                  > x = x + i
                  > end
