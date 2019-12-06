@@ -158,7 +158,7 @@ Below is a list of all ``http`` functions.
           * ``headers`` - a Lua table with normalized HTTP headers
           * ``body`` - response body
           * ``proto`` - protocol version
-          * ``cookies`` - a Lua table with response cookies
+          * ``cookies`` - a Lua table with response cookies and the list of their options
 
         :rtype: table
 
