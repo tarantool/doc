@@ -70,7 +70,7 @@ For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint,
 and Tarantool only looks for names of foreign-key constraints. (Tarantool generates the
 constraint names automatically if the user does not provide them.)
 
-To remove a unique constraint, use DROP INDEX, which will drop the constraint
+To remove a unique constraint, use :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
 as well.
 
 .. code-block:: sql
@@ -93,7 +93,7 @@ Limitations:
 
 * It is not possible to add or drop a column.
 * It is not possible to modify NOT NULL constraints or column properties DEFAULT
-  and data type.
+  and :ref:`data type <sql_column_def_data_type>`.
   However, it is possible to modify them with Tarantool/NOSQL, for example by
   calling :ref:`space_object:format() <box_space-format>` with a different
   ``is_nullable`` value.
@@ -124,13 +124,13 @@ Create a new base table, usually called a "table".
    data in persistent storage.
 
    A table is a *viewed table*, or just "view", if it is created with
-   CREATE VIEW and gets its data from other views or from base tables.
+   :ref:`CREATE VIEW <sql_create_view>` and gets its data from other views or from base tables.
 
 The *table-name* must be an identifier which is valid according to the rules for
 identifiers, and must not be the name of an already existing base table or view.
 
 The *column-definition* or *table-constraint* list is a comma-separated list
-of column definitions or table constraints.
+of :ref:`column definitions <sql_column_def>` or table constraints.
 
 A *table-element-list* must be a comma-separated list of table elements;
 each table element may be either a column definition or a table constraint
@@ -145,7 +145,7 @@ Rules:
   name, the statement is ignored.
 * When :samp:`WITH ENGINE = {string}` is specified,
   where :samp:`string}` must be either 'memtx' or 'vinyl',
-  the table is created with that engine.
+  the table is created with that :ref:`storage engine <engines-chapter>`.
   When this clause is not specified,
   the table is created with the default engine,
   which is ordinarily 'memtx' but may be changed with
@@ -158,7 +158,7 @@ Actions:
 #. Tarantool makes a new definition in the schema.
 #. Tarantool makes new indexes for PRIMARY KEY or UNIQUE constraints.
    A unique index name is created automatically.
-#. Tarantool effectively executes a ``COMMIT`` statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -198,7 +198,7 @@ Syntax:
 
 :samp:`column-name data-type [, column-constraint]`
 
-Define a column, which is a table-element used in a CREATE TABLE statement.
+Define a column, which is a table-element used in a :ref:`CREATE TABLE <sql_create_table>` statement.
 
 The ``column-name`` must be an identifier which is valid according to the rules
 for identifiers.
@@ -231,7 +231,7 @@ For example VARCHAR(5) and TEXT are aliases of STRING and may appear in
 if asked, will report that the data type of `column_name` is STRING.
 
 For every SQL data type there is a corresponding NoSQL type, for example
-an SQL STRING is stored in a NoSQL space as type = 'string'.
+an SQL STRING is stored in a NoSQL space as :ref:`type = 'string' <index-box_string>`.
 
 To avoid confusion in this manual, all references to SQL data type names are
 in upper case and all similar words which refer to NoSQL types or to other kinds
@@ -303,7 +303,7 @@ The data-type may be followed by ``[COLLATE collation-name]``.
 VARBINARY values are any sequence of zero or more octets (bytes), or NULL.
 VARBINARY literal values are expressed as X followed by pairs of hexadecimal
 digits enclosed within single quotes, for example X'0044'.
-VARBINARYs NoSQL equivalent is 'varbinary' but not character string -- the
+VARBINARY's NoSQL equivalent is 'varbinary' but not character string -- the
 MessagePack storage is MP_BIN (MsgPack binary).
 
 SCALAR can be used for column definitions but the individual column values have
@@ -351,7 +351,7 @@ Two column values in a SCALAR column can have two different primitive data types
    so their data type is STRING.
 #. There is no literal syntax which implies data type SCALAR.
 #. TYPEOF(x) is never SCALAR, it is always the underlying data type.
-   This is true even if ``x`` is null (in that case the data type is BOOLEAN).
+   This is true even if ``x`` is NULL (in that case the data type is BOOLEAN).
    In fact there is no function that is guaranteed to return the defined data type.
    For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns INTEGER, not SCALAR.
 #. For any operation that requires implicit casting from an item defined as SCALAR,
@@ -380,7 +380,7 @@ Two column values in a SCALAR column can have two different primitive data types
    The comparison is valid, because Tarantool knows the ordering of X'41' and 'a'
    in Tarantool/NoSQL 'scalar'. This would be true even if ``s1`` was not defined
    as SCALAR.
-#. The result data type of min/max operation on a column defined as SCALAR
+#. The result data type of :ref:`min/max <sql_aggregate>` operation on a column defined as SCALAR
    is the data type of the minimum/maximum operand, unless the result value
    is NULL. For example:
 
@@ -485,7 +485,7 @@ but this may cause inserts or updates to be slow.
 Column definition -- examples
 *******************************
 
-These are shown within CREATE TABLE statements.
+These are shown within :ref:`CREATE TABLE <sql_create_table>` statements.
 Data types may also appear in CAST functions.
 
 .. code-block:: sql
@@ -545,7 +545,7 @@ The *table-name* must identify a table that was created earlier with the
 Rules:
 
 * If there is a view that references the table, the drop will fail.
-  Please drop the referencing view with DROP VIEW first.
+  Please drop the referencing view with :ref:`DROP VIEW <sql_drop_view>` first.
 * If there is a foreign key that references the table, the drop will fail.
   Please drop the referencing constraint with
   :ref:`ALTER TABLE ... DROP <sql_alter_table_drop_constraint>` first.
@@ -556,7 +556,7 @@ Actions:
 #. The table and all its data are dropped.
 #. All indexes for the table are dropped.
 #. All triggers for the table are dropped.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -593,7 +593,8 @@ The *view-name* must be valid according to the rules for identifiers.
 The optional *column-list* must be a comma-separated list of names of columns
 in the view.
 
-The syntax of the subquery must be the same as the syntax of a SELECT statement,
+The syntax of the subquery must be the same as the syntax of a
+:ref:`SELECT statement <sql_select>`,
 or of a VALUES clause.
 
 Rules:
@@ -608,7 +609,7 @@ Actions:
 #. Tarantool will throw an error if a rule is violated.
 #. Tarantool will create a new persistent object with *column-names* equal to
    the names in the *column-list* or the names in the subquery's *select-list*.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -622,7 +623,8 @@ Examples:
 Limitations:
 
 * It is not possible to insert or update or delete from a view, although
-  sometimes a possible substitution is to create an INSTEAD OF trigger.
+  sometimes a possible substitution is to
+  :ref:`create an INSTEAD OF trigger <sql_create_trigger>`.
 
 .. _sql_drop_view:
 
@@ -653,7 +655,7 @@ Actions:
 #. Tarantool returns an error if the view does not exist.
 #. The view is dropped.
 #. All triggers for the view are dropped.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -696,7 +698,8 @@ Rules:
 
 * There must not already be, for the same table, an index with the same name as
   *index-name*.
-* An index name is local to the table the index is defined on.
+  But there may already be, for a different table, an index with the same name as
+  *index-name*.
 * The maximum number of indexes per table is 128.
 
 Actions:
@@ -705,14 +708,13 @@ Actions:
 #. If the new index is UNIQUE, Tarantool will throw an error if any row exists
    with columns that have duplicate values.
 #. Tarantool will create a new index.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Automatic indexes:
 
 Indexes may be created automatically for columns mentioned in the PRIMARY KEY
 or UNIQUE clauses of a CREATE TABLE statement.
-If an index was created automatically, then the *index-name* is based on four
-items:
+If an index was created automatically, then the *index-name* has four parts:
 
 #. ``pk`` if this is for a PRIMARY KEY clause, ``unique`` if this is for
    a UNIQUE clause;
@@ -760,10 +762,10 @@ Syntax:
 |br|
 
 The *index-name* must be the name of an existing index, which was created with
-CREATE INDEX.
+:ref:`CREATE INDEX <sql_create_index>`.
 Or, the *index-name* must be the name of an index that was created automatically
-due to a PRIMARY KEY or UNIQUE clause in the CREATE TABLE statement.
-To see what a table's indexes are, use ``PRAGMA index_list (table-name)``.
+due to a PRIMARY KEY or UNIQUE clause in the :ref:`CREATE TABLE <sql_create_table>` statement.
+To see what a table's indexes are, use :samp:`PRAGMA index_list ({table-name})`.
 
 Rules: none
 
@@ -772,7 +774,7 @@ Actions:
 #. Tarantool throws an error if the index does not exist, or is an automatically
    created index.
 #. Tarantool will drop the index.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Example:
 
@@ -802,7 +804,7 @@ Syntax:
 
 Insert one or more new rows into a table.
 
-The *table-name* must be a name of a table defined earlier with CREATE TABLE.
+The *table-name* must be a name of a table defined earlier with :ref:`CREATE TABLE <sql_create_table>`.
 
 The optional *column-list* must be a comma-separated list of names of columns
 in the table.
@@ -816,7 +818,8 @@ Rules:
 * The order of the values in the *expression-list* must correspond to the order
   of the columns in the table, or (if a *column-list* is specified) to the order
   of the columns in the *column-list*.
-* The data type of the value should correspond to the data type of the column,
+* The data type of the value should correspond to the
+  :ref:`data type of the column <sql_column_def_data_type>`,
   that is, the data type that was specified with CREATE TABLE.
 * If a *column-list* is not specified, then the number of expressions must be
   the same as the number of columns in the table.
@@ -875,7 +878,7 @@ SET column-name = expression [, column-name = expression ...]
 Update zero or more existing rows in a table.
 
 The *table-name* must be a name of a table defined earlier with
-CREATE TABLE or CREATE VIEW.
+:ref:`CREATE TABLE <sql_create_table>` or :ref:`CREATE VIEW <sql_create_view>`.
 
 The *column-name* must be an updatable column in the table.
 
@@ -885,7 +888,8 @@ invocations and column names.
 Rules:
 
 * The values in the SET clause are evaluated from left to right.
-* The data type of the value should correspond to the data type of the column,
+* The data type of the value should correspond to the
+  :ref:`data type of the column <sql_column_def_data_type>`,
   that is, the data type that was specified with CREATE TABLE.
 * If a *search-condition* is not specified, then all rows in the table will be
   updated; otherwise only those rows which match the *search-condition* will be
@@ -951,7 +955,7 @@ Syntax:
 Delete zero or more existing rows in a table.
 
 The *table-name* must be a name of a table defined earlier with
-CREATE TABLE or CREATE VIEW.
+:ref:`CREATE TABLE <sql_create_table>` or :ref:`CREATE VIEW <sql_create_view>`.
 
 The *search-condition* may contain literals and operators and subqueries and
 function invocations and column names.
@@ -1004,7 +1008,7 @@ Insert one or more new rows into a table, or update existing rows.
 
 If a row already exists (as determined by the primary key or any unique key),
 then the action is delete + insert, and the rules are the same as for a
-DELETE statement followed by an INSERT statement.
+:ref:`DELETE statement <sql_delete>` followed by an :ref:`INSERT statement <sql_insert>`.
 Otherwise the action is insert, and the rules are the same as for the
 INSERT statement.
 
@@ -1064,22 +1068,23 @@ Rules:
 * Triggers on different tables or views share the same namespace.
 * The statements between BEGIN and END should not refer to the *table-name*
   mentioned in the ON clause.
-* The statements between BEGIN and END should not contain an INDEXED BY clause.
+* The statements between BEGIN and END should not contain an
+  :ref:`INDEXED BY <sql_indexed_by>` clause.
 
-SQL triggers are not fired upon Tarantool/NoSQL requests.
-This will change in version 2.2.
+SQL triggers are not activated by Tarantool/NoSQL requests.
+This will change in version a future version.
 
-On a replica, effects of trigger execution are applied, and the SQL triggers
+On a :ref:`replica <Replication>`, effects of trigger execution are applied, and the SQL triggers
 themselves are not fired upon replication events.
 
-NoSQL triggers are fired both on replica and master, thus if you have a NoSQL
-trigger on replica, it is fired when applying effects of an SQL trigger.
+NoSQL triggers are fired both on replica and master, thus if you have a
+:ref:`NoSQL trigger <triggers>` on a replica, it is activated when applying effects of an SQL trigger.
 
 Actions:
 
 #. Tarantool will throw an error if a rule is violated.
 #. Tarantool will create a new trigger.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -1122,7 +1127,7 @@ Trigger extra clauses
 * :samp:`WHEN`
 
   After *table-name* FOR EACH ROW it is optional to add [``WHEN expression``].
-  If the expression is true at the time the row is processed, only then the
+  If the expression is true at the time the row is processed, only then will the
   trigger will be activated for that row. For example:
 
   .. code-block:: sql
@@ -1171,16 +1176,18 @@ Trigger extra clauses
 
 * Deprecated or illegal statements:
 
-  It is legal for the trigger action to include a SELECT statement or a REPLACE
-  statement, but not recommended.
+  It is legal for the trigger action to include a
+  :ref:`SELECT statement <sql_select>` or a
+  :ref:`REPLACE statement <sql_replace>`, but not recommended.
 
   It is illegal for the trigger action to include a qualified column reference
   other than ``OLD.column-name`` or ``NEW.column-name``. For example,
   ``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1 = 5; END;``
   is illegal.
 
-  It is illegal for the trigger action to include statements that include a WITH
-  clause, a DEFAULT VALUES clause, or an INDEXED BY clause.
+  It is illegal for the trigger action to include statements that include a
+  :ref:`WITH clause <sql_with>`,
+  a DEFAULT VALUES clause, or an :ref:`INDEXED BY <sql_indexed_by>` clause.
 
   It is usually not a good idea to have a trigger on ``table1`` which causes
   a change on ``table2``, and at the same time have a trigger on ``table2``
@@ -1311,7 +1318,9 @@ operates in this order (a basic scheme):
 
 However, Tarantool does not guarantee execution order when there are multiple
 constraints, or multiple triggers for the same event (including NoSQL
-``on_replace`` triggers or SQL INSTEAD OF triggers that affect a view of table
+:ref:`on_replace triggers <box_space-on_replace>`
+or SQL
+:ref:`INSTEAD OF triggers <sql_instead_of_triggers>` that affect a view of table
 ``X``).
 
 The maximum number of trigger activations per statement is 32.
@@ -1342,7 +1351,7 @@ underlying base table:
    -- ... The result will be: table t1 will contain a new row.
 
 INSTEAD OF triggers are only legal for views, while
-BEFORE or AFTER triggers are not legal for views.
+BEFORE or AFTER triggers are only legal for base tables.
 
 It is legal to create INSTEAD OF triggers with triggered WHEN clauses.
 
@@ -1380,7 +1389,7 @@ Syntax:
 Drop a trigger.
 
 The *trigger-name* must identify a trigger that was created earlier with the
-CREATE TRIGGER statement.
+:ref:`CREATE TRIGGER <sql_create_trigger>` statement.
 
 Rules: none
 
@@ -1388,7 +1397,7 @@ Actions:
 
 #. Tarantool returns an error if the trigger does not exist.
 #. The trigger is dropped.
-#. Tarantool effectively executes a COMMIT statement.
+#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -1419,7 +1428,8 @@ Syntax:
 Remove all rows in the table.
 
 TRUNCATE is considered to be a schema-change rather than a data-change statement,
-so it does not work within transactions (it cannot be rolled back).
+so it does not work within transactions (it cannot be
+:ref:`rolled back <sql_rollback>`).
 
 Rules:
 
@@ -1432,10 +1442,12 @@ Actions:
 
 #. All rows in the table are removed. Usually this is faster than
    :samp:`DELETE FROM {table-name};`.
-#. If the table has an autoincrement primary key, its sequence is reset to zero.
+#. If the table has an autoincrement primary key, its
+   :ref:`sequence <box_schema-sequence_create_index>` is reset to zero.
 #. There is no effect for any triggers associated with the table.
 #. There is no effect on the counts for the ``ROW_COUNT()`` function.
-#. Only one action is written to the write-ahead log
+#. Only one action is written to the
+   :ref:`write-ahead log <internals-wal>`
    (with :samp:`DELETE FROM {table-name};` there would be one action for each deleted
    row).
 
@@ -1489,13 +1501,13 @@ select-list-column:`
 
 |br|
 
-Define what will be in a result set; this is a clause in a SELECT statement.
+Define what will be in a result set; this is a clause in a :ref:`SELECT statement <sql_select>`.
 
 The *select-list* is a comma-delimited list of expressions, or ``*`` (asterisk).
-An expression can have an alias provided with ``[AS [column-name]]`` clause.
+An expression can have an alias provided with an ``[AS [column-name]]`` clause.
 
 The ``*`` "asterisk" shorthand is valid if and only if the SELECT statement also
-contains a FROM clause which specifies the table or tables
+contains a :ref:`FROM clause <sql_from>` which specifies the table or tables
 (details about the FROM clause are in the next section). The simple form is
 ``*``
 which means "all columns" -- for example, if the select is done for a table
@@ -1551,7 +1563,7 @@ Syntax:
 
 |br|
 
-Specify the table or tables for the source of a SELECT statement.
+Specify the table or tables for the source of a :ref:`SELECT statement <sql_select>`.
 
 The *table-reference* must be a name of an existing table, or a subquery, or
 a joined table.
@@ -1607,7 +1619,7 @@ Syntax:
 |br|
 
 Specify the condition for filtering rows from a table; this is a clause in
-a SELECT or UPDATE or DELETE statement.
+a :ref:`SELECT <sql_select>` or :ref:`UPDATE <sql_update>` or :ref:`DELETE <sql_delete>` statement.
 
 The condition may contain any expression that returns a BOOLEAN
 (TRUE or FALSE or UNKNOWN) value.
@@ -1646,12 +1658,12 @@ Syntax:
 
 |br|
 
-Make a grouped table; this is a clause in a SELECT statement.
+Make a grouped table; this is a clause in a :ref:`SELECT statement <sql_select>`.
 
 The expressions should be column names in the table, and each column should be
 specified only once.
 
-In effect, GROUP BY clause takes a table with rows that may have matching values,
+In effect, the GROUP BY clause takes a table with rows that may have matching values,
 combines rows that have matching values into single rows,
 and returns a table which, because it is the result of GROUP BY,
 is called a grouped table.
@@ -1728,9 +1740,9 @@ Apply a built-in aggregate function to one or more expressions and return
 a scalar value.
 
 Aggregate functions are only legal in certain clauses
-of SELECT for grouped tables. (A table is a grouped
+of a :ref:`SELECT statement <sql_select>` for grouped tables. (A table is a grouped
 table if a GROUP BY clause is present.) Also, if
-an aggregate function is used in a select-list and
+an aggregate function is used in a select-list and the
 GROUP BY clause is omitted, then Tarantool assumes
 ``SELECT ... GROUP BY [all columns];``.
 
@@ -1799,7 +1811,7 @@ Syntax:
 |br|
 
 Specify the condition for filtering rows from a grouped table;
-this is a clause in a SELECT statement.
+this is a clause in a :ref:`SELECT statement <sql_select>`.
 
 The clause preceding the HAVING clause may be a GROUP BY clause.
 HAVING operates on the table that the GROUP BY produces,
@@ -1851,7 +1863,7 @@ Syntax:
 
 |br|
 
-Put rows in order; this is a clause in a SELECT statement.
+Put rows in order; this is a clause in a :ref:`SELECT statement <sql_select>`.
 
 An ORDER BY expression has one of three types which are checked in order:
 
@@ -1880,7 +1892,8 @@ For example, in the statement |br|
 ``ORDER BY UPPER(z)`` means "order by the uppercase form of column ``t.z``",
 which may be similar to doing ordering in a case-insensitive manner.
 
-Type 3 is illegal if the SELECT statement contains UNION or EXCEPT or INTERSECT.
+Type 3 is illegal if the SELECT statement contains
+:ref:`UNION or EXCEPT or INTERSECT <sql_union>`.
 
 If an ORDER BY clause contains multiple expressions, then expressions on the
 left are processed first and expressions on the right are processed only if
@@ -1897,7 +1910,7 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then numbers (INTEGER or NUMBER), then STRINGs, then VARBINARYs.
+* NULLs come first, then BOOLEANs, then numbers (INTEGER or NUMBER), then STRINGs, then VARBINARYs.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified within the ORDER BY column-list, or may be default.
 
@@ -1956,13 +1969,13 @@ Syntax:
 |br|
 
 Specify a maximum number of rows and a start row; this is a clause in
-a SELECT statement.
+a :ref:`SELECT statement <sql_select>`.
 
 Expressions may contain integers and arithmetic operators or functions,
 for example ``ABS(-3 / 1)``.
 However, the result must be an integer value greater than or equal to zero.
 
-Usually the LIMIT clause follows an ORDER BY clause, because otherwise
+Usually the LIMIT clause follows an :ref:`ORDER BY clause <sql_order_by>`, because otherwise
 Tarantool does not guarantee that rows are in order.
 
 Examples:
@@ -2002,10 +2015,10 @@ Syntax:
 
 Select one or more rows.
 
-VALUES has the same effect as SELECT, that is, it returns a result set,
+VALUES has the same effect as :ref:`SELECT <sql_select>`, that is, it returns a result set,
 but VALUES statements may not have FROM or GROUP or ORDER BY or LIMIT clauses.
 
-VALUES may be used wherever SELECT may be used, for example in subqueries.
+VALUES may be used wherever SELECT may be used, for example in :ref:`subqueries <sql_subquery>`.
 
 Examples:
 
@@ -2029,7 +2042,8 @@ Syntax:
 * :ref:`SELECT-statement <sql_select>` syntax
 * :ref:`VALUES-statement <sql_values>` syntax
 
-A subquery has the same syntax as a SELECT statement or VALUES statement
+A subquery has the same syntax as a :ref:`SELECT statement <sql_select>`
+or :ref:`VALUES statement <sql_values>`
 embedded inside a main statement.
 
 .. NOTE::
@@ -2037,13 +2051,13 @@ embedded inside a main statement.
    The SELECT and VALUES statements are called "queries" because they
    return answers, in the form of result sets.
 
-Subqueries may be the second part of INSERT statements. For example:
+Subqueries may be the second part of :ref:`INSERT statements <sql_insert>`. For example:
 
 .. code-block:: sql
 
    INSERT INTO t2 SELECT a, b, c FROM t1;
 
-Subqueries may be in the FROM clause of SELECT statements.
+Subqueries may be in the :ref:`FROM clause <sql_from>` of SELECT statements.
 
 Subqueries may be expressions, or be inside expressions.
 In this case they must be parenthesized, and usually the number of rows
@@ -2101,7 +2115,7 @@ Syntax:
 
    WITH v AS (SELECT * FROM t) SELECT * FROM v;
 
-is equivalent to creating a view and selecting from it:
+is equivalent to :ref:`creating a view <sql_create_view>` and selecting from it:
 
 .. code-block:: sql
 
@@ -2111,7 +2125,7 @@ is equivalent to creating a view and selecting from it:
 The difference is that a WITH-clause "view" is temporary and only
 useful within the same statement. No CREATE privilege is required.
 
-The WITH-clause can also be thought of as a subquery that has a name.
+The WITH-clause can also be thought of as a :ref:`subquery <sql_subquery>` that has a name.
 This is useful when the same subquery is being repeated. For example:
 
 .. code-block:: sql
@@ -2137,7 +2151,7 @@ Examples:
      WHERE s1 = (SELECT s1 FROM cte) OR s3 = (SELECT s1 FROM cte);
 
 WITH can only be used at the beginning of a statement, therefore it cannot
-be used at the beginning of a subquery or after a set operator or inside
+be used at the beginning of a subquery or after a :ref:`set operator <sql_union>` or inside
 a CREATE statement.
 
 A WITH-clause "view" is read-only because Tarantool does not support
@@ -2152,7 +2166,7 @@ WITH RECURSIVE
 **WITH RECURSIVE clause (iterative common table expression)**
 
 The real power of WITH lies in the WITH RECURSIVE clause, which is useful when
-it is combined with UNION or UNION ALL:
+it is combined with :ref:`UNION or UNION ALL <sql_union>`:
 
 :samp:`WITH RECURSIVE recursive-table-name AS` |br|
 :samp:`(SELECT ... FROM non-recursive-table-name ...` |br|
@@ -2265,7 +2279,7 @@ The *select-statements* may be chained: ``SELECT ... SELECT ... SELECT ...;``
 
 Each *select-statement* must result in the same number of columns.
 
-The *select-statements* may be replaced with VALUES statements.
+The *select-statements* may be replaced with :ref:`VALUES statements <sql_values>`.
 
 The maximum number of set operations is 50.
 
@@ -2325,7 +2339,8 @@ Syntax:
 
 |br|
 
-The INDEXED BY clause may be used in a SELECT, DELETE, or UPDATE statement,
+The INDEXED BY clause may be used in a
+:ref:`SELECT <sql_select>`, :ref:`DELETE <sql_delete>`, or :ref:`UPDATE <sql_update>` statement,
 immediately after the *table-name*. For example:
 
 .. code-block:: sql
@@ -2394,14 +2409,14 @@ Start a transaction. After ``START TRANSACTION;``, a transaction is "active".
 If a transaction is already active, then ``START TRANSACTION;`` is illegal.
 
 Transactions should be active for fairly short periods of time, to avoid
-concurrency issues. To end a transaction, say ``COMMIT;`` or ``ROLLBACK;``.
+concurrency issues. To end a transaction, say :ref:`COMMIT; <sql_commit>` or :ref:`ROLLBACK; <sql_rollback>`.
 
-Just like in NoSQL, transaction control statements are subject to limitations
-set by the storage engine involved:
+Just as in NoSQL, transaction control statements are subject to limitations
+set by the :ref:`storage engine <engines-chapter>` involved:
 
-* For memtx storage engine, if a yield happens
+* For the memtx storage engine, if a yield happens
   within an active transaction, the transaction is rolled back.
-* For vinyl engine, yields are allowed.
+* For the vinyl engine, yields are allowed.
 
 However,transaction control statements still may not work as you expect when
 run over a network connection:
@@ -2488,7 +2503,7 @@ Syntax:
 
 |br|
 
-Set a savepoint, so that ROLLBACK TO *savepoint-name* is possible.
+Set a savepoint, so that :ref:`ROLLBACK TO savepoint-name <sql_rollback>` is possible.
 
 SAVEPOINT is illegal unless a transaction is active.
 
@@ -2518,7 +2533,7 @@ Syntax:
 
 |br|
 
-Release (destroy) a savepoint created by SAVEPOINT statement.
+Release (destroy) a savepoint created by a :ref:`SAVEPOINT statement <sql_savepoint>`.
 
 RELEASE is illegal unless a transaction is active.
 
@@ -2549,12 +2564,12 @@ Syntax:
 
 If ROLLBACK does not specify a *savepoint-name*,
 rollback an active transaction, so all changes
-since START TRANSACTION are cancelled,
+since :ref:`START TRANSACTION <sql_start_transaction>` are cancelled,
 and the transaction ends.
 
 If ROLLBACK does specify a *savepoint-name*,
 rollback an active transaction, so all changes
-since *savepoint-name* are cancelled,
+since :ref:`SAVEPOINT savepoint-name <sql_savepoint>` are cancelled,
 and the transaction does not end.
 
 ROLLBACK is illegal unless a transaction is active.
@@ -2745,7 +2760,7 @@ Syntax:
 
 Return a string formatted according to the rules of the C
 ``sprintf()`` function, where ``%d%s`` means the next two arguments
-are a number and a string, etc.
+are a number and a string, and so on.
 
 If an argument is missing or is NULL, it becomes:
 
@@ -2806,7 +2821,7 @@ Syntax:
 
 Return the Unicode code point value of the first character of **string-expression**.
 If *string-expression* is empty, the return is NULL.
-This is the reverse of CHAR(integer).
+This is the reverse of :ref:`CHAR(integer) <sql_function_char>`.
 
 Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429).
 
@@ -2837,4 +2852,4 @@ Syntax:
 
 Return the Tarantool version.
 
-Example: for a March 2019 build VERSION() is ``2.1.1-374-g27283debc``.
+Example: for a December 2019 build VERSION() is ``2.3.0-258-g960e9c0c7``.
