@@ -11,5 +11,9 @@ stack (
     '(',
     loop(line(choice('column-definition','table-constraint')),','),
     ')'
+  ),
+  choice(
+    None,
+    line(' WITH ', ' ENGINE ', ' = ', 'string')
   )
 )

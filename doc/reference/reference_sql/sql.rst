@@ -95,7 +95,8 @@ CREATE TABLE
 
 Syntax:
 
-:samp:`CREATE TABLE [IF NOT EXISTS] {table-name} ((column-definition or table-constraint list);`
+:samp:`CREATE TABLE [IF NOT EXISTS] {table-name} ((column-definition or table-constraint list)`
+:samp:`[WITH ENGINE = {string}];`
 
 |br|
 
@@ -131,6 +132,13 @@ Rules:
 * There must be at least one column.
 * When ``IF NOT EXISTS`` is specified, and there is already a table with the same
   name, the statement is ignored.
+* When :samp:`WITH ENGINE = {string}` is specified,
+  where :samp:`string}` must be either 'memtx' or 'vinyl',
+  the table is created with that engine.
+  When this clause is not specified,
+  the table is created with the default engine,
+  which is ordinarily 'memtx' but may be changed with
+  :samp:`PRAGMA sql_default_engine({string})`.
 
 Actions:
 
