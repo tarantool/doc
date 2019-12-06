@@ -56,7 +56,7 @@ Below is a list of all ``http`` functions.
     It affects libcurl  `CURLMOPT_MAX_TOTAL_CONNECTIONS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAX_TOTAL_CONNECTIONS.html>`_.
     It is ignored if the curl version is less than 7.30.
     The default is 0, which allows libcurl to scale according to easy handles count.
-    
+
     The default option values are usually good enough but in rare cases it
     might be good to set them. In that case here are two tips.
 
@@ -69,7 +69,7 @@ Below is a list of all ``http`` functions.
     unless you are confident about your actions.
     When ``max_connections`` is less then ``max_total_connections``, in some cases
     libcurl will not reuse sockets for requests that are going to the same host.
-    If the limit is reached and a new request occurs, then 
+    If the limit is reached and a new request occurs, then
     libcurl will first create a new socket, send the request, wait for the first connection
     to be free, and close it, in order to avoid exceeding the ``max_connections`` cache size.
     In the worst case, libcurl will create a new socket for every request,
@@ -151,13 +151,14 @@ Below is a list of all ``http`` functions.
             name is bigger than this value, it is truncated to this length.
             The default value is '32'.
 
-        :return: connection information, with all of these components:
+        :return: response information, with all of these components:
 
           * ``status`` - HTTP response status
           * ``reason`` - HTTP response status text
           * ``headers`` - a Lua table with normalized HTTP headers
           * ``body`` - response body
           * ``proto`` - protocol version
+          * ``cookies`` - a Lua table with response cookies
 
         :rtype: table
 
