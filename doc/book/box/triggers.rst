@@ -84,10 +84,7 @@ To get a list of triggers, you can use:
 * space_object:before_replace() to return all replace-trigger functions made for before_replace().
 * box.ctl.on_shutdown() to return all shutdown-trigger functions made for on_shutdown().
 * box.ctl.on_schema_init() to return all initialization-trigger functions made for on_schema_init().
-<<<<<<< HEAD:doc/book/box/triggers.rst
 * swim_object:on_member_event() to return all member triggers made for on_member_event().
-=======
->>>>>>> 36a6d477... Fixes gh-734 document box.ctl.on_schema_init triggers:doc/2.1/book/box/triggers.rst
 
 **Example**
 
