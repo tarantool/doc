@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-15 13:18+0000\n"
+"POT-Creation-Date: 2019-12-06 17:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgid "To take a mixed backup:"
 msgstr ""
 
 #: ../doc/book/admin/backups.rst:63
-msgid "Issue :ref:`box.backup.start() <admin-backups-backup_start>` on the :ref:`administrative console <admin-security>`. This will return a list of files to back up and suspend garbage collection for them till the next ``box.backup.stop()``."
+msgid "Issue :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` on the :ref:`administrative console <admin-security>`. This will return a list of files to back up and suspend garbage collection for them till the next ``box.backup.stop()``."
 msgstr ""
 
 #: ../doc/book/admin/backups.rst:67
@@ -166,9 +166,9 @@ msgid "Signal"
 msgstr ""
 
 #: ../doc/book/admin/daemon_supervision.rst:22
-#: ../doc/book/box/box_schema.rst:131
+#: ../doc/book/box/box_schema.rst:138
 #: ../doc/book/box/box_space.rst:295
-#: ../doc/book/box/data_model.rst:909
+#: ../doc/book/box/data_model.rst:907
 msgid "Effect"
 msgstr ""
 
@@ -598,7 +598,7 @@ msgid "The following steps are applicable only to data in memtx storage engine. 
 msgstr ""
 
 #: ../doc/book/admin/disaster_recovery.rst:115
-msgid "Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable deletion of expired checkpoints with :ref:`box.backup.start() <admin-backups-backup_start>`. This will prevent the Tarantool garbage collector from removing files made with older checkpoints until :ref:`box.backup.stop() <admin-backups-backup_start>` is called."
+msgid "Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable deletion of expired checkpoints with :ref:`box.backup.start() <reference_lua-box_backup-backup_start>`. This will prevent the Tarantool garbage collector from removing files made with older checkpoints until :ref:`box.backup.stop() <reference_lua-box_backup-backup_stop>` is called."
 msgstr ""
 
 #: ../doc/book/admin/disaster_recovery.rst:120
@@ -1212,13 +1212,13 @@ msgstr ""
 #: ../doc/book/admin/server_introspection.rst:133
 #: ../doc/book/admin/server_introspection.rst:643
 #: ../doc/book/box/authentication.rst:300
-#: ../doc/book/box/box_schema.rst:186
+#: ../doc/book/box/box_schema.rst:193
 #: ../doc/book/box/box_session.rst:182
 #: ../doc/book/box/box_session.rst:240
 #: ../doc/book/box/box_session.rst:270
 #: ../doc/book/box/box_session.rst:316
 #: ../doc/book/box/box_session.rst:557
-#: ../doc/book/box/triggers.rst:89
+#: ../doc/book/box/triggers.rst:85
 msgid "**Example**"
 msgstr ""
 
@@ -5395,6 +5395,7 @@ msgstr ""
 
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
+#: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_index.rst:0
 #: ../doc/book/box/box_index.rst:0
 #: ../doc/book/box/box_index.rst:0
@@ -5471,6 +5472,7 @@ msgstr ""
 msgid "maximum number of seconds to wait"
 msgstr ""
 
+#: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_ctl.rst:0
 #: ../doc/book/box/box_index.rst:0
@@ -5559,6 +5561,7 @@ msgstr ""
 
 #: ../doc/book/box/box_ctl.rst:36
 #: ../doc/book/box/box_ctl.rst:60
+#: ../doc/book/box/box_ctl.rst:126
 #: ../doc/book/box/box_index.rst:117
 #: ../doc/book/box/box_index.rst:503
 #: ../doc/book/box/box_index.rst:643
@@ -5575,23 +5578,23 @@ msgstr ""
 #: ../doc/book/box/box_introspection.rst:14
 #: ../doc/book/box/box_introspection.rst:78
 #: ../doc/book/box/box_introspection.rst:141
-#: ../doc/book/box/box_schema.rst:280
-#: ../doc/book/box/box_schema.rst:318
-#: ../doc/book/box/box_schema.rst:352
-#: ../doc/book/box/box_schema.rst:391
-#: ../doc/book/box/box_schema.rst:413
-#: ../doc/book/box/box_schema.rst:458
-#: ../doc/book/box/box_schema.rst:477
-#: ../doc/book/box/box_schema.rst:492
-#: ../doc/book/box/box_schema.rst:523
-#: ../doc/book/box/box_schema.rst:554
-#: ../doc/book/box/box_schema.rst:571
-#: ../doc/book/box/box_schema.rst:613
-#: ../doc/book/box/box_schema.rst:717
-#: ../doc/book/box/box_schema.rst:752
-#: ../doc/book/box/box_schema.rst:768
-#: ../doc/book/box/box_schema.rst:793
-#: ../doc/book/box/box_schema.rst:941
+#: ../doc/book/box/box_schema.rst:287
+#: ../doc/book/box/box_schema.rst:325
+#: ../doc/book/box/box_schema.rst:359
+#: ../doc/book/box/box_schema.rst:398
+#: ../doc/book/box/box_schema.rst:420
+#: ../doc/book/box/box_schema.rst:465
+#: ../doc/book/box/box_schema.rst:484
+#: ../doc/book/box/box_schema.rst:499
+#: ../doc/book/box/box_schema.rst:530
+#: ../doc/book/box/box_schema.rst:561
+#: ../doc/book/box/box_schema.rst:578
+#: ../doc/book/box/box_schema.rst:620
+#: ../doc/book/box/box_schema.rst:724
+#: ../doc/book/box/box_schema.rst:759
+#: ../doc/book/box/box_schema.rst:775
+#: ../doc/book/box/box_schema.rst:800
+#: ../doc/book/box/box_schema.rst:948
 #: ../doc/book/box/box_slab.rst:55
 #: ../doc/book/box/box_slab.rst:114
 #: ../doc/book/box/box_slab.rst:156
@@ -5652,6 +5655,98 @@ msgid "tarantool> box.ctl.wait_rw(0.1)\n"
 "..."
 msgstr ""
 
+#: ../doc/book/box/box_ctl.rst:70
+msgid "The ``box.ctl`` submodule also contains two functions for the two :ref:`server trigger <triggers>` definitions: ``on_shutdown`` and ``on_schema_init``."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:75
+msgid "Create a \"shutdown :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed whenever   :ref:`os.exit() <os-exit>` happens, or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination)."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:82
+#: ../doc/book/box/box_session.rst:306
+#: ../doc/book/box/box_session.rst:342
+#: ../doc/book/box/box_session.rst:417
+#: ../doc/book/box/box_txn_management.rst:201
+msgid "function which will become the trigger function"
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:84
+#: ../doc/book/box/box_session.rst:307
+#: ../doc/book/box/box_session.rst:343
+#: ../doc/book/box/box_session.rst:418
+#: ../doc/book/box/box_txn_management.rst:203
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:87
+#: ../doc/book/box/box_session.rst:308
+#: ../doc/book/box/box_session.rst:344
+#: ../doc/book/box/box_session.rst:419
+#: ../doc/book/box/box_space.rst:1082
+#: ../doc/book/box/box_space.rst:1168
+#: ../doc/book/box/box_txn_management.rst:205
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:89
+#: ../doc/book/box/box_ctl.rst:111
+#: ../doc/book/box/box_session.rst:310
+#: ../doc/book/box/box_session.rst:346
+#: ../doc/book/box/box_session.rst:421
+#: ../doc/book/box/box_space.rst:1084
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:92
+#: ../doc/book/box/box_ctl.rst:124
+#: ../doc/book/box/box_session.rst:314
+#: ../doc/book/box/box_session.rst:350
+#: ../doc/book/box/box_session.rst:425
+#: ../doc/book/box/box_space.rst:1094
+#: ../doc/book/box/box_space.rst:1179
+#: ../doc/book/box/box_txn_management.rst:210
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:98
+msgid "Create a \"schema_init :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed when :ref:`box.cfg{} <index-book_cfg>` happens for the first time. That is, the ``schema_init`` trigger is called before the server's configuration and recovery begins, and therefore ``box.ctl.on_schema_init`` must be called before ``box.cfg`` is called."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:105
+msgid "Parameter: trigger-function (function) – function which will become the trigger function"
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:107
+msgid "Parameter: old-trigger-function (function) – existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:109
+msgid "Return:    nil or function pointer"
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:114
+msgid "A common use is: make a ``schema_init`` trigger function which creates a ``before_replace`` trigger function on a system space. Thus, since system spaces are created when the server starts, the ``before_replace`` triggers will be activated for each tuple in each system space. For example, such a trigger could change the storage engine of a given space, or make a given space replica-local while a replica is being bootstrapped. Making such a change after ``box.cfg`` is not reliable because other connections might use the database before the change can be made."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:128
+msgid "Suppose that, before the server is fully up and ready for connections, you want to make sure that the engine of space ``space_name`` is vinyl. So you want to make a trigger that will be activated when a tuple is inserted in the ``_space`` system space. In this case you could end up with a master that has space-name with ``engine='memtx'`` and a replica that has space_name with ``engine='vinyl'``, with the same contents."
+msgstr ""
+
+#: ../doc/book/box/box_ctl.rst:137
+msgid "function function_for_before_replace(old, new)\n"
+"  if new[3] == 'space_name' and new[4] ~= 'vinyl' then\n"
+"    return new:update{{'=', 4, 'vinyl'}}\n"
+"  end\n"
+"end\n"
+"\n"
+"box.ctl.on_schema_init(function()\n"
+"  box.space._space:before_replace(function_for_before_replace)\n"
+"end)\n"
+"\n"
+"box.cfg{replication='master_uri', ...}"
+msgstr ""
+
 #: ../doc/book/box/box_index.rst:5
 msgid "Submodule `box.index`"
 msgstr ""
@@ -5677,7 +5772,7 @@ msgstr ""
 #: ../doc/book/box/box_space.rst:19
 #: ../doc/book/box/box_tuple.rst:20
 #: ../doc/book/box/box_txn_management.rst:48
-#: ../doc/book/box/data_model.rst:66
+#: ../doc/book/box/data_model.rst:68
 msgid "Index"
 msgstr ""
 
@@ -5687,7 +5782,7 @@ msgstr ""
 
 #: ../doc/book/box/box_index.rst:29
 #: ../doc/book/box/box_schema.rst:28
-#: ../doc/book/box/box_schema.rst:131
+#: ../doc/book/box/box_schema.rst:138
 #: ../doc/book/box/box_session.rst:29
 #: ../doc/book/box/box_slab.rst:29
 #: ../doc/book/box/box_space.rst:29
@@ -5721,8 +5816,8 @@ msgid ":ref:`index_object.type <box_index-type>`"
 msgstr ""
 
 #: ../doc/book/box/box_index.rst:34
-#: ../doc/book/box/data_model.rst:278
-#: ../doc/book/box/data_model.rst:920
+#: ../doc/book/box/data_model.rst:280
+#: ../doc/book/box/data_model.rst:918
 msgid "Index type"
 msgstr ""
 
@@ -5931,12 +6026,12 @@ msgid "rtype"
 msgstr ""
 
 #: ../doc/book/box/box_index.rst:100
-#: ../doc/book/box/box_schema.rst:152
-#: ../doc/book/box/box_schema.rst:158
+#: ../doc/book/box/box_schema.rst:159
 #: ../doc/book/box/box_schema.rst:165
+#: ../doc/book/box/box_schema.rst:172
 #: ../doc/book/box/box_space.rst:305
 #: ../doc/book/box/box_space.rst:307
-#: ../doc/book/box/data_model.rst:155
+#: ../doc/book/box/data_model.rst:157
 msgid "boolean"
 msgstr ""
 
@@ -5952,7 +6047,7 @@ msgstr ""
 #: ../doc/book/box/box_index.rst:945
 #: ../doc/book/box/box_info.rst:202
 #: ../doc/book/box/box_introspection.rst:76
-#: ../doc/book/box/box_schema.rst:141
+#: ../doc/book/box/box_schema.rst:148
 #: ../doc/book/box/box_slab.rst:53
 #: ../doc/book/box/box_slab.rst:112
 #: ../doc/book/box/box_slab.rst:154
@@ -6078,7 +6173,7 @@ msgstr ""
 #: ../doc/book/box/box_index.rst:315
 #: ../doc/book/box/box_index.rst:351
 #: ../doc/book/box/box_index_rtree.csv:1
-#: ../doc/book/box/box_schema.rst:131
+#: ../doc/book/box/box_schema.rst:138
 #: ../doc/book/box/box_space.rst:295
 #: ../doc/book/box/box_space.rst:2294
 msgid "Type"
@@ -6692,8 +6787,8 @@ msgstr ""
 
 #: ../doc/book/box/box_index.rst:756
 #: ../doc/book/box/box_index.rst:913
-#: ../doc/book/box/box_schema.rst:135
-#: ../doc/book/box/box_schema.rst:148
+#: ../doc/book/box/box_schema.rst:142
+#: ../doc/book/box/box_schema.rst:155
 #: ../doc/book/box/box_session.rst:82
 #: ../doc/book/box/box_session.rst:89
 #: ../doc/book/box/box_session.rst:118
@@ -6784,15 +6879,15 @@ msgstr ""
 
 #: ../doc/book/box/box_index.rst:831
 #: ../doc/book/box/box_index.rst:889
-#: ../doc/book/box/box_schema.rst:238
-#: ../doc/book/box/box_schema.rst:456
-#: ../doc/book/box/box_schema.rst:611
-#: ../doc/book/box/box_schema.rst:661
+#: ../doc/book/box/box_schema.rst:245
+#: ../doc/book/box/box_schema.rst:463
+#: ../doc/book/box/box_schema.rst:618
+#: ../doc/book/box/box_schema.rst:668
 #: ../doc/book/box/box_space.rst:749
 #: ../doc/book/box/box_space.rst:1316
 #: ../doc/book/box/box_space.rst:1375
 #: ../doc/book/box/box_space.rst:1505
-#: ../doc/book/box/data_model.rst:153
+#: ../doc/book/box/data_model.rst:155
 msgid "nil"
 msgstr ""
 
@@ -7847,348 +7942,352 @@ msgid "Below is a list of all ``box.schema`` functions."
 msgstr ""
 
 #: ../doc/book/box/box_schema.rst:30
-msgid ":ref:`box.schema.space.create() <box_schema-space_create>`"
+msgid ":ref:`box.schema.space.create() <box_schema-space_create>` or :ref:`box.schema.create_space() <box_schema-space_create>`"
 msgstr ""
 
 #: ../doc/book/box/box_schema.rst:30
 msgid "Create a space"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:33
+#: ../doc/book/box/box_schema.rst:35
 msgid ":ref:`box.schema.user.create() <box_schema-user_create>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:33
+#: ../doc/book/box/box_schema.rst:35
 msgid "Create a user"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:36
+#: ../doc/book/box/box_schema.rst:38
 msgid ":ref:`box.schema.user.drop() <box_schema-user_drop>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:36
+#: ../doc/book/box/box_schema.rst:38
 msgid "Drop a user"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:39
+#: ../doc/book/box/box_schema.rst:41
 msgid ":ref:`box.schema.user.exists() <box_schema-user_exists>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:39
+#: ../doc/book/box/box_schema.rst:41
 msgid "Check if a user exists"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:42
+#: ../doc/book/box/box_schema.rst:44
 msgid ":ref:`box.schema.user.grant() <box_schema-user_grant>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:42
+#: ../doc/book/box/box_schema.rst:44
 msgid "Grant privileges to a user or a role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:45
+#: ../doc/book/box/box_schema.rst:47
 msgid ":ref:`box.schema.user.revoke() <box_schema-user_revoke>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:45
+#: ../doc/book/box/box_schema.rst:47
 msgid "Revoke privileges from a user or a role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:48
+#: ../doc/book/box/box_schema.rst:50
 msgid ":ref:`box.schema.user.password() <box_schema-user_password>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:48
+#: ../doc/book/box/box_schema.rst:50
 msgid "Get a hash of a user's password"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:51
+#: ../doc/book/box/box_schema.rst:53
 msgid ":ref:`box.schema.user.passwd() <box_schema-user_passwd>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:51
+#: ../doc/book/box/box_schema.rst:53
 msgid "Associate a password with a user"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:54
+#: ../doc/book/box/box_schema.rst:56
 msgid ":ref:`box.schema.user.info() <box_schema-user_info>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:54
+#: ../doc/book/box/box_schema.rst:56
 msgid "Get a description of a user's privileges"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:57
+#: ../doc/book/box/box_schema.rst:59
 msgid ":ref:`box.schema.role.create() <box_schema-role_create>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:57
+#: ../doc/book/box/box_schema.rst:59
 msgid "Create a role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:60
+#: ../doc/book/box/box_schema.rst:62
 msgid ":ref:`box.schema.role.drop() <box_schema-role_drop>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:60
+#: ../doc/book/box/box_schema.rst:62
 msgid "Drop a role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:63
+#: ../doc/book/box/box_schema.rst:65
 msgid ":ref:`box.schema.role.exists() <box_schema-role_exists>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:63
+#: ../doc/book/box/box_schema.rst:65
 msgid "Check if a role exists"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:66
+#: ../doc/book/box/box_schema.rst:68
 msgid ":ref:`box.schema.role.grant() <box_schema-role_grant>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:66
+#: ../doc/book/box/box_schema.rst:68
 msgid "Grant privileges to a role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:69
+#: ../doc/book/box/box_schema.rst:71
 msgid ":ref:`box.schema.role.revoke() <box_schema-role_revoke>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:69
+#: ../doc/book/box/box_schema.rst:71
 msgid "Revoke privileges from a role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:72
+#: ../doc/book/box/box_schema.rst:74
 msgid ":ref:`box.schema.role.info() <box_schema-role_info>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:72
+#: ../doc/book/box/box_schema.rst:74
 msgid "Get a description of a role's privileges"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:75
+#: ../doc/book/box/box_schema.rst:77
 msgid ":ref:`box.schema.func.create() <box_schema-func_create>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:75
+#: ../doc/book/box/box_schema.rst:77
 msgid "Create a function tuple"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:78
+#: ../doc/book/box/box_schema.rst:80
 msgid ":ref:`box.schema.func.drop() <box_schema-func_drop>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:78
+#: ../doc/book/box/box_schema.rst:80
 msgid "Drop a function tuple"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:81
+#: ../doc/book/box/box_schema.rst:83
 msgid ":ref:`box.schema.func.exists() <box_schema-func_exists>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:81
+#: ../doc/book/box/box_schema.rst:83
 msgid "Check if a function tuple exists"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:84
+#: ../doc/book/box/box_schema.rst:86
 msgid ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:84
+#: ../doc/book/box/box_schema.rst:86
 msgid "Create a new sequence generator"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:87
+#: ../doc/book/box/box_schema.rst:89
 msgid ":ref:`sequence_object:next() <box_schema-sequence_next>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:87
+#: ../doc/book/box/box_schema.rst:89
 msgid "Generate and return the next value"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:90
+#: ../doc/book/box/box_schema.rst:92
 msgid ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:90
+#: ../doc/book/box/box_schema.rst:92
 msgid "Change sequence options"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:93
+#: ../doc/book/box/box_schema.rst:95
 msgid ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:93
+#: ../doc/book/box/box_schema.rst:95
 msgid "Reset sequence state"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:96
+#: ../doc/book/box/box_schema.rst:98
 msgid ":ref:`sequence_object:set() <box_schema-sequence_set>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:96
+#: ../doc/book/box/box_schema.rst:98
 msgid "Set the new value"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:99
+#: ../doc/book/box/box_schema.rst:101
 msgid ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:99
+#: ../doc/book/box/box_schema.rst:101
 msgid "Drop the sequence"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:102
+#: ../doc/book/box/box_schema.rst:104
 msgid ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:102
+#: ../doc/book/box/box_schema.rst:104
 #: ../doc/book/box/box_space.rst:40
 msgid "Create an index"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:110
+#: ../doc/book/box/box_schema.rst:113
 msgid "Create a :ref:`space <index-box_space>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:112
+#: ../doc/book/box/box_schema.rst:115
 msgid "name of space, which should conform to the :ref:`rules for object names <app_server-names>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:114
+#: ../doc/book/box/box_schema.rst:117
 msgid "see \"Options for box.schema.space.create\" chart, below"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:116
+#: ../doc/book/box/box_schema.rst:119
 msgid "space object"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:117
+#: ../doc/book/box/box_schema.rst:120
 msgid "userdata"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:121
+#: ../doc/book/box/box_schema.rst:122
+msgid "You can use either syntax. For example, ``s = box.schema.space.create('tester')`` has the same effect as ``s = box.schema.create_space('tester')``."
+msgstr ""
+
+#: ../doc/book/box/box_schema.rst:128
 msgid "**Options for box.schema.space.create**"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:131
+#: ../doc/book/box/box_schema.rst:138
 #: ../doc/book/box/box_space.rst:295
-#: ../doc/book/box/data_model.rst:498
+#: ../doc/book/box/data_model.rst:496
 msgid "Default"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:133
+#: ../doc/book/box/box_schema.rst:140
 msgid "engine"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:133
+#: ../doc/book/box/box_schema.rst:140
 msgid "'memtx' or 'vinyl'"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:133
-#: ../doc/book/box/box_schema.rst:173
-#: ../doc/book/box/box_schema.rst:389
+#: ../doc/book/box/box_schema.rst:140
+#: ../doc/book/box/box_schema.rst:180
+#: ../doc/book/box/box_schema.rst:396
 #: ../doc/book/box/box_session.rst:106
 #: ../doc/book/box/box_session.rst:130
 #: ../doc/book/box/box_session.rst:138
 #: ../doc/book/box/box_space.rst:336
-#: ../doc/book/box/data_model.rst:157
+#: ../doc/book/box/data_model.rst:159
 msgid "string"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:133
+#: ../doc/book/box/box_schema.rst:140
 msgid "'memtx'"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:135
+#: ../doc/book/box/box_schema.rst:142
 msgid "field_count"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:135
+#: ../doc/book/box/box_schema.rst:142
 msgid "fixed count of :ref:`fields <index-box_tuple>`: for example if field_count=5, it is illegal to insert a tuple with fewer than or more than 5 fields"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:135
+#: ../doc/book/box/box_schema.rst:142
 msgid "0 i.e. not fixed"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:141
+#: ../doc/book/box/box_schema.rst:148
 msgid "format"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:141
+#: ../doc/book/box/box_schema.rst:148
 msgid "field names and types: See the illustrations of format clauses in the :ref:`space_object:format() <box_space-format>` description and in the :ref:`box.space._space <box_space-space>` example. Optional and usually not specified."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:141
+#: ../doc/book/box/box_schema.rst:148
 msgid "(blank)"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:148
+#: ../doc/book/box/box_schema.rst:155
 #: ../doc/book/box/box_space.rst:303
 msgid "id"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:148
+#: ../doc/book/box/box_schema.rst:155
 msgid "unique identifier: users can refer to spaces with the id instead of the name"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:148
+#: ../doc/book/box/box_schema.rst:155
 msgid "last space's id, +1"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:152
+#: ../doc/book/box/box_schema.rst:159
 #: ../doc/book/box/box_space.rst:307
 msgid "if_not_exists"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:152
+#: ../doc/book/box/box_schema.rst:159
 msgid "create space only if a space with the same name does not exist already, otherwise do nothing but do not cause an error"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:152
-#: ../doc/book/box/box_schema.rst:158
+#: ../doc/book/box/box_schema.rst:159
 #: ../doc/book/box/box_schema.rst:165
-#: ../doc/book/box/data_model.rst:510
-#: ../doc/book/box/data_model.rst:520
+#: ../doc/book/box/box_schema.rst:172
+#: ../doc/book/box/data_model.rst:508
+#: ../doc/book/box/data_model.rst:518
 msgid "false"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:158
+#: ../doc/book/box/box_schema.rst:165
 msgid "is_local"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:158
+#: ../doc/book/box/box_schema.rst:165
 msgid "space contents are :ref:`replication-local <replication-local>`: changes are stored in the :ref:`write-ahead log <internals-wal>` of the local node but there is no :ref:`replication <replication>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:165
+#: ../doc/book/box/box_schema.rst:172
 msgid "temporary"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:165
+#: ../doc/book/box/box_schema.rst:172
 msgid "space contents are temporary: changes are not stored in the :ref:`write-ahead log <internals-wal>` and there is no :ref:`replication <replication>`. Note re storage engine: vinyl does not support temporary spaces."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:173
+#: ../doc/book/box/box_schema.rst:180
 #: ../doc/book/box/box_space.rst:2296
 #: ../doc/book/box/box_space.rst:2299
 msgid "user"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:173
+#: ../doc/book/box/box_schema.rst:180
 msgid "name of the user who is considered to be the space's :ref:`owner <authentication-owners_privileges>` for authorization purposes"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:173
+#: ../doc/book/box/box_schema.rst:180
 msgid "current user's name"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:179
+#: ../doc/book/box/box_schema.rst:186
 msgid "There are three :ref:`syntax variations <app_server-object_reference>` for object references targeting space objects, for example :samp:`box.schema.space.drop({space-id})` will drop a space. However, the common approach is to use functions attached to the space objects, for example :ref:`space_object:drop() <box_space-drop>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:188
+#: ../doc/book/box/box_schema.rst:195
 msgid "tarantool> s = box.schema.space.create('space55')\n"
 "---\n"
 "...\n"
@@ -8206,143 +8305,143 @@ msgid "tarantool> s = box.schema.space.create('space55')\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:206
+#: ../doc/book/box/box_schema.rst:213
 msgid "After a space is created, usually the next step is to :ref:`create an index <box_space-create_index>` for it, and then it is available for insert, select, and all the other :ref:`box.space <box_space>` functions."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:215
+#: ../doc/book/box/box_schema.rst:222
 msgid "Create a user. For explanation of how Tarantool maintains user data, see section :ref:`Users<authentication-users>` and reference on :ref:`_user <box_space-user>` space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:220
-#: ../doc/book/box/box_schema.rst:312
-#: ../doc/book/box/box_schema.rst:593
-#: ../doc/book/box/box_schema.rst:636
+#: ../doc/book/box/box_schema.rst:227
+#: ../doc/book/box/box_schema.rst:319
+#: ../doc/book/box/box_schema.rst:600
+#: ../doc/book/box/box_schema.rst:643
 msgid "The possible options are:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:222
+#: ../doc/book/box/box_schema.rst:229
 msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user already exists,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:225
+#: ../doc/book/box/box_schema.rst:232
 msgid "``password`` (default = '') - string; the ``password`` = *password* specification is good because in a :ref:`URI <index-uri>` (Uniform Resource Identifier) it is usually illegal to include a user-name without a password."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:232
+#: ../doc/book/box/box_schema.rst:239
 #: ../doc/book/box/box_space.rst:2386
 msgid "The maximum number of users is 32."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:234
+#: ../doc/book/box/box_schema.rst:241
 msgid "name of user, which should conform to the :ref:`rules for object names <app_server-names>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:236
+#: ../doc/book/box/box_schema.rst:243
 msgid "``if_not_exists``, ``password``"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:240
-#: ../doc/book/box/box_schema.rst:261
-#: ../doc/book/box/data_model.rst:649
+#: ../doc/book/box/box_schema.rst:247
+#: ../doc/book/box/box_schema.rst:268
+#: ../doc/book/box/data_model.rst:647
 msgid "**Examples:**"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:242
+#: ../doc/book/box/box_schema.rst:249
 msgid "box.schema.user.create('Lena')\n"
 "box.schema.user.create('Lena', {password = 'X'})\n"
 "box.schema.user.create('Lena', {if_not_exists = false})"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:252
+#: ../doc/book/box/box_schema.rst:259
 msgid "Drop a user. For explanation of how Tarantool maintains user data, see section :ref:`Users <authentication-users>` and reference on :ref:`_user <box_space-user>` space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:257
-#: ../doc/book/box/box_schema.rst:277
+#: ../doc/book/box/box_schema.rst:264
+#: ../doc/book/box/box_schema.rst:284
 msgid "the name of the user"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:258
+#: ../doc/book/box/box_schema.rst:265
 msgid "``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user does not exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:263
+#: ../doc/book/box/box_schema.rst:270
 msgid "box.schema.user.drop('Lena')\n"
 "box.schema.user.drop('Lena',{if_exists=false})"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:272
+#: ../doc/book/box/box_schema.rst:279
 msgid "Return ``true`` if a user exists; return ``false`` if a user does not exist. For explanation of how Tarantool maintains user data, see section :ref:`Users <authentication-users>` and reference on :ref:`_user <box_space-user>` space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:278
-#: ../doc/book/box/box_schema.rst:490
-#: ../doc/book/box/box_schema.rst:766
+#: ../doc/book/box/box_schema.rst:285
+#: ../doc/book/box/box_schema.rst:497
+#: ../doc/book/box/box_schema.rst:773
 msgid "bool"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:282
+#: ../doc/book/box/box_schema.rst:289
 msgid "box.schema.user.exists('Lena')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:292
+#: ../doc/book/box/box_schema.rst:299
 msgid "Grant :ref:`privileges <authentication-owners_privileges>` to a user or to another role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:295
-#: ../doc/book/box/box_schema.rst:337
+#: ../doc/book/box/box_schema.rst:302
+#: ../doc/book/box/box_schema.rst:344
 msgid "the name of the user."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:296
-#: ../doc/book/box/box_schema.rst:338
-#: ../doc/book/box/box_schema.rst:507
-#: ../doc/book/box/box_schema.rst:540
+#: ../doc/book/box/box_schema.rst:303
+#: ../doc/book/box/box_schema.rst:345
+#: ../doc/book/box/box_schema.rst:514
+#: ../doc/book/box/box_schema.rst:547
 msgid "'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:298
-#: ../doc/book/box/box_schema.rst:509
-#: ../doc/book/box/box_schema.rst:542
+#: ../doc/book/box/box_schema.rst:305
+#: ../doc/book/box/box_schema.rst:516
+#: ../doc/book/box/box_schema.rst:549
 msgid "'space' or 'function' or 'sequence' or 'role'."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:299
+#: ../doc/book/box/box_schema.rst:306
 msgid "name of object to grant permissions for."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:300
+#: ../doc/book/box/box_schema.rst:307
 msgid "name of role to grant to user."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:301
+#: ../doc/book/box/box_schema.rst:308
 msgid "``grantor``, ``if_not_exists``."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:303
+#: ../doc/book/box/box_schema.rst:310
 msgid "If :samp:`'function','{object-name}'` is specified, then a _func tuple with that object-name must exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:306
-#: ../doc/book/box/box_schema.rst:517
+#: ../doc/book/box/box_schema.rst:313
+#: ../doc/book/box/box_schema.rst:524
 msgid "**Variation:** instead of ``object-type, object-name`` say 'universe' which means 'all object-types and all objects'. In this case, object name is omitted."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:309
-#: ../doc/book/box/box_schema.rst:349
+#: ../doc/book/box/box_schema.rst:316
+#: ../doc/book/box/box_schema.rst:356
 msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name`` (see section :ref:`Roles <authentication-roles>`)."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:314
+#: ../doc/book/box/box_schema.rst:321
 msgid "``grantor`` = *grantor_name_or_id* -- string or number, for custom grantor,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:315
+#: ../doc/book/box/box_schema.rst:322
 msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user already has the privilege."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:320
+#: ../doc/book/box/box_schema.rst:327
 msgid "box.schema.user.grant('Lena', 'read', 'space', 'tester')\n"
 "box.schema.user.grant('Lena', 'execute', 'function', 'f')\n"
 "box.schema.user.grant('Lena', 'read,write', 'universe')\n"
@@ -8351,153 +8450,153 @@ msgid "box.schema.user.grant('Lena', 'read', 'space', 'tester')\n"
 "box.schema.user.grant('X', 'read', 'universe', nil, {if_not_exists=true}))"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:334
+#: ../doc/book/box/box_schema.rst:341
 msgid "Revoke :ref:`privileges <authentication-owners_privileges>` from a user or from another role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:340
+#: ../doc/book/box/box_schema.rst:347
 msgid "'space' or 'function' or 'sequence'."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:341
+#: ../doc/book/box/box_schema.rst:348
 msgid "the name of a function or space or sequence."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:343
+#: ../doc/book/box/box_schema.rst:350
 msgid "The user must exist, and the object must exist, but it is not an error if the user does not have the privilege."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:346
-#: ../doc/book/box/box_schema.rst:548
+#: ../doc/book/box/box_schema.rst:353
+#: ../doc/book/box/box_schema.rst:555
 msgid "**Variation:** instead of ``object-type, object-name`` say 'universe' which means 'all object-types and all objects'."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:354
+#: ../doc/book/box/box_schema.rst:361
 msgid "box.schema.user.revoke('Lena', 'read', 'space', 'tester')\n"
 "box.schema.user.revoke('Lena', 'execute', 'function', 'f')\n"
 "box.schema.user.revoke('Lena', 'read,write', 'universe')\n"
 "box.schema.user.revoke('Lena', 'Accountant')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:365
+#: ../doc/book/box/box_schema.rst:372
 msgid "Return a hash of a user's password. For explanation of how Tarantool maintains passwords, see section :ref:`Passwords <authentication-passwords>` and reference on :ref:`_user <box_space-user>` space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:371
+#: ../doc/book/box/box_schema.rst:378
 msgid "If a non-'guest' user has no password, it’s **impossible** to connect to Tarantool using this user. The user is regarded as “internal” only, not usable from a remote connection. Such users can be useful if they have defined some procedures with the :ref:`SETUID <box_schema-func_create>` option, on which privileges are granted to externally-connectable users. This way, external users cannot create/drop objects, they can only invoke procedures."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:378
+#: ../doc/book/box/box_schema.rst:385
 msgid "For the 'guest' user, it’s impossible to set a password: that would be misleading, since 'guest' is the default user on a newly-established connection over a :ref:`binary port <admin-security>`, and Tarantool does not require a password to establish a :ref:`binary connection <box_protocol-iproto_protocol>`. It is, however, possible to change the current user to ‘guest’ by providing the :ref:`AUTH packet <box_protocol-authentication>` with no password at all or an empty password. This feature is useful for connection pools, which want to reuse a connection for a different user without re-establishing it."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:388
+#: ../doc/book/box/box_schema.rst:395
 msgid "password to be hashed"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:393
+#: ../doc/book/box/box_schema.rst:400
 msgid "box.schema.user.password('ЛЕНА')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:401
+#: ../doc/book/box/box_schema.rst:408
 msgid "Associate a password with the user who is currently logged in, or with the user specified by user-name. The user must exist and must not be 'guest'."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:404
+#: ../doc/book/box/box_schema.rst:411
 msgid "Users who wish to change their own passwords should use ``box.schema.user.passwd(password)`` syntax."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:407
+#: ../doc/book/box/box_schema.rst:414
 msgid "Administrators who wish to change passwords of other users should use ``box.schema.user.passwd(user-name, password)`` syntax."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:410
+#: ../doc/book/box/box_schema.rst:417
 msgid "user-name"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:411
+#: ../doc/book/box/box_schema.rst:418
 msgid "password"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:415
+#: ../doc/book/box/box_schema.rst:422
 msgid "box.schema.user.passwd('ЛЕНА')\n"
 "box.schema.user.passwd('Lena', 'ЛЕНА')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:424
+#: ../doc/book/box/box_schema.rst:431
 msgid "Return a description of a user's :ref:`privileges <authentication-owners_privileges>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:446
+#: ../doc/book/box/box_schema.rst:453
 msgid "Create a role. For explanation of how Tarantool maintains role data, see section :ref:`Roles <authentication-roles>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:450
+#: ../doc/book/box/box_schema.rst:457
 msgid "name of role, which should conform to the :ref:`rules for object names <app_server-names>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:452
+#: ../doc/book/box/box_schema.rst:459
 msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the role already exists"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:460
+#: ../doc/book/box/box_schema.rst:467
 msgid "box.schema.role.create('Accountant')\n"
 "box.schema.role.create('Accountant', {if_not_exists = false})"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:469
+#: ../doc/book/box/box_schema.rst:476
 msgid "Drop a role. For explanation of how Tarantool maintains role data, see section :ref:`Roles <authentication-roles>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:473
-#: ../doc/book/box/box_schema.rst:489
+#: ../doc/book/box/box_schema.rst:480
+#: ../doc/book/box/box_schema.rst:496
 msgid "the name of the role"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:474
+#: ../doc/book/box/box_schema.rst:481
 msgid "``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the role does not exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:479
+#: ../doc/book/box/box_schema.rst:486
 msgid "box.schema.role.drop('Accountant')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:487
+#: ../doc/book/box/box_schema.rst:494
 msgid "Return ``true`` if a role exists; return ``false`` if a role does not exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:494
+#: ../doc/book/box/box_schema.rst:501
 msgid "box.schema.role.exists('Accountant')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:504
+#: ../doc/book/box/box_schema.rst:511
 msgid "Grant :ref:`privileges <authentication-owners_privileges>` to a role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:506
-#: ../doc/book/box/box_schema.rst:539
-#: ../doc/book/box/box_schema.rst:569
+#: ../doc/book/box/box_schema.rst:513
+#: ../doc/book/box/box_schema.rst:546
+#: ../doc/book/box/box_schema.rst:576
 msgid "the name of the role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:510
-#: ../doc/book/box/box_schema.rst:543
+#: ../doc/book/box/box_schema.rst:517
+#: ../doc/book/box/box_schema.rst:550
 msgid "the name of a function or space or sequence or role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:511
+#: ../doc/book/box/box_schema.rst:518
 msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the role already has the privilege."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:515
+#: ../doc/book/box/box_schema.rst:522
 msgid "The role must exist, and the object must exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:520
+#: ../doc/book/box/box_schema.rst:527
 msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name`` -- to grant a role to a role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:525
+#: ../doc/book/box/box_schema.rst:532
 msgid "box.schema.role.grant('Accountant', 'read', 'space', 'tester')\n"
 "box.schema.role.grant('Accountant', 'execute', 'function', 'f')\n"
 "box.schema.role.grant('Accountant', 'read,write', 'universe')\n"
@@ -8505,130 +8604,130 @@ msgid "box.schema.role.grant('Accountant', 'read', 'space', 'tester')\n"
 "box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:537
+#: ../doc/book/box/box_schema.rst:544
 msgid "Revoke :ref:`privileges <authentication-owners_privileges>` from a role."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:545
+#: ../doc/book/box/box_schema.rst:552
 msgid "The role must exist, and the object must exist, but it is not an error if the role does not have the privilege."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:551
+#: ../doc/book/box/box_schema.rst:558
 msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name``."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:556
+#: ../doc/book/box/box_schema.rst:563
 msgid "box.schema.role.revoke('Accountant', 'read', 'space', 'tester')\n"
 "box.schema.role.revoke('Accountant', 'execute', 'function', 'f')\n"
 "box.schema.role.revoke('Accountant', 'read,write', 'universe')\n"
 "box.schema.role.revoke('public', 'Accountant')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:567
+#: ../doc/book/box/box_schema.rst:574
 msgid "Return a description of a role's privileges."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:573
+#: ../doc/book/box/box_schema.rst:580
 msgid "box.schema.role.info('Accountant')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:581
+#: ../doc/book/box/box_schema.rst:588
 msgid "Create a function :ref:`tuple <index-box_tuple>`. without including the ``body`` option. (For functions created without the ``body`` option, see :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_with-body>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:586
+#: ../doc/book/box/box_schema.rst:593
 msgid "This is called a \"not persistent\" function because functions without bodies are not persistent. This does not create the function itself -- that is done with Lua -- but if it is necessary to grant privileges for a function, box.schema.func.create must be done first. For explanation of how Tarantool maintains function data, see the reference for the :ref:`box.space._func <box_space-func>` space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:595
+#: ../doc/book/box/box_schema.rst:602
 msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the ``_func`` tuple already exists."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:598
+#: ../doc/book/box/box_schema.rst:605
 msgid "``setuid`` = ``true|false`` (default = ``false``) - boolean; ``true`` means that Tarantool should treat the function’s caller as the function’s owner, with owner privileges. ``setuid`` works only over :ref:`binary ports <admin-security>`, ``setuid`` does not work if the function is invoked via an :ref:`admin console <admin-security>` or inside a Lua script."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:605
+#: ../doc/book/box/box_schema.rst:612
 msgid "``language`` = 'LUA'|'C' (default = ‘LUA’) - string."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:607
-#: ../doc/book/box/box_schema.rst:657
+#: ../doc/book/box/box_schema.rst:614
+#: ../doc/book/box/box_schema.rst:664
 msgid "name of function, which should conform to the :ref:`rules for object names <app_server-names>`"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:609
+#: ../doc/book/box/box_schema.rst:616
 msgid "``if_not_exists``, ``setuid``, ``language``."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:615
+#: ../doc/book/box/box_schema.rst:622
 msgid "box.schema.func.create('calculate')\n"
 "box.schema.func.create('calculate', {if_not_exists = false})\n"
 "box.schema.func.create('calculate', {setuid = false})\n"
 "box.schema.func.create('calculate', {language = 'LUA'})"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:626
+#: ../doc/book/box/box_schema.rst:633
 msgid "Create a function :ref:`tuple <index-box_tuple>`. including the ``body`` option. (For functions created without the ``body`` option, see :ref:`box.schema.func.create(func-name [, {options-without-body}]) <box_schema-func_create>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:631
+#: ../doc/book/box/box_schema.rst:638
 msgid "This is called a \"persistent\" function because only functions with bodies are persistent. This does create the function itself, the body is a function definition. For explanation of how Tarantool maintains function data, see the reference for the :ref:`box.space._func <box_space-func>` space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:638
+#: ../doc/book/box/box_schema.rst:645
 msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; same as for :ref:`box.schema.func.create(func-name [, {options-without-body}]) <box_schema-func_create>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:641
+#: ../doc/book/box/box_schema.rst:648
 msgid "``setuid`` = ``true|false`` (default = ``false``) - boolean; same as for :ref:`box.schema.func.create(func-name [, {options-without-body}]) <box_schema-func_create>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:644
+#: ../doc/book/box/box_schema.rst:651
 msgid "``language`` = 'LUA'|'C' (default = ‘LUA’) - string. same as for :ref:`box.schema.func.create(func-name [, {options-without-body}]) <box_schema-func_create>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:647
+#: ../doc/book/box/box_schema.rst:654
 msgid "``is_sandboxed`` = ``true|false`` (default = ``false``) - boolean; whether the function should be executed in a sandbox."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:650
+#: ../doc/book/box/box_schema.rst:657
 msgid "``is_deterministic`` = ``true|false`` (default = ``false``) - boolean; ``true`` means that the function should be deterministic, ``false`` means that the function may or may not be deterministic."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:654
+#: ../doc/book/box/box_schema.rst:661
 msgid "``body`` = function definition (default = nil) - string; the function definition."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:659
+#: ../doc/book/box/box_schema.rst:666
 msgid "``if_not_exists``, ``setuid``, ``language``, ``is_sandboxed``, ``is_deterministic``, ``body``."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:663
+#: ../doc/book/box/box_schema.rst:670
 msgid "C functions are imported from .so files, Lua functions can be defined within ``body``. We will only describe Lua functions in this section."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:666
+#: ../doc/book/box/box_schema.rst:673
 msgid "A function tuple with a body is \"persistent\" because the tuple is stored in a snapshot and is recoverable if the server restarts. All of the option values described in this section are visible in the :ref:`box.space._func <box_space-func>` system space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:671
+#: ../doc/book/box/box_schema.rst:678
 msgid "If ``is_sandboxed`` is true, then the function will be executed in an isolated environment: any operation that accesses the world outside the sandbox will be forbidden or will have no effect. Therefore a sandboxed function can only use modules and functions which cannot affect isolation: `assert <https://www.lua.org/manual/5.1/manual.html#pdf-assert>`_ `error <://www.lua.org/manual/5.1/manual.html#pdf-error>`_ `ipairs <https://www.lua.org/manual/5.1/manual.html#pdf-ipairs>`_ `math.* <https://www.lua.org/manual/5.1/manual.html#5.6>`_ `next <https://www.lua.org/manual/5.1/manual.html#pdf-next>`_ `pairs <https://www.lua.org/manual/5.1/manual.html#pdf-pairs>`_ `pcall <https://www.lua.org/manual/5.1/manual.html#pdf-pcall>`_ `print <https://www.lua.org/manual/5.1/manual.html#pdf-print>`_ `select <https://www.lua.org/manual/5.1/manual.html#pdf-select>`_ `string.* <https://www.lua.org/manual/5.1/manual.html#5.4>`_ `table.* <https://www.lua.org/manual/5.1/manual.html#5.5>`_ `tonumber <https://www.lua.org/manual/5.1/manual.html#pdf-tonumber>`_ `tostring <https://www.lua.org/manual/5.1/manual.html#pdf-tostring>`_ `type <https://www.lua.org/manual/5.1/manual.html#pdf-type>`_ `unpack <https://www.lua.org/manual/5.1/manual.html#pdf-unpack>`_ :ref:`utf8.* <utf8-module>` `xpcall <https://www.lua.org/manual/5.1/manual.html#pdf-xpcall>`_. Also a sandboxed function cannot refer to global variables -- they will be treated as local variables because the sandbox is established with `setfenv <https://www.lua.org/manual/5.1/manual.html#pdf-setfenv>`_. So a sandboxed function will happen to be stateless and deterministic."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:698
+#: ../doc/book/box/box_schema.rst:705
 msgid "If ``is_deterministic`` is true, there is no immediate effect. Tarantool plans to use the is_deterministic value in a future version. A function is deterministic if it always returns the same outputs given the same inputs. It is the function creator's responsibility to ensure that a function is truly deterministic."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:704
+#: ../doc/book/box/box_schema.rst:711
 msgid "**Using a persistent Lua function**"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:706
+#: ../doc/book/box/box_schema.rst:713
 msgid "After a persistent Lua function is created, it can be found in the :ref:`box.space._func <box_space-func>` system space, and it can be shown with |br| :samp:`box.func.{func-name}` |br| and it can be invoked by any user with :ref:`authorization <authentication-owners_privileges>` to 'execute' it. The syntax for invoking is: |br| :samp:`box.func.{func-name}:call([parameters])` |br| or, if the connection is remote, the syntax is as in :ref:`net_box:call() <net_box-call>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:719
+#: ../doc/book/box/box_schema.rst:726
 msgid "tarantool> lua_code = [[function(a, b) return a + b end]]\n"
 "tarantool> box.schema.func.create('sum', {body = lua_code})\n"
 "\n"
@@ -8649,226 +8748,226 @@ msgid "tarantool> lua_code = [[function(a, b) return a + b end]]\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:744
+#: ../doc/book/box/box_schema.rst:751
 msgid "Drop a function tuple. For explanation of how Tarantool maintains function data, see reference on :ref:`_func space <box_space-func>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:748
-#: ../doc/book/box/box_schema.rst:765
+#: ../doc/book/box/box_schema.rst:755
+#: ../doc/book/box/box_schema.rst:772
 msgid "the name of the function"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:749
+#: ../doc/book/box/box_schema.rst:756
 msgid "``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the _func tuple does not exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:754
+#: ../doc/book/box/box_schema.rst:761
 msgid "box.schema.func.drop('calculate')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:762
+#: ../doc/book/box/box_schema.rst:769
 msgid "Return true if a function tuple exists; return false if a function tuple does not exist."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:770
+#: ../doc/book/box/box_schema.rst:777
 msgid "box.schema.func.exists('calculate')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:778
+#: ../doc/book/box/box_schema.rst:785
 msgid "Reload a C module with all its functions without restarting the server."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:780
+#: ../doc/book/box/box_schema.rst:787
 msgid "Under the hood, Tarantool loads a new copy of the module (``*.so`` shared library) and starts routing all new request to the new version. The previous version remains active until all started calls are finished. All shared libraries are loaded with ``RTLD_LOCAL`` (see \"man 3 dlopen\"), therefore multiple copies can co-exist without any problems."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:788
+#: ../doc/book/box/box_schema.rst:795
 msgid "Reload will fail if a module was loaded from Lua script with `ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:791
+#: ../doc/book/box/box_schema.rst:798
 msgid "the name of the module to reload"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:795
+#: ../doc/book/box/box_schema.rst:802
 msgid "-- reload the entire module contents\n"
 "box.schema.func.reload('module')"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:804
-#: ../doc/book/box/data_model.rst:471
+#: ../doc/book/box/box_schema.rst:811
+#: ../doc/book/box/data_model.rst:469
 msgid "Sequences"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:806
+#: ../doc/book/box/box_schema.rst:813
 msgid "An introduction to sequences is in the :ref:`Sequences <index-box_sequence>` section of the \"Data model\" chapter. Here are the details for each function and option."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:810
+#: ../doc/book/box/box_schema.rst:817
 msgid "All functions related to sequences require appropriate :ref:`privileges <authentication-owners_privileges>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:817
+#: ../doc/book/box/box_schema.rst:824
 msgid "Create a new sequence generator."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:819
+#: ../doc/book/box/box_schema.rst:826
 msgid "the name of the sequence"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:821
+#: ../doc/book/box/box_schema.rst:828
 msgid "see a quick overview in the \"Options for ``box.schema.sequence.create()``\" :ref:`chart <index-box_sequence-options>` (in the :ref:`Sequences <index-box_sequence>` section of the \"Data model\" chapter), and see more details below."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:828
+#: ../doc/book/box/box_schema.rst:835
 msgid "a reference to a new sequence object."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:830
+#: ../doc/book/box/box_schema.rst:837
 msgid "Options:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:832
+#: ../doc/book/box/box_schema.rst:839
 msgid "``start`` -- the STARTS WITH value. Type = integer, Default = 1."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:834
+#: ../doc/book/box/box_schema.rst:841
 msgid "``min`` -- the MINIMUM value. Type = integer, Default = 1."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:836
+#: ../doc/book/box/box_schema.rst:843
 msgid "``max`` - the MAXIMUM value. Type = integer, Default = 9223372036854775807."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:838
+#: ../doc/book/box/box_schema.rst:845
 msgid "There is a rule: ``min`` <= ``start`` <= ``max``. For example it is illegal to say ``{start=0}`` because then the specified start value (0) would be less than the default min value (1)."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:842
+#: ../doc/book/box/box_schema.rst:849
 msgid "There is a rule: ``min`` <= next-value <= ``max``. For example, if the next generated value would be 1000, but the maximum value is 999, then that would be considered \"overflow\"."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:847
+#: ../doc/book/box/box_schema.rst:854
 msgid "There is a rule: ``start`` and ``min`` and ``max`` must all be <= 9223372036854775807 which is 2^63 - 1 (not 2^64)."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:850
+#: ../doc/book/box/box_schema.rst:857
 msgid "``cycle`` -- the CYCLE value. Type = bool. Default = false."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:852
+#: ../doc/book/box/box_schema.rst:859
 msgid "If the sequence generator's next value is an overflow number, it causes an error return -- unless ``cycle == true``."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:855
+#: ../doc/book/box/box_schema.rst:862
 msgid "But if ``cycle == true``, the count is started again, at the MINIMUM value or at the MAXIMUM value (not the STARTS WITH value)."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:858
+#: ../doc/book/box/box_schema.rst:865
 msgid "``cache`` -- the CACHE value. Type = unsigned integer. Default = 0."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:860
+#: ../doc/book/box/box_schema.rst:867
 msgid "Currently Tarantool ignores this value, it is reserved for future use."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:862
+#: ../doc/book/box/box_schema.rst:869
 msgid "``step`` -- the INCREMENT BY value. Type = integer. Default = 1."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:864
+#: ../doc/book/box/box_schema.rst:871
 msgid "Ordinarily this is what is added to the previous value."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:870
+#: ../doc/book/box/box_schema.rst:877
 msgid "Generate the next value and return it."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:872
+#: ../doc/book/box/box_schema.rst:879
 msgid "The generation algorithm is simple:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:874
+#: ../doc/book/box/box_schema.rst:881
 msgid "If this is the first time, then return the STARTS WITH value."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:875
+#: ../doc/book/box/box_schema.rst:882
 msgid "If the previous value plus the INCREMENT value is less than the MINIMUM value or greater than the MAXIMUM value, that is \"overflow\", so either raise an error (if ``cycle`` = ``false``) or return the MAXIMUM value (if ``cycle`` = ``true`` and ``step`` < 0) or return the MINIMUM value (if ``cycle`` = ``true`` and ``step`` > 0)."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:881
+#: ../doc/book/box/box_schema.rst:888
 msgid "If there was no error, then save the returned result, it is now the \"previous value\"."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:884
+#: ../doc/book/box/box_schema.rst:891
 msgid "For example, suppose sequence 'S' has:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:886
+#: ../doc/book/box/box_schema.rst:893
 msgid "``min`` == -6,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:887
+#: ../doc/book/box/box_schema.rst:894
 msgid "``max`` == -1,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:888
+#: ../doc/book/box/box_schema.rst:895
 msgid "``step`` == -3,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:889
+#: ../doc/book/box/box_schema.rst:896
 msgid "``start`` = -2,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:890
+#: ../doc/book/box/box_schema.rst:897
 msgid "``cycle`` = true,"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:891
+#: ../doc/book/box/box_schema.rst:898
 msgid "previous value = -2."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:893
+#: ../doc/book/box/box_schema.rst:900
 msgid "Then ``box.sequence.S:next()`` returns -5 because -2 + (-3) == -5."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:895
+#: ../doc/book/box/box_schema.rst:902
 msgid "Then ``box.sequence.S:next()`` again returns -1 because -5 + (-3) < -6, which is overflow, causing cycle, and ``max`` == -1."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:898
+#: ../doc/book/box/box_schema.rst:905
 msgid "This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:903
+#: ../doc/book/box/box_schema.rst:910
 msgid "This function should not be used in \"cross-engine\" transactions (transactions which use both the memtx and the vinyl storage engines)."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:906
+#: ../doc/book/box/box_schema.rst:913
 msgid "To see what the previous value was, without changing it, you can select from the :ref:`_sequence_data <box_space-sequence_data>` system space."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:914
+#: ../doc/book/box/box_schema.rst:921
 msgid "The ``alter()`` function can be used to change any of the sequence's options. Requirements and restrictions are the same as for :ref:`box.schema.sequence.create() <box_schema-sequence_create>`."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:922
+#: ../doc/book/box/box_schema.rst:929
 msgid "Set the sequence back to its original state. The effect is that a subsequent ``next()`` will return the ``start`` value. This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:931
+#: ../doc/book/box/box_schema.rst:938
 msgid "Set the \"previous value\" to ``new-previous-value``. This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:939
+#: ../doc/book/box/box_schema.rst:946
 msgid "Drop an existing sequence."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:943
+#: ../doc/book/box/box_schema.rst:950
 msgid "Here is an example showing all sequence options and operations:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:945
+#: ../doc/book/box/box_schema.rst:952
 msgid "s = box.schema.sequence.create(\n"
 "               'S2',\n"
 "               {start=100,\n"
@@ -8885,19 +8984,19 @@ msgid "s = box.schema.sequence.create(\n"
 "s:drop()"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:966
+#: ../doc/book/box/box_schema.rst:973
 msgid "You can use the ``sequence`` option when :ref:`creating <box_space-create_index>` or :ref:`altering <box_index-alter>` a primary-key index. The sequence becomes associated with the index, so that the next ``insert()`` will put the next generated number into the primary-key field, if the field value would otherwise be nil."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:973
+#: ../doc/book/box/box_schema.rst:980
 msgid "The syntax may be any of: |br| :samp:`sequence = {sequence identifier}` |br| or :code:`sequence = {id =` :samp:`{sequence identifier}` :code:`}` |br| or :code:`sequence = {field =` :samp:`{field number}` :code:`}` |br| or :code:`sequence = {id =` :samp:`{sequence identifier}` :code:`, field =` :samp:`{field number}` :code:`}` |br| or :code:`sequence = true` |br| or :code:`sequence = {}`. |br| The sequence identifier may be either a number (the sequence id) or a string (the sequence name). The field number may be the ordinal number of any field in the index; default = 1. Examples of all possibilities: ``sequence = 1`` or ``sequence = 'sequence_name'`` or ``sequence = {id = 1}`` or ``sequence = {id = 'sequence_name'}`` or ``sequence = {id = 1, field = 1}`` or ``sequence = {id = 'sequence_name', field = 1}`` or ``sequence = {field = 1}`` or ``sequence = true`` or ``sequence = {}``. Notice that the sequence identifier can be omitted, if it is omitted then a new sequence is created automatically with default name = :samp:`{space-name}_seq`. Notice that the field number does not have to be 1, that is, the sequence can be associated with any field in the primary-key index."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1006
+#: ../doc/book/box/box_schema.rst:1013
 msgid "For example, if 'Q' is a sequence and 'T' is a new space, then this will work:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1009
+#: ../doc/book/box/box_schema.rst:1016
 msgid "tarantool> box.space.T:create_index('Q',{sequence='Q'})\n"
 "---\n"
 "- unique: true\n"
@@ -8913,46 +9012,46 @@ msgid "tarantool> box.space.T:create_index('Q',{sequence='Q'})\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1025
+#: ../doc/book/box/box_schema.rst:1032
 msgid "(Notice that the index now has a ``sequence_id`` field.)"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1027
+#: ../doc/book/box/box_schema.rst:1034
 msgid "And this will work:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1029
+#: ../doc/book/box/box_schema.rst:1036
 msgid "tarantool> box.space.T:insert{nil,0}\n"
 "---\n"
 "- [1, 0]\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1038
+#: ../doc/book/box/box_schema.rst:1045
 msgid "The index key type may be either 'integer' or 'unsigned'. If any of the sequence options is a negative number, then the index key type should be 'integer'."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1042
+#: ../doc/book/box/box_schema.rst:1049
 msgid "Users should not insert a value greater than 9223372036854775807, which is 2^63 - 1, in the indexed field. The sequence generator will ignore it."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1046
+#: ../doc/book/box/box_schema.rst:1053
 msgid "A sequence cannot be dropped if it is associated with an index. However, :ref:`index_object:alter() <box_index-alter>` can be used to say that a sequence is not associated with an index, for example ``box.space.T.index.I:alter({sequence=false})``."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1052
+#: ../doc/book/box/box_schema.rst:1059
 msgid "If a sequence was created automatically because the sequence identifier was omitted, then it will be dropped automatically if the index is altered so that ``sequence=false``, or if the index is dropped."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1057
+#: ../doc/book/box/box_schema.rst:1064
 msgid "``index_object:alter()`` can also be used to associate a sequence with an existing index, with the same syntax for options."
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1060
+#: ../doc/book/box/box_schema.rst:1067
 msgid "When a sequence is used with an index based on a JSON path, inserted tuples must have all components of the path preceding the autoincrement field, and the autoincrement field. To achieve that use ``box.NULL`` rather than ``nil``. Example:"
 msgstr ""
 
-#: ../doc/book/box/box_schema.rst:1065
+#: ../doc/book/box/box_schema.rst:1072
 msgid "s = box.schema.space.create('test')\n"
 "s:create_index('pk', {parts = {{'[1].a.b[1]', 'unsigned'}}, sequence = true})\n"
 "s:replace{} -- error\n"
@@ -9264,51 +9363,12 @@ msgstr ""
 msgid "Define a trigger for execution when a new session is created due to an event such as :ref:`console.connect <console-connect>`. The trigger function will be the first thing executed after a new session is created. If the trigger execution fails and raises an error, the error is sent to the client and the connection is closed."
 msgstr ""
 
-#: ../doc/book/box/box_session.rst:306
-#: ../doc/book/box/box_session.rst:342
-#: ../doc/book/box/box_session.rst:417
-#: ../doc/book/box/box_txn_management.rst:201
-msgid "function which will become the trigger function"
-msgstr ""
-
-#: ../doc/book/box/box_session.rst:307
-#: ../doc/book/box/box_session.rst:343
-#: ../doc/book/box/box_session.rst:418
-#: ../doc/book/box/box_txn_management.rst:203
-msgid "existing trigger function which will be replaced by trigger-function"
-msgstr ""
-
-#: ../doc/book/box/box_session.rst:308
-#: ../doc/book/box/box_session.rst:344
-#: ../doc/book/box/box_session.rst:419
-#: ../doc/book/box/box_space.rst:1082
-#: ../doc/book/box/box_space.rst:1168
-#: ../doc/book/box/box_txn_management.rst:205
-msgid "nil or function pointer"
-msgstr ""
-
-#: ../doc/book/box/box_session.rst:310
-#: ../doc/book/box/box_session.rst:346
-#: ../doc/book/box/box_session.rst:421
-#: ../doc/book/box/box_space.rst:1084
-msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
-msgstr ""
-
 #: ../doc/book/box/box_session.rst:312
 #: ../doc/book/box/box_session.rst:348
 #: ../doc/book/box/box_session.rst:423
 #: ../doc/book/box/box_space.rst:1087
 #: ../doc/book/box/box_space.rst:1173
 msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
-msgstr ""
-
-#: ../doc/book/box/box_session.rst:314
-#: ../doc/book/box/box_session.rst:350
-#: ../doc/book/box/box_session.rst:425
-#: ../doc/book/box/box_space.rst:1094
-#: ../doc/book/box/box_space.rst:1179
-#: ../doc/book/box/box_txn_management.rst:210
-msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
 msgstr ""
 
 #: ../doc/book/box/box_session.rst:318
@@ -10460,7 +10520,7 @@ msgstr ""
 msgid "tarantool> s = box.space.tester\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary', {unique = true, parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})\n"
+"tarantool> s:create_index('primary', {unique = true, parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })\n"
 "---\n"
 "..."
 msgstr ""
@@ -10526,8 +10586,8 @@ msgid "Where is it legal"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:431
-#: ../doc/book/box/data_model.rst:278
-#: ../doc/book/box/data_model.rst:498
+#: ../doc/book/box/data_model.rst:280
+#: ../doc/book/box/data_model.rst:496
 msgid "Examples"
 msgstr ""
 
@@ -10569,7 +10629,7 @@ msgid "'A B C' |br| '\\\\65 \\\\66 \\\\67'"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:440
-#: ../doc/book/box/data_model.rst:305
+#: ../doc/book/box/data_model.rst:307
 msgid "**varbinary**"
 msgstr ""
 
@@ -10594,7 +10654,7 @@ msgid "-2^63 |br|"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:447
-#: ../doc/book/box/data_model.rst:291
+#: ../doc/book/box/data_model.rst:293
 msgid "**number**"
 msgstr ""
 
@@ -10607,7 +10667,7 @@ msgid "1.234 |br| -44 |br| 1.447e+44"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:455
-#: ../doc/book/box/data_model.rst:309
+#: ../doc/book/box/data_model.rst:311
 msgid "**boolean**"
 msgstr ""
 
@@ -10620,7 +10680,7 @@ msgid "false |br| true"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:458
-#: ../doc/book/box/data_model.rst:312
+#: ../doc/book/box/data_model.rst:314
 msgid "**array**"
 msgstr ""
 
@@ -10637,7 +10697,7 @@ msgid "{10, 11} |br| {3, 5, 9, 10}"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:462
-#: ../doc/book/box/data_model.rst:317
+#: ../doc/book/box/data_model.rst:319
 msgid "**scalar**"
 msgstr ""
 
@@ -11255,7 +11315,7 @@ msgstr ""
 
 #: ../doc/book/box/box_space.rst:1137
 msgid "tarantool> s = box.schema.space.create('space53')\n"
-"tarantool> s:create_index('primary', {parts = {field = 1, type = 'unsigned'}})\n"
+"tarantool> s:create_index('primary', {parts = {{field = 1, type = 'unsigned'}}})\n"
 "tarantool> function replace_trigger()\n"
 "         >   replace_counter = replace_counter + 1\n"
 "         > end\n"
@@ -11466,7 +11526,7 @@ msgstr ""
 msgid "tarantool> s = box.schema.space.create('tmp', {temporary=true})\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary',{parts = {field = 1, type = 'unsigned', field = 2, type = 'string'}})\n"
+"tarantool> s:create_index('primary',{parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })\n"
 "---\n"
 "...\n"
 "tarantool> s:insert{1,'A'}\n"
@@ -12275,7 +12335,7 @@ msgid "guest"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2296
-#: ../doc/book/box/data_model.rst:513
+#: ../doc/book/box/data_model.rst:511
 #: ../doc/book/cartridge/cartridge_admin.rst:651
 #: ../doc/book/cartridge/cartridge_admin.rst:821
 msgid "0"
@@ -12290,9 +12350,9 @@ msgid "admin"
 msgstr ""
 
 #: ../doc/book/box/box_space.rst:2299
-#: ../doc/book/box/data_model.rst:500
-#: ../doc/book/box/data_model.rst:504
-#: ../doc/book/box/data_model.rst:516
+#: ../doc/book/box/data_model.rst:498
+#: ../doc/book/box/data_model.rst:502
+#: ../doc/book/box/data_model.rst:514
 #: ../doc/book/cartridge/cartridge_admin.rst:653
 #: ../doc/book/cartridge/cartridge_admin.rst:823
 msgid "1"
@@ -13329,22 +13389,22 @@ msgid "Use ``box.stat()`` to show the average number of requests per second, and
 msgstr ""
 
 #: ../doc/book/box/box_stat.rst:12
-msgid "Use ``box.stat.net()``  to see network activity: the number of packets sent and received, the count of active iproto connections, and the average number of requests per second."
+msgid "Use ``box.stat.net()`` to see network activity: the number of bytes sent and received, the number of connections, and the number of requests (current, average, and total)."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:17
+#: ../doc/book/box/box_stat.rst:18
 msgid "Use ``box.stat.vinyl()`` to see vinyl-storage-engine activity, for example ``box.stat.vinyl().tx`` has the number of commits and rollbacks. See details at :ref:`the end of this section <box_introspection-box_stat_vinyl_details>`."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:23
+#: ../doc/book/box/box_stat.rst:24
 msgid "Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``, ``box.stat.net()``, ``box.stat.vinyl()`` and :ref:`box.space.index <box_space-space_index>`."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:27
+#: ../doc/book/box/box_stat.rst:28
 msgid "In the tables that ``box.stat()`` and ``box.stat.net()`` return: ``rps`` stands for \"[average number of] requests per second [in the last 5 seconds]\", ``total`` stands for \"total [number processed since the server began]\", ``current`` stands for \"[number of] current [requests in progress, which can be limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]\". \"ERROR\" is the count of requests that resulted in an error."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:34
+#: ../doc/book/box/box_stat.rst:35
 msgid "tarantool> box.stat() -- return 10 tables\n"
 "---\n"
 "- DELETE:\n"
@@ -13406,123 +13466,123 @@ msgid "tarantool> box.stat() -- return 10 tables\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:98
+#: ../doc/book/box/box_stat.rst:99
 msgid "Here are details about the ``box.stat.vinyl()`` items."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:102
+#: ../doc/book/box/box_stat.rst:103
 msgid "**Details about box.stat.vinyl().regulator:** The vinyl regulator decides when to take or delay actions for disk IO, grouping activity in batches so that it is consistent and efficient. The regulator is invoked by the vinyl scheduler, once per second, and updates related variables whenever it is invoked."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:109
+#: ../doc/book/box/box_stat.rst:110
 msgid "``box.stat.vinyl().regulator.dump_bandwidth`` is the estimated average rate at which dumps are done. Initially this will appear as 10485760 (10 megabytes per second). Only significant dumps (larger than one megabyte) are used for estimating."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:114
+#: ../doc/book/box/box_stat.rst:115
 msgid "``box.stat.vinyl().regulator.dump_watermark`` is the point when dumping must occur. The value is slightly smaller than the amount of memory that is allocated for vinyl trees, which is the :ref:`vinyl_memory <cfg_storage-vinyl_memory>` parameter."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:120
+#: ../doc/book/box/box_stat.rst:121
 msgid "``box.stat.vinyl().regulator.write_rate`` is the actual average rate at which recent writes to disk are done. Averaging is done over a 5-second time window, so if there has been no activity for 5 seconds then ``regulator.write_rate = 0``. The ``write_rate`` may be slowed when a dump is in progress or when the user has set :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:128
+#: ../doc/book/box/box_stat.rst:129
 msgid "``box.stat.vinyl().regulator.rate_limit`` is the write rate limit, in bytes per second, imposed on transactions by the regulator based on the observed dump/compaction performance."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:134
+#: ../doc/book/box/box_stat.rst:135
 msgid "**Details about box.stat.vinyl().disk:** Since vinyl is an on-disk storage engine (unlike memtx which is an in-memory storage engine), it can handle large databases -- but if a database is larger than the amount of memory that is allocated for vinyl, then there will be more disk activity."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:141
+#: ../doc/book/box/box_stat.rst:142
 msgid "``box.stat.vinyl().disk.data`` and ``box.stat.vinyl().disk.index`` are the amount of data that has gone into files in a subdirectory of :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, with names like ``{lsn}.run`` and ``{lsn}.index``. The size of the run will be related to the output of ``scheduler.dump_*``."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:148
+#: ../doc/book/box/box_stat.rst:149
 msgid "``box.stat.vinyl().disk.data_compacted`` Sum size of data stored at the last LSM tree level, in bytes, without taking disk compression into account. It can be thought of as the size of disk space that the user data would occupy if there were no compression, indexing, or space increase caused by the LSM tree design."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:156
+#: ../doc/book/box/box_stat.rst:157
 msgid "**Details about box.stat.vinyl().memory:** Although the vinyl storage engine is not \"in-memory\", Tarantool does need to have memory for write buffers and for caches:"
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:160
+#: ../doc/book/box/box_stat.rst:161
 msgid "``box.stat.vinyl().memory.tuple_cache`` is the number of bytes that are being used for tuples (data)."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:162
+#: ../doc/book/box/box_stat.rst:163
 msgid "``box.stat.vinyl().memory.tx`` is transactional memory. This will usually be 0."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:164
+#: ../doc/book/box/box_stat.rst:165
 msgid "``box.stat.vinyl().memory.level0`` is the \"level0\" memory area, sometimes abbreviated \"L0\", which is the area that vinyl can use for in-memory storage of an LSM tree."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:168
+#: ../doc/book/box/box_stat.rst:169
 msgid "Therefore we can say that \"L0 is becoming full\" when the amount in ``memory.level0`` is close to the maximum, which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`. We can expect that \"L0 = 0\" immediately after a dump. ``box.stat.vinyl().memory.page_index`` and  ``box.stat.vinyl().memory.bloom_filter`` have the current amount being used for index-related structures. The size is a function of the number and size of keys, plus :ref:`page_size <cfg_storage-vinyl_page_size>`, plus :ref:`bloom_fpr <cfg_storage-vinyl_bloom_fpr>`. This is not a count of bloom filter \"hits\" (the number of reads that could be avoided because the bloom filter predicts their presence in a run file) -- that statistic can be found with :ref:`index_object:stat() <box_index-stat>`."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:185
+#: ../doc/book/box/box_stat.rst:186
 msgid "**Details about box.stat.vinyl().tx:** This is about requests that affect transactional activity (\"tx\" is used here as an abbreviation for \"transaction\"):"
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:189
+#: ../doc/book/box/box_stat.rst:190
 msgid "``box.stat.vinyl().tx.conflict`` counts conflicts that caused a transaction to roll back."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:191
+#: ../doc/book/box/box_stat.rst:192
 msgid "``box.stat.vinyl().tx.commit`` is the count of commits (successful transaction ends). It includes implicit commits, for example any insert causes a commit unless it is within a begin-end block."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:195
+#: ../doc/book/box/box_stat.rst:196
 msgid "``box.stat.vinyl().tx.rollback`` is the count of rollbacks (unsuccessful transaction ends). This is not merely a count of explicit :ref:`box.rollback <box-rollback>` requests -- it includes requests that ended in errors. For example, after an attempted insert request that causes a \"Duplicate key exists in unique index\" error, ``tx.rollback`` is incremented."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:203
+#: ../doc/book/box/box_stat.rst:204
 msgid "``box.stat.vinyl().tx.statements`` will usually be 0."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:205
+#: ../doc/book/box/box_stat.rst:206
 msgid "``box.stat.vinyl().tx.transactions`` is the number of transactions that are currently running."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:207
+#: ../doc/book/box/box_stat.rst:208
 msgid "``box.stat.vinyl().tx.gap_locks`` is the number of gap locks that are outstanding during execution of a request. For a low-level description of Tarantool's implementation of gap locking, see `Gap locks in Vinyl transaction manager <https://github.com/tarantool/tarantool/issues/2671>`_."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:211
+#: ../doc/book/box/box_stat.rst:212
 msgid "``box.stat.vinyl().tx.read_views`` shows whether a transaction has entered a read-only state to avoid conflict temporarily. This will usually be 0."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:215
+#: ../doc/book/box/box_stat.rst:216
 msgid "**Details about box.stat.vinyl().scheduler:** This primarily has counters related to tasks that the scheduler has arranged for dumping or compaction: (most of these items are reset to 0 when the server restarts or when :ref:`box.stat.reset() <box_introspection-box_stat_reset>` occurs):"
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:221
+#: ../doc/book/box/box_stat.rst:222
 msgid "``box.stat.vinyl().scheduler.compaction_*`` is the amount of data from recent changes that has been :ref:`compacted <box_index-compact>`. This is divided into ``scheduler.compaction_input`` (the amount that is being compacted), ``scheduler.compaction_queue`` (the amount that is waiting to be compacted), ``scheduler.compaction_time`` (total time spent by all worker threads performing compaction, in seconds), and ``scheduler.compaction_output`` (the amount that has been compacted, which is presumably smaller than ``scheduler.compaction_input``)."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:231
+#: ../doc/book/box/box_stat.rst:232
 msgid "``box.stat.vinyl().scheduler.tasks_*`` is about dump/compaction tasks, in three categories, ``scheduler.tasks_inprogress`` (currently running), ``scheduler.tasks_completed`` (successfully completed) ``scheduler.tasks_failed`` (aborted due to errors)."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:237
+#: ../doc/book/box/box_stat.rst:238
 msgid "``box.stat.vinyl().scheduler_dump_*`` has the amount of data from recent changes that has been dumped, including ``dump_time`` (total time spent by all worker threads performing dumps, in seconds), and ``dump_count`` (the count of completed dumps), ``dump_input`` and ``dump_output``."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:243
+#: ../doc/book/box/box_stat.rst:244
 msgid "A \"dump\" is explained in section :ref:`Storing data with vinyl <engines-algorithm_filling_lsm>`:"
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:245
+#: ../doc/book/box/box_stat.rst:246
 msgid "Sooner or later the number of elements in an LSM tree exceeds the L0 size and that is when L0 gets written to a file on disk (called a 'run') and then cleared for storing new elements. This operation is called a 'dump'."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:249
+#: ../doc/book/box/box_stat.rst:250
 msgid "Thus it can be predicted that a dump will occur if the size of L0 (which is :ref:`memory.level0 <box_introspection-box_stat_vinyl_memory>`) is approaching the maximum (which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`) and a dump is not already in progress. In fact Tarantool will try to arrange a dump before this hard limit is reached."
 msgstr ""
 
-#: ../doc/book/box/box_stat.rst:259
+#: ../doc/book/box/box_stat.rst:260
 msgid "A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation."
 msgstr ""
 
@@ -14481,246 +14541,250 @@ msgid "Any given tuple may have any number of fields, and the fields may be of d
 msgstr ""
 
 #: ../doc/book/box/data_model.rst:55
+msgid "The number of tuples in a space is unlimited."
+msgstr ""
+
+#: ../doc/book/box/data_model.rst:57
 msgid "Tuples in Tarantool are stored as `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:58
+#: ../doc/book/box/data_model.rst:60
 msgid "When Tarantool returns a tuple value in the console, by default it uses :ref:`YAML <interactive_console>` format, for example: ``[3, 'Ace of Base', 1993]``."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:68
+#: ../doc/book/box/data_model.rst:70
 msgid "An **index** is a group of key values and pointers."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:70
+#: ../doc/book/box/data_model.rst:72
 msgid "As with spaces, you should specify the index **name**, and let Tarantool come up with a unique **numeric identifier** (\"index id\")."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:73
+#: ../doc/book/box/data_model.rst:75
 msgid "An index always has a **type**. The default index type is 'TREE'. TREE indexes are provided by all Tarantool engines, can index unique and non-unique values, support partial key searches, comparisons and ordered results. Additionally, memtx engine supports HASH, RTREE and BITSET indexes."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:78
+#: ../doc/book/box/data_model.rst:80
 msgid "An index may be **multi-part**, that is, you can declare that an index key value is composed of two or more fields in the tuple, in any order. For example, for an ordinary TREE index, the maximum number of parts is 255."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:82
+#: ../doc/book/box/data_model.rst:84
 msgid "An index may be **unique**, that is, you can declare that it would be illegal to have the same key value twice."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:85
+#: ../doc/book/box/data_model.rst:87
 msgid "The first index defined on a space is called the **primary key index**, and it must be unique. All other indexes are called **secondary indexes**, and they may be non-unique."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:89
+#: ../doc/book/box/data_model.rst:91
 msgid "An index definition may include identifiers of tuple fields and their expected **types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>` below)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:93
+#: ../doc/book/box/data_model.rst:95
 msgid "In our example, we first defined the primary index (named 'primary') based on field #1 of each tuple:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:96
-msgid "tarantool> i = s:create_index('primary', {type = 'hash', parts = {field = 1, type = 'unsigned'}})"
+#: ../doc/book/box/data_model.rst:98
+msgid "tarantool> i = s:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:100
+#: ../doc/book/box/data_model.rst:102
 msgid "The effect is that, for all tuples in space 'tester', field #1 must exist and must contain an unsigned integer. The index type is 'hash', so values in field #1 must be unique, because keys in HASH indexes are unique."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:105
+#: ../doc/book/box/data_model.rst:107
 msgid "After that, we defined a secondary index (named 'secondary') based on field #2 of each tuple:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:108
+#: ../doc/book/box/data_model.rst:110
 msgid "tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field = 2, type = 'string'}})"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:112
+#: ../doc/book/box/data_model.rst:114
 msgid "The effect is that, for all tuples in space 'tester', field #2 must exist and must contain a string. The index type is 'tree', so values in field #2 must not be unique, because keys in TREE indexes may be non-unique."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:119
+#: ../doc/book/box/data_model.rst:121
 msgid "Space definitions and index definitions are stored permanently in Tarantool's system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>` (for details, see reference on :ref:`box.space <box_space>` submodule)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:123
+#: ../doc/book/box/data_model.rst:125
 msgid "You can add, drop, or alter the definitions at runtime, with some restrictions. See syntax details in reference on :ref:`box <box-module>` module."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:130
+#: ../doc/book/box/data_model.rst:132
 msgid "Data types"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:132
+#: ../doc/book/box/data_model.rst:134
 msgid "Tarantool is both a database and an application server. Hence a developer often deals with two type sets: the programming language types (e.g. Lua) and the types of the Tarantool storage format (MsgPack)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:141
+#: ../doc/book/box/data_model.rst:143
 msgid "Lua vs MsgPack"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:151
+#: ../doc/book/box/data_model.rst:153
 msgid "Scalar / compound"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:151
+#: ../doc/book/box/data_model.rst:153
 msgid "MsgPack |nbsp| type"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:151
+#: ../doc/book/box/data_model.rst:153
 msgid "Lua type"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:151
+#: ../doc/book/box/data_model.rst:153
 msgid "Example value"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:153
 #: ../doc/book/box/data_model.rst:155
 #: ../doc/book/box/data_model.rst:157
 #: ../doc/book/box/data_model.rst:159
 #: ../doc/book/box/data_model.rst:161
 #: ../doc/book/box/data_model.rst:163
+#: ../doc/book/box/data_model.rst:165
 msgid "scalar"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:153
+#: ../doc/book/box/data_model.rst:155
 msgid "\"`nil`_\""
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:153
-#: ../doc/book/box/data_model.rst:317
+#: ../doc/book/box/data_model.rst:155
+#: ../doc/book/box/data_model.rst:319
 msgid "msgpack.NULL"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:155
+#: ../doc/book/box/data_model.rst:157
 msgid "\"`boolean`_\""
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:155
-#: ../doc/book/box/data_model.rst:309
-#: ../doc/book/box/data_model.rst:319
+#: ../doc/book/box/data_model.rst:157
+#: ../doc/book/box/data_model.rst:311
+#: ../doc/book/box/data_model.rst:321
 msgid "true"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:157
+#: ../doc/book/box/data_model.rst:159
 msgid "\"`string`_\""
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:157
+#: ../doc/book/box/data_model.rst:159
 msgid "'A B C'"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:159
+#: ../doc/book/box/data_model.rst:161
 msgid "integer"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:159
 #: ../doc/book/box/data_model.rst:161
+#: ../doc/book/box/data_model.rst:163
 msgid "\"`number`_\""
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:159
+#: ../doc/book/box/data_model.rst:161
 msgid "12345"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:161
+#: ../doc/book/box/data_model.rst:163
 msgid "double"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:161
+#: ../doc/book/box/data_model.rst:163
 msgid "1.2345"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:163
+#: ../doc/book/box/data_model.rst:165
 msgid "bin"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:163
+#: ../doc/book/box/data_model.rst:165
 msgid "\"`cdata`_\""
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:163
+#: ../doc/book/box/data_model.rst:165
 msgid "[!!binary 3t7e]"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:165
 #: ../doc/book/box/data_model.rst:167
 #: ../doc/book/box/data_model.rst:169
+#: ../doc/book/box/data_model.rst:171
 msgid "compound"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:165
+#: ../doc/book/box/data_model.rst:167
 msgid "map"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:165
+#: ../doc/book/box/data_model.rst:167
 msgid "\"`table`_\" (with string keys)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:165
+#: ../doc/book/box/data_model.rst:167
 msgid "{'a': 5, 'b': 6}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:167
 #: ../doc/book/box/data_model.rst:169
+#: ../doc/book/box/data_model.rst:171
 msgid "array"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:167
+#: ../doc/book/box/data_model.rst:169
 msgid "\"`table`_\" (with integer keys)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:167
+#: ../doc/book/box/data_model.rst:169
 msgid "[1, 2, 3, 4, 5]"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:169
+#: ../doc/book/box/data_model.rst:171
 msgid "tuple (\"`cdata`_\")"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:169
+#: ../doc/book/box/data_model.rst:171
 msgid "[12345, 'A B C']"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:179
+#: ../doc/book/box/data_model.rst:181
 msgid "In Lua, a **nil** type has only one possible value, also called *nil* (displayed as **null** on Tarantool's command line, since the output is in the YAML format). Nils may be compared to values of any types with == (is-equal) or ~= (is-not-equal), but other operations will not work. Nils may not be used in Lua tables; the workaround is to use :ref:`msgpack.NULL <msgpack-null>`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:187
+#: ../doc/book/box/data_model.rst:189
 msgid "A **boolean** is either ``true`` or ``false``."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:191
+#: ../doc/book/box/data_model.rst:193
 msgid "A **string** is a variable-length sequence of bytes, usually represented with alphanumeric characters inside single quotes. In both Lua and MsgPack, strings are treated as binary data, with no attempts to determine a string's character set or to perform any string conversion -- unless there is an optional :ref:`collation <index-collation>`. So, usually, string sorting and comparison are done byte-by-byte, without any special collation rules applied. (Example: numbers are ordered by their point on the number line, so 2345 is greater than 500; meanwhile, strings are ordered by the encoding of the first byte, then the encoding of the second byte, and so on, so '2345' is less than '500'.)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:204
+#: ../doc/book/box/data_model.rst:206
 msgid "In Lua, a **number** is double-precision floating-point, but Tarantool allows both integer and floating-point values. Tarantool will try to store a Lua number as floating-point if the value contains a decimal point or is very large (greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer. To ensure that even very large numbers are stored as integers, use the :ref:`tonumber64 <other-tonumber64>` function, or the LL (Long Long) suffix, or the ULL (Unsigned Long Long) suffix. Here are examples of numbers using regular notation, exponential notation, the ULL suffix and the ``tonumber64`` function: ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:215
+#: ../doc/book/box/data_model.rst:217
 msgid "A **bin** (binary) value is not directly supported by Lua but there is a Tarantool type ``VARBINARY`` which is encoded as MessagePack binary. For an (advanced) example showing how to insert VARBINARY into a database, see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:220
+#: ../doc/book/box/data_model.rst:222
 msgid "Lua **tables** with string keys are stored as MsgPack maps; Lua tables with integer keys starting with 1 -- as MsgPack arrays. Nils may not be used in Lua tables; the workaround is to use :ref:`msgpack.NULL <msgpack-null>`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:225
+#: ../doc/book/box/data_model.rst:227
 msgid "A **tuple** is a light reference to a MsgPack array stored in the database. It is a special type (cdata) to avoid conversion to a Lua table on retrieval. A few functions may return tables with multiple tuples. For more tuple examples, see :ref:`box.tuple <box_tuple>`."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:232
+#: ../doc/book/box/data_model.rst:234
 msgid "Tarantool uses the MsgPack format for database storage, which is variable-length. So, for example, the smallest number requires only one byte, but the largest number requires nine bytes."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:236
+#: ../doc/book/box/data_model.rst:238
 msgid "Examples of insert requests with different data types:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:238
+#: ../doc/book/box/data_model.rst:240
 msgid "tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}\n"
 "---\n"
 "- [1, null, true, 'A B C', 12345, 1.2345]\n"
@@ -14735,182 +14799,182 @@ msgid "tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:257
+#: ../doc/book/box/data_model.rst:259
 msgid "Indexed field types"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:259
+#: ../doc/book/box/data_model.rst:261
 msgid "Indexes restrict values which Tarantool's MsgPack may contain. This is why, for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’ data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' index contains only *non-negative* integer values and an ‘integer’ index contains *all* integer values."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:265
+#: ../doc/book/box/data_model.rst:267
 msgid "Here's how Tarantool indexed field types correspond to MsgPack data types."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:278
+#: ../doc/book/box/data_model.rst:280
 msgid "Indexed field type"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:278
+#: ../doc/book/box/data_model.rst:280
 msgid "MsgPack data type |br| (and possible values)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:281
+#: ../doc/book/box/data_model.rst:283
 msgid "**unsigned** (may also be called ‘uint’ or ‘num’, but ‘num’ is deprecated)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:281
+#: ../doc/book/box/data_model.rst:283
 msgid "**integer** (integer between 0 and 18446744073709551615, i.e. about 18 quintillion)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:281
-#: ../doc/book/box/data_model.rst:301
+#: ../doc/book/box/data_model.rst:283
+#: ../doc/book/box/data_model.rst:303
 msgid "TREE, BITSET or HASH"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:281
+#: ../doc/book/box/data_model.rst:283
 msgid "123456"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:286
+#: ../doc/book/box/data_model.rst:288
 msgid "**integer** (may also be called ‘int’)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:286
-#: ../doc/book/box/data_model.rst:291
-#: ../doc/book/box/data_model.rst:322
+#: ../doc/book/box/data_model.rst:288
+#: ../doc/book/box/data_model.rst:293
+#: ../doc/book/box/data_model.rst:324
 msgid "**integer** (integer between -9223372036854775808 and 18446744073709551615)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:286
-#: ../doc/book/box/data_model.rst:291
-#: ../doc/book/box/data_model.rst:305
-#: ../doc/book/box/data_model.rst:309
-#: ../doc/book/box/data_model.rst:317
+#: ../doc/book/box/data_model.rst:288
+#: ../doc/book/box/data_model.rst:293
+#: ../doc/book/box/data_model.rst:307
+#: ../doc/book/box/data_model.rst:311
+#: ../doc/book/box/data_model.rst:319
 msgid "TREE or HASH"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:286
+#: ../doc/book/box/data_model.rst:288
 msgid "-2^63"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:296
-#: ../doc/book/box/data_model.rst:327
+#: ../doc/book/box/data_model.rst:298
+#: ../doc/book/box/data_model.rst:329
 msgid "**double** (single-precision floating point number or double-precision floating point number)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:291
-#: ../doc/book/box/data_model.rst:323
+#: ../doc/book/box/data_model.rst:293
+#: ../doc/book/box/data_model.rst:325
 msgid "1.234"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:293
+#: ../doc/book/box/data_model.rst:295
 msgid "-44"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:295
+#: ../doc/book/box/data_model.rst:297
 msgid "1.447e+44"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:301
+#: ../doc/book/box/data_model.rst:303
 msgid "**string** (may also be called ‘str’)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:301
+#: ../doc/book/box/data_model.rst:303
 msgid "**string** (any set of octets, up to the maximum length)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:301
+#: ../doc/book/box/data_model.rst:303
 msgid "‘A B C’"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:303
 #: ../doc/book/box/data_model.rst:305
+#: ../doc/book/box/data_model.rst:307
 msgid "‘\\\\65 \\\\66 \\\\67’"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:305
+#: ../doc/book/box/data_model.rst:307
 msgid "**bin** (any set of octets, up to the maximum length)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:309
-#: ../doc/book/box/data_model.rst:319
+#: ../doc/book/box/data_model.rst:311
+#: ../doc/book/box/data_model.rst:321
 msgid "**bool** (true or false)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:312
+#: ../doc/book/box/data_model.rst:314
 msgid "**array** (list of numbers representing points in a geometric figure)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:312
+#: ../doc/book/box/data_model.rst:314
 msgid "RTREE"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:312
+#: ../doc/book/box/data_model.rst:314
 msgid "{10, 11}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:314
+#: ../doc/book/box/data_model.rst:316
 msgid "{3, 5, 9, 10}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:317
+#: ../doc/book/box/data_model.rst:319
 msgid "**null**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:332
+#: ../doc/book/box/data_model.rst:334
 msgid "**string** (any set of octets)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:334
+#: ../doc/book/box/data_model.rst:336
 msgid "**varbinary** (any set of octets)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:336
+#: ../doc/book/box/data_model.rst:338
 msgid "Note: When there is a mix of types, the key order is: null, then booleans, then numbers, then strings, then varbinary."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:321
+#: ../doc/book/box/data_model.rst:323
 msgid "-1"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:325
+#: ../doc/book/box/data_model.rst:327
 msgid "‘’"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:327
+#: ../doc/book/box/data_model.rst:329
 msgid "‘ру’"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:346
+#: ../doc/book/box/data_model.rst:348
 msgid "Collations"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:348
+#: ../doc/book/box/data_model.rst:350
 msgid "By default, when Tarantool compares strings, it uses what we call a **\"binary\" collation**. The only consideration here is the numeric value of each byte in the string. Therefore, if the string is encoded with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of 'A' (what used to be called the \"ASCII value\") is 65, the encoding of 'B' is 66, and the encoding of 'a' is 98. Binary collation is best if you prefer fast deterministic simple maintenance and searching with Tarantool indexes."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:357
+#: ../doc/book/box/data_model.rst:359
 msgid "But if you want the ordering that you see in phone books and dictionaries, then you need Tarantool's optional collations, such as ``unicode`` and ``unicode_ci``, which allow for ``'a' < 'A' < 'B'`` and ``'a' = 'A' < 'B'`` respectively."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:362
+#: ../doc/book/box/data_model.rst:364
 msgid "**The unicode and unicode_ci optional collations** use the ordering according to the `Default Unicode Collation Element Table (DUCET) <http://unicode.org/reports/tr10/#Default_Unicode_Collation_Element_Table>`_ and the rules described in `Unicode® Technical Standard #10 Unicode Collation Algorithm (UTS #10 UCA) <http://unicode.org/reports/tr10>`_. The only difference between the two collations is about `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:369
+#: ../doc/book/box/data_model.rst:371
 msgid "``unicode`` collation observes L1 and L2 and L3 weights (strength = 'tertiary'),"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:370
+#: ../doc/book/box/data_model.rst:372
 msgid "``unicode_ci`` collation observes only L1 weights (strength = 'primary'), so for example 'a' = 'A' = 'á' = 'Á'."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:372
+#: ../doc/book/box/data_model.rst:374
 msgid "As an example, take some Russian words:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:374
+#: ../doc/book/box/data_model.rst:376
 msgid "'ЕЛЕ'\n"
 "'елейный'\n"
 "'ёлка'\n"
@@ -14922,15 +14986,15 @@ msgid "'ЕЛЕ'\n"
 "'ель'"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:386
+#: ../doc/book/box/data_model.rst:388
 msgid "...and show the difference in ordering and selecting by index:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:388
+#: ../doc/book/box/data_model.rst:390
 msgid "with ``unicode`` collation:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:390
+#: ../doc/book/box/data_model.rst:392
 msgid "tarantool> box.space.T:create_index('I', {parts = {{field = 1, type = 'str', collation='unicode'}}})\n"
 "...\n"
 "tarantool> box.space.T.index.I:select()\n"
@@ -14951,11 +15015,11 @@ msgid "tarantool> box.space.T:create_index('I', {parts = {{field = 1, type = 'st
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:411
+#: ../doc/book/box/data_model.rst:413
 msgid "with ``unicode_ci`` collation:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:413
+#: ../doc/book/box/data_model.rst:415
 msgid "tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str', collation='unicode_ci'}}})\n"
 "...\n"
 "tarantool> box.space.S.index.I:select()\n"
@@ -14975,139 +15039,139 @@ msgid "tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:434
+#: ../doc/book/box/data_model.rst:436
 msgid "In all, collation involves much more than these simple examples of upper case / lower case and accented / unaccented equivalence in alphabets. We also consider variations of the same character, non-alphabetic writing systems, and special rules that apply for combinations of characters."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:439
+#: ../doc/book/box/data_model.rst:441
 msgid "For English: use \"unicode\" and \"unicode_ci\". For Russian: use \"unicode\" and \"unicode_ci\" (although a few Russians might prefer the Kyrgyz collation which says Cyrillic letters 'Е' and 'Ё' are the same with level-1 weights). For Dutch, German (dictionary), French, Indonesian, Irish, Italian, Lingala, Malay, Portuguese, Southern Soho, Xhosa, or Zulu: \"unicode\" and \"unicode_ci\" will do."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:447
+#: ../doc/book/box/data_model.rst:449
 msgid "**The tailored optional collations**: For other languages, Tarantool supplies tailored collations for every modern language that has more than a million native speakers, and for specialized situations such as the difference between dictionary order and telephone book order. To see a complete list say ``box.space._collation:select()``. The tailored collation names have the form unicode_[language code]_[strength] where language code is a standard 2-character or 3-character language abbreviation, and strength is s1 for \"primary strength\" (level-1 weights), s2 for \"secondary\", s3 for \"tertiary\". Tarantool uses the same language codes as the ones in the \"list of tailorable locales\" on man pages of `Ubuntu <http://manpages.ubuntu.com/manpages/bionic/man3/Unicode::Collate::Locale.3perl.html>`_ and `Fedora <http://www.polarhome.com/service/man/?qf=Unicode%3A%3ACollate%3A%3ALocale&af=0&tf=2&of=Fedora>`_. Charts explaining the precise differences from DUCET order are in the `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:473
+#: ../doc/book/box/data_model.rst:471
 msgid "A **sequence** is a generator of ordered integer values."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:475
+#: ../doc/book/box/data_model.rst:473
 msgid "As with spaces and indexes, you should specify the sequence **name**, and let Tarantool come up with a unique **numeric identifier** (\"sequence id\")."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:478
+#: ../doc/book/box/data_model.rst:476
 msgid "As well, you can specify several options when creating a new sequence. The options determine what value will be generated whenever the sequence is used."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:485
+#: ../doc/book/box/data_model.rst:483
 msgid "Options for ``box.schema.sequence.create()``"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:498
+#: ../doc/book/box/data_model.rst:496
 msgid "Option name"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:498
+#: ../doc/book/box/data_model.rst:496
 msgid "Type and meaning"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:500
+#: ../doc/book/box/data_model.rst:498
 msgid "**start**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:500
+#: ../doc/book/box/data_model.rst:498
 msgid "Integer. The value to generate the first time a sequence is used"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:500
+#: ../doc/book/box/data_model.rst:498
 msgid "start=0"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:504
+#: ../doc/book/box/data_model.rst:502
 msgid "**min**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:504
+#: ../doc/book/box/data_model.rst:502
 msgid "Integer. Values smaller than this cannot be generated"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:504
+#: ../doc/book/box/data_model.rst:502
 msgid "min=-1000"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:507
+#: ../doc/book/box/data_model.rst:505
 msgid "**max**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:507
+#: ../doc/book/box/data_model.rst:505
 msgid "Integer. Values larger than this cannot be generated"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:507
+#: ../doc/book/box/data_model.rst:505
 msgid "9223372036854775807"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:507
+#: ../doc/book/box/data_model.rst:505
 msgid "max=0"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:510
+#: ../doc/book/box/data_model.rst:508
 msgid "**cycle**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:510
+#: ../doc/book/box/data_model.rst:508
 msgid "Boolean. Whether to start again when values cannot be generated"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:510
+#: ../doc/book/box/data_model.rst:508
 msgid "cycle=true"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:513
+#: ../doc/book/box/data_model.rst:511
 msgid "**cache**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:513
+#: ../doc/book/box/data_model.rst:511
 msgid "Integer. The number of values to store in a cache"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:513
+#: ../doc/book/box/data_model.rst:511
 msgid "cache=0"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:516
+#: ../doc/book/box/data_model.rst:514
 msgid "**step**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:516
+#: ../doc/book/box/data_model.rst:514
 msgid "Integer. What to add to the previous generated value, when generating a new value"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:516
+#: ../doc/book/box/data_model.rst:514
 msgid "step=-1"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:520
+#: ../doc/book/box/data_model.rst:518
 msgid "**if_not_exists**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:520
+#: ../doc/book/box/data_model.rst:518
 msgid "Boolean. If this is true and a sequence with this name exists already, ignore other options and use the existing values"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:520
+#: ../doc/book/box/data_model.rst:518
 msgid "if_not_exists=true"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:526
+#: ../doc/book/box/data_model.rst:524
 msgid "Once a sequence exists, it can be altered, dropped, reset, forced to generate the next value, or associated with an index."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:529
+#: ../doc/book/box/data_model.rst:527
 msgid "For an initial example, we generate a sequence named 'S'."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:531
+#: ../doc/book/box/data_model.rst:529
 msgid "tarantool> box.schema.sequence.create('S',{min=5, start=5})\n"
 "---\n"
 "- step: 1\n"
@@ -15122,291 +15186,291 @@ msgid "tarantool> box.schema.sequence.create('S',{min=5, start=5})\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:546
+#: ../doc/book/box/data_model.rst:544
 msgid "The result shows that the new sequence has all default values, except for the two that were specified, ``min`` and ``start``."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:549
+#: ../doc/book/box/data_model.rst:547
 msgid "Then we get the next value, with the ``next()`` function."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:551
+#: ../doc/book/box/data_model.rst:549
 msgid "tarantool> box.sequence.S:next()\n"
 "---\n"
 "- 5\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:558
+#: ../doc/book/box/data_model.rst:556
 msgid "The result is the same as the start value. If we called ``next()`` again, we would get 6 (because the previous value plus the step value is 6), and so on."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:562
+#: ../doc/book/box/data_model.rst:560
 msgid "Then we create a new table, and say that its primary key may be generated from the sequence."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:565
+#: ../doc/book/box/data_model.rst:563
 msgid "tarantool> s=box.schema.space.create('T');s:create_index('I',{sequence='S'})\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:571
+#: ../doc/book/box/data_model.rst:569
 msgid "Then we insert a tuple, without specifying a value for the primary key."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:573
+#: ../doc/book/box/data_model.rst:571
 msgid "tarantool> box.space.T:insert{nil,'other stuff'}\n"
 "---\n"
 "- [6, 'other stuff']\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:580
+#: ../doc/book/box/data_model.rst:578
 msgid "The result is a new tuple where the first field has a value of 6. This arrangement, where the system automatically generates the values for a primary key, is sometimes called \"auto-incrementing\" or \"identity\"."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:585
+#: ../doc/book/box/data_model.rst:583
 msgid "For syntax and implementation details, see the reference for :ref:`box.schema.sequence <box_schema-sequence>`."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:592
+#: ../doc/book/box/data_model.rst:590
 msgid "Persistence"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:594
+#: ../doc/book/box/data_model.rst:592
 msgid "In Tarantool, updates to the database are recorded in the so-called :ref:`write ahead log (WAL) <internals-wal>` files. This ensures data persistence. When a power outage occurs or the Tarantool instance is killed incidentally, the in-memory database is lost. In this situation, WAL files are used to restore the data. Namely, Tarantool reads the WAL files and redoes the requests (this is called the \"recovery process\"). You can change the timing of the WAL writer, or turn it off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:603
+#: ../doc/book/box/data_model.rst:601
 msgid "Tarantool also maintains a set of :ref:`snapshot files <internals-snapshot>`. These files contain an on-disk copy of the entire data set for a given moment. Instead of reading every WAL file since the databases were created, the recovery process can load the latest snapshot file and then read only those WAL files that were produced after the snapshot file was made. After checkpointing, old WAL files can be removed to free up space."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:610
+#: ../doc/book/box/data_model.rst:608
 msgid "To force immediate creation of a snapshot file, you can use Tarantool's :ref:`box.snapshot() <box-snapshot>` request. To enable automatic creation of snapshot files, you can use Tarantool's :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. The checkpoint daemon sets intervals for forced checkpoints. It makes sure that the states of both memtx and vinyl storage engines are synchronized and saved to disk, and automatically removes old WAL files."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:618
+#: ../doc/book/box/data_model.rst:616
 msgid "Snapshot files can be created even if there is no WAL file."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:622
+#: ../doc/book/box/data_model.rst:620
 msgid "The memtx engine makes only regular checkpoints with the interval set in :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>` configuration."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:625
+#: ../doc/book/box/data_model.rst:623
 msgid "The vinyl engine runs checkpointing in the background at all times."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:627
+#: ../doc/book/box/data_model.rst:625
 msgid "See the :ref:`Internals <internals-data_persistence>` section for more details about the WAL writer and the recovery process."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:634
+#: ../doc/book/box/data_model.rst:632
 msgid "Operations"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:640
+#: ../doc/book/box/data_model.rst:638
 msgid "Data operations"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:642
+#: ../doc/book/box/data_model.rst:640
 msgid "The basic data operations supported in Tarantool are:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:644
+#: ../doc/book/box/data_model.rst:642
 msgid "five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:645
+#: ../doc/book/box/data_model.rst:643
 msgid "one data-retrieval operation (SELECT)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:647
+#: ../doc/book/box/data_model.rst:645
 msgid "All of them are implemented as functions in :ref:`box.space <box_space>` submodule."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:651
+#: ../doc/book/box/data_model.rst:649
 msgid ":ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:653
+#: ../doc/book/box/data_model.rst:651
 msgid "The first field, field[1], will be 999 (MsgPack type is `integer`)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:655
+#: ../doc/book/box/data_model.rst:653
 msgid "The second field, field[2], will be 'Taranto' (MsgPack type is `string`)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:657
+#: ../doc/book/box/data_model.rst:655
 msgid "tarantool> box.space.tester:insert{999, 'Taranto'}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:661
+#: ../doc/book/box/data_model.rst:659
 msgid ":ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2]."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:663
+#: ../doc/book/box/data_model.rst:661
 msgid "The clause \"{999}\", which has the value to look up in the index of the tuple's primary-key field, is mandatory, because ``update()`` requests must always have a clause that specifies a unique key, which in this case is field[1]."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:667
+#: ../doc/book/box/data_model.rst:665
 msgid "The clause \"{{'=', 2, 'Tarantino'}}\" specifies that assignment will happen to field[2] with the new value."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:670
+#: ../doc/book/box/data_model.rst:668
 msgid "tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:674
+#: ../doc/book/box/data_model.rst:672
 msgid ":ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2] again."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:677
+#: ../doc/book/box/data_model.rst:675
 msgid "The syntax of ``upsert()`` is similar to the syntax of ``update()``. However, the execution logic of these two requests is different. UPSERT is either UPDATE or INSERT, depending on the database's state. Also, UPSERT execution is postponed until after transaction commit, so, unlike ``update()``, ``upsert()`` doesn't return data back."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:683
+#: ../doc/book/box/data_model.rst:681
 msgid "tarantool> box.space.tester:upsert({999, 'Taranted'}, {{'=', 2, 'Tarantism'}})"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:687
+#: ../doc/book/box/data_model.rst:685
 msgid ":ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:689
+#: ../doc/book/box/data_model.rst:687
 msgid "This is also possible with the ``update()`` request, but the ``update()`` request is usually more complicated."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:692
+#: ../doc/book/box/data_model.rst:690
 msgid "tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:696
+#: ../doc/book/box/data_model.rst:694
 msgid ":ref:`SELECT <box_space-select>`: Retrieve the tuple."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:698
+#: ../doc/book/box/data_model.rst:696
 msgid "The clause \"{999}\" is still mandatory, although it does not have to mention the primary key."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:701
+#: ../doc/book/box/data_model.rst:699
 msgid "tarantool> box.space.tester:select{999}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:705
+#: ../doc/book/box/data_model.rst:703
 msgid ":ref:`DELETE <box_space-delete>`: Delete the tuple."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:707
+#: ../doc/book/box/data_model.rst:705
 msgid "In this example, we identify the primary-key field."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:709
+#: ../doc/book/box/data_model.rst:707
 msgid "tarantool> box.space.tester:delete{999}"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:713
+#: ../doc/book/box/data_model.rst:711
 msgid "Summarizing the examples:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:715
+#: ../doc/book/box/data_model.rst:713
 msgid "Functions ``insert`` and ``replace`` accept a tuple (where a primary key comes as part of the tuple)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:717
+#: ../doc/book/box/data_model.rst:715
 msgid "Function ``upsert`` accepts a tuple (where a primary key comes as part of the tuple), and also the update operations to execute."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:720
+#: ../doc/book/box/data_model.rst:718
 msgid "Function ``delete`` accepts a full key of any unique index (primary or secondary)."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:722
+#: ../doc/book/box/data_model.rst:720
 msgid "Function ``update`` accepts a full key of any unique index (primary or secondary), and also the operations to execute."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:725
+#: ../doc/book/box/data_model.rst:723
 msgid "Function ``select`` accepts any key: primary/secondary, unique/non-unique, full/partial."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:728
+#: ../doc/book/box/data_model.rst:726
 msgid "See reference on ``box.space`` for more :ref:`details on using data operations <box_space-operations-detailed-examples>`."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:733
+#: ../doc/book/box/data_model.rst:731
 msgid "Besides Lua, you can use :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`. The client server protocol is open and documented. See this :ref:`annotated BNF <box_protocol-iproto_protocol>`."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:742
+#: ../doc/book/box/data_model.rst:740
 msgid "Index operations"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:744
+#: ../doc/book/box/data_model.rst:742
 msgid "Index operations are automatic: if a data-manipulation request changes a tuple, then it also changes the index keys defined for the tuple."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:747
+#: ../doc/book/box/data_model.rst:745
 msgid "The simple index-creation operation that we've illustrated before is:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:786
+#: ../doc/book/box/data_model.rst:784
 msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:754
+#: ../doc/book/box/data_model.rst:752
 msgid "This creates a unique TREE index on the first field of all tuples (often called \"Field#1\"), which is assumed to be numeric."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:757
+#: ../doc/book/box/data_model.rst:755
 msgid "The simple SELECT request that we've illustrated before is:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:796
+#: ../doc/book/box/data_model.rst:794
 msgid ":extsamp:`box.space.{*{space-name}*}:select({*{value}*})`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:764
+#: ../doc/book/box/data_model.rst:762
 msgid "This looks for a single tuple via the first index. Since the first index is always unique, the maximum number of returned tuples will be: one."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:767
+#: ../doc/book/box/data_model.rst:765
 msgid "The following SELECT variations exist:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:769
+#: ../doc/book/box/data_model.rst:767
 msgid "The search can use comparisons other than equality."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:808
+#: ../doc/book/box/data_model.rst:806
 msgid ":extsamp:`box.space.{*{space-name}*}:select(value, {iterator = 'GT'})`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:776
+#: ../doc/book/box/data_model.rst:774
 msgid "The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT (for \"less than\", \"less than or equal\", \"equal\", \"reversed equal\", \"greater than or equal\", \"greater than\" respectively). Comparisons make sense if and only if the index type is ‘TREE'."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:781
+#: ../doc/book/box/data_model.rst:779
 msgid "This type of search may return more than one tuple; if so, the tuples will be in descending order by key when the comparison operator is LT or LE or REQ, otherwise in ascending order."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:785
+#: ../doc/book/box/data_model.rst:783
 msgid "The search can use a secondary index."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:824
+#: ../doc/book/box/data_model.rst:822
 msgid ":extsamp:`box.space.{*{space-name}*}.index.{*{index-name}*}:select(value)`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:792
+#: ../doc/book/box/data_model.rst:790
 msgid "For a primary-key search, it is optional to specify an index name. For a secondary-key search, it is mandatory."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:795
+#: ../doc/book/box/data_model.rst:793
 msgid "The search may be for some or all key parts."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:834
+#: ../doc/book/box/data_model.rst:832
 msgid "-- Suppose an index has two parts\n"
 ":samp:`tarantool> box.space.{space-name}.index.{index-name}.parts`\n"
 "---\n"
@@ -15424,39 +15488,39 @@ msgid "-- Suppose an index has two parts\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:816
+#: ../doc/book/box/data_model.rst:814
 msgid "The search may be for all fields, using a table for the value:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:855
+#: ../doc/book/box/data_model.rst:853
 msgid ":extsamp:`box.space.{*{space-name}*}:select({1, 'A'})`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:823
+#: ../doc/book/box/data_model.rst:821
 msgid "or the search can be for one field, using a table or a scalar:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:862
+#: ../doc/book/box/data_model.rst:860
 msgid ":samp:`box.space.{space-name}:select(1)`"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:830
+#: ../doc/book/box/data_model.rst:828
 msgid "In the second case, the result will be two tuples: ``{1, 'A'}`` and ``{1, 'B'}``."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:833
+#: ../doc/book/box/data_model.rst:831
 msgid "You can specify even zero fields, causing all three tuples to be returned. (Notice that partial key searches are available only in TREE indexes.)"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:836
+#: ../doc/book/box/data_model.rst:834
 msgid "**Examples**"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:838
+#: ../doc/book/box/data_model.rst:836
 msgid "BITSET example:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:840
+#: ../doc/book/box/data_model.rst:838
 msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example:create_index('primary')\n"
 "tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={field = 2, type = 'unsigned'}})\n"
@@ -15467,27 +15531,27 @@ msgid "tarantool> box.schema.space.create('bitset_example')\n"
 "tarantool> box.space.bitset_example.index.bitset:select(2, {iterator='BITS_ANY_SET'})"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:851
-#: ../doc/book/box/data_model.rst:873
+#: ../doc/book/box/data_model.rst:849
+#: ../doc/book/box/data_model.rst:871
 msgid "The result will be:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:853
+#: ../doc/book/box/data_model.rst:851
 msgid "---\n"
 "- - [3, 7]\n"
 "  - [4, 3]\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:860
+#: ../doc/book/box/data_model.rst:858
 msgid "because (7 AND 2) is not equal to 0, and (3 AND 2) is not equal to 0."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:862
+#: ../doc/book/box/data_model.rst:860
 msgid "RTREE example:"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:864
+#: ../doc/book/box/data_model.rst:862
 msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example:create_index('primary')\n"
 "tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={field = 2, type = 'ARRAY'}})\n"
@@ -15496,73 +15560,73 @@ msgid "tarantool> box.schema.space.create('rtree_example')\n"
 "tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:875
+#: ../doc/book/box/data_model.rst:873
 msgid "---\n"
 "- - [1, [3, 5, 9, 10]]\n"
 "..."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:881
+#: ../doc/book/box/data_model.rst:879
 msgid "because a rectangle whose corners are at coordinates ``4,7,5,9`` is entirely within a rectangle whose corners are at coordinates ``3,5,9,10``."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:884
+#: ../doc/book/box/data_model.rst:882
 msgid "Additionally, there exist :ref:`index iterator operations <box_index-index_pairs>`. They can only be used with code in Lua and C/C++. Index iterators are for traversing indexes one key at a time, taking advantage of features that are specific to an index type, for example evaluating Boolean expressions when traversing BITSET indexes, or going in descending order when traversing TREE indexes."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:890
+#: ../doc/book/box/data_model.rst:888
 msgid "See also other index operations like :ref:`alter() <box_index-alter>` and :ref:`drop() <box_index-drop>` in reference for :ref:`box.index <box_index>` submodule."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:895
+#: ../doc/book/box/data_model.rst:893
 msgid "Complexity factors"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:897
+#: ../doc/book/box/data_model.rst:895
 msgid "In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>` submodules, there are notes about which complexity factors might affect the resource usage of each function."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:909
+#: ../doc/book/box/data_model.rst:907
 msgid "Complexity factor"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:912
+#: ../doc/book/box/data_model.rst:910
 msgid "Index size"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:912
+#: ../doc/book/box/data_model.rst:910
 msgid "The number of index keys is the same as the number of tuples in the data set. For a TREE index, if there are more keys, then the lookup time will be greater, although of course the effect is not linear. For a HASH index, if there are more keys, then there is more RAM used, but the number of low-level steps tends to remain constant."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:920
+#: ../doc/book/box/data_model.rst:918
 msgid "Typically, a HASH index is faster than a TREE index if the number of tuples in the space is greater than one."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:924
+#: ../doc/book/box/data_model.rst:922
 msgid "Number of indexes accessed"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:924
+#: ../doc/book/box/data_model.rst:922
 msgid "Ordinarily, only one index is accessed to retrieve one tuple. But to update the tuple, there must be N accesses if the space has N different indexes."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:928
+#: ../doc/book/box/data_model.rst:926
 msgid "Note re storage engine: Vinyl optimizes away such accesses if secondary index fields are unchanged by the update. So, this complexity factor applies only to memtx, since it always makes a full-tuple copy on every update."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:934
+#: ../doc/book/box/data_model.rst:932
 msgid "Number of tuples accessed"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:934
+#: ../doc/book/box/data_model.rst:932
 msgid "A few requests, for example SELECT, can retrieve multiple tuples. This factor is usually less important than the others."
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:938
+#: ../doc/book/box/data_model.rst:936
 msgid "WAL settings"
 msgstr ""
 
-#: ../doc/book/box/data_model.rst:938
+#: ../doc/book/box/data_model.rst:936
 msgid "The important setting for the write-ahead log is :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. If the setting causes no writing or delayed writing, this factor is unimportant. If the setting causes every data-change request to wait for writing to finish on a slow device, this factor is more important than all the others."
 msgstr ""
 
@@ -16495,130 +16559,90 @@ msgid "There are six types of triggers in Tarantool:"
 msgstr ""
 
 #: ../doc/book/box/triggers.rst:13
-msgid ":ref:`connection triggers <box_session-on_connect>`, which are executed when a session begins or ends,"
+#: ../doc/book/box/triggers.rst:33
+msgid ":ref:`box.session.on_connect() <box_session-on_connect>` or :ref:`box.session.on_disconnect() <box_session-on_disconnect>`,"
+msgstr ""
+
+#: ../doc/book/box/triggers.rst:15
+#: ../doc/book/box/triggers.rst:35
+msgid ":ref:`box.session.on_auth() <box_session-on_auth>`,"
 msgstr ""
 
 #: ../doc/book/box/triggers.rst:16
-msgid ":ref:`authentication triggers <box_session-on_auth>`, which are executed during authentication,"
+#: ../doc/book/box/triggers.rst:39
+msgid ":ref:`space_object:on_replace() <box_space-on_replace>` or :ref:`space_object:before_replace() <box_space-before_replace>`,"
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:19
-msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events,"
+#: ../doc/book/box/triggers.rst:18
+#: ../doc/book/box/triggers.rst:41
+msgid ":ref:`box.on_commit() <box-on_commit>` or :ref:`box.on_rollback() <box-on_rollback>`,"
+msgstr ""
+
+#: ../doc/book/box/triggers.rst:20
+#: ../doc/book/box/triggers.rst:36
+msgid ":ref:`net.box.on_connect() <net_box-on_connect>` or :ref:`net.box.on_disconnect() <net_box-on_disconnect>`,"
 msgstr ""
 
 #: ../doc/book/box/triggers.rst:22
-msgid ":ref:`transaction triggers <box-on_commit>`, which are executed during commit or rollback,"
+#: ../doc/book/box/triggers.rst:38
+msgid ":ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`,"
+msgstr ""
+
+#: ../doc/book/box/triggers.rst:23
+#: ../doc/book/box/triggers.rst:43
+msgid ":ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` or :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`,"
 msgstr ""
 
 #: ../doc/book/box/triggers.rst:25
-msgid ":ref:`server triggers <box_ctl-on_schema_init>`, which are executed when the server starts or stops."
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:28
-msgid ":ref:`member triggers <swim-on_member_event>`, which are executed when a SWIM member is updated."
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:31
-msgid "All triggers have the following characteristics:"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:33
-msgid "Triggers associate a function with an event. The request to \"define a trigger\" implies passing the trigger's function to one of the \"on_event()\" functions:"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:37
-msgid ":ref:`box.session.on_connect() <box_session-on_connect>` and :ref:`box.session.on_disconnect() <box_session-on_disconnect>`, or"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:38
-msgid ":ref:`box.session.on_auth() <box_session-on_auth>`, or"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:39
-msgid ":ref:`space_object:on_replace() <box_space-on_replace>` and :ref:`space_object:before_replace() <box_space-before_replace>`, or"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:40
-msgid ":ref:`box.on_commit() <box-on_commit>` and :ref:`box.on_rollback() <box-on_rollback>`, or"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:41
-msgid ":ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` and :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`, or"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:42
+#: ../doc/book/box/triggers.rst:45
 msgid ":ref:`swim_object:on_member_event() <swim-on_member_event>`."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:44
+#: ../doc/book/box/triggers.rst:27
+msgid "All triggers have the following characteristics:"
+msgstr ""
+
+#: ../doc/book/box/triggers.rst:29
+msgid "Triggers associate a function with an event. The request to \"define a trigger\" implies passing the trigger's function to one of the \"on_event()\" functions:"
+msgstr ""
+
+#: ../doc/book/box/triggers.rst:47
 msgid "Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:46
+#: ../doc/book/box/triggers.rst:49
 msgid "Triggers are stored in the Tarantool instance's memory, not in the database. Therefore triggers disappear when the instance is shut down. To make them permanent, put function definitions and trigger settings into Tarantool's :ref:`initialization script <index-init_label>`."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:51
+#: ../doc/book/box/triggers.rst:54
 msgid "Triggers have low overhead. If a trigger is not defined, then the overhead is minimal: merely a pointer dereference and check. If a trigger is defined, then its overhead is equivalent to the overhead of calling a function."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:55
+#: ../doc/book/box/triggers.rst:58
 msgid "There can be multiple triggers for one event. In this case, triggers are executed in the reverse order that they were defined in. (Exception: member triggers are executed in the order that they appear in the member list.)"
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:59
+#: ../doc/book/box/triggers.rst:62
 msgid "Triggers must work within the event context. However, effects are undefined if a function contains requests which normally could not occur immediately after the event, but only before the return from the event. For example, putting `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or :ref:`box.rollback() <box-rollback>` in a trigger function would be bringing in requests outside the event context."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:66
+#: ../doc/book/box/triggers.rst:69
 msgid "Triggers are replaceable. The request to \"redefine a trigger\" implies passing a new trigger function and an old trigger function to one of the \"on_event()\" functions."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:70
+#: ../doc/book/box/triggers.rst:73
 msgid "The \"on_event()\" functions all have parameters which are function pointers, and they all return function pointers. Remember that a Lua function definition such as \"function f() x = x + 1 end\" is the same as \"f = function () x = x + 1 end\" -- in both cases ``f`` gets a function pointer. And \"trigger = box.session.on_connect(f)\" is the same as \"trigger = box.session.on_connect(function () x = x + 1 end)\" -- in both cases ``trigger`` gets the function pointer which was passed."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:78
-msgid "To get a list of triggers, you can use:"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:80
-msgid "box.session.on_connect() – with no arguments – to return a table of all connect-trigger functions;"
-msgstr ""
-
 #: ../doc/book/box/triggers.rst:81
-msgid "box.session.on_auth() to return all authentication-trigger functions;"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:82
-msgid "box.session.on_disconnect() to return all disconnect-trigger functions;"
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:83
-msgid "space_object:on_replace() to return all replace-trigger functions made for on_replace()."
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:84
-msgid "space_object:before_replace() to return all replace-trigger functions made for before_replace()."
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:85
-msgid "box.ctl.on_shutdown() to return all shutdown-trigger functions made for on_shutdown()."
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:86
-msgid "box.ctl.on_schema_init() to return all initialization-trigger functions made for on_schema_init()."
+msgid "You can call any \"on_event()\" function with no arguments to get a list of its triggers. For example, use ``box.session.on_connect()`` to return a table of all connect-trigger functions."
 msgstr ""
 
 #: ../doc/book/box/triggers.rst:87
-msgid "swim_object:on_member_event() to return all member triggers made for on_member_event()."
-msgstr ""
-
-#: ../doc/book/box/triggers.rst:91
 msgid "Here we log connect and disconnect events into Tarantool server log."
 msgstr ""
 
-#: ../doc/book/box/triggers.rst:93
+#: ../doc/book/box/triggers.rst:89
 msgid "log = require('log')\n"
 "\n"
 "function on_connect_impl()\n"
@@ -16913,7 +16937,7 @@ msgid "Once the instance realizes its presence is known to the cluster, it calls
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_admin.rst:256
-msgid "For more information, see the :ref:`box.cfg submodule reference <box_introspection-box_cfg>`_."
+msgid "For more information, see the :ref:`box.cfg submodule reference <box_introspection-box_cfg>`."
 msgstr ""
 
 #: ../doc/book/cartridge/cartridge_admin.rst:259

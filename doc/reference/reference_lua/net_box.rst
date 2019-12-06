@@ -130,7 +130,15 @@ Below is a list of all ``net.box`` functions.
     | :ref:`conn:timeout()                               | Set a timeout             |
     | <conn-timeout>`                                    |                           |
     +----------------------------------------------------+---------------------------+
-
+    | :ref:`net_box.on_connect()                         | Define a connect          |
+    | <net_box-on_connect>`                              | trigger                   |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`net_box.on_disconnect()                      | Define a disconnect       |
+    | <net_box-on_disconnect>`                           | trigger                   |
+    +----------------------------------------------------+---------------------------+
+    | :ref:`net_box.on_schema_reload()                   | Define a trigger when     |
+    | <net_box-on_schema_reload>`                        | schema is modified        |
+    +----------------------------------------------------+---------------------------+
 .. module:: net_box
 
 .. _net_box-connect:
@@ -564,6 +572,64 @@ Below is a list of all ``net.box`` functions.
             Although the final result of an async request is the same as
             the result of a sync request, it is structured differently: as a
             table, instead of as the unpacked values.
+
+.. _net_box-triggers:
+
+============================================================================
+Triggers
+============================================================================
+
+With the ``net.box`` module, you can use the following
+:ref:`triggers <triggers-box_triggers>`:
+
+.. _net_box-on_connect:
+
+.. function:: net_box.on_connect([trigger-function[, old-trigger-function]]){option[s]}])
+
+    Define a trigger for execution when a new connection is created due to an
+    event such as ``net_box.connect``. The trigger function will be the first thing
+    executed after a new connection is created. If the trigger execution fails
+    and raises an error, the error is sent to the client and the connection is closed.
+
+    :param function trigger-function: function which will become the trigger function
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
+
+.. _net_box-on_disconnect:
+
+.. function:: net_box.on_disconnect([trigger-function[, old-trigger-function]]){option[s]}])
+
+    Define a trigger for execution after a connection is closed. If the trigger
+    function causes an error, the error is logged but otherwise is ignored.
+    Execution stops after a connection is explicitly closed, or once the Lua
+    garbage collector removes it.
+
+    :param function trigger-function: function which will become the trigger function
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
+
+.. _net_box-on_schema_reload:
+
+.. function:: net_box.on_schema_reload([trigger-function[, old-trigger-function]]){option[s]}])
+
+    Define a trigger executed when some operation has been performed on the remote
+    server after schema has been updated. So, if a server request fails due to a schema
+    version mismatch error, schema reload is triggered.
+
+    :param function trigger-function: function which will become the trigger function
+    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :return: nil or function pointer
+
+        .. NOTE::
+
+            If the parameters are ``(nil, old-trigger-function)``,
+            then the old trigger is deleted.
+
+            If both parameters are omitted, then the response is a list of
+            existing trigger functions.
+
+            Details about trigger characteristics are in the
+            :ref:`triggers <triggers-box_triggers>` section.
 
 ============================================================================
 Example

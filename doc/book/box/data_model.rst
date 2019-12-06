@@ -61,7 +61,6 @@ When Tarantool returns a tuple value in the console,
 by default it uses :ref:`YAML <interactive_console>` format,
 for example: ``[3, 'Ace of Base', 1993]``.
 
-
 .. _index-box_index:
 
 --------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ field #1 of each tuple:
 
 .. code-block:: tarantoolsession
 
-   tarantool> i = s:create_index('primary', {type = 'hash', parts = {field = 1, type = 'unsigned'}})
+   tarantool> i = s:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}
 
 The effect is that, for all tuples in space 'tester', field #1 must exist and
 must contain an unsigned integer.
@@ -462,10 +461,6 @@ Tarantool uses the same language codes as the ones in the "list of tailorable lo
 Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
-
-
-
-
 
 .. _index-box_sequence:
 
