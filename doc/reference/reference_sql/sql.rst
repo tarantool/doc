@@ -2613,6 +2613,35 @@ Apply a built-in function to one or more expressions and return a scalar value.
 
 Tarantool supports 32 built-in functions.
 
+.. _sql_function_abs:
+
+***********************************************
+ABS
+***********************************************
+
+Syntax:
+
+:samp:`ABS({numeric-expression})`
+
+Return the absolute value of numeric-expression, which can be any numeric type.
+
+Example: ``ABS(-1)`` is 1.
+
+.. _sql_function_cast:
+
+***********************************************
+CAST
+***********************************************
+
+Syntax:
+
+:samp:`CAST({expression} AS {data-type})`
+
+Return the expression value after casting to the specified
+:ref:`data type <sql_column_def_data_type>`.
+
+Examples: ``CAST('AB' AS VARBINARY)``, ``CAST(X'4142' AS STRING)``
+
 .. _sql_function_char:
 
 ***********************************************
@@ -2662,6 +2691,24 @@ expression values are NULL, return NULL.
 Example:
   ``COALESCE(NULL, 17, 32)`` is 17.
 
+.. _sql_function_greatest:
+
+***********************************************
+GREATEST
+***********************************************
+
+Syntax:
+
+:samp:`GREATEST({expression-1}, {expression-2}, [{expression-3} ...])`
+
+Return the greatest value of the supplied expressions, or, if any expression
+is NULL, return NULL.
+The reverse of ``GREATEST`` is :ref:`LEAST <sql_function_least>`.
+
+Examples: ``GREATEST(7, 44, -1)`` is 44;
+``GREATEST(1E308, 'a', 0, X'00')`` is '\0' = the nul character;
+``GREATEST(3, NULL, 2)`` is NULL
+
 .. _sql_function_hex:
 
 ***********************************************
@@ -2704,6 +2751,24 @@ expression values are NULL, return NULL. Thus
 Example:
   ``IFNULL(NULL, 17)`` is 17
 
+.. _sql_function_least:
+
+***********************************************
+LEAST
+***********************************************
+
+Syntax:
+
+:samp:`LEAST({expression-1}, {expression-2}, [{expression-3} ...])`
+
+Return the least value of the supplied expressions, or, if any expression
+is NULL, return .
+The reverse of ``LEAST`` is :ref:`GREATEST <sql_function_greatest>`.
+
+Examples: ``LEAST(7, 44, -1)`` is -1;
+``LEAST(1E308, 'a', 0, X'00')`` is 0;
+``LEAST(3, NULL, 2)`` is NULL.
+
 .. _sql_function_length:
 
 ***********************************************
@@ -2730,6 +2795,63 @@ Examples:
   * ``LENGTH(CHAR(0, 65))`` is 2, '\0' does not mean 'end of string'.
   * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY.
 
+.. _sql_function_like:
+
+***********************************************
+"LIKE"
+***********************************************
+
+Syntax:
+
+:samp:`"LIKE"({string-expression-1}, {string-expression-2} [, {string-expression-3}])`
+
+"LIKE"(a,b[,c]) -- notice the quote marks -- is equivalent to b LIKE a [ESCAPE c].
+
+Example: ``"LIKE"('%Rain','The Rain')`` is TRUE because Rain is in The Rain
+
+.. _sql_function_likelihood:
+
+***********************************************
+LIKELIHOOD
+***********************************************
+
+Syntax:
+
+:samp:`LIKELIHOOD({expression}, {number literal})`
+
+Return the result of the expression, provided that the number literal is between 0 and 1.
+
+Example: ``LIKELIHOOD('a' = 'b', .0)`` is FALSE
+
+.. _sql_function_likely:
+
+***********************************************
+LIKELY
+***********************************************
+
+Syntax:
+
+:samp:`LIKELY({expression})`
+
+Return TRUE if the expression is probably true.
+
+Example: ``LIKELY('a' <= 'b')`` is TRUE
+
+.. _sql_function_lower:
+
+***********************************************
+LOWER
+***********************************************
+
+Syntax:
+
+:samp:`LOWER({string-expression})`
+
+Return the expression, with upper-case characters converted to lower case.
+The reverse of ``LOWER`` is :ref:`UPPER <sql_function_upper>`.
+
+Example: ``LOWER('ДA')`` is 'дa'
+
 .. _sql_function_nullif:
 
 ***********************************************
@@ -2747,6 +2869,40 @@ Examples:
 
   * ``NULLIF('a', 'A')`` is 'a'.
   * ``NULLIF(1.00, 1)`` is NULL.
+
+.. _sql_function_position:
+
+***********************************************
+POSITION
+***********************************************
+
+Syntax:
+
+:samp:`POSITION({expression-1}, {expression-2})`
+
+Return the position of expression-1 within expression-2,
+or return 0 if expression-1 does not appear
+within expression-2. 
+The data types of the expressions must be either STRING or VARBINARY.
+If the expressions have data type STRING, then the result is the character position.
+If the expressions have data type VARBINARY, then the result is the
+byte position.
+
+Short example:
+``POSITION('C', 'ABC')`` is 3
+
+Long example: The UTF-8 encoding for the Latin letter A
+is hexadecimal 41; the UTF-8 encoding for the
+Cyrillic letter Д is hexadecimal D094 -- you can confirm this
+by saying SELECT HEX('ДA'); and seeing that the
+result is 'D09441'. If you now execute
+``SELECT POSITION('A', 'ДA');``
+the result will be 2,
+because 'A' is the second character in the string.
+However, if you now execute
+``SELECT POSITION(X'41', X'D09441');``
+the result will be 3,
+because X'41' is the third byte in the byte sequence.
 
 .. _sql_function_printf:
 
@@ -2789,6 +2945,135 @@ inside such strings are shown as two single quotes in a row.
 
 Example: ``QUOTE('a')`` is ``'a'``.
 
+.. _sql_function_raise:
+
+***********************************************
+RAISE
+***********************************************
+
+Syntax:
+
+:samp:`RAISE(FAIL, {error-message})`
+
+This may only be used within a triggered statement. See also :ref:`Trigger Activation <sql_trigger_activation>`.
+
+.. _sql_function_random:
+
+***********************************************
+RANDOM
+***********************************************
+
+Syntax: :samp:`RANDOM()`
+
+Return a 19-digit integer which is generated by a pseudo-random number generator,
+
+Example: ``RANDOM()`` is 6832175749978026034, or it is any other integer
+
+.. _sql_function_randomblob:
+
+***********************************************
+RANDOMBLOB
+***********************************************
+
+Syntax:
+
+:samp:`RANDOMBLOB({n})`
+
+Return a byte sequence, n bytes long, data type = VARBINARY, containing bytes generated by a
+pseudo-random byte generator. The result can be translated to hexadecimal.
+If n is less than 1 or is NULL or is infinity, then NULL is returned.
+
+Example: ``HEX(RANDOMBLOB(3))`` is '9EAAA8', or it is the hex value for any other
+three-byte string
+
+.. _sql_function_replace:
+
+***********************************************
+REPLACE
+***********************************************
+
+Syntax:
+
+:samp:`REPLACE({expression-1}, {xpression-2}, {expression-3})`
+
+Return expression-1, except that wherever expression-1
+contains expression-2, replace expression-2 with
+expression-3.
+The expressions should all have data type STRING or VARBINARY.
+
+Example: ``REPLACE('AAABCCCBD', 'B', '!')`` is 'AAA!CCC!D'
+
+.. _sql_function_round:
+
+***********************************************
+ROUND
+***********************************************
+
+Syntax:
+
+:samp:`ROUND({numeric-expression-1} [, {numeric-expression-2}])`
+
+Return the rounded value of numeric-expression-1, always rounding
+.5 upward for floating-point positive numbers or downward for negative numbers.
+If numeric-expression-2 is supplied then rounding is to the nearest
+numeric-expression-2 digits after the decimal point;
+if numeric-expression-2 is not supplied then rounding is to the nearest integer.
+
+Example: ``ROUND(-1.5)`` is -2, ``ROUND(1.7766E1,2)`` is 17.77.
+
+.. _sql_function_row_count:
+
+***********************************************
+ROW_COUNT
+***********************************************
+
+:samp:`ROW_COUNT()`
+
+Return the number of rows that were inserted / updated / deleted
+by the last :ref:`INSERT <sql_insert>` or
+:ref:`UPDATE <sql_update>` or
+:ref:`DELETE <sql_delete>` or
+:ref:`REPLACE <sql_replace>` statement.
+Rows which were updated by an UPDATE statement are counted even if there was no change.
+Rows which were inserted / updated / deleted due to foreign-key action are not counted.
+Rows which were inserted / updated / deleted due to a view's
+:ref:`INSTEAD OF triggers <sql_instead_of_triggers>` are  not counted. 
+After a CREATE or DROP statement, ROW_COUNT() is 1.
+After other statements,  ROW_COUNT() is 0.
+
+Example: ``ROW_COUNT()`` is 1 after a successful INSERT of a single row.
+
+Special rule if there are BEFORE or AFTER triggers: In effect the ROW_COUNT() 
+counter is pushed at the beginning of a series of triggered statements,
+and popped at the end. Therefore, after the following statements:
+
+.. code-block:: sql
+
+             CREATE TABLE t1 (s1 INTEGER PRIMARY KEY);
+             CREATE TABLE t2 (s1 INTEGER, s2 STRING, s3 INTEGER, PRIMARY KEY (s1, s2, s3)); 
+             CREATE TRIGGER tt1 BEFORE DELETE ON t1 FOR EACH ROW BEGIN
+               INSERT INTO t2 VALUES (old.s1, '#2 Triggered', ROW_COUNT());
+               INSERT INTO t2 VALUES (old.s1, '#3 Triggered', ROW_COUNT());
+               END;
+             INSERT INTO t1 VALUES (1),(2),(3);
+             DELETE FROM t1;
+             INSERT INTO t2 VALUES (4, '#4 Untriggered', ROW_COUNT());
+             SELECT * FROM t2;
+
+The result is:
+
+.. code-block:: none
+
+             ---
+             - - [1, '#2 Triggered', 3]
+               - [1, '#3 Triggered', 1]
+               - [2, '#2 Triggered', 3]
+               - [2, '#3 Triggered', 1]
+               - [3, '#2 Triggered', 3]
+               - [3, '#3 Triggered', 1]
+               - [4, '#4 Untriggered', 3]
+             ...
+
 .. _sql_function_soundex:
 
 ***********************************************
@@ -2809,6 +3094,70 @@ and works best with English words.
 
 Example: ``SOUNDEX('Crater')`` and ``SOUNDEX('Creature')`` both return ``C636``.
 
+.. _sql_function_substr:
+
+***********************************************
+SUBSTR
+***********************************************
+
+Syntax:
+
+:samp:`SUBSTR({expression-1}, {numeric-expression-1} [, {numeric-expression-2}])`
+
+If expression-1 has data type STRING, then return the substring
+which begins
+at character position numeric-expression-1 and continues for
+numeric-expression-2 characters (if numeric-expression-2 is
+supplied), or continues till the end of string-expression-1
+(if numeric-expression-2 is not supplied).
+
+If expression-1 has data type VARBINARY rather than data
+type STRING, then positioning and counting is by bytes
+rather than by characters.
+
+Example: ``SUBSTR('ABCDEFG', 3, 2)`` is 'CD'
+
+.. _sql_function_trim:
+
+***********************************************
+TRIM
+***********************************************
+
+Syntax:
+
+:samp:`TRIM([LEADING|TRAILING|BOTH] [{expression-1}] [FROM] {expression-2}])`
+
+Return expression-2 after removing all leading and/or trailing characters or bytes.
+The expressions should have data type STRING or VARBINARY.
+If LEADING|TRAILING|BOTH is omitted, the default is BOTH.
+If expression-1 is omitted, the default is ' ' (space) for data type STRING
+or X'00' (nul) for data type VARBINARY.
+
+Examples:
+``TRIM('a' FROM 'abaaaaa')`` is 'b' -- all repetitions of 'a' are removed on both sides;
+``TRIM(TRAILING 'ב' FROM 'אב')`` is 'א' -- if all characters are Hebrew, TRAILING means "left";
+``TRIM(X'004400')`` is X'44' -- the default byte sequence to trim is X'00' when data type is VARBINARY'
+``TRIM(LEADING 'abc' FROM 'abcd')`` is 'd' -- expression-1 can have more than 1 character
+
+.. _sql_function_typeof:
+
+***********************************************
+TYPEOF
+***********************************************
+
+Syntax:
+
+:samp:`TYPEOF({expression})`
+
+Return the :ref:`data type <sql_column_def_data_type>` of the expression.
+
+Examples:
+``TYPEOF('A')`` returns 'string';
+``TYPEOF(RANDOMBLOB(1))`` returns 'varbinary';
+``TYPEOF(1e44)`` returns 'number';
+``TYPEOF(-44)`` returns 'integer';
+``TYPEOF(NULL)`` returns 'boolean'
+
 .. _sql_function_unicode:
 
 ***********************************************
@@ -2825,6 +3174,21 @@ This is the reverse of :ref:`CHAR(integer) <sql_function_char>`.
 
 Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429).
 
+.. _sql_function_unlikely:
+
+***********************************************
+UNLIKELY
+***********************************************
+
+Syntax:
+
+:samp:`UNLIKELY({expression})`
+
+Return TRUE if the expression is probably false.
+Limitation: in fact ``UNLIKELY`` may return the same thing as :ref:`LIKELY <sql_function_likely>`.
+
+Example: ``UNLIKELY('a' <= 'b')`` is TRUE.
+
 .. _sql_function_upper:
 
 ***********************************************
@@ -2836,7 +3200,7 @@ Syntax:
 :samp:`UPPER(string-expression)`
 
 Return the expression, with lower-case characters converted to upper case.
-This is the reverse of LOWER(string-expression).
+The reverse of ``UPPER`` is :ref:`LOWER <sql_function_lower>`.
 
 Example: ``UPPER('-4щl')`` is '-4ЩL'.
 
@@ -2853,3 +3217,19 @@ Syntax:
 Return the Tarantool version.
 
 Example: for a December 2019 build VERSION() is ``2.3.0-258-g960e9c0c7``.
+
+.. _sql_function_zeroblob:
+
+***********************************************
+ZEROBLOB
+***********************************************
+
+Syntax:
+
+:samp:`ZEROBLOB({n})`
+
+Return a byte sequence, data type = VARBINARY, n bytes long.
+
+Limitations:
+
+* The maximum number of operands for any function is 127.
