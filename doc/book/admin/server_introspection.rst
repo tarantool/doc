@@ -300,6 +300,8 @@ You can kill any fiber with :ref:`fiber.kill(fid) <fiber-kill>`:
         name: interactive
     ...
 
+To get a table of all alive fibers you can use :ref:`fiber.top() <fiber-top>`.
+
 If you want to dynamically obtain information with ``fiber.info()``, the shell
 script below may come in handy. It connects to a Tarantool instance specified by
 ``NAME`` every 0.5 seconds, grabs the ``fiber.info()`` output and writes it to
