@@ -209,7 +209,7 @@ Below is a list of all ``digest`` functions.
 
 .. _digest-base64_encode:
 
-.. function:: base64_encode()
+.. function:: base64_encode(string[, table])
 
     Returns base64 encoding from a regular string.
 
