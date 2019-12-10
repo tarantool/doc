@@ -2,3 +2,4 @@ Sphinx==1.8.5
 sphinx-intl
 lupa
 docutils==0.14
+sphinxcontrib-svg2pdfconverter==1.0.1
