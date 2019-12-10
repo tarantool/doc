@@ -41,6 +41,19 @@ Below is a list of all ``box.error`` functions.
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
 
+box.error throws an object that has cdata type and has following fields:
+
+    * "type", (string) error's C++ class,
+    * "code" (number) error's number,
+    * "message" (string) error's message,
+    * "file" (string) Tarantool source file,
+    * "line" (number) Tarantool source file line number.
+
+Additionally, if the error is a system error (for example due to a
+failure in socket or file io), there may be a sixth member:
+"errno" (number) C standard error number.
+
+
 .. function:: box.error{reason = string [, code = number]}
 
     When called with a Lua-table argument, the code and reason have any
@@ -98,44 +111,51 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.last()
 
-    Returns a description of the last error, as a Lua table
-    with five members: "line" (number) Tarantool source file line number,
-    "code" (number) error's number,
-    "type", (string) error's C++ class,
-    "message" (string) error's message,
-    "file" (string) Tarantool source file.
-    Additionally, if the error is a system error (for example due to a
-    failure in socket or file io), there may be a sixth member:
-    "errno" (number) C standard error number.
+    Show the last error object.
+    You can reach the fields of the object like this:
 
-    rtype: table
+    **Example**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.schema.space.create('')
+        ---
+        - error: Invalid identifier '' (expected printable symbols only or it is too long)
+        ...
+        tarantool> box.error.last()
+        ---
+        - Invalid identifier '' (expected printable symbols only or it is too long)
+        ...
+        tarantool> box.error.last().code
+        ---
+        - 70
+        ...
+        tarantool> box.error.last().type
+        ---
+        - ClientError
+        ...
+
+    :return: the last error object
+    :rtype: cdata
 
 .. _box_error-clear:
 
 .. function:: box.error.clear()
 
-    Clears the record of errors, so functions like `box.error()`
+    Clear the record of errors, so functions like `box.error()`
     or `box.error.last()` will have no effect.
 
     **Example:**
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.error{code = 555, reason = 'Arbitrary message'}
+        tarantool> box.schema.space.create('')
         ---
-        - error: Arbitrary message
-        ...
-        tarantool> box.schema.space.create('#')
-        ---
-        - error: Invalid identifier '#' (expected letters, digits or an underscore)
+        - error: Invalid identifier '' (expected printable symbols only or it is too long)
         ...
         tarantool> box.error.last()
         ---
-        - line: 278
-          code: 70
-          type: ClientError
-          message: Invalid identifier '#' (expected letters, digits or an underscore)
-          file: /tmp/buildd/tarantool-1.7.0.252.g1654e31~precise/src/box/key_def.cc
+        - Invalid identifier '' (expected printable symbols only or it is too long)
         ...
         tarantool> box.error.clear()
         ---
