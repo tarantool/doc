@@ -164,7 +164,7 @@ if (LATEX_FOUND)
         COMMAND "${SPHINX_EXECUTABLE}"
             -b latex
             -d "${SPHINX_BUILD_LATEX_RU_DIR}"
-            -c singlehtml
+            -c pdf
             "${CMAKE_CURRENT_SOURCE_DIR}/doc"
             "${SPHINX_BUILD_LATEX_RU_DIR}"
             -D language=ru
@@ -188,7 +188,7 @@ if (LATEX_FOUND)
         COMMAND "${SPHINX_EXECUTABLE}"
             -b latex
             -d "${SPHINX_BUILD_LATEX_DIR}"
-            -c singlehtml
+            -c pdf
             "${CMAKE_CURRENT_SOURCE_DIR}/doc"
             "${SPHINX_BUILD_LATEX_DIR}"
     )

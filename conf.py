@@ -12,7 +12,6 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.imgconverter',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',

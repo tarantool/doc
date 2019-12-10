@@ -1,6 +1,7 @@
 FROM artembo/python-texlive:latest
 
-RUN pip install Sphinx==1.8.5 sphinx-intl lupa docutils==0.14
+ADD requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
 RUN mkdir /doc
 WORKDIR /doc
