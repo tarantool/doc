@@ -183,6 +183,22 @@ Below is a list of all ``box.schema`` functions.
         |               | for authorization purposes                         |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
 
+        Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-read_only>`
+        affects spaces differently depending on the options that were used during
+        ``box.schema.space.create``, as summarized by this chart:
+
+    .. container:: table
+
+        +------------+-----------------+--------------------+----------------+----------------+
+        | Option     | Can be created? | Can be written to? | Is replicated? | Is persistent? |
+        +============+=================+====================+================+================+
+        | (default)  | no              | no                 | yes            | yes            |
+        +------------+-----------------+--------------------+----------------+----------------+
+        | temporary  | no              | yes                | no             | no             |
+        +------------+-----------------+--------------------+----------------+----------------+
+        | is_local   | no              | yes                | no             | yes            |
+        +------------+-----------------+--------------------+----------------+----------------+
+
     There are three :ref:`syntax variations <app_server-object_reference>`
     for object references targeting space objects, for example
     :samp:`box.schema.space.drop({space-id})`
