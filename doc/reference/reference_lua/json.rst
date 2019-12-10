@@ -187,7 +187,7 @@ Below is a list of all ``json`` functions and members.
     * ``cfg.encode_invalid_as_nil`` (default is false) -- use ``null`` for all
       unrecognizable types
     * ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
-    * ``cfg.encode_load_metatables`` (default is false) -- load metatables
+    * ``cfg.encode_load_metatables`` (default is true) -- load metatables
     * ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
     * ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
     * ``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse arrays as maps
