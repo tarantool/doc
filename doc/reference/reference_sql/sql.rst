@@ -105,7 +105,7 @@ In alphabetical order, the following statements are legal.
 |nbsp| :ref:`INSERT INTO table-name <sql_insert>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[(column-name [, column-name ...])] <sql_insert>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`VALUES (expression [, expression ...]); <sql_insert>` |br|
-|nbsp| PRAGMA [global-option (value) | global-option=value]; |br|
+|nbsp| :ref:`PRAGMA [pragma-name(value) | pragma-name=value]; <sql_pragma>` |br|
 |nbsp| :ref:`RELEASE SAVEPOINT savepoint-name; <sql_release_savepoint>` |br|
 |nbsp| :ref:`REPLACE INTO table-name VALUES (expression [, expression ...]); <sql_replace>` |br|
 |nbsp| :ref:`ROLLBACK [TO [SAVEPOINT] savepoint-name]; <sql_rollback>` |br|
@@ -1085,7 +1085,7 @@ Rules:
   When this clause is not specified,
   the table is created with the default engine,
   which is ordinarily 'memtx' but may be changed with
-  :samp:`PRAGMA sql_default_engine({string})`.
+  :ref:`PRAGMA sql_default_engine(string); <sql_pragma>`.
 
 Actions:
 
@@ -1607,7 +1607,7 @@ The *index-name* must be the name of an existing index, which was created with
 :ref:`CREATE INDEX <sql_create_index>`.
 Or, the *index-name* must be the name of an index that was created automatically
 due to a PRIMARY KEY or UNIQUE clause in the :ref:`CREATE TABLE <sql_create_table>` statement.
-To see what a table's indexes are, use :samp:`PRAGMA index_list ({table-name})`.
+To see what a table's indexes are, use :ref:`PRAGMA index_list(table-name); <sql_pragma>`.
 
 Rules: none
 
@@ -3440,6 +3440,246 @@ Examples:
    box.execute([[ROLLBACK TO SAVEPOINt "1";]]) -- this is legal but does nothing
    box.execute([[COMMIT;]]) -- make Data change #1 permanent, end the transaction
    end
+
+.. _sql_pragma:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PRAGMA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syntax:
+
+* :samp:`PRAGMA {pragma-name} = pragma-value;`
+* or :samp:`PRAGMA {pragma-name} (pragma-value);`
+* or (rarely) :samp:`PRAGMA {pragma-name};`
+* or (once) :samp:`PRAGMA;`
+
+.. image:: pragma.svg
+    :align: left
+
+Some PRAGMA statements will change DBMS behavior.
+Others will give rudimentary information about table 'metadata',
+although it is better to get such information via system tables.
+
+We recommend: use ``PRAGMA pragma-name(pragma-value);`` rather than ``PRAGMA pragma-name = pragma-value;``.
+
+Often pragma values are INTEGER but can be treated as BOOLEAN,
+and can be specified with any of:
+``true`` | ``on`` | ``1`` | ``yes`` | ``'true'`` | ``'on'`` | ``'yes'`` ...
+``false`` | ``off`` | ``0`` | ``no`` | ``'false'`` | ``'off'`` | ``'no'``.
+We recommend: use TRUE or FALSE.
+
+Less commonly pragma values are strings and can be specified with any of: inside ``""`` double quotes,
+inside ``''`` single quotes, or without quotes. We recommend: use single quotes.
+When a string is used for searching, results must match according to a binary collation.
+
+``PRAGMA;`` -- returns an incomplete list of pragmas and their current values.
+
+**Pragma statements that determnne behavior**
+
+.. container:: table
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-3
+
+    +---------------------------+-----------------+-----------------------------------------+
+    | Pragma                    | Parameter       | Effect                                  |
+    +===========================+=================+=========================================+
+    | count_changes             | treated as      | Determine whether to count for later    |
+    |                           | boolean,        | statements that change data. |br|       |
+    |                           | default = FALSE | ``PRAGMA count_changes();``             |
+    |                           | (0)             | -- without an argument -- returns the   |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+
+    | defer_foreign_keys        | treated as      | No effect at this time                  |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | full_column_names         | treated as      | No effect at this time                  |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | parser_trace              | treated as      | Determine whether parser steps will be  |
+    |                           | boolean,        | shown for later statements. |br|        |
+    |                           | default = FALSE | ``PRAGMA parser_trace;`` -- without an  |
+    |                           | (0)             | argument -- returns the current         |
+    |                           |                 | setting.                                |
+    +---------------------------+-----------------+-----------------------------------------+
+    | recursive_triggers        | treated as      | Determine whether a triggered statement |
+    |                           | boolean,        | can activate a trigger. |br|            |
+    |                           | default = TRUE  | ``PRAGMA recursive_triggers;`` --       |
+    |                           | (1)             | without an argument -- returns the      |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+
+    | reverse_unordered_selects | treated as      | Determine whether result rows are to be |
+    |                           | boolean,        | in reverse order if there is no ORDER   |
+    |                           | default = FALSE | clause. |br|                            |
+    |                           | (0)             | ``PRAGMA reverse_unordered_selects;``   |
+    |                           |                 | -- without an argument -- returns the   |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+
+    | sql_compound_select_limit | integer,        | Determine the maximum number of UNION   |
+    |                           | default = 30,   | or EXCEPT or INTERSECT "table           |
+    |                           | maximum = 500   | operators" that a single statement may  |
+    |                           |                 | contain. |br|                           |
+    |                           |                 | ``PRAGMA sql_compound_select_limit`` -- |
+    |                           |                 | without an argument -- returns the      |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+
+    | sql_default_engine        | string, either  | Determine what engine to use in later   |
+    |                           | ``'memtx'`` or  | CREATE TABLE statements. The choices    |
+    |                           | ``'vinyl'``,    | are 'memtx' and 'vinyl'. |br|           |
+    |                           | default =       | ``PRAGMA sql_default_engine;`` --       |
+    |                           | ``'memtx'``     | without an argument -- returns the      |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+
+    | sql_trace                 | treated as      | Determine whether execution steps will  |
+    |                           | boolean,        | be shown during later statements. |br|  |
+    |                           | default = FALSE | ``PRAGMA sql_trace`` --                 |
+    |                           | (0)             | without an argument -- returns the      |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+     
+    | select_trace              | treated as      | Determine whether execution steps will  |
+    |                           | boolean,        | be shown during later SELECT            |
+    |                           | default = FALSE | statements. |br|                        |
+    |                           | (0)             | ``PRAGMA select_trace`` --              |
+    |                           |                 | without an argument -- returns the      |
+    |                           |                 | current setting.                        |
+    +---------------------------+-----------------+-----------------------------------------+     
+    | short_column_names        | treated as      | No effect at this time                  |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | vdbe_addoptrace           | treated as      | For use by Tarantool's developers       |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | vdbe_debug                | treated as      | For use by Tarantool's developers       |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | vdbe_eqp                  | treated as      | For use by Tarantool's developers       |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | vdbe_listing              | treated as      | For use by Tarantool's developers       |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | vdbe_trace                | treated as      | For use by Tarantool's developers       |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+    | where_trace               | treated as      | For use by Tarantool's developers       |
+    |                           | boolean,        |                                         |                    
+    |                           | default = FALSE |                                         |
+    |                           | (0)             |                                         |
+    +---------------------------+-----------------+-----------------------------------------+
+
+
+**Pragma statements that display data about the data and the server performance**
+
+.. container:: table
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-3
+
+    +---------------------+-----------------+-------------------------------------------------+
+    | Pragma              | Parameter       | Effect                                          |
+    +=====================+=================+=================================================+
+    | foreign_key_list    | string |br|     | Return a result set                             |
+    |                     | table-name      | with one row for each foreign key of            |
+    |                     |                 | "table-name". Each row contains: |br|           |
+    |                     |                 | (INTEGER) id -- identification number |br|      |
+    |                     |                 | (INTEGER) seq -- sequential number |br|         |
+    |                     |                 | (STRING) table -- name of table |br|            |
+    |                     |                 | (STRING) from  -- referencing key |br|          |
+    |                     |                 | (STRING) to -- referenced key |br|              |
+    |                     |                 | (STRING) on_update -- ON UPDATE clause |br|     |
+    |                     |                 | (STRING) on_delete -- ON DELETE clause |br|     |
+    |                     |                 | (STRING) match -- MATCH clause |br|             |
+    |                     |                 | The system table is ``"_fk_constraint"``.       |
+    +---------------------+-----------------+-------------------------------------------------+
+    | collation_list      |                 | Return a result set with one row for each       |
+    |                     |                 | supported collation. The first four collations  |
+    |                     |                 | are ``'none'`` and ``'unicode'`` and            |
+    |                     |                 | ``'unicode_ci'`` and ``'binary'``, then come    |
+    |                     |                 | about 270 predefined collations, the exact      |
+    |                     |                 | count may vary because users can add their      |
+    |                     |                 | own collations. |br|                            |
+    |                     |                 | The system table is ``"_collation"``.           |
+    +---------------------+-----------------+-------------------------------------------------+
+    | index_info          | string |br|     | Return a result set with one row for each       |
+    |                     | table-name .    | column in "table-name.index-name".              |
+    |                     | index-name      | Each row contains: |br|                         |
+    |                     | (do not use     | (INTEGER) seqno -- the column's ordinal         |
+    |                     | quote marks,    | position in the index (first column is 0) |br|  |
+    |                     | for example say | (INTEGER) cid -- the column's ordinal           |
+    |                     | ``T.I`` not     | position in the table (first column is 0) |br|  |
+    |                     | ``'T.I'``)      | (STRING) name -- name of the column |br|        |
+    |                     |                 | (INTEGER) desc -- 0 if ASC, 1 if DESC |br|      |
+    |                     |                 | (STRING) collation name |br|                    |
+    |                     |                 | (STRING) type -- data type |br|                 |
+    +---------------------+-----------------+-------------------------------------------------+
+    | index_list          | string |br|     | Return a result set                             |
+    |                     | table-name      | with one row for each index of "table-name".    |
+    |                     |                 | Each row contains: |br|                         |
+    |                     |                 | (INTEGER) seq -- sequential number |br|         |
+    |                     |                 | (STRING) name -- index name |br|                |
+    |                     |                 | (INTEGER) unique -- whether the index is        |
+    |                     |                 | unique, 0 = false, 1 = true |br|                |
+    |                     |                 | The system table is ``"_index"``.               |
+    +---------------------+-----------------+-------------------------------------------------+
+    | stats               |                 | Return a result set with                        |
+    |                     |                 | one row for each index of each table.           |
+    |                     |                 | Each row contains: |br|                         |
+    |                     |                 | (STRING) table -- name of the table |br|        |
+    |                     |                 | (STRING) index -- name of the index |br|        |
+    |                     |                 | (INTEGER) width -- arbitrary information |br|   |
+    |                     |                 | (INTEGER) height -- arbitrary information       |
+    +---------------------+-----------------+-------------------------------------------------+
+    | table_info          | string |br|     | Return a result set                             |
+    |                     | table-name      | with one row for each column                    |
+    |                     |                 | in "table-name". Each row contains: |br|        |
+    |                     |                 | (INTEGER) cid -- ordinal position in the table  |
+    |                     |                 | |br|                                            |
+    |                     |                 | (first column number is 0) |br|                 |
+    |                     |                 | (STRING) name -- column name |br|               |
+    |                     |                 | (INTEGER) notnull -- whether the column is      |
+    |                     |                 | NOT NULL. 0 is                                  |
+    |                     |                 | false, 1 is true. |br|                          |
+    |                     |                 | (STRING) dflt_value -- default value |br|       |
+    |                     |                 | (INTEGER) pk -- whether the column is           |
+    |                     |                 | a PRIMARY KEY column. 0 is false, 1 is true.    |
+    +---------------------+-----------------+-------------------------------------------------+
+
+Example: (not showing metadata)
+
+.. code-block:: none
+
+   PRAGMA table_info('T');
+   ---
+   - - [0, 's1', 'integer', 1, null, 1]
+     - [1, 's2', 'integer', 0, null, 0]
+   ...
+
+
+Limitations:
+
+* Almost all PRAGMA statements change behavior for only the current session, but there is one exception: sql_compound_select_limit.
+* PRAGMA sql_compound_select_limit(...) is flawed so the name and behavior will change (`Issue#3792 <https://github.com/tarantool/tarantool/issues/3792>`_).
+* Syntax of many PRAGMA statements may change in the next version (`Issue#4511 <https://github.com/tarantool/tarantool/issues/4511>`_).
+
 
 .. _sql_functions:
 
