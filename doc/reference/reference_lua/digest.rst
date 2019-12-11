@@ -209,7 +209,7 @@ Below is a list of all ``digest`` functions.
 
 .. _digest-base64_encode:
 
-.. function:: base64_encode(string[, table])
+.. function:: base64_encode(string[, opts])
 
     Returns base64 encoding from a regular string.
 
@@ -219,8 +219,8 @@ Below is a list of all ``digest`` functions.
     * ``nowrap`` -- result must not include line feed for splitting lines
       after 72 characters,
     * ``urlsafe`` -- result must not include '=' or line feed, and may contain
-      '-' or '_' instead of '+' or '/' for positions 62 and 63 in the index
-      table.
+      '-' or '_' instead of '+' or '/' for positions 62 and 63 in the index table.
+
 
     Options may be ``true`` or ``false``, the default value is ``false``.
 
