@@ -307,6 +307,8 @@ Requests
     +-----------+==========+==========+
                   MP_ARRAY
 
+Note that ``FIELD_NO`` is one based (starts from 1) unlike indices numbers which are usually zero based.
+
 .. code-block:: none
 
         * Insert      OP = '!'
