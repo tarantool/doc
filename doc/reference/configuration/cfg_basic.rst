@@ -113,7 +113,8 @@
     | Dynamic: yes
 
     Setting ``read_only == true`` affects spaces differently depending on the
-    options that were used during :ref:`box.schema.space.create <box_schema-space_create>`.
+    :ref:`options <box_schema-space_create-options>` that were used during
+    :ref:`box.schema.space.create <box_schema-space_create>`.
 
 .. _cfg_basic-vinyl_dir:
 

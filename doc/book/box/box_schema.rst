@@ -183,9 +183,11 @@ Below is a list of all ``box.schema`` functions.
         |               | for authorization purposes                         |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
 
-        Saying ``box.cfg{read_only=true...}`` during the :ref:`configuration <cfg_basic-read_only>`
-        affects spaces differently depending on the options that were used during
-        ``box.schema.space.create``, as summarized by this chart:
+    .. _box_schema-space_create-options:
+
+    Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-read_only>`
+    affects spaces differently depending on the options that were used during
+    ``box.schema.space.create``, as summarized by this chart:
 
     .. container:: table
 
