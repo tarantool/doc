@@ -131,12 +131,11 @@ Below is a list of all ``fiber`` functions and members.
     | <fiber-testcancel>`                  | been cancelled                  |
     +--------------------------------------+---------------------------------+
     | :ref:`fiber.top()                    | Return a table of alive fibers  |
-    | <fiber-top>`                         | and list their cpu consumption  |
+    | <fiber-top>`                         | and show their CPU consumption  |
     +--------------------------------------+---------------------------------+
     | :ref:`fiber.yield()                  | Yield control                   |
     | <fiber-yield>`                       |                                 |
     +--------------------------------------+---------------------------------+
-
 
 .. _fiber-fibers:
 
@@ -383,27 +382,28 @@ recommended.
     ``cpu`` itself is a table whose keys are strings containing fiber ids and names.
     The three metrics available for each fiber are:
 
-        1. instant in per cent, which indicates the share of time fiber was executing
-        during the previous event loop iteration
+    #. ``instant`` (in per cent), which indicates the share of time the fiber was executing
+       during the previous event loop iteration.
 
-        2. average in per cent, which is calculated as an exponential moving average
-        of instant values over all previous event loop iterations.
+    #. ``average`` (in per cent), which is calculated as an exponential moving average
+       of instant values over all the previous event loop iterations.
 
-        3. time in seconds, which estimates how much cpu time each fiber spent
-        processing during its lifetime.
+    #. ``time`` (in seconds), which estimates how much CPU time each fiber spent
+       processing during its lifetime.
 
-    "Time" entry is also added to each fiber's output in ``fiber.info()``
-    (it duplicates "time" entry from fiber.top().cpu per fiber).
-    Note, that "time" is only counted while ``fiber.top()`` is enabled.
+       The ``time`` entry is also added to each fiber's output in ``fiber.info()``
+       (it duplicates the ``time`` entry from ``fiber.top().cpu`` per fiber).
 
-    ``cpu_misses`` indicates the amount of times tx thread detected it was
-    rescheduled on a different cpu core during the last event loop iteration.
-    ``fiber.top()`` uses cpu timestamp counter to measure each fiber's execution
-    time. However, each cpu core may have its own counter value (you can
+       Note that ``time`` is only counted while ``fiber.top()`` is enabled.
+
+    ``cpu_misses`` indicates the number of times the TX thread detected it was
+    rescheduled on a different CPU core during the last event loop iteration.
+    ``fiber.top()`` uses the CPU timestamp counter to measure each fiber's execution
+    time. However, each CPU core may have its own counter value (you can
     only rely on counter deltas if both measurements were taken on the same
-    core, otherwise the delta may even get negative). When tx thread is
-    rescheduled to a different cpu core, tarantool just assumes cpu delta was
-    zero for the latest measurement. This lowers precision of our computations,
+    core, otherwise the delta may even get negative). When the TX thread is
+    rescheduled to a different CPU core, Tarantool just assumes the CPU delta was
+    zero for the latest measurement. This lowers the precision of our computations,
     so the bigger ``cpu misses`` value the lower the precision of ``fiber.top()`` results.
 
     Let's take a look at the example:
@@ -452,9 +452,9 @@ recommended.
 
     .. NOTE::
 
-        Enabling fiber.top() slows down fiber switching by about 15 per cent,
-        so it is disabled by default. To enable it you need to issue ``fiber.top_enable()``.
-        You can disable it back after you finished debugging using ``fiber.top_disable()``.
+        Enabling ``fiber.top()`` slows down fiber switching by about 15%,
+        so it is disabled by default. To enable it, say ``fiber.top_enable()``.
+        To disable it after you finished debugging, with ``fiber.top_disable()``.
 
 .. _fiber-kill:
 
