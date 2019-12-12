@@ -113,20 +113,8 @@
     | Dynamic: yes
 
     Setting ``read_only == true`` affects spaces differently depending on the
-    options that were used during :ref:`box.schema.space.create <box_schema-space_create>`,
-    as summarized by this chart:
-
-    .. container:: table
-
-        +------------+-----------------+--------------------+----------------+----------------+
-        | Option     | Can be created? | Can be written to? | Is replicated? | Is persistent? |
-        +============+=================+====================+================+================+
-        | (default)  | no              | no                 | yes            | yes            |
-        +------------+-----------------+--------------------+----------------+----------------+
-        | temporary  | no              | yes                | no             | no             |
-        +------------+-----------------+--------------------+----------------+----------------+
-        | is_local   | no              | yes                | no             | yes            |
-        +------------+-----------------+--------------------+----------------+----------------+
+    :ref:`options <box_schema-space_create-options>` that were used during
+    :ref:`box.schema.space.create <box_schema-space_create>`.
 
 .. _cfg_basic-vinyl_dir:
 
