@@ -4208,7 +4208,7 @@ TRIM
 
 Syntax:
 
-:samp:`TRIM([LEADING|TRAILING|BOTH] [{expression-1}] [FROM] {expression-2}])`
+:samp:`TRIM([[LEADING|TRAILING|BOTH] [{expression-1}] FROM] {expression-2})`
 
 Return expression-2 after removing all leading and/or trailing characters or bytes.
 The expressions should have data type STRING or VARBINARY.
