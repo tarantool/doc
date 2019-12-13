@@ -513,7 +513,7 @@ Byte sequences which are not valid UTF-8 characters are allowed but not recommen
 STRING literal values are enclosed within single quotes, for example ``'literal'``.
 If the VARCHAR alias is used for column definition, it must include a maximum
 length, for example column_1 VARCHAR(40). However, the maximum length is ignored.
-The data-type may be followed by ``[COLLATE collation-name]``.
+The data-type may be followed by :ref:`[COLLATE collation-name] <sql_collate_clause>`.
 
 .. _sql_data_type_varbinary:
 
@@ -530,7 +530,7 @@ SCALAR can be used for
 one of the preceding types -- BOOLEAN, INTEGER, UNSIGNED, NUMBER, STRING, or VARBINARY.
 See more about SCALAR in the section
 :ref:`Column definition -- the rules for the SCALAR data type <sql_column_def_scalar>`.
-The data-type may be followed by ``[COLLATE collation-name]``.
+The data-type may be followed by :ref:`[COLLATE collation-name] <sql_collate_clause>`.
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
@@ -795,7 +795,7 @@ When comparing for the sake of eliminating duplicates:
 * Values in primary-key or unique columns are distinct due to definition.
 
 When comparing a STRING to a STRING:
-* Ordinarily collation is "binary", that is, comparison is done according to the numeric values of the bytes. This can be cancelled by adding a COLLATE clause at the end of either expression. So ``'A' < 'a'`` and ``'a' < 'Ä'``, but ``'A' COLLATE "unicode_ci" = 'a'`` and ``'a' COLLATE "unicode_ci" = 'Ä'``.
+* Ordinarily collation is "binary", that is, comparison is done according to the numeric values of the bytes. This can be cancelled by adding a :ref:`COLLATE clause <sql_collate_clause>` at the end of either expression. So ``'A' < 'a'`` and ``'a' < 'Ä'``, but ``'A' COLLATE "unicode_ci" = 'a'`` and ``'a' COLLATE "unicode_ci" = 'Ä'``.
 * When comparing a column with a string literal, the column's defined collation is used.
 * Ordinarily trailing spaces matter. So ``'a' = 'a  '`` is not TRUE. This can be cancelled by using the :ref:`TRIM(TRAILING ...) <sql_function_trim>` function.
 
@@ -974,19 +974,16 @@ Examples:
 
 .. code-block:: sql
 
-   -- renaming a table:
-   ALTER TABLE t1 RENAME TO t2;
+For renaming a table with ``ALTER ... RENAME``, the *old-table* must exist, the *new-table* must not
+exist. Example: |br|
+``-- renaming a table:``
+``ALTER TABLE t1 RENAME TO t2;``
 
-For ``ALTER ... RENAME``, the *old-table* must exist, the *new-table* must not
-exist.
-
-.. code-block:: sql
-
-   -- adding a foreign-key constraint definition:
-   ALTER TABLE t1 ADD CONSTRAINT fk_s1_t1_1 FOREIGN KEY (s1) REFERENCES t1;
-
-For ``ALTER ... ADD CONSTRAINT``, the table must exist, table must be empty,
+For adding a :ref:`table constraint <sql_table_constraints>` with ``ADD CONSTRAINT``,
+the table must exist, the table must be empty,
 the constraint name must not already exist for the table.
+Example with a :ref:`foreign-key constraint definition <sql_foreign_key>`: |br|
+``ALTER TABLE t1 ADD CONSTRAINT fk_s1_t1_1 FOREIGN KEY (s1) REFERENCES t1;`` |br|
 
 It is not possible to say ``CREATE TABLE table_a ... REFERENCES table_b ...``
 if table ``b`` does not exist yet. This is a situation where ``ALTER TABLE`` is
@@ -1078,8 +1075,8 @@ The *column-definition* or *table-constraint* list is a comma-separated list
 of :ref:`column definitions <sql_column_def>` or table constraints.
 
 A *table-element-list* must be a comma-separated list of table elements;
-each table element may be either a column definition or a table constraint
-definition.
+each table element may be either a column definition or a
+:ref:`table constraint definition <sql_table_constraints>`.
 
 Rules:
 
@@ -1193,7 +1190,7 @@ Two column values in a SCALAR column can have two different primitive data types
 
 #. A SCALAR definition may not include a maximum length, as there is no suggested
    restriction.
-#. A SCALAR definition may include a COLLATE clause, which affects any items
+#. A SCALAR definition may include a :ref:`COLLATE clause <sql_collate_clause>`, which affects any items
    whose primitive data type is STRING. The default collation is "binary".
 #. Some assignments are illegal when data types differ, but legal when the
    target is a SCALAR item. For example ``UPDATE ... SET column1 = 'a'``
@@ -1279,9 +1276,14 @@ SQL data types. For example, ``SELECT "flags" FROM "_space";`` will return
 a column whose data type is 'map'. Such columns can only be manipulated in SQL
 by :ref:`invoking Lua functions <sql_calling_lua>`.
 
+.. _sql_column_def_constraint:
+
 **********************************************************
 Column definition -- column-constraint or default clause
 **********************************************************
+
+.. image:: column_constraint.svg
+    :align: left
 
 The column-constraint or default clause may be as follows:
 
@@ -1299,13 +1301,13 @@ The column-constraint or default clause may be as follows:
     |                    | "it is illegal to assign a NULL to this column"   |
     +--------------------+---------------------------------------------------+
     | PRIMARY KEY        | explained in the later section                    |
-    |                    | "Constraint definition"                           |
+    |                    | "Table Constraint definition"                     |
     +--------------------+---------------------------------------------------+
     | UNIQUE             | explained in the later section                    |
-    |                    | "Constraint definition"                           |
+    |                    | "Table Constraint definition"                     |
     +--------------------+---------------------------------------------------+
     | CHECK (expression) | explained in the later section                    |
-    |                    | "Constraint definition"                           |
+    |                    | "Table Constraint definition"                     |
     +--------------------+---------------------------------------------------+
     | DEFAULT expression | means                                             |
     |                    | "if INSERT does not assign to this column         |
@@ -1315,10 +1317,13 @@ The column-constraint or default clause may be as follows:
     +--------------------+---------------------------------------------------+
 
 If column-constraint is PRIMARY KEY, this is a shorthand for a separate
-table-constraint definition: "PRIMARY KEY (column-name)".
+:ref:`table-constraint definition <sql_table_constraints>`: "PRIMARY KEY (column-name)".
 
 If column-constraint is UNIQUE, this is a shorthand for a separate
-table-constraint definition: "UNIQUE (column-name)".
+:ref:`table-constraint definition <sql_table_constraints>`: "UNIQUE (column-name)".
+
+If column-constraint is CHECK, this is a shorthand for a separate
+:ref:`table-constraint definition <sql_table_constraints>`: "CHECK (expression)".
 
 Columns defined with PRIMARY KEY are automatically NOT NULL.
 
@@ -1337,7 +1342,7 @@ Column definition -- examples
 *******************************
 
 These are shown within :ref:`CREATE TABLE <sql_create_table>` statements.
-Data types may also appear in CAST functions.
+Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
 
 .. code-block:: sql
 
@@ -1370,6 +1375,267 @@ Data types may also appear in CAST functions.
     column3 INTEGER CHECK (column3 > column2),
     column4 INTEGER REFERENCES t,
     column6 INTEGER DEFAULT NULL);
+
+.. _sql_table_constraints:
+
+*******************************
+Table Constraints
+*******************************
+
+Syntax:
+
+:samp:`CONSTRAINT {constraint-name}] primary-key-constraint | unique-constraint | check-constraint | foreign-key-constraint`
+
+|br|
+
+.. image:: constraint.svg
+    :align: left
+
+|br|
+
+Define a constraint, which is a table-element used in a CREATE TABLE statement.
+
+The constraint-name must be an identifier which is valid according to the rules for identifiers.
+
+PRIMARY KEY constraints look like this: |br|
+:samp:`PRIMARY KEY ({column-name} [, {column-name}...])`
+
+There is a shorthand: specifying PRIMARY KEY in a :ref:`column definition <sql_column_def_constraint>`.
+
+Every table must have one and only one primary key. |br|
+Primary-key columns are automatically NOT NULL. |br|
+Primary-key columns are automatically indexed. |br|
+Primary-key columns are unique, that is, it is illegal to have two rows which
+have the same values for the columns specified in the constraint.
+
+Examples:
+
+.. code-block:: none
+
+    -- this is a table with a one-column primary-key constraint
+    CREATE TABLE t1 (s1 INTEGER, PRIMARY KEY (s1));
+    -- this is the column-definition shorthand for the same thing:
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY);
+    -- this is a table with a two-column primary-key constraint
+    CREATE TABLE t2 (s1 INTEGER, s2 INTEGER, PRIMARY KEY (s1, s2));
+    -- this is an example of an attempted primary-key violation
+    -- (the third INSERT will fail because 55, 'a' is a duplicate)
+    CREATE TABLE t3 (s1 INTEGER, s2 STRING, PRIMARY KEY (s1, s2));
+    INSERT INTO t3 VALUES (55, 'a');
+    INSERT INTO t3 VALUES (55, 'b');
+    INSERT INTO t3 VALUES (55, 'a');
+
+PRIMARY KEY plus AUTOINCREMENT modifier may be specified in one of two ways: |br|
+- In a column definition after the words PRIMARY KEY, as in ``CREATE TABLE t (c INTEGER PRIMARY KEY AUTOINCREMENT);`` |br|
+- In a PRIMARY KEY (column-list) after a column name, as in ``CREATE TABLE t (c INTEGER, PRIMARY KEY (c AUTOINCREMENT));`` |br|
+When AUTOINCREMENT is specified, the column must be a primary-key column and it must be INTEGER or UNSIGNED.
+Only one column in the table may be autoincrement.
+As the name suggests, values in an autoincrement column are automatically incremented.
+That is: if a user inserts NULL in the column, then the stored value will be the smallest
+non-negative integer that has not already been used.
+This occurs because autoincrement columns are associated with :ref:`sequences <box_schema-sequence_create_index>`.
+
+UNIQUE constraints look like this: |br|
+:samp:`UNIQUE ({column-name} [, {column-name}...])`
+
+There is a shorthand: specifying UNIQUE in a :ref:`column definition <sql_column_def_constraint>`.
+
+Unique constraints are similar to primary-key constraints, except that:
+a table may have any number of unique keys, and unique keys are not automatically NOT NULL. |br|
+Unique columns are automatically indexed. |br|
+Unique columns are unique, that is, it is illegal to have two rows with the same values in the unique-key columns.
+
+Examples:
+
+.. code-block:: none
+
+    -- this is a table with a one-column primary-key constraint
+    -- and a one-column unique constraint
+    CREATE TABLE t1 (s1 INTEGER, s2 INTEGER, PRIMARY KEY (s1), UNIQUE (s2));
+    -- this is the column-definition shorthand for the same thing:
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER UNIQUE);
+    -- this is a table with a two-column unique constraint
+    CREATE TABLE t2 (s1 INTEGER PRIMARY KEY, s2 INTEGER, UNIQUE (s2, s1));
+    -- this is an example of an attempted unique-key violation
+    -- (the third INSERT will not fail because NULL is not a duplicate)
+    -- (the fourth INSERT will fail because 'a' is a duplicate)
+    CREATE TABLE t3 (s1 INTEGER PRIMARY KEY, s2 STRING, UNIQUE (s2));
+    INSERT INTO t3 VALUES (1, 'a');
+    INSERT INTO t3 VALUES (2, NULL);
+    INSERT INTO t3 VALUES (3, NULL);
+    INSERT INTO t3 VALUES (4, 'a');
+
+CHECK constraints look like this: |br|
+:samp:`CHECK ({expression})`
+
+There is a shorthand: specifying CHECK in a :ref:`column definition <sql_column_def_constraint>`.
+
+The expression may be anything that returns a BOOLEAN result = TRUE or FALSE or UNKNOWN. |br|
+The expression may not contain a :ref:`subquery <sql_subquery>`. |br|
+If the expression contains a column name, the column must exist in the table. |br|
+If a CHECK constraint is specified, the table must not contain rows where the expression is FALSE.
+(The table may contain rows where the expression is either TRUE or UNKNOWN.) |br|
+Constraint checking may be stopped with :ref:`ALTER TABLE ... DISABLE CHECK CONSTRAINT <sql_alter_table>`
+and restarted with ALTER TABLE ... ENABLE CHECK CONSTRAINT.
+
+Examples:
+
+.. code-block:: none
+
+    -- this is a table with a one-column primary-key constraint
+    -- and a check constraint
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER, CHECK (s2 <> s1));
+    -- this is an attempt to violate the constraint, it will fail
+    INSERT INTO t1 VALUES (1, 1);
+    -- this is okay because comparison with NULL will not return FALSE
+    INSERT INTO t1 VALUES (1, NULL);
+    -- a constraint that makes it difficult to insert lower case
+    CHECK (s1 = UPPER(s1))
+
+Limitations: (`Issue#3503 <https://github.com/tarantool/tarantool/issues/3503>`_):
+* ``CREATE TABLE t99 (s1 INTEGER, UNIQUE(s1, s1),PRIMARY KEY(s1));``
+causes no error message, although (s1, s1) is probably a user error.
+
+.. _sql_foreign_key:
+
+*********************************************
+Table Constraint Definition for foreign keys
+*********************************************
+
+FOREIGN KEY constraints look like this: |br|
+:samp:`FOREIGN KEY ({referencing-column-name} [, {referencing-column-name}...]) REFERENCES {referenced-table-name} [({referenced-column-name} [, {referenced-column-name}...]]) [MATCH FULL] [update-or-delete-rules]`
+
+There is a shorthand: specifying REFERENCES in a :ref:`column definition <sql_column_def_constraint>`.
+
+The referencing column names must be defined in the table that is being created.
+The referenced table name must refer to a table that already exists,
+or to the table that is being created.
+The referenced column names must be defined in the referenced table,
+and have similar data types.
+There must be a PRIMARY KEY or UNIQUE constraint or UNIQUE index on the referenced column names.
+
+The words MATCH FULL are optional and have no effect.
+
+If a foreign-key constraint exists, then the values in the referencing columns
+must equal values in the referenced columns of the referenced table,
+or at least one of the referencing columns must contain NULL.
+
+Examples:
+
+.. code-block:: none
+
+    -- A foreign key referencing a primary key in the same table
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER, FOREIGN KEY (s2) REFERENCES t1 (s1));
+    -- The same thing with column shorthand
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER REFERENCES t1(s1));
+    -- An attempt to violate the constraint -- this will fail
+    INSERT INTO t1 VALUES (1, 2);
+    -- A NULL in the referencing column -- this will succeed
+    INSERT INTO t1 VALUES (1, NULL);
+    -- A reference to a primary key that now exists -- this will succeed
+    INSERT INTO t1 VALUES (2, 1);
+
+The optional update-or-delete rules look like this: |br|
+``ON {UPDATE|DELETE} { CASCADE | SET DEFAULT | SET NULL | RESTRICT | NO ACTION}`` |br|
+and the idea is: if something changes the referenced key, then one of three possible "referential actions" takes place: |br|
+``CASCADE``: the change that is applied for the referenced key is applied for the referencing key. |br|
+``SET DEFAULT``: the referencing key is set to its default value. |br|
+``SET NULL``: the referencing key is set to NULL. |br|
+``RESTRICT``: the UPDATE or DELETE fails if a referencing key exists; checked immediately. |br|
+``NO ACTION``: the UPDATE or DELETE fails if a referencing key exists; checked at statement end. |br|
+The default is ``NO ACTION``.
+
+For example:
+
+.. code-block:: none
+
+    CREATE TABLE f1 (ordinal INTEGER PRIMARY KEY,
+                 referenced_planet STRING UNIQUE NOT NULL);
+    CREATE TABLE f2 (
+        ordinal INTEGER PRIMARY KEY,
+        referring_planet STRING DEFAULT 'Earth',
+        FOREIGN KEY (referring_planet) REFERENCES f1 (referenced_planet)
+            ON UPDATE SET DEFAULT
+            ON DELETE CASCADE);
+    INSERT INTO f1 VALUES (1, 'Mercury'), (2,' Venus'), (3, 'Earth');
+    INSERT INTO f2 VALUES (1, 'Mercury'), (2, 'Mercury');
+    UPDATE f1 SET referenced_planet = 'Mars'
+        WHERE referenced_planet = 'Mercury';
+    SELECT * FROM f2;
+    DELETE FROM f1 WHERE referenced_planet = 'Earth';
+    SELECT * FROM f2;
+    ... In this example, the UPDATE statement changes the referenced key,
+        and the clause is ON UPDATE SET DEFAULT, therefore both of the
+        rows in f2 have referring_planet set to their default value,
+        which is 'Earth'. The DELETE statement deletes the row that
+        has 'Earth', and the clause is ON DELETE CASCADE,
+        therefore both of the rows in f2 are deleted.
+
+Limitations:
+* Foreign keys can have a MATCH clause (`Issue#3455 <https://github.com/tarantool/tarantool/issues/3455>`_).
+
+.. COMMENT
+   Constraint Conflict Clauses are temporarily disabled.
+   However, the description is here, as a big comment.
+
+   Constraint Conflict Clauses
+
+   In a CREATE TABLE statement:
+   CREATE TABLE ... constraint-definition ON CONFLICT {ABORT | FAIL | IGNORE | REPLACE | ROLLBACK} ...;
+
+   In an INSERT or UPDATE statement:
+   {INSERT|UPDATE} OR {ABORT | FAIL | IGNORE | REPLACE | ROLLBACK} ...;
+
+   The standard way to handle a constraint violation is "statement rollback" -- all rows affected by the statement are restored to their original values -- and an error is returned. However, Tarantool allows the user to specify non-standard ways to handle PRIMARY KEY, UNIQUE, CHECK, and NOT NULL constraint violations.
+
+   ABORT -- do statement rollback and return an error. This is the default and is recommended, so a user's best strategy is to never use constraint conflict clauses.
+
+   FAIL -- return an error but do not do statement rollback.
+
+   IGNORE -- do not insert or update the row whose update would cause an error, but do not do statement rollback and do not return an error. Due to optimizations related to NoSQL, handling with IGNORE may be slightly faster than handling with ABORT.
+
+   REPLACE -- (for a UNIQUE or PRIMARY KEY constraint) --  instead of inserting a new row, delete the old row before putting in the new one;  (for a NOT NULL constraint for a column that has a non-NULL default value) replace the NULL value with the column's default value; (for a NOT NULL constraint for a column that has a NULL default value) do statement rollback and return an error; (for a CHECK constraint) -- do statement rollback and return an error. If REPLACE action causes a row to be deleted, and if PRAGMA recursive_triggers was specified earlier, then delete triggers (if any) are activated.
+
+   ROLLBACK -- do transaction rollback and return an error.
+
+   The order of constraint evaluation is described in section Order of Execution in Data-Change Statements.
+
+   For example, suppose a new table  t has one column and the column has a unique constraint.
+   A transaction starts with START TRANSACTION.
+   The first statement in the transaction is INSERT INTO t VALUES (1), (2);
+   i.e. "insert 1, then insert 2" -- Tarantool processes the new rows in order.
+   This statement always succeeds, there are no constraint violations.
+   The second SQL statement is INSERT INTO t VALUES (3), (2), (5);
+   i.e. "insert 3, then insert 2".
+   Inserting 3 is not a problem, but inserting 2 is a problem -- it would violate the UNIQUE constraint.
+
+   If behavior is ABORT: the second statement is rolled back, there is an error message. The table now contains (1), (2).
+
+   If behavior is FAIL: the second statement is not rolled back, there is an error message. The table now contains (1), (2), (3).
+
+   If behavior is IGNORE: the second statement is not rolled back, the (2) is not inserted, there is no error message. The table now contains (1), (2), (3), (5).
+
+   If behavior is REPLACE: the second statement is not rolled back, the first (2) is replaced by the second (2), there is no error message. The table now contains (1), (2), (3), (5).
+
+   If behavior is ROLLBACK: the statement is rolled back, and the first statement is rolled back,
+   and there is an error message. The table now contains nothing.
+
+   There are two ways to specify the behavior: at the end of the CREATE TABLE statement constraint clause, or as an extra clause in an INSERT or UPDATE statement. Specification in the INSERT or UPDATE statement takes precedence.
+
+   Another example:
+   DROP TABLE t1;
+   CREATE TABLE t1 (s1 INTEGER PRIMARY KEY ON CONFLICT REPLACE, s2 INTEGER);
+   INSERT INTO t1 VALUES (1, NULL);      -- now t1 contains (1,NULL)
+   INSERT INTO t1 VALUES (1, 1);         -- now t1 contains (1, 1)
+   INSERT OR ABORT INTO t1 VALUES (1, 2); -- now t1 contains (1, 1)
+   INSERT OR IGNORE INTO t1 VALUES (1, 2), (3, 4); -- now t1 contains (1, 1), (3, 4)
+   PRAGMA recursive_triggers(true);
+   CREATE TRIGGER t1d
+     AFTER DELETE ON t1 FOR EACH ROW
+     BEGIN
+     INSERT INTO t1 VALUES (18, 25);
+     END;
+   INSERT INTO t1 VALUES (1, 4); -- now t1 contains (1, 4), (3, 4), (18, 35)
 
 .. _sql_drop_table:
 
@@ -2763,7 +3029,7 @@ Sorting order:
 * The default order is ASC (ascending), the optional order is DESC (descending).
 * NULLs come first, then BOOLEANs, then numbers (INTEGER or NUMBER), then STRINGs, then VARBINARYs.
 * Within STRINGs, ordering is according to collation.
-* Collation may be specified within the ORDER BY column-list, or may be default.
+* Collation may be specified with a :ref:`COLLATE clause <sql_collate_clause>` within the ORDER BY column-list, or may be default.
 
 Examples:
 
@@ -3233,6 +3499,10 @@ then selects with ``INDEXED BY the-index-on-column-2``.
    -- Result for the first select: (1, 2), (2, 1)
    -- Result for the second select: (2, 1), (1, 2).
 
+Limitations:
+Often INDEXED BY has no effect.
+Often INDEXED BY affects a choice of covering index, but not a WHERE clause.
+
 .. _sql_transactions:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3688,6 +3958,82 @@ Limitations:
 * Almost all PRAGMA statements change behavior for only the current session, but there is one exception: sql_compound_select_limit.
 * PRAGMA sql_compound_select_limit(...) is flawed so the name and behavior will change (`Issue#3792 <https://github.com/tarantool/tarantool/issues/3792>`_).
 * Syntax of many PRAGMA statements may change in the next version (`Issue#4511 <https://github.com/tarantool/tarantool/issues/4511>`_).
+
+.. _sql_explain:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+EXPLAIN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syntax:
+
+* :samp:`EXPLAIN explainable-statement;`
+
+.. image:: explain.svg
+    :align: left
+
+EXPLAIN will show what steps Tarantool would take if it executed explainable-statement.
+This is primarily a debugging and optimization aid for the Tarantool team.
+
+Example: ``EXPLAIN DELETE FROM m;`` returns:
+
+.. code-block:: none
+
+    - - [0, 'Init', 0, 3, 0, '', '00', 'Start at 3']
+      - [1, 'Clear', 16416, 0, 0, '', '00', '']
+      - [2, 'Halt', 0, 0, 0, '', '00', '']
+      - [3, 'Transaction', 0, 1, 1, '0', '01', 'usesStmtJournal=0']
+      - [4, 'Goto', 0, 1, 0, '', '00', '']
+
+Variation: ``EXPLAIN QUERY PLAN statement;`` shows the steps of a search.
+
+.. COMMENT
+   ANALYZE is currently disabled.
+
+   ANALYZE [table_name]
+
+   ANALYZE will collect statistics about a table and put the results in system tables named _sql_stat1 and _sql_stat4.
+
+   Example:
+
+   ANALYZE t;
+   SELECT * FROM "_sql_stat1", "_sql_stat4";
+   +-----+-----+------+-----+-----+-----+-----+------+
+   | tbl | idx | stat | tbl | idx | neq | nlt | ndlt |
+   +-----+-----+------+-----+-----+-----+-----+------+
+   | T   | T   | 2 1  | T   | T   | 1   | 0   | 0    |
+   | T   | T   | 2 1  | T   | T   | 1   | 1   | 1    |
+   +-----+-----+------+-----+-----+-----+-----+------+
+
+   Limitations:
+   Issue#4069 ANALYZE is temporarily disabled in the current version
+
+.. COMMENT
+   This section should exist but changes have happened, it is probably obsolete.
+   So it is all commented out.
+
+   Order of Execution In Data-Change Statements
+
+   This is the general order in which Tarantool performs checks and triggered actions for data-change (INSERT or UPDATE or DELETE) statements, Notice that one action can cause another action, as is the case for triggers (see "CREATE TRIGGER Statement"), or as is the case for REPLACE (which can cause either INSERT or DELETE plus INSERT).
+
+   In this description, the words "constraint ... would be violated" mean "table would contain a value that would not be allowed (due to the constraint) if the operation was permitted to continue"..The word "behavior" refers to one of the possible behaviors described in section "Constraint Conflict Clauses".  If two or more constraints are relevant at the same time, for example UNIQUE (s2), CHECK (s2 <> 5), Tarantool may elect to check them in any order. If Tarantool determines that a step is not necessary, it does not perform it.
+
+   Limitation(documentation only): The description here is not currently correct.
+
+   For each row ...
+
+   If statement is INSERT|UPDATE: If a value was not specified or is NULL for a column defined with AUTOINCREMENT,  set the value to the next available integer.
+   If statement is INSERT|UPDATE: for each NOT NULL constraint that would be violated:... If behavior is "REPLACE  (for a NOT NULL constraint for a column that has a non-NULL default value)", then replace NULL with the default value.
+   If statement is INSERT|UPDATE: for each  UNIQUE or PRIMARY KEY constraint that would be violated ...  If behavior is "REPLACE", then delete the old row and insert the new row.
+   For each FOREIGN KEY constraint that would be violated ... do statement rollback and return an error.
+   If statement is INSERT, then activate the table's BEFORE INSERT triggers.If statement is UPDATE, then activate the table's BEFORE UPDATE triggers. If statement is DELETE, then activate the table's BEFORE DELETE triggers.
+   If statement is INSERT|UPDATE: for each NOT NULL constraint that would be violated ... If behavior is "ABORT" or "REPLACE (for a NOT NULL constraint that has a NULL default value)", do statement rollback and return an error.  If behavior is "IGNORE", then skip this and all following steps (i.e. skip this row). If behavior is "FAIL", then return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error.
+   If statement is INSERT|UPDATE: for each CHECK or UNIQUE or PRIMARY KEY constraint that would be violated ... If behavior is "IGNORE", then skip this row.  If behavior is "FAIL", return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error. If behavior is "ABORT" or "REPLACE": do statement rollback and return an error. This means that UNIQUE or PRIMARY KEY constraints are checked twice, in step 2 and in this step. This is necessary because execution of an earlier step might cause a new conflict. 
+   If statement is INSERT, then activate the table's AFTER INSERT triggers.If statement is UPDATE, then activate the table's AFTER UPDATE triggers. If statement is DELETE, then activate the table's AFTER DELETE triggers.
+
+   If all rows were processed without an error that caused statement rollback or transaction rollback, the data-change can be committed. Ordinarily, unless processing is within a transaction that began with START TRANSACTION, there will be an automatic COMMIT.
+
+   Finish the data-change by calling the low-level Tarantool routines. Thus new rows (new "tuples" in Tarantool's NoSQL terminology) are added to the table (the "space" in Tarantool's NoSQL terminology), or row sare removed from the table,  and indexes are updated.
 
 
 .. _sql_functions:
@@ -3703,6 +4049,8 @@ Syntax:
 Apply a built-in function to one or more expressions and return a scalar value.
 
 Tarantool supports 32 built-in functions.
+
+The maximum number of operands for any function is 127.
 
 .. _sql_function_abs:
 
@@ -4322,9 +4670,95 @@ Syntax:
 
 Return a byte sequence, data type = VARBINARY, n bytes long.
 
-Limitations:
+.. _sql_collate_clause:
 
-* The maximum number of operands for any function is 127.
+***************
+COLLATE clause
+***************
+
+:samp:`COLLATE collation-name`
+
+The collation-name must identify an existing collation.
+
+The COLLATE clause is allowed for STRING or SCALAR items: |br|
+() in :ref:`CREATE INDEX <sql_create_index>` |br|
+() in :ref:`CREATE TABLE <sql_create_table>` as part of :ref:`column definition <sql_column_def>` |br|
+() in CREATE TABLE as part of :ref:`UNIQUE definition <sql_table_constraints>` |br|
+() in string expressions |br|
+
+Examples:
+
+.. code-block:: none
+
+    -- In CREATE INDEX
+    CREATE INDEX idx_unicode_mb_1 ON mb (s1 COLLATE "unicode");
+    -- In CREATE TABLE
+    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 STRING COLLATE "unicode_ci");
+    -- In CREATE TABLE ... UNIQUE
+    CREATE TABLE mb (a STRING, b STRING, PRIMARY KEY(a), UNIQUE(b COLLATE "unicode_ci" DESC));
+    -- In string expressions
+    SELECT 'a' = 'b' COLLATE "unicode"
+        FROM t
+        WHERE s1 = 'b' COLLATE "unicode"
+        ORDER BY s1 COLLATE "unicode";
+
+The list of collations can be seen with: :ref:`PRAGMA collation_list; <sql_pragma>`
+
+The collation rules comply completely with the Unicode Technical Standard #10
+(`"Unicode Collation Algorithm" <http://unicode.org/reports/tr10/>`_)
+and the default character order is as in the
+`Default Unicode Collation Element Table (DUCET) <https://www.unicode.org/Public/UCA/8.0.0/allkeys.txt>`_.
+There are many permanent collations; the commonly used ones include: |br|
+|nbsp| |nbsp| ``"none"`` (not applicable) |br|
+|nbsp| |nbsp| ``"unicode"`` (characters are in DUCET order with strength = 'tertiary') |br|
+|nbsp| |nbsp| ``"unicode_ci"`` (characters are in DUCET order with strength = 'primary') |br|
+|nbsp| |nbsp| ``"binary"`` (characters are in code point order) |br|
+These identifiers must be quoted and in lower case because they are in lower case in
+:ref:`Tarantool/NoSQL collations <index-collation>`.
+
+If one says ``COLLATE "binary"``, this is equivalent to asking for what is sometimes called
+"code point order" because, if the contents are in the UTF-8 character set,
+characters with larger code points will appear after characters with lower code points.
+
+In an expression, ``COLLATE`` is an operator with higher precedence than anything except
+``~``. This is fine because there are no other useful operators except ``||`` and comparison.
+After ``||``, collation is preserved.
+
+In an expression with more than one ``COLLATE`` clause, if the collation names differ,
+there is an error: "Illegal mix of collations".
+In an expression with no ``COLLATE`` clauses, literals have collation ``"binary"``,
+columns have the collation specified by ``CREATE TABLE``.
+
+In other words, to pick a collation, we use: |br|
+the first ``COLLATE`` clause in an expression if it was specified, |br|
+else the the column's ``COLLATE`` clause if it was specified, |br|
+else ``"binary"``.
+
+However, for searches and sometimes for sorting, the collation may be an index's collation,
+so all non-index ``COLLATE`` clauses are ignored.
+
+:ref:`EXPLAIN <sql_explain>` will not show the name of what collation was used, but will show the collation's characteristics. 
+
+Example with Swedish collation: |br|
+Knowing that "sv" is the two-letter code for Swedish, |br|
+and knowing that "s1" means strength = 1, |br|
+and seeing with ``PRAGMA collation_list;`` that there is a collation named unicode_sv_s1, |br|
+check whether two strings are equal according to Swedish rules (yes they are): |br|
+``SELECT 'ÄÄ' = 'ĘĘ' COLLATE "unicode_sv_s1";``
+
+Example with Russian and Ukrainian and Kyrgyz collations: |br|
+Knowing that Russian collation is practically the same as Unicode default, |br|
+and knowing that the two-letter codes for Ukrainian and Kyrgyz are 'uk' and 'ky', |br|
+and knowing that in Russian (but not Ukrainian) 'Г' = 'Ґ' with strength=primary, |br|
+and knowing that in Russian (but not Kyrgyz) 'Е' = 'Ё' with strength=primary, |br|
+the three SELECT statements here will return results in three different orders: |br|
+``CREATE TABLE things (remark STRING PRIMARY KEY);`` |br|
+``INSERT INTO things VALUES ('Е2'), ('Ё1');`` |br|
+``INSERT INTO things VALUES ('Г2'), ('Ґ1');`` |br|
+``SELECT remark FROM things ORDER BY remark COLLATE "unicode";`` |br|
+``SELECT remark FROM things ORDER BY remark COLLATE "unicode_uk_s1";`` |br|
+``SELECT remark FROM things ORDER BY remark COLLATE "unicode_ky_s1";``
+
 
 .. COMMENT
    The next section is adapted from
