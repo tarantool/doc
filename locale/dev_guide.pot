@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-15 11:04+0000\n"
+"POT-Creation-Date: 2019-12-16 12:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2740,6 +2740,10 @@ msgid "OP:\n"
 msgstr ""
 
 #: ../doc/dev_guide/internals/box_protocol.rst:310
+msgid "Note that ``FIELD_NO`` is one based (starts from 1) unlike indices numbers which are usually zero based."
+msgstr ""
+
+#: ../doc/dev_guide/internals/box_protocol.rst:312
 msgid "    * Insert      OP = '!'\n"
 "      insert <argument> before <field_no>\n"
 "    * Assign      OP = '='\n"
@@ -2761,7 +2765,7 @@ msgid "    * Insert      OP = '!'\n"
 "      substitute <offset> bytes from <position> with <argument>"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:332
+#: ../doc/dev_guide/internals/box_protocol.rst:334
 msgid "0           2\n"
 "+-----------+==========+==========+========+==========+\n"
 "|           |          |          |        |          |\n"
@@ -2772,15 +2776,15 @@ msgid "0           2\n"
 "                         MP_ARRAY"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:344
+#: ../doc/dev_guide/internals/box_protocol.rst:346
 msgid "It is an error to specify an argument of a type that differs from the expected type."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:346
+#: ../doc/dev_guide/internals/box_protocol.rst:348
 msgid "DELETE: CODE - 0x05 Delete a tuple"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:349
+#: ../doc/dev_guide/internals/box_protocol.rst:351
 msgid "DELETE BODY:\n"
 "\n"
 "+==================+==================+==================+\n"
@@ -2792,11 +2796,11 @@ msgid "DELETE BODY:\n"
 "                          MP_MAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:362
+#: ../doc/dev_guide/internals/box_protocol.rst:364
 msgid "CALL_16: CODE - 0x06 Call a stored function, returning an array of tuples. This is deprecated; CALL (0x0a) is recommended instead."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:365
+#: ../doc/dev_guide/internals/box_protocol.rst:367
 msgid "CALL_16 BODY:\n"
 "\n"
 "+=======================+==================+\n"
@@ -2808,11 +2812,11 @@ msgid "CALL_16 BODY:\n"
 "                    MP_MAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:379
+#: ../doc/dev_guide/internals/box_protocol.rst:381
 msgid "EVAL: CODE - 0x08 Evaulate Lua expression"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:382
+#: ../doc/dev_guide/internals/box_protocol.rst:384
 msgid "EVAL BODY:\n"
 "\n"
 "+=======================+==================+\n"
@@ -2824,11 +2828,11 @@ msgid "EVAL BODY:\n"
 "                    MP_MAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:395
+#: ../doc/dev_guide/internals/box_protocol.rst:397
 msgid "UPSERT: CODE - 0x09 Update tuple if it would be found elsewhere try to insert tuple. Always use primary index for key."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:398
+#: ../doc/dev_guide/internals/box_protocol.rst:400
 msgid "UPSERT BODY:\n"
 "\n"
 "+==================+==================+==========================+\n"
@@ -2869,11 +2873,11 @@ msgid "UPSERT BODY:\n"
 "      key (this is validated before performing upsert)."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:439
+#: ../doc/dev_guide/internals/box_protocol.rst:441
 msgid "CALL: CODE - 0x0a Similar to CALL_16, but -- like EVAL, CALL returns a list of values, unconverted"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:442
+#: ../doc/dev_guide/internals/box_protocol.rst:444
 msgid "CALL BODY:\n"
 "\n"
 "+=======================+==================+\n"
@@ -2885,15 +2889,15 @@ msgid "CALL BODY:\n"
 "                    MP_MAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:457
+#: ../doc/dev_guide/internals/box_protocol.rst:459
 msgid "Response packet structure"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:459
+#: ../doc/dev_guide/internals/box_protocol.rst:461
 msgid "We will show whole packets here:"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:461
+#: ../doc/dev_guide/internals/box_protocol.rst:463
 msgid "OK:    LEN + HEADER + BODY\n"
 "\n"
 "0      5                                          OPTIONAL\n"
@@ -2906,11 +2910,11 @@ msgid "OK:    LEN + HEADER + BODY\n"
 " MP_INT                MP_MAP                      MP_MAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:475
+#: ../doc/dev_guide/internals/box_protocol.rst:477
 msgid "Set of tuples in the response :code:`<data>` expects a msgpack array of tuples as value EVAL command returns arbitrary `MP_ARRAY` with arbitrary MsgPack values."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:478
+#: ../doc/dev_guide/internals/box_protocol.rst:480
 msgid "ERROR: LEN + HEADER + BODY\n"
 "\n"
 "0      5\n"
@@ -2925,19 +2929,19 @@ msgid "ERROR: LEN + HEADER + BODY\n"
 "Where 0xXXX is ERRCODE."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:493
+#: ../doc/dev_guide/internals/box_protocol.rst:495
 msgid "An error message is present in the response only if there is an error; :code:`<error>` expects as value a msgpack string."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:496
+#: ../doc/dev_guide/internals/box_protocol.rst:498
 msgid "Convenience macros which define hexadecimal constants for return codes can be found in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:502
+#: ../doc/dev_guide/internals/box_protocol.rst:504
 msgid "Replication packet structure"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:504
+#: ../doc/dev_guide/internals/box_protocol.rst:506
 msgid "-- replication keys\n"
 "<server_id>    ::= 0x02\n"
 "<lsn>          ::= 0x03\n"
@@ -2947,13 +2951,13 @@ msgid "-- replication keys\n"
 "<vclock>       ::= 0x26"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:514
+#: ../doc/dev_guide/internals/box_protocol.rst:516
 msgid "-- replication codes\n"
 "<join>         ::= 0x41\n"
 "<subscribe>    ::= 0x42"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:521
+#: ../doc/dev_guide/internals/box_protocol.rst:523
 msgid "JOIN:\n"
 "\n"
 "In the beginning you must send initial JOIN\n"
@@ -3011,15 +3015,15 @@ msgid "JOIN:\n"
 "Every request between masters will have Additional LSN and SERVER_ID."
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:581
+#: ../doc/dev_guide/internals/box_protocol.rst:583
 msgid "XLOG / SNAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:583
+#: ../doc/dev_guide/internals/box_protocol.rst:585
 msgid "XLOG and SNAP files have nearly the same format. The header looks like:"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:585
+#: ../doc/dev_guide/internals/box_protocol.rst:587
 msgid "<type>\\n                  SNAP\\n or XLOG\\n\n"
 "<version>\\n               currently 0.13\\n\n"
 "Server: <server_uuid>\\n   where UUID is a 36-byte string\n"
@@ -3027,11 +3031,11 @@ msgid "<type>\\n                  SNAP\\n or XLOG\\n\n"
 "\\n"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:593
+#: ../doc/dev_guide/internals/box_protocol.rst:595
 msgid "After the file header come the data tuples. Tuples begin with a row marker ``0xd5ba0bab`` and the last tuple may be followed by an EOF marker ``0xd510aded``. Thus, between the file header and the EOF marker, there may be data tuples that have this form:"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:600
+#: ../doc/dev_guide/internals/box_protocol.rst:602
 msgid "0            3 4                                         17\n"
 "+-------------+========+============+===========+=========+\n"
 "|             |        |            |           |         |\n"
@@ -3048,7 +3052,7 @@ msgid "0            3 4                                         17\n"
 "    MP_MAP                     MP_MAP"
 msgstr ""
 
-#: ../doc/dev_guide/internals/box_protocol.rst:617
+#: ../doc/dev_guide/internals/box_protocol.rst:619
 msgid "See the example in the following section."
 msgstr ""
 
