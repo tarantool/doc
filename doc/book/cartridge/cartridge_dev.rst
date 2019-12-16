@@ -870,14 +870,14 @@ is saved in a ``VERSION`` file in the package root.
 .. _cartridge-app-ignore:
 
 -------------------------------------------------------------------------------
-Using .cartridge-cli.ignore files
+Using .cartridge.ignore files
 -------------------------------------------------------------------------------
 
-You can add a ``.cartridge-cli.ignore`` file to your application repository to
+You can add a ``.cartridge.ignore`` file to your application repository to
 exclude particular files and/or directories from package builds.
 
 For the most part, the logic is similar to that of ``.gitignore`` files.
-The major difference is that in ``.cartridge-cli.ignore`` files the order of
+The major difference is that in ``.cartridge.ignore`` files the order of
 exceptions relative to the rest of the templates does not matter, while in
 ``.gitignore`` files the order does matter.
 
@@ -887,7 +887,7 @@ exceptions relative to the rest of the templates does not matter, while in
     .. rst-class:: left-align-column-2
 
     +---------------------------------+-------------------------------------------------+
-    | **.cartridge-cli.ignore** entry | ignores every...                                |
+    | **.cartridge.ignore** entry     | ignores every...                                |
     +=================================+=================================================+
     | ``target/``                     | **folder** (due to the trailing ``/``)          |
     |                                 | named ``target``, recursively                   |
