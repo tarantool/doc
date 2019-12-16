@@ -22,7 +22,6 @@ msgid "Release Notes"
 msgstr "Примечания к версиям"
 
 #: ../doc/whats_new.rst:7
-#, fuzzy
 msgid ""
 "The Release Notes are summaries of significant changes introduced in "
 "Tarantool :ref:`2.2.1 <whats_new_221>`, :ref:`2.1.2 <whats_new_212>`, "
@@ -36,7 +35,10 @@ msgid ""
 "<whats_new_168>`, and :ref:`1.6.6 <whats_new_166>`."
 msgstr ""
 "Примечания к версиям содержат краткое описание значимых изменений в "
-"следующих версиях Tarantool'а: :ref:`1.10.4 <whats_new_1104>`, "
+"следующих версиях Tarantool'а: "
+":ref:`2.2.1 <whats_new_221>`, :ref:`2.1.2 <whats_new_212>`, "
+":ref:`2.1.1 <whats_new_211>`, :ref:`2.0.4 <whats_new_204>`, "
+":ref:`1.10.4 <whats_new_1104>`, "
 ":ref:`1.10.3 <whats_new_1103>`, :ref:`1.10.2 <whats_new_1102>`, "
 ":ref:`1.9.0 <whats_new_190>`, :ref:`1.7.6 <whats_new_176>`, :ref:`1.7.5 "
 "<whats_new_175>`, :ref:`1.7.4 <whats_new_174>`, :ref:`1.7.3 "
@@ -58,7 +60,7 @@ msgstr ""
 #: ../doc/whats_new.rst:35
 #, fuzzy
 msgid "Version 2.x"
-msgstr "Версия 1.9"
+msgstr "Версия 2.x"
 
 #: ../doc/whats_new.rst:37
 #, fuzzy
@@ -68,7 +70,7 @@ msgid ""
 ":ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` "
 "procedure."
 msgstr ""
-"Tarantool 1.10.x обратно совместим с Tarantool 1.9.x в том, что касается "
+"Tarantool 2.x обратно совместим с Tarantool 1.10.x в том, что касается "
 "структуры бинарных данных, клиент-серверного протокола и протокола "
 "репликации. :ref:`Обновление <admin-upgrades>` можно произвести с помощью"
 " процедуры ``box.schema.upgrade()``."
@@ -76,17 +78,17 @@ msgstr ""
 #: ../doc/whats_new.rst:44
 #, fuzzy
 msgid "**Release 2.2.1**"
-msgstr "**Версия 1.7.1**"
+msgstr "**Версия 2.2.1**"
 
 #: ../doc/whats_new.rst:46
 #, fuzzy
 msgid "Release type: beta. Release date: 2019-08-02."
-msgstr "Тип версии: альфа. Дата выхода: 2016-07-11."
+msgstr "Тип версии: beta. Дата выхода: 2019-08-02."
 
 #: ../doc/whats_new.rst:48
 #, fuzzy
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/2.2.1."
-msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.2."
+msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/2.2.1."
 
 #: ../doc/whats_new.rst:50
 msgid ""
@@ -804,7 +806,8 @@ msgstr "Тип версии: стабильная (lts). Дата выхода: 
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
 msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
 
-#: ../doc/whats_new.rst:522 ../doc/whats_new.rst:724
+#: ../doc/whats_new.rst:522
+#: ../doc/whats_new.rst:724
 msgid "Overview"
 msgstr "Общие сведения"
 
@@ -825,11 +828,13 @@ msgstr ""
 msgid "This release resolves about 50 issues since 1.10.3."
 msgstr "Данная версия содержит около 50 исправлений по сравнению с версией 1.10.3."
 
-#: ../doc/whats_new.rst:530 ../doc/whats_new.rst:732
+#: ../doc/whats_new.rst:530
+#: ../doc/whats_new.rst:732
 msgid "Compatibility"
 msgstr "Совместимость"
 
-#: ../doc/whats_new.rst:532 ../doc/whats_new.rst:734
+#: ../doc/whats_new.rst:532
+#: ../doc/whats_new.rst:734
 msgid ""
 "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary "
 "data layout, client-server protocol and replication protocol. Please "
@@ -843,7 +848,8 @@ msgstr ""
 ":ref:`обновите <admin-upgrades>` версию 1.9 с помощью процедуры "
 "``box.schema.upgrade()``."
 
-#: ../doc/whats_new.rst:538 ../doc/whats_new.rst:737
+#: ../doc/whats_new.rst:538
+#: ../doc/whats_new.rst:737
 msgid "Functionality added or changed"
 msgstr "Изменения или добавления функциональности"
 
@@ -854,7 +860,7 @@ msgid ""
 " the recent write rate. Upon dump completion, print observed dump rate in"
 " addition to dump size and duration."
 msgstr ""
-"(Движки) Улучшить запись в журнал о событиях начала/окончания процесса "
+"(Движки) Улучшена запись в журнал о событиях начала/окончания процесса "
 "создания дампа. При запуске создания дампа записывается объем памяти, для"
 " которого создается дамп, предполагаемая скорость создания дампа, ETA, а "
 "также последняя скорость записи. По окончании создания дампа записывается"
@@ -871,11 +877,11 @@ msgid ""
 "allow us to save some precious CPU cycles for TX. Issue `4257 "
 "<https://github.com/tarantool/tarantool/issues/4257>`_."
 msgstr ""
-"(Движки) Искать ключ в потоке читателя. Если ключ не обнаружен в кэше "
+"(Движки) Поиск ключа в потоке чтения. Если ключ не обнаружен в кэше "
 "кортежа, забираем его из файла забега. В этом случае чтение с диска и "
-"распаковка страницы выполняется потоком читателя, однако поиск ключа на "
+"распаковка страницы выполняется потоком чтения, однако поиск ключа на "
 "выбранной странице все еще выполняется потоком TX. Поскольку страницы "
-"являются неизменяемыми, это может сделать поток читателя, что позволит "
+"являются неизменяемыми, это может сделать поток чтения, что позволит "
 "нам сэкономить ценные циклы ЦП для TX. Проблема `4257 "
 "<https://github.com/tarantool/tarantool/issues/4257>`_."
 
@@ -884,7 +890,7 @@ msgid ""
 "(Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`. Issue "
 "`4150 <https://github.com/tarantool/tarantool/issues/4150>`_."
 msgstr ""
-"(Ядро) Улучшить :ref:`box.stat.net <box_introspection-box_stat>`. "
+"(Ядро) Улучшена работа :ref:`box.stat.net <box_introspection-box_stat>`. "
 "Проблема `4150 <https://github.com/tarantool/tarantool/issues/4150>`_."
 
 #: ../doc/whats_new.rst:553
@@ -894,7 +900,7 @@ msgid ""
 "When ``box.info()`` is called, ``idle`` is set to ``current_time`` - "
 "``last_row_time``."
 msgstr ""
-"(Ядро) Добавить простой ``idle`` в статус downstream в ``box.info``. "
+"(Ядро) Добавлен статус ``idle`` (простаивание) для downstream в ``box.info``. "
 "Когда передается строка, обновляется значение ``last_row_time`` с текущим"
 " временем. Когда идет вызов ``box.info()``, значение ``idle`` задается "
 "как ``current_time`` (текущее время) - ``last_row_time`` (время передачи "
@@ -906,8 +912,8 @@ msgid ""
 "printing to log. Print the header row by row, 16 bytes in a row, and "
 "format output to match ``xxd`` output:"
 msgstr ""
-"(Репликация) Выводить поврежденные данные при ошибке декодирования. "
-"Улучшить запись строк в журнал. Выводить заголовок построчно, 16 байтов в"
+"(Репликация) Вывод поврежденных данных при ошибке декодирования. "
+"Улучшена запись строк в журнал. Вывод заголовка построчно, 16 байтов в"
 " строке, формат вывода соответствует выводу ``xxd``:"
 
 #: ../doc/whats_new.rst:561
@@ -929,7 +935,7 @@ msgid ""
 "(Lua) Add type of operation to space :ref:`trigger parameters <box_space-"
 "on_replace>`. For example, a trigger function may now look like this:"
 msgstr ""
-"(Lua) Добавить тип операций в :ref:`параметры триггера <box_space-"
+"(Lua) Добавлен тип операций в :ref:`параметры триггера <box_space-"
 "on_replace>`. Например, теперь функция с триггером может выглядеть "
 "следующим образом:"
 
@@ -962,7 +968,7 @@ msgid ""
 "location of a current Lua source file. Part of issue `4193 "
 "<https://github.com/tarantool/tarantool/issues/4193>`_."
 msgstr ""
-"(Lua) Добавить ``debug.sourcefile()`` и ``debug.sourcedir()`` (а также "
+"(Lua) Добавлены ``debug.sourcefile()`` и ``debug.sourcedir()`` (а также "
 "ускоренные методы ``debug.__file__`` и ``debug.__dir__``) для обнаружения"
 " местонахождения текущего исходного файла на Lua. Часть проблемы `4193 "
 "<https://github.com/tarantool/tarantool/issues/4193>`_."
@@ -976,10 +982,10 @@ msgid ""
 "threshold according to easy handles count. Issue `3945 "
 "<https://github.com/tarantool/tarantool/issues/3945>`_."
 msgstr ""
-"(HTTP-клиент) Добавить опцию ``max_total_connections`` в дополнение к "
-"``max_connections``, чтобы позволить более тонкую настройку кэша "
-"соединения ``libcurl``. Не ограничивать общее число соединений с помощью "
-"постоянного значения по умолчанию, а использовать значение по умолчанию "
+"(HTTP-клиент) Добавлена опция ``max_total_connections`` в дополнение к "
+"``max_connections``, что позволяет более тонко настраивать кэш "
+"соединения ``libcurl``. Общее число соединений больше не ограничено "
+"постоянным значением по умолчанию, а используется значение по умолчанию "
 "из``libcurl``, что масштабирует предел в зависимости от количества "
 "обработчиков. Проблема `3945 "
 "<https://github.com/tarantool/tarantool/issues/3945>`_."
@@ -993,7 +999,7 @@ msgid ""
 "(Vinyl) Fix assertion failure in `vy_tx_handle_deferred_delete`. Issue "
 "`4294 <https://github.com/tarantool/tarantool/issues/4294>`_."
 msgstr ""
-"(Vinyl) Исправить отказ в `vy_tx_handle_deferred_delete`. Проблема `4294 "
+"(Vinyl) Исправлен отказ в `vy_tx_handle_deferred_delete`. Проблема `4294 "
 "<https://github.com/tarantool/tarantool/issues/4294>`_."
 
 #: ../doc/whats_new.rst:596
@@ -1043,7 +1049,7 @@ msgid ""
 "(Vinyl) Be pessimistic about write rate when setting dump watermark. "
 "Issue `4166 <https://github.com/tarantool/tarantool/issues/4166>`_."
 msgstr ""
-"(Vinyl) Неудовлетворительная скорость записи при установленном уровне "
+"(Vinyl) Применять пессимистический прогноз скорости записи при установленном уровне "
 "дампа. Проблема `4166 "
 "<https://github.com/tarantool/tarantool/issues/4166>`_."
 
@@ -1199,7 +1205,7 @@ msgid ""
 "(Replication) Init ``coio`` watcher before join/subscribe. Issue `4110 "
 "<https://github.com/tarantool/tarantool/issues/4110>`_."
 msgstr ""
-"(Репликация) Запустить средство отслеживания ``coio`` перед подпиской "
+"(Репликация) Запустить средство отслеживания ``coio`` перед "
 "join/subscribe. Проблема `4110 "
 "<https://github.com/tarantool/tarantool/issues/4110>`_."
 
@@ -1229,7 +1235,7 @@ msgid ""
 "(Replication) Reduce effects of input buffer fragmentation on large "
 "``cfg.readahead``."
 msgstr ""
-"(Репликация) Уменьшать воздействие фрагментации буфера ввода при большом "
+"(Репликация) Уменьшить воздействие фрагментации буфера ввода при большом "
 "``cfg.readahead``."
 
 #: ../doc/whats_new.rst:651
@@ -2589,17 +2595,17 @@ msgstr ""
 #: ../doc/whats_new.rst:1074
 #, fuzzy
 msgid "Version 1.8"
-msgstr "Версия 1.9"
+msgstr "Версия 1.8"
 
 #: ../doc/whats_new.rst:1078
 #, fuzzy
 msgid "**Release 1.8.1**"
-msgstr "**Версия 1.7.1**"
+msgstr "**Версия 1.8.1**"
 
 #: ../doc/whats_new.rst:1080
 #, fuzzy
 msgid "Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1."
-msgstr "Тип версии: стабильная. Дата выхода: 2017-08-22.  Тег: 1.7.5."
+msgstr "Тип версии: альфа. Дата выхода: 2017-05-17.  Тег: 1.8.1."
 
 #: ../doc/whats_new.rst:1082
 #, fuzzy
@@ -2607,8 +2613,8 @@ msgid ""
 "Announcement: https://groups.google.com/forum/#!msg/tarantool-"
 "ru/XYaoqJpc544/mSvKrYwNAgAJ."
 msgstr ""
-"Объявление о выходе: https://groups.google.com/forum/#!topic/tarantool-"
-"ru/qUYUesEhRQg"
+"Объявление о выходе: https://groups.google.com/forum/#!msg/tarantool-"
+"ru/XYaoqJpc544/mSvKrYwNAgAJ."
 
 #: ../doc/whats_new.rst:1084
 msgid ""
@@ -2798,14 +2804,17 @@ msgstr ""
 "nullable <box_space-is_nullable>` (возможность допустить неопределенное "
 "значение), имена полей)."
 
-#: ../doc/whats_new.rst:1179 ../doc/whats_new.rst:1625
-#: ../doc/whats_new.rst:1685 ../doc/whats_new.rst:1867
-#: ../doc/whats_new.rst:1910 ../doc/whats_new.rst:2022
+#: ../doc/whats_new.rst:1179
+#: ../doc/whats_new.rst:1625
+#: ../doc/whats_new.rst:1685
+#: ../doc/whats_new.rst:1867
+#: ../doc/whats_new.rst:1910
+#: ../doc/whats_new.rst:2022
 #: ../doc/whats_new.rst:2064
 msgid "Incompatible changes:"
 msgstr "Несовместимые изменения:"
 
-#: ../doc/whats_new.rst:1181
+#: ../doc/whats_new.rst:624
 msgid ""
 "Layout of ``box.space._index`` has been extended to support "
 ":ref:`is_nullable <box_space-is_nullable>` and :ref:`collation <index-"
@@ -2855,7 +2864,7 @@ msgid ""
 msgstr ""
 ":ref:`space:format() <box_space-format>` проверяется в DML-операциях. "
 "Раньше ``space:format()`` использовался только в клиентских библиотеках, "
-"но с версии Tarantoool 1.7.6 типы полей в ``space:format()`` проверяются "
+"но с версии Tarantool 1.7.6 типы полей в ``space:format()`` проверяются "
 "на стороне сервера при каждой DML-операции, и имена полей могут "
 "использоваться в индексах и Lua-коде. Если ``space:format()`` "
 "использовался нестандартно, обновите структуру и имена типов в "
@@ -3085,8 +3094,10 @@ msgstr ""
 "Lua-интерпретатора для Debian/Ubuntu. Проблема `2730 "
 "<https://github.com/tarantool/tarantool/issues/2730>`_."
 
-#: ../doc/whats_new.rst:1270 ../doc/whats_new.rst:1371
-#: ../doc/whats_new.rst:2047 ../doc/whats_new.rst:2127
+#: ../doc/whats_new.rst:1270
+#: ../doc/whats_new.rst:1371
+#: ../doc/whats_new.rst:2047
+#: ../doc/whats_new.rst:2127
 msgid "New rocks:"
 msgstr "Новые сторонние библиотеки:"
 
@@ -4544,12 +4555,14 @@ msgstr ""
 "(http://snapcraft.io/) с помощью команды ``snap install tarantool "
 "--channel=beta``."
 
-#: ../doc/whats_new.rst:1734 ../doc/whats_new.rst:1896
+#: ../doc/whats_new.rst:1734
+#: ../doc/whats_new.rst:1896
 #: ../doc/whats_new.rst:1997
 msgid "New rocks and packages:"
 msgstr "Новые модули и пакеты:"
 
-#: ../doc/whats_new.rst:1736 ../doc/whats_new.rst:1898
+#: ../doc/whats_new.rst:1736
+#: ../doc/whats_new.rst:1898
 msgid ""
 "`curl <https://github.com/tarantool/tarantool-curl>`_ - non-blocking "
 "bindings for libcurl"
@@ -4557,7 +4570,8 @@ msgstr ""
 "`curl <https://github.com/tarantool/tarantool-curl>`_ - неблокирующие "
 "привязки для libcurl"
 
-#: ../doc/whats_new.rst:1737 ../doc/whats_new.rst:1899
+#: ../doc/whats_new.rst:1737
+#: ../doc/whats_new.rst:1899
 msgid ""
 "`prometheus <https://github.com/tarantool/prometheus>`_ - Prometheus "
 "metric collector for Tarantool"
@@ -4581,7 +4595,8 @@ msgstr ""
 "`mqtt <https://github.com/tarantool/mqtt>`_ - клиент MQTT-протокола для "
 "Tarantool'а"
 
-#: ../doc/whats_new.rst:1740 ../doc/whats_new.rst:1902
+#: ../doc/whats_new.rst:1740
+#: ../doc/whats_new.rst:1902
 msgid ""
 "`luaossl <https://github.com/tarantool/luaossl>`_ - the most "
 "comprehensive OpenSSL module in the Lua universe"
@@ -4629,7 +4644,8 @@ msgstr ""
 "Склонная к ошибкам функция ``tostring()`` была удалена из API ``digest``."
 " Проблема `1591 <https://github.com/tarantool/tarantool/issues/1591>`_."
 
-#: ../doc/whats_new.rst:1753 ../doc/whats_new.rst:1869
+#: ../doc/whats_new.rst:1753
+#: ../doc/whats_new.rst:1869
 msgid "Support for SHA-0 (``digest.sha()``) was removed due to OpenSSL upgrade."
 msgstr ""
 "Поддержка SHA-0 (``digest.sha()``) прекращается по причине обновления "
@@ -4680,17 +4696,20 @@ msgstr ""
 "Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
 "``/etc/tarantool/instace.enabled``."
 
-#: ../doc/whats_new.rst:1766 ../doc/whats_new.rst:1918
+#: ../doc/whats_new.rst:1766
+#: ../doc/whats_new.rst:1918
 msgid "Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``."
 msgstr "Остановите ЭКЗЕМПЛЯР с помощью ``tarantoolctl stop ИМЯ_ЭКЗЕМПЛЯРА``."
 
-#: ../doc/whats_new.rst:1767 ../doc/whats_new.rst:1919
+#: ../doc/whats_new.rst:1767
+#: ../doc/whats_new.rst:1919
 msgid "Start INSTANCENAME using ``systemctl start tarantool@INSTANCENAME``."
 msgstr ""
 "Запустите ЭКЗЕМПЛЯР с помощью ``systemctl start "
 "tarantool@ИМЯ_ЭКЗЕМПЛЯРА``."
 
-#: ../doc/whats_new.rst:1768 ../doc/whats_new.rst:1920
+#: ../doc/whats_new.rst:1768
+#: ../doc/whats_new.rst:1920
 msgid ""
 "Enable INSTANCENAME during system boot using ``systemctl enable "
 "trantool@INTANCENAME``."
@@ -4727,7 +4746,8 @@ msgstr ""
 "по умолчанию, предоставлены права на universe для пользователя ``guest`` "
 "и настроено прослушивание по \"locahost:3313\"."
 
-#: ../doc/whats_new.rst:1779 ../doc/whats_new.rst:1872
+#: ../doc/whats_new.rst:1779
+#: ../doc/whats_new.rst:1872
 msgid "Fedora 22 packages were deprecated (EOL)."
 msgstr "Пакеты для Fedora 22 объявлены устаревшими (прекращение поддержки)."
 

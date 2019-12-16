@@ -1278,6 +1278,12 @@ msgid ""
 " to the log, setting ``log_nonblock`` to true may improve logging "
 "performance at the cost of some log messages getting lost."
 msgstr ""
+"Если значение ``log_nonblock`` равно true (правда), Tarantool не "
+"блокирует дескриптор файла журнала, когда он не готов вести запись, а "
+"вместо этого сбрасывает сообщение. Если задан высокий уровень "
+":ref:`log_level <cfg_logging-log_level>`,и много сообщений попадают в "
+"файл журнала, перевод ``log_nonblock`` в true может улучшить "
+"производительность ценой потери некоторых сообщений журнала."
 
 #: ../doc/reference/configuration/cfg_logging.rst:124
 #, fuzzy
@@ -1297,7 +1303,6 @@ msgid ""
 msgstr ""
 
 #: ../doc/reference/configuration/cfg_logging.rst:135
-#, fuzzy
 msgid "Default: nil"
 msgstr "По умолчанию: null"
 
@@ -2456,23 +2461,24 @@ msgid ""
 " ``memtx_memory`` limit."
 msgstr ""
 "Количество памяти, которое Tarantool выделяет для фактического хранения "
-"кортежей, в байтах. При достижении предельного значения запросы вставки "
-":ref:`INSERT <box_space-insert>` или обновления :ref:`UPDATE <box_space-"
-"insert>` выполняться не будут, выдавая ошибку :errcode:`ER_MEMORY_ISSUE`."
-" Сервер не выходит за установленный предел памяти ``memtx_memory`` при "
-"распределении кортежей, но есть дополнительная память, которая "
-"используется для хранения индексов и информации о подключении. В "
-"зависимости от рабочей конфигурации и загрузки, Tarantool может "
-"потреблять на 20% больше предела ``memtx_memory``."
+"кортежей, **в гигабайтах**. При достижении предельного значения запросы "
+"вставки INSERT или обновления UPDATE выполняться не будут, выдавая ошибку"
+" :errcode:`ER_MEMORY_ISSUE`. Сервер не выходит за установленный предел "
+"памяти ``memtx_memory`` при распределении кортежей, но есть "
+"дополнительная память, которая используется для хранения индексов и "
+"информации о подключении. В зависимости от рабочей конфигурации и "
+"загрузки, Tarantool может потреблять на 20% больше установленного "
+"предела."
 
 #: ../doc/reference/configuration/cfg_storage.rst:29
+#, fuzzy
 msgid "Default: 256 * 1024 * 1024 = 268435456"
-msgstr "По умолчанию: 256 * 1024 * 1024 = 268435456"
+msgstr "По умолчанию: 268435456 (256 * 1024 * 1024)"
 
 #: ../doc/reference/configuration/cfg_storage.rst:30
 #: ../doc/reference/configuration/cfg_storage.rst:103
 msgid "Dynamic: **yes** but it cannot be decreased"
-msgstr "Динамический: **да**, но нельзя уменьшить"
+msgstr ""
 
 #: ../doc/reference/configuration/cfg_storage.rst:36
 msgid ""
@@ -2480,15 +2486,11 @@ msgid ""
 "engine. It can be increased if it is necessary to store large tuples. See"
 " also: :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`."
 msgstr ""
-"Размер наибольшего блока выделения памяти в байтах для движка базы данных"
-" memtx. Его можно увеличить, если есть необходимость в хранении больших "
-"кортежей. См. также :ref:`vinyl_max_tuple_size <cfg_storage-"
-"vinyl_max_tuple_size>`."
 
 #: ../doc/reference/configuration/cfg_storage.rst:42
 #: ../doc/reference/configuration/cfg_storage.rst:92
 msgid "Default: 1024 * 1024 = 1048576"
-msgstr "По умолчанию: 1024 * 1024 = 1048576"
+msgstr ""
 
 #: ../doc/reference/configuration/cfg_storage.rst:49
 msgid ""
@@ -2496,13 +2498,11 @@ msgid ""
 "most of the tuples are very small. The value must be between 8 and "
 "1048280 inclusive."
 msgstr ""
-"Размер наименьшего блока выделения памяти в байтах. Его можно уменьшить, "
-"если кортежи очень малого размера. Значение должно быть от 8 до 1 048 280"
-" включительно."
 
 #: ../doc/reference/configuration/cfg_storage.rst:54
+#, fuzzy
 msgid "Default: 16"
-msgstr "По умолчанию: 16"
+msgstr "По умолчанию: 1"
 
 #: ../doc/reference/configuration/cfg_storage.rst:61
 msgid ""
@@ -2512,30 +2512,22 @@ msgid ""
 "of the options in the :ref:`Options for space_object:create_index() "
 "<box_space-create_index>` chart."
 msgstr ""
-"Доля ложноположительного срабатывания фильтра Блума -- подходящая "
-"вероятность того, что `фильтр Блума "
-"<https://ru.wikipedia.org/wiki/%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80_%D0%91%D0%BB%D1%83%D0%BC%D0%B0>`_"
-" выдаст ошибочный результат. Настройка ``vinyl_bloom_fpr`` -- это "
-"значение, которое используется по умолчанию для одного из параметров в "
-"таблице :ref:`Параметры space_object:create_index() <box_space-"
-"create_index>`."
 
 #: ../doc/reference/configuration/cfg_storage.rst:68
+#, fuzzy
 msgid "Default = 0.05"
-msgstr "По умолчанию = 0.05"
+msgstr "По умолчанию: 0.5"
 
 #: ../doc/reference/configuration/cfg_storage.rst:75
 msgid ""
 "The cache size for the vinyl storage engine, in bytes. The cache can be "
 "resized dynamically."
 msgstr ""
-"Размер кэша для движка базы данных vinyl в байтах. Размер кэша можно "
-"изменить динамически."
 
 #: ../doc/reference/configuration/cfg_storage.rst:79
 #: ../doc/reference/configuration/cfg_storage.rst:102
 msgid "Default = 128 * 1024 * 1024 = 134217728"
-msgstr "По умолчанию = 128 * 1024 * 1024 = 134217728"
+msgstr ""
 
 #: ../doc/reference/configuration/cfg_storage.rst:86
 msgid ""
@@ -2543,16 +2535,11 @@ msgid ""
 "engine. It can be increased if it is necessary to store large tuples. See"
 " also: :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`."
 msgstr ""
-"Размер наибольшего блока выделения памяти в байтах для движка базы данных"
-" vinyl. Его можно увеличить, если есть необходимость в хранении больших "
-"кортежей. См. также :ref:`memtx_max_tuple_size <cfg_storage-"
-"memtx_max_tuple_size>`."
 
 #: ../doc/reference/configuration/cfg_storage.rst:99
+#, fuzzy
 msgid "The maximum number of in-memory bytes that vinyl uses."
-msgstr ""
-"Максимальное количество байтов оперативной памяти, которые использует "
-"vinyl."
+msgstr "максимальное количество показываемых сегментов"
 
 #: ../doc/reference/configuration/cfg_storage.rst:109
 msgid ""
@@ -2561,14 +2548,11 @@ msgid ""
 "options in the :ref:`Options for space_object:create_index() <box_space-"
 "create_index>` chart."
 msgstr ""
-"Размер страницы в байтах. Страница представляет собой блок чтения и "
-"записи для операций на диске vinyl. Настройка ``vinyl_page_size`` -- это "
-"значение, которое используется по умолчанию для одного из параметров в "
-"таблице :ref:`Параметры space_object:create_index() `."
 
 #: ../doc/reference/configuration/cfg_storage.rst:114
+#, fuzzy
 msgid "Default = 8 * 1024 = 8192"
-msgstr "По умолчанию = 8 * 1024 = 8192"
+msgstr "По умолчанию: 268435456 (256 * 1024 * 1024)"
 
 #: ../doc/reference/configuration/cfg_storage.rst:121
 msgid ""
@@ -2576,11 +2560,9 @@ msgid ""
 "range size affects the decision whether to :ref:`split <engines-"
 "vinyl_split>` a range."
 msgstr ""
-"Максимальный размер диапазона для индекса vinyl'а в байтах. Максимальный "
-"размер диапазона влияет на принятие решения о :ref:`разделении <engines-"
-"vinyl_split>` диапазона."
 
 #: ../doc/reference/configuration/cfg_storage.rst:125
+#, fuzzy
 msgid ""
 "If ``vinyl_range_size`` is not nil and not 0, then it is used as the "
 "default value for the ``range_size`` option in the :ref:`Options for "
@@ -2598,23 +2580,17 @@ msgid ""
 " performance considerations. To see the actual value, use "
 ":ref:`index_object:stat().range_size <box_index-stat>`."
 msgstr ""
-"Если ``vinyl_range_size`` содержит нулевое значение nil или 0, а параметр"
-" ``range_size`` не задан при создании индекса, то Tarantool сам задает "
-"это значение позднее в результате оценки производительности. Чтобы узнать"
-" текущее значение, используйте :ref:`index_object:stat().range_size "
-"<box_index-stat>`."
 
 #: ../doc/reference/configuration/cfg_storage.rst:135
 msgid ""
 "In Tarantool versions prior to 1.10.2, ``vinyl_range_size`` default value"
 " was 1073741824."
 msgstr ""
-"До версии Tarantool'а 1.10.2, значение ``vinyl_range_size`` по умолчанию "
-"было 1073741824."
 
 #: ../doc/reference/configuration/cfg_storage.rst:138
+#, fuzzy
 msgid "Default = nil"
-msgstr "По умолчанию = нулевое значение nil"
+msgstr "По умолчанию: null"
 
 #: ../doc/reference/configuration/cfg_storage.rst:145
 msgid ""
@@ -2623,15 +2599,12 @@ msgid ""
 "setting is a default value for one of the options in the :ref:`Options "
 "for space_object:create_index() <box_space-create_index>` chart."
 msgstr ""
-"Максимальное количество забегов на уровень журнально-структурированного "
-"дерева со слиянием в vinyl'е. Настройка ``vinyl_run_count_per_level`` -- "
-"это значение, которое используется по умолчанию для одного из параметров "
-"в таблице :ref:`Параметры space_object:create_index() `."
 
 #: ../doc/reference/configuration/cfg_storage.rst:151
 #: ../doc/reference/configuration/cfg_storage.rst:185
+#, fuzzy
 msgid "Default = 2"
-msgstr "По умолчанию = 2"
+msgstr "По умолчанию: 2"
 
 #: ../doc/reference/configuration/cfg_storage.rst:158
 msgid ""
@@ -2640,26 +2613,25 @@ msgid ""
 "options in the :ref:`Options for space_object:create_index() <box_space-"
 "create_index>` chart."
 msgstr ""
-"Отношение размеров различных уровней журнально-структурированного дерева "
-"со слиянием. Настройка ``vinyl_run_size_ratio`` -- это значение, которое "
-"используется по умолчанию для одного из параметров в таблице "
-":ref:`Параметры space_object:create_index() `."
 
 #: ../doc/reference/configuration/cfg_storage.rst:163
+#, fuzzy
 msgid "Default = 3.5"
-msgstr "По умолчанию = 3.5"
+msgstr "По умолчанию: 0.5"
 
 #: ../doc/reference/configuration/cfg_storage.rst:170
+#, fuzzy
 msgid ""
 "The maximum number of read threads that vinyl can use for some concurrent"
 " operations, such as I/O and compression."
 msgstr ""
-"Максимальное количество потоков чтения, которые vinyl может использовать "
+"Максимальное количество потоков записи, которые vinyl может использовать "
 "в одновременных операциях, такие как ввод-вывод и компрессия."
 
 #: ../doc/reference/configuration/cfg_storage.rst:174
+#, fuzzy
 msgid "Default = 1"
-msgstr "По умолчанию = 1"
+msgstr "По умолчанию: 1"
 
 #: ../doc/reference/configuration/cfg_storage.rst:181
 msgid ""
@@ -3978,7 +3950,6 @@ msgstr ""
 "ошибку."
 
 #: ../doc/reference/reference_lua/box_error.rst:61
-#, fuzzy
 msgid ""
 "Emulate a request error, with text based on one of the pre-defined "
 "Tarantool errors defined in the file `errcode.h "
@@ -3989,7 +3960,7 @@ msgid ""
 msgstr ""
 "Моделирование ошибки запроса с текстом на основе одной из ошибок "
 "Tarantool'а, заданных в файле `errcode.h "
-"<https://github.com/tarantool/tarantool/blob/1.10/src/box/errcode.h>`_ в "
+"<https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ в "
 "исходном дереве. Lua-постоянные, которые соответствуют этим ошибкам в "
 "Tarantool'е, определяются как элементы ``box.error``, например "
 "``box.error.NO_SUCH_USER == 45``."
@@ -5713,7 +5684,7 @@ msgstr ""
 
 #: ../doc/reference/reference_lua/csv.rst:28
 msgid "The possible options which can be passed to csv functions are:"
-msgstr "Параметры, которые можно передать в функции модуля csv:"
+msgstr "Параметры, которые можно передать в функции модуля ``csv``:"
 
 #: ../doc/reference/reference_lua/csv.rst:30
 msgid ""
@@ -11809,6 +11780,13 @@ msgid ""
 "``max_total_connections`` may be useful, since it causes curl to avoid "
 "creating too many sockets which would not be used anyway."
 msgstr ""
+"1. Возможно, вы захотите регулировать максимальное количество сокетов, "
+"которые конкретный http-клиент использует одновременно. Если система "
+"передает много запросов различным хостам, то libcurl не может повторно "
+"использовать сокеты. В этом случае важен "
+"параметр``max_total_connections``, поскольку он запретит curl создавать "
+"слишком большое количество сокетов, которые все равно не будут "
+"использоваться."
 
 #: ../doc/reference/reference_lua/http.rst:68
 #, fuzzy
@@ -14204,9 +14182,8 @@ msgid ":ref:`msgpack.NULL <msgpack-null>`"
 msgstr ":ref:`msgpack.NULL <msgpack-null>`"
 
 #: ../doc/reference/reference_lua/msgpack.rst:42
-#, fuzzy
 msgid ":ref:`msgpack.decode_array_header <msgpack-decode_array_header>`"
-msgstr ":ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`"
+msgstr ":ref:`msgpack.decode_array_header <msgpack-decode_array_header>`"
 
 #: ../doc/reference/reference_lua/msgpack.rst:42
 msgid "Skip array header in a MsgPack string"
@@ -26362,6 +26339,7 @@ msgid "Any viable sharded cluster consists of:"
 msgstr "Минимальный рабочий сегментированный кластер должен состоять из:"
 
 #: ../doc/reference/reference_rock/vshard/vshard_admin.rst:32
+#, fuzzy
 msgid ""
 "one or more replica sets, each containing two or more :ref:`storage "
 "<vshard-storage>` instances,"
@@ -26370,6 +26348,7 @@ msgstr ""
 ":ref:`хранилищами <vshard-storage>` в каждом,"
 
 #: ../doc/reference/reference_rock/vshard/vshard_admin.rst:34
+#, fuzzy
 msgid "one or more :ref:`router <vshard-router>` instances."
 msgstr "одного или нескольких :ref:`роутеров <vshard-router>`."
 
@@ -26765,6 +26744,7 @@ msgstr ""
 "переадресация видима для приложения."
 
 #: ../doc/reference/reference_rock/vshard/vshard_admin.rst:213
+#, fuzzy
 msgid "Parallel rebalancing"
 msgstr "Параллельная балансировка"
 
@@ -27648,6 +27628,7 @@ msgid ""
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:29
+#, fuzzy
 msgid ""
 "Each shard stores a unique subset of buckets, which means that a bucket "
 "cannot belong to several shards at once, as illustrated below:"
@@ -27746,6 +27727,7 @@ msgstr ""
 "индекса совпадает с идентификатором сегмента."
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:88
+#, fuzzy
 msgid "Structure"
 msgstr "Структура"
 
@@ -27755,14 +27737,17 @@ msgid "A sharded cluster in Tarantool consists of:"
 msgstr "Минимальный рабочий сегментированный кластер должен состоять из:"
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:92
+#, fuzzy
 msgid "storages,"
 msgstr "хранилище,"
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:93
+#, fuzzy
 msgid "routers,"
 msgstr "роутеры,"
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:94
+#, fuzzy
 msgid "and a rebalancer."
 msgstr "и ребалансировщик."
 
@@ -27922,6 +27907,7 @@ msgid ""
 msgstr ""
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:175
+#, fuzzy
 msgid "SELECT requests"
 msgstr "SELECT-запросы"
 
@@ -28145,6 +28131,7 @@ msgid "``bucket`` – bucket id"
 msgstr "``bucket`` -- идентификатор сегмента"
 
 #: ../doc/reference/reference_rock/vshard/vshard_architecture.rst:278
+#, fuzzy
 msgid "``status`` – state of the bucket"
 msgstr "``status`` -- статус сегмента"
 
@@ -29446,6 +29433,7 @@ msgstr ""
 "повторяется до истечения времени ожидания."
 
 #: ../doc/reference/reference_rock/vshard/vshard_ref.rst:296
+#, fuzzy
 msgid ""
 "The mode parameter has two possible forms: a string or a map. Examples of"
 " the string form are: ``'read'``, ``'write'``. Examples of the map form "
@@ -29453,6 +29441,19 @@ msgid ""
 "prefer_replica=true}``, ``{mode='read', balance=true}``, ``{mode='read', "
 "prefer_replica=true, balance=true}``."
 msgstr ""
+"У параметра режима mode есть две доступные формы: строка или "
+"ассоциативный массив. Примеры строки: 'read' (чтение), 'write' (запись). "
+"Примеры ассоциативного массива: {mode='read'}, {mode='write'}, "
+"{mode='read', prefer_replica=true}, {mode='read', balance=true}, "
+"{mode='read', prefer_replica=true, balance=true}. Если указать значение "
+"'write' (запись), то целью будет мастер. Если указать "
+"prefer_replica=true, то предпочитаемая цель -- одна из реплик; если же "
+"доступной реплики нет, то целью будет мастер. Удобно указать "
+"prefer_replica=true для ресурсозатратных функций во избежание замедления "
+"работы мастера. Если задать balance=true, добавится балансировка нагрузки"
+" -- чтения распределяются по всем узлам набора реплик по кругу, "
+"предпочтение отдается репликам, если также задан параметр "
+"prefer_replica=true."
 
 #: ../doc/reference/reference_rock/vshard/vshard_ref.rst:301
 msgid "If ``'write'`` is specified then the target is the master."
@@ -29501,6 +29502,12 @@ msgid ""
 " attribute containing a message with the human-readable error "
 "description, and other attributes specific for the error code."
 msgstr ""
+"``ShardingError`` возвращается в случае ошибок шардинга: набор реплик "
+"недоступен, отсутствует мастер, неверный идентификатор сегмента и т.д. "
+"Такая ошибка содержит код с одним из значений из Lua-таблицы "
+"``vshard.error.code.*``, необязательный атрибут сообщения с удобным для "
+"восприятия описанием ошибки и другие атрибуты, специфичные для данного "
+"кода ошибки."
 
 #: ../doc/reference/reference_rock/vshard/vshard_ref.rst:326
 msgid "To call ``customer_add`` function from ``vshard/example``, say:"
@@ -35741,4 +35748,23 @@ msgstr ""
 #~ "---\n"
 #~ "- 108.64641499519\n"
 #~ "..."
+
+#~ msgid "A minimal viable sharded cluster should consist of:"
+#~ msgstr "Минимальный рабочий сегментированный кластер должен состоять из:"
+
+#~ msgid ""
+#~ "The ``rebalancer`` wakes up periodically "
+#~ "and redistributes data from the most "
+#~ "loaded nodes to less loaded nodes. "
+#~ "Rebalancing starts if the disbalance "
+#~ "threshold of a replica set exceeds "
+#~ "a disbalance threshold specified in the"
+#~ " configuration."
+#~ msgstr ""
+#~ "``Балансировщик`` периодически просыпается и "
+#~ "перераспределяет данные из наиболее "
+#~ "загруженных узлов в менее загруженные "
+#~ "узлы. Балансировка начинается, когда предел"
+#~ " дисбаланса в наборе реплик превышает "
+#~ "предел дисбаланса, указанный в конфигурации."
 
