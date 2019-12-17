@@ -49,9 +49,11 @@
 
 .. confval:: replication_timeout
 
-    A replica sends heartbeat messages to the master every second, and the
-    master is programmed to reconnect automatically if it doesn’t see heartbeat
-    messages more often than ``replication_timeout`` seconds.
+    If the master has no updates to send to replicas, it sends heartbeat messages
+    every ``replication_timeout``, and a replica sends ACK packet back. Both master
+    and replica are programmed to drop the connection if they don't get any response
+    more often than four ``replication_timeout`` seconds. Then the replica tries
+    to reconnect to the master.
 
     See more in :ref:`Monitoring a replica set <replication-monitoring>`.
 
