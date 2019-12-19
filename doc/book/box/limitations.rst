@@ -95,3 +95,9 @@ Limitations
 **Number of replicas in a replica set**
 
     32 (``vclock.VCLOCK_MAX``).
+
+**Number of tuples in an index**
+
+    2 147 483 647 (ref_).
+
+.. _ref: https://github.com/tarantool/small/blob/master/small/matras.h#L87-L89

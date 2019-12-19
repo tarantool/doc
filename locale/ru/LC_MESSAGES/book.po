@@ -25711,6 +25711,10 @@ msgstr "**Количество реплик в наборе реплик**"
 msgid "32 (``vclock.VCLOCK_MAX``)."
 msgstr "32 (``vclock.VCLOCK_MAX``)."
 
+#: ../doc/book/box/limitations.rst:99
+msgid "**Number of tuples in an index**"
+msgstr "**Количество кортежей в индексе**"
+
 #: ../doc/book/box/triggers.rst:6
 msgid "Triggers"
 msgstr "Триггеры"
