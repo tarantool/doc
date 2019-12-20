@@ -162,6 +162,49 @@ Below is a list of all ``http`` functions.
 
         :rtype: table
 
+        Cookies component contains a Lua table where the key is a cookie name. The value
+        is an array of two elements where the first is cookie value and the second
+        is an array with the cookie's options. Possible options are `"Expires", "Max-Age",
+        "Domain", "Path", "Secure", "HttpOnly", "SameSite"`. Note that option's
+        value consists of two strings with '=' between them. `Here
+        <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_
+        you can find more info.
+
+        **Example**
+
+        You can use cookies information like this:
+
+        .. code-block:: tarantoolsession
+
+            tarantool> require('http.client').get('https://www.tarantool.io/en/').cookies
+            ---
+            - csrftoken:
+              - bWJVkBybvX9LdJ8uLPOTVrit5P3VbRjE3potYVOuUnsSjYT5ahghDV06tXRkfnOl
+              - - Max-Age=31449600
+                - Path=/
+            ...
+
+            tarantool> cookies = require('http.client').get('https://www.tarantool.io/en/').cookies
+            ---
+            ...
+
+            tarantool> options = cookies['csrftoken'][2]
+            ---
+            ...
+
+            tarantool> for _, option in ipairs(options) do
+                     > if option:startswith('csrftoken cookie's Max-Age = ') then
+                     > print(option)
+                     > end
+                     > end
+
+            csrftoken cookie's Max-Age = 31449600
+            ---
+            ...
+
+            tarantool>
+
+
         The following "shortcuts" exist for requests:
 
         * ``http_client:get(url, options)`` - shortcut for
@@ -176,7 +219,7 @@ Below is a list of all ``http`` functions.
           ``http_client:request("OPTIONS", url, nil, opts)``
         * ``http_client:head(url, options)`` - shortcut for
           ``http_client:request("HEAD", url, nil, opts)``
-        * ``http_client:delete(url, options)`` - shortcut for
+          * ``http_client:delete(url, options)`` - shortcut for
           ``http_client:request("DELETE", url, nil, opts)``
         * ``http_client:trace(url, options)`` - shortcut for
           ``http_client:request("TRACE", url, nil, opts)``
