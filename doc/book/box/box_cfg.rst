@@ -6,10 +6,10 @@ Submodule `box.cfg`
 
 .. module:: box.cfg
 
-The ``box.cfg`` submodule is for administrators to specify all the
+The ``box.cfg`` submodule is used for specifying
 :ref:`server configuration parameters <box_cfg_params>`.
 
-Say ``box.cfg`` without braces to view the current configuration, for example:
+To view the current configuration, say ``box.cfg`` without braces:
 
 .. code-block:: tarantoolsession
 
@@ -23,13 +23,20 @@ Say ``box.cfg`` without braces to view the current configuration, for example:
       <...>
     ...
 
-To set the parameters, say ``box.cfg{...}``, for example:
+To set particular parameters, use the following syntax: ``box.cfg{key = value [, key = value ...]}``
+(further referred to as ``box.cfg{...}`` for short). For example:
 
 .. code-block:: tarantoolsession
 
     tarantool> box.cfg{listen = 3301}
 
-If you say ``box.cfg{}`` with no parameters, Tarantool applies default settings:
+Parameters that are not specified in the ``box.cfg{...}`` call explicitly will
+be set to the :ref:`default values<box_cfg_default>`.
+
+If you say ``box.cfg{}`` with no parameters, Tarantool applies the following
+default settings to all the parameters:
+
+.. _box_cfg_default:
 
 .. code-block:: tarantoolsession
 
