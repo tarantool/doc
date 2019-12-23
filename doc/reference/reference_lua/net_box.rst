@@ -174,6 +174,11 @@ Below is a list of all ``net.box`` functions.
 
     Possible options:
 
+    * `user/password`: you have two ways to connect to a remote host:
+      using :ref:`URI <index-uri>` or using the options `user` and `password`. For
+      example, instead of ``connect('username:userpassword@localhost:33301')`` you
+      can write ``connect('localhost:33301', {user = 'username', password='userpassword'})``.
+
     * `wait_connected`: by default, connection creation is blocked until the connection is established,
       but passing ``wait_connected=false`` makes it return immediately. Also, passing a timeout
       makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 seconds).
@@ -213,7 +218,8 @@ Below is a list of all ``net.box`` functions.
     * `connect_timeout`: number of seconds to wait before returning "error: Connection timed out".
 
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
-    :param options: possible options are `wait_connected`, `reconnect_after`, `call_16` and `console`
+    :param options: possible options are `user`, `password`, `wait_connected`,
+                    `reconnect_after`, `call_16`, `console` and `connect_timeout`
     :return: conn object
     :rtype:  userdata
 
