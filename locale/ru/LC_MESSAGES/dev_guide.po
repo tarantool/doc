@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-20 18:13+0000\n"
+"POT-Creation-Date: 2019-12-23 10:32+0000\n"
 "PO-Revision-Date: 2019-12-20 21:24+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -5846,7 +5846,7 @@ msgstr "Во вторую очередь записи в .snap-файле упо
 
 #: ../doc/dev_guide/internals/index.rst:5
 msgid "Internals"
-msgstr "Внутреннее устройство"
+msgstr "Детали реализации"
 
 #: ../doc/dev_guide/internals/recovery_internals.rst:5
 msgid "The recovery process"
@@ -11897,4 +11897,10 @@ msgstr "Вскоре будет создан новый Docker-контейне�
 #~ "Для чтения файлов в формате .xlog "
 #~ "в Tarantool'е предусмотрен :ref:`модуль xlog"
 #~ " <xlog>`."
+
+#~ msgid "Internals"
+#~ msgstr "Внутреннее устройство"
+
+#~ msgid "!!! TEST Internals"
+#~ msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-06 17:39+0000\n"
+"POT-Creation-Date: 2019-12-23 10:32+0000\n"
 "PO-Revision-Date: 2019-12-06 16:12+0300\n"
 "Last-Translator: \n"
 "Language: new\n"
@@ -35,12 +35,11 @@ msgid ""
 "<whats_new_168>`, and :ref:`1.6.6 <whats_new_166>`."
 msgstr ""
 "Примечания к версиям содержат краткое описание значимых изменений в "
-"следующих версиях Tarantool'а: "
-":ref:`2.2.1 <whats_new_221>`, :ref:`2.1.2 <whats_new_212>`, "
-":ref:`2.1.1 <whats_new_211>`, :ref:`2.0.4 <whats_new_204>`, "
-":ref:`1.10.4 <whats_new_1104>`, "
-":ref:`1.10.3 <whats_new_1103>`, :ref:`1.10.2 <whats_new_1102>`, "
-":ref:`1.9.0 <whats_new_190>`, :ref:`1.7.6 <whats_new_176>`, :ref:`1.7.5 "
+"следующих версиях Tarantool'а: :ref:`2.2.1 <whats_new_221>`, :ref:`2.1.2 "
+"<whats_new_212>`, :ref:`2.1.1 <whats_new_211>`, :ref:`2.0.4 "
+"<whats_new_204>`, :ref:`1.10.4 <whats_new_1104>`, :ref:`1.10.3 "
+"<whats_new_1103>`, :ref:`1.10.2 <whats_new_1102>`, :ref:`1.9.0 "
+"<whats_new_190>`, :ref:`1.7.6 <whats_new_176>`, :ref:`1.7.5 "
 "<whats_new_175>`, :ref:`1.7.4 <whats_new_174>`, :ref:`1.7.3 "
 "<whats_new_173>`, :ref:`1.7.2 <whats_new_172>`, :ref:`1.7.1 "
 "<whats_new_171>`, :ref:`1.6.9 <whats_new_169>`, :ref:`1.6.8 "
@@ -806,8 +805,7 @@ msgstr "Тип версии: стабильная (lts). Дата выхода: 
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
 msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
 
-#: ../doc/whats_new.rst:522
-#: ../doc/whats_new.rst:724
+#: ../doc/whats_new.rst:522 ../doc/whats_new.rst:724
 msgid "Overview"
 msgstr "Общие сведения"
 
@@ -828,13 +826,11 @@ msgstr ""
 msgid "This release resolves about 50 issues since 1.10.3."
 msgstr "Данная версия содержит около 50 исправлений по сравнению с версией 1.10.3."
 
-#: ../doc/whats_new.rst:530
-#: ../doc/whats_new.rst:732
+#: ../doc/whats_new.rst:530 ../doc/whats_new.rst:732
 msgid "Compatibility"
 msgstr "Совместимость"
 
-#: ../doc/whats_new.rst:532
-#: ../doc/whats_new.rst:734
+#: ../doc/whats_new.rst:532 ../doc/whats_new.rst:734
 msgid ""
 "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary "
 "data layout, client-server protocol and replication protocol. Please "
@@ -848,8 +844,7 @@ msgstr ""
 ":ref:`обновите <admin-upgrades>` версию 1.9 с помощью процедуры "
 "``box.schema.upgrade()``."
 
-#: ../doc/whats_new.rst:538
-#: ../doc/whats_new.rst:737
+#: ../doc/whats_new.rst:538 ../doc/whats_new.rst:737
 msgid "Functionality added or changed"
 msgstr "Изменения или добавления функциональности"
 
@@ -881,8 +876,8 @@ msgstr ""
 "кортежа, забираем его из файла забега. В этом случае чтение с диска и "
 "распаковка страницы выполняется потоком чтения, однако поиск ключа на "
 "выбранной странице все еще выполняется потоком TX. Поскольку страницы "
-"являются неизменяемыми, это может сделать поток чтения, что позволит "
-"нам сэкономить ценные циклы ЦП для TX. Проблема `4257 "
+"являются неизменяемыми, это может сделать поток чтения, что позволит нам "
+"сэкономить ценные циклы ЦП для TX. Проблема `4257 "
 "<https://github.com/tarantool/tarantool/issues/4257>`_."
 
 #: ../doc/whats_new.rst:551
@@ -900,11 +895,11 @@ msgid ""
 "When ``box.info()`` is called, ``idle`` is set to ``current_time`` - "
 "``last_row_time``."
 msgstr ""
-"(Ядро) Добавлен статус ``idle`` (простаивание) для downstream в ``box.info``. "
-"Когда передается строка, обновляется значение ``last_row_time`` с текущим"
-" временем. Когда идет вызов ``box.info()``, значение ``idle`` задается "
-"как ``current_time`` (текущее время) - ``last_row_time`` (время передачи "
-"последней строки)."
+"(Ядро) Добавлен статус ``idle`` (простаивание) для downstream в "
+"``box.info``. Когда передается строка, обновляется значение "
+"``last_row_time`` с текущим временем. Когда идет вызов ``box.info()``, "
+"значение ``idle`` задается как ``current_time`` (текущее время) - "
+"``last_row_time`` (время передачи последней строки)."
 
 #: ../doc/whats_new.rst:557
 msgid ""
@@ -912,9 +907,9 @@ msgid ""
 "printing to log. Print the header row by row, 16 bytes in a row, and "
 "format output to match ``xxd`` output:"
 msgstr ""
-"(Репликация) Вывод поврежденных данных при ошибке декодирования. "
-"Улучшена запись строк в журнал. Вывод заголовка построчно, 16 байтов в"
-" строке, формат вывода соответствует выводу ``xxd``:"
+"(Репликация) Вывод поврежденных данных при ошибке декодирования. Улучшена"
+" запись строк в журнал. Вывод заголовка построчно, 16 байтов в строке, "
+"формат вывода соответствует выводу ``xxd``:"
 
 #: ../doc/whats_new.rst:561
 msgid ""
@@ -983,9 +978,9 @@ msgid ""
 "<https://github.com/tarantool/tarantool/issues/3945>`_."
 msgstr ""
 "(HTTP-клиент) Добавлена опция ``max_total_connections`` в дополнение к "
-"``max_connections``, что позволяет более тонко настраивать кэш "
-"соединения ``libcurl``. Общее число соединений больше не ограничено "
-"постоянным значением по умолчанию, а используется значение по умолчанию "
+"``max_connections``, что позволяет более тонко настраивать кэш соединения"
+" ``libcurl``. Общее число соединений больше не ограничено постоянным "
+"значением по умолчанию, а используется значение по умолчанию "
 "из``libcurl``, что масштабирует предел в зависимости от количества "
 "обработчиков. Проблема `3945 "
 "<https://github.com/tarantool/tarantool/issues/3945>`_."
@@ -1049,8 +1044,8 @@ msgid ""
 "(Vinyl) Be pessimistic about write rate when setting dump watermark. "
 "Issue `4166 <https://github.com/tarantool/tarantool/issues/4166>`_."
 msgstr ""
-"(Vinyl) Применять пессимистический прогноз скорости записи при установленном уровне "
-"дампа. Проблема `4166 "
+"(Vinyl) Применять пессимистический прогноз скорости записи при "
+"установленном уровне дампа. Проблема `4166 "
 "<https://github.com/tarantool/tarantool/issues/4166>`_."
 
 #: ../doc/whats_new.rst:608
@@ -2804,17 +2799,14 @@ msgstr ""
 "nullable <box_space-is_nullable>` (возможность допустить неопределенное "
 "значение), имена полей)."
 
-#: ../doc/whats_new.rst:1179
-#: ../doc/whats_new.rst:1625
-#: ../doc/whats_new.rst:1685
-#: ../doc/whats_new.rst:1867
-#: ../doc/whats_new.rst:1910
-#: ../doc/whats_new.rst:2022
+#: ../doc/whats_new.rst:1179 ../doc/whats_new.rst:1625
+#: ../doc/whats_new.rst:1685 ../doc/whats_new.rst:1867
+#: ../doc/whats_new.rst:1910 ../doc/whats_new.rst:2022
 #: ../doc/whats_new.rst:2064
 msgid "Incompatible changes:"
 msgstr "Несовместимые изменения:"
 
-#: ../doc/whats_new.rst:624
+#: ../doc/whats_new.rst:1181
 msgid ""
 "Layout of ``box.space._index`` has been extended to support "
 ":ref:`is_nullable <box_space-is_nullable>` and :ref:`collation <index-"
@@ -3094,10 +3086,8 @@ msgstr ""
 "Lua-интерпретатора для Debian/Ubuntu. Проблема `2730 "
 "<https://github.com/tarantool/tarantool/issues/2730>`_."
 
-#: ../doc/whats_new.rst:1270
-#: ../doc/whats_new.rst:1371
-#: ../doc/whats_new.rst:2047
-#: ../doc/whats_new.rst:2127
+#: ../doc/whats_new.rst:1270 ../doc/whats_new.rst:1371
+#: ../doc/whats_new.rst:2047 ../doc/whats_new.rst:2127
 msgid "New rocks:"
 msgstr "Новые сторонние библиотеки:"
 
@@ -3819,9 +3809,9 @@ msgstr ""
 "вероятностная структура данных, которую можно использовать для проверки "
 "наличия необходимого ключа в файле без считывания самого файла с диска. "
 "Фильтр Блума может выдавать ложноположительное срабатывание (элемента в "
-"множестве нет, но структура данных сообщает, что он есть), но не "
-"ложноотрицательное. Данная функция уменьшает объем поиска, необходимый "
-"для случайного просмотра, и ускоряет операции REPLACE/DELETE со "
+"множестве нет, но структура данных сообщает, что он есть), но "
+"не ложноотрицательное. Данная функция уменьшает объем поиска, необходимый"
+" для случайного просмотра, и ускоряет операции REPLACE/DELETE со "
 "вторичными ключами. Проблема `1919 "
 "<https://github.com/tarantool/tarantool/issues/1919>`_."
 
@@ -4555,14 +4545,12 @@ msgstr ""
 "(http://snapcraft.io/) с помощью команды ``snap install tarantool "
 "--channel=beta``."
 
-#: ../doc/whats_new.rst:1734
-#: ../doc/whats_new.rst:1896
+#: ../doc/whats_new.rst:1734 ../doc/whats_new.rst:1896
 #: ../doc/whats_new.rst:1997
 msgid "New rocks and packages:"
 msgstr "Новые модули и пакеты:"
 
-#: ../doc/whats_new.rst:1736
-#: ../doc/whats_new.rst:1898
+#: ../doc/whats_new.rst:1736 ../doc/whats_new.rst:1898
 msgid ""
 "`curl <https://github.com/tarantool/tarantool-curl>`_ - non-blocking "
 "bindings for libcurl"
@@ -4570,8 +4558,7 @@ msgstr ""
 "`curl <https://github.com/tarantool/tarantool-curl>`_ - неблокирующие "
 "привязки для libcurl"
 
-#: ../doc/whats_new.rst:1737
-#: ../doc/whats_new.rst:1899
+#: ../doc/whats_new.rst:1737 ../doc/whats_new.rst:1899
 msgid ""
 "`prometheus <https://github.com/tarantool/prometheus>`_ - Prometheus "
 "metric collector for Tarantool"
@@ -4595,8 +4582,7 @@ msgstr ""
 "`mqtt <https://github.com/tarantool/mqtt>`_ - клиент MQTT-протокола для "
 "Tarantool'а"
 
-#: ../doc/whats_new.rst:1740
-#: ../doc/whats_new.rst:1902
+#: ../doc/whats_new.rst:1740 ../doc/whats_new.rst:1902
 msgid ""
 "`luaossl <https://github.com/tarantool/luaossl>`_ - the most "
 "comprehensive OpenSSL module in the Lua universe"
@@ -4644,8 +4630,7 @@ msgstr ""
 "Склонная к ошибкам функция ``tostring()`` была удалена из API ``digest``."
 " Проблема `1591 <https://github.com/tarantool/tarantool/issues/1591>`_."
 
-#: ../doc/whats_new.rst:1753
-#: ../doc/whats_new.rst:1869
+#: ../doc/whats_new.rst:1753 ../doc/whats_new.rst:1869
 msgid "Support for SHA-0 (``digest.sha()``) was removed due to OpenSSL upgrade."
 msgstr ""
 "Поддержка SHA-0 (``digest.sha()``) прекращается по причине обновления "
@@ -4696,20 +4681,17 @@ msgstr ""
 "Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
 "``/etc/tarantool/instace.enabled``."
 
-#: ../doc/whats_new.rst:1766
-#: ../doc/whats_new.rst:1918
+#: ../doc/whats_new.rst:1766 ../doc/whats_new.rst:1918
 msgid "Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``."
 msgstr "Остановите ЭКЗЕМПЛЯР с помощью ``tarantoolctl stop ИМЯ_ЭКЗЕМПЛЯРА``."
 
-#: ../doc/whats_new.rst:1767
-#: ../doc/whats_new.rst:1919
+#: ../doc/whats_new.rst:1767 ../doc/whats_new.rst:1919
 msgid "Start INSTANCENAME using ``systemctl start tarantool@INSTANCENAME``."
 msgstr ""
 "Запустите ЭКЗЕМПЛЯР с помощью ``systemctl start "
 "tarantool@ИМЯ_ЭКЗЕМПЛЯРА``."
 
-#: ../doc/whats_new.rst:1768
-#: ../doc/whats_new.rst:1920
+#: ../doc/whats_new.rst:1768 ../doc/whats_new.rst:1920
 msgid ""
 "Enable INSTANCENAME during system boot using ``systemctl enable "
 "trantool@INTANCENAME``."
@@ -4746,8 +4728,7 @@ msgstr ""
 "по умолчанию, предоставлены права на universe для пользователя ``guest`` "
 "и настроено прослушивание по \"locahost:3313\"."
 
-#: ../doc/whats_new.rst:1779
-#: ../doc/whats_new.rst:1872
+#: ../doc/whats_new.rst:1779 ../doc/whats_new.rst:1872
 msgid "Fedora 22 packages were deprecated (EOL)."
 msgstr "Пакеты для Fedora 22 объявлены устаревшими (прекращение поддержки)."
 
@@ -4814,9 +4795,10 @@ msgstr ""
 "сегодняшний день Vinyl поддерживает только первичные индексы. Индекс "
 "может состоять из 256 частей, как в MemTX'е, по сравнению с 8 в Sophia. "
 "Поддерживает чтение по компонентам ключа. Вскоре ожидается поддержка "
-"непоследовательных составных ключей, а также вторичных ключей. Наше "
-"намерение заключается в том, чтобы убрать любые ограничения, которые есть"
-" сейчас в Vinyl'е, чтобы сделать его полноценным компонентом Tarantool'а."
+"непоследовательных составных ключей, а также вторичных ключей. "
+"Наше намерение заключается в том, чтобы убрать любые ограничения, которые"
+" есть сейчас в Vinyl'е, чтобы сделать его полноценным компонентом "
+"Tarantool'а."
 
 #: ../doc/whats_new.rst:1816
 msgid ""
