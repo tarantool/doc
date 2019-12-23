@@ -162,13 +162,13 @@ Below is a list of all ``http`` functions.
 
         :rtype: table
 
-        Cookies component contains a Lua table where the key is a cookie name. The value
-        is an array of two elements where the first is cookie value and the second
-        is an array with the cookie's options. Possible options are `"Expires", "Max-Age",
-        "Domain", "Path", "Secure", "HttpOnly", "SameSite"`. Note that option's
-        value consists of two strings with '=' between them. `Here
-        <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_
-        you can find more info.
+        The ``cookies`` component contains a Lua table where the key is a cookie
+        name. The value is an array of two elements where the first one is the
+        cookie value and the second one is an array with the cookie’s options.
+        Possible options are: “Expires”, “Max-Age”, “Domain”, “Path”, “Secure”,
+        “HttpOnly”, “SameSite”. Note that an option is a string with '='
+        splitting the option's name and its value.
+        `Here <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_ you can find more info.
 
         **Example**
 
