@@ -45,6 +45,79 @@ MsgPack data types:
 * **MP_BOOL** - true or false
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Encoding of non default types in Tarantool
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. надо что-то написать в начале (((
+Introduction to submodule.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Decimals
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+MsgPack EXT type ``MP_EXT`` together with a new extension type
+``MP_DECIMAL`` is used as a record header.
+
+MP_DECIMAL is 1.
+
+`MsgPack spec <https://github.com/msgpack/msgpack/blob/master/spec.md#ext-format-family>`_
+defines ``fixext 1/2/4/8/16`` and ``ext 8/16/32`` types. ``fixext``
+types have fixed length, so it is not encoded explicitly, while ``ext`` types require
+to encode a data length. MP_EXP + optional length meant usage of one of those types.
+
+The decimal MsgPack representation looks like this:
+
+.. code-block:: none
+
+    +--------+-------------------+------------+===============+
+    | MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |
+    +--------+-------------------+------------+===============+
+
+Here ``length`` is the length of PackedDecimal field, and it is of type
+``MP_UINT``, when encoded explicitly (i.e. when type is ext 8/16/32).
+
+PackedDecimal has the following structure:
+
+.. code-block:: none
+
+     <--- length bytes -->
+    +-------+=============+
+    | scale |     BCD     |
+    +-------+=============+
+
+Here ``scale`` is either ``MP_INT`` or ``MP_UINT``
+``scale`` = -exponent (exponent negated(!))
+
+``BCD`` is a sequence of bytes representing decimal digits of the encoded number
+(each byte represents two decimal digits each encoded using 4 bits),
+so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
+The leftmost digit in the array is the most significant.
+The rightmost digit in the array is the least significant.
+
+The first byte in the BCD array may have only the second digit.
+The last byte in the BCD array has only the first digit and a ``nibble``.
+
+The ``nibble`` represents the number's sign. ``0x0a``, ``0x0c``, ``0x0e``, ``0x0f``
+stand for plus, ``0x0b``, ``0x0d`` stand for minus.
+
+**Example**
+
+For example, decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``
+
+.. code-block:: none
+
+    |MP_EXT (fixext 4) | MP_DECIMAL | scale |  1   |  2,3 |  4 (minus) |
+    |       0xd6       |    0x01    | 0x02  | 0x01 | 0x23 | 0x4d       |
+
+Another example: decimal 0.000000000000000000000000000000000010 will be encoded
+as ``0xc7,0x03,0x01,0x24,0x01,0x0c``
+
+.. code-block:: none
+
+    | MP_EXT (ext 8) | length | MP_DECIMAL | scale |  1   | 0 (plus) |
+    |      0xc7      |  0x03  |    0x01    | 0x24  | 0x01 | 0x0c     |
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Greeting packet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
