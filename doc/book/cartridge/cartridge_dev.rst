@@ -577,7 +577,7 @@ ones for some reason, the following precautions apply:
 
      -- Inside the validation function:
 
-     if type(box.cfg) == 'function' then
+     if type(box.cfg) == 'table' then
 
          -- Here you can call box functions
 
