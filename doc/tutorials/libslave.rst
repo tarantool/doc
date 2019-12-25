@@ -87,7 +87,7 @@ STEP 5: Look at the program:
     slave::Slave* sl = NULL;
 
     void callback(const slave::RecordSet& event) {
-        slave::Slave::binlog_pos_t sBinlogPos = sl->getLastBinlog();
+        slave::Position sBinlogPos = sl->getLastBinlogPos();
         switch (event.type_event) {
         case slave::RecordSet::Update: std::cout << "UPDATE" << "\n"; break;
         case slave::RecordSet::Delete: std::cout << "DELETE" << "\n"; break;
@@ -104,6 +104,7 @@ STEP 5: Look at the program:
     int main(int argc, char** argv)
     {
         slave::MasterInfo masterinfo;
+        slave::Position position("mysql-bin", 0);
         masterinfo.conn_options.mysql_host = "127.0.0.1";
         masterinfo.conn_options.mysql_port = 3306;
         masterinfo.conn_options.mysql_user = "root";
@@ -113,7 +114,7 @@ STEP 5: Look at the program:
             slave::DefaultExtState sDefExtState;
             slave::Slave slave(masterinfo, sDefExtState);
             sl = &slave;
-            sDefExtState.setMasterLogNamePos("mysql-bin", 0);
+            sDefExtState.setMasterPosition(position);
             slave.setCallback("test", "test", callback);
             slave.init();
             slave.createDatabaseStructure();
