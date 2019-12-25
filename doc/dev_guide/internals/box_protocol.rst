@@ -47,8 +47,9 @@ MsgPack data types:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Encoding of non default types in Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. надо что-то написать в начале (((
-Introduction to submodule.
+
+Some data types used in our database do not correspond to any type of message
+from MsgPack. For these data types, we use the following representation.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Decimals
@@ -61,8 +62,8 @@ MP_DECIMAL is 1.
 
 `MsgPack spec <https://github.com/msgpack/msgpack/blob/master/spec.md#ext-format-family>`_
 defines ``fixext 1/2/4/8/16`` and ``ext 8/16/32`` types. ``fixext``
-types have fixed length, so it is not encoded explicitly, while ``ext`` types require
-to encode a data length. MP_EXP + optional length meant usage of one of those types.
+types have fixed length so it is not encoded explicitly, while ``ext`` types require
+the data length to be encoded. ``MP_EXP`` + optional ``length`` meant usage of one of those types.
 
 The decimal MsgPack representation looks like this:
 
@@ -73,7 +74,7 @@ The decimal MsgPack representation looks like this:
     +--------+-------------------+------------+===============+
 
 Here ``length`` is the length of PackedDecimal field, and it is of type
-``MP_UINT``, when encoded explicitly (i.e. when type is ext 8/16/32).
+``MP_UINT``, when encoded explicitly (i.e. when type is ``ext 8/16/32``).
 
 PackedDecimal has the following structure:
 
@@ -93,11 +94,11 @@ so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
 The leftmost digit in the array is the most significant.
 The rightmost digit in the array is the least significant.
 
-The first byte in the BCD array may have only the second digit.
-The last byte in the BCD array has only the first digit and a ``nibble``.
+The first byte in the BCD array may have only second digit.
+The last byte in the BCD array has only first digit and a ``nibble``.
 
 The ``nibble`` represents the number's sign. ``0x0a``, ``0x0c``, ``0x0e``, ``0x0f``
-stand for plus, ``0x0b``, ``0x0d`` stand for minus.
+stand for plus, ``0x0b`` and ``0x0d`` stand for minus.
 
 **Example**
 
