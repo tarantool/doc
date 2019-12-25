@@ -170,7 +170,7 @@ In either case, there are up to five parameters:
 * ``options`` is a list inside braces for example ``{if_not_exists=true|false}``
   (usually omitted because the default is acceptable).
 
-  All user privileges update is reflected immediately in already existing sessions
+  Every update of user privileges is reflected immediately in the existing sessions
   and objects, e.g. functions.
 
 **Example for granting many privileges at once**
