@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 
+# Copyright (C)
 # This file is distributed under the same license as the Tarantool package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -25,11 +25,11 @@ msgid "|nbspc|"
 msgstr ""
 
 #: ../doc/index.rst:85
-msgid "Tarantool 2.2 manual  This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors.  Документация находится в процессе перевода и может отставать от английской версии.  <div class=\"getting-started-button-container\">     <a href=\"book/getting_started/\">         <button class=\"getting-started-button btn\">             Руководство для начинающих         </button>     </a> </div>  <div class=\"getting-started-button-container\">     <a href=\"book/getting_started/\">         <button class=\"getting-started-button btn\">             Getting started         </button>     </a> </div>      <div class=\"badge-icon\"></div>  Other formats:  Single-page HTML  PDF  /doc/doc/index.rst:72: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  See also:  Documentation archive  Articles  /doc/doc/index.rst:75: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  Support:  Форум в Google  Чат в Telegram  Support:  Google forum  Telegram chat"
+msgid "Tarantool 2.3 manual  This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors.  Документация находится в процессе перевода и может отставать от английской версии.  <div class=\"getting-started-button-container\">     <a href=\"book/getting_started/\">         <button class=\"getting-started-button btn\">             Руководство для начинающих         </button>     </a> </div>  <div class=\"getting-started-button-container\">     <a href=\"book/getting_started/\">         <button class=\"getting-started-button btn\">             Getting started         </button>     </a> </div>      <div class=\"badge-icon\"></div>  Other formats:  Single-page HTML  PDF  /doc/doc/index.rst:72: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  See also:  Documentation archive  Articles  /doc/doc/index.rst:75: (WARNING/2) Bullet list ends without a blank line; unexpected unindent.  Support:  Форум в Google  Чат в Telegram  Support:  Google forum  Telegram chat"
 msgstr ""
 
 #: ../doc/index.rst:22
-msgid "Tarantool 2.2 manual"
+msgid "Tarantool 2.3 manual"
 msgstr ""
 
 #: ../doc/index.rst:26

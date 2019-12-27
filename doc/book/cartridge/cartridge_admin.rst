@@ -237,7 +237,7 @@ Changing the cluster topology
 Upon adding a newly deployed instance to a new or existing replica set:
 
 #. The cluster validates the configuration update by checking if the new instance
-   is available using the `membership module <https://www.tarantool.io/en/doc/2.2/reference/reference_rock/membership/>`_.
+   is available using the `membership module <https://www.tarantool.io/en/doc/2.3/reference/reference_rock/membership/>`_.
 
    .. NOTE::
 

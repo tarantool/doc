@@ -33,7 +33,7 @@ source_suffix = '.rst'
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "2.3.0"
+release = "2.3.1"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
@@ -139,7 +139,7 @@ html_context = {
         'download/os-installation/2.2/snappy-package' : True
     },
     'wp_local': True,
-    'versions': ['1.6', '1.10', '2.2'],
+    'versions': ['1.6', '1.10', '2.2', '2.3'],
 }
 
 # Tarantool has extended Sphinx so that there are four new roles:
