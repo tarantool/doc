@@ -47,7 +47,9 @@ Below is a list of all ``console`` functions.
     | :ref:`console.set_default_output()   | Set default output format       |
     | <console-set_default_output>`        |                                 |
     +--------------------------------------+---------------------------------+
-
+    | :ref:`console.eos()                  | Set or get end-of-output string |
+    | <console-eos>`                       |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. module:: console
 
@@ -202,7 +204,7 @@ Below is a list of all ``console`` functions.
    Return the current default output format. The result will be
    ``fmt="yaml"``, or it will be ``fmt="lua"`` if
    the last :ref:`set_default_output <console-set_default_output>`
-   call was ``console.set_default_output('lua')``.  
+   call was ``console.set_default_output('lua')``.
 
 .. _console-set_default_output:
 
@@ -214,3 +216,14 @@ Below is a list of all ``console`` functions.
    :samp:`console.eval('\\\\set output {yaml}|{lua}')`; see the
    description of output format in the
    :ref:`Interactive console <interactive_console_output>` section.
+
+.. _console-eos:
+
+.. function:: eos([string])
+
+   Set or access the end-of-output string if default output is 'lua'.
+   This is the string that appears at the end of output in a response
+   to any Lua request.
+   The default value is ``;`` semicolon.
+   Saying ``eos()`` will return the current value.
+   For example, after ``require('console').eos('!!')`` responses will end with '!!'.
