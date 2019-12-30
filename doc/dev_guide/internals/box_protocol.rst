@@ -111,6 +111,7 @@ We list common constants here:
     <iproto_sql_text>      ::= 0x40
     <iproto_sql_bind>      ::= 0x41
     <iproto_sql_info>      ::= 0x42
+    <iproto_replica_anon>  ::= 0x50
 
 .. code-block:: none
 
@@ -131,10 +132,12 @@ We list common constants here:
     <iproto_type_stat_max>  ::= 0x0d
     -- Admin command codes
     -- (including codes for replica-set initialization and master election)
-    <iproto_ping>         ::= 0x40
-    <iproto_join>         ::= 0x41 /* i.e. replication join */
-    <iproto_subscribe>    ::= 0x42
-    <iproto_request_vote> ::= 0x43
+    <iproto_ping>           ::= 0x40
+    <iproto_join>           ::= 0x41 /* i.e. replication join */
+    <iproto_subscribe>      ::= 0x42
+    <iproto_request_vote>   ::= 0x43
+    <iproto_fetch_snapshot> ::= 0x45
+    <iproto_register>       ::= 0x46
 
     -- -- Value for <code> key in response can be:
     <iproto_ok>           ::= 0x00
