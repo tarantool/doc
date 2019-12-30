@@ -129,10 +129,10 @@ Below is a list of all ``http`` functions.
           * ``keepalive_interval`` - the interval, in seconds, that the operating
             system will wait between sending keepalive probes. See also
             `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_.
-            If both keepalive_idle and keepalive_interval are set, then
-            Tarantool will also set HTTP keepalive headers: Connection:Keep-Alive
-            and Keep-Alive:timeout=<keepalive_idle>.
-            Otherwise Tarantool will send Connection:close
+            If both ``keepalive_idle`` and ``keepalive_interval`` are set, then
+            Tarantool will also set HTTP keepalive headers: ``Connection:Keep-Alive``
+            and ``Keep-Alive:timeout=<keepalive_idle>``.
+            Otherwise Tarantool will send ``Connection:close``
           * ``low_speed_time`` - set the "low speed time" -- the time that the
             transfer speed should be below the "low speed limit" for the library
             to consider it too slow and abort. See also
@@ -158,6 +158,14 @@ Below is a list of all ``http`` functions.
             will be received. This last response will be returned as a result.
             Setting this option to ``false`` allows to disable this behavior.
             In this case, the HTTP client will return a 3xx response itself.
+          * ``accept_encoding`` - enables automatic decompression of HTTP responses
+            by setting the contents of the Accept-Encoding header sent in a HTTP
+            request and enabling decoding of a response when a Content-Encoding
+            header is received. This option specifies what encoding to use.
+            It can be an empty string which means Accept-Encoding header will
+            contain all built-in supported encodings. It also can be comma-separated
+            list of accepted encodings, like: ``"br, gzip, deflate"``. See also
+            `CURLOPT_ACCEPT_ENCODING <https://curl.haxx.se/libcurl/c/CURLOPT_ACCEPT_ENCODING.html>`_
 
         :return: connection information, with all of these components:
 
