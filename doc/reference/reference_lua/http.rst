@@ -116,10 +116,10 @@ Below is a list of all ``http`` functions.
           * ``keepalive_interval`` - the interval, in seconds, that the operating
             system will wait between sending keepalive probes. See also
             `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_.
-            If both keepalive_idle and keepalive_interval are set, then
-            Tarantool will also set HTTP keepalive headers: Connection:Keep-Alive
-            and Keep-Alive:timeout=<keepalive_idle>.
-            Otherwise Tarantool will send Connection:close
+            If both ``keepalive_idle`` and ``keepalive_interval`` are set, then
+            Tarantool will also set HTTP keepalive headers: ``Connection:Keep-Alive``
+            and ``Keep-Alive:timeout=<keepalive_idle>``.
+            Otherwise Tarantool will send ``Connection:close``
           * ``low_speed_limit`` - set the "low speed limit" -- the average
             transfer speed in bytes per second that the transfer should be below
             during "low speed time" seconds for the library to consider it to be
@@ -189,6 +189,17 @@ Below is a list of all ``http`` functions.
           * ``verify_peer`` - set on/off verification of the peer's SSL
             certificate. See also
             `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_
+          * ``accept_encoding`` - enables automatic decompression of HTTP responses
+            by setting the contents of the `Accept-Encoding: header` sent in an 
+            HTTP request and enabling decoding of a response when the `Content-Encoding: header` 
+            is received. This option specifies what encoding to use.
+            It can be an empty string which means the `Accept-Encoding: header` will
+            contain all supported built-in encodings. Four encodings are supported: `identity`, 
+            meaning non-compressed, `deflate` which requests the server to compress its 
+            response using the zlib algorithm, `gzip` which requests the gzip algorithm and `br` 
+            which is brotli. Provide them in the string as a comma-separated list of accepted 
+            encodings, like: ``"br, gzip, deflate"``. 
+            For details of the option, refer to `CURLOPT_ACCEPT_ENCODING <https://curl.haxx.se/libcurl/c/CURLOPT_ACCEPT_ENCODING.html>`_
 
         :return: connection information, with all of these components:
 
