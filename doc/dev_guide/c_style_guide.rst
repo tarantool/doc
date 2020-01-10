@@ -25,7 +25,7 @@ B. The rest of Linux Kernel Coding Style is amended as follows:
 ===========================================================
 
 We use Git for revision control. The latest development is happening in the
-default branch (currently ``2.0``).
+default branch (currently ``master``).
 Our git repository is hosted on github, and can be checked out with
 ``git clone git://github.com/tarantool/tarantool.git`` (anonymous read-only access).
 
@@ -91,6 +91,19 @@ valgrind leak-check clean, and in most cases it's just as easy to free() the
 allocated memory as it is to write a valgrind suppression. Freeing all allocated
 memory is also dynamic-load friendly: assuming a plug-in can be dynamically loaded
 and unloaded multiple times, reload should not lead to a memory leak.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 Function naming
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Our convention is to use ``new``/``delete`` for functions which
+allocate + initialize and destroy + deallocate an object.
+
+``create``/``destroy`` for functions which initialize/destroy an object
+but do not handle memory management.
+
+``init``/``free`` for functions which initialize/destroy libraries and
+subsystems. Please stick to it.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                  Other
