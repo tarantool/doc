@@ -45,11 +45,11 @@ MsgPack data types:
 * **MP_BOOL** - true or false
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Encoding of non default types in Tarantool
+Encoding of Tarantool-specific data types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some data types used in our database do not correspond to any type of message
-from MsgPack. For these data types, we use the following representation.
+Some of the data types used in Tarantool are application-specific in terms of the MsgPack standard. 
+For these data types, we use the following representation.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Decimals
