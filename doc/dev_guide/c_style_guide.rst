@@ -93,17 +93,16 @@ memory is also dynamic-load friendly: assuming a plug-in can be dynamically load
 and unloaded multiple times, reload should not lead to a memory leak.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                 Function naming
+ Function naming
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Our convention is to use ``new``/``delete`` for functions which
-allocate + initialize and destroy + deallocate an object.
-
-``create``/``destroy`` for functions which initialize/destroy an object
-but do not handle memory management.
-
-``init``/``free`` for functions which initialize/destroy libraries and
-subsystems. Please stick to it.
+Our convention is to use 
+    
+    * ``new``/``delete`` for functions which 
+      allocate + initialize and destroy + deallocate an object,
+    * ``create``/``destroy`` for functions which initialize/destroy an object
+      but do not handle memory management,
+    * ``init``/``free`` for functions which initialize/destroy libraries and subsystems. 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                  Other
