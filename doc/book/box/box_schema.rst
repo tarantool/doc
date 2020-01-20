@@ -739,7 +739,7 @@ Below is a list of all ``box.schema`` functions.
           language: LUA
         ...
 
-        tarantool> box.func.sum.call({1, 2})
+        tarantool> box.func.sum:call({1, 2})
         ---
         - 3
         ...
