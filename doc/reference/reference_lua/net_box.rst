@@ -83,7 +83,8 @@ Below is a list of all ``net.box`` functions.
     | :ref:`net_box.connect()                            |                           |
     | <net_box-connect>` |br|                            | Create a connection       |
     | :ref:`net_box.new()                                |                           |
-    | <net_box-new>`                                     |                           |
+    | <net_box-new>` |br|                                |                           |
+    | :ref:`net_box.self <net_box-self>`                 |                           |
     +----------------------------------------------------+---------------------------+
     | :ref:`conn:ping()                                  | Execute a PING command    |
     | <conn-ping>`                                       |                           |
@@ -160,18 +161,6 @@ Below is a list of all ``net.box`` functions.
     The returned ``conn`` object supports methods for making remote requests,
     such as select, update or delete.
 
-    For a local Tarantool server, there is a pre-created always-established
-    connection object named :samp:`{net_box}.self`. Its purpose is to make
-    polymorphic use of the ``net_box`` API easier. Therefore
-    :samp:`conn = {net_box}.connect('localhost:3301')`
-    can be replaced by :samp:`conn = {net_box}.self`. However, there is an
-    important difference between the embedded connection and a remote one.
-    With the embedded connection, requests which do not modify data do not yield.
-    When using a remote connection, due to
-    :ref:`the implicit rules <atomic-implicit-yields>`
-    any request can yield, and database state may have changed by the time it
-    regains control.
-
     Possible options:
 
     * `user/password`: you have two ways to connect to a remote host:
@@ -231,6 +220,26 @@ Below is a list of all ``net.box`` functions.
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
 
+.. _net_box-self:
+
+.. class:: self
+
+    For a local Tarantool server, there is a pre-created always-established
+    connection object named :samp:`{net_box}.self`. Its purpose is to make
+    polymorphic use of the ``net_box`` API easier.  Therefore 
+    :samp:`conn = {net_box}.connect('localhost:3301')`
+    can be replaced by :samp:`conn = {net_box}.self`. 
+    
+    However, there is an important difference between the embedded connection and a remote one:
+        
+        * With the embedded connection, requests which do not modify data do not yield.
+          When using a remote connection, due to
+          :ref:`the implicit rules <atomic-implicit-yields>`
+          any request can yield, and database state may have changed by the 
+          time it regains control.
+
+        * all passed options (as is_async, on_push, timeout) will be ignored
+    
 .. class:: conn
 
     .. _conn-ping:
