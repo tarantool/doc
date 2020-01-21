@@ -135,11 +135,14 @@ initialization function:
    local cartridge = require('cartridge')
    ...
    cartridge.cfg({
+   -- cartridge options example
      workdir = ...,
      advertise_uri = ...,
      cluster_cookie = ...,
      ...
-   })
+   },
+   -- box options example
+   { memtx_memory = 1000000000 })
    ...
 
 The ``cartridge.cfg()`` call renders the instance operable via the administrative
