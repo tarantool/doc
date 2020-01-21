@@ -238,7 +238,7 @@ Below is a list of all ``net.box`` functions.
           any request can yield, and database state may have changed by the 
           time it regains control.
 
-        * all passed options (as is_async, on_push, timeout) will be ignored
+        * all the options passed to a request (as is_async, on_push, timeout) will be ignored
     
 .. class:: conn
 
