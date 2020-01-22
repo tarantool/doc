@@ -117,7 +117,7 @@ is '**admin**'.
 
 Owners automatically have **privileges** for what they create.
 They can share these privileges with other users or with roles,
-using **box.schema.user.grant** requests.
+using :ref:`box.schema.user.grant <box_schema-user_grant>` requests.
 The following privileges can be granted:
 
 * 'read', e.g. allow select from a space
@@ -169,6 +169,9 @@ In either case, there are up to five parameters:
   (omitted if ``object-type`` is 'universe');
 * ``options`` is a list inside braces for example ``{if_not_exists=true|false}``
   (usually omitted because the default is acceptable).
+
+  Every update of user privileges is reflected immediately in the existing sessions
+  and objects, e.g. functions.
 
 **Example for granting many privileges at once**
 
