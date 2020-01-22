@@ -169,6 +169,49 @@ Below is a list of all ``http`` functions.
 
         :rtype: table
 
+        The ``cookies`` component contains a Lua table where the key is a cookie
+        name. The value is an array of two elements where the first one is the
+        cookie value and the second one is an array with the cookie’s options.
+        Possible options are: "Expires", "Max-Age", "Domain", "Path", "Secure",
+        "HttpOnly", "SameSite". Note that an option is a string with '='
+        splitting the option's name and its value.
+        `Here <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_
+        you can find more info.
+
+        **Example**
+
+        You can use cookies information like this:
+
+        .. code-block:: tarantoolsession
+
+            tarantool> require('http.client').get('https://www.tarantool.io/en/').cookies
+            ---
+            - csrftoken:
+              - bWJVkBybvX9LdJ8uLPOTVrit5P3VbRjE3potYVOuUnsSjYT5ahghDV06tXRkfnOl
+              - - Max-Age=31449600
+                - Path=/
+            ...
+
+            tarantool> cookies = require('http.client').get('https://www.tarantool.io/en/').cookies
+            ---
+            ...
+
+            tarantool> options = cookies['csrftoken'][2]
+            ---
+            ...
+
+            tarantool> for _, option in ipairs(options) do
+                     > if option:startswith('csrftoken cookie's Max-Age = ') then
+                     > print(option)
+                     > end
+                     > end
+
+            csrftoken cookie's Max-Age = 31449600
+            ---
+            ...
+
+            tarantool>
+
         The following "shortcuts" exist for requests:
 
         * ``http_client:get(url, options)`` - shortcut for
