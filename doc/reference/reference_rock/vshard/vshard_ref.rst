@@ -46,10 +46,12 @@ Basic parameters
 
 .. confval:: shard_index
 
-    An index over the bucket id.
+    Name of a TREE index over the :ref:`bucket id <vshard-vbuckets>`.
+    Spaces without this index do not participate in a sharded Tarantool
+    cluster and can be used as regular spaces if needed.
 
     | Type: non-empty string or non-negative integer
-    | Default: coincides with the bucket id number
+    | Default: "bucket_id"
     | Dynamic: no
 
 .. _cfg_basic-bucket_count:

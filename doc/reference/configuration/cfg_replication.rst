@@ -49,11 +49,12 @@
 
 .. confval:: replication_timeout
 
-    If the master has no updates to send to replicas, it sends heartbeat messages
+    If the master has no updates to send to the replicas, it sends heartbeat messages
     every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
-    Both master and replica are programmed to drop the connection if they get no response
-    in four ``replication_timeout`` seconds. Then the replica tries
-    to reconnect to the master.
+
+    Both master and replicas are programmed to drop the connection if they get no
+    response in four ``replication_timeout`` seconds.
+    If the connection is dropped, a replica tries to reconnect to the master.
 
     See more in :ref:`Monitoring a replica set <replication-monitoring>`.
 
