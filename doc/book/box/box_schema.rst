@@ -663,7 +663,8 @@ Below is a list of all ``box.schema`` functions.
 
     :param string func-name: name of function, which should
                              conform to the :ref:`rules for object names <app_server-names>`
-    :param table options: ``if_not_exists``, ``setuid``, ``language``, ``is_sandboxed``, ``is_deterministic``, ``body``.
+    :param table options: ``if_not_exists``, ``setuid``, ``language``,
+                          ``is_sandboxed``, ``is_deterministic``, ``body``.
 
     :return: nil
 
@@ -680,22 +681,22 @@ Below is a list of all ``box.schema`` functions.
     the sandbox will be forbidden or will have no effect.
     Therefore a sandboxed function can only use modules and functions
     which cannot affect isolation:
-    `assert <https://www.lua.org/manual/5.1/manual.html#pdf-assert>`_
-    `error <://www.lua.org/manual/5.1/manual.html#pdf-error>`_
-    `ipairs <https://www.lua.org/manual/5.1/manual.html#pdf-ipairs>`_
-    `math.* <https://www.lua.org/manual/5.1/manual.html#5.6>`_
-    `next <https://www.lua.org/manual/5.1/manual.html#pdf-next>`_
-    `pairs <https://www.lua.org/manual/5.1/manual.html#pdf-pairs>`_
-    `pcall <https://www.lua.org/manual/5.1/manual.html#pdf-pcall>`_
-    `print <https://www.lua.org/manual/5.1/manual.html#pdf-print>`_
-    `select <https://www.lua.org/manual/5.1/manual.html#pdf-select>`_
-    `string.* <https://www.lua.org/manual/5.1/manual.html#5.4>`_
-    `table.* <https://www.lua.org/manual/5.1/manual.html#5.5>`_
-    `tonumber <https://www.lua.org/manual/5.1/manual.html#pdf-tonumber>`_
-    `tostring <https://www.lua.org/manual/5.1/manual.html#pdf-tostring>`_
-    `type <https://www.lua.org/manual/5.1/manual.html#pdf-type>`_
-    `unpack <https://www.lua.org/manual/5.1/manual.html#pdf-unpack>`_
-    :ref:`utf8.* <utf8-module>`
+    `assert <https://www.lua.org/manual/5.1/manual.html#pdf-assert>`_,
+    `error <://www.lua.org/manual/5.1/manual.html#pdf-error>`_,
+    `ipairs <https://www.lua.org/manual/5.1/manual.html#pdf-ipairs>`_,
+    `math.* <https://www.lua.org/manual/5.1/manual.html#5.6>`_,
+    `next <https://www.lua.org/manual/5.1/manual.html#pdf-next>`_,
+    `pairs <https://www.lua.org/manual/5.1/manual.html#pdf-pairs>`_,
+    `pcall <https://www.lua.org/manual/5.1/manual.html#pdf-pcall>`_,
+    `print <https://www.lua.org/manual/5.1/manual.html#pdf-print>`_,
+    `select <https://www.lua.org/manual/5.1/manual.html#pdf-select>`_,
+    `string.* <https://www.lua.org/manual/5.1/manual.html#5.4>`_,
+    `table.* <https://www.lua.org/manual/5.1/manual.html#5.5>`_,
+    `tonumber <https://www.lua.org/manual/5.1/manual.html#pdf-tonumber>`_,
+    `tostring <https://www.lua.org/manual/5.1/manual.html#pdf-tostring>`_,
+    `type <https://www.lua.org/manual/5.1/manual.html#pdf-type>`_,
+    `unpack <https://www.lua.org/manual/5.1/manual.html#pdf-unpack>`_,
+    :ref:`utf8.* <utf8-module>`,
     `xpcall <https://www.lua.org/manual/5.1/manual.html#pdf-xpcall>`_.
     Also a sandboxed function cannot refer to global variables -- they
     will be treated as local variables because the sandbox is established
@@ -723,7 +724,7 @@ Below is a list of all ``box.schema`` functions.
 
     **Example:**
 
-    .. code-block:: none
+    .. code-block:: tarantoolsession
 
         tarantool> lua_code = [[function(a, b) return a + b end]]
         tarantool> box.schema.func.create('sum', {body = lua_code})
