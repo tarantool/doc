@@ -165,10 +165,11 @@ Below is a list of all ``http`` functions.
         The ``cookies`` component contains a Lua table where the key is a cookie
         name. The value is an array of two elements where the first one is the
         cookie value and the second one is an array with the cookie’s options.
-        Possible options are: “Expires”, “Max-Age”, “Domain”, “Path”, “Secure”,
-        “HttpOnly”, “SameSite”. Note that an option is a string with '='
+        Possible options are: "Expires", "Max-Age", "Domain", "Path", "Secure",
+        "HttpOnly", "SameSite". Note that an option is a string with '='
         splitting the option's name and its value.
-        `Here <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_ you can find more info.
+        `Here <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_
+        you can find more info.
 
         **Example**
 
@@ -204,7 +205,6 @@ Below is a list of all ``http`` functions.
 
             tarantool>
 
-
         The following "shortcuts" exist for requests:
 
         * ``http_client:get(url, options)`` - shortcut for
@@ -219,7 +219,7 @@ Below is a list of all ``http`` functions.
           ``http_client:request("OPTIONS", url, nil, opts)``
         * ``http_client:head(url, options)`` - shortcut for
           ``http_client:request("HEAD", url, nil, opts)``
-          * ``http_client:delete(url, options)`` - shortcut for
+        * ``http_client:delete(url, options)`` - shortcut for
           ``http_client:request("DELETE", url, nil, opts)``
         * ``http_client:trace(url, options)`` - shortcut for
           ``http_client:request("TRACE", url, nil, opts)``
