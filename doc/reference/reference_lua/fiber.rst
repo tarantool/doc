@@ -206,11 +206,13 @@ recommended.
         ---
         ...
         tarantool> function function_name()
-                 >   fiber.sleep(1000)
+                 >   print("I'm a fiber")
                  > end
         ---
         ...
-        tarantool> fiber_object = fiber.create(function_name)
+        tarantool> fiber_object = fiber.create(function_name); print("Fiber started")
+        I'm a fiber
+        Fiber started
         ---
         ...
 
@@ -245,11 +247,15 @@ recommended.
         ---
         ...
         tarantool> function function_name()
-                 >   fiber.sleep(1000)
+                 >   print("I'm a fiber")
                  > end
         ---
         ...
-        tarantool> fiber_object = fiber.new(function_name)
+        tarantool> fiber_object = fiber.new(function_name); print("Fiber not started yet")
+        Fiber not started yet
+        ---
+        ...
+        tarantool> I'm a fiber
         ---
         ...
 
