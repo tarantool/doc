@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 08:12+0000\n"
+"POT-Creation-Date: 2020-01-23 10:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -756,7 +756,7 @@ msgid "#include <unistd.h>\n"
 "slave::Slave* sl = NULL;\n"
 "\n"
 "void callback(const slave::RecordSet& event) {\n"
-"    slave::Slave::binlog_pos_t sBinlogPos = sl->getLastBinlog();\n"
+"    slave::Position sBinlogPos = sl->getLastBinlogPos();\n"
 "    switch (event.type_event) {\n"
 "    case slave::RecordSet::Update: std::cout << \"UPDATE\" << \"\\n\"; break;\n"
 "    case slave::RecordSet::Delete: std::cout << \"DELETE\" << \"\\n\"; break;\n"
@@ -773,6 +773,7 @@ msgid "#include <unistd.h>\n"
 "int main(int argc, char** argv)\n"
 "{\n"
 "    slave::MasterInfo masterinfo;\n"
+"    slave::Position position(\"mysql-bin\", 0);\n"
 "    masterinfo.conn_options.mysql_host = \"127.0.0.1\";\n"
 "    masterinfo.conn_options.mysql_port = 3306;\n"
 "    masterinfo.conn_options.mysql_user = \"root\";\n"
@@ -782,7 +783,7 @@ msgid "#include <unistd.h>\n"
 "        slave::DefaultExtState sDefExtState;\n"
 "        slave::Slave slave(masterinfo, sDefExtState);\n"
 "        sl = &slave;\n"
-"        sDefExtState.setMasterLogNamePos(\"mysql-bin\", 0);\n"
+"        sDefExtState.setMasterPosition(position);\n"
 "        slave.setCallback(\"test\", \"test\", callback);\n"
 "        slave.init();\n"
 "        slave.createDatabaseStructure();\n"
@@ -800,81 +801,81 @@ msgid "#include <unistd.h>\n"
 "}"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:133
+#: ../doc/tutorials/libslave.rst:134
 msgid "Everything unnecessary has been stripped so that you can see quickly how it works. At the start of ``main()``, there are some settings used for connecting -- host, port, user, password. Then there is an initialization call with the binary log file name = \"mysql-bin\". Pay particular attention to the ``setCallback`` statement, which passes database name = \"test\", table name = \"test\", and callback function address = callback. The program will be looping and invoking this callback function. See how, earlier in the program, the callback function prints \"UPDATE\" or \"DELETE\" or \"INSERT\" depending on what is passed to it."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:144
+#: ../doc/tutorials/libslave.rst:145
 msgid "STEP 5: Put the program in the ``tarantool-libslave`` directory and name it ``example.cpp``."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:147
+#: ../doc/tutorials/libslave.rst:148
 msgid "Step 6: Compile and build:"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:149
+#: ../doc/tutorials/libslave.rst:150
 msgid "$ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a -ldl -lpthread"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:155
+#: ../doc/tutorials/libslave.rst:156
 msgid "Replace ``tarantool-libslave/include`` with the full directory name."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:157
+#: ../doc/tutorials/libslave.rst:158
 msgid "Notice that the name of the static library is ``libslave_a.a``, not ``libslave.a``."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:160
+#: ../doc/tutorials/libslave.rst:161
 msgid "Step 7: Run:"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:162
+#: ../doc/tutorials/libslave.rst:163
 msgid "$ ./example"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:166
+#: ../doc/tutorials/libslave.rst:167
 msgid "The result will be nothing -- the program is looping, waiting for the MySQL server to write to the replication binary log."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:169
+#: ../doc/tutorials/libslave.rst:170
 msgid "Step 8: Start a MySQL client program -- any client program will do. Enter these statements:"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:172
+#: ../doc/tutorials/libslave.rst:173
 msgid "USE test\n"
 "INSERT INTO test VALUES ('A');\n"
 "INSERT INTO test VALUES ('B');\n"
 "DELETE FROM test;"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:179
+#: ../doc/tutorials/libslave.rst:180
 msgid "Watch what happens in ``example.cpp`` output -- it displays:"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:181
+#: ../doc/tutorials/libslave.rst:182
 msgid "INSERT\n"
 "INSERT\n"
 "DELETE\n"
 "DELETE"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:188
+#: ../doc/tutorials/libslave.rst:189
 msgid "This is row-based replication, so you see two DELETEs, because there are two rows."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:191
+#: ../doc/tutorials/libslave.rst:192
 msgid "What the exercise has shown is:"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:193
+#: ../doc/tutorials/libslave.rst:194
 msgid "the library can be built, and"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:194
+#: ../doc/tutorials/libslave.rst:195
 msgid "programs that use the library can access everything that the MySQL server dumps."
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:197
+#: ../doc/tutorials/libslave.rst:198
 msgid "For the many details and examples of usage in the field, see:"
 msgstr ""
 
@@ -894,15 +895,15 @@ msgstr ""
 msgid "https://github.com/vozbu/libslave/wiki/API"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:205
+#: ../doc/tutorials/libslave.rst:206
 msgid "`How to speed up your MySQL with replication to in-memory database <http://highscalability.com/blog/2017/3/29/how-to-speed-up-your-mysql-with-replication-to-in-memory-dat.html>`_ article"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:207
+#: ../doc/tutorials/libslave.rst:208
 msgid "`Replicating data from MySQL to Tarantool <https://habrahabr.ru/company/mailru/blog/323870/>`_ article (in Russian)"
 msgstr ""
 
-#: ../doc/tutorials/libslave.rst:209
+#: ../doc/tutorials/libslave.rst:210
 msgid "`Asynchronous replication uncensored <https://habrahabr.ru/company/oleg-bunin/blog/313594/>`_ article (in Russian)"
 msgstr ""
 
