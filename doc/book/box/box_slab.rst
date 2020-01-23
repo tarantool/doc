@@ -71,44 +71,46 @@ Below is a list of all ``box.slab`` functions.
 
 .. function:: box.slab.info()
 
-    Show an aggregated memory usage report (in bytes) for the slab allocator.  
+    Show an aggregated memory usage report (in bytes) for the slab allocator.
     This report is useful for assessing out-of-memory risks.
 
     ``box.slab.info`` gives a few ratios:
-      * items_used_ratio
-      * arena_used_ratio
-      * quota_used_ratio
 
-    Below there are two possible cases for monitoring memtx memory usage:
+    * items_used_ratio
+    * arena_used_ratio
+    * quota_used_ratio
 
-    **Case 1: 0.5 < items_used_ratio < 0.9**
-    
-      .. image:: items_used_ratio1.svg
-          :align: center
-    
-    Apparently your memory is highly fragmented. Check how many 
-    slab classes you have, by looking at ``box.slab.stats()`` and counting the number 
-    of different classes. If there are a lot of slab classes,  (more than a few 
-    dozens) you may run out of memory even though memory utilization is not high: 
-    while each slab may have few items used, whenever a tuple of a size different 
-    from any existing slab class size is allocated, tarantool may need to get a 
-    new slab from the slab arena, and since the arena has few empty slabs left, it will 
-    attempt to increase its quota usage, which, in turn, with low remaining quota 
-    may end with an out of memory error.
+    Here are two possible cases for monitoring memtx memory usage:
 
-    **Case 2: items_used_ratio > 0.9**
-    
-      .. image:: items_used_ratio2.svg
-          :align: center
+    **Case 1:** 0.5 < ``items_used_ratio`` < 0.9
+
+    .. image:: items_used_ratio1.svg
+        :align: center
+
+    Apparently your memory is highly fragmented. Check how many
+    slab classes you have by looking at ``box.slab.stats()`` and counting the number
+    of different classes. If there are many slab classes (more than a few
+    dozens), you may run out of memory even though memory utilization is not high.
+    While each slab may have few items used, whenever a tuple of a size different
+    from any existing slab class size is allocated, Tarantool may need to get a
+    new slab from the slab arena, and since the arena has few empty slabs left, it will
+    attempt to increase its quota usage, which, in turn, may end up with an out-of-memory
+    error due to the low remaining quota.
+
+    **Case 2:** ``items_used_ratio`` > 0.9
+
+    .. image:: items_used_ratio2.svg
+        :align: center
 
     You are running out of memory. All memory utilization indicators
-    are high. Your memory is not fragmented, but there are few reserves left on 
-    each slab allocator level. You should consider reconfiguring tarantool with
-    a higher memory limit (``box.cfg.memtx_memory``).
+    are high. Your memory is not fragmented, but there are few reserves left on
+    each slab allocator level. You should consider increasing Tarantool's
+    memory limit (``box.cfg.memtx_memory``).
 
-    **To sum up:** your main out of memory indicator is ``quota_used_ratio``. However, there
-    are a lot of perfectly stable set ups with high quota used ratio, so you only need
-    to pay attention to it when both arena and item used ratio are also high.
+    **To sum up:** your main out-of-memory indicator is ``quota_used_ratio``.
+    However, there are lots of perfectly stable setups with a high ``quota_used_ratio``,
+    so you only need to pay attention to it when both arena and item used ratio
+    are also high.
 
     :return:
 
