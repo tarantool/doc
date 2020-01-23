@@ -47,22 +47,26 @@ MsgPack data types:
 Encoding of Tarantool-specific data types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some of the data types used in Tarantool are application-specific in terms of the MsgPack standard. 
+Some of the data types used in Tarantool are application-specific in terms of
+the MsgPack standard.
 For these data types, we use the following representation.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Decimals
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-MsgPack EXT type ``MP_EXT`` together with a new extension type
+MsgPack EXT type ``MP_EXT`` together with the extension type
 ``MP_DECIMAL`` is used as a record header.
 
 MP_DECIMAL is 1.
 
 `MsgPack spec <https://github.com/msgpack/msgpack/blob/master/spec.md#ext-format-family>`_
-defines ``fixext 1/2/4/8/16`` and ``ext 8/16/32`` types. ``fixext``
-types have fixed length so it is not encoded explicitly, while ``ext`` types require
-the data length to be encoded. ``MP_EXP`` + optional ``length`` meant usage of one of those types.
+defines two kinds of types:
+
+* ``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly;
+* ``ext 8/16/32`` types require the data length to be encoded.
+
+``MP_EXP`` + optional ``length`` imply using one of these types.
 
 The decimal MsgPack representation looks like this:
 
@@ -72,10 +76,10 @@ The decimal MsgPack representation looks like this:
     | MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |
     +--------+-------------------+------------+===============+
 
-Here ``length`` is the length of PackedDecimal field, and it is of type
-``MP_UINT``, when encoded explicitly (i.e. when type is ``ext 8/16/32``).
+Here ``length`` is the length of ``PackedDecimal`` field, and it is of type
+``MP_UINT``, when encoded explicitly (i.e. when the type is ``ext 8/16/32``).
 
-PackedDecimal has the following structure:
+``PackedDecimal`` has the following structure:
 
 .. code-block:: none
 
@@ -84,8 +88,8 @@ PackedDecimal has the following structure:
     | scale |     BCD     |
     +-------+=============+
 
-Here ``scale`` is either ``MP_INT`` or ``MP_UINT``
-``scale`` = -exponent (exponent negated(!))
+Here ``scale`` is either ``MP_INT`` or ``MP_UINT``. |br|
+``scale`` = -exponent (exponent negated!)
 
 ``BCD`` is a sequence of bytes representing decimal digits of the encoded number
 (each byte represents two decimal digits each encoded using 4 bits),
@@ -93,11 +97,12 @@ so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
 The leftmost digit in the array is the most significant.
 The rightmost digit in the array is the least significant.
 
-The first byte in the BCD array may have only second digit.
-The last byte in the BCD array has only first digit and a ``nibble``.
+The first byte in the ``BCD`` array may have only the second digit.
+The last byte in the BCD array has only the first digit and a ``nibble``.
 
-The ``nibble`` represents the number's sign. ``0x0a``, ``0x0c``, ``0x0e``, ``0x0f``
-stand for plus, ``0x0b`` and ``0x0d`` stand for minus.
+The ``nibble`` represents the number's sign:
+``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,
+``0x0b`` and ``0x0d`` stand for minus.
 
 **Example**
 
@@ -115,7 +120,6 @@ as ``0xc7,0x03,0x01,0x24,0x01,0x0c``
 
     | MP_EXT (ext 8) | length | MP_DECIMAL | scale |  1   | 0 (plus) |
     |      0xc7      |  0x03  |    0x01    | 0x24  | 0x01 | 0x0c     |
-
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Greeting packet
