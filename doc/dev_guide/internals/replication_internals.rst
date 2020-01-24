@@ -17,7 +17,8 @@ which we will refer to as "distant" replicas.
 *#1. If there is no snapshot .snap file and the 'replication' parameter is empty and cfg.read_only=false*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
-itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
+itself and for the replica set. The replica UUID is stored in the ``_cluster`` space 
+(except :ref:`anonymous replicas <cfg_replication-replication_anon>`); the
 replica set UUID is stored in the ``_schema`` space. Since a snapshot contains all the
 data in all the spaces, that means the local replica's snapshot will contain the
 replica UUID and the replica set UUID. Therefore, when the local replica restarts on
