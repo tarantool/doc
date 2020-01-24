@@ -97,8 +97,21 @@ so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
 The leftmost digit in the array is the most significant.
 The rightmost digit in the array is the least significant.
 
-The first byte in the ``BCD`` array may have only the second digit.
-The last byte in the BCD array has only the first digit and a ``nibble``.
+The first byte of the ``BCD`` array contains the first digit of the number 
+represented as follows:
+
+.. code-block:: none
+
+    |  4 bits           |  4 bits           |
+       = 0x                = the 1st digit
+
+The last byte of the ``BCD`` array contains the last digit of the number and the 
+``nibble`` represented as follows:
+
+.. code-block:: none
+
+    |  4 bits           |  4 bits           |
+       = the last digit    = nibble
 
 The ``nibble`` represents the number's sign:
 ``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,
