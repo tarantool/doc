@@ -63,6 +63,9 @@ limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]".
       ERROR:
         total: 0
         rps: 0
+      EXECUTE:
+        total: 0
+        rps: 0
       UPDATE:
         total: 0
         rps: 0
