@@ -502,7 +502,7 @@ functions.
     Copy everything in the from-path, including subdirectory
     contents, to the to-path. The result is similar to the
     result that one gets from the ``cp -r`` command.
-    The to-path should be empty.
+    The to-path should not be empty.
 
     :param string from-path: path-name.
     :param string to-path: path-name.
@@ -547,8 +547,8 @@ functions.
 
     Remove the directory indicated by path-name, including subdirectories.
     The result is similar to the
-    result that one gets from the ``rmdir`` command, recursively.
-    The directory must be empty.
+    result that one gets from the ``rmdir -r`` command.
+    The directory should not be empty.
 
     :param string path-name: path-name.
     :return: (If no error) true. |br|
