@@ -83,7 +83,7 @@
 
         box.cfg{replication_anon=true, read_only=true, replication=3301}
 
-    As mentioned above, replication_anon may be set to ``true`` only together
+    As mentioned above, ``replication_anon`` may be set to ``true`` only together
     with ``read_only``.
     The instance will fetch master's snapshot and proceed to following its
     changes. It will not receive an id so its id will remain zero.
@@ -108,7 +108,7 @@
         ...
 
     Now we can use the replica.
-    For example, we may do inserts into the local space:
+    For example, we can do inserts into the local space:
 
     .. code-block:: tarantool
 
@@ -142,7 +142,7 @@
         2019-12-13 20:34:37.424 [71329] main/117/applier/ I> remote vclock {1: 5} local vclock {0: 10, 1: 5}
         2019-12-13 20:34:37.425 [71329] main/118/applierw/ C> leaving orphan mode  
 
-    The replica just received id ``2``. We can make it ``read-write`` now. 
+    The replica just received id 2. We can make it read-write now. 
 
     .. code-block:: tarantool
 
@@ -183,7 +183,7 @@
           then issue ``box.cfg{replication_anon=false}``
         * In order for the deanonymization to succeed, the
           instance must replicate from some read-write instance,
-          otherwise noone will be able to add it to _cluster table.
+          otherwise noone will be able to add it to ``_cluster`` table.
 
 .. _cfg_replication-replication_connect_timeout:
 
