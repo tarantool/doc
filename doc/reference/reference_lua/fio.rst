@@ -523,9 +523,8 @@ functions.
 
 .. function:: mktree(path-name)
 
-    Create the path, including subdirectories, but without
-    file contents. The result is similar to the
-    result that one gets from the ``mkdir`` command.
+    Create the path, including parent directories, but without file contents. 
+    The behavior is similar to the ``mkdir -p`` shell command.
 
     :param string path-name: path-name.
     :return: (If no error) true. |br|
