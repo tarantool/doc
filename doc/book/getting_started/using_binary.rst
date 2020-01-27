@@ -16,8 +16,12 @@ start a shell (terminal) and enter the command-line instructions provided
 for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
 
 --------------------------------------------------------------------------------
-Starting Tarantool
+Creating database using Tarantool console
 --------------------------------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Starting Tarantool
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To start a Tarantool instance, say this:
 
@@ -42,9 +46,9 @@ Now you can enter requests on the command line.
     administration only. But we use it for most examples in this manual,
     because the interactive mode is convenient for learning.
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a database
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is how to create a simple test database after installation.
 
@@ -207,9 +211,9 @@ Here is how to create a simple test database after installation.
 
 .. _connecting-remotely:
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Connecting remotely
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the request ``box.cfg{listen = 3301}`` that we made earlier, the ``listen``
 value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier).
@@ -266,3 +270,256 @@ When the testing is over:
   `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
 * To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``
 * To destroy the test: ``rm -r ~/tarantool_sandbox``
+
+--------------------------------------------------------------------------------
+First Tarantool application
+--------------------------------------------------------------------------------
+
+In this guide, we will demonstrate how to create `Hello World!`
+application for Tarantool using `lua` language.
+
+Let’s get started!
+
+Create project directory. All commands from this tutorial will be executed in this directory.
+
+.. code-block:: console
+
+    $ mkdir myproject
+    $ cd myproject
+
+Install dependencies for our web application
+
+.. code-block:: console
+
+    $ tarantoolctl rocks install http
+
+Create an empty file app.lua in the project directory which content will be
+looking like this:
+
+.. code-block:: console
+
+    .
+    └── myproject
+        ├── .rocks
+        └── app.lua
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating Hello World web application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let's write some lua code in ``app.lua`` to create `hello world!` application.
+
+First, add `shebang` line and ``box.cfg{}`` with no parameters for applying
+default Tarantool settings
+
+.. code-block:: lua
+
+    #!/usr/bin/env tarantool
+
+    box.cfg{}
+
+Import and initiate ``http.server`` and ``http.router`` modules. These two modules
+are responsible for serving http requests and routing them to the appropriate handlers.
+``httpd:set_router(router)`` connects the router and the server together.
+
+.. code-block:: lua
+
+    #!/usr/bin/env tarantool
+
+    box.cfg{}
+
+    local httpd = require('http.server').new('127.0.0.1', 8080)
+    local router = require('http.router').new()
+    httpd:set_router(router)
+
+Add ``hello_world_handler`` — it is a function which receives
+request variable as argument and returns text response ``Hello World!``.
+``router:route()`` method connects url path to the correspondent handler.
+Finally, run http server with ``httpd:start()`` command.
+
+.. code-block:: lua
+
+    #!/usr/bin/env tarantool
+
+    box.cfg{}
+
+    local httpd = require('http.server').new('127.0.0.1', 8080)
+    local router = require('http.router').new()
+    httpd:set_router(router)
+
+    local hello_world_handler = function(req)
+        return req:render({text = "Hello World!"})
+    end
+
+    router:route({ path = '/', method = 'GET' }, hello_world_handler)
+
+    httpd:start()
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Launch app.lua
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: console
+
+    $ tarantool app.lua
+
+**OR**
+
+Make app.lua executable
+
+.. code-block:: console
+
+    $ chmod +x app.lua
+
+and run it
+
+.. code-block:: console
+
+    $ ./app.lua
+
+After running the application you will see the similar output
+
+.. code-block:: console
+
+    2020-01-24 13:45:17.403 [9539] main/102/myapp.lua C> Tarantool 2.3.1-1-g4137134
+    2020-01-24 13:45:17.403 [9539] main/102/myapp.lua C> log level 5
+    2020-01-24 13:45:17.403 [9539] main/102/myapp.lua I> mapping 268435456 bytes for memtx tuple arena...
+    2020-01-24 13:45:17.403 [9539] main/102/myapp.lua I> mapping 134217728 bytes for vinyl tuple arena...
+    2020-01-24 13:45:17.404 [9539] main/102/myapp.lua I> instance uuid d816bcf8-c45a-482b-a1ff-1f52b8bad410
+    2020-01-24 13:45:17.404 [9539] iproto/101/main I> binary: bound to [::]:3313
+    2020-01-24 13:45:17.405 [9539] main/102/myapp.lua I> initializing an empty data directory
+    2020-01-24 13:45:17.418 [9539] main/102/myapp.lua I> assigned id 1 to replica d816bcf8-c45a-482b-a1ff-1f52b8bad410
+    2020-01-24 13:45:17.418 [9539] main/102/myapp.lua I> cluster uuid 91bd7053-10b3-494f-b04c-37899c569629
+    2020-01-24 13:45:17.418 [9539] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
+    2020-01-24 13:45:17.420 [9539] snapshot/101/main I> done
+    2020-01-24 13:45:17.421 [9539] main/102/myapp.lua I> ready to accept requests
+    2020-01-24 13:45:17.421 [9539] main/104/checkpoint_daemon I> scheduled next checkpoint for Fri Jan 24 15:37:33 2020
+    2020-01-24 13:45:17.421 [9539] main/102/myapp.lua I> set 'listen' configuration option to "3313"
+    2020-01-24 13:45:17.423 [9539] main C> entering the event loop
+
+The last string in the output tells user that http server have started successfully.
+Now you can go in your favorite browser to http://127.0.0.1:8080 and see
+``Hello World!`` there.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pre-populating database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let's pre-populate our database with the data from the previous lesson to our
+web application. We'll use ``box.once()`` which executes a function, provided it
+has not been executed before.
+
+Add this code after ``box.cfg{}`` line in app.lua
+
+.. code-block:: lua
+
+    box.once("bootstrap", function()
+         box.schema.space.create('tester')
+         box.space.tester:format({
+            {name = 'id', type = 'unsigned'},
+            {name = 'band_name', type = 'string'},
+            {name = 'year', type = 'unsigned'}
+        })
+        box.space.tester:create_index('primary', {
+            type = 'hash',
+            parts = {'id'}
+        })
+        box.space.tester:insert{1, 'Roxette', 1986}
+        box.space.tester:insert{2, 'Scorpions', 2015}
+        box.space.tester:insert{3, 'Ace of Base', 1993}
+    end)
+
+Also you need to add a handler which will return the music bands from our
+pre-populated database and a corresponding route.
+
+.. code-block:: lua
+
+    local function bands_json_handler(req)
+        return req:render{ json = {["bands"] = box.space.tester:select{}} }
+    end
+
+    router:route({ path = '/bands', method = 'GET' }, bands_json_handler)
+
+
+As a result we can see
+
+Using html template. Place this lua html template code into templates/template.html.lua.
+
+.. code-block:: html
+
+<html>
+<body>
+    <table border="1">
+        % for i,v in pairs(bands) do
+        <tr>
+            <td><%= i %></td>
+            <td><%= v.year %></td>
+            <td><%= v.band_name %></td>
+        </tr>
+        % end
+    </table>
+</body>
+</html>
+
+Then add appropriate handler and route.
+
+.. code-block:: lua
+
+    local function bands_handler(req)
+       return req:render({ bands = box.space.tester:select{} })
+    end
+
+    router:route({ path = '/bands_html', method = 'GET', file = 'template.html.lua' }, bands_handler)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Result
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As a result your ``app.lua`` file must contain:
+
+.. code-block:: lua
+
+    #!/usr/bin/env tarantool
+
+    box.cfg{}
+
+    box.once("bootstrap", function()
+        box.schema.space.create('tester')
+        box.space.tester:format({
+          {name = 'id', type = 'unsigned'},
+          {name = 'band_name', type = 'string'},
+          {name = 'year', type = 'unsigned'}
+       })
+       box.space.tester:create_index('primary', {
+          type = 'hash',
+          parts = {'id'}
+       })
+       box.space.tester:insert{1, 'Roxette', 1986}
+       box.space.tester:insert{2, 'Scorpions', 2015}
+       box.space.tester:insert{3, 'Ace of Base', 1993}
+    end)
+
+    local httpd = require('http.server').new('127.0.0.1', 8080)
+    local router = require('http.router').new()
+    httpd:set_router(router)
+
+    local function hello_world_handler(req)
+       return req:render({text = "Hello World!"})
+    end
+
+    local function bands_json_handler(req)
+        return req:render{ json = {["bands"] = box.space.tester:select{}} }
+    end
+
+    local function bands_html_handler(req)
+       return req:render({ bands = box.space.tester:select{} })
+    end
+
+    router:route({ path = '/', method = 'GET' }, hello_world_handler)
+    router:route({ path = '/bands', method = 'GET' }, bands_json_handler)
+    router:route({ path = '/bands_html', method = 'GET', file = 'template.html.lua' }, bands_html_handler)
+
+    httpd:start()
+
+
+For more Tarantool code samples visit cookbook page https://www.tarantool.io/en/doc/2.2/book/app_server/cookbook/

@@ -13,5 +13,10 @@ This chapter contains the following sections:
    :maxdepth: 2
    :numbered: 0
 
-   using_docker
    using_binary
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 0
+
+   using_docker

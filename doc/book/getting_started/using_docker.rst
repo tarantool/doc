@@ -35,7 +35,7 @@ options:
    $ docker run \
      --name mytarantool \
      -d -p 3301:3301 \
-     -v /data/dir/on/host:/var/lib/tarantool \
+     -v $(pwd):/var/lib/tarantool \
      tarantool/tarantool:1
 
 This command runs a new container named ``mytarantool``.
@@ -47,7 +47,7 @@ You may start using it as a key-value storage right away.
 
 Tarantool :ref:`persists data <index-box_persistence>` inside the container.
 To make your test data available after you stop the container,
-this command also mounts the host's directory ``/data/dir/on/host``
+this command also mounts the host's directory ``$(pwd)``
 (you need to specify here an absolute path to an existing local directory)
 in the container's directory ``/var/lib/tarantool``
 (by convention, Tarantool in a container uses this directory to persist data).
