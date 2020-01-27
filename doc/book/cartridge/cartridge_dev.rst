@@ -135,12 +135,16 @@ initialization function:
    local cartridge = require('cartridge')
    ...
    cartridge.cfg({
-     workdir = ...,
-     advertise_uri = ...,
-     cluster_cookie = ...,
+   -- cartridge options example
+     workdir = '/var/lib/tarantool/app',
+     advertise_uri = 'localhost:3301',
+     cluster_cookie = 'super-cluster-cookie',
      ...
-   })
-   ...
+   }, {
+   -- box options example 
+     memtx_memory = 1000000000,
+     ... })
+    ... 
 
 The ``cartridge.cfg()`` call renders the instance operable via the administrative
 console but does not call ``box.cfg()`` to configure instances.
