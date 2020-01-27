@@ -1,10 +1,11 @@
 * :ref:`replication <cfg_replication-replication>`
-* :ref:`replication_timeout <cfg_replication-replication_timeout>`
+* :ref:`replication_anon <cfg_replication-replication_anon>`
 * :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
 * :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`
 * :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`
 * :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`
+* :ref:`replication_timeout <cfg_replication-replication_timeout>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 
@@ -45,22 +46,145 @@
     | Default: null
     | Dynamic: **yes**
 
-.. _cfg_replication-replication_timeout:
+.. _cfg_replication-replication_anon:
 
-.. confval:: replication_timeout
+.. confval:: replication_anon
 
-    If the master has no updates to send to the replicas, it sends heartbeat messages
-    every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
+    A Tarantool replica can be anonymous. This type of replica
+    is read-only (but you still can write to temporary and
+    replica-local spaces), and it isn't present in the ``_cluster`` table.
 
-    Both master and replicas are programmed to drop the connection if they get no
-    response in four ``replication_timeout`` seconds.
-    If the connection is dropped, a replica tries to reconnect to the master.
+    Since an anonymous replica isn't registered in the ``_cluster`` table,
+    there is no limitation for anonymous replicas count in a replica set:
+    you can have as many of them as you want.
 
-    See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+    In order to make a replica anonymous, pass the option
+    ``replication_anon=true`` to ``box.cfg`` and set ``read_only``
+    to ``true``.
 
-    | Type: integer
-    | Default: 1
-    | Dynamic: **yes**
+    Let's go through anonymous replica bootstrap.
+    Suppose we have got a master configured with
+
+    .. code-block:: lua
+
+        box.cfg{listen=3301}
+
+    and created a local space called "loc":
+
+    .. code-block:: lua
+
+        box.schema.space.create('loc', {is_local=true})
+        box.space.loc:create_index("pk")
+
+    Now, to configure an anonymous replica, we need to issue ``box.cfg``,
+    as usual.
+
+    .. code-block:: lua
+
+        box.cfg{replication_anon=true, read_only=true, replication=3301}
+
+    As mentioned above, ``replication_anon`` may be set to ``true`` only together
+    with ``read_only``.
+    The instance will fetch the master's snapshot and start following its
+    changes. It will receive no id, so its id value will remain zero.
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.info.id
+        ---
+        - 0
+        ...
+        tarantool> box.info.replication
+        ---
+        - 1:
+            id: 1
+            uuid: 3c84f8d9-e34d-4651-969c-3d0ed214c60f
+            lsn: 4
+            upstream:
+            status: follow
+            idle: 0.6912029999985
+            peer:
+            lag: 0.00014615058898926
+        ...
+
+    Now we can use the replica.
+    For example, we can do inserts into the local space:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> for i = 1,10 do
+            > box.space.loc:insert{i}
+            > end
+        ---
+        ...
+
+    Note that while the instance is anonymous, it will increase the 0-th
+    component of its ``vclock``:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.info.vclock
+        ---
+        - {0: 10, 1: 4}
+        ...
+
+    Let's now promote the anonymous replica to a regular one:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.cfg{replication_anon=false}
+        2019-12-13 20:34:37.423 [71329] main I> assigned id 2 to replica 6a9c2ed2-b9e1-4c57-a0e8-51a46def7661
+        2019-12-13 20:34:37.424 [71329] main/102/interactive I> set 'replication_anon' configuration option to false
+        ---
+        ...
+
+        tarantool> 2019-12-13 20:34:37.424 [71329] main/117/applier/ I> subscribed
+        2019-12-13 20:34:37.424 [71329] main/117/applier/ I> remote vclock {1: 5} local vclock {0: 10, 1: 5}
+        2019-12-13 20:34:37.425 [71329] main/118/applierw/ C> leaving orphan mode
+
+    The replica has just received an id equal to 2. We can make it read-write now.
+
+    .. code-block:: tarantool
+
+        box.cfg{read_only=false}
+        2019-12-13 20:35:46.392 [71329] main/102/interactive I> set 'read_only' configuration option to false
+        ---
+        ...
+
+        tarantool> box.schema.space.create('test')
+        ---
+        - engine: memtx
+        before_replace: 'function: 0x01109f9dc8'
+        on_replace: 'function: 0x01109f9d90'
+        ck_constraint: []
+        field_count: 0
+        temporary: false
+        index: []
+        is_local: false
+        enabled: false
+        name: test
+        id: 513
+        - created
+        ...
+
+        tarantool> box.info.vclock
+        ---
+        - {0: 10, 1: 5, 2: 2}
+        ...
+
+    Now the replica tracks its changes in the 2nd ``vclock`` component,
+    as expected.
+    It can also become a replication master from now on.
+
+    Notes:
+
+        * You cannot replicate from an anonymous instance.
+        * To promote an anonymous instance to a regular one,
+          first start it as anonymous, and only
+          then issue ``box.cfg{replication_anon=false}``
+        * In order for the deanonymization to succeed, the
+          instance must replicate from some read-write instance,
+          otherwise it cannot be added to the ``_cluster`` table.
 
 .. _cfg_replication-replication_connect_timeout:
 
@@ -167,6 +291,23 @@
 
     | Type: float
     | Default: 300
+    | Dynamic: **yes**
+
+.. _cfg_replication-replication_timeout:
+
+.. confval:: replication_timeout
+
+    If the master has no updates to send to the replicas, it sends heartbeat messages
+    every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
+
+    Both master and replicas are programmed to drop the connection if they get no
+    response in four ``replication_timeout`` seconds.
+    If the connection is dropped, a replica tries to reconnect to the master.
+
+    See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+
+    | Type: integer
+    | Default: 1
     | Dynamic: **yes**
 
 .. _cfg_replication-replicaset_uuid:
