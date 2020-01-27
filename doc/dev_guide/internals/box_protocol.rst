@@ -97,7 +97,7 @@ so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
 The leftmost digit in the array is the most significant.
 The rightmost digit in the array is the least significant.
 
-The first byte of the ``BCD`` array contains the first digit of the number 
+The first byte of the ``BCD`` array contains the first digit of the number,
 represented as follows:
 
 .. code-block:: none
@@ -105,8 +105,8 @@ represented as follows:
     |  4 bits           |  4 bits           |
        = 0x                = the 1st digit
 
-The last byte of the ``BCD`` array contains the last digit of the number and the 
-``nibble`` represented as follows:
+The last byte of the ``BCD`` array contains the last digit of the number and the
+``nibble``, represented as follows:
 
 .. code-block:: none
 
@@ -114,20 +114,21 @@ The last byte of the ``BCD`` array contains the last digit of the number and the
        = the last digit    = nibble
 
 The ``nibble`` represents the number's sign:
-``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,
-``0x0b`` and ``0x0d`` stand for minus.
 
-**Example**
+* ``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,
+* ``0x0b`` and ``0x0d`` stand for minus.
 
-For example, decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``
+**Examples**
+
+The decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``:
 
 .. code-block:: none
 
     |MP_EXT (fixext 4) | MP_DECIMAL | scale |  1   |  2,3 |  4 (minus) |
     |       0xd6       |    0x01    | 0x02  | 0x01 | 0x23 | 0x4d       |
 
-Another example: decimal 0.000000000000000000000000000000000010 will be encoded
-as ``0xc7,0x03,0x01,0x24,0x01,0x0c``
+The decimal 0.000000000000000000000000000000000010
+will be encoded as ``0xc7,0x03,0x01,0x24,0x01,0x0c``:
 
 .. code-block:: none
 
