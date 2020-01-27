@@ -142,7 +142,8 @@ initialization function:
      ...
    }, {
    -- box options example 
-     memtx_memory = 1000000000 })
+     memtx_memory = 1000000000,
+     ... })
     ... 
 
 The ``cartridge.cfg()`` call renders the instance operable via the administrative
