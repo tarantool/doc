@@ -52,31 +52,31 @@
 
     A Tarantool replica can be anonymous. This type of replica
     is read-only (but you still can write to temporary and
-    replica-local spaces), and it isn't present in ``_cluster`` table.
+    replica-local spaces), and it isn't present in the ``_cluster`` table.
 
-    Since an anonymous replica isn't registered in ``_cluster`` table, there is no
-    limitation for anonymous replica count in a replicaset. You can have as
-    many of them as you want.
+    Since an anonymous replica isn't registered in the ``_cluster`` table,
+    there is no limitation for anonymous replicas count in a replica set:
+    you can have as many of them as you want.
 
-    In order to make a replica anonymous, you have to pass an option
-    ``replication_anon=true`` to ``box.cfg``. You also have to set ``'read_only'``
+    In order to make a replica anonymous, pass the option
+    ``replication_anon=true`` to ``box.cfg`` and set ``read_only``
     to ``true``.
 
     Let's go through anonymous replica bootstrap.
-    Suppose we have a master configured with
+    Suppose we have got a master configured with
 
     .. code-block:: lua
-    
+
         box.cfg{listen=3301}
 
-    And created a local space called "loc"
-    
+    and created a local space called "loc":
+
     .. code-block:: lua
-    
+
         box.schema.space.create('loc', {is_local=true})
         box.space.loc:create_index("pk")
 
-    Now, to configure an anonymous replica, we have to issue ``box.cfg``,
+    Now, to configure an anonymous replica, we need to issue ``box.cfg``,
     as usual.
 
     .. code-block:: lua
@@ -85,10 +85,10 @@
 
     As mentioned above, ``replication_anon`` may be set to ``true`` only together
     with ``read_only``.
-    The instance will fetch master's snapshot and proceed to following its
-    changes. It will not receive an id so its id will remain zero.
+    The instance will fetch the master's snapshot and start following its
+    changes. It will receive no id, so its id value will remain zero.
 
-    .. code-block:: tarantool
+    .. code-block:: tarantoolsession
 
         tarantool> box.info.id
         ---
@@ -110,28 +110,28 @@
     Now we can use the replica.
     For example, we can do inserts into the local space:
 
-    .. code-block:: tarantool
+    .. code-block:: tarantoolsession
 
         tarantool> for i = 1,10 do
             > box.space.loc:insert{i}
             > end
         ---
         ...
-    
-    Note, that while the instance is anonymous, it will increase the 0-th
+
+    Note that while the instance is anonymous, it will increase the 0-th
     component of its ``vclock``:
 
-    .. code-block:: tarantool
+    .. code-block:: tarantoolsession
 
         tarantool> box.info.vclock
         ---
         - {0: 10, 1: 4}
         ...
 
-    Let's now promote the replica to a normal one:
+    Let's now promote the anonymous replica to a regular one:
 
-    .. code-block:: tarantool
-        
+    .. code-block:: tarantoolsession
+
         tarantool> box.cfg{replication_anon=false}
         2019-12-13 20:34:37.423 [71329] main I> assigned id 2 to replica 6a9c2ed2-b9e1-4c57-a0e8-51a46def7661
         2019-12-13 20:34:37.424 [71329] main/102/interactive I> set 'replication_anon' configuration option to false
@@ -140,9 +140,9 @@
 
         tarantool> 2019-12-13 20:34:37.424 [71329] main/117/applier/ I> subscribed
         2019-12-13 20:34:37.424 [71329] main/117/applier/ I> remote vclock {1: 5} local vclock {0: 10, 1: 5}
-        2019-12-13 20:34:37.425 [71329] main/118/applierw/ C> leaving orphan mode  
+        2019-12-13 20:34:37.425 [71329] main/118/applierw/ C> leaving orphan mode
 
-    The replica just received id 2. We can make it read-write now. 
+    The replica has just received an id equal to 2. We can make it read-write now.
 
     .. code-block:: tarantool
 
@@ -170,20 +170,21 @@
         tarantool> box.info.vclock
         ---
         - {0: 10, 1: 5, 2: 2}
-        ... 
+        ...
 
-    Now the replica tracks its changes in 2nd vclock component, as expected.
-    It can also become replication master from now on.
+    Now the replica tracks its changes in the 2nd ``vclock`` component,
+    as expected.
+    It can also become a replication master from now on.
 
-    Side notes:
+    Notes:
 
         * You cannot replicate from an anonymous instance.
         * To promote an anonymous instance to a regular one,
-          you first have to start it as anonymous, and only
+          first start it as anonymous, and only
           then issue ``box.cfg{replication_anon=false}``
         * In order for the deanonymization to succeed, the
           instance must replicate from some read-write instance,
-          otherwise noone will be able to add it to ``_cluster`` table.
+          otherwise it cannot be added to the ``_cluster`` table.
 
 .. _cfg_replication-replication_connect_timeout:
 
