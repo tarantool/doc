@@ -587,7 +587,7 @@ Below is a list of all ``box.schema`` functions.
 
     Create a function :ref:`tuple <index-box_tuple>`.
     without including the ``body`` option.
-    (For functions created without the ``body`` option, see
+    (For functions created with the ``body`` option, see
     :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_with-body>`.
 
     This is called a "not persistent" function because functions without bodies are not persistent.
