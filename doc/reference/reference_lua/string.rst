@@ -261,11 +261,11 @@ Below is a list of all additional ``string`` functions.
         tarantool> string = require('string')
         ---
         ...
-        tarantool> string.split("A:B C:D", ":", 2)
+        tarantool> string.split("A:B:C:D:F", ":", 2)
         ---
         - - A
           - B
-          - ' C:D'
+          - C:D:F
         ...
 
 .. _string-strip:
