@@ -50,7 +50,7 @@ Launching in Docker
 --------------------------------------------------------------------------------
 
 If we run Tarantool in a :ref:`Docker container <getting_started-using_docker>`,
-the following command will start Tarantool 1.9 without any application:
+the following command will start Tarantool without any application:
 
 .. code-block:: console
 
