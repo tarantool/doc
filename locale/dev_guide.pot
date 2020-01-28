@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-06 11:59+0000\n"
+"POT-Creation-Date: 2020-01-23 10:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2151,7 +2151,7 @@ msgstr ""
 
 #: ../doc/dev_guide/documentation_guidelines.rst:211
 #: ../doc/dev_guide/documentation_guidelines.rst:249
-#: ../doc/dev_guide/reference_capi/coio.rst:46
+#: ../doc/dev_guide/reference_capi/coio.rst:48
 #: ../doc/dev_guide/reference_capi/say.rst:52
 #: ../doc/dev_guide/reference_capi/tuple.rst:241
 msgid "**Example:**"
@@ -5207,60 +5207,60 @@ msgstr ""
 msgid "Module `clock`"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:3
+#: ../doc/dev_guide/reference_capi/coio.rst:5
 msgid "Module `coio`"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:9
+#: ../doc/dev_guide/reference_capi/coio.rst:11
 msgid "READ event"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:13
+#: ../doc/dev_guide/reference_capi/coio.rst:15
 msgid "WRITE event"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:19
+#: ../doc/dev_guide/reference_capi/coio.rst:21
 msgid "Wait until READ or WRITE event on socket (``fd``). Yields."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:21
-#: ../doc/dev_guide/reference_capi/coio.rst:70
+#: ../doc/dev_guide/reference_capi/coio.rst:23
+#: ../doc/dev_guide/reference_capi/coio.rst:72
 msgid "non-blocking socket file description"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:22
+#: ../doc/dev_guide/reference_capi/coio.rst:24
 msgid "requested events to wait. Combination of ``COIO_READ | COIO_WRITE`` bit flags."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:24
+#: ../doc/dev_guide/reference_capi/coio.rst:26
 msgid "timeout in seconds."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:26
+#: ../doc/dev_guide/reference_capi/coio.rst:28
 msgid "0 - timeout"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:27
+#: ../doc/dev_guide/reference_capi/coio.rst:29
 msgid ">0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit flags."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:33
-msgid "Create new eio task with specified function and arguments. Yield and wait until the task is complete or a timeout occurs. This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>` configuration parameter."
+#: ../doc/dev_guide/reference_capi/coio.rst:35
+msgid "Create new eio task with specified function and arguments. Yield and wait until the task is complete. This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>` configuration parameter."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:38
+#: ../doc/dev_guide/reference_capi/coio.rst:40
 msgid "To avoid double error checking, this function does not throw exceptions. In most cases it is also necessary to check the return value of the called function and perform necessary actions. If func sets errno, the errno is preserved across the call."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:43
+#: ../doc/dev_guide/reference_capi/coio.rst:45
 msgid "-1 and ``errno`` = ENOMEM if failed to create a task"
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:44
-msgid "the function return (``errno`` is preserved)."
+#: ../doc/dev_guide/reference_capi/coio.rst:46
+msgid "the function's return (``errno`` is preserved)."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:48
+#: ../doc/dev_guide/reference_capi/coio.rst:50
 msgid "static ssize_t openfile_cb(va_list ap)\n"
 "{\n"
 "        const char* filename = va_arg(ap);\n"
@@ -5268,20 +5268,20 @@ msgid "static ssize_t openfile_cb(va_list ap)\n"
 "        return open(filename, flags);\n"
 "}\n"
 "\n"
-"if (coio_call(openfile_cb, 0.10, \"/tmp/file\", 0) == -1)\n"
+"if (coio_call(openfile_cb, \"/tmp/file\", 0) == -1)\n"
 "    // handle errors.\n"
 "..."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:63
+#: ../doc/dev_guide/reference_capi/coio.rst:65
 msgid "Fiber-friendly version of :manpage:`getaddrinfo(3)`."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:67
+#: ../doc/dev_guide/reference_capi/coio.rst:69
 msgid "Close the ``fd`` and wake any fiber blocked in :ref:`coio_wait() <c_api-coio-coio_wait>` call on this ``fd``."
 msgstr ""
 
-#: ../doc/dev_guide/reference_capi/coio.rst:72
+#: ../doc/dev_guide/reference_capi/coio.rst:74
 msgid "the result of ``close(fd)``, see :manpage:`close(2)`"
 msgstr ""
 

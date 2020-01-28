@@ -1,10 +1,10 @@
 * :ref:`replication <cfg_replication-replication>`
-* :ref:`replication_timeout <cfg_replication-replication_timeout>`
 * :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
 * :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`
 * :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`
 * :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`
+* :ref:`replication_timeout <cfg_replication-replication_timeout>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 
@@ -43,23 +43,6 @@
 
     | Type: string
     | Default: null
-    | Dynamic: **yes**
-
-.. _cfg_replication-replication_timeout:
-
-.. confval:: replication_timeout
-
-    If the master has no updates to send to the replicas, it sends heartbeat messages
-    every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
-
-    Both master and replicas are programmed to drop the connection if they get no
-    response in four ``replication_timeout`` seconds.
-    If the connection is dropped, a replica tries to reconnect to the master.
-
-    See more in :ref:`Monitoring a replica set <replication-monitoring>`.
-
-    | Type: integer
-    | Default: 1
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_connect_timeout:
@@ -167,6 +150,23 @@
 
     | Type: float
     | Default: 300
+    | Dynamic: **yes**
+
+.. _cfg_replication-replication_timeout:
+
+.. confval:: replication_timeout
+
+    If the master has no updates to send to the replicas, it sends heartbeat messages
+    every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
+
+    Both master and replicas are programmed to drop the connection if they get no
+    response in four ``replication_timeout`` seconds.
+    If the connection is dropped, a replica tries to reconnect to the master.
+
+    See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+
+    | Type: integer
+    | Default: 1
     | Dynamic: **yes**
 
 .. _cfg_replication-replicaset_uuid:

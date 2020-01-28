@@ -83,7 +83,8 @@ Below is a list of all ``net.box`` functions.
     | :ref:`net_box.connect()                            |                           |
     | <net_box-connect>` |br|                            | Create a connection       |
     | :ref:`net_box.new()                                |                           |
-    | <net_box-new>`                                     |                           |
+    | <net_box-new>` |br|                                |                           |
+    | :ref:`net_box.self <net_box-self>`                 |                           |
     +----------------------------------------------------+---------------------------+
     | :ref:`conn:ping()                                  | Execute a PING command    |
     | <conn-ping>`                                       |                           |
@@ -130,13 +131,13 @@ Below is a list of all ``net.box`` functions.
     | :ref:`conn:timeout()                               | Set a timeout             |
     | <conn-timeout>`                                    |                           |
     +----------------------------------------------------+---------------------------+
-    | :ref:`net_box.on_connect()                         | Define a connect          |
+    | :ref:`conn:on_connect()                            | Define a connect          |
     | <net_box-on_connect>`                              | trigger                   |
     +----------------------------------------------------+---------------------------+
-    | :ref:`net_box.on_disconnect()                      | Define a disconnect       |
+    | :ref:`conn:on_disconnect()                         | Define a disconnect       |
     | <net_box-on_disconnect>`                           | trigger                   |
     +----------------------------------------------------+---------------------------+
-    | :ref:`net_box.on_schema_reload()                   | Define a trigger when     |
+    | :ref:`conn:on_schema_reload()                      | Define a trigger when     |
     | <net_box-on_schema_reload>`                        | schema is modified        |
     +----------------------------------------------------+---------------------------+
 .. module:: net_box
@@ -159,18 +160,6 @@ Below is a list of all ``net.box`` functions.
     disconnect (see ``reconnect_after`` option below).
     The returned ``conn`` object supports methods for making remote requests,
     such as select, update or delete.
-
-    For a local Tarantool server, there is a pre-created always-established
-    connection object named :samp:`{net_box}.self`. Its purpose is to make
-    polymorphic use of the ``net_box`` API easier. Therefore
-    :samp:`conn = {net_box}.connect('localhost:3301')`
-    can be replaced by :samp:`conn = {net_box}.self`. However, there is an
-    important difference between the embedded connection and a remote one.
-    With the embedded connection, requests which do not modify data do not yield.
-    When using a remote connection, due to
-    :ref:`the implicit rules <atomic-implicit-yields>`
-    any request can yield, and database state may have changed by the time it
-    regains control.
 
     Possible options:
 
@@ -230,6 +219,28 @@ Below is a list of all ``net.box`` functions.
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
+
+.. _net_box-self:
+
+.. class:: self
+
+    For a local Tarantool server, there is a pre-created always-established
+    connection object named :samp:`{net_box}.self`. Its purpose is to make
+    polymorphic use of the ``net_box`` API easier. Therefore
+    :samp:`conn = {net_box}.connect('localhost:3301')`
+    can be replaced by :samp:`conn = {net_box}.self`.
+
+    However, there is an important difference between the embedded connection
+    and a remote one:
+
+    * With the embedded connection, requests which do not modify data do not yield.
+      When using a remote connection, due to
+      :ref:`the implicit rules <atomic-implicit-yields>`
+      any request can yield, and the database state may have changed by the
+      time it regains control.
+
+    * All the options passed to a request (as ``is_async``, ``on_push``, ``timeout``)
+      will be ignored.
 
 .. class:: conn
 
@@ -584,39 +595,42 @@ With the ``net.box`` module, you can use the following
 
 .. _net_box-on_connect:
 
-.. function:: net_box.on_connect([trigger-function[, old-trigger-function]]){option[s]}])
+.. function:: conn:on_connect([trigger-function[, old-trigger-function]])
 
     Define a trigger for execution when a new connection is created due to an
     event such as ``net_box.connect``. The trigger function will be the first thing
     executed after a new connection is created. If the trigger execution fails
     and raises an error, the error is sent to the client and the connection is closed.
 
-    :param function trigger-function: function which will become the trigger function
+    :param function trigger-function: function which will become the trigger function. Takes the ``conn``
+                                      object as the first argument
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
 
 .. _net_box-on_disconnect:
 
-.. function:: net_box.on_disconnect([trigger-function[, old-trigger-function]]){option[s]}])
+.. function:: conn:on_disconnect([trigger-function[, old-trigger-function]])
 
     Define a trigger for execution after a connection is closed. If the trigger
     function causes an error, the error is logged but otherwise is ignored.
     Execution stops after a connection is explicitly closed, or once the Lua
     garbage collector removes it.
 
-    :param function trigger-function: function which will become the trigger function
+    :param function trigger-function: function which will become the trigger function. Takes the ``conn``
+                                      object as the first argument
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
 
 .. _net_box-on_schema_reload:
 
-.. function:: net_box.on_schema_reload([trigger-function[, old-trigger-function]]){option[s]}])
+.. function:: conn:on_schema_reload([trigger-function[, old-trigger-function]])
 
     Define a trigger executed when some operation has been performed on the remote
     server after schema has been updated. So, if a server request fails due to a schema
     version mismatch error, schema reload is triggered.
 
-    :param function trigger-function: function which will become the trigger function
+    :param function trigger-function: function which will become the trigger function. Takes the ``conn``
+                                      object as the first argument
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
 
