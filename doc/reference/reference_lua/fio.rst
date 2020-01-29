@@ -423,8 +423,8 @@ functions.
 
 .. function:: listdir(path-name)
 
-    List files in directory. The result is similar to the
-    result from the ``ls`` command.
+    List files in directory.
+    The result is similar to the ``ls`` shell command.
 
     :param string path-name: path of directory.
     :return: (If no error) a list of files. |br|
@@ -500,8 +500,8 @@ functions.
 .. function:: copytree(from-path, to-path)
 
     Copy everything in the from-path, including subdirectory
-    contents, to the to-path. The result is similar to the
-    result that one gets from the ``cp -r`` command.
+    contents, to the to-path.
+    The result is similar to the ``cp -r`` shell command.
     The to-path should not be empty.
 
     :param string from-path: path-name.
@@ -523,8 +523,8 @@ functions.
 
 .. function:: mktree(path-name)
 
-    Create the path, including parent directories, but without file contents. 
-    The behavior is similar to the ``mkdir -p`` shell command.
+    Create the path, including parent directories, but without file contents.
+    The result is similar to the ``mkdir -p`` shell command.
 
     :param string path-name: path-name.
     :return: (If no error) true. |br|
@@ -545,8 +545,7 @@ functions.
 .. function:: rmtree(path-name)
 
     Remove the directory indicated by path-name, including subdirectories.
-    The result is similar to the
-    result that one gets from the ``rmdir -r`` command.
+    The result is similar to the ``rmdir -r`` shell command.
     The directory should not be empty.
 
     :param string path-name: path-name.
@@ -619,8 +618,8 @@ functions.
 
 .. function:: copyfile(path-name, new-path-name)
 
-    Copy a file. The effect is similar to the effect
-    that one gets with the ``cp`` command.
+    Copy a file.
+    The result is similar to the ``cp`` shell command.
 
     :param string     path-name: path to original file.
     :param string new-path-name: path to new file.
