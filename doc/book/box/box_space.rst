@@ -311,8 +311,8 @@ Below is a list of all ``box.space`` functions and members.
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
             |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
-            |                     |                                                       | ``'number'`` or ``'boolean'`` or |                               |
-            |                     |                                                       | ``'decimal'`` or                 |                               |
+            |                     |                                                       | ``'number'`` or ``'double'`` or  |                               |
+            |                     |                                                       | ``'decimal'``or 'boolean'`` or   |                               |
             |                     |                                                       | ``'varbinary'`` or               |                               |
             |                     |                                                       | ``'array'`` or ``'scalar'``,     |                               |
             |                     |                                                       | and optional collation or        |                               |
@@ -379,7 +379,7 @@ Below is a list of all ``box.space`` functions and members.
 
     **Details about index field types:**
 
-    The nine index field types (unsigned | string | integer | number |
+    The ten index field types (unsigned | string | integer | number | decimal |
     boolean | decimal | varbinary | array | scalar) differ depending on what values are allowed, and
     what index types are allowed.
 
@@ -398,6 +398,8 @@ Below is a list of all ``box.space`` functions and members.
       single-precision floating point numbers, or double-precision floating
       point numbers, or exact numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE
       indexes.
+    * **double**: double-precision floating point numbers.
+      Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes.
     * **boolean**: true or false. Legal in memtx TREE or HASH indexes, and in
       vinyl TREE indexes.
     * **decimal**: exact number returned from a function in the
@@ -460,6 +462,9 @@ Below is a list of all ``box.space`` functions and members.
         |                  | double-precision          |                                       |                       |
         |                  | floating point numbers,   |                                       |                       |
         |                  | exact (decimal) numbers   |                                       |                       |
+        +------------------+---------------------------+---------------------------------------+-----------------------+
+        | **double**       | double-precision          | memtx TREE or HASH indexes, |br|      | 1.234                 |
+        |                  | floating point numbers    | vinyl TREE indexes                    |                       |
         +------------------+---------------------------+---------------------------------------+-----------------------+
         | **boolean**      | true or false             | memtx TREE or HASH indexes, |br|      | false |br|            |
         |                  |                           | vinyl TREE indexes                    | true                  |
@@ -804,7 +809,7 @@ Below is a list of all ``box.space`` functions and members.
           have the same name;
         * the ``type`` value may be any of those allowed for
           :ref:`indexed fields <index-box_indexed-field-types>`:
-          unsigned | string | varbinary | integer | number | boolean | decimal | array | scalar
+          unsigned | string | varbinary | integer | number | double | boolean | decimal | array | scalar
           (the same as the requirement in
           :ref:`"Options for space_object:create_index" <box_space-create_index-options>`);
         * the optional ``is_nullable`` value may be either ``true`` or ``false``
@@ -877,14 +882,11 @@ Below is a list of all ``box.space`` functions and members.
 
         .. code-block:: tarantoolsession
 
-            tarantool> decimal = require('decimal')
-            ---
-            ...
             tarantool> box.schema.space.create('t')
             ---
             - engine: memtx
-              before_replace: 'function: 0x40650f60'
-              on_replace: 'function: 0x406a3eb8'
+              before_replace: 'function: 0x4019c488'
+              on_replace: 'function: 0x4019c460'
               ck_constraint: []
               field_count: 0
               temporary: false
@@ -892,22 +894,29 @@ Below is a list of all ``box.space`` functions and members.
               is_local: false
               enabled: false
               name: t
-              id: 512
+              id: 534
             - created
             ...
-            tarantool> box.space.t:format({{name='1',type='any'},
-                     >                      {name='2',type='unsigned'},
-                     >                      {name='3',type='string'},
-                     >                      {name='4',type='number'},
-                     >                      {name='5',type='integer'},
-                     >                      {name='6',type='boolean'},
-                     >                      {name='7',type='decimal'},
-                     >                      {name='8',type='scalar'},
-                     >                      {name='9',type='array'},
-                     >                      {name='10',type='map'}})
+            tarantool> ffi = require('ffi')
             ---
             ...
-            tarantool> box.space.t:create_index('i',{parts={field = 2, type = 'unsigned'}})
+            tarantool> decimal = require('decimal')
+            ---
+            ...
+            tarantool> box.space.t:format({{name = '1', type = 'any'},
+                     >                     {name = '2', type = 'unsigned'},
+                     >                     {name = '3', type = 'string'},
+                     >                     {name = '4', type = 'number'},
+                     >                     {name = '5', type = 'double'},
+                     >                     {name = '6', type = 'integer'},
+                     >                     {name = '7', type = 'boolean'},
+                     >                     {name = '8', type = 'decimal'},
+                     >                     {name = '9', type = 'scalar'},
+                     >                     {name = 'a', type = 'array'},
+                     >                     {name = 'b', type = 'map'}})
+            ---
+            ...
+            tarantool> box.space.t:create_index('i',{parts={2, type = 'unsigned'}})
             ---
             - unique: true
               parts:
@@ -915,22 +924,23 @@ Below is a list of all ``box.space`` functions and members.
                 is_nullable: false
                 fieldno: 2
               id: 0
-              space_id: 512
+              space_id: 534
               type: TREE
               name: i
             ...
-            tarantool> box.space.t:insert{{'a'},             -- any
-                     >                     1,                -- unsigned
-                     >                     'W?',             -- string
-                     >                     5.5,              -- number
-                     >                     -0,               -- integer
-                     >                     true,             -- boolean
-                     >                     decimal.new(1.2), -- decimal
-                     >                     true,             -- scalar
-                     >                     {{'a'}},          -- array
-                     >                     {val=1}}          -- map
+            tarantool> box.space.t:insert{{'a'}, -- any
+                     >                    1, -- unsigned
+                     >                    'W?', -- string
+                     >                    5.5, -- number
+                     >                    ffi.cast('double', 1), -- double
+                     >                    -0, -- integer
+                     >                    true, -- boolean
+                     >                    decimal.new(1.2), -- decimal
+                     >                    true, -- scalar
+                     >                    {{'a'}}, -- array
+                     >                    {val=1}} -- map
             ---
-            - [['a'], 1, 'W?', 5.5, 0, true, 1.2, true, [['a']], {'val': 1}]
+            - [['a'], 1, 'W?', 5.5, 1, 0, true, 1.2, true, [['a']], {'val': 1}]
             ...
 
         Names specified with the format clause can be used in

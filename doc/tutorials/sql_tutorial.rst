@@ -8,7 +8,7 @@ This tutorial is a demonstration of the SQL feature introduced in
 Tarantool 2.x series. There are two ways to go through this tutorial:
 
 * read what we say the results are and take our word for it, or
-* copy and paste each section and see everything work with Tarantool 2.1.
+* copy and paste each section and see everything work with Tarantool 2.3.
 
 You will encounter all the functionality that you'd encounter in an "SQL-101"
 course.
@@ -92,10 +92,10 @@ Here is ``CREATE TABLE`` with more details:
     CREATE TABLE table2 (column1 INTEGER,
                          column2 VARCHAR(100),
                          column3 SCALAR,
-                         column4 FLOAT,
+                         column4 DOUBLE,
                          PRIMARY KEY (column1, column2));
 
-The result will be: "``rowcount: 1``" (no error).
+The result will be: "``row_count: 1``" (no error).
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 INSERT
@@ -103,7 +103,7 @@ INSERT
 
 Try to put 5 rows in the table:
 
-* The INTEGER and FLOAT columns get numbers.
+* The INTEGER and DOUBLE columns get numbers.
 * The VARCHAR and SCALAR columns get strings
   (the SCALAR strings are expressed as hexadecimals).
 
@@ -350,7 +350,7 @@ that there must not be any rows containing 13 in
     INSERT INTO table4 VALUES (12, 13);
 
 Result: the insert fails, as it should, with the message
-"``error: 'CHECK constraint failed: TABLE4'``".
+"``'Check constraint failed ''ck_unnamed_TABLE4_1'': column2 <> 13'``".
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CREATE TABLE, with a FOREIGN KEY clause
@@ -376,7 +376,7 @@ Result:
 * The first ``INSERT`` statement succeeds because
   ``table3`` contains a row with ``[2, 'AB', ' ', 12.34567]``.
 * The second INSERT statement, correctly, fails with the message
-  "``error: FOREIGN KEY constraint failed``".
+  "``Failed to execute SQL statement: FOREIGN KEY constraint failed``".
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 UPDATE
@@ -522,7 +522,7 @@ Number operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also manipulate number data (usually defined with INTEGER
-or FLOAT data types) in many ways.
+or DOUBLE data types) in many ways.
 
 We'll illustrate here:
 
@@ -559,7 +559,7 @@ ordering by a string column.
 
 .. code-block:: sql
 
-    CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 FLOAT,
+    CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 DOUBLE,
     PRIMARY KEY (column1));
     INSERT INTO t6 VALUES (-1234567890, 'АБВГД', 123456.123456);
     INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);
@@ -670,7 +670,7 @@ The result is (we know we will get a row because we created ``table3`` earlier):
 
 .. code-block:: tarantoolsession
 
-    - - [517, 'table3', 1, 'memtx']
+    - - [517, 'TABLE3', 1, 'memtx']
 
 .. _sql_tutorial-calling_from_a_host_language:
 
@@ -788,7 +788,7 @@ The result is:
 Cleanup and exit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We're done. We've shown that Tarantool 2.1 has a
+We're done. We've shown that Tarantool 2.x has a
 very reasonable subset of SQL, and it works.
 
 The rest of these commands will simply destroy all

@@ -139,6 +139,7 @@
     .. cpp:enumerator:: ::FIELD_TYPE_UNSIGNED
     .. cpp:enumerator:: ::FIELD_TYPE_STRING
     .. cpp:enumerator:: ::FIELD_TYPE_NUMBER
+    .. cpp:enumerator:: ::FIELD_TYPE_DOUBLE
     .. cpp:enumerator:: ::FIELD_TYPE_INTEGER
     .. cpp:enumerator:: ::FIELD_TYPE_BOOLEAN
     .. cpp:enumerator:: ::FIELD_TYPE_VARBINARY

@@ -162,6 +162,8 @@ Lua vs MsgPack
     +-------------------+----------------------+--------------------------------+----------------------------+
     | scalar            | double               | "`number`_"                    | 1.2345                     |
     +-------------------+----------------------+--------------------------------+----------------------------+
+    | scalar            | double               | "`cdata`_"                     | 1.2345                     |
+    +-------------------+----------------------+--------------------------------+----------------------------+
     | scalar            | bin                  | "`cdata`_"                     | [!!binary 3t7e]            |
     +-------------------+----------------------+--------------------------------+----------------------------+
     | scalar            | ext                  | (converted to exact number)    | 1.2                        |
@@ -205,7 +207,8 @@ byte, then the encoding of the second byte, and so on, so '2345' is less than '5
 
 .. _index-box_number:
 
-In Lua, a **number** is double-precision floating-point, but Tarantool allows both
+In Lua, a **number** is double-precision floating-point, but Tarantool
+'number' may have both
 integer and floating-point values. Tarantool will try to store a Lua number as
 floating-point if the value contains a decimal point or is very large
 (greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer.
@@ -215,6 +218,40 @@ or the ULL (Unsigned Long Long) suffix.
 Here are examples of numbers using regular notation, exponential notation,
 the ULL suffix and the ``tonumber64`` function:
 ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+
+.. _index-box_double:
+
+The Tarantool/SQL **double** field type exists
+mainly so that there will be an equivalent to Tarantool/SQL's
+:ref:`DOUBLE data type <sql_data_type_double>`.
+In MsgPack the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes.
+In Lua, 'double' fields can only contain non-integer numeric values and
+cdata values with double floating-point numbers.
+To avoid using the wrong kind of values inadvertently, use
+``ffi.cast()`` when searching or changing 'double' fields.
+For example, instead of
+:samp:`{space_object}:insert` :code:`{` :samp:`{value}` :code:`}`
+say
+``ffi = require('ffi') ...``
+:samp:`{space_object}:insert` :code:`({ffi.cast('double',` :samp:`{value}` :code:`)})`.
+Example:
+
+.. code-block:: none
+
+    s = box.schema.space.create('s', {format = {{'d', 'double'}}})
+    s:create_index('ii')
+    s:insert({1.1})
+    ffi = require('ffi')
+    s:insert({ffi.cast('double', 1)})
+    s:insert({ffi.cast('double', tonumber('123'))})
+    s:select(1.1)
+    s:select({ffi.cast('double', 1)})
+
+Arithmetic with cdata 'double' will not work reliably, so
+for Lua it is better to use the 'number' type.
+This warning does not apply for Tarantool/SQL because
+Tarantool/SQL does
+:ref:`implicit casting <sql_data_type_conversion>`.
 
 An **ext** (extension) value is an addition by Tarantool, not part of the
 formal MsgPack definition, for storage of decimal values. Values with the
@@ -271,7 +308,7 @@ data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' in
 contains only *non-negative* integer values and an ‘integer’ index contains *all*
 integer values.
 
-Here's how Tarantool indexed field types correspond to MsgPack data types.
+Here is how Tarantool indexed field types correspond to MsgPack data types.
 
 .. container:: table
 
@@ -306,6 +343,8 @@ Here's how Tarantool indexed field types correspond to MsgPack data types.
     |                            | (single-precision floating        |                      |                    |
     |                            | point number or double-precision  |                      |                    |
     |                            | floating point number)            |                      |                    |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **double**                 | **double**                        | TREE or HASH         | 1.234              |
     +----------------------------+-----------------------------------+----------------------+--------------------+
     | **string**                 | **string**                        | TREE, BITSET or HASH | ‘A B C’            |
     | (may also be called ‘str’) | (any set of octets,               |                      |                    |

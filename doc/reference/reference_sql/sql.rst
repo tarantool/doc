@@ -1024,7 +1024,7 @@ but for readability one would usually use spaces to separate tokens: |br|
 
 Literals
 
-There are five kinds of literals: BOOLEAN INTEGER NUMBER STRING VARBINARY.
+There are five kinds of literals: BOOLEAN INTEGER DOUBLE STRING VARBINARY.
 
 BOOLEAN literals:  |br|
 TRUE | FALSE | UNKNOWN |br|
@@ -1041,16 +1041,16 @@ Hexadecimal 0X55 is equal to decimal 85.
 A literal has :ref:`data type = INTEGER <sql_data_type_integer>` if it contains only digits and is in
 the range  -9223372036854775808 to +18446744073709551615, integers outside that range are illegal.
 
-NUMBER literals: |br|
+DOUBLE literals: |br|
 [plus-sign | minus-sign] [digit [digit ...]] period [digit [digit ...]] |br|
 [E|e [plus-sign | minus-sign] digit ...] |br|
 Examples: .0, 1.0, 1E5, 1.1E5. |br|
-A literal has :ref:`data type = NUMBER <sql_data_type_number>` if it contains a period, or contains "E".
-NUMBER literals are also known as real literals or floating-point literals or approximate-numeric literals.
+A literal has :ref:`data type = DOUBLE <sql_data_type_double>` if it contains a period, or contains "E".
+DOUBLE literals are also known as floating-point literals or approximate-numeric literals.
 To represent "Inf" (infinity), write a real number outside the double-precision number range, for example 1E309.
 To represent "nan" (not a number), write an expression that does not result in a real number,
 for example 0/0, using Tarantool/NoSQL. This will appear as NULL in Tarantool/SQL.
-In a future version literals containing periods will not be considered to be NUMBER literals.
+In an earlier version literals containing periods were considered to be :ref:`NUMBER <sql_data_type_number>` literals.
 In a future version "nan" may not appear as NULL.
 
 STRING literals: |br|
@@ -1094,7 +1094,7 @@ but it is not the same. ``box.execute("select 'A' < X'41';")`` returns true.
 This happens because ``TYPEOF(X'41')`` yields ``'varbinary'``.
 Also it is illegal to say ``UPDATE ... SET string_column = X'41'``,
 one must say ``UPDATE ... SET string_column = CAST(X'41' AS STRING);``. |br|
-~ It is non-standard to say that any number which contains a period has data type = NUMBER.
+~ It is non-standard to say that any number which contains a period has data type = DOUBLE.
 
 .. _sql_identifiers:
 
@@ -1296,6 +1296,8 @@ and minimum / maximum literal examples.
     +-----------+------------+------------+----------------------+-------------------------+
     | UNSIGNED  | unsigned   | (none)     | 0                    | 18446744073709551615    |
     +-----------+------------+------------+----------------------+-------------------------+
+    | DOUBLE    | double     | (none)     | -1.79769e308         | 1.79769e308             |
+    +-----------+------------+------------+----------------------+-------------------------+
     | NUMBER    | number     | (none)     | -1.79769e308         | 1.79769e308             |
     +-----------+------------+------------+----------------------+-------------------------+
     | STRING    | string     | TEXT,      | ``''``               | ``'many-characters'``   |
@@ -1323,13 +1325,23 @@ UNSIGNED values are numbers that do not contain decimal points and are not
 expressed with exponential notation. The range of possible values is
 between 0 and +2^64, or NULL.
 
-.. _sql_data_type_number:
+.. _sql_data_type_double:
 
-NUMBER values are numbers that do contain decimal points (for example 0.5) or
+DOUBLE values are numbers that do contain decimal points (for example 0.5) or
 are expressed with exponential notation (for example 5E-1).
 The range of possible values is the same as for the IEEE 754 floating-point
-standard, or NULL. Numbers outside the range of NUMBER literals may be displayed
+standard, or NULL. Numbers outside the range of DOUBLE literals may be displayed
 as -inf or inf.
+
+.. _sql_data_type_number:
+
+NUMBER values have the same range as DOUBLE values.
+But NUMBER values may also also be integers, and, if so,
+arithmetic operation results will be exact rather than approximate.
+There is no literal format for NUMBER (literals like ``1.5`` or ``1E555``
+are considered to be DOUBLEs), so use :ref:`CAST <sql_function_cast>`
+to insist that a number has data type NUMBER, but that is rarely necessary.
+See the description of NoSQL type :ref:`'number' <index-box_number>`.
 
 .. _sql_data_type_string:
 
@@ -1353,7 +1365,7 @@ MessagePack storage is MP_BIN (MsgPack binary).
 
 SCALAR can be used for
 :ref:`column definitions <sql_column_def_data_type>` but the individual column values have
-one of the preceding types -- BOOLEAN, INTEGER, UNSIGNED, NUMBER, STRING, or VARBINARY.
+one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, STRING, or VARBINARY.
 See more about SCALAR in the section
 :ref:`Column definition -- the rules for the SCALAR data type <sql_column_def_scalar>`.
 The data-type may be followed by :ref:`[COLLATE collation-name] <sql_collate_clause>`.
@@ -1541,7 +1553,7 @@ To ensure a desired precedence, use () parentheses.
 
 Special Situations
 
-If one of the operands has data type NUMBER, Tarantool uses floating-point arithmetic.
+If one of the operands has data type DOUBLE, Tarantool uses floating-point arithmetic.
 This means that exact results are not guaranteed and rounding may occur without warning.
 For example, 4.7777777777777778 = 4.7777777777777777 is TRUE.
 
@@ -1629,6 +1641,8 @@ Limitations: |br|
 * LIKE comparisons return integer results according to meta-information. |br|
 * LIKE is not expected to work with VARBINARY.
 
+.. _sql_data_type_conversion:
+
 Data Type Conversion
 
 Data type conversion, also called casting, is necessary for any operation involving two operands X and Y,
@@ -1642,18 +1656,18 @@ Assignments and operations involving NULL cause NULL or UNKNOWN results. |br|
 For arithmetic, convert to the data type which can contain both operands and the result. |br|
 For explicit casts, if a meaningful result is possible, the operation is allowed. |br|
 For implicit casts, if a meaningful result is possible and the data types on both sides
-are either STRINGs or numbers (that is, are STRING or INTEGER or UNSIGNED or NUMBER),
+are either STRINGs or numbers (that is, are STRING or INTEGER or UNSIGNED or DOUBLE or NUMBER),
 the operation is allowed.
 
 The specific situations in this chart follow the general rules:
 
 .. code-block:: none
 
-    ~                To BOOLEAN | To INTEGER | To NUMBER | To STRING | To VARBINARY
+    ~                To BOOLEAN | To INTEGER | To DOUBLE | To STRING | To VARBINARY
     ---------------  ----------   ----------   ---------   ---------   ------------
     From BOOLEAN   | AAA        | A--        | ---       | A--       | ---         
     From INTEGER   | A--        | AAA        | AAA       | AAA       | ---         
-    From NUMBER    | A--        | SSA        | AAA       | AAA       | ---         
+    From DOUBLE    | A--        | SSA        | AAA       | AAA       | ---         
     From STRING    | S--        | SSS        | SSS       | AAA       | A--         
     From VARBINARY | ---        | ---        | ---       | A--       | AAA         
 
@@ -1666,8 +1680,8 @@ So AAA = Always for explicit, Always for Implicit (assignment), Always for Impli
 
 The S "Sometimes allowed" character applies for these special situations: |br|
 From STRING To BOOLEAN is allowed if UPPER(string-value) = ``'TRUE'`` or ``'FALSE'``. |br|
-From NUMBER to INTEGER is allowed for cast and assignment only if the result is not out of range. |br|
-From STRING to INTEGER or NUMBER is allowed only if the string has a representation of a number.
+From DOUBLE to INTEGER is allowed for cast and assignment only if the result is not out of range. |br|
+From STRING to INTEGER or DOUBLE is allowed only if the string has a representation of a number.
 
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
 not the type of the column definition.
@@ -1684,7 +1698,7 @@ The result is 1.
 column is ``A--`` and the second letter of ``A--`` is for implicit cast (assignment) and - means not allowed.
 The result is an error message. 
 
-``1.7E-1 > 0`` is legal because the intersection of the "From NUMBER" row with the "To INTEGER"
+``1.7E-1 > 0`` is legal because the intersection of the "From DOUBLE" row with the "To INTEGER"
 column is AAA, and the third letter of AAA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.
 
@@ -1695,7 +1709,7 @@ The result is TRUE.  For detailed explanation see the following section.
 Implicit string/numeric cast
 
 Special considerations may apply for casting STRINGs
-to/from INTEGERs/NUMBERs (numbers) for comparison or assignment.
+to/from INTEGERs/DOUBLEs (numbers) for comparison or assignment.
 
 ``1 = '1' /* compare a STRING with a number */`` |br|
 ``UPDATE ... SET string_column = 1 /* assign a number to a STRING */``
@@ -1985,7 +1999,7 @@ Column definition -- data type
 |br|
 
 Every column has a data type:
-BOOLEAN or INTEGER or UNSIGNED or NUMBER or STRING or VARBINARY or SCALAR.
+BOOLEAN or INTEGER or UNSIGNED or DOUBLE or NUMBER or STRING or VARBINARY or SCALAR.
 The detailed description of data types is in the section
 :ref:`Operands <sql_operands>`.
 
@@ -2185,7 +2199,8 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
    CREATE TABLE t
    (column1 BOOLEAN, column2 BOOL,
     column3 INT PRIMARY KEY, column4 INTEGER,
-    column4 NUMBER,
+    column5 DOUBLE,
+    column6 NUMBER,
     column7 STRING, column8 STRING COLLATE "unicode",
     column9 TEXT, columna TEXT COLLATE "unicode_sv_s1",
     columnb VARCHAR(0), columnc VARCHAR(100000) COLLATE "binary",
@@ -3864,7 +3879,7 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then BOOLEANs, then numbers (INTEGER or NUMBER), then STRINGs, then VARBINARYs.
+* NULLs come first, then BOOLEANs, then numbers (INTEGER or DOUBLE), then STRINGs, then VARBINARYs.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified with a :ref:`COLLATE clause <sql_collate_clause>` within the ORDER BY column-list, or may be default.
 
@@ -4972,7 +4987,7 @@ Syntax:
 
 :samp:`LIKELIHOOD({expression}, {number literal})`
 
-Return the result of the expression, provided that the number literal is between 0 and 1.
+Return the result of the expression, provided that the number literal is between 0.0 and 1.0.
 
 Example: ``LIKELIHOOD('a' = 'b', .0)`` is FALSE
 
@@ -5307,7 +5322,7 @@ Return the :ref:`data type <sql_column_def_data_type>` of the expression.
 Examples:
 ``TYPEOF('A')`` returns 'string';
 ``TYPEOF(RANDOMBLOB(1))`` returns 'varbinary';
-``TYPEOF(1e44)`` returns 'number';
+``TYPEOF(1e44)`` returns 'double' or 'number';
 ``TYPEOF(-44)`` returns 'integer';
 ``TYPEOF(NULL)`` returns 'boolean'
 
