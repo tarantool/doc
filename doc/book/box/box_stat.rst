@@ -34,7 +34,7 @@ limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]".
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.stat() -- return 10 tables
+    tarantool> box.stat() -- return 11 tables
     ---
     - DELETE:
         total: 1873949
