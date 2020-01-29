@@ -7,10 +7,11 @@ Functions for SQL
 The ``box`` module contains two functions related to SQL:
 
 * ``box.internal.sql_create_function`` -- for making Lua functions callable from
-  SQL statements. This, or an SQL statement with the same effect, will be part of
-  the documentation regarding SQL Plus Lua.
+  SQL statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>`
+  in the :ref:`SQL Plus Lua <sql_sql_plus_lua>` section.
 
 * ``box.execute`` -- for making SQL statements callable from Lua functions.
+  See the :ref:`SQL user guide <sql_sql_user_guide>`.
 
 Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
@@ -20,7 +21,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     Execute the SQL statement contained in the sql-statement parameter.
 
-    :param string sql-statement: statement, which should conform to the rules for SQL grammar
+    :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_sql_statements_and_clauses>`
     :param table extra-parameters: optional list for placeholders in the statement
 
     :return: depends on statement

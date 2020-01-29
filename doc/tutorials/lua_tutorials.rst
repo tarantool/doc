@@ -631,7 +631,8 @@ the function should yield after every
 10 tuples, unless there is a reason to delay yielding. |br|
 With this function, we can take advantage of Tarantool's indexes
 for speed, and take advantage of Lua's pattern matching for flexibility.
-It does everything that an SQL "LIKE" search can do, and far more.
+It does everything that an SQL
+:ref:`LIKE <sql_operator_like>` search can do, and far more.
 
 Read the following Lua code to see how it works.
 The comments that begin with "SEE NOTE ..." refer to long
