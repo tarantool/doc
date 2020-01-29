@@ -4795,6 +4795,8 @@ Tarantool supports 32 built-in functions.
 
 The maximum number of operands for any function is 127.
 
+The required privileges for built-in functions will likely change in a future version.
+
 .. _sql_function_abs:
 
 ***********************************************
