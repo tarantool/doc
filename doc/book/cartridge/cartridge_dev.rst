@@ -182,9 +182,11 @@ way. **Cluster roles** are Lua modules that implement some instance-specific
 functions and/or logic.
 
 Since all instances running cluster applications use the same source code and
-are aware of all the defined roles (and plugged modules), multiple different
-roles can be dynamically enabled and disabled on any number of instances
-without restarts even during cluster operation.
+are aware of all the defined roles (and plugged modules), you can dynamically
+enable and disable multiple different roles on any number of instances
+without restarts, even during cluster operation. Roles are enabled *per replicaset*, 
+so the enabled roles are available to each instance of the replicaset.
+See :ref:`this guide <cartridge-deployment>` for a step-by-step setup example.
 
 .. _cartridge-built-in-roles:
 
