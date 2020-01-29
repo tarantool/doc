@@ -13512,13 +13512,7 @@ msgstr ""
 
 #: ../doc/book/box/box_info.rst:70
 msgid "**memory().lua** -- number of bytes used for Lua runtime."
-<<<<<<< HEAD
-msgstr ""
-"**memory().lua** -- количество байтов, используемых для времени "
-"исполнения Lua-кода."
-=======
 msgstr "**memory().lua** -- количество байтов, используемых Lua-интерпретатором."
->>>>>>> 9e96ddd3... gh-1071 fix translation
 
 #: ../doc/book/box/box_info.rst:71
 msgid "**memory().net** -- number of bytes used for network input/output buffers."
