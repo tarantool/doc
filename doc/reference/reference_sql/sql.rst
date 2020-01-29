@@ -1805,9 +1805,9 @@ exist. Example: |br|
 ``-- renaming a table:``
 ``ALTER TABLE t1 RENAME TO t2;``
 
-For adding a :ref:`table constraint <sql_table_constraints>` with ``ADD CONSTRAINT``,
+For adding a :ref:`table constraint <sql_table_constraint_def>` with ``ADD CONSTRAINT``,
 the table must exist, the table must be empty,
-the constraint name must not already exist for the table.
+the constraint name must be unique within the table.
 Example with a :ref:`foreign-key constraint definition <sql_foreign_key>`: |br|
 ``ALTER TABLE t1 ADD CONSTRAINT fk_s1_t1_1 FOREIGN KEY (s1) REFERENCES t1;`` |br|
 
@@ -1902,7 +1902,7 @@ of :ref:`column definitions <sql_column_def>` or table constraints.
 
 A *table-element-list* must be a comma-separated list of table elements;
 each table element may be either a column definition or a
-:ref:`table constraint definition <sql_table_constraints>`.
+:ref:`table constraint definition <sql_table_constraint_def>`.
 
 Rules:
 
@@ -2120,36 +2120,36 @@ The column-constraint or default clause may be as follows:
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
-    +--------------------+---------------------------------------------------+
-    | Type               | Comment                                           |
-    +====================+===================================================+
-    | NOT NULL           | means                                             |
-    |                    | "it is illegal to assign a NULL to this column"   |
-    +--------------------+---------------------------------------------------+
-    | PRIMARY KEY        | explained in the later section                    |
-    |                    | "Table Constraint definition"                     |
-    +--------------------+---------------------------------------------------+
-    | UNIQUE             | explained in the later section                    |
-    |                    | "Table Constraint definition"                     |
-    +--------------------+---------------------------------------------------+
-    | CHECK (expression) | explained in the later section                    |
-    |                    | "Table Constraint definition"                     |
-    +--------------------+---------------------------------------------------+
-    | DEFAULT expression | means                                             |
-    |                    | "if INSERT does not assign to this column         |
-    |                    | then assign expression result to this column" --  |
-    |                    | if there is no DEFAULT clause then DEFAULT NULL   |
-    |                    | is assumed.                                       |
-    +--------------------+---------------------------------------------------+
+    +--------------------+-----------------------------------------------------------------+
+    | Type               | Comment                                                         |
+    +====================+=================================================================+
+    | NOT NULL           | means                                                           |
+    |                    | "it is illegal to assign a NULL to this column"                 |
+    +--------------------+-----------------------------------------------------------------+
+    | PRIMARY KEY        | explained in the later section                                  |
+    |                    | :ref:`"Table Constraint Definition" <sql_table_constraint_def>` |
+    +--------------------+-----------------------------------------------------------------+
+    | UNIQUE             | explained in the later section                                  |
+    |                    | "Table Constraint Definition"                                   |
+    +--------------------+-----------------------------------------------------------------+
+    | CHECK (expression) | explained in the later section                                  |
+    |                    | "Table Constraint Definition"                                   |
+    +--------------------+-----------------------------------------------------------------+
+    | DEFAULT expression | means                                                           |
+    |                    | "if INSERT does not assign to this column                       |
+    |                    | then assign expression result to this column" --                |
+    |                    | if there is no DEFAULT clause then DEFAULT NULL                 |
+    |                    | is assumed.                                                     |
+    +--------------------+-----------------------------------------------------------------+
 
 If column-constraint is PRIMARY KEY, this is a shorthand for a separate
-:ref:`table-constraint definition <sql_table_constraints>`: "PRIMARY KEY (column-name)".
+:ref:`table-constraint definition <sql_table_constraint_def>`: "PRIMARY KEY (column-name)".
 
 If column-constraint is UNIQUE, this is a shorthand for a separate
-:ref:`table-constraint definition <sql_table_constraints>`: "UNIQUE (column-name)".
+:ref:`table-constraint definition <sql_table_constraint_def>`: "UNIQUE (column-name)".
 
 If column-constraint is CHECK, this is a shorthand for a separate
-:ref:`table-constraint definition <sql_table_constraints>`: "CHECK (expression)".
+:ref:`table-constraint definition <sql_table_constraint_def>`: "CHECK (expression)".
 
 Columns defined with PRIMARY KEY are automatically NOT NULL.
 
@@ -2202,10 +2202,10 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
     column4 INTEGER REFERENCES t,
     column6 INTEGER DEFAULT NULL);
 
-.. _sql_table_constraints:
+.. _sql_table_constraint_def:
 
 *******************************
-Table Constraints
+Table Constraint Definition
 *******************************
 
 Syntax:
@@ -2222,6 +2222,7 @@ Syntax:
 Define a constraint, which is a table-element used in a CREATE TABLE statement.
 
 The constraint-name must be an identifier which is valid according to the rules for identifiers.
+The constraint-name must be unique within the table.
 
 PRIMARY KEY constraints look like this: |br|
 :samp:`PRIMARY KEY ({column-name} [, {column-name}...])`
@@ -5395,7 +5396,7 @@ The collation-name must identify an existing collation.
 The COLLATE clause is allowed for STRING or SCALAR items: |br|
 () in :ref:`CREATE INDEX <sql_create_index>` |br|
 () in :ref:`CREATE TABLE <sql_create_table>` as part of :ref:`column definition <sql_column_def>` |br|
-() in CREATE TABLE as part of :ref:`UNIQUE definition <sql_table_constraints>` |br|
+() in CREATE TABLE as part of :ref:`UNIQUE definition <sql_table_constraint_def>` |br|
 () in string expressions |br|
 
 Examples:
