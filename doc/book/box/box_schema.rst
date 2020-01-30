@@ -665,6 +665,8 @@ Below is a list of all ``box.schema`` functions.
     * ``body`` = function definition (default = nil) - string;
       the function definition.
 
+    * Additional options for SQL = See :ref:`Calling Lua routines from SQL <sql_calling_lua>`.
+
     :param string func-name: name of function, which should
                              conform to the :ref:`rules for object names <app_server-names>`
     :param table options: ``if_not_exists``, ``setuid``, ``language``,
