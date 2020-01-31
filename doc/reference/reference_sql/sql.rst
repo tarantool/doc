@@ -4385,11 +4385,12 @@ Transactions should be active for fairly short periods of time, to avoid
 concurrency issues. To end a transaction, say :ref:`COMMIT; <sql_commit>` or :ref:`ROLLBACK; <sql_rollback>`.
 
 Just as in NoSQL, transaction control statements are subject to limitations
-set by the :ref:`storage engine <engines-chapter>` involved:
-
-* For the memtx storage engine, if a yield happens
-  within an active transaction, the transaction is rolled back.
-* For the vinyl engine, yields are allowed.
+set by the :ref:`storage engine <engines-chapter>` involved: |br|
+* For the memtx storage engine, if a yield happens within an active transaction, the transaction is rolled back. |br|
+* For the vinyl engine, yields are allowed. |br|
+Also, although CREATE AND DROP and ALTER statements are legal in transactions,
+there are a few exceptions. For example, :samp:`CREATE INDEX ON {table_name} ...` will fail within a
+multi-statement transaction if the table is not empty.
 
 However,transaction control statements still may not work as you expect when
 run over a network connection:
