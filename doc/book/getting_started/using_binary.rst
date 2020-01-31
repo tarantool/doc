@@ -280,7 +280,7 @@ application for Tarantool using `lua` language.
 
 Let’s get started!
 
-Create project directory. All commands from this tutorial will be executed in this directory.
+Create a project directory. All commands from this tutorial will be executed in this directory.
 
 .. code-block:: console
 
@@ -302,6 +302,12 @@ looking like this:
     └── myproject
         ├── .rocks
         └── app.lua
+
+``.rocks`` folder contains a project-specific modules which is installed by
+a command ``tarantoolctl rocks install <module_name>``
+
+``app.lua`` is an entry point for the application, it will be used for the
+project launching by a command ``tarantool app.lua``
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating Hello World web application
@@ -332,8 +338,8 @@ are responsible for serving http requests and routing them to the appropriate ha
     local router = require('http.router').new()
     httpd:set_router(router)
 
-Add ``hello_world_handler`` — it is a function which receives
-request variable as argument and returns text response ``Hello World!``.
+Add ``hello_world_handler`` — it is a function which receives a
+request variable as argument and returns a text response ``Hello World!``.
 ``router:route()`` method connects url path to the correspondent handler.
 Finally, run http server with ``httpd:start()`` command.
 
@@ -409,7 +415,7 @@ Let's pre-populate our database with the data from the previous lesson to our
 web application. We'll use ``box.once()`` which executes a function, provided it
 has not been executed before.
 
-Add this code after ``box.cfg{}`` line in app.lua
+Add following code after ``box.cfg{}`` line in app.lua
 
 .. code-block:: lua
 
@@ -441,25 +447,32 @@ pre-populated database and a corresponding route.
     router:route({ path = '/bands', method = 'GET' }, bands_json_handler)
 
 
-As a result we can see
+Now our application is able to return pre-populated bands in json format.
 
-Using html template. Place this lua html template code into templates/template.html.lua.
+Run ``tarantool app.lua`` again and see what's happened on http://127.0.0.1:8080/bands
+You'll see the same output in the browser:
 
-.. code-block:: html
+.. code-block:: console
 
-<html>
-<body>
-    <table border="1">
-        % for i,v in pairs(bands) do
-        <tr>
-            <td><%= i %></td>
-            <td><%= v.year %></td>
-            <td><%= v.band_name %></td>
-        </tr>
-        % end
-    </table>
-</body>
-</html>
+    {"bands":[[1,"Roxette",1986],[2,"Scorpions",2015],[3,"Ace of Base",1993]]}
+
+Let's add html template. Place this lua html template code into templates/template.html.lua.
+
+.. code-block:: lua
+
+    <html>
+    <body>
+        <table border="1">
+            % for i,v in pairs(bands) do
+            <tr>
+                <td><%= i %></td>
+                <td><%= v.year %></td>
+                <td><%= v.band_name %></td>
+            </tr>
+            % end
+        </table>
+    </body>
+    </html>
 
 Then add appropriate handler and route.
 
@@ -520,6 +533,5 @@ As a result your ``app.lua`` file must contain:
     router:route({ path = '/bands_html', method = 'GET', file = 'template.html.lua' }, bands_html_handler)
 
     httpd:start()
-
 
 For more Tarantool code samples visit cookbook page https://www.tarantool.io/en/doc/2.2/book/app_server/cookbook/
