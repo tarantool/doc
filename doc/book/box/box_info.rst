@@ -31,6 +31,8 @@ variables.
   or if status is 'orphan'.
 * **signature** is the sum of all **lsn** values from the vector clocks
   (**vclock**) of all instances in the replica set.
+* **sql().cache.size** is the number of bytes in the SQL prepared statement cache.
+* **sql().cache.stmt_count** is the number of statements in the SQL prepared statement cache.
 * **status** corresponds to **replication.upstream.status** (see below).
 * **uptime** is the number of seconds since the instance started.
   This value can also be retrieved with

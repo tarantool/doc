@@ -29,7 +29,7 @@ Below is a list of all ``box.space`` functions and members.
     | Name                                         | Use                             |
     +==============================================+=================================+
     | :ref:`space_object:auto_increment()          | Generate key + Insert a tuple   |
-    | <box_space-auto_increment>`                  |                                 |
+    | <box_space-auto>`                            |                                 |
     +----------------------------------------------+---------------------------------+
     | :ref:`space_object:bsize()                   | Get count of bytes              |
     | <box_space-bsize>`                           |                                 |
@@ -171,7 +171,7 @@ Below is a list of all ``box.space`` functions and members.
 
 .. class:: space_object
 
-    .. _box_space-auto_increment:
+    .. _box_space-auto:
 
     .. method:: auto_increment(tuple)
 

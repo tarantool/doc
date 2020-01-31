@@ -4,6 +4,7 @@
 * :ref:`memtx_dir <cfg_basic-memtx_dir>`
 * :ref:`pid_file <cfg_basic-pid_file>`
 * :ref:`read_only <cfg_basic-read_only>`
+* :ref:`sql_cache_size <cfg_basic-sql_cache_size>`
 * :ref:`vinyl_dir <cfg_basic-vinyl_dir>`
 * :ref:`vinyl_timeout <cfg_basic-vinyl_timeout>`
 * :ref:`username <cfg_basic-username>`
@@ -128,6 +129,17 @@
         +------------+-----------------+--------------------+----------------+----------------+
         | is_local   | no              | yes                | no             | yes            |
         +------------+-----------------+--------------------+----------------+----------------+
+
+.. _cfg_basic-sql_cache_size:
+
+.. confval:: sql_cache_size
+
+    The maximum number of bytes in the cache for :ref:`SQL prepared statements <box-sql_box_prepare>`.
+    (The number of bytes that are actually used can be seen with :ref:`box.info.sql().cache.size <box_introspection-box_info>`.)
+
+    | Type: number
+    | Default: 5242880
+    | Dynamic: yes
 
 .. _cfg_basic-vinyl_dir:
 

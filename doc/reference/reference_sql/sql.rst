@@ -5596,6 +5596,9 @@ To make spaces with field names that SQL can understand, use
 To handle replication and sharding of SQL data, see section
 :ref:`Sharding <shard-module>`.
 
+To enhance performance of SQL statements by preparing them in advance, see section
+:ref:`box.prepare() <box-sql_box_prepare>`.
+
 Limitations: (`Issue#2368 <https://github.com/tarantool/tarantool/issues/2368>`_) |br|
 * after ``box.schema.user.grant('guest','read,write,execute','universe')``, user ``'guest'`` can create tables. But this is a powerful set of privileges..
 

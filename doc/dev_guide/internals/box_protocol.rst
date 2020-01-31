@@ -179,7 +179,7 @@ and encoding.
 
 The protocol uses maps that contain some integer constants as keys.
 These constants are defined in `src/box/iproto_constants.h
-<https://github.com/tarantool/tarantool/blob/2.1/src/box/iproto_constants.h>`_.
+<https://github.com/tarantool/tarantool/blob/2.3/src/box/iproto_constants.h>`_.
 We list common constants here:
 
 .. code-block:: none
@@ -200,9 +200,13 @@ We list common constants here:
     <iproto_ops>           ::= 0x28
     <iproto_data>          ::= 0x30
     <iproto_error>         ::= 0x31
+    <iproto_metadata>      ::= 0x32
+    <iproto_bind_metadata> ::= 0x33
+    <iproto_bind_count>    ::= 0x34
     <iproto_sql_text>      ::= 0x40
     <iproto_sql_bind>      ::= 0x41
     <iproto_sql_info>      ::= 0x42
+    <iproto_stmt_id>       ::= 0x43
     <iproto_replica_anon>  ::= 0x50
 
 .. code-block:: none
@@ -221,7 +225,8 @@ We list common constants here:
     <iproto_call>           ::= 0x0a
     <iproto_execute>        ::= 0x0b
     <iproto_nop>            ::= 0x0c
-    <iproto_type_stat_max>  ::= 0x0d
+    <iproto_prepare>        ::= 0x0d
+    <iproto_type_stat_max>  ::= 0x0e
     -- Admin command codes
     -- (including codes for replica-set initialization and master election)
     <iproto_ping>           ::= 0x40
