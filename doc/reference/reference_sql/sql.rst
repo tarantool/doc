@@ -2270,8 +2270,11 @@ Examples:
 PRIMARY KEY plus AUTOINCREMENT modifier may be specified in one of two ways: |br|
 - In a column definition after the words PRIMARY KEY, as in ``CREATE TABLE t (c INTEGER PRIMARY KEY AUTOINCREMENT);`` |br|
 - In a PRIMARY KEY (column-list) after a column name, as in ``CREATE TABLE t (c INTEGER, PRIMARY KEY (c AUTOINCREMENT));`` |br|
-When AUTOINCREMENT is specified, the column must be a primary-key column and it must be INTEGER or UNSIGNED.
+When AUTOINCREMENT is specified, the column must be a primary-key column and it must be INTEGER or UNSIGNED. |br|
 Only one column in the table may be autoincrement.
+However, it is legal to say ``PRIMARY KEY (a, b, c AUTOINCREMENT)`` -- in that case, there
+are three columns in the primary key but only the first column (``a``) is AUTOINCREMENT.
+
 As the name suggests, values in an autoincrement column are automatically incremented.
 That is: if a user inserts NULL in the column, then the stored value will be the smallest
 non-negative integer that has not already been used.
