@@ -534,4 +534,9 @@ As a result your ``app.lua`` file must contain:
 
     httpd:start()
 
+If you visit http://127.0.0.1/bands_html in the browser you'll see the following content:
+
+.. figure:: bands_html.png
+   :target: #
+
 For more Tarantool code samples visit cookbook page https://www.tarantool.io/en/doc/2.2/book/app_server/cookbook/

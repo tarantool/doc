@@ -27,7 +27,7 @@ This chapter contains the following sections:
 
 .. figure:: docker-logo.png
    :scale: 20%
-   :target: https://www.docker.com
+   :target: https://hub.docker.com/r/tarantool/tarantool/
 
 |
 
