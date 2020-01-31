@@ -4,19 +4,22 @@
 Using a binary package
 ================================================================================
 
-For production purposes, we recommend
-`official binary packages <http://tarantool.org/download.html>`_.
-You can choose from two Tarantool versions: ``1.10`` (stable) or ``2.2`` (beta).
-An automatic build system creates, tests and publishes packages for every
-push into a corresponding branch (``1.10`` or ``2.2``) at
-`Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
+--------------------------------------------------------------------------------
+Pre-requisites
+--------------------------------------------------------------------------------
 
-To download and install the package that’s appropriate for your OS,
-start a shell (terminal) and enter the command-line instructions provided
-for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
+The only pre-requisite is to install Tarantool.
+
+We recommend taking an official binary package.
+At our `download page <https://www.tarantool.io/en/download/>`_, you'll find
+command-line instructions for all supported operating systems.
+To download and install the package for your OS, just copy and paste the
+instructions to your terminal shell.
+
+.. _getting_started-using_binary_database:
 
 --------------------------------------------------------------------------------
-Creating database using Tarantool console
+Lesson 1. Your first Tarantool database
 --------------------------------------------------------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,6 +48,8 @@ Now you can enter requests on the command line.
     On production machines, Tarantool's interactive mode is for system
     administration only. But we use it for most examples in this manual,
     because the interactive mode is convenient for learning.
+
+.. _getting_started-using_binary_database_create:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a database
@@ -272,51 +277,52 @@ When the testing is over:
 * To destroy the test: ``rm -r ~/tarantool_sandbox``
 
 --------------------------------------------------------------------------------
-First Tarantool application
+Lesson 2. Your first Tarantool application
 --------------------------------------------------------------------------------
 
-In this guide, we will demonstrate how to create `Hello World!`
-application for Tarantool using `lua` language.
+In this guide, we will develop a simple `Hello world!`
+application for Tarantool using the Lua language.
 
 Let’s get started!
 
-Create a project directory. All commands from this tutorial will be executed in this directory.
+Create a project directory:
 
 .. code-block:: console
 
     $ mkdir myproject
     $ cd myproject
 
-Install dependencies for our web application
+All commands from this tutorial will be executed in this directory.
+
+Install dependencies for our web application:
 
 .. code-block:: console
 
     $ tarantoolctl rocks install http
 
-Create an empty file app.lua in the project directory which content will be
-looking like this:
+Create an empty ``app.lua`` file in the project directory:
 
-.. code-block:: console
+.. code-block:: text
 
     .
     └── myproject
         ├── .rocks
         └── app.lua
 
-``.rocks`` folder contains a project-specific modules which is installed by
-a command ``tarantoolctl rocks install <module_name>``
+The ``.rocks`` folder contains project-specific modules installed with
+``tarantoolctl rocks install <module_name>``.
 
-``app.lua`` is an entry point for the application, it will be used for the
-project launching by a command ``tarantool app.lua``
+The ``app.lua`` file is an entry point for the application. It will be used for
+launching the project with ``tarantool app.lua``
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Creating Hello World web application
+Creating the application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Let's write some lua code in ``app.lua`` to create `hello world!` application.
+Let's write some Lua code in ``app.lua``.
 
-First, add `shebang` line and ``box.cfg{}`` with no parameters for applying
-default Tarantool settings
+First, add a shebang line and ``box.cfg{}`` with no parameters for applying
+default Tarantool settings:
 
 .. code-block:: lua
 
@@ -324,8 +330,9 @@ default Tarantool settings
 
     box.cfg{}
 
-Import and initiate ``http.server`` and ``http.router`` modules. These two modules
-are responsible for serving http requests and routing them to the appropriate handlers.
+Import and initiate the ``http.server`` and ``http.router`` modules. These two modules
+are responsible for serving HTTP requests and routing them to the appropriate handlers.
+
 ``httpd:set_router(router)`` connects the router and the server together.
 
 .. code-block:: lua
@@ -338,10 +345,11 @@ are responsible for serving http requests and routing them to the appropriate ha
     local router = require('http.router').new()
     httpd:set_router(router)
 
-Add ``hello_world_handler`` — it is a function which receives a
-request variable as argument and returns a text response ``Hello World!``.
-``router:route()`` method connects url path to the correspondent handler.
-Finally, run http server with ``httpd:start()`` command.
+Add ``hello_world_handler`` -- a function which receives a request variable
+as argument and returns a text response saying ``Hello world!``.
+
+The ``router:route()`` method connects the URL path to the corresponding handler.
+Finally, run the HTTP server with ``httpd:start()``.
 
 .. code-block:: lua
 
@@ -354,7 +362,7 @@ Finally, run http server with ``httpd:start()`` command.
     httpd:set_router(router)
 
     local hello_world_handler = function(req)
-        return req:render({text = "Hello World!"})
+        return req:render({text = "Hello world!"})
     end
 
     router:route({ path = '/', method = 'GET' }, hello_world_handler)
@@ -362,28 +370,28 @@ Finally, run http server with ``httpd:start()`` command.
     httpd:start()
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Launch app.lua
+Launching the application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Say:
 
 .. code-block:: console
 
     $ tarantool app.lua
 
-**OR**
-
-Make app.lua executable
+Alternatively, make ``app.lua`` executable:
 
 .. code-block:: console
 
     $ chmod +x app.lua
 
-and run it
+and run it:
 
 .. code-block:: console
 
     $ ./app.lua
 
-After running the application you will see the similar output
+After running the application, you will see a similar output:
 
 .. code-block:: console
 
@@ -403,19 +411,21 @@ After running the application you will see the similar output
     2020-01-24 13:45:17.421 [9539] main/102/myapp.lua I> set 'listen' configuration option to "3313"
     2020-01-24 13:45:17.423 [9539] main C> entering the event loop
 
-The last string in the output tells user that http server have started successfully.
-Now you can go in your favorite browser to http://127.0.0.1:8080 and see
-``Hello World!`` there.
+The last string in the output says that the HTTP server was started successfully.
+Now you can bowse to http://127.0.0.1:8080 and see the canonic
+``Hello world!`` there.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Pre-populating database
+Pre-populating the database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Let's pre-populate our database with the data from the previous lesson to our
-web application. We'll use ``box.once()`` which executes a function, provided it
-has not been executed before.
+Let's pre-populate our database with the data from the
+:ref:`previous lesson <getting_started-using_binary_database_create>`
+so that our web application could use it.
+We'll use ``box.once()`` which executes a function only once over your Tarantool
+instance life.
 
-Add following code after ``box.cfg{}`` line in app.lua
+Add the following code after ``box.cfg{}`` in ``app.lua``:
 
 .. code-block:: lua
 
@@ -435,8 +445,8 @@ Add following code after ``box.cfg{}`` line in app.lua
         box.space.tester:insert{3, 'Ace of Base', 1993}
     end)
 
-Also you need to add a handler which will return the music bands from our
-pre-populated database and a corresponding route.
+You also need to add a **handler** which will return the music bands from our
+pre-populated database, and a corresponding **route**.
 
 .. code-block:: lua
 
@@ -446,17 +456,17 @@ pre-populated database and a corresponding route.
 
     router:route({ path = '/bands', method = 'GET' }, bands_json_handler)
 
+Now our application can return pre-populated bands in the JSON format.
 
-Now our application is able to return pre-populated bands in json format.
-
-Run ``tarantool app.lua`` again and see what's happened on http://127.0.0.1:8080/bands
-You'll see the same output in the browser:
+Run ``tarantool app.lua`` again and check what's on http://127.0.0.1:8080/bands
+-- you'll see this output in your browser:
 
 .. code-block:: console
 
     {"bands":[[1,"Roxette",1986],[2,"Scorpions",2015],[3,"Ace of Base",1993]]}
 
-Let's add html template. Place this lua html template code into templates/template.html.lua.
+Not too human readable. Let's add an HTML template.
+Paste this code into ``templates/template.html.lua``:
 
 .. code-block:: lua
 
@@ -474,7 +484,7 @@ Let's add html template. Place this lua html template code into templates/templa
     </body>
     </html>
 
-Then add appropriate handler and route.
+Then add an appropriate handler and route:
 
 .. code-block:: lua
 
@@ -485,10 +495,10 @@ Then add appropriate handler and route.
     router:route({ path = '/bands_html', method = 'GET', file = 'template.html.lua' }, bands_handler)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Result
+Results
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As a result your ``app.lua`` file must contain:
+As a result, your ``app.lua`` file must contain this code:
 
 .. code-block:: lua
 
@@ -517,7 +527,7 @@ As a result your ``app.lua`` file must contain:
     httpd:set_router(router)
 
     local function hello_world_handler(req)
-       return req:render({text = "Hello World!"})
+       return req:render({text = "Hello world!"})
     end
 
     local function bands_json_handler(req)
@@ -534,9 +544,9 @@ As a result your ``app.lua`` file must contain:
 
     httpd:start()
 
-If you visit http://127.0.0.1/bands_html in the browser you'll see the following content:
+If you browse to http://127.0.0.1/bands_html, you'll see the following content:
 
 .. figure:: bands_html.png
    :target: #
 
-For more Tarantool code samples visit cookbook page https://www.tarantool.io/en/doc/2.2/book/app_server/cookbook/
+For more code samples, visit our :ref:`cookbook page <cookbook>`.
