@@ -210,7 +210,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     Parameter ``prepared_table`` should be the result from ``box.prepare()``.
 
-    There are two ways to unprepare: with the method or with the statmeent id.
+    There are two ways to unprepare: with the method or with the statement id.
     That is, :samp:`{prepared_table}:unprepare()` and :samp:`box.unprepare({prepared_table}.stmt_id)` do the same thing.
 
     Tarantool strongly recommends using ``unprepare`` as soon as the immediate
