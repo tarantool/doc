@@ -935,7 +935,7 @@ In alphabetical order, the following statements are legal.
 |nbsp| :ref:`INSERT INTO table-name <sql_insert>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[(column-name [, column-name ...])] <sql_insert>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`VALUES (expression [, expression ...]); <sql_insert>` |br|
-|nbsp| :ref:`PRAGMA [pragma-name(value) | pragma-name=value]; <sql_pragma>` |br|
+|nbsp| :ref:`PRAGMA pragma-name[(value)]; <sql_pragma>` |br|
 |nbsp| :ref:`RELEASE SAVEPOINT savepoint-name; <sql_release_savepoint>` |br|
 |nbsp| :ref:`REPLACE INTO table-name VALUES (expression [, expression ...]); <sql_replace>` |br|
 |nbsp| :ref:`ROLLBACK [TO [SAVEPOINT] savepoint-name]; <sql_rollback>` |br|
@@ -4584,41 +4584,26 @@ PRAGMA
 
 Syntax:
 
-* :samp:`PRAGMA {pragma-name} = pragma-value;`
-* or :samp:`PRAGMA {pragma-name} (pragma-value);`
-* or (rarely) :samp:`PRAGMA {pragma-name};`
-* or (once) :samp:`PRAGMA;`
+* :samp:`PRAGMA {pragma-name} (pragma-value);`
+* or :samp:`PRAGMA {pragma-name};`
 
 .. image:: pragma.svg
     :align: left
 
-Some PRAGMA statements will change DBMS behavior.
-Others will give rudimentary information about table 'metadata',
-although it is better to get such information via :ref:`system tables <sql_system_tables>`.
+PRAGMA statements will give rudimentary information about database 'metadata' or
+server performance,
+although it is better to get metadata via :ref:`system tables <sql_system_tables>`.
 
-We recommend: use ``PRAGMA pragma-name(pragma-value);`` rather than ``PRAGMA pragma-name = pragma-value;``.
+For PRAGMA statements that include (``pragma-value``),
+pragma values are strings and can be specified inside ``""`` double quotes,
+or without quotes.
+When a string is used for searching, results must match according to a
+binary collation. If the object being searched has a lower-case name,
+use double quotes.
 
-Often pragma values are INTEGER but can be treated as BOOLEAN,
-and can be specified with any of:
-``true`` | ``on`` | ``1`` | ``yes`` | ``'true'`` | ``'on'`` | ``'yes'`` ...
-``false`` | ``off`` | ``0`` | ``no`` | ``'false'`` | ``'off'`` | ``'no'``.
-We recommend: use TRUE or FALSE.
-
-Less commonly pragma values are strings and can be specified with any of: inside ``""`` double quotes,
-inside ``''`` single quotes, or without quotes. We recommend: use single quotes.
-When a string is used for searching, results must match according to a binary collation.
-
-``PRAGMA;`` -- returns an incomplete list of pragmas and their current values.
-
-**Pragma statements that determine behavior**
-
-In a forthcoming version, behavior change will be done by updating a system table,
-as described in `Issue#4511 <https://github.com/tarantool/tarantool/issues/4511>`_.
-Also one of the settings will be affected by
-`Issue#3792 <https://github.com/tarantool/tarantool/issues/3792>`_.
-Therefore use of PRAGMA for determining behavior is deprecated.
-
-**Pragma statements that display data about the data and the server performance**
+In an earlier version, there were some PRAGMA statements that determined behavior.
+Now that does not happen. Behavior change is done by updating the
+:ref:`box.space._session_settings <box_space-session_settings>` system table.
 
 .. container:: table
 
@@ -4654,11 +4639,11 @@ Therefore use of PRAGMA for determining behavior is deprecated.
     | index_info          | string |br|     | Return a result set with one row for each       |
     |                     | table-name .    | column in "table-name.index-name".              |
     |                     | index-name      | Each row contains: |br|                         |
-    |                     | (do not use     | (INTEGER) seqno -- the column's ordinal         |
-    |                     | quote marks,    | position in the index (first column is 0) |br|  |
-    |                     | for example say | (INTEGER) cid -- the column's ordinal           |
-    |                     | ``T.I`` not     | position in the table (first column is 0) |br|  |
-    |                     | ``'T.I'``)      | (STRING) name -- name of the column |br|        |
+    |                     |                 | (INTEGER) seqno -- the column's ordinal         |
+    |                     |                 | position in the index (first column is 0) |br|  |
+    |                     |                 | (INTEGER) cid -- the column's ordinal           |
+    |                     |                 | position in the table (first column is 0) |br|  |
+    |                     |                 | (STRING) name -- name of the column |br|        |
     |                     |                 | (INTEGER) desc -- 0 if ASC, 1 if DESC |br|      |
     |                     |                 | (STRING) collation name |br|                    |
     |                     |                 | (STRING) type -- data type |br|                 |
