@@ -5581,6 +5581,8 @@ For client-side API functions, see section :ref:`"Connectors" <index-box_connect
 
 To make spaces with field names that SQL can understand, use
 :ref:`space_object:format() <box_space-format>`.
+(Exception: in Tarantool/NoSQL it is legal for tuples to have more fields than are described by a format clause,
+but in Tarantool/SQL such fields will be ignored.)
 
 To handle replication and sharding of SQL data, see section
 :ref:`Sharding <shard-module>`.
@@ -5589,7 +5591,7 @@ To enhance performance of SQL statements by preparing them in advance, see secti
 :ref:`box.prepare() <box-sql_box_prepare>`.
 
 Limitations: (`Issue#2368 <https://github.com/tarantool/tarantool/issues/2368>`_) |br|
-* after ``box.schema.user.grant('guest','read,write,execute','universe')``, user ``'guest'`` can create tables. But this is a powerful set of privileges..
+* after ``box.schema.user.grant('guest','read,write,execute','universe')``, user ``'guest'`` can create tables. But this is a powerful set of privileges.
 
 .. _sql_system_tables:
 
