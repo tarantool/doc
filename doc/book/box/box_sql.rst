@@ -110,6 +110,25 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     The order of components within a map is not guaranteed.
 
+    If ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system table
+    is TRUE, then result set metadata may include these things in addition to ``name`` and ``type``: |br|
+    * ``collation`` (present only if COLLATE clause is specified for a STRING) = :ref:`"Collation" <index-collation>`. |br|
+    In the common binary protocol this is encoded with IPROTO_FIELD_COLL (0x02). |br|
+    * ``is_nullable`` (present only if the :ref:`select list <sql_select_list>` specified a
+    base table column and nothing else) = false if column was defined as :ref:`NOT NULL <sql_nulls>`, otherwise true.
+    If this is not present, that implies that nullability is unknown.
+    In the common binary protocol this is encoded with IPROTO_FIELD_IS_NULLABLE (0x03). |br|
+    * ``is_autoincrement`` (present only if the select list specified a base
+    table column and nothing else) = true if column was defined as :ref:`PRIMARY KEY AUTOINCREMENT <sql_table_constraint_def>`,
+    otherwise false.
+    In the common binary protocol this is encoded with IPROTO_FIELD_IS_AUTOINCREMENT (0x04). |br|
+    * ``span`` (always present) = the original expression in a select list,
+    which will often be the same as ``name`` if the select list specifies a column name
+    and nothing else, but otherwise will differ, for example after
+    ``SELECT x+55 AS x FROM t;`` the ``name`` is X and the ``span`` is x+55.
+    In the common binary protocol this is encoded with IPROTO_FIELD_SPAN (0x05),
+    but if ``span`` and ``name`` are the same then the content is MP_NIL.
+
     Alternative: if you are using the Tarantool server as a client,
     you can switch languages thus:
 

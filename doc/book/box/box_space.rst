@@ -2742,7 +2742,7 @@ organizing:
     ``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default = 'memtx'. |br|
     ``sql_defer_foreign_keys``: whether foreign-key checks can wait till commit. Default = false. |br|
     ``sql_full_column_names``: no effect at this time. Default = false. |br|
-    ``sql_full_metadata``: whether SQL result metadata will have more than just name and type. Default = false. |br|
+    ``sql_full_metadata``: whether :ref:`SQL result set metadata <box-sql>` will have more than just name and type. Default = false. |br|
     ``sql_parser_debug``: whether to show parser steps for following statements. Default = false. |br|
     ``sql_recursive_triggers``: whether a triggered statement can activate a :ref:`trigger <sql_create_trigger>`. Default = true. |br|
     ``sql_reverse_unordered_selects``: whether result rows are usually in reverse order if there is no :ref:`ORDER BY clause <sql_order_by>`. Default = false. |br|

@@ -129,6 +129,8 @@ namely, data types for numbers and data types for strings.
 
 The final clause, PRIMARY KEY (name), means that the name column is the main column used to identify the row.
 
+.. _sql_nulls:
+
 **Nulls**
 
 Frequently it is necessary, at least temporarily, that a column value should be NULL.
@@ -5589,6 +5591,9 @@ To handle replication and sharding of SQL data, see section
 
 To enhance performance of SQL statements by preparing them in advance, see section
 :ref:`box.prepare() <box-sql_box_prepare>`.
+
+To call SQL from Lua, see section
+:ref:`box.execute([[...]]) <box-sql>`.
 
 Limitations: (`Issue#2368 <https://github.com/tarantool/tarantool/issues/2368>`_) |br|
 * after ``box.schema.user.grant('guest','read,write,execute','universe')``, user ``'guest'`` can create tables. But this is a powerful set of privileges.
