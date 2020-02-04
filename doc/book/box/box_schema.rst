@@ -381,9 +381,6 @@ Below is a list of all ``box.schema`` functions.
     **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
-    **Variation:** instead of ``privilege, object-type, object-name`` say
-    ``role-name`` (see section :ref:`Roles <authentication-roles>`).
-
     **Variation:** instead of
     :samp:`box.schema.user.revoke('{user-name}','usage,session','universe',nil,` :code:`{if_exists=true})`
     say :samp:`box.schema.user.disable('{user-name}')`.
