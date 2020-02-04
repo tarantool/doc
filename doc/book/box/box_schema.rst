@@ -316,6 +316,10 @@ Below is a list of all ``box.schema`` functions.
     **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
+    **Variation:** instead of
+    :samp:`box.schema.user.grant('{user-name}','usage,session','universe',nil,` :code:`{if_not_exists=true})`
+    say :samp:`box.schema.user.enable('{user-name}')`.
+
     The possible options are:
 
     * ``grantor`` = *grantor_name_or_id* -- string or number, for custom grantor,
@@ -335,9 +339,9 @@ Below is a list of all ``box.schema`` functions.
 
 .. _box_schema-user_revoke:
 
-.. function:: box.schema.user.revoke(user-name, privilege, object-type, object-name)
-              box.schema.user.revoke(user-name, role-name)
-
+.. function:: box.schema.user.revoke(user-name, privileges, object-type, object-name[, {options} ])
+              box.schema.user.revoke(user-name, privileges, 'universe'[, nil, {options} ])
+   
     Revoke :ref:`privileges <authentication-owners_privileges>` from a user
     or from another role.
 
@@ -346,15 +350,21 @@ Below is a list of all ``box.schema`` functions.
                              'alter' or 'drop' or a combination.
     :param string object-type: 'space' or 'function' or 'sequence'.
     :param string object-name: the name of a function or space or sequence.
+    :param table      options: ``if_exists``.
 
     The user must exist, and the object must exist,
-    but it is not an error if the user does not have the privilege.
+    but if the option setting is ``{if_exists=true}`` then
+    it is not an error if the user does not have the privilege.
 
     **Variation:** instead of ``object-type, object-name`` say 'universe'
     which means 'all object-types and all objects'.
 
     **Variation:** instead of ``privilege, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
+
+    **Variation:** instead of
+    :samp:`box.schema.user.revoke('{user-name}','usage,session','universe',nil,` :code:`{if_exists=true})`
+    say :samp:`box.schema.user.disable('{user-name}')`.
 
     **Example:**
 
