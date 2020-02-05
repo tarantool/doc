@@ -220,7 +220,7 @@ For example, if the CREATE TABLE modules statement looked like this:
                           CHECK (size > 0));
 
 then this INSERT statement would be illegal: |br|
-``INSERT INTO modules VALUES ('box'', 0, 'The Database Kernel');`` |br|
+``INSERT INTO modules VALUES ('box', 0, 'The Database Kernel');`` |br|
 because there is a CHECK constraint saying that the second column, the size column,
 cannot contain a value which is less than or equal to zero. Try this instead: |br|
 ``INSERT INTO modules VALUES ('box', 1, 'The Database Kernel');``
@@ -235,10 +235,10 @@ it can be defined like this:
     CREATE TABLE submodules (name STRING,
                              module_name STRING,
                              size INTEGER,
-                              purpose STRING,
-                              PRIMARY KEY (name),
-                              FOREIGN KEY (module_name) REFERENCES
-                              modules (name));
+                             purpose STRING,
+                             PRIMARY KEY (name),
+                             FOREIGN KEY (module_name) REFERENCES
+                             modules (name));
 
 Now try to insert a new row into this submodules table:
 
@@ -410,7 +410,7 @@ but it is unclear to a reader who has not memorized what the column names are.
 Also it is unstable, because there is a way to change a table's
 definition (the ALTER statement, which is an advanced topic).
 Nevertheless, although it might be bad to use it for production,
-it is handy to use it for introduction, so we will use ``'*'`` in several examples.
+it is handy to use it for introduction, so we will use ``"*"`` in several examples.
 
 **Select with subqueries**
 
@@ -449,7 +449,7 @@ The result will look like this:
 .. code-block:: none
 
       +-------------------+------------------------+--------------------+
-      | SUBMODULES_NAME   | MODULES_PURPOSE        | SUBMODULES_PURPOSE |
+      | submodules_name   | modules_purpose        | submodules_purpose |
       +-------------------+------------------------+--------------------+
       | space             | Database Management    | insert etc.        |
       +-------------------+------------------------+--------------------+
@@ -512,7 +512,7 @@ The result will be:
     +----------+-----------+--------- --+--------+---------+-------+-------------|
     | box      | 1432      | Database   | space  | box     | 10000 | insert etc. |
     |          |           | Management |        |         |       |             |
-    +----------+-----------+--------- --+--------+---------+-------+-------------|
+    +----------+-----------+------------+--------+---------+-------+-------------|
 
 In other words, you can specify a Cartesian join in the FROM clause,
 then you can filter out the irrelevant rows in the WHERE clause,
@@ -610,7 +610,7 @@ A function can take any expression, including an expression that contains anothe
 and return a scalar value. There are many such functions. We will just describe one, SUBSTR,
 which returns a substring of a string.
 
-Format: :samp:`SUBSTR({input-string}, {start-with} [, {length}])``
+Format: :samp:`SUBSTR({input-string}, {start-with} [, {length}])`
 
 Description: SUBSTR takes input-string, eliminates any characters before start-with,
 eliminates any characters after (start-with plus length), and returns the result.
@@ -646,7 +646,7 @@ The result will look like this:
 .. code-block:: none
 
      +--------------+-----------+-----------+-----------+-------------+
-     | AVG(size)    | SUM(size) | MIN(size) | MAX(size) | CoUNT(size) |
+     | AVG(size)    | SUM(size) | MIN(size) | MAX(size) | COUNT(size) |
      +--------------+-----------+-----------+-----------+-------------|
      | 5.413333E+02 | 1624      |         4 |      1432 |           3 |
      +--------------+-----------+-----------+-----------+-------------+
@@ -681,7 +681,7 @@ usually within a SELECT statement, using a WITH clause. For example:
 
 ``WITH tmp_table AS (SELECT x1 FROM t1) SELECT * FROM tmp_table;``
 
-Select with order, limit, and offset clauses
+**Select with order, limit, and offset clauses**
 
 Every time we have searched in the modules table, the rows have come out in alphabetical order by name:
 'box', then 'clock', then 'crypto'.
@@ -926,9 +926,7 @@ In alphabetical order, the following statements are legal.
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`BEGIN dml-statement [, dml-statement ...] END; <sql_create_trigger>` |br|
 |nbsp| :ref:`CREATE VIEW [IF NOT EXISTS] view-name <sql_create_view>`  |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[(column-name [, column-name ...])] <sql_create_view>`  |br|
-|nbsp| |nbsp| |nbsp| |nbsp| :ref:`AS select-statement; <sql_create_view>`  |br|
-|nbsp| |nbsp| |nbsp| |nbsp| :ref:`FROM table-name <sql_create_view>`  |br|
-|nbsp| |nbsp| |nbsp| |nbsp| :ref:`[WHERE expression]; <sql_create_view>`  |br|
+|nbsp| |nbsp| |nbsp| |nbsp| :ref:`AS select-statement | values-statement; <sql_create_view>`  |br|
 |nbsp| :ref:`DROP INDEX [IF EXISTS] index-name ON table-name; <sql_drop_index>`  |br|
 |nbsp| :ref:`DROP TABLE [IF EXISTS] table-name; <sql_drop_table>`  |br|
 |nbsp| :ref:`DROP TRIGGER [IF EXISTS] trigger-name; <sql_drop_trigger>` |br|
@@ -936,7 +934,7 @@ In alphabetical order, the following statements are legal.
 |nbsp| :ref:`EXPLAIN explainable-statement; <sql_explain>` |br|
 |nbsp| :ref:`INSERT INTO table-name <sql_insert>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[(column-name [, column-name ...])] <sql_insert>` |br|
-|nbsp| |nbsp| |nbsp| |nbsp| :ref:`VALUES (expression [, expression ...]); <sql_insert>` |br|
+|nbsp| |nbsp| |nbsp| |nbsp| :ref:`values-statement | select-statement; <sql_insert>` |br|
 |nbsp| :ref:`PRAGMA pragma-name[(value)]; <sql_pragma>` |br|
 |nbsp| :ref:`RELEASE SAVEPOINT savepoint-name; <sql_release_savepoint>` |br|
 |nbsp| :ref:`REPLACE INTO table-name VALUES (expression [, expression ...]); <sql_replace>` |br|
@@ -1014,7 +1012,7 @@ Operators (strictly speaking "non-alphabetic operators") -- for example ``* / + 
 Tokens can be separated from each other by one or more separators: |br|
 * White space characters: tab (U+0009), line feed (U+000A), vertical tab (U+000B), form feed (U+000C), carriage return (U+000D), space (U+0020), next line (U+0085), and all the rare characters in Unicode classes Zl and Zp and Zs. For a full list see https://github.com/tarantool/tarantool/issues/2371. |br|
 * Bracketed comments (beginning with ``/*`` and ending with ``*/``) |br|
-* Simple comments (beginning with -- and ending with line feed) |br|
+* Simple comments (beginning with ``--`` and ending with line feed) |br|
 Separators are not necessary before or after operators. |br|
 Separators are necessary after keywords or numbers or ordinary identifiers, unless the following token is an operator. |br|
 Thus Tarantool can understand this series of six tokens: |br|
@@ -1087,16 +1085,16 @@ or |br|
 One can use the concatenation operator ``||`` to combine characters made with any of these methods.
 
 Limitations: (`Issue#2344 <https://github.com/tarantool/tarantool/issues/2344>`_) |br|
-~ Numeric literals may be quoted, one cannot depend on the presence or
+* Numeric literals may be quoted, one cannot depend on the presence or
 absence of quote marks to determine whether a literal is numeric. |br|
-~ ``LENGTH('A''B') = 3`` which is correct, but the display from
+* ``LENGTH('A''B') = 3`` which is correct, but the display from
 ``SELECT A''B;`` is ``A''B``, which is misleading. |br|
-~ It is unfortunate that ``X'41'`` is a byte sequence which looks the same as ``'A'``,
-but it is not the same. ``box.execute("select 'A' < X'41';")`` returns true.
+* It is unfortunate that ``X'41'`` is a byte sequence which looks the same as ``'A'``,
+but it is not the same. ``box.execute("select 'A' < X'41';")`` is not legal at the moment.
 This happens because ``TYPEOF(X'41')`` yields ``'varbinary'``.
 Also it is illegal to say ``UPDATE ... SET string_column = X'41'``,
 one must say ``UPDATE ... SET string_column = CAST(X'41' AS STRING);``. |br|
-~ It is non-standard to say that any number which contains a period has data type = DOUBLE.
+* It is non-standard to say that any number which contains a period has data type = DOUBLE.
 
 .. _sql_identifiers:
 
@@ -1210,9 +1208,8 @@ For example, inside ``SELECT t1.column1, t2.column1 FROM t1, t2;`` the qualifier
 make it clear that the first column is column1 from table1 and the second column
 is column2 from table2.
 
-The rules are sometimes relaxed for compatibility reasons.
-Some non-letter characters such as $ and « are legal.
-Delimited column identifiers may begin with characters other than letters or underscores.
+The rules are sometimes relaxed for compatibility reasons, for example
+some non-letter characters such as $ and « are legal in regular identifiers.
 However, it is better to assume that rules are never relaxed.
 
 The following are examples of legal and illegal identifiers.
