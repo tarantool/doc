@@ -1452,11 +1452,11 @@ Example: ``5 & 4``, result = 4.
 
 ``|`` or (arithmetic)
 Combine the two numbers, with 1 bits in the result if either original number has a 1 bit.
-Example: ``5 | 2`` result = 7.
+Example: ``5 | 2``, result = 7.
 
 ``~`` negate (arithmetic), sometimes called bit inversion 
 Change 0 bits to 1 bits, change 1 bits to 0 bits.
-Example: ``~5`` result = -6.
+Example: ``~5``, result = -6.
 
 ``<`` less than (comparison)
 Return TRUE if the first operand is less than the second by arithmetic or collation rules.
@@ -1476,24 +1476,25 @@ Example for numbers: ``0 >= 0``, result = TRUE. Example for strings: ``'Z' >= 'Î
 
 .. _sql_equal:
 
-``=`` equal (assignment) or comparison)
+``=`` equal (assignment or comparison)
 After the word SET, "=" means the first operand gets the value from the second operand.
 In other contexts, "=" returns TRUE if operands are equal.
 Example for assignment: ``... SET column1 = 'a';``
-Examples for numbers: ``0 = 0``, result = TRUE. Example for strings:  ``'1' = '2 '``, result = FALSE.
+Example for numbers: ``0 = 0``, result = TRUE. Example for strings:  ``'1' = '2 '``, result = FALSE.
 
 ``==`` equal (assignment), or equal (comparison)
 This is a non-standard equivalent of
-:ref:`"= (assignment or comparison)" <sql_equal>`.
+:ref:`"= equal (assignment or comparison)" <sql_equal>`.
 
 .. _sql_not_equal:
 
 ``<>`` not equal (comparison)
 Return TRUE if the first operand is not equal to the second by arithmetic or collation rules.
+Example for strings: ``'A' <> 'A     '`` is TRUE.
 
 ``!=`` not equal (comparison)
 This is a non-standard equivalent of
-"<> (comparison)".
+:ref:`"<> not equal (comparison)" <sql_not_equal>`.
 
 ``IS NULL`` and ``IS NOT NULL`` (comparison)
 For IS NULL: Return TRUE if the first operand is NULL, otherwise return FALSE.
@@ -1528,7 +1529,7 @@ Return FALSE if one operand is FALSE and the other operand is (UNKNOWN or TRUE o
 
 ``OR`` or (logic)
 Return TRUE if either operand is TRUE.
-Return FALSE if both operands are false.
+Return FALSE if both operands are FALSE.
 Return UNKNOWN if one operand is UNKNOWN and the other operand is (UNKNOWN or FALSE).
 
 ``||`` concatenate (string manipulation)
@@ -1559,7 +1560,7 @@ For example, 4.7777777777777778 = 4.7777777777777777 is TRUE.
 The floating-point values inf and -inf are possible.
 For example, ``SELECT 1e318, -1e318;`` will return "inf, -inf".
 Arithmetic on infinite values may cause NULL results,
-for example ``SELECT 1e318 - 1e318;`` is NULL. and ``SELECT 1e318 * 0;`` is NULL.
+for example ``SELECT 1e318 - 1e318;`` is NULL and ``SELECT 1e318 * 0;`` is NULL.
 
 SQL operations never return the floating-point value -nan,
 although it may exist in data created by Tarantool's NoSQL. In SQL, -nan is treated as NULL.
@@ -1569,8 +1570,8 @@ for example ``'7' + '7'`` = 14.
 And for comparison or assignment, ``'7'`` = 7.
 This is called implicit casting. It is applicable for STRINGs and all numeric data types.
 
-Limitations: (`Issue#2346 <https://github.com/tarantool/tarantool/issues/2346>`_)
-* Some words, for example MATCH and REGEXP, are reserved but are not necessary for current or planned Tarantool versions
+Limitations: (`Issue#2346 <https://github.com/tarantool/tarantool/issues/2346>`_) |br|
+* Some words, for example MATCH and REGEXP, are reserved but are not necessary for current or planned Tarantool versions |br|
 * 999999999999999 << 210 yields 0. (1 << 63) >> 63 yields -1.
 
 Expressions
@@ -1611,13 +1612,15 @@ When comparing a number to a number: |br|
 When comparing any value to NULL: |br|
 (for examples in this paragraph assume that column1 in table T contains {NULL, NULL, 1, 2}) |br|
 * value comparison-operator NULL is UNKNOWN (not TRUE and not FALSE), which affects "WHERE condition" because the condition must be TRUE, and does not affect  "CHECK (condition)" because the condition must be either TRUE or UNKNOWN. Therefore SELECT * FROM T WHERE column1 > 0 OR column1 < 0 OR column1 = 0; returns only  {1,2}, and the table can have been created with CREATE TABLE T (... column1 INTEGER, CHECK (column1 >= 0)); |br|
-* for any operations that contain the keyword DISTINCT, NULLs are not distinct. Therefore SELECT DISTINCT column2 FROM T; will return {1,2,NULL}. |br|
-* for grouping, NULL values sort together. Therefore SELECT column2, COUNT(*) FROM T GROUP BY column2; will include a row {NULL, 2}. |br|
-* for ordering, NULL values sort together and are less than non-NULL values. Therefore SELECT column2 FROM T ORDER BY column2; returns {NULL, NULL, 1,2}. |br|
-* for evaluating a UNIQUE constraint or UNIQUE index, any number of NULLs is okay. Therefore CREATE UNIQUE INDEX i ON T (column2); will succeed.
+* for any operations that contain the keyword DISTINCT, NULLs are not distinct. Therefore SELECT DISTINCT column1 FROM T; will return {NULL,1,2}. |br|
+* for grouping, NULL values sort together. Therefore SELECT column1, COUNT(*) FROM T GROUP BY column1; will include a row {NULL, 2}. |br|
+* for ordering, NULL values sort together and are less than non-NULL values. Therefore SELECT column1 FROM T ORDER BY column1; returns {NULL, NULL, 1,2}. |br|
+* for evaluating a UNIQUE constraint or UNIQUE index, any number of NULLs is okay. Therefore CREATE UNIQUE INDEX i ON T (column1); will succeed.
 
 When comparing a number to a STRING: |br|
-* Numbers come first if implicit casting is not possible. For example, ``1 < ''`` is TRUE.
+* If implicit casting is possible, the STRING operand is converted to a number before comparison.
+If implicit casting is not possible, and one of the operands is the name of a column which was
+defined as SCALAR, and the column is being compared with a number, then number is less than STRING. Otherwise, the comparison is not legal.
 
 When comparing a BOOLEAN to a BOOLEAN: |br|
 TRUE is greater than FALSE.
@@ -1656,7 +1659,7 @@ For arithmetic, convert to the data type which can contain both operands and the
 For explicit casts, if a meaningful result is possible, the operation is allowed. |br|
 For implicit casts, if a meaningful result is possible and the data types on both sides
 are either STRINGs or numbers (that is, are STRING or INTEGER or UNSIGNED or DOUBLE or NUMBER),
-the operation is allowed.
+the operation is sometimes allowed.
 
 The specific situations in this chart follow the general rules:
 
