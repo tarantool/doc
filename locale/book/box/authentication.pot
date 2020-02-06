@@ -1,0 +1,317 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Access control"
+msgstr ""
+
+msgid "Understanding security details is primarily an issue for administrators. However, ordinary users should at least skim this section to get an idea of how Tarantool makes it possible for administrators to prevent unauthorized access to the database and to certain functions."
+msgstr ""
+
+msgid "Briefly:"
+msgstr ""
+
+msgid "There is a method to guarantee with password checks that users really are who they say they are (“authentication”)."
+msgstr ""
+
+msgid "There is a :ref:`_user <box_space-user>` system space, where usernames and password-hashes are stored."
+msgstr ""
+
+msgid "There are functions for saying that certain users are allowed to do certain things (“privileges”)."
+msgstr ""
+
+msgid "There is a :ref:`_priv <box_space-priv>` system space, where privileges are stored. Whenever a user tries to do an operation, there is a check whether the user has the privilege to do the operation (“access control”)."
+msgstr ""
+
+msgid "Details follow."
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "There is a **current user** for any program working with Tarantool, local or remote. If a remote connection is using a :ref:`binary port <admin-security>`, the current user, by default, is '**guest**'. If the connection is using an :ref:`admin-console port <admin-security>`, the current user is '**admin**'. When executing a :ref:`Lua initialization script <index-init_label>`, the current user is also ‘**admin**’."
+msgstr ""
+
+msgid "The current user name can be found with :ref:`box.session.user() <box_session-user>`."
+msgstr ""
+
+msgid "The current user can be changed:"
+msgstr ""
+
+msgid "For a binary port connection -- with the :ref:`AUTH protocol command <box_protocol-iproto_protocol>`, supported by most clients;"
+msgstr ""
+
+msgid "For an admin-console connection and in a Lua initialization script -- with :ref:`box.session.su <box_session-su>`;"
+msgstr ""
+
+msgid "For a binary-port connection invoking a stored function with the CALL command -- if the :ref:`SETUID <box_schema-func_create>` property is enabled for the function, Tarantool temporarily replaces the current user with the function’s creator, with all the creator's privileges, during function execution."
+msgstr ""
+
+msgid "Passwords"
+msgstr ""
+
+msgid "Each user (except 'guest') may have a **password**. The password is any alphanumeric string."
+msgstr ""
+
+msgid "Tarantool passwords are stored in the :ref:`_user <box_space-user>` system space with a `cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_ so that, if the password is ‘x’, the stored hash-password is a long string like ‘lL3OvhkIPOKh+Vn9Avlkx69M/Ck=‘. When a client connects to a Tarantool instance, the instance sends a random `salt value <https://en.wikipedia.org/wiki/Salt_%28cryptography%29>`_ which the client must mix with the hashed-password before sending to the instance. Thus the original value ‘x’ is never stored anywhere except in the user’s head, and the hashed value is never passed down a network wire except when mixed with a random salt."
+msgstr ""
+
+msgid "For more details of the password hashing algorithm (e.g. for the purpose of writing a new client application), read the `scramble.h <https://github.com/tarantool/tarantool/blob/2.1/src/scramble.h>`_ header file."
+msgstr ""
+
+msgid "This system prevents malicious onlookers from finding passwords by snooping in the log files or snooping on the wire. It is the same system that `MySQL introduced several years ago <http://dev.mysql.com/doc/refman/5.7/en/password-hashing.html>`_, which has proved adequate for medium-security installations. Nevertheless, administrators should warn users that no system is foolproof against determined long-term attacks, so passwords should be guarded and changed occasionally. Administrators should also advise users to choose long unobvious passwords, but it is ultimately up to the users to choose or change their own passwords."
+msgstr ""
+
+msgid "There are two functions for managing passwords in Tarantool: :ref:`box.schema.user.passwd() <box_schema-user_passwd>` for changing a user's password and :ref:`box.schema.user.password() <box_schema-user_password>` for getting a hash of a user's password."
+msgstr ""
+
+msgid "Owners and privileges"
+msgstr ""
+
+msgid "Tarantool has one database. It may be called \"box.schema\" or \"universe\". The database contains database objects, including spaces, indexes, users, roles, sequences, and functions."
+msgstr ""
+
+msgid "The **owner** of a database object is the user who created it. The owner of the database itself, and the owner of objects that are created initially (the system spaces and the default users) is '**admin**'."
+msgstr ""
+
+msgid "Owners automatically have **privileges** for what they create. They can share these privileges with other users or with roles, using :ref:`box.schema.user.grant <box_schema-user_grant>` requests. The following privileges can be granted:"
+msgstr ""
+
+msgid "'read', e.g. allow select from a space"
+msgstr ""
+
+msgid "'write', e.g. allow update on a space"
+msgstr ""
+
+msgid "'execute', e.g. allow call of a function, or (less commonly) allow use of a role"
+msgstr ""
+
+msgid "'create', e.g. allow :ref:`box.schema.space.create <box_schema-space_create>` (access to certain system spaces is also necessary)"
+msgstr ""
+
+msgid "'alter', e.g. allow :ref:`box.space.x.index.y:alter <box_index-alter>` (access to certain system spaces is also necessary)"
+msgstr ""
+
+msgid "'drop', e.g. allow :ref:`box.sequence.x:drop <box_schema-sequence_drop>` (currently this can be granted but has no effect)"
+msgstr ""
+
+msgid "'usage', e.g. whether any action is allowable regardless of other privileges (sometimes revoking 'usage' is a convenient way to block a user temporarily without dropping the user)"
+msgstr ""
+
+msgid "'session', e.g. whether the user can 'connect'."
+msgstr ""
+
+msgid "To **create** objects, users need the 'create' privilege and at least 'read' and 'write' privileges on the system space with a similar name (for example, on the :ref:`_space <box_space-space>` if the user needs to create spaces)."
+msgstr ""
+
+msgid "To **access** objects, users need an appropriate privilege on the object (for example, the 'execute' privilege on function F if the users need to execute function F). See below some :ref:`examples for granting specific privileges <authentication-owners_privileges-examples-specific>` that a grantor -- that is, 'admin' or the object creator -- can make."
+msgstr ""
+
+msgid "To **drop** an object, users must be the object's creator or be 'admin'. As the owner of the entire database, 'admin' can drop any object including other users."
+msgstr ""
+
+msgid "To grant privileges to a user, the object owner says :ref:`grant() <box_schema-user_grant>`. To revoke privileges from a user, the object owner says :ref:`revoke() <box_schema-user_revoke>`. In either case, there are up to five parameters:"
+msgstr ""
+
+msgid "(user-name, privilege, object-type [, object-name [, options]])"
+msgstr ""
+
+msgid "``user-name`` is the user (or role) that will receive or lose the privilege;"
+msgstr ""
+
+msgid "``privilege`` is any of 'read', 'write', 'execute', 'create', 'alter', 'drop', 'usage', or 'session' (or a comma-separated list);"
+msgstr ""
+
+msgid "``object-type`` is any of 'space', 'index', 'sequence', 'function', role-name, or 'universe';"
+msgstr ""
+
+msgid "``object-name`` is what the privilege is for (omitted if ``object-type`` is 'universe');"
+msgstr ""
+
+msgid "``options`` is a list inside braces for example ``{if_not_exists=true|false}`` (usually omitted because the default is acceptable)."
+msgstr ""
+
+msgid "Every update of user privileges is reflected immediately in the existing sessions and objects, e.g. functions."
+msgstr ""
+
+msgid "**Example for granting many privileges at once**"
+msgstr ""
+
+msgid "In this example user 'admin' grants many privileges on many objects to user 'U', with a single request."
+msgstr ""
+
+msgid "box.schema.user.grant('U','read,write,execute,create,drop','universe')"
+msgstr ""
+
+msgid "**Examples for granting privileges for specific operations**"
+msgstr ""
+
+msgid "In these examples the object's creator grants precisely the minimal privileges necessary for particular operations, to user 'U'."
+msgstr ""
+
+msgid "-- So that 'U' can create spaces:\n"
+"  box.schema.user.grant('U','create','universe')\n"
+"  box.schema.user.grant('U','write', 'space', '_schema')\n"
+"  box.schema.user.grant('U','write', 'space', '_space')\n"
+"-- So that 'U' can  create indexes (assuming 'U' created the space)\n"
+"  box.schema.user.grant('U','read', 'space', '_space')\n"
+"  box.schema.user.grant('U','read,write', 'space', '_index')\n"
+"-- So that 'U' can  create indexes on space T (assuming 'U' did not create space T)\n"
+"  box.schema.user.grant('U','create','space','T')\n"
+"  box.schema.user.grant('U','read', 'space', '_space')\n"
+"  box.schema.user.grant('U','write', 'space', '_index')\n"
+"-- So that 'U' can  alter indexes on space T (assuming 'U' did not create the index)\n"
+"  box.schema.user.grant('U','alter','space','T')\n"
+"  box.schema.user.grant('U','read','space','_space')\n"
+"  box.schema.user.grant('U','read','space','_index')\n"
+"  box.schema.user.grant('U','read','space','_space_sequence')\n"
+"  box.schema.user.grant('U','write','space','_index')\n"
+"-- So that 'U' can create users or roles:\n"
+"  box.schema.user.grant('U','create','universe')\n"
+"  box.schema.user.grant('U','read,write', 'space', '_user')\n"
+"  box.schema.user.grant('U','write','space', '_priv')\n"
+"-- So that 'U' can create sequences:\n"
+"  box.schema.user.grant('U','create','universe')\n"
+"  box.schema.user.grant('U','read,write','space','_sequence')\n"
+"-- So that 'U' can create functions:\n"
+"  box.schema.user.grant('U','create','universe')\n"
+"  box.schema.user.grant('U','read,write','space','_func')\n"
+"-- So that 'U' can grant access on objects that 'U' created\n"
+"  box.schema.user.grant('U','read','space','_user')\n"
+"-- So that 'U' can select or get from a space named 'T'\n"
+"  box.schema.user.grant('U','read','space','T')\n"
+"-- So that 'U' can update or insert or delete or truncate a space named 'T'\n"
+"  box.schema.user.grant('U','write','space','T')\n"
+"-- So that 'U' can execute a function named 'F'\n"
+"  box.schema.user.grant('U','execute','function','F')\n"
+"-- So that 'U' can use the \"S:next()\" function with a sequence named S\n"
+"  box.schema.user.grant('U','read,write','sequence','S')\n"
+"-- So that 'U' can use the \"S:set()\" or \"S:reset() function with a sequence named S\n"
+"  box.schema.user.grant('U','write','sequence','S')"
+msgstr ""
+
+msgid "**Example for creating users and objects then granting privileges**"
+msgstr ""
+
+msgid "Here we create a Lua function that will be executed under the user id of its creator, even if called by another user."
+msgstr ""
+
+msgid "First, we create two spaces ('u' and 'i') and grant a no-password user ('internal') full access to them. Then we define a function ('read_and_modify') and the no-password user becomes this function's creator. Finally, we grant another user ('public_user') access to execute Lua functions created by the no-password user."
+msgstr ""
+
+msgid "box.schema.space.create('u')\n"
+"box.schema.space.create('i')\n"
+"box.space.u:create_index('pk')\n"
+"box.space.i:create_index('pk')\n"
+"\n"
+"box.schema.user.create('internal')\n"
+"\n"
+"box.schema.user.grant('internal', 'read,write', 'space', 'u')\n"
+"box.schema.user.grant('internal', 'read,write', 'space', 'i')\n"
+"box.schema.user.grant('internal', 'create', 'universe')\n"
+"box.schema.user.grant('internal', 'read,write', 'space', '_func')\n"
+"\n"
+"function read_and_modify(key)\n"
+"  local u = box.space.u\n"
+"  local i = box.space.i\n"
+"  local fiber = require('fiber')\n"
+"  local t = u:get{key}\n"
+"  if t ~= nil then\n"
+"    u:put{key, box.session.uid()}\n"
+"    i:put{key, fiber.time()}\n"
+"  end\n"
+"end\n"
+"\n"
+"box.session.su('internal')\n"
+"box.schema.func.create('read_and_modify', {setuid= true})\n"
+"box.session.su('admin')\n"
+"box.schema.user.create('public_user', {password = 'secret'})\n"
+"box.schema.user.grant('public_user', 'execute', 'function', 'read_and_modify')"
+msgstr ""
+
+msgid "Roles"
+msgstr ""
+
+msgid "A **role** is a container for privileges which can be granted to regular users. Instead of granting or revoking individual privileges, you can put all the privileges in a role and then grant or revoke the role."
+msgstr ""
+
+msgid "Role information is stored in the :ref:`_user <box_space-user>` space, but the third field in the tuple -- the type field -- is ‘role’ rather than ‘user’."
+msgstr ""
+
+msgid "An important feature in role management is that roles can be **nested**. For example, role R1 can be granted a privilege \"role R2\", so users with the role R1 will subsequently get all privileges from both roles R1 and R2. In other words, a user gets all the privileges that are granted to a user’s roles, directly or indirectly."
+msgstr ""
+
+msgid "There are actually two ways to grant or revoke a role: :samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},'execute', 'role',{role-name}...)` or :samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},{role-name}...)`. The second way is preferable."
+msgstr ""
+
+msgid "The 'usage' and 'session' privileges cannot be granted to roles."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid "-- This example will work for a user with many privileges, such as 'admin'\n"
+"-- or a user with the pre-defined 'super' role\n"
+"-- Create space T with a primary index\n"
+"box.schema.space.create('T')\n"
+"box.space.T:create_index('primary', {})\n"
+"-- Create user U1 so that later we can change the current user to U1\n"
+"box.schema.user.create('U1')\n"
+"-- Create two roles, R1 and R2\n"
+"box.schema.role.create('R1')\n"
+"box.schema.role.create('R2')\n"
+"-- Grant role R2 to role R1 and role R1 to user U1 (order doesn't matter)\n"
+"-- There are two ways to grant a role; here we use the shorter way\n"
+"box.schema.role.grant('R1', 'R2')\n"
+"box.schema.user.grant('U1', 'R1')\n"
+"-- Grant read/write privileges for space T to role R2\n"
+"-- (but not to role R1 and not to user U1)\n"
+"box.schema.role.grant('R2', 'read,write', 'space', 'T')\n"
+"-- Change the current user to user U1\n"
+"box.session.su('U1')\n"
+"-- An insertion to space T will now succeed because, due to nested roles,\n"
+"-- user U1 has write privilege on space T\n"
+"box.space.T:insert{1}"
+msgstr ""
+
+msgid "For more detail see :ref:`box.schema.user.grant() <box_schema-user_grant>` and :ref:`box.schema.role.grant() <box_schema-role_grant>` in the built-in modules reference."
+msgstr ""
+
+msgid "Sessions and security"
+msgstr ""
+
+msgid "A **session** is the state of a connection to Tarantool. It contains:"
+msgstr ""
+
+msgid "an integer id identifying the connection,"
+msgstr ""
+
+msgid "the :ref:`current user <authentication-users>` associated with the connection,"
+msgstr ""
+
+msgid "text description of the connected peer, and"
+msgstr ""
+
+msgid "session local state, such as Lua variables and functions."
+msgstr ""
+
+msgid "In Tarantool, a single session can execute multiple concurrent transactions. Each transaction is identified by a unique integer id, which can be queried at start of the transaction using :ref:`box.session.sync() <box_session-sync>`."
+msgstr ""
+
+msgid "To track all connects and disconnects, you can use :ref:`connection and authentication triggers <triggers>`."
+msgstr ""
+

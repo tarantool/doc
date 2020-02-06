@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: 2019-12-20 21:24+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module `index`"
+msgstr "Модуль `index`"
+
+msgid "A space iterator"
+msgstr "Итератор спейса"
+
+msgid ""
+"Controls how to iterate over tuples in an index. Different index types "
+"support different iterator types. For example, one can start iteration from "
+"a particular value (request key) and then retrieve all tuples where keys are "
+"greater or equal (= GE) to this key."
+msgstr ""
+"Управление итерацией кортежей в индексе. Различные типы индексов "
+"поддерживают различные типы итераторов. Например, можно начать итерацию с "
+"определенного значения (ключ запроса), а затем получить все кортежи, ключи "
+"которых больше или равны (= GE) заданному ключу."
+
+msgid ""
+"If iterator type is not supported by the selected index type, iterator "
+"constructor must fail with ER_UNSUPPORTED. To be selectable for primary key, "
+"an index must support at least ITER_EQ and ITER_GE types."
+msgstr ""
+"Если тип итератора не поддерживается выбранным типом индекса, конструктор "
+"итератора прекратит работу с ошибкой ER_UNSUPPORTED. Чтобы индекс можно было "
+"выбрать для первичного ключа, он должен поддерживать типы ITER_EQ и ITER_GE."
+
+msgid ""
+"NULL value of request key corresponds to the first or last key in the index, "
+"depending on iteration direction. (first key for GE and GT types, and last "
+"key for LE and LT). Therefore, to iterate over all tuples in an index, one "
+"can use ITER_GE or ITER_LE iteration types with start key equal to NULL. For "
+"ITER_EQ, the key must not be NULL."
+msgstr ""
+"Значение ключа запроса NULL соответствует первому или последнему ключу в "
+"индексе, в зависимости от направления итерации (первый ключ для типов GE и "
+"GT, последний ключ для типов LE и LT). Таким образом, для итерации по всем "
+"кортежам в индексе можно использовать типы итерации ITER_GE или ITER_LE с "
+"начальным ключом, который равен NULL. Для ITER_EQ ключ не должен равняться "
+"NULL."
+
+msgid "key == x ASC order"
+msgstr "ключ == x в порядке возрастания"
+
+msgid "key == x DESC order"
+msgstr "ключ == x в порядке убывания"
+
+msgid "all tuples"
+msgstr "все кортежи"
+
+msgid "key < x"
+msgstr "ключ < x"
+
+msgid "key <= x"
+msgstr "ключ <= x"
+
+msgid "key >= x"
+msgstr "ключ >= x"
+
+msgid "key > x"
+msgstr "ключ > x"
+
+msgid "all bits from x are set in key"
+msgstr "все биты из x заданы в ключе"
+
+msgid "at least one x's bit is set"
+msgstr "задан хотя бы один бит из x"
+
+msgid "all bits are not set"
+msgstr "ни один бит не задан"
+
+msgid "key overlaps x"
+msgstr "ключ пересекается с x"
+
+msgid "tuples in distance ascending order from specified point"
+msgstr "кортежи в порядке возрастания расстояния из указанной точки"
+
+msgid "Allocate and initialize iterator for space_id, index_id."
+msgstr "Выделение и инициализация итератора для space_id, index_id."
+
+msgid ""
+"The returned iterator must be destroyed by :ref:`box_iterator_free<c_api-"
+"box_index-box_iterator_free>`."
+msgstr ""
+"Возвращаемый итератор следует удалить с помощью :ref:"
+"`box_iterator_free<c_api-box_index-box_iterator_free>`."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "space identifier"
+msgstr "идентификатор спейса"
+
+msgid "index identifier"
+msgstr "идентификатор индекса"
+
+msgid ":ref:`iterator_type<c_api-box_index-iterator_type>`"
+msgstr ":ref:`iterator_type<c_api-box_index-iterator_type>`"
+
+msgid "encode key in MsgPack Array format ([part1, part2, ...])"
+msgstr "кодировка ключа в формате MsgPack-массива ([part1, part2, ...])"
+
+msgid "the end of encoded ``key``"
+msgstr "часть закодированного ключа ``key``"
+
+msgid "Returns"
+msgstr "Возвращает"
+
+msgid ""
+"NULL on error (check :ref:`box_error_last <c_api-error-box_error_last>`)"
+msgstr ""
+"NULL в случае ошибки (проверьте :ref:`box_error_last()<c_api-error-"
+"box_error_last>`)"
+
+msgid "iterator otherwise"
+msgstr "итератор в остальных случаях"
+
+msgid ""
+"See also :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`, :ref:"
+"`box_iterator_free<c_api-box_index-box_iterator_free>`"
+msgstr ""
+"См. также :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`, :ref:"
+"`box_iterator_free<c_api-box_index-box_iterator_free>`"
+
+msgid "Retrieve the next item from the ``iterator``."
+msgstr "Получение следующего пункта из итератора ``iterator``."
+
+msgid ""
+"an iterator returned by :ref:`box_index_iterator <c_api-box_index-"
+"box_index_iterator>`"
+msgstr ""
+"итератор, возвращаемый :ref:`box_index_iterator <c_api-box_index-"
+"box_index_iterator>`"
+
+msgid "output argument. result a tuple or NULL if there is no more data."
+msgstr ""
+"аргумент вывода. Результатом будет кортеж или NULL, если данных больше нет."
+
+msgid "-1 on error (check :ref:`box_error_last <c_api-error-box_error_last>`)"
+msgstr ""
+"-1 в случае ошибки (проверьте :ref:`box_error_last()<c_api-error-"
+"box_error_last>`)"
+
+msgid "0 on success. The end of data is not an error."
+msgstr "0 в случае выполнения. Отсутствие данных не является ошибкой."
+
+msgid "Destroy and deallocate iterator."
+msgstr "Удаление и освобождение итератора."
+
+msgid ""
+"Determine a direction of the given iterator type: -1 for REQ, LT, LE, and +1 "
+"for all others."
+msgstr ""
+"Определение направления заданного типа итератора: -1 для REQ, LT, LE, и +1 "
+"для всех остальных."
+
+msgid "Return the number of element in the index."
+msgstr "Возврат номера элемента в индексе."
+
+msgid ">= 0 otherwise"
+msgstr ">= 0 в остальных случаях"
+
+msgid "Return the number of bytes used in memory by the index."
+msgstr "Возврат количества байтов памяти, используемых индексом."
+
+msgid "Return a random tuple from the index (useful for statistical analysis)."
+msgstr ""
+"Возврат случайного кортежа из индекса (используется для статистического "
+"анализа)."
+
+msgid "random seed"
+msgstr "случайное начальное число"
+
+msgid "output argument. result a tuple or NULL if there is no tuples in space"
+msgstr ""
+"аргумент вывода. Результатом будет кортеж или NULL, если в спейсе нет "
+"кортежей."
+
+msgid "See also: :ref:`index_object.random<box_index-random>`"
+msgstr "См. также :ref:`index_object.random<box_index-random>`"
+
+msgid "Get a tuple from index by the key."
+msgstr "Получение кортежа из индекса по ключу."
+
+msgid ""
+"Please note that this function works much more faster than :ref:"
+"`index_object.select<box_index-select>` or :ref:`box_index_iterator<c_api-"
+"box_index-box_index_iterator>` + :ref:`box_iterator_next<c_api-box_index-"
+"box_iterator_next>`."
+msgstr ""
+"Следует отметить, что данная функция работает намного быстрее, чем :ref:"
+"`index_object.select<box_index-select>` или :ref:`box_index_iterator<c_api-"
+"box_index-box_index_iterator>` + :ref:`box_iterator_next<c_api-box_index-"
+"box_iterator_next>`."
+
+msgid "0 on success"
+msgstr "0, если выполнено"
+
+msgid "See also: ``index_object.get()``"
+msgstr "См. также ``index_object.get()``"
+
+msgid "Return a first (minimal) tuple matched the provided key."
+msgstr ""
+"Возврат первого (минимального) кортежа, который соответствует заданному "
+"ключу."
+
+msgid ""
+"-1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)"
+msgstr ""
+"-1 в случае ошибки (проверьте :ref:`box_error_last()<c_api-error-"
+"box_error_last>`)"
+
+msgid "See also: :ref:`index_object.min()<box_index-min>`"
+msgstr "См. также :ref:`index_object.min()<box_index-min>`"
+
+msgid "Return a last (maximal) tuple matched the provided key."
+msgstr ""
+"Возврат последнего (максимального) кортежа, который соответствует заданному "
+"ключу."
+
+msgid "See also: :ref:`index_object.max()<box_index-max>`"
+msgstr "См. также :ref:`index_object.max()<box_index-max>`"
+
+msgid "Count the number of tuple matched the provided key."
+msgstr "Подсчет количества кортежей, которые соответствуют заданному ключу."
+
+msgid "See also: :ref:`index_object.count()<box_index-count>`"
+msgstr "См. также :ref:`index_object.count()<box_index-count>`"
+
+msgid "Return :ref:`key definition <capi-tuple_key_def>` for an index"
+msgstr "Возврат :ref:`определения ключа <capi-tuple_key_def>` для индекса"
+
+msgid "Returned object is valid until the next yield."
+msgstr "Возвращаемый объект действителен до следующей передачи управления."
+
+msgid "key definition on success"
+msgstr "определение ключа, если выполнено"
+
+msgid "NULL on error"
+msgstr "NULL в случае ошибки"
+
+msgid "See also: :ref:`box_tuple_compare() <capi-tuple_box_tuple_compare>`,"
+msgstr "См. также :ref:`box_tuple_compare() <capi-tuple_box_tuple_compare>`,"
+
+msgid ":ref:`box_tuple_format_new() <capi-tuple_box_tuple_format_new>`"
+msgstr ":ref:`box_tuple_format_new() <capi-tuple_box_tuple_format_new>`"

@@ -1,0 +1,311 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `tuple`"
+msgstr ""
+
+msgid "Tuple format."
+msgstr ""
+
+msgid "Each Tuple has an associated format (class). Default format is used to create tuples which are not attached to any particular space."
+msgstr ""
+
+msgid "Tuple"
+msgstr ""
+
+msgid "Allocate and initialize a new tuple from raw MsgPack Array data."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "tuple format. Use :ref:`box_tuple_format_default()<c_api-tuple-box_tuple_format_default>` to create space-independent tuple."
+msgstr ""
+
+msgid "tuple data in MsgPack Array format ([field1, field2, ...])"
+msgstr ""
+
+msgid "the end of ``data``"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "NULL on out of memory"
+msgstr ""
+
+msgid "tuple otherwise"
+msgstr ""
+
+msgid "See also: :ref:`box.tuple.new()<box_tuple-new>`"
+msgstr ""
+
+msgid "When working with tuples, it is the developer's responsibility to ensure that enough space is allocated, taking especial caution when writing to them with msgpuck functions such as ``mp_encode_array()``."
+msgstr ""
+
+msgid "Increase the reference counter of tuple."
+msgstr ""
+
+msgid "Tuples are reference counted. All functions that return tuples guarantee that the last returned tuple is reference counted internally until the next call to API function that yields or returns another tuple."
+msgstr ""
+
+msgid "You should increase the reference counter before taking tuples for long processing in your code. The Lua garbage collector will not destroy a tuple that has references, even if another fiber removes them from a space. After processing, decrement the reference counter using :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`, otherwise the tuple will leak."
+msgstr ""
+
+msgid "a tuple"
+msgstr ""
+
+msgid "-1 on error"
+msgstr ""
+
+msgid "0 otherwise"
+msgstr ""
+
+msgid "See also: :ref:`box_tuple_unref()<c_api-tuple-box_tuple_unref>`"
+msgstr ""
+
+msgid "Decrease the reference counter of tuple."
+msgstr ""
+
+msgid "See also: :ref:`box_tuple_ref()<c_api-tuple-box_tuple_ref>`"
+msgstr ""
+
+msgid "Return the number of fields in a tuple (the size of MsgPack Array)."
+msgstr ""
+
+msgid "Return the number of bytes used to store internal tuple data (MsgPack Array)."
+msgstr ""
+
+msgid "Dump raw MsgPack data to the memory buffer ``buf`` of size ``size``."
+msgstr ""
+
+msgid "Store tuple fields in the memory buffer."
+msgstr ""
+
+msgid "Upon successful return, the function returns the number of bytes written. If buffer size is not enough then the return value is the number of bytes which would have been written if enough space had been available."
+msgstr ""
+
+msgid "number of bytes written on success."
+msgstr ""
+
+msgid "Return the associated format."
+msgstr ""
+
+msgid "tuple format"
+msgstr ""
+
+msgid "Return the raw tuple field in MsgPack format. The result is a pointer to raw MessagePack data which can be decoded with mp_decode functions, for an example see the tutorial program :ref:`read.c <f_c_tutorial-read>`."
+msgstr ""
+
+msgid "The buffer is valid until the next call to a ``box_tuple_*`` function."
+msgstr ""
+
+msgid "zero-based index in MsgPack array."
+msgstr ""
+
+msgid "NULL if i >= :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>`"
+msgstr ""
+
+msgid "msgpack otherwise"
+msgstr ""
+
+msgid "Possible data types for tuple fields."
+msgstr ""
+
+msgid "One cannot use STRS/ENUM macros for types because there is a mismatch between enum name (STRING) and type name literal (\"STR\"). STR is already used as a type in Objective C."
+msgstr ""
+
+msgid "Key definition"
+msgstr ""
+
+msgid "Create a key definition with the key fields with passed types on passed positions."
+msgstr ""
+
+msgid "May be used for tuple format creation and/or tuple comparison."
+msgstr ""
+
+msgid "array with key field identifiers"
+msgstr ""
+
+msgid "array with key :ref:`field types <capi-tuple_field_type>`"
+msgstr ""
+
+msgid "the number of key fields"
+msgstr ""
+
+msgid "key definition on success"
+msgstr ""
+
+msgid "NULL on error"
+msgstr ""
+
+msgid "Delete a key definition"
+msgstr ""
+
+msgid "key definition to delete"
+msgstr ""
+
+msgid "Return new in-memory tuple format based on passed key definitions"
+msgstr ""
+
+msgid "array of keys defined for the format"
+msgstr ""
+
+msgid "count of keys"
+msgstr ""
+
+msgid "new tuple format on success"
+msgstr ""
+
+msgid "Increment tuple format reference count"
+msgstr ""
+
+msgid "tuple format to ref"
+msgstr ""
+
+msgid "Decrement tuple format reference count"
+msgstr ""
+
+msgid "tuple format to unref"
+msgstr ""
+
+msgid "Compare tuples using key definition"
+msgstr ""
+
+msgid "the first tuple"
+msgstr ""
+
+msgid "the second tuple"
+msgstr ""
+
+msgid "key definition"
+msgstr ""
+
+msgid "0  if ``key_fields(tuple_a)`` == ``key_fields(tuple_b)``"
+msgstr ""
+
+msgid "<0 if ``key_fields(tuple_a)`` < ``key_fields(tuple_b)``"
+msgstr ""
+
+msgid ">0 if ``key_fields(tuple_a)`` > ``key_fields(tuple_b)``"
+msgstr ""
+
+msgid "See also: enum :ref:`field_type <capi-tuple_field_type>`"
+msgstr ""
+
+msgid "Compare a tuple with a key using key definition"
+msgstr ""
+
+msgid "tuple"
+msgstr ""
+
+msgid "key with MessagePack array header"
+msgstr ""
+
+msgid "0  if ``key_fields(tuple)`` == ``parts(key)``"
+msgstr ""
+
+msgid "<0 if ``key_fields(tuple)`` < ``parts(key)``"
+msgstr ""
+
+msgid ">0 if ``key_fields(tuple)`` > ``parts(key)``"
+msgstr ""
+
+msgid "Tuple iterator"
+msgstr ""
+
+msgid "Allocate and initialize a new tuple iterator. The tuple iterator allows iterating over fields at the root level of a MsgPack array."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "box_tuple_iterator_t* it = box_tuple_iterator(tuple);\n"
+"if (it == NULL) {\n"
+"    // error handling using box_error_last()\n"
+"}\n"
+"const char* field;\n"
+"while (field = box_tuple_next(it)) {\n"
+"    // process raw MsgPack data\n"
+"}\n"
+"\n"
+"// rewind the iterator to the first position\n"
+"box_tuple_rewind(it)\n"
+"assert(box_tuple_position(it) == 0);\n"
+"\n"
+"// rewind three fields\n"
+"field = box_tuple_seek(it, 3);\n"
+"assert(box_tuple_position(it) == 4);\n"
+"\n"
+"box_iterator_free(it);"
+msgstr ""
+
+msgid "Destroy and free tuple iterator"
+msgstr ""
+
+msgid "Return zero-based next position in iterator. That is, this function returnы the field id of the field that will be returned by the next call to :ref:`box_tuple_next()<c_api-tuple-box_tuple_next>`. Returned value is zero after initialization or rewind and :ref:`box_tuple_field_count()<c_api-tuple-box_tuple_field_count>` after the end of iteration."
+msgstr ""
+
+msgid "a tuple iterator"
+msgstr ""
+
+msgid "position"
+msgstr ""
+
+msgid "Rewind iterator to the initial position."
+msgstr ""
+
+msgid "After: ``box_tuple_position(it) == 0``"
+msgstr ""
+
+msgid "Seek the tuple iterator."
+msgstr ""
+
+msgid "The result is a pointer to raw MessagePack data which can be decoded with mp_decode functions, for an example see the tutorial program :ref:`read.c <f_c_tutorial-read>`. The returned buffer is valid until the next call to ``box_tuple_*`` API. The requested ``field_no`` is returned by the next call to ``box_tuple_next(it)``."
+msgstr ""
+
+msgid "field number - zero-based position in MsgPack array"
+msgstr ""
+
+msgid "After:"
+msgstr ""
+
+msgid "``box_tuple_position(it) == field_not`` if returned value is not NULL."
+msgstr ""
+
+msgid "``box_tuple_position(it) == box_tuple_field_count(tuple)`` if returned value is NULL."
+msgstr ""
+
+msgid "Return the next tuple field from tuple iterator."
+msgstr ""
+
+msgid "The result is a pointer to raw MessagePack data which can be decoded with mp_decode functions, for an example see the tutorial program :ref:`read.c <f_c_tutorial-read>`. The returned buffer is valid until next call to ``box_tuple_*`` API."
+msgstr ""
+
+msgid "NULL if there are no more fields"
+msgstr ""
+
+msgid "MsgPack otherwise"
+msgstr ""
+
+msgid "Before: :ref:`box_tuple_position()<c_api-tuple-box_tuple_position>` is zero-based ID of returned field."
+msgstr ""
+
+msgid "After: ``box_tuple_position(it) == box_tuple_field_count(tuple)`` if returned value is NULL."
+msgstr ""
+

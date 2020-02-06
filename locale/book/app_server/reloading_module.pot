@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Reloading a module"
+msgstr ""
+
+msgid "You can reload any Tarantool application or module with zero downtime."
+msgstr ""
+
+msgid "Reloading a module in Lua"
+msgstr ""
+
+msgid "Here's an example that illustrates the most typical case -- \"update and reload\"."
+msgstr ""
+
+msgid "In this example, we use recommended :ref:`administration practices <admin>` based on :ref:`instance files <admin-instance_file>` and :ref:`tarantoolctl <tarantoolctl>` utility."
+msgstr ""
+
+msgid "Update the application file."
+msgstr ""
+
+msgid "For example, a module in ``/usr/share/tarantool/app.lua``:"
+msgstr ""
+
+msgid "local function start()\n"
+"  -- initial version\n"
+"  box.once(\"myapp:v1.0\", function()\n"
+"    box.schema.space.create(\"somedata\")\n"
+"    box.space.somedata:create_index(\"primary\")\n"
+"    ...\n"
+"  end)\n"
+"\n"
+"  -- migration code from 1.0 to 1.1\n"
+"  box.once(\"myapp:v1.1\", function()\n"
+"    box.space.somedata.index.primary:alter(...)\n"
+"    ...\n"
+"  end)\n"
+"\n"
+"  -- migration code from 1.1 to 1.2\n"
+"  box.once(\"myapp:v1.2\", function()\n"
+"    box.space.somedata.index.primary:alter(...)\n"
+"    box.space.somedata:insert(...)\n"
+"    ...\n"
+"  end)\n"
+"end\n"
+"\n"
+"-- start some background fibers if you need\n"
+"\n"
+"local function stop()\n"
+"  -- stop all background fibers and clean up resources\n"
+"end\n"
+"\n"
+"local function api_for_call(xxx)\n"
+"  -- do some business\n"
+"end\n"
+"\n"
+"return {\n"
+"  start = start,\n"
+"  stop = stop,\n"
+"  api_for_call = api_for_call\n"
+"}"
+msgstr ""
+
+msgid "Update the :ref:`instance file <admin-instance_file>`."
+msgstr ""
+
+msgid "For example, ``/etc/tarantool/instances.enabled/my_app.lua``:"
+msgstr ""
+
+msgid "#!/usr/bin/env tarantool\n"
+"--\n"
+"-- hot code reload example\n"
+"--\n"
+"\n"
+"box.cfg({listen = 3302})\n"
+"\n"
+"-- ATTENTION: unload it all properly!\n"
+"local app = package.loaded['app']\n"
+"if app ~= nil then\n"
+"  -- stop the old application version\n"
+"  app.stop()\n"
+"  -- unload the application\n"
+"  package.loaded['app'] = nil\n"
+"  -- unload all dependencies\n"
+"  package.loaded['somedep'] = nil\n"
+"end\n"
+"\n"
+"-- load the application\n"
+"log.info('require app')\n"
+"app = require('app')\n"
+"\n"
+"-- start the application\n"
+"app.start({some app options controlled by sysadmins})"
+msgstr ""
+
+msgid "The important thing here is to properly unload the application and its dependencies."
+msgstr ""
+
+msgid "Manually reload the application file."
+msgstr ""
+
+msgid "For example, using ``tarantoolctl``:"
+msgstr ""
+
+msgid "$ tarantoolctl eval my_app /etc/tarantool/instances.enabled/my_app.lua"
+msgstr ""
+
+msgid "Reloading a module in C"
+msgstr ""
+
+msgid "After you compiled a new version of a C module (``*.so`` shared library), call :ref:`box.schema.func.reload('module-name') <box_schema-func_reload>` from your Lua script to reload the module."
+msgstr ""
+
