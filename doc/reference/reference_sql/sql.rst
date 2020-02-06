@@ -1494,7 +1494,7 @@ Example for strings: ``'A' <> 'A     '`` is TRUE.
 
 ``!=`` not equal (comparison)
 This is a non-standard equivalent of
-:ref:`"<> not equal (comparison)" <sql_not_equal>`.
+:ref:`"\<\> not equal (comparison)" <sql_not_equal>`.
 
 ``IS NULL`` and ``IS NOT NULL`` (comparison)
 For IS NULL: Return TRUE if the first operand is NULL, otherwise return FALSE.
@@ -1839,14 +1839,14 @@ handy -- users can ``CREATE TABLE table_a`` without the foreign key, then
    -- and it is illegal to have two primary keys for the same table.
    -- However, it is possible to drop a primary-key index, and this
    -- is a way to restore the primary key if that happens.
-   ALTER TABLE t1 ADD CONSTRAINT pk_s1_t1_1 PRIMARY KEY (s1);
+   ALTER TABLE t1 ADD CONSTRAINT "pk_unnamed_T1_1" PRIMARY KEY (s1);
 
    -- adding a unique-constraint definition:
    -- Alternatively, you can say CREATE UNIQUE INDEX unique_key ON t1 (s1);
-   ALTER TABLE t1 ADD CONSTRAINT uk_s1_t1_1 UNIQUE (s1);
+   ALTER TABLE t1 ADD CONSTRAINT "unique_unnamed_T1_2" UNIQUE (s1);
 
    -- Adding a check-constraint definition:
-   ALTER TABLE t1 ADD CONSTRAINT ck_s1_t1_1 CHECK (s1 > 0);
+   ALTER TABLE t1 ADD CONSTRAINT "ck_unnamed_T1_1" CHECK (s1 > 0);
 
 .. _sql_alter_table_drop_constraint:
 
@@ -1860,7 +1860,7 @@ as well.
 .. code-block:: sql
 
    -- dropping a constraint:
-   ALTER TABLE t1 DROP CONSTRAINT ck_s1_t1_1;
+   ALTER TABLE t1 DROP CONSTRAINT "fk_unnamed_JJ2_1";
 
 For ``ALTER ... ENABLE|DISABLE CHECK CONSTRAINT``, it is only legal to enable or disable a named constraint,
 and Tarantool only looks for names of check constraints.
@@ -1890,7 +1890,7 @@ CREATE TABLE
 
 Syntax:
 
-:samp:`CREATE TABLE [IF NOT EXISTS] {table-name} ((column-definition or table-constraint list)`
+:samp:`CREATE TABLE [IF NOT EXISTS] {table-name} (column-definition or table-constraint list)`
 :samp:`[WITH ENGINE = {string}];`
 
 |br|
@@ -1914,11 +1914,9 @@ The *table-name* must be an identifier which is valid according to the rules for
 identifiers, and must not be the name of an already existing base table or view.
 
 The *column-definition* or *table-constraint* list is a comma-separated list
-of :ref:`column definitions <sql_column_def>` or table constraints.
-
-A *table-element-list* must be a comma-separated list of table elements;
-each table element may be either a column definition or a
-:ref:`table constraint definition <sql_table_constraint_def>`.
+of :ref:`column definitions <sql_column_def>`
+or :ref:`table constraint definitions <sql_table_constraint_def>`.
+Column definitions and table constraint definitions are sometimes called *table elements*.
 
 Rules:
 
@@ -1928,21 +1926,21 @@ Rules:
 * When IF NOT EXISTS is specified, and there is already a table with the same
   name, the statement is ignored.
 * When :samp:`WITH ENGINE = {string}` is specified,
-  where :samp:`string}` must be either 'memtx' or 'vinyl',
+  where :samp:`{string}` must be either 'memtx' or 'vinyl',
   the table is created with that :ref:`storage engine <engines-chapter>`.
   When this clause is not specified,
   the table is created with the default engine,
   which is ordinarily 'memtx' but may be changed
-  by updating a table that has a list of session settings.
+  by updating the :ref:`box.space._session_settings <box_space-session_settings>` system table..
 
 Actions:
 
-#. Tarantool evaluates each column definition and *table-constraint*,
+#. Tarantool evaluates each column definition and table-constraint,
    and returns an error if any of the rules is violated.
 #. Tarantool makes a new definition in the schema.
 #. Tarantool makes new indexes for PRIMARY KEY or UNIQUE constraints.
    A unique index name is created automatically.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -1958,7 +1956,7 @@ Examples:
             WHERE "_space"."name" = 'T1';
 
    -- variation of the simplest form, with delimited identifiers
-   -- and an inline comment:
+   -- and a bracketed comment:
    CREATE TABLE "T1" ("S1" INT /* synonym of INTEGER */, PRIMARY KEY ("S1"));
 
    -- two columns, one named constraint
@@ -2001,7 +1999,7 @@ Column definition -- data type
 |br|
 
 Every column has a data type:
-BOOLEAN or INTEGER or UNSIGNED or DOUBLE or NUMBER or STRING or VARBINARY or SCALAR.
+BOOLEAN or DOUBLE or INTEGER or NUMBER or SCALAR or STRING or UNSIGNED or VARBINARY.
 The detailed description of data types is in the section
 :ref:`Operands <sql_operands>`.
 
@@ -2068,8 +2066,7 @@ Two column values in a SCALAR column can have two different primitive data types
       SELECT * FROM t WHERE s1 > 'a';
 
    The comparison is valid, because Tarantool knows the ordering of X'41' and 'a'
-   in Tarantool/NoSQL 'scalar'. This would be true even if ``s1`` was not defined
-   as SCALAR.
+   in Tarantool/NoSQL 'scalar'.
 #. The result data type of :ref:`min/max <sql_aggregate>` operation on a column defined as SCALAR
    is the data type of the minimum/maximum operand, unless the result value
    is NULL. For example:
@@ -2084,12 +2081,12 @@ Two column values in a SCALAR column can have two different primitive data types
 
    That is only possible with Tarantool/NoSQL scalar rules, but ``SELECT SUM(s2)``
    would not be legal because addition would in this case require implicit casting
-   from VARBINARY to integer, which is not sensible.
+   from VARBINARY to a number, which is not sensible.
 #. The result data type of a primitive combination is never SCALAR because we
    in effect use TYPEOF(item) not the defined data type.
    (Here we use the word "combination" in the way that the standard document
    uses it for section "Result of data type combinations".) Therefore for
-   ``max(1E308, 'a', 0, X'00')`` the result is X'00'.
+   ``greatest(1E308, 'a', 0, X'00')`` the result is X'00'.
 
 ********************************************
 Column definition -- relation to NoSQL
@@ -2131,8 +2128,6 @@ The column-constraint or default clause may be as follows:
 
 .. container:: table
 
-    **Data types**
-
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
 
@@ -2150,6 +2145,10 @@ The column-constraint or default clause may be as follows:
     +--------------------+-----------------------------------------------------------------+
     | CHECK (expression) | explained in the later section                                  |
     |                    | "Table Constraint Definition"                                   |
+    +--------------------+-----------------------------------------------------------------+
+    | foreign-key-clause | explained in the later section                                  |
+    |                    | :ref:`"Table Constraint Definition for foreign keys"            |
+    |                    | <sql_foreign_key>`                                              |
     +--------------------+-----------------------------------------------------------------+
     | DEFAULT expression | means                                                           |
     |                    | "if INSERT does not assign to this column                       |
@@ -2174,8 +2173,8 @@ add CHECK clauses, like these:
 
 .. code-block:: sql
 
-   CREATE TABLE t ("smallint" INTEGER PRIMARY KEY, CHECK ("smallint" <= 32767 AND "smallint" >= -32768));
-   CREATE TABLE t ("shorttext" STRING PRIMARY KEY, CHECK (length("shorttext") <= 10));
+   CREATE TABLE t ("smallint" INTEGER PRIMARY KEY CHECK ("smallint" <= 32767 AND "smallint" >= -32768));
+   CREATE TABLE t ("shorttext" STRING PRIMARY KEY CHECK (length("shorttext") <= 10));
 
 but this may cause inserts or updates to be slow.
 
@@ -2192,7 +2191,7 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
    CREATE TABLE t (column1 INTEGER ...);
    -- with column-name and data-type and column-constraint
    CREATE TABLE t (column1 STRING PRIMARY KEY ...);
-   -- with column-name and data-type and collate-clause and two column-constraints
+   -- with column-name and data-type and collate-clause
    CREATE TABLE t (column1 SCALAR COLLATE "unicode" ...);
 
 .. code-block:: sql
@@ -2213,10 +2212,11 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
 
    -- with all possible column constraints and a default clause
    CREATE TABLE t
-   (column1 INTEGER PRIMARY KEY,
-    column2 INTEGER UNIQUE,
-    column3 INTEGER CHECK (column3 > column2),
-    column4 INTEGER REFERENCES t,
+   (column1 INTEGER NOT NULL,
+    column2 INTEGER PRIMARY KEY,
+    column3 INTEGER UNIQUE,
+    column4 INTEGER CHECK (column3 > column2),
+    column5 INTEGER REFERENCES t,
     column6 INTEGER DEFAULT NULL);
 
 .. _sql_table_constraint_def:
@@ -2227,7 +2227,7 @@ Table Constraint Definition
 
 Syntax:
 
-:samp:`CONSTRAINT {constraint-name}] primary-key-constraint | unique-constraint | check-constraint | foreign-key-constraint`
+:samp:`[CONSTRAINT {constraint-name}] primary-key-constraint | unique-constraint | check-constraint | foreign-key-constraint`
 
 |br|
 
@@ -2384,7 +2384,7 @@ Examples:
 
 The optional update-or-delete rules look like this: |br|
 ``ON {UPDATE|DELETE} { CASCADE | SET DEFAULT | SET NULL | RESTRICT | NO ACTION}`` |br|
-and the idea is: if something changes the referenced key, then one of three possible "referential actions" takes place: |br|
+and the idea is: if something changes the referenced key, then one of these possible "referential actions" takes place: |br|
 ``CASCADE``: the change that is applied for the referenced key is applied for the referencing key. |br|
 ``SET DEFAULT``: the referencing key is set to its default value. |br|
 ``SET NULL``: the referencing key is set to NULL. |br|
@@ -2516,11 +2516,11 @@ Rules:
 
 Actions:
 
-#. Tarantool returns an error if the table does not exist.
+#. Tarantool returns an error if the table does not exist and there is no ``IF EXISTS`` clause.
 #. The table and all its data are dropped.
 #. All indexes for the table are dropped.
 #. All triggers for the table are dropped.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -2573,7 +2573,7 @@ Actions:
 #. Tarantool will throw an error if a rule is violated.
 #. Tarantool will create a new persistent object with *column-names* equal to
    the names in the *column-list* or the names in the subquery's *select-list*.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -2616,10 +2616,10 @@ Rules: none
 
 Actions:
 
-#. Tarantool returns an error if the view does not exist.
+#. Tarantool returns an error if the view does not exist and there is no ``IF EXISTS`` clause.
 #. The view is dropped.
 #. All triggers for the view are dropped.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -2672,7 +2672,7 @@ Actions:
 #. If the new index is UNIQUE, Tarantool will throw an error if any row exists
    with columns that have duplicate values.
 #. Tarantool will create a new index.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Automatic indexes:
 
@@ -2738,7 +2738,7 @@ Actions:
 #. Tarantool throws an error if the index does not exist, or is an automatically
    created index.
 #. Tarantool will drop the index.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Example:
 
@@ -2800,7 +2800,6 @@ Actions:
    in the VALUES list or based on the results of the *select-expression* or
    based on the default values.
 #. Tarantool executes constraint checks and trigger actions and the actual insertion.
-#. Tarantool inserts values into the table.
 
 .. //  append to 3: in the order described by section "Order of Execution in Data-Change Statements"
 
@@ -3048,7 +3047,7 @@ Actions:
 
 #. Tarantool will throw an error if a rule is violated.
 #. Tarantool will create a new trigger.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 
@@ -3359,9 +3358,9 @@ Rules: none
 
 Actions:
 
-#. Tarantool returns an error if the trigger does not exist.
+#. Tarantool returns an error if the trigger does not exist and there is no ``IF EXISTS`` clause.
 #. The trigger is dropped.
-#. Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
+#. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
 

@@ -3,6 +3,7 @@ stack (
     choice(
       line(' BOOL '),
       line(' BOOLEAN '),
+      line(' DOUBLE '),
       line(' INT '),
       line(' INTEGER '),
       line(' NUMBER '),
