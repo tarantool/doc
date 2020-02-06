@@ -1,0 +1,255 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Submodule `box.info`"
+msgstr ""
+
+msgid "The ``box.info`` submodule provides access to information about server instance variables."
+msgstr ""
+
+msgid "**cluster.uuid** is the UUID of the replica set. Every instance in a replica set will have the same ``cluster.uuid`` value. This value is also stored in :ref:`box.space._schema <box_space-schema>` system space."
+msgstr ""
+
+msgid "**gc()** returns the state of the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` including the checkpoints and their consumers (users); see details :ref:`below <box_info_gc>`."
+msgstr ""
+
+msgid "**id** corresponds to **replication.id** (see :ref:`below <box_info_replication>`)."
+msgstr ""
+
+msgid "**lsn** corresponds to **replication.lsn** (see :ref:`below <box_info_replication>`)."
+msgstr ""
+
+msgid "**memory()** returns the statistics about memory (see :ref:`below <box_info_memory>`)."
+msgstr ""
+
+msgid "**pid** is the process ID. This value is also shown by :ref:`tarantool <tarantool-build>` module and by the Linux command ``ps -A``."
+msgstr ""
+
+msgid "**ro** is ``true`` if the instance is in \"read-only\" mode (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``), or if status is 'orphan'."
+msgstr ""
+
+msgid "**signature** is the sum of all **lsn** values from the vector clocks (**vclock**) of all instances in the replica set."
+msgstr ""
+
+msgid "**status** corresponds to **replication.upstream.status** (see below)."
+msgstr ""
+
+msgid "**uptime** is the number of seconds since the instance started. This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`."
+msgstr ""
+
+msgid "**uuid** corresponds to **replication.uuid** (see :ref:`below <box_info_replication>`)."
+msgstr ""
+
+msgid "**vclock** corresponds to **replication.downstream.vclock** (see :ref:`below <box_info_replication>`)."
+msgstr ""
+
+msgid "**version** is the Tarantool version. This value is also shown by :ref:`tarantool -V <index-tarantool_version>`."
+msgstr ""
+
+msgid "**vinyl()** returns runtime statistics for the vinyl storage engine. This function is deprecated, use :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead."
+msgstr ""
+
+msgid "The **memory** function of ``box.info`` gives the ``admin`` user a picture of the whole Tarantool instance."
+msgstr ""
+
+msgid "To get a picture of the vinyl subsystem, use :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead."
+msgstr ""
+
+msgid "**memory().cache** -- number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine."
+msgstr ""
+
+msgid "**memory().data** -- number of bytes used for storing user data (the tuples) with the memtx engine and with level 0 of the vinyl engine, without taking memory fragmentation into account."
+msgstr ""
+
+msgid "**memory().index** -- number of bytes used for indexing user data, including memtx and vinyl memory tree extents, the vinyl page index, and the vinyl bloom filters."
+msgstr ""
+
+msgid "**memory().lua** -- number of bytes used for Lua runtime."
+msgstr ""
+
+msgid "**memory().net** -- number of bytes used for network input/output buffers."
+msgstr ""
+
+msgid "**memory().tx** -- number of bytes in use by active transactions. For the vinyl storage engine, this is the total size of all allocated objects (struct ``txv``, struct ``vy_tx``, struct ``vy_read_interval``) and tuples pinned for those objects."
+msgstr ""
+
+msgid "An example with a minimum allocation while only the memtx storage engine is in use:"
+msgstr ""
+
+msgid "tarantool> box.info.memory()\n"
+"---\n"
+"- cache: 0\n"
+"  data: 6552\n"
+"  tx: 0\n"
+"  lua: 1315567\n"
+"  net: 98304\n"
+"  index: 1196032\n"
+"..."
+msgstr ""
+
+msgid "The **gc** function of ``box.info`` gives the ``admin`` user a picture of the factors that affect the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`. The garbage collector compares vclock (:ref:`vector clock <replication-vector>`) values of users and checkpoints, so a look at ``box.info.gc()`` may show why the garbage collector has not removed old WAL files, or show what it may soon remove."
+msgstr ""
+
+msgid "**gc().consumers** -- a list of users whose requests might affect the garbage collector."
+msgstr ""
+
+msgid "**gc().checkpoints** -- a list of preserved checkpoints."
+msgstr ""
+
+msgid "**gc().checkpoints[n].references** -- a list of references to a checkpoint."
+msgstr ""
+
+msgid "**gc().checkpoints[n].vclock** -- a checkpoint's vclock value."
+msgstr ""
+
+msgid "**gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's components."
+msgstr ""
+
+msgid "**gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false"
+msgstr ""
+
+msgid "**gc().vclock** -- the garbage collector's vclock."
+msgstr ""
+
+msgid "**gc().signature** -- the sum of the garbage collector's checkpoint's components."
+msgstr ""
+
+msgid "The **replication** section of ``box.info()`` contains statistics for all instances in the replica set in regard to the current instance (see also :ref:`\"Monitoring a replica set\" <replication-monitoring>`):"
+msgstr ""
+
+msgid "**replication.id** is a short numeric identifier of the instance within the replica set."
+msgstr ""
+
+msgid "**replication.uuid** is a globally unique identifier of the instance. This value is also stored in :ref:`box.space._cluster <box_space-cluster>` system space."
+msgstr ""
+
+msgid "**replication.lsn** is the :ref:`log sequence number <replication-mechanism>` (LSN) for the latest entry in the instance's :ref:`write ahead log <index-box_persistence>` (WAL)."
+msgstr ""
+
+msgid "**replication.upstream** contains statistics for the replication data uploaded by the instance."
+msgstr ""
+
+msgid "**replication.upstream.status** is the replication status of the instance:"
+msgstr ""
+
+msgid "``auth`` means that the instance is getting :ref:`authenticated <authentication>` to connect to a replication source."
+msgstr ""
+
+msgid "``connecting`` means that the instance is trying to connect to the replications source(s) listed in its :ref:`replication <cfg_replication-replication>` parameter."
+msgstr ""
+
+msgid "``disconnected`` means that the instance is not connected to the replica set (due to network problems, not replication errors)."
+msgstr ""
+
+msgid "``follow`` means that replication is in progress."
+msgstr ""
+
+msgid "``running`` means the instance's role is \"master\" (non read-only) and replication is in progress."
+msgstr ""
+
+msgid "``stopped`` means that replication was stopped due to a replication error (e.g. :ref:`duplicate key <error_codes>`)."
+msgstr ""
+
+msgid "``orphan`` means that the instance has not (yet) succeeded in joining the required number of masters (see :ref:`orphan status <replication-orphan_status>`)."
+msgstr ""
+
+msgid "``synch`` means that the master and replica are synchronizing to have the same data."
+msgstr ""
+
+msgid "**replication.upstream.idle** is the time (in seconds) since the instance received the last event from a master. This is the primary indicator of replication health. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+msgid "**replication.upstream.peer** contains the replication user name, host IP adress and port number used for the instance. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+msgid "**replication.upstream.lag** is the time difference between the local time at the instance, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on that master. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+msgid "**replication.upstream.message** contains an error message in case of a :ref:`degraded state <replication-recover>`, empty otherwise."
+msgstr ""
+
+msgid "**replication.downstream** contains statistics for the replication data requested and downloaded from the instance."
+msgstr ""
+
+msgid "**replication.downstream.vclock** contains the :ref:`vector clock <replication-vector>`, which is a table of '**id**, **lsn**' pairs, for example :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`. Even if an instance is :ref:`removed <replication-remove_instances>`, its values will still appear here."
+msgstr ""
+
+msgid "**replication.downstream.status** is the replication status for downstream replications:"
+msgstr ""
+
+msgid "``stopped`` means that downstream replication has stopped."
+msgstr ""
+
+msgid "``follow`` means that downstream replication is in progress."
+msgstr ""
+
+msgid "Since ``box.info`` contents are dynamic, it's not possible to iterate over keys with the Lua ``pairs()`` function. For this purpose, ``box.info()`` builds and returns a Lua table with all keys and values provided in the submodule."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "keys and values in the submodule"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "This example is for a master-replica set that contains one master instance and one replica instance. The request was issued at the replica instance."
+msgstr ""
+
+msgid "tarantool> box.info()\n"
+"---\n"
+"- version: 1.7.6-68-g51fcffb77\n"
+"  id: 2\n"
+"  ro: true\n"
+"  vclock: {1: 5}\n"
+"  uptime: 917\n"
+"  lsn: 0\n"
+"  vinyl: []\n"
+"  cluster:\n"
+"    uuid: 783e2285-55b1-42d4-b93c-68dcbb7a8c18\n"
+"  pid: 35341\n"
+"  status: running\n"
+"  signature: 5\n"
+"  replication:\n"
+"    1:\n"
+"      id: 1\n"
+"      uuid: 471cd36e-cb2e-4447-ac66-2d28e9dd3b67\n"
+"      lsn: 5\n"
+"      upstream:\n"
+"        status: follow\n"
+"        idle: 124.98795700073\n"
+"        peer: replicator@192.168.0.101:3301\n"
+"        lag: 0\n"
+"      downstream:\n"
+"        vclock: {1: 5}\n"
+"    2:\n"
+"      id: 2\n"
+"      uuid: ac45d5d2-8a16-4520-ad5e-1abba6baba0a\n"
+"      lsn: 0\n"
+"  uuid: ac45d5d2-8a16-4520-ad5e-1abba6baba0a\n"
+"..."
+msgstr ""
+

@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Database error codes"
+msgstr ""
+
+msgid "In the current version of the binary protocol, error messages, which are normally more descriptive than error codes, are not present in server responses. The actual message may contain a file name, a detailed reason or operating system error code. All such messages, however, are logged in the error log. Below are general descriptions of some popular codes. A complete list of errors can be found in file `errcode.h`_ in the source tree."
+msgstr ""
+
+msgid "**List of error codes**"
+msgstr ""
+
+msgid "ER_NONMASTER"
+msgstr ""
+
+msgid "(In replication) A server instance cannot modify data unless it is a master."
+msgstr ""
+
+msgid "ER_ILLEGAL_PARAMS"
+msgstr ""
+
+msgid "Illegal parameters. Malformed protocol message."
+msgstr ""
+
+msgid "ER_MEMORY_ISSUE"
+msgstr ""
+
+msgid "Out of memory: :ref:`memtx_memory <cfg_storage-memtx_memory>` limit has been reached."
+msgstr ""
+
+msgid "ER_WAL_IO"
+msgstr ""
+
+msgid "Failed to write to disk. May mean: failed to record a change in the write-ahead log. Some sort of disk error."
+msgstr ""
+
+msgid "ER_KEY_PART_COUNT"
+msgstr ""
+
+msgid "Key part count is not the same as index part count"
+msgstr ""
+
+msgid "ER_NO_SUCH_SPACE"
+msgstr ""
+
+msgid "The specified space does not exist."
+msgstr ""
+
+msgid "ER_NO_SUCH_INDEX"
+msgstr ""
+
+msgid "The specified index in the specified space does not exist."
+msgstr ""
+
+msgid "ER_PROC_LUA"
+msgstr ""
+
+msgid "An error occurred inside a Lua procedure."
+msgstr ""
+
+msgid "ER_FIBER_STACK"
+msgstr ""
+
+msgid "The recursion limit was reached when creating a new fiber. This usually indicates that a stored procedure is recursively invoking itself too often."
+msgstr ""
+
+msgid "ER_UPDATE_FIELD"
+msgstr ""
+
+msgid "An error occurred during update of a field."
+msgstr ""
+
+msgid "ER_TUPLE_FOUND"
+msgstr ""
+
+msgid "A duplicate key exists in a unique index."
+msgstr ""
+
+msgid "Handling errors"
+msgstr ""
+
+msgid "Here are some procedures that can make Lua functions more robust when there are errors, particularly database errors."
+msgstr ""
+
+msgid "Invoke with pcall."
+msgstr ""
+
+msgid "Take advantage of Lua's mechanisms for `\"Error handling and exceptions\" <http://www.lua.org/pil/8.4.html>`_, particularly ``pcall``. That is, instead of simply invoking with"
+msgstr ""
+
+msgid ":samp:`box.space.{space-name}:{function-name}()`"
+msgstr ""
+
+msgid "say"
+msgstr ""
+
+msgid ":samp:`if pcall(box.space.{space-name}.{function-name}, box.space.{space-name}) ...`"
+msgstr ""
+
+msgid "For some Tarantool box functions, pcall also returns error details including a file-name and line-number within Tarantool's source code. This can be seen by unpacking. For example:"
+msgstr ""
+
+msgid "``x, y = pcall(function() box.schema.space.create('') end)``"
+msgstr ""
+
+msgid "``y:unpack()``"
+msgstr ""
+
+msgid "See the tutorial :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>` to see how pcall can fit in an application."
+msgstr ""
+
+msgid "Examine and raise with box.error."
+msgstr ""
+
+msgid "To make a new error and pass it on, the box.error module provides :ref:`box.error(code, errtext [, errtext ...]) <box_error-error>`."
+msgstr ""
+
+msgid "To find the last error, the box.error module provides :ref:`box.error.last() <box_error-last>`. (There is also a way to find the text of the last operating-system error for certain functions -- :ref:`errno.strerror([code]) <errno-strerror>`.)"
+msgstr ""
+
+msgid "Log."
+msgstr ""
+
+msgid "Put messages in a log using the :ref:`log module <log-module>`."
+msgstr ""
+
+msgid "And filter messages that are automatically generated, with the :ref:`log <cfg_logging-log>` configuration parameter."
+msgstr ""
+
+msgid "Generally, for Tarantool built-in functions which are designed to return objects: the result will be an object, or nil, or `a Lua error <https://www.lua.org/pil/8.3.html>`_. For example consider the :ref:`fio_read.lua <cookbook-fio_read>` program in our cookbook:"
+msgstr ""
+
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local fio = require('fio')\n"
+"local errno = require('errno')\n"
+"local f = fio.open('/tmp/xxxx.txt', {'O_RDONLY' })\n"
+"if not f then\n"
+"    error(\"Failed to open file: \"..errno.strerror())\n"
+"end\n"
+"local data = f:read(4096)\n"
+"f:close()\n"
+"print(data)"
+msgstr ""
+
+msgid "After a function call that might fail, like fio.open() above, it is common to see syntax like ``if not f then ...`` or ``if f == nil then ...``, which check for common failures. But if there had been a syntax error, for example fio.opex instead of fio.open, then there would have been a Lua error and f would not have been changed. If checking for such an obvious error had been a concern, the programmer would probably have used pcall()."
+msgstr ""
+
+msgid "All functions in Tarantool modules should work this way, unless the manual explicitly says otherwise."
+msgstr ""
+

@@ -202,3 +202,5 @@ intersphinx_cache_limit = 0
 language = 'en'
 locale_dirs = ['./locale']
 gettext_additional_targets = ['literal-block']
+gettext_compact = False
+gettext_location = False

@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Daemon supervision"
+msgstr ""
+
+msgid "Server signals"
+msgstr ""
+
+msgid "Tarantool processes these signals during the event loop in the transaction processor thread:"
+msgstr ""
+
+msgid "Signal"
+msgstr ""
+
+msgid "Effect"
+msgstr ""
+
+msgid "SIGHUP"
+msgstr ""
+
+msgid "May cause log file rotation. See the :ref:`example <cfg_logging-logging_example>` in reference on Tarantool logging parameters."
+msgstr ""
+
+msgid "SIGUSR1"
+msgstr ""
+
+msgid "May cause a database checkpoint. See :ref:`box.snapshot <box-snapshot>`."
+msgstr ""
+
+msgid "SIGTERM"
+msgstr ""
+
+msgid "May cause graceful shutdown (information will be saved first)."
+msgstr ""
+
+msgid "SIGINT (also known as keyboard interrupt)"
+msgstr ""
+
+msgid "May cause graceful shutdown."
+msgstr ""
+
+msgid "SIGKILL"
+msgstr ""
+
+msgid "Causes an immediate shutdown."
+msgstr ""
+
+msgid "Other signals will result in behavior defined by the operating system. Signals other than SIGKILL may be ignored, especially if Tarantool is executing a long-running procedure which prevents return to the event loop in the transaction processor thread."
+msgstr ""
+
+msgid "Automatic instance restart"
+msgstr ""
+
+msgid "On ``systemd``-enabled platforms, ``systemd`` automatically restarts all Tarantool instances in case of failure. To demonstrate it, let’s try to destroy an instance:"
+msgstr ""
+
+msgid "$ systemctl status tarantool@my_app|grep PID\n"
+"Main PID: 5885 (tarantool)\n"
+"$ tarantoolctl enter my_app\n"
+"/bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available\n"
+"/bin/tarantoolctl: Connecting to /var/run/tarantool/my_app.control\n"
+"/bin/tarantoolctl: connected to unix/:/var/run/tarantool/my_app.control\n"
+"unix/:/var/run/tarantool/my_app.control> os.exit(-1)\n"
+"/bin/tarantoolctl: unix/:/var/run/tarantool/my_app.control: Remote host closed connection"
+msgstr ""
+
+msgid "Now let’s make sure that ``systemd`` has restarted the instance:"
+msgstr ""
+
+msgid "$ systemctl status tarantool@my_app|grep PID\n"
+"Main PID: 5914 (tarantool)"
+msgstr ""
+
+msgid "Finally, let’s check the boot logs:"
+msgstr ""
+
+msgid "$ journalctl -u tarantool@my_app -n 8\n"
+"-- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:09:45 MSK. --\n"
+"Jan 21 21:09:45 localhost.localdomain systemd[1]: tarantool@my_app.service: Unit entered failed state.\n"
+"Jan 21 21:09:45 localhost.localdomain systemd[1]: tarantool@my_app.service: Failed with result 'exit-code'.\n"
+"Jan 21 21:09:45 localhost.localdomain systemd[1]: tarantool@my_app.service: Service hold-off time over, scheduling restart.\n"
+"Jan 21 21:09:45 localhost.localdomain systemd[1]: Stopped Tarantool Database Server.\n"
+"Jan 21 21:09:45 localhost.localdomain systemd[1]: Starting Tarantool Database Server...\n"
+"Jan 21 21:09:45 localhost.localdomain tarantoolctl[5910]: /usr/bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available\n"
+"Jan 21 21:09:45 localhost.localdomain tarantoolctl[5910]: /usr/bin/tarantoolctl: Starting instance...\n"
+"Jan 21 21:09:45 localhost.localdomain systemd[1]: Started Tarantool Database Server."
+msgstr ""
+
+msgid "Core dumps"
+msgstr ""
+
+msgid "Tarantool makes a core dump if it receives any of the following signals: SIGSEGV, SIGFPE, SIGABRT or SIGQUIT. This is automatic if Tarantool crashes."
+msgstr ""
+
+msgid "On ``systemd``-enabled platforms, ``coredumpctl`` automatically saves core dumps and stack traces in case of a crash. Here is a general \"how to\" for how to enable core dumps on a Unix system:"
+msgstr ""
+
+msgid "Ensure session limits are configured to enable core dumps, i.e. say ``ulimit -c unlimited``. Check  \"man 5 core\" for other reasons why a core dump may not be produced."
+msgstr ""
+
+msgid "Set a directory for writing core dumps to, and make sure that the directory is writable. On Linux, the directory path is set in a kernel parameter configurable via ``/proc/sys/kernel/core_pattern``."
+msgstr ""
+
+msgid "Make sure that core dumps include stack trace information. If you use a binary Tarantool distribution, this is automatic. If you build Tarantool from source, you will not get detailed information if you pass ``-DCMAKE_BUILD_TYPE=Release`` to CMake."
+msgstr ""
+
+msgid "To simulate a crash, you can execute an illegal command against a Tarantool instance:"
+msgstr ""
+
+msgid "$ # !!! please never do this on a production system !!!\n"
+"$ tarantoolctl enter my_app\n"
+"unix/:/var/run/tarantool/my_app.control> require('ffi').cast('char *', 0)[0] = 48\n"
+"/bin/tarantoolctl: unix/:/var/run/tarantool/my_app.control: Remote host closed connection"
+msgstr ""
+
+msgid "Alternatively, if you know the process ID of the instance (here we refer to it as $PID), you can abort a Tarantool instance by running ``gdb`` debugger:"
+msgstr ""
+
+msgid "$ gdb -batch -ex \"generate-core-file\" -p $PID"
+msgstr ""
+
+msgid "or manually sending a SIGABRT signal:"
+msgstr ""
+
+msgid "$ kill -SIGABRT $PID"
+msgstr ""
+
+msgid "To find out the process id of the instance ($PID), you can:"
+msgstr ""
+
+msgid "look it up in the instance's :ref:`box.info.pid <box_introspection-box_info>`,"
+msgstr ""
+
+msgid "find it with ``ps -A | grep tarantool``, or"
+msgstr ""
+
+msgid "say ``systemctl status tarantool@my_app|grep PID``."
+msgstr ""
+
+msgid "On a ``systemd-enabled`` system, to see the latest crashes of the Tarantool daemon, say:"
+msgstr ""
+
+msgid "$ coredumpctl list /usr/bin/tarantool\n"
+"MTIME                            PID   UID   GID SIG PRESENT EXE\n"
+"Sat 2016-01-23 15:21:24 MSK   20681  1000  1000   6   /usr/bin/tarantool\n"
+"Sat 2016-01-23 15:51:56 MSK   21035   995   992   6   /usr/bin/tarantool"
+msgstr ""
+
+msgid "To save a core dump into a file, say:"
+msgstr ""
+
+msgid "$ coredumpctl -o filename.core info <pid>"
+msgstr ""
+
+msgid "Stack traces"
+msgstr ""
+
+msgid "Since Tarantool stores tuples in memory, core files may be large. For investigation, you normally don't need the whole file, but only a \"stack trace\" or \"backtrace\"."
+msgstr ""
+
+msgid "To save a stack trace into a file, say:"
+msgstr ""
+
+msgid "$ gdb -se \"tarantool\" -ex \"bt full\" -ex \"thread apply all bt\" --batch -c core> /tmp/tarantool_trace.txt"
+msgstr ""
+
+msgid "where:"
+msgstr ""
+
+msgid "\"tarantool\" is the path to the Tarantool executable,"
+msgstr ""
+
+msgid "\"core\" is the path to the core file, and"
+msgstr ""
+
+msgid "\"/tmp/tarantool_trace.txt\" is a sample path to a file for saving the stack trace."
+msgstr ""
+
+msgid "Occasionally, you may find that the trace file contains output without debug symbols – the lines will contain ”??” instead of names. If this happens, check the instructions on these Tarantool wiki pages: `How to debug core dump of stripped tarantool <https://github.com/tarantool/tarantool/wiki/How-to-debug-core-dump-of-stripped-tarantool>`_ and `How to debug core from different OS <https://github.com/tarantool/tarantool/wiki/How-to-debug-core-from-different-OS>`_."
+msgstr ""
+
+msgid "To see the stack trace and other useful information in console, say:"
+msgstr ""
+
+msgid "$ coredumpctl info 21035\n"
+"          PID: 21035 (tarantool)\n"
+"          UID: 995 (tarantool)\n"
+"          GID: 992 (tarantool)\n"
+"       Signal: 6 (ABRT)\n"
+"    Timestamp: Sat 2016-01-23 15:51:42 MSK (4h 36min ago)\n"
+" Command Line: tarantool my_app.lua <running>\n"
+"   Executable: /usr/bin/tarantool\n"
+"Control Group: /system.slice/system-tarantool.slice/tarantool@my_app.service\n"
+"         Unit: tarantool@my_app.service\n"
+"        Slice: system-tarantool.slice\n"
+"      Boot ID: 7c686e2ef4dc4e3ea59122757e3067e2\n"
+"   Machine ID: a4a878729c654c7093dc6693f6a8e5ee\n"
+"     Hostname: localhost.localdomain\n"
+"      Message: Process 21035 (tarantool) of user 995 dumped core.\n"
+"\n"
+"               Stack trace of thread 21035:\n"
+"               #0  0x00007f84993aa618 raise (libc.so.6)\n"
+"               #1  0x00007f84993ac21a abort (libc.so.6)\n"
+"               #2  0x0000560d0a9e9233 _ZL12sig_fatal_cbi (tarantool)\n"
+"               #3  0x00007f849a211220 __restore_rt (libpthread.so.0)\n"
+"               #4  0x0000560d0aaa5d9d lj_cconv_ct_ct (tarantool)\n"
+"               #5  0x0000560d0aaa687f lj_cconv_ct_tv (tarantool)\n"
+"               #6  0x0000560d0aaabe33 lj_cf_ffi_meta___newindex (tarantool)\n"
+"               #7  0x0000560d0aaae2f7 lj_BC_FUNCC (tarantool)\n"
+"               #8  0x0000560d0aa9aabd lua_pcall (tarantool)\n"
+"               #9  0x0000560d0aa71400 lbox_call (tarantool)\n"
+"               #10 0x0000560d0aa6ce36 lua_fiber_run_f (tarantool)\n"
+"               #11 0x0000560d0a9e8d0c _ZL16fiber_cxx_invokePFiP13__va_list_tagES0_ (tarantool)\n"
+"               #12 0x0000560d0aa7b255 fiber_loop (tarantool)\n"
+"               #13 0x0000560d0ab38ed1 coro_init (tarantool)\n"
+"               ..."
+msgstr ""
+
+msgid "Debugger"
+msgstr ""
+
+msgid "To start ``gdb`` debugger on the core dump, say:"
+msgstr ""
+
+msgid "$ coredumpctl gdb <pid>"
+msgstr ""
+
+msgid "It is highly recommended to install ``tarantool-debuginfo`` package to improve ``gdb`` experience, for example:"
+msgstr ""
+
+msgid "$ dnf debuginfo-install tarantool"
+msgstr ""
+
+msgid "``gdb`` also provides information about the debuginfo packages you need to install:"
+msgstr ""
+
+msgid "$ gdb -p <pid>\n"
+"...\n"
+"Missing separate debuginfos, use: dnf debuginfo-install\n"
+"glibc-2.22.90-26.fc24.x86_64 krb5-libs-1.14-12.fc24.x86_64\n"
+"libgcc-5.3.1-3.fc24.x86_64 libgomp-5.3.1-3.fc24.x86_64\n"
+"libselinux-2.4-6.fc24.x86_64 libstdc++-5.3.1-3.fc24.x86_64\n"
+"libyaml-0.1.6-7.fc23.x86_64 ncurses-libs-6.0-1.20150810.fc24.x86_64\n"
+"openssl-libs-1.0.2e-3.fc24.x86_64"
+msgstr ""
+
+msgid "Symbolic names are present in stack traces even if you don’t have ``tarantool-debuginfo`` package installed."
+msgstr ""
+

@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "`libslave` tutorial"
+msgstr ""
+
+msgid "``libslave`` is a C++ library for reading data changes done by MysQL and, optionally, writing them to a Tarantool database. It works by acting as a replication slave. The MySQL server writes data-change information to a \"binary log\", and transfers the information to any client that says \"I want to see the information starting with this file and this record, continuously\". So, ``libslave`` is primarily good for making a Tarantool database replica (much faster than using a conventional MySQL slave server), and for keeping track of data changes so they can be searched."
+msgstr ""
+
+msgid "We will not go into the many details here -- the `API documentation <https://github.com/vozbu/libslave/wiki/API>`_ has them. We will only show an exercise: a minimal program that uses the library."
+msgstr ""
+
+msgid "Use a test machine. Do not use a production machine."
+msgstr ""
+
+msgid "STEP 1: Make sure you have:"
+msgstr ""
+
+msgid "a recent version of Linux (versions such as Ubuntu 14.04 will not do),"
+msgstr ""
+
+msgid "a recent version of MySQL 5.6 or MySQL 5.7 server (MariaDB will not do),"
+msgstr ""
+
+msgid "MySQL client development package. For example, on Ubuntu you can download it with this command:"
+msgstr ""
+
+msgid "$ sudo apt-get install mysql-client-core-5.7"
+msgstr ""
+
+msgid "STEP 2: Download ``libslave``."
+msgstr ""
+
+msgid "The recommended source is https://github.com/tarantool/libslave/. Downloads include the source code only."
+msgstr ""
+
+msgid "$ sudo apt-get install libboost-all-dev\n"
+"$ cd ~\n"
+"$ git clone https://github.com/tarantool/libslave.git tarantool-libslave\n"
+"$ cd tarantool-libslave\n"
+"$ git submodule init\n"
+"$ git submodule update\n"
+"$ cmake .\n"
+"$ make"
+msgstr ""
+
+msgid "If you see an error message mentioning the word \"vector\", edit ``field.h`` and add this line:"
+msgstr ""
+
+msgid "#include <vector>"
+msgstr ""
+
+msgid "STEP 3: Start the MySQL server. On the command line, add appropriate switches for doing replication. For example:"
+msgstr ""
+
+msgid "$ mysqld --log-bin=mysql-bin --server-id=1"
+msgstr ""
+
+msgid "STEP 4: For purposes of this exercise, we are assuming you have:"
+msgstr ""
+
+msgid "a \"root\" user with password \"root\" with privileges,"
+msgstr ""
+
+msgid "a \"test\" database with a table named \"test\","
+msgstr ""
+
+msgid "a binary log named \"mysql-bin\","
+msgstr ""
+
+msgid "a server with server id = 1."
+msgstr ""
+
+msgid "The values are hard-coded in the program, though of course you can change the program -- it's easy to see their settings."
+msgstr ""
+
+msgid "STEP 5: Look at the program:"
+msgstr ""
+
+msgid "#include <unistd.h>\n"
+"#include <iostream>\n"
+"#include <sstream>\n"
+"#include \"Slave.h\"\n"
+"#include \"DefaultExtState.h\"\n"
+"\n"
+"slave::Slave* sl = NULL;\n"
+"\n"
+"void callback(const slave::RecordSet& event) {\n"
+"    slave::Position sBinlogPos = sl->getLastBinlogPos();\n"
+"    switch (event.type_event) {\n"
+"    case slave::RecordSet::Update: std::cout << \"UPDATE\" << \"\\n\"; break;\n"
+"    case slave::RecordSet::Delete: std::cout << \"DELETE\" << \"\\n\"; break;\n"
+"    case slave::RecordSet::Write:  std::cout << \"INSERT\" << \"\\n\"; break;\n"
+"    default: break;\n"
+"    }\n"
+"}\n"
+"\n"
+"bool isStopping()\n"
+"{\n"
+"    return 0;\n"
+"}\n"
+"\n"
+"int main(int argc, char** argv)\n"
+"{\n"
+"    slave::MasterInfo masterinfo;\n"
+"    slave::Position position(\"mysql-bin\", 0);\n"
+"    masterinfo.conn_options.mysql_host = \"127.0.0.1\";\n"
+"    masterinfo.conn_options.mysql_port = 3306;\n"
+"    masterinfo.conn_options.mysql_user = \"root\";\n"
+"    masterinfo.conn_options.mysql_pass = \"root\";\n"
+"    bool error = false;\n"
+"    try {\n"
+"        slave::DefaultExtState sDefExtState;\n"
+"        slave::Slave slave(masterinfo, sDefExtState);\n"
+"        sl = &slave;\n"
+"        sDefExtState.setMasterPosition(position);\n"
+"        slave.setCallback(\"test\", \"test\", callback);\n"
+"        slave.init();\n"
+"        slave.createDatabaseStructure();\n"
+"        try {\n"
+"            slave.get_remote_binlog(isStopping);\n"
+"        } catch (std::exception& ex) {\n"
+"            std::cout << \"Error reading: \" << ex.what() << std::endl;\n"
+"            error = true;\n"
+"        }\n"
+"    } catch (std::exception& ex) {\n"
+"        std::cout << \"Error initializing: \" << ex.what() << std::endl;\n"
+"        error = true;\n"
+"    }\n"
+"    return 0;\n"
+"}"
+msgstr ""
+
+msgid "Everything unnecessary has been stripped so that you can see quickly how it works. At the start of ``main()``, there are some settings used for connecting -- host, port, user, password. Then there is an initialization call with the binary log file name = \"mysql-bin\". Pay particular attention to the ``setCallback`` statement, which passes database name = \"test\", table name = \"test\", and callback function address = callback. The program will be looping and invoking this callback function. See how, earlier in the program, the callback function prints \"UPDATE\" or \"DELETE\" or \"INSERT\" depending on what is passed to it."
+msgstr ""
+
+msgid "STEP 5: Put the program in the ``tarantool-libslave`` directory and name it ``example.cpp``."
+msgstr ""
+
+msgid "Step 6: Compile and build:"
+msgstr ""
+
+msgid "$ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a -ldl -lpthread"
+msgstr ""
+
+msgid "Replace ``tarantool-libslave/include`` with the full directory name."
+msgstr ""
+
+msgid "Notice that the name of the static library is ``libslave_a.a``, not ``libslave.a``."
+msgstr ""
+
+msgid "Step 7: Run:"
+msgstr ""
+
+msgid "$ ./example"
+msgstr ""
+
+msgid "The result will be nothing -- the program is looping, waiting for the MySQL server to write to the replication binary log."
+msgstr ""
+
+msgid "Step 8: Start a MySQL client program -- any client program will do. Enter these statements:"
+msgstr ""
+
+msgid "USE test\n"
+"INSERT INTO test VALUES ('A');\n"
+"INSERT INTO test VALUES ('B');\n"
+"DELETE FROM test;"
+msgstr ""
+
+msgid "Watch what happens in ``example.cpp`` output -- it displays:"
+msgstr ""
+
+msgid "INSERT\n"
+"INSERT\n"
+"DELETE\n"
+"DELETE"
+msgstr ""
+
+msgid "This is row-based replication, so you see two DELETEs, because there are two rows."
+msgstr ""
+
+msgid "What the exercise has shown is:"
+msgstr ""
+
+msgid "the library can be built, and"
+msgstr ""
+
+msgid "programs that use the library can access everything that the MySQL server dumps."
+msgstr ""
+
+msgid "For the many details and examples of usage in the field, see:"
+msgstr ""
+
+msgid "Our downloadable ``libslave`` version:"
+msgstr ""
+
+msgid "https://github.com/tarantool/libslave"
+msgstr ""
+
+msgid "The version it was forked from (with a different README):"
+msgstr ""
+
+msgid "https://github.com/vozbu/libslave/wiki/API"
+msgstr ""
+
+msgid "`How to speed up your MySQL with replication to in-memory database <http://highscalability.com/blog/2017/3/29/how-to-speed-up-your-mysql-with-replication-to-in-memory-dat.html>`_ article"
+msgstr ""
+
+msgid "`Replicating data from MySQL to Tarantool <https://habrahabr.ru/company/mailru/blog/323870/>`_ article (in Russian)"
+msgstr ""
+
+msgid "`Asynchronous replication uncensored <https://habrahabr.ru/company/oleg-bunin/blog/313594/>`_ article (in Russian)"
+msgstr ""
+

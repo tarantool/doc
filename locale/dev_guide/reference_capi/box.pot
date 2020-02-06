@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `box`"
+msgstr ""
+
+msgid "Opaque structure passed to a C stored procedure"
+msgstr ""
+
+msgid "Return a tuple from a C stored procedure."
+msgstr ""
+
+msgid "The returned tuple is automatically reference-counted by Tarantool. An example program that uses ``box_return_tuple()`` is :ref:`write.c <f_c_tutorial-write>`."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an opaque structure passed to the C stored procedure by Tarantool"
+msgstr ""
+
+msgid "a tuple to return"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+msgid "0 otherwise"
+msgstr ""
+
+msgid "Find space id by name."
+msgstr ""
+
+msgid "This function performs a SELECT request on the ``_vspace`` system space."
+msgstr ""
+
+msgid "space name"
+msgstr ""
+
+msgid "length of ``name``"
+msgstr ""
+
+msgid ":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+msgid "space_id otherwise"
+msgstr ""
+
+msgid "See also: :c:type:`box_index_id_by_name`"
+msgstr ""
+
+msgid "Find index id by name."
+msgstr ""
+
+msgid "This function performs a SELECT request on the ``_vindex`` system space."
+msgstr ""
+
+msgid "space identifier"
+msgstr ""
+
+msgid "index name"
+msgstr ""
+
+msgid "See also: :c:type:`box_space_id_by_name`"
+msgstr ""
+
+msgid "Execute an INSERT/REPLACE request."
+msgstr ""
+
+msgid "encoded tuple in MsgPack Array format ([ field1, field2, ...])"
+msgstr ""
+
+msgid "end of a ``tuple``"
+msgstr ""
+
+msgid "output argument. Resulting tuple. Can be set to NULL to discard result"
+msgstr ""
+
+msgid "-1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+msgid "See also :ref:`space_object.insert()<box_space-insert>`"
+msgstr ""
+
+msgid "Execute a REPLACE request."
+msgstr ""
+
+msgid "See also :ref:`space_object.replace()<box_space-replace>`"
+msgstr ""
+
+msgid "Execute a DELETE request."
+msgstr ""
+
+msgid "index identifier"
+msgstr ""
+
+msgid "encoded key in MsgPack Array format ([ field1, field2, ...])"
+msgstr ""
+
+msgid "end of a ``key``"
+msgstr ""
+
+msgid "output argument. An old tuple. Can be set to NULL to discard result"
+msgstr ""
+
+msgid "See also :ref:`space_object.delete()<box_space-delete>`"
+msgstr ""
+
+msgid "Execute an UPDATE request."
+msgstr ""
+
+msgid "encoded operations in MsgPack Array format, e.g. ``[[ '=', field_id,  value ], ['!', 2, 'xxx']]``"
+msgstr ""
+
+msgid "end of an ``ops`` section"
+msgstr ""
+
+msgid "0 if field_ids are zero-based as in C, 1 if field ids are 1-based as in Lua"
+msgstr ""
+
+msgid "See also :ref:`space_object.update()<box_space-update>`"
+msgstr ""
+
+msgid "Execute an UPSERT request."
+msgstr ""
+
+msgid "end of a ``ops``"
+msgstr ""
+
+msgid "-1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
+msgstr ""
+
+msgid "Truncate a space."
+msgstr ""
+

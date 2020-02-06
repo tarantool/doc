@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `table`"
+msgstr ""
+
+msgid "The :code:`table` module has everything in the `standard Lua table library <https://www.lua.org/pil/19.html>`_, and some Tarantool extensions."
+msgstr ""
+
+msgid "You can see this by saying \"table\": you will see this list of functions: ``clear`` (LuaJIT extension = erase all elements), `concat <https://www.lua.org/manual/5.1/manual.html#pdf-table.concat>`_ (concatenate), ``copy`` (make a copy of an array), ``deepcopy`` (see description below), ``foreach``, ``foreach1``, `getn <https://www.lua.org/pil/19.1.html>`_ (get the number of elements in an array), `insert <https://www.lua.org/manual/5.1/manual.html#pdf-table.insert>`_ (insert an element into an array), `maxn <https://www.lua.org/manual/5.1/manual.html#pdf-table.maxn>`_ (get largest index) `move <https://www.lua.org/manual/5.3/manual.html#pdf-table.move>`_ (move elements between tables), ``new`` (LuaJIT extension = return a new table with pre-allocated elements), `remove <https://www.lua.org/manual/5.1/manual.html#pdf-table.remove>`_ (remove an element from an array), `sort <https://www.lua.org/manual/5.1/manual.html#pdf-table.sort>`_ (sort the elements of an array)."
+msgstr ""
+
+msgid "In this section we only discuss the additional function that the Tarantool developers have added: ``deepcopy``."
+msgstr ""
+
+msgid "Return a \"deep\" copy of the table -- a copy which follows nested structures to any depth and does not depend on pointers, it copies the contents."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "(table) the table to copy"
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid "the copy of the table"
+msgstr ""
+
+msgid "Rtype"
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> input_table = {1,{'a','b'}}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> output_table = table.deepcopy(input_table)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> output_table\n"
+"---\n"
+"- - 1\n"
+"  - - a\n"
+"    - b\n"
+"..."
+msgstr ""
+
+msgid "Put the input-table contents in sorted order."
+msgstr ""
+
+msgid "The `basic Lua table.sort <https://www.lua.org/manual/5.1/manual.html#pdf-table.sort>`_ has a default comparison-function: :code:`function (a, b) return a < b end`."
+msgstr ""
+
+msgid "That is efficient and standard. However, sometimes Tarantool users will want an equivalent to ``table.sort`` which has any of these features:"
+msgstr ""
+
+msgid "(1) If the table contains nils, except nils at the end, the results must still be correct. That is not the case with the default tarantool_sort, and it cannot be fixed by making a comparison that checks whether a and b are nil. (Before trying certain Internet suggestions, test with {1, nil, 2, -1, 44, 1e308, nil, 2, nil, nil, 0}."
+msgstr ""
+
+msgid "(2) If strings are to be sorted in a language-aware way, there must be a parameter for collation."
+msgstr ""
+
+msgid "(3) If the table has a mix of types, then they must be sorted as booleans, then numbers, then strings, then byte arrays."
+msgstr ""
+
+msgid "Since all those features are available in Tarantool spaces, the solution for Tarantool is simple: make a temporary Tarantool space, put the table contents into it, retrieve the tuples from it in order, and overwrite the table."
+msgstr ""
+
+msgid "Here then is ``tarantool_sort()`` which does the same thing as ``table.sort`` but has those extra features. It is not fast and it requires a database privilege, so it should only be used if the extra features are necessary."
+msgstr ""
+
+msgid "  function tarantool_sort(input_table, collation)\n"
+"      local c = collation or 'binary'\n"
+"      local tmp_name = 'Temporary_for_tarantool_sort'\n"
+"      pcall(function() box.space[tmp_name]:drop() end)\n"
+"      box.schema.space.create(tmp_name, {temporary = true})\n"
+"      box.space[tmp_name]:create_index('I')\n"
+"      box.space[tmp_name]:create_index('I2',\n"
+"                                       {unique = false,\n"
+"                                        type='tree',\n"
+"                                        parts={{2, 'scalar',\n"
+"                                                collation = c,\n"
+"                                                is_nullable = true}}})\n"
+"      for i = 1, table.maxn(input_table) do\n"
+"          box.space[tmp_name]:insert{i, input_table[i]}\n"
+"      end\n"
+"      local t = box.space[tmp_name].index.I2:select()\n"
+"      for i = 1, table.maxn(input_table) do\n"
+"          input_table[i] = t[i][2]\n"
+"      end\n"
+"      box.space[tmp_name]:drop()\n"
+"    end\n"
+"\n"
+"For example, suppose table t = {1, 'A', -88.3, nil, true, 'b', 'B', nil, 'À'}.\n"
+"After tarantool_sort(t, 'unicode_ci') t contains {nil, nil, true, -88.3, 1, 'A', 'À', 'b', 'B'}."
+msgstr ""
+
