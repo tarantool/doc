@@ -1,0 +1,263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `os`"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "The ``os`` module contains the functions :ref:`execute() <os-execute>`, :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`, :ref:`remove() <os-remove>`, :ref:`date() <os-date>`, :ref:`exit() <os-exit>`, :ref:`time() <os-time>`, :ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`, :ref:`environ() <os-environ>`, :ref:`setenv() <os-setenv>`, :ref:`setlocale() <os-setlocale>`, :ref:`difftime() <os-difftime>`. Most of these functions are described in the Lua manual Chapter 22 `The Operating System Library <https://www.lua.org/pil/contents.html#22>`_."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is a list of all ``os`` functions."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`os.execute() <os-execute>`"
+msgstr ""
+
+msgid "Execute by passing to the shell"
+msgstr ""
+
+msgid ":ref:`os.rename() <os-rename>`"
+msgstr ""
+
+msgid "Rename a file or directory"
+msgstr ""
+
+msgid ":ref:`os.getenv() <os-getenv>`"
+msgstr ""
+
+msgid "Get an environment variable"
+msgstr ""
+
+msgid ":ref:`os.remove() <os-remove>`"
+msgstr ""
+
+msgid "Remove a file or directory"
+msgstr ""
+
+msgid ":ref:`os.date() <os-date>`"
+msgstr ""
+
+msgid "Get a formatted date"
+msgstr ""
+
+msgid ":ref:`os.exit() <os-exit>`"
+msgstr ""
+
+msgid "Exit the program"
+msgstr ""
+
+msgid ":ref:`os.time() <os-time>`"
+msgstr ""
+
+msgid "Get the number of seconds since the epoch"
+msgstr ""
+
+msgid ":ref:`os.clock() <os-clock>`"
+msgstr ""
+
+msgid "Get the number of CPU seconds since the program start"
+msgstr ""
+
+msgid ":ref:`os.tmpname() <os-tmpname>`"
+msgstr ""
+
+msgid "Get the name of a temporary file"
+msgstr ""
+
+msgid ":ref:`os.environ() <os-environ>`"
+msgstr ""
+
+msgid "Get a table with all environment variables"
+msgstr ""
+
+msgid ":ref:`os.setenv() <os-setenv>`"
+msgstr ""
+
+msgid "Set an environment variable"
+msgstr ""
+
+msgid ":ref:`os.setlocale() <os-setlocale>`"
+msgstr ""
+
+msgid "Change the locale"
+msgstr ""
+
+msgid ":ref:`os.difftime() <os-difftime>`"
+msgstr ""
+
+msgid "Get the number of seconds between two times"
+msgstr ""
+
+msgid "Execute by passing to the shell."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "what to execute."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> os.execute('ls -l /usr')\n"
+"total 200\n"
+"drwxr-xr-x   2 root root 65536 Apr 22 15:49 bin\n"
+"drwxr-xr-x  59 root root 20480 Apr 18 07:58 include\n"
+"drwxr-xr-x 210 root root 65536 Apr 18 07:59 lib\n"
+"drwxr-xr-x  12 root root  4096 Apr 22 15:49 local\n"
+"drwxr-xr-x   2 root root 12288 Jan 31 09:50 sbin\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "Rename a file or directory."
+msgstr ""
+
+msgid "name of existing file or directory,"
+msgstr ""
+
+msgid "changed name of file or directory."
+msgstr ""
+
+msgid "tarantool> os.rename('local','foreign')\n"
+"---\n"
+"- null\n"
+"- 'local: No such file or directory'\n"
+"- 2\n"
+"..."
+msgstr ""
+
+msgid "Get environment variable."
+msgstr ""
+
+msgid "Parameters: (string) variable-name = environment variable name."
+msgstr ""
+
+msgid "tarantool> os.getenv('PATH')\n"
+"---\n"
+"- /usr/local/sbin:/usr/local/bin:/usr/sbin\n"
+"..."
+msgstr ""
+
+msgid "Remove file or directory."
+msgstr ""
+
+msgid "Parameters: (string) name = name of file or directory which will be removed."
+msgstr ""
+
+msgid "tarantool> os.remove('file')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Return a formatted date."
+msgstr ""
+
+msgid "Parameters: (string) format-string = instructions; (string) time-since-epoch = number of seconds since 1970-01-01. If time-since-epoch is omitted, it is assumed to be the current time."
+msgstr ""
+
+msgid "tarantool> os.date(\"%A %B %d\")\n"
+"---\n"
+"- Sunday April 24\n"
+"..."
+msgstr ""
+
+msgid "Exit the program. If this is done on a server instance, then the instance stops."
+msgstr ""
+
+msgid "tarantool> os.exit()\n"
+"user@user-shell:~/tarantool_sandbox$"
+msgstr ""
+
+msgid "Return the number of seconds since the epoch."
+msgstr ""
+
+msgid "tarantool> os.time()\n"
+"---\n"
+"- 1461516945\n"
+"..."
+msgstr ""
+
+msgid "Return the number of CPU seconds since the program start."
+msgstr ""
+
+msgid "tarantool> os.clock()\n"
+"---\n"
+"- 0.05\n"
+"..."
+msgstr ""
+
+msgid "Return a name for a temporary file."
+msgstr ""
+
+msgid "tarantool> os.tmpname()\n"
+"---\n"
+"- /tmp/lua_7SW1m2\n"
+"..."
+msgstr ""
+
+msgid "Return a table containing all environment variables."
+msgstr ""
+
+msgid "tarantool> os.environ()['TERM']..os.environ()['SHELL']\n"
+"---\n"
+"- xterm/bin/bash\n"
+"..."
+msgstr ""
+
+msgid "Set an environment variable."
+msgstr ""
+
+msgid "tarantool> os.setenv('VERSION','99')\n"
+"---\n"
+"-\n"
+"..."
+msgstr ""
+
+msgid "Change the locale. If new-locale-string is not specified, return the current locale."
+msgstr ""
+
+msgid "tarantool> require('string').sub(os.setlocale(),1,20)\n"
+"---\n"
+"- LC_CTYPE=en_US.UTF-8\n"
+"..."
+msgstr ""
+
+msgid "Return the number of seconds between two times."
+msgstr ""
+
+msgid "tarantool> os.difftime(os.time() - 0)\n"
+"---\n"
+"- 1486594859\n"
+"..."
+msgstr ""
+

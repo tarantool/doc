@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `tdb`"
+msgstr ""
+
+msgid "The Tarantool Debugger (abbreviation = ``tdb``) can be used with any Lua program. The operational features include: setting breakpoints, examining variables, going forward one line at a time, backtracing, and showing information about fibers. The display features include: using different colors for different situations, including line numbers, and adding hints."
+msgstr ""
+
+msgid "It is not supplied as part of the Tarantool repository; it must be installed separately. Here is the usual way:"
+msgstr ""
+
+msgid "$ git clone --recursive https://github.com/Sulverus/tdb\n"
+"$ cd tdb\n"
+"$ make\n"
+"$ sudo make install prefix=/usr/share/tarantool/"
+msgstr ""
+
+msgid "To initiate ``tdb`` within a Lua program and set a breakpoint, edit the program to include these lines:"
+msgstr ""
+
+msgid "tdb = require('tdb')\n"
+"tdb.start()"
+msgstr ""
+
+msgid "To start the debugging session, execute the Lua program. Execution will stop at the breakpoint, and it will be possible to enter debugging commands."
+msgstr ""
+
+msgid "Debugger Commands"
+msgstr ""
+
+msgid ":codebold:`bt`"
+msgstr ""
+
+msgid "Backtrace -- show the stack (in red), with program/function names and line numbers of whatever has been invoked to reach the current line."
+msgstr ""
+
+msgid ":codebold:`c`"
+msgstr ""
+
+msgid "Continue till next breakpoint or till program ends."
+msgstr ""
+
+msgid ":codebold:`e`"
+msgstr ""
+
+msgid "Enter evaluation mode. When the program is in evaluation mode, one can execute certain Lua statements that would be valid in the context. This is particularly useful for displaying the values of the program's variables. Other debugger commands will not work until one exits evaluation mode by typing :codebold:`-e`."
+msgstr ""
+
+msgid ":codebold:`-e`"
+msgstr ""
+
+msgid "Exit evaluation mode."
+msgstr ""
+
+msgid ":codebold:`f`"
+msgstr ""
+
+msgid "Display the fiber id, the program name, and the percentage of memory used, as a table."
+msgstr ""
+
+msgid ":codebold:`n`"
+msgstr ""
+
+msgid "Go to the next line, skipping over any function calls."
+msgstr ""
+
+msgid ":codebold:`globals`"
+msgstr ""
+
+msgid "Display names of variables or functions which are defined as global."
+msgstr ""
+
+msgid ":codebold:`h`"
+msgstr ""
+
+msgid "Display a list of debugger commands."
+msgstr ""
+
+msgid ":codebold:`locals`"
+msgstr ""
+
+msgid "Display names and values of variables, for example the control variables of a Lua \"for\" statement."
+msgstr ""
+
+msgid ":codebold:`q`"
+msgstr ""
+
+msgid "Quit immediately."
+msgstr ""
+
+msgid "Example Session"
+msgstr ""
+
+msgid "Put the following program in a default directory and call it \"example.lua\":"
+msgstr ""
+
+msgid "tdb = require('tdb')\n"
+"tdb.start()\n"
+"i = 1\n"
+"j = 'a' .. i\n"
+"print('end of program')"
+msgstr ""
+
+msgid "Now start Tarantool, using example.lua as the initialization file"
+msgstr ""
+
+msgid "$ tarantool example.lua"
+msgstr ""
+
+msgid "The screen should now look like this:"
+msgstr ""
+
+msgid "$ :codebold:`tarantool example.lua`\n"
+":codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`\n"
+"example.lua\n"
+":codeblue:`(TDB)`  :codegreen:`[example.lua]`\n"
+":codeblue:`(TDB)`  :codenormal:`3: i = 1`\n"
+":codeblue:`(TDB)>`"
+msgstr ""
+
+msgid "Debugger prompts are blue, debugger hints and information are green, and the current line -- line 3 of example.lua -- is the default color. Now enter six debugger commands:"
+msgstr ""
+
+msgid "n  -- go to next line\n"
+"n  -- go to next line\n"
+"e  -- enter evaluation mode\n"
+"j  -- display j\n"
+"-e -- exit evaluation mode\n"
+"q  -- quit"
+msgstr ""
+
+msgid "$ :codebold:`tarantool example.lua`\n"
+":codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`\n"
+"example.lua\n"
+":codeblue:`(TDB)`  :codegreen:`[example.lua]`\n"
+":codeblue:`(TDB)`  :codenormal:`3: i = 1`\n"
+":codeblue:`(TDB)>` n\n"
+":codeblue:`(TDB)`  :codenormal:`4: j = 'a' .. i`\n"
+":codeblue:`(TDB)>` n\n"
+":codeblue:`(TDB)`  :codenormal:`5: print('end of program')`\n"
+":codeblue:`(TDB)>` e\n"
+":codeblue:`(TDB)`  :codegreen:`Eval mode ON`\n"
+":codeblue:`(TDB)>` j\n"
+"j       a1\n"
+":codeblue:`(TDB)>` -e\n"
+":codeblue:`(TDB)`  :codegreen:`Eval mode OFF`\n"
+":codeblue:`(TDB)>` q"
+msgstr ""
+
+msgid "Another debugger example can be found `here <https://github.com/sulverus/tdb>`_."
+msgstr ""
+

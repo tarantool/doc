@@ -1,0 +1,977 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `fio`"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Tarantool supports file input/output with an API that is similar to POSIX syscalls. All operations are performed asynchronously. Multiple fibers can access the same file simultaneously."
+msgstr ""
+
+msgid "The ``fio`` module contains:"
+msgstr ""
+
+msgid "functions for :ref:`common pathname manipulations <fio-pathname>`,"
+msgstr ""
+
+msgid "functions for :ref:`directory or file existence and type checks<fio-checks>`,"
+msgstr ""
+
+msgid "functions for :ref:`common file manipulations <fio-file>`, and"
+msgstr ""
+
+msgid ":ref:`constants <fio-c>` which are the same as POSIX flag values (for example ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY)."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is a list of all ``fio`` functions and members."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`fio.pathjoin() <fio-pathjoin>`"
+msgstr ""
+
+msgid "Form a path name from one or more partial strings"
+msgstr ""
+
+msgid ":ref:`fio.basename() <fio-basename>`"
+msgstr ""
+
+msgid "Get a file name"
+msgstr ""
+
+msgid ":ref:`fio.dirname() <fio-dirname>`"
+msgstr ""
+
+msgid "Get a directory name"
+msgstr ""
+
+msgid ":ref:`fio.abspath() <fio-abspath>`"
+msgstr ""
+
+msgid "Get a directory and file name"
+msgstr ""
+
+msgid ":ref:`fio.path.exists() <fio-path_exists>`"
+msgstr ""
+
+msgid "Check if file or directory exists"
+msgstr ""
+
+msgid ":ref:`fio.path.is_dir() <fio-path_is_dir>`"
+msgstr ""
+
+msgid "Check if file or directory is a directory"
+msgstr ""
+
+msgid ":ref:`fio.path.is_file() <fio-path_is_file>`"
+msgstr ""
+
+msgid "Check if file or directory is a file"
+msgstr ""
+
+msgid ":ref:`fio.path.is_link() <fio-path_is_link>`"
+msgstr ""
+
+msgid "Check if file or directory is a link"
+msgstr ""
+
+msgid ":ref:`fio.path.lexists() <fio-path_lexists>`"
+msgstr ""
+
+msgid ":ref:`fio.umask() <fio-umask>`"
+msgstr ""
+
+msgid "Set mask bits"
+msgstr ""
+
+msgid ":ref:`fio.lstat() <fio-stat>` |br| :ref:`fio.stat() <fio-stat>`"
+msgstr ""
+
+msgid "Get information about a file object"
+msgstr ""
+
+msgid ":ref:`fio.mkdir() <fio-mkdir>` |br| :ref:`fio.rmdir() <fio-mkdir>`"
+msgstr ""
+
+msgid "Create or delete a directory"
+msgstr ""
+
+msgid ":ref:`fio.chdir() <fio-chdir>`"
+msgstr ""
+
+msgid "Change working directory"
+msgstr ""
+
+msgid ":ref:`fio.listdir() <fio-listdir>`"
+msgstr ""
+
+msgid "List files in a directory"
+msgstr ""
+
+msgid ":ref:`fio.glob() <fio-glob>`"
+msgstr ""
+
+msgid "Get files whose names match a given string"
+msgstr ""
+
+msgid ":ref:`fio.tempdir() <fio-tempdir>`"
+msgstr ""
+
+msgid "Get the name of a directory for storing temporary files"
+msgstr ""
+
+msgid ":ref:`fio.cwd() <fio-cwd>`"
+msgstr ""
+
+msgid "Get the name of the current working directory"
+msgstr ""
+
+msgid ":ref:`fio.copytree() <fio-copytree>` |br| :ref:`fio.mktree() <fio-mktree>` |br| :ref:`fio.rmtree() <fio-rmtree>`"
+msgstr ""
+
+msgid "Create and delete directories"
+msgstr ""
+
+msgid ":ref:`fio.link() <fio-link>` |br| :ref:`fio.symlink() <fio-link>` |br| :ref:`fio.readlink() <fio-link>` |br| :ref:`fio.unlink() <fio-link>`"
+msgstr ""
+
+msgid "Create and delete links"
+msgstr ""
+
+msgid ":ref:`fio.rename() <fio-rename>`"
+msgstr ""
+
+msgid "Rename a file or directory"
+msgstr ""
+
+msgid ":ref:`fio.utime() <fio-utime>`"
+msgstr ""
+
+msgid "Change file update time"
+msgstr ""
+
+msgid ":ref:`fio.copyfile() <fio-copyfile>`"
+msgstr ""
+
+msgid "Copy a file"
+msgstr ""
+
+msgid ":ref:`fio.chown() <fio-chown>` |br| :ref:`fio.chmod() <fio-chown>`"
+msgstr ""
+
+msgid "Manage rights to and ownership of file objects"
+msgstr ""
+
+msgid ":ref:`fio.truncate() <fio-truncate>`"
+msgstr ""
+
+msgid "Reduce the file size"
+msgstr ""
+
+msgid ":ref:`fio.sync() <fio-sync>`"
+msgstr ""
+
+msgid "Ensure that changes are written to disk"
+msgstr ""
+
+msgid ":ref:`fio.open() <fio-open>`"
+msgstr ""
+
+msgid "Open a file"
+msgstr ""
+
+msgid ":ref:`file-handle:close() <file_handle-close>`"
+msgstr ""
+
+msgid "Close a file"
+msgstr ""
+
+msgid ":ref:`file-handle:pread() <file_handle-pread>` |br| :ref:`file-handle:pwrite() <file_handle-pwrite>`"
+msgstr ""
+
+msgid "Perform random-access read or write on a file"
+msgstr ""
+
+msgid ":ref:`file-handle:read() <file_handle-read>` |br| :ref:`file-handle:write() <file_handle-write>`"
+msgstr ""
+
+msgid "Perform non-random-access read or write on a file"
+msgstr ""
+
+msgid ":ref:`file-handle:truncate() <file_handle-truncate>`"
+msgstr ""
+
+msgid "Change the size of an open file"
+msgstr ""
+
+msgid ":ref:`file-handle:seek() <file_handle-seek>`"
+msgstr ""
+
+msgid "Change position in a file"
+msgstr ""
+
+msgid ":ref:`file-handle:stat() <file_handle-stat>`"
+msgstr ""
+
+msgid "Get statistics about an open file"
+msgstr ""
+
+msgid ":ref:`file-handle:fsync() <file_handle-fsync>` |br| :ref:`file-handle:fdatasync() <file_handle-fsync>`"
+msgstr ""
+
+msgid "Ensure that changes made to an open file are written to disk"
+msgstr ""
+
+msgid ":ref:`fio.c <fio-c_table>`"
+msgstr ""
+
+msgid "Table of constants similar to POSIX flag values"
+msgstr ""
+
+msgid "Common pathname manipulations"
+msgstr ""
+
+msgid "Concatenate partial string, separated by '/' to form a path name."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "one or more strings to be concatenated."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "path name"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> fio.pathjoin('/etc', 'default', 'myfile')\n"
+"---\n"
+"- /etc/default/myfile\n"
+"..."
+msgstr ""
+
+msgid "Given a full path name, remove all but the final part (the file name). Also remove the suffix, if it is passed."
+msgstr ""
+
+msgid "suffix"
+msgstr ""
+
+msgid "file name"
+msgstr ""
+
+msgid "tarantool> fio.basename('/path/to/my.lua', '.lua')\n"
+"---\n"
+"- my\n"
+"..."
+msgstr ""
+
+msgid "Given a full path name, remove the final part (the file name)."
+msgstr ""
+
+msgid "directory name, that is, path name except for file name."
+msgstr ""
+
+msgid "tarantool> fio.dirname('path/to/my.lua')\n"
+"---\n"
+"- 'path/to/'"
+msgstr ""
+
+msgid "Given a final part (the file name), return the full path name."
+msgstr ""
+
+msgid "directory name, that is, path name including file name."
+msgstr ""
+
+msgid "tarantool> fio.abspath('my.lua')\n"
+"---\n"
+"- 'path/to/my.lua'\n"
+"..."
+msgstr ""
+
+msgid "Directory or file existence and type checks"
+msgstr ""
+
+msgid "Functions in this section are similar to some `Python os.path <https://docs.python.org/2/library/os.path.htmll>`_ functions."
+msgstr ""
+
+msgid "path to directory or file."
+msgstr ""
+
+msgid "true if path-name refers to a directory or file that exists and is not a broken symbolic link; otherwise false"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "true if path-name refers to a directory; otherwise false"
+msgstr ""
+
+msgid "true if path-name refers to a file; otherwise false"
+msgstr ""
+
+msgid "true if path-name refers to a symbolic link; otherwise false"
+msgstr ""
+
+msgid "true if path-name refers to a directory or file that exists or is a broken symbolic link; otherwise false"
+msgstr ""
+
+msgid "Common file manipulations"
+msgstr ""
+
+msgid "Set the mask bits used when creating files or directories. For a detailed description type ``man 2 umask``."
+msgstr ""
+
+msgid "mask bits."
+msgstr ""
+
+msgid "previous mask bits."
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid "tarantool> fio.umask(tonumber('755', 8))\n"
+"---\n"
+"- 493\n"
+"..."
+msgstr ""
+
+msgid "Returns information about a file object. For details type ``man 2 lstat`` or ``man 2 stat``."
+msgstr ""
+
+msgid "path name of file."
+msgstr ""
+
+msgid "(If no error) table of fields which describe the file's block size, creation time, size, and other attributes. |br| (If error) two return values: null, error message."
+msgstr ""
+
+msgid "table."
+msgstr ""
+
+msgid "Additionally, the result of ``fio.stat('file-name')`` will include methods equivalent to POSIX macros:"
+msgstr ""
+
+msgid "``is_blk()`` = POSIX macro S_ISBLK,"
+msgstr ""
+
+msgid "``is_chr()`` = POSIX macro S_ISCHR,"
+msgstr ""
+
+msgid "``is_dir()`` = POSIX macro S_ISDIR,"
+msgstr ""
+
+msgid "``is_fifo()`` = POSIX macro S_ISFIFO,"
+msgstr ""
+
+msgid "``is_link()`` = POSIX macro S_ISLINK,"
+msgstr ""
+
+msgid "``is_reg()`` = POSIX macro S_ISREG,"
+msgstr ""
+
+msgid "``is_sock()`` = POSIX macro S_ISSOCK."
+msgstr ""
+
+msgid "For example, ``fio.stat('/'):is_dir()`` will return true."
+msgstr ""
+
+msgid "tarantool> fio.lstat('/etc')\n"
+"---\n"
+"- inode: 1048577\n"
+"  rdev: 0\n"
+"  size: 12288\n"
+"  atime: 1421340698\n"
+"  mode: 16877\n"
+"  mtime: 1424615337\n"
+"  nlink: 160\n"
+"  uid: 0\n"
+"  blksize: 4096\n"
+"  gid: 0\n"
+"  ctime: 1424615337\n"
+"  dev: 2049\n"
+"  blocks: 24\n"
+"..."
+msgstr ""
+
+msgid "Create or delete a directory. For details type ``man 2 mkdir`` or ``man 2 rmdir``."
+msgstr ""
+
+msgid "path of directory."
+msgstr ""
+
+msgid "Mode bits can be passed as a number or as string constants, for example ``S_IWUSR``. Mode bits can be combined by enclosing them in braces."
+msgstr ""
+
+msgid "(If no error) true. |br| (If error) two return values: false, error message."
+msgstr ""
+
+msgid "tarantool> fio.mkdir('/etc')\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+msgid "Change working directory. For details type ``man 2 chdir``."
+msgstr ""
+
+msgid "(If success) true. (If failure) false."
+msgstr ""
+
+msgid "tarantool> fio.chdir('/etc')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "List files in directory. The result is similar to the ``ls`` shell command."
+msgstr ""
+
+msgid "(If no error) a list of files. |br| (If error) two return values: null, error message."
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid "tarantool> fio.listdir('/usr/lib/tarantool')\n"
+"---\n"
+"- - mysql\n"
+"..."
+msgstr ""
+
+msgid "Return a list of files that match an input string. The list is constructed with a single flag that controls the behavior of the function: ``GLOB_NOESCAPE``. For details type ``man 3 glob``."
+msgstr ""
+
+msgid "path-name, which may contain wildcard characters."
+msgstr ""
+
+msgid "list of files whose names match the input string"
+msgstr ""
+
+msgid "**Possible errors:** nil."
+msgstr ""
+
+msgid "tarantool> fio.glob('/etc/x*')\n"
+"---\n"
+"- - /etc/xdg\n"
+"  - /etc/xml\n"
+"  - /etc/xul-ext\n"
+"..."
+msgstr ""
+
+msgid "Return the name of a directory that can be used to store temporary files."
+msgstr ""
+
+msgid "tarantool> fio.tempdir()\n"
+"---\n"
+"- /tmp/lG31e7\n"
+"..."
+msgstr ""
+
+msgid "Return the name of the current working directory."
+msgstr ""
+
+msgid "tarantool> fio.cwd()\n"
+"---\n"
+"- /home/username/tarantool_sandbox\n"
+"..."
+msgstr ""
+
+msgid "Copy everything in the from-path, including subdirectory contents, to the to-path. The result is similar to the ``cp -r`` shell command. The to-path should not be empty."
+msgstr ""
+
+msgid "path-name."
+msgstr ""
+
+msgid "tarantool> fio.copytree('/home/original','/home/archives')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Create the path, including parent directories, but without file contents. The result is similar to the ``mkdir -p`` shell command."
+msgstr ""
+
+msgid "tarantool> fio.mktree('/home/archives')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Remove the directory indicated by path-name, including subdirectories. The result is similar to the ``rmdir -r`` shell command. The directory should not be empty."
+msgstr ""
+
+msgid "(If no error) true. |br| (If error) two return values: null, error message."
+msgstr ""
+
+msgid "tarantool> fio.rmtree('/home/archives')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Functions to create and delete links. For details type ``man readlink``, ``man 2 link``, ``man 2 symlink``, ``man 2 unlink``."
+msgstr ""
+
+msgid "existing file name."
+msgstr ""
+
+msgid "linked name."
+msgstr ""
+
+msgid "(If no error) ``fio.link`` and ``fio.symlink`` and ``fio.unlink`` return true, ``fio.readlink`` returns the link value. |br| (If error) two return values: false|null, error message."
+msgstr ""
+
+msgid "tarantool> fio.link('/home/username/tmp.txt', '/home/username/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fio.unlink('/home/username/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Rename a file or directory. For details type ``man 2 rename``."
+msgstr ""
+
+msgid "original name."
+msgstr ""
+
+msgid "new name."
+msgstr ""
+
+msgid "tarantool> fio.rename('/home/username/tmp.txt', '/home/username/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Change the access time and possibly also change the update time of a file. For details type ``man 2 utime``. Times should be expressed as number of seconds since the epoch."
+msgstr ""
+
+msgid "name."
+msgstr ""
+
+msgid "time of last access. default current time."
+msgstr ""
+
+msgid "time of last update. default = access time."
+msgstr ""
+
+msgid "tarantool> fio.utime('/home/username/tmp.txt')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Copy a file. The result is similar to the ``cp`` shell command."
+msgstr ""
+
+msgid "path to original file."
+msgstr ""
+
+msgid "path to new file."
+msgstr ""
+
+msgid "tarantool> fio.copyfile('/home/user/tmp.txt', '/home/usern/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Manage the rights to file objects, or ownership of file objects. For details type ``man 2 chown`` or ``man 2 chmod``."
+msgstr ""
+
+msgid "new user uid."
+msgstr ""
+
+msgid "new group uid."
+msgstr ""
+
+msgid "new permissions"
+msgstr ""
+
+msgid "null"
+msgstr ""
+
+msgid "tarantool> fio.chmod('/home/username/tmp.txt', tonumber('0755', 8))\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fio.chown('/home/username/tmp.txt', 'username', 'username')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Reduce file size to a specified value. For details type ``man 2 truncate``."
+msgstr ""
+
+msgid "tarantool> fio.truncate('/home/username/tmp.txt', 99999)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Ensure that changes are written to disk. For details type ``man 2 sync``."
+msgstr ""
+
+msgid "true if success, false if failure."
+msgstr ""
+
+msgid "tarantool> fio.sync()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Open a file in preparation for reading or writing or seeking."
+msgstr ""
+
+msgid "Full path to the file to open."
+msgstr ""
+
+msgid "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by enclosing them in braces. On Linux the full set of flags as described on the `Linux man page <http://man7.org/linux/man-pages/man2/open.2.html>`_ is:  * O_APPEND (start at end of file), * O_ASYNC (signal when IO is possible), * O_CLOEXEC (enable a flag related to closing), * O_CREAT (create file if it doesn't exist), * O_DIRECT (do less caching or no caching), * O_DIRECTORY (fail if it's not a directory), * O_EXCL (fail if file cannot be created), * O_LARGEFILE (allow 64-bit file offsets), * O_NOATIME (no access-time updating), * O_NOCTTY (no console tty), * O_NOFOLLOW (no following symbolic links), * O_NONBLOCK (no blocking), * O_PATH (get a path for low-level use), * O_SYNC (force writing if it's possible), * O_TMPFILE (the file will be temporary and nameless), * O_TRUNC (truncate)  ... and, always, one of:  * O_RDONLY (read only), * O_WRONLY (write only), or * O_RDWR (either read or write)."
+msgstr ""
+
+msgid "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by enclosing them in braces. On Linux the full set of flags as described on the `Linux man page <http://man7.org/linux/man-pages/man2/open.2.html>`_ is:"
+msgstr ""
+
+msgid "O_APPEND (start at end of file),"
+msgstr ""
+
+msgid "O_ASYNC (signal when IO is possible),"
+msgstr ""
+
+msgid "O_CLOEXEC (enable a flag related to closing),"
+msgstr ""
+
+msgid "O_CREAT (create file if it doesn't exist),"
+msgstr ""
+
+msgid "O_DIRECT (do less caching or no caching),"
+msgstr ""
+
+msgid "O_DIRECTORY (fail if it's not a directory),"
+msgstr ""
+
+msgid "O_EXCL (fail if file cannot be created),"
+msgstr ""
+
+msgid "O_LARGEFILE (allow 64-bit file offsets),"
+msgstr ""
+
+msgid "O_NOATIME (no access-time updating),"
+msgstr ""
+
+msgid "O_NOCTTY (no console tty),"
+msgstr ""
+
+msgid "O_NOFOLLOW (no following symbolic links),"
+msgstr ""
+
+msgid "O_NONBLOCK (no blocking),"
+msgstr ""
+
+msgid "O_PATH (get a path for low-level use),"
+msgstr ""
+
+msgid "O_SYNC (force writing if it's possible),"
+msgstr ""
+
+msgid "O_TMPFILE (the file will be temporary and nameless),"
+msgstr ""
+
+msgid "O_TRUNC (truncate)"
+msgstr ""
+
+msgid "... and, always, one of:"
+msgstr ""
+
+msgid "O_RDONLY (read only),"
+msgstr ""
+
+msgid "O_WRONLY (write only), or"
+msgstr ""
+
+msgid "O_RDWR (either read or write)."
+msgstr ""
+
+msgid "Mode bits can be passed as a number or as string constants, for example ``S_IWUSR``. Mode bits are significant if flags include ``O_CREAT`` or ``O_TMPFILE``. Mode bits can be combined by enclosing them in braces."
+msgstr ""
+
+msgid "(If no error) file handle (abbreviated as 'fh' in later description). |br| (If error) two return values: null, error message."
+msgstr ""
+
+msgid "userdata"
+msgstr ""
+
+msgid "**Example 1:**"
+msgstr ""
+
+msgid "tarantool> fh = fio.open('/home/username/tmp.txt', {'O_RDWR', 'O_APPEND'})\n"
+"---\n"
+"...\n"
+"tarantool> fh -- display file handle returned by fio.open\n"
+"---\n"
+"- fh: 11\n"
+"..."
+msgstr ""
+
+msgid "**Example 2:**"
+msgstr ""
+
+msgid "Using ``fio.open()`` with ``tonumber('N', 8)`` to set permissions as an octal number:"
+msgstr ""
+
+msgid "tarantool> fio.open('x.txt', {'O_WRONLY', 'O_CREAT'}, tonumber('644',8))\n"
+"---\n"
+"- fh: 12\n"
+"..."
+msgstr ""
+
+msgid "Close a file that was opened with ``fio.open``. For details type ``man 2 close``."
+msgstr ""
+
+msgid "file-handle as returned by ``fio.open()``."
+msgstr ""
+
+msgid "tarantool> fh:close() -- where fh = file-handle\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Perform random-access read operation on a file, without affecting the current seek position of the file. For details type ``man 2 pread``."
+msgstr ""
+
+msgid "where to read into (if the format is ``pread(buffer, count, offset)``)"
+msgstr ""
+
+msgid "number of bytes to read"
+msgstr ""
+
+msgid "offset within file where reading begins"
+msgstr ""
+
+msgid "If the format is ``pread(count, offset)`` then return a string containing the data that was read from the file, or nil if failure."
+msgstr ""
+
+msgid "If the format is ``pread(buffer, count, offset)`` then return the data to the buffer. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgstr ""
+
+msgid "tarantool> fh:pread(25, 25)\n"
+"---\n"
+"- |\n"
+"  elete from t8//\n"
+"  insert in\n"
+"..."
+msgstr ""
+
+msgid "Perform random-access write operation on a file, without affecting the current seek position of the file. For details type ``man 2 pwrite``."
+msgstr ""
+
+msgid "value to write"
+msgstr ""
+
+msgid "number of bytes to write (if the format is ``pwrite(buffer, count, offset)``)"
+msgstr ""
+
+msgid "offset within file where writing begins"
+msgstr ""
+
+msgid "If the format is ``pwrite(new-string, offset)`` then the returned string is written to the file, as far as the end of the string."
+msgstr ""
+
+msgid "If the format is ``pwrite(buffer, count, offset)`` then the buffer contents are written to the file, for ``count`` bytes. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgstr ""
+
+msgid "ibuf = require('buffer').ibuf()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> fh:pwrite(ibuf, 1, 0)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Perform non-random-access read on a file. For details type ``man 2 read`` or ``man 2 write``."
+msgstr ""
+
+msgid "``fh:read`` and ``fh:write`` affect the seek position within the file, and this must be taken into account when working on the same file from multiple fibers. It is possible to limit or prevent file access from other fibers with ``fiber.ipc``."
+msgstr ""
+
+msgid "where to read into (if the format is ``read(buffer, count)``)"
+msgstr ""
+
+msgid "If the format is ``read()`` -- omitting ``count`` -- then read all bytes in the file."
+msgstr ""
+
+msgid "If the format is ``read()``  or ``read([count])`` then return a string containing the data that was read from the file, or nil if failure."
+msgstr ""
+
+msgid "If the format is ``read(buffer, count)`` then return the data to the buffer. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgstr ""
+
+msgid "ibuf = require('buffer').ibuf()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> fh:read(ibuf:reserve(5), 5)\n"
+"---\n"
+"- 5\n"
+"...\n"
+"\n"
+"tarantool> require('ffi').string(ibuf:alloc(5),5)\n"
+"---\n"
+"- abcde"
+msgstr ""
+
+msgid "Perform non-random-access write on a file. For details type ``man 2 write``."
+msgstr ""
+
+msgid "number of bytes to write (if the format is ``write(buffer, count)``)"
+msgstr ""
+
+msgid "If the format is ``write(new-string)`` then the returned string is written to the file, as far as the end of the string."
+msgstr ""
+
+msgid "If the format is ``write(buffer, count)`` then the buffer contents are written to the file, for ``count`` bytes. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgstr ""
+
+msgid "tarantool> fh:write(\"new data\")\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Change the size of an open file. Differs from ``fio.truncate``, which changes the size of a closed file."
+msgstr ""
+
+msgid "tarantool> fh:truncate(0)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Shift position in the file to the specified position. For details type ``man 2 seek``."
+msgstr ""
+
+msgid "position to seek to"
+msgstr ""
+
+msgid "'``SEEK_END``' = end of file, '``SEEK_CUR``' = current position, '``SEEK_SET``' = start of file."
+msgstr ""
+
+msgid "the new position if success"
+msgstr ""
+
+msgid "tarantool> fh:seek(20, 'SEEK_SET')\n"
+"---\n"
+"- 20\n"
+"..."
+msgstr ""
+
+msgid "Return statistics about an open file. This differs from ``fio.stat`` which return statistics about a closed file. For details type ``man 2 stat``."
+msgstr ""
+
+msgid "details about the file."
+msgstr ""
+
+msgid "tarantool> fh:stat()\n"
+"---\n"
+"- inode: 729866\n"
+"  rdev: 0\n"
+"  size: 100\n"
+"  atime: 140942855\n"
+"  mode: 33261\n"
+"  mtime: 1409430660\n"
+"  nlink: 1\n"
+"  uid: 1000\n"
+"  blksize: 4096\n"
+"  gid: 1000\n"
+"  ctime: 1409430660\n"
+"  dev: 2049\n"
+"  blocks: 8\n"
+"..."
+msgstr ""
+
+msgid "Ensure that file changes are written to disk, for an open file. Compare ``fio.sync``, which is for all files. For details type ``man 2 fsync`` or ``man 2 fdatasync``."
+msgstr ""
+
+msgid "tarantool> fh:fsync()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "FIO constants"
+msgstr ""
+
+msgid "Table with constants which are the same as POSIX flag values on the target platform (see ``man 2 stat``)."
+msgstr ""
+
+msgid "tarantool> fio.c\n"
+"---\n"
+"- seek:\n"
+"    SEEK_SET: 0\n"
+"    SEEK_END: 2\n"
+"    SEEK_CUR: 1\n"
+"  mode:\n"
+"    S_IWGRP: 16\n"
+"    S_IXGRP: 8\n"
+"    S_IROTH: 4\n"
+"    S_IXOTH: 1\n"
+"    S_IRUSR: 256\n"
+"    S_IXUSR: 64\n"
+"    S_IRWXU: 448\n"
+"    S_IRWXG: 56\n"
+"    S_IWOTH: 2\n"
+"    S_IRWXO: 7\n"
+"    S_IWUSR: 128\n"
+"    S_IRGRP: 32\n"
+"  flag:\n"
+"    O_EXCL: 2048\n"
+"    O_NONBLOCK: 4\n"
+"    O_RDONLY: 0\n"
+"    <...>\n"
+"..."
+msgstr ""
+

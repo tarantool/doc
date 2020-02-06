@@ -1,0 +1,345 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: 2019-12-06 16:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Utility `tarantoolctl`"
+msgstr "Утилита `tarantoolctl`"
+
+msgid ""
+"``tarantoolctl`` is a utility for administering Tarantool :ref:`instances "
+"<tarantoolctl-instance_management>`, :ref:`checkpoint files <tarantoolctl-"
+"checkpoint_management>` and :ref:`modules <tarantoolctl-module_management>`. "
+"It is shipped and installed as part of Tarantool distribution."
+msgstr ""
+"``tarantoolctl`` представляет собой утилиту для администрирования :ref:"
+"`экземпляров <tarantoolctl-instance_management>`, :ref:`файлов контрольной "
+"точки <tarantoolctl-checkpoint_management>` и :ref:`модулей <tarantoolctl-"
+"module_management>` в Tarantool'е. Утилита поставляется и устанавливается "
+"как часть дистрибутива Tarantool'а."
+
+msgid ""
+"See also ``tarantoolctl`` usage examples in :ref:`Server administration "
+"<admin>` section."
+msgstr ""
+"См. также примеры использования ``tarantoolctl`` в разделе :ref:"
+"`Администрирование серверной части <admin>`."
+
+msgid "Command format"
+msgstr "Формат команд"
+
+msgid "``tarantoolctl COMMAND NAME [URI] [FILE] [OPTIONS..]``"
+msgstr "``tarantoolctl COMMAND NAME [URI] [FILE] [OPTIONS..]``"
+
+msgid "where:"
+msgstr "где:"
+
+msgid ""
+"``COMMAND`` is one of the following: ``start``, ``stop``, ``status``, "
+"``restart``, ``logrotate``, ``check``, ``enter``, ``eval``, ``connect``, "
+"``cat``, ``play``, ``rocks``."
+msgstr ""
+"``COMMAND`` -- это одна из следующих команд, описанных ниже: ``start``, "
+"``stop``, ``status``, ``restart``, ``logrotate``, ``check``, ``enter``, "
+"``eval``, ``connect``, ``cat``, ``play``, ``rocks``."
+
+msgid ""
+"``NAME`` is the name of an :ref:`instance file <admin-instance_file>` or a :"
+"ref:`module <app_server-modules>`."
+msgstr ""
+"``NAME`` -- это имя :ref:`файла экземпляра <admin-instance_file>` или :ref:"
+"`модуля <app_server-modules>`."
+
+msgid "``FILE`` is the path to some file (.lua, .xlog or .snap)."
+msgstr "``FILE`` -- это путь к какому-либо файлу (.lua, .xlog или .snap)."
+
+msgid "``URI`` is the URI of some Tarantool instance."
+msgstr "``URI`` -- это URI некого экземпляра Tarantool'а."
+
+msgid "``OPTIONS`` are options taken by some ``tarantoolctl`` commands."
+msgstr ""
+"``OPTIONS`` -- это параметры, которые принимают команды ``tarantoolctl``."
+
+msgid "Commands for managing Tarantool instances"
+msgstr "Команды для управления экземплярами Tarantool'а"
+
+msgid "``tarantoolctl start NAME``"
+msgstr "``tarantoolctl start NAME``"
+
+msgid "Start a Tarantool instance."
+msgstr "Запуск экземпляра Tarantool’а."
+
+msgid ""
+"Additionally, this command sets the TARANTOOLCTL environment variable to "
+"'true', to mark that the instance was started by ``tarantoolctl``."
+msgstr ""
+"Кроме того, данная команда задает значение переменной окружения TARANTOOLCTL "
+"= 'true' (правда), чтобы отметить, что экземпляр был запущен с помощью "
+"``tarantoolctl``."
+
+msgid ""
+"``tarantoolctl`` works for instances without ``box.cfg{}`` called or with "
+"delayed ``box.cfg{}`` call."
+msgstr ""
+"``tarantoolctl`` работает для экземпляров, где не вызвана функция ``box.cfg{}"
+"`` или вызов ``box.cfg{}`` отложен."
+
+msgid ""
+"For example, this can be used to manage instances which receive "
+"configuration from an external server. For such instances, ``tarantoolctl "
+"start`` goes to background when ``box.cfg{}`` is called, so it will wait "
+"until options for ``box.cfg`` are received. However this is not the case for "
+"daemon management systems like ``systemd``, as they handle backgrounding on "
+"their side."
+msgstr ""
+"Например, это можно использовать для управления экземплярами, которые "
+"получают конфигурацию из внешнего сервера. Для таких экземпляров "
+"``tarantoolctl start`` goes to background when ``box.cfg{}`` is called, so "
+"it will wait until options for ``box.cfg`` are received. However this is not "
+"the case for daemon management systems like ``systemd``, as they handle "
+"backgrounding on their side."
+
+msgid "``tarantoolctl stop NAME``"
+msgstr "``tarantoolctl stop NAME``"
+
+msgid "Stop a Tarantool instance."
+msgstr "Остановка экземпляра Tarantool'а."
+
+msgid "``tarantoolctl status NAME``"
+msgstr "``tarantoolctl status NAME``"
+
+msgid ""
+"Show an instance's status (started/stopped). If pid file exists and an alive "
+"control socket exists, the return code is ``0``. Otherwise, the return code "
+"is not ``0``."
+msgstr ""
+"Отображение статуса экземпляра (работает/остановлен). Если есть PID-файл и "
+"активный управляющий сокет, возвращается код ``0``. В остальных случаях "
+"возвращается не ``0``."
+
+msgid ""
+"Reports typical problems to stderr (e.g. pid file exists and control socket "
+"doesn't)."
+msgstr ""
+"Сообщает о типичных проблемах стандартного вывода ошибок (например, PID-файл "
+"есть, а управляющий сокет отсутствует)."
+
+msgid "``tarantoolctl restart NAME``"
+msgstr "``tarantoolctl restart NAME``"
+
+msgid "Stop and start a Tarantool instance."
+msgstr "Остановка и запуск экземпляра Tarantool’а."
+
+msgid ""
+"Additionally, this command sets the TARANTOOL_RESTARTED environment variable "
+"to 'true', to mark that the instance was restarted by ``tarantoolctl``."
+msgstr ""
+"Кроме того, данная команда задает значение переменной окружения "
+"TARANTOOL_RESTARTED = 'true' (правда), чтобы отметить, что экземпляр был "
+"перезапущен с помощью ``tarantoolctl``."
+
+msgid "``tarantoolctl logrotate NAME``"
+msgstr "``tarantoolctl logrotate NAME``"
+
+msgid ""
+"Rotate logs of a started Tarantool instance. Works only if logging-into-file "
+"is enabled in the instance file. Pipe/syslog make no effect."
+msgstr ""
+"Ротация файлов журнала работающего Tarantool-экземпляра. Работает только в "
+"том случае, если в файле экземпляра задан параметр записи журнала в файл. "
+"Отправка записей в конвейер или системный журнал syslog не имеет значения в "
+"данном случае."
+
+msgid "``tarantoolctl check NAME``"
+msgstr "``tarantoolctl check NAME``"
+
+msgid "Check an instance file for syntax errors."
+msgstr "Проверка файла экземпляра на ошибки синтаксиса."
+
+#, fuzzy
+msgid "``tarantoolctl enter NAME [--language=language]``"
+msgstr "``tarantoolctl enter NAME``"
+
+#, fuzzy
+msgid "Enter an instance's interactive Lua or SQL console."
+msgstr "Вход в интерактивную Lua-консоль экземпляра."
+
+#, fuzzy
+msgid "Supported option:"
+msgstr "Поддерживаемые опции:"
+
+msgid ""
+"``--language=language`` to set :ref:`interactive console "
+"<interactive_console>` language. Can be either ``Lua`` or ``SQL``."
+msgstr ""
+
+msgid "``tarantoolctl eval NAME FILE``"
+msgstr "``tarantoolctl eval NAME FILE``"
+
+msgid "Evaluate a local Lua file on a running Tarantool instance."
+msgstr "Выполнение локального Lua-файла на работающем экземпляре Tarantool'а."
+
+msgid "``tarantoolctl connect URI``"
+msgstr "``tarantoolctl connect URI``"
+
+msgid ""
+"Connect to a Tarantool instance on an admin-console port. Supports both TCP/"
+"Unix sockets."
+msgstr ""
+"Подключение к экземпляру Tarantool'а по порту административной консоли. "
+"Поддерживаются TCP и Unix сокеты."
+
+msgid "Commands for managing checkpoint files"
+msgstr "Команды для управления файлами контрольной точки"
+
+msgid ""
+"``tarantoolctl cat FILE.. [--space=space_no ..] [--show-system] [--"
+"from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``"
+msgstr ""
+"``tarantoolctl cat FILE.. [--space=space_no ..] [--show-system] [--"
+"from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``"
+
+msgid "Print into stdout the contents of .snap/.xlog files."
+msgstr "Стандартный вывод содержимого .snap-файла или .xlog-файла."
+
+msgid ""
+"``tarantoolctl play URI FILE.. [--space=space_no ..] [--show-system] [--"
+"from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``"
+msgstr ""
+"``tarantoolctl play URI FILE.. [--space=space_no ..] [--show-system] [--"
+"from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``"
+
+msgid "Play the contents of .snap/.xlog files to another Tarantool instance."
+msgstr ""
+"Передача содержимого .snap-файла или .xlog-файла на другой экземпляр "
+"Tarantool'а."
+
+msgid "Supported options:"
+msgstr "Поддерживаемые опции:"
+
+msgid ""
+"``--space=space_no`` to filter the output by space number. May be passed "
+"more than once."
+msgstr ""
+"``--space=space_no`` для фильтрации вывода по номеру спейса. Можно "
+"передавать несколько раз."
+
+msgid "``--show-system`` to show the contents of system spaces."
+msgstr "``--show-system`` для отображения содержимого системных спейсов."
+
+msgid "``--from=from_lsn`` to show operations starting from the given lsn."
+msgstr "``--from=from_lsn`` для отображения операций, начиная с заданного LSN."
+
+msgid "``--to=to_lsn`` to show operations ending with the given lsn."
+msgstr "``--to=to_lsn`` для отображения операций, заканчивая заданным LSN."
+
+msgid ""
+"``--replica=replica_id`` to filter the output by replica id. May be passed "
+"more than once."
+msgstr ""
+"``--replica=replica_id`` для фильтрации вывода по идентификатору реплики. "
+"Можно передавать несколько раз."
+
+msgid "Commands for managing Tarantool modules"
+msgstr "Команды для управления модулями Tarantool'а"
+
+msgid "``tarantoolctl rocks install NAME``"
+msgstr "``tarantoolctl rocks install NAME``"
+
+msgid "Install a module in the current directory."
+msgstr "Установка модуля в текущей директории."
+
+msgid "``tarantoolctl rocks remove NAME``"
+msgstr "``tarantoolctl rocks remove NAME``"
+
+msgid "Remove a module."
+msgstr "Удаление модуля."
+
+msgid "``tarantoolctl rocks show NAME``"
+msgstr "``tarantoolctl rocks show NAME``"
+
+msgid "Show information about an installed module."
+msgstr "Отображение информации об установленном модуле."
+
+msgid "``tarantoolctl rocks search NAME``"
+msgstr "``tarantoolctl rocks search NAME``"
+
+msgid "Search the repository for modules."
+msgstr "Поиск модулей по репозиторию."
+
+msgid "``tarantoolctl rocks list``"
+msgstr "``tarantoolctl rocks list``"
+
+msgid "List all installed modules."
+msgstr "Вывод списка всех установленных модулей."
+
+msgid "``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``"
+msgstr "``tarantoolctl rocks pack {<rockspec> | <имя> [<версия>]}``"
+
+msgid "Create a rock by packing sources or binaries."
+msgstr "Создание модуля путем компоновки исходных или бинарных файлов."
+
+msgid "As an argument, you can specify:"
+msgstr "В качестве аргумента можно указать:"
+
+msgid ""
+"a ``.rockspec`` file to create a source rock containing the module's "
+"sources, or"
+msgstr ""
+"файл в формате ``.rockspec`` для создания модуля, который содержит исходные "
+"файлы или"
+
+msgid ""
+"the name of an installed module (and its version if there are more than one) "
+"to create a binary rock containing the compiled module."
+msgstr ""
+"имя установленного модуля (с версией, если их больше одной) для создания "
+"модуля, который содержит скомпилированные файлы."
+
+msgid ""
+"``tarantoolctl rocks unpack {<rock_file> | <rockspec> | <name> [version]}``"
+msgstr ""
+"``tarantoolctl rocks unpack {<rock_file> | <rockspec> | <имя> [версия]}``"
+
+msgid ""
+"Unpack the contents of a rock into a new directory under the current one."
+msgstr "Распаковка содержимого модуля в новую директорию в текущей директории."
+
+msgid "source or binary rock files,"
+msgstr "исходные или бинарные файлы модуля,"
+
+msgid "``.rockspec`` files, or"
+msgstr "файлы ``.rockspec`` или"
+
+msgid ""
+"names of rocks or ``.rockspec`` files in remote repositories (and the rock "
+"version if there are more than one)."
+msgstr ""
+"имя модулей или файлов в формате ``.rockspec`` в удаленных репозиториях (с "
+"версией модуля, если их больше одной)."
+
+msgid "``--server=server_name`` check this server first, then the usual list."
+msgstr ""
+"``--server=имя_севрера`` сначала проверить данный сервер, затем по списку."
+
+msgid ""
+"``--only-server=server_name`` check this server only, ignore the usual list."
+msgstr ""
+"``--only-server=имя_сервера`` проверить только данный сервер, остальные "
+"пропустить."

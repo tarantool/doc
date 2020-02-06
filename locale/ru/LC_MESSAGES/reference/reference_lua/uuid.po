@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: 2019-12-06 16:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module `uuid`"
+msgstr "Модуль `uuid`"
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid ""
+"A \"UUID\" is a `Universally unique identifier`_. If an application requires "
+"that a value be unique only within a single computer or on a single "
+"database, then a simple counter is better than a UUID, because getting a "
+"UUID is time-consuming (it requires a syscall_). For clusters of computers, "
+"or widely distributed applications, UUIDs are better."
+msgstr ""
+"UUID -- это Универсальный уникальный идентификатор (`Universally unique "
+"identifier`_). Если значение должно быть уникальным в пределах отдельного "
+"компьютера или одной базы данных, лучше использовать простой счетчик вместо "
+"UUID, поскольку получение UUID затратно по времени (требуется syscall_). Что "
+"же касается кластеров компьютеров или широко распространенных приложений, "
+"лучше использовать UUID."
+
+msgid "Index"
+msgstr "Указатель"
+
+msgid "Below is list of all ``uuid`` functions and members."
+msgstr "Ниже приведен перечень всех функций и элементов модуля ``uuid``."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Use"
+msgstr "Назначение"
+
+msgid ":ref:`uuid.nil <uuid-nil>`"
+msgstr ":ref:`uuid.nil <uuid-nil>`"
+
+msgid "A nil object"
+msgstr "Объект nil"
+
+msgid ""
+":ref:`uuid() <uuid-__call>` |br| :ref:`uuid.bin() <uuid-bin>` |br| :ref:"
+"`uuid.str() <uuid-str>`"
+msgstr ""
+":ref:`uuid() <uuid-__call>` |br| :ref:`uuid.bin() <uuid-bin>` |br| :ref:"
+"`uuid.str() <uuid-str>`"
+
+msgid "Get a UUID"
+msgstr "Получение UUID"
+
+msgid ""
+":ref:`uuid.fromstr() <uuid-fromstr>` |br| :ref:`uuid.frombin() <uuid-"
+"frombin>` |br| :ref:`uuid_object:bin() <uuid-object_bin>` |br| :ref:"
+"`uuid_object:str() <uuid-object_str>`"
+msgstr ""
+":ref:`uuid.fromstr() <uuid-fromstr>` |br| :ref:`uuid.frombin() <uuid-"
+"frombin>` |br| :ref:`uuid_object:bin() <uuid-object_bin>` |br| :ref:"
+"`uuid_object:str() <uuid-object_str>`"
+
+msgid "Get a converted UUID"
+msgstr "Получение конвертированного UUID"
+
+msgid ":ref:`uuid_object:isnil() <uuid-isnil>`"
+msgstr ":ref:`uuid_object:isnil() <uuid-isnil>`"
+
+msgid "Check if a UUID is an all-zero value"
+msgstr "Проверка, состоит ли UUID из одних нулей"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "a UUID"
+msgstr "UUID"
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "cdata"
+msgstr "cdata."
+
+msgid "16-byte string"
+msgstr "16-байтная строка"
+
+msgid "36-byte binary string"
+msgstr "36-байтная двоичная строка"
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "UUID in 36-byte hexadecimal string"
+msgstr "UUID в 36-байтной шестнадцатеричной строке"
+
+msgid "converted UUID"
+msgstr "конвертированный UUID"
+
+msgid "UUID in 16-byte binary string"
+msgstr "UUID в 16-байтной двоичной строке"
+
+msgid "``byte-order`` can be one of next flags:"
+msgstr "``byte-order`` может быть одним из следующих флагов:"
+
+msgid "'l' - little-endian,"
+msgstr "'l' - порядок от младшего к старшему,"
+
+msgid "'b' - big-endian,"
+msgstr "'b' - порядок от старшего к младшему,"
+
+msgid "'h' - endianness depends on host (default),"
+msgstr "'h' - порядок зависит от хоста (по умолчанию),"
+
+msgid "'n' - endianness depends on network"
+msgstr "'n' - порядок зависит от сети"
+
+msgid "one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``."
+msgstr "один из ``'l'``, ``'b'``, ``'h'`` или ``'n'``."
+
+msgid "UUID converted from cdata input value."
+msgstr "UUID, сконвертированный из введенного значения формата cdata."
+
+msgid "16-byte binary string"
+msgstr "16-байтная двоичная строка"
+
+msgid "36-byte hexadecimal string"
+msgstr "36-байтная шестнадцатеричная строка"
+
+msgid ""
+"The all-zero UUID value can be expressed as uuid.NULL, or as ``uuid."
+"fromstr('00000000-0000-0000-0000-000000000000')``. The comparison with an "
+"all-zero value can also be expressed as ``uuid_with_type_cdata == uuid."
+"NULL``."
+msgstr ""
+"Значение UUID из одних нулей может быть выражено как uuid.NULL или ``uuid."
+"fromstr('00000000-0000-0000-0000-000000000000')``. Сравнение со значением из "
+"одних нулей также может быть выражено как ``uuid_with_type_cdata == uuid."
+"NULL``."
+
+msgid "true if the value is all zero, otherwise false."
+msgstr ""
+"true (правда), если значение состоит из одних нулей, в противном случае "
+"false (ложь)."
+
+msgid "bool"
+msgstr "bool (логический)"
+
+msgid "Example"
+msgstr "Пример"
+
+msgid ""
+"tarantool> uuid = require('uuid')\n"
+"---\n"
+"...\n"
+"tarantool> uuid(), uuid.bin(), uuid.str()\n"
+"---\n"
+"- 16ffedc8-cbae-4f93-a05e-349f3ab70baa\n"
+"- !!binary FvG+Vy1MfUC6kIyeM81DYw==\n"
+"- 67c999d2-5dce-4e58-be16-ac1bcb93160f\n"
+"...\n"
+"tarantool> uu = uuid()\n"
+"---\n"
+"...\n"
+"tarantool> #uu:bin(), #uu:str(), type(uu), uu:isnil()\n"
+"---\n"
+"- 16\n"
+"- 36\n"
+"- cdata\n"
+"- false\n"
+"..."
+msgstr ""
+"tarantool> uuid = require('uuid')\n"
+"---\n"
+"...\n"
+"tarantool> uuid(), uuid.bin(), uuid.str()\n"
+"---\n"
+"- 16ffedc8-cbae-4f93-a05e-349f3ab70baa\n"
+"- !!binary FvG+Vy1MfUC6kIyeM81DYw==\n"
+"- 67c999d2-5dce-4e58-be16-ac1bcb93160f\n"
+"...\n"
+"tarantool> uu = uuid()\n"
+"---\n"
+"...\n"
+"tarantool> #uu:bin(), #uu:str(), type(uu), uu:isnil()\n"
+"---\n"
+"- 16\n"
+"- 36\n"
+"- cdata\n"
+"- false\n"
+"..."

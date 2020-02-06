@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Notes for operating systems"
+msgstr ""
+
+msgid "Mac OS"
+msgstr ""
+
+msgid "On Mac OS, you can administer Tarantool instances only with ``tarantoolctl``. No native system tools are supported."
+msgstr ""
+
+msgid "FreeBSD"
+msgstr ""
+
+msgid "To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use paths other than those suggested in :ref:`Instance configuration <admin-instance_config>`. Instead of ``/usr/share/tarantool/`` directory, use ``/usr/local/etc/tarantool/`` and create the following subdirectories:"
+msgstr ""
+
+msgid "``default`` for ``tarantoolctl`` defaults (see example below),"
+msgstr ""
+
+msgid "``instances.available`` for all available instance files, and"
+msgstr ""
+
+msgid "``instances.enabled`` for instance files to be auto-started by sysvinit."
+msgstr ""
+
+msgid "Here is an example of ``tarantoolctl`` defaults on FreeBSD:"
+msgstr ""
+
+msgid "default_cfg = {\n"
+"    pid_file   = \"/var/run/tarantool\", -- /var/run/tarantool/${INSTANCE}.pid\n"
+"    wal_dir    = \"/var/db/tarantool\", -- /var/db/tarantool/${INSTANCE}/\n"
+"    snap_dir   = \"/var/db/tarantool\", -- /var/db/tarantool/${INSTANCE}\n"
+"    vinyl_dir = \"/var/db/tarantool\", -- /var/db/tarantool/${INSTANCE}\n"
+"    logger     = \"/var/log/tarantool\", -- /var/log/tarantool/${INSTANCE}.log\n"
+"    username   = \"tarantool\",\n"
+"}\n"
+"\n"
+"-- instances.available - all available instances\n"
+"-- instances.enabled - instances to autostart by sysvinit\n"
+"instance_dir = \"/usr/local/etc/tarantool/instances.available\""
+msgstr ""
+
+msgid "Gentoo Linux"
+msgstr ""
+
+msgid "The section below is about a dev-db/tarantool package installed from the official layman overlay (named ``tarantool``)."
+msgstr ""
+
+msgid "The default instance directory is ``/etc/tarantool/instances.available``, can be redefined in ``/etc/default/tarantool``."
+msgstr ""
+
+msgid "Tarantool instances can be managed (start/stop/reload/status/...) using OpenRC. Consider the example how to create an OpenRC-managed instance:"
+msgstr ""
+
+msgid "$ cd /etc/init.d\n"
+"$ ln -s tarantool your_service_name\n"
+"$ ln -s /usr/share/tarantool/your_service_name.lua /etc/tarantool/instances.available/your_service_name.lua"
+msgstr ""
+
+msgid "Checking that it works:"
+msgstr ""
+
+msgid "$ /etc/init.d/your_service_name start\n"
+"$ tail -f -n 100 /var/log/tarantool/your_service_name.log"
+msgstr ""
+
