@@ -1,0 +1,303 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Submodule `box.slab`"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"The ``box.slab`` submodule provides access to slab allocator statistics. "
+"The slab allocator is the main allocator used to store :ref:`tuples "
+"<index-box_tuple>`. This can be used to monitor the total memory usage "
+"and memory fragmentation."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is a list of all ``box.slab`` functions."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`box.runtime.info() <box_runtime_info>`"
+msgstr ""
+
+msgid "Show a memory usage report for Lua runtime"
+msgstr ""
+
+msgid ":ref:`box.slab.info() <box_slab_info>`"
+msgstr ""
+
+msgid "Show an aggregated memory usage report for slab allocator"
+msgstr ""
+
+msgid ":ref:`box.slab.stats() <box_slab_stats>`"
+msgstr ""
+
+msgid "Show a detailed memory usage report for slab allocator"
+msgstr ""
+
+msgid "Show a memory usage report (in bytes) for the Lua runtime."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "``lua`` is the heap size of the Lua garbage collector;"
+msgstr ""
+
+msgid "``maxalloc`` is the maximal memory quota that can be allocated for Lua;"
+msgstr ""
+
+msgid "``used`` is the current memory size used by Lua."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> box.runtime.info()\n"
+"---\n"
+"- lua: 913710\n"
+"  maxalloc: 4398046510080\n"
+"  used: 12582912\n"
+"...\n"
+"tarantool> box.runtime.info().used\n"
+"---\n"
+"- used: 12582912\n"
+"..."
+msgstr ""
+
+msgid ""
+"Show an aggregated memory usage report (in bytes) for the slab allocator."
+" This report is useful for assessing out-of-memory risks."
+msgstr ""
+
+msgid "``box.slab.info`` gives a few ratios:"
+msgstr ""
+
+msgid "items_used_ratio"
+msgstr ""
+
+msgid "arena_used_ratio"
+msgstr ""
+
+msgid "quota_used_ratio"
+msgstr ""
+
+msgid "Here are two possible cases for monitoring memtx memory usage:"
+msgstr ""
+
+msgid "**Case 1:** 0.5 < ``items_used_ratio`` < 0.9"
+msgstr ""
+
+msgid ""
+"Apparently your memory is highly fragmented. Check how many slab classes "
+"you have by looking at ``box.slab.stats()`` and counting the number of "
+"different classes. If there are many slab classes (more than a few "
+"dozens), you may run out of memory even though memory utilization is not "
+"high. While each slab may have few items used, whenever a tuple of a size"
+" different from any existing slab class size is allocated, Tarantool may "
+"need to get a new slab from the slab arena, and since the arena has few "
+"empty slabs left, it will attempt to increase its quota usage, which, in "
+"turn, may end up with an out-of-memory error due to the low remaining "
+"quota."
+msgstr ""
+
+msgid "**Case 2:** ``items_used_ratio`` > 0.9"
+msgstr ""
+
+msgid ""
+"You are running out of memory. All memory utilization indicators are "
+"high. Your memory is not fragmented, but there are few reserves left on "
+"each slab allocator level. You should consider increasing Tarantool's "
+"memory limit (``box.cfg.memtx_memory``)."
+msgstr ""
+
+msgid ""
+"**To sum up:** your main out-of-memory indicator is ``quota_used_ratio``."
+" However, there are lots of perfectly stable setups with a high "
+"``quota_used_ratio``, so you only need to pay attention to it when both "
+"arena and item used ratio are also high."
+msgstr ""
+
+msgid ""
+"``items_size`` is the *total* amount of memory (including allocated, but "
+"currently free slabs) used only for tuples, no indexes;"
+msgstr ""
+
+msgid ""
+"``items_used_ratio`` = ``items_used`` / ``slab_count`` * ``slab_size`` "
+"(these are slabs used only for tuples, no indexes);"
+msgstr ""
+
+msgid ""
+"``quota_size`` is the maximum amount of memory that the slab allocator "
+"can use for both tuples and indexes (as configured in the "
+":ref:`memtx_memory <cfg_storage-memtx_memory>` parameter, the default is "
+"2^28 bytes =  268,435,456 bytes);"
+msgstr ""
+
+msgid "``quota_used_ratio`` = ``quota_used`` / ``quota_size``;"
+msgstr ""
+
+msgid "``arena_used_ratio`` = ``arena_used`` / ``arena_size``;"
+msgstr ""
+
+msgid ""
+"``items_used`` is the *efficient* amount of memory (omitting allocated, "
+"but currently free slabs) used only for tuples, no indexes;"
+msgstr ""
+
+msgid ""
+"``quota_used`` is the amount of memory that is already distributed to the"
+" slab allocator;"
+msgstr ""
+
+msgid ""
+"``arena_size`` is the *total* memory used for tuples and indexes together"
+" (including allocated, but currently free slabs);"
+msgstr ""
+
+msgid ""
+"``arena_used`` is the *efficient* memory used for storing tuples and "
+"indexes together (omitting allocated, but currently free slabs)."
+msgstr ""
+
+msgid ""
+"tarantool> box.slab.info()\n"
+"---\n"
+"- items_size: 228128\n"
+"  items_used_ratio: 1.8%\n"
+"  quota_size: 1073741824\n"
+"  quota_used_ratio: 0.8%\n"
+"  arena_used_ratio: 43.2%\n"
+"  items_used: 4208\n"
+"  quota_used: 8388608\n"
+"  arena_size: 2325176\n"
+"  arena_used: 1003632\n"
+"...\n"
+"\n"
+"tarantool> box.slab.info().arena_used\n"
+"---\n"
+"- 1003632\n"
+"..."
+msgstr ""
+
+msgid ""
+"Show a detailed memory usage report (in bytes) for the slab allocator. "
+"The report is broken down into groups by *data item size* as well as by "
+"*slab size* (64-byte, 136-byte, etc). The report includes the memory "
+"allocated for storing both tuples and indexes."
+msgstr ""
+
+msgid "``mem_free`` is the allocated, but currently unused memory;"
+msgstr ""
+
+msgid ""
+"``mem_used`` is the memory used for storing data items (tuples and "
+"indexes);"
+msgstr ""
+
+msgid "``item_count`` is the number of stored items;"
+msgstr ""
+
+msgid "``item_size`` is the size of each data item;"
+msgstr ""
+
+msgid "``slab_count`` is the number of slabs allocated;"
+msgstr ""
+
+msgid "``slab_size`` is the size of each allocated slab."
+msgstr ""
+
+msgid "Here is a sample report for the first group:"
+msgstr ""
+
+msgid ""
+"tarantool> box.slab.stats()[1]\n"
+"---\n"
+"- mem_free: 16232\n"
+"  mem_used: 48\n"
+"  item_count: 2\n"
+"  item_size: 24\n"
+"  slab_count: 1\n"
+"  slab_size: 16384\n"
+"..."
+msgstr ""
+
+msgid ""
+"This report is saying that there are 2 data items (``item_count`` = 2) "
+"stored in one (``slab_count`` = 1) 24-byte slab (``item_size`` = 24), so "
+"``mem_used`` = 2 * 24 = 48 bytes. Also, ``slab_size`` is 16384 bytes, of "
+"which 16384 - 48 = 16232 bytes are free (``mem_free``)."
+msgstr ""
+
+msgid "A complete report would show memory usage statistics for all groups:"
+msgstr ""
+
+msgid ""
+"tarantool> box.slab.stats()\n"
+"---\n"
+"- - mem_free: 16232\n"
+"    mem_used: 48\n"
+"    item_count: 2\n"
+"    item_size: 24\n"
+"    slab_count: 1\n"
+"    slab_size: 16384\n"
+"  - mem_free: 15720\n"
+"    mem_used: 560\n"
+"    item_count: 14\n"
+"    item_size: 40\n"
+"    slab_count: 1\n"
+"    slab_size: 16384\n"
+"  <...>\n"
+"  - mem_free: 32472\n"
+"    mem_used: 192\n"
+"    item_count: 1\n"
+"    item_size: 192\n"
+"    slab_count: 1\n"
+"    slab_size: 32768\n"
+"  - mem_free: 1097624\n"
+"    mem_used: 999424\n"
+"    item_count: 61\n"
+"    item_size: 16384\n"
+"    slab_count: 1\n"
+"    slab_size: 2097152\n"
+"  ..."
+msgstr ""
+
+msgid ""
+"The total ``mem_used`` for all groups in this report equals "
+"``arena_used`` in :ref:`box.slab.info() <box_slab_info>` report."
+msgstr ""
+

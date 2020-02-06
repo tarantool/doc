@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 13:53+0000\n"
+"PO-Revision-Date: 2019-11-14 20:46+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Generated-By: Babel 2.7.0\n"
+"X-Generator: Poedit 2.2.4\n"
+
+msgid "Module `trivia/config`"
+msgstr "Модуль `trivia/config`"
+
+msgid "Extern modifier for all public functions."
+msgstr "Внешний модификатор для всех доступных функций."
+
+msgid "Package major version - 1 for 1.9.2."
+msgstr "Мажорная версия пакета -- 1 в 1.9.2."
+
+msgid "Package minor version - 9 for 1.9.2."
+msgstr "Минорная версия пакета -- 9 в 1.9.2."
+
+msgid "Package patch version - 2 for 1.9.2."
+msgstr "Патч-версия пакета -- 2 в 1.9.2."
+
+msgid ""
+"A string with major-minor-patch-commit-id identifier of the release, e.g. "
+"1.9.2-0-g113ade24e."
+msgstr ""
+"Строка с идентификатором версии: мажорная-минорная-патч-коммит-"
+"идентификатор, например, 1.9.2-0-g113ade24e."
+
+msgid "System configuration dir (e.g ``/etc``)"
+msgstr "Директория для системной конфигурации (например, ``/etc``)"
+
+msgid "Install prefix (e.g. ``/usr``)"
+msgstr "Префикс установки (например, ``/usr``)"
+
+msgid "Build type, e.g. Debug or Release"
+msgstr "Тип сборки, например, отладочная сборка или релиз."
+
+msgid "CMake build type signature, e.g. ``Linux-x86_64-Debug``"
+msgstr "Подпись типа сборки CMake, например, ``Linux-x86_64-Debug``"
+
+msgid "Command line used to run CMake."
+msgstr "Командная строка для запуска CMake."
+
+msgid "Pathes to C and CXX compilers."
+msgstr "Пути к компиляторам C и CXX."
+
+msgid "C compile flags used to build Tarantool."
+msgstr "Флаги компиляции C, используемые для сборки Tarantool'а."
+
+msgid "CXX compile flags used to build Tarantool."
+msgstr "Флаги компиляции CXX, используемые для сборки Tarantool'а."
+
+msgid "A path to install ``*.lua`` module files."
+msgstr "Путь для установки файлов модуля ``*.lua``."
+
+msgid "A path to install ``*.so``/``*.dylib`` module files."
+msgstr "Путь для установки файлов модуля ``*.so``/``*.dylib``"
+
+msgid ""
+"A path to Lua includes (the same directory where this file is contained)"
+msgstr "Путь к Lua (директория, где хранится этот файл)."
+
+msgid ""
+"A constant added to ``package.path`` in Lua to find ``*.lua`` module files."
+msgstr ""
+"Постоянная, добавляемая к  ``package.path`` в Lua для поиска файлов модуля "
+"``*.lua``."
+
+msgid ""
+"A constant added to ``package.cpath`` in Lua to find ``*.so`` module files."
+msgstr ""
+"Постоянная, добавляемая к  ``package.cpath`` в Lua для поиска файлов модуля "
+"``*.so``."

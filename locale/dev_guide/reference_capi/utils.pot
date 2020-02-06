@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `lua/utils`"
+msgstr ""
+
+msgid "Push cdata of given ``ctypeid`` onto the stack."
+msgstr ""
+
+msgid "CTypeID must be used from FFI at least once. Allocated memory returned uninitialized. Only numbers and pointers are supported."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "Lua State"
+msgstr ""
+
+msgid "FFI's CTypeID of this cdata"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "memory associated with this cdata"
+msgstr ""
+
+msgid "See also: :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`"
+msgstr ""
+
+msgid "Check whether the function argument ``idx`` is a cdata."
+msgstr ""
+
+msgid "stack index"
+msgstr ""
+
+msgid "output argument. FFI's CTypeID of returned cdata"
+msgstr ""
+
+msgid "See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`"
+msgstr ""
+
+msgid "Set finalizer function on a cdata object."
+msgstr ""
+
+msgid "Equivalent to call `ffi.gc(obj, function)`. Finalizer function must be on the top of the stack."
+msgstr ""
+
+msgid "Return CTypeID (FFI) of given СDATA type."
+msgstr ""
+
+msgid "C type name as string (e.g. \"struct request\" or \"uint32_t\")"
+msgstr ""
+
+msgid "CTypeID"
+msgstr ""
+
+msgid "See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`, :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`"
+msgstr ""
+
+msgid "Declare symbols for FFI."
+msgstr ""
+
+msgid "C definitions (e.g. \"struct stat\")"
+msgstr ""
+
+msgid "0 on success"
+msgstr ""
+
+msgid "``LUA_ERRRUN``, ``LUA_ERRMEM` or ``LUA_ERRERR`` otherwise."
+msgstr ""
+
+msgid "See also: ``ffi.cdef(def)``"
+msgstr ""
+
+msgid "Push uint64_t onto the stack."
+msgstr ""
+
+msgid "value to push"
+msgstr ""
+
+msgid "Push int64_t onto the stack."
+msgstr ""
+
+msgid "Check whether the argument idx is a uint64 or a convertable string and returns this number."
+msgstr ""
+
+msgid "throws"
+msgstr ""
+
+msgid "error if the argument can't be converted"
+msgstr ""
+
+msgid "Check whether the argument idx is a int64 or a convertable string and returns this number."
+msgstr ""
+
+msgid "the converted number or 0 of argument can't be converted"
+msgstr ""
+
+msgid "Push a tuple onto the stack."
+msgstr ""
+
+msgid "error on OOM"
+msgstr ""
+
+msgid "See also: :ref:`luaT_istuple <c_api-utils-luaT_istuple>`"
+msgstr ""
+
+msgid "Check whether ``idx`` is a tuple."
+msgstr ""
+
+msgid "the stack index"
+msgstr ""
+
+msgid "non-NULL if ``idx`` is a tuple"
+msgstr ""
+
+msgid "NULL if ``idx`` is not a tuple"
+msgstr ""
+
+msgid "Re-throw the last Tarantool error as a Lua object."
+msgstr ""
+
+msgid "See also: `lua_error() <https://www.lua.org/manual/5.1/manual.html#lua_error>`_,"
+msgstr ""
+
+msgid ":ref:`box_error_last() <c_api-error-box_error_last>`."
+msgstr ""
+
+msgid "Similar to `lua_cpcall() <https://www.lua.org/manual/5.1/manual.html#lua_cpcall>`_, but with the proper support of Tarantool errors."
+msgstr ""
+
+msgid "Get the global Lua state used by Tarantool."
+msgstr ""
+

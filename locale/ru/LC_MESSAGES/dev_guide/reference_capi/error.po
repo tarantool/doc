@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 13:53+0000\n"
+"PO-Revision-Date: 2019-11-14 20:46+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Generated-By: Babel 2.7.0\n"
+"X-Generator: Poedit 2.2.4\n"
+
+msgid "Module `error`"
+msgstr "Модуль `error`"
+
+msgid "Error - contains information about error."
+msgstr "Ошибка -- содержит информацию об ошибке."
+
+msgid "Return the error type, e.g. \"ClientError\", \"SocketError\", etc."
+msgstr "Возврат типа ошибки, например, \"ClientError\", \"SocketError\" и т.д."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "error"
+msgstr "ошибка"
+
+msgid "Returns"
+msgstr "Возвращает"
+
+msgid "not-null string"
+msgstr "ненулевая строка"
+
+msgid "Return IPROTO error code"
+msgstr "Возврат кода ошибки IPROTO"
+
+msgid "enum :ref:`box_error_code <capi-box_error_code>`"
+msgstr "enum :ref:`box_error_code <capi-box_error_code>`"
+
+msgid "Return the error message"
+msgstr "Возврат сообщения ошибки"
+
+msgid "Get the information about the last API call error."
+msgstr "Получение информации о последней ошибке вызова API."
+
+msgid ""
+"The Tarantool error handling works most like libc's errno. All API calls "
+"return -1 or NULL in the event of error. An internal pointer to box_error_t "
+"type is set by API functions to indicate what went wrong. This value is only "
+"significant if API call failed (returned -1 or NULL)."
+msgstr ""
+"Обработка ошибок в Tarantool'е больше всего похожа на errno в стандартной "
+"библиотеке языка С libc. Все вызовы API возвращают -1 или NULL в случае "
+"ошибки. Внутренний указатель на тип box_error_t задается функциями, чтобы "
+"указать, что пошло не так. Это значение показательно, если вызов API не "
+"прошел (вернулось -1 или NULL)."
+
+msgid ""
+"Successful function can also touch the last error in some cases. You don't "
+"have to clear the last error before calling API functions. The returned "
+"object is valid only until next call to **any** API function."
+msgstr ""
+"Выполненная функция в некоторых случаях также может затрагивать последнюю "
+"ошибку. Необязательно удалять последнюю ошибку перед вызовом API-функций. "
+"Возвращаемый объект применим только до следующего вызова **любой** API-"
+"функции."
+
+msgid ""
+"You must set the last error using box_error_set() in your stored C "
+"procedures if you want to return a custom error message. You can re-throw "
+"the last API error to IPROTO client by keeping the current value and "
+"returning -1 to Tarantool from your stored procedure."
+msgstr ""
+"Следует задать последнюю ошибку с помощью box_error_set() из хранимых "
+"процедур на языке C, если необходимо вернуть специальное сообщение об "
+"ошибке. Можно повторно сгенерировать последнюю API-ошибку в клиент IPROTO, "
+"сохранив текущее значение и вернув -1 to Tarantool из хранимой процедуры."
+
+msgid "last error"
+msgstr "последняя ошибка"
+
+msgid "Clear the last error."
+msgstr "Удаление последней ошибки."
+
+msgid "Set the last error."
+msgstr "Определение последней ошибки."
+
+msgid "IPROTO :ref:`error code<capi-box_error_code>`"
+msgstr "IPROTO :ref:`error code<capi-box_error_code>`"
+
+msgid "format arguments"
+msgstr "аргументы формата"
+
+msgid "See also: IPROTO :ref:`error code<capi-box_error_code>`"
+msgstr "См. также IPROTO :ref:`error code<capi-box_error_code>`"
+
+msgid "A backward-compatible API define."
+msgstr "Обратно совместимые определения API."
