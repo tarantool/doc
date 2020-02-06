@@ -1,0 +1,2383 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "SQL statements and clauses"
+msgstr ""
+
+msgid "ALTER TABLE"
+msgstr ""
+
+msgid "Syntax:"
+msgstr ""
+
+msgid ":samp:`ALTER TABLE {table-name} RENAME TO {new-table-name};`"
+msgstr ""
+
+msgid ":samp:`ALTER TABLE {table-name} ADD CONSTRAINT {constraint-name} {constraint-definition};`"
+msgstr ""
+
+msgid ":samp:`ALTER TABLE {table-name} DROP CONSTRAINT {constraint-name};`"
+msgstr ""
+
+msgid "|br|"
+msgstr ""
+
+msgid "ALTER is used to change a table's name or to add new constraints or to drop old constraints."
+msgstr ""
+
+msgid "Examples:"
+msgstr ""
+
+msgid "-- renaming a table:\n"
+"ALTER TABLE t1 RENAME TO t2;"
+msgstr ""
+
+msgid "For ``ALTER ... RENAME``, the *old-table* must exist, the *new-table* must not exist."
+msgstr ""
+
+msgid "-- adding a foreign-key constraint definition:\n"
+"ALTER TABLE t1 ADD CONSTRAINT c FOREIGN KEY (s1) REFERENCES t1;"
+msgstr ""
+
+msgid "For ``ALTER ... ADD CONSTRAINT``, the table must exist, table must be empty, the constraint name must not already exist for the table."
+msgstr ""
+
+msgid "It is not possible to say ``CREATE TABLE table_a ... REFERENCES table_b ...`` if table ``b`` does not exist yet. This is a situation where ``ALTER TABLE`` is handy -- users can ``CREATE TABLE table_a`` without the foreign key, then ``CREATE TABLE table_b``, then ``ALTER TABLE table_a ... REFERENCES table_b ...``."
+msgstr ""
+
+msgid "-- adding a primary-key constraint definition:\n"
+"-- This is unusual because primary keys are created automatically\n"
+"-- and it is illegal to have two primary keys for the same table.\n"
+"-- However, it is possible to drop a primary-key index, and this\n"
+"-- is a way to restore the primary key if that happens.\n"
+"ALTER TABLE t1 ADD CONSTRAINT primary_key PRIMARY KEY (s1);\n"
+"\n"
+"-- adding a unique-constraint definition:\n"
+"-- Alternatively, you can say CREATE UNIQUE INDEX unique_key ON t1 (s1);\n"
+"ALTER TABLE t1 ADD CONSTRAINT unique_key UNIQUE (s1);\n"
+"\n"
+"-- Adding a check-constraint definition:\n"
+"ALTER TABLE t1 ADD CONSTRAINT check_ CHECK (s1 > 0);"
+msgstr ""
+
+msgid "For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint, and Tarantool only looks for names of foreign-key constraints. (Tarantool generates the constraint names automatically if the user does not provide them.)"
+msgstr ""
+
+msgid "To remove a unique constraint, use DROP INDEX, which will drop the constraint as well."
+msgstr ""
+
+msgid "-- dropping a constraint:\n"
+"ALTER TABLE t1 DROP CONSTRAINT c;"
+msgstr ""
+
+msgid "Limitations:"
+msgstr ""
+
+msgid "It is not possible to add or drop a column."
+msgstr ""
+
+msgid "It is not possible to modify NOT NULL constraints or column properties DEFAULT and data type. However, it is possible to modify them with Tarantool/NOSQL, for example by calling :ref:`space_object:format() <box_space-format>` with a different ``is_nullable`` value."
+msgstr ""
+
+msgid "CREATE TABLE"
+msgstr ""
+
+msgid ":samp:`CREATE TABLE [IF NOT EXISTS] {table-name} ((column-definition or table-constraint list);`"
+msgstr ""
+
+msgid "Create a new base table, usually called a \"table\"."
+msgstr ""
+
+msgid "A table is a *base table* if it is created with CREATE TABLE and contains data in persistent storage."
+msgstr ""
+
+msgid "A table is a *viewed table*, or just \"view\", if it is created with CREATE VIEW and gets its data from other views or from base tables."
+msgstr ""
+
+msgid "The *table-name* must be an identifier which is valid according to the rules for identifiers, and must not be the name of an already existing base table or view."
+msgstr ""
+
+msgid "The *column-definition* or *table-constraint* list is a comma-separated list of column definitions or table constraints."
+msgstr ""
+
+msgid "A *table-element-list* must be a comma-separated list of table elements; each table element may be either a column definition or a table constraint definition."
+msgstr ""
+
+msgid "Rules:"
+msgstr ""
+
+msgid "A primary key is necessary; it can be specified with a table constraint ``PRIMARY KEY``."
+msgstr ""
+
+msgid "There must be at least one column."
+msgstr ""
+
+msgid "When ``IF NOT EXISTS`` is specified, and there is already a table with the same name, the statement is ignored."
+msgstr ""
+
+msgid "Actions:"
+msgstr ""
+
+msgid "Tarantool evaluates each column definition and *table-constraint*, and returns an error if any of the rules is violated."
+msgstr ""
+
+msgid "Tarantool makes a new definition in the schema."
+msgstr ""
+
+msgid "Tarantool makes new indexes for ``PRIMARY KEY`` or ``UNIQUE`` constraints. A unique index name is created automatically."
+msgstr ""
+
+msgid "Tarantool effectively executes a ``COMMIT`` statement."
+msgstr ""
+
+msgid "-- the simplest form, with one column and one constraint:\n"
+"CREATE TABLE t1 (s1 INTEGER, PRIMARY KEY (s1));\n"
+"\n"
+"-- you can see the effect of the statement by querying\n"
+"-- Tarantool system spaces:\n"
+"SELECT * FROM \"_space\" WHERE \"name\" = 'T1';\n"
+"SELECT * FROM \"_index\" JOIN \"_space\" ON \"_index\".\"id\" = \"_space\".\"id\"\n"
+"         WHERE \"_space\".\"name\" = 'T1';\n"
+"\n"
+"-- variation of the simplest form, with delimited identifiers\n"
+"-- and an inline comment:\n"
+"CREATE TABLE \"T1\" (\"S1\" INT /* synonym of INTEGER */, PRIMARY KEY (\"S1\"));\n"
+"\n"
+"-- two columns, one named constraint\n"
+"CREATE TABLE t1 (s1 INTEGER, s2 STRING, CONSTRAINT c1 PRIMARY KEY (s1, s2));"
+msgstr ""
+
+msgid "The maximum number of columns is 2000."
+msgstr ""
+
+msgid "The maximum length of a row depends on the :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` or :ref:`vinyl_max_tuple_size  <cfg_storage-memtx_max_tuple_size>` configuration option."
+msgstr ""
+
+msgid "Column definition"
+msgstr ""
+
+msgid ":samp:`column-name data-type [, column-constraint]`"
+msgstr ""
+
+msgid "Define a column, which is a table-element used in a CREATE TABLE statement."
+msgstr ""
+
+msgid "The ``column-name`` must be an identifier which is valid according to the rules for identifiers."
+msgstr ""
+
+msgid "Each ``column-name`` must be unique within a table."
+msgstr ""
+
+msgid "Column definition -- data type"
+msgstr ""
+
+msgid "Every operand has a data type."
+msgstr ""
+
+msgid "For literals, the data type is usually determined by the format."
+msgstr ""
+
+msgid "For identifiers, the data type is usually determined by the definition."
+msgstr ""
+
+msgid "The usual determination may change because of context or because of explicit casting."
+msgstr ""
+
+msgid "For some SQL data type names there are *aliases*. An alias may be used for data definition. For example VARCHAR(5) and TEXT are aliases of STRING and may appear in `CREATE TABLE table_name (column_name VARCHAR(5) PRIMARY KEY);` but Tarantool, if asked, will report that the data type of `column_name` is STRING."
+msgstr ""
+
+msgid "For every SQL data type there is a corresponding NoSQL type, for example an SQL STRING is stored in a NoSQL space as type = 'string'."
+msgstr ""
+
+msgid "To avoid confusion in this manual, all references to SQL data type names are in upper case and all similar words which refer to NoSQL types or to other kinds of object are in lower case, for example:"
+msgstr ""
+
+msgid "STRING is a data type name, but string is a general term;"
+msgstr ""
+
+msgid "NUMBER is a data type name, but number is a general term."
+msgstr ""
+
+msgid "Although it is common to say that a VARBINARY value is a \"binary string\", this manual will not use that term and will instead say \"byte sequence\"."
+msgstr ""
+
+msgid "Here are all the SQL data types, their corresponding NoSQL types, their aliases, and minimum / maximum literal examples."
+msgstr ""
+
+msgid "**Data types**"
+msgstr ""
+
+msgid "SQL type"
+msgstr ""
+
+msgid "NoSQL type"
+msgstr ""
+
+msgid "Aliases"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "BOOLEAN"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "BOOL"
+msgstr ""
+
+msgid "FALSE"
+msgstr ""
+
+msgid "TRUE"
+msgstr ""
+
+msgid "INTEGER"
+msgstr ""
+
+msgid "integer"
+msgstr ""
+
+msgid "INT"
+msgstr ""
+
+msgid "-9223372036854775808"
+msgstr ""
+
+msgid "18446744073709551615"
+msgstr ""
+
+msgid "UNSIGNED"
+msgstr ""
+
+msgid "unsigned"
+msgstr ""
+
+msgid "(none)"
+msgstr ""
+
+msgid "0"
+msgstr ""
+
+msgid "NUMBER"
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid "-1.79769e308"
+msgstr ""
+
+msgid "1.79769e308"
+msgstr ""
+
+msgid "STRING"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "TEXT, VARCHAR(n)"
+msgstr ""
+
+msgid "''"
+msgstr ""
+
+msgid "'many-characters'"
+msgstr ""
+
+msgid "VARBINARY"
+msgstr ""
+
+msgid "varbinary"
+msgstr ""
+
+msgid "X''"
+msgstr ""
+
+msgid "'X'many-hex-digits'"
+msgstr ""
+
+msgid "SCALAR"
+msgstr ""
+
+msgid "scalar"
+msgstr ""
+
+msgid "X'many-hex-digits'"
+msgstr ""
+
+msgid "BOOLEAN values are FALSE, TRUE, and UNKNOWN (which is the same as NULL). FALSE is less than TRUE."
+msgstr ""
+
+msgid "INTEGER values are numbers that do not contain decimal points and are not expressed with exponential notation. The range of possible values is between -2^63 and +2^64, or NULL."
+msgstr ""
+
+msgid "UNSIGNED values are numbers that do not contain decimal points and are not expressed with exponential notation. The range of possible values is between 0 and +2^64, or NULL."
+msgstr ""
+
+msgid "NUMBER values are numbers that do contain decimal points (for example 0.5) or are expressed with exponential notation (for example 5E-1). The range of possible values is the same as for the IEEE 754 floating-point standard, or NULL. Numbers outside the range of NUMBER literals may be displayed as -inf or inf."
+msgstr ""
+
+msgid "STRING values are any sequence of zero or more characters encoded with UTF-8, or NULL. The possible character values are the same as for the Unicode standard. Byte sequences which are not valid UTF-8 characters are allowed but not recommended. STRING literal values are enclosed within single quotes, for example 'literal'. If the VARCHAR alias is used for column definition, it must include a maximum length, for example column_1 VARCHAR(40). However, the maximum length is ignored. The data-type may be followed by ``[COLLATE collation-name]``. .. // see section COLLATE clause."
+msgstr ""
+
+msgid "VARBINARY values are any sequence of zero or more octets (bytes), or NULL. VARBINARY literal values are expressed as X followed by pairs of hexadecimal digits enclosed within single quotes, for example X'0044'. VARBINARYs NoSQL equivalent is 'varbinary' but not character string -- the MessagePack storage is MP_BIN (MsgPack binary)."
+msgstr ""
+
+msgid "SCALAR can be used for column definitions but the individual column values have one of the preceding types -- BOOLEAN, INTEGER, UNSIGNED, NUMBER, STRING, or VARBINARY. See more about SCALAR in the next section. The data-type may be followed by ``[COLLATE collation-name]``. .. // see section COLLATE clause."
+msgstr ""
+
+msgid "Any value of any data type may be NULL. Ordinarily NULL will be cast to the data type of any operand it is being compared to or to the data type of the column it is in. If the data type of NULL cannot be determined from context, it is BOOLEAN."
+msgstr ""
+
+msgid "Column definition -- the rules for the SCALAR data type"
+msgstr ""
+
+msgid "SCALAR is a \"complex\" data type, unlike all the other data types which are \"primitive\". Two column values in a SCALAR column can have two different primitive data types."
+msgstr ""
+
+msgid "Any item defined as SCALAR has an underlying primitive type. For example, here:"
+msgstr ""
+
+msgid "CREATE TABLE t (s1 SCALAR PRIMARY KEY);\n"
+"INSERT INTO t VALUES (55),('41');"
+msgstr ""
+
+msgid "the underlying primitive type of the item in the first row is INTEGER because literal 55 has data type INTEGER, and the underlying primitive type in the second row is STRING (the data type of a literal is always clear from its format)."
+msgstr ""
+
+msgid "An item's primitive type is far more important than its defined type. Incidentally Tarantool might find the primitive type by looking at the way MsgPack stores it, but that is an implementation detail."
+msgstr ""
+
+msgid "A SCALAR definition may not include a maximum length, as there is no suggested restriction."
+msgstr ""
+
+msgid "A SCALAR definition may include a COLLATE clause, which affects any items whose primitive data type is STRING. The default collation is \"binary\"."
+msgstr ""
+
+msgid "Some assignments are illegal when data types differ, but legal when the target is a SCALAR item. For example ``UPDATE ... SET column1 = 'a'`` is illegal if ``column1`` is defined as INTEGER, but is legal if ``column1`` is defined as SCALAR -- values which happen to be INTEGER will be changed so their data type is STRING."
+msgstr ""
+
+msgid "There is no literal syntax which implies data type SCALAR."
+msgstr ""
+
+msgid "TYPEOF(x) is never SCALAR, it is always the underlying data type. This is true even if ``x`` is null (in that case the data type is BOOLEAN). In fact there is no function that is guaranteed to return the defined data type. For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns INTEGER, not SCALAR."
+msgstr ""
+
+msgid "For any operation that requires implicit casting from an item defined as SCALAR, the syntax is legal but the operation may fail at runtime. At runtime, Tarantool detects the underlying primitive data type and applies the rules for that. For example, if a definition is:"
+msgstr ""
+
+msgid "CREATE TABLE t (s1 SCALAR PRIMARY KEY, s2 INTEGER);"
+msgstr ""
+
+msgid "and within any row ``s1 = 'a'``, that is, its underlying primitive type is STRING to indicate character strings, then ``UPDATE t SET s2 = s1;`` is illegal. Tarantool usually does not know that in advance."
+msgstr ""
+
+msgid "For any dyadic operation that requires implicit casting for comparison, the syntax is legal and the operation will not fail at runtime. Take this situation: comparison with a primitive type VARBINARY and a primitive type STRING."
+msgstr ""
+
+msgid "CREATE TABLE t (s1 SCALAR PRIMARY KEY);\n"
+"INSERT INTO t VALUES (X'41');\n"
+"SELECT * FROM t WHERE s1 > 'a';"
+msgstr ""
+
+msgid "The comparison is valid, because Tarantool knows the ordering of X'41' and 'a' in Tarantool/NoSQL 'scalar'. This would be true even if ``s1`` was not defined as SCALAR."
+msgstr ""
+
+msgid "The result data type of min/max operation on a column defined as SCALAR is the data type of the minimum/maximum operand, unless the result value is NULL. For example:"
+msgstr ""
+
+msgid "CREATE TABLE t (s1 INT, s2 SCALAR PRIMARY KEY);\n"
+"INSERT INTO t VALUES (1,X'44'),(2,11),(3,1E4),(4,'a');\n"
+"SELECT MIN(s2), HEX(MAX(s2)) FROM t;"
+msgstr ""
+
+msgid "The result is: ``- - [11, '44',]``"
+msgstr ""
+
+msgid "That is only possible with Tarantool/NoSQL scalar rules, but ``SELECT SUM(s2)`` would not be legal because addition would in this case require implicit casting from VARBINARY to integer, which is not sensible."
+msgstr ""
+
+msgid "The result data type of a primitive combination is never SCALAR because we in effect use TYPEOF(item) not the defined data type. (Here we use the word \"combination\" in the way that the standard document uses it for section \"Result of data type combinations\".) Therefore for ``MAX(1E308, 'a', 0, X'00')`` the result is X'00'."
+msgstr ""
+
+msgid "Column definition -- relation to NoSQL"
+msgstr ""
+
+msgid "All the SQL data types correspond to :ref:`Tarantool/NoSQL types with the same name <box_space-index_field_types>`. For example an SQL STRING is stored in a NoSQL space as type = 'string'."
+msgstr ""
+
+msgid "Therefore specifying an SQL data type X determines that the storage will be in a space with a format column saying that the NoSQL type is 'x'."
+msgstr ""
+
+msgid "The rules for that NoSQL type are applicable to the SQL data type."
+msgstr ""
+
+msgid "If two items have SQL data types that have the same underlying type, then they are compatible for all assignment or comparison purposes."
+msgstr ""
+
+msgid "If two items have SQL data types that have different underlying types, then the rules for explicit casts, or implicit (assignment) casts, or implicit (comparison) casts, apply."
+msgstr ""
+
+msgid "There is one floating-point value which is not handled by SQL: -nan is seen as NULL."
+msgstr ""
+
+msgid "There are also some Tarantool/NoSQL data types which have no corresponding SQL data types. For example, ``SELECT \"flags\" FROM \"_space\";`` will return a column whose data type is 'map'. Such columns can only be manipulated in SQL by invoking Lua functions."
+msgstr ""
+
+msgid "Column definition -- column-constraint or default clause"
+msgstr ""
+
+msgid "The column-constraint or default clause may be as follows:"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "NOT NULL"
+msgstr ""
+
+msgid "means \"it is illegal to assign a NULL to this column\""
+msgstr ""
+
+msgid "PRIMARY KEY"
+msgstr ""
+
+msgid "explained in the later section \"Constraint definition\""
+msgstr ""
+
+msgid "UNIQUE"
+msgstr ""
+
+msgid "CHECK (expression)"
+msgstr ""
+
+msgid "DEFAULT expression"
+msgstr ""
+
+msgid "means \"if INSERT does not assign to this column then assign expression result to this column\" -- if there is no DEFAULT clause then DEFAULT NULL is assumed."
+msgstr ""
+
+msgid "If column-constraint is PRIMARY KEY, this is a shorthand for a separate table-constraint definition: \"PRIMARY KEY (column-name)\"."
+msgstr ""
+
+msgid "If column-constraint is UNIQUE, this is a shorthand for a separate table-constraint definition: \"UNIQUE (column-name)\"."
+msgstr ""
+
+msgid "Columns defined with PRIMARY KEY are automatically NOT NULL."
+msgstr ""
+
+msgid "To enforce some restrictions that Tarantool does not enforce automatically, add CHECK clauses, like these:"
+msgstr ""
+
+msgid "CREATE TABLE t (\"smallint\" INTEGER PRIMARY KEY, CHECK (\"smallint\" <= 32767 AND \"smallint\" >= -32768));\n"
+"CREATE TABLE t (\"shorttext\" CHAR(10) PRIMARY KEY, CHECK (length(\"shorttext\") <= 10));"
+msgstr ""
+
+msgid "but this may cause inserts or updates to be slow."
+msgstr ""
+
+msgid "Column definition -- examples"
+msgstr ""
+
+msgid "These are shown within CREATE TABLE statements. Data types may also appear in CAST functions."
+msgstr ""
+
+msgid "-- the simple form with column-name and data-type\n"
+"CREATE TABLE t (column1 INTEGER ...);\n"
+"-- with column-name and data-type and column-constraint\n"
+"CREATE TABLE t (column1 STRING PRIMARY KEY ...);\n"
+"-- with column-name and data-type and collate-clause and two column-constraints\n"
+"CREATE TABLE t (column1 SCALAR COLLATE \"unicode\" ...);"
+msgstr ""
+
+msgid "-- with all possible data types and aliases\n"
+"CREATE TABLE t\n"
+"(column1 BOOLEAN, column2 BOOL,\n"
+" column3 INT PRIMARY KEY, column4 INTEGER,\n"
+" column4 NUMBER,\n"
+" column7 STRING, column8 STRING COLLATE \"unicode\",\n"
+" column9 TEXT, columna TEXT COLLATE \"unicode_sv_s1\",\n"
+" columnb VARCHAR(0), columnc VARCHAR(100000) COLLATE \"binary\",\n"
+" columnd VARBINARY,\n"
+" columne SCALAR, columnf SCALAR COLLATE \"unicode_uk_s2\");"
+msgstr ""
+
+msgid "-- with all possible column constraints and a default clause\n"
+"CREATE TABLE t\n"
+"(column1 INT PRIMARY KEY,\n"
+" column2 INT UNIQUE,\n"
+" column3 INT CHECK (column3 > column2),\n"
+" column4 INT REFERENCES t,\n"
+" column6 INT DEFAULT NULL);"
+msgstr ""
+
+msgid "DROP TABLE"
+msgstr ""
+
+msgid ":samp:`DROP TABLE [IF EXISTS] {table-name};`"
+msgstr ""
+
+msgid "Drop a table."
+msgstr ""
+
+msgid "The *table-name* must identify a table that was created earlier with the :ref:`CREATE TABLE statement <sql_create_table>`."
+msgstr ""
+
+msgid "If there is a view that references the table, the drop will fail. Please drop the referencing view with DROP VIEW first."
+msgstr ""
+
+msgid "If there is a foreign key that references the table, the drop will fail. Please drop the referencing constraint with :ref:`ALTER TABLE ... DROP <sql_alter_table_drop_constraint>` first."
+msgstr ""
+
+msgid "Tarantool returns an error if the table does not exist."
+msgstr ""
+
+msgid "The table and all its data are dropped."
+msgstr ""
+
+msgid "All indexes for the table are dropped."
+msgstr ""
+
+msgid "All triggers for the table are dropped."
+msgstr ""
+
+msgid "Tarantool effectively executes a COMMIT statement."
+msgstr ""
+
+msgid "-- the simple case:\n"
+"DROP TABLE t31;\n"
+"-- with an IF EXISTS clause:\n"
+"DROP TABLE IF EXISTS t31;"
+msgstr ""
+
+msgid "See also: :ref:`DROP VIEW <sql_drop_view>`."
+msgstr ""
+
+msgid "CREATE VIEW"
+msgstr ""
+
+msgid ":samp:`CREATE VIEW [IF NOT EXISTS] {view-name} [(column-list)] AS subquery;`"
+msgstr ""
+
+msgid "Create a new viewed table, usually called a \"view\"."
+msgstr ""
+
+msgid "The *view-name* must be valid according to the rules for identifiers."
+msgstr ""
+
+msgid "The optional *column-list* must be a comma-separated list of names of columns in the view."
+msgstr ""
+
+msgid "The syntax of the subquery must be the same as the syntax of a SELECT statement, or of a VALUES clause."
+msgstr ""
+
+msgid "There must not already be a base table or view with the same name as *view-name*."
+msgstr ""
+
+msgid "If *column-list* is specified, the number of columns in *column-list* must be the same as the number of columns in the *select-list* of the subquery."
+msgstr ""
+
+msgid "Tarantool will throw an error if a rule is violated."
+msgstr ""
+
+msgid "Tarantool will create a new persistent object with *column-names* equal to the names in the *column-list* or the names in the subquery's *select-list*."
+msgstr ""
+
+msgid "-- the simple case:\n"
+"CREATE VIEW v AS SELECT column1, column2 FROM t;\n"
+"-- with a column-list:\n"
+"CREATE VIEW v (a,b) AS SELECT column1, column2 FROM t;"
+msgstr ""
+
+msgid "It is not possible to insert or update or delete from a view, although sometimes a possible substitution is to create an INSTEAD OF trigger."
+msgstr ""
+
+msgid "DROP VIEW"
+msgstr ""
+
+msgid ":samp:`DROP VIEW [IF EXISTS] {view-name};`"
+msgstr ""
+
+msgid "Drop a view."
+msgstr ""
+
+msgid "The *view-name* must identify a view that was created earlier with the :ref:`CREATE VIEW statement <sql_create_view>`."
+msgstr ""
+
+msgid "Rules: none"
+msgstr ""
+
+msgid "Tarantool returns an error if the view does not exist."
+msgstr ""
+
+msgid "The view is dropped."
+msgstr ""
+
+msgid "All triggers for the view are dropped."
+msgstr ""
+
+msgid "-- the simple case:\n"
+"DROP VIEW v31;\n"
+"-- with an IF EXISTS clause:\n"
+"DROP VIEW IF EXISTS v31;"
+msgstr ""
+
+msgid "See also: :ref:`DROP TABLE <sql_drop_table>`."
+msgstr ""
+
+msgid "CREATE INDEX"
+msgstr ""
+
+msgid ":samp:`CREATE [UNIQUE] INDEX [IF NOT EXISTS] {index-name} ON {table-name} (column-list);`"
+msgstr ""
+
+msgid "Create an index."
+msgstr ""
+
+msgid "The *index-name* must be valid according to the rules for identifiers."
+msgstr ""
+
+msgid "The *table-name* must refer to an existing table."
+msgstr ""
+
+msgid "The *column-list* must be a comma-separated list of names of columns in the table."
+msgstr ""
+
+msgid "There must not already be, for the same table, an index with the same name as *index-name*."
+msgstr ""
+
+msgid "An index name is local to the table the index is defined on."
+msgstr ""
+
+msgid "The maximum number of indexes per table is 128."
+msgstr ""
+
+msgid "If the new index is UNIQUE, Tarantool will throw an error if any row exists with columns that have duplicate values."
+msgstr ""
+
+msgid "Tarantool will create a new index."
+msgstr ""
+
+msgid "Automatic indexes:"
+msgstr ""
+
+msgid "Indexes may be created automatically for columns mentioned in the PRIMARY KEY or UNIQUE clauses of a CREATE TABLE statement. If an index was created automatically, then the *index-name* is based on four items:"
+msgstr ""
+
+msgid "``pk`` if this is for a PRIMARY KEY clause, ``unique`` if this is for a UNIQUE clause;"
+msgstr ""
+
+msgid "``_unnamed_``;"
+msgstr ""
+
+msgid "the name of the table;"
+msgstr ""
+
+msgid "``_`` and an ordinal number; the first index is 1, the second index is 2, and so on."
+msgstr ""
+
+msgid "For example, after ``CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT, UNIQUE (s2));`` there are two indexes named ``pk_unnamed_T_1`` and ``unique_unnamed_T_2``. You can confirm this by saying ``SELECT * FROM \"_index\";`` which will list all indexes on all tables. There is no need to say ``CREATE INDEX`` for columns that already have automatic indexes."
+msgstr ""
+
+msgid "-- the simple case\n"
+"CREATE INDEX i ON t (column1);\n"
+"-- with IF NOT EXISTS clause\n"
+"CREATE INDEX IF NOT EXISTS i ON t (column1);\n"
+"-- with UNIQUE specifier and more than one column\n"
+"CREATE UNIQUE INDEX i ON t (column1, column2);"
+msgstr ""
+
+msgid "Dropping an automatic index created for a unique constraint will drop the unique constraint as well."
+msgstr ""
+
+msgid "DROP INDEX"
+msgstr ""
+
+msgid ":samp:`DROP INDEX [IF EXISTS] index-name ON {table-name};`"
+msgstr ""
+
+msgid "The *index-name* must be the name of an existing index, which was created with CREATE INDEX. Or, the *index-name* must be the name of an index that was created automatically due to a PRIMARY KEY or UNIQUE clause in the CREATE TABLE statement. To see what a table's indexes are, use ``PRAGMA index_list (table-name)``."
+msgstr ""
+
+msgid "Tarantool throws an error if the index does not exist, or is an automatically created index."
+msgstr ""
+
+msgid "Tarantool will drop the index."
+msgstr ""
+
+msgid "Example:"
+msgstr ""
+
+msgid "-- the simplest form:\n"
+"DROP INDEX i ON t;"
+msgstr ""
+
+msgid "INSERT"
+msgstr ""
+
+msgid ":samp:`INSERT INTO {table-name} [(column-list)] VALUES (expression-list) [, (expression-list)];`"
+msgstr ""
+
+msgid ":samp:`INSERT INTO {table-name} [(column-list)]  select-statement;`"
+msgstr ""
+
+msgid ":samp:`INSERT INTO {table-name} DEFAULT VALUES;`"
+msgstr ""
+
+msgid "Insert one or more new rows into a table."
+msgstr ""
+
+msgid "The *table-name* must be a name of a table defined earlier with CREATE TABLE."
+msgstr ""
+
+msgid "The optional *column-list* must be a comma-separated list of names of columns in the table."
+msgstr ""
+
+msgid "The *expression-list* must be a comma-separated list of expressions; each expression may contain literals and operators and subqueries and function invocations."
+msgstr ""
+
+msgid "The values in the *expression-list* are evaluated from left to right."
+msgstr ""
+
+msgid "The order of the values in the *expression-list* must correspond to the order of the columns in the table, or (if a *column-list* is specified) to the order of the columns in the *column-list*."
+msgstr ""
+
+msgid "The data type of the value should correspond to the data type of the column, that is, the data type that was specified with CREATE TABLE."
+msgstr ""
+
+msgid "If a *column-list* is not specified, then the number of expressions must be the same as the number of columns in the table."
+msgstr ""
+
+msgid "If a *column-list* is specified, then some columns may be omitted; omitted columns will get default values."
+msgstr ""
+
+msgid "The parenthesized *expression-list* may be repeated -- ``(expression-list),(expression-list),...`` -- for multiple rows."
+msgstr ""
+
+msgid "Tarantool evaluates each expression in *expression-list*, and returns an error if any of the rules is violated."
+msgstr ""
+
+msgid "Tarantool creates zero or more new rows containing values based on the values in the VALUES list or based on the results of the *select-expression* or based on the default values."
+msgstr ""
+
+msgid "Tarantool executes constraint checks and trigger actions and the actual insertion."
+msgstr ""
+
+msgid "Tarantool inserts values into the table."
+msgstr ""
+
+msgid "-- the simplest form:\n"
+"INSERT INTO table1 VALUES (1, 'A');\n"
+"-- with a column list:\n"
+"INSERT INTO table1 (column1, column2) VALUES (2, 'B');\n"
+"-- with an arithmetic operator in the first expression:\n"
+"INSERT INTO table1 VALUES (2 + 1, 'C');\n"
+"-- put two rows in the table:\n"
+"INSERT INTO table1 VALUES (4, 'D'), (5, 'E');"
+msgstr ""
+
+msgid "See also: :ref:`REPLACE statement <sql_replace>`."
+msgstr ""
+
+msgid "UPDATE"
+msgstr ""
+
+msgid ":samp:`UPDATE {table-name} SET column-name = expression [, column-name = expression ...] [WHERE search-condition];`"
+msgstr ""
+
+msgid "Update zero or more existing rows in a table."
+msgstr ""
+
+msgid "The *table-name* must be a name of a table defined earlier with CREATE TABLE or CREATE VIEW."
+msgstr ""
+
+msgid "The *column-name* must be an updatable column in the table."
+msgstr ""
+
+msgid "The *expression* may contain literals and operators and subqueries and function invocations and column names."
+msgstr ""
+
+msgid "The values in the SET clause are evaluated from left to right."
+msgstr ""
+
+msgid "If a *search-condition* is not specified, then all rows in the table will be updated; otherwise only those rows which match the *search-condition* will be updated."
+msgstr ""
+
+msgid "Tarantool evaluates each expression in the SET clause, and returns an error if any of the rules is violated. For each row that is found by the WHERE clause, a temporary new row is formed based on the original contents and the modifications caused by the SET clause."
+msgstr ""
+
+msgid "Tarantool executes constraint checks and trigger actions and the actual update."
+msgstr ""
+
+msgid "-- the simplest form:\n"
+"UPDATE t SET column1 = 1;\n"
+"-- with more than one assignment in the SET clause:\n"
+"UPDATE t SET column1 = 1, column2 = 2;\n"
+"-- with a WHERE clause:\n"
+"UPDATE t SET column1 = 5 WHERE column2 = 6;"
+msgstr ""
+
+msgid "Special cases:"
+msgstr ""
+
+msgid "It is legal to say SET (list of columns) = (list of values). For example:"
+msgstr ""
+
+msgid "UPDATE t SET (column1, column2, column3) = (1,2,3);"
+msgstr ""
+
+msgid "It is not legal to assign to a column more than once. For example:"
+msgstr ""
+
+msgid "INSERT INTO t (column1) VALUES (0);\n"
+"UPDATE t SET column1 = column1 + 1, column1 = column1 + 1;"
+msgstr ""
+
+msgid "The result is an error: \"duplicate column name\"."
+msgstr ""
+
+msgid "It is not legal to assign to a primary-key column."
+msgstr ""
+
+msgid "DELETE"
+msgstr ""
+
+msgid ":samp:`DELETE FROM {table-name} [WHERE search-condition];`"
+msgstr ""
+
+msgid "Delete zero or more existing rows in a table."
+msgstr ""
+
+msgid "The *search-condition* may contain literals and operators and subqueries and function invocations and column names."
+msgstr ""
+
+msgid "If a search-condition is not specified, then all rows in the table will be deleted; otherwise only those rows which match the *search-condition* will be deleted."
+msgstr ""
+
+msgid "Tarantool evaluates each expression in the *search-condition*, and returns an error if any of the rules is violated."
+msgstr ""
+
+msgid "Tarantool finds the set of rows that are to be deleted."
+msgstr ""
+
+msgid "Tarantool executes constraint checks and trigger actions and the actual deletion."
+msgstr ""
+
+msgid "Tarantool deletes the set of matching rows from the table."
+msgstr ""
+
+msgid "-- the simplest form:\n"
+"DELETE FROM t;\n"
+"-- with a WHERE clause:\n"
+"DELETE FROM t WHERE column2 = 6;"
+msgstr ""
+
+msgid "REPLACE"
+msgstr ""
+
+msgid ":samp:`REPLACE INTO {table-name} [(column-list)] VALUES (expression-list) [, (expression-list)];`"
+msgstr ""
+
+msgid ":samp:`REPLACE INTO {table-name} [(column-list)] select-statement;`"
+msgstr ""
+
+msgid ":samp:`REPLACE INTO {table-name} DEFAULT VALUES;`"
+msgstr ""
+
+msgid "Insert one or more new rows into a table, or update existing rows."
+msgstr ""
+
+msgid "If a row already exists (as determined by the primary key or any unique key), then the action is delete + insert, and the rules are the same as for a DELETE statement followed by an INSERT statement. Otherwise the action is insert, and the rules are the same as for the INSERT statement."
+msgstr ""
+
+msgid "-- the simplest form:\n"
+"REPLACE INTO table1 VALUES (1, 'A');\n"
+"-- with a column list:\n"
+"REPLACE INTO table1 (column1, column2) VALUES (2, 'B');\n"
+"-- with an arithmetic operator in the first expression:\n"
+"REPLACE INTO table1 VALUES (2 + 1, 'C');\n"
+"-- put two rows in the table:\n"
+"REPLACE INTO table1 VALUES (4, 'D'), (5, 'E');"
+msgstr ""
+
+msgid "See also: :ref:`INSERT Statement <sql_insert>`, :ref:`UPDATE Statement <sql_update>`."
+msgstr ""
+
+msgid "CREATE TRIGGER"
+msgstr ""
+
+msgid ":samp:`CREATE TRIGGER [IF NOT EXISTS] {trigger-name}` |br| :samp:`BEFORE|AFTER|INSTEAD OF` |br| :samp:`INSERT|UPDATE|DELETE ON {table-name}` |br| :samp:`FOR EACH ROW` |br| :samp:`[WHEN (search-condition)]` |br| :samp:`BEGIN` |br| :samp:`update-statement | insert-statement | delete-statement | select-statement;` |br| :samp:`[update-statement | insert-statement | delete-statement | select-statement; ...]` |br| :samp:`END;`"
+msgstr ""
+
+msgid "The *trigger-name* must be valid according to the rules for identifiers."
+msgstr ""
+
+msgid "If the trigger action time is BEFORE or AFTER, then the *table-name* must refer to an existing base table."
+msgstr ""
+
+msgid "If the trigger action time is INSTEAD OF, then the *table-name* must refer to an existing view."
+msgstr ""
+
+msgid "There must not already be a trigger with the same name as *trigger-name*."
+msgstr ""
+
+msgid "Triggers on different tables or views share the same namespace."
+msgstr ""
+
+msgid "The statements between BEGIN and END should not refer to the *table-name* mentioned in the ON clause."
+msgstr ""
+
+msgid "The statements between BEGIN and END should not contain an INDEXED BY clause."
+msgstr ""
+
+msgid "SQL triggers are not fired upon Tarantool/NoSQL requests. This will change in version 2.2."
+msgstr ""
+
+msgid "On a replica, effects of trigger execution are applied, and the SQL triggers themselves are not fired upon replication events."
+msgstr ""
+
+msgid "NoSQL triggers are fired both on replica and master, thus if you have a NoSQL trigger on replica, it is fired when applying effects of an SQL trigger."
+msgstr ""
+
+msgid "Tarantool will create a new trigger."
+msgstr ""
+
+msgid "-- the simple case:\n"
+"CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW\n"
+"  BEGIN DELETE FROM warehouses; END;\n"
+"-- with IF NOT EXISTS clause:\n"
+"CREATE TRIGGER IF NOT EXISTS delete_if_insert BEFORE INSERT ON stores FOR EACH ROW\n"
+"  BEGIN DELETE FROM warehouses; END;\n"
+"-- with FOR EACH ROW and WHEN clauses:\n"
+"CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW WHEN a=5\n"
+"  BEGIN DELETE FROM warehouses; END;\n"
+"-- with multiple statements between BEGIN and END:\n"
+"CREATE TRIGGER delete_if_insert BEFORE INSERT ON stores FOR EACH ROW\n"
+"  BEGIN DELETE FROM warehouses; INSERT INTO inventories VALUES (1); END;"
+msgstr ""
+
+msgid "Trigger extra clauses"
+msgstr ""
+
+msgid ":samp:`UPDATE OF column-list`"
+msgstr ""
+
+msgid "After BEFORE|AFTER UPDATE it is optional to add ``OF column-list``. If any of the columns in *column-list* is affected at the time the row is processed, then the trigger will be activated for that row. For example:"
+msgstr ""
+
+msgid "CREATE TRIGGER trigger_on_table1\n"
+" BEFORE UPDATE  OF column1, column2 ON table1\n"
+" FOR EACH ROW\n"
+" BEGIN UPDATE table2 SET column1 = column1 + 1; END;\n"
+"UPDATE table1 SET column3 = column3 + 1; -- Trigger will not be activated\n"
+"UPDATE table1 SET column2 = column2 + 0; -- Trigger will be activated"
+msgstr ""
+
+msgid ":samp:`WHEN`"
+msgstr ""
+
+msgid "After *table-name* FOR EACH ROW it is optional to add [``WHEN expression``]. If the expression is true at the time the row is processed, only then the trigger will be activated for that row. For example:"
+msgstr ""
+
+msgid "CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW\n"
+" WHEN (SELECT COUNT(*) FROM table1) > 1\n"
+" BEGIN UPDATE table2 SET column1 = column1 + 1; END;"
+msgstr ""
+
+msgid "This trigger will not be activated unless there is more than one row in ``table1``."
+msgstr ""
+
+msgid ":samp:`OLD and NEW`"
+msgstr ""
+
+msgid "The keywords OLD and NEW have special meaning in the context of trigger action:"
+msgstr ""
+
+msgid "OLD.column-name refers to the value of *column-name* before the change."
+msgstr ""
+
+msgid "NEW.column-name refers to the value of *column-name* after the change."
+msgstr ""
+
+msgid "For example:"
+msgstr ""
+
+msgid "CREATE TABLE table1 (column1 VARCHAR(15), column2 INT PRIMARY KEY);\n"
+"CREATE TABLE table2 (column1 VARCHAR(15), column2 VARCHAR(15), column3 INT PRIMARY KEY);\n"
+"INSERT INTO table1 VALUES ('old value', 1);\n"
+"INSERT INTO table2 VALUES ('', '', 1);\n"
+"CREATE TRIGGER trigger_on_table1 BEFORE UPDATE ON table1 FOR EACH ROW\n"
+" BEGIN UPDATE table2 SET column1 = old.column1, column2 = new.column1; END;\n"
+"UPDATE table1 SET column1 = 'new value';\n"
+"SELECT * FROM table2;"
+msgstr ""
+
+msgid "At the beginning of the UPDATE for the single row of ``table1``, the value in ``column1`` is 'old value' -- so that is what is seen as ``old.column1``."
+msgstr ""
+
+msgid "At the end of the UPDATE for the single row of ``table1``, the value in ``column1`` is 'new value' -- so that is what is seen as ``new.column1``. (OLD and NEW are qualifiers for ``table1``, not ``table2.``)"
+msgstr ""
+
+msgid "Therefore, ``SELECT * FROM table2;`` returns ``['old value', 'new value']``."
+msgstr ""
+
+msgid "``OLD.column-name`` does not exist for an INSERT trigger."
+msgstr ""
+
+msgid "``NEW.column-name`` does not exist for a DELETE trigger."
+msgstr ""
+
+msgid "OLD and NEW are read-only; you cannot change their values."
+msgstr ""
+
+msgid "Deprecated or illegal statements:"
+msgstr ""
+
+msgid "It is legal for the trigger action to include a SELECT statement or a REPLACE statement, but not recommended."
+msgstr ""
+
+msgid "It is illegal for the trigger action to include a qualified column reference other than ``OLD.column-name`` or ``NEW.column-name``. For example, ``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1=5; END;`` is illegal."
+msgstr ""
+
+msgid "It is illegal for the trigger action to include statements that include a WITH clause, a DEFAULT VALUES clause, or an INDEXED BY clause."
+msgstr ""
+
+msgid "It is usually not a good idea to have a trigger on ``table1`` which causes a change on ``table2``, and at the same time have a trigger on ``table2`` which causes a change on ``table1``. For example:"
+msgstr ""
+
+msgid "CREATE TRIGGER trigger_on_table1\n"
+" BEFORE UPDATE ON table1\n"
+" FOR EACH ROW\n"
+" BEGIN UPDATE table2 SET column1 = column1 + 1; END;\n"
+"CREATE TRIGGER trigger_on_table2\n"
+" BEFORE UPDATE ON table2\n"
+" FOR EACH ROW\n"
+" BEGIN UPDATE table1 SET column1 = column1 + 1; END;"
+msgstr ""
+
+msgid "Luckily ``UPDATE table1 ...`` will not cause an infinite loop, because Tarantool recognizes when it has already updated so it will stop. However, not every DBMS acts this way."
+msgstr ""
+
+msgid "Trigger activation"
+msgstr ""
+
+msgid "These are remarks concerning trigger activation."
+msgstr ""
+
+msgid "Standard terminology:"
+msgstr ""
+
+msgid "\"trigger action time\" = BEFORE or AFTER or INSTEAD OF"
+msgstr ""
+
+msgid "\"trigger event\" = INSERT or DELETE or UPDATE"
+msgstr ""
+
+msgid "\"triggered statement\" = BEGIN ... INSERT|DELETE|UPDATE ... END"
+msgstr ""
+
+msgid "\"triggered when clause\" = WHEN (search condition)"
+msgstr ""
+
+msgid "\"activate\" = execute a triggered statement"
+msgstr ""
+
+msgid "some vendors use the word \"fire\" instead of \"activate\""
+msgstr ""
+
+msgid "If there is more than one trigger for the same trigger event, Tarantool may execute the triggers in any order."
+msgstr ""
+
+msgid "It is possible for a triggered statement to cause activation of another triggered statement. For example, this is legal:"
+msgstr ""
+
+msgid "CREATE TRIGGER on_t1 BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;\n"
+"CREATE TRIGGER on_t2 BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;"
+msgstr ""
+
+msgid "Activation occurs FOR EACH ROW, not FOR EACH STATEMENT. Therefore, if no rows are candidates for insert or update or delete, then no triggers are activated."
+msgstr ""
+
+msgid "The BEFORE trigger is activated even if the trigger event fails."
+msgstr ""
+
+msgid "If an UPDATE trigger event does not make a change, the trigger is activated anyway. For example, if row 1 ``column1`` contains 'a', and the trigger event is ``UPDATE ... SET column1 = 'a';``, the trigger is activated."
+msgstr ""
+
+msgid "The triggered statement may refer to a function: ``RAISE(FAIL, error-message)``. If a triggered statement invokes a ``RAISE(FAIL, error-message)`` function, or if a triggered statement causes an error, then statement execution stops immediately."
+msgstr ""
+
+msgid "The triggered statement may refer to column values within the rows being changed. in this case:"
+msgstr ""
+
+msgid "The row \"as of before\" the change is called the \"old\" row (which makes sense only for UPDATE and DELETE statements)."
+msgstr ""
+
+msgid "The row \"as of after\" the change is called the \"new\" row (which makes sense only for UPDATE and INSERT statements)."
+msgstr ""
+
+msgid "This example shows how an INSERT can be done to a view by referring to the \"new\" row:"
+msgstr ""
+
+msgid "CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);\n"
+"CREATE VIEW v AS SELECT s1, s2 FROM t;\n"
+"CREATE TRIGGER tv INSTEAD OF INSERT ON v\n"
+"  FOR EACH ROW\n"
+"  BEGIN INSERT INTO t VALUES (new.s1, new.s2); END;\n"
+"INSERT INTO v VALUES (1,2);"
+msgstr ""
+
+msgid "Ordinarily saying ``INSERT INTO view_name ...`` is illegal in Tarantool, so this is a workaround."
+msgstr ""
+
+msgid "It is possible to generalize this so that all data-change statements on views will change the base tables, provided that the view contains all the columns of the base table, and provided that the triggers refer to those columns when necessary, as in this example:"
+msgstr ""
+
+msgid "CREATE TABLE base_table (primary_key_column INT PRIMARY KEY, value_column INT);\n"
+"CREATE VIEW viewed_table AS SELECT primary_key_column, value_column FROM base_table;\n"
+"CREATE TRIGGER viewed_insert INSTEAD OF INSERT ON viewed_table FOR EACH ROW\n"
+"  BEGIN\n"
+"    INSERT INTO base_table VALUES (new.primary_key_column, new.value_column);\n"
+"  END;\n"
+"CREATE TRIGGER viewed_update INSTEAD OF UPDATE ON viewed_table FOR EACH ROW\n"
+"  BEGIN\n"
+"    UPDATE base_table\n"
+"    SET primary_key_column = new.primary_key_column, value_column = new.value_column\n"
+"    WHERE primary_key_column = old.primary_key_column;\n"
+"  END;\n"
+"CREATE TRIGGER viewed_delete INSTEAD OF DELETE ON viewed_table FOR EACH ROW\n"
+"  BEGIN\n"
+"    DELETE FROM base_table WHERE primary_key_column = old.primary_key_column;\n"
+"  END;"
+msgstr ""
+
+msgid "When INSERT or UPDATE or DELETE occurs for table ``X``, Tarantool usually operates in this order (a basic scheme):"
+msgstr ""
+
+msgid "For each row\n"
+"  Perform constraint checks\n"
+"  For each BEFORE trigger that refers to table X\n"
+"    Check that the trigger's WHEN condition is true.\n"
+"    Execute what is in the trigger's BEGIN|END block.\n"
+"  Insert or update or delete the row in table X.\n"
+"  Perform more constraint checks\n"
+"  For each AFTER trigger that refers to table X\n"
+"    Check that the trigger's WHEN condition is true.\n"
+"    Execute what is in the trigger's BEGIN|END block."
+msgstr ""
+
+msgid "However, Tarantool does not guarantee execution order when there are multiple constraints, or multiple triggers for the same event (including NoSQL ``on_replace`` triggers or SQL INSTEAD OF triggers that affect a view of table ``X``)."
+msgstr ""
+
+msgid "The maximum number of trigger activations per statement is 32."
+msgstr ""
+
+msgid "INSTEAD OF triggers"
+msgstr ""
+
+msgid "A trigger which is created with the clause |br| :samp:`INSTEAD OF {INSERT|UPDATE|DELETE} ON {view-name}` |br| is an INSTEAD OF trigger. For each affected row, the trigger action is performed \"instead of\" the INSERT or UPDATE or DELETE statement that causes trigger activation."
+msgstr ""
+
+msgid "For example, ordinarily it is illegal to INSERT rows in a view, but it is legal to create a trigger which intercepts attempts to INSERT, and puts rows in the underlying base table:"
+msgstr ""
+
+msgid "CREATE TABLE t1 (column1 INT PRIMARY KEY, column2 INT);\n"
+"CREATE VIEW v1 AS SELECT column1, column2 FROM t1;\n"
+"CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 FOR EACH ROW BEGIN\n"
+" INSERT INTO t1 VALUES (NEW.column1, NEW.column2); END;\n"
+"INSERT INTO v1 VALUES (1, 1);\n"
+"-- ... The result will be: table t1 will contain a new row."
+msgstr ""
+
+msgid "INSTEAD OF triggers are only legal for views, while BEFORE or AFTER triggers are not legal for views."
+msgstr ""
+
+msgid "It is legal to create INSTEAD OF triggers with triggered WHEN clauses."
+msgstr ""
+
+msgid "It is legal to create INSTEAD OF triggers with UPDATE OF *column-list* clauses, but they are not standard SQL."
+msgstr ""
+
+msgid "CREATE TRIGGER et1\n"
+"  INSTEAD OF UPDATE OF column2,column1 ON ev1\n"
+"  FOR EACH ROW BEGIN\n"
+"  INSERT INTO et2 VALUES (NEW.column1, NEW.column2); END;"
+msgstr ""
+
+msgid "DROP TRIGGER"
+msgstr ""
+
+msgid ":samp:`DROP TRIGGER [IF EXISTS] {trigger-name};`"
+msgstr ""
+
+msgid "Drop a trigger."
+msgstr ""
+
+msgid "The *trigger-name* must identify a trigger that was created earlier with the CREATE TRIGGER statement."
+msgstr ""
+
+msgid "Tarantool returns an error if the trigger does not exist."
+msgstr ""
+
+msgid "The trigger is dropped."
+msgstr ""
+
+msgid "-- the simple case:\n"
+"DROP TRIGGER tr;\n"
+"-- with an IF EXISTS clause:\n"
+"DROP TRIGGER IF EXISTS tr;"
+msgstr ""
+
+msgid "TRUNCATE"
+msgstr ""
+
+msgid ":samp:`TRUNCATE TABLE {table-name};`"
+msgstr ""
+
+msgid "Remove all rows in the table."
+msgstr ""
+
+msgid "TRUNCATE is considered to be a schema-change rather than a data-change statement, so it does not work within transactions (it cannot be rolled back)."
+msgstr ""
+
+msgid "It is illegal to truncate a table which is referenced by a foreign key."
+msgstr ""
+
+msgid "It is illegal to truncate a table which is also a system space, such as ``_space``."
+msgstr ""
+
+msgid "The table must be a base table rather than a view."
+msgstr ""
+
+msgid "All rows in the table are removed. Usually this is faster than ``DELETE FROM table-name;``."
+msgstr ""
+
+msgid "If the table has an autoincrement primary key, its sequence is reset to zero."
+msgstr ""
+
+msgid "There is no effect for any triggers associated with the table."
+msgstr ""
+
+msgid "There is no effect on the counts for the ``row_count()`` function."
+msgstr ""
+
+msgid "Only one action is written to the write-ahead log (with ``DELETE FROM table-name;`` there would be one action for each deleted row)."
+msgstr ""
+
+msgid "TRUNCATE TABLE t;"
+msgstr ""
+
+msgid "SELECT"
+msgstr ""
+
+msgid ":samp:`SELECT [ALL|DISTINCT] select-list [from clause] [where clause] [group-by clause] [having clause] [order-by clause];`"
+msgstr ""
+
+msgid "Select zero or more rows."
+msgstr ""
+
+msgid "The clauses of the SELECT statement are discussed in the following five sections."
+msgstr ""
+
+msgid "Select-list"
+msgstr ""
+
+msgid ":samp:`select-list-column [, select-list-column ...] select-list-column:`"
+msgstr ""
+
+msgid "Define what will be in a result set; this is a clause in a SELECT statement."
+msgstr ""
+
+msgid "The *select-list* is a comma-delimited list of expressions, or ``*`` (asterisk). An expression can have an alias provided with ``[AS [column-name]]`` clause."
+msgstr ""
+
+msgid "The ``*`` \"asterisk\" shorthand is valid if and only if the SELECT statement also contains a FROM clause which specifies the table or tables (details about the FROM clause are in the next section). The simple form is ``*`` which means \"all columns\" -- for example, if the select is done for a table which contains three columns ``s1`` ``s2`` ``s3``, then ``SELECT * ...`` is equivalent to ``SELECT s1, s2, s3 ...``. The qualified form is ``table-name.*`` which means \"all columns in the specified table\", which again must be a result of the FROM clause -- for example, if the table is named ``table1``, then ``table1.*`` is equivalent to a list of the columns of ``table1``."
+msgstr ""
+
+msgid "The ``[AS [column-name]]`` clause determines the column name. The column name is useful for two reasons:"
+msgstr ""
+
+msgid "in a tabular display, the column names are the headings"
+msgstr ""
+
+msgid "if the results of the SELECT are used in ``CREATE TABLE new-table-name ... AS SELECT select-list ...``, then the column names in the new table will be the column names in the *select-list*."
+msgstr ""
+
+msgid "If ``[AS [column-name]]`` is missing, Tarantool makes a name equal to the expression, for example ``SELECT 5*88`` will cause the column name to be ``5*88``, but such names may be ambiguous or illegal in other contexts, so it is better to say, for example, ``SELECT 5 * 88 AS column1``."
+msgstr ""
+
+msgid "-- the simple form:\n"
+"SELECT 5;\n"
+"-- with multiple expressions including operators:\n"
+"SELECT 1, 2 * 2, 'Three' || 'Four';\n"
+"-- with [[AS] column-name] clause:\n"
+"SELECT 5 AS column1;\n"
+"-- * which must be eventually followed by a FROM clause:\n"
+"SELECT * FROM table1;\n"
+"-- as a list:\n"
+"SELECT 1 AS a, 2 AS b, table1.* FROM table1;"
+msgstr ""
+
+msgid "FROM clause"
+msgstr ""
+
+msgid ":samp:`FROM table-reference [, table-reference ...]`"
+msgstr ""
+
+msgid "Specify the table or tables for the source of a SELECT statement."
+msgstr ""
+
+msgid "The *table-reference* must be a name of an existing table, or a subquery, or a joined table."
+msgstr ""
+
+msgid "A joined table looks like this:"
+msgstr ""
+
+msgid ":samp:`table-reference-or-joined-table join-operator table-reference-or-joined-table [join-specification]`"
+msgstr ""
+
+msgid "A *join-operator* must be any of `the standard types <https://en.wikipedia.org/wiki/Join_(SQL)>`_:"
+msgstr ""
+
+msgid "[NATURAL] LEFT [OUTER] JOIN,"
+msgstr ""
+
+msgid "[NATURAL] INNER JOIN, or"
+msgstr ""
+
+msgid "CROSS JOIN"
+msgstr ""
+
+msgid "A *join-specification* must be any of:"
+msgstr ""
+
+msgid "ON expression, or"
+msgstr ""
+
+msgid "USING (column-name [, column-name ...])"
+msgstr ""
+
+msgid "Parentheses are allowed, and ``[[AS] correlation-name]`` is allowed."
+msgstr ""
+
+msgid "The maximum number of joins in a FROM clause is 64."
+msgstr ""
+
+msgid "-- the simplest form:\n"
+"SELECT * FROM t;\n"
+"-- with two tables, making a Cartesian join:\n"
+"SELECT * FROM t1, t2;\n"
+"-- with one table joined to itself, requiring correlation names:\n"
+"SELECT a.*, b.* FROM t1 AS a, t1 AS b;\n"
+"-- with a left outer join:\n"
+"SELECT * FROM t1 LEFT JOIN t2;"
+msgstr ""
+
+msgid "WHERE clause"
+msgstr ""
+
+msgid ":samp:`WHERE condition;`"
+msgstr ""
+
+msgid "Specify the condition for filtering rows from a table; this is a clause in a SELECT or UPDATE or DELETE statement."
+msgstr ""
+
+msgid "The condition may contain any expression that returns a BOOLEAN (TRUE or FALSE or UNKNOWN) value."
+msgstr ""
+
+msgid "For each row in the table:"
+msgstr ""
+
+msgid "if the condition is true, then the row is kept;"
+msgstr ""
+
+msgid "if the condition is false or unknown, then the row is ignored."
+msgstr ""
+
+msgid "In effect, WHERE condition takes a table with n rows and returns a table with n or fewer rows."
+msgstr ""
+
+msgid "-- with a simple condition:\n"
+"SELECT 1 FROM t WHERE column1 = 5;\n"
+"-- with a condition that contains AND and OR and parentheses:\n"
+"SELECT 1 FROM t WHERE column1 = 5 AND (x > 1 OR y < 1);"
+msgstr ""
+
+msgid "GROUP BY clause"
+msgstr ""
+
+msgid ":samp:`GROUP BY expression [, expression ...]`"
+msgstr ""
+
+msgid "Make a grouped table; this is a clause in a SELECT statement."
+msgstr ""
+
+msgid "The expressions should be column names in the table, and each column should be specified only once."
+msgstr ""
+
+msgid "In effect, GROUP BY clause takes a table with rows that may have matching values, combines rows that have matching values into single rows, and returns a table which, because it is the result of GROUP BY, is called a grouped table."
+msgstr ""
+
+msgid "Thus, if the input is a table:"
+msgstr ""
+
+msgid "a    b      c\n"
+"-    -      -\n"
+"1    'a'   'b\n"
+"1    'b'   'b'\n"
+"2    'a'   'b'\n"
+"3    'a'   'b'\n"
+"1    'b'   'b'"
+msgstr ""
+
+msgid "then ``GROUP BY a, b`` will produce a grouped table:"
+msgstr ""
+
+msgid "a    b      c\n"
+"-    -      -\n"
+"1    'a'   'b'\n"
+"1    'b'   'b'\n"
+"2    'a'   'b'\n"
+"3    'a'   'b'"
+msgstr ""
+
+msgid "The rows where column ``a`` and column ``b`` have the same value have been merged; column ``c`` has been preserved but its value should not be depended on -- if the rows were not all 'b', Tarantool could pick any value."
+msgstr ""
+
+msgid "It is useful to envisage a grouped table as having hidden extra columns for the aggregation of the values, for example:"
+msgstr ""
+
+msgid "a    b      c    COUNT(a) SUM(a) MIN(c)\n"
+"-    -      -    -------- ------ ------\n"
+"1    'a'  'b'         2      2    'b'\n"
+"1    'b'  'b'         1      1    'b'\n"
+"2    'a'  'b'         1      2    'b'\n"
+"     'a'  'b'         1      3    'b'"
+msgstr ""
+
+msgid "These extra columns are what :ref:`aggregate functions <sql_aggregate>` are for."
+msgstr ""
+
+msgid "-- with a single column:\n"
+"SELECT 1 FROM t GROUP BY column1;\n"
+"-- with two columns:\n"
+"SELECT 1 FROM t GROUP BY column1, column2;"
+msgstr ""
+
+msgid "``SELECT s1,s2 FROM t GROUP BY s1;`` is legal."
+msgstr ""
+
+msgid "``SELECT s1 AS q FROM t GROUP BY q;`` is legal."
+msgstr ""
+
+msgid "``SELECT s1 FROM t GROUP by 1;`` is legal."
+msgstr ""
+
+msgid "Aggregate functions"
+msgstr ""
+
+msgid ":samp:`function-name (one or more expressions)`"
+msgstr ""
+
+msgid "Apply a built-in aggregate function to one or more expressions and return a scalar value."
+msgstr ""
+
+msgid "Aggregate functions are only legal in certain clauses of SELECT for grouped tables. (A table is a grouped table if a GROUP BY clause is present.) Also, if an aggregate function is used in a select-list and GROUP BY clause is omitted, then Tarantool assumes ``SELECT ... GROUP BY [all columns];``."
+msgstr ""
+
+msgid "NULLs are ignored for all aggregate functions except COUNT(*)."
+msgstr ""
+
+msgid "``AVG([DISTINCT] expression)``"
+msgstr ""
+
+msgid "Return the average value of expression."
+msgstr ""
+
+msgid "Example: :samp:`AVG({column1})`"
+msgstr ""
+
+msgid "``COUNT([DISTINCT] expression)``"
+msgstr ""
+
+msgid "Return the number of occurrences of expression."
+msgstr ""
+
+msgid "Example: :samp:`COUNT({column1})`"
+msgstr ""
+
+msgid "``COUNT(*)``"
+msgstr ""
+
+msgid "Return the number of occurrences of a row."
+msgstr ""
+
+msgid "Example: :samp:`COUNT(*)`"
+msgstr ""
+
+msgid "``GROUP_CONCAT(expression-1 [, expression-2])``"
+msgstr ""
+
+msgid "Return a list of *expression-1* values, separated by commas if *expression-2* is omitted, or separated by the *expression-2* value if *expression-2* is not omitted."
+msgstr ""
+
+msgid "Example: :samp:`GROUP_CONCAT({column1})`"
+msgstr ""
+
+msgid "``MAX([DISTINCT] expression)``"
+msgstr ""
+
+msgid "Return the maximum value of expression."
+msgstr ""
+
+msgid "Example: :samp:`MAX({column1})`"
+msgstr ""
+
+msgid "``MIN([DISTINCT] expression)``"
+msgstr ""
+
+msgid "Return the minimum value of expression."
+msgstr ""
+
+msgid "Example: :samp:`MIN({column1})`"
+msgstr ""
+
+msgid "``SUM([DISTINCT] expression)``"
+msgstr ""
+
+msgid "Return the sum of values of expression."
+msgstr ""
+
+msgid "Example: :samp:`SUM({column1})`"
+msgstr ""
+
+msgid "``TOTAL([DISTINCT] expression)``"
+msgstr ""
+
+msgid "Example: :samp:`TOTAL({column1})`"
+msgstr ""
+
+msgid "HAVING clause"
+msgstr ""
+
+msgid ":samp:`HAVING condition;`"
+msgstr ""
+
+msgid "Specify the condition for filtering rows from a grouped table; this is a clause in a SELECT statement."
+msgstr ""
+
+msgid "The clause preceding the HAVING clause may be a GROUP BY clause. HAVING operates on the table that the GROUP BY produces, which may contain grouped columns and aggregates."
+msgstr ""
+
+msgid "If the preceding clause is not a GROUP BY clause, then there is only one group and the HAVING clause may only contain aggregate functions or literals."
+msgstr ""
+
+msgid "In effect, HAVING condition takes a table with n rows and returns a table with n or fewer rows."
+msgstr ""
+
+msgid "-- with a simple condition:\n"
+"SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5;\n"
+"-- with a more complicated condition:\n"
+"SELECT 1 FROM t GROUP BY column1 HAVING column2 > 5 OR column2 < 5;\n"
+"-- with an aggregate:\n"
+"SELECT x, SUM(y) FROM t GROUP BY x HAVING SUM(y) > 0;\n"
+"-- with no GROUP BY and an aggregate:\n"
+"SELECT SUM(y) FROM t GROUP BY x HAVING MIN(y) < MAX(y);"
+msgstr ""
+
+msgid "HAVING without GROUP BY is not supported for multiple tables."
+msgstr ""
+
+msgid "ORDER BY clause"
+msgstr ""
+
+msgid ":samp:`ORDER BY expression [ASC|DESC] [, expression [ASC|DESC] ...]`"
+msgstr ""
+
+msgid "Put rows in order; this is a clause in a SELECT statement."
+msgstr ""
+
+msgid "An ORDER BY expression has one of three types which are checked in order:"
+msgstr ""
+
+msgid "Expression is a positive integer, representing the ordinal position of the column in the select list. For example, in the statement |br| ``SELECT x, y, z FROM t ORDER BY 2;`` |br| ``ORDER BY 2`` means \"order by the second column in the select list\", which is ``y``."
+msgstr ""
+
+msgid "Expression is a name of a column in the select list, which is determined by an AS clause. For example, in the statement |br| ``SELECT x, y AS x, z FROM t ORDER BY x;`` |br| ``ORDER BY x`` means \"order by the column explicitly named ``x`` in the select list\", which is the second column."
+msgstr ""
+
+msgid "Expression contains a name of a column in a table of the FROM clause. For example, in the statement |br| ``SELECT x, y FROM t1 JOIN t2 ORDER BY z;`` |br| ``ORDER BY z`` means \"order by a column named ``z`` which is expected to be in table ``t1`` or table ``t2``\"."
+msgstr ""
+
+msgid "If both tables contain a column named ``z``, then Tarantool will choose the first column that it finds."
+msgstr ""
+
+msgid "The expression may also contain operators and function names and literals. For example, in the statement |br| ``SELECT x, y FROM t ORDER BY UPPER(z);`` |br| ``ORDER BY UPPER(z)`` means \"order by the uppercase form of column ``t.z``\", which may be similar to doing ordering in a case-insensitive manner."
+msgstr ""
+
+msgid "Type 3 is illegal if the SELECT statement contains UNION or EXCEPT or INTERSECT."
+msgstr ""
+
+msgid "If an ORDER BY clause contains multiple expressions, then expressions on the left are processed first and expressions on the right are processed only if necessary for tie-breaking. For example, in the statement |br| ``SELECT x, y FROM t ORDER BY x, y;`` if there are two rows which both have the same values for column ``x``, then an additional check is made to see which row has a greater value for column ``y``."
+msgstr ""
+
+msgid "In effect, ORDER BY clause takes a table with rows that may be out of order, and returns a table with rows in order."
+msgstr ""
+
+msgid "Sorting order:"
+msgstr ""
+
+msgid "The default order is ASC (ascending), the optional order is DESC (descending)."
+msgstr ""
+
+msgid "NULLs come first, then numbers (INTEGER or NUMBER), then STRINGs, then VARBINARYs."
+msgstr ""
+
+msgid "Within STRINGs, ordering is according to collation."
+msgstr ""
+
+msgid "Collation may be specified within the ORDER BY column-list, or may be default."
+msgstr ""
+
+msgid "-- with a single column:\n"
+"SELECT 1 FROM t ORDER BY column1;\n"
+"-- with two columns:\n"
+"SELECT 1 FROM t ORDER BY column1, column2;\n"
+"-- with a variety of data:\n"
+"CREATE TABLE h (s1 INT PRIMARY KEY, s2 INT);\n"
+"INSERT INTO h VALUES (7,'A'),(4,'A '),(-4,'AZ'),(17,17),(23,NULL);\n"
+"INSERT INTO h VALUES (17.5,'Д'),(1e+300,'a'),(0,''),(-1,'');\n"
+"SELECT * FROM h ORDER BY s2, s1;\n"
+"-- The result of the above SELECT will be:\n"
+"- - [23, null]\n"
+"  - [17, 17]\n"
+"  - [-1, '']\n"
+"  - [0, '']\n"
+"  - [7, 'A']\n"
+"  - [4, 'A ']\n"
+"  - [-4, 'AZ']\n"
+"  - [1e+300, 'a']\n"
+"  - [17.5, 'Д']\n"
+"..."
+msgstr ""
+
+msgid "ORDER BY 1 is legal. This is common but is not standard SQL nowadays."
+msgstr ""
+
+msgid "LIMIT clause"
+msgstr ""
+
+msgid ":samp:`LIMIT limit-expression [OFFSET offset-expression]`"
+msgstr ""
+
+msgid ":samp:`LIMIT offset-expression, limit-expression`"
+msgstr ""
+
+msgid "The above is not a typo: *offset-expression* and *limit-expression* are in reverse order if a comma is used."
+msgstr ""
+
+msgid "Specify a maximum number of rows and a start row; this is a clause in a SELECT statement."
+msgstr ""
+
+msgid "Expressions may contain integers and arithmetic operators or functions, for example ``ABS(-3/1)``. However, the result must be an integer value greater than or equal to zero."
+msgstr ""
+
+msgid "Usually the LIMIT clause follows an ORDER BY clause, because otherwise Tarantool does not guarantee that rows are in order."
+msgstr ""
+
+msgid "-- simple case:\n"
+"SELECT * FROM t LIMIT 3;\n"
+"-- both limit and order:\n"
+"SELECT * FROM t LIMIT 3 OFFSET 1;\n"
+"-- applied to a UNIONed result (LIMIT clause must be the final clause):\n"
+"SELECT column1 FROM table1 UNION SELECT column1 FROM table2 ORDER BY 1 LIMIT 1;"
+msgstr ""
+
+msgid "If ORDER BY ... LIMIT is used, then all order-by columns must be ASC or all must be DESC."
+msgstr ""
+
+msgid "VALUES"
+msgstr ""
+
+msgid ":samp:`VALUES (expression [, expression ...]) [, (expression [, expression ...])`"
+msgstr ""
+
+msgid "Select one or more rows."
+msgstr ""
+
+msgid "VALUES has the same effect as SELECT, that is, it returns a result set, but VALUES statements may not have FROM or GROUP or ORDER BY or LIMIT clauses."
+msgstr ""
+
+msgid "VALUES may be used wherever SELECT may be used, for example in subqueries."
+msgstr ""
+
+msgid "-- simple case:\n"
+"VALUES (1);\n"
+"-- equivalent to SELECT 1, 2, 3:\n"
+"VALUES (1, 2, 3);\n"
+"-- two rows:\n"
+"VALUES (1, 2, 3), (4, 5, 6);"
+msgstr ""
+
+msgid "Subquery"
+msgstr ""
+
+msgid ":ref:`SELECT-statement <sql_select>` syntax"
+msgstr ""
+
+msgid ":ref:`VALUES-statement <sql_values>` syntax"
+msgstr ""
+
+msgid "A subquery has the same syntax as a SELECT statement or VALUES statement embedded inside a main statement."
+msgstr ""
+
+msgid "The SELECT and VALUES statements are called \"queries\" because they return answers, in the form of result sets."
+msgstr ""
+
+msgid "Subqueries may be the second part of INSERT statements. For example:"
+msgstr ""
+
+msgid "INSERT INTO t2 SELECT a,b,c FROM t1;"
+msgstr ""
+
+msgid "Subqueries may be in the FROM clause of SELECT statements."
+msgstr ""
+
+msgid "Subqueries may be expressions, or be inside expressions. In this case they must be parenthesized, and usually the number of rows must be 1. For example:"
+msgstr ""
+
+msgid "SELECT 1, (SELECT 5), 3 FROM t WHERE c1 * (SELECT COUNT(*) FROM t2) > 5;"
+msgstr ""
+
+msgid "Subqueries may be expressions on the right side of certain comparison operators, and in this unusual case the number of rows may be greater than 1. The comparison operators are: [NOT] EXISTS and [NOT] IN. For example:"
+msgstr ""
+
+msgid "DELETE FROM t WHERE s1 NOT IN (SELECT s2 FROM t);"
+msgstr ""
+
+msgid "Subqueries may refer to values in the outer query. In this case, the subquery is called a \"correlated subquery\"."
+msgstr ""
+
+msgid "Subqueries may refer to rows which are being updated or deleted by the main query. In that case, the subquery finds the matching rows first, before starting to update or delete. For example, after:"
+msgstr ""
+
+msgid "CREATE TABLE t (s1 INT PRIMARY KEY, s2 INT);\n"
+"INSERT INTO t VALUES (1,3),(2,1);\n"
+"DELETE FROM t WHERE s2 NOT IN (SELECT s1 FROM t);"
+msgstr ""
+
+msgid "only one of the rows is deleted, not both rows."
+msgstr ""
+
+msgid "WITH clause"
+msgstr ""
+
+msgid "**WITH clause (common table expression)**"
+msgstr ""
+
+msgid ":samp:`WITH {temporary-table-name} AS (subquery)` |br| :samp:`[, {temporary-table-name} AS (subquery)]` |br| :samp:`SELECT statement | INSERT statement | DELETE statement | UPDATE statement | REPLACE statement;`"
+msgstr ""
+
+msgid "WITH v AS (SELECT * FROM t) SELECT * FROM v;"
+msgstr ""
+
+msgid "is equivalent to creating a view and selecting from it:"
+msgstr ""
+
+msgid "CREATE VIEW v AS SELECT * FROM t;\n"
+"SELECT * FROM v;"
+msgstr ""
+
+msgid "The difference is that a WITH-clause \"view\" is temporary and only useful within the same statement. No CREATE privilege is required."
+msgstr ""
+
+msgid "The WITH-clause can also be thought of as a subquery that has a name. This is useful when the same subquery is being repeated. For example:"
+msgstr ""
+
+msgid "SELECT * FROM t WHERE a < (SELECT s1 FROM x) AND b < (SELECT s1 FROM x);"
+msgstr ""
+
+msgid "can be replaced with:"
+msgstr ""
+
+msgid "WITH S AS (SELECT s1 FROM x) SELECT * FROM t,S WHERE a < S.s1 AND b < S.s1;"
+msgstr ""
+
+msgid "This \"factoring out\" of a repeated expression is regarded as good practice."
+msgstr ""
+
+msgid "WITH cte AS (VALUES (7,'') INSERT INTO j SELECT * FROM cte;\n"
+"WITH cte AS (SELECT s1 AS x FROM k) SELECT * FROM cte;\n"
+"WITH cte AS (SELECT COUNT(*) FROM k WHERE s2 < 'x' GROUP BY s3)\n"
+"  UPDATE j SET s2 = 5\n"
+"  WHERE s1 = (SELECT s1 FROM cte) OR s3 = (SELECT s1 FROM cte);"
+msgstr ""
+
+msgid "WITH can only be used at the beginning of a statement, therefore it cannot be used at the beginning of a subquery or after a set operator or inside a CREATE statement."
+msgstr ""
+
+msgid "A WITH-clause \"view\" is read-only because Tarantool does not support updatable views."
+msgstr ""
+
+msgid "WITH RECURSIVE"
+msgstr ""
+
+msgid "**WITH RECURSIVE clause (iterative common table expression)**"
+msgstr ""
+
+msgid "The real power of WITH lies in the WITH RECURSIVE clause, which is useful when it is combined with UNION or UNION ALL:"
+msgstr ""
+
+msgid ":samp:`WITH RECURSIVE recursive-table-name AS` |br| :samp:`(SELECT ... FROM non-recursive-table-name ...` |br| :samp:`UNION [ALL]` |br| :samp:`SELECT ... FROM recursive-table-name ...)` |br| :samp:`statement-that-uses-recursive-table-name;` |br|"
+msgstr ""
+
+msgid "In non-SQL this can be read as: starting with a seed value from a non-recursive table, produce a recursive viewed table, UNION that with itself, UNION that with itself, UNION that with itself ... forever, or until a condition in the WHERE clause says \"stop\"."
+msgstr ""
+
+msgid "CREATE TABLE ts (s1 INT PRIMARY KEY);\n"
+"INSERT INTO ts VALUES (1);\n"
+"WITH RECURSIVE w AS (\n"
+"  SELECT s1 FROM ts\n"
+"  UNION ALL\n"
+"  SELECT s1+1 FROM w WHERE s1 < 4)\n"
+"SELECT * FROM w;"
+msgstr ""
+
+msgid "First, table ``w`` is seeded from ``t1``, so it has one row: [1]."
+msgstr ""
+
+msgid "Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which contains [1] -- adds 1 because the select list says \"s1+1\", and so it has one row: [2]."
+msgstr ""
+
+msgid "Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which contains [2] -- adds 1 because the select list says \"s1+1\", and so it has one row: [3]."
+msgstr ""
+
+msgid "Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which contains [3] -- adds 1 because the select list says \"s1+1\", and so it has one row: [4]."
+msgstr ""
+
+msgid "Then, ``UNION ALL (SELECT s1+1 FROM w)`` takes the row from ``w`` -- which contains [4] -- and now the importance of the WHERE clause becomes evident, because \"s1 < 4\" is false for this row, and therefore we have reached the \"stop\" condition."
+msgstr ""
+
+msgid "So, before the \"stop\", table ``w`` got 4 rows -- [1], [2], [3], [4] -- and the result of the statement looks like:"
+msgstr ""
+
+msgid "tarantool> WITH RECURSIVE w AS (\n"
+"         >   SELECT s1 FROM ts\n"
+"         >   UNION ALL\n"
+"         >   SELECT s1+1 FROM w WHERE s1 < 4)\n"
+"         > SELECT * FROM w;\n"
+"---\n"
+"- - [1]\n"
+"  - [2]\n"
+"  - [3]\n"
+"  - [4]\n"
+"..."
+msgstr ""
+
+msgid "In other words, this ``WITH RECURSIVE ... SELECT`` produces a table of auto-incrementing values."
+msgstr ""
+
+msgid "UNION, EXCEPT, and INTERSECT clauses"
+msgstr ""
+
+msgid ":samp:`select-statement UNION [ALL] select-statement [ORDER BY clause] [LIMIT clause];`"
+msgstr ""
+
+msgid ":samp:`select-statement EXCEPT select-statement [ORDER BY clause] [LIMIT clause];`"
+msgstr ""
+
+msgid ":samp:`select-statement INTERSECT select-statement [ORDER BY clause] [LIMIT clause];`"
+msgstr ""
+
+msgid "UNION, EXCEPT, and INTERSECT are collectively called \"set operators\" or \"table operators\". In particular:"
+msgstr ""
+
+msgid "``a UNION b`` means \"take rows which occur in a OR b\"."
+msgstr ""
+
+msgid "``a EXCEPT b`` means \"take rows which occur in a AND NOT b\"."
+msgstr ""
+
+msgid "``a INTERSECT b`` means \"take rows which occur in a AND b\"."
+msgstr ""
+
+msgid "Duplicate rows are eliminated unless ALL is specified."
+msgstr ""
+
+msgid "The *select-statements* may be chained: ``SELECT ... SELECT ... SELECT ...;``"
+msgstr ""
+
+msgid "Each *select-statement* must result in the same number of columns."
+msgstr ""
+
+msgid "The *select-statements* may be replaced with VALUES statements."
+msgstr ""
+
+msgid "The maximum number of set operations is 50."
+msgstr ""
+
+msgid "CREATE TABLE t1 (s1 INT PRIMARY KEY, s2 VARCHAR(1));\n"
+"CREATE TABLE t2 (s1 INT PRIMARY KEY, s2 VARCHAR(1));\n"
+"INSERT INTO t1 VALUES (1,'A'),(2,'B'),(3,NULL);\n"
+"INSERT INTO t2 VALUES (1,'A'),(2,'C'),(3,NULL);\n"
+"SELECT s2 FROM t1 UNION SELECT s2 FROM t2;\n"
+"SELECT s2 FROM t1 UNION ALL SELECT s2 FROM t2 ORDER BY s2;\n"
+"SELECT s2 FROM t1 EXCEPT SELECT s2 FROM t2;\n"
+"SELECT s2 FROM t1 INTERSECT SELECT s2 FROM t2;"
+msgstr ""
+
+msgid "In this example:"
+msgstr ""
+
+msgid "The UNION query returns 4 rows: NULL, 'A', 'B', 'C'."
+msgstr ""
+
+msgid "The UNION ALL query returns 6 rows: NULL, NULL, 'A', 'A', 'B', 'C'."
+msgstr ""
+
+msgid "The EXCEPT query returns 1 row: 'B'."
+msgstr ""
+
+msgid "The INTERSECT query returns 2 rows: NULL, 'A'."
+msgstr ""
+
+msgid "Parentheses are not allowed."
+msgstr ""
+
+msgid "Evaluation is left to right, INTERSECT does not have precedence."
+msgstr ""
+
+msgid "CREATE TABLE t01 (s1 INT PRIMARY KEY, s2 VARCHAR(1));\n"
+"CREATE TABLE t02 (s1 INT PRIMARY KEY, s2 VARCHAR(1));\n"
+"CREATE TABLE t03 (s1 INT PRIMARY KEY, s2 VARCHAR(1));\n"
+"INSERT INTO t01 VALUES (1,'A');\n"
+"INSERT INTO t02 VALUES (1,'B');\n"
+"INSERT INTO t03 VALUES (1,'A');\n"
+"SELECT s2 FROM t01 INTERSECT SELECT s2 FROM t03 UNION SELECT s2 FROM t02;\n"
+"SELECT s2 FROM t03 UNION SELECT s2 FROM t02 INTERSECT SELECT s2 FROM t03;\n"
+"-- ... results are different."
+msgstr ""
+
+msgid "INDEXED BY clause"
+msgstr ""
+
+msgid ":samp:`INDEXED BY {index-name}`"
+msgstr ""
+
+msgid "The INDEXED BY clause may be used in a SELECT, DELETE, or UPDATE statement, immediately after the *table-name*. For example:"
+msgstr ""
+
+msgid "DELETE FROM table7 INDEXED BY index7 WHERE column1 = 'a';"
+msgstr ""
+
+msgid "In this case the search for 'a' will take place within ``index7``. For example:"
+msgstr ""
+
+msgid "SELECT * FROM table7 NOT INDEXED WHERE column1 = 'a';"
+msgstr ""
+
+msgid "In this case the search for 'a' will be done via a search of the whole table, what is sometimes called a \"full table scan\", even if there is an index for ``column1``."
+msgstr ""
+
+msgid "Ordinarily Tarantool chooses the appropriate index or lookup method depending on a complex set of \"optimizer\" rules; the INDEXED BY clause overrides the optimizer choice."
+msgstr ""
+
+msgid "Suppose a table has two columns:"
+msgstr ""
+
+msgid "The first column is the primary key and therefore it has an automatic index named ``pk_unnamed_T_1``."
+msgstr ""
+
+msgid "The second column has an index created by the user."
+msgstr ""
+
+msgid "The user selects with ``INDEXED BY the-index-on-column1``, then selects with ``INDEXED BY the-index-on-column-2``."
+msgstr ""
+
+msgid "CREATE TABLE t (column1 INT PRIMARY KEY, column2 INT);\n"
+"CREATE INDEX i ON t (column2);\n"
+"INSERT INTO t VALUES (1,2),(2,1);\n"
+"SELECT * FROM t INDEXED BY \"pk_unnamed_T_1\";\n"
+"SELECT * FROM t INDEXED BY i;\n"
+"-- Result for the first select: (1,2),(2,1)\n"
+"-- Result for the second select: (2,1),(1,2)."
+msgstr ""
+
+msgid "Transactions"
+msgstr ""
+
+msgid "START TRANSACTION"
+msgstr ""
+
+msgid ":samp:`START TRANSACTION;`"
+msgstr ""
+
+msgid "Start a transaction. After ``START TRANSACTION;``, a transaction is \"active\". If a transaction is already active, then ``START TRANSACTION;`` is illegal."
+msgstr ""
+
+msgid "Transactions should be active for fairly short periods of time, to avoid concurrency issues. To end a transaction, say ``COMMIT;`` or ``ROLLBACK;``."
+msgstr ""
+
+msgid "Just like in NoSQL, transaction control statements are subject to limitations set by the storage engine involved:"
+msgstr ""
+
+msgid "For memtx storage engine, if a yield happens within an active transaction, the transaction is rolled back."
+msgstr ""
+
+msgid "For vinyl engine, yields are allowed."
+msgstr ""
+
+msgid "However,transaction control statements still may not work as you expect when run over a network connection: a transaction is associated with a fiber, not a network connection, and different transaction control statements sent via the same network connection may be executed by different fibers from the fiber pool."
+msgstr ""
+
+msgid "In order to ensure that all statements are part of the intended transaction, put all of them between ``START TRANSACTION;`` and ``COMMIT;`` or ``ROLLBACK;`` then send as a single batch. For example:"
+msgstr ""
+
+msgid "Enclose each separate SQL statement in a :ref:`box.execute() <box-sql_box_execute>` function."
+msgstr ""
+
+msgid "Pass all the ``box.execute()`` functions to the server in a single message."
+msgstr ""
+
+msgid "If you are using a console, you can do this by writing everything on a single line."
+msgstr ""
+
+msgid "If you are using :ref:`net.box <net_box-module>`, you can do this by putting all the function calls in a single string and calling :ref:`eval(string) <net_box-eval>`."
+msgstr ""
+
+msgid "START TRANSACTION;"
+msgstr ""
+
+msgid "Example of a whole transaction sent to a server on ``localhost:3301`` with ``eval(string)``:"
+msgstr ""
+
+msgid "net_box = require('net.box')\n"
+"conn = net_box.new('localhost', 3301)\n"
+"s = 'box.execute([[START TRANSACTION; ]]) '\n"
+"s = s .. 'box.execute([[INSERT INTO t VALUES (1); ]]) '\n"
+"s = s .. 'box.execute([[ROLLBACK; ]]) '\n"
+"conn:eval(s)"
+msgstr ""
+
+msgid "COMMIT"
+msgstr ""
+
+msgid ":samp:`COMMIT;`"
+msgstr ""
+
+msgid "Commit an active transaction, so all changes are made permanent and the transaction ends."
+msgstr ""
+
+msgid "COMMIT is illegal unless a transaction is active. If a transaction is not active then SQL statements are committed automatically."
+msgstr ""
+
+msgid "COMMIT;"
+msgstr ""
+
+msgid "SAVEPOINT"
+msgstr ""
+
+msgid ":samp:`SAVEPOINT {savepoint-name};`"
+msgstr ""
+
+msgid "Set a savepoint, so that ROLLBACK TO *savepoint-name* is possible."
+msgstr ""
+
+msgid "SAVEPOINT is illegal unless a transaction is active."
+msgstr ""
+
+msgid "If a savepoint with the same name already exists, it is released before the new savepoint is set."
+msgstr ""
+
+msgid "SAVEPOINT x;"
+msgstr ""
+
+msgid "RELEASE SAVEPOINT"
+msgstr ""
+
+msgid ":samp:`RELEASE SAVEPOINT {savepoint-name};`"
+msgstr ""
+
+msgid "Release (destroy) a savepoint created by SAVEPOINT statement."
+msgstr ""
+
+msgid "RELEASE is illegal unless a transaction is active."
+msgstr ""
+
+msgid "Savepoints are released automatically when a transaction ends."
+msgstr ""
+
+msgid "RELEASE SAVEPOINT x;"
+msgstr ""
+
+msgid "ROLLBACK"
+msgstr ""
+
+msgid ":samp:`ROLLBACK [TO [SAVEPOINT] {savepoint-name}];`"
+msgstr ""
+
+msgid "If ROLLBACK does not specify a *savepoint-name*, rollback an active transaction, so all changes since START TRANSACTION are cancelled, and the transaction ends."
+msgstr ""
+
+msgid "If ROLLBACK does specify a *savepoint-name*, rollback an active transaction, so all changes since *savepoint-name* are cancelled, and the transaction does not end."
+msgstr ""
+
+msgid "ROLLBACK is illegal unless a transaction is active."
+msgstr ""
+
+msgid "-- the simple form:\n"
+"ROLLBACK;\n"
+"-- the form so changes before a savepoint are not cancelled:\n"
+"ROLLBACK TO SAVEPOINT x;"
+msgstr ""
+
+msgid "-- An example of a Lua function that will do a transaction\n"
+"-- containing savepoint and rollback to savepoint.\n"
+"function f()\n"
+"box.execute([[DROP TABLE IF EXISTS t;]]) -- commits automatically\n"
+"box.execute([[CREATE TABLE t (s1 VARCHAR(20) PRIMARY KEY);]]) -- commits automatically\n"
+"box.execute([[START TRANSACTION;]]) -- after this succeeds, a transaction is active\n"
+"box.execute([[INSERT INTO t VALUES ('Data change #1');]])\n"
+"box.execute([[SAVEPOINT \"1\";]])\n"
+"box.execute([[INSERT INTO t VALUES ('Data change #2');]])\n"
+"box.execute([[ROLLBACK TO SAVEPOINT \"1\";]]) -- rollback Data change #2\n"
+"box.execute([[ROLLBACK TO SAVEPOINt \"1\";]]) -- this is legal but does nothing\n"
+"box.execute([[COMMIT;]]) -- make Data change #1 permanent, end the transaction\n"
+"end"
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+msgid "Apply a built-in function to one or more expressions and return a scalar value."
+msgstr ""
+
+msgid "Tarantool supports 32 built-in functions."
+msgstr ""
+
+msgid "CHAR"
+msgstr ""
+
+msgid ":samp:`CHAR([numeric-expression [,numeric-expression...])`"
+msgstr ""
+
+msgid "Return the characters whose Unicode code point values are equal to the numeric expressions."
+msgstr ""
+
+msgid "Short example:"
+msgstr ""
+
+msgid "The first 128 Unicode characters are the \"ASCII\" characters, so CHAR(65,66,67) is 'ABC'."
+msgstr ""
+
+msgid "Long example:"
+msgstr ""
+
+msgid "For the current list of Unicode characters, in order by code point, see `www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_. In that list, there is a line for a Linear B ideogram"
+msgstr ""
+
+msgid "``100CC;LINEAR B IDEOGRAM B240 WHEELED CHARIOT ...``"
+msgstr ""
+
+msgid "Therefore, for a string with a chariot in the middle, use the concatenation operator ``||`` and the CHAR function"
+msgstr ""
+
+msgid "``'start of string ' || CHAR(0X100CC) || ' end of string'``."
+msgstr ""
+
+msgid "COALESCE"
+msgstr ""
+
+msgid ":samp:`COALESCE(expression, expression [, expression ...])`"
+msgstr ""
+
+msgid "Return the value of the first non-NULL expression, or, if all expression values are NULL, return NULL."
+msgstr ""
+
+msgid "``COALESCE(NULL, 17, 32)`` is 17."
+msgstr ""
+
+msgid "HEX"
+msgstr ""
+
+msgid ":samp:`HEX(expression)`"
+msgstr ""
+
+msgid "Return the hexadecimal code for each byte in **expression**, which may be either a string or a byte sequence. For ASCII characters, this is straightforward because the encoding is the same as the code point value. For non-ASCII characters, since character strings are usually encoded in UTF-8, each character will require two or more bytes."
+msgstr ""
+
+msgid "``HEX('A')`` will return ``41``."
+msgstr ""
+
+msgid "``HEX('Д')`` will return ``D094``."
+msgstr ""
+
+msgid "IFNULL"
+msgstr ""
+
+msgid ":samp:`IFNULL(expression, expression)`"
+msgstr ""
+
+msgid "Return the value of the first non-NULL expression, or, if both expression values are NULL, return NULL. Thus ``IFNULL(expression, expression)`` is the same as :ref:`COALESCE(expression, expression) <sql_function_coalesce>`."
+msgstr ""
+
+msgid "``IFNULL(NULL, 17)`` is 17"
+msgstr ""
+
+msgid "LENGTH"
+msgstr ""
+
+msgid ":samp:`LENGTH(expression)`"
+msgstr ""
+
+msgid "Return the number of characters in the **expression**, or the number of bytes in the **expression**. It depends on the data type: strings with data type STRING are counted in characters, byte sequences with data type VARBINARY are counted in bytes and are not ended by the nul character. There are two aliases for ``LENGTH(expression)`` -- ``CHAR_LENGTH(expression)`` and ``CHARACTER_LENGTH(expression)`` do the same thing."
+msgstr ""
+
+msgid "``LENGTH('ДД')`` is 2, the string has 2 characters."
+msgstr ""
+
+msgid "``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes."
+msgstr ""
+
+msgid "``LENGTH(CHAR(0,65))`` is 2, '\\0' does not mean 'end of string'."
+msgstr ""
+
+msgid "``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY."
+msgstr ""
+
+msgid "LOWER"
+msgstr ""
+
+msgid ":samp:`LOWER(string-expression)`"
+msgstr ""
+
+msgid "Return the expression, with upper-case characters converted to lower case. This is the reverse of :ref:`UPPER(string-expression) <sql_function_upper>`."
+msgstr ""
+
+msgid "Example: ``LOWER('-4ЩL')`` is '-4щl'."
+msgstr ""
+
+msgid "NULLIF"
+msgstr ""
+
+msgid ":samp:`NULLIF(expression-1, expression-2)`"
+msgstr ""
+
+msgid "Return *expression-1* if *expression-1* <> *expression-2*, otherwise return NULL."
+msgstr ""
+
+msgid "``NULLIF('a','A')`` is 'a'."
+msgstr ""
+
+msgid "``NULLIF(1.00, 1)`` is NULL."
+msgstr ""
+
+msgid "PRINTF"
+msgstr ""
+
+msgid ":samp:`PRINTF(string-expression [, expression ...])`"
+msgstr ""
+
+msgid "Return a string formatted according to the rules of the C ``sprintf()`` function, where ``%d%s`` means the next two arguments are a number and a string, etc."
+msgstr ""
+
+msgid "If an argument is missing or is NULL, it becomes:"
+msgstr ""
+
+msgid "'0' if the format requires an integer,"
+msgstr ""
+
+msgid "'0.0' if the format requires a decimal number,"
+msgstr ""
+
+msgid "'' if the format requires a string."
+msgstr ""
+
+msgid "Example: ``PRINTF('%da', 5)`` is '5a'."
+msgstr ""
+
+msgid "QUOTE"
+msgstr ""
+
+msgid ":samp:`QUOTE(string-literal)`"
+msgstr ""
+
+msgid "Return a string with enclosing quotes if necessary, and with quotes inside the enclosing quotes if necessary. This function is useful for creating strings which are part of SQL statements, because of SQL's rules that string literals are enclosed by single quotes, and single quotes inside such strings are shown as two single quotes in a row."
+msgstr ""
+
+msgid "Example: ``QUOTE('a')`` is ``'a'``."
+msgstr ""
+
+msgid "SOUNDEX"
+msgstr ""
+
+msgid ":samp:`SOUNDEX(string-expression)`"
+msgstr ""
+
+msgid "Return a four-character string which represents the sound of ``string-expression``. Often words and names which have different spellings will have the same Soundex representation if they are pronounced similarly, so it is possible to search by what they sound like. The algorithm works with characters in the Latin alphabet and works best with English words."
+msgstr ""
+
+msgid "Example: ``SOUNDEX('Crater')`` and ``SOUNDEX('Creature')`` both return ``C636``."
+msgstr ""
+
+msgid "UNICODE"
+msgstr ""
+
+msgid ":samp:`UNICODE(string-expression)`"
+msgstr ""
+
+msgid "Return the Unicode code point value of the first character of **string-expression**. If *string-expression* is empty, the return is NULL. This is the reverse of :ref:`CHAR(integer) <sql_function_char>`."
+msgstr ""
+
+msgid "Example: ``UNICODE('Щ')`` is 1065 (hexadecimal 0429)."
+msgstr ""
+
+msgid "UPPER"
+msgstr ""
+
+msgid ":samp:`UPPER(string-expression)`"
+msgstr ""
+
+msgid "Return the expression, with lower-case characters converted to upper case. This is the reverse of :ref:`LOWER(string-expression)<sql_function_lower>`."
+msgstr ""
+
+msgid "Example: ``UPPER('-4щl')`` is '-4ЩL'."
+msgstr ""
+
+msgid "VERSION"
+msgstr ""
+
+msgid ":samp:`VERSION()`"
+msgstr ""
+
+msgid "Return the Tarantool version."
+msgstr ""
+
+msgid "Example: for a March 2019 build VERSION() is ``2.1.1-374-g27283debc``."
+msgstr ""
+

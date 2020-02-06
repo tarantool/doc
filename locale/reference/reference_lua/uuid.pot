@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `uuid`"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "A \"UUID\" is a `Universally unique identifier`_. If an application requires that a value be unique only within a single computer or on a single database, then a simple counter is better than a UUID, because getting a UUID is time-consuming (it requires a syscall_). For clusters of computers, or widely distributed applications, UUIDs are better."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is list of all ``uuid`` functions and members."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`uuid.nil <uuid-nil>`"
+msgstr ""
+
+msgid "A nil object"
+msgstr ""
+
+msgid ":ref:`uuid() <uuid-__call>` |br| :ref:`uuid.bin() <uuid-bin>` |br| :ref:`uuid.str() <uuid-str>`"
+msgstr ""
+
+msgid "Get a UUID"
+msgstr ""
+
+msgid ":ref:`uuid.fromstr() <uuid-fromstr>` |br| :ref:`uuid.frombin() <uuid-frombin>` |br| :ref:`uuid_object:bin() <uuid-object_bin>` |br| :ref:`uuid_object:str() <uuid-object_str>`"
+msgstr ""
+
+msgid "Get a converted UUID"
+msgstr ""
+
+msgid ":ref:`uuid_object:isnil() <uuid-isnil>`"
+msgstr ""
+
+msgid "Check if a UUID is an all-zero value"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "a UUID"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "cdata"
+msgstr ""
+
+msgid "16-byte string"
+msgstr ""
+
+msgid "36-byte binary string"
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "UUID in 36-byte hexadecimal string"
+msgstr ""
+
+msgid "converted UUID"
+msgstr ""
+
+msgid "UUID in 16-byte binary string"
+msgstr ""
+
+msgid "``byte-order`` can be one of next flags:"
+msgstr ""
+
+msgid "'l' - little-endian,"
+msgstr ""
+
+msgid "'b' - big-endian,"
+msgstr ""
+
+msgid "'h' - endianness depends on host (default),"
+msgstr ""
+
+msgid "'n' - endianness depends on network"
+msgstr ""
+
+msgid "one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``."
+msgstr ""
+
+msgid "UUID converted from cdata input value."
+msgstr ""
+
+msgid "16-byte binary string"
+msgstr ""
+
+msgid "36-byte hexadecimal string"
+msgstr ""
+
+msgid "The all-zero UUID value can be expressed as uuid.NULL, or as ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. The comparison with an all-zero value can also be expressed as ``uuid_with_type_cdata == uuid.NULL``."
+msgstr ""
+
+msgid "true if the value is all zero, otherwise false."
+msgstr ""
+
+msgid "bool"
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "tarantool> uuid = require('uuid')\n"
+"---\n"
+"...\n"
+"tarantool> uuid(), uuid.bin(), uuid.str()\n"
+"---\n"
+"- 16ffedc8-cbae-4f93-a05e-349f3ab70baa\n"
+"- !!binary FvG+Vy1MfUC6kIyeM81DYw==\n"
+"- 67c999d2-5dce-4e58-be16-ac1bcb93160f\n"
+"...\n"
+"tarantool> uu = uuid()\n"
+"---\n"
+"...\n"
+"tarantool> #uu:bin(), #uu:str(), type(uu), uu:isnil()\n"
+"---\n"
+"- 16\n"
+"- 36\n"
+"- cdata\n"
+"- false\n"
+"..."
+msgstr ""
+

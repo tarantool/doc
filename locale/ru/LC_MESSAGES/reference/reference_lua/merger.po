@@ -1,0 +1,270 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"PO-Revision-Date: 2019-12-06 16:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+#, fuzzy
+msgid "Module `merger`"
+msgstr "Модуль `errno`"
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid ""
+"The ``merger`` module takes a stream of tuples and provides access to them "
+"as tables."
+msgstr ""
+
+msgid "Index"
+msgstr "Указатель"
+
+msgid "The four functions for creating a merger object instance are:"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>`,"
+msgstr ":ref:`debug.setupvalue() <debug-setupvalue>`"
+
+msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>`,"
+msgstr ""
+
+msgid ":ref:`merger.new_table_source <merger-new_table_source>`,"
+msgstr ""
+
+msgid ":ref:`merger.new(merger_source...) <merger-new_merger_source>`."
+msgstr ""
+
+msgid "The methods for using a merger object are:"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`merger_object:select() <merger-select>`,"
+msgstr ":ref:`socket_object:sendto() <socket-sendto>`"
+
+#, fuzzy
+msgid ":ref:`merger_object:pairs() <merger-pairs>`."
+msgstr ":ref:`pairs() <membership-pairs>`"
+
+msgid "Create a new merger instance from a tuple source."
+msgstr ""
+
+msgid "A tuple source just returns one tuple."
+msgstr ""
+
+msgid ""
+"The generator function ``gen()`` allows creation of multiple tuples via an "
+"iterator."
+msgstr ""
+
+#, fuzzy
+msgid "The ``gen()`` function should return:"
+msgstr "вызов ``join()`` возвращает true (правда),"
+
+msgid "state, tuple each time it is called and a new tuple is available,"
+msgstr ""
+
+msgid "nil when no more tuples are available."
+msgstr ""
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "function for iteratively returning tuples"
+msgstr ""
+
+msgid "parameter for the gen function"
+msgstr ""
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "merger-object :ref:`a merger object <merger-object>`"
+msgstr ""
+
+msgid "Example: see :ref:`merger_object:pairs() <merger-pairs>` method."
+msgstr ""
+
+msgid "Create a new merger instance from a buffer source."
+msgstr ""
+
+msgid ""
+"Parameters and return: same as for :ref:`merger.new_tuple_source <merger-"
+"new_tuple_source>`."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"To set up a buffer, or a series of buffers, use :ref:`the buffer module "
+"<buffer-module>`."
+msgstr "``{buffer=...}``. Например, см. :ref:`модуль buffer <buffer-module>`."
+
+msgid "Create a new merger instance from a table source."
+msgstr ""
+
+msgid "Example: see :ref:`merger_object:select() <merger-select>` method."
+msgstr ""
+
+msgid "Create a new merger instance from a merger source."
+msgstr ""
+
+msgid ""
+"A merger source is created from a :ref:`key_def <key_def-module>` object and "
+"a set of (tuple or buffer or table or merger) sources. It performs a kind of "
+"merge sort. It chooses a source with a minimal / maximal tuple on each step, "
+"consumes a tuple from this source, and repeats."
+msgstr ""
+
+msgid "object created with ``key_def``"
+msgstr ""
+
+msgid "parameter for the ``gen()`` function"
+msgstr ""
+
+msgid "``reverse=true`` if descending, false or nil if ascending"
+msgstr ""
+
+msgid ""
+"A ``key_def`` can be cached across requests with the same ordering rules "
+"(typically these would be requests accessing the same space)."
+msgstr ""
+
+msgid "A merger object is an object returned by:"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>` or"
+msgstr ":ref:`debug.setupvalue() <debug-setupvalue>`"
+
+msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>` or"
+msgstr ""
+
+msgid ":ref:`merger.new_table_source <merger-new_table_source>` or"
+msgstr ""
+
+msgid "It has methods:"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`merger_object:select() <merger-select>` or"
+msgstr ":ref:`socket_object:sendto() <socket-sendto>`"
+
+msgid "Access the contents of a merger object with familiar ``select`` syntax."
+msgstr ""
+
+msgid "as in ``net.box`` client :ref:`conn:select <conn-select>` method"
+msgstr ""
+
+msgid "a table of tuples, similar to what ``select`` would return"
+msgstr ""
+
+msgid "**Example with new_table_source():**"
+msgstr ""
+
+msgid ""
+"-- Source via new_table_source, simple generator function\n"
+"-- tarantool> s:select()\n"
+"-- ---\n"
+"-- - - [100]\n"
+"--   - [200]\n"
+"-- ...\n"
+"merger=require('merger')\n"
+"k=0\n"
+"function merger_function(param)\n"
+"  k = k + 1\n"
+"  if param[k] == nil then return nil end\n"
+"  return box.NULL, param[k]\n"
+"  end\n"
+"chunks={}\n"
+"chunks[1] = {{100}} chunks[2] = {{200}} chunks[3] = nil\n"
+"s = merger.new_table_source(merger_function, chunks)\n"
+"s:select()"
+msgstr ""
+
+msgid ""
+"The ``pairs()`` method (or the equivalent ``ipairs() alias`` method) returns "
+"a luafun iterator. It is a Lua iterator, but also provides a set of handy "
+"methods to operate in functional style."
+msgstr ""
+
+msgid "tuple or Lua table with field contents"
+msgstr ""
+
+msgid "the tuples that can be found with a standard ``pairs()`` function"
+msgstr ""
+
+msgid "**Example with new_tuple_source():**"
+msgstr ""
+
+msgid ""
+"-- Source via new_tuple_source, from a space of tables\n"
+"-- The result will look like this:\n"
+"-- tarantool> so:pairs():totable()\n"
+"-- ---\n"
+"-- - - [100]\n"
+"--   - [200]\n"
+"-- ...\n"
+"merger = require('merger')\n"
+"box.schema.space.create('s')\n"
+"box.space.s:create_index('i')\n"
+"box.space.s:insert({100})\n"
+"box.space.s:insert({200})\n"
+"so = merger.new_tuple_source(box.space.s:pairs())\n"
+"so:pairs():totable()"
+msgstr ""
+
+msgid "**Example with two mergers:**"
+msgstr ""
+
+msgid ""
+"-- Source via key_def, and table data\n"
+"\n"
+"-- Create the key_def object\n"
+"merger = require('merger')\n"
+"key_def_lib = require('key_def')\n"
+"key_def = key_def_lib.new({{\n"
+"    fieldno = 1,\n"
+"    type = 'string',\n"
+"}})\n"
+"-- Create the table source\n"
+"data = {{'a'}, {'b'}, {'c'}}\n"
+"source = merger.new_source_fromtable(data)\n"
+"i1 = merger.new(key_def, {source}):pairs()\n"
+"i2 = merger.new(key_def, {source}):pairs()\n"
+"-- t1 will be 'a' (tuple 1 from merger 1)\n"
+"t1 = i1:head():totable()\n"
+"-- t3 will be 'c' (tuple 3 from merger 2)\n"
+"t3 = i2:head():totable()\n"
+"-- t2 will be 'b' (tuple 2 from merger 1)\n"
+"t2 = i1:head():totable()\n"
+"-- i1:is_null() will be true (merger 1 ends)\n"
+"i1:is_null()\n"
+"-- i2:is_null() will be true (merger 2 ends)\n"
+"i2:is_null()"
+msgstr ""
+
+#, fuzzy
+msgid "**More examples:**"
+msgstr "**Примеры:**"
+
+msgid ""
+"See `https://github.com/Totktonada/tarantool-merger-examples <https://github."
+"com/Totktonada/tarantool-merger-examples>`_ which, in addition to discussing "
+"the merger API in detail, shows Lua code for handling many more situations "
+"than are in this manual's brief examples."
+msgstr ""
