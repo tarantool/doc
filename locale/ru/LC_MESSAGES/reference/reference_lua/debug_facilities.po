@@ -1,0 +1,490 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: 2019-12-06 16:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Debug facilities"
+msgstr "Средства отладки"
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid ""
+"Tarantool users can benefit from built-in debug facilities that are part of:"
+msgstr ""
+"Пользователи Tarantool'а могут воспользоваться преимуществами встроенных "
+"средств отладки, которые составляют часть:"
+
+msgid ""
+"Lua (`debug <https://www.lua.org/manual/5.1/manual.html#5.9>`_ library, see "
+"details below) and"
+msgstr ""
+"Lua (библиотека `отладки <https://www.lua.org/manual/5.1/manual.html#5.9>`_, "
+"см. подробное описание ниже) и"
+
+msgid "LuaJit (`debug.* <http://luajit.org/extensions.html>`_ functions)."
+msgstr ""
+"LuaJit (функции отладки `debug.* <http://luajit.org/extensions.html>`_)."
+
+msgid ""
+"The ``debug`` library provides an interface for debugging Lua programs. All "
+"functions in this library reside in the ``debug`` table. Those functions "
+"that operate on a thread have an optional first parameter that specifies the "
+"thread to operate on. The default is always the current thread."
+msgstr ""
+"Библиотека ``debug`` предоставляет интерфейс для отладки Lua-программ. Все "
+"функции этой библиотеки содержатся в таблице ``debug``. В функциях для "
+"работы с потоками есть дополнительный первый параметр, в котором указывается "
+"необходимый поток. По умолчанию, это всегда текущий поток."
+
+msgid ""
+"This library should be used only for debugging and profiling and not as a "
+"regular programming tool, as the functions provided here can take too long "
+"to run. Besides, several of these functions can compromise otherwise secure "
+"code."
+msgstr ""
+"Библиотеку следует использовать только для отладки и профилирования, а не в "
+"качестве программного средства, поскольку данные функции выполняются слишком "
+"долго. Кроме того, некоторые из этих функций могут привести к нарушению "
+"работы безопасного в других отношениях кода."
+
+msgid "Index"
+msgstr "Указатель"
+
+msgid "Below is a list of all ``debug`` functions."
+msgstr "Ниже приведен перечень всех функций библиотеки ``debug``."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Use"
+msgstr "Назначение"
+
+msgid ":ref:`debug.debug() <debug-debug>`"
+msgstr ":ref:`debug.debug() <debug-debug>`"
+
+msgid "Enter an interactive mode"
+msgstr "Вход в интерактивный режим"
+
+msgid ":ref:`debug.getfenv() <debug-getfenv>`"
+msgstr ":ref:`debug.getfenv() <debug-getfenv>`"
+
+msgid "Get an object's environment"
+msgstr "Получение среды объекта"
+
+msgid ":ref:`debug.gethook() <debug-gethook>`"
+msgstr ":ref:`debug.gethook() <debug-gethook>`"
+
+msgid "Get a thread's current hook settings"
+msgstr "Получение текущих настроек ловушки потока"
+
+msgid ":ref:`debug.getinfo() <debug-getinfo>`"
+msgstr ":ref:`debug.getinfo() <debug-getinfo>`"
+
+msgid "Get information about a function"
+msgstr "Получение информации о функции"
+
+msgid ":ref:`debug.getlocal() <debug-getlocal>`"
+msgstr ":ref:`debug.getlocal() <debug-getlocal>`"
+
+msgid "Get a local variable's name and value"
+msgstr "Получение имени и значения локальной переменной"
+
+msgid ":ref:`debug.getmetatable() <debug-getmetatable>`"
+msgstr ":ref:`debug.getmetatable() <debug-getmetatable>`"
+
+msgid "Get an object's metatable"
+msgstr "Получение метатаблицы объекта"
+
+msgid ":ref:`debug.getregistry() <debug-getregistry>`"
+msgstr ":ref:`debug.getregistry() <debug-getregistry>`"
+
+msgid "Get the registry table"
+msgstr "Получение таблицы реестра"
+
+msgid ":ref:`debug.getupvalue() <debug-getupvalue>`"
+msgstr ":ref:`debug.getupvalue() <debug-getupvalue>`"
+
+msgid "Get an upvalue's name and value"
+msgstr "Получение имени и значения сопоставляющего значения"
+
+msgid ":ref:`debug.setfenv() <debug-setfenv>`"
+msgstr ":ref:`debug.setfenv() <debug-setfenv>`"
+
+msgid "Set an object's environment"
+msgstr "Определение среды объекта"
+
+msgid ":ref:`debug.sethook() <debug-sethook>`"
+msgstr ":ref:`debug.sethook() <debug-sethook>`"
+
+msgid "Set a given function as a hook"
+msgstr "Определение данной функции в качестве ловушки"
+
+msgid ":ref:`debug.setlocal() <debug-setlocal>`"
+msgstr ":ref:`debug.setlocal() <debug-setlocal>`"
+
+msgid "Assign a value to a local variable"
+msgstr "Присваивание значения локальной переменной"
+
+msgid ":ref:`debug.setmetatable() <debug-setmetatable>`"
+msgstr ":ref:`debug.setmetatable() <debug-setmetatable>`"
+
+msgid "Set an object's metatable"
+msgstr "Определение метатаблицы объекта"
+
+msgid ":ref:`debug.setupvalue() <debug-setupvalue>`"
+msgstr ":ref:`debug.setupvalue() <debug-setupvalue>`"
+
+msgid "Assign a value to an upvalue"
+msgstr "Присваивание значения сопоставляющему значению"
+
+#, fuzzy
+msgid ":ref:`debug.sourcedir() <debug-sourcedir>`"
+msgstr ":ref:`debug.traceback() <debug-traceback>`"
+
+#, fuzzy
+msgid "Get the source directory name"
+msgstr "Получение имени директории"
+
+#, fuzzy
+msgid ":ref:`debug.sourcefile() <debug-sourcefile>`"
+msgstr ":ref:`debug.setfenv() <debug-setfenv>`"
+
+#, fuzzy
+msgid "Get the source file name"
+msgstr "Получение имени файла"
+
+msgid ":ref:`debug.traceback() <debug-traceback>`"
+msgstr ":ref:`debug.traceback() <debug-traceback>`"
+
+msgid "Get a traceback of the call stack"
+msgstr "Получение обратной трассировки стека вызовов"
+
+msgid ""
+"Enters an interactive mode and runs each string that the user types in. The "
+"user can, among other things, inspect global and local variables, change "
+"their values and evaluate expressions."
+msgstr ""
+"Вход в интерактивный режим и выполнение каждой строки, которую печатает "
+"пользователь. Пользователь может, в частности, проверять глобальные и "
+"локальные переменные, изменять их значения и вычислять выражения."
+
+msgid ""
+"Enter ``cont`` to exit this function, so that the caller can continue its "
+"execution."
+msgstr ""
+"Введите ``cont`` для выхода из данной функции, чтобы вызывающий клиент мог "
+"продолжить выполнение."
+
+msgid ""
+"Commands for ``debug.debug()`` are not lexically nested within any function "
+"and so have no direct access to local variables."
+msgstr ""
+"Команды для ``debug.debug()`` не вложены лексически в какую-либо функцию, "
+"поэтому у них нет прямого доступа к локальным переменным."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "object to get the environment of"
+msgstr "объект, для которого будет получена среда"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the environment of the ``object``"
+msgstr "среда объекта ``object``"
+
+msgid "the current hook settings of the ``thread`` as three values:"
+msgstr "текущие настройки ловушки потока ``thread`` в виде трех значений:"
+
+msgid "the current hook function"
+msgstr "текущая функция-ловушка"
+
+msgid "the current hook mask"
+msgstr "текущая маска ловушки"
+
+msgid "the current hook count as set by the ``debug.sethook()`` function"
+msgstr "текущий счетчик ловушки, как определяет функция  ``debug.sethook()``"
+
+msgid "function to get information on"
+msgstr "функция, по которой будет получена информация"
+
+msgid "what information on the ``function`` to return"
+msgstr "какую информацию о функции ``function`` вернуть"
+
+msgid "a table with information about the ``function``"
+msgstr "таблица с информацией о функции ``function``"
+
+msgid ""
+"You can pass in a ``function`` directly, or you can give a number that "
+"specifies a function running at level ``function`` of the call stack of the "
+"given ``thread``: level 0 is the current function (``getinfo()`` itself), "
+"level 1 is the function that called ``getinfo()``, and so on. If "
+"``function`` is a number larger than the number of active functions, "
+"``getinfo()`` returns ``nil``."
+msgstr ""
+"Можно передать функцию ``function`` напрямую или же передать число, которое "
+"указывает на функцию, выполняемую на уровне ``function`` стека вызовов "
+"данного потока ``thread``: уровень 0 -- это текущая функция (сама функция "
+"``getinfo()``), уровень 1 -- это функция, которая вызвала ``getinfo()``, и т."
+"д. Если для функции ``function`` указано число больше числа активных "
+"функций, ``getinfo()`` вернет ``nil``."
+
+msgid ""
+"The default for ``what`` is to get all information available, except the "
+"table of valid lines. If present, the option ``f`` adds a field named "
+"``func`` with the function itself. If present, the option ``L`` adds a field "
+"named ``activelines`` with the table of valid lines."
+msgstr ""
+"По умолчанию, ``what`` -- это вся доступная информация, кроме таблицы "
+"допустимых строк. Если задать опцию ``f``, добавится поле под названием "
+"``func`` с самой функцией. Если задать опцию ``L``, добавится поле под "
+"названием ``activelines`` с таблицей доступных строк."
+
+msgid "level of the stack"
+msgstr "уровень стека"
+
+msgid "index of the local variable"
+msgstr "индекс локальной переменной"
+
+msgid ""
+"the name and the value of the local variable with the index ``local`` of the "
+"function at level ``level`` of the stack or ``nil`` if there is no local "
+"variable with the given index; raises an error if ``level`` is out of range"
+msgstr ""
+"имя и значение локальной переменной с индексом ``local`` функции на уровне "
+"``level`` стека или ``nil``, если нет локальной переменной с указанным "
+"индексом; появится ошибка, если уровень ``level`` вне диапазона"
+
+msgid "You can call ``debug.getinfo()`` to check whether the level is valid."
+msgstr "Можно вызвать ``debug.getinfo()`` для проверки доступности уровня."
+
+msgid "object to get the metatable of"
+msgstr "объект, для которого будет получена метатаблица"
+
+msgid ""
+"a metatable of the ``object`` or ``nil`` if it does not have a metatable"
+msgstr ""
+"метатаблица объекта ``object`` или ``nil``, если метатаблица отсутствует"
+
+msgid "the registry table"
+msgstr "таблица реестра"
+
+msgid "function to get the upvalue of"
+msgstr "функция, для которой будет получено сопоставляющее значение"
+
+msgid "index of the function upvalue"
+msgstr "индекс сопоставляющего значения функции"
+
+msgid ""
+"the name and the value of the upvalue with the index ``up`` of the function "
+"``func`` or ``nil`` if there is no upvalue with the given index"
+msgstr ""
+"имя и значение сопоставляющего значения с индексом ``up`` функции ``func`` "
+"или ``nil``, если нет сопоставляющего значения в пределах заданного индекса"
+
+msgid "Sets the environment of the ``object`` to the ``table``."
+msgstr "Определение среды объекта ``object`` для таблицы ``table``."
+
+msgid "object to change the environment of"
+msgstr "объект, среда которого будет изменена"
+
+msgid "table to set the object environment to"
+msgstr "таблица для определения среды объекта"
+
+msgid "the ``object``"
+msgstr "объект ``object``"
+
+msgid ""
+"Sets the given function as a hook.  When called without arguments, turns the "
+"hook off."
+msgstr ""
+"Определение данной функции в качестве ловушки. При вызове без аргументов "
+"ловушка отключается."
+
+msgid "function to set as a hook"
+msgstr "функция, которая будет определена в качестве ловушки"
+
+msgid ""
+"describes when the ``hook`` will be called; may have the following values:  "
+"* ``c`` - the ``hook`` is called every time Lua calls a function * ``r`` - "
+"the ``hook`` is called every time Lua returns from a function * ``l`` - the "
+"``hook`` is called every time Lua enters a new line of code"
+msgstr ""
+"описание того, когда будет вызвана ловушка ``hook``; может принимать "
+"следующие значения:  * ``c`` -- ловушка``hook`` вызывается каждый раз, когда "
+"Lua вызывает функцию * ``r`` -- ловушка ``hook`` вызывается каждый раз, "
+"когда Lua возвращается из функции * ``l`` -- ловушка ``hook`` вызывается "
+"каждый раз, когда Lua переходит на новую строку кода"
+
+msgid ""
+"describes when the ``hook`` will be called; may have the following values:"
+msgstr ""
+"описание того, когда будет вызвана ловушка ``hook``; может принимать "
+"следующие значения:"
+
+msgid "``c`` - the ``hook`` is called every time Lua calls a function"
+msgstr ""
+"``c`` -- ловушка``hook`` вызывается каждый раз, когда Lua вызывает функцию"
+
+msgid "``r`` - the ``hook`` is called every time Lua returns from a function"
+msgstr ""
+"``r`` -- ловушка ``hook`` вызывается каждый раз, когда Lua возвращается из "
+"функции"
+
+msgid "``l`` - the ``hook`` is called every time Lua enters a new line of code"
+msgstr ""
+"``l`` -- ловушка ``hook`` вызывается каждый раз, когда Lua переходит на "
+"новую строку кода"
+
+msgid ""
+"describes when the ``hook`` will be called; when different from zero, the "
+"``hook`` is called after every ``count`` instructions."
+msgstr ""
+"описание того, когда будет вызвана ловушка ``hook``; если отличается от "
+"нуля, ловушка ``hook`` вызывается после каждой инструкции ``count``."
+
+msgid ""
+"Assigns the value ``value`` to the local variable with the index ``local`` "
+"of the function at level ``level`` of the stack."
+msgstr ""
+"Присвоение значения ``value`` локальной переменной с индексом ``local`` "
+"функции на уровне ``level`` стека"
+
+msgid "value to assign to the local variable"
+msgstr "значение, присваиваемое локальной переменной"
+
+msgid ""
+"the name of the local variable or ``nil`` if there is no local variable with "
+"the given index; raises an error if ``level`` is out of range"
+msgstr ""
+"имя локальной переменной или ``nil``, если локальная переменная с заданным "
+"индексом отсутствует; возникает ошибка, если уровень ``level`` вне диапазона"
+
+msgid "Sets the metatable of the ``object`` to the ``table``."
+msgstr "Определение метатаблицы объекта ``object`` для таблицы ``table``."
+
+msgid "object to change the metatable of"
+msgstr "объект, метатаблица которого будет изменена"
+
+msgid "table to set the object metatable to"
+msgstr "таблица для определения метатаблицы объекта"
+
+msgid ""
+"Assigns the value ``value`` to the upvalue with the index ``up`` of the "
+"function ``func``."
+msgstr ""
+"Присвоение значения ``value`` сопоставляющему значению с индексом ``up`` "
+"функции ``func``."
+
+msgid "function to set the upvalue of"
+msgstr "функция, для которой будет определено сопоставляющее значение"
+
+msgid "value to assign to the function upvalue"
+msgstr "значение, присваиваемое сопоставляющему значению функции"
+
+msgid ""
+"the name of the upvalue or ``nil`` if there is no upvalue with the given "
+"index"
+msgstr ""
+"имя сопоставляющего значения или ``nil``, если сопоставляющее значение с "
+"данным индексом отсутствует"
+
+msgid ""
+"the level of the call stack which should contain the path (default is 2)"
+msgstr ""
+
+msgid "a string with the relative path to the source file directory"
+msgstr ""
+
+msgid ""
+"Instead of ``debug.sourcedir()`` one can say ``debug.__dir__`` which means "
+"the same thing."
+msgstr ""
+
+msgid ""
+"Determining the real path to a directory is only possible if the function "
+"was defined in a Lua file (this restriction may not apply for `loadstring() "
+"<https://www.lua.org/pil/8.html>`_ since Lua will store the entire string in "
+"debug info)."
+msgstr ""
+
+msgid ""
+"If ``debug.sourcedir()`` is part of a ``return`` argument, then it should be "
+"inside parentheses: ``return (debug.sourcedir())``."
+msgstr ""
+
+msgid "a string with the relative path to the source file"
+msgstr ""
+
+msgid ""
+"Instead of ``debug.sourcefile()`` one can say ``debug.__file__`` which means "
+"the same thing."
+msgstr ""
+
+msgid ""
+"Determining the real path to a file is only possible if the function was "
+"defined in a Lua file (this restriction may not apply to ``loadstring()`` "
+"since Lua will store the entire string in debug info)."
+msgstr ""
+
+msgid ""
+"If ``debug.sourcefile()`` is part of a ``return`` argument, then it should "
+"be inside parentheses: ``return (debug.sourcefile())``."
+msgstr ""
+
+msgid "an optional message prepended to the traceback"
+msgstr "необязательное сообщение, добавленное к началу обратной трассировки"
+
+msgid "specifies at which level to start the traceback (default is 1)"
+msgstr ""
+"указывает на каком уровне начинать обратную трассировку (по умолчанию, 1)"
+
+msgid "a string with a traceback of the call stack"
+msgstr "строка с обратной трассировкой стека вызовов"
+
+#, fuzzy
+msgid "**Debug example:**"
+msgstr "**Пример:**"
+
+msgid "Make a file in the /tmp directory named example.lua, containing:"
+msgstr ""
+
+msgid ""
+"function w()\n"
+"  print(debug.sourcedir())\n"
+"  print(debug.sourcefile())\n"
+"  print(debug.traceback())\n"
+"  print(debug.getinfo(1)['currentline'])\n"
+"end\n"
+"w()"
+msgstr ""
+
+msgid "Execute ``tarantool /tmp/example.lua``. Expect to see this:"
+msgstr ""
+
+msgid ""
+"/tmp\n"
+"/tmp/example.lua\n"
+"stack traceback:\n"
+"    /tmp/example.lua:4: in function 'w'\n"
+"    /tmp/example.lua:7: in main chunk\n"
+"5"
+msgstr ""

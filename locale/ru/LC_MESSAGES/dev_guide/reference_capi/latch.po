@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: 2019-12-20 21:24+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module `latch`"
+msgstr "Модуль `latch`"
+
+msgid "A lock for cooperative multitasking environment"
+msgstr "Блокировка среды кооперативной многозадачности"
+
+msgid "Allocate and initialize the new latch."
+msgstr "Выделение и инициализация новой защелки."
+
+msgid "Returns"
+msgstr "Возвращает"
+
+msgid "allocated latch object"
+msgstr "выделенная защелка"
+
+msgid "Return type"
+msgstr "Возвращаемый тип"
+
+msgid "box_latch_t *"
+msgstr "box_latch_t *"
+
+msgid "Destroy and free the latch."
+msgstr "Удаление и освобождение защелки."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "latch to destroy"
+msgstr "удаляемая защелка"
+
+msgid ""
+"Lock a latch. Waits indefinitely until the current fiber can gain access to "
+"the latch."
+msgstr ""
+"Применение защелки. Бесконечно ожидает момента, когда текущий файбер может "
+"получить доступ к защелке."
+
+msgid "param box_latch_t* latch"
+msgstr "param box_latch_t* latch"
+
+msgid "latch to lock"
+msgstr "применяемая защелка"
+
+msgid "Try to lock a latch. Return immediately if the latch is locked."
+msgstr ""
+"Попытка применить защелку. Возвращается незамедлительно, если защелка "
+"поставлена."
+
+msgid "status of operation. 0 - success, 1 - latch is locked"
+msgstr "статус операции. 0 -- успешно, 1 -- защелка поставлена"
+
+msgid "int"
+msgstr "целое число"
+
+msgid "Unlock a latch. The fiber calling this function must own the latch."
+msgstr ""
+"Отмена защелки. Файбер, который вызывает данную функцию, должен иметь права "
+"на защелку."
+
+msgid "latch to unlock"
+msgstr "отменяемая защелка"

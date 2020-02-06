@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Cartridge Command Line Interface"
+msgstr ""
+
+msgid "Installation"
+msgstr ""
+
+msgid "tarantoolctl rocks install cartridge-cli"
+msgstr ""
+
+msgid "Optionally you may add ``.rocks/bin`` to executable path:"
+msgstr ""
+
+msgid "export PATH=$PWD/.rocks/bin/:$PATH"
+msgstr ""
+
+msgid "Usage"
+msgstr ""
+
+msgid "For more details, run"
+msgstr ""
+
+msgid "cartridge --help"
+msgstr ""
+
+msgid "Applications lifecycle"
+msgstr ""
+
+msgid "Create an application from template:"
+msgstr ""
+
+msgid "cartridge create --name myapp"
+msgstr ""
+
+msgid "Pack an application into distributable:"
+msgstr ""
+
+msgid "cartridge pack rpm myapp"
+msgstr ""
+
+msgid "Managing instances"
+msgstr ""
+
+msgid "cartridge start [APP_NAME[.INSTANCE_NAME]] [options]\n"
+"\n"
+"Options\n"
+"    --script FILE       Application's entry point.\n"
+"                        Default to TARANTOOL_SCRIPT,\n"
+"                        or ./init.lua when running from app's directory,\n"
+"                        or :apps_path/:app_name/init.lua in multi-app env.\n"
+"\n"
+"    --apps_path PATH    Path to apps direcrory when running in multi-app env.\n"
+"                        Default to /usr/share/tarantool\n"
+"\n"
+"    --run_dir DIR       Directory with pid and sock files\n"
+"                        Default to TARANTOOL_RUN_DIR or /var/run/tarantool\n"
+"\n"
+"    --cfg FILE          Cartridge instances config file.\n"
+"                        Default to TARANTOOL_CFG or ./instances.yml\n"
+"\n"
+"    --foreground        Do not daemonize"
+msgstr ""
+
+msgid "It starts tarantool instance in background with enforced env-vars and waits until app’s main script is finished."
+msgstr ""
+
+msgid "TARANTOOL_INSTANCE_NAME\n"
+"TARANTOOL_CFG\n"
+"TARANTOOL_PID_FILE - %run_dir%/%instance_name%.pid\n"
+"TARANTOOL_CONSOLE_SOCK - %run_dir%/%instance_name%.pid"
+msgstr ""
+
+msgid "``cartridge.cfg()`` uses ``TARANTOOL_INSTANCE_NAME`` to read instance’s config from file provided in ``TARANTOOL_CFG``."
+msgstr ""
+
+msgid "Default options for ``cartridge`` command can be overriden in ``./.cartridge.yml`` or ``~/.cartridge.yml``:"
+msgstr ""
+
+msgid "run_dir: tmp/run\n"
+"cfg: cartrifge.yml\n"
+"apps_path: /usr/local/share/tarantool"
+msgstr ""
+
+msgid "When APP_NAME is not provided it is parsed from ``./*.rockspec`` filename. When ``INSTANCE_NAME`` is not provided cartridge reads ``cfg`` file and starts all defined instances:"
+msgstr ""
+
+msgid "# in application directory\n"
+"cartridge start # starts all instances\n"
+"cartridge start .router_1 # start single instance\n"
+"\n"
+"# in multi-application environment\n"
+"cartridge start app_1 # starts all instances of app_1\n"
+"cartridge start app_1.router_1 # start single instance"
+msgstr ""
+
+msgid "To stop one or more running instances use:"
+msgstr ""
+
+msgid "cartridge stop [APP_NAME[.INSTANCE_NAME]] [options]\n"
+"\n"
+"These options from `start` command are supported\n"
+"    --run_dir DIR\n"
+"    --cfg FILE"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Running end-to-end tests"
+msgstr ""
+
+msgid "vagrant up\n"
+"vagrant ssh 1_10 < test/end-to-end.sh\n"
+"vagrant halt"
+msgstr ""
+

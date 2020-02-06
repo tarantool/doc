@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: 2019-12-20 21:24+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module `coio`"
+msgstr "Модуль `coio`"
+
+msgid "READ event"
+msgstr "событие чтения READ"
+
+msgid "WRITE event"
+msgstr "событие записи WRITE"
+
+msgid "Wait until READ or WRITE event on socket (``fd``). Yields."
+msgstr ""
+"Ожидание события чтения или записи (READ / WRITE) на сокете (``fd``) с "
+"передачей управления."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "non-blocking socket file description"
+msgstr "дескриптор файла сокета без блокировки"
+
+msgid ""
+"requested events to wait. Combination of ``COIO_READ | COIO_WRITE`` bit "
+"flags."
+msgstr ""
+"запрашиваемые события. Комбинация битовых флагов ``COIO_READ | COIO_WRITE``."
+
+msgid "timeout in seconds."
+msgstr "время ожидания в секундах."
+
+msgid "Returns"
+msgstr "Возвращает"
+
+msgid "0 - timeout"
+msgstr "0 - время ожидания"
+
+msgid ""
+">0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit "
+"flags."
+msgstr ""
+">0 - возвращаемые события. Комбинация битовых флагов ``TNT_IO_READ | "
+"TNT_IO_WRITE``."
+
+msgid ""
+"Create new eio task with specified function and arguments. Yield and wait "
+"until the task is complete or a timeout occurs. This function may use the :"
+"ref:`worker_pool_threads <cfg_basic-worker_pool_threads>` configuration "
+"parameter."
+msgstr ""
+"Создание новой задачи ошибочного ввода-вывода (eio) с указанной функцией и "
+"аргументами. Передает управление и ожидает окончания задачи или истечения "
+"времени ожидания. Функция может использовать конфигурационный параметр :ref:"
+"`worker_pool_threads <cfg_basic-worker_pool_threads>`."
+
+msgid ""
+"To avoid double error checking, this function does not throw exceptions. In "
+"most cases it is also necessary to check the return value of the called "
+"function and perform necessary actions. If func sets errno, the errno is "
+"preserved across the call."
+msgstr ""
+"Во избежание двойной проверки ошибок функция не выбрасывает исключения. В "
+"большинстве случаев также необходимо проверять возвращаемое значение "
+"вызванной функции и выполнить необходимые действия. Если функция определяет "
+"номер ошибки errno, этот номер ошибки сохраняется в течение вызова."
+
+msgid "-1 and ``errno`` = ENOMEM if failed to create a task"
+msgstr "-1 и ``errno`` = ENOMEM, если задача не была создана"
+
+msgid "the function return (``errno`` is preserved)."
+msgstr "возврат функции (``errno`` сохраняется)."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"static ssize_t openfile_cb(va_list ap)\n"
+"{\n"
+"        const char* filename = va_arg(ap);\n"
+"        int flags = va_arg(ap);\n"
+"        return open(filename, flags);\n"
+"}\n"
+"\n"
+"if (coio_call(openfile_cb, 0.10, \"/tmp/file\", 0) == -1)\n"
+"    // handle errors.\n"
+"..."
+msgstr ""
+"static ssize_t openfile_cb(va_list ap)\n"
+" {\n"
+"         const char* filename = va_arg(ap);\n"
+"         int flags = va_arg(ap);\n"
+"         return open(filename, flags);\n"
+" }\n"
+" \n"
+" if (coio_call(openfile_cb, 0.10, \"/tmp/file\", 0) == -1)\n"
+"     // обработка ошибок.\n"
+" ..."
+
+msgid "Fiber-friendly version of :manpage:`getaddrinfo(3)`."
+msgstr "Версия :manpage:`getaddrinfo(3)` для файбера."
+
+msgid ""
+"Close the ``fd`` and wake any fiber blocked in :ref:`coio_wait() <c_api-coio-"
+"coio_wait>` call on this ``fd``."
+msgstr ""
+"Закрытие ``fd`` и пробуждение любого файбера, заблокированного в вызове :ref:"
+"`coio_wait() <c_api-coio-coio_wait>` на данном сокете ``fd``."
+
+msgid "the result of ``close(fd)``, see :manpage:`close(2)`"
+msgstr "результат ``close(fd)``, см. :manpage:`close(2)`"

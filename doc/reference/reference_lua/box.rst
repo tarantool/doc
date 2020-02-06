@@ -21,21 +21,21 @@ with ``box``, with no arguments. The ``box`` module contains:
     :maxdepth: 1
 
     box_backup
-    ../../book/box/box_cfg
-    ../../book/box/box_ctl
+    box_cfg
+    box_ctl
     box_error
-    ../../book/box/box_index
-    ../../book/box/box_info
+    box_index
+    box_info
     box_once
-    ../../book/box/box_schema
-    ../../book/box/box_session
-    ../../book/box/box_slab
-    ../../book/box/box_space
-    ../../book/box/box_stat
+    box_schema
+    box_session
+    box_slab
+    box_space
+    box_stat
     box_snapshot
-    ../../book/box/box_tuple
-    ../../book/box/box_txn_management
-    ../../book/box/box_sql
+    box_tuple
+    box_txn_management
+    box_sql
 
 
 .. // moved to "User Guide > 5. Server administration":

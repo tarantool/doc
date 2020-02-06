@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `say` (logging)"
+msgstr ""
+
+msgid "do not use this value directly"
+msgstr ""
+
+msgid "Format and print a message to Tarantool log file."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid ":ref:`log level <c_api-say-say_level>`"
+msgstr ""
+
+msgid "``printf()``-like format string"
+msgstr ""
+
+msgid "format arguments"
+msgstr ""
+
+msgid "See also :manpage:`printf(3)`, :ref:`say_level<c_api-say-say_level>`"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "say_info(\"Some useful information: %s\", status);"
+msgstr ""
+

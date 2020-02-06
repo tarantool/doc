@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `error`"
+msgstr ""
+
+msgid "Error - contains information about error."
+msgstr ""
+
+msgid "Return the error type, e.g. \"ClientError\", \"SocketError\", etc."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "error"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "not-null string"
+msgstr ""
+
+msgid "Return IPROTO error code"
+msgstr ""
+
+msgid "enum :ref:`box_error_code <capi-box_error_code>`"
+msgstr ""
+
+msgid "Return the error message"
+msgstr ""
+
+msgid "Get the information about the last API call error."
+msgstr ""
+
+msgid "The Tarantool error handling works most like libc's errno. All API calls return -1 or NULL in the event of error. An internal pointer to box_error_t type is set by API functions to indicate what went wrong. This value is only significant if API call failed (returned -1 or NULL)."
+msgstr ""
+
+msgid "Successful function can also touch the last error in some cases. You don't have to clear the last error before calling API functions. The returned object is valid only until next call to **any** API function."
+msgstr ""
+
+msgid "You must set the last error using box_error_set() in your stored C procedures if you want to return a custom error message. You can re-throw the last API error to IPROTO client by keeping the current value and returning -1 to Tarantool from your stored procedure."
+msgstr ""
+
+msgid "last error"
+msgstr ""
+
+msgid "Clear the last error."
+msgstr ""
+
+msgid "Set the last error."
+msgstr ""
+
+msgid "IPROTO :ref:`error code<capi-box_error_code>`"
+msgstr ""
+
+msgid "format arguments"
+msgstr ""
+
+msgid "See also: IPROTO :ref:`error code<capi-box_error_code>`"
+msgstr ""
+
+msgid "A backward-compatible API define."
+msgstr ""
+
