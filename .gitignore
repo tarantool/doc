@@ -2,7 +2,7 @@ CMakeCache.txt
 CMakeFiles
 Makefile
 cmake_install.cmake
-locale/ru/LC_MESSAGES/*.mo
+locale/**/*.mo
 .DS_Store
 _*_build/
 deploy_key
@@ -14,3 +14,7 @@ _theme/tarantool/static/design.css.map
 .idea
 rocks
 .vscode/
+/locale/book/LC_MESSAGES/
+/locale/dev_guide/LC_MESSAGES/
+/locale/reference/LC_MESSAGES/
+/locale/tutorials/LC_MESSAGES/

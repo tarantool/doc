@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `txn`"
+msgstr ""
+
+msgid "Return true if there is an active transaction."
+msgstr ""
+
+msgid "Begin a transaction in the current fiber."
+msgstr ""
+
+msgid "A transaction is attached to caller fiber, therefore one fiber can have only one active transaction. See also :ref:`box.begin()<box-begin>`."
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "0 on success"
+msgstr ""
+
+msgid "-1 on error. Perhaps a transaction has already been started."
+msgstr ""
+
+msgid "Commit the current transaction. See also :ref:`box.commit() <box-commit>`."
+msgstr ""
+
+msgid "-1 on error. Perhaps a disk write failure"
+msgstr ""
+
+msgid "Roll back the current transaction. See also :ref:`box.rollback() <box-rollback>`."
+msgstr ""
+
+msgid "Return a descriptor of a savepoint."
+msgstr ""
+
+msgid "Roll back the current transaction as far as the specified savepoint."
+msgstr ""
+
+msgid "Allocate memory on txn memory pool."
+msgstr ""
+
+msgid "The memory is automatically deallocated when the transaction is committed or rolled back."
+msgstr ""
+
+msgid "NULL on out of memory"
+msgstr ""
+

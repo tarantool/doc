@@ -1,0 +1,462 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:02+0000\n"
+"PO-Revision-Date: 2019-12-06 16:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module `string`"
+msgstr "Модуль `string`"
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid ""
+"The :code:`string` module has everything in the `standard Lua string library "
+"<https://www.lua.org/pil/20.html>`_, and some Tarantool extensions."
+msgstr ""
+"Модуль :code:`string` включает в себя всё из `стандартной библиотеки для "
+"работы со строками в Lua <https://www.lua.org/pil/20.html>`_, а также "
+"некоторые расширения специально для Tarantool'а."
+
+msgid ""
+"In this section we only discuss the additional functions that the Tarantool "
+"developers have added."
+msgstr ""
+"В данном разделе мы рассматриваем только дополнительные функции, добавленные "
+"разработчиками Tarantool'а."
+
+msgid "Index"
+msgstr "Указатель"
+
+msgid "Below is a list of all additional ``string`` functions."
+msgstr "Ниже приведен перечень всех функций библиотеки ``string``."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Use"
+msgstr "Назначение"
+
+msgid ":ref:`string.ljust() <string-ljust>`"
+msgstr ":ref:`string.ljust() <string-ljust>`"
+
+msgid "Left-justify a string"
+msgstr "Выравнивание строки по левому полю"
+
+msgid ":ref:`string.rjust() <string-rjust>`"
+msgstr ":ref:`string.rjust() <string-rjust>`"
+
+msgid "Right-justify a string"
+msgstr "Выравнивание строки по правому полю"
+
+msgid ":ref:`string.hex() <string-hex>`"
+msgstr ":ref:`string.hex() <string-hex>`"
+
+msgid "Given a string, return hexadecimal values"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`string.fromhex() <string-fromhex>`"
+msgstr ":ref:`string.hex() <string-hex>`"
+
+#, fuzzy
+msgid "Given hexadecimal values, return a string"
+msgstr "Получение шестнадцатеричного значения строки"
+
+msgid ":ref:`string.startswith() <string-startswith>`"
+msgstr ":ref:`string.startswith() <string-startswith>`"
+
+msgid "Check if a string starts with a given substring"
+msgstr "Проверка, начинается ли строка с заданной подстроки"
+
+msgid ":ref:`string.endswith() <string-endswith>`"
+msgstr ":ref:`string.endswith() <string-endswith>`"
+
+msgid "Check if a string ends with a given substring"
+msgstr "Проверка, заканчивается ли строка на заданную подстроку"
+
+msgid ":ref:`string.lstrip() <string-lstrip>`"
+msgstr ":ref:`string.lstrip() <string-lstrip>`"
+
+#, fuzzy
+msgid "Remove characters from the left of a string"
+msgstr "Удаление пробелов слева от строки"
+
+msgid ":ref:`string.rstrip() <string-rstrip>`"
+msgstr ":ref:`string.rstrip() <string-rstrip>`"
+
+#, fuzzy
+msgid "Remove characters from the right of a string"
+msgstr "Удаление пробелов справа от строки"
+
+msgid ":ref:`string.split() <string-split>`"
+msgstr ":ref:`string.split() <string-split>`"
+
+msgid "Split a string into a table of strings"
+msgstr "Разделение строки на таблицу со строками"
+
+msgid ":ref:`string.strip() <string-strip>`"
+msgstr ":ref:`string.strip() <string-strip>`"
+
+msgid "Remove spaces on the left and right of a string"
+msgstr "Удаление пробелов слева и справа от строки"
+
+msgid "Return the string left-justified in a string of length ``width``."
+msgstr ""
+"Возврат строки, выровненной по левому краю, шириной, указанной в ``width``."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the string to left-justify"
+msgstr "строка для выравнивания по левому краю"
+
+msgid "the width of the string after left-justifying"
+msgstr "ширина строки после выравнивания по левому краю"
+
+msgid "a single character, default = 1 space"
+msgstr "отдельный символ, по умолчанию = 1 пробел"
+
+msgid "Return"
+msgstr "Возвращается"
+
+msgid "left-justified string (unchanged if width <= string length)"
+msgstr ""
+"выровненная по левому краю строка (не изменяется, если ширина <= длине "
+"строки)"
+
+msgid "Rtype"
+msgstr "Тип возвращаемого значения"
+
+msgid "string"
+msgstr "строка"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.ljust(' A', 5)\n"
+"---\n"
+"- ' A   '\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.ljust(' A', 5)\n"
+"---\n"
+"- ' A   '\n"
+"..."
+
+msgid "Return the string right-justified in a string of length ``width``."
+msgstr ""
+"Возврат строки, выровненной по правому краю, шириной, указанной в ``width``."
+
+msgid "the string to right-justify"
+msgstr "строка для выравнивания по правому краю"
+
+msgid "the width of the string after right-justifying"
+msgstr "ширина строки после выравнивания по правому краю"
+
+msgid "right-justified string (unchanged if width <= string length)"
+msgstr ""
+"выровненная по правому краю строка (не изменяется, если ширина <= длине "
+"строки)"
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.rjust('', 5, 'X')\n"
+"---\n"
+"- 'XXXXX'\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.rjust('', 5, 'X')\n"
+"---\n"
+"- 'XXXXX'\n"
+"..."
+
+msgid "Return the hexadecimal value of the input string."
+msgstr "Возврат шестнадцатеричного значения введенной строки."
+
+msgid "the string to process"
+msgstr "обрабатываемая строка"
+
+msgid "hexadecimal, 2 hex-digit characters for each input character"
+msgstr ""
+"шестнадцатеричное число, два символа шестнадцатеричных цифр для каждого "
+"введенного символа"
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.hex('ABC ')\n"
+"---\n"
+"- '41424320'\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.hex('ABC ')\n"
+"---\n"
+"- '41424320'\n"
+"..."
+
+msgid ""
+"Given a string containing pairs of hexadecimal digits, return a string with "
+"one byte for each pair. This is the reverse of ``string.hex()``. The "
+"hexadecimal-input-string must contain an even number of hexadecimal digits."
+msgstr ""
+
+#, fuzzy
+msgid "string with pairs of hexadecimal digits"
+msgstr "строка с обратной трассировкой стека вызовов"
+
+msgid "string with one byte for each pair of hexadecimal digits"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.fromhex('41424320')\n"
+"---\n"
+"- 'ABC '\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.hex('ABC ')\n"
+"---\n"
+"- '41424320'\n"
+"..."
+
+msgid ""
+"Return True if ``input-string`` starts with ``start-string``, otherwise "
+"return False."
+msgstr ""
+"Возврат true (правда), если ``input-string`` начинается со ``start-string``, "
+"в противном случае, возврат false (ложь)."
+
+msgid "the string where ``start-string`` should be looked for"
+msgstr "строка, где производится поиск данных из ``start-string``"
+
+msgid "the string to look for"
+msgstr "искомая строка"
+
+msgid "position: where to start looking within ``input-string``"
+msgstr "положение: где начинать искать в пределах ``input-string``"
+
+msgid "position: where to end looking within ``input-string``"
+msgstr "положение: где заканчивать искать в пределах ``input-string``"
+
+msgid "true or false"
+msgstr "true (правда) или false (ложь)"
+
+msgid "boolean"
+msgstr "boolean (логический)"
+
+msgid ""
+"``start-pos`` and ``end-pos`` may be negative, meaning the position should "
+"be calculated from the end of the string."
+msgstr ""
+"Значения ``start-pos`` и ``end-pos`` могут быть отрицательными, что "
+"означает, что положение вычисляется с конца строки."
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.startswith(' A', 'A', 2, 5)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.startswith(' A', 'A', 2, 5)\n"
+"---\n"
+"- true\n"
+"..."
+
+msgid ""
+"Return True if ``input-string`` ends with ``end-string``, otherwise return "
+"False."
+msgstr ""
+"Возврат true (правда), если ``input-string`` заканчивается на ``end-"
+"string``, в противном случае, возврат false (ложь)."
+
+msgid "the string where ``end-string`` should be looked for"
+msgstr "строка, где производится поиск данных из ``end-string``"
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.endswith('Baa', 'aa')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.endswith('Baa', 'aa')\n"
+"---\n"
+"- true\n"
+"..."
+
+msgid ""
+"Return the value of the input string, after removing characters on the left. "
+"The optional ``list-of-characters`` parameter is a set not a sequence, so "
+"``string.lstrip(...,'ABC')`` does not mean strip ``'ABC'``, it means strip "
+"``'A'`` or ``'B'`` or ``'C'``."
+msgstr ""
+
+#, fuzzy
+msgid "what characters can be stripped. Default = space."
+msgstr "отдельный символ, по умолчанию = 1 пробел"
+
+#, fuzzy
+msgid "result after stripping characters from input string"
+msgstr "результат после удаления пробелов из введенной строки"
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.lstrip(' ABC ')\n"
+"---\n"
+"- 'ABC '\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.lstrip(' ABC ')\n"
+"---\n"
+"- 'ABC '\n"
+"..."
+
+msgid ""
+"Return the value of the input string, after removing characters on the "
+"right. The optional ``list-of-characters`` parameter is a set not a "
+"sequence, so ``string.rstrip(...,'ABC')`` does not mean strip ``'ABC'``, it "
+"means strip ``'A'`` or ``'B'`` or ``'C'``."
+msgstr ""
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.rstrip(' ABC ')\n"
+"---\n"
+"- ' ABC'\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.rstrip(' ABC ')\n"
+"---\n"
+"- ' ABC'\n"
+"..."
+
+msgid ""
+"Split ``input-string`` into one or more output strings in a table. The "
+"places to split are the places where ``split-string`` occurs."
+msgstr ""
+"Разделение ``input-string`` на одну или более выводимых строк в таблице. "
+"Места разделения указаны в ``split-string``."
+
+msgid "the string to split"
+msgstr "строка для разделения"
+
+msgid "the string to find within ``input-string``. Default = space."
+msgstr "искомая строка в пределах ``input-string``. По умолчанию = пробел."
+
+msgid ""
+"maximum number of delimiters to process counting from the beginning of the "
+"input string. Result will contain max + 1 parts maximum."
+msgstr ""
+"максимальное количество символов-разделителей от начала обрабатываемой "
+"строки. Результат содержит не более max + 1 частей."
+
+msgid "table of strings that were split from ``input-string``"
+msgstr "таблица строк, которые были разделены из ``input-string``"
+
+msgid "table"
+msgstr "таблица"
+
+#, fuzzy
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.split(\"A:B:C:D:F\", \":\", 2)\n"
+"---\n"
+"- - A\n"
+"  - B\n"
+"  - C:D:F\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.split(\"A:B C:D\", \":\", 2)\n"
+"---\n"
+"- - A\n"
+"  - B\n"
+"  - ' C:D'\n"
+"..."
+
+msgid ""
+"Return the value of the input string, after removing characters on the left "
+"and the right. The optional ``list-of-characters`` parameter is a set not a "
+"sequence, so ``string.strip(...,'ABC')`` does not mean strip ``'ABC'``, it "
+"means strip ``'A'`` or ``'B'`` or ``'C'``."
+msgstr ""
+
+msgid ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.strip(' ABC ')\n"
+"---\n"
+"- ABC\n"
+"..."
+msgstr ""
+"tarantool> string = require('string')\n"
+"---\n"
+"...\n"
+"tarantool> string.strip(' ABC ')\n"
+"---\n"
+"- ABC\n"
+"..."

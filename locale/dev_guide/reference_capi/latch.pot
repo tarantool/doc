@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `latch`"
+msgstr ""
+
+msgid "A lock for cooperative multitasking environment"
+msgstr ""
+
+msgid "Allocate and initialize the new latch."
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "allocated latch object"
+msgstr ""
+
+msgid "Return type"
+msgstr ""
+
+msgid "box_latch_t *"
+msgstr ""
+
+msgid "Destroy and free the latch."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "latch to destroy"
+msgstr ""
+
+msgid "Lock a latch. Waits indefinitely until the current fiber can gain access to the latch."
+msgstr ""
+
+msgid "param box_latch_t* latch"
+msgstr ""
+
+msgid "latch to lock"
+msgstr ""
+
+msgid "Try to lock a latch. Return immediately if the latch is locked."
+msgstr ""
+
+msgid "status of operation. 0 - success, 1 - latch is locked"
+msgstr ""
+
+msgid "int"
+msgstr ""
+
+msgid "Unlock a latch. The fiber calling this function must own the latch."
+msgstr ""
+
+msgid "latch to unlock"
+msgstr ""
+

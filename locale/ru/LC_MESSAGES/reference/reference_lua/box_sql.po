@@ -1,0 +1,181 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:02+0000\n"
+"PO-Revision-Date: 2019-12-06 16:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Functions for SQL"
+msgstr ""
+
+#, fuzzy
+msgid "The ``box`` module contains two functions related to SQL:"
+msgstr "Модуль ``fio`` включает в себя:"
+
+msgid ""
+"``box.internal.sql_create_function`` -- for making Lua functions callable "
+"from SQL statements. This, or an SQL statement with the same effect, will be "
+"part of the documentation regarding SQL Plus Lua."
+msgstr ""
+
+msgid ""
+"``box.execute`` -- for making SQL statements callable from Lua functions."
+msgstr ""
+
+msgid ""
+"Some SQL statements are illustrated in the :ref:`SQL tutorial "
+"<sql_tutorial>`."
+msgstr ""
+
+msgid "Execute the SQL statement contained in the sql-statement parameter."
+msgstr ""
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "statement, which should conform to the rules for SQL grammar"
+msgstr ""
+
+msgid "optional list for placeholders in the statement"
+msgstr ""
+
+msgid "return"
+msgstr "возвращает"
+
+#, fuzzy
+msgid "depends on statement"
+msgstr "Исполнение оператора"
+
+msgid "There are two ways to pass extra parameters for ``box.execute()``:"
+msgstr ""
+
+msgid ""
+"The first way is to concatenate strings. For example, this Lua script will "
+"insert 10 rows with different primary-key values into table t:"
+msgstr ""
+
+msgid ""
+"for i=1,10,1 do\n"
+"  box.execute(\"insert into t values (\" .. i .. \")\")\n"
+"end"
+msgstr ""
+
+msgid ""
+"The second way is to put one or more placeholder \"?\" tokens inside the "
+"string, and pass a second argument, which must be a table containing values "
+"for each placeholder. For example these two requests are equivalent:"
+msgstr ""
+
+msgid ""
+"box.execute([[INSERT INTO tt VALUES (1,'x');]]);\n"
+"x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?,?);]], x);"
+msgstr ""
+
+msgid ""
+"Since ``box.execute()`` is an invocation of a Lua function, it either causes "
+"an error message or returns a value."
+msgstr ""
+
+msgid ""
+"For some statements the returned value will contain a field named rowcount. "
+"For example;"
+msgstr ""
+
+msgid ""
+"tarantool> box.execute([[INSERT INTO tt VALUES (8,8),(9,9);]])\n"
+"tarantool> box.execute([[CREATE TABLE table1 (column1 INT PRIMARY key, "
+"column2 VARCHAR(10));]])\n"
+"---\n"
+"- rowcount: 1\n"
+"...\n"
+"tarantool> box.execute([[INSERT INTO table1 VALUES (55,'Hello SQL "
+"world!');]])\n"
+"---\n"
+"- rowcount: 1\n"
+"..."
+msgstr ""
+
+msgid ""
+"For statements that cause generation of values for PRIMARY KEY AUTOINCREMENT "
+"columns, there will also be a field named \"autoincrement_ids\"."
+msgstr ""
+
+msgid ""
+"For SELECT statements the returned value will contain a field named metadata "
+"(a table with column names and data types) and a field named \"rows\" (a "
+"table with the result set). For example:"
+msgstr ""
+
+msgid ""
+"tarantool> box.execute([[SELECT * FROM table1 WHERE column1 > 0;]])\n"
+"---\n"
+"- metadata:\n"
+"  - name: COLUMN1\n"
+"    type: integer\n"
+"  - name: COLUMN2\n"
+"    type: string\n"
+"  rows:\n"
+"  - [55, 'Hello SQL world!']\n"
+"..."
+msgstr ""
+
+msgid ""
+"The result structure contains Tarantool/NoSQL data type names in MsgPack "
+"format. For example, for a statement SELECT \"x\" FROM t WHERE \"x\"=5; "
+"where \"x\" is an integer column and there is one row, the raw data for the "
+"result set will look like this:"
+msgstr ""
+
+msgid ""
+"dd 00 00 00 01                  1-element array\n"
+"82                              2-element map (for metadata + rows)\n"
+"a8 6d 65 74 61 64 61 74 61      string = \"metadata\"\n"
+"91                              1-element array (for column count)\n"
+"82                              2-element map (for name + type)\n"
+"a4 6e 61 6d 65                  string = \"name\"\n"
+"a1 78                           string = \"x\"\n"
+"a4 74 79 70 6                   string = \"type\"\n"
+"a7 69 6e 74 65 67 65 72         string = \"integer\"\n"
+"a4 72 6f 77 73                  string = \"rows\"\n"
+"91                              1-element array (for row count)\n"
+"91                              1-element array (for field count)\n"
+"05                              contents"
+msgstr ""
+
+msgid "The order of components within a map is not guaranteed."
+msgstr ""
+
+msgid ""
+"Alternative: if you are using the Tarantool server as a client, you can "
+"switch languages thus:"
+msgstr ""
+
+msgid ""
+"\\set language sql\n"
+"\\set delimiter ;"
+msgstr ""
+
+msgid ""
+"Afterwards, you can enter any SQL statement directly without needing ``box."
+"execute()``."
+msgstr ""
+
+msgid ""
+"There is also an ``execute()`` function available via :ref:`module net.box "
+"<net_box-module>`, for example after ``conn = net_box.connect(url-string)`` "
+"one can say ``conn:execute(sql-statement])``."
+msgstr ""

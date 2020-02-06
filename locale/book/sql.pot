@@ -1,0 +1,1539 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "SQL"
+msgstr ""
+
+msgid "In this section we will go through SQL:2016's \"Feature taxonomy and definition for mandatory features\"."
+msgstr ""
+
+msgid "For each feature in that list, we will come up with a simple example SQL statement. If Tarantool appears to handle the example, we will mark it \"Okay\", else we will mark it \"Fail\". Since this is rough and arbitrary, we believe that tests which are unfairly marked \"Okay\" will probably be balanced by tests which are unfairly marked \"Fail\"."
+msgstr ""
+
+msgid "Feature ID"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "E011"
+msgstr ""
+
+msgid "Numeric data types"
+msgstr ""
+
+msgid "E011-01"
+msgstr ""
+
+msgid "INTEGER and SMALLINT"
+msgstr ""
+
+msgid "``create table t (s1 int primary key);``"
+msgstr ""
+
+msgid "Okay."
+msgstr ""
+
+msgid "E011-02"
+msgstr ""
+
+msgid "REAL, DOUBLE PRECISION, and FLOAT data types"
+msgstr ""
+
+msgid "``create table tr (s1 float primary key);``"
+msgstr ""
+
+msgid "**Note:** Floating point SQL types are not planned to be compatible between 2.1 and 2.2 releases. The reason is that in 2.1 we set 'number' format for columns of these types, but will restrict it to 'float32' and 'float64' in 2.2. The format change requires data migration and cannot be done automatically, because in 2.1 we have no information to distinguish 'number' columns (created from Lua) from FLOAT/DOUBLE/REAL ones (created from SQL)."
+msgstr ""
+
+msgid "E011-03"
+msgstr ""
+
+msgid "DECIMAL and NUMERIC data types"
+msgstr ""
+
+msgid "``create table td (s1 numeric primary key);``"
+msgstr ""
+
+msgid "Fail, DECIMAL and NUMERIC data types are not supported and a number containing post-decimal digits will be treated as approximate numeric."
+msgstr ""
+
+msgid "E011-04"
+msgstr ""
+
+msgid "Arithmetic operators"
+msgstr ""
+
+msgid "``select 10+1,9-2,8*3,7/2 from t;``"
+msgstr ""
+
+msgid "E011-05"
+msgstr ""
+
+msgid "Numeric comparisons"
+msgstr ""
+
+msgid "``select * from t where 1 < 2;``"
+msgstr ""
+
+msgid "E011-06"
+msgstr ""
+
+msgid "Implicit casting among the numeric data types"
+msgstr ""
+
+msgid "``select * from t where s1 = 1.00;``"
+msgstr ""
+
+msgid "Okay, but only because Tarantool doesn't distinguish between numeric data types."
+msgstr ""
+
+msgid "E021"
+msgstr ""
+
+msgid "Character string types"
+msgstr ""
+
+msgid "E021-01"
+msgstr ""
+
+msgid "Character data type (including all its spellings)"
+msgstr ""
+
+msgid "``create table t44 (s1 char primary key);``"
+msgstr ""
+
+msgid "Fail, CHAR is not supported. This type of Fail will only be counted once."
+msgstr ""
+
+msgid "E021-02"
+msgstr ""
+
+msgid "CHARACTER VARYING data type (including all its spellings)"
+msgstr ""
+
+msgid "``create table t45 (s1 varchar primary key);``"
+msgstr ""
+
+msgid "Fail, only the spelling VARCHAR is allowed."
+msgstr ""
+
+msgid "**Note:** VARCHAR(N) does not check the string length."
+msgstr ""
+
+msgid "E021-03"
+msgstr ""
+
+msgid "Character literals"
+msgstr ""
+
+msgid "``insert into t45 values ('');``"
+msgstr ""
+
+msgid "Okay, and the bad practice of accepting \"\"'s for character literals is avoided."
+msgstr ""
+
+msgid "E021-04"
+msgstr ""
+
+msgid ":ref:`CHARACTER_LENGTH <sql_function_length>` function"
+msgstr ""
+
+msgid "``select character_length(s1) from t;``"
+msgstr ""
+
+msgid "Fail. There is no such function. There is a function LENGTH(), which is okay."
+msgstr ""
+
+msgid "E021-05"
+msgstr ""
+
+msgid "OCTET_LENGTH"
+msgstr ""
+
+msgid "``select octet_length(s1) from t;``"
+msgstr ""
+
+msgid "Fail. There is no such function."
+msgstr ""
+
+msgid "E021-06"
+msgstr ""
+
+msgid "SUBSTRING function."
+msgstr ""
+
+msgid "``select substring(s1 from 1 for 1) from t;``"
+msgstr ""
+
+msgid "Fail. There is no such function. There is a function SUBSTR(x,n,n) which is okay."
+msgstr ""
+
+msgid "E021-07"
+msgstr ""
+
+msgid "Character concatenation"
+msgstr ""
+
+msgid "``select 'a' || 'b' from t;``"
+msgstr ""
+
+msgid "E021-08"
+msgstr ""
+
+msgid ":ref:`UPPER <sql_function_upper>` and :ref:`LOWER <sql_function_lower>` functions"
+msgstr ""
+
+msgid "``select upper('a'),lower('B') from t;``"
+msgstr ""
+
+msgid "Okay. SUBSTR(x,n,n) which is okay."
+msgstr ""
+
+msgid "E021-09"
+msgstr ""
+
+msgid "TRIM function"
+msgstr ""
+
+msgid "``select trim('a ') from t;``"
+msgstr ""
+
+msgid "E021-10"
+msgstr ""
+
+msgid "Implicit casting among the fixed-length and variable-length character string types"
+msgstr ""
+
+msgid "``select * from tm where char_column > varchar_column;``"
+msgstr ""
+
+msgid "Fail, there is no fixed-length character string type."
+msgstr ""
+
+msgid "E021-11"
+msgstr ""
+
+msgid "POSITION function"
+msgstr ""
+
+msgid "``select position(x in y) from z;``"
+msgstr ""
+
+msgid "Fail. Tarantool's function uses ',' rather than 'in'"
+msgstr ""
+
+msgid "E021-12"
+msgstr ""
+
+msgid "Character comparison"
+msgstr ""
+
+msgid "``select * from t where s1 > 'a';``"
+msgstr ""
+
+msgid "Okay. We should note here that comparisons use a binary collation by default, but it is easy to specify unicode or unicode_ci collations, or create new collations."
+msgstr ""
+
+msgid "E031"
+msgstr ""
+
+msgid "Identifiers"
+msgstr ""
+
+msgid "``create table rank (ceil int primary key);``"
+msgstr ""
+
+msgid "Fail. Tarantool's list of reserved words differs from the standard's list of reserved words."
+msgstr ""
+
+msgid "E031-01"
+msgstr ""
+
+msgid "Delimited Identifiers"
+msgstr ""
+
+msgid "``create table \"t47\" (s1 int primary key);``"
+msgstr ""
+
+msgid "Okay. And enclosing identifiers inside double quotes means they won't be converted to upper case or lower case, this is behavior that some other DBMSs sadly lack."
+msgstr ""
+
+msgid "E031-02"
+msgstr ""
+
+msgid "Lower case identifiers"
+msgstr ""
+
+msgid "``create table t48 (s1 int primary key);``"
+msgstr ""
+
+msgid "E031-03"
+msgstr ""
+
+msgid "Trailing underscore"
+msgstr ""
+
+msgid "``create table t49_ (s1 int primary key);``"
+msgstr ""
+
+msgid "E051"
+msgstr ""
+
+msgid "Basic query specification"
+msgstr ""
+
+msgid "E051-01"
+msgstr ""
+
+msgid "SELECT DISTINCT"
+msgstr ""
+
+msgid "``select distinct s1 from t;``"
+msgstr ""
+
+msgid "E051-02"
+msgstr ""
+
+msgid ":ref:`GROUP BY <sql_group_by>` clause"
+msgstr ""
+
+msgid "``select distinct s1 from t group by s1;``"
+msgstr ""
+
+msgid "E051-04"
+msgstr ""
+
+msgid "GROUP BY can contain columns not in select list"
+msgstr ""
+
+msgid "``select s1 from t group by lower(s1);``"
+msgstr ""
+
+msgid "E051-05"
+msgstr ""
+
+msgid "Select list items can be renamed"
+msgstr ""
+
+msgid "``select s1 as K from t order by K;``"
+msgstr ""
+
+msgid "E051-06"
+msgstr ""
+
+msgid ":ref:`HAVING <sql_having>` clause"
+msgstr ""
+
+msgid "``select count(*) from t having count(*) > 0;``"
+msgstr ""
+
+msgid "Okay. GROUP BY is not mandatory before HAVING."
+msgstr ""
+
+msgid "E051-07"
+msgstr ""
+
+msgid "Qualified * in select list"
+msgstr ""
+
+msgid "``select t.* from t;``"
+msgstr ""
+
+msgid "E051-08"
+msgstr ""
+
+msgid "Correlation names in the FROM clause"
+msgstr ""
+
+msgid "``select * from t as K;``"
+msgstr ""
+
+msgid "E051-09"
+msgstr ""
+
+msgid "Rename columns in the FROM clause"
+msgstr ""
+
+msgid "``select * from t as x(q,c);``"
+msgstr ""
+
+msgid "Fail."
+msgstr ""
+
+msgid "E061"
+msgstr ""
+
+msgid "Basic predicates and search conditions"
+msgstr ""
+
+msgid "E061-01"
+msgstr ""
+
+msgid "Comparison predicate"
+msgstr ""
+
+msgid "``select * from t where 0 = 0;``"
+msgstr ""
+
+msgid "E061-02"
+msgstr ""
+
+msgid "BETWEEN predicate"
+msgstr ""
+
+msgid "``select * from t where ' ' between '' and ' ';``"
+msgstr ""
+
+msgid "E061-03"
+msgstr ""
+
+msgid "IN predicate with list of values"
+msgstr ""
+
+msgid "``select * from t where s1 in ('a',upper('a'));``"
+msgstr ""
+
+msgid "E061-04"
+msgstr ""
+
+msgid "LIKE predicate"
+msgstr ""
+
+msgid "``select * from t where s1 like '_';``"
+msgstr ""
+
+msgid "E061-05"
+msgstr ""
+
+msgid "LIKE predicate: ESCAPE clause"
+msgstr ""
+
+msgid "``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``"
+msgstr ""
+
+msgid "E061-06"
+msgstr ""
+
+msgid "NULL predicate"
+msgstr ""
+
+msgid "``select * from t where s1 is not null;``"
+msgstr ""
+
+msgid "E061-07"
+msgstr ""
+
+msgid "Quantified comparison predicate"
+msgstr ""
+
+msgid "``select * from t where s1 = any (select s1 from t);``"
+msgstr ""
+
+msgid "Fail. Syntax error."
+msgstr ""
+
+msgid "E061-08"
+msgstr ""
+
+msgid "EXISTS predicate"
+msgstr ""
+
+msgid "``select * from t where not exists (select * from t);``"
+msgstr ""
+
+msgid "E061-09"
+msgstr ""
+
+msgid "Subqueries in comparison predicate"
+msgstr ""
+
+msgid "``select * from t where s1 > (select s1 from t);``"
+msgstr ""
+
+msgid "E061-11"
+msgstr ""
+
+msgid "Subqueries in IN predicate"
+msgstr ""
+
+msgid "``select * from t where s1 in (select s1 from t);``"
+msgstr ""
+
+msgid "E061-12"
+msgstr ""
+
+msgid "Subqueries in quantified comparison predicate"
+msgstr ""
+
+msgid "``select * from t where s1 >= all (select s1 from t);``"
+msgstr ""
+
+msgid "E061-13"
+msgstr ""
+
+msgid "Correlated subqueries"
+msgstr ""
+
+msgid "``select * from t where s1 = (select s1 from t2 where t2.s2 = t.s1);``"
+msgstr ""
+
+msgid "E061-14"
+msgstr ""
+
+msgid "Search condition"
+msgstr ""
+
+msgid "``select * from t where 0 <> 0 or 'a' < 'b' and s1 is null;``"
+msgstr ""
+
+msgid "E071"
+msgstr ""
+
+msgid "Basic query expressions"
+msgstr ""
+
+msgid "E071-01"
+msgstr ""
+
+msgid "UNION DISTINCT table operator"
+msgstr ""
+
+msgid "``select * from t union distinct select * from t;``"
+msgstr ""
+
+msgid "Fail. However, \"select * from t union select * from t;\" is okay."
+msgstr ""
+
+msgid "E071-02"
+msgstr ""
+
+msgid "UNION ALL table operator"
+msgstr ""
+
+msgid "``select * from t union all select * from t;``"
+msgstr ""
+
+msgid "E071-03"
+msgstr ""
+
+msgid "EXCEPT DISTINCT table operator"
+msgstr ""
+
+msgid "``select * from t except distinct select * from t;``"
+msgstr ""
+
+msgid "Fail. However, ``select * from t except select * from t;`` is okay."
+msgstr ""
+
+msgid "E071-05"
+msgstr ""
+
+msgid "Columns combined via table operators need not have exactly the same data type."
+msgstr ""
+
+msgid "``select s1 from t union select 5 from t;``"
+msgstr ""
+
+msgid "Okay, but only because Tarantool doesn't distinguish data types very well."
+msgstr ""
+
+msgid "E071-06"
+msgstr ""
+
+msgid "Table operators in subqueries"
+msgstr ""
+
+msgid "``select * from t where 'a' in (select * from t union select * from t);``"
+msgstr ""
+
+msgid "E081"
+msgstr ""
+
+msgid "Basic privileges"
+msgstr ""
+
+msgid "E081-01"
+msgstr ""
+
+msgid "Select privilege at the table level"
+msgstr ""
+
+msgid "Fail. Syntax error. (Tarantool doesn't support privileges.)"
+msgstr ""
+
+msgid "E081-02"
+msgstr ""
+
+msgid "DELETE privilege"
+msgstr ""
+
+msgid "Fail. (Tarantool doesn't support privileges.)"
+msgstr ""
+
+msgid "E081-03"
+msgstr ""
+
+msgid "INSERT privilege at the table level"
+msgstr ""
+
+msgid "E081-04"
+msgstr ""
+
+msgid "UPDATE privilege at the table level"
+msgstr ""
+
+msgid "E081-05"
+msgstr ""
+
+msgid "UPDATE privilege at column level"
+msgstr ""
+
+msgid "E081-06"
+msgstr ""
+
+msgid "REFERENCES privilege at the table level"
+msgstr ""
+
+msgid "E081-07"
+msgstr ""
+
+msgid "REFERENCES privilege at column level"
+msgstr ""
+
+msgid "E081-08"
+msgstr ""
+
+msgid "WITH GRANT OPTION"
+msgstr ""
+
+msgid "E081-09"
+msgstr ""
+
+msgid "USAGE privilege"
+msgstr ""
+
+msgid "E081-10"
+msgstr ""
+
+msgid "EXECUTE privilege"
+msgstr ""
+
+msgid "E091"
+msgstr ""
+
+msgid "Set functions"
+msgstr ""
+
+msgid "E091-01"
+msgstr ""
+
+msgid ":ref:`AVG <sql_aggregate_avg>`"
+msgstr ""
+
+msgid "``select avg(s1) from t7;``"
+msgstr ""
+
+msgid "Fail. No warning that nulls were eliminated."
+msgstr ""
+
+msgid "E091-02"
+msgstr ""
+
+msgid ":ref:`COUNT <sql_aggregate_count_row>`"
+msgstr ""
+
+msgid "``select count(*) from t7 where s1 > 0;``"
+msgstr ""
+
+msgid "E091-03"
+msgstr ""
+
+msgid ":ref:`MAX <sql_aggregate_max>`"
+msgstr ""
+
+msgid "``select max(s1) from t7 where s1 > 0;``"
+msgstr ""
+
+msgid "E091-04"
+msgstr ""
+
+msgid ":ref:`MIN <sql_aggregate_min>`"
+msgstr ""
+
+msgid "``select min(s1) from t7 where s1 > 0;``"
+msgstr ""
+
+msgid "E091-05"
+msgstr ""
+
+msgid ":ref:`SUM <sql_aggregate_sum>`"
+msgstr ""
+
+msgid "``select sum(1) from t7 where s1 > 0;``"
+msgstr ""
+
+msgid "E091-06"
+msgstr ""
+
+msgid "ALL quantifier"
+msgstr ""
+
+msgid "``select sum(all s1) from t7 where s1 > 0;``"
+msgstr ""
+
+msgid "E091-07"
+msgstr ""
+
+msgid "DISTINCT quantifier"
+msgstr ""
+
+msgid "``select sum(distinct s1) from t7 where s1 > 0;``"
+msgstr ""
+
+msgid "E101"
+msgstr ""
+
+msgid "Basic data manipulation"
+msgstr ""
+
+msgid "E101-01"
+msgstr ""
+
+msgid "INSERT statement"
+msgstr ""
+
+msgid "``insert into t (s1,s2) values (1,''),(2,null),(3,55);``"
+msgstr ""
+
+msgid "E101-03"
+msgstr ""
+
+msgid "Searched UPDATE statement"
+msgstr ""
+
+msgid "``update t set s1 = null where s1 in (select s1 from t2);``"
+msgstr ""
+
+msgid "E101-04"
+msgstr ""
+
+msgid "Searched DELETE statement"
+msgstr ""
+
+msgid "``delete from t where s1 in (select s1 from t);``"
+msgstr ""
+
+msgid "E111"
+msgstr ""
+
+msgid "Single row SELECT statement"
+msgstr ""
+
+msgid "``select count(*) from t;``"
+msgstr ""
+
+msgid "E121"
+msgstr ""
+
+msgid "Basic cursor support"
+msgstr ""
+
+msgid "E121-01"
+msgstr ""
+
+msgid "DECLARE CURSOR"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support cursors."
+msgstr ""
+
+msgid "E121-02"
+msgstr ""
+
+msgid "ORDER BY columns need not be in select list"
+msgstr ""
+
+msgid "``select s1 from t order by s2;``"
+msgstr ""
+
+msgid "E121-03"
+msgstr ""
+
+msgid "Value expressions in select list"
+msgstr ""
+
+msgid "``select s1 from t7 order by -s1;``"
+msgstr ""
+
+msgid "E121-04"
+msgstr ""
+
+msgid "OPEN statement"
+msgstr ""
+
+msgid "E121-06"
+msgstr ""
+
+msgid "Positioned UPDATE statement"
+msgstr ""
+
+msgid "E121-07"
+msgstr ""
+
+msgid "Positioned DELETE statement"
+msgstr ""
+
+msgid "E121-08"
+msgstr ""
+
+msgid "CLOSE statement"
+msgstr ""
+
+msgid "E121-10"
+msgstr ""
+
+msgid "FETCH statement implicit next"
+msgstr ""
+
+msgid "E121-17"
+msgstr ""
+
+msgid "WITH HOLD cursors"
+msgstr ""
+
+msgid "E131"
+msgstr ""
+
+msgid "Null value support (nulls in lieu of values)"
+msgstr ""
+
+msgid "``select s1 from t7 where s1 is null;``"
+msgstr ""
+
+msgid "E141"
+msgstr ""
+
+msgid "Basic integrity constraints"
+msgstr ""
+
+msgid "E141-01"
+msgstr ""
+
+msgid "NOT NULL constraints"
+msgstr ""
+
+msgid "``create table t8 (s1 int primary key, s2 int not null);``"
+msgstr ""
+
+msgid "E141-02"
+msgstr ""
+
+msgid "UNIQUE constraints of NOT NULL columns"
+msgstr ""
+
+msgid "``create table t9 (s1 int primary key , s2 int not null unique);``"
+msgstr ""
+
+msgid "E141-03"
+msgstr ""
+
+msgid "PRIMARY KEY constraints"
+msgstr ""
+
+msgid "``create table t10 (s1 int primary key);``"
+msgstr ""
+
+msgid "Okay, although Tarantool shouldn't always insist on having a primary key."
+msgstr ""
+
+msgid "E141-04"
+msgstr ""
+
+msgid "Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action."
+msgstr ""
+
+msgid "``create table t11 (s0 int primary key, s1 int references t10);``"
+msgstr ""
+
+msgid "E141-06"
+msgstr ""
+
+msgid "CHECK constraints"
+msgstr ""
+
+msgid "``create table t12 (s1 int primary key, s2 int, check (s1 = s2));``"
+msgstr ""
+
+msgid "E141-07"
+msgstr ""
+
+msgid "Column defaults"
+msgstr ""
+
+msgid "``create table t13 (s1 int primary key, s2 int default -1);``"
+msgstr ""
+
+msgid "E141-08"
+msgstr ""
+
+msgid "NOT NULL inferred on primary key"
+msgstr ""
+
+msgid "``create table t14 (s1 int primary key);``"
+msgstr ""
+
+msgid "Okay. We are unable to insert NULL although we don't explicitly say the column is NOT NULL."
+msgstr ""
+
+msgid "E141-10"
+msgstr ""
+
+msgid "Names in a foreign key can be specified in any order"
+msgstr ""
+
+msgid "``create table t15 (s1 int, s2 int, primary key (s1,s2));`` ``create table t16 (s1 int primary key, s2 int, foreign key (s2,s1) references t15 (s1,s2));``"
+msgstr ""
+
+msgid "E151"
+msgstr ""
+
+msgid "Transaction support"
+msgstr ""
+
+msgid "E151-01"
+msgstr ""
+
+msgid "COMMIT statement"
+msgstr ""
+
+msgid "``commit;``"
+msgstr ""
+
+msgid "Fail. We have to say START TRANSACTION first."
+msgstr ""
+
+msgid "E151-02"
+msgstr ""
+
+msgid "ROLLBACK statement"
+msgstr ""
+
+msgid "``rollback;``"
+msgstr ""
+
+msgid "E152"
+msgstr ""
+
+msgid "Basic SET TRANSACTION statement"
+msgstr ""
+
+msgid "E152-01"
+msgstr ""
+
+msgid "SET TRANSACTION statement ISOLATION SERIALIZABLE clause"
+msgstr ""
+
+msgid "``set transaction isolation level serializable;``"
+msgstr ""
+
+msgid "E152-02"
+msgstr ""
+
+msgid "SET TRANSACTION statement READ ONLY and READ WRITE clauses"
+msgstr ""
+
+msgid "``set transaction read only;``"
+msgstr ""
+
+msgid "E153"
+msgstr ""
+
+msgid "Updatable queries with subqueries"
+msgstr ""
+
+msgid "E161"
+msgstr ""
+
+msgid "SQL comments using leading double minus"
+msgstr ""
+
+msgid "``--comment;``"
+msgstr ""
+
+msgid "E171"
+msgstr ""
+
+msgid "SQLSTATE support"
+msgstr ""
+
+msgid "``drop table no_such_table;``"
+msgstr ""
+
+msgid "Fail. At least, the error message doesn't hint that SQLSTATE exists."
+msgstr ""
+
+msgid "E182"
+msgstr ""
+
+msgid "Host language binding"
+msgstr ""
+
+msgid "Okay. Any of the Tarantool connectors should be able to call ``box.execute()``."
+msgstr ""
+
+msgid "F031"
+msgstr ""
+
+msgid "Basic schema manipulation"
+msgstr ""
+
+msgid "F031-01"
+msgstr ""
+
+msgid "CREATE TABLE statement to create persistent base tables"
+msgstr ""
+
+msgid "``create table t20 (t20_1 int not null);``"
+msgstr ""
+
+msgid "Fail. We always have to say PRIMARY KEY (we only count this flaw once)."
+msgstr ""
+
+msgid "F031-02"
+msgstr ""
+
+msgid "CREATE VIEW statement"
+msgstr ""
+
+msgid "``create view t21 as select * from t20;``"
+msgstr ""
+
+msgid "F031-03"
+msgstr ""
+
+msgid "GRANT statement"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support privileges except via NoSQL."
+msgstr ""
+
+msgid "F031-04"
+msgstr ""
+
+msgid "ALTER TABLE statement: add column"
+msgstr ""
+
+msgid "``alter table t7 add column t7_2 varchar default 'q';``"
+msgstr ""
+
+msgid "Fail. Table alterations work but not this clause."
+msgstr ""
+
+msgid "F031-13"
+msgstr ""
+
+msgid "DROP TABLE statement: RESTRICT clause"
+msgstr ""
+
+msgid "``drop table t20 restrict;``"
+msgstr ""
+
+msgid "Fail. Syntax error, and RESTRICT is not assumed."
+msgstr ""
+
+msgid "F031-16"
+msgstr ""
+
+msgid "DROP VIEW statement: RESTRICT clause"
+msgstr ""
+
+msgid "``drop view v2 restrict;``"
+msgstr ""
+
+msgid "F031-19"
+msgstr ""
+
+msgid "REVOKE statement: RESTRICT clause"
+msgstr ""
+
+msgid "Fail. Tarantool does not support privileges except via NoSQL."
+msgstr ""
+
+msgid "F041"
+msgstr ""
+
+msgid "Basic joined table"
+msgstr ""
+
+msgid "F041-01"
+msgstr ""
+
+msgid "Inner join but not necessarily the INNER keyword"
+msgstr ""
+
+msgid "``select a.s1 from t7 a join t7 b;``"
+msgstr ""
+
+msgid "F041-02"
+msgstr ""
+
+msgid "INNER keyword"
+msgstr ""
+
+msgid "``select a.s1 from t7 a inner join t7 b;``"
+msgstr ""
+
+msgid "F041-03"
+msgstr ""
+
+msgid "LEFT OUTER JOIN"
+msgstr ""
+
+msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1);``"
+msgstr ""
+
+msgid "F041-04"
+msgstr ""
+
+msgid "RIGHT OUTER JOIN"
+msgstr ""
+
+msgid "``select t7.*,t22.* from t22 right outer join t7 on (t22_1=s1);``"
+msgstr ""
+
+msgid "F041-05"
+msgstr ""
+
+msgid "Outer joins can be nested"
+msgstr ""
+
+msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1) left outer join t23;``."
+msgstr ""
+
+msgid "F041-07"
+msgstr ""
+
+msgid "The inner table in a left or right outer join can also be used in an inner join"
+msgstr ""
+
+msgid "``select t7.* from t22 left outer join t7 on (t22_1=s1) inner join t22 on (t22_4=t22_5);``"
+msgstr ""
+
+msgid "Okay. The query fails due to a syntax error but that's expectable."
+msgstr ""
+
+msgid "F041-08"
+msgstr ""
+
+msgid "All comparison operators are supported"
+msgstr ""
+
+msgid "``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``"
+msgstr ""
+
+msgid "F051 Basic date and time"
+msgstr ""
+
+msgid "F051-01"
+msgstr ""
+
+msgid "DATE data type (including support of DATE literal)"
+msgstr ""
+
+msgid "``create table dates (s1 date);``"
+msgstr ""
+
+msgid "Fail. Tarantool does not support DATE data type."
+msgstr ""
+
+msgid "F051-02"
+msgstr ""
+
+msgid "TIME data type (including support of TIME literal)"
+msgstr ""
+
+msgid "``create table times (s1 time default time '1:2:3');``"
+msgstr ""
+
+msgid "F051-03"
+msgstr ""
+
+msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
+msgstr ""
+
+msgid "``create table timestamps (s1 timestamp);``"
+msgstr ""
+
+msgid "F051-04"
+msgstr ""
+
+msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
+msgstr ""
+
+msgid "``select * from dates where s1 = s1;``"
+msgstr ""
+
+msgid "Fail. The data types are not supported."
+msgstr ""
+
+msgid "F051-05"
+msgstr ""
+
+msgid "Explicit CAST between date-time types and character string types"
+msgstr ""
+
+msgid "``select cast(s1 as varchar(10)) from dates;``"
+msgstr ""
+
+msgid "F051-06"
+msgstr ""
+
+msgid "CURRENT_DATE"
+msgstr ""
+
+msgid "``select current_date from t;``"
+msgstr ""
+
+msgid "F051-07"
+msgstr ""
+
+msgid "CURRENT_TIME"
+msgstr ""
+
+msgid "``select * from t where current_time < '23:23:23';``"
+msgstr ""
+
+msgid "F051-08"
+msgstr ""
+
+msgid "LOCALTIME"
+msgstr ""
+
+msgid "``select localtime from t;``"
+msgstr ""
+
+msgid "F051-09"
+msgstr ""
+
+msgid "LOCALTIMESTAMP"
+msgstr ""
+
+msgid "``select localtimestamp from t;``"
+msgstr ""
+
+msgid "F081"
+msgstr ""
+
+msgid "UNION and EXCEPT in views"
+msgstr ""
+
+msgid "``create view vv as select * from t7 except select * from t15;``"
+msgstr ""
+
+msgid "F131"
+msgstr ""
+
+msgid "Grouped operations"
+msgstr ""
+
+msgid "F131-01"
+msgstr ""
+
+msgid "WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
+msgstr ""
+
+msgid "``create view vv2 as select * from vv group by s1;``"
+msgstr ""
+
+msgid "F131-02"
+msgstr ""
+
+msgid "Multiple tables supported in queries with grouped views"
+msgstr ""
+
+msgid "``create view vv3 as select * from vv2,t30;``"
+msgstr ""
+
+msgid "F131-03"
+msgstr ""
+
+msgid "Set functions supported in queries with grouped views"
+msgstr ""
+
+msgid "``create view vv4 as select count(*) from vv2;``"
+msgstr ""
+
+msgid "F131-04"
+msgstr ""
+
+msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+
+msgid "``create view vv5 as select count(*) from vv2 group by s1 having count(*) > 0;``"
+msgstr ""
+
+msgid "F181"
+msgstr ""
+
+msgid "Multiple module support"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't have modules."
+msgstr ""
+
+msgid "F201"
+msgstr ""
+
+msgid "CAST function"
+msgstr ""
+
+msgid "``select cast(s1 as int) from t;``"
+msgstr ""
+
+msgid "F221"
+msgstr ""
+
+msgid "Explicit defaults"
+msgstr ""
+
+msgid "``update t set s1 = default;``"
+msgstr ""
+
+msgid "F261"
+msgstr ""
+
+msgid "CASE expression"
+msgstr ""
+
+msgid "F261-01"
+msgstr ""
+
+msgid "Simple CASE"
+msgstr ""
+
+msgid "``select case when 1 = 0 then 5 else 7 end from t;``"
+msgstr ""
+
+msgid "F261-02"
+msgstr ""
+
+msgid "Searched CASE"
+msgstr ""
+
+msgid "``select case 1 when 0 then 5 else 7 end from t;``"
+msgstr ""
+
+msgid "F261-03"
+msgstr ""
+
+msgid "NULLIF"
+msgstr ""
+
+msgid "``select nullif(s1,7) from t;``"
+msgstr ""
+
+msgid "F261-04"
+msgstr ""
+
+msgid "COALESCE"
+msgstr ""
+
+msgid "``select coalesce(s1,7) from t;``"
+msgstr ""
+
+msgid "F311"
+msgstr ""
+
+msgid "Schema definition statement"
+msgstr ""
+
+msgid "F311-01"
+msgstr ""
+
+msgid "CREATE SCHEMA"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't have schemas or databases."
+msgstr ""
+
+msgid "F311-02"
+msgstr ""
+
+msgid "CREATE TABLE for persistent base tables"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA."
+msgstr ""
+
+msgid "F311-03"
+msgstr ""
+
+msgid "CREATE VIEW"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA."
+msgstr ""
+
+msgid "F311-04"
+msgstr ""
+
+msgid "CREATE VIEW: WITH CHECK OPTION"
+msgstr ""
+
+msgid "F311-05"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA."
+msgstr ""
+
+msgid "F471"
+msgstr ""
+
+msgid "Scalar subquery values"
+msgstr ""
+
+msgid "``select s1 from t where s1 = (select count(*) from t);``"
+msgstr ""
+
+msgid "F481"
+msgstr ""
+
+msgid "Expanded NULL Predicate"
+msgstr ""
+
+msgid "``select * from t where row(s1,s1) is not null;``"
+msgstr ""
+
+msgid "F812"
+msgstr ""
+
+msgid "Basic flagging"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support any flagging."
+msgstr ""
+
+msgid "S011"
+msgstr ""
+
+msgid "Distinct types"
+msgstr ""
+
+msgid "``create type x as float;``"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support distinct types."
+msgstr ""
+
+msgid "T321"
+msgstr ""
+
+msgid "Basic SQL-invoked routines"
+msgstr ""
+
+msgid "T321-01"
+msgstr ""
+
+msgid "User-defined functions with no overloading"
+msgstr ""
+
+msgid "``create function f () returns int return 5;``"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support user-defined SQL functions."
+msgstr ""
+
+msgid "T321-02"
+msgstr ""
+
+msgid "User-defined procedures with no overloading"
+msgstr ""
+
+msgid "``create procedure p () begin end;``"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support user-defined procedures."
+msgstr ""
+
+msgid "T321-03"
+msgstr ""
+
+msgid "Function invocation"
+msgstr ""
+
+msgid "``select f(1) from t;``"
+msgstr ""
+
+msgid "Okay. Tarantool can invoke Lua user-defined functions."
+msgstr ""
+
+msgid "T321-04"
+msgstr ""
+
+msgid "CALL statement."
+msgstr ""
+
+msgid "``call p();``"
+msgstr ""
+
+msgid "T321-05"
+msgstr ""
+
+msgid "RETURN statement."
+msgstr ""
+
+msgid "``create function f() returns int return 5;``"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support user-defined functions."
+msgstr ""
+
+msgid "T631"
+msgstr ""
+
+msgid "IN predicate with one list element"
+msgstr ""
+
+msgid "``select * from t where 1 in (1);``"
+msgstr ""
+
+msgid "F021"
+msgstr ""
+
+msgid "Basic information schema"
+msgstr ""
+
+msgid "``select * from information_schema.tables;``"
+msgstr ""
+
+msgid "Fail. There is no schema with that name (not counted in the final score)."
+msgstr ""
+
+msgid "Total number of items marked \"Fail\": 69"
+msgstr ""
+
+msgid "Total number of items marked \"Okay\": 77"
+msgstr ""
+
