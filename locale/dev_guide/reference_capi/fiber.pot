@@ -1,0 +1,231 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 15:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Module `fiber`"
+msgstr ""
+
+msgid "Fiber - contains information about a :ref:`fiber <atomic-threads_fibers_yields>`."
+msgstr ""
+
+msgid "Function to run inside a fiber."
+msgstr ""
+
+msgid "Create a new fiber."
+msgstr ""
+
+msgid "Takes a fiber from the fiber cache, if it's not empty. Can fail only if there is not enough memory for the fiber structure or fiber stack."
+msgstr ""
+
+msgid "The created fiber automatically returns itself to the fiber cache when its \"main\" function completes."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "string with fiber name"
+msgstr ""
+
+msgid "func for run inside fiber"
+msgstr ""
+
+msgid "See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`"
+msgstr ""
+
+msgid "Create a new fiber with defined attributes."
+msgstr ""
+
+msgid "Can fail only if there is not enough memory for the fiber structure or fiber stack."
+msgstr ""
+
+msgid "The created fiber automatically returns itself to the fiber cache if has a default stack size when its \"main\" function completes."
+msgstr ""
+
+msgid "fiber attributes container"
+msgstr ""
+
+msgid "function to run inside the fiber"
+msgstr ""
+
+msgid "Start execution of created fiber."
+msgstr ""
+
+msgid "fiber to start"
+msgstr ""
+
+msgid "arguments to start the fiber with"
+msgstr ""
+
+msgid "Return control to another fiber and wait until it'll be woken."
+msgstr ""
+
+msgid "See also: :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`"
+msgstr ""
+
+msgid "Interrupt a synchronous wait of a fiber"
+msgstr ""
+
+msgid "fiber to be woken up"
+msgstr ""
+
+msgid "Cancel the subject fiber (set ``FIBER_IS_CANCELLED`` flag)"
+msgstr ""
+
+msgid "If target fiber's flag ``FIBER_IS_CANCELLABLE`` set, then it would be woken up (maybe prematurely). Then current fiber yields until the target fiber is dead (or is woken up by :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`)."
+msgstr ""
+
+msgid "fiber to be cancelled"
+msgstr ""
+
+msgid "Make it possible or not possible to wakeup the current fiber immediately when it's cancelled."
+msgstr ""
+
+msgid "fiber"
+msgstr ""
+
+msgid "status to set"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "previous state"
+msgstr ""
+
+msgid "Set fiber to be joinable (``false`` by default)."
+msgstr ""
+
+msgid "Wait until the fiber is dead and then move its execution status to the caller. The fiber must not be detached."
+msgstr ""
+
+msgid "Before: ``FIBER_IS_JOINABLE`` flag is set."
+msgstr ""
+
+msgid "See also: :ref:`fiber_set_joinable()<c_api-fiber-fiber_set_joinable>`"
+msgstr ""
+
+msgid "Put the current fiber to sleep for at least 's' seconds."
+msgstr ""
+
+msgid "time to sleep"
+msgstr ""
+
+msgid "Note: this is a cancellation point."
+msgstr ""
+
+msgid "See also: :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>`"
+msgstr ""
+
+msgid "Check current fiber for cancellation (it must be checked manually)."
+msgstr ""
+
+msgid "Report loop begin time as double (cheap)."
+msgstr ""
+
+msgid "Report loop begin time as 64-bit int."
+msgstr ""
+
+msgid "Reschedule fiber to end of event loop cycle."
+msgstr ""
+
+msgid "Return ``slab_cache`` suitable to use with ``tarantool/small`` library"
+msgstr ""
+
+msgid "Return the current fiber."
+msgstr ""
+
+msgid "Create a new fiber attributes container and initialize it with default parameters."
+msgstr ""
+
+msgid "Can be used for creating many fibers: corresponding fibers will not take ownership."
+msgstr ""
+
+msgid "Delete the ``fiber_attr`` and free all allocated resources. This is safe when fibers created with this attribute still exist."
+msgstr ""
+
+msgid "Set the fiber's stack size in the fiber attributes container."
+msgstr ""
+
+msgid "stack size for new fibers (in bytes)"
+msgstr ""
+
+msgid "0 on success"
+msgstr ""
+
+msgid "-1 on failure (if ``stack_size`` is smaller than the minimum allowable fiber stack size)"
+msgstr ""
+
+msgid "Get the fiber's stack size from the fiber attributes container."
+msgstr ""
+
+msgid "fiber attributes container, or NULL for default"
+msgstr ""
+
+msgid "stack size (in bytes)"
+msgstr ""
+
+msgid "A conditional variable: a synchronization primitive that allow fibers in Tarantool's :ref:`cooperative multitasking <atomic-cooperative_multitasking>` environment to yield until some predicate is satisfied."
+msgstr ""
+
+msgid "Fiber conditions have two basic operations -- \"wait\" and \"signal\", -- where \"wait\" suspends the execution of a fiber (i.e. yields) until \"signal\" is called."
+msgstr ""
+
+msgid "Unlike ``pthread_cond``, ``fiber_cond`` doesn't require mutex/latch wrapping."
+msgstr ""
+
+msgid "Create a new conditional variable."
+msgstr ""
+
+msgid "Delete the conditional variable."
+msgstr ""
+
+msgid "Note: behavior is undefined if there are fibers waiting for the conditional variable."
+msgstr ""
+
+msgid "conditional variable to delete"
+msgstr ""
+
+msgid "Wake up **one** (any) of the fibers waiting for the conditional variable."
+msgstr ""
+
+msgid "Does nothing if no one is waiting."
+msgstr ""
+
+msgid "conditional variable"
+msgstr ""
+
+msgid "Wake up **all** fibers waiting for the conditional variable."
+msgstr ""
+
+msgid "Suspend the execution of the current fiber (i.e. yield) until :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` is called."
+msgstr ""
+
+msgid "Like ``pthread_cond``, ``fiber_cond`` can issue spurious wake ups caused by explicit :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>` or :ref:`fiber_cancel()<c_api-fiber-fiber_cancel>` calls. It is highly recommended to wrap calls to this function into a loop and check the actual predicate and :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>` on every iteration."
+msgstr ""
+
+msgid "timeout in seconds"
+msgstr ""
+
+msgid "0 on :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` call or a spurious wake up"
+msgstr ""
+
+msgid "-1 on timeout, and the error code is set to 'TimedOut'"
+msgstr ""
+
+msgid "Shortcut for :ref:`fiber_cond_wait_timeout() <c_api-fiber_cond_wait_timeout>`."
+msgstr ""
+
