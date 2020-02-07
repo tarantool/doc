@@ -178,14 +178,15 @@ Cluster roles
 --------------------------------------------------------------------------------
 
 A Tarantool Cartridge cluster segregates instance functionality in a role-based
-way. **Cluster roles** are Lua modules that implement some instance-specific
-functions and/or logic.
+way. **Cluster roles** are Lua modules that implement some specific
+functions and/or logic to replicaset.
 
-Since all instances running cluster applications use the same source code and
-are aware of all the defined roles (and plugged modules), you can dynamically
-enable and disable multiple different roles on any number of instances
-without restarts, even during cluster operation. Roles are enabled *per replicaset*, 
-so the enabled roles are available to each instance of the replicaset.
+Since all instances running cluster applications use the same source code and are 
+aware of all the defined roles (and plugged modules), you can dynamically enable 
+and disable multiple different roles without restarts, even during cluster operation. 
+Note, that every instance in a replicaset performs the same roles and you cannot 
+enable/disable roles individually on some instances. In other words, configuration 
+of enabled roles is set up *per replicaset*. 
 See :ref:`this guide <cartridge-deployment>` for a step-by-step setup example.
 
 .. _cartridge-built-in-roles:
