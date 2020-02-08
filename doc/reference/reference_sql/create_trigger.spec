@@ -47,10 +47,11 @@ stack (
     ' BEGIN ',
     loop(
       choice(
-        line('update-statement',   ';'),
-        line('insert-statement',   ';'),
         line('delete-statement',   ';'),
-        line('select-statement',   ';')
+        line('insert-statement',   ';'),
+        line('replace-statement',   ';'),
+        line('select-statement',   ';'),
+        line('update-statement',   ';')
       ),
       None
     ),

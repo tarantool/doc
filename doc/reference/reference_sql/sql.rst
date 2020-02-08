@@ -2935,7 +2935,6 @@ Actions:
    an error if any of the rules is violated.
 #. Tarantool finds the set of rows that are to be deleted.
 #. Tarantool executes constraint checks and trigger actions and the actual deletion.
-#. Tarantool deletes the set of matching rows from the table.
 
 .. // append to 3: in the order described by section Order of Execution in Data-Change Statements.
 
@@ -3002,12 +3001,12 @@ Syntax:
 
 :samp:`CREATE TRIGGER [IF NOT EXISTS] {trigger-name}` |br|
 :samp:`BEFORE|AFTER|INSTEAD OF` |br|
-:samp:`INSERT|UPDATE|DELETE ON {table-name}` |br|
+:samp:`DELETE|INSERT|UPDATE ON {table-name}` |br|
 :samp:`FOR EACH ROW` |br|
-:samp:`[WHEN (search-condition)]` |br|
+:samp:`[WHEN search-condition]` |br|
 :samp:`BEGIN` |br|
-:samp:`update-statement | insert-statement | delete-statement | select-statement;` |br|
-:samp:`[update-statement | insert-statement | delete-statement | select-statement; ...]` |br|
+:samp:`delete-statement | insert-statement | replace-statement | select-statement | update-statement;` |br|
+:samp:`[delete-statement | insert-statement | replace-statement | select-statement | update-statement; ...]` |br|
 :samp:`END;`
 
 |br|
@@ -3139,10 +3138,6 @@ Trigger extra clauses
 
 * Deprecated or illegal statements:
 
-  It is legal for the trigger action to include a
-  :ref:`SELECT statement <sql_select>` or a
-  :ref:`REPLACE statement <sql_replace>`, but not recommended.
-
   It is illegal for the trigger action to include a qualified column reference
   other than ``OLD.column-name`` or ``NEW.column-name``. For example,
   ``CREATE TRIGGER ... BEGIN UPDATE table1 SET table1.column1 = 5; END;``
@@ -3183,8 +3178,8 @@ Standard terminology:
 
 * "trigger action time" = BEFORE or AFTER or INSTEAD OF
 * "trigger event" = INSERT or DELETE or UPDATE
-* "triggered statement" = BEGIN ... INSERT|DELETE|UPDATE ... END
-* "triggered when clause" = WHEN (search condition)
+* "triggered statement" = BEGIN ... DELETE|INSERT|REPLACE|SELECT|UPDATE ... END
+* "triggered when clause" = WHEN search-condition
 * "activate" = execute a triggered statement
 * some vendors use the word "fire" instead of "activate"
 
@@ -3196,8 +3191,8 @@ triggered statement. For example, this is legal:
 
 .. code-block:: sql
 
-   CREATE TRIGGER t1_before_delete BEFORE DELETE ON t1 BEGIN DELETE FROM t2; END;
-   CREATE TRIGGER t2_before_delete BEFORE DELETE ON t2 BEGIN DELETE FROM t3; END;
+   CREATE TRIGGER t1_before_delete BEFORE DELETE ON t1 FOR EACH ROW BEGIN DELETE FROM t2; END;
+   CREATE TRIGGER t2_before_delete BEFORE DELETE ON t2 FOR EACH ROW BEGIN DELETE FROM t3; END;
 
 Activation occurs FOR EACH ROW, not FOR EACH STATEMENT. Therefore, if no rows
 are candidates for insert or update or delete, then no triggers are activated.
@@ -3205,7 +3200,7 @@ are candidates for insert or update or delete, then no triggers are activated.
 The BEFORE trigger is activated even if the trigger event fails.
 
 If an UPDATE trigger event does not make a change, the trigger is activated
-anyway. For example, if row 1 ``column1`` contains 'a', and the trigger event
+anyway. For example, if row 1 ``column1`` contains ``'a'``, and the trigger event
 is ``UPDATE ... SET column1 = 'a';``, the trigger is activated.
 
 The triggered statement may refer to a function:
@@ -3248,18 +3243,15 @@ refer to those columns when necessary, as in this example:
    CREATE VIEW viewed_table AS SELECT primary_key_column, value_column FROM base_table;
    CREATE TRIGGER viewed_table_instead_of_insert INSTEAD OF INSERT ON viewed_table FOR EACH ROW
      BEGIN
-       INSERT INTO base_table VALUES (new.primary_key_column, new.value_column);
-     END;
+       INSERT INTO base_table VALUES (new.primary_key_column, new.value_column); END;
    CREATE TRIGGER viewed_table_instead_of_update INSTEAD OF UPDATE ON viewed_table FOR EACH ROW
      BEGIN
        UPDATE base_table
        SET primary_key_column = new.primary_key_column, value_column = new.value_column
-       WHERE primary_key_column = old.primary_key_column;
-     END;
+       WHERE primary_key_column = old.primary_key_column; END;
    CREATE TRIGGER viewed_table_instead_of_delete INSTEAD OF DELETE ON viewed_table FOR EACH ROW
      BEGIN
-       DELETE FROM base_table WHERE primary_key_column = old.primary_key_column;
-     END;
+       DELETE FROM base_table WHERE primary_key_column = old.primary_key_column; END;
 
 When INSERT or UPDATE or DELETE occurs for table ``X``, Tarantool usually
 operates in this order (a basic scheme):
@@ -3270,12 +3262,12 @@ operates in this order (a basic scheme):
      Perform constraint checks
      For each BEFORE trigger that refers to table X
        Check that the trigger's WHEN condition is true.
-       Execute what is in the trigger's BEGIN|END block.
+       Execute what is in the triggered statement.
      Insert or update or delete the row in table X.
      Perform more constraint checks
      For each AFTER trigger that refers to table X
        Check that the trigger's WHEN condition is true.
-       Execute what is in the trigger's BEGIN|END block.
+       Execute what is in the triggered statement.
 
 .. // For details, see "Order of Execution in Data-change statements".
 
@@ -3323,7 +3315,7 @@ Limitations:
 * It is legal to create INSTEAD OF triggers with UPDATE OF *column-list* clauses,
   but they are not standard SQL.
 
-  Example:
+Example:
 
 .. code-block:: sql
 
@@ -3406,7 +3398,8 @@ Actions:
 #. All rows in the table are removed. Usually this is faster than
    :samp:`DELETE FROM {table-name};`.
 #. If the table has an autoincrement primary key, its
-   :ref:`sequence <box_schema-sequence_create_index>` is reset to zero.
+   :ref:`sequence <box_schema-sequence_create_index>` is not reset to zero,
+   but that may occur in a future Tarantool version.
 #. There is no effect for any triggers associated with the table.
 #. There is no effect on the counts for the ``ROW_COUNT()`` function.
 #. Only one action is written to the
@@ -5154,7 +5147,7 @@ REPLACE
 
 Syntax:
 
-:samp:`REPLACE({expression-1}, {xpression-2}, {expression-3})`
+:samp:`REPLACE({expression-1}, {expression-2}, {expression-3})`
 
 Return expression-1, except that wherever expression-1
 contains expression-2, replace expression-2 with

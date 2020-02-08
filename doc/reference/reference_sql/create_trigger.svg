@@ -3,7 +3,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink"
 xml:space="preserve"
-width="825" height="586" version="1.1">
+width="825" height="616" version="1.1">
 <style type="text/css">
 <![CDATA[
 .box_font {fill:#000000; text-anchor:middle;
@@ -56,11 +56,13 @@ width="825" height="586" version="1.1">
 <path d="M441.0,489.0 A13.0,13.0 0 0,1 441.0,463.0 H446.0 A13.0,13.0 0 0,1 446.0,489.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <rect x="223.0" y="493.0" width="188.0" height="26.0" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <path d="M441.0,519.0 A13.0,13.0 0 0,1 441.0,493.0 H446.0 A13.0,13.0 0 0,1 446.0,519.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
-<rect x="223.0" y="523.0" width="188.0" height="26.0" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
-<path d="M441.0,549.0 A13.0,13.0 0 0,1 441.0,523.0 H446.0 A13.0,13.0 0 0,1 446.0,549.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<rect x="223.0" y="523.0" width="199.0" height="26.0" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M452.0,549.0 A13.0,13.0 0 0,1 452.0,523.0 H457.0 A13.0,13.0 0 0,1 457.0,549.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <rect x="223.0" y="553.0" width="188.0" height="26.0" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <path d="M441.0,579.0 A13.0,13.0 0 0,1 441.0,553.0 H446.0 A13.0,13.0 0 0,1 446.0,579.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
-<path d="M526.0,489.0 A13.0,13.0 0 0,1 526.0,463.0 H575.0 A13.0,13.0 0 0,1 575.0,489.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<rect x="223.0" y="583.0" width="188.0" height="26.0" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M441.0,609.0 A13.0,13.0 0 0,1 441.0,583.0 H446.0 A13.0,13.0 0 0,1 446.0,609.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
+<path d="M537.0,489.0 A13.0,13.0 0 0,1 537.0,463.0 H586.0 A13.0,13.0 0 0,1 586.0,489.0 z" stroke="none" fill-opacity="0.498039215686" fill="#000000"/>
 <circle cx="7" cy="17.0" r="2" stroke="#FF0000" stroke-width="1" fill="#FFFFFF"/>
 <path d="M39.0,31.0 A13.0,13.0 0 0,1 39.0,5.0 H121.0 A13.0,13.0 0 0,1 121.0,31.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="token_font" x="80.0" y="24.0"> CREATE </text>
@@ -222,7 +224,7 @@ width="825" height="586" version="1.1">
 <path d="M75.0,487.0 A13.0,13.0 0 0,1 75.0,461.0 H146.0 A13.0,13.0 0 0,1 146.0,487.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="token_font" x="110.5" y="480.0"> BEGIN </text>
 <rect x="221.0" y="461.0" width="188.0" height="26.0" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
-<text class="box_font" x="315.0" y="480.0">update-statement</text>
+<text class="box_font" x="315.0" y="480.0">delete-statement</text>
 <path d="M439.0,487.0 A13.0,13.0 0 0,1 439.0,461.0 H444.0 A13.0,13.0 0 0,1 444.0,487.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="name_font" x="441.5" y="480.0">;</text>
 <line x1="408.0" y1="473.0" x2="422.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
@@ -231,51 +233,60 @@ width="825" height="586" version="1.1">
 <path d="M439.0,517.0 A13.0,13.0 0 0,1 439.0,491.0 H444.0 A13.0,13.0 0 0,1 444.0,517.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="name_font" x="441.5" y="510.0">;</text>
 <line x1="408.0" y1="503.0" x2="422.0" y2="503.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<rect x="221.0" y="521.0" width="188.0" height="26.0" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
-<text class="box_font" x="315.0" y="540.0">delete-statement</text>
-<path d="M439.0,547.0 A13.0,13.0 0 0,1 439.0,521.0 H444.0 A13.0,13.0 0 0,1 444.0,547.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
-<text class="name_font" x="441.5" y="540.0">;</text>
-<line x1="408.0" y1="533.0" x2="422.0" y2="533.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<rect x="221.0" y="521.0" width="199.0" height="26.0" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="box_font" x="320.5" y="540.0">replace-statement</text>
+<path d="M450.0,547.0 A13.0,13.0 0 0,1 450.0,521.0 H455.0 A13.0,13.0 0 0,1 455.0,547.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="name_font" x="452.5" y="540.0">;</text>
+<line x1="419.0" y1="533.0" x2="433.0" y2="533.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <rect x="221.0" y="551.0" width="188.0" height="26.0" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="box_font" x="315.0" y="570.0">select-statement</text>
 <path d="M439.0,577.0 A13.0,13.0 0 0,1 439.0,551.0 H444.0 A13.0,13.0 0 0,1 444.0,577.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
 <text class="name_font" x="441.5" y="570.0">;</text>
 <line x1="408.0" y1="563.0" x2="422.0" y2="563.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<rect x="221.0" y="581.0" width="188.0" height="26.0" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="box_font" x="315.0" y="600.0">update-statement</text>
+<path d="M439.0,607.0 A13.0,13.0 0 0,1 439.0,581.0 H444.0 A13.0,13.0 0 0,1 444.0,607.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="name_font" x="441.5" y="600.0">;</text>
+<line x1="408.0" y1="593.0" x2="422.0" y2="593.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <line x1="193.0" y1="473.0" x2="217.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<line x1="457.0" y1="473.0" x2="486.0" y2="473.0" stroke="#FF0000" stroke-width="1" />
+<line x1="457.0" y1="473.0" x2="497.0" y2="473.0" stroke="#FF0000" stroke-width="1" />
 <path d="M202.0,482.0 A9.0,9.0 0 0,0 193.0,473.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <line x1="211.0" y1="503.0" x2="217.0" y2="503.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<line x1="457.0" y1="503.0" x2="463.0" y2="503.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="457.0" y1="503.0" x2="474.0" y2="503.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <path d="M202.0,494.0 A9.0,9.0 0 0,0 211.0,503.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<path d="M467.0,503.0 A9.0,9.0 0 0,0 476.0,494.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M478.0,503.0 A9.0,9.0 0 0,0 487.0,494.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <line x1="211.0" y1="533.0" x2="217.0" y2="533.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<line x1="457.0" y1="533.0" x2="463.0" y2="533.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="468.0" y1="533.0" x2="474.0" y2="533.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <path d="M202.0,524.0 A9.0,9.0 0 0,0 211.0,533.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<path d="M467.0,533.0 A9.0,9.0 0 0,0 476.0,524.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M478.0,533.0 A9.0,9.0 0 0,0 487.0,524.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <line x1="211.0" y1="563.0" x2="217.0" y2="563.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<line x1="457.0" y1="563.0" x2="463.0" y2="563.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="457.0" y1="563.0" x2="474.0" y2="563.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <path d="M202.0,554.0 A9.0,9.0 0 0,0 211.0,563.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<path d="M467.0,563.0 A9.0,9.0 0 0,0 476.0,554.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<path d="M485.0,473.0 A9.0,9.0 0 0,0 476.0,482.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<line x1="202.0" y1="554.0" x2="202.0" y2="482.0" stroke="#FF0000" stroke-width="1" />
-<line x1="476.0" y1="554.0" x2="476.0" y2="482.0" stroke="#FF0000" stroke-width="1" />
-<line x1="338.5" y1="581.0" x2="339.5" y2="581.0" stroke="#FF0000" stroke-width="1" />
-<line x1="193.0" y1="581.0" x2="338.5" y2="581.0" stroke="#FF0000" stroke-width="1" />
-<line x1="485.0" y1="581.0" x2="343.5" y2="581.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M478.0,563.0 A9.0,9.0 0 0,0 487.0,554.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="211.0" y1="593.0" x2="217.0" y2="593.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="457.0" y1="593.0" x2="474.0" y2="593.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M202.0,584.0 A9.0,9.0 0 0,0 211.0,593.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M478.0,593.0 A9.0,9.0 0 0,0 487.0,584.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M496.0,473.0 A9.0,9.0 0 0,0 487.0,482.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="202.0" y1="584.0" x2="202.0" y2="482.0" stroke="#FF0000" stroke-width="1" />
+<line x1="487.0" y1="584.0" x2="487.0" y2="482.0" stroke="#FF0000" stroke-width="1" />
+<line x1="344.0" y1="611.0" x2="345.0" y2="611.0" stroke="#FF0000" stroke-width="1" />
+<line x1="193.0" y1="611.0" x2="344.0" y2="611.0" stroke="#FF0000" stroke-width="1" />
+<line x1="496.0" y1="611.0" x2="349.0" y2="611.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <line x1="176.0" y1="473.0" x2="193.0" y2="473.0" stroke="#FF0000" stroke-width="1" />
 <path d="M193.0,473.0 A9.0,9.0 0 0,0 184.0,482.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<line x1="184.0" y1="572.0" x2="184.0" y2="531.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<line x1="184.0" y1="527.0" x2="184.0" y2="482.0" stroke="#FF0000" stroke-width="1" />
-<path d="M184.0,572.0 A9.0,9.0 0 0,0 193.0,581.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<path d="M494.0,482.0 A9.0,9.0 0 0,0 485.0,473.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<line x1="494.0" y1="482.0" x2="494.0" y2="523.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<line x1="494.0" y1="527.0" x2="494.0" y2="572.0" stroke="#FF0000" stroke-width="1" />
-<path d="M485.0,581.0 A9.0,9.0 0 0,0 494.0,572.0" stroke="#FF0000" stroke-width="1" fill="none"/>
-<line x1="485.0" y1="473.0" x2="494.0" y2="473.0" stroke="#FF0000" stroke-width="1" />
+<line x1="184.0" y1="602.0" x2="184.0" y2="546.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="184.0" y1="542.0" x2="184.0" y2="482.0" stroke="#FF0000" stroke-width="1" />
+<path d="M184.0,602.0 A9.0,9.0 0 0,0 193.0,611.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<path d="M505.0,482.0 A9.0,9.0 0 0,0 496.0,473.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="505.0" y1="482.0" x2="505.0" y2="538.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<line x1="505.0" y1="542.0" x2="505.0" y2="602.0" stroke="#FF0000" stroke-width="1" />
+<path d="M496.0,611.0 A9.0,9.0 0 0,0 505.0,602.0" stroke="#FF0000" stroke-width="1" fill="none"/>
+<line x1="496.0" y1="473.0" x2="505.0" y2="473.0" stroke="#FF0000" stroke-width="1" />
 <line x1="158.0" y1="473.0" x2="172.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<path d="M524.0,487.0 A13.0,13.0 0 0,1 524.0,461.0 H573.0 A13.0,13.0 0 0,1 573.0,487.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
-<text class="token_font" x="548.5" y="480.0"> END </text>
-<line x1="493.0" y1="473.0" x2="507.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<path d="M535.0,487.0 A13.0,13.0 0 0,1 535.0,461.0 H584.0 A13.0,13.0 0 0,1 584.0,487.0 z" stroke="#FF0000" stroke-width="1" fill="#D3D3D3"/>
+<text class="token_font" x="559.5" y="480.0"> END </text>
+<line x1="504.0" y1="473.0" x2="518.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <line x1="630.0" y1="391.0" x2="648.0" y2="391.0" stroke="#FF0000" stroke-width="1" />
 <path d="M657.0,400.0 A9.0,9.0 0 0,0 648.0,391.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <line x1="657.0" y1="400.0" x2="657.0" y2="412.5" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
@@ -288,6 +299,6 @@ width="825" height="586" version="1.1">
 <path d="M35.0,464.0 A9,9 0 0,0 44.0,473.0" stroke="#FF0000" stroke-width="1" fill="none"/>
 <line x1="44" y1="473.0" x2="58.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 <line x1="8" y1="17.0" x2="22.0" y2="17.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
-<circle cx="605.0" cy="473.0" r="2.0" stroke="#FF0000" stroke-width="1" fill="#FFFFFF"/>
-<line x1="585.0" y1="473.0" x2="599.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
+<circle cx="616.0" cy="473.0" r="2.0" stroke="#FF0000" stroke-width="1" fill="#FFFFFF"/>
+<line x1="596.0" y1="473.0" x2="610.0" y2="473.0" stroke="#FF0000" stroke-width="1" marker-end="url(#arrow)" />
 </svg>
