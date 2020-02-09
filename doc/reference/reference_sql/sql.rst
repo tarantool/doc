@@ -2566,7 +2566,7 @@ Rules:
 * There must not already be a base table or view with the same name as
   *view-name*.
 * If *column-list* is specified, the number of columns in *column-list* must be
-  the same as the number of columns in the *select-list* of the subquery.
+  the same as the number of columns in the :ref:`select-list <sql_select_list>` of the subquery.
 
 Actions:
 
@@ -3447,10 +3447,9 @@ Select-list
 
 Syntax:
 
-:samp:`select-list-column [, select-list-column ...]
-select-list-column:`
+:samp:`select-list-column [, select-list-column ...]`
 
-|br|
+select-list-column:
 
 .. image:: select_list.svg
     :align: left
@@ -3460,7 +3459,7 @@ select-list-column:`
 Define what will be in a result set; this is a clause in a :ref:`SELECT statement <sql_select>`.
 
 The *select-list* is a comma-delimited list of expressions, or ``*`` (asterisk).
-An expression can have an alias provided with an ``[AS [column-name]]`` clause.
+An expression can have an alias provided with an ``[[AS] column-name]`` clause.
 
 The ``*`` "asterisk" shorthand is valid if and only if the SELECT statement also
 contains a :ref:`FROM clause <sql_from>` which specifies the table or tables
@@ -3474,15 +3473,15 @@ table", which again must be a result of the FROM clause -- for example, if the
 table is named ``table1``, then ``table1.*`` is equivalent to a list of the
 columns of ``table1``.
 
-The ``[AS [column-name]]`` clause determines the column name.
+The ``[[AS] column-name]`` clause determines the column name.
 The column name is useful for two reasons:
 
 * in a tabular display, the column names are the headings
-* if the results of the SELECT are used in
-  ``CREATE TABLE new-table-name ... AS SELECT select-list ...``, then
+* if the results of the SELECT are used when creating a new table (such as a view),
+  then
   the column names in the new table will be the column names in the *select-list*.
 
-If ``[AS [column-name]]`` is missing, Tarantool makes a name equal to the
+If ``[[AS] column-name]`` is missing, Tarantool makes a name equal to the
 expression, for example ``SELECT 5 * 88`` will cause the column name to be
 ``5 * 88``, but such names may be ambiguous or illegal in other contexts,
 so it is better to say, for example, ``SELECT 5 * 88 AS column1``.
@@ -3501,6 +3500,10 @@ Examples:
    SELECT * FROM table1;
    -- as a list:
    SELECT 1 AS a, 2 AS b, table1.* FROM table1;
+
+Limitations: (`Issue#3962 <https://github.com/tarantool/tarantool/issues/3962>`_) |br|
+* Names for expressions will change in a future version.
+
 
 .. _sql_from:
 
@@ -3658,10 +3661,10 @@ the aggregation of the values, for example:
 
    a    b      c    COUNT(a) SUM(a) MIN(c)
    -    -      -    -------- ------ ------
-   1    'a'  'b'         2      2    'b'
-   1    'b'  'b'         1      1    'b'
-   2    'a'  'b'         1      2    'b'
-        'a'  'b'         1      3    'b'
+   1    'a'    'b'         2      2    'b'
+   1    'b'    'b'         1      1    'b'
+   2    'a'    'b'         1      2    'b'
+        'a'    'b'         1      3    'b'
 
 These extra columns are what :ref:`aggregate functions <sql_aggregate>` are for.
 
@@ -3698,7 +3701,7 @@ a scalar value.
 Aggregate functions are only legal in certain clauses
 of a :ref:`SELECT statement <sql_select>` for grouped tables. (A table is a grouped
 table if a GROUP BY clause is present.) Also, if
-an aggregate function is used in a select-list and the
+an aggregate function is used in a :ref:`select-list <sql_select_list>` and the
 GROUP BY clause is omitted, then Tarantool assumes
 ``SELECT ... GROUP BY [all columns];``.
 
@@ -3723,13 +3726,12 @@ NULLs are ignored for all aggregate functions except COUNT(*).
 
              Example: :samp:`COUNT(*)`
 
-``GROUP_CONCAT(expression-1 [, expression-2])``
+``GROUP_CONCAT(expression-1 [, expression-2])`` or ``GROUP_CONCAT(DISTINCT expression-1)``
              Return a list of *expression-1* values, separated
              by commas if *expression-2* is omitted, or separated
-             by the *expression-2* value if *expression-2* is
-             not omitted.
+             by the *expression-2* value if *expression-2* is not omitted.
 
-             Example: :samp:`GROUP_CONCAT{column1})`
+             Example: :samp:`GROUP_CONCAT({column1})`
 
 .. _sql_aggregate_max:
 
@@ -3876,7 +3878,7 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then BOOLEANs, then numbers (INTEGER or DOUBLE), then STRINGs, then VARBINARYs.
+* NULLs come first, then BOOLEANs, then numbers, then STRINGs, then VARBINARYs.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified with a :ref:`COLLATE clause <sql_collate_clause>` within the ORDER BY column-list, or may be default.
 
@@ -3889,19 +3891,19 @@ Examples:
    -- with two columns:
    SELECT 1 FROM t ORDER BY column1, column2;
    -- with a variety of data:
-   CREATE TABLE h (s1 INTEGER PRIMARY KEY, s2 INTEGER);
-   INSERT INTO h VALUES (7, 'A'), (4, 'A '), (-4, 'AZ'), (17, 17), (23, NULL);
-   INSERT INTO h VALUES (17.5, 'Д'), (1e+300, 'a'), (0, ''), (-1, '');
-   SELECT * FROM h ORDER BY s2, s1;
+   CREATE TABLE h (s1 NUMBER PRIMARY KEY, s2 SCALAR);
+   INSERT INTO h VALUES (7, 'A'), (4, 'a'), (-4, 'AZ'), (17, 17), (23, NULL);
+   INSERT INTO h VALUES (17.5, 'Д'), (1e+300, 'A'), (0, ''), (-1, '');
+   SELECT * FROM h ORDER BY s2 COLLATE "unicode_ci", s1;
    -- The result of the above SELECT will be:
    - - [23, null]
      - [17, 17]
      - [-1, '']
      - [0, '']
+     - [4, 'a']
      - [7, 'A']
-     - [4, 'A ']
+     - [1e+300, 'A']
      - [-4, 'AZ']
-     - [1e+300, 'a']
      - [17.5, 'Д']
    ...
 
@@ -4344,7 +4346,7 @@ then selects with ``INDEXED BY the-index-on-column-2``.
    CREATE INDEX idx_column2_t_1 ON t (column2);
    INSERT INTO t VALUES (1, 2), (2, 1);
    SELECT * FROM t INDEXED BY "pk_unnamed_T_1";
-   SELECT * FROM t INDEXED BY i;
+   SELECT * FROM t INDEXED BY idx_column2_t_1;
    -- Result for the first select: (1, 2), (2, 1)
    -- Result for the second select: (2, 1), (1, 2).
 
@@ -4913,7 +4915,7 @@ Syntax:
 Return the value of the first non-NULL expression, or, if both
 expression values are NULL, return NULL. Thus
 ``IFNULL(expression, expression)`` is the same as
-``COALESCE(expression, expression)``.
+:ref:`COALESCE(expression, expression) <sql_function_coalesce>`.
 
 Example:
   ``IFNULL(NULL, 17)`` is 17
@@ -4929,7 +4931,7 @@ Syntax:
 :samp:`LEAST({expression-1}, {expression-2}, [{expression-3} ...])`
 
 Return the least value of the supplied expressions, or, if any expression
-is NULL, return .
+is NULL, return NULL.
 The reverse of ``LEAST`` is :ref:`GREATEST <sql_function_greatest>`.
 
 Examples: ``LEAST(7, 44, -1)`` is -1;
@@ -5289,8 +5291,8 @@ or X'00' (nul) for data type VARBINARY.
 Examples:
 ``TRIM('a' FROM 'abaaaaa')`` is 'b' -- all repetitions of 'a' are removed on both sides;
 ``TRIM(TRAILING 'ב' FROM 'אב')`` is 'א' -- if all characters are Hebrew, TRAILING means "left";
-``TRIM(X'004400')`` is X'44' -- the default byte sequence to trim is X'00' when data type is VARBINARY'
-``TRIM(LEADING 'abc' FROM 'abcd')`` is 'd' -- expression-1 can have more than 1 character
+``TRIM(X'004400')`` is X'44' -- the default byte sequence to trim is X'00' when data type is VARBINARY;
+``TRIM(LEADING 'abc' FROM 'abcd')`` is 'd' -- expression-1 can have more than 1 character.
 
 .. _sql_function_typeof:
 

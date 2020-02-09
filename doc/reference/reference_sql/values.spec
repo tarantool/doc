@@ -1,7 +1,13 @@
 stack (
   line(
-    ' VALUES ', '(', loop('expression', ','), ')'
+    ' VALUES ',
+
+  loop(
+  line(
+                '(', loop('expression', ','), ')'
   )
+  ,',')
+  ),
 )
 
 
