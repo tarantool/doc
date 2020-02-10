@@ -124,8 +124,13 @@ module `avro-schema <https://github.com/tarantool/avro-schema>`_ which checks
 the schema of a JSON document and converts it to a Tarantool tuple. The tuple
 will contain only field values, and thus take a lot less space than the original
 document. In avro-schema terms, converting JSON documents to tuples is
-"flattening", and restoring the original documents is "unflattening".
-The usage is quite straightforward:
+"flattening", and restoring the original documents is "unflattening". 
+
+First you need to
+`install <https://www.tarantool.io/en/doc/1.10/book/app_server/installing_module/>`_
+the module with ``tarantool rocks install avro-schema``.
+
+The further usage is quite straightforward:
 
 (1) For each entity, we need to define a schema in
     `Apache Avro schema <https://en.wikipedia.org/wiki/Apache_Avro>`_ syntax,
