@@ -5609,7 +5609,7 @@ Names of system tables are in lower case so always enclose them in ``"quotes"``.
 For example, the :ref:`_space <box_space-space>` system table has these fields which are seen in SQL as columns: |br|
 |nbsp|  id = numeric identifier |br|
 |nbsp|  owner = for example, 1 if the object was made by the ``'admin'`` user |br|
-|nbsp|  name = the name that was used with CREATE TABLE |br|
+|nbsp|  name = the name that was used with :ref:`CREATE TABLE <sql_create_table>` |br|
 |nbsp|  engine = usually ``'memtx'`` (the ``'vinyl'`` engine can be used but is not default) |br|
 |nbsp|  field_count = sometimes 0, but usually a count of the table's columns |br|
 |nbsp|  flags = usually empty |br|
@@ -5724,7 +5724,8 @@ Tarantool server-side stored procedures are written in Lua rather than SQL/PSM d
 
 Functions can be invoked anywhere that the SQL syntax allows a literal or a column name for reading.
 Function parameters can include any number of SQL values.
-If a SELECT statement's result list has a million rows, and the select list invokes a non-deterministic function,
+If a SELECT statement's result set has a million rows, and the
+:ref:`select list <sql_select_list>` invokes a non-deterministic function,
 then the function is called a million times.
 
 To create a Lua function that you can call from SQL, use
@@ -5836,7 +5837,7 @@ The string should begin with ``'return '``.
 For example this will show the number of seconds since the epoch: |br|
 ``box.execute([[SELECT lua('return os.time()');]])`` |br|
 For example this will show a database configuration member: |br|
-``box.execute([[SELECT lua('return box.cfg.memtx_memory');]])``
+``box.execute([[SELECT lua('return box.cfg.memtx_memory');]])`` |br|
 For example this will return FALSE because Lua nil and box.NULL are the same as SQL NULL: |br|
 ``box.execute([[SELECT lua('return box.NULL') IS NOT NULL;]])``
 
@@ -5872,7 +5873,7 @@ So the session looks like this: |br|
 ``box.execute([[INSERT INTO t1 VALUES (4, 'D'), (5, 'E'), (6, 'F');]])`` |br|
 ``box.execute([[INSERT INTO t2 VALUES (1, 'C'), (4, 'A'), (6, NULL);]])`` |br|
 ``box.execute([[CREATE VIEW v AS SELECT * FROM t1 NATURAL JOIN t2;]])`` |br|
-``box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;)]])``
+``box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;]])``
 
 If one executes the above requests with Tarantool as a client, provided the database
 objects do not already exist, the execution will be successful and the final display will be |br|
@@ -6091,7 +6092,7 @@ Definition of the function and the CREATE VIEW statement:
     box.schema.func.drop('_COLUMNS_FORMATS', {if_exists = true})
     box.schema.func.create('_COLUMNS_FORMATS',
         {language = 'LUA',
-         returns = 'string',
+         returns = 'scalar',
          body = [[
          function (row_number_, ordinal_position)
              if row_number_ == 0 then
