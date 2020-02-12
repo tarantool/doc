@@ -2566,13 +2566,13 @@ Rules:
 * There must not already be a base table or view with the same name as
   *view-name*.
 * If *column-list* is specified, the number of columns in *column-list* must be
-  the same as the number of columns in the :ref:`select-list <sql_select_list>` of the subquery.
+  the same as the number of columns in the :ref:`select list <sql_select_list>` of the subquery.
 
 Actions:
 
 #. Tarantool will throw an error if a rule is violated.
 #. Tarantool will create a new persistent object with *column-names* equal to
-   the names in the *column-list* or the names in the subquery's *select-list*.
+   the names in the *column-list* or the names in the subquery's *select list*.
 #. Usually Tarantool effectively executes a :ref:`COMMIT <sql_commit>` statement.
 
 Examples:
@@ -3422,7 +3422,7 @@ SELECT
 Syntax:
 
 :samp:`SELECT [ALL|DISTINCT]
-select-list
+select list
 [from clause]
 [where clause]
 [group-by clause] [having clause]
@@ -3442,7 +3442,7 @@ The clauses of the SELECT statement are discussed in the following five sections
 .. _sql_select_list:
 
 ***********************************************
-Select-list
+Select list
 ***********************************************
 
 Syntax:
@@ -3458,7 +3458,7 @@ select-list-column:
 
 Define what will be in a result set; this is a clause in a :ref:`SELECT statement <sql_select>`.
 
-The *select-list* is a comma-delimited list of expressions, or ``*`` (asterisk).
+The *select list* is a comma-delimited list of expressions, or ``*`` (asterisk).
 An expression can have an alias provided with an ``[[AS] column-name]`` clause.
 
 The ``*`` "asterisk" shorthand is valid if and only if the SELECT statement also
@@ -3479,7 +3479,7 @@ The column name is useful for two reasons:
 * in a tabular display, the column names are the headings
 * if the results of the SELECT are used when creating a new table (such as a view),
   then
-  the column names in the new table will be the column names in the *select-list*.
+  the column names in the new table will be the column names in the *select list*.
 
 If ``[[AS] column-name]`` is missing, Tarantool makes a name equal to the
 expression, for example ``SELECT 5 * 88`` will cause the column name to be
@@ -3701,7 +3701,7 @@ a scalar value.
 Aggregate functions are only legal in certain clauses
 of a :ref:`SELECT statement <sql_select>` for grouped tables. (A table is a grouped
 table if a GROUP BY clause is present.) Also, if
-an aggregate function is used in a :ref:`select-list <sql_select_list>` and the
+an aggregate function is used in a :ref:`select list <sql_select_list>` and the
 GROUP BY clause is omitted, then Tarantool assumes
 ``SELECT ... GROUP BY [all columns];``.
 
@@ -3836,7 +3836,7 @@ Put rows in order; this is a clause in a :ref:`SELECT statement <sql_select>`.
 An ORDER BY expression has one of three types which are checked in order:
 
 #. Expression is a positive integer, representing the ordinal position of the
-   column in the select list. For example, in the statement |br|
+   column in the :ref:`select list <sql_select_list>`. For example, in the statement |br|
    ``SELECT x, y, z FROM t ORDER BY 2;`` |br|
    ``ORDER BY 2`` means "order by the second column in the select list",
    which is ``y``.
@@ -4610,8 +4610,9 @@ Now that does not happen. Behavior change is done by updating the
     +---------------------+-----------------+-------------------------------------------------+
     | Pragma              | Parameter       | Effect                                          |
     +=====================+=================+=================================================+
-    | foreign_key_list    | string |br|     | Return a result set                             |
-    |                     | table-name      | with one row for each foreign key of            |
+    | foreign_key_list    | string |br|     | Return a                                        |
+    |                     | table-name      | :ref:`result set <box-sql_result_sets>`         |
+    |                     |                 | with one row for each foreign key of            |
     |                     |                 | "table-name". Each row contains: |br|           |
     |                     |                 | (INTEGER) id -- identification number |br|      |
     |                     |                 | (INTEGER) seq -- sequential number |br|         |
@@ -4676,7 +4677,7 @@ Now that does not happen. Behavior change is done by updating the
     |                     |                 | a PRIMARY KEY column. 0 is false, 1 is true.    |
     +---------------------+-----------------+-------------------------------------------------+
 
-Example: (not showing metadata)
+Example: (not showing result set metadata)
 
 .. code-block:: none
 
