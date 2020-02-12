@@ -99,40 +99,6 @@ Below is a list of all ``msgpack`` functions and members.
 
     :rtype: lua object
 
-.. _msgpack-null:
-
-.. data:: NULL
-
-    A value comparable to Lua "nil" which may be useful as a placeholder in a
-    tuple.
-
-=================================================
-                    Example
-=================================================
-
-.. code-block:: tarantoolsession
-
-    tarantool> msgpack = require('msgpack')
-    ---
-    ...
-    tarantool> y = msgpack.encode({'a',1,'b',2})
-    ---
-    ...
-    tarantool> z = msgpack.decode(y)
-    ---
-    ...
-    tarantool> z[1], z[2], z[3], z[4]
-    ---
-    - a
-    - 1
-    - b
-    - 2
-    ...
-    tarantool> box.space.tester:insert{20, msgpack.NULL, 20}
-    ---
-    - [20, null, 20]
-    ...
-
 .. _msgpack-serialize:
 
 The MsgPack output structure can be specified with ``__serialize``:
@@ -235,16 +201,60 @@ with the MsgPack format name and encoding on the right.
 .. function:: cfg(table)
 
     Some MsgPack configuration settings can be changed, in the
-    same way that they can be changed for json.
-    See :ref:`Module JSON <json-module_cfg>` for a list of some configuration settings.
-    (The same configuration settings exist for json, for MsgPack, and for  :ref:`YAML <yaml-module>`.)
+    same way that they can be changed for :ref:`JSON <json-module_cfg>` and
+    :ref:`YAML <yaml-cfg>`.
 
-    For example, if ``msgpack.cfg.encode_invalid_numbers = true`` (the default),
+    The values are all either integers or boolean ``true``/``false`` values.
+
+    .. container:: table
+
+        .. rst-class:: left-align-column-1
+        .. rst-class:: center-align-column-2
+        .. rst-class:: left-align-column-3
+
+        +---------------------------------+---------+-------------------------------------------+
+        | Option                          | Default | Use                                       |
+        +=================================+=========+===========================================+
+        | ``cfg.encode_max_depth``        |   128   | Set max recursion depth for encoding      |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_deep_as_nil``      |  false  | A flag whether a table with too high      |
+        |                                 |         | nest level should be cropped. The         |
+        |                                 |         | not-encoded fields are replaced with      |
+        |                                 |         | one null. If not set, too high            |
+        |                                 |         | nesting is considered an error            |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_invalid_numbers``  |  true   | Enable encoding of NaN and Inf numbers    |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_load_metatables``  | true    | Show on ``__serialize`` field in a        |
+        |                                 |         | metatable (if exists). See example below  |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_use_tostring``     | false   | Enable ``tostring()`` usage for unknown   |
+        |                                 |         | types                                     |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_invalid_as_nil``   |  false  | Use NULL for all unrecognizable types     |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps  |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_sparse_ratio``     |  2      | Permissible number of missing values in   |
+        |                                 |         | a sparse array. See example below         |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_sparse_safe``      | 10      | Limit ensuring that small Lua arrays      |
+        |                                 |         | are always encoded as sparse arrays       |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.decode_invalid_numbers``  |  true   | Set floating point numbers precision      |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.decode_save_metatables``  |  true   | Save ``__serialize`` meta-value for       |
+        |                                 |         | decoded arrays and map                    |
+        +---------------------------------+---------+-------------------------------------------+
+
+    **Example:**
+
+    If ``msgpack.cfg.encode_invalid_numbers = true`` (the default),
     then nan and inf are legal values. If that is not desirable, then
     ensure that ``msgpack.encode()`` will not accept them, by saying
     ``msgpack.cfg{encode_invalid_numbers = false}``, thus:
 
-    .. code-block:: none
+    .. code-block:: tarantoolsession
 
         tarantool> msgpack = require('msgpack'); msgpack.cfg{encode_invalid_numbers = true}
         ---
@@ -255,12 +265,47 @@ with the MsgPack format name and encoding on the right.
         - 22
         ...
         tarantool> msgpack.cfg{encode_invalid_numbers = false}
-       ---
-       ...
+        ---
+        ...
         tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
         ---
         - error: ... number must not be NaN or Inf'
-       ...
+        ...
+
+    The same configuration settings exist for :ref:`JSON
+    <json-module_cfg>`, and for :ref:`YAML <yaml-cfg>`.
+
+.. _msgpack-null:
+
+.. data:: NULL
+
+    A value comparable to Lua "nil" which may be useful as a placeholder in a
+    tuple.
+
+    **Example**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> msgpack = require('msgpack')
+        ---
+        ...
+        tarantool> y = msgpack.encode({'a',1,'b',2})
+        ---
+        ...
+        tarantool> z = msgpack.decode(y)
+        ---
+        ...
+        tarantool> z[1], z[2], z[3], z[4]
+        ---
+        - a
+        - 1
+        - b
+        - 2
+        ...
+        tarantool> box.space.tester:insert{20, msgpack.NULL, 20}
+        ---
+        - [20, null, 20]
+        ...
 
 
 .. _MsgPack: http://msgpack.org/

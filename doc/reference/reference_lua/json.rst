@@ -176,30 +176,61 @@ Below is a list of all ``json`` functions and members.
 
 .. _json-module_cfg:
 
-.. function:: cfg(list of parameter assignments)
+.. function:: cfg(table)
 
     Set values affecting behavior of :ref:`json.encode <json-encode>`
     and :ref:`json.decode <json-decode>`.
 
     The values are all either integers or boolean ``true``/``false`` values.
 
-    * ``cfg.encode_deep_as_nil`` (default is false) -- see :ref:`below <json-module.cfg_encode_deep_as_nil>`
-    * ``cfg.encode_invalid_as_nil`` (default is false) -- use ``null`` for all
-      unrecognizable types
-    * ``cfg.encode_invalid_numbers`` (default is true) -- allow nan and inf
-    * ``cfg.encode_load_metatables`` (default is true) -- load metatables
-    * ``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a structure
-    * ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
-    * ``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse arrays as maps
-    * ``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be
-    * ``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse
-    * ``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for
-      unrecognizable types
-    * ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
-    * ``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a structure
-    * ``cfg.decode_save_metatables`` (default is true) -- like ``encode_load_metatables``
+    .. container:: table
 
-    For example, the following code will encode 0/0 as nan ("not a number")
+        .. rst-class:: left-align-column-1
+        .. rst-class:: center-align-column-2
+        .. rst-class:: left-align-column-3
+
+        +---------------------------------+---------+-------------------------------------------+
+        | Option                          | Default | Use                                       |
+        +=================================+=========+===========================================+
+        | ``cfg.encode_max_depth``        |   128   | Set max recursion depth for encoding      |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_deep_as_nil``      |  false  | A flag whether a table with too high      |
+        |                                 |         | nest level should be cropped. The         |
+        |                                 |         | not-encoded fields are replaced with      |
+        |                                 |         | one null. If not set, too high            |
+        |                                 |         | nesting is considered an error            |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_invalid_numbers``  |  true   | Enable encoding of NaN and Inf numbers    |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_number_precision`` | 14      | Set point numbers precision               |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_load_metatables``  | true    | Show on ``__serialize`` field in a        |
+        |                                 |         | metatable (if exists). See example below  |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_use_tostring``     | false   | Enable ``tostring()`` usage for unknown   |
+        |                                 |         | types                                     |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_invalid_as_nil``   |  false  | Use NULL for all unrecognizable types     |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps  |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_sparse_ratio``     |  2      | Permissible number of missing values in   |
+        |                                 |         | a sparse array. See example below         |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.encode_sparse_safe``      | 10      | Limit ensuring that small Lua arrays      |
+        |                                 |         | are always encoded as sparse arrays       |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.decode_invalid_numbers``  |  true   | Set floating point numbers precision      |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.decode_save_metatables``  |  true   | Save ``__serialize`` meta-value for       |
+        |                                 |         | decoded arrays and map                    |
+        +---------------------------------+---------+-------------------------------------------+
+        | ``cfg.decode_max_depth``        |  128    | Max recursion depth for decoding          |
+        +---------------------------------+---------+-------------------------------------------+
+
+    **Example:**
+
+    The following code will encode 0/0 as nan ("not a number")
     and 1/0 as inf ("infinity"), rather than returning nil or an error message:
 
     .. code-block:: lua
@@ -220,11 +251,11 @@ Below is a list of all ``json`` functions and members.
         ...
 
     To achieve the same effect for only one call to ``json.encode()`` without
-    changing the configuration persistently, one could say
+    changing the configuration persistently, you can use
     ``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
 
-    The same configuration settings exist for json, for :ref:`MsgPack
-    <msgpack-module>`, and for :ref:`YAML <yaml-module>`.
+    The same configuration settings exist for :ref:`MsgPack
+    <msgpack-cfg>`, and for :ref:`YAML <yaml-cfg>`.
 
 .. _json-module.cfg_encode_deep_as_nil:
 
@@ -242,3 +273,20 @@ Below is a list of all ``json`` functions and members.
 
 .. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
 .. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html
+
+
+    .. * ``cfg.encode_deep_as_nil`` (default is false) -- see :ref:`below <json-module.cfg_encode_deep_as_nil>`
+    .. * ``cfg.encode_invalid_as_nil`` (default is false) -- use ``null`` for all
+    ..   unrecognizable types
+    .. * ``cfg.encode_invalid_numbers`` (default is true) -- enables encoding of NaN and Inf numbers
+    .. * ``cfg.encode_load_metatables`` (default is true) -- load metatables
+    .. * ``cfg.encode_max_depth`` (default is 128) -- maximum nesting depth in a structure
+    .. * ``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal digits
+    .. * ``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse arrays as maps
+    .. * ``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be
+    .. * ``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse
+    .. * ``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for
+    ..   unrecognizable types
+    .. * ``cfg.decode_invalid_numbers`` (default is true) -- allow nan and inf
+    .. * ``cfg.decode_max_depth`` (default is 128) -- maximum nesting depth in a structure
+    .. * ``cfg.decode_save_metatables`` (default is true) -- like ``encode_load_metatables``
