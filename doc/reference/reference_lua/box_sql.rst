@@ -24,30 +24,30 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
     Execute the SQL statement contained in the sql-statement parameter.
 
     :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_sql_statements_and_clauses>`
-    :param table extra-parameters: optional list for placeholders in the statement
+    :param table extra-parameters: optional table for placeholders in the statement
 
     :return: depends on statement
+
+    .. _box-sql_extra_parameters:
 
     There are two ways to pass extra parameters for ``box.execute()``:
 
     * The first way is to concatenate strings.
       For example, this Lua script will insert 10 rows with different primary-key
-      values into table t:
+      values into table t: |br|
+      ``for i=1,10,1 do`` |br|
+      |nbsp| |nbsp| ``box.execute("insert into t values (" .. i .. ")")`` |br|
+      ``end``
 
-      .. code-block:: lua
-
-          for i=1,10,1 do
-            box.execute("insert into t values (" .. i .. ")")
-          end
-
-    * The second way is to put one or more placeholder "?" tokens inside the string,
-      and pass a second argument, which must be a table containing values for each placeholder.
-      For example these two requests are equivalent:
-
-      .. code-block:: lua
-
-          box.execute([[INSERT INTO tt VALUES (1,'x');]]);
-          x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?,?);]], x);
+    * The second way is to put placeholder ``?`` question-mark tokens inside the string,
+      and pass a second argument *extra-parameters*, which must be a table containing values for each placeholder.
+      For example these two requests are equivalent: |br|
+      ``box.execute([[INSERT INTO tt VALUES (1, 'x');]]);`` |br|
+      ``x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?, ?);]], x);`` |br|
+      Or, put parameter names inside the string. A parameter name must start with ``:`` colon
+      and must match a named component of the *extra-parameters* table. For example,
+      this request is also equivalent: |br|
+      ``box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})``
 
     Since ``box.execute()`` is an invocation of a Lua function,
     it either causes an error message or returns a value.
@@ -193,7 +193,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
     Execute a statement that has been prepared with :ref:`box.prepare() <box-sql_box_prepare>`.
 
     Parameter ``prepared_table`` should be the result from ``box.prepare()``. |br|
-    Parameter ``extra-parameters`` should be an optional list for placeholders in the statement.
+    Parameter ``extra-parameters`` should be an optional table to match :ref:`placeholders or named parameters <box-sql_extra_parameters>` in the statement.
 
     There are two ways to execute: with the method or with the statement id.
     That is, :samp:`{prepared_table}:execute()` and :samp:`box.execute({prepared_table}.stmt_id)` do the same thing.
