@@ -999,6 +999,8 @@ A Tarantool SQL database and a Tarantool NoSQL database are the same thing.
 However, some operations are only possible with SQL, and others are only
 possible with NoSQL. Mixing SQL statements with NoSQL requests is allowed.
 
+.. _sql_tokens:
+
 Tokens
 
 The token is the minimum SQL-syntax unit that Tarantool understands.
@@ -1408,6 +1410,8 @@ Exceptions may occur where operations are not possible, but see the "special sit
 which are described after this list.
 Although all examples show literals, they could just as easily show column identifiers.
 
+.. _sql_operator_arithmetic:
+
 .. _sql_operator_addition:
 
 ``+`` addition (arithmetic)
@@ -1458,6 +1462,8 @@ Example: ``5 | 2``, result = 7.
 Change 0 bits to 1 bits, change 1 bits to 0 bits.
 Example: ``~5``, result = -6.
 
+.. _sql_operator_comparison:
+
 ``<`` less than (comparison)
 Return TRUE if the first operand is less than the second by arithmetic or collation rules.
 Example for numbers: ``5 < 2``, result = FALSE. Example for strings: ``'C' < ' '``, result = FALSE.
@@ -1496,6 +1502,8 @@ Example for strings: ``'A' <> 'A     '`` is TRUE.
 This is a non-standard equivalent of
 :ref:`"\<\> not equal (comparison)" <sql_not_equal>`.
 
+.. _sql_is_null:
+
 ``IS NULL`` and ``IS NOT NULL`` (comparison)
 For IS NULL: Return TRUE if the first operand is NULL, otherwise return FALSE.
 Example: column1 IS NULL, result = TRUE if column1 contains NULL.
@@ -1512,6 +1520,11 @@ If it is necessary to search for either ``'_'`` or ``'%'`` within a string witho
 an optional clause can be added, ESCAPE single-character-operand, for example
 ``'abc_' LIKE 'abcX_' ESCAPE 'X'`` is TRUE because ``X'`` means "following character is not
 special". Matching is also affected by the string's collation.
+
+.. _sql_operator_between:
+
+``BETWEEN`` (comparison)
+:samp:`{x} BETWEEN {y} AND {z}` is shorthand for :samp:`{x} >= {y} AND {x} <= {z}`.
 
 ``NOT`` negation (logic)
 Return TRUE if operand is FALSE return FALSE if operand is TRUE, else return UNKNOWN.
@@ -1531,6 +1544,8 @@ Return FALSE if one operand is FALSE and the other operand is (UNKNOWN or TRUE o
 Return TRUE if either operand is TRUE.
 Return FALSE if both operands are FALSE.
 Return UNKNOWN if one operand is UNKNOWN and the other operand is (UNKNOWN or FALSE).
+
+.. _sql_operator_concatenate:
 
 ``||`` concatenate (string manipulation)
 Return the value of the first operand concatenated with the value of the second operand.
@@ -1588,7 +1603,7 @@ value IS [NOT] NULL |br|
   ... for determining whether value is (not) NULL
 
 CASE ... WHEN ... THEN ... ELSE ... END |br|
-  ... for setting a series of conditions
+  ... for setting a series of conditions.
 
 See also: :ref:`subquery <sql_subquery>`.
 
