@@ -118,33 +118,34 @@ results:
         +=================================+=========+===========================================+
         | ``cfg.encode_invalid_numbers``  |  true   | Enable encoding of NaN and Inf numbers    |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_number_precision`` | 14      | Set point numbers precision               |
+        | ``cfg.encode_number_precision`` | 14      | Set floating point numbers precision      |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | Enable :ref:`__serialize <yaml-serialize>`|
-        |                                 |         | meta-value checking                       |
+        | ``cfg.encode_load_metatables``  | true    | Encode as map or array according to       |
+        |                                 |         | :ref:`__serialize <yaml-serialize>` value |
         +---------------------------------+---------+-------------------------------------------+
         | ``cfg.encode_use_tostring``     | false   | Enable ``tostring()`` usage for unknown   |
         |                                 |         | types                                     |
         +---------------------------------+---------+-------------------------------------------+
         | ``cfg.encode_invalid_as_nil``   |  false  | Use NULL for all unrecognizable types     |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps  |
+        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps. |
         |                                 |         | See detailed description                  |
         |                                 |         | :ref:`below <yaml-cfg_sparse>`            |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_ratio``     |  2      | Permissible number of missing values in   |
-        |                                 |         | a sparse array.                           |
+        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is permissible  |
+        |                                 |         | percentage of missing values in a sparse  |
+        |                                 |         | array                                     |
         +---------------------------------+---------+-------------------------------------------+
         | ``cfg.encode_sparse_safe``      | 10      | Limit ensuring that small Lua arrays      |
         |                                 |         | are always encoded as sparse arrays       |
+        |                                 |         | (instead of error or encoding as map)     |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_invalid_numbers``  |  true   | Set floating point numbers precision      |
+        | ``cfg.decode_invalid_numbers``  |  true   | Enable decoding NaN and Inf numbers       |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_save_metatables``  |  true   | Save ``__serialize`` meta-value for       |
-        |                                 |         | decoded arrays and map                    |
+        | ``cfg.decode_save_metatables``  |  true   | Set metatables for all arrays and maps    |
         +---------------------------------+---------+-------------------------------------------+
 
-    .. yaml-cfg_sparse:
+    .. _yaml-cfg_sparse:
 
 **Sparse arrays features:**
 
@@ -167,6 +168,55 @@ that small Lua arrays are always encoded as sparse arrays.
 By default, attempting to encode an excessively sparse array will
 generate an error. If ``encode_sparse_convert`` is set to ``true``,
 excessively sparse arrays will be handled as maps.
+
+**yaml.cfg() example 1:**
+
+The following code will encode 0/0 as nan ("not a number")
+and 1/0 as inf ("infinity"), rather than returning nil or an error message:
+
+.. code-block:: lua
+
+    yaml = require('yaml')
+    yaml.cfg{encode_invalid_numbers = true}
+    x = 0/0
+    y = 1/0
+    yaml.encode({1, x, y, 2})
+
+The result of the ``yaml.encode()`` request will look like this:
+
+.. code-block:: tarantoolsession
+
+    tarantool> yaml.encode({1, x, y, 2})
+    ---
+    - '[1,nan,inf,2]
+    ...
+
+**yaml.cfg example 2:**
+
+To avoid throwing an error on attempts to enode unknown data types as
+userdata/cdata you can use this code:
+
+.. code-block:: tarantoolsession
+
+    tarantool> httpc = require('http.client').new()
+    ---
+    ...
+
+    tarantool> yaml.encode(httpc.curl)
+    ---
+    - error: unsupported Lua type 'userdata'
+    ...
+
+    tarantool> yaml.encode(httpc.curl, {encode_use_tostring=true})
+    ---
+    - '"userdata: 0x010a4ef2a0"'
+    ...
+
+.. NOTE::
+
+    To achieve the same effect for only one call to ``yaml.encode()`` without
+    changing the configuration persistently, you can use
+    ``yaml.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
 
 The same configuration settings exist for :ref:`JSON
 <json-module_cfg>`, and for :ref:`MsgPack <msgpack-cfg>`.

@@ -230,28 +230,32 @@ with the MsgPack format name and encoding on the right.
         +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_invalid_numbers``  |  true   | Enable encoding of NaN and Inf numbers        |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | Enable :ref:`__serialize <msgpack-serialize>` |
-        |                                 |         | meta-value checking                           |
+        | ``cfg.encode_load_metatables``  | true    | Encode as map or array according to           |
+        |                                 |         | :ref:`__serialize <msgpack-serialize>` value  |
         +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_use_tostring``     | false   | Enable ``tostring()`` usage for unknown       |
         |                                 |         | types                                         |
         +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_invalid_as_nil``   |  false  | Use NULL for all unrecognizable types         |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps      |
+        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps.     |
         |                                 |         | See detailed description                      |
         |                                 |         | :ref:`below <msgpack-cfg_sparse>`             |
         +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is permissible      |
+        |                                 |         | percentage of missing values in a sparse      |
+        |                                 |         | array                                         |
+        +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_sparse_safe``      | 10      | Limit ensuring that small Lua arrays          |
         |                                 |         | are always encoded as sparse arrays           |
+        |                                 |         | (instead of error or encoding as map)         |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.decode_invalid_numbers``  |  true   | Set floating point numbers precision          |
+        | ``cfg.decode_invalid_numbers``  |  true   | Enable decoding NaN and Inf numbers           |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.decode_save_metatables``  |  true   | Save ``__serialize`` meta-value for           |
-        |                                 |         | decoded arrays and map                        |
+        | ``cfg.decode_save_metatables``  |  true   | Set metatables for all arrays and maps        |
         +---------------------------------+---------+-----------------------------------------------+
 
-    .. msgpack-cfg_sparse:
+    .. _msgpack-cfg_sparse:
 
 **Sparse arrays features:**
 
@@ -275,7 +279,7 @@ By default, attempting to encode an excessively sparse array will
 generate an error. If ``encode_sparse_convert`` is set to ``true``,
 excessively sparse arrays will be handled as maps.
 
-**msgpack.cfg() example:**
+**msgpack.cfg() example 1:**
 
 If ``msgpack.cfg.encode_invalid_numbers = true`` (the default),
 then nan and inf are legal values. If that is not desirable, then
@@ -298,6 +302,27 @@ ensure that ``msgpack.encode()`` will not accept them, by saying
     tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
     ---
     - error: ... number must not be NaN or Inf'
+    ...
+
+**msgpack.cfg example 2:**
+
+To avoid throwing an error on attempts to enode unknown data types as
+userdata/cdata you can use this code:
+
+.. code-block:: tarantoolsession
+
+    tarantool> httpc = require('http.client').new()
+    ---
+    ...
+
+    tarantool> msgpack.encode(httpc.curl)
+    ---
+    - error: unsupported Lua type 'userdata'
+    ...
+
+    tarantool> msgpack.encode(httpc.curl, {encode_use_tostring=true})
+    ---
+    - '"userdata: 0x010a4ef2a0"'
     ...
 
 .. NOTE::
