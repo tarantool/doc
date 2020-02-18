@@ -532,7 +532,8 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: drop()
 
-        Drop a space.
+        Drop a space. The method is performed in background and doesn't block 
+        consequent requests.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
@@ -1281,7 +1282,8 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: truncate()
 
-        Deletes all tuples.
+        Deletes all tuples. The method is performed in background and doesn't 
+        block consequent requests.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
