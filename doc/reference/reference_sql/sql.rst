@@ -1339,6 +1339,7 @@ as -inf or inf.
 NUMBER values have the same range as DOUBLE values.
 But NUMBER values may also also be integers, and, if so,
 arithmetic operation results will be exact rather than approximate.
+For example, if a NUMBER column ``X`` contains 5, then ``X / 2`` is 2, an integer.
 There is no literal format for NUMBER (literals like ``1.5`` or ``1E555``
 are considered to be DOUBLEs), so use :ref:`CAST <sql_function_cast>`
 to insist that a number has data type NUMBER, but that is rarely necessary.
@@ -1431,7 +1432,7 @@ Example: ``2 * 5``, result = 10.
 ``/`` division (arithmetic)
 Divide second number into first number according to standard arithmetic rules.
 Division by zero is not legal.
-Division of integers always results in rounding down, use :ref:`CAST <sql_function_cast>` to NUMBER to get
+Division of integers always results in rounding down, use :ref:`CAST <sql_function_cast>` to DOUBLE to get
 non-integer results.
 Example: ``5 / 2``, result = 2.
 
@@ -1680,13 +1681,12 @@ The specific situations in this chart follow the general rules:
 
 .. code-block:: none
 
-    ~                To BOOLEAN | To INTEGER | To DOUBLE | To STRING | To VARBINARY
-    ---------------  ----------   ----------   ---------   ---------   ------------
-    From BOOLEAN   | AAA        | A--        | ---       | A--       | ---         
-    From INTEGER   | A--        | AAA        | AAA       | AAA       | ---         
-    From DOUBLE    | A--        | SSA        | AAA       | AAA       | ---         
-    From STRING    | S--        | SSS        | SSS       | AAA       | A--         
-    From VARBINARY | ---        | ---        | ---       | A--       | AAA         
+    ~                To BOOLEAN | To number  | To STRING | To VARBINARY
+    ---------------  ----------   ----------   ---------   ------------
+    From BOOLEAN   | AAA        | S--        | A--       | ---
+    From number    | A--        | SSA        | AAA       | ---
+    From STRING    | S--        | SSS        | AAA       | A--
+    From VARBINARY | ---        | ---        | A--       | AAA
 
 Where each entry in the chart has 3 characters: |br|
 Where A = Always allowed, S = Sometimes allowed, - = Never allowed. |br|
@@ -1697,8 +1697,9 @@ So AAA = Always for explicit, Always for Implicit (assignment), Always for Impli
 
 The S "Sometimes allowed" character applies for these special situations: |br|
 From STRING To BOOLEAN is allowed if UPPER(string-value) = ``'TRUE'`` or ``'FALSE'``. |br|
-From DOUBLE to INTEGER is allowed for cast and assignment only if the result is not out of range. |br|
-From STRING to INTEGER or DOUBLE is allowed only if the string has a representation of a number.
+From number to INTEGER or UNSIGNED is allowed for cast and assignment only if the result is not out of range. |br|
+From STRING to number is allowed only if the string has a representation of a number. |br|
+From BOOLEAN to number is allowed only if the number is not DOUBLE.
 
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
 not the type of the column definition.
@@ -1707,7 +1708,7 @@ But comparisons of values of different types are allowed if the definition is SC
 
 Examples of casts, illustrating the situations in the chart:
 
-``CAST(TRUE AS INTEGER)`` is legal because the intersection of the  "From BOOLEAN" row with the "To INTEGER"
+``CAST(TRUE AS INTEGER)`` is legal because the intersection of the  "From BOOLEAN" row with the "To number"
 column is ``A--`` and the first letter of ``A--`` is for explicit cast and A means Always Allowed.
 The result is 1.
 
@@ -1715,18 +1716,18 @@ The result is 1.
 column is ``A--`` and the second letter of ``A--`` is for implicit cast (assignment) and - means not allowed.
 The result is an error message. 
 
-``1.7E-1 > 0`` is legal because the intersection of the "From DOUBLE" row with the "To INTEGER"
-column is AAA, and the third letter of AAA is for implicit cast (comparison) and A means Always Allowed.
+``1.7E-1 > 0`` is legal because the intersection of the "From number" row with the "To number"
+column is SSA, and the third letter of SSA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.
 
-``11 > '2'`` is legal because the intersection of the "From INTEGER" row with the "To STRING"
+``11 > '2'`` is legal because the intersection of the "From number" row with the "To STRING"
 column is AAA and the third letter of AAA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.  For detailed explanation see the following section.
 
 Implicit string/numeric cast
 
 Special considerations may apply for casting STRINGs
-to/from INTEGERs/DOUBLEs (numbers) for comparison or assignment.
+to/from INTEGERs/DOUBLEs/NUMBERs/UNSIGNEDs (numbers) for comparison or assignment.
 
 ``1 = '1' /* compare a STRING with a number */`` |br|
 ``UPDATE ... SET string_column = 1 /* assign a number to a STRING */``
@@ -1747,9 +1748,9 @@ Therefore ``'5' / '5' = 1``. If the cast fails, then the result is an error. |br
 Therefore ``'5' / ''`` is an error.
 
 Implicit cast does NOT happen if numbers are used in concatenation, or in LIKE. |br|
-Therefore ``5 || 5`` is illegal.
+Therefore ``5 || '5'`` is illegal.
 
-In the following examples, implicit cast does not happen for SCALAR column values: |br|
+In the following examples, implicit cast does not happen for values in SCALAR columns: |br|
 ``DROP TABLE scalars;`` |br|
 ``CREATE TABLE scalars (scalar_column SCALAR PRIMARY KEY);`` |br|
 ``INSERT INTO scalars VALUES (11), ('2');`` |br|
