@@ -5387,7 +5387,7 @@ Syntax:
 
 Return the Tarantool version.
 
-Example: for a December 2019 build VERSION() is ``2.3.0-258-g960e9c0c7``.
+Example: for a February 2020 build VERSION() is ``'2.4.0-35-g57f6fc932'``.
 
 .. _sql_function_zeroblob:
 

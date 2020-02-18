@@ -26,7 +26,7 @@ the tarantool module is recommended.
     ...
     tarantool> tarantool
     ---
-    - version: 2.3.0-3-g302bb3241
+    - version: 2.4.0-35-g57f6fc932
       build:
         target: Linux-x86_64-RelWithDebInfo
         options: cmake . -DCMAKE_INSTALL_PREFIX=/opt/tarantool-install

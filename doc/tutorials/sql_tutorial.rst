@@ -8,7 +8,7 @@ This tutorial is a demonstration of the SQL feature introduced in
 Tarantool 2.x series. There are two ways to go through this tutorial:
 
 * read what we say the results are and take our word for it, or
-* copy and paste each section and see everything work with Tarantool 2.3.
+* copy and paste each section and see everything work with Tarantool 2.4.
 
 You will encounter all the functionality that you'd encounter in an "SQL-101"
 course.
