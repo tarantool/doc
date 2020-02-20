@@ -57,7 +57,7 @@ or on Fedora say:
 
 The ``msgpuck.h`` file will exist if Tarantool was installed from source.
 Otherwise the "msgpuck" package must be installed from
-`https://github.com/tarantool/msgpuck <https://github.com/tarantool/msgpuck>`_.
+`https://github.com/rtsisyk/msgpuck <https://github.com/rtsisyk/msgpuck>`_.
 
 Both ``module.h`` and ``msgpuck.h`` must be on the include path for the
 C compiler to see them.
@@ -230,7 +230,7 @@ to the ``harder()`` function. The ``harder()`` function will see it,
 it's in the :code:`char *args` parameter.
 
 At this point the ``harder()`` function will start using functions
-defined in `msgpuck.h <https://github.com/tarantool/msgpuck>`_.
+defined in `msgpuck.h <http://rtsisyk.github.io/msgpuck>`_.
 The routines that begin with "mp" are msgpuck functions that
 handle data formatted according to the MsgPack_ specification.
 Passes and returns are always done with this format so

@@ -206,7 +206,7 @@ Function description:
 Here is a complete C program that selects, using index key ``[99999]``, from
 space ``examples`` via the high-level C API.
 To display the results, the program uses functions in the
-`MsgPuck <https://github.com/tarantool/msgpuck>`_ library which allow decoding of
+`MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library which allow decoding of
 `MessagePack <https://en.wikipedia.org/wiki/MessagePack>`_  arrays.
 
 .. code-block:: c

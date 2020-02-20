@@ -168,5 +168,5 @@ added as a final parameter in ``expirationd.run_task``:
 .. _rock: http://rocks.tarantool.org/
 .. _expirationd.lua: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
 .. _GitHub: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
-.. _fun.map: https://luafun.github.io/transformations.html#fun.map
+.. _fun.map: http://rtsisyk.github.io/luafun/transformations.html#fun.map
 .. _require: https://www.lua.org/pil/8.1.html#require
