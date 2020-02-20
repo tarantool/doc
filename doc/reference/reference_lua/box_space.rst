@@ -1042,7 +1042,7 @@ Below is a list of all ``box.space`` functions and members.
 
         :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
                  used in a for/end loop or with `totable()
-                 <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_
+                 <https://luafun.github.io/reducing.html#fun.totable>`_
 
         **Possible errors:**
 
