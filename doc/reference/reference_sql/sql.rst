@@ -788,14 +788,14 @@ because SQL statements may require more parsing and may be translated to NoSQL r
 These routines are executed on the server, which is the principal advantage of pure-SQL stored procedures.
 
 (3) There are some options that are implemented in NoSQL that are not (yet) implemented in SQL.
-For example you can use NoSQL to change an index type to 'hash', and to deny access to users named 'guest'.
+For example you can use NoSQL to change an index option, and to deny access to users named 'guest'.
 
 (4) System spaces such as _space and _index can be accessed with SQL SELECT statements.
 This is not quite the same as an information_schema, but it does mean that you can
 use SQL to access the database's metadata catalog.
 
 Fields in NoSQL spaces can be accessed with SQL if and only if they are scalar and are defined
-in format clauses. Indexes of NoSQL spaces will be used with SQL if and only if they are TREE or HASH indexes.
+in format clauses. Indexes of NoSQL spaces will be used with SQL if and only if they are TREE indexes.
 
 **Relational Databases**
 
@@ -5550,8 +5550,8 @@ The NoSQL :ref:`basic data operation requests <index-box_data-operations>`
 select, insert, replace, upsert, update, delete will all work.
 Particularly interesting are the requests that come only via NoSQL.
 
-To create a HASH index on things (remark), say: |br|
-``box.space.THINGS:create_index('hash', {type='hash', parts={2, 'scalar'}})``
+To create an index on things (remark) with a non-default :ref:`option <box_space-create_index-options>` for example a special id, say: |br|
+``box.space.THINGS:create_index('idx_100_things_2', {id=100, parts={2, 'scalar'}})``
 
 (If the SQL data type name is SCALAR, then the NoSQL type is 'scalar',
 as described earlier. See the chart in section :ref:`Operands <sql_operands>`.)
@@ -5607,6 +5607,13 @@ To call SQL from Lua, see section
 
 Limitations: (`Issue#2368 <https://github.com/tarantool/tarantool/issues/2368>`_) |br|
 * after ``box.schema.user.grant('guest','read,write,execute','universe')``, user ``'guest'`` can create tables. But this is a powerful set of privileges.
+
+Limitations: (`Issue#4659 <https://github.com/tarantool/tarantool/issues/4659>`_,
+`Issue#4757 <https://github.com/tarantool/tarantool/issues/4757>`_, 
+`Issue#4758 <https://github.com/tarantool/tarantool/issues/4758>`_) |br|
+SELECT with * or ORDER BY or GROUP BY from spaces that have map fields
+or array fields may cause errors. Any access to spaces that have hash
+indexes may cause severe errors.
 
 .. _sql_system_tables:
 
