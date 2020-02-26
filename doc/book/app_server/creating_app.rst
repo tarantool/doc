@@ -128,7 +128,7 @@ document. In avro-schema terms, converting JSON documents to tuples is
 
 First you need to
 `install <https://www.tarantool.io/en/doc/1.10/book/app_server/installing_module/>`_
-the module with ``tarantool rocks install avro-schema``.
+the module with ``tarantoolctl rocks install avro-schema``.
 
 Further usage is quite straightforward:
 
