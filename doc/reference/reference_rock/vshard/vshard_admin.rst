@@ -82,8 +82,8 @@ available replica that is the 'nearest' to the ``router``. Weights are used to d
 distances between replicas within a replica set.
 
 Weights can be used, for example, to define the physical distance between the
-``router`` and each replica in each replica set. In such a case read requests
-are sent to the nearest replica.
+``router`` and each replica in each replica set. In this case read requests
+are sent to the nearest replica (with the lowest weight).
 
 Setting weights can also help to define the most powerful replicas: the ones that
 can process the largest number of requests per second.
