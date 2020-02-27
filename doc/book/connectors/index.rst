@@ -25,7 +25,8 @@ Unless implementing a client driver, you needn't concern yourself with the
 complications of the binary protocol. Language-specific drivers provide a
 friendly way to store domain language data structures in Tarantool. A complete
 description of the binary protocol is maintained in annotated Backus-Naur form
-in the source tree: please see the page about
+in the source tree. For detailed examples and diagrams of all binary-protocol
+requests and responses, see
 :ref:`Tarantool's binary protocol <box_protocol-iproto_protocol>`.
 
 ====================================================================
