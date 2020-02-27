@@ -773,6 +773,8 @@ Below is a list of all ``box.space`` functions and members.
 
             box.space.tester:get{1}
 
+    .. _box_space-get_field_names:
+
         **Using field names instead of field numbers:** `get()` can use field names
         described by the optional :ref:`space_object:format() <box_space-format>` clause.
         This is similar to a standard Lua feature, where a component can be referenced
@@ -1272,6 +1274,11 @@ Below is a list of all ``box.space`` functions and members.
         index to search and what condition to use (for example "greater than"
         instead of "equal to") and how many tuples to return, it will be
         necessary to become familiar with :ref:`index_object:select <box_index-select>`.
+
+        Remember that you can :ref:`get() <box_space-get>` a field from a tuple 
+        both by field number and by field name which is more user-friendly. 
+        See example: :ref:`using field names instead of field numbers 
+        <box_space-get_field_names>`.
 
         For more usage scenarios and typical errors see
         :ref:`Example: using data operations <box_space-operations-detailed-examples>`
