@@ -39,6 +39,21 @@ python -m SimpleHTTPServer
 ```
 then go to [localhost:8000](http://localhost:8000) in your browser.
 
+## Building css from less
+
+Install required packages:
+```shell script
+npm install -g clean-css clean-css-cli node-less less-plugin-autoprefix 
+```
+
+Make css files:
+```shell script
+cd _theme/tarantool/_less
+make all
+```
+
+Then remove output/html folder and build the documentation again
+
 ## How to contribute
 
 To contribute to documentation, use the
