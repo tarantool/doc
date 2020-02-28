@@ -126,11 +126,11 @@ Below is a list of all ``json`` functions and members.
 The JSON output structure can be specified with ``__serialize``:
 
 * 'seq', 'sequence', 'array' - table encoded as an array
-* 'map', 'mappping' - table encoded as a map.
-* function - the meta-method is called to unpack serializable representation
-  of table, cdata or userdata objects.
+* 'map', 'mapping' - table encoded as a map
+* function - the meta-method called to unpack serializable representation
+  of table, cdata or userdata objects
 
-Serializing 'A' and 'B' with different ``__serialize`` values causes different
+Serializing 'A' and 'B' with different ``__serialize`` values brings different
 results:
 
 .. code-block:: tarantoolsession
@@ -156,10 +156,10 @@ results:
 
 .. function:: cfg(table)
 
-    Set values affecting behavior of :ref:`json.encode <json-encode>`
+    Set values that affect the behavior of :ref:`json.encode <json-encode>`
     and :ref:`json.decode <json-decode>`.
 
-    The values are all either integers or boolean ``true``/``false`` values.
+    The values are all either integers or boolean ``true``/``false``.
 
     .. container:: table
 
@@ -170,41 +170,48 @@ results:
         +---------------------------------+---------+-------------------------------------------+
         | Option                          | Default | Use                                       |
         +=================================+=========+===========================================+
-        | ``cfg.encode_max_depth``        |   128   | Set max recursion depth for encoding      |
+        | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding          |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_deep_as_nil``      |  false  | A flag whether a table with too high      |
-        |                                 |         | nest level should be cropped. The         |
-        |                                 |         | not-encoded fields are replaced with      |
-        |                                 |         | one null. If not set, too high            |
-        |                                 |         | nesting is considered an error            |
+        | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables      |
+        |                                 |         | with too deep nesting level.              |
+        |                                 |         | Not-encoded fields are replaced with      |
+        |                                 |         | one null. If not set, too deep            |
+        |                                 |         | nesting is considered an error.           |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_invalid_numbers``  |  true   | Enable encoding of NaN and Inf numbers    |
+        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding  |
+        |                                 |         | of NaN and Inf numbers                    |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_number_precision`` | 14      | Set floating point numbers precision      |
+        | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers       |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | Encode as map or array according to       |
+        | ``cfg.encode_load_metatables``  | true    | A flag saying whether to encode as a map  |
+        |                                 |         | or an array according to the              |
         |                                 |         | :ref:`__serialize <json-serialize>` value |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_use_tostring``     | false   | Enable ``tostring()`` usage for unknown   |
-        |                                 |         | types                                     |
+        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use              |
+        |                                 |         | ``tostring()`` for unknown types          |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_invalid_as_nil``   |  false  | Use NULL for all unrecognizable types     |
+        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether use NULL for        |
+        |                                 |         | non-recognized types                      |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_convert``   | true    | Handle excessively sparse arrays as maps. |
+        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle           |
+        |                                 |         | excessively sparse arrays as maps.        |
         |                                 |         | See detailed description                  |
-        |                                 |         | :ref:`below <json-module_cfg_sparse>`     |
+        |                                 |         | :ref:`below <json-module_cfg_sparse>`.    |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is permissible  |
-        |                                 |         | percentage of missing values in a sparse  |
-        |                                 |         | array                                     |
+        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is the          |
+        |                                 |         | permissible percentage of missing values  |
+        |                                 |         | in a sparse array.                                     |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_safe``      | 10      | Limit ensuring that small Lua arrays      |
+        | ``cfg.encode_sparse_safe``      | 10      | A limit ensuring that small Lua arrays    |
         |                                 |         | are always encoded as sparse arrays       |
-        |                                 |         | (instead of error or encoding as map)     |
+        |                                 |         | (instead of generating an error or        |
+        |                                 |         | encoding as a map)                        |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_invalid_numbers``  |  true   | Enable decoding NaN and Inf numbers       |
+        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding  |
+        |                                 |         | of NaN and Inf numbers                    |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_save_metatables``  |  true   | Set metatables for all arrays and maps    |
+        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables   |
+        |                                 |         | for all arrays and maps                   |
         +---------------------------------+---------+-------------------------------------------+
         | ``cfg.decode_max_depth``        |  128    | Max recursion depth for decoding          |
         +---------------------------------+---------+-------------------------------------------+
@@ -213,20 +220,20 @@ results:
 
 **Sparse arrays features:**
 
-JSON encoder tries to classify table into one of four kinds during encoding:
+During encoding, the JSON encoder tries to classify a table into one of four kinds:
 
-* map - at least one table index is not unsigned integer;
-* regular array - all array indexes are available;
-* sparse array - at least one array index is missing;
-* excessively sparse array - the number of values missing exceeds the configured ratio.
+* map - at least one table index is not unsigned integer
+* regular array - all array indexes are available
+* sparse array - at least one array index is missing
+* excessively sparse array - the number of values missing exceeds the configured ratio
 
 An array is excessively sparse when **all** the following conditions are met:
 
-* ``encode_sparse_ratio`` > 0,
-* ``max(table)`` > ``encode_sparse_safe``,
-* ``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``.
+* ``encode_sparse_ratio`` > 0
+* ``max(table)`` > ``encode_sparse_safe``
+* ``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``
 
-JSON encoder will never consider an array to be excessively sparse
+The JSON encoder will never consider an array to be excessively sparse
 when ``encode_sparse_ratio = 0``. The ``encode_sparse_safe`` limit ensures
 that small Lua arrays are always encoded as sparse arrays.
 By default, attempting to encode an excessively sparse array will
@@ -235,8 +242,8 @@ excessively sparse arrays will be handled as maps.
 
 **json.cfg() example 1:**
 
-The following code will encode 0/0 as nan ("not a number")
-and 1/0 as inf ("infinity"), rather than returning nil or an error message:
+The following code will encode 0/0 as NaN ("not a number")
+and 1/0 as Inf ("infinity"), rather than returning nil or an error message:
 
 .. code-block:: lua
 
@@ -257,8 +264,8 @@ The result of the ``json.encode()`` request will look like this:
 
 **json.cfg example 2:**
 
-To avoid throwing an error on attempts to enode unknown data types as
-userdata/cdata you can use this code:
+To avoid generating errors on attempts to encode unknown data types as
+userdata/cdata, you can use this code:
 
 .. code-block:: tarantoolsession
 
@@ -278,14 +285,12 @@ userdata/cdata you can use this code:
 
 .. NOTE::
 
-    To achieve the same effect for only one call to ``json.encode()`` without
-    changing the configuration persistently, you can use
+    To achieve the same effect for only one call to ``json.encode()`` (i.e.
+    without changing the configuration permanently), you can use
     ``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
 
-
-
-The same configuration settings exist for :ref:`MsgPack
-<msgpack-cfg>`, and for :ref:`YAML <yaml-cfg>`.
+Similar configuration settings exist for :ref:`MsgPack <msgpack-cfg>`
+and :ref:`YAML <yaml-cfg>`.
 
 .. _json-null:
 
