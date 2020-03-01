@@ -604,7 +604,7 @@ For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-c
 Lua requests can result in a wide variety of structures,
 bodies can have a wide variety of structures.
 
-For example, after :codenormal:`box.space.{`:codeitalic:`space-name`:codenormal:`}:insert{6}` a successful
+For example, after :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}` a successful
 response will look like this:
 
 .. code-block:: none 
