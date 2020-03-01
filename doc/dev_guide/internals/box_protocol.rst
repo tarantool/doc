@@ -221,19 +221,22 @@ that begins with these request-type IPROTO codes.
 **IPROTO_SELECT** = 0x01.
 
 See :ref:`space_object:select()  <box_space-select>`.
-The body is a 6-item map: |br|
-``+=========================+=========================+=========================+`` |br|
-``|                         |                         |                         |`` |br|
-``|   0x10: IPROTO_SPACE_ID |   0x11: IPROTO_INDEX_ID |   0x12: IPROTO_LIMIT    |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_INT          |`` |br|
-``|                         |                         |                         |`` |br|
-``+=========================+=========================+=========================+`` |br|
-``|                         |                         |                         |`` |br|
-``|   0x13: IPROTO_OFFSET   |   0x14: IPROTO_ITERATOR |   0x20: IPROTO_KEY      |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_ARRAY        |`` |br|
-``|                         |                         |                         |`` |br|
-``+=========================+=========================+=========================+`` |br|
-``-                MP_MAP`` |br|
+The body is a 6-item map:
+
+.. code-block:: none
+
+    +=========================+=========================+=========================+
+    |                         |                         |                         |
+    |   0x10: IPROTO_SPACE_ID |   0x11: IPROTO_INDEX_ID |   0x12: IPROTO_LIMIT    |
+    | MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_INT          |
+    |                         |                         |                         |
+    +=========================+=========================+=========================+
+    |                         |                         |                         |
+    |   0x13: IPROTO_OFFSET   |   0x14: IPROTO_ITERATOR |   0x20: IPROTO_KEY      |
+    | MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_ARRAY        |
+    |                         |                         |                         |
+    +=========================+=========================+=========================+
+                 MP_MAP
 
 IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_INDEX_ID (0x11) + MP_INT,
@@ -247,27 +250,35 @@ See the illustration of IPROTO_SELECT in the earlier section,
 **IPROTO_INSERT** == 0x02.
 
 See :ref:`space_object:insert()  <box_space-insert>`.
-The body is a 2-item map: |br|
-``+=========================+======================+`` |br|
-``|                         |                      |`` |br|
-``|   0x10: IPROTO_SPACE_ID |   0x21: IPROTO_TUPLE |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_ARRAY     |`` |br|
-``|                         |                      |`` |br|
-``+=========================+======================+`` |br|
-``-                MP_MAP`` |br|
+The body is a 2-item map:
+
+.. code-block:: none
+
+    +=========================+======================+
+    |                         |                      |
+    |   0x10: IPROTO_SPACE_ID |   0x21: IPROTO_TUPLE |
+    | MP_INT: MP_INT          | MP_INT: MP_ARRAY     |
+    |                         |                      |
+    +=========================+======================+
+                     MP_MAP
+
 IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_TUPLE + MP_ARRAY (array of field values).
 
 **IPROTO_REPLACE** = 0x03,
 See :ref:`space_object:replace()  <box_space-replace>`.
-The body is a 2-item map, the same as for IPROTO_INSERT: |br|
-``+=========================+======================+`` |br|
-``|                         |                      |`` |br|
-``|   0x10: IPROTO_SPACE_ID |   0x21: IPROTO_TUPLE |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_ARRAY     |`` |br|
-``|                         |                      |`` |br|
-``+=========================+======================+`` |br|
-``-                MP_MAP`` |br|
+The body is a 2-item map, the same as for IPROTO_INSERT:
+
+.. code-block:: none
+
+    +=========================+======================+
+    |                         |                      |
+    |   0x10: IPROTO_SPACE_ID |   0x21: IPROTO_TUPLE |
+    | MP_INT: MP_INT          | MP_INT: MP_ARRAY     |
+    |                         |                      |
+    +=========================+======================+
+                   MP_MAP
+
 IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_TUPLE (0x21) + MP_ARRAY (array of field values).
 
@@ -276,22 +287,26 @@ IPROTO_TUPLE (0x21) + MP_ARRAY (array of field values).
 **IPROTO_UPDATE** = 0x04.
 
 See :ref:`space_object:update()  <box_space-update>`.
-The body is usually a 4-item map, |br|
-``+=========================+===============================+`` |br|
-``|                         |                               |`` |br|
-``|   0x10: IPROTO_SPACE_ID |   0x11: IPROTO_INDEX_ID       |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_INT                |`` |br|
-``|                         |                               |`` |br|
-``+=========================+===============================+`` |br|
-``|                         |                 +~~~~~~~~~~~+ |`` |br|
-``|                         |                 | usually   | |`` |br|
-``|                         |                 | OPERATOR, | |`` |br|
-``|                         | (IPROTO_TUPLE)  | FIELD_NO, | |`` |br|
-``|   0x20: IPROTO_KEY      |    0x21:        | VALUE     | |`` |br|
-``| MP_INT: MP_ARRAY        |  MP_INT:        +~~~~~~~~~~~+ |`` |br|
-``|                         |                   MP_ARRAY    |`` |br|
-``+=========================+===============================+`` |br|
-``-                MP_MAP`` |br|
+The body is usually a 4-item map,
+
+.. code-block:: none
+
+    +=========================+===============================+
+    |                         |                               |
+    |   0x10: IPROTO_SPACE_ID |   0x11: IPROTO_INDEX_ID       |
+    | MP_INT: MP_INT          | MP_INT: MP_INT                |
+    |                         |                               |
+    +=========================+===============================+
+    |                         |                 +~~~~~~~~~~~+ |
+    |                         |                 | usually   | |
+    |                         |                 | OPERATOR, | |
+    |                         | (IPROTO_TUPLE)  | FIELD_NO, | |
+    |   0x20: IPROTO_KEY      |    0x21:        | VALUE     | |
+    | MP_INT: MP_ARRAY        |  MP_INT:        +~~~~~~~~~~~+ |
+    |                         |                   MP_ARRAY    |
+    +=========================+===============================+
+                    MP_MAP
+
 IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_INDEX_ID (0x11) + MP_INT with index number starting with 0,
 IPROTO_KEY (0x20) + MP_ARRAY (array of index keys),
@@ -300,26 +315,34 @@ If the operation specifies no values, it is a 2-item array:
 OPERATOR MP_STR = ``"#"``,
 FIELD_NO MP_INT = field number starting with 1. |br|
 If the operation specifies one value, it is a 3-item array: |br|
-``0           2`` |br|
-``+-------------+==========+===========+`` |br|
-``|             |          |           |`` |br|
-``| OPERATOR    | FIELD_NO | VALUE     |`` |br|
-``| MP_STR      | MP_INT   | MP_OBJECT |`` |br|
-``|             |          |           |`` |br|
-``+-------------+==========+===========+`` |br|
-``-             MP_ARRAY`` |br|
+
+.. code-block:: none
+
+    0           2
+    +-------------+==========+===========+
+    |             |          |           |
+    | OPERATOR    | FIELD_NO | VALUE     |
+    | MP_STR      | MP_INT   | MP_OBJECT |
+    |             |          |           |
+    +-------------+==========+===========+
+              MP_ARRAY
+
 OPERATOR MP_STR = ``"+"`` or ``"-"`` or ``"&"`` or ``"^"`` or ``"|"`` or ``"!"`` or ``"="``),
 FIELD_NO MP_INT = field number starting with 1,
 VALUE MP_OBJECT, that is, any type, MP_INT, MP_STR, etc.. |br|
 Otherwise the operation is a 5-item array: |br|
-``0           2`` |br|
-``+-----------+==========+==========+========+==========+`` |br|
-``|           |          |          |        |          |`` |br|
-``| ':'       | FIELD_NO | POSITION | OFFSET | VALUE    |`` |br|
-``| MP_STR    | MP_INT   | MP_INT   | MP_INT | MP_STR   |`` |br|
-``|           |          |          |        |          |`` |br|
-``+-----------+==========+==========+========+==========+`` |br|
-``-                         MP_ARRAY`` |br|
+
+.. code-block:: none
+
+    0           2
+    +-----------+==========+==========+========+==========+
+    |           |          |          |        |          |
+    | ':'       | FIELD_NO | POSITION | OFFSET | VALUE    |
+    | MP_STR    | MP_INT   | MP_INT   | MP_INT | MP_STR   |
+    |           |          |          |        |          |
+    +-----------+==========+==========+========+==========+
+                          MP_ARRAY
+
 OPERATOR MP_STR = ``":"``,
 FIELD_NO MP_INT = field number starting with 1,
 POSITION MP_INT,
@@ -355,14 +378,17 @@ start with 1, which is optional and can be omitted):
 **IPROTO_DELETE** = 0x05.
 
 See :ref:`space_object:delete()  <box_space-delete>`.
-The body is a 3-item map: |br|
-``+=========================+=========================+====================+`` |br|
-``|                         |                         |                    |`` |br|
-``|   0x10: IPROTO_SPACE_ID |   0x11: IPROTO_INDEX_ID |   0x20: IPROTO_KEY |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_ARRAY   |`` |br|
-``|                         |                         |                    |`` |br|
-``+=========================+=========================+====================+`` |br|
-``-                             MP_MAP`` |br|
+The body is a 3-item map:
+
+.. code-block:: none
+
+    +=========================+=========================+====================+
+    |                         |                         |                    |
+    |   0x10: IPROTO_SPACE_ID |   0x11: IPROTO_INDEX_ID |   0x20: IPROTO_KEY |
+    | MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_ARRAY   |
+    |                         |                         |                    |
+    +=========================+=========================+====================+
+                              MP_MAP
 
 IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_INDEX_ID (0x11) + MP_INT,
@@ -373,14 +399,17 @@ IPROTO_KEY (0x20) + MP_ARRAY (array of key values).
 See :ref:`conn:call() <net_box-call>`. The suffix ``_16`` is a hint that this is for the
 ``call()`` until Tarantool 1.6. It is deprecated.
 Use :ref:`IPROTO_CALL <box_protocol-call>` instead.
-The body is a 2-item map: |br|
-``+==============================+=======================+`` |br|
-``|                              |                       |`` |br|
-``|   0x22: IPROTO_FUNCTION_NAME |   0x21: IPROTO_TUPLE  |`` |br|
-``| MP_INT: MP_STRING            | MP_INT: MP_ARRAY      |`` |br|
-``|                              |                       |`` |br|
-``+==============================+=======================+`` |br|
-``-                       MP_MAP`` |br|
+The body is a 2-item map:
+
+.. code-block:: none
+
+    +==============================+=======================+
+    |                              |                       |
+    |   0x22: IPROTO_FUNCTION_NAME |   0x21: IPROTO_TUPLE  |
+    | MP_INT: MP_STRING            | MP_INT: MP_ARRAY      |
+    |                              |                       |
+    +==============================+=======================+
+                        MP_MAP
 
 IPROTO_FUNCTION_NAME (0x22) +  function name (MP_STRING),
 IPROTO_TUPLE (0x22) + array of arguments (MP_ARRAY).
@@ -404,14 +433,18 @@ will be handled either with :ref:`IPROTO_CALL <box_protocol-call>`
 or IPROTO_EVAL.
 Some client-like utilities, such as :ref:`tarantoolctl <tarantoolctl>`,
 make extensive use of ``eval``.
-The body is a 2-item map: |br|
-``+=======================+======================+`` |br|
-``|                       |                      |`` |br|
-``|   0x27: IPROTO_EXPR   |   0x21: IPROTO_TUPLE |`` |br|
-``| MP_INT: MP_STRING     | MP_INT: MP_ARRAY     |`` |br|
-``|                       |                      |`` |br|
-``+=======================+======================+`` |br|
-``-                   MP_MAP`` |br|
+The body is a 2-item map:
+
+.. code-block:: none
+
+    +=======================+======================+
+    |                       |                      |
+    |   0x27: IPROTO_EXPR   |   0x21: IPROTO_TUPLE |
+    | MP_INT: MP_STRING     | MP_INT: MP_ARRAY     |
+    |                       |                      |
+    +=======================+======================+
+                    MP_MAP
+
 IPROTO_EXPR (0x27) + expression (MP_STRING),
 IPROTO_TUPLE (0x21) + array of arguments to match placeholders.
 
@@ -425,14 +458,18 @@ The body is the same as the body of :ref:`IPROTO_UPDATE <box_protocol-update>`.
 **IPROTO_CALL** = 0x0a.
 
 See :ref:`conn:call() <net_box-call>`.
-The body is a 2-item map: |br|
-``+==============================+======================+`` |br|
-``|                              |                      |`` |br|
-``|   0x22: IPROTO_FUNCTION_NAME |   0x21: IPROTO_TUPLE |`` |br|
-``| MP_INT: MP_STRING            | MP_INT: MP_ARRAY     |`` |br|
-``|                              |                      |`` |br|
-``+==============================+======================+`` |br|
-``-                           MP_MAP`` |br|
+The body is a 2-item map:
+
+.. code-block:: none
+
+    +==============================+======================+
+    |                              |                      |
+    |   0x22: IPROTO_FUNCTION_NAME |   0x21: IPROTO_TUPLE |
+    | MP_INT: MP_STRING            | MP_INT: MP_ARRAY     |
+    |                              |                      |
+    +==============================+======================+
+                            MP_MAP
+
 IPROTO_FUNCTION_NAME (0x22) +  function name (MP_STRING),
 IPROTO_TUPLE (0x22) + array of arguments (MP_ARRAY).
 The response will be a list of values, similar to the :ref:`IPROTO_EVAL <box_protocol-eval>` response.
@@ -442,17 +479,21 @@ The response will be a list of values, similar to the :ref:`IPROTO_EVAL <box_pro
 **IPROTO_EXECUTE** = 0x0b.
 
 See :ref:`box.execute() <box-sql_box_execute>`, this is only for SQL.
-The body is a 3-item map: |br|
-``+=========================+=========================+========================+`` |br|
-``|                         |                         |                        |`` |br|
-``|   0x43: IPROTO_STMT_ID  |   0x11: IPROTO_SQL_BIND |   0x20: IPROTO_OPTIONS |`` |br|
-``| MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_ARRAY       |`` |br|
-``|   or                    |                         |                        |`` |br|
-``|   0x40: IPROTO_SQL_TEXT |                         |                        |`` |br|
-``| MP_INT: MP_STR          |                         |                        |`` |br|
-``|                         |                         |                        |`` |br|
-``+=========================+=========================+========================+`` |br|
-``-                             MP_MAP`` |br|
+The body is a 3-item map:
+
+.. code-block:: none
+
+    +=========================+=========================+========================+
+    |                         |                         |                        |
+    |   0x43: IPROTO_STMT_ID  |   0x11: IPROTO_SQL_BIND |   0x20: IPROTO_OPTIONS |
+    | MP_INT: MP_INT          | MP_INT: MP_INT          | MP_INT: MP_ARRAY       |
+    |   or                    |                         |                        |
+    |   0x40: IPROTO_SQL_TEXT |                         |                        |
+    | MP_INT: MP_STR          |                         |                        |
+    |                         |                         |                        |
+    +=========================+=========================+========================+
+                              MP_MAP
+
 IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement
 or
 IPROTO_SQL_TEXT (0x40) + statement-text (MP_STR) if executing an SQL string,
@@ -490,17 +531,21 @@ The body is: nothing.
 **IPROTO_PREPARE** = 0x0d.
 
 See :ref:`box.prepare <box-sql_box_prepare>`, this is only for SQL.
-The body is a 1-item map: |br|
-``+=========================+`` |br|
-``|                         |`` |br|
-``|   0x10: IPROTO_STMT_ID  |`` |br|
-``| MP_INT: MP_INT          |`` |br|
-``|   or                    |`` |br|
-``|   0x10: IPROTO_SQL_TEXT |`` |br|
-``| MP_INT: MP_STR          |`` |br|
-``|                         |`` |br|
-``+=========================+`` |br|
-``-        MP_MAP`` |br|
+The body is a 1-item map:
+
+.. code-block:: none
+
+    +=========================+
+    |                         |
+    |   0x10: IPROTO_STMT_ID  |
+    | MP_INT: MP_INT          |
+    |   or                    |
+    |   0x10: IPROTO_SQL_TEXT |
+    | MP_INT: MP_STR          |
+    |                         |
+    +=========================+
+         MP_MAP
+
 IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement
 or
 IPROTO_SQL_TEXT (0x40) + statement-text (string) if executing an SQL string.
@@ -540,14 +585,17 @@ Responses to SQL statements are slightly different and will be described
 in the later section,
 :ref:`Binary protocol -- responses for SQL <box_protocol-sql_protocol>`.
 
-For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body will be: |br|
-``++=====================+`` |br|
-``||                     |`` |br|
-``||   0x30: IPROTO_DATA |`` |br|
-``|| MP_INT: MP_OBJECT   |`` |br|
-``||                     |`` |br|
-``++=====================+`` |br|
-``-       MP_MAP`` |br|
+For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body will be:
+
+.. code-block:: none
+
+    ++=====================+
+    ||                     |
+    ||   0x30: IPROTO_DATA |
+    || MP_INT: MP_OBJECT   |
+    ||                     |
+    ++=====================+
+        MP_MAP
 
 For :ref:`IPROTO_PING <box_protocol-ping>` the body will be empty.
 For most data-access requests (IPROTO_SELECT IPROTO_INSERT IPROTO_DELETE etc.)
@@ -556,7 +604,7 @@ For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-c
 Lua requests can result in a wide variety of structures,
 bodies can have a wide variety of structures.
 
-For example, after :samp:`box.space.{space-name}:insert` :code:`{6}` a successful
+For example, after :codenormal:`box.space.{`:codeitalic:`space-name`:codenormal:`}:insert{6}` a successful
 response will look like this:
 
 .. code-block:: none 
@@ -587,14 +635,18 @@ The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
 Binary protocol -- responses for errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For a response other than IPROTO_OK, the header Response-Code-Indicator will be 0x8XXX and the body will be: |br|
-``++======================+`` |br|
-``||                      |`` |br|
-``||   0x31: IPROTO_ERROR |`` |br|
-``|| MP_INT: MP_STRING    |`` |br|
-``||                      |`` |br|
-``++======================+`` |br|
-``-         MP_MAP`` |br|
+For a response other than IPROTO_OK, the header Response-Code-Indicator will be 0x8XXX and the body will be:
+
+.. code-block:: none
+
+    ++======================+
+    ||                      |
+    ||   0x31: IPROTO_ERROR |
+    || MP_INT: MP_STRING    |
+    ||                      |
+    ++======================+
+          MP_MAP
+
 where 0x8XXX is the indicator for an error and XXX is a value in
 `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
 ``src/box/errcode.h`` also has some convenience macros which define hexadecimal constants for return codes.
@@ -633,18 +685,22 @@ there will be a body that is slightly different from the body for
 
 If the SQL request is not SELECT or VALUES or PRAGMA, then the response body contains only IPROTO_SQL_INFO (0x42).
 Usually IPROTO_SQL_INFO is a map with only one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of
-changed rows. |br|
-``+=========================================================+`` |br|
-``|                                                         |`` |br|
-``|   0x42: IPROTO_SQL_INFO                                 |`` |br|
-``| MP_MAP: usually 1 item  +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |`` |br|
-``|                         |                             | |`` |br|
-``|                         |    0x00: SQL_INFO_ROW_COUNT | |`` |br|
-``|                         | MP_UINT: changed row count  | |`` |br|
-``|                         |                             | |`` |br|
-``|                         +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |`` |br|
-``|                                                         |`` |br|
-``+=========================================================+`` |br|
+changed rows.
+
+.. code-block:: none
+
+    +=========================================================+
+    |                                                         |
+    |   0x42: IPROTO_SQL_INFO                                 |
+    | MP_MAP: usually 1 item  +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |
+    |                         |                             | |
+    |                         |    0x00: SQL_INFO_ROW_COUNT | |
+    |                         | MP_UINT: changed row count  | |
+    |                         |                             | |
+    |                         +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ |
+    |                                                         |
+    +=========================================================+
+
 For example, if the request is
 :samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body contains
 an IPROTO_SQL_INFO map with SQL_INFO_ROW_COUNT = 3.
