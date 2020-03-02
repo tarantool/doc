@@ -65,6 +65,11 @@ set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/ru/")
 set(SPHINX_EN_JSON_DIR             "${SPHINX_OUTPUT_DIR}/json/_build_en/json")
 set(SPHINX_RU_JSON_DIR             "${SPHINX_OUTPUT_DIR}/json/_build_ru/json")
 
+set(SPHINX_BUILD_EPUB_DIR          ${SPHINX_OUTPUT_DIR}/_epub_en/)
+set(SPHINX_BUILD_EPUB_RU_DIR       ${SPHINX_OUTPUT_DIR}/_epub_ru/)
+set(SPHINX_EN_EPUB_DIR             ${SPHINX_OUTPUT_DIR}/epub/en/)
+set(SPHINX_RU_EPUB_DIR             ${SPHINX_OUTPUT_DIR}/epub/ru/)
+
 add_custom_target(html ALL
     COMMAND "${SPHINX_EXECUTABLE}"
         -b html
@@ -157,6 +162,28 @@ add_custom_target(linkcheck
         "${SPHINX_BUILD_HTML_DIR}"
     COMMENT "Linkcheck filter"
 )
+
+add_custom_target(epub ALL
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b epub
+        -d "${SPHINX_BUILD_EPUB_DIR}"
+        -c epub/
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_EN_EPUB_DIR}"
+    COMMENT "Building English epub with Sphinx"
+)
+
+add_custom_target(epub-ru ALL
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b epub
+        -d "${SPHINX_BUILD_EPUB_RU_DIR}"
+        -c epub/
+        -D language=ru
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_RU_EPUB_DIR}"
+    COMMENT "Building Russian epub with Sphinx"
+)
+
 
 if (LATEX_FOUND)
     add_custom_target(pdf-ru ALL COMMENT "PDF generation")
