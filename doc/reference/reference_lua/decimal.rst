@@ -18,16 +18,19 @@ to convert the number to decimal type)
 To construct a decimal number, bring in the module with
 ``require('decimal')`` and then use ``decimal.new(n)``
 or any function in the decimal module:
-:ref:`abs(n) <decimal-abs>`
-:ref:`exp(n) <decimal-exp>`
-:ref:`ln(n) <decimal-ln>`
-:ref:`log10(n) <decimal-log10>`
-:ref:`new(n) <decimal-new>`
-:ref:`precision(n) <decimal-precision>`
-:ref:`rescale(decimal-number, new-scale) <decimal-rescale>`
-:ref:`scale(n) <decimal-scale>`
-:ref:`sqrt(n) <decimal-sqrt>`
-:ref:`trim(decimal-number) <decimal-trim>`,
+
+    * :ref:`abs(n) <decimal-abs>`
+    * :ref:`exp(n) <decimal-exp>`
+    * :ref:`is_decimal(n) <decimal-is_decimal>`
+    * :ref:`ln(n) <decimal-ln>`
+    * :ref:`log10(n) <decimal-log10>`
+    * :ref:`new(n) <decimal-new>`
+    * :ref:`precision(n) <decimal-precision>`
+    * :ref:`rescale(decimal-number, new-scale) <decimal-rescale>`
+    * :ref:`scale(n) <decimal-scale>`
+    * :ref:`sqrt(n) <decimal-sqrt>`
+    * :ref:`trim(decimal-number) <decimal-trim>`,
+
 where n can be a string or a non-decimal number or a decimal number.
 If it is a string or a non-decimal number,
 Tarantool converts it to a decimal number before
@@ -69,6 +72,14 @@ post-decimal digits is necessary to get 38-digit precision.
     Compare ``math.exp(1)`` from the
     `Lua math library <https://www.lua.org/pil/18.html>`_,
     which returns 2.718281828459.
+
+.. _decimal-is_decimal:
+
+.. function:: is_decimal(string-or-number-or-decimal-number)
+
+    Returns "true" if specified value is decimal and "false" otherwise.
+    For example if a is 123 then ``decimal.is_decimal(a)`` returns "false". 
+    If a is ``decimal.is_decimal(decimal.new(123))`` returns "true". 
 
 .. _decimal-ln:
 
