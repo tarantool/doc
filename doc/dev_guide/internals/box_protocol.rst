@@ -167,11 +167,11 @@ Both :code:`<header>` and :code:`<body>` are msgpack maps:
                               MP_MAP
 
 They only differ in the allowed set of keys and values. The key defines the type
-of value that follows. If a body has no keys, the entire msgpack map for the body
-may be missing. Such is the case, for example, for a <ping> request. ``schema_id``
-may be absent in the request's header, meaning that there will be no version
-checking, but it must be present in the response. If ``schema_id`` is sent in
-the header, then it will be checked.
+of value that follows. In a request, the body map can be absent. Responses will 
+contain it anyway even if it is a ``PING``. ``schema_id`` may be absent in the 
+request's header, meaning that there will be 
+no version checking, but it must be present in the response. If ``schema_id`` 
+is sent in the header, then it will be checked.
 
 .. _box_protocol-authentication:
 
