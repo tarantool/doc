@@ -10,7 +10,7 @@ The binary protocol is called a "request/response" protocol because it is
 for sending requests to a Tarantool server and receiving responses.
 There is complete access to Tarantool functionality, including:
 
-- request multiplexing, forexample ability to issue multiple requests
+- request multiplexing, for example ability to issue multiple requests
   asynchronously via the same connection
 - response format that supports zero-copy writes
 
