@@ -1865,10 +1865,10 @@ handy -- users can ``CREATE TABLE table_a`` without the foreign key, then
 
 .. _sql_alter_table_drop_constraint:
 
-For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint.
-(Tarantool generates the
+For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint,
+and Tarantool only looks for names of foreign-key constraints. (Tarantool generates the
 constraint names automatically if the user does not provide them.)
-To remove a unique constraint, use use either ``ALTER ... DROP CONSTRAINT`` or
+To remove a unique constraint, use use
 :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
 as well.
 
