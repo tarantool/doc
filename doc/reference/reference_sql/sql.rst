@@ -911,7 +911,7 @@ SQL statements should end with ; (semicolon); this is not mandatory but it is re
 
 In alphabetical order, the following statements are legal.
 
-|nbsp| :ref:`ALTER TABLE table-name [RENAME or ADD CONSTRAINT clauses]; <sql_alter_table>` |br|
+|nbsp| :ref:`ALTER TABLE table-name [RENAME or ADD CONSTRAINT or DROP CONSTRAINT clauses]; <sql_alter_table>` |br|
 |nbsp| ANALYZE [table-name]; -- temporarily disabled in current version |br|
 |nbsp| :ref:`COMMIT; <sql_commit>` |br|
 |nbsp| :ref:`CREATE [UNIQUE] INDEX [IF NOT EXISTS] index-name <sql_create_index>` |br|
@@ -1866,9 +1866,12 @@ handy -- users can ``CREATE TABLE table_a`` without the foreign key, then
 
 .. _sql_alter_table_drop_constraint:
 
-For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint,
-and Tarantool only looks for names of foreign-key constraints. (Tarantool generates the
+For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint.
+(Tarantool generates the
 constraint names automatically if the user does not provide them.)
+To remove a unique constraint, use use either ``ALTER ... DROP CONSTRAINT`` or
+:ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
+as well.
 
 To remove a unique constraint, use :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
 as well.
