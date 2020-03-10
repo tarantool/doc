@@ -199,7 +199,8 @@ In requests IPROTO_REQUEST_TYPE will be followed by IPROTO_SELECT etc.
 In responses Response-Code-Indicator will be followed by IPROTO_OK etc.
 
 The BODY has the details of the request or response. In a request, it also can
-be absent or an empty map. Responses will contain the BODY anyway even if it is
+be absent or an empty map. Both these states will be interpreted equally.
+Responses will contain the BODY anyway even if it is
 a :ref:`IPROTO_PING <box_protocol-ping>` request.
 
 Have a look at file
