@@ -121,9 +121,9 @@ results:
         +---------------------------------+---------+-------------------------------------------+
         | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers       |
         +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | A flag saying whether to encode as map or |
-        |                                 |         | array according to                        |
-        |                                 |         | :ref:`__serialize <yaml-serialize>` value |
+        | ``cfg.encode_load_metatables``  | true    | A flag saying whether to crop tables       |
+        |                                 |         |  with nesting level deeper than           | 
+        |                                 |         | ``max_depth``.                           |
         +---------------------------------+---------+-------------------------------------------+
         | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use              |
         |                                 |         | ``tostring()`` for unknown types          |
