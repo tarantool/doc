@@ -1,8 +1,8 @@
 .. _getting_started-using_docker:
 
-================================================================================
+--------------------------------------------------------------------------------
 Using a Docker image
-================================================================================
+--------------------------------------------------------------------------------
 
 For trial and test purposes, we recommend using
 `official Tarantool images for Docker <https://github.com/tarantool/docker>`_.
@@ -19,9 +19,9 @@ These images are the easiest way to install and use Tarantool.
 
 .. _getting_started-launching_a-container:
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Launching a container
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you don't have Docker installed, please follow the official
 `installation guide <https://docs.docker.com/engine/getstarted/step_one/#/step-1-get-docker>`_
@@ -59,9 +59,11 @@ Tarantool's database module in the container is already
 You needn't do it manually, unless you use Tarantool as an
 :ref:`application server <app_server>` and run it with an application.
 
---------------------------------------------------------------------------------
+.. _getting_started-docker-attaching:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Attaching to Tarantool
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To attach to Tarantool that runs inside the container, say:
 
@@ -89,9 +91,9 @@ Now you can enter requests on the command line.
     administration only. But we use it for most examples in this manual,
     because the interactive mode is convenient for learning.
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a database
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 While you're attached to the console, let's create a simple test database.
 
@@ -201,9 +203,9 @@ To select tuples using the ``secondary`` index, say:
     - - [2, 'Scorpions', 2015]
     ...
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Stopping a container
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When the testing is over, stop the container politely:
 

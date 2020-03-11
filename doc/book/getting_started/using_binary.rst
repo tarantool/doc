@@ -1,8 +1,8 @@
 .. _getting_started-using_binary:
 
-================================================================================
+--------------------------------------------------------------------------------
 Using a binary package
-================================================================================
+--------------------------------------------------------------------------------
 
 For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
@@ -15,9 +15,9 @@ To download and install the package that’s appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided
 for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Starting Tarantool
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To start a Tarantool instance, say this:
 
@@ -42,9 +42,11 @@ Now you can enter requests on the command line.
     administration only. But we use it for most examples in this manual,
     because the interactive mode is convenient for learning.
 
---------------------------------------------------------------------------------
+.. _creating-db-locally:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a database
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is how to create a simple test database after installation.
 
@@ -204,12 +206,11 @@ Here is how to create a simple test database after installation.
 
       tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')
 
-
 .. _connecting-remotely:
 
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Connecting remotely
---------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the request ``box.cfg{listen = 3301}`` that we made earlier, the ``listen``
 value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier).

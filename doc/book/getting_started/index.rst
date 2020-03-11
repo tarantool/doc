@@ -4,14 +4,12 @@
 Getting started
 ********************************************************************************
 
-In this chapter, we explain how to install Tarantool, how to start it,
-and how to create a simple database.
-
-This chapter contains the following sections:
+In this chapter, we show how to work with Tarantool as a DBMS -- and
+how to connect to a Tarantool database from other programming languages.
 
 .. toctree::
    :maxdepth: 2
    :numbered: 0
 
-   using_docker
-   using_binary
+   getting_started_db
+   getting_started_connectors
