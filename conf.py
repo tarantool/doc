@@ -1,6 +1,14 @@
 import sys
 import os
 
+from sphinx.highlighting import lexers
+from pygments.lexers.web import PhpLexer
+
+
+lexers['php'] = PhpLexer(startinline=True)
+lexers['php-annotations'] = PhpLexer(startinline=True)
+
+
 sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
@@ -24,6 +32,7 @@ extensions = [
     'ext.ModuleBlock',
     'ext.DownloadPageBlock'
 ]
+
 
 imgmath_image_format = 'svg'
 
