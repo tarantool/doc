@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"POT-Creation-Date: 2020-03-12 09:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,7 +101,13 @@ msgstr ""
 msgid "Avro schemas"
 msgstr ""
 
-msgid "To store JSON data as tuples, we will apply a savvy practice which reduces data footprint and ensures all stored documents are valid. We will use Tarantool module `avro-schema <https://github.com/tarantool/avro-schema>`_ which checks the schema of a JSON document and converts it to a Tarantool tuple. The tuple will contain only field values, and thus take a lot less space than the original document. In avro-schema terms, converting JSON documents to tuples is \"flattening\", and restoring the original documents is \"unflattening\". The usage is quite straightforward:"
+msgid "To store JSON data as tuples, we will apply a savvy practice which reduces data footprint and ensures all stored documents are valid. We will use Tarantool module `avro-schema <https://github.com/tarantool/avro-schema>`_ which checks the schema of a JSON document and converts it to a Tarantool tuple. The tuple will contain only field values, and thus take a lot less space than the original document. In avro-schema terms, converting JSON documents to tuples is \"flattening\", and restoring the original documents is \"unflattening\"."
+msgstr ""
+
+msgid "First you need to `install <https://www.tarantool.io/en/doc/1.10/book/app_server/installing_module/>`_ the module with ``tarantoolctl rocks install avro-schema``."
+msgstr ""
+
+msgid "Further usage is quite straightforward:"
 msgstr ""
 
 msgid "For each entity, we need to define a schema in `Apache Avro schema <https://en.wikipedia.org/wiki/Apache_Avro>`_ syntax, where we list the entity's fields with their names and `Avro data types <http://avro.apache.org/docs/current/spec.html#schema_primitive>`_."
