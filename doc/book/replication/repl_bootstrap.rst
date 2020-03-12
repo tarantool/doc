@@ -322,9 +322,9 @@ URIs of both masters in the replica set and say
 ``print('box.once executed on master #1')`` so it will be clear when and where the
 ``box.once()`` logic is executed.
 
-Now we can launch the two masters. Again, the launch order doesn't matter.
-The ``box.once()`` logic will also be executed only once, at the master which
-is elected as the replica set :ref:`leader <replication-leader>` at bootstrap.
+Now we can launch the two masters. Notice, it is guaranteed that ``box.once()`` logic will
+be executed once only for a single instance. Starting master-master replicaset in parallel can
+cause repeated execution of ``box.once``. That, particularly, can result in data inconsistency.
 
 .. code-block:: console
 
