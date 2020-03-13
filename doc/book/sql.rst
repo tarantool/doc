@@ -345,11 +345,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051-06    | CURRENT_DATE                                  | ``select current_date from t;``                          | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-07    | CURRENT_TIME                                  | ``select * from t where current_time < '23:23:23';``     | Fail. Syntax error.                                     |
+    | F051-07    | LOCALTIME                                     | ``select localtime from t;``                             | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-08    | LOCALTIME                                     | ``select localtime from t;``                             | Fail. Syntax error.                                     |
-    +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F051-09    | LOCALTIMESTAMP                                | ``select localtimestamp from t;``                        | Fail. Syntax error.                                     |
+    | F051-08    | LOCALTIMESTAMP                                | ``select localtimestamp from t;``                        | Fail. Syntax error.                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F081       | UNION and EXCEPT in views                     | ``create view vv as select * from t7 except select *     | Okay.                                                   |
     |            |                                               | from t15;``                                              |                                                         |
@@ -367,6 +365,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F131-04    | Subqueries with GROUP BY and HAVING clauses   | ``create view vv5 as select count(*) from vv2 group by   | Okay.                                                   |
     |            | and grouped views                             | s1 having count(*) > 0;``                                |                                                         |
+    +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
+    | F131-05    | Single row SELECT with GROUP BY and HAVING    | ``select count(*) from vv2 group by                      | Okay.                                                   |
+    |            | clauses and grouped views                     | s1 having count(*) > 0;``                                |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F181       | Multiple module support                       |                                                          | Fail. Tarantool doesn't have modules.                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -430,9 +431,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | in the final score).                                    |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
-Total number of items marked "Fail": 69
+Total number of items marked "Fail": 68
 
-Total number of items marked "Okay": 77
+Total number of items marked "Okay": 78
 
 
 
