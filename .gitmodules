@@ -1,0 +1,6 @@
+[submodule "modules/cartridge"]
+	path = modules/cartridge
+	url = https://github.com/tarantool/cartridge.git
+[submodule "modules/cartridge-cli"]
+	path = modules/cartridge-cli
+	url = https://github.com/tarantool/cartridge-cli.git
