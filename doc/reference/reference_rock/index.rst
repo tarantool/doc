@@ -13,5 +13,3 @@ This reference covers third-party Lua modules for Tarantool.
     shard
     vshard/index
     tdb
-    Cartridge API <https://www.tarantool.io/en/rocks/cartridge/1.0/>
-    cartridge-cli
