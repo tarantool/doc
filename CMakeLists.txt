@@ -151,7 +151,6 @@ add_custom_target(update-pot
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${CMAKE_CURRENT_SOURCE_DIR}/locale"
     COMMENT "Generate localization templates"
-    DEPENDS cartridge
 )
 
 add_custom_target(update-po
