@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(tarantool-doc)
 
+# Set ldoc executable
+set(LUA_EXECUTABLE /usr/bin/lua)
+set(LDOC_PATH /usr/local/ldoc/ldoc.lua)
+set(LDOC_EXECUTABLE "${LUA_EXECUTABLE} ${LDOC_PATH}")
+
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 set(CMAKE_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_INCLUDE_PATH})
 
@@ -26,7 +31,7 @@ elseif (EXISTS "${VERSION_FILE}")
 endif()
 
 if (NOT TARANTOOL_VERSION)
-    message (FATAL_ERROR "Unable to retrive version from git or ${VERSION_FILE} file.")
+    message (FATAL_ERROR "Unable to retrieve version from git or ${VERSION_FILE} file.")
 endif()
 
 # Split full version (git describe --long) to get components
@@ -69,6 +74,10 @@ set(SPHINX_BUILD_EPUB_DIR          ${SPHINX_OUTPUT_DIR}/_epub_en/)
 set(SPHINX_BUILD_EPUB_RU_DIR       ${SPHINX_OUTPUT_DIR}/_epub_ru/)
 set(SPHINX_EN_EPUB_DIR             ${SPHINX_OUTPUT_DIR}/epub/en/)
 set(SPHINX_RU_EPUB_DIR             ${SPHINX_OUTPUT_DIR}/epub/ru/)
+
+set(LDOC_CARTRIDGE_SOURCE_DIR      "${CMAKE_CURRENT_SOURCE_DIR}/modules/cartridge")
+set(LDOC_CARTRIDGE_DEST_DIR        "${CMAKE_CURRENT_SOURCE_DIR}/doc/book/cartridge/cartridge_api")
+set(LDOC_CARTRIDGE_CLI_DEST_DIR    "${CMAKE_CURRENT_SOURCE_DIR}/doc/book/cartridge/cartridge_cli")
 
 add_custom_target(html ALL
     COMMAND "${SPHINX_EXECUTABLE}"
@@ -161,6 +170,23 @@ add_custom_target(linkcheck
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_BUILD_HTML_DIR}"
     COMMENT "Linkcheck filter"
+)
+
+add_custom_target(submodules
+    COMMAND cd modules/cartridge && lua /usr/local/ldoc/ldoc.lua
+        --ext=rst
+        --dir=${LDOC_CARTRIDGE_DEST_DIR}
+        --all
+        .
+    COMMENT "Generate cartridge rst from lua sources"
+)
+add_custom_command(TARGET submodules
+    COMMAND cd modules/cartridge-cli && pandoc
+        -s
+        -t rst
+        README.md
+        -o ${LDOC_CARTRIDGE_CLI_DEST_DIR}.rst
+    COMMENT "Generate cartridge rst from lua sources"
 )
 
 add_custom_target(epub ALL

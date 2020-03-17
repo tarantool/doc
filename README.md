@@ -10,10 +10,28 @@ docker build -t tarantool-doc-builder .
 
 ### Build Tarantool documentation using *tarantool-doc-builder* image
 
+Init and update submodules:
+```bash
+bash update_submodules.sh
+```
+or do it manually:
+```bash
+git submodule init
+git submodule update
+git pull --recurse-submodules
+git submodule update --remote --merge
+```
+
 Init make commands:
 ```bash
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "cmake ."
 ```
+
+Generate rst from submodules:
+```bash
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make submodules"
+```
+
 Run a required make command inside *tarantool-doc-builder* container:
 ```bash
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html"
