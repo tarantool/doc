@@ -180,6 +180,14 @@ add_custom_target(submodules
         .
     COMMENT "Generate cartridge rst from lua sources"
 )
+add_custom_command(TARGET submodules
+    COMMAND cd modules/cartridge-cli && pandoc
+        -s
+        -t rst
+        README.md
+        -o ${LDOC_CARTRIDGE_CLI_DEST_DIR}.rst
+    COMMENT "Generate cartridge rst from lua sources"
+)
 
 add_custom_target(epub ALL
     COMMAND "${SPHINX_EXECUTABLE}"

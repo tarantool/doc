@@ -19,3 +19,4 @@ rocks
 /locale/dev_guide/LC_MESSAGES/
 /locale/book/LC_MESSAGES/
 /doc/book/cartridge/cartridge_api/
+/doc/book/cartridge/cartridge_cli.rst
