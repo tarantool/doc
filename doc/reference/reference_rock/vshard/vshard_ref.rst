@@ -214,7 +214,7 @@ Router public API
 * :ref:`vshard.router.callbre(bucket_id, function_name, {argument_list}, {options}) <router_api-callbre>`
 * :ref:`vshard.router.route(bucket_id) <router_api-route>`
 * :ref:`vshard.router.routeall() <router_api-routeall>`
-* :ref:`vshard.router.bucket_id(key) <router_api-bucket_id>`
+* :ref:`vshard.router.bucket_id_(key) <router_api-bucket_id_strcrc32>`
 * :ref:`vshard.router.bucket_count() <router_api-bucket_count>`
 * :ref:`vshard.router.sync(timeout) <router_api-sync>`
 * :ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`
@@ -480,6 +480,33 @@ Router public API
 
 .. function:: vshard.router.bucket_id(key)
 
+    **Deprecated**. Logs a warning when used because it is not consistent
+    for cdata numbers.
+
+    In particular, it returns 3 different values for normal Lua numbers
+    like 123, for unsigned long long cdata (like ``123ULL``, or
+    ``ffi.cast('unsigned long long',123)``), and for signed long long cdata
+    (like ``123LL``, or ``ffi.cast('long long', 123)``). And it is important.
+
+    .. code-block:: lua
+
+        vshard.router.bucket_id(123)
+        vshard.router.bucket_id(123LL)
+        vshard.router.bucket_id(123ULL)
+
+    Return 3 different values. For float and double cdata 
+    (``ffi.cast('float', number)``, ``ffi.cast('double', number)``) these functions
+    return different values even for the same numbers of the same floating point
+    type. This is because ``tostring()`` on a floating point cdata number returns not
+    the number, but a pointer at it. Different on each call.
+
+    ``vshard.router.bucket_id_strcrc32()`` behaves exactly the same, but
+    does not log a warning. In case you need that behaviour.
+
+.. _router_api-bucket_id_strcrc32:
+
+.. function:: vshard.router.bucket_id_strcrc32(key)
+
     Calculate the bucket id using a simple built-in hash function.
 
     :param key: a hash key. This can be any Lua object (number, table, string).
@@ -491,7 +518,74 @@ Router public API
 
     .. code-block:: lua
 
-        bucket_id = vshard.router.bucket_id(18374927634039)
+        bucket_id = vshard.router.bucket_id_strcrc32(18374927634039)
+
+    .. Note::
+
+        Remember that it is not safe. See details in :ref:`bucket_id() <router_api-bucket_id>`
+
+.. _router_api-bucket_id_mpcrc32:
+
+.. function:: vshard.router.bucket_id_mpcrc32(key)
+
+    This function is safer than ``bucket_id_strcrc32``. It takes a CRC32 from
+    MessagePack encoded value. That is, bucket id of integers does not
+    depend on their Lua type. In case of a string key does not encode it into
+    MessagePack, but takes hash right from the string. 
+
+    :param key: a hash key. This can be any Lua object (number, table, string).
+
+    :Return: a bucket identifier
+    :Rtype: number
+
+    However it still may return different values for not equal floating point
+    types. That is, ``ffi.cast('float', number)`` may be reflected into a bucket id
+    not equal to ``ffi.cast('double', number)``. This can't be fixed, because a
+    float value, even being casted to double, may have a garbage tail in its fraction.
+
+    Floating point keys should not be used to calculate a bucket id,
+    usually.
+
+    Be very careful in case you store floating point types in a space. When data
+    is returned from a space, it is cased to Lua number. And if that value had
+    empty fraction part, it will be treated as integer by ``bucket_id_mpcrc32()``.
+    So you need to do explicit casts in such cases. Example of the problem:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> s = box.schema.create_space('test', {format = {{'id', 'double'}}}); _ = s:create_index('pk')
+        ---
+        ...
+
+        tarantool> inserted = ffi.cast('double', 1)
+        ---
+        ...
+
+        -- Value is stored as double
+        tarantool> s:replace({inserted})
+        ---
+        - [1]
+        ...
+
+        -- But when returned to Lua, stored as Lua number, not cdata.
+        tarantool> returned = s:get({inserted}).id
+        ---
+        ...
+
+        tarantool> type(returned), returned
+        ---
+        - number
+        - 1
+        ...
+
+        tarantool> vshard.router.bucket_id_mpcrc32(inserted)
+        ---
+        - 1411
+        ...
+        tarantool> vshard.router.bucket_id_mpcrc32(returned)
+        ---
+        - 1614
+        ...
 
 .. _router_api-bucket_count:
 
