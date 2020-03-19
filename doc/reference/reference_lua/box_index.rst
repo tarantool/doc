@@ -213,7 +213,7 @@ Below is a list of all ``box.index`` functions and members.
             .. tabularcolumns:: |\Y{0.2}|\Y{0.2}|\Y{0.6}|
 
             +---------------+-----------+---------------------------------------------+
-            | Type          | Arguments | Description                                 |
+            | Iterator type | Arguments | Description                                 |
             +===============+===========+=============================================+
             | box.index.EQ  | search    | The comparison operator is '==' (equal to). |
             | or 'EQ'       | value     | If an index key is equal to a search value, |
