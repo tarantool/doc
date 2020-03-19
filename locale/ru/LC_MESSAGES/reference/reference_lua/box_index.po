@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-12 09:14+0000\n"
+"POT-Creation-Date: 2020-03-19 07:21+0000\n"
 "PO-Revision-Date: 2019-12-06 16:11+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -358,8 +358,8 @@ msgstr ""
 msgid "**Iterator types for TREE indexes**"
 msgstr "**Типы итераторов для TREE-индексов**"
 
-msgid "Type"
-msgstr "Type"
+msgid "Iterator type"
+msgstr "Тип итератора"
 
 msgid "Arguments"
 msgstr "Аргументы"
@@ -537,6 +537,10 @@ msgstr ""
 
 msgid "**Iterator types for HASH indexes**"
 msgstr "**Типы итераторов для HASH-индексов**"
+
+#, fuzzy
+msgid "Type"
+msgstr "тип возвращаемого значения"
 
 msgid "box.index.ALL"
 msgstr "box.index.ALL"
