@@ -32,6 +32,9 @@ Below is a list of all ``box.schema`` functions.
     | :ref:`box.schema.create_space()      |                                 |
     | <box_schema-space_create>`           |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.schema.upgrade             | Upgrade a database              |
+    | <admin-upgrades>`                    |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`box.schema.user.create()       | Create a user                   |
     | <box_schema-user_create>`            |                                 |
     +--------------------------------------+---------------------------------+
