@@ -215,6 +215,7 @@ Router public API
 * :ref:`vshard.router.route(bucket_id) <router_api-route>`
 * :ref:`vshard.router.routeall() <router_api-routeall>`
 * :ref:`vshard.router.bucket_id_strcrc32(key) <router_api-bucket_id_strcrc32>`
+* :ref:`vshard.router.bucket_id_mpcrc32(key) <router_api-bucket_id_mpcrc32>`
 * :ref:`vshard.router.bucket_count() <router_api-bucket_count>`
 * :ref:`vshard.router.sync(timeout) <router_api-sync>`
 * :ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`
