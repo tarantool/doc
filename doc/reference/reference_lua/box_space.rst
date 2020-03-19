@@ -532,7 +532,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: drop()
 
-        Drop a space. The method is performed in background and doesn't block 
+        Drop a space. The method is performed in background and doesn't block
         consequent requests.
 
         :param space_object space_object: an :ref:`object reference
@@ -1282,7 +1282,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: truncate()
 
-        Deletes all tuples. The method is performed in background and doesn't 
+        Deletes all tuples. The method is performed in background and doesn't
         block consequent requests.
 
         :param space_object space_object: an :ref:`object reference
@@ -1329,6 +1329,8 @@ Below is a list of all ``box.space`` functions and members.
         previous operations in a multi-operation update have already been
         applied. In other words, it is always safe to merge multiple ``update``
         invocations into a single invocation, with no change in semantics.
+
+        Tarantool does nothing if a tuple with the specified primary key is not found.
 
         Possible operators are:
 
