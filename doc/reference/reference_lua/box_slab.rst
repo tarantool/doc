@@ -116,7 +116,8 @@ Below is a list of all ``box.slab`` functions.
 
       * ``items_size`` is the *total* amount of memory (including allocated, but
         currently free slabs) used only for tuples, no indexes;
-      * ``items_used_ratio`` = ``items_used`` / ``slab_count`` * ``slab_size``
+      * ``items_used_ratio`` = ``items_used`` / ``items_size``, where 
+        ``items_size`` = ``slab_count`` * ``slab_size``
         (these are slabs used only for tuples, no indexes);
       * ``quota_size`` is the maximum amount of memory that the slab allocator
         can use for both tuples and indexes
