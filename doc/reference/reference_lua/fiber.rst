@@ -1063,7 +1063,7 @@ Call ``cond:broadcast()`` to send a signal to all fibers that have executed
     .. method:: signal()
 
         Wake up a single fiber that has executed ``wait()`` for the same
-        variable.
+        variable. Does not yield.
 
         :rtype:  nil
 
@@ -1072,6 +1072,7 @@ Call ``cond:broadcast()`` to send a signal to all fibers that have executed
     .. method:: broadcast()
 
         Wake up all fibers that have executed ``wait()`` for the same variable.
+        Does not yield.
 
         :rtype:  nil
 
