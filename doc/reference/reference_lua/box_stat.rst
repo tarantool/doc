@@ -10,7 +10,7 @@ Use ``box.stat()`` to show the average number of requests per second,
 and the total number of requests since startup, broken down by request type.
 
 Use ``box.stat.net()`` to see network activity: the number of bytes sent
-and received, the number of connections, and the number of requests
+and received, the number of connections, and the number of active requests
 (current, average, and total).
 
 .. _box_introspection-box_stat_vinyl:
