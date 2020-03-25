@@ -22,3 +22,4 @@ This chapter includes the following sections:
    repl_recover
    repl_reseed
    repl_duplicates
+   repl_problem_solving
