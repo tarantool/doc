@@ -147,7 +147,7 @@ variables.
         error (e.g. :ref:`duplicate key <error_codes>`).
       * ``orphan`` means that the instance has not (yet) succeeded in joining
         the required number of masters (see :ref:`orphan status <replication-orphan_status>`).
-      * ``synch`` means that the master and replica are synchronizing to
+      * ``sync`` means that the master and replica are synchronizing to
         have the same data.
 
     .. _box_info_replication_upstream_idle:
