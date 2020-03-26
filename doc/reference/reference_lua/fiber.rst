@@ -718,7 +718,7 @@ recommended.
              number. The time is taken from the event loop clock,
              which makes this call very cheap, but still useful for
              constructing artificial tuple keys.
-    :Rtype: num
+    :Rtype: number
 
     **Example:**
 
@@ -737,7 +737,7 @@ recommended.
     :Return: current system time (in microseconds since the epoch)
              as a 64-bit integer. The time is taken from the event
              loop clock.
-    :Rtype: num
+    :Rtype: cdata
 
     **Example:**
 
