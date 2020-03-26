@@ -452,7 +452,7 @@ msgid ""
 "**replication.downstream.status** is the replication status for downstream "
 "replications:"
 msgstr ""
-"**replication.upstream.status** -- это статус для downstream-репликации:"
+"**replication.downstream.status** -- это статус для downstream-репликации:"
 
 msgid "``stopped`` means that downstream replication has stopped."
 msgstr "``stopped`` означает, что downstream-репликация остановлена."
