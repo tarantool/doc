@@ -27,7 +27,7 @@ msgid ""
 "data it supports."
 msgstr ""
 "В этом разделе описывается то, как в Tarantool'е организовано хранение "
-"данных и какие операции с данным он поддерживает."
+"данных и какие операции с данными он поддерживает."
 
 msgid ""
 "If you tried to create a database as suggested in our :ref:`\"Getting started"
@@ -1215,7 +1215,7 @@ msgstr ""
 "пять операций по изменению данных (INSERT, UPDATE, UPSERT, DELETE, REPLACE) и"
 
 msgid "one data-retrieval operation (SELECT)."
-msgstr "одну операция по выборке данных (SELECT)."
+msgstr "одну операцию по выборке данных (SELECT)."
 
 msgid ""
 "All of them are implemented as functions in :ref:`box.space <box_space>` "
