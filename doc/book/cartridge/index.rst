@@ -18,4 +18,4 @@ This chapter contains the following sections:
    cartridge_dev
    cartridge_admin
    Cartridge API<cartridge_api/index>
-   Cartridge CLI<cartridge_cli>
+   Cartridge CLI<cartridge_cli/index>
