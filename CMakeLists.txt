@@ -110,6 +110,17 @@ add_custom_target(singlehtml ALL
     COMMENT "Building HTML single-page documentation with Sphinx"
 )
 
+add_custom_target(singlehtml-website
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b singlehtml
+        -d "${SPHINX_BUILD_SINGLEHTML_DIR}"
+        -c singlehtml/
+        -A rel_path=true
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_EN_HTML_DIR}"
+    COMMENT "Building HTML single-page documentation with Sphinx"
+)
+
 add_custom_target(html-ru ALL
     COMMAND "${SPHINX_EXECUTABLE}"
         -b html
@@ -138,6 +149,18 @@ add_custom_target(singlehtml-ru ALL
         -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
         -c singlehtml/
         -D language=ru
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_RU_HTML_DIR}"
+    COMMENT "Building Russian HTML single-page documentation with Sphinx"
+)
+
+add_custom_target(singlehtml-ru-website
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b singlehtml
+        -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
+        -c singlehtml/
+        -D language=ru
+        -A rel_path=true
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_HTML_DIR}"
     COMMENT "Building Russian HTML single-page documentation with Sphinx"
