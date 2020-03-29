@@ -4,7 +4,11 @@
 ] %}
 
 {%- macro abspath(path) -%}
-  {{ [ "/", language, "/", path ] | join('') }}
+    {%- if rel_path == "true" -%}
+        {{ path }}
+    {%- else -%}
+        {{ [ "/", language, "/", path ] | join('') }}
+    {%- endif -%}
 {%- endmacro -%}
 
 {% set canonical_url = [
