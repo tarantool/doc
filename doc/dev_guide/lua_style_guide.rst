@@ -504,7 +504,7 @@ When checking function return values, check the first argument first. If it's
 .. code-block:: lua
 
     local data, err = foo()
-    if not data
+    if not data then
         return nil, err
     end
     return bar(data)
@@ -518,7 +518,7 @@ case it's OK to check for error first, and return second:
 .. code-block:: lua
 
     local data, err = foo()
-    if not err
+    if not err then
         return data
     end
     return nil, err
