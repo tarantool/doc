@@ -7,8 +7,8 @@ Installing a module
 Modules in Lua and C that come from Tarantool developers and community
 contributors are available in the following locations:
 
-* Tarantool modules repository, and
-* Tarantool deb/rpm repositories.
+* Tarantool modules repository (see :ref:`below <app_server-installing_module_luarocks>`)
+* Tarantool deb/rpm repositories (see :ref:`below <app_server-installing_module_debrpm>`)
 
 .. _app_server-installing_module_luarocks:
 
