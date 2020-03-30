@@ -37,7 +37,7 @@ msgid ""
 "session.on_disconnect() <box_session-on_disconnect>`,"
 msgstr ""
 ":ref:`box.session.on_connect() <box_session-on_connect>` (при установлении "
-"соединени) или :ref:`box.session.on_disconnect() <box_session-"
+"соединения) или :ref:`box.session.on_disconnect() <box_session-"
 "on_disconnect>` (при разрыве соединения),"
 
 #, fuzzy
