@@ -125,8 +125,8 @@ For more details, use the reports provided by functions in the following submodu
 * :ref:`box.stat <box_introspection-box_stat>` submodule (introspect Tarantool
   request and network statistics)
 
-You can also try `tarantool/prometheus <https://github.com/tarantool/prometheus>`_,
-a Lua module that makes it easy to collect metrics (e.g. memory usage or number
+You can also try `prometheus <https://github.com/tarantool/metrics/tree/master/metrics/plugins/prometheus>`_,
+a plugin that makes it easy to collect metrics (e.g. memory usage or number
 of requests) from Tarantool applications and databases and expose them via the
 Prometheus protocol.
 
