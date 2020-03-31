@@ -35,7 +35,7 @@ The following sections provide details for each of these steps.
 Installing Tarantool Cartridge
 --------------------------------------------------------------------------------
 
-#. Install ``catridge-cli``, a command-line tool for developing, deploying, and
+#. Install ``cartridge-cli``, a command-line tool for developing, deploying, and
    managing Tarantool applications:
 
    .. code-block:: console

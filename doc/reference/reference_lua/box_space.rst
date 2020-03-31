@@ -1828,7 +1828,7 @@ Below is a list of all ``box.space`` functions and members.
         The space must be empty. The space must not be a system space.
 
         The expression must return true or false and should be deterministic.
-        The expresion may be any SQL (not Lua) expression containing field names,
+        The expression may be any SQL (not Lua) expression containing field names,
         built-in function names, literals, and operators. Not subqueries.
         If a field name contains lower case characters, it must be enclosed in "double quotes".
 

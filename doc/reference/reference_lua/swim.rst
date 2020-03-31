@@ -1349,7 +1349,7 @@ A connector should be ready to handle any combination.
 
   In the SWIM_QUIT subsection are:
 
-  * SWIM_QUIT_GEMERATOPM + SWIM_QUIT_VERSION (the sender :ref:`incarnation <swim-incarnation_description>`).
+  * SWIM_QUIT_GENERATION + SWIM_QUIT_VERSION (the sender :ref:`incarnation <swim-incarnation_description>`).
 
 .. _swim-incarnation_description:
 

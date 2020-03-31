@@ -207,7 +207,7 @@ Below is a list of all ``digest`` functions.
 
 .. function:: sha512(string)
 
-    Returns 512-bit binary tring = digest made with SHA-2.
+    Returns 512-bit binary string = digest made with SHA-2.
 
 .. _digest-sha512_hex:
 

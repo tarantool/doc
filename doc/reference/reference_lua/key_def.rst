@@ -128,7 +128,7 @@ to extract or compare the index key values.
         Compare the key fields of tuple_1 to the key fields of tuple_2.
         This is a tuple-by-tuple comparison so users do not have to
         write code which compares a field at a time.
-        Each field's type and collation wll be taken into account.
+        Each field's type and collation will be taken into account.
         In effect it is a comparison of extract_key(tuple_1) with extract_key(tuple_2).
 
         :param table tuple1: tuple or Lua table with field contents

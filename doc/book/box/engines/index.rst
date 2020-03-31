@@ -67,7 +67,7 @@ memory is not a realistic option.
     | :ref:`delete() <box_space-delete>` function | Returns the deleted tuple, if any                    | Always returns nil                                   |
     +---------------------------------------------+------------------------------------------------------+------------------------------------------------------+
     | yield                                       | Does not yield on the select requests unless the     | Yields on the select requests or on its equivalents: |
-    |                                             | transaction is commited to WAL                       | get() or pairs()                                     |
+    |                                             | transaction is committed to WAL                      | get() or pairs()                                     |
     +---------------------------------------------+------------------------------------------------------+------------------------------------------------------+
 
 .. include:: vinyl.rst

@@ -160,7 +160,7 @@ variables.
     .. _box_info_replication_upstream_peer:
 
     * **replication.upstream.peer** contains the replication user name, host IP
-      adress and port number used for the instance.
+      address and port number used for the instance.
       See more in :ref:`Monitoring a replica set <replication-monitoring>`.
 
     .. _box_info_replication_upstream_lag:

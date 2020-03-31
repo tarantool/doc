@@ -378,7 +378,7 @@ Functionality added or changed:
   indexes in SQL.
 
 * (SQL) Now SQL’s integer type is stored as integer in space’s format.
-  It was stored as scalar before, which made comarisons slow.
+  It was stored as scalar before, which made comparisons slow.
 
 * (SQL) It is now possible to define a constraint
   :ref:`within column definition <sql_create_table>`. E.g.:
@@ -1194,7 +1194,7 @@ Incompatible changes:
     Issue `2622 <https://github.com/tarantool/tarantool/issues/2622>`_
   * :ref:`space:format() <box_space-format>` is now validated on DML operations.
     Previously ``space:format()`` was only used by client libraries, but starting
-    from Tarantoool 1.7.6, field types in ``space:format()`` are validated on the
+    from Tarantool 1.7.6, field types in ``space:format()`` are validated on the
     server side on every DML operation, and field names can be used in indexes
     and Lua code. If you used ``space:format()`` in a non-standard way,
     please update layout and type names according to the official documentation for
@@ -1357,7 +1357,7 @@ Functionality added or changed:
   * Tarantool now automatically makes snapshots every hour.
     Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behaviour.
     Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_.
-  * Increase precision for percentage ratios provoded by :ref:`box.slab.info() <box_slab_info>`.
+  * Increase precision for percentage ratios provided by :ref:`box.slab.info() <box_slab_info>`.
     Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_.
   * Stack traces now contain symbols names on all supported platforms.
     Previous versions of Tarantool didn't display meaningful function names in
@@ -2134,8 +2134,8 @@ New rocks:
     Turn on/off with ``require('strict').on()``/``require('strict').off()``.
   * ``pg`` and ``mysql`` rocks, available at http://rocks.tarantool.org -
     working with MySQL and PostgreSQL from Tarantool.
-  * ``gperftools`` rock, availble at http://rocks.tarantool.org -
-    getting perfromance data using Google's gperf from Tarantool.
+  * ``gperftools`` rock, available at http://rocks.tarantool.org -
+    getting performance data using Google's gperf from Tarantool.
   * ``csv`` built-in rock, to parse and load CSV (comma-separated
     values) data.
 

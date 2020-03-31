@@ -8,7 +8,7 @@
 
 The ``decimal`` module has functions for working with
 exact numbers. This is important when numbers are large
-or even the slighest inaccuracy is unacceptable.
+or even the slightest inaccuracy is unacceptable.
 For example Lua calculates ``0.16666666666667 * 6``
 with floating-point so the result is 1.
 But with the decimal module (using ``decimal.new``

@@ -733,7 +733,7 @@ Potential issues
   **Solution:** Check the replication status of the replica. Further instructions
   are given in the :ref:`Tarantool troubleshooting guide <admin-troubleshooting-guide>`.
 
-* ``OUT_OF_SYNC`` — Mal-synchronization occured. The lag exceeds T3 threshold (10 sec.).
+* ``OUT_OF_SYNC`` — Mal-synchronization occurred. The lag exceeds T3 threshold (10 sec.).
 
   **Critical level:** Red.
 
@@ -820,7 +820,7 @@ Status list
     +----------+--------------------+-----------------------------------------+
     | 0        | Green              | The ``router`` works in a regular way.  |
     +----------+--------------------+-----------------------------------------+
-    | 1        | Yellow             | Some replicas sre unreachable (affects  |
+    | 1        | Yellow             | Some replicas are unreachable (affects  |
     |          |                    | the speed of executing read requests).  |
     +----------+--------------------+-----------------------------------------+
     | 2        | Orange             | Service is degraded for changing data.  |

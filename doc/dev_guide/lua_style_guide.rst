@@ -46,7 +46,7 @@ Zen of Python is good; understand it and use wisely:
 ===========================================================
 
 * 4 spaces instead tabs. PIL suggests using of two spaces, but programmer looks
-  at code 4 up to 8 hours a day, so it's simplier to distinguish indentation
+  at code 4 up to 8 hours a day, so it's simpler to distinguish indentation
   with 4 spaces. Why spaces? Similar representation everywhere.
 
   You can use vim modelines:
@@ -170,7 +170,7 @@ Zen of Python is good; understand it and use wisely:
 * Using spaces:
 
   - one shouldn't use spaces between function name and opening round bracket,
-    but arguments must be splitted with one whitespace charachter
+    but arguments must be splitted with one whitespace character
 
     .. code-block:: lua
 
@@ -324,7 +324,7 @@ Always use prefix to avoid name clash
   - ``<name>_p`` is for pointers
   - ``t0``.. is for timestamps
   - ``err`` is for errors
-* abbrevations are acceptable if they're unambigous and if you'll document (or
+* abbreviations are acceptable if they're unambiguous and if you'll document (or
   they're too common) them.
 * global variables are written with ALL_CAPS. If it's some system variable, then
   they're using underscore to define it (``_G``/``_VERSION``/..)
@@ -345,7 +345,7 @@ style idioms):
 Avoid these kind of constructions:
 
 * <func>'<name>' (strongly avoid require'..')
-* ``function object:method() end`` (use ``functon object.method(self) end`` instead)
+* ``function object:method() end`` (use ``function object.method(self) end`` instead)
 * do not use semicolon as table separator (only comma)
 * semicolons at the end of line (only to split multiple statements on one line)
 * try to avoid unnecessary function creation (closures/..)

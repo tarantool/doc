@@ -45,7 +45,7 @@
 
 .. c:macro:: COMPILER_INFO
 
-    Pathes to C and CXX compilers.
+    Paths to C and CXX compilers.
 
 .. c:macro:: TARANTOOL_C_FLAGS
 

@@ -240,4 +240,4 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
     objective (executing a prepared statement multiple times) is done, or
     whenever a prepared statement expires.
     There is no automatic eviction policy, although automatic ``unprepare``
-    will happen when the session disconnects (the session's prepared statements will be removed from the prepared-statment cache).
+    will happen when the session disconnects (the session's prepared statements will be removed from the prepared-statement cache).

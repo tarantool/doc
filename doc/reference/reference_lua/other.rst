@@ -142,7 +142,7 @@ and variables which are outside all modules.
 .. data:: package.path
 
     This is a string that Tarantool uses to search for Lua modules,
-    especially imporant for ``require()``.
+    especially important for ``require()``.
     See :ref:`Modules, rocks and applications <app_server-modules>`.
 
 .. _other-package_cpath:
@@ -150,7 +150,7 @@ and variables which are outside all modules.
 .. data:: package.cpath
 
     This is a string that Tarantool uses to search for C modules,
-    especially imporant for ``require()``.
+    especially important for ``require()``.
     See :ref:`Modules, rocks and applications <app_server-modules>`.
 
 .. _other-package_loaded:

@@ -10,7 +10,7 @@ of use: they demonstrate consistently high performance, but you never need to
 tune them.
 
 A few years ago we decided to extend the product by implementing a classical
-storage engine similar to those used by regular DBMSes: it uses RAM for caching,
+storage engine similar to those used by regular DBMSs: it uses RAM for caching,
 while the bulk of its data is stored on disk. We decided to make it possible to
 set a storage engine independently for each table in the database, which is the
 same way that MySQL approaches it, but we also wanted to support transactions
@@ -33,7 +33,7 @@ multithreaded application without getting anything in return. The thing is,
 Tarantool has an actor-based architecture. The way it processes transactions in
 a dedicated thread allows it to do away with the unnecessary locks, interprocess
 communication, and other overhead that accounts for up to 80% of processor time
-in multithreaded DBMSes.
+in multithreaded DBMSs.
 
 .. figure:: vinyl/actor_threads.png
     :align: center

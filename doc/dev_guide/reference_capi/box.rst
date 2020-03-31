@@ -16,8 +16,8 @@
     An example program that uses ``box_return_tuple()`` is
     :ref:`write.c <f_c_tutorial-write>`.
 
-    :param box_funtion_ctx_t* ctx: an opaque structure passed to the C stored
-                                   procedure by Tarantool
+    :param box_function_ctx_t* ctx: an opaque structure passed to the C stored
+                                    procedure by Tarantool
     :param box_tuple_t*     tuple: a tuple to return
 
     :return: -1 on error (perhaps, out of memory; check
