@@ -235,6 +235,25 @@ Router public API
     :param timeout: a number of seconds before ending a bootstrap attempt as
                     unsuccessful.
                     Recreate the cluster in case of bootstrap timeout.
+    :param if_not_bootstrapped: by default is set to ``false`` that means raise
+                                an error, when the cluster is already
+                                bootstrapped. ``True`` means consider an already
+                                bootstrapped cluster a success.
+
+    **Example:**
+
+    .. code-block:: lua
+
+        vshard.router.bootstrap({timeout = 4, if_not_bootstrapped = true})
+
+    .. NOTE::
+
+        To detect whether a cluster is bootstrapped, ``vshard`` looks for at least
+        one bucket in the whole cluster. If the cluster was bootstrapped only
+        partially (for example, due to an error during the first bootstrap), then
+        it will be considered a bootstrapped cluster on a next bootstrap call
+        with ``if_not_bootstrapped``. So this is still a bad practice. Avoid
+        calling ``bootstrap()`` multiple times.
 
 .. _router_api-cfg:
 
