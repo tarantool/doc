@@ -353,7 +353,7 @@ Below is a list of all ``box.tuple`` functions.
 
         An analogue of Lua ``next()`` function, but for a tuple object.
         When called without arguments, ``tuple:next()`` returns the first field
-        from a tuple. Otherwise, it returns field next to the indicated position.
+        from a tuple. Otherwise, it returns the field next to the indicated position.
 
         Although ``tuple:next()`` is not really efficient, and it is better
         to use :ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`.
