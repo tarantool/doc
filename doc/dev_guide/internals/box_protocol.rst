@@ -198,8 +198,8 @@ An unsigned number that indicates what will be in the BODY.
 In requests IPROTO_REQUEST_TYPE will be followed by IPROTO_SELECT etc.
 In responses Response-Code-Indicator will be followed by IPROTO_OK etc.
 
-The BODY has the details of the request or response. In a request, it also can
-be absent or an empty map. Both these states will be interpreted equally.
+The BODY has the details of the request or response. In a request, it can also
+be absent or be an empty map. Both these states will be interpreted equally.
 Responses will contain the BODY anyway even if it is
 a :ref:`IPROTO_PING <box_protocol-ping>` request.
 
@@ -559,7 +559,7 @@ Thus the IPROTO_PREPARE map item is the same as the first item of the
 **IPROTO_PING** = 0x40.
 
 See :ref:`conn:ping() <conn-ping>`. The BODY will be an empty map because IPROTO_PING
-in the HEADER is all the information that the server instance needs.
+in the HEADER contains all the information that the server instance needs.
 
 **IPROTO_JOIN** = 0x41, for replication  |br|
 **IPROTO_SUBSCRIBE** = 0x42, for replication SUBSCRIBE |br|
