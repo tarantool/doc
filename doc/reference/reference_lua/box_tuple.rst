@@ -351,7 +351,7 @@ Below is a list of all ``box.tuple`` functions.
 
     .. method:: next(tuple[, pos])
 
-        An analogue of Lua ``next()`` function, but for a tuple object.
+        An analogue of the Lua ``next()`` function, but for a tuple object.
         When called without arguments, ``tuple:next()`` returns the first field
         from a tuple. Otherwise, it returns the field next to the indicated position.
 
@@ -408,7 +408,7 @@ Below is a list of all ``box.tuple`` functions.
         iterators traverse a value's components until an end marker is reached.
 
         ``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple
-        fields are integer always.
+        fields are always integers.
 
         :return: function, tuple-value, nil
         :rtype:  function, lua-value, nil
@@ -626,22 +626,22 @@ Below is a list of all ``box.tuple`` functions.
         of an error the tuple is left intact, but an error message is
         printed. Only client errors are ignored, such as a bad field type,
         or wrong field index/name. System errors, such as OOM, are not
-        ignored and raised just like with normal ``update()``. Note, that
+        ignored and raised just like with a normal ``update()``. Note that
         only bad operations are ignored. All correct operations are
         applied.
 
-        :param string  operator: operation type represented in string (e.g.
+        :param string  operator: operation type represented as a string (e.g.
                                  '``=``' for 'assign new value')
-        :param number  field_no: what field the operation will apply to. The
+        :param number  field_no: the field to which the operation will be applied. The
                                  field number can be negative, meaning the
                                  position from the end of tuple.
                                  (#tuple + negative field number + 1)
-        :param lua_value  value: what value will be applied
+        :param lua_value  value: the value which will be applied
 
         :return: new tuple
         :rtype:  tuple
 
-        See how in the next example one operation is applied, and one is not.
+        See the following example where one operation is applied, and one is not.
 
         .. code-block:: tarantoolsession
 
