@@ -225,7 +225,7 @@ with the MsgPack format name and encoding on the right.
         +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables           |
         |                                 |         |  with nesting level deeper than               | 
-        |                                 |         | ``max_depth``.                                |
+        |                                 |         | ``cfg.encode_max_depth``.                     |
         |                                 |         | Not-encoded fields are replaced with           |
         |                                 |         | one null. If not set, too high                |
         |                                 |         | nesting is considered an error.               |

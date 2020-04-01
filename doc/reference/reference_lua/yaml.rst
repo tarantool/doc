@@ -113,44 +113,44 @@ results:
         .. rst-class:: center-align-column-2
         .. rst-class:: left-align-column-3
 
-        +---------------------------------+---------+-------------------------------------------+
-        | Option                          | Default | Use                                       |
-        +=================================+=========+===========================================+
-        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding  |
-        |                                 |         | of NaN and Inf numbers                    |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers       |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | A flag saying whether to crop tables       |
-        |                                 |         |  with nesting level deeper than           | 
-        |                                 |         | ``max_depth``.                           |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use              |
-        |                                 |         | ``tostring()`` for unknown types          |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for     |
-        |                                 |         | non-recognized types                      |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle           |
-        |                                 |         | excessively sparse arrays as maps.        |
-        |                                 |         | See detailed description                  |
-        |                                 |         | :ref:`below <yaml-cfg_sparse>`            |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is the          |
-        |                                 |         | permissible percentage of missing values  |
-        |                                 |         | in a sparse array                         |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_safe``      | 10      | A limit ensuring that small Lua arrays    |
-        |                                 |         | are always encoded as sparse arrays       |
-        |                                 |         | (instead of generating an error or        |
-        |                                 |         | encoding as map)                          |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding  |
-        |                                 |         | of NaN and Inf numbers                    |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables   |
-        |                                 |         | for all arrays and maps                   |
-        +---------------------------------+---------+-------------------------------------------+
+        +---------------------------------+---------+--------------------------------------------+
+        | Option                          | Default | Use                                        |
+        +=================================+=========+============================================+
+        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding    |
+        |                                 |         | of NaN and Inf numbers                     |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers         |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will   |
+        |                                 |         | follow :ref:`__serialize <json-serialize>` |
+        |                                 |         | metatable field                             |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use                |
+        |                                 |         | ``tostring()`` for unknown types           |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for       |
+        |                                 |         | non-recognized types                       |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle             |
+        |                                 |         | excessively sparse arrays as maps.         |
+        |                                 |         | See detailed description                   |
+        |                                 |         | :ref:`below <yaml-cfg_sparse>`             |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is the           |
+        |                                 |         | permissible percentage of missing values   |
+        |                                 |         | in a sparse array                          |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_sparse_safe``      | 10      | A limit ensuring that small Lua arrays     |
+        |                                 |         | are always encoded as sparse arrays        |
+        |                                 |         | (instead of generating an error or         |
+        |                                 |         | encoding as map)                           |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding    |
+        |                                 |         | of NaN and Inf numbers                     |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables     |
+        |                                 |         | for all arrays and maps                    |
+        +---------------------------------+---------+--------------------------------------------+
 
     .. _yaml-cfg_sparse:
 
