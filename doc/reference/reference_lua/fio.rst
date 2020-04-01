@@ -483,8 +483,8 @@ functions.
          - /tmp/lG31e7
          ...
 
-    ``fio.tempdir()`` stores created temporary directory into ``/tmp`` by
-    default. This can be changed by setting ``TMPDIR`` environment
+    ``fio.tempdir()`` stores the created temporary directory into ``/tmp`` by
+    default. This can be changed by setting the ``TMPDIR`` environment
     variable. Before starting Tarantool, or at runtime by
     ``os.setenv()``.
 
