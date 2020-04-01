@@ -88,8 +88,8 @@ Below is a list of all ``box.session`` functions and members.
 
 .. function:: exists(id)
 
-    :return: 1 if the session exists, 0 if the session does not exist.
-    :rtype:  number
+    :return: true if the session exists, false if the session does not exist.
+    :rtype:  boolean
 
 .. _box_session-peer:
 

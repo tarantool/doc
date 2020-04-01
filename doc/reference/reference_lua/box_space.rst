@@ -935,6 +935,27 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s:drop()
             tarantool> replace_counter
 
+        .. NOTE::
+
+          You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``
+            * transactions,
+            * yield-oprations (:ref:`explicit <atomic-implicit-yields>` or not),
+            * actions that are not allowed to be used in transactions 
+              (see :ref:`rule #2 <box-txn_management>`)
+          because everything executed inside triggers is already in a transaction.
+
+          **Example:**
+
+          .. code-block:: tarantoolsession
+
+            tarantool> box.space.test:on_replace(fiber.yield)
+            tarantool> box.space.test:replace{1, 2, 3}
+            2020-02-02 21:22:03.073 [73185] main/102/init.lua txn.c:532 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield
+            ---
+            - error: Transaction has been aborted by a fiber yield
+            ...
+
+
     .. _box_space-before_replace:
 
     .. method:: before_replace([trigger-function [, old-trigger-function]])
