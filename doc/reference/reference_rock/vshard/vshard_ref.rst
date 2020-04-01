@@ -295,7 +295,7 @@ Router public API
           shard with the specified ``bucket_id``, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
     The mode parameter has two possible forms: a string or a map. Examples of the string form are:
     ``'read'``, ``'write'``. Examples of the map form are: ``{mode='read'}``, ``{mode='write'}``,
