@@ -93,6 +93,11 @@ An index definition may include identifiers of tuple fields and their expected
 **types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>`
 below).
 
+.. NOTE::
+
+  A recommended design pattern for a data model is to base primary keys on the
+  first fields of a tuple, because this speeds up tuple comparison.
+
 In our example, we first defined the primary index (named 'primary') based on
 field #1 of each tuple:
 
