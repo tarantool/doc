@@ -355,7 +355,7 @@ Below is a list of all ``box.tuple`` functions.
         When called without arguments, ``tuple:next()`` returns the first field
         from a tuple. Otherwise, it returns the field next to the indicated position.
 
-        Although ``tuple:next()`` is not really efficient, and it is better
+        However ``tuple:next()`` is not really efficient, and it is better
         to use :ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`.
 
         :return: field number and field value
