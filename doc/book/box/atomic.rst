@@ -21,7 +21,7 @@ query:
 
     tarantool> box.space.tester:update({3}, {{'=', 2, 'size'}, {'=', 3, 0}})
 
-This is equivalent to the following SQL statement for a table that stores 
+This is equivalent to the following SQL statement for a table that stores
 primary keys in ``field[1]``:
 
 .. code-block:: SQL
@@ -127,6 +127,12 @@ The cooperative scheduler ensures that, in absence of yields,
 a multi-statement transaction is not preempted and hence is never aborted.
 Therefore, understanding yields is essential to writing abort-free code.
 
+Sometimes while testing the transaction mechanism in Tarantool you can notice
+that yielding after ``box.begin()`` but before any read/write operation does not
+cause an abort as it should according to the description. This happens because
+actually ``box.begin()`` does not start a transaction. It is a mark telling
+Tarantool to start a transaction after some database request that follows.
+
 .. note::
 
    You can’t mix storage engines in a transaction today.
@@ -157,6 +163,10 @@ some database operations may imply yields.
 Many functions in modules :ref:`fio <fio-section>`, :ref:`net_box <net_box-module>`,
 :ref:`console <console-module>` and :ref:`socket <socket-module>`
 (the "os" and "network" requests) yield.
+
+That is why executing separate commands such as ``select()``, ``insert()``,
+``update()`` in the console inside a transaction will cause an abort. This is
+due to implicit yield happening after each chunk of code is executed in the console.
 
 **Example #1**
 
