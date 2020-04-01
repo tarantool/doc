@@ -407,7 +407,7 @@ Below is a list of all ``box.tuple`` functions.
         ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua
         iterators traverse a value's components until an end marker is reached.
 
-        ``tuple_object:ipairs()`` is the same as ``pairs()``. Because tuple
+        ``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple
         fields are integer always.
 
         :return: function, tuple-value, nil
