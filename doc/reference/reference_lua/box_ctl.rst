@@ -69,7 +69,7 @@ read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
 The ``box.ctl`` submodule also contains two functions for the two
 :ref:`server trigger <triggers>` definitions: ``on_shutdown`` and ``on_schema_init``.
-Please, learn the mechanism of trigger functions before using them.
+Please, familiarize yourself with the mechanism of trigger functions before using them.
 
 .. function:: on_shutdown(trigger-function [, old-trigger-function])
 
@@ -121,7 +121,7 @@ Please, learn the mechanism of trigger functions before using them.
     given space, or make a given space replica-local while a replica
     is being bootstrapped. Making such a change after ``box.cfg`` is
     not reliable because other connections might use the database before
-    the change can be made.
+    the change is made.
 
     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
