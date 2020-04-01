@@ -495,14 +495,14 @@ Router public API
         vshard.router.bucket_id(123LL)
         vshard.router.bucket_id(123ULL)
 
-    Return 3 different values. For float and double cdata 
+    For float and double cdata 
     (``ffi.cast('float', number)``, ``ffi.cast('double', number)``) these functions
     return different values even for the same numbers of the same floating point
     type. This is because ``tostring()`` on a floating point cdata number returns not
     the number, but a pointer at it. Different on each call.
 
     ``vshard.router.bucket_id_strcrc32()`` behaves exactly the same, but
-    does not log a warning. In case you need that behaviour.
+    does not log a warning. In case you need that behavior.
 
 .. _router_api-bucket_id_strcrc32:
 
@@ -530,9 +530,9 @@ Router public API
 .. function:: vshard.router.bucket_id_mpcrc32(key)
 
     This function is safer than ``bucket_id_strcrc32``. It takes a CRC32 from
-    MessagePack encoded value. That is, bucket id of integers does not
-    depend on their Lua type. In case of a string key does not encode it into
-    MessagePack, but takes hash right from the string. 
+    a MessagePack encoded value. That is, bucket id of integers does not
+    depend on their Lua type. In case of a string key, it does not encode it into
+    MessagePack, but takes a hash right from the string. 
 
     :param key: a hash key. This can be any Lua object (number, table, string).
 
@@ -549,8 +549,8 @@ Router public API
 
     Be very careful in case you store floating point types in a space. When data
     is returned from a space, it is cased to Lua number. And if that value had
-    empty fraction part, it will be treated as integer by ``bucket_id_mpcrc32()``.
-    So you need to do explicit casts in such cases. Example of the problem:
+    an empty fraction part, it will be treated as an integer by ``bucket_id_mpcrc32()``.
+    So you need to do explicit casts in such cases. Here is an example of the problem:
 
     .. code-block:: tarantoolsession
 
