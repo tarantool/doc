@@ -82,6 +82,9 @@ All triggers have the following characteristics:
   triggers. For example, use ``box.session.on_connect()`` to return a table of all
   connect-trigger functions.
 
+* Triggers can be useful in solving problems with replication. See details in 
+:ref:`Resolving replication conflicts <replication-problem_solving>`
+
 **Example**
 
 Here we log connect and disconnect events into Tarantool server log.

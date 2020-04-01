@@ -69,6 +69,7 @@ read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
 The ``box.ctl`` submodule also contains two functions for the two
 :ref:`server trigger <triggers>` definitions: ``on_shutdown`` and ``on_schema_init``.
+Please, familiarize yourself with the mechanism of trigger functions before using them.
 
 .. function:: on_shutdown(trigger-function [, old-trigger-function])
 
@@ -95,33 +96,34 @@ The ``box.ctl`` submodule also contains two functions for the two
 
 .. function:: on_schema_init(trigger-function [, old-trigger-function])
 
-     Create a "schema_init :ref:`trigger <triggers>`".
-     The ``trigger-function`` will be executed
-     when :ref:`box.cfg{} <index-book_cfg>` happens for the first time.
-     That is, the ``schema_init`` trigger is called before the server's
-     configuration and recovery begins, and therefore ``box.ctl.on_schema_init`` must
-     be called before ``box.cfg`` is called.
+    Create a "schema_init :ref:`trigger <triggers>`".
+    The ``trigger-function`` will be executed
+    when :ref:`box.cfg{} <index-book_cfg>` happens for the first time.
+    That is, the ``schema_init`` trigger is called before the server's
+    configuration and recovery begins, and therefore ``box.ctl.on_schema_init``
+    must be called before ``box.cfg`` is called.
 
-     Parameter: trigger-function (function) – function which will become the trigger function
+    :param function     trigger-function: function which will become the
+                                           trigger function
+    :param function old-trigger-function: existing trigger function which
+                                          will be replaced by
+                                          trigger-function
+    :return: nil or function pointer
 
-     Parameter: old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
+    If the parameters are (nil, old-trigger-function), then the old
+    trigger is deleted.
 
-     Return:	nil or function pointer
+    A common use is: make a ``schema_init`` trigger function which creates
+    a ``before_replace`` trigger function on a system space. Thus, since
+    system spaces are created when the server starts, the ``before_replace``
+    triggers will be activated for each tuple in each system space.
+    For example, such a trigger could change the storage engine of a
+    given space, or make a given space replica-local while a replica
+    is being bootstrapped. Making such a change after ``box.cfg`` is
+    not reliable because other connections might use the database before
+    the change is made.
 
-     If the parameters are (nil, old-trigger-function), then the old
-     trigger is deleted.
-
-     A common use is: make a ``schema_init`` trigger function which creates
-     a ``before_replace`` trigger function on a system space. Thus, since
-     system spaces are created when the server starts, the ``before_replace``
-     triggers will be activated for each tuple in each system space.
-     For example, such a trigger could change the storage engine of a
-     given space, or make a given space replica-local while a replica
-     is being bootstrapped. Making such a change after ``box.cfg`` is
-     not reliable because other connections might use the database before
-     the change can be made.
-
-     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+    Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
     **Example:**
 
