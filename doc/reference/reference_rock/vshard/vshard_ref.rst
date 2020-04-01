@@ -548,7 +548,7 @@ Router public API
     usually.
 
     Be very careful in case you store floating point types in a space. When data
-    is returned from a space, it is cased to Lua number. And if that value had
+    is returned from a space, it is cast to Lua number. And if that value had
     an empty fraction part, it will be treated as an integer by ``bucket_id_mpcrc32()``.
     So you need to do explicit casts in such cases. Here is an example of the problem:
 
