@@ -569,26 +569,25 @@ recommended.
         or with a number :samp:`{fiber_object}.storage[{number}]`.
         Values may be either numbers or strings.
 
-        Fiber.storage is destroyed when the fiber is finished. Regardless
-        of how is it finished - via :samp:`{fiber_object}:cancel()`, 
-        or the fiber's function did 'return', it does not matter. Moreover, from 
-        that moment the storage is cleaned up even for pooled fibers used to 
-        serve IProto
-        requests. Pooled fibers never really die, but nonetheless their
+        ``fiber.storage`` is destroyed when the fiber is finished, regardless
+        of how is it finished -- via :samp:`{fiber_object}:cancel()`,
+        or the fiber's function did 'return'. Moreover, from
+        that moment the storage is cleaned up even for pooled fibers used to
+        serve IProto requests. Pooled fibers never really die, but nonetheless their
         storage is cleaned up after each request. That makes possible to
         use ``fiber.storage`` as a full featured request-local storage.
 
-        This storage may be created for a fiber no matter how the fiber
-        itself was created - from C, from Lua. For example, a fiber could
-        be created in C using ``fiber_new()``, then it could insert into a
-        space, which had Lua ``on_replace`` triggers, and one of the triggers
-        could create ``fiber.storage``. That storage will be deleted when the
+        This storage may be created for a fiber, no matter how the fiber
+        itself was created -- from C or from Lua. For example, a fiber can
+        be created in C using ``fiber_new()``, then it can insert into a
+        space, which has Lua ``on_replace`` triggers, and one of the triggers
+        can create ``fiber.storage``. That storage will be deleted when the
         fiber is stopped.
 
-        ``fiber.storage`` may be also used for replication applier fiber. 
-        Applier has a fiber from which it applies transactions from a remote 
-        instance. In case the applier fiber somehow creates a ``fiber.storage`` 
-        (for example, from a space trigger again), the storage won't be deleted 
+        ``fiber.storage`` may be also used for the replication applier fiber.
+        The applier has a fiber from which it applies transactions from a remote
+        instance. In case the applier fiber somehow creates a ``fiber.storage``
+        (for example, from a space trigger again), the storage won't be deleted
         until the applier fiber is stopped.
 
         **Example:**
