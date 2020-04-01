@@ -53,7 +53,7 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`tuple_object:findall()         | Get the number of all fields    |
     | <box_tuple-find>`                    | matching the search value       |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:next()            | Get next field value from a     |
+    | :ref:`tuple_object:next()            | Get the next field value from a     |
     | <box_tuple-next>`                    | tuple                           |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:ipairs()          | Prepare for iterating           |
