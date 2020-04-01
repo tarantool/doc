@@ -34,4 +34,4 @@ preceded by the name returned by the ``require`` request. For example:
     ---
     ...
 
-.. _On the luafun section of github: http://rtsisyk.github.io/luafun
+.. _On the luafun section of github: https://luafun.github.io/
