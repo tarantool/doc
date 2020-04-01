@@ -83,7 +83,7 @@ All triggers have the following characteristics:
   connect-trigger functions.
 
 * Triggers can be useful in solving problems with replication. See details in 
-:ref:`Replication conflicts resolution <replication-problem_solving>`
+:ref:`Resolving replication conflicts <replication-problem_solving>`
 
 **Example**
 
