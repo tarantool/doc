@@ -77,7 +77,7 @@ post-decimal digits is necessary to get 38-digit precision.
 
 .. function:: is_decimal(string-or-number-or-decimal-number)
 
-    Returns "true" if specified value is decimal and "false" otherwise.
+    Returns "true" if the specified value is a decimal, and "false" otherwise.
     For example if a is 123 then ``decimal.is_decimal(a)`` returns "false". 
     If a is decimal.new(123) then ``decimal.is_decimal(a)`` returns "true". 
 
@@ -143,5 +143,4 @@ post-decimal digits is necessary to get 38-digit precision.
 
     Returns a decimal number after possible removing of trailing post-decimal zeros.
     For example if a is 2.20200 then ``decimal.trim(a)`` returns 2.202. 
-
 
