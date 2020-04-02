@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"POT-Creation-Date: 2020-04-02 17:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,6 +245,15 @@ msgid "Parameters"
 msgstr ""
 
 msgid "a number of seconds before ending a bootstrap attempt as unsuccessful. Recreate the cluster in case of bootstrap timeout."
+msgstr ""
+
+msgid "by default is set to ``false`` that means raise an error, when the cluster is already bootstrapped. ``True`` means consider an already bootstrapped cluster a success."
+msgstr ""
+
+msgid "vshard.router.bootstrap({timeout = 4, if_not_bootstrapped = true})"
+msgstr ""
+
+msgid "To detect whether a cluster is bootstrapped, ``vshard`` looks for at least one bucket in the whole cluster. If the cluster was bootstrapped only partially (for example, due to an error during the first bootstrap), then it will be considered a bootstrapped cluster on a next bootstrap call with ``if_not_bootstrapped``. So this is still a bad practice. Avoid calling ``bootstrap()`` multiple times."
 msgstr ""
 
 msgid "Configure the database and start sharding for the specified ``router`` instance. See the :ref:`sample configuration <vshard-config-cluster-example>` above."

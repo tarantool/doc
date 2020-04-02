@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"POT-Creation-Date: 2020-04-02 17:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -532,7 +532,16 @@ msgid "tarantool> fiber.self():cancel() -- kill self, may make program end\n"
 "..."
 msgstr ""
 
-msgid "Local storage within the fiber. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings. The Lua garbage collector will mark or free the local storage when :samp:`{fiber_object}:cancel()` happens."
+msgid "Local storage within the fiber. It is a Lua table created when it is first accessed. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings."
+msgstr ""
+
+msgid "``fiber.storage`` is destroyed when the fiber is finished, regardless of how is it finished -- via :samp:`{fiber_object}:cancel()`, or the fiber's function did 'return'. Moreover, from that moment the storage is cleaned up even for pooled fibers used to serve IProto requests. Pooled fibers never really die, but nonetheless their storage is cleaned up after each request. That makes possible to use ``fiber.storage`` as a full featured request-local storage."
+msgstr ""
+
+msgid "This storage may be created for a fiber, no matter how the fiber itself was created -- from C or from Lua. For example, a fiber can be created in C using ``fiber_new()``, then it can insert into a space, which has Lua ``on_replace`` triggers, and one of the triggers can create ``fiber.storage``. That storage will be deleted when the fiber is stopped."
+msgstr ""
+
+msgid "``fiber.storage`` may be also used for the replication applier fiber. The applier has a fiber from which it applies transactions from a remote instance. In case the applier fiber somehow creates a ``fiber.storage`` (for example, from a space trigger again), the storage won't be deleted until the applier fiber is stopped."
 msgstr ""
 
 msgid "tarantool> fiber = require('fiber')\n"
@@ -650,9 +659,6 @@ msgstr ""
 msgid "current system time (in seconds since the epoch) as a Lua number. The time is taken from the event loop clock, which makes this call very cheap, but still useful for constructing artificial tuple keys."
 msgstr ""
 
-msgid "num"
-msgstr ""
-
 msgid "tarantool> fiber.time(), fiber.time()\n"
 "---\n"
 "- 1448466279.2415\n"
@@ -661,6 +667,9 @@ msgid "tarantool> fiber.time(), fiber.time()\n"
 msgstr ""
 
 msgid "current system time (in microseconds since the epoch) as a 64-bit integer. The time is taken from the event loop clock."
+msgstr ""
+
+msgid "cdata"
 msgstr ""
 
 msgid "tarantool> fiber.time(), fiber.time64()\n"
@@ -917,10 +926,10 @@ msgstr ""
 msgid "If timeout is provided, and a signal doesn't happen for the duration of the timeout, ``wait()`` returns false. If a signal or broadcast happens, ``wait()`` returns true."
 msgstr ""
 
-msgid "Wake up a single fiber that has executed ``wait()`` for the same variable."
+msgid "Wake up a single fiber that has executed ``wait()`` for the same variable. Does not yield."
 msgstr ""
 
-msgid "Wake up all fibers that have executed ``wait()`` for the same variable."
+msgid "Wake up all fibers that have executed ``wait()`` for the same variable. Does not yield."
 msgstr ""
 
 msgid "Assume that a tarantool instance is running and listening for connections on localhost port 3301. Assume that guest users have privileges to connect. We will use the tarantoolctl utility to start two clients."
