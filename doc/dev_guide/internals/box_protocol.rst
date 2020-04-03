@@ -198,8 +198,10 @@ An unsigned number that indicates what will be in the BODY.
 In requests IPROTO_REQUEST_TYPE will be followed by IPROTO_SELECT etc.
 In responses Response-Code-Indicator will be followed by IPROTO_OK etc.
 
-The BODY has the details of the request or response.
-In rare cases, for example for the  :ref:`IPROTO_PING <box_protocol-ping>` request, it is empty.
+The BODY has the details of the request or response. In a request, it can also
+be absent or be an empty map. Both these states will be interpreted equally.
+Responses will contain the BODY anyway even if it is
+a :ref:`IPROTO_PING <box_protocol-ping>` request.
 
 Have a look at file
 `xrow.c <https://github.com/tarantool/tarantool/blob/master/src/box/xrow.c>`_
@@ -556,9 +558,8 @@ Thus the IPROTO_PREPARE map item is the same as the first item of the
 
 **IPROTO_PING** = 0x40.
 
-See :ref:`conn:ping() <conn-ping>`.
-A non-error response, such as an empty body (MP_MAP, size 0) will be interpreted as ``true``.
-The body is: nothing.
+See :ref:`conn:ping() <conn-ping>`. The BODY will be an empty map because IPROTO_PING
+in the HEADER contains all the information that the server instance needs.
 
 **IPROTO_JOIN** = 0x41, for replication  |br|
 **IPROTO_SUBSCRIBE** = 0x42, for replication SUBSCRIBE |br|
@@ -597,7 +598,7 @@ For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body will be
     ++=====================+
         MP_MAP
 
-For :ref:`IPROTO_PING <box_protocol-ping>` the body will be empty.
+For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
 For most data-access requests (IPROTO_SELECT IPROTO_INSERT IPROTO_DELETE etc.)
 it will be an array of tuples that contain an array of fields.
 For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>` it will usually be an array but, since
