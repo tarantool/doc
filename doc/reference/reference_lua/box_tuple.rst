@@ -32,28 +32,28 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`box.tuple.new()                | Create a tuple                  |
     | <box_tuple-new>`                     |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`#tuple_object                  | Count tuple fields              |
-    | <box_tuple-count_fields>`            |                                 |
+    | :ref:`#tuple_object                  | Count tuple fields               |
+    | <box_tuple-count_fields>`            |                                  |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:bsize()           | Get count of bytes in a tuple   |
     | <box_tuple-bsize>`                   |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-number]     | Get a tuple's field by          |
-    | <box_tuple-field_number>`            | specifying a number             |
+    | :ref:`tuple_object[field-number]     | Get a tuple's field by            |
+    | <box_tuple-field_number>`            | specifying a number              |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-name]       | Get a tuple's field by          |
-    | <box_tuple-field_name>`              | specifying a name               |
+    | :ref:`tuple_object[field-name]       | Get a tuple's field by            |
+    | <box_tuple-field_name>`              | specifying a name                |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-path]       | Get a tuple's fields or parts   |
-    | <box_tuple-field_path>`              | by specifying a path            |
+    | :ref:`tuple_object[field-path]       | Get a tuple's fields or parts     |
+    | <box_tuple-field_path>`              | by specifying a path             |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:find()            | Get the number of the first     |
-    | <box_tuple-find>`                    | field matching the search value |
+    | :ref:`tuple_object:find()            | Get the number of the first       |
+    | <box_tuple-find>`                    | field matching the search value   |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:findall()         | Get the number of all fields    |
-    | <box_tuple-find>`                    | matching the search value       |
+    | :ref:`tuple_object:findall()         | Get the number of all fields      |
+    | <box_tuple-find>`                    | matching the search value        |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:next()            | Get the next field value from a     |
+    | :ref:`tuple_object:next()            | Get the next field value from a  |
     | <box_tuple-next>`                    | tuple                           |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:ipairs()          | Prepare for iterating           |
@@ -62,16 +62,16 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`tuple_object:pairs()           | Prepare for iterating           |
     | <box_tuple-pairs>`                   |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:totable()         | Get a tuple's fields as a table |
+    | :ref:`tuple_object:totable()         | Get a tuple's fields as a table  |
     | <box_tuple-totable>`                 |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:tomap()           | Get a tuple's fields as a table |
+    | :ref:`tuple_object:tomap()           | Get a tuple's fields as a table  |
     | <box_tuple-tomap>`                   | along with key:value pairs      |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:transform()       | Remove (and replace) a tuple's  |
-    | <box_tuple-transform>`               | fields                          |
+    | <box_tuple-transform>`               | fields                           |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:unpack()          | Get a tuple's fields            |
+    | :ref:`tuple_object:unpack()          | Get a tuple's fields             |
     | <box_tuple-unpack>`                  |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:update()          | Update a tuple                  |
