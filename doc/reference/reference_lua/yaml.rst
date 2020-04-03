@@ -116,22 +116,22 @@ results:
         +---------------------------------+---------+--------------------------------------------+
         | Option                          | Default | Use                                        |
         +=================================+=========+============================================+
-        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding    |
+        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding   |
         |                                 |         | of NaN and Inf numbers                     |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers         |
+        | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers        |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will   |
+        | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will  |
         |                                 |         | follow :ref:`__serialize <json-serialize>` |
-        |                                 |         | metatable field                             |
+        |                                 |         | metatable field                            |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use                |
+        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use               |
         |                                 |         | ``tostring()`` for unknown types           |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for       |
+        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for      |
         |                                 |         | non-recognized types                       |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle             |
+        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle            |
         |                                 |         | excessively sparse arrays as maps.         |
         |                                 |         | See detailed description                   |
         |                                 |         | :ref:`below <yaml-cfg_sparse>`             |
@@ -145,10 +145,10 @@ results:
         |                                 |         | (instead of generating an error or         |
         |                                 |         | encoding as map)                           |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding    |
+        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding   |
         |                                 |         | of NaN and Inf numbers                     |
         +---------------------------------+---------+--------------------------------------------+
-        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables     |
+        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables    |
         |                                 |         | for all arrays and maps                    |
         +---------------------------------+---------+--------------------------------------------+
 
