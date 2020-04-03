@@ -354,7 +354,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
     :Return:
 
@@ -387,7 +387,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
     :Return:
 
@@ -422,7 +422,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
     :Return:
 
@@ -621,7 +621,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
 .. _router_api-replicaset_callrw:
 
@@ -644,7 +644,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
 .. _router_api-replicaset_callro:
 
@@ -665,7 +665,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
 .. _router_api-replicaset_callre:
 
@@ -689,7 +689,7 @@ Router public API
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supprted.
+          ``buffer``, ``on_push`` are also supported.
 
 .. _vshard_api_reference-router_internal_api:
 
