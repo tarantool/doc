@@ -427,7 +427,7 @@ Glossary
 
     **Bucket id**
         A sharding key defining which bucket belongs to which replica set.
-        A bucket id may be calculated from a :ref:`hash key <router_api-bucket_id>`.
+        A bucket id may be calculated from a :ref:`hash key <router_api-bucket_id_strcrc32>`.
 
     .. vshard-router:
 
