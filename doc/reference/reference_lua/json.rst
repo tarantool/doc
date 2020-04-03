@@ -167,55 +167,55 @@ results:
         .. rst-class:: center-align-column-2
         .. rst-class:: left-align-column-3
 
-        +---------------------------------+---------+-------------------------------------------+
-        | Option                          | Default | Use                                       |
-        +=================================+=========+===========================================+
-        | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding          |
-        +---------------------------------+---------+-------------------------------------------+
+        +---------------------------------+---------+--------------------------------------------+
+        | Option                          | Default | Use                                        |
+        +=================================+=========+============================================+
+        | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding           |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables       |
-        |                                 |         | with nesting level deeper than            | 
-        |                                 |         | ``cfg.encode_max_depth``.                 |
+        |                                 |         | with nesting level deeper than             | 
+        |                                 |         | ``cfg.encode_max_depth``.                  |
         |                                 |         | Not-encoded fields are replaced with       |
-        |                                 |         | one null. If not set, too deep            |
-        |                                 |         | nesting is considered an error.           |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | one null. If not set, too deep             |
+        |                                 |         | nesting is considered an error.            |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding   |
-        |                                 |         | of NaN and Inf numbers                    |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | of NaN and Inf numbers                     |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_number_precision`` | 14      | Precision of floating point numbers        |
-        +---------------------------------+---------+-------------------------------------------+
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will  |
         |                                 |         | follow :ref:`__serialize <json-serialize>` |
         |                                 |         | metatable field                            |
-        +---------------------------------+---------+-------------------------------------------+
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use               |
-        |                                 |         | ``tostring()`` for unknown types          |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | ``tostring()`` for unknown types           |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether use NULL for         |
-        |                                 |         | non-recognized types                      |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | non-recognized types                       |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle            |
-        |                                 |         | excessively sparse arrays as maps.        |
-        |                                 |         | See detailed description                  |
-        |                                 |         | :ref:`below <json-module_cfg_sparse>`.    |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is the          |
-        |                                 |         | permissible percentage of missing values  |
-        |                                 |         | in a sparse array.                        |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.encode_sparse_safe``      | 10      | A limit ensuring that small Lua arrays    |
-        |                                 |         | are always encoded as sparse arrays       |
-        |                                 |         | (instead of generating an error or        |
-        |                                 |         | encoding as a map)                        |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | excessively sparse arrays as maps.         |
+        |                                 |         | See detailed description                   |
+        |                                 |         | :ref:`below <json-module_cfg_sparse>`.     |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is the           |
+        |                                 |         | permissible percentage of missing values   |
+        |                                 |         | in a sparse array.                         |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.encode_sparse_safe``      | 10      | A limit ensuring that small Lua arrays     |
+        |                                 |         | are always encoded as sparse arrays        |
+        |                                 |         | (instead of generating an error or         |
+        |                                 |         | encoding as a map)                         |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding   |
-        |                                 |         | of NaN and Inf numbers                    |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | of NaN and Inf numbers                     |
+        +---------------------------------+---------+--------------------------------------------+
         | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables    |
-        |                                 |         | for all arrays and maps                   |
-        +---------------------------------+---------+-------------------------------------------+
-        | ``cfg.decode_max_depth``        |  128    | Max recursion depth for decoding          |
-        +---------------------------------+---------+-------------------------------------------+
+        |                                 |         | for all arrays and maps                    |
+        +---------------------------------+---------+--------------------------------------------+
+        | ``cfg.decode_max_depth``        |  128    | Max recursion depth for decoding           |
+        +---------------------------------+---------+--------------------------------------------+
 
     .. _json-module_cfg_sparse:
 
