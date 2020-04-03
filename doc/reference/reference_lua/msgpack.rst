@@ -223,27 +223,27 @@ with the MsgPack format name and encoding on the right.
         +=================================+=========+===============================================+
         | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding              |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables           |
+        | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables          |
         |                                 |         |  with nesting level deeper than               | 
         |                                 |         | ``cfg.encode_max_depth``.                     |
-        |                                 |         | Not-encoded fields are replaced with           |
+        |                                 |         | Not-encoded fields are replaced with          |
         |                                 |         | one null. If not set, too high                |
         |                                 |         | nesting is considered an error.               |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding of    |
+        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding of   |
         |                                 |         | NaN and Inf numbers                           |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will      |
+        | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will     |
         |                                 |         | follow :ref:`__serialize <json-serialize>`    |
-        |                                 |         | metatable field                                |
+        |                                 |         | metatable field                               |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use ``tostring()``    |
+        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use ``tostring()``   |
         |                                 |         | for unknown types                             |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for          |
+        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for         |
         |                                 |         | non-recognized types                          |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle excessively    |
+        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle excessively   |
         |                                 |         | sparse arrays as maps.                        |
         |                                 |         | See detailed description                      |
         |                                 |         | :ref:`below <msgpack-cfg_sparse>`             |
@@ -257,10 +257,10 @@ with the MsgPack format name and encoding on the right.
         |                                 |         | (instead of generating an error or encoding   |
         |                                 |         | as a map)                                     |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding of    |
+        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding of   |
         |                                 |         | NaN and Inf numbers                           |
         +---------------------------------+---------+-----------------------------------------------+
-        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables for    |
+        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables for   |
         |                                 |         | all arrays and maps                           |
         +---------------------------------+---------+-----------------------------------------------+
 
