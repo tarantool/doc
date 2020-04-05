@@ -321,8 +321,8 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F041-05    | Outer joins can be nested                     | ``select t7.*,t22.* from t22 left outer join t7 on       | Okay.                                                   |
     |            |                                               | (t22_1=s1) left outer join t23;``.                       |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-07    | The inner table in a left or right outer join | ``select t7.* from t22 left outer join t7 on (t22_1=s1)  | Okay. The query fails due to a syntax error but         |
-    |            | can also be used in an inner join             | inner join t22 on (t22_4=t22_5);``                       | that's expectable.                                      |
+    | F041-07    | The inner table in a left or right outer join | ``select t7.* from (t22 left outer join t7 on            | Okay.                                                   |
+    |            | can also be used in an inner join             | (t22_1=s1)) j inner join t22 on (j.t22_4=t7.s1);``       |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F041-08    | All comparison operators are supported        | ``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``     | Okay.                                                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
