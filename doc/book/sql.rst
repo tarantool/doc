@@ -338,10 +338,10 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F041-05    | Outer joins can be nested                     | ``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON       | Okay.                                                   |
     |            |                                               | (t22_1 = s1) LEFT OUTER JOIN t23;``.                     |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-07    | The inner table in a left or right outer join | ``SELECT t7.* FROM t22 LEFT OUTER JOIN t7 ON             | Okay. The query fails due to a syntax error but         |
-    |            | can also be used in an inner join             | (t22_1 = s1) INNER JOIN t22 ON (t22_4 = t22_5);``        | that's expectable.                                      |
+    | F041-07    | The inner table in a left or right outer join | ``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON            | Okay.                                                   |
+    |            | can also be used in an inner join             | (t22_1 = s1)) j INNER JOIN t22 ON (j.t22_4 = t7.s1);``   |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F041-08    | All comparison operators are supported        | ``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 ``       | :ref:`Okay <sql_operator_comparison>`.                  |
+    | F041-08    | All comparison operators are supported        | ``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1          | :ref:`Okay <sql_operator_comparison>`.                  |
     |            |                                               | OR 0 <> 1;``                                             |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F051 Basic date and time                                                                                                                                                        |
