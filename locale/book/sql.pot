@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"POT-Creation-Date: 2020-04-06 13:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1138,10 +1138,7 @@ msgstr ""
 msgid "The inner table in a left or right outer join can also be used in an inner join"
 msgstr ""
 
-msgid "``select t7.* from t22 left outer join t7 on (t22_1=s1) inner join t22 on (t22_4=t22_5);``"
-msgstr ""
-
-msgid "Okay. The query fails due to a syntax error but that's expectable."
+msgid "``select t7.* from (t22 left outer join t7 on (t22_1=s1)) j inner join t22 on (j.t22_4=t7.s1);``"
 msgstr ""
 
 msgid "F041-08"
@@ -1219,22 +1216,13 @@ msgstr ""
 msgid "F051-07"
 msgstr ""
 
-msgid "CURRENT_TIME"
-msgstr ""
-
-msgid "``select * from t where current_time < '23:23:23';``"
-msgstr ""
-
-msgid "F051-08"
-msgstr ""
-
 msgid "LOCALTIME"
 msgstr ""
 
 msgid "``select localtime from t;``"
 msgstr ""
 
-msgid "F051-09"
+msgid "F051-08"
 msgstr ""
 
 msgid "LOCALTIMESTAMP"
@@ -1292,6 +1280,15 @@ msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
 msgstr ""
 
 msgid "``create view vv5 as select count(*) from vv2 group by s1 having count(*) > 0;``"
+msgstr ""
+
+msgid "F131-05"
+msgstr ""
+
+msgid "Single row SELECT with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+
+msgid "``select count(*) from vv2 group by s1 having count(*) > 0;``"
 msgstr ""
 
 msgid "F181"
@@ -1531,9 +1528,9 @@ msgstr ""
 msgid "Fail. There is no schema with that name (not counted in the final score)."
 msgstr ""
 
-msgid "Total number of items marked \"Fail\": 69"
+msgid "Total number of items marked \"Fail\": 68"
 msgstr ""
 
-msgid "Total number of items marked \"Okay\": 77"
+msgid "Total number of items marked \"Okay\": 78"
 msgstr ""
 

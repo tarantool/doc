@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:48+0000\n"
+"POT-Creation-Date: 2020-04-06 13:39+0000\n"
 "PO-Revision-Date: 2019-12-20 21:24+0300\n"
 "Last-Translator: \n"
-"Language-Team: \n"
 "Language: ru\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 msgid "SQL"
 msgstr ""
@@ -29,10 +29,10 @@ msgstr ""
 
 msgid ""
 "For each feature in that list, we will come up with a simple example SQL "
-"statement. If Tarantool appears to handle the example, we will mark it \"Okay"
-"\", else we will mark it \"Fail\". Since this is rough and arbitrary, we "
-"believe that tests which are unfairly marked \"Okay\" will probably be "
-"balanced by tests which are unfairly marked \"Fail\"."
+"statement. If Tarantool appears to handle the example, we will mark it "
+"\"Okay\", else we will mark it \"Fail\". Since this is rough and "
+"arbitrary, we believe that tests which are unfairly marked \"Okay\" will "
+"probably be balanced by tests which are unfairly marked \"Fail\"."
 msgstr ""
 
 msgid "Feature ID"
@@ -79,12 +79,13 @@ msgid "``create table tr (s1 float primary key);``"
 msgstr ""
 
 msgid ""
-"**Note:** Floating point SQL types are not planned to be compatible between "
-"2.1 and 2.2 releases. The reason is that in 2.1 we set 'number' format for "
-"columns of these types, but will restrict it to 'float32' and 'float64' in "
-"2.2. The format change requires data migration and cannot be done "
-"automatically, because in 2.1 we have no information to distinguish 'number' "
-"columns (created from Lua) from FLOAT/DOUBLE/REAL ones (created from SQL)."
+"**Note:** Floating point SQL types are not planned to be compatible "
+"between 2.1 and 2.2 releases. The reason is that in 2.1 we set 'number' "
+"format for columns of these types, but will restrict it to 'float32' and "
+"'float64' in 2.2. The format change requires data migration and cannot be"
+" done automatically, because in 2.1 we have no information to distinguish"
+" 'number' columns (created from Lua) from FLOAT/DOUBLE/REAL ones (created"
+" from SQL)."
 msgstr ""
 
 msgid "E011-03"
@@ -130,8 +131,8 @@ msgid "``select * from t where s1 = 1.00;``"
 msgstr ""
 
 msgid ""
-"Okay, but only because Tarantool doesn't distinguish between numeric data "
-"types."
+"Okay, but only because Tarantool doesn't distinguish between numeric data"
+" types."
 msgstr ""
 
 #, fuzzy
@@ -151,8 +152,7 @@ msgstr ""
 msgid "``create table t44 (s1 char primary key);``"
 msgstr ""
 
-msgid ""
-"Fail, CHAR is not supported. This type of Fail will only be counted once."
+msgid "Fail, CHAR is not supported. This type of Fail will only be counted once."
 msgstr ""
 
 msgid "E021-02"
@@ -194,7 +194,8 @@ msgid "``select character_length(s1) from t;``"
 msgstr ""
 
 msgid ""
-"Fail. There is no such function. There is a function LENGTH(), which is okay."
+"Fail. There is no such function. There is a function LENGTH(), which is "
+"okay."
 msgstr ""
 
 msgid "E021-05"
@@ -220,8 +221,8 @@ msgid "``select substring(s1 from 1 for 1) from t;``"
 msgstr ""
 
 msgid ""
-"Fail. There is no such function. There is a function SUBSTR(x,n,n) which is "
-"okay."
+"Fail. There is no such function. There is a function SUBSTR(x,n,n) which "
+"is okay."
 msgstr ""
 
 msgid "E021-07"
@@ -261,8 +262,8 @@ msgid "E021-10"
 msgstr ""
 
 msgid ""
-"Implicit casting among the fixed-length and variable-length character string "
-"types"
+"Implicit casting among the fixed-length and variable-length character "
+"string types"
 msgstr ""
 
 msgid "``select * from tm where char_column > varchar_column;``"
@@ -310,8 +311,8 @@ msgid "``create table rank (ceil int primary key);``"
 msgstr ""
 
 msgid ""
-"Fail. Tarantool's list of reserved words differs from the standard's list of "
-"reserved words."
+"Fail. Tarantool's list of reserved words differs from the standard's list"
+" of reserved words."
 msgstr ""
 
 msgid "E031-01"
@@ -616,8 +617,7 @@ msgstr ""
 msgid "``select s1 from t union select 5 from t;``"
 msgstr ""
 
-msgid ""
-"Okay, but only because Tarantool doesn't distinguish data types very well."
+msgid "Okay, but only because Tarantool doesn't distinguish data types very well."
 msgstr ""
 
 msgid "E071-06"
@@ -627,8 +627,7 @@ msgstr ""
 msgid "Table operators in subqueries"
 msgstr "Возможные операторы:"
 
-msgid ""
-"``select * from t where 'a' in (select * from t union select * from t);``"
+msgid "``select * from t where 'a' in (select * from t union select * from t);``"
 msgstr ""
 
 #, fuzzy
@@ -942,16 +941,15 @@ msgstr "первичный ключ должен быть уникальным."
 msgid "``create table t10 (s1 int primary key);``"
 msgstr ""
 
-msgid ""
-"Okay, although Tarantool shouldn't always insist on having a primary key."
+msgid "Okay, although Tarantool shouldn't always insist on having a primary key."
 msgstr ""
 
 msgid "E141-04"
 msgstr ""
 
 msgid ""
-"Basic FOREIGN KEY constraint with the NO ACTION default for both referential "
-"delete action and referential update action."
+"Basic FOREIGN KEY constraint with the NO ACTION default for both "
+"referential delete action and referential update action."
 msgstr ""
 
 msgid "``create table t11 (s0 int primary key, s1 int references t10);``"
@@ -996,9 +994,9 @@ msgid "Names in a foreign key can be specified in any order"
 msgstr ""
 
 msgid ""
-"``create table t15 (s1 int, s2 int, primary key (s1,s2));`` ``create table "
-"t16 (s1 int primary key, s2 int, foreign key (s2,s1) references t15 (s1,s2));"
-"``"
+"``create table t15 (s1 int, s2 int, primary key (s1,s2));`` ``create "
+"table t16 (s1 int primary key, s2 int, foreign key (s2,s1) references t15"
+" (s1,s2));``"
 msgstr ""
 
 msgid "E151"
@@ -1091,8 +1089,8 @@ msgid "Host language binding"
 msgstr ""
 
 msgid ""
-"Okay. Any of the Tarantool connectors should be able to call ``box."
-"execute()``."
+"Okay. Any of the Tarantool connectors should be able to call "
+"``box.execute()``."
 msgstr ""
 
 #, fuzzy
@@ -1233,16 +1231,13 @@ msgid "F041-07"
 msgstr ""
 
 msgid ""
-"The inner table in a left or right outer join can also be used in an inner "
-"join"
+"The inner table in a left or right outer join can also be used in an "
+"inner join"
 msgstr ""
 
 msgid ""
-"``select t7.* from t22 left outer join t7 on (t22_1=s1) inner join t22 on "
-"(t22_4=t22_5);``"
-msgstr ""
-
-msgid "Okay. The query fails due to a syntax error but that's expectable."
+"``select t7.* from (t22 left outer join t7 on (t22_1=s1)) j inner join "
+"t22 on (j.t22_4=t7.s1);``"
 msgstr ""
 
 msgid "F041-08"
@@ -1320,22 +1315,13 @@ msgstr ""
 msgid "F051-07"
 msgstr ""
 
-msgid "CURRENT_TIME"
-msgstr ""
-
-msgid "``select * from t where current_time < '23:23:23';``"
-msgstr ""
-
-msgid "F051-08"
-msgstr ""
-
 msgid "LOCALTIME"
 msgstr ""
 
 msgid "``select localtime from t;``"
 msgstr ""
 
-msgid "F051-09"
+msgid "F051-08"
 msgstr ""
 
 msgid "LOCALTIMESTAMP"
@@ -1366,7 +1352,8 @@ msgid "F131-01"
 msgstr ""
 
 msgid ""
-"WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
+"WHERE, GROUP BY, and HAVING clauses supported in queries with grouped "
+"views"
 msgstr ""
 
 msgid "``create view vv2 as select * from vv group by s1;``"
@@ -1397,8 +1384,17 @@ msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
 msgstr ""
 
 msgid ""
-"``create view vv5 as select count(*) from vv2 group by s1 having count(*) > "
-"0;``"
+"``create view vv5 as select count(*) from vv2 group by s1 having count(*)"
+" > 0;``"
+msgstr ""
+
+msgid "F131-05"
+msgstr ""
+
+msgid "Single row SELECT with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+
+msgid "``select count(*) from vv2 group by s1 having count(*) > 0;``"
 msgstr ""
 
 msgid "F181"
@@ -1655,12 +1651,35 @@ msgstr ""
 msgid "``select * from information_schema.tables;``"
 msgstr ""
 
-msgid ""
-"Fail. There is no schema with that name (not counted in the final score)."
+msgid "Fail. There is no schema with that name (not counted in the final score)."
 msgstr ""
 
-msgid "Total number of items marked \"Fail\": 69"
+msgid "Total number of items marked \"Fail\": 68"
 msgstr ""
 
-msgid "Total number of items marked \"Okay\": 77"
+msgid "Total number of items marked \"Okay\": 78"
 msgstr ""
+
+#~ msgid ""
+#~ "``select t7.* from t22 left outer "
+#~ "join t7 on (t22_1=s1) inner join "
+#~ "t22 on (t22_4=t22_5);``"
+#~ msgstr ""
+
+#~ msgid "Okay. The query fails due to a syntax error but that's expectable."
+#~ msgstr ""
+
+#~ msgid "CURRENT_TIME"
+#~ msgstr ""
+
+#~ msgid "``select * from t where current_time < '23:23:23';``"
+#~ msgstr ""
+
+#~ msgid "F051-09"
+#~ msgstr ""
+
+#~ msgid "Total number of items marked \"Fail\": 69"
+#~ msgstr ""
+
+#~ msgid "Total number of items marked \"Okay\": 77"
+#~ msgstr ""
