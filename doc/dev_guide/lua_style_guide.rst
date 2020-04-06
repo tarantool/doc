@@ -468,7 +468,7 @@ Use ``tap`` module for writing efficient tests. Example of test file:
 
     <...>
 
-    os.exit(test:check() == true and 0 or 1)
+    os.exit(test:check() and 0 or 1)
 
 When you'll test your code output will be something like this:
 
