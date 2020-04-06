@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,13 +174,13 @@ msgstr ""
 msgid "``orphan`` means that the instance has not (yet) succeeded in joining the required number of masters (see :ref:`orphan status <replication-orphan_status>`)."
 msgstr ""
 
-msgid "``synch`` means that the master and replica are synchronizing to have the same data."
+msgid "``sync`` means that the master and replica are synchronizing to have the same data."
 msgstr ""
 
 msgid "**replication.upstream.idle** is the time (in seconds) since the instance received the last event from a master. This is the primary indicator of replication health. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
-msgid "**replication.upstream.peer** contains the replication user name, host IP adress and port number used for the instance. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
+msgid "**replication.upstream.peer** contains the replication user name, host IP address and port number used for the instance. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
 msgid "**replication.upstream.lag** is the time difference between the local time at the instance, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on that master. See more in :ref:`Monitoring a replica set <replication-monitoring>`."

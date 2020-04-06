@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "read what we say the results are and take our word for it, or"
 msgstr ""
 
-msgid "copy and paste each section and see everything work with Tarantool 2.3."
+msgid "copy and paste each section and see everything work with Tarantool 2.4."
 msgstr ""
 
 msgid "You will encounter all the functionality that you'd encounter in an \"SQL-101\" course."

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -631,7 +631,7 @@ msgstr ""
 msgid "**Solution:** Check the replication status of the replica. Further instructions are given in the :ref:`Tarantool troubleshooting guide <admin-troubleshooting-guide>`."
 msgstr ""
 
-msgid "``OUT_OF_SYNC`` — Mal-synchronization occured. The lag exceeds T3 threshold (10 sec.)."
+msgid "``OUT_OF_SYNC`` — Mal-synchronization occurred. The lag exceeds T3 threshold (10 sec.)."
 msgstr ""
 
 msgid "**Critical level:** Red."
@@ -686,7 +686,7 @@ msgstr ""
 msgid "The ``router`` works in a regular way."
 msgstr ""
 
-msgid "Some replicas sre unreachable (affects the speed of executing read requests)."
+msgid "Some replicas are unreachable (affects the speed of executing read requests)."
 msgstr ""
 
 msgid "Service is degraded for changing data."

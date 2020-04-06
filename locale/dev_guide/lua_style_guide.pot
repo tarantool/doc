@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Indentation and Formatting"
 msgstr ""
 
-msgid "4 spaces instead tabs. PIL suggests using of two spaces, but programmer looks at code 4 up to 8 hours a day, so it's simplier to distinguish indentation with 4 spaces. Why spaces? Similar representation everywhere."
+msgid "4 spaces instead tabs. PIL suggests using of two spaces, but programmer looks at code 4 up to 8 hours a day, so it's simpler to distinguish indentation with 4 spaces. Why spaces? Similar representation everywhere."
 msgstr ""
 
 msgid "You can use vim modelines:"
@@ -234,7 +234,7 @@ msgstr ""
 msgid "Using spaces:"
 msgstr ""
 
-msgid "one shouldn't use spaces between function name and opening round bracket, but arguments must be splitted with one whitespace charachter"
+msgid "one shouldn't use spaces between function name and opening round bracket, but arguments must be splitted with one whitespace character"
 msgstr ""
 
 msgid "function name (arg1,arg2,...)\n"
@@ -377,7 +377,7 @@ msgstr ""
 msgid "for \"very local\" variables: - ``t`` is for tables - ``i``, ``j`` are for indexing - ``n`` is for counting - ``k``, ``v`` is what you get out of ``pairs()`` (are acceptable, ``_`` if unused) - ``i``, ``v`` is what you get out of ``ipairs()`` (are acceptable, ``_`` if unused) - ``k``/``key`` is for table keys - ``v``/``val``/``value`` is for values that are passed around - ``x``/``y``/``z`` is for generic math quantities - ``s``/``str``/``string`` is for strings - ``c`` is for 1-char strings - ``f``/``func``/``cb`` are for functions - ``status, <rv>..`` or ``ok, <rv>..`` is what you get out of pcall/xpcall - ``buf, sz`` is a (buffer, size) pair - ``<name>_p`` is for pointers - ``t0``.. is for timestamps - ``err`` is for errors"
 msgstr ""
 
-msgid "abbrevations are acceptable if they're unambigous and if you'll document (or they're too common) them."
+msgid "abbreviations are acceptable if they're unambiguous and if you'll document (or they're too common) them."
 msgstr ""
 
 msgid "global variables are written with ALL_CAPS. If it's some system variable, then they're using underscore to define it (``_G``/``_VERSION``/..)"
@@ -407,7 +407,7 @@ msgstr ""
 msgid "<func>'<name>' (strongly avoid require'..')"
 msgstr ""
 
-msgid "``function object:method() end`` (use ``functon object.method(self) end`` instead)"
+msgid "``function object:method() end`` (use ``function object.method(self) end`` instead)"
 msgstr ""
 
 msgid "do not use semicolon as table separator (only comma)"
@@ -530,7 +530,7 @@ msgid "#!/usr/bin/env tarantool\n"
 "\n"
 "<...>\n"
 "\n"
-"os.exit(test:check() == true and 0 or 1)"
+"os.exit(test:check() and 0 or 1)"
 msgstr ""
 
 msgid "When you'll test your code output will be something like this:"
@@ -563,7 +563,7 @@ msgid "When checking function return values, check the first argument first. If 
 msgstr ""
 
 msgid "local data, err = foo()\n"
-"if not data\n"
+"if not data then\n"
 "    return nil, err\n"
 "end\n"
 "return bar(data)"
@@ -576,7 +576,7 @@ msgid "In rare cases you may want to return ``nil`` as a legal return value. In 
 msgstr ""
 
 msgid "local data, err = foo()\n"
-"if not err\n"
+"if not err then\n"
 "    return data\n"
 "end\n"
 "return nil, err"

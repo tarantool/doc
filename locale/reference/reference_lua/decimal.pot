@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Module `decimal`"
 msgstr ""
 
-msgid "The ``decimal`` module has functions for working with exact numbers. This is important when numbers are large or even the slighest inaccuracy is unacceptable. For example Lua calculates ``0.16666666666667 * 6`` with floating-point so the result is 1. But with the decimal module (using ``decimal.new`` to convert the number to decimal type) ``decimal.new('0.16666666666667') * 6`` is 1.00000000000002."
+msgid "The ``decimal`` module has functions for working with exact numbers. This is important when numbers are large or even the slightest inaccuracy is unacceptable. For example Lua calculates ``0.16666666666667 * 6`` with floating-point so the result is 1. But with the decimal module (using ``decimal.new`` to convert the number to decimal type) ``decimal.new('0.16666666666667') * 6`` is 1.00000000000002."
 msgstr ""
 
 msgid "To construct a decimal number, bring in the module with ``require('decimal')`` and then use ``decimal.new(n)`` or any function in the decimal module: :ref:`abs(n) <decimal-abs>` :ref:`exp(n) <decimal-exp>` :ref:`ln(n) <decimal-ln>` :ref:`log10(n) <decimal-log10>` :ref:`new(n) <decimal-new>` :ref:`precision(n) <decimal-precision>` :ref:`rescale(decimal-number, new-scale) <decimal-rescale>` :ref:`scale(n) <decimal-scale>` :ref:`sqrt(n) <decimal-sqrt>` :ref:`trim(decimal-number) <decimal-trim>`, where n can be a string or a non-decimal number or a decimal number. If it is a string or a non-decimal number, Tarantool converts it to a decimal number before working with it. It is best to construct from strings, and to convert back to strings after calculations, because Lua numbers have only 15 digits of precision. Decimal numbers have 38 digits of precision, that is, the total number of digits before and after the decimal point can be 38. Tarantool supports the usual arithmetic and comparison operators + - * / % ^ < > <= >= ~= ==. If an operation has both decimal and non-decimal operands, then the non-decimal operand is converted to decimal before the operation happens."

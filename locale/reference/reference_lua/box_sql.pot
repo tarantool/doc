@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 msgid "statement, which should conform to :ref:`the rules for SQL grammar <sql_sql_statements_and_clauses>`"
 msgstr ""
 
-msgid "optional list for placeholders in the statement"
+msgid "optional table for placeholders in the statement"
 msgstr ""
 
 msgid "return"
@@ -55,19 +55,10 @@ msgstr ""
 msgid "There are two ways to pass extra parameters for ``box.execute()``:"
 msgstr ""
 
-msgid "The first way is to concatenate strings. For example, this Lua script will insert 10 rows with different primary-key values into table t:"
+msgid "The first way is to concatenate strings. For example, this Lua script will insert 10 rows with different primary-key values into table t: |br| ``for i=1,10,1 do`` |br| |nbsp| |nbsp| ``box.execute(\"insert into t values (\" .. i .. \")\")`` |br| ``end``"
 msgstr ""
 
-msgid "for i=1,10,1 do\n"
-"  box.execute(\"insert into t values (\" .. i .. \")\")\n"
-"end"
-msgstr ""
-
-msgid "The second way is to put one or more placeholder \"?\" tokens inside the string, and pass a second argument, which must be a table containing values for each placeholder. For example these two requests are equivalent:"
-msgstr ""
-
-msgid "box.execute([[INSERT INTO tt VALUES (1,'x');]]);\n"
-"x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?,?);]], x);"
+msgid "The second way is to put placeholder ``?`` question-mark tokens inside the string, and pass a second argument *extra-parameters*, which must be a table containing values for each placeholder. For example these two requests are equivalent: |br| ``box.execute([[INSERT INTO tt VALUES (1, 'x');]]);`` |br| ``x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?, ?);]], x);`` |br| Or, put parameter names inside the string. A parameter name must start with ``:`` colon and must match a named component of the *extra-parameters* table. For example, this request is also equivalent: |br| ``box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})``"
 msgstr ""
 
 msgid "Since ``box.execute()`` is an invocation of a Lua function, it either causes an error message or returns a value."
@@ -90,22 +81,23 @@ msgstr ""
 msgid "For statements that cause generation of values for PRIMARY KEY AUTOINCREMENT columns, there will also be a field named \"autoincrement_ids\"."
 msgstr ""
 
-msgid "For SELECT statements the returned value will contain a field named metadata (a table with column names and data types) and a field named \"rows\" (a table with the result set). For example:"
+msgid "For SELECT or PRAGMA statements, the returned value will be a *result set*, containing a field named \"metadata\" (a table with column names and Tarantool/NoSQL type names) and a field named \"rows\" (a table with the contents of each row)."
 msgstr ""
 
-msgid "tarantool> box.execute([[SELECT * FROM table1 WHERE column1 > 0;]])\n"
+msgid "For example, for a statement ``SELECT \"x\" FROM t WHERE \"x\"=5;`` where ``\"x\"`` is an INTEGER column and there is one row, a display on the Tarantool client will look like this:"
+msgstr ""
+
+msgid "tarantool> box.execute([[SELECT \"x\" FROM t WHERE \"x\"=5;]])\n"
 "---\n"
 "- metadata:\n"
-"  - name: COLUMN1\n"
+"  - name: x\n"
 "    type: integer\n"
-"  - name: COLUMN2\n"
-"    type: string\n"
 "  rows:\n"
-"  - [55, 'Hello SQL world!']\n"
+"  - [5]\n"
 "..."
 msgstr ""
 
-msgid "The result structure contains Tarantool/NoSQL data type names in MsgPack format. For example, for a statement SELECT \"x\" FROM t WHERE \"x\"=5; where \"x\" is an integer column and there is one row, the raw data for the result set will look like this:"
+msgid "The data for the result set, in MsgPack format, will look like this:"
 msgstr ""
 
 msgid "dd 00 00 00 01                  1-element array\n"
@@ -123,10 +115,13 @@ msgid "dd 00 00 00 01                  1-element array\n"
 "05                              contents"
 msgstr ""
 
+msgid "For a look at the raw format see :ref:`Binary protocol -- illustration <box_protocol-illustration>`."
+msgstr ""
+
 msgid "The order of components within a map is not guaranteed."
 msgstr ""
 
-msgid "If ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system table is TRUE, then result set metadata may include these things in addition to ``name`` and ``type``: |br| * ``collation`` (present only if COLLATE clause is specified for a STRING) = :ref:`\"Collation\" <index-collation>`. |br| In the common binary protocol this is encoded with IPROTO_FIELD_COLL (0x02). |br| * ``is_nullable`` (present only if the :ref:`select list <sql_select_list>` specified a base table column and nothing else) = false if column was defined as :ref:`NOT NULL <sql_nulls>`, otherwise true. If this is not present, that implies that nullability is unknown. In the common binary protocol this is encoded with IPROTO_FIELD_IS_NULLABLE (0x03). |br| * ``is_autoincrement`` (present only if the select list specified a base table column and nothing else) = true if column was defined as :ref:`PRIMARY KEY AUTOINCREMENT <sql_table_constraint_def>`, otherwise false. In the common binary protocol this is encoded with IPROTO_FIELD_IS_AUTOINCREMENT (0x04). |br| * ``span`` (always present) = the original expression in a select list, which will often be the same as ``name`` if the select list specifies a column name and nothing else, but otherwise will differ, for example after ``SELECT x+55 AS x FROM t;`` the ``name`` is X and the ``span`` is x+55. In the common binary protocol this is encoded with IPROTO_FIELD_SPAN (0x05), but if ``span`` and ``name`` are the same then the content is MP_NIL."
+msgid "If ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system table is TRUE, then result set metadata may include these things in addition to ``name`` and ``type``: |br| * ``collation`` (present only if COLLATE clause is specified for a STRING) = :ref:`\"Collation\" <index-collation>`. |br| * ``is_nullable`` (present only if the :ref:`select list <sql_select_list>` specified a base table column and nothing else) = false if column was defined as :ref:`NOT NULL <sql_nulls>`, otherwise true. If this is not present, that implies that nullability is unknown. |br| * ``is_autoincrement`` (present only if the select list specified a base table column and nothing else) = true if column was defined as :ref:`PRIMARY KEY AUTOINCREMENT <sql_table_constraint_def>`, otherwise false. |br| * ``span`` (always present) = the original expression in a select list, which will often be the same as ``name`` if the select list specifies a column name and nothing else, but otherwise will differ, for example after ``SELECT x+55 AS x FROM t;`` the ``name`` is X and the ``span`` is x+55. If ``span`` and ``name`` are the same then the content is MP_NIL."
 msgstr ""
 
 msgid "Alternative: if you are using the Tarantool server as a client, you can switch languages thus:"
@@ -157,7 +152,7 @@ msgstr ""
 msgid "``box.prepare`` compiles an SQL statement into byte code and saves the byte code in a cache. Since compiling takes a significant amount of time, preparing a statement will enhance performance if the statement is executed many times."
 msgstr ""
 
-msgid "If ``box.prepare`` succeeds, prepared_table contains: |br| ``stmt_id``: integer -- an identifier generated by a hash of the statement string |br| ``execute``: function |br| ``params``: map [name : string, type : integer] -- parameter descriptions |br| ``unprepare``: function |br| ``metadata``: map [name : string, type : integer] |br| ``param_count``: integer -- number of parameters |br| This can be used by :ref:`prepared_table:execute() <box-sql_box_execute_prepared_statement>` and by :ref:`prepared_table:unprepare() <box-sql_box_unprepare_prepared_statement>`."
+msgid "If ``box.prepare`` succeeds, prepared_table contains: |br| ``stmt_id``: integer -- an identifier generated by a hash of the statement string |br| ``execute``: function |br| ``params``: map [name : string, type : string] -- parameter descriptions |br| ``unprepare``: function |br| ``metadata``: map [name : string, type : string] (This is present only for SELECT or PRAGMA statements and has the same contents as the :ref:`result set metadata <box-sql_result_sets>` for ``box.execute``) |br| ``param_count``: integer -- number of parameters |br| This can be used by :ref:`prepared_table:execute() <box-sql_box_execute_prepared_statement>` and by :ref:`prepared_table:unprepare() <box-sql_box_unprepare_prepared_statement>`."
 msgstr ""
 
 msgid "The prepared statement cache (which is also called the prepared statement holder) is \"shared\", that is, there is one cache for all sessions. However, session X cannot execute a statement prepared by session Y. |br| For monitoring the cache, see :ref:`box.info().sql <box_introspection-box_info>`. |br| For changing the cache, see :ref:`(Configuration reference) sql_cache_size <cfg_basic-sql_cache_size>`."
@@ -169,7 +164,7 @@ msgstr ""
 msgid "Execute a statement that has been prepared with :ref:`box.prepare() <box-sql_box_prepare>`."
 msgstr ""
 
-msgid "Parameter ``prepared_table`` should be the result from ``box.prepare()``. |br| Parameter ``extra-parameters`` should be an optional list for placeholders in the statement."
+msgid "Parameter ``prepared_table`` should be the result from ``box.prepare()``. |br| Parameter ``extra-parameters`` should be an optional table to match :ref:`placeholders or named parameters <box-sql_extra_parameters>` in the statement."
 msgstr ""
 
 msgid "There are two ways to execute: with the method or with the statement id. That is, :samp:`{prepared_table}:execute()` and :samp:`box.execute({prepared_table}.stmt_id)` do the same thing."
@@ -205,6 +200,6 @@ msgstr ""
 msgid "There are two ways to unprepare: with the method or with the statement id. That is, :samp:`{prepared_table}:unprepare()` and :samp:`box.unprepare({prepared_table}.stmt_id)` do the same thing."
 msgstr ""
 
-msgid "Tarantool strongly recommends using ``unprepare`` as soon as the immediate objective (executing a prepared statement multiple times) is done, or whenever a prepared statement expires. There is no automatic eviction policy, although automatic ``unprepare`` will happen when the session disconnects (the session's prepared statements will be removed from the prepared-statment cache)."
+msgid "Tarantool strongly recommends using ``unprepare`` as soon as the immediate objective (executing a prepared statement multiple times) is done, or whenever a prepared statement expires. There is no automatic eviction policy, although automatic ``unprepare`` will happen when the session disconnects (the session's prepared statements will be removed from the prepared-statement cache)."
 msgstr ""
 

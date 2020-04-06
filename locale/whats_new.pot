@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
+"Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,7 +364,7 @@ msgstr ""
 msgid "I.e. [1, 3] tuple is updated as [1, 4] and have replaced tuple [2, 4]. This logic is implemented by preventive tuple deletion from all corresponding indexes in SQL."
 msgstr ""
 
-msgid "(SQL) Now SQL’s integer type is stored as integer in space’s format. It was stored as scalar before, which made comarisons slow."
+msgid "(SQL) Now SQL’s integer type is stored as integer in space’s format. It was stored as scalar before, which made comparisons slow."
 msgstr ""
 
 msgid "(SQL) It is now possible to define a constraint :ref:`within column definition <sql_create_table>`. E.g.:"
@@ -1231,7 +1231,7 @@ msgstr ""
 msgid ":ref:`fiber_name() <fiber_object-name_get>` now raises an exception instead of truncating long fiber names. We found that some Lua modules such as :ref:`expirationd <expirationd-module>` use ``fiber.name()`` as a key to identify background tasks. If a name is truncated, this fact was silently missed. The new behavior allows to detect bugs caused by ``fiber.name()`` truncation. Please use ``fiber.name(name, { truncate = true })`` to emulate the old behavior. Issue `2622 <https://github.com/tarantool/tarantool/issues/2622>`_"
 msgstr ""
 
-msgid ":ref:`space:format() <box_space-format>` is now validated on DML operations. Previously ``space:format()`` was only used by client libraries, but starting from Tarantoool 1.7.6, field types in ``space:format()`` are validated on the server side on every DML operation, and field names can be used in indexes and Lua code. If you used ``space:format()`` in a non-standard way, please update layout and type names according to the official documentation for space formats."
+msgid ":ref:`space:format() <box_space-format>` is now validated on DML operations. Previously ``space:format()`` was only used by client libraries, but starting from Tarantool 1.7.6, field types in ``space:format()`` are validated on the server side on every DML operation, and field names can be used in indexes and Lua code. If you used ``space:format()`` in a non-standard way, please update layout and type names according to the official documentation for space formats."
 msgstr ""
 
 msgid "Hybrid schema-less + schemaful data model. Earlier Tarantool versions allowed to store arbitrary MessagePack documents in spaces. Starting from Tarantool 1.7.6, you can use :ref:`space:format() <box_space-format>` to define schema restrictions and constraints for tuples in spaces. Defined field types are automatically validated on every DML operation, and defined field names can be used instead of field numbers in Lua code. A new function :ref:`tuple:tomap() <box_tuple-tomap>` was added to convert a tuple into a key-value Lua dictionary."
@@ -1375,7 +1375,7 @@ msgstr ""
 msgid "Tarantool now automatically makes snapshots every hour. Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behaviour. Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_."
 msgstr ""
 
-msgid "Increase precision for percentage ratios provoded by :ref:`box.slab.info() <box_slab_info>`. Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_."
+msgid "Increase precision for percentage ratios provided by :ref:`box.slab.info() <box_slab_info>`. Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_."
 msgstr ""
 
 msgid "Stack traces now contain symbols names on all supported platforms. Previous versions of Tarantool didn't display meaningful function names in :ref:`fiber.info() <fiber-info>` on non-x86 platforms. Issue `2103 <https://github.com/tarantool/tarantool/issues/2103>`_."
@@ -2260,7 +2260,7 @@ msgstr ""
 msgid "``pg`` and ``mysql`` rocks, available at http://rocks.tarantool.org - working with MySQL and PostgreSQL from Tarantool."
 msgstr ""
 
-msgid "``gperftools`` rock, availble at http://rocks.tarantool.org - getting perfromance data using Google's gperf from Tarantool."
+msgid "``gperftools`` rock, available at http://rocks.tarantool.org - getting performance data using Google's gperf from Tarantool."
 msgstr ""
 
 msgid "``csv`` built-in rock, to parse and load CSV (comma-separated values) data."
