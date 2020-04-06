@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -901,7 +901,7 @@ msgstr ""
 msgid "For more usage scenarios and typical errors see :ref:`Example: using data operations <box_space-operations-detailed-examples>` further in this section."
 msgstr ""
 
-msgid "Drop a space."
+msgid "Drop a space. The method is performed in background and doesn't block consequent requests."
 msgstr ""
 
 msgid "nil"
@@ -1260,6 +1260,29 @@ msgid "tarantool> s = box.schema.space.create('space53')\n"
 "tarantool> replace_counter"
 msgstr ""
 
+msgid "You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``"
+msgstr ""
+
+msgid "transactions,"
+msgstr ""
+
+msgid "yield-oprations (:ref:`explicit <atomic-implicit-yields>` or not),"
+msgstr ""
+
+msgid "actions that are not allowed to be used in transactions (see :ref:`rule #2 <box-txn_management>`)"
+msgstr ""
+
+msgid "because everything executed inside triggers is already in a transaction."
+msgstr ""
+
+msgid "tarantool> box.space.test:on_replace(fiber.yield)\n"
+"tarantool> box.space.test:replace{1, 2, 3}\n"
+"2020-02-02 21:22:03.073 [73185] main/102/init.lua txn.c:532 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield\n"
+"---\n"
+"- error: Transaction has been aborted by a fiber yield\n"
+"..."
+msgstr ""
+
 msgid "function which will become the trigger function; for the trigger function's optional parameters see the description of :ref:`on_replace <box_space-on_replace>`."
 msgstr ""
 
@@ -1318,7 +1341,7 @@ msgstr ""
 msgid "see :ref:`index_object:pairs <box_index-index_pairs>`"
 msgstr ""
 
-msgid "`iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_"
+msgid "`iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop or with `totable() <https://luafun.github.io/reducing.html#fun.totable>`_"
 msgstr ""
 
 msgid "no such space;"
@@ -1485,7 +1508,10 @@ msgstr ""
 msgid "As the last request in the above example shows: to make complex ``select`` requests, where you can specify which index to search and what condition to use (for example \"greater than\" instead of \"equal to\") and how many tuples to return, it will be necessary to become familiar with :ref:`index_object:select <box_index-select>`."
 msgstr ""
 
-msgid "Deletes all tuples."
+msgid "Remember that you can get a field from a tuple both by field number and by field name which is more convenient. See example: :ref:`using field names instead of field numbers <box_space-get_field_names>`."
+msgstr ""
+
+msgid "Deletes all tuples. The method is performed in background and doesn't block consequent requests."
 msgstr ""
 
 msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
@@ -2454,7 +2480,7 @@ msgstr ""
 msgid "``_vcollation`` is a system space with a list of :ref:`collations <index-collation>`. The structure of its tuples is identical to that of :ref:`box.space._collation <box_space-collation>`, but permissions for certain tuples are limited in accordance with user privileges."
 msgstr ""
 
-msgid "``_session_settings`` is a temporary system space with a list of settings that may affect behavior, particularly SQL behavior, for the current session. It uses a special engine named 'service'. Every 'service' tuple is created on the fly, that is, new tuples are made every time ``_session_settings`` is accessed. Every settings tuple has two fields: ``name`` (the primary key) and ``value``. The tuples' names and default values are: |br| ``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default = 'memtx'. |br| ``sql_defer_foreign_keys``: whether foreign-key checks can wait till commit. Default = false. |br| ``sql_full_column_names``: no effect at this time. Default = false. |br| ``sql_full_metadata``: whether :ref:`SQL result set metadata <box-sql>` will have more than just name and type. Default = false. |br| ``sql_parser_debug``: whether to show parser steps for following statements. Default = false. |br| ``sql_recursive_triggers``: whether a triggered statement can activate a :ref:`trigger <sql_create_trigger>`. Default = true. |br| ``sql_reverse_unordered_selects``: whether result rows are usually in reverse order if there is no :ref:`ORDER BY clause <sql_order_by>`. Default = false. |br| ``sql_select_debug``: whether to show execution steps during :ref:`SELECT <sql_select>`. Default = false. |br| ``sql_vdbe_debug``: for use by Tarantool's developers. Default = false. |br| Three requests are possible: :ref:`select <box_space-select>` and :ref:`get <box_space-get>` and :ref:`update <box_space-update>`. For example, after ``s = box.space._session_settings``, ``s:select('sql_default_engine')`` probably returns ``{'sql_default_engine', 'memtx'}``, and ``s:update('sql_default_engine', {{'=', 'value', 'vinyl'}})`` changes the default engine to 'vinyl'. |br| Updating ``sql_parser_debug`` or ``sql_select_debug`` or ``sql_vdbe_debug`` has no effect unless Tarantool was built with -DCMAKE_BUILD_TYPE=Debug. To check if this is so, look at ``require('tarantool').build.target``."
+msgid "``_session_settings`` is a temporary system space with a list of settings that may affect behavior, particularly SQL behavior, for the current session. It uses a special engine named 'service'. Every 'service' tuple is created on the fly, that is, new tuples are made every time ``_session_settings`` is accessed. Every settings tuple has two fields: ``name`` (the primary key) and ``value``. The tuples' names and default values are: |br| ``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default = 'memtx'. |br| ``sql_defer_foreign_keys``: whether foreign-key checks can wait till commit. Default = false. |br| ``sql_full_column_names``: no effect at this time. Default = false. |br| ``sql_full_metadata``: whether :ref:`SQL result set metadata <box-sql_result_sets>` will have more than just name and type. Default = false. |br| ``sql_parser_debug``: whether to show parser steps for following statements. Default = false. |br| ``sql_recursive_triggers``: whether a triggered statement can activate a :ref:`trigger <sql_create_trigger>`. Default = true. |br| ``sql_reverse_unordered_selects``: whether result rows are usually in reverse order if there is no :ref:`ORDER BY clause <sql_order_by>`. Default = false. |br| ``sql_select_debug``: whether to show execution steps during :ref:`SELECT <sql_select>`. Default = false. |br| ``sql_vdbe_debug``: for use by Tarantool's developers. Default = false. |br| Three requests are possible: :ref:`select <box_space-select>` and :ref:`get <box_space-get>` and :ref:`update <box_space-update>`. For example, after ``s = box.space._session_settings``, ``s:select('sql_default_engine')`` probably returns ``{'sql_default_engine', 'memtx'}``, and ``s:update('sql_default_engine', {{'=', 'value', 'vinyl'}})`` changes the default engine to 'vinyl'. |br| Updating ``sql_parser_debug`` or ``sql_select_debug`` or ``sql_vdbe_debug`` has no effect unless Tarantool was built with -DCMAKE_BUILD_TYPE=Debug. To check if this is so, look at ``require('tarantool').build.target``."
 msgstr ""
 
 msgid "Example: using data operations"

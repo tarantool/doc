@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-06 13:32+0000\n"
 "PO-Revision-Date: 2019-12-20 21:24+0300\n"
 "Last-Translator: \n"
-"Language-Team: \n"
 "Language: ru\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 msgid "SQL"
 msgstr ""
@@ -29,10 +29,10 @@ msgstr ""
 
 msgid ""
 "For each feature in that list, we will come up with a simple example SQL "
-"statement. If Tarantool appears to handle the example, we will mark it \"Okay"
-"\", else we will mark it \"Fail\". Since this is rough and arbitrary, we "
-"believe that tests which are unfairly marked \"Okay\" will probably be "
-"balanced by tests which are unfairly marked \"Fail\"."
+"statement. If Tarantool appears to handle the example, we will mark it "
+"\"Okay\", else we will mark it \"Fail\". Since this is rough and "
+"arbitrary, we believe that tests which are unfairly marked \"Okay\" will "
+"probably be balanced by tests which are unfairly marked \"Fail\"."
 msgstr ""
 
 msgid "Feature ID"
@@ -63,10 +63,10 @@ msgstr ""
 msgid "INTEGER and SMALLINT"
 msgstr ""
 
-msgid "``create table t (s1 int primary key);``"
+msgid "``CREATE TABLE t (s1 INT PRIMARY KEY);``"
 msgstr ""
 
-msgid "Okay."
+msgid ":ref:`Okay <sql_create_table>`."
 msgstr ""
 
 msgid "E011-02"
@@ -75,16 +75,18 @@ msgstr ""
 msgid "REAL, DOUBLE PRECISION, and FLOAT data types"
 msgstr ""
 
-msgid "``create table tr (s1 float primary key);``"
+msgid "``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``"
 msgstr ""
 
 msgid ""
-"**Note:** Floating point SQL types are not planned to be compatible between "
-"2.1 and 2.2 releases. The reason is that in 2.1 we set 'number' format for "
-"columns of these types, but will restrict it to 'float32' and 'float64' in "
-"2.2. The format change requires data migration and cannot be done "
-"automatically, because in 2.1 we have no information to distinguish 'number' "
-"columns (created from Lua) from FLOAT/DOUBLE/REAL ones (created from SQL)."
+"Fail. Tarantool's floating point data type is :ref:`DOUBLE "
+"<sql_data_type_double>`. **Note:** Floating point SQL types are not "
+"planned to be compatible between 2.1 and 2.2 releases. The reason is that"
+" in 2.1 we set 'number' format for columns of these types, but will "
+"restrict it to 'float32' and 'float64' in 2.2. The format change requires"
+" data migration and cannot be done automatically, because in 2.1 we have "
+"no information to distinguish 'number' columns (created from Lua) from "
+"FLOAT/DOUBLE/REAL ones (created from SQL)."
 msgstr ""
 
 msgid "E011-03"
@@ -93,7 +95,7 @@ msgstr ""
 msgid "DECIMAL and NUMERIC data types"
 msgstr ""
 
-msgid "``create table td (s1 numeric primary key);``"
+msgid "``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``"
 msgstr ""
 
 msgid ""
@@ -108,7 +110,10 @@ msgstr ""
 msgid "Arithmetic operators"
 msgstr "Операции с данными"
 
-msgid "``select 10+1,9-2,8*3,7/2 from t;``"
+msgid "``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_operator_arithmetic>`."
 msgstr ""
 
 msgid "E011-05"
@@ -117,7 +122,10 @@ msgstr ""
 msgid "Numeric comparisons"
 msgstr ""
 
-msgid "``select * from t where 1 < 2;``"
+msgid "``SELECT * FROM t WHERE 1 < 2;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_operator_comparison>`."
 msgstr ""
 
 msgid "E011-06"
@@ -126,12 +134,10 @@ msgstr ""
 msgid "Implicit casting among the numeric data types"
 msgstr ""
 
-msgid "``select * from t where s1 = 1.00;``"
+msgid "``SELECT * FROM t WHERE s1 = 1.00;``"
 msgstr ""
 
-msgid ""
-"Okay, but only because Tarantool doesn't distinguish between numeric data "
-"types."
+msgid "Okay, because Tarantool allows comparison of 1.00 with an INTEGER column."
 msgstr ""
 
 #, fuzzy
@@ -148,11 +154,10 @@ msgstr ""
 msgid "Character data type (including all its spellings)"
 msgstr ""
 
-msgid "``create table t44 (s1 char primary key);``"
+msgid "``CREATE TABLE t44 (s1 CHAR PRIMARY KEY);``"
 msgstr ""
 
-msgid ""
-"Fail, CHAR is not supported. This type of Fail will only be counted once."
+msgid "Fail, CHAR is not supported. This type of Fail will only be counted once."
 msgstr ""
 
 msgid "E021-02"
@@ -161,13 +166,12 @@ msgstr ""
 msgid "CHARACTER VARYING data type (including all its spellings)"
 msgstr ""
 
-msgid "``create table t45 (s1 varchar primary key);``"
+msgid "``CREATE TABLE t45 (s1 VARCHAR PRIMARY KEY);``"
 msgstr ""
 
-msgid "Fail, only the spelling VARCHAR is allowed."
-msgstr ""
-
-msgid "**Note:** VARCHAR(N) does not check the string length."
+msgid ""
+"Fail, Tarantool only allows VARCHAR(n), which is a synonym for "
+":ref:`STRING <sql_data_type_string>`."
 msgstr ""
 
 msgid "E021-03"
@@ -176,25 +180,26 @@ msgstr ""
 msgid "Character literals"
 msgstr ""
 
-msgid "``insert into t45 values ('');``"
+msgid "``INSERT INTO t45 VALUES ('');``"
 msgstr ""
 
 msgid ""
-"Okay, and the bad practice of accepting \"\"'s for character literals is "
-"avoided."
+"Okay, and the bad practice of accepting ``\"\"`` for character literals "
+"is avoided."
 msgstr ""
 
 msgid "E021-04"
 msgstr ""
 
-msgid ":ref:`CHARACTER_LENGTH <sql_function_length>` function"
+msgid "CHARACTER_LENGTH function"
 msgstr ""
 
-msgid "``select character_length(s1) from t;``"
+msgid "``SELECT character_length(s1) FROM t;``"
 msgstr ""
 
 msgid ""
-"Fail. There is no such function. There is a function LENGTH(), which is okay."
+"Okay. Tarantool treats this as a synonym of :ref:`LENGTH() "
+"<sql_function_length>`."
 msgstr ""
 
 msgid "E021-05"
@@ -203,7 +208,7 @@ msgstr ""
 msgid "OCTET_LENGTH"
 msgstr ""
 
-msgid "``select octet_length(s1) from t;``"
+msgid "``SELECT octet_length(s1) FROM t;``"
 msgstr ""
 
 msgid "Fail. There is no such function."
@@ -216,12 +221,12 @@ msgstr ""
 msgid "SUBSTRING function."
 msgstr "создать Lua-функцию,"
 
-msgid "``select substring(s1 from 1 for 1) from t;``"
+msgid "``SELECT substring(s1 FROM 1 FOR 1) FROM t;``"
 msgstr ""
 
 msgid ""
-"Fail. There is no such function. There is a function SUBSTR(x,n,n) which is "
-"okay."
+"Fail. There is no such function. There is a function :ref:`SUBSTR(x,n,n) "
+"<sql_function_substr>` which is okay."
 msgstr ""
 
 msgid "E021-07"
@@ -230,21 +235,24 @@ msgstr ""
 msgid "Character concatenation"
 msgstr ""
 
-msgid "``select 'a' || 'b' from t;``"
+msgid "``SELECT 'a' || 'b' FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_operator_concatenate>`."
 msgstr ""
 
 msgid "E021-08"
 msgstr ""
 
+msgid "UPPER and LOWER functions"
+msgstr ""
+
+msgid "``SELECT upper('a'),lower('B') FROM t;``"
+msgstr ""
+
 msgid ""
-":ref:`UPPER <sql_function_upper>` and :ref:`LOWER <sql_function_lower>` "
-"functions"
-msgstr ""
-
-msgid "``select upper('a'),lower('B') from t;``"
-msgstr ""
-
-msgid "Okay. SUBSTR(x,n,n) which is okay."
+"Okay. Tarantool supports both :ref:`UPPER() <sql_function_upper>` and "
+":ref:`LOWER() <sql_function_lower>`."
 msgstr ""
 
 msgid "E021-09"
@@ -254,18 +262,21 @@ msgstr ""
 msgid "TRIM function"
 msgstr "имя функции,"
 
-msgid "``select trim('a ') from t;``"
+msgid "``SELECT trim('a ') FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_function_trim>`."
 msgstr ""
 
 msgid "E021-10"
 msgstr ""
 
 msgid ""
-"Implicit casting among the fixed-length and variable-length character string "
-"types"
+"Implicit casting among the fixed-length and variable-length character "
+"string types"
 msgstr ""
 
-msgid "``select * from tm where char_column > varchar_column;``"
+msgid "``SELECT * FROM tm WHERE char_column > varchar_column;``"
 msgstr ""
 
 msgid "Fail, there is no fixed-length character string type."
@@ -277,10 +288,12 @@ msgstr ""
 msgid "POSITION function"
 msgstr ""
 
-msgid "``select position(x in y) from z;``"
+msgid "``SELECT position(x IN y) FROM z;``"
 msgstr ""
 
-msgid "Fail. Tarantool's function uses ',' rather than 'in'"
+msgid ""
+"Fail. Tarantool's :ref:`POSITION <sql_function_position>` function "
+"requires '``,``' rather than '``IN``'."
 msgstr ""
 
 msgid "E021-12"
@@ -289,13 +302,13 @@ msgstr ""
 msgid "Character comparison"
 msgstr ""
 
-msgid "``select * from t where s1 > 'a';``"
+msgid "``SELECT * FROM t WHERE s1 > 'a';``"
 msgstr ""
 
 msgid ""
 "Okay. We should note here that comparisons use a binary collation by "
-"default, but it is easy to specify unicode or unicode_ci collations, or "
-"create new collations."
+"default, but it is easy to use a :ref:`COLLATE clause "
+"<sql_collate_clause>`."
 msgstr ""
 
 #, fuzzy
@@ -306,12 +319,12 @@ msgstr "31"
 msgid "Identifiers"
 msgstr "уникальный идентификатор"
 
-msgid "``create table rank (ceil int primary key);``"
+msgid "``CREATE TABLE rank (ceil INT PRIMARY KEY);``"
 msgstr ""
 
 msgid ""
-"Fail. Tarantool's list of reserved words differs from the standard's list of "
-"reserved words."
+"Fail. Tarantool's list of :ref:`reserved words <sql_reserved_words>` "
+"differs from the standard's list of reserved words."
 msgstr ""
 
 msgid "E031-01"
@@ -321,13 +334,13 @@ msgstr ""
 msgid "Delimited Identifiers"
 msgstr "уникальный идентификатор"
 
-msgid "``create table \"t47\" (s1 int primary key);``"
+msgid "``CREATE TABLE \"t47\" (s1 INT PRIMARY KEY);``"
 msgstr ""
 
 msgid ""
-"Okay. And enclosing identifiers inside double quotes means they won't be "
-"converted to upper case or lower case, this is behavior that some other "
-"DBMSs sadly lack."
+":ref:`Okay <sql_identifiers>`. And enclosing identifiers inside double "
+"quotes means they won't be converted to upper case or lower case, this is"
+" behavior that some other DBMSs lack."
 msgstr ""
 
 msgid "E031-02"
@@ -337,7 +350,10 @@ msgstr ""
 msgid "Lower case identifiers"
 msgstr "уникальный идентификатор"
 
-msgid "``create table t48 (s1 int primary key);``"
+msgid "``CREATE TABLE t48 (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+msgid "Okay."
 msgstr ""
 
 msgid "E031-03"
@@ -346,7 +362,7 @@ msgstr ""
 msgid "Trailing underscore"
 msgstr ""
 
-msgid "``create table t49_ (s1 int primary key);``"
+msgid "``CREATE TABLE t49_ (s1 INT PRIMARY KEY);``"
 msgstr ""
 
 #, fuzzy
@@ -362,16 +378,19 @@ msgstr ""
 msgid "SELECT DISTINCT"
 msgstr ""
 
-msgid "``select distinct s1 from t;``"
+msgid "``SELECT DISTINCT s1 FROM t;``"
 msgstr ""
 
 msgid "E051-02"
 msgstr ""
 
-msgid ":ref:`GROUP BY <sql_group_by>` clause"
+msgid "GROUP BY clause"
 msgstr ""
 
-msgid "``select distinct s1 from t group by s1;``"
+msgid "``SELECT DISTINCT s1 FROM t GROUP BY s1;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_group_by>`."
 msgstr ""
 
 msgid "E051-04"
@@ -380,7 +399,7 @@ msgstr ""
 msgid "GROUP BY can contain columns not in select list"
 msgstr ""
 
-msgid "``select s1 from t group by lower(s1);``"
+msgid "``SELECT s1 FROM t GROUP BY lower(s1);``"
 msgstr ""
 
 msgid "E051-05"
@@ -389,28 +408,30 @@ msgstr ""
 msgid "Select list items can be renamed"
 msgstr ""
 
-msgid "``select s1 as K from t order by K;``"
+msgid "``SELECT s1 AS K FROM t ORDER BY K;``"
 msgstr ""
 
 msgid "E051-06"
 msgstr ""
 
-msgid ":ref:`HAVING <sql_having>` clause"
+msgid "HAVING clause"
 msgstr ""
 
-msgid "``select count(*) from t having count(*) > 0;``"
+msgid "``SELECT count(*) FROM t HAVING count(*) > 0;``"
 msgstr ""
 
-msgid "Okay. GROUP BY is not mandatory before HAVING."
+msgid ""
+"Okay. Tarantool supports :ref:`HAVING <sql_having>` and GROUP BY is not "
+"mandatory before HAVING."
 msgstr ""
 
 msgid "E051-07"
 msgstr ""
 
-msgid "Qualified * in select list"
+msgid "Qualified * in SELECT list"
 msgstr ""
 
-msgid "``select t.* from t;``"
+msgid "``SELECT t.* FROM t;``"
 msgstr ""
 
 msgid "E051-08"
@@ -419,7 +440,7 @@ msgstr ""
 msgid "Correlation names in the FROM clause"
 msgstr ""
 
-msgid "``select * from t as K;``"
+msgid "``SELECT * FROM t AS K;``"
 msgstr ""
 
 msgid "E051-09"
@@ -429,7 +450,7 @@ msgstr ""
 msgid "Rename columns in the FROM clause"
 msgstr "имя роли"
 
-msgid "``select * from t as x(q,c);``"
+msgid "``SELECT * FROM t AS x(q,c);``"
 msgstr ""
 
 #, fuzzy
@@ -450,7 +471,7 @@ msgstr ""
 msgid "Comparison predicate"
 msgstr "метод сопоставления"
 
-msgid "``select * from t where 0 = 0;``"
+msgid "``SELECT * FROM t WHERE 0 = 0;``"
 msgstr ""
 
 msgid "E061-02"
@@ -459,7 +480,10 @@ msgstr ""
 msgid "BETWEEN predicate"
 msgstr ""
 
-msgid "``select * from t where ' ' between '' and ' ';``"
+msgid "``SELECT * FROM t WHERE ' ' BETWEEN '' AND ' ';``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_operator_between>`."
 msgstr ""
 
 msgid "E061-03"
@@ -468,7 +492,7 @@ msgstr ""
 msgid "IN predicate with list of values"
 msgstr ""
 
-msgid "``select * from t where s1 in ('a',upper('a'));``"
+msgid "``SELECT * FROM t WHERE s1 IN ('a', upper('a'));``"
 msgstr ""
 
 msgid "E061-04"
@@ -477,7 +501,10 @@ msgstr ""
 msgid "LIKE predicate"
 msgstr ""
 
-msgid "``select * from t where s1 like '_';``"
+msgid "``SELECT * FROM t WHERE s1 LIKE '_';``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_operator_like>`."
 msgstr ""
 
 msgid "E061-05"
@@ -495,7 +522,10 @@ msgstr ""
 msgid "NULL predicate"
 msgstr ""
 
-msgid "``select * from t where s1 is not null;``"
+msgid "``SELECT * FROM t WHERE s1 IS NOT NULL;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_is_null>`."
 msgstr ""
 
 msgid "E061-07"
@@ -504,7 +534,7 @@ msgstr ""
 msgid "Quantified comparison predicate"
 msgstr ""
 
-msgid "``select * from t where s1 = any (select s1 from t);``"
+msgid "``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``"
 msgstr ""
 
 msgid "Fail. Syntax error."
@@ -516,7 +546,10 @@ msgstr ""
 msgid "EXISTS predicate"
 msgstr ""
 
-msgid "``select * from t where not exists (select * from t);``"
+msgid "``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_subquery>`."
 msgstr ""
 
 msgid "E061-09"
@@ -525,7 +558,7 @@ msgstr ""
 msgid "Subqueries in comparison predicate"
 msgstr ""
 
-msgid "``select * from t where s1 > (select s1 from t);``"
+msgid "``SELECT * FROM t WHERE s1 > (SELECT s1 FROM t);``"
 msgstr ""
 
 msgid "E061-11"
@@ -534,7 +567,7 @@ msgstr ""
 msgid "Subqueries in IN predicate"
 msgstr ""
 
-msgid "``select * from t where s1 in (select s1 from t);``"
+msgid "``SELECT * FROM t WHERE s1 IN (SELECT s1 FROM t);``"
 msgstr ""
 
 msgid "E061-12"
@@ -543,7 +576,7 @@ msgstr ""
 msgid "Subqueries in quantified comparison predicate"
 msgstr ""
 
-msgid "``select * from t where s1 >= all (select s1 from t);``"
+msgid "``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``"
 msgstr ""
 
 msgid "E061-13"
@@ -552,7 +585,7 @@ msgstr ""
 msgid "Correlated subqueries"
 msgstr ""
 
-msgid "``select * from t where s1 = (select s1 from t2 where t2.s2 = t.s1);``"
+msgid "``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE t2.s2 = t.s1);``"
 msgstr ""
 
 msgid "E061-14"
@@ -562,7 +595,7 @@ msgstr ""
 msgid "Search condition"
 msgstr "Настройка экземпляров Tarantool’а"
 
-msgid "``select * from t where 0 <> 0 or 'a' < 'b' and s1 is null;``"
+msgid "``SELECT * FROM t WHERE 0 <> 0 OR 'a' < 'b' AND s1 IS NULL;``"
 msgstr ""
 
 #, fuzzy
@@ -578,10 +611,10 @@ msgstr ""
 msgid "UNION DISTINCT table operator"
 msgstr ""
 
-msgid "``select * from t union distinct select * from t;``"
+msgid "``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``"
 msgstr ""
 
-msgid "Fail. However, \"select * from t union select * from t;\" is okay."
+msgid "Fail. However, ``SELECT * FROM t UNION SELECT * FROM t;`` is okay."
 msgstr ""
 
 msgid "E071-02"
@@ -590,7 +623,10 @@ msgstr ""
 msgid "UNION ALL table operator"
 msgstr ""
 
-msgid "``select * from t union all select * from t;``"
+msgid "``SELECT * FROM t UNION ALL SELECT * FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_union>`."
 msgstr ""
 
 msgid "E071-03"
@@ -599,10 +635,10 @@ msgstr ""
 msgid "EXCEPT DISTINCT table operator"
 msgstr ""
 
-msgid "``select * from t except distinct select * from t;``"
+msgid "``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``"
 msgstr ""
 
-msgid "Fail. However, ``select * from t except select * from t;`` is okay."
+msgid "Fail. However, ``SELECT * FROM t EXCEPT SELECT * FROM t;`` is okay."
 msgstr ""
 
 msgid "E071-05"
@@ -613,11 +649,7 @@ msgid ""
 "type."
 msgstr ""
 
-msgid "``select s1 from t union select 5 from t;``"
-msgstr ""
-
-msgid ""
-"Okay, but only because Tarantool doesn't distinguish data types very well."
+msgid "``SELECT s1 FROM t UNION SELECT 5 FROM t;``"
 msgstr ""
 
 msgid "E071-06"
@@ -627,8 +659,7 @@ msgstr ""
 msgid "Table operators in subqueries"
 msgstr "Возможные операторы:"
 
-msgid ""
-"``select * from t where 'a' in (select * from t union select * from t);``"
+msgid "``SELECT * FROM t WHERE 'a' IN (SELECT * FROM t UNION SELECT * FROM t);``"
 msgstr ""
 
 #, fuzzy
@@ -719,49 +750,63 @@ msgstr "имя функции,"
 msgid "E091-01"
 msgstr ""
 
-msgid ":ref:`AVG <sql_aggregate_avg>`"
+msgid "AVG"
 msgstr ""
 
-msgid "``select avg(s1) from t7;``"
+msgid "``SELECT avg(s1) FROM t7;``"
 msgstr ""
 
-msgid "Fail. No warning that nulls were eliminated."
+msgid ""
+"Fail. Tarantool supports :ref:`AVG <sql_aggregate_avg>` but there is no "
+"warning that NULLs are eliminated."
 msgstr ""
 
 msgid "E091-02"
 msgstr ""
 
-msgid ":ref:`COUNT <sql_aggregate_count_row>`"
+msgid "COUNT"
 msgstr ""
 
-msgid "``select count(*) from t7 where s1 > 0;``"
+msgid "``SELECT count(*) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_aggregate_count_row>`."
 msgstr ""
 
 msgid "E091-03"
 msgstr ""
 
-msgid ":ref:`MAX <sql_aggregate_max>`"
+msgid "MAX"
 msgstr ""
 
-msgid "``select max(s1) from t7 where s1 > 0;``"
+msgid "``SELECT max(s1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_aggregate_max>`."
 msgstr ""
 
 msgid "E091-04"
 msgstr ""
 
-msgid ":ref:`MIN <sql_aggregate_min>`"
+msgid "MIN"
 msgstr ""
 
-msgid "``select min(s1) from t7 where s1 > 0;``"
+msgid "``SELECT min(s1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_aggregate_min>`."
 msgstr ""
 
 msgid "E091-05"
 msgstr ""
 
-msgid ":ref:`SUM <sql_aggregate_sum>`"
+msgid "SUM"
 msgstr ""
 
-msgid "``select sum(1) from t7 where s1 > 0;``"
+msgid "``SELECT sum(1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_aggregate_sum>`."
 msgstr ""
 
 msgid "E091-06"
@@ -770,7 +815,7 @@ msgstr ""
 msgid "ALL quantifier"
 msgstr ""
 
-msgid "``select sum(all s1) from t7 where s1 > 0;``"
+msgid "``SELECT sum(ALL s1) FROM t7 WHERE s1 > 0;``"
 msgstr ""
 
 msgid "E091-07"
@@ -779,7 +824,7 @@ msgstr ""
 msgid "DISTINCT quantifier"
 msgstr ""
 
-msgid "``select sum(distinct s1) from t7 where s1 > 0;``"
+msgid "``SELECT sum(DISTINCT s1) FROM t7 WHERE s1 > 0;``"
 msgstr ""
 
 #, fuzzy
@@ -796,7 +841,10 @@ msgstr ""
 msgid "INSERT statement"
 msgstr "Вставка кортежа"
 
-msgid "``insert into t (s1,s2) values (1,''),(2,null),(3,55);``"
+msgid "``INSERT INTO t (s1,s2) VALUES (1,''), (2,NULL), (3,55);``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_insert>`."
 msgstr ""
 
 msgid "E101-03"
@@ -805,7 +853,10 @@ msgstr ""
 msgid "Searched UPDATE statement"
 msgstr ""
 
-msgid "``update t set s1 = null where s1 in (select s1 from t2);``"
+msgid "``UPDATE t SET s1 = NULL WHERE s1 IN (SELECT s1 FROM t2);``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_update>`."
 msgstr ""
 
 msgid "E101-04"
@@ -814,7 +865,10 @@ msgstr ""
 msgid "Searched DELETE statement"
 msgstr ""
 
-msgid "``delete from t where s1 in (select s1 from t);``"
+msgid "``DELETE FROM t WHERE s1 IN (SELECT s1 FROM t);``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_delete>`."
 msgstr ""
 
 msgid "E111"
@@ -823,7 +877,10 @@ msgstr ""
 msgid "Single row SELECT statement"
 msgstr ""
 
-msgid "``select count(*) from t;``"
+msgid "``SELECT count(*) FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_SELECT>`."
 msgstr ""
 
 #, fuzzy
@@ -848,7 +905,10 @@ msgstr ""
 msgid "ORDER BY columns need not be in select list"
 msgstr ""
 
-msgid "``select s1 from t order by s2;``"
+msgid "``SELECT s1 FROM t ORDER BY s2;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_order_by>`."
 msgstr ""
 
 msgid "E121-03"
@@ -857,7 +917,7 @@ msgstr ""
 msgid "Value expressions in select list"
 msgstr ""
 
-msgid "``select s1 from t7 order by -s1;``"
+msgid "``SELECT s1 FROM t7 ORDER BY -s1;``"
 msgstr ""
 
 msgid "E121-04"
@@ -903,7 +963,7 @@ msgstr "31"
 msgid "Null value support (nulls in lieu of values)"
 msgstr ""
 
-msgid "``select s1 from t7 where s1 is null;``"
+msgid "``SELECT s1 FROM t7 WHERE s1 IS NULL;``"
 msgstr ""
 
 #, fuzzy
@@ -920,7 +980,10 @@ msgstr ""
 msgid "NOT NULL constraints"
 msgstr ""
 
-msgid "``create table t8 (s1 int primary key, s2 int not null);``"
+msgid "``CREATE TABLE t8 (s1 INT PRIMARY KEY, s2 INT NOT NULL);``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_table_constraint_def>`."
 msgstr ""
 
 msgid "E141-02"
@@ -929,7 +992,7 @@ msgstr ""
 msgid "UNIQUE constraints of NOT NULL columns"
 msgstr ""
 
-msgid "``create table t9 (s1 int primary key , s2 int not null unique);``"
+msgid "``CREATE TABLE t9 (s1 INT PRIMARY KEY , s2 INT NOT NULL UNIQUE);``"
 msgstr ""
 
 msgid "E141-03"
@@ -939,22 +1002,24 @@ msgstr ""
 msgid "PRIMARY KEY constraints"
 msgstr "первичный ключ должен быть уникальным."
 
-msgid "``create table t10 (s1 int primary key);``"
+msgid "``CREATE TABLE t10 (s1 INT PRIMARY KEY);``"
 msgstr ""
 
-msgid ""
-"Okay, although Tarantool shouldn't always insist on having a primary key."
+msgid "Okay, although Tarantool shouldn't always insist on having a primary key."
 msgstr ""
 
 msgid "E141-04"
 msgstr ""
 
 msgid ""
-"Basic FOREIGN KEY constraint with the NO ACTION default for both referential "
-"delete action and referential update action."
+"Basic FOREIGN KEY constraint with the NO ACTION default for both "
+"referential delete action and referential update action."
 msgstr ""
 
-msgid "``create table t11 (s0 int primary key, s1 int references t10);``"
+msgid "``CREATE TABLE t11 (s0 INT PRIMARY KEY, s1 INT REFERENCES t10);``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_foreign_key>`."
 msgstr ""
 
 msgid "E141-06"
@@ -963,7 +1028,7 @@ msgstr ""
 msgid "CHECK constraints"
 msgstr ""
 
-msgid "``create table t12 (s1 int primary key, s2 int, check (s1 = s2));``"
+msgid "``CREATE TABLE t12 (s1 INT PRIMARY KEY, s2 INT, CHECK (s1 = s2));``"
 msgstr ""
 
 msgid "E141-07"
@@ -972,7 +1037,7 @@ msgstr ""
 msgid "Column defaults"
 msgstr ""
 
-msgid "``create table t13 (s1 int primary key, s2 int default -1);``"
+msgid "``CREATE TABLE t13 (s1 INT PRIMARY KEY, s2 INT DEFAULT -1);``"
 msgstr ""
 
 msgid "E141-08"
@@ -981,7 +1046,7 @@ msgstr ""
 msgid "NOT NULL inferred on primary key"
 msgstr ""
 
-msgid "``create table t14 (s1 int primary key);``"
+msgid "``CREATE TABLE t14 (s1 INT PRIMARY KEY);``"
 msgstr ""
 
 msgid ""
@@ -996,9 +1061,9 @@ msgid "Names in a foreign key can be specified in any order"
 msgstr ""
 
 msgid ""
-"``create table t15 (s1 int, s2 int, primary key (s1,s2));`` ``create table "
-"t16 (s1 int primary key, s2 int, foreign key (s2,s1) references t15 (s1,s2));"
-"``"
+"``CREATE TABLE t15 (s1 INT, s2 INT, PRIMARY KEY (s1,s2));`` ``CREATE "
+"TABLE t16 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2,s1) REFERENCES t15"
+" (s1,s2));``"
 msgstr ""
 
 msgid "E151"
@@ -1015,10 +1080,12 @@ msgid "COMMIT statement"
 msgstr ""
 
 #, fuzzy
-msgid "``commit;``"
+msgid "``COMMIT;``"
 msgstr "``#comment``"
 
-msgid "Fail. We have to say START TRANSACTION first."
+msgid ""
+"Fail. Tarantool supports :ref:`COMMIT <sql_commit>` but it is necessary "
+"to say :ref:`START TRANSACTION <sql_start_transaction>` first."
 msgstr ""
 
 msgid "E151-02"
@@ -1027,7 +1094,10 @@ msgstr ""
 msgid "ROLLBACK statement"
 msgstr ""
 
-msgid "``rollback;``"
+msgid "``ROLLBACK;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_rollback>`."
 msgstr ""
 
 msgid "E152"
@@ -1043,7 +1113,7 @@ msgstr ""
 msgid "SET TRANSACTION statement ISOLATION SERIALIZABLE clause"
 msgstr ""
 
-msgid "``set transaction isolation level serializable;``"
+msgid "``SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;``"
 msgstr ""
 
 msgid "E152-02"
@@ -1052,7 +1122,7 @@ msgstr ""
 msgid "SET TRANSACTION statement READ ONLY and READ WRITE clauses"
 msgstr ""
 
-msgid "``set transaction read only;``"
+msgid "``SET TRANSACTION READ ONLY;``"
 msgstr ""
 
 msgid "E153"
@@ -1071,6 +1141,9 @@ msgstr ""
 msgid "``--comment;``"
 msgstr "``#comment``"
 
+msgid ":ref:`Okay <sql_tokens>`."
+msgstr ""
+
 msgid "E171"
 msgstr ""
 
@@ -1078,10 +1151,10 @@ msgstr ""
 msgid "SQLSTATE support"
 msgstr "Не поддерживается"
 
-msgid "``drop table no_such_table;``"
+msgid "``DROP TABLE no_such_table;``"
 msgstr ""
 
-msgid "Fail. At least, the error message doesn't hint that SQLSTATE exists."
+msgid "Fail. Tarantool returns an error message but not an SQLSTATE string."
 msgstr ""
 
 msgid "E182"
@@ -1091,8 +1164,8 @@ msgid "Host language binding"
 msgstr ""
 
 msgid ""
-"Okay. Any of the Tarantool connectors should be able to call ``box."
-"execute()``."
+"Okay. Any of the Tarantool connectors should be able to call "
+":ref:`box.execute() <box-sql>`."
 msgstr ""
 
 #, fuzzy
@@ -1108,7 +1181,7 @@ msgstr ""
 msgid "CREATE TABLE statement to create persistent base tables"
 msgstr ""
 
-msgid "``create table t20 (t20_1 int not null);``"
+msgid "``CREATE TABLE t20 (t20_1 INT NOT NULL);``"
 msgstr ""
 
 msgid "Fail. We always have to say PRIMARY KEY (we only count this flaw once)."
@@ -1120,7 +1193,10 @@ msgstr ""
 msgid "CREATE VIEW statement"
 msgstr ""
 
-msgid "``create view t21 as select * from t20;``"
+msgid "``CREATE VIEW t21 AS SELECT * FROM t20;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_create_view>`."
 msgstr ""
 
 msgid "F031-03"
@@ -1138,10 +1214,12 @@ msgstr ""
 msgid "ALTER TABLE statement: add column"
 msgstr ""
 
-msgid "``alter table t7 add column t7_2 varchar default 'q';``"
+msgid "``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR DEFAULT 'q';``"
 msgstr ""
 
-msgid "Fail. Table alterations work but not this clause."
+msgid ""
+"Fail. Tarantool supports :ref:`ALTER TABLE <sql_alter_table>` but not "
+"this clause."
 msgstr ""
 
 msgid "F031-13"
@@ -1150,10 +1228,12 @@ msgstr ""
 msgid "DROP TABLE statement: RESTRICT clause"
 msgstr ""
 
-msgid "``drop table t20 restrict;``"
+msgid "``DROP TABLE t20 RESTRICT;``"
 msgstr ""
 
-msgid "Fail. Syntax error, and RESTRICT is not assumed."
+msgid ""
+"Fail. Tarantool supports :ref:`DROP TABLE <sql_drop_table>` but not this "
+"clause."
 msgstr ""
 
 msgid "F031-16"
@@ -1162,7 +1242,12 @@ msgstr ""
 msgid "DROP VIEW statement: RESTRICT clause"
 msgstr ""
 
-msgid "``drop view v2 restrict;``"
+msgid "``DROP VIEW v2 RESTRICT;``"
+msgstr ""
+
+msgid ""
+"Fail. Tarantool supports :ref:`DROP VIEW <sql_drop_view>` but not this "
+"clause."
 msgstr ""
 
 msgid "F031-19"
@@ -1188,7 +1273,10 @@ msgstr ""
 msgid "Inner join but not necessarily the INNER keyword"
 msgstr ""
 
-msgid "``select a.s1 from t7 a join t7 b;``"
+msgid "``SELECT a.s1 FROM t7 a JOIN t7 b;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_from>`."
 msgstr ""
 
 msgid "F041-02"
@@ -1197,7 +1285,7 @@ msgstr ""
 msgid "INNER keyword"
 msgstr ""
 
-msgid "``select a.s1 from t7 a inner join t7 b;``"
+msgid "``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``"
 msgstr ""
 
 msgid "F041-03"
@@ -1206,7 +1294,7 @@ msgstr ""
 msgid "LEFT OUTER JOIN"
 msgstr ""
 
-msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1);``"
+msgid "``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1);``"
 msgstr ""
 
 msgid "F041-04"
@@ -1215,7 +1303,7 @@ msgstr ""
 msgid "RIGHT OUTER JOIN"
 msgstr ""
 
-msgid "``select t7.*,t22.* from t22 right outer join t7 on (t22_1=s1);``"
+msgid "``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``"
 msgstr ""
 
 msgid "F041-05"
@@ -1225,24 +1313,21 @@ msgid "Outer joins can be nested"
 msgstr ""
 
 msgid ""
-"``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1) left outer "
-"join t23;``."
+"``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT "
+"OUTER JOIN t23;``."
 msgstr ""
 
 msgid "F041-07"
 msgstr ""
 
 msgid ""
-"The inner table in a left or right outer join can also be used in an inner "
-"join"
+"The inner table in a left or right outer join can also be used in an "
+"inner join"
 msgstr ""
 
 msgid ""
-"``select t7.* from t22 left outer join t7 on (t22_1=s1) inner join t22 on "
-"(t22_4=t22_5);``"
-msgstr ""
-
-msgid "Okay. The query fails due to a syntax error but that's expectable."
+"``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON (t22_1 = s1)) j INNER JOIN "
+"t22 ON (j.t22_4 = t7.s1);``"
 msgstr ""
 
 msgid "F041-08"
@@ -1251,7 +1336,7 @@ msgstr ""
 msgid "All comparison operators are supported"
 msgstr ""
 
-msgid "``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``"
+msgid "``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 OR 0 <> 1;``"
 msgstr ""
 
 msgid "F051 Basic date and time"
@@ -1263,10 +1348,10 @@ msgstr ""
 msgid "DATE data type (including support of DATE literal)"
 msgstr ""
 
-msgid "``create table dates (s1 date);``"
+msgid "``CREATE TABLE dates (s1 DATE);``"
 msgstr ""
 
-msgid "Fail. Tarantool does not support DATE data type."
+msgid "Fail. Tarantool does not support the DATE data type."
 msgstr ""
 
 msgid "F051-02"
@@ -1275,7 +1360,7 @@ msgstr ""
 msgid "TIME data type (including support of TIME literal)"
 msgstr ""
 
-msgid "``create table times (s1 time default time '1:2:3');``"
+msgid "``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``"
 msgstr ""
 
 msgid "F051-03"
@@ -1284,7 +1369,7 @@ msgstr ""
 msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
 msgstr ""
 
-msgid "``create table timestamps (s1 timestamp);``"
+msgid "``CREATE TABLE timestamps (s1 TIMESTAMP);``"
 msgstr ""
 
 msgid "F051-04"
@@ -1293,10 +1378,10 @@ msgstr ""
 msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
 msgstr ""
 
-msgid "``select * from dates where s1 = s1;``"
+msgid "``SELECT * FROM dates WHERE s1 = s1;``"
 msgstr ""
 
-msgid "Fail. The data types are not supported."
+msgid "Fail. Date and time data types are not supported."
 msgstr ""
 
 msgid "F051-05"
@@ -1305,7 +1390,7 @@ msgstr ""
 msgid "Explicit CAST between date-time types and character string types"
 msgstr ""
 
-msgid "``select cast(s1 as varchar(10)) from dates;``"
+msgid "``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``"
 msgstr ""
 
 msgid "F051-06"
@@ -1314,34 +1399,25 @@ msgstr ""
 msgid "CURRENT_DATE"
 msgstr ""
 
-msgid "``select current_date from t;``"
+msgid "``SELECT current_date FROM t;``"
 msgstr ""
 
 msgid "F051-07"
 msgstr ""
 
-msgid "CURRENT_TIME"
+msgid "LOCALTIME"
 msgstr ""
 
-msgid "``select * from t where current_time < '23:23:23';``"
+msgid "``SELECT localtime FROM t;``"
 msgstr ""
 
 msgid "F051-08"
 msgstr ""
 
-msgid "LOCALTIME"
-msgstr ""
-
-msgid "``select localtime from t;``"
-msgstr ""
-
-msgid "F051-09"
-msgstr ""
-
 msgid "LOCALTIMESTAMP"
 msgstr ""
 
-msgid "``select localtimestamp from t;``"
+msgid "``SELECT localtimestamp FROM t;``"
 msgstr ""
 
 #, fuzzy
@@ -1351,7 +1427,7 @@ msgstr "01"
 msgid "UNION and EXCEPT in views"
 msgstr ""
 
-msgid "``create view vv as select * from t7 except select * from t15;``"
+msgid "``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT * FROM t15;``"
 msgstr ""
 
 #, fuzzy
@@ -1366,10 +1442,11 @@ msgid "F131-01"
 msgstr ""
 
 msgid ""
-"WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
+"WHERE, GROUP BY, and HAVING clauses supported in queries with grouped "
+"views"
 msgstr ""
 
-msgid "``create view vv2 as select * from vv group by s1;``"
+msgid "``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``"
 msgstr ""
 
 msgid "F131-02"
@@ -1378,7 +1455,7 @@ msgstr ""
 msgid "Multiple tables supported in queries with grouped views"
 msgstr ""
 
-msgid "``create view vv3 as select * from vv2,t30;``"
+msgid "``CREATE VIEW vv3 AS SELECT * FROM vv2,t30;``"
 msgstr ""
 
 msgid "F131-03"
@@ -1387,7 +1464,7 @@ msgstr ""
 msgid "Set functions supported in queries with grouped views"
 msgstr ""
 
-msgid "``create view vv4 as select count(*) from vv2;``"
+msgid "``CREATE VIEW vv4 AS SELECT count(*) FROM vv2;``"
 msgstr ""
 
 msgid "F131-04"
@@ -1397,8 +1474,17 @@ msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
 msgstr ""
 
 msgid ""
-"``create view vv5 as select count(*) from vv2 group by s1 having count(*) > "
-"0;``"
+"``CREATE VIEW vv5 AS SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*)"
+" > 0;``"
+msgstr ""
+
+msgid "F131-05"
+msgstr ""
+
+msgid "Single row SELECT with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+
+msgid "``SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``"
 msgstr ""
 
 msgid "F181"
@@ -1418,7 +1504,10 @@ msgstr "21"
 msgid "CAST function"
 msgstr "создать Lua-функцию,"
 
-msgid "``select cast(s1 as int) from t;``"
+msgid "``SELECT cast(s1 AS INT) FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_function_cast>`."
 msgstr ""
 
 #, fuzzy
@@ -1429,7 +1518,7 @@ msgstr "21"
 msgid "Explicit defaults"
 msgstr "Правила неявной передачи управления"
 
-msgid "``update t set s1 = default;``"
+msgid "``UPDATE t SET s1 = DEFAULT;``"
 msgstr ""
 
 #, fuzzy
@@ -1445,7 +1534,7 @@ msgstr ""
 msgid "Simple CASE"
 msgstr ""
 
-msgid "``select case when 1 = 0 then 5 else 7 end from t;``"
+msgid "``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``"
 msgstr ""
 
 msgid "F261-02"
@@ -1455,7 +1544,7 @@ msgstr ""
 msgid "Searched CASE"
 msgstr "искомое значение"
 
-msgid "``select case 1 when 0 then 5 else 7 end from t;``"
+msgid "``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``"
 msgstr ""
 
 msgid "F261-03"
@@ -1465,7 +1554,10 @@ msgstr ""
 msgid "NULLIF"
 msgstr "null"
 
-msgid "``select nullif(s1,7) from t;``"
+msgid "``SELECT nullif(s1,7) FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_function_nullif>`"
 msgstr ""
 
 msgid "F261-04"
@@ -1475,7 +1567,10 @@ msgstr ""
 msgid "COALESCE"
 msgstr "false (ложь)"
 
-msgid "``select coalesce(s1,7) from t;``"
+msgid "``SELECT coalesce(s1,7) FROM t;``"
+msgstr ""
+
+msgid ":ref:`Okay <sql_function_coalesce>`."
 msgstr ""
 
 #, fuzzy
@@ -1533,7 +1628,7 @@ msgstr "41"
 msgid "Scalar subquery values"
 msgstr ""
 
-msgid "``select s1 from t where s1 = (select count(*) from t);``"
+msgid "``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``"
 msgstr ""
 
 #, fuzzy
@@ -1543,7 +1638,7 @@ msgstr "41"
 msgid "Expanded NULL Predicate"
 msgstr ""
 
-msgid "``select * from t where row(s1,s1) is not null;``"
+msgid "``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``"
 msgstr ""
 
 msgid "F812"
@@ -1563,7 +1658,7 @@ msgstr "01"
 msgid "Distinct types"
 msgstr "distance"
 
-msgid "``create type x as float;``"
+msgid "``CREATE TYPE x AS FLOAT;``"
 msgstr ""
 
 msgid "Fail. Tarantool doesn't support distinct types."
@@ -1582,10 +1677,12 @@ msgstr ""
 msgid "User-defined functions with no overloading"
 msgstr ""
 
-msgid "``create function f () returns int return 5;``"
+msgid "``CREATE FUNCTION f() RETURNS INT RETURN 5;``"
 msgstr ""
 
-msgid "Fail. Tarantool doesn't support user-defined SQL functions."
+msgid ""
+"Fail. User-defined functions for SQL are created in :ref:`Lua "
+"<sql_calling_lua>` with different syntax."
 msgstr ""
 
 msgid "T321-02"
@@ -1594,10 +1691,7 @@ msgstr ""
 msgid "User-defined procedures with no overloading"
 msgstr ""
 
-msgid "``create procedure p () begin end;``"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support user-defined procedures."
+msgid "``CREATE PROCEDURE p() BEGIN END;``"
 msgstr ""
 
 msgid "T321-03"
@@ -1607,7 +1701,7 @@ msgstr ""
 msgid "Function invocation"
 msgstr "Описание функции:"
 
-msgid "``select f(1) from t;``"
+msgid "``SELECT f(1) FROM t;``"
 msgstr ""
 
 msgid "Okay. Tarantool can invoke Lua user-defined functions."
@@ -1619,7 +1713,10 @@ msgstr ""
 msgid "CALL statement."
 msgstr ""
 
-msgid "``call p();``"
+msgid "``CALL p();``"
+msgstr ""
+
+msgid "Fail. Tarantool doesn't support CALL statements."
 msgstr ""
 
 msgid "T321-05"
@@ -1628,10 +1725,7 @@ msgstr ""
 msgid "RETURN statement."
 msgstr ""
 
-msgid "``create function f() returns int return 5;``"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support user-defined functions."
+msgid "Fail. Tarantool doesn't support RETURN statements."
 msgstr ""
 
 #, fuzzy
@@ -1642,7 +1736,7 @@ msgstr "31"
 msgid "IN predicate with one list element"
 msgstr "Непредсказуемая скорость записи"
 
-msgid "``select * from t where 1 in (1);``"
+msgid "``SELECT * FROM t WHERE 1 IN (1);``"
 msgstr ""
 
 #, fuzzy
@@ -1652,15 +1746,554 @@ msgstr "21"
 msgid "Basic information schema"
 msgstr ""
 
-msgid "``select * from information_schema.tables;``"
+msgid "``SELECT * from information_schema.tables;``"
 msgstr ""
 
 msgid ""
-"Fail. There is no schema with that name (not counted in the final score)."
+"Fail. Tarantool's metadata is not in a schema with that name (not counted"
+" in the final score)."
 msgstr ""
 
-msgid "Total number of items marked \"Fail\": 69"
+msgid "Total number of items marked \"Fail\": 68"
 msgstr ""
 
-msgid "Total number of items marked \"Okay\": 77"
+msgid "Total number of items marked \"Okay\": 78"
 msgstr ""
+
+#~ msgid "``create table t (s1 int primary key);``"
+#~ msgstr ""
+
+#~ msgid "``create table tr (s1 float primary key);``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Note:** Floating point SQL types are"
+#~ " not planned to be compatible between"
+#~ " 2.1 and 2.2 releases. The reason "
+#~ "is that in 2.1 we set 'number' "
+#~ "format for columns of these types, "
+#~ "but will restrict it to 'float32' "
+#~ "and 'float64' in 2.2. The format "
+#~ "change requires data migration and "
+#~ "cannot be done automatically, because in"
+#~ " 2.1 we have no information to "
+#~ "distinguish 'number' columns (created from "
+#~ "Lua) from FLOAT/DOUBLE/REAL ones (created "
+#~ "from SQL)."
+#~ msgstr ""
+
+#~ msgid "``create table td (s1 numeric primary key);``"
+#~ msgstr ""
+
+#~ msgid "``select 10+1,9-2,8*3,7/2 from t;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where 1 < 2;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 = 1.00;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Okay, but only because Tarantool doesn't"
+#~ " distinguish between numeric data types."
+#~ msgstr ""
+
+#~ msgid "``create table t44 (s1 char primary key);``"
+#~ msgstr ""
+
+#~ msgid "``create table t45 (s1 varchar primary key);``"
+#~ msgstr ""
+
+#~ msgid "Fail, only the spelling VARCHAR is allowed."
+#~ msgstr ""
+
+#~ msgid "**Note:** VARCHAR(N) does not check the string length."
+#~ msgstr ""
+
+#~ msgid "``insert into t45 values ('');``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Okay, and the bad practice of "
+#~ "accepting \"\"'s for character literals "
+#~ "is avoided."
+#~ msgstr ""
+
+#~ msgid ":ref:`CHARACTER_LENGTH <sql_function_length>` function"
+#~ msgstr ""
+
+#~ msgid "``select character_length(s1) from t;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Fail. There is no such function. "
+#~ "There is a function LENGTH(), which "
+#~ "is okay."
+#~ msgstr ""
+
+#~ msgid "``select octet_length(s1) from t;``"
+#~ msgstr ""
+
+#~ msgid "``select substring(s1 from 1 for 1) from t;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Fail. There is no such function. "
+#~ "There is a function SUBSTR(x,n,n) which"
+#~ " is okay."
+#~ msgstr ""
+
+#~ msgid "``select 'a' || 'b' from t;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":ref:`UPPER <sql_function_upper>` and :ref:`LOWER"
+#~ " <sql_function_lower>` functions"
+#~ msgstr ""
+
+#~ msgid "``select upper('a'),lower('B') from t;``"
+#~ msgstr ""
+
+#~ msgid "Okay. SUBSTR(x,n,n) which is okay."
+#~ msgstr ""
+
+#~ msgid "``select trim('a ') from t;``"
+#~ msgstr ""
+
+#~ msgid "``select * from tm where char_column > varchar_column;``"
+#~ msgstr ""
+
+#~ msgid "``select position(x in y) from z;``"
+#~ msgstr ""
+
+#~ msgid "Fail. Tarantool's function uses ',' rather than 'in'"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 > 'a';``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Okay. We should note here that "
+#~ "comparisons use a binary collation by"
+#~ " default, but it is easy to "
+#~ "specify unicode or unicode_ci collations, "
+#~ "or create new collations."
+#~ msgstr ""
+
+#~ msgid "``create table rank (ceil int primary key);``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Fail. Tarantool's list of reserved words"
+#~ " differs from the standard's list of"
+#~ " reserved words."
+#~ msgstr ""
+
+#~ msgid "``create table \"t47\" (s1 int primary key);``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Okay. And enclosing identifiers inside "
+#~ "double quotes means they won't be "
+#~ "converted to upper case or lower "
+#~ "case, this is behavior that some "
+#~ "other DBMSs sadly lack."
+#~ msgstr ""
+
+#~ msgid "``create table t48 (s1 int primary key);``"
+#~ msgstr ""
+
+#~ msgid "``create table t49_ (s1 int primary key);``"
+#~ msgstr ""
+
+#~ msgid "``select distinct s1 from t;``"
+#~ msgstr ""
+
+#~ msgid ":ref:`GROUP BY <sql_group_by>` clause"
+#~ msgstr ""
+
+#~ msgid "``select distinct s1 from t group by s1;``"
+#~ msgstr ""
+
+#~ msgid "``select s1 from t group by lower(s1);``"
+#~ msgstr ""
+
+#~ msgid "``select s1 as K from t order by K;``"
+#~ msgstr ""
+
+#~ msgid ":ref:`HAVING <sql_having>` clause"
+#~ msgstr ""
+
+#~ msgid "``select count(*) from t having count(*) > 0;``"
+#~ msgstr ""
+
+#~ msgid "Okay. GROUP BY is not mandatory before HAVING."
+#~ msgstr ""
+
+#~ msgid "Qualified * in select list"
+#~ msgstr ""
+
+#~ msgid "``select t.* from t;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t as K;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t as x(q,c);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where 0 = 0;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where ' ' between '' and ' ';``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 in ('a',upper('a'));``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 like '_';``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 is not null;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 = any (select s1 from t);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where not exists (select * from t);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 > (select s1 from t);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 in (select s1 from t);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 >= all (select s1 from t);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where s1 = (select s1 from t2 where t2.s2 = t.s1);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where 0 <> 0 or 'a' < 'b' and s1 is null;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t union distinct select * from t;``"
+#~ msgstr ""
+
+#~ msgid "Fail. However, \"select * from t union select * from t;\" is okay."
+#~ msgstr ""
+
+#~ msgid "``select * from t union all select * from t;``"
+#~ msgstr ""
+
+#~ msgid "``select * from t except distinct select * from t;``"
+#~ msgstr ""
+
+#~ msgid "Fail. However, ``select * from t except select * from t;`` is okay."
+#~ msgstr ""
+
+#~ msgid "``select s1 from t union select 5 from t;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Okay, but only because Tarantool doesn't"
+#~ " distinguish data types very well."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``select * from t where 'a' in "
+#~ "(select * from t union select *"
+#~ " from t);``"
+#~ msgstr ""
+
+#~ msgid ":ref:`AVG <sql_aggregate_avg>`"
+#~ msgstr ""
+
+#~ msgid "``select avg(s1) from t7;``"
+#~ msgstr ""
+
+#~ msgid "Fail. No warning that nulls were eliminated."
+#~ msgstr ""
+
+#~ msgid ":ref:`COUNT <sql_aggregate_count_row>`"
+#~ msgstr ""
+
+#~ msgid "``select count(*) from t7 where s1 > 0;``"
+#~ msgstr ""
+
+#~ msgid ":ref:`MAX <sql_aggregate_max>`"
+#~ msgstr ""
+
+#~ msgid "``select max(s1) from t7 where s1 > 0;``"
+#~ msgstr ""
+
+#~ msgid ":ref:`MIN <sql_aggregate_min>`"
+#~ msgstr ""
+
+#~ msgid "``select min(s1) from t7 where s1 > 0;``"
+#~ msgstr ""
+
+#~ msgid ":ref:`SUM <sql_aggregate_sum>`"
+#~ msgstr ""
+
+#~ msgid "``select sum(1) from t7 where s1 > 0;``"
+#~ msgstr ""
+
+#~ msgid "``select sum(all s1) from t7 where s1 > 0;``"
+#~ msgstr ""
+
+#~ msgid "``select sum(distinct s1) from t7 where s1 > 0;``"
+#~ msgstr ""
+
+#~ msgid "``insert into t (s1,s2) values (1,''),(2,null),(3,55);``"
+#~ msgstr ""
+
+#~ msgid "``update t set s1 = null where s1 in (select s1 from t2);``"
+#~ msgstr ""
+
+#~ msgid "``delete from t where s1 in (select s1 from t);``"
+#~ msgstr ""
+
+#~ msgid "``select count(*) from t;``"
+#~ msgstr ""
+
+#~ msgid "``select s1 from t order by s2;``"
+#~ msgstr ""
+
+#~ msgid "``select s1 from t7 order by -s1;``"
+#~ msgstr ""
+
+#~ msgid "``select s1 from t7 where s1 is null;``"
+#~ msgstr ""
+
+#~ msgid "``create table t8 (s1 int primary key, s2 int not null);``"
+#~ msgstr ""
+
+#~ msgid "``create table t9 (s1 int primary key , s2 int not null unique);``"
+#~ msgstr ""
+
+#~ msgid "``create table t10 (s1 int primary key);``"
+#~ msgstr ""
+
+#~ msgid "``create table t11 (s0 int primary key, s1 int references t10);``"
+#~ msgstr ""
+
+#~ msgid "``create table t12 (s1 int primary key, s2 int, check (s1 = s2));``"
+#~ msgstr ""
+
+#~ msgid "``create table t13 (s1 int primary key, s2 int default -1);``"
+#~ msgstr ""
+
+#~ msgid "``create table t14 (s1 int primary key);``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``create table t15 (s1 int, s2 "
+#~ "int, primary key (s1,s2));`` ``create "
+#~ "table t16 (s1 int primary key, s2"
+#~ " int, foreign key (s2,s1) references "
+#~ "t15 (s1,s2));``"
+#~ msgstr ""
+
+#~ msgid "Fail. We have to say START TRANSACTION first."
+#~ msgstr ""
+
+#~ msgid "``rollback;``"
+#~ msgstr ""
+
+#~ msgid "``set transaction isolation level serializable;``"
+#~ msgstr ""
+
+#~ msgid "``set transaction read only;``"
+#~ msgstr ""
+
+#~ msgid "``drop table no_such_table;``"
+#~ msgstr ""
+
+#~ msgid "Fail. At least, the error message doesn't hint that SQLSTATE exists."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Okay. Any of the Tarantool connectors"
+#~ " should be able to call "
+#~ "``box.execute()``."
+#~ msgstr ""
+
+#~ msgid "``create table t20 (t20_1 int not null);``"
+#~ msgstr ""
+
+#~ msgid "``create view t21 as select * from t20;``"
+#~ msgstr ""
+
+#~ msgid "``alter table t7 add column t7_2 varchar default 'q';``"
+#~ msgstr ""
+
+#~ msgid "Fail. Table alterations work but not this clause."
+#~ msgstr ""
+
+#~ msgid "``drop table t20 restrict;``"
+#~ msgstr ""
+
+#~ msgid "Fail. Syntax error, and RESTRICT is not assumed."
+#~ msgstr ""
+
+#~ msgid "``drop view v2 restrict;``"
+#~ msgstr ""
+
+#~ msgid "``select a.s1 from t7 a join t7 b;``"
+#~ msgstr ""
+
+#~ msgid "``select a.s1 from t7 a inner join t7 b;``"
+#~ msgstr ""
+
+#~ msgid "``select t7.*,t22.* from t22 left outer join t7 on (t22_1=s1);``"
+#~ msgstr ""
+
+#~ msgid "``select t7.*,t22.* from t22 right outer join t7 on (t22_1=s1);``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``select t7.*,t22.* from t22 left outer"
+#~ " join t7 on (t22_1=s1) left outer "
+#~ "join t23;``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``select t7.* from t22 left outer "
+#~ "join t7 on (t22_1=s1) inner join "
+#~ "t22 on (t22_4=t22_5);``"
+#~ msgstr ""
+
+#~ msgid "Okay. The query fails due to a syntax error but that's expectable."
+#~ msgstr ""
+
+#~ msgid "``select * from t where 0=1 or 0>1 or 0<1 or 0<>1;``"
+#~ msgstr ""
+
+#~ msgid "``create table dates (s1 date);``"
+#~ msgstr ""
+
+#~ msgid "Fail. Tarantool does not support DATE data type."
+#~ msgstr ""
+
+#~ msgid "``create table times (s1 time default time '1:2:3');``"
+#~ msgstr ""
+
+#~ msgid "``create table timestamps (s1 timestamp);``"
+#~ msgstr ""
+
+#~ msgid "``select * from dates where s1 = s1;``"
+#~ msgstr ""
+
+#~ msgid "Fail. The data types are not supported."
+#~ msgstr ""
+
+#~ msgid "``select cast(s1 as varchar(10)) from dates;``"
+#~ msgstr ""
+
+#~ msgid "``select current_date from t;``"
+#~ msgstr ""
+
+#~ msgid "CURRENT_TIME"
+#~ msgstr ""
+
+#~ msgid "``select * from t where current_time < '23:23:23';``"
+#~ msgstr ""
+
+#~ msgid "``select localtime from t;``"
+#~ msgstr ""
+
+#~ msgid "F051-09"
+#~ msgstr ""
+
+#~ msgid "``select localtimestamp from t;``"
+#~ msgstr ""
+
+#~ msgid "``create view vv as select * from t7 except select * from t15;``"
+#~ msgstr ""
+
+#~ msgid "``create view vv2 as select * from vv group by s1;``"
+#~ msgstr ""
+
+#~ msgid "``create view vv3 as select * from vv2,t30;``"
+#~ msgstr ""
+
+#~ msgid "``create view vv4 as select count(*) from vv2;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``create view vv5 as select count(*) "
+#~ "from vv2 group by s1 having "
+#~ "count(*) > 0;``"
+#~ msgstr ""
+
+#~ msgid "``select cast(s1 as int) from t;``"
+#~ msgstr ""
+
+#~ msgid "``update t set s1 = default;``"
+#~ msgstr ""
+
+#~ msgid "``select case when 1 = 0 then 5 else 7 end from t;``"
+#~ msgstr ""
+
+#~ msgid "``select case 1 when 0 then 5 else 7 end from t;``"
+#~ msgstr ""
+
+#~ msgid "``select nullif(s1,7) from t;``"
+#~ msgstr ""
+
+#~ msgid "``select coalesce(s1,7) from t;``"
+#~ msgstr ""
+
+#~ msgid "``select s1 from t where s1 = (select count(*) from t);``"
+#~ msgstr ""
+
+#~ msgid "``select * from t where row(s1,s1) is not null;``"
+#~ msgstr ""
+
+#~ msgid "``create type x as float;``"
+#~ msgstr ""
+
+#~ msgid "``create function f () returns int return 5;``"
+#~ msgstr ""
+
+#~ msgid "Fail. Tarantool doesn't support user-defined SQL functions."
+#~ msgstr ""
+
+#~ msgid "``create procedure p () begin end;``"
+#~ msgstr ""
+
+#~ msgid "Fail. Tarantool doesn't support user-defined procedures."
+#~ msgstr ""
+
+#~ msgid "``select f(1) from t;``"
+#~ msgstr ""
+
+#~ msgid "``call p();``"
+#~ msgstr ""
+
+#~ msgid "``create function f() returns int return 5;``"
+#~ msgstr ""
+
+#~ msgid "Fail. Tarantool doesn't support user-defined functions."
+#~ msgstr ""
+
+#~ msgid "``select * from t where 1 in (1);``"
+#~ msgstr ""
+
+#~ msgid "``select * from information_schema.tables;``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Fail. There is no schema with that"
+#~ " name (not counted in the final "
+#~ "score)."
+#~ msgstr ""
+
+#~ msgid "Total number of items marked \"Fail\": 69"
+#~ msgstr ""
+
+#~ msgid "Total number of items marked \"Okay\": 77"
+#~ msgstr ""
