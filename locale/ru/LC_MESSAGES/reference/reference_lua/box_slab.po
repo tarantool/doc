@@ -131,7 +131,7 @@ msgstr ""
 "памяти."
 
 msgid "``box.slab.info`` gives a few ratios:"
-msgstr "``box.slab.info`` дает несколько показателей:"
+msgstr "``box.slab.info`` выдает несколько показателей:"
 
 msgid "items_used_ratio"
 msgstr "items_used_ratio"
