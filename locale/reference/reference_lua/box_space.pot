@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-12 09:14+0000\n"
+"POT-Creation-Date: 2020-04-06 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1013,6 +1013,29 @@ msgid "tarantool> s = box.schema.space.create('space53')\n"
 "tarantool> replace_counter"
 msgstr ""
 
+msgid "You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``"
+msgstr ""
+
+msgid "transactions,"
+msgstr ""
+
+msgid "yield-oprations (:ref:`explicit <atomic-implicit-yields>` or not),"
+msgstr ""
+
+msgid "actions that are not allowed to be used in transactions (see :ref:`rule #2 <box-txn_management>`)"
+msgstr ""
+
+msgid "because everything executed inside triggers is already in a transaction."
+msgstr ""
+
+msgid "tarantool> box.space.test:on_replace(fiber.yield)\n"
+"tarantool> box.space.test:replace{1, 2, 3}\n"
+"2020-02-02 21:22:03.073 [73185] main/102/init.lua txn.c:532 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield\n"
+"---\n"
+"- error: Transaction has been aborted by a fiber yield\n"
+"..."
+msgstr ""
+
 msgid "function which will become the trigger function; for the trigger function's optional parameters see the description of :ref:`on_replace <box_space-on_replace>`."
 msgstr ""
 
@@ -1071,7 +1094,7 @@ msgstr ""
 msgid "see :ref:`index_object:pairs <box_index-index_pairs>`"
 msgstr ""
 
-msgid "`iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop or with `totable() <https://rtsisyk.github.io/luafun/reducing.html#fun.totable>`_"
+msgid "`iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a for/end loop or with `totable() <https://luafun.github.io/reducing.html#fun.totable>`_"
 msgstr ""
 
 msgid "no such space;"
@@ -1238,6 +1261,9 @@ msgstr ""
 msgid "As the last request in the above example shows: to make complex ``select`` requests, where you can specify which index to search and what condition to use (for example \"greater than\" instead of \"equal to\") and how many tuples to return, it will be necessary to become familiar with :ref:`index_object:select <box_index-select>`."
 msgstr ""
 
+msgid "Remember that you can get a field from a tuple both by field number and by field name which is more convenient. See example: :ref:`using field names instead of field numbers <box_space-get_field_names>`."
+msgstr ""
+
 msgid "Deletes all tuples. The method is performed in background and doesn't block consequent requests."
 msgstr ""
 
@@ -1263,6 +1289,9 @@ msgid "Update a tuple."
 msgstr ""
 
 msgid "The ``update`` function supports operations on fields — assignment, arithmetic (if the field is numeric), cutting and pasting fragments of a field, deleting or inserting a field. Multiple operations can be combined in a single update request, and in this case they are performed atomically and sequentially. Each operation requires specification of a field number. When multiple operations are present, the field number for each operation is assumed to be relative to the most recent state of the tuple, that is, as if all previous operations in a multi-operation update have already been applied. In other words, it is always safe to merge multiple ``update`` invocations into a single invocation, with no change in semantics."
+msgstr ""
+
+msgid "Tarantool does nothing if a tuple with the specified primary key is not found."
 msgstr ""
 
 msgid "Possible operators are:"

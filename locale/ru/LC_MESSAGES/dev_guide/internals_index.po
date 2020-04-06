@@ -1546,4 +1546,3 @@ msgstr "Шаг 5"
 
 msgid "For the memtx engine, re-create all secondary indexes."
 msgstr "Повторно создать все вторичные индексы для движка memtx."
-

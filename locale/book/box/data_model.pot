@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"POT-Creation-Date: 2020-04-06 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,6 +83,9 @@ msgid "The first index defined on a space is called the **primary key index**, a
 msgstr ""
 
 msgid "An index definition may include identifiers of tuple fields and their expected **types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>` below)."
+msgstr ""
+
+msgid "A recommended design pattern for a data model is to base primary keys on the first fields of a tuple, because this speeds up tuple comparison."
 msgstr ""
 
 msgid "In our example, we first defined the primary index (named 'primary') based on field #1 of each tuple:"
