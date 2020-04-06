@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-06 15:48+0000\n"
-"PO-Revision-Date: 2019-10-23 18:50+0400\n"
+"PO-Revision-Date: 2020-03-23 21:43+0400\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -20,12 +20,11 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 
 msgid "Tarantool - Documentation"
-msgstr "Документация по Tarantool"
+msgstr "Tarantool - Документация"
 
 msgid "|nbspc|"
 msgstr "|nbspc|"
 
-#, fuzzy
 msgid ""
 "Tarantool 2.2 manual  This manual embraces all aspects of using "
 "Tarantool: from introductory information and exercises for beginners -- "
