@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-17 09:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module *cartridge.confapplier*"
+msgstr ""
+
+msgid "Configuration management primitives."
+msgstr ""
+
+msgid ""
+"Implements the internal state machine which helps to manage cluster "
+"operation and protects from invalid state transitions."
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+msgid "get_readonly ([section_name])"
+msgstr ""
+
+msgid "Get a read-only view on the clusterwide configuration."
+msgstr ""
+
+msgid ""
+"Returns either  ``conf[section_name]``  or entire  ``conf`` . Any attempt"
+" to modify the section or its children will raise an error."
+msgstr ""
+
+msgid "**Parameters:**"
+msgstr ""
+
+msgid ""
+"*section_name:* (`string "
+"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+msgstr ""
+
+msgid "**Returns**:"
+msgstr ""
+
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+msgid "get_deepcopy ([section_name])"
+msgstr ""
+
+msgid "Get a read-write deep copy of the clusterwide configuration."
+msgstr ""
+
+msgid ""
+"Returns either  ``conf[section_name]``  or entire  ``conf`` . Changing it"
+" has no effect unless it's used to patch clusterwide configuration."
+msgstr ""
+
+msgid "Local Functions"
+msgstr ""
+
+msgid "set_state (state[, err])"
+msgstr ""
+
+msgid "Perform state transition."
+msgstr ""
+
+msgid ""
+"*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) New"
+" state"
+msgstr ""
+
+msgid "*err:*   (optional)"
+msgstr ""
+
+msgid "(**nil**)"
+msgstr ""
+
+msgid "wish_state (state[, timeout])"
+msgstr ""
+
+msgid "Make a wish for meeting desired state."
+msgstr ""
+
+msgid ""
+"*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+"Desired state."
+msgstr ""
+
+msgid "*timeout:* (**number**)  (optional)"
+msgstr ""
+
+msgid ""
+"(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Final state,"
+" may differ from desired."
+msgstr ""
+
+msgid "validate_config (clusterwide_config_new)"
+msgstr ""
+
+msgid "Validate configuration by all roles."
+msgstr ""
+
+msgid ""
+"*clusterwide_config_new:* (`table "
+"<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+msgid "(**boolean**) true"
+msgstr ""
+
+msgid "**Or**"
+msgstr ""
+
+msgid ""
+"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"description"
+msgstr ""
+
+msgid "apply_config (clusterwide_config)"
+msgstr ""
+
+msgid "Apply the role configuration."
+msgstr ""
+
+msgid ""
+"*clusterwide_config:* (`table "
+"<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+

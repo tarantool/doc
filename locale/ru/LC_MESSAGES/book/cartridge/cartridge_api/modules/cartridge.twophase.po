@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-17 09:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module *cartridge.twophase*"
+msgstr ""
+
+msgid "Clusterwide configuration propagation two-phase algorithm."
+msgstr ""
+
+msgid "(**Added** in v1.2.0-19)"
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+msgid "patch_clusterwide (patch)"
+msgstr ""
+
+msgid ""
+"Edit the clusterwide configuration. Top-level keys are merged with the "
+"current configuration. To remove a top-level section, use "
+"``patch_clusterwide{key = box.NULL}`` ."
+msgstr ""
+
+msgid "The function uses a two-phase commit algorithm with the following steps:"
+msgstr ""
+
+msgid "Patches the current configuration."
+msgstr ""
+
+msgid "Validates topology on the current server."
+msgstr ""
+
+msgid ""
+"III. Executes the preparation phase ( ``prepare_2pc`` ) on every server "
+"excluding expelled and disabled servers."
+msgstr ""
+
+msgid ""
+"IV. If any server reports an error, executes the abort phase ( "
+"``abort_2pc`` ). All servers prepared so far are rolled back and "
+"unlocked."
+msgstr ""
+
+msgid ""
+"V. Performs the commit phase ( ``commit_2pc`` ). In case the phase fails,"
+" an automatic rollback is impossible, the cluster should be repaired "
+"manually."
+msgstr ""
+
+msgid "**Parameters:**"
+msgstr ""
+
+msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+msgid "**Returns**:"
+msgstr ""
+
+msgid "(**boolean**) true"
+msgstr ""
+
+msgid "**Or**"
+msgstr ""
+
+msgid "(**nil**)"
+msgstr ""
+
+msgid ""
+"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"description"
+msgstr ""
+
+msgid "get_schema ()"
+msgstr ""
+
+msgid "Get clusterwide DDL schema."
+msgstr ""
+
+msgid "(**Added** in v1.2.0-28)"
+msgstr ""
+
+msgid ""
+"(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Schema in "
+"YAML format"
+msgstr ""
+
+msgid "set_schema (schema)"
+msgstr ""
+
+msgid "Apply clusterwide DDL schema."
+msgstr ""
+
+msgid ""
+"*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in"
+" YAML format"
+msgstr ""
+
+msgid ""
+"(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new"
+" schema"
+msgstr ""
+
+msgid "Local Functions"
+msgstr ""
+
+msgid "prepare_2pc (data)"
+msgstr ""
+
+msgid "Two-phase commit - preparation stage."
+msgstr ""
+
+msgid ""
+"Validate the configuration and acquire a lock setting local variable and "
+"writing \"config.prepare.yml\" file. If the validation fails, the lock "
+"isn't acquired and doesn't have to be aborted."
+msgstr ""
+
+msgid ""
+"*data:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+"clusterwide config content"
+msgstr ""
+
+msgid "commit_2pc ()"
+msgstr ""
+
+msgid "Two-phase commit - commit stage."
+msgstr ""
+
+msgid ""
+"Back up the active configuration, commit changes to filesystem by "
+"renaming prepared file, release the lock, and configure roles. If any "
+"errors occur, configuration is not rolled back automatically. Any problem"
+" encountered during this call has to be solved manually."
+msgstr ""
+
+msgid "abort_2pc ()"
+msgstr ""
+
+msgid "Two-phase commit - abort stage."
+msgstr ""
+
+msgid "Release the lock for further commit attempts."
+msgstr ""
+

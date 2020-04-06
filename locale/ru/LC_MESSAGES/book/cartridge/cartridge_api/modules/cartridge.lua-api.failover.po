@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-17 09:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Module *cartridge.lua-api.failover*"
+msgstr ""
+
+msgid "Administration functions (failover related)."
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+msgid "get_params ()"
+msgstr ""
+
+msgid "Get failover configuration."
+msgstr ""
+
+msgid "(**Added** in v2.0.1-95)"
+msgstr ""
+
+msgid "**Returns**:"
+msgstr ""
+
+msgid "(`FailoverParams <cartridge.lua-api.failover.FailoverParams_>`_)"
+msgstr ""
+
+msgid "set_params (opts)"
+msgstr ""
+
+msgid "Configure automatic failover."
+msgstr ""
+
+msgid "**Parameters:**"
+msgstr ""
+
+msgid "*opts:*"
+msgstr ""
+
+msgid ""
+"*mode:* (optional `string "
+"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+msgid ""
+"*coordinator_uri:* (optional `string "
+"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+msgid "(**boolean**) `true` if config applied successfully"
+msgstr ""
+
+msgid "**Or**"
+msgstr ""
+
+msgid "(**nil**)"
+msgstr ""
+
+msgid ""
+"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"description"
+msgstr ""
+
+msgid "get_failover_enabled ()"
+msgstr ""
+
+msgid "Get current failover state."
+msgstr ""
+
+msgid "(**Deprecated** since v2.0.1-95)"
+msgstr ""
+
+msgid "set_failover_enabled (enabled)"
+msgstr ""
+
+msgid "Enable or disable automatic failover."
+msgstr ""
+
+msgid "*enabled:* (**boolean**)"
+msgstr ""
+
+msgid "(**boolean**) New failover state"
+msgstr ""
+
+msgid "Tables"
+msgstr ""
+
+msgid "FailoverParams"
+msgstr ""
+
+msgid "Failover parameters."
+msgstr ""
+
+msgid "**Fields:**"
+msgstr ""
+
+msgid ""
+"*mode:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+"Supported modes are \"disabled\", \"eventual\"and \"stateful\""
+msgstr ""
+
+msgid ""
+"*coordinator_uri:* (**nil** or `string "
+"<https://www.lua.org/manual/5.1/manual.html#5.4>`_) URI of external "
+"coordinator"
+msgstr ""
+

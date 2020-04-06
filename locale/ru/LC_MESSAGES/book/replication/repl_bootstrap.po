@@ -749,9 +749,8 @@ msgstr ""
 "executed on master #1')``, чтобы увидеть, когда и где будет выполнена "
 "логика функции ``box.once()``."
 
-#, fuzzy
 msgid "Now we can launch the two masters."
-msgstr "Теперь можно запустить два экземпляра. Мастер..."
+msgstr "Теперь можно запустить оба мастера."
 
 msgid ""
 "Tarantool guarantees that ``box.once()`` logic will be executed once only"
@@ -759,6 +758,10 @@ msgid ""
 "can cause repeated execution of ``box.once``. That, particularly, can "
 "result in data inconsistency."
 msgstr ""
+"Обратите внимание, что логика ``box.once()`` выполняется гарантированно "
+"однократно лишь для одного экземпляра. Параллельный запуск набора реплик "
+"мастер-мастер может спровоцировать повторной вызов ``box.once``, что "
+"может привести к несогласованности данных."
 
 msgid ""
 "$ # launching master #1\n"
