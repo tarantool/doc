@@ -36,11 +36,14 @@ Below is a list of all ``msgpack`` functions and members.
     | :ref:`msgpack.decode_unchecked()     | Convert a MsgPack string to a   |
     | <msgpack-decode_unchecked>`          | Lua object                      |
     +--------------------------------------+---------------------------------+
-    | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
-    | <msgpack-null>`                      |                                 |
+    | :ref:`__serialize parameter          | Output structure specification  |
+    | <msgpack-serialize>`                 |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`msgpack.cfg                    | Change configuration            |
     | <msgpack-cfg>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`msgpack.NULL                   | Analog of Lua's "nil"           |
+    | <msgpack-null>`                      |                                 |
     +--------------------------------------+---------------------------------+
 
 
@@ -99,49 +102,19 @@ Below is a list of all ``msgpack`` functions and members.
 
     :rtype: lua object
 
-.. _msgpack-null:
-
-.. data:: NULL
-
-    A value comparable to Lua "nil" which may be useful as a placeholder in a
-    tuple.
-
-=================================================
-                    Example
-=================================================
-
-.. code-block:: tarantoolsession
-
-    tarantool> msgpack = require('msgpack')
-    ---
-    ...
-    tarantool> y = msgpack.encode({'a',1,'b',2})
-    ---
-    ...
-    tarantool> z = msgpack.decode(y)
-    ---
-    ...
-    tarantool> z[1], z[2], z[3], z[4]
-    ---
-    - a
-    - 1
-    - b
-    - 2
-    ...
-    tarantool> box.space.tester:insert{20, msgpack.NULL, 20}
-    ---
-    - [20, null, 20]
-    ...
-
 .. _msgpack-serialize:
+
+**__serialize parameter:**
 
 The MsgPack output structure can be specified with ``__serialize``:
 
-* ``__serialize = "seq" or "sequence"`` for an array
-* ``__serialize = "map" or "mapping"`` for a map
+* 'seq', 'sequence', 'array' - table encoded as an array
+* 'map', 'mappping' - table encoded as a map
+* function - the meta-method called to unpack serializable representation
+  of table, cdata or userdata objects
 
-Serializing 'A' and 'B' with different ``__serialize`` values causes different
-results. To show this, here is a routine which encodes `{'A','B'}` both as an
+Serializing 'A' and 'B' with different ``__serialize`` values brings different
+results. To show this, here is a routine which encodes ``{'A','B'}`` both as an
 array and as a map, then displays each result in hexadecimal.
 
 .. code-block:: lua
@@ -172,7 +145,8 @@ array and as a map, then displays each result in hexadecimal.
     **array** encoding: 92 a1 41 a1 42
     **map** encoding:   82 01 a1 41 02 a1 42
 
-The MsgPack Specification_ page explains that the first encoding means:
+The MsgPack `Specification page <http://github.com/msgpack/msgpack/blob/master/spec.md>`_
+explains that the first encoding means:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -234,34 +208,172 @@ with the MsgPack format name and encoding on the right.
 
 .. function:: cfg(table)
 
-    Some MsgPack configuration settings can be changed, in the
-    same way that they can be changed for json.
-    See :ref:`Module JSON <json-module_cfg>` for a list of some configuration settings.
-    (The same configuration settings exist for json, for MsgPack, and for  :ref:`YAML <yaml-module>`.)
+    Some MsgPack configuration settings can be changed.
 
-    For example, if ``msgpack.cfg.encode_invalid_numbers = true`` (the default),
-    then nan and inf are legal values. If that is not desirable, then
-    ensure that ``msgpack.encode()`` will not accept them, by saying
-    ``msgpack.cfg{encode_invalid_numbers = false}``, thus:
+    The values are all either integers or boolean ``true``/``false``.
 
-    .. code-block:: none
+    .. container:: table
 
-        tarantool> msgpack = require('msgpack'); msgpack.cfg{encode_invalid_numbers = true}
+        .. rst-class:: left-align-column-1
+        .. rst-class:: center-align-column-2
+        .. rst-class:: left-align-column-3
+
+        +---------------------------------+---------+-----------------------------------------------+
+        | Option                          | Default | Use                                           |
+        +=================================+=========+===============================================+
+        | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding              |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables          |
+        |                                 |         |  with nesting level deeper than               | 
+        |                                 |         | ``cfg.encode_max_depth``.                     |
+        |                                 |         | Not-encoded fields are replaced with          |
+        |                                 |         | one null. If not set, too high                |
+        |                                 |         | nesting is considered an error.               |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_invalid_numbers``  |  true   | A flag saying whether to enable encoding of   |
+        |                                 |         | NaN and Inf numbers                           |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_load_metatables``  | true    | A flag saying whether the serializer will     |
+        |                                 |         | follow :ref:`__serialize <json-serialize>`    |
+        |                                 |         | metatable field                               |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_use_tostring``     | false   | A flag saying whether to use ``tostring()``   |
+        |                                 |         | for unknown types                             |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_invalid_as_nil``   |  false  | A flag saying whether to use NULL for         |
+        |                                 |         | non-recognized types                          |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_sparse_convert``   | true    | A flag saying whether to handle excessively   |
+        |                                 |         | sparse arrays as maps.                        |
+        |                                 |         | See detailed description                      |
+        |                                 |         | :ref:`below <msgpack-cfg_sparse>`             |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_sparse_ratio``     |  2      | 1/``encode_sparse_ratio`` is the permissible  |
+        |                                 |         | percentage of missing values in a sparse      |
+        |                                 |         | array                                         |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.encode_sparse_safe``      | 10      | A limit ensuring that small Lua arrays        |
+        |                                 |         | are always encoded as sparse arrays           |
+        |                                 |         | (instead of generating an error or encoding   |
+        |                                 |         | as a map)                                     |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.decode_invalid_numbers``  |  true   | A flag saying whether to enable decoding of   |
+        |                                 |         | NaN and Inf numbers                           |
+        +---------------------------------+---------+-----------------------------------------------+
+        | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables for   |
+        |                                 |         | all arrays and maps                           |
+        +---------------------------------+---------+-----------------------------------------------+
+
+    .. _msgpack-cfg_sparse:
+
+**Sparse arrays features:**
+
+During encoding, the MsgPack encoder tries to classify tables into one of four kinds:
+
+* map - at least one table index is not unsigned integer
+* regular array - all array indexes are available
+* sparse array - at least one array index is missing
+* excessively sparse array - the number of values missing exceeds the configured ratio
+
+An array is excessively sparse when **all** the following conditions are met:
+
+* ``encode_sparse_ratio`` > 0
+* ``max(table)`` > ``encode_sparse_safe``
+* ``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``
+
+MsgPack encoder will never consider an array to be excessively sparse
+when ``encode_sparse_ratio = 0``. The ``encode_sparse_safe`` limit ensures
+that small Lua arrays are always encoded as sparse arrays.
+By default, attempting to encode an excessively sparse array will
+generate an error. If ``encode_sparse_convert`` is set to ``true``,
+excessively sparse arrays will be handled as maps.
+
+**msgpack.cfg() example 1:**
+
+If ``msgpack.cfg.encode_invalid_numbers = true`` (the default),
+then NaN and Inf are legal values. If that is not desirable, then
+ensure that ``msgpack.encode()`` will not accept them, by saying
+``msgpack.cfg{encode_invalid_numbers = false}``, thus:
+
+.. code-block:: tarantoolsession
+
+    tarantool> msgpack = require('msgpack'); msgpack.cfg{encode_invalid_numbers = true}
+    ---
+    ...
+    tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
+    ---
+    - [1, -nan, inf, false]
+    - 22
+    ...
+    tarantool> msgpack.cfg{encode_invalid_numbers = false}
+    ---
+    ...
+    tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
+    ---
+    - error: ... number must not be NaN or Inf'
+    ...
+
+**msgpack.cfg example 2:**
+
+To avoid generating errors on attempts to encode unknown data types as
+userdata/cdata, you can use this code:
+
+.. code-block:: tarantoolsession
+
+    tarantool> httpc = require('http.client').new()
+    ---
+    ...
+
+    tarantool> msgpack.encode(httpc.curl)
+    ---
+    - error: unsupported Lua type 'userdata'
+    ...
+
+    tarantool> msgpack.encode(httpc.curl, {encode_use_tostring=true})
+    ---
+    - '"userdata: 0x010a4ef2a0"'
+    ...
+
+.. NOTE::
+
+    To achieve the same effect for only one call to ``msgpack.encode()``
+    (i.e. without changing the configuration permanently), you can use
+    ``msgpack.encode({1, x, y, 2}, {encode_invalid_numbers = true})``.
+
+Similar configuration settings exist for :ref:`JSON <json-module_cfg>`
+and :ref:`YAML <yaml-cfg>`.
+
+.. _msgpack-null:
+
+.. data:: NULL
+
+    A value comparable to Lua "nil" which may be useful as a placeholder in a
+    tuple.
+
+    **Example**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> msgpack = require('msgpack')
         ---
         ...
-        tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
+        tarantool> y = msgpack.encode({'a',1,'b',2})
         ---
-        - [1, -nan, inf, false]
-        - 22
         ...
-        tarantool> msgpack.cfg{encode_invalid_numbers = false}
-       ---
-       ...
-        tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})
+        tarantool> z = msgpack.decode(y)
         ---
-        - error: ... number must not be NaN or Inf'
-       ...
+        ...
+        tarantool> z[1], z[2], z[3], z[4]
+        ---
+        - a
+        - 1
+        - b
+        - 2
+        ...
+        tarantool> box.space.tester:insert{20, msgpack.NULL, 20}
+        ---
+        - [20, null, 20]
+        ...
 
 
 .. _MsgPack: http://msgpack.org/
-.. _Specification: http://github.com/msgpack/msgpack/blob/master/spec.md
