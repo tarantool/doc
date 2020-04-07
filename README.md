@@ -42,6 +42,11 @@ docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make pdf"
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make pdf-ru"
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make json"
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make json-ru"
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make epub"
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make epub-ru"
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-pot"
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-po"
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-po-force"
 ```
 
 ### Run documentation locally on your machine
