@@ -33,6 +33,8 @@ the overhead of system calls and increases the overall server performance. Howev
 for some cases a single connection is not enough —- for example, when
 it is necessary to prioritize requests or to use different authentication IDs.
 
+.. _net_box-options:
+
 Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
 
 * ``{timeout=...}``. For example, a method whose final argument is
