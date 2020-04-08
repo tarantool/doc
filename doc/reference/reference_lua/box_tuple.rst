@@ -53,11 +53,14 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`tuple_object:findall()         | Get the number of all fields    |
     | <box_tuple-find>`                    | matching the search value       |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:transform()       | Remove (and replace) a tuple's  |
-    | <box_tuple-transform>`               | fields                          |
+    | :ref:`tuple_object:next()            | Get the next field value from   |
+    | <box_tuple-next>`                    | tuple                           |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:unpack()          | Get a tuple's fields            |
-    | <box_tuple-unpack>`                  |                                 |
+    | :ref:`tuple_object:ipairs()          | Prepare for iterating           |
+    | <box_tuple-pairs>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`tuple_object:pairs()           | Prepare for iterating           |
+    | <box_tuple-pairs>`                   |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:totable()         | Get a tuple's fields as a table |
     | <box_tuple-totable>`                 |                                 |
@@ -65,11 +68,17 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`tuple_object:tomap()           | Get a tuple's fields as a table |
     | <box_tuple-tomap>`                   | along with key:value pairs      |
     +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:pairs()           | Prepare for iterating           |
-    | <box_tuple-pairs>`                   |                                 |
+    | :ref:`tuple_object:transform()       | Remove (and replace) a tuple's  |
+    | <box_tuple-transform>`               | fields                          |
+    +--------------------------------------+---------------------------------+
+    | :ref:`tuple_object:unpack()          | Get a tuple's fields            |
+    | <box_tuple-unpack>`                  |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`tuple_object:update()          | Update a tuple                  |
     | <box_tuple-update>`                  |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`tuple_object:upsert()          | Update a tuple ignoring errors  |
+    | <box_tuple-upsert>`                  |                                 |
     +--------------------------------------+---------------------------------+
 
 .. _box_tuple-new:
@@ -337,66 +346,92 @@ Below is a list of all ``box.tuple`` functions.
             - 4
             ...
 
-    .. _box_tuple-transform:
 
-    .. method:: transform(start-field-number, fields-to-remove [, field-value, ...])
+    .. _box_tuple-next:
 
-        If ``t`` is a tuple instance, :samp:`t:transform({start-field-number},{fields-to-remove})`
-        will return a tuple where, starting from field ``start-field-number``,
-        a number of fields (``fields-to-remove``) are removed. Optionally one
-        can add more arguments after ``fields-to-remove`` to indicate new
-        values that will replace what was removed.
+    .. method:: next(tuple[, pos])
 
-        If the original tuple comes from a space that has been formatted with a
-        :ref:`format clause <box_space-format>`, the formatting will not be
-        preserved for the result tuple.
+        An analogue of the Lua ``next()`` function, but for a tuple object.
+        When called without arguments, ``tuple:next()`` returns the first field
+        from a tuple. Otherwise, it returns the field next to the indicated position.
 
-        :param integer start-field-number: base 1, may be negative
-        :param integer   fields-to-remove:
-        :param lua-value   field-value(s):
-        :return: tuple
-        :rtype:  tuple
+        However ``tuple:next()`` is not really efficient, and it is better
+        to use :ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`.
 
-        In the following example, a tuple named ``t`` is created and then,
-        starting from the second field, two fields are removed but one new
-        one is added, then the result is returned.
+        :return: field number and field value
+        :rtype:  number and field type
 
         .. code-block:: tarantoolsession
 
-            tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
+            tarantool> tuple = box.tuple.new({5, 4, 3, 2, 0})
             ---
             ...
-            tarantool> t:transform(2, 2, 'x')
+
+            tarantool> tuple:next()
             ---
-            - ['Fld#1', 'x', 'Fld#4', 'Fld#5']
+            - 1
+            - 5
             ...
 
-    .. _box_tuple-unpack:
+            tarantool> tuple:next(1)
+            ---
+            - 2
+            - 4
+            ...
 
-    .. method:: unpack([start-field-number [, end-field-number]])
+            tarantool> ctx, field = tuple:next()
+            ---
+            ...
 
-        If ``t`` is a tuple instance, ``t:unpack()`` will return all fields,
-        ``t:unpack(1)`` will return all fields starting with field number 1,
-        ``t:unpack(1,5)`` will return all fields between field number 1 and field number 5.
+            tarantool> while field do
+                     > print(field)
+                     > ctx, field = tuple:next(ctx)
+                     > end
+            5
+            4
+            3
+            2
+            0
+            ---
+            ...
 
-        :return: field(s) from the tuple.
-        :rtype:  lua-value(s)
+
+    .. _box_tuple-pairs:
+
+    .. method:: pairs()
+                ipairs()
+
+        In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns:
+        ``function``, ``lua-table-value``, ``nil``. Tarantool has extended
+        this so that ``tuple-value:pairs()`` returns: ``function``,
+        ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua
+        iterators traverse a value's components until an end marker is reached.
+
+        ``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple
+        fields are always integers.
+
+        :return: function, tuple-value, nil
+        :rtype:  function, lua-value, nil
 
         In the following example, a tuple named ``t`` is created and then all
-        its fields are selected, then the result is returned.
+        its fields are selected using a Lua for-end loop.
 
         .. code-block:: tarantoolsession
 
             tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
             ---
             ...
-            tarantool> t:unpack()
+            tarantool> tmp = ''
             ---
-            - Fld#1
-            - Fld#2
-            - Fld#3
-            - Fld#4
-            - Fld#5
+            ...
+            tarantool> for k, v in t:pairs() do
+                     >   tmp = tmp .. v
+                     > end
+            ---
+            ...
+            tarantool> tmp
+            ---
+            - Fld#1Fld#2Fld#3Fld#4Fld#5
             ...
 
     .. _box_tuple-totable:
@@ -478,38 +513,66 @@ Below is a list of all ``box.tuple`` functions.
 
         ``t1map_names_only`` will contain "field1: 10", "field2: 20".
 
-    .. _box_tuple-pairs:
+    .. _box_tuple-transform:
 
-    .. method:: pairs()
+    .. method:: transform(start-field-number, fields-to-remove [, field-value, ...])
 
-        In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns:
-        ``function``, ``lua-table-value``, ``nil``. Tarantool has extended
-        this so that ``tuple-value:pairs()`` returns: ``function``,
-        ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua
-        iterators traverse a value's components until an end marker is reached.
+        If ``t`` is a tuple instance, :samp:`t:transform({start-field-number},{fields-to-remove})`
+        will return a tuple where, starting from field ``start-field-number``,
+        a number of fields (``fields-to-remove``) are removed. Optionally one
+        can add more arguments after ``fields-to-remove`` to indicate new
+        values that will replace what was removed.
 
-        :return: function, tuple-value, nil
-        :rtype:  function, lua-value, nil
+        If the original tuple comes from a space that has been formatted with a
+        :ref:`format clause <box_space-format>`, the formatting will not be
+        preserved for the result tuple.
 
-        In the following example, a tuple named ``t`` is created and then all
-        its fields are selected using a Lua for-end loop.
+        :param integer start-field-number: base 1, may be negative
+        :param integer   fields-to-remove:
+        :param lua-value   field-value(s):
+        :return: tuple
+        :rtype:  tuple
+
+        In the following example, a tuple named ``t`` is created and then,
+        starting from the second field, two fields are removed but one new
+        one is added, then the result is returned.
 
         .. code-block:: tarantoolsession
 
             tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
             ---
             ...
-            tarantool> tmp = ''
+            tarantool> t:transform(2, 2, 'x')
+            ---
+            - ['Fld#1', 'x', 'Fld#4', 'Fld#5']
+            ...
+
+    .. _box_tuple-unpack:
+
+    .. method:: unpack([start-field-number [, end-field-number]])
+
+        If ``t`` is a tuple instance, ``t:unpack()`` will return all fields,
+        ``t:unpack(1)`` will return all fields starting with field number 1,
+        ``t:unpack(1,5)`` will return all fields between field number 1 and field number 5.
+
+        :return: field(s) from the tuple.
+        :rtype:  lua-value(s)
+
+        In the following example, a tuple named ``t`` is created and then all
+        its fields are selected, then the result is returned.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
             ---
             ...
-            tarantool> for k, v in t:pairs() do
-                     >   tmp = tmp .. v
-                     > end
+            tarantool> t:unpack()
             ---
-            ...
-            tarantool> tmp
-            ---
-            - Fld#1Fld#2Fld#3Fld#4Fld#5
+            - Fld#1
+            - Fld#2
+            - Fld#3
+            - Fld#4
+            - Fld#5
             ...
 
     .. _box_tuple-update:
@@ -552,6 +615,67 @@ Below is a list of all ``box.tuple`` functions.
             tarantool> t:update({{'=', 2, 'B'}})
             ---
             - ['Fld#1', 'B', 'Fld#3', 'Fld#4', 'Fld#5']
+            ...
+
+
+    .. _box_tuple-upsert:
+
+    .. method:: upsert({{operator, field_no, value}, ...})
+
+        The same as ``tuple_object:update()``, but ignores errors. In case
+        of an error the tuple is left intact, but an error message is
+        printed. Only client errors are ignored, such as a bad field type,
+        or wrong field index/name. System errors, such as OOM, are not
+        ignored and raised just like with a normal ``update()``. Note that
+        only bad operations are ignored. All correct operations are
+        applied.
+
+        :param string  operator: operation type represented as a string (e.g.
+                                 '``=``' for 'assign new value')
+        :param number  field_no: the field to which the operation will be applied. The
+                                 field number can be negative, meaning the
+                                 position from the end of tuple.
+                                 (#tuple + negative field number + 1)
+        :param lua_value  value: the value which will be applied
+
+        :return: new tuple
+        :rtype:  tuple
+
+        See the following example where one operation is applied, and one is not.
+
+        .. code-block:: tarantoolsession
+
+            tarantool> t = box.tuple.new({1, 2, 3})
+            tarantool> t2 = t:upsert({{'=', 5, 100}})
+            UPSERT operation failed:
+            ER_NO_SUCH_FIELD_NO: Field 5 was not found in the tuple
+            ---
+            ...
+
+            tarantool> t
+            ---
+            - [1, 2, 3]
+            ...
+
+            tarantool> t2
+            ---
+            - [1, 2, 3]
+            ...
+
+            tarantool> t2 = t:upsert({{'=', 5, 100}, {'+', 1, 3}})
+            UPSERT operation failed:
+            ER_NO_SUCH_FIELD_NO: Field 5 was not found in the tuple
+            ---
+            ...
+
+            tarantool> t
+            ---
+            - [1, 2, 3]
+            ...
+
+            tarantool> t2
+            ---
+            - [4, 2, 3]
             ...
 
 ===========================================================
