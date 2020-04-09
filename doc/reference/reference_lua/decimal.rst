@@ -60,14 +60,14 @@ post-decimal digits is necessary to get 38-digit precision.
 .. function:: abs(string-or-number-or-decimal-number)
 
     Returns absolute value of a decimal number.
-    For example if ``a`` is -1 then ``decimal.abs(a)`` returns 1.
+    For example if ``a`` is ``-1`` then ``decimal.abs(a)`` returns ``1``.
 
 .. _decimal-exp:
 
 .. function:: exp(string-or-number-or-decimal-number)
 
     Returns *e* raised to the power of a decimal number.
-    For example if ``a`` is 1 then ``decimal.exp(a)`` returns
+    For example if ``a`` is ``1`` then ``decimal.exp(a)`` returns
     ``2.7182818284590452353602874713526624978``.
     Compare ``math.exp(1)`` from the
     `Lua math library <https://www.lua.org/pil/18.html>`_,
