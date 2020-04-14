@@ -559,19 +559,24 @@ recommended.
 
     .. _fiber_object-name_set:
 
-    .. method:: name(name)
+    .. method:: name(name[, options])
 
         Change the fiber name. By default a Tarantool server's
         interactive-mode fiber is named 'interactive' and new
         fibers created due to :ref:`fiber.create <fiber-create>` are named 'lua'.
         Giving fibers distinct names makes it easier to
         distinguish them when using :ref:`fiber.info <fiber-info>`.
+        Max length is 255.
 
         :param fiber_object: generally this is an object referenced in the return
                              from :ref:`fiber.create <fiber-create>`
                              or :ref:`fiber.self <fiber-self>`
                              or :ref:`fiber.find <fiber-find>`
         :param string name: the new name of the fiber.
+        :param options:
+
+            * ``truncate=true`` - truncates the name to the max length if it is
+              too long.
 
         :Return: nil
 
