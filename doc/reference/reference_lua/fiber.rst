@@ -576,6 +576,8 @@ recommended.
         :param options:
 
             * ``truncate=true`` - truncates the name to the max length if it is
+              too long. If this option is false (the default), 
+              ``fiber.name(new_name)`` fails with an exception if a new name is
               too long.
 
         :Return: nil
