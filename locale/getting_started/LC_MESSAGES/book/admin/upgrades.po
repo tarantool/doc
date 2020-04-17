@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Upgrades"
+msgstr ""
+
+msgid "Upgrading a Tarantool database"
+msgstr ""
+
+msgid ""
+"If you created a database with an older Tarantool version and have now "
+"installed a newer version, make the request ``box.schema.upgrade()``. "
+"This updates Tarantool system spaces to match the currently installed "
+"version of Tarantool."
+msgstr ""
+
+msgid ""
+"For example, here is what happens when you run ``box.schema.upgrade()`` "
+"with a database created with Tarantool version 1.6.4 to version 1.7.2 "
+"(only a small part of the output is shown):"
+msgstr ""
+
+msgid ""
+"tarantool> box.schema.upgrade()\n"
+"alter index primary on _space set options to {\"unique\":true}, parts to "
+"[[0,\"unsigned\"]]\n"
+"alter space _schema set options to {}\n"
+"create view _vindex...\n"
+"grant read access to 'public' role for _vindex view\n"
+"set schema version to 1.7.0\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "Upgrading a Tarantool instance"
+msgstr ""
+
+msgid ""
+"Tarantool is backward compatible between two adjacent versions. For "
+"example, you should have no or little trouble when upgrading from "
+"Tarantool 1.6 to 1.7, or from Tarantool 1.7 to 1.8. Meanwhile Tarantool "
+"1.8 may have incompatible changes when migrating from Tarantool 1.6. to "
+"1.8 directly."
+msgstr ""
+
+msgid "How to upgrade from Tarantool 1.6 to 1.7 / 1.10"
+msgstr ""
+
+msgid ""
+"This procedure is for upgrading a standalone Tarantool instance in "
+"production from 1.6.x to 1.7.x (or to 1.10.x). Notice that this will "
+"**always imply a downtime**. To upgrade **without downtime**, you need "
+"several Tarantool servers running in a replication cluster (see "
+":ref:`below <admin-upgrades_replication_cluster>`)."
+msgstr ""
+
+msgid ""
+"Tarantool 1.7 has an incompatible :ref:`.snap <internals-snapshot>` and "
+":ref:`.xlog <internals-wal>` file format: 1.6 files are supported during "
+"upgrade, but you won’t be able to return to 1.6 after running under 1.7 "
+"for a while. It also renames a few configuration parameters, but old "
+"parameters are supported. The full list of breaking changes is available "
+"in `release notes for Tarantool 1.7 / 1.9 / 1.10 "
+"<https://github.com/tarantool/tarantool/releases>`_."
+msgstr ""
+
+msgid "To upgrade from Tarantool 1.6 to 1.7 (or to 1.10.x):"
+msgstr ""
+
+msgid ""
+"Check with application developers whether application files need to be "
+"updated due to incompatible changes (see `1.7 / 1.9 / 1.10 release notes "
+"<https://github.com/tarantool/tarantool/releases>`_). If yes, back up the"
+" old application files."
+msgstr ""
+
+msgid "Stop the Tarantool server."
+msgstr ""
+
+msgid ""
+"Make a copy of all data (see an appropriate hot backup procedure in "
+":ref:`Backups <admin-backups>`) and the package from which the current "
+"(old) version was installed (for rollback purposes)."
+msgstr ""
+
+msgid ""
+"Update the Tarantool server. See installation instructions at Tarantool "
+"`download page <http://tarantool.org/download.html>`_."
+msgstr ""
+
+msgid ""
+"Update the Tarantool database. Put the request ``box.schema.upgrade()`` "
+"inside a :ref:`box.once() <box-once>` function in your Tarantool "
+":ref:`initialization file <index-init_label>`. On startup, this will "
+"create new system spaces, update data type names (e.g. num -> unsigned, "
+"str -> string) and options in Tarantool system spaces."
+msgstr ""
+
+msgid "Update application files, if needed."
+msgstr ""
+
+msgid ""
+"Launch the updated Tarantool server using ``tarantoolctl`` or "
+"``systemctl``."
+msgstr ""
+
+msgid "Upgrading Tarantool in a replication cluster"
+msgstr ""
+
+msgid ""
+"Tarantool 1.7 (as well as Tarantool 1.9 and 1.10) can work as a "
+":ref:`replica <replication-architecture>` for Tarantool 1.6 and vice "
+"versa. Replicas perform capability negotiation on handshake, and new 1.7 "
+"replication features are not used with 1.6 replicas. This allows "
+"upgrading clustered configurations."
+msgstr ""
+
+msgid ""
+"This procedure allows for a rolling upgrade **without downtime** and "
+"works for any cluster configuration: master-master or master-replica."
+msgstr ""
+
+msgid ""
+"Upgrade Tarantool at all replicas (or at any master in a master-master "
+"cluster). See details in :ref:`Upgrading a Tarantool instance <admin-"
+"upgrades_instance>`."
+msgstr ""
+
+msgid "Verify installation on the replicas:"
+msgstr ""
+
+msgid "Start Tarantool."
+msgstr ""
+
+msgid "Attach to the master and start working as before."
+msgstr ""
+
+msgid ""
+"The master runs the old Tarantool version, which is always compatible "
+"with the next major version."
+msgstr ""
+
+msgid "Upgrade the master. The procedure is similar to upgrading a replica."
+msgstr ""
+
+msgid "Verify master installation:"
+msgstr ""
+
+msgid "Start Tarantool with replica configuration to catch up."
+msgstr ""
+
+msgid "Switch to master mode."
+msgstr ""
+
+msgid ""
+"Upgrade the database on any master node in the cluster. Make the request "
+"``box.schema.upgrade()``. This updates Tarantool system spaces to match "
+"the currently installed version of Tarantool. Changes are propagated to "
+"other nodes via the regular replication mechanism."
+msgstr ""
+

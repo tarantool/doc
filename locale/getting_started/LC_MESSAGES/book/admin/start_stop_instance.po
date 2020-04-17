@@ -1,0 +1,275 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Starting/stopping an instance"
+msgstr ""
+
+msgid ""
+"While a Lua application is executed by Tarantool, an instance file is "
+"executed by ``tarantoolctl`` which is a Tarantool script."
+msgstr ""
+
+msgid "Here is what ``tarantoolctl`` does when you issue the command:"
+msgstr ""
+
+msgid "$ tarantoolctl start <instance_name>"
+msgstr ""
+
+msgid ""
+"Read and parse the command line arguments. The last argument, in our "
+"case, contains an instance name."
+msgstr ""
+
+msgid ""
+"Read and parse its own configuration file. This file contains "
+"``tarantoolctl`` defaults, like the path to the directory where instances"
+" should be searched for."
+msgstr ""
+
+msgid ""
+"When ``tarantool`` is invoked by root, it looks for a configuration file "
+"in ``/etc/default/tarantool``. When ``tarantool`` is invoked by a local "
+"(non-root) user, it looks for a configuration file first in the current "
+"directory (``$PWD/.tarantoolctl``), and then in the current user's home "
+"directory (``$HOME/.config/tarantool/tarantool``). If no configuration "
+"file is found there, or in the ``/usr/local/etc/default/tarantool`` file,"
+" then ``tarantoolctl`` falls back to :ref:`built-in defaults <admin-"
+"tarantoolctl_config_file>`."
+msgstr ""
+
+msgid ""
+"Look up the instance file in the instance directory, for example "
+"``/etc/tarantool/instances.enabled``. To build the instance file path, "
+"``tarantoolctl`` takes the instance name, prepends the instance directory"
+" and appends \".lua\" extension to the instance file."
+msgstr ""
+
+msgid ""
+"Override :ref:`box.cfg{} <box_introspection-box_cfg>` function to pre-"
+"process its parameters and ensure that instance paths are pointing to the"
+" paths defined in the ``tarantoolctl`` configuration file. For example, "
+"if the configuration file specifies that instance work directory must be "
+"in ``/var/tarantool``, then the new implementation of ``box.cfg{}`` "
+"ensures that :ref:`work_dir <cfg_basic-work_dir>` parameter in "
+"``box.cfg{}`` is set to ``/var/tarantool/<instance_name>``, regardless of"
+" what the path is set to in the instance file itself."
+msgstr ""
+
+msgid ""
+"Create a so-called \"instance control file\". This is a Unix socket with "
+"Lua console attached to it. This file is used later by ``tarantoolctl`` "
+"to query the instance state, send commands to the instance and so on."
+msgstr ""
+
+msgid ""
+"Set the TARANTOOLCTL environment variable to 'true'. This allows the user"
+" to know that the instance was started by ``tarantoolctl``."
+msgstr ""
+
+msgid "Finally, use Lua ``dofile`` command to execute the instance file."
+msgstr ""
+
+msgid ""
+"If you start an instance using ``systemd`` tools, like this (the instance"
+" name is ``my_app``):"
+msgstr ""
+
+msgid ""
+"$ systemctl start tarantool@my_app\n"
+"$ ps axuf|grep exampl[e]\n"
+"taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 "
+"tarantool my_app.lua <running>"
+msgstr ""
+
+msgid ""
+"... this actually calls ``tarantoolctl`` like in case of ``tarantoolctl "
+"start my_app``."
+msgstr ""
+
+msgid ""
+"To check the instance file for syntax errors prior to starting ``my_app``"
+" instance, say:"
+msgstr ""
+
+msgid "$ tarantoolctl check my_app"
+msgstr ""
+
+msgid "To enable ``my_app`` instance for auto-load during system startup, say:"
+msgstr ""
+
+msgid "$ systemctl enable tarantool@my_app"
+msgstr ""
+
+msgid "To stop a running ``my_app`` instance, say:"
+msgstr ""
+
+msgid ""
+"$ tarantoolctl stop my_app\n"
+"$ # - OR -\n"
+"$ systemctl stop tarantool@my_app"
+msgstr ""
+
+msgid "To restart (i.e. stop and start) a running ``my_app`` instance, say:"
+msgstr ""
+
+msgid ""
+"$ tarantoolctl restart my_app\n"
+"$ # - OR -\n"
+"$ systemctl restart tarantool@my_app"
+msgstr ""
+
+msgid "Running Tarantool locally"
+msgstr ""
+
+msgid ""
+"Sometimes you may need to run a Tarantool instance locally, e.g. for test"
+" purposes. Let's configure a local instance, then start and monitor it "
+"with ``tarantoolctl``."
+msgstr ""
+
+msgid "First, we create a sandbox directory on the user's path:"
+msgstr ""
+
+msgid "$ mkdir ~/tarantool_test"
+msgstr ""
+
+msgid ""
+"... and set default ``tarantoolctl`` configuration in "
+"``$HOME/.config/tarantool/tarantool``. Let the file contents be:"
+msgstr ""
+
+msgid ""
+"default_cfg = {\n"
+"    pid_file  = \"/home/user/tarantool_test/my_app.pid\",\n"
+"    wal_dir   = \"/home/user/tarantool_test\",\n"
+"    snap_dir  = \"/home/user/tarantool_test\",\n"
+"    vinyl_dir = \"/home/user/tarantool_test\",\n"
+"    log       = \"/home/user/tarantool_test/log\",\n"
+"}\n"
+"instance_dir = \"/home/user/tarantool_test\""
+msgstr ""
+
+msgid "Specify a full path to the user's home directory instead of \"~/\"."
+msgstr ""
+
+msgid ""
+"Omit ``username`` parameter. ``tarantoolctl`` normally doesn't have "
+"permissions to switch current user when invoked by a local user. The "
+"instance will be running under 'admin'."
+msgstr ""
+
+msgid ""
+"Next, we create the instance file ``~/tarantool_test/my_app.lua``. Let "
+"the file contents be:"
+msgstr ""
+
+msgid ""
+"box.cfg{listen = 3301}\n"
+"box.schema.user.passwd('Gx5!')\n"
+"box.schema.user.grant('guest','read,write,execute','universe')\n"
+"fiber = require('fiber')\n"
+"box.schema.space.create('tester')\n"
+"box.space.tester:create_index('primary',{})\n"
+"i = 0\n"
+"while 0 == 0 do\n"
+"    fiber.sleep(5)\n"
+"    i = i + 1\n"
+"    print('insert ' .. i)\n"
+"    box.space.tester:insert{i, 'my_app tuple'}\n"
+"end"
+msgstr ""
+
+msgid ""
+"Let’s verify our instance file by starting it without ``tarantoolctl`` "
+"first:"
+msgstr ""
+
+msgid ""
+"$ cd ~/tarantool_test\n"
+"$ tarantool my_app.lua\n"
+"2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version "
+"1.7.3-489-gd86e36d5b\n"
+"2017-04-06 10:42:15.763 [54085] main/101/my_app.lua C> log level 5\n"
+"2017-04-06 10:42:15.764 [54085] main/101/my_app.lua I> mapping 268435456 "
+"bytes for tuple arena...\n"
+"2017-04-06 10:42:15.774 [54085] iproto/101/main I> binary: bound to "
+"[::]:3301\n"
+"2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an "
+"empty data directory\n"
+"2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot "
+"`./00000000000000000000.snap.inprogress'\n"
+"2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done\n"
+"2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> vinyl checkpoint "
+"done\n"
+"2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept "
+"requests\n"
+"insert 1\n"
+"insert 2\n"
+"insert 3\n"
+"<...>"
+msgstr ""
+
+msgid "Now we tell ``tarantoolctl`` to start the Tarantool instance:"
+msgstr ""
+
+msgid "$ tarantoolctl start my_app"
+msgstr ""
+
+msgid "Expect to see messages indicating that the instance has started. Then:"
+msgstr ""
+
+msgid "$ ls -l ~/tarantool_test/my_app"
+msgstr ""
+
+msgid "Expect to see the .snap file and the .xlog file. Then:"
+msgstr ""
+
+msgid "$ less ~/tarantool_test/log/my_app.log"
+msgstr ""
+
+msgid ""
+"Expect to see the contents of ``my_app``‘s log, including error messages,"
+" if any. Then:"
+msgstr ""
+
+msgid ""
+"$ tarantoolctl enter my_app\n"
+"tarantool> box.cfg{}\n"
+"tarantool> console = require('console')\n"
+"tarantool> console.connect('localhost:3301')\n"
+"tarantool> box.space.tester:select({0}, {iterator = 'GE'})"
+msgstr ""
+
+msgid "Expect to see several tuples that ``my_app`` has created."
+msgstr ""
+
+msgid ""
+"Stop now. A polite way to stop ``my_app`` is with ``tarantoolctl``, thus "
+"we say:"
+msgstr ""
+
+msgid "$ tarantoolctl stop my_app"
+msgstr ""
+
+msgid "Finally, we make a cleanup."
+msgstr ""
+
+msgid "$ rm -R tarantool_test"
+msgstr ""
+

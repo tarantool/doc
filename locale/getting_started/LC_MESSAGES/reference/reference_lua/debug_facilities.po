@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Debug facilities"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"Tarantool users can benefit from built-in debug facilities that are part "
+"of:"
+msgstr ""
+
+msgid ""
+"Lua (`debug <https://www.lua.org/manual/5.1/manual.html#5.9>`_ library, "
+"see details below) and"
+msgstr ""
+
+msgid "LuaJit (`debug.* <http://luajit.org/extensions.html>`_ functions)."
+msgstr ""
+
+msgid ""
+"The ``debug`` library provides an interface for debugging Lua programs. "
+"All functions in this library reside in the ``debug`` table. Those "
+"functions that operate on a thread have an optional first parameter that "
+"specifies the thread to operate on. The default is always the current "
+"thread."
+msgstr ""
+
+msgid ""
+"This library should be used only for debugging and profiling and not as a"
+" regular programming tool, as the functions provided here can take too "
+"long to run. Besides, several of these functions can compromise otherwise"
+" secure code."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is a list of all ``debug`` functions."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`debug.debug() <debug-debug>`"
+msgstr ""
+
+msgid "Enter an interactive mode"
+msgstr ""
+
+msgid ":ref:`debug.getfenv() <debug-getfenv>`"
+msgstr ""
+
+msgid "Get an object's environment"
+msgstr ""
+
+msgid ":ref:`debug.gethook() <debug-gethook>`"
+msgstr ""
+
+msgid "Get a thread's current hook settings"
+msgstr ""
+
+msgid ":ref:`debug.getinfo() <debug-getinfo>`"
+msgstr ""
+
+msgid "Get information about a function"
+msgstr ""
+
+msgid ":ref:`debug.getlocal() <debug-getlocal>`"
+msgstr ""
+
+msgid "Get a local variable's name and value"
+msgstr ""
+
+msgid ":ref:`debug.getmetatable() <debug-getmetatable>`"
+msgstr ""
+
+msgid "Get an object's metatable"
+msgstr ""
+
+msgid ":ref:`debug.getregistry() <debug-getregistry>`"
+msgstr ""
+
+msgid "Get the registry table"
+msgstr ""
+
+msgid ":ref:`debug.getupvalue() <debug-getupvalue>`"
+msgstr ""
+
+msgid "Get an upvalue's name and value"
+msgstr ""
+
+msgid ":ref:`debug.setfenv() <debug-setfenv>`"
+msgstr ""
+
+msgid "Set an object's environment"
+msgstr ""
+
+msgid ":ref:`debug.sethook() <debug-sethook>`"
+msgstr ""
+
+msgid "Set a given function as a hook"
+msgstr ""
+
+msgid ":ref:`debug.setlocal() <debug-setlocal>`"
+msgstr ""
+
+msgid "Assign a value to a local variable"
+msgstr ""
+
+msgid ":ref:`debug.setmetatable() <debug-setmetatable>`"
+msgstr ""
+
+msgid "Set an object's metatable"
+msgstr ""
+
+msgid ":ref:`debug.setupvalue() <debug-setupvalue>`"
+msgstr ""
+
+msgid "Assign a value to an upvalue"
+msgstr ""
+
+msgid ":ref:`debug.traceback() <debug-traceback>`"
+msgstr ""
+
+msgid "Get a traceback of the call stack"
+msgstr ""
+
+msgid ""
+"Enters an interactive mode and runs each string that the user types in. "
+"The user can, among other things, inspect global and local variables, "
+"change their values and evaluate expressions."
+msgstr ""
+
+msgid ""
+"Enter ``cont`` to exit this function, so that the caller can continue its"
+" execution."
+msgstr ""
+
+msgid ""
+"Commands for ``debug.debug()`` are not lexically nested within any "
+"function and so have no direct access to local variables."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "object to get the environment of"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the environment of the ``object``"
+msgstr ""
+
+msgid "the current hook settings of the ``thread`` as three values:"
+msgstr ""
+
+msgid "the current hook function"
+msgstr ""
+
+msgid "the current hook mask"
+msgstr ""
+
+msgid "the current hook count as set by the ``debug.sethook()`` function"
+msgstr ""
+
+msgid "function to get information on"
+msgstr ""
+
+msgid "what information on the ``function`` to return"
+msgstr ""
+
+msgid "a table with information about the ``function``"
+msgstr ""
+
+msgid ""
+"You can pass in a ``function`` directly, or you can give a number that "
+"specifies a function running at level ``function`` of the call stack of "
+"the given ``thread``: level 0 is the current function (``getinfo()`` "
+"itself), level 1 is the function that called ``getinfo()``, and so on. If"
+" ``function`` is a number larger than the number of active functions, "
+"``getinfo()`` returns ``nil``."
+msgstr ""
+
+msgid ""
+"The default for ``what`` is to get all information available, except the "
+"table of valid lines. If present, the option ``f`` adds a field named "
+"``func`` with the function itself. If present, the option ``L`` adds a "
+"field named ``activelines`` with the table of valid lines."
+msgstr ""
+
+msgid "level of the stack"
+msgstr ""
+
+msgid "index of the local variable"
+msgstr ""
+
+msgid ""
+"the name and the value of the local variable with the index ``local`` of "
+"the function at level ``level`` of the stack or ``nil`` if there is no "
+"local variable with the given index; raises an error if ``level`` is out "
+"of range"
+msgstr ""
+
+msgid "You can call ``debug.getinfo()`` to check whether the level is valid."
+msgstr ""
+
+msgid "object to get the metatable of"
+msgstr ""
+
+msgid "a metatable of the ``object`` or ``nil`` if it does not have a metatable"
+msgstr ""
+
+msgid "the registry table"
+msgstr ""
+
+msgid "function to get the upvalue of"
+msgstr ""
+
+msgid "index of the function upvalue"
+msgstr ""
+
+msgid ""
+"the name and the value of the upvalue with the index ``up`` of the "
+"function ``func`` or ``nil`` if there is no upvalue with the given index"
+msgstr ""
+
+msgid "Sets the environment of the ``object`` to the ``table``."
+msgstr ""
+
+msgid "object to change the environment of"
+msgstr ""
+
+msgid "table to set the object environment to"
+msgstr ""
+
+msgid "the ``object``"
+msgstr ""
+
+msgid ""
+"Sets the given function as a hook.  When called without arguments, turns "
+"the hook off."
+msgstr ""
+
+msgid "function to set as a hook"
+msgstr ""
+
+msgid ""
+"describes when the ``hook`` will be called; may have the following "
+"values:  * ``c`` - the ``hook`` is called every time Lua calls a function"
+" * ``r`` - the ``hook`` is called every time Lua returns from a function "
+"* ``l`` - the ``hook`` is called every time Lua enters a new line of code"
+msgstr ""
+
+msgid "describes when the ``hook`` will be called; may have the following values:"
+msgstr ""
+
+msgid "``c`` - the ``hook`` is called every time Lua calls a function"
+msgstr ""
+
+msgid "``r`` - the ``hook`` is called every time Lua returns from a function"
+msgstr ""
+
+msgid "``l`` - the ``hook`` is called every time Lua enters a new line of code"
+msgstr ""
+
+msgid ""
+"describes when the ``hook`` will be called; when different from zero, the"
+" ``hook`` is called after every ``count`` instructions."
+msgstr ""
+
+msgid ""
+"Assigns the value ``value`` to the local variable with the index "
+"``local`` of the function at level ``level`` of the stack."
+msgstr ""
+
+msgid "value to assign to the local variable"
+msgstr ""
+
+msgid ""
+"the name of the local variable or ``nil`` if there is no local variable "
+"with the given index; raises an error if ``level`` is out of range"
+msgstr ""
+
+msgid "Sets the metatable of the ``object`` to the ``table``."
+msgstr ""
+
+msgid "object to change the metatable of"
+msgstr ""
+
+msgid "table to set the object metatable to"
+msgstr ""
+
+msgid ""
+"Assigns the value ``value`` to the upvalue with the index ``up`` of the "
+"function ``func``."
+msgstr ""
+
+msgid "function to set the upvalue of"
+msgstr ""
+
+msgid "value to assign to the function upvalue"
+msgstr ""
+
+msgid ""
+"the name of the upvalue or ``nil`` if there is no upvalue with the given "
+"index"
+msgstr ""
+
+msgid "an optional message prepended to the traceback"
+msgstr ""
+
+msgid "specifies at which level to start the traceback (default is 1)"
+msgstr ""
+
+msgid "a string with a traceback of the call stack"
+msgstr ""
+

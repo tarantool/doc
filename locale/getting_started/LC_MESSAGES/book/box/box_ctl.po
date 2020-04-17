@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Submodule `box.ctl`"
+msgstr ""
+
+msgid ""
+"The ``box.ctl`` submodule contains two functions: ``wait_ro`` (wait until"
+" read-only) and ``wait_rw`` (wait until read-write). The functions are "
+"useful during initialization of a server."
+msgstr ""
+
+msgid ""
+"A particular use is for :ref:`box_once() <box-once>`. For example, when a"
+" replica is initializing, it may call a ``box.once()`` function while the"
+" server is still in read-only mode, and fail to make changes that are "
+"necessary only once before the replica is fully initialized. This could "
+"cause conflicts between a master and a replica if the master is in read-"
+"write mode and the replica is in read-only mode. Waiting until \"read "
+"only mode = false\" solves this problem."
+msgstr ""
+
+msgid ""
+"To see whether a function is already in read-only or read-write mode, "
+"check :ref:`box.info.ro <box_introspection-box_info>`."
+msgstr ""
+
+msgid "Wait until ``box.info.ro`` is true."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "maximum number of seconds to wait"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil, or error may be thrown due to timeout or fiber cancellation"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> box.info().ro\n"
+"---\n"
+"- false\n"
+"...\n"
+"\n"
+"tarantool> n = box.ctl.wait_ro(0.1)\n"
+"---\n"
+"- error: timed out\n"
+"..."
+msgstr ""
+
+msgid "Wait until box.info.ro is false."
+msgstr ""
+
+msgid ""
+"tarantool> box.ctl.wait_rw(0.1)\n"
+"---\n"
+"..."
+msgstr ""
+

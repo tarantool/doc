@@ -1,0 +1,371 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-06 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Functions for transaction management"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"For general information and examples, see section :ref:`Transaction "
+"control <atomic-atomic_execution>`."
+msgstr ""
+
+msgid "Observe the following rules when working with transactions:"
+msgstr ""
+
+msgid "Rule #1"
+msgstr ""
+
+msgid ""
+"The requests in a transaction must be sent to a server as a single block."
+" It is not enough to enclose them between begin and commit or rollback. "
+"To ensure they are sent as a single block: put them in a function, or put"
+" them all on one line, or use a delimiter so that multi-line requests are"
+" handled together."
+msgstr ""
+
+msgid "Rule #2"
+msgstr ""
+
+msgid ""
+"All database operations in a transaction should use the same storage "
+"engine. It is not safe to access tuple sets that are defined with "
+"``{engine='vinyl'}`` and also access tuple sets that are defined with "
+"``{engine='memtx'}``, in the same transaction."
+msgstr ""
+
+msgid "Rule #3"
+msgstr ""
+
+msgid ""
+"Requests which cause changes to the data definition -- create, alter, "
+"drop, truncate -- must not be used."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is a list of all functions for transaction management."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`box.begin() <box-begin>`"
+msgstr ""
+
+msgid "Begin the transaction"
+msgstr ""
+
+msgid ":ref:`box.commit() <box-commit>`"
+msgstr ""
+
+msgid "End the transaction and save all changes"
+msgstr ""
+
+msgid ":ref:`box.rollback() <box-rollback>`"
+msgstr ""
+
+msgid "End the transaction and discard all changes"
+msgstr ""
+
+msgid ":ref:`box.savepoint() <box-savepoint>`"
+msgstr ""
+
+msgid "Get a savepoint descriptor"
+msgstr ""
+
+msgid ":ref:`box.rollback_to_savepoint() <box-rollback_to_savepoint>`"
+msgstr ""
+
+msgid "Do not end the transaction and discard all changes made after a savepoint"
+msgstr ""
+
+msgid ":ref:`box.atomic() <box-atomic>`"
+msgstr ""
+
+msgid "Execute a function, treating it as a transaction"
+msgstr ""
+
+msgid ":ref:`box.on_commit() <box-on_commit>`"
+msgstr ""
+
+msgid "Define a trigger that will be activated by ``box.commit``"
+msgstr ""
+
+msgid ":ref:`box.on_rollback() <box-on_rollback>`"
+msgstr ""
+
+msgid "Define a trigger that will be activated by ``box.rollback``"
+msgstr ""
+
+msgid ":ref:`box.is_in_txn() <box-is_in_txn>`"
+msgstr ""
+
+msgid "State whether a transaction is in progress"
+msgstr ""
+
+msgid ""
+"Begin the transaction. Disable :ref:`implicit yields <atomic-implicit-"
+"yields>` until the transaction ends. Signal that writes to the :ref"
+":`write-ahead log <internals-wal>` will be deferred until the transaction"
+" ends. In effect the fiber which executes ``box.begin()`` is starting an "
+"\"active multi-request transaction\", blocking all other fibers."
+msgstr ""
+
+msgid ""
+"**Possible errors:** error if this operation is not permitted because "
+"there"
+msgstr ""
+
+msgid ""
+"is already an active transaction. error if for some reason memory cannot "
+"be allocated."
+msgstr ""
+
+msgid "End the transaction, and make all its data-change operations permanent."
+msgstr ""
+
+msgid ""
+"**Possible errors:**  error and abort the transaction in case of a "
+"conflict."
+msgstr ""
+
+msgid ""
+"error if the operation fails to write to disk. error if for some reason "
+"memory cannot be allocated."
+msgstr ""
+
+msgid ""
+"End the transaction, but cancel all its data-change operations. An "
+"explicit call to functions outside ``box.space`` that always yield, such "
+"as :ref:`fiber.sleep() <fiber-sleep>` or :ref:`fiber.yield() <fiber-"
+"yield>`, will have the same effect."
+msgstr ""
+
+msgid ""
+"Return a descriptor of a savepoint (type = table), which can be used "
+"later by :ref:`box.rollback_to_savepoint(savepoint) <box-"
+"rollback_to_savepoint>`. Savepoints can only be created while a "
+"transaction is active, and they are destroyed when a transaction ends."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "savepoint table"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "Lua object"
+msgstr ""
+
+msgid "error if the savepoint cannot be set in absence of active transaction."
+msgstr ""
+
+msgid "**Possible errors:** error if for some reason memory cannot be allocated."
+msgstr ""
+
+msgid ""
+"Do not end the transaction, but cancel all its data-change and "
+":ref:`box.savepoint() <box-savepoint>` operations that were done after "
+"the specified savepoint."
+msgstr ""
+
+msgid "**Possible errors:** error if the savepoint does not exist."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"function f()\n"
+"  box.begin()           -- start transaction\n"
+"  box.space.t:insert{1} -- this will not be rolled back\n"
+"  local s = box.savepoint()\n"
+"  box.space.t:insert{2} -- this will be rolled back\n"
+"  box.rollback_to_savepoint(s)\n"
+"  box.commit()          -- end transaction\n"
+"end"
+msgstr ""
+
+msgid ""
+"Execute a function, acting as if the function starts with an implicit "
+":ref:`box.begin() <box-begin>` and ends with an implicit "
+":ref:`box.commit() <box-commit>` if successful, or ends with an implicit "
+":ref:`box.rollback() <box-rollback>` if there is an error."
+msgstr ""
+
+msgid "the result of the function passed to ``atomic()`` as an argument."
+msgstr ""
+
+msgid "**Possible errors:** any error that :ref:`box.begin() <box-begin>` and"
+msgstr ""
+
+msgid ":ref:`box.commit() <box-commit>` can return."
+msgstr ""
+
+msgid ""
+"Define a trigger for execution when a transaction ends due to an event "
+"such as :ref:`box.commit <box-commit>`."
+msgstr ""
+
+msgid ""
+"The trigger function may take an iterator parameter, as described in an "
+"example for this section."
+msgstr ""
+
+msgid "The trigger function should not access any database spaces."
+msgstr ""
+
+msgid ""
+"If the trigger execution fails and raises an error, the effect is severe "
+"and should be avoided -- use Lua's ``pcall()`` mechanism around code that"
+" might fail."
+msgstr ""
+
+msgid ""
+"``box.on_commit()`` must be invoked within a transaction, and the trigger"
+" ceases to exist when the transaction ends."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "function which will become the trigger function"
+msgstr ""
+
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+msgid "nil or function pointer"
+msgstr ""
+
+msgid ""
+"If the parameters are ``(nil, old-trigger-function)``, then the old "
+"trigger is deleted."
+msgstr ""
+
+msgid ""
+"Details about trigger characteristics are in the :ref:`triggers "
+"<triggers-box_triggers>` section."
+msgstr ""
+
+msgid "**Simple and useless example:** this will display 'commit happened':"
+msgstr ""
+
+msgid ""
+"function f()\n"
+"function f() print('commit happened') end\n"
+"box.begin() box.on_commit(f) box.commit()"
+msgstr ""
+
+msgid ""
+"But of course there is more to it: the function parameter can be an "
+"ITERATOR."
+msgstr ""
+
+msgid ""
+"The iterator goes through the effects of every request that changed a "
+"space during the transaction."
+msgstr ""
+
+msgid "The iterator will have:"
+msgstr ""
+
+msgid "an ordinal request number,"
+msgstr ""
+
+msgid ""
+"the old value of the tuple before the request (this will be nil for an "
+"insert request),"
+msgstr ""
+
+msgid ""
+"the new value of the tuple after the request (this will be nil for a "
+"delete request),"
+msgstr ""
+
+msgid "and the id of the space."
+msgstr ""
+
+msgid ""
+"**Less simple more useful example:** this will display the effects of two"
+" replace requests:"
+msgstr ""
+
+msgid ""
+"box.space.test:drop()\n"
+"s = box.schema.space.create('test')\n"
+"i = box.space.test:create_index('i')\n"
+"function f(iterator)\n"
+"  for request_number, old_tuple, new_tuple, space_id in iterator() do\n"
+"    print('request_number ' .. tostring(request_number))\n"
+"    print('  old_tuple ' .. tostring(old_tuple[1]) .. ' ' .. "
+"old_tuple[2])\n"
+"    print('  new_tuple ' .. tostring(new_tuple[1]) .. ' ' .. "
+"new_tuple[2])\n"
+"    print('  space_id ' .. tostring(space_id))\n"
+"  end\n"
+"end\n"
+"s:insert{1,'-'}\n"
+"box.begin() s:replace{1,'x'} s:replace{1,'y'} box.on_commit(f) "
+"box.commit()"
+msgstr ""
+
+msgid "The result will look like this:"
+msgstr ""
+
+msgid ""
+"tarantool> box.begin() s:replace{1,'x'} s:replace{1,'y'} box.on_commit(f)"
+" box.commit()\n"
+"request_number 1\n"
+"  old_tuple 1 -\n"
+"  new_tuple 1 x\n"
+"  space_id 517\n"
+"request_number 2\n"
+"  old_tuple 1 x\n"
+"  new_tuple 1 y\n"
+"  space_id 517"
+msgstr ""
+
+msgid ""
+"Define a trigger for execution when a transaction ends due to an event "
+"such as :ref:`box.rollback <box-rollback>`."
+msgstr ""
+
+msgid ""
+"The parameters and warnings are exactly the same as for :ref:`box.on-"
+"commit <box-on_commit>`."
+msgstr ""
+
+msgid ""
+"If a transaction is in progress (for example the user has called "
+":ref:`box.begin <box-begin>` and has not yet called either "
+":ref:`box.commit <box-commit>` or :ref:`box.rollback <box-rollback>`, "
+"return ``true``. Otherwise return ``false``."
+msgstr ""
+

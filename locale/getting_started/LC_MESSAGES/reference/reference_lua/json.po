@@ -1,0 +1,462 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-17 16:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Module `json`"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"The ``json`` module provides JSON manipulation routines. It is based on "
+"the `Lua-CJSON module by Mark Pulford "
+"<http://www.kyne.com.au/~mark/software/lua-cjson.php>`_. For a complete "
+"manual on Lua-CJSON please read `the official documentation "
+"<http://www.kyne.com.au/~mark/software/lua-cjson-manual.html>`_."
+msgstr ""
+
+msgid "Index"
+msgstr ""
+
+msgid "Below is a list of all ``json`` functions and members."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`json.encode() <json-encode>`"
+msgstr ""
+
+msgid "Convert a Lua object to a JSON string"
+msgstr ""
+
+msgid ":ref:`json.decode() <json-decode>`"
+msgstr ""
+
+msgid "Convert a JSON string to a Lua object"
+msgstr ""
+
+msgid ":ref:`__serialize parameter <json-serialize>`"
+msgstr ""
+
+msgid "Output structure specification"
+msgstr ""
+
+msgid ":ref:`json.cfg() <json-module_cfg>`"
+msgstr ""
+
+msgid "Change configuration"
+msgstr ""
+
+msgid ":ref:`json.NULL <json-null>`"
+msgstr ""
+
+msgid "Analog of Lua's \"nil\""
+msgstr ""
+
+msgid "Convert a Lua object to a JSON string."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "either a scalar value or a Lua table value."
+msgstr ""
+
+msgid "see :ref:`json.cfg <json-module_cfg>`"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the original value reformatted as a JSON string."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> json=require('json')\n"
+"---\n"
+"...\n"
+"tarantool> json.encode(123)\n"
+"---\n"
+"- '123'\n"
+"...\n"
+"tarantool> json.encode({123})\n"
+"---\n"
+"- '[123]'\n"
+"...\n"
+"tarantool> json.encode({123, 234, 345})\n"
+"---\n"
+"- '[123,234,345]'\n"
+"...\n"
+"tarantool> json.encode({abc = 234, cde = 345})\n"
+"---\n"
+"- '{\"cde\":345,\"abc\":234}'\n"
+"...\n"
+"tarantool> json.encode({hello = {'world'}})\n"
+"---\n"
+"- '{\"hello\":[\"world\"]}'\n"
+"..."
+msgstr ""
+
+msgid "Convert a JSON string to a Lua object."
+msgstr ""
+
+msgid "a string formatted as JSON."
+msgstr ""
+
+msgid "the original contents formatted as a Lua table."
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid ""
+"tarantool> json = require('json')\n"
+"---\n"
+"...\n"
+"tarantool> json.decode('123')\n"
+"---\n"
+"- 123\n"
+"...\n"
+"tarantool> json.decode('[123, \"hello\"]')\n"
+"---\n"
+"- [123, 'hello']\n"
+"...\n"
+"tarantool> json.decode('{\"hello\": \"world\"}').hello\n"
+"---\n"
+"- world\n"
+"..."
+msgstr ""
+
+msgid ""
+"See the tutorial :ref:`Sum a JSON field for all tuples <c_lua_tutorial-"
+"sum_a_json_field>` to see how ``json.decode()`` can fit in an "
+"application."
+msgstr ""
+
+msgid "**__serialize parameter:**"
+msgstr ""
+
+msgid "The JSON output structure can be specified with ``__serialize``:"
+msgstr ""
+
+msgid "'seq', 'sequence', 'array' - table encoded as an array"
+msgstr ""
+
+msgid "'map', 'mapping' - table encoded as a map"
+msgstr ""
+
+msgid ""
+"function - the meta-method called to unpack serializable representation "
+"of table, cdata or userdata objects"
+msgstr ""
+
+msgid ""
+"Serializing 'A' and 'B' with different ``__serialize`` values brings "
+"different results:"
+msgstr ""
+
+msgid ""
+"tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize=\"seq\"}))\n"
+"---\n"
+"- '[\"A\",\"B\"]'\n"
+"...\n"
+"tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize=\"map\"}))\n"
+"---\n"
+"- '{\"1\":\"A\",\"2\":\"B\"}'\n"
+"...\n"
+"tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { "
+"__serialize=\"map\"})})\n"
+"---\n"
+"- '[{\"f2\":\"B\",\"f1\":\"A\"}]'\n"
+"...\n"
+"tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { "
+"__serialize=\"seq\"})})\n"
+"---\n"
+"- '[[]]'\n"
+"..."
+msgstr ""
+
+msgid ""
+"Set values that affect the behavior of :ref:`json.encode <json-encode>` "
+"and :ref:`json.decode <json-decode>`."
+msgstr ""
+
+msgid "The values are all either integers or boolean ``true``/``false``."
+msgstr ""
+
+msgid "Option"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "``cfg.encode_max_depth``"
+msgstr ""
+
+msgid "128"
+msgstr ""
+
+msgid "Max recursion depth for encoding"
+msgstr ""
+
+msgid "``cfg.encode_deep_as_nil``"
+msgstr ""
+
+msgid "false"
+msgstr ""
+
+msgid ""
+"A flag saying whether to crop tables with nesting level deeper than "
+"``cfg.encode_max_depth``. Not-encoded fields are replaced with one null. "
+"If not set, too deep nesting is considered an error."
+msgstr ""
+
+msgid "``cfg.encode_invalid_numbers``"
+msgstr ""
+
+msgid "true"
+msgstr ""
+
+msgid "A flag saying whether to enable encoding of NaN and Inf numbers"
+msgstr ""
+
+msgid "``cfg.encode_number_precision``"
+msgstr ""
+
+msgid "14"
+msgstr ""
+
+msgid "Precision of floating point numbers"
+msgstr ""
+
+msgid "``cfg.encode_load_metatables``"
+msgstr ""
+
+msgid ""
+"A flag saying whether the serializer will follow :ref:`__serialize <json-"
+"serialize>` metatable field"
+msgstr ""
+
+msgid "``cfg.encode_use_tostring``"
+msgstr ""
+
+msgid "A flag saying whether to use ``tostring()`` for unknown types"
+msgstr ""
+
+msgid "``cfg.encode_invalid_as_nil``"
+msgstr ""
+
+msgid "A flag saying whether use NULL for non-recognized types"
+msgstr ""
+
+msgid "``cfg.encode_sparse_convert``"
+msgstr ""
+
+msgid ""
+"A flag saying whether to handle excessively sparse arrays as maps. See "
+"detailed description :ref:`below <json-module_cfg_sparse>`."
+msgstr ""
+
+msgid "``cfg.encode_sparse_ratio``"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid ""
+"1/``encode_sparse_ratio`` is the permissible percentage of missing values"
+" in a sparse array."
+msgstr ""
+
+msgid "``cfg.encode_sparse_safe``"
+msgstr ""
+
+msgid "10"
+msgstr ""
+
+msgid ""
+"A limit ensuring that small Lua arrays are always encoded as sparse "
+"arrays (instead of generating an error or encoding as a map)"
+msgstr ""
+
+msgid "``cfg.decode_invalid_numbers``"
+msgstr ""
+
+msgid "A flag saying whether to enable decoding of NaN and Inf numbers"
+msgstr ""
+
+msgid "``cfg.decode_save_metatables``"
+msgstr ""
+
+msgid "A flag saying whether to set metatables for all arrays and maps"
+msgstr ""
+
+msgid "``cfg.decode_max_depth``"
+msgstr ""
+
+msgid "Max recursion depth for decoding"
+msgstr ""
+
+msgid "**Sparse arrays features:**"
+msgstr ""
+
+msgid ""
+"During encoding, the JSON encoder tries to classify a table into one of "
+"four kinds:"
+msgstr ""
+
+msgid "map - at least one table index is not unsigned integer"
+msgstr ""
+
+msgid "regular array - all array indexes are available"
+msgstr ""
+
+msgid "sparse array - at least one array index is missing"
+msgstr ""
+
+msgid ""
+"excessively sparse array - the number of values missing exceeds the "
+"configured ratio"
+msgstr ""
+
+msgid ""
+"An array is excessively sparse when **all** the following conditions are "
+"met:"
+msgstr ""
+
+msgid "``encode_sparse_ratio`` > 0"
+msgstr ""
+
+msgid "``max(table)`` > ``encode_sparse_safe``"
+msgstr ""
+
+msgid "``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``"
+msgstr ""
+
+msgid ""
+"The JSON encoder will never consider an array to be excessively sparse "
+"when ``encode_sparse_ratio = 0``. The ``encode_sparse_safe`` limit "
+"ensures that small Lua arrays are always encoded as sparse arrays. By "
+"default, attempting to encode an excessively sparse array will generate "
+"an error. If ``encode_sparse_convert`` is set to ``true``, excessively "
+"sparse arrays will be handled as maps."
+msgstr ""
+
+msgid "**json.cfg() example 1:**"
+msgstr ""
+
+msgid ""
+"The following code will encode 0/0 as NaN (\"not a number\") and 1/0 as "
+"Inf (\"infinity\"), rather than returning nil or an error message:"
+msgstr ""
+
+msgid ""
+"json = require('json')\n"
+"json.cfg{encode_invalid_numbers = true}\n"
+"x = 0/0\n"
+"y = 1/0\n"
+"json.encode({1, x, y, 2})"
+msgstr ""
+
+msgid "The result of the ``json.encode()`` request will look like this:"
+msgstr ""
+
+msgid ""
+"tarantool> json.encode({1, x, y, 2})\n"
+"---\n"
+"- '[1,nan,inf,2]\n"
+"..."
+msgstr ""
+
+msgid "**json.cfg example 2:**"
+msgstr ""
+
+msgid ""
+"To avoid generating errors on attempts to encode unknown data types as "
+"userdata/cdata, you can use this code:"
+msgstr ""
+
+msgid ""
+"tarantool> httpc = require('http.client').new()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> json.encode(httpc.curl)\n"
+"---\n"
+"- error: unsupported Lua type 'userdata'\n"
+"...\n"
+"\n"
+"tarantool> json.encode(httpc.curl, {encode_use_tostring=true})\n"
+"---\n"
+"- '\"userdata: 0x010a4ef2a0\"'\n"
+"..."
+msgstr ""
+
+msgid ""
+"To achieve the same effect for only one call to ``json.encode()`` (i.e. "
+"without changing the configuration permanently), you can use "
+"``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``."
+msgstr ""
+
+msgid ""
+"Similar configuration settings exist for :ref:`MsgPack <msgpack-cfg>` and"
+" :ref:`YAML <yaml-cfg>`."
+msgstr ""
+
+msgid ""
+"A value comparable to Lua \"nil\" which may be useful as a placeholder in"
+" a tuple."
+msgstr ""
+
+msgid ""
+"-- When nil is assigned to a Lua-table field, the field is null\n"
+"tarantool> {nil, 'a', 'b'}\n"
+"---\n"
+"- - null\n"
+"  - a\n"
+"  - b\n"
+"...\n"
+"-- When json.NULL is assigned to a Lua-table field, the field is "
+"json.NULL\n"
+"tarantool> {json.NULL, 'a', 'b'}\n"
+"---\n"
+"- - null\n"
+"  - a\n"
+"  - b\n"
+"...\n"
+"-- When json.NULL is assigned to a JSON field, the field is null\n"
+"tarantool> json.encode({field2 = json.NULL, field1 = 'a', field3 = 'c'})\n"
+"---\n"
+"- '{\"field2\":null,\"field1\":\"a\",\"field3\":\"c\"}'\n"
+"..."
+msgstr ""
+

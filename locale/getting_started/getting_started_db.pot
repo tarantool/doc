@@ -1,0 +1,449 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-17 16:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Creating your first Tarantool database"
+msgstr ""
+
+msgid "First thing, let's install Tarantool, start it, and create a simple database."
+msgstr ""
+
+msgid "You can install Tarantool and work with it locally or in Docker."
+msgstr ""
+
+msgid "Using a Docker image"
+msgstr ""
+
+msgid "For trial and test purposes, we recommend using `official Tarantool images for Docker <https://github.com/tarantool/docker>`_. An official image contains a particular Tarantool version and all popular external modules for Tarantool. Everything is already installed and configured in Linux. These images are the easiest way to install and use Tarantool."
+msgstr ""
+
+msgid "If you're new to Docker, we recommend going over `this tutorial <https://docs.docker.com/engine/getstarted/step_one/>`_ before proceeding with this chapter."
+msgstr ""
+
+msgid "Launching a container"
+msgstr ""
+
+msgid "If you don't have Docker installed, please follow the official `installation guide <https://docs.docker.com/engine/getstarted/step_one/#/step-1-get-docker>`_ for your OS."
+msgstr ""
+
+msgid "To start a fully functional Tarantool instance, run a container with minimal options:"
+msgstr ""
+
+msgid "$ docker run \\\n"
+"  --name mytarantool \\\n"
+"  -d -p 3301:3301 \\\n"
+"  -v /data/dir/on/host:/var/lib/tarantool \\\n"
+"  tarantool/tarantool:1"
+msgstr ""
+
+msgid "This command runs a new container named ``mytarantool``. Docker starts it from an official image named ``tarantool/tarantool:1``, with Tarantool version ``1.10`` and all external modules already installed."
+msgstr ""
+
+msgid "Tarantool will be accepting incoming connections on ``localhost:3301``. You may start using it as a key-value storage right away."
+msgstr ""
+
+msgid "Tarantool :ref:`persists data <index-box_persistence>` inside the container. To make your test data available after you stop the container, this command also mounts the host's directory ``/data/dir/on/host`` (you need to specify here an absolute path to an existing local directory) in the container's directory ``/var/lib/tarantool`` (by convention, Tarantool in a container uses this directory to persist data). So, all changes made in the mounted directory on the container's side are applied to the host's disk."
+msgstr ""
+
+msgid "Tarantool's database module in the container is already :ref:`configured <box_introspection-box_cfg>` and started. You needn't do it manually, unless you use Tarantool as an :ref:`application server <app_server>` and run it with an application."
+msgstr ""
+
+msgid "Attaching to Tarantool"
+msgstr ""
+
+msgid "To attach to Tarantool that runs inside the container, say:"
+msgstr ""
+
+msgid "$ docker exec -i -t mytarantool console"
+msgstr ""
+
+msgid "This command:"
+msgstr ""
+
+msgid "Instructs Tarantool to open an interactive console port for incoming connections."
+msgstr ""
+
+msgid "Attaches to the Tarantool server inside the container under ``admin`` user via a standard Unix socket."
+msgstr ""
+
+msgid "Tarantool displays a prompt:"
+msgstr ""
+
+msgid "tarantool.sock>"
+msgstr ""
+
+msgid "Now you can enter requests on the command line."
+msgstr ""
+
+msgid "On production machines, Tarantool's interactive mode is for system administration only. But we use it for most examples in this manual, because the interactive mode is convenient for learning."
+msgstr ""
+
+msgid "Creating a database"
+msgstr ""
+
+msgid "While you're attached to the console, let's create a simple test database."
+msgstr ""
+
+msgid "First, create the first :ref:`space <index-box_space>` (named ``tester``):"
+msgstr ""
+
+msgid "tarantool.sock> s = box.schema.space.create('tester')"
+msgstr ""
+
+msgid "Format the created space by specifying field names and types:"
+msgstr ""
+
+msgid "tarantool.sock> s:format({\n"
+"              > {name = 'id', type = 'unsigned'},\n"
+"              > {name = 'band_name', type = 'string'},\n"
+"              > {name = 'year', type = 'unsigned'}\n"
+"              > })"
+msgstr ""
+
+msgid "Create the first :ref:`index <index-box_index>` (named ``primary``):"
+msgstr ""
+
+msgid "tarantool.sock> s:create_index('primary', {\n"
+"              > type = 'hash',\n"
+"              > parts = {'id'}\n"
+"              > })"
+msgstr ""
+
+msgid "This is a primary index based on the ``id`` field of each tuple."
+msgstr ""
+
+msgid "Insert three :ref:`tuples <index-box_tuple>` (our name for records) into the space:"
+msgstr ""
+
+msgid "tarantool.sock> s:insert{1, 'Roxette', 1986}\n"
+"tarantool.sock> s:insert{2, 'Scorpions', 2015}\n"
+"tarantool.sock> s:insert{3, 'Ace of Base', 1993}"
+msgstr ""
+
+msgid "To select a tuple using the ``primary`` index, say:"
+msgstr ""
+
+msgid "tarantool.sock> s:select{3}"
+msgstr ""
+
+msgid "The terminal screen now looks like this:"
+msgstr ""
+
+msgid "tarantool.sock> s = box.schema.space.create('tester')\n"
+"---\n"
+"...\n"
+"tarantool.sock> s:format({\n"
+"              > {name = 'id', type = 'unsigned'},\n"
+"              > {name = 'band_name', type = 'string'},\n"
+"              > {name = 'year', type = 'unsigned'}\n"
+"              > })\n"
+"---\n"
+"...\n"
+"tarantool.sock> s:create_index('primary', {\n"
+"              > type = 'hash',\n"
+"              > parts = {'id'}\n"
+"              > })\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 1\n"
+"  id: 0\n"
+"  space_id: 512\n"
+"  name: primary\n"
+"  type: HASH\n"
+"...\n"
+"tarantool.sock> s:insert{1, 'Roxette', 1986}\n"
+"---\n"
+"- [1, 'Roxette', 1986]\n"
+"...\n"
+"tarantool.sock> s:insert{2, 'Scorpions', 2015}\n"
+"---\n"
+"- [2, 'Scorpions', 2015]\n"
+"...\n"
+"tarantool.sock> s:insert{3, 'Ace of Base', 1993}\n"
+"---\n"
+"- [3, 'Ace of Base', 1993]\n"
+"...\n"
+"tarantool.sock> s:select{3}\n"
+"---\n"
+"- - [3, 'Ace of Base', 1993]\n"
+"..."
+msgstr ""
+
+msgid "To add a secondary index based on the ``band_name`` field, say:"
+msgstr ""
+
+msgid "tarantool.sock> s:create_index('secondary', {\n"
+"              > type = 'hash',\n"
+"              > parts = {'band_name'}\n"
+"              > })"
+msgstr ""
+
+msgid "To select tuples using the ``secondary`` index, say:"
+msgstr ""
+
+msgid "tarantool.sock> s.index.secondary:select{'Scorpions'}\n"
+"---\n"
+"- - [2, 'Scorpions', 2015]\n"
+"..."
+msgstr ""
+
+msgid "Stopping a container"
+msgstr ""
+
+msgid "When the testing is over, stop the container politely:"
+msgstr ""
+
+msgid "$ docker stop mytarantool"
+msgstr ""
+
+msgid "This was a temporary container, and its disk/memory data were flushed when you stopped it. But since you mounted a data directory from the host in the container, Tarantool's data files were persisted to the host's disk. Now if you start a new container and mount that data directory in it, Tarantool will recover all data from disk and continue working with the persisted data."
+msgstr ""
+
+msgid "Using a binary package"
+msgstr ""
+
+msgid "For production purposes, we recommend `official binary packages <http://tarantool.org/download.html>`_. You can choose from two Tarantool versions: ``1.10`` (stable) or ``2.2`` (beta). An automatic build system creates, tests and publishes packages for every push into a corresponding branch (``1.10`` or ``2.2``) at `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_."
+msgstr ""
+
+msgid "To download and install the package that’s appropriate for your OS, start a shell (terminal) and enter the command-line instructions provided for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_."
+msgstr ""
+
+msgid "Starting Tarantool"
+msgstr ""
+
+msgid "To start a Tarantool instance, say this:"
+msgstr ""
+
+msgid "$ # if you downloaded a binary with apt-get or yum, say this:\n"
+"$ /usr/bin/tarantool\n"
+"$ # if you downloaded and untarred a binary tarball to ~/tarantool, say this:\n"
+"$ ~/tarantool/bin/tarantool"
+msgstr ""
+
+msgid "Tarantool starts in the interactive mode and displays a prompt:"
+msgstr ""
+
+msgid "tarantool>"
+msgstr ""
+
+msgid "Here is how to create a simple test database after installation."
+msgstr ""
+
+msgid "To let Tarantool store data in a separate place, create a new directory dedicated for tests:"
+msgstr ""
+
+msgid "$ mkdir ~/tarantool_sandbox\n"
+"$ cd ~/tarantool_sandbox"
+msgstr ""
+
+msgid "You can delete the directory when the tests are over."
+msgstr ""
+
+msgid "Check if the default port the database instance will listen to is vacant."
+msgstr ""
+
+msgid "Depending on the release, during installation Tarantool may start a demonstrative global ``example.lua`` instance that listens to the ``3301`` port by default. The ``example.lua`` file showcases basic configuration and can be found in the ``/etc/tarantool/instances.enabled`` or ``/etc/tarantool/instances.available`` directories."
+msgstr ""
+
+msgid "However, we encourage you to perform the instance startup manually, so you can learn."
+msgstr ""
+
+msgid "Make sure the default port is vacant:"
+msgstr ""
+
+msgid "To check if the demonstrative instance is running, say:"
+msgstr ""
+
+msgid "$ lsof -i :3301\n"
+"COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\n"
+"tarantool 6851 root   12u  IPv4  40827      0t0  TCP *:3301 (LISTEN)"
+msgstr ""
+
+msgid "If it does, kill the corresponding process. In this example:"
+msgstr ""
+
+msgid "$ kill 6851"
+msgstr ""
+
+msgid "To start Tarantool's database module and make the instance accept TCP requests on port ``3301``, say:"
+msgstr ""
+
+msgid "tarantool> box.cfg{listen = 3301}"
+msgstr ""
+
+msgid "Create the first :ref:`space <index-box_space>` (named ``tester``):"
+msgstr ""
+
+msgid "tarantool> s = box.schema.space.create('tester')"
+msgstr ""
+
+msgid "tarantool> s:format({\n"
+"         > {name = 'id', type = 'unsigned'},\n"
+"         > {name = 'band_name', type = 'string'},\n"
+"         > {name = 'year', type = 'unsigned'}\n"
+"         > })"
+msgstr ""
+
+msgid "tarantool> s:create_index('primary', {\n"
+"         > type = 'hash',\n"
+"         > parts = {'id'}\n"
+"         > })"
+msgstr ""
+
+msgid "tarantool> s:insert{1, 'Roxette', 1986}\n"
+"tarantool> s:insert{2, 'Scorpions', 2015}\n"
+"tarantool> s:insert{3, 'Ace of Base', 1993}"
+msgstr ""
+
+msgid "tarantool> s:select{3}"
+msgstr ""
+
+msgid "tarantool> s = box.schema.space.create('tester')\n"
+"---\n"
+"...\n"
+"tarantool> s:format({\n"
+"         > {name = 'id', type = 'unsigned'},\n"
+"         > {name = 'band_name', type = 'string'},\n"
+"         > {name = 'year', type = 'unsigned'}\n"
+"         > })\n"
+"---\n"
+"...\n"
+"tarantool> s:create_index('primary', {\n"
+"         > type = 'hash',\n"
+"         > parts = {'id'}\n"
+"         > })\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 1\n"
+"  id: 0\n"
+"  space_id: 512\n"
+"  name: primary\n"
+"  type: HASH\n"
+"...\n"
+"tarantool> s:insert{1, 'Roxette', 1986}\n"
+"---\n"
+"- [1, 'Roxette', 1986]\n"
+"...\n"
+"tarantool> s:insert{2, 'Scorpions', 2015}\n"
+"---\n"
+"- [2, 'Scorpions', 2015]\n"
+"...\n"
+"tarantool> s:insert{3, 'Ace of Base', 1993}\n"
+"---\n"
+"- [3, 'Ace of Base', 1993]\n"
+"...\n"
+"tarantool> s:select{3}\n"
+"---\n"
+"- - [3, 'Ace of Base', 1993]\n"
+"..."
+msgstr ""
+
+msgid "tarantool> s:create_index('secondary', {\n"
+"         > type = 'hash',\n"
+"         > parts = {'band_name'}\n"
+"         > })"
+msgstr ""
+
+msgid "tarantool> s.index.secondary:select{'Scorpions'}\n"
+"---\n"
+"- - [2, 'Scorpions', 2015]\n"
+"..."
+msgstr ""
+
+msgid "Now, to prepare for the example in the next section, try this:"
+msgstr ""
+
+msgid "tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')"
+msgstr ""
+
+msgid "Connecting remotely"
+msgstr ""
+
+msgid "In the request ``box.cfg{listen = 3301}`` that we made earlier, the ``listen`` value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier). In this case, it’s just a local port: port ``3301``. You can send requests to the listen URI via:"
+msgstr ""
+
+msgid "``telnet``,"
+msgstr ""
+
+msgid "a :ref:`connector <index-box_connectors>`,"
+msgstr ""
+
+msgid "another instance of Tarantool (using the :ref:`console <console-module>` module), or"
+msgstr ""
+
+msgid ":ref:`tarantoolctl <tarantoolctl>` utility."
+msgstr ""
+
+msgid "Let’s try (4)."
+msgstr ""
+
+msgid "Switch to another terminal. On Linux, for example, this means starting another instance of a Bash shell. You can switch to any working directory in the new terminal, not necessarily to ``~/tarantool_sandbox``."
+msgstr ""
+
+msgid "Start the ``tarantoolctl`` utility:"
+msgstr ""
+
+msgid "$ tarantoolctl connect '3301'"
+msgstr ""
+
+msgid "This means \"use ``tarantoolctl connect`` to connect to the Tarantool instance that’s listening on ``localhost:3301``\"."
+msgstr ""
+
+msgid "Try this request:"
+msgstr ""
+
+msgid "localhost:3301> box.space.tester:select{2}"
+msgstr ""
+
+msgid "This means \"send a request to that Tarantool instance, and display the result\". The result in this case is one of the tuples that was inserted earlier. Your terminal screen should now look like this:"
+msgstr ""
+
+msgid "$ tarantoolctl connect 3301\n"
+"/usr/local/bin/tarantoolctl: connected to localhost:3301\n"
+"localhost:3301> box.space.tester:select{2}\n"
+"---\n"
+"- - [2, 'Scorpions', 2015]\n"
+"..."
+msgstr ""
+
+msgid "You can repeat ``box.space...:insert{}`` and ``box.space...:select{}`` indefinitely, on either Tarantool instance."
+msgstr ""
+
+msgid "When the testing is over:"
+msgstr ""
+
+msgid "To drop the space: ``s:drop()``"
+msgstr ""
+
+msgid "To stop ``tarantoolctl``: Ctrl+C or Ctrl+D"
+msgstr ""
+
+msgid "To stop Tarantool (an alternative): the standard Lua function `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_"
+msgstr ""
+
+msgid "To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``"
+msgstr ""
+
+msgid "To destroy the test: ``rm -r ~/tarantool_sandbox``"
+msgstr ""
+
