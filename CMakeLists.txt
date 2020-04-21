@@ -178,7 +178,7 @@ add_custom_target(update-pot
     COMMENT "Generate localization templates"
 )
 
-add_custom_target(update-po
+add_custom_target(update-po-no-force
     COMMAND "${SPHINX_INTL_EXECUTABLE}"
         update
         -p ${CMAKE_CURRENT_SOURCE_DIR}/locale
@@ -203,10 +203,10 @@ add_custom_target(rm-fake-msg
     COMMENT "Remove fake message from all .po files"
 )
 
-add_custom_target(update-po-force
+add_custom_target(update-po
     COMMAND make
         add-fake-msg
-        update-po
+        update-po-no-force
         rm-fake-msg
 )
 

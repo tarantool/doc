@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 16:46+0000\n"
+"POT-Creation-Date: 2020-04-21 15:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr ""
 msgid "**Returns**:"
 msgstr ""
 
-msgid "(`{string,..} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "(`{string,..} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "get_known_roles ()"
@@ -67,10 +67,10 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or `{[string]=boolean,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_ or `{[string]=boolean,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "(`{[string]=boolean,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "(`{[string]=boolean,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "get_role_dependencies (role_name)"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "List role dependencies. Including sub-dependencies."
 msgstr ""
 
-msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "validate_config (conf_new, conf_old)"
@@ -88,10 +88,10 @@ msgstr ""
 msgid "Validate configuration by all roles."
 msgstr ""
 
-msgid "*conf_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*conf_new:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
-msgid "*conf_old:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*conf_old:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) true"
@@ -103,7 +103,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
 msgstr ""
 
 msgid "apply_config (conf)"
@@ -112,6 +112,6 @@ msgstr ""
 msgid "Apply the role configuration."
 msgstr ""
 
-msgid "*conf:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*conf:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
