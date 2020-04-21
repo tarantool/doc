@@ -8,7 +8,6 @@ User's Guide
     :maxdepth: 2
 
     intro
-    getting_started/index
     box/index
     cartridge/index
     app_server/index
