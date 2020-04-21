@@ -82,10 +82,9 @@ You can already see these instances in the cluster management web interface at
 http://localhost:8081 (here 8081 is the HTTP port of the first instance
 specified in ``instances.yml``).
 
-.. image:: images/cluster_dry_run.png
+.. image:: images/cluster_dry_run-border-5px.png
    :align: center
    :scale: 40%
-   :class: frame
 
 Okay, press ``Ctrl + C`` to stop the cluster for a while.
 
@@ -207,34 +206,30 @@ Let's create a replica set containing just one instance and enable your role:
 #. (Optionally) Specify the replica set name, for example
    "hello-world-replica-set".
 
-   .. image:: images/cluster_create_replica_set.png
+   .. image:: images/cluster_create_replica_set-border-5px.png
       :align: center
       :scale: 40%
-      :class: frame
 
 #. Click **Create replica set** and see the newly-created replica set
    in the web interface.
 
-.. image:: images/cluster_new_replica_set.png
+.. image:: images/cluster_new_replica_set-border-5px.png
    :align: center
    :scale: 40%
-   :class: frame
 
 Your custom role got enabled. Find the "Hello world!" message in console,
 like this:
 
-.. image:: images/cluster_hello_world_console.png
+.. image:: images/cluster_hello_world_console-border-5px.png
    :align: center
    :scale: 40%
-   :class: frame
 
 Finally, open the HTTP endpoint of this instance at
 http://localhost:8081/hello and see the reply to your GET request.
 
-.. image:: images/cluster_hello_http.png
+.. image:: images/cluster_hello_http-border-5px.png
    :align: center
    :scale: 40%
-   :class: frame
 
 Everything is up and running! What's next?
 
