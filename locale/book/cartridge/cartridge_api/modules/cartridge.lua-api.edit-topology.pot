@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:00+0000\n"
+"POT-Creation-Date: 2020-04-21 18:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,13 +70,13 @@ msgstr ""
 msgid "**Fields:**"
 msgstr ""
 
-msgid "*uuid:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*alias:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "*all_rw:* (optional **boolean**)"
@@ -85,10 +85,10 @@ msgstr ""
 msgid "*weight:* (optional **number**)"
 msgstr ""
 
-msgid "*failover_priority:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) array of uuids specifying servers failover priority"
+msgid "*failover_priority:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of uuids specifying servers failover priority"
 msgstr ""
 
-msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "*join_servers:* (optional `{JoinServerParams,...} <cartridge.lua-api.edit-topology.JoinServerParams_>`_)"
@@ -100,10 +100,10 @@ msgstr ""
 msgid "Parameters required for joining a new server."
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*labels:* (optional `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
 msgstr ""
 
 msgid "EditServerParams"
@@ -112,10 +112,10 @@ msgstr ""
 msgid "Servers modifications."
 msgstr ""
 
-msgid "*uri:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "*disabled:* (optional **boolean**)"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:00+0000\n"
+"POT-Creation-Date: 2020-04-21 18:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*patch:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
+msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
 msgstr ""
 
 msgid "**Returns**:"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
 msgstr ""
 
 msgid "get_schema ()"
@@ -82,7 +82,7 @@ msgstr ""
 msgid "(**Added** in v1.2.0-28)"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Schema in YAML format"
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Schema in YAML format"
 msgstr ""
 
 msgid "set_schema (schema)"
@@ -91,10 +91,10 @@ msgstr ""
 msgid "Apply clusterwide DDL schema."
 msgstr ""
 
-msgid "*schema:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) in YAML format"
+msgid "*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in YAML format"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) The same new schema"
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new schema"
 msgstr ""
 
 msgid "Local Functions"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Validate the configuration and acquire a lock setting local variable and writing \"config.prepare.yml\" file. If the validation fails, the lock isn't acquired and doesn't have to be aborted."
 msgstr ""
 
-msgid "*data:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) clusterwide config content"
+msgid "*data:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) clusterwide config content"
 msgstr ""
 
 msgid "commit_2pc ()"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:00+0000\n"
+"POT-Creation-Date: 2020-04-21 18:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,28 +40,28 @@ msgstr ""
 msgid "*args:*"
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*instance_uuid:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*instance_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*replicaset_uuid:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*replicaset_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "*timeout:* (optional **number**)"
 msgstr ""
 
-msgid "*labels:* (optional `{[string]=string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*labels:* (optional `{[string]=string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*replicaset_alias:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*replicaset_alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "*replicaset_weight:* (optional **number**)"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
 msgstr ""
 
 msgid "edit_server (args)"
@@ -88,10 +88,10 @@ msgstr ""
 msgid "Edit an instance (*deprecated*)."
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*uri:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "expel_server (uuid)"
@@ -106,10 +106,10 @@ msgstr ""
 msgid "Edit replicaset parameters (*deprecated*)."
 msgstr ""
 
-msgid "*alias:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*master:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Failover order"
+msgid "*master:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Failover order"
 msgstr ""
 
 msgid "*weight:* (optional **number**)"

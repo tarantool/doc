@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:00+0000\n"
+"POT-Creation-Date: 2020-04-21 18:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,13 +40,13 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*section_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)  (optional)"
+msgid "*section_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
 msgstr ""
 
 msgid "**Returns**:"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
 msgstr ""
 
 msgid "get_deepcopy ([section_name])"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Perform state transition."
 msgstr ""
 
-msgid "*state:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) New state"
+msgid "*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) New state"
 msgstr ""
 
 msgid "*err:*   (optional)"
@@ -82,13 +82,13 @@ msgstr ""
 msgid "Make a wish for meeting desired state."
 msgstr ""
 
-msgid "*state:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Desired state."
+msgid "*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Desired state."
 msgstr ""
 
 msgid "*timeout:* (**number**)  (optional)"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Final state, may differ from desired."
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Final state, may differ from desired."
 msgstr ""
 
 msgid "validate_config (clusterwide_config_new)"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Validate configuration by all roles."
 msgstr ""
 
-msgid "*clusterwide_config_new:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
+msgid "*clusterwide_config_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
 msgstr ""
 
 msgid "(**boolean**) true"
@@ -106,7 +106,7 @@ msgstr ""
 msgid "**Or**"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
 msgstr ""
 
 msgid "apply_config (clusterwide_config)"
@@ -115,6 +115,6 @@ msgstr ""
 msgid "Apply the role configuration."
 msgstr ""
 
-msgid "*clusterwide_config:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
+msgid "*clusterwide_config:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
 msgstr ""
 

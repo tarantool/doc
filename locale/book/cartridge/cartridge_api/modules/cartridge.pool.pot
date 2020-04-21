@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:00+0000\n"
+"POT-Creation-Date: 2020-04-21 18:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "*opts:*"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
 msgstr ""
 
 msgid "Local Functions"
@@ -82,10 +82,10 @@ msgstr ""
 msgid "Enrich URI with credentials. Suitable to connect other cluster instances."
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) `host:port`"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) `host:port`"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) `username:password@host:port`"
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) `username:password@host:port`"
 msgstr ""
 
 msgid "map_call (fn_name[, args[, opts]])"
@@ -97,13 +97,13 @@ msgstr ""
 msgid "(**Added** in v1.2.0-17)"
 msgstr ""
 
-msgid "*fn_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*fn_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
-msgid "*args:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) function arguments (optional)"
+msgid "*args:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) function arguments (optional)"
 msgstr ""
 
-msgid "*uri_list:* (`{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) array of URIs for performing remote call"
+msgid "*uri_list:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of URIs for performing remote call"
 msgstr ""
 
 msgid "*timeout:* (optional **number**) passed to  ``net.box``   ``conn:call()``"
@@ -112,6 +112,6 @@ msgstr ""
 msgid "(**{URI=value,...}**) Call results mapping for every URI."
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) United error object, gathering errors for every URI that failed."
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) United error object, gathering errors for every URI that failed."
 msgstr ""
 
