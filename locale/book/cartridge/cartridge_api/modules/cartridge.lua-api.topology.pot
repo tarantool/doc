@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:13+0000\n"
+"POT-Creation-Date: 2020-04-21 20:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)  (optional)"
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
 msgstr ""
 
 msgid "**Returns**:"
@@ -49,7 +49,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
 msgstr ""
 
 msgid "get_replicasets ([uuid])"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Discover an instance."
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "enable_servers (uuids)"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Enable nodes after they were disabled."
 msgstr ""
 
-msgid "*uuids:* (`{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*uuids:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid "disable_servers (uuids)"
@@ -94,6 +94,6 @@ msgstr ""
 msgid "Get alias, uri and uuid of current instance."
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
 msgstr ""
 

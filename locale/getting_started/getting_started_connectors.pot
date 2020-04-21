@@ -1,0 +1,412 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-21 20:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Connecting from your favorite language"
+msgstr ""
+
+msgid "Now that you have a Tarantool database, let's see how to connect to it from Python, PHP and Go."
+msgstr ""
+
+msgid "Connecting from Python"
+msgstr ""
+
+msgid "Pre-requisites"
+msgstr ""
+
+msgid "Before we proceed:"
+msgstr ""
+
+msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`_ the ``tarantool-python`` library. We recommend using ``python3`` and ``pip3``."
+msgstr ""
+
+msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`."
+msgstr ""
+
+msgid "Please do not close the terminal window where Tarantool is running -- you'll need it soon."
+msgstr ""
+
+msgid "In order to connect to Tarantool as an administrator, reset the password for the ``admin`` user:"
+msgstr ""
+
+msgid "box.schema.user.passwd('pass')"
+msgstr ""
+
+msgid "Connecting to Tarantool"
+msgstr ""
+
+msgid "To get connected to the Tarantool server, say this:"
+msgstr ""
+
+msgid ">>> import tarantool\n"
+">>> connection = tarantool.connect(\"localhost\", 3301)"
+msgstr ""
+
+msgid "You can also specify the user name and password, if needed:"
+msgstr ""
+
+msgid ">>> tarantool.connect(\"localhost\", 3301, user=username, password=password)"
+msgstr ""
+
+msgid "The default user is ``guest``."
+msgstr ""
+
+msgid "Manipulating the data"
+msgstr ""
+
+msgid "A **space** is a container for **tuples**. To access a space as a named object, use ``connection.space``:"
+msgstr ""
+
+msgid ">>> tester = connection.space('tester')"
+msgstr ""
+
+msgid "Inserting data"
+msgstr ""
+
+msgid "To insert a tuple into a space, use ``insert``:"
+msgstr ""
+
+msgid ">>> tester.insert((4, 'ABBA', 1972))\n"
+"[4, 'ABBA', 1972]"
+msgstr ""
+
+msgid "Querying data"
+msgstr ""
+
+msgid "Let's start with selecting a tuple by the primary key (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple). Use ``select``:"
+msgstr ""
+
+msgid ">>> tester.select(4)\n"
+"[4, 'ABBA', 1972]"
+msgstr ""
+
+msgid "Next, select tuples by a secondary key. For this purpose, you need to specify the number *or* name of the index."
+msgstr ""
+
+msgid "First off, select tuples using the index number:"
+msgstr ""
+
+msgid ">>> tester.select('Scorpions', index=1)\n"
+"[2, 'Scorpions', 2015]"
+msgstr ""
+
+msgid "Now make a similar query by the index name and make sure that the result is the same:"
+msgstr ""
+
+msgid ">>> tester.select('Scorpions', index='secondary')\n"
+"[2, 'Scorpions', 2015]"
+msgstr ""
+
+msgid "Finally, select all the tuples in a space via a ``select`` with no arguments:"
+msgstr ""
+
+msgid ">>> tester.select()"
+msgstr ""
+
+msgid "Updating data"
+msgstr ""
+
+msgid "Update a field value using ``update``:"
+msgstr ""
+
+msgid ">>> tester.update(4, [('=', 1, 'New group'), ('+', 2, 2)])"
+msgstr ""
+
+msgid "This updates the value of field ``1`` and increases the value of field ``2`` in the tuple with ``id`` = 4. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgstr ""
+
+msgid "Now use ``replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
+msgstr ""
+
+msgid ">>> tester.replace((4, 'New band', 2015))"
+msgstr ""
+
+msgid "You can also update the data using ``upsert`` that works similarly to ``update``, but creates a new tuple if the old one was not found."
+msgstr ""
+
+msgid ">>> tester.upsert((4, 'Another band', 2000), [('+', 2, 5)])"
+msgstr ""
+
+msgid "This increases by 5 the value of field ``2`` in the tuple with ``id`` = 4, -- or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgstr ""
+
+msgid "Deleting data"
+msgstr ""
+
+msgid "To delete a tuple, use ``delete(primary_key)``:"
+msgstr ""
+
+msgid ">>> tester.delete(4)\n"
+"[4, 'New group', 2012]"
+msgstr ""
+
+msgid "To delete all tuples in a space (or to delete an entire space), use ``call``. We'll focus on this function in more detail in the :ref:`next <getting_started-python-stored-procs>` section."
+msgstr ""
+
+msgid "To delete all tuples in a space, call ``space:truncate``:"
+msgstr ""
+
+msgid ">>> connection.call('box.space.tester:truncate', ())"
+msgstr ""
+
+msgid "To delete an entire space, call ``space:drop``. This requires connecting to Tarantool as the ``admin`` user:"
+msgstr ""
+
+msgid ">>> connection.call('box.space.tester:drop', ())"
+msgstr ""
+
+msgid "Executing stored procedures"
+msgstr ""
+
+msgid "Switch to the terminal window where Tarantool is running."
+msgstr ""
+
+msgid "If you don't have a terminal window with remote connection to Tarantool, check out these guides:"
+msgstr ""
+
+msgid ":ref:`connecting to a local Tarantool instance <connecting-remotely>`"
+msgstr ""
+
+msgid ":ref:`attaching to a Tarantool instance that runs in a Docker container <getting_started-docker-attaching>`"
+msgstr ""
+
+msgid "Define a simple Lua function:"
+msgstr ""
+
+msgid "function sum(a, b)\n"
+"    return a + b\n"
+"end"
+msgstr ""
+
+msgid "Now we have a Lua function defined in Tarantool. To invoke this function from ``python``, use ``call``:"
+msgstr ""
+
+msgid ">>> connection.call('sum', (3, 2))\n"
+"5"
+msgstr ""
+
+msgid "To send bare Lua code for execution, use ``eval``:"
+msgstr ""
+
+msgid ">>> connection.eval('return 4 + 5')\n"
+"9"
+msgstr ""
+
+msgid "Connecting from PHP"
+msgstr ""
+
+msgid "`Install <https://github.com/tarantool-php/client#installation>`_ the ``tarantool-php`` library."
+msgstr ""
+
+msgid "require_once __DIR__.'/vendor/autoload.php';\n"
+"use Tarantool\\Client\\Client;\n"
+"$client = Client::fromDefaults();"
+msgstr ""
+
+msgid "$client = Client::fromOptions([\n"
+"    'uri' => 'tcp://127.0.0.1:3301',\n"
+"    'username' => '<username>',\n"
+"    'password' => '<password>'\n"
+"]);"
+msgstr ""
+
+msgid "A **space** is a container for **tuples**. To access a space as a named object, use ``getSpace``:"
+msgstr ""
+
+msgid "$tester = $client->getSpace('tester');"
+msgstr ""
+
+msgid "$result = $tester->insert([4, 'ABBA', 1972]);"
+msgstr ""
+
+msgid "use Tarantool\\Client\\Schema\\Criteria;\n"
+"\n"
+"$result = $tester->select(Criteria::key([4]));\n"
+"printf(json_encode($result));\n"
+"```\n"
+"```\n"
+"[[4, 'ABBA', 1972]]"
+msgstr ""
+
+msgid "$result = $tester->select(Criteria::index(1)->andKey(['Scorpions']));\n"
+"printf(json_encode($result));"
+msgstr ""
+
+msgid "[2, 'Scorpions', 2015]"
+msgstr ""
+
+msgid "$result = $tester->select(Criteria::index('secondary')->andKey(['Scorpions']));\n"
+"printf(json_encode($result));"
+msgstr ""
+
+msgid "$result = $tester->select(Criteria::AllIterator());"
+msgstr ""
+
+msgid "use Tarantool\\Client\\Schema\\Operations;\n"
+"\n"
+"$result = $tester->update([4], Operations::set(1, 'New group')->andAdd(2, 2));"
+msgstr ""
+
+msgid "$result = $tester->replace([4, 'New band', 2015]);"
+msgstr ""
+
+msgid "use Tarantool\\Client\\Schema\\Operations;\n"
+"\n"
+"$tester->upsert([4, 'Another band', 2000], Operations::add(2, 5));"
+msgstr ""
+
+msgid "$result = $tester->delete([4]);"
+msgstr ""
+
+msgid "To delete all tuples in a space (or to delete an entire space), use ``call``. We'll focus on this function in more detail in the :ref:`next <getting_started-php-stored-procs>` section."
+msgstr ""
+
+msgid "$result = $client->call('box.space.tester:truncate');"
+msgstr ""
+
+msgid "$result = $client->call('box.space.tester:drop');"
+msgstr ""
+
+msgid "Now we have a Lua function defined in Tarantool. To invoke this function from ``php``, use ``call``:"
+msgstr ""
+
+msgid "$result = $client->call('sum', 3, 2);"
+msgstr ""
+
+msgid "$result = $client->evaluate('return 4 + 5');"
+msgstr ""
+
+msgid "Connecting from Go"
+msgstr ""
+
+msgid "`Install <https://github.com/tarantool/go-tarantool#installation>`_ the ``go-tarantool`` library."
+msgstr ""
+
+msgid "To get connected to the Tarantool server, write a simple Go program:"
+msgstr ""
+
+msgid "package main\n"
+"\n"
+"import (\n"
+"    \"fmt\"\n"
+"\n"
+"    \"github.com/tarantool/go-tarantool\"\n"
+")\n"
+"\n"
+"func main() {\n"
+"    conn, err := tarantool.Connect(\"127.0.0.1:3301\", tarantool.Opts{})\n"
+"\n"
+"    if err != nil {\n"
+"        fmt.Println(\"Connection refused\")\n"
+"    }\n"
+"\n"
+"    defer conn.Close()\n"
+"\n"
+"    // Your logic for interacting with the database\n"
+"}"
+msgstr ""
+
+msgid "opts := tarantool.Opts{User: \"username\", Pass: \"password\"}\n"
+"conn, err := tarantool.Connect(\"127.0.0.1:3301\", opts)\n"
+"..."
+msgstr ""
+
+msgid "resp, err = conn.Insert(\"tester\", []interface{}{4, \"ABBA\", 1972})"
+msgstr ""
+
+msgid "This inserts the tuple ``(4, \"ABBA\", 1972)`` into a space named ``tester``."
+msgstr ""
+
+msgid "The response code and data are available in the ``tarantool.Response`` structure:"
+msgstr ""
+
+msgid "code := resp.Code\n"
+"data := resp.Data"
+msgstr ""
+
+msgid "To select a tuple from a space, use ``Select``:"
+msgstr ""
+
+msgid "resp, err = conn.Select(\"tester\", \"primary\", 0, 1, tarantool.IterEq, []interface{}{4})"
+msgstr ""
+
+msgid "This selects a tuple by the primary key with ``offset`` = 0 and ``limit`` = 1 from a space named ``tester`` (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple)."
+msgstr ""
+
+msgid "Next, select tuples by a secondary key."
+msgstr ""
+
+msgid "resp, err = conn.Select(\"tester\", \"secondary\", 0, 1, tarantool.IterEq, []interface{}{\"ABBA\"})"
+msgstr ""
+
+msgid "Finally, select all the tuples in a space:"
+msgstr ""
+
+msgid "resp, err = conn.Select(\"tester\", \"primary\", 0, tarantool.KeyLimit, tarantool.IterAll, []interface{}{})"
+msgstr ""
+
+msgid "Update a field value using ``Update``:"
+msgstr ""
+
+msgid "resp, err = conn.Update(\"tester\", \"primary\", []interface{}{4}, []interface{}{[]interface{}{\"+\", 2, 3}})"
+msgstr ""
+
+msgid "This increases by 3 the value of field ``2`` in the tuple with ``id`` = 4. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgstr ""
+
+msgid "Now use ``Replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
+msgstr ""
+
+msgid "resp, err = conn.Replace(\"tester\", []interface{}{4, \"New band\", 2011})"
+msgstr ""
+
+msgid "You can also update the data using ``Upsert`` that works similarly to ``Update``, but creates a new tuple if the old one was not found."
+msgstr ""
+
+msgid "resp, err = conn.Upsert(\"tester\", []interface{}{4, \"Another band\", 2000}, []interface{}{[]interface{}{\"+\", 2, 5}})"
+msgstr ""
+
+msgid "This increases by 5 the value of the third field in the tuple with ``id`` = 4, -- or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgstr ""
+
+msgid "To delete a tuple, use ``сonnection.Delete``:"
+msgstr ""
+
+msgid "resp, err = conn.Delete(\"tester\", \"primary\", []interface{}{4})"
+msgstr ""
+
+msgid "To delete all tuples in a space (or to delete an entire space), use ``Call``. We'll focus on this function in more detail in the :ref:`next <getting_started-go-stored-procs>` section."
+msgstr ""
+
+msgid "resp, err = conn.Call(\"box.space.tester:truncate\", []interface{}{})"
+msgstr ""
+
+msgid "resp, err = conn.Call(\"box.space.tester:drop\", []interface{}{})"
+msgstr ""
+
+msgid "Now we have a Lua function defined in Tarantool. To invoke this function from ``go``, use ``Call``:"
+msgstr ""
+
+msgid "resp, err = conn.Call(\"sum\", []interface{}{2, 3})"
+msgstr ""
+
+msgid "To send bare Lua code for execution, use ``Eval``:"
+msgstr ""
+
+msgid "resp, err = connection.Eval(\"return 4 + 5\", []interface{}{})"
+msgstr ""
+

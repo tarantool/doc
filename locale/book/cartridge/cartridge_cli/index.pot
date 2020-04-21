@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:13+0000\n"
+"POT-Creation-Date: 2020-04-21 20:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,9 @@ msgid ":ref:`Homebrew (MacOS) <homebrew-macos>`"
 msgstr ""
 
 msgid ":ref:`From luarocks <from-luarocks>`"
+msgstr ""
+
+msgid ":ref:`Quick start <quick-start>`"
 msgstr ""
 
 msgid ":ref:`Usage <usage>`"
@@ -67,12 +70,6 @@ msgstr ""
 msgid ":ref:`Special files <special-files>`"
 msgstr ""
 
-msgid ":ref:`Misc <misc>`"
-msgstr ""
-
-msgid ":ref:`Running end-to-end tests <running-end-to-end-tests>`"
-msgstr ""
-
 msgid "Installation"
 msgstr ""
 
@@ -92,6 +89,9 @@ msgid "# Select a Tarantool version (copy one of these lines):\n"
 "\n"
 "# Check the installation:\n"
 "cartridge --version"
+msgstr ""
+
+msgid "Now you can create and start your first application! Go to the :ref:`quick start <quick-start>` section and try it."
 msgstr ""
 
 msgid "DEB package (Debian, Ubuntu)"
@@ -134,6 +134,37 @@ msgid "The executable will be available at `.rocks/bin/cartridge`. Optionally, y
 msgstr ""
 
 msgid "export PATH=$PWD/.rocks/bin/:$PATH"
+msgstr ""
+
+msgid "Now you can create and start your first application! Go to the :ref:`next <quick-start>` section and try it."
+msgstr ""
+
+msgid "Quick start"
+msgstr ""
+
+msgid "To create your first application:"
+msgstr ""
+
+msgid "cartridge create --name myapp"
+msgstr ""
+
+msgid "Let's go inside:"
+msgstr ""
+
+msgid "cd myapp"
+msgstr ""
+
+msgid "Now build the application and start it:"
+msgstr ""
+
+msgid "cartridge build\n"
+"cartridge start"
+msgstr ""
+
+msgid "That's all! You can visit http://localhost:8081 and see your application Admin Web UI:"
+msgstr ""
+
+msgid "You can find more details in the :ref:`documentation <usage>` or start with our `getting started guide <https://github.com/tarantool/cartridge-cli/blob/master/examples/getting-started-app/README.md>`_."
 msgstr ""
 
 msgid "Usage"
@@ -311,6 +342,9 @@ msgstr ""
 msgid "cartridge build [<path>]"
 msgstr ""
 
+msgid "<!-- Please, update cmd_build usage in cartridge-cli.lua file on updating the doc -->"
+msgstr ""
+
 msgid "This command requires one argument -- the path to your application directory (i.e. to the build source). The default path is `.` (the current directory)."
 msgstr ""
 
@@ -360,6 +394,9 @@ msgid "cartridge start [APP_NAME[.INSTANCE_NAME]] [options]"
 msgstr ""
 
 msgid "The options are:"
+msgstr ""
+
+msgid "<!-- Please, update cmd_start usage in cartridge-cli.lua file on updating the doc -->"
 msgstr ""
 
 msgid "`--script FILE` is the application's entry point. Defaults to:"
@@ -458,10 +495,19 @@ msgstr ""
 msgid "`type` [REQUIRED] is the distribution type. The supported types are: `rpm`, `tgz`, `docker`, `deb`. See details below."
 msgstr ""
 
-msgid "**NOTE:** Yet another supported option is `rock`, but it's not production-ready yet."
+msgid "`path` [OPTIONAL] is the path to the application directory to pack. Defaults to `.` (the current directory)."
 msgstr ""
 
-msgid "`path` [OPTIONAL] is the path to the application directory to pack. Defaults to `.` (the current directory)."
+msgid "All types of distribution are described below:"
+msgstr ""
+
+msgid ":ref:`RPM <rpm-and-deb>`"
+msgstr ""
+
+msgid ":ref:`DEB <rpm-and-deb>`"
+msgstr ""
+
+msgid "<!-- Please, update cmd_pack usage in cartridge-cli.lua file on updating the doc -->"
 msgstr ""
 
 msgid "`--name`(common for all distribution types) is the application name. It coincides with the package name and the systemd-service name. The default name comes from the `package` field in the rockspec file."
@@ -470,10 +516,13 @@ msgstr ""
 msgid "`--version` (common for all distribution types) is the application's package version. The expected pattern is `major.minor.patch[-count][-commit]`: if you specify `major.minor.patch`, it is normalized to `major.minor.patch-count`. The default version is determined as the result of `git describe --tags --long`. If the application is not a git repository, you need to set the `--version` option explicitly."
 msgstr ""
 
-msgid "`--unit-template` (used for `rpm` и `deb`) is the path to the template for the `systemd` unit file."
+msgid "`--suffix` (common for all distribution types) is the result file (or image) name suffix."
 msgstr ""
 
-msgid "`--instantiated-unit-template` (used for `rpm` и `deb`) is the path to the template for the `systemd` instantiated unit file."
+msgid "`--unit-template` (used for `rpm` and `deb`) is the path to the template for the `systemd` unit file."
+msgstr ""
+
+msgid "`--instantiated-unit-template` (used for `rpm` and `deb`) is the path to the template for the `systemd` instantiated unit file."
 msgstr ""
 
 msgid "`--from` (used for `docker`) is the path to the base Dockerfile of the runtime image. Defaults to `Dockerfile.cartridge` in the application root."
@@ -482,19 +531,16 @@ msgstr ""
 msgid "`--use-docker` (ignored for `docker`) forces to build the application in Docker."
 msgstr ""
 
-msgid "`--download-token` (common for all distribution types) is the download token for Tarantool Enterprise. Alternatively, you can pass the token via the `TARANTOOL_DOWNLOAD_TOKEN` environment variable (this variable is of lower priority)."
-msgstr ""
-
 msgid "`--tag` (used for `docker`) is the tag of the Docker image that results from `pack docker`."
 msgstr ""
 
-msgid "`--build-from` (used for `docker`) is the path to the base Dockerfile of the build image. Defaults to `Dockerfile.build.cartridge` in the application root."
+msgid "`--build-from` (common for all distribution types, used for building in Docker) is the path to the base Dockerfile of the build image. Defaults to `Dockerfile.build.cartridge` in the application root."
 msgstr ""
 
-msgid "`--sdk-local` (used for `docker`) is a flag that indicates if the SDK from the local machine should be installed to the image."
+msgid "`--sdk-local` (common for all distribution types, used for building in Docker) is a flag that indicates if the SDK from the local machine should be delivered in the result artifact."
 msgstr ""
 
-msgid "`--sdk-path` (used for `docker`) is the path to the SDK to be installed to the image. Alternatively, you can pass the path via the `TARANTOOL_SDK_PATH` environment variable (this variable is of lower priority)."
+msgid "`--sdk-path` (common for all distribution types, used for building in Docker) is the path to the SDK to be delivered in the result artifact. Alternatively, you can pass the path via the `TARANTOOL_SDK_PATH` environment variable (this variable is of lower priority)."
 msgstr ""
 
 msgid "**Note:** For Tarantool Enterprise, you must specify one (and only one) of the `--sdk-local` and `--sdk-path` options."
@@ -504,9 +550,6 @@ msgid "For `rpm`, `deb`, and `tgz`, we also deliver rocks modules and executable
 msgstr ""
 
 msgid "For `docker`, the resulting runtime image will contain rocks modules and executables specific for the base image (`centos:8`)."
-msgstr ""
-
-msgid "The result will be named as `<name>-<version>.<type>`."
 msgstr ""
 
 msgid "Further on we dive deeper into the packaging process."
@@ -575,7 +618,7 @@ msgstr ""
 msgid "`cartridge pack tgz ./myapp` creates a .tgz archive. It contains all files from the :ref:`distribution directory <distribution-directory>` (i.e. the application source code and rocks modules described in the application rockspec)."
 msgstr ""
 
-msgid "The package name is `<name>-<version>.tar.gz`."
+msgid "The result artifact name is `<name>-<version>[-<suffix>].tar.gz`."
 msgstr ""
 
 msgid "RPM and DEB"
@@ -584,7 +627,44 @@ msgstr ""
 msgid "`cartridge pack rpm|deb ./myapp` creates an RPM or DEB package."
 msgstr ""
 
-msgid "The package name is `<name>-<version>.{rpm,deb}`."
+msgid "The result artifact name is `<name>-<version>[-<suffix>].{rpm,deb}`."
+msgstr ""
+
+msgid "Usage example"
+msgstr ""
+
+msgid "After package installation you need to specify configuration for instances to start."
+msgstr ""
+
+msgid "For example, if your application is named `myapp` and you want to start two instances, put the `myapp.yml` file into the `/etc/tarantool/conf.d` directory."
+msgstr ""
+
+msgid "myapp:\n"
+"  cluster_cookie: secret-cookie\n"
+"\n"
+"myapp.instance-1:\n"
+"  http_port: 8081\n"
+"  advertise_uri: localhost:3301\n"
+"\n"
+"myapp.instance-2:\n"
+"  http_port: 8082\n"
+"  advertise_uri: localhost:3302"
+msgstr ""
+
+msgid "For more details about instances configuration see the `documentation <https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_dev/#configuring-instances>`_."
+msgstr ""
+
+msgid "Now, start the configured instances:"
+msgstr ""
+
+msgid "systemctl start myapp@instance-1\n"
+"systemctl start myapp@instance-2"
+msgstr ""
+
+msgid "Package details"
+msgstr ""
+
+msgid "The installed package name will be `<name>` no matter what the artifact name is."
 msgstr ""
 
 msgid "It contains meta information: the package name (which is the application name), and the package version."
@@ -687,6 +767,44 @@ msgstr ""
 msgid "`cartridge pack docker ./myapp` builds a Docker image where you can start one instance of the application."
 msgstr ""
 
+msgid "To start the `instance-1` instance of the `myapp` application, say:"
+msgstr ""
+
+msgid "docker run -d \\\n"
+"\n"
+"                --name instance-1 \\\n"
+"                -e TARANTOOL_INSTANCE_NAME=instance-1 \\\n"
+"                -e TARANTOOL_ADVERTISE_URI=3302 \\\n"
+"                -e TARANTOOL_CLUSTER_COOKIE=secret \\\n"
+"                -e TARANTOOL_HTTP_PORT=8082 \\\n"
+"                -p 127.0.0.1:8082:8082 \\\n"
+"                myapp:1.0.0"
+msgstr ""
+
+msgid "By default, `TARANTOOL_INSTANCE_NAME` is set to `default`."
+msgstr ""
+
+msgid "To check the instance logs, say:"
+msgstr ""
+
+msgid "docker logs instance-1"
+msgstr ""
+
+msgid "Runtime image tag"
+msgstr ""
+
+msgid "The result image is tagged as follows:"
+msgstr ""
+
+msgid "`<name>:<detected_version>[-<suffix>]`: by default;"
+msgstr ""
+
+msgid "`<name>:<version>[-<suffix>]`: if the `--version` parameter is specified;"
+msgstr ""
+
+msgid "`<tag>`: if the `--tag` parameter is specified."
+msgstr ""
+
 msgid "Build and runtime images"
 msgstr ""
 
@@ -754,21 +872,6 @@ msgid "FROM centos:8\n"
 "RUN yum install -y zip"
 msgstr ""
 
-msgid "Runtime image tag"
-msgstr ""
-
-msgid "The runtime image is tagged as follows:"
-msgstr ""
-
-msgid "`<name>:<detected_version>`: by default;"
-msgstr ""
-
-msgid "`<name>:<version>`: if the `--version` parameter is specified;"
-msgstr ""
-
-msgid "`<tag>`: if the `--tag` parameter is specified."
-msgstr ""
-
 msgid "Tarantool Enterprise SDK"
 msgstr ""
 
@@ -797,29 +900,6 @@ msgid "The run directory is `/var/run/tarantool/${app_name}`, the workdir is `/v
 msgstr ""
 
 msgid "The runtime image also contains the file `/usr/lib/tmpfiles.d/<name>.conf` that allows the instance to restart after container restart."
-msgstr ""
-
-msgid "To start the `instance-1` instance of the `myapp` application, say:"
-msgstr ""
-
-msgid "docker run -d \\\n"
-"\n"
-"                --name instance-1 \\\n"
-"                -e TARANTOOL_INSTANCE_NAME=instance-1 \\\n"
-"                -e TARANTOOL_ADVERTISE_URI=3302 \\\n"
-"                -e TARANTOOL_CLUSTER_COOKIE=secret \\\n"
-"                -e TARANTOOL_HTTP_PORT=8082 \\\n"
-"                -p 127.0.0.1:8082:8082 \\\n"
-"                myapp:1.0.0"
-msgstr ""
-
-msgid "By default, `TARANTOOL_INSTANCE_NAME` is set to `default`."
-msgstr ""
-
-msgid "To check the instance logs, say:"
-msgstr ""
-
-msgid "docker logs instance-1"
 msgstr ""
 
 msgid "It is the user's responsibility to set up a proper advertise URI (`<host>:<port>`) if the containers are deployed on different machines. The problem here is that an instance's advertise URI must be the same on all machines, because it will be used by all the other instances to connect to this one. For example, if you start an instance with an advertise URI set to `localhost:3302`, and then address it as `<instance-host>:3302` from other instances, this won't work: the other instances will be recognizing it only as `localhost:3302`."
@@ -886,14 +966,5 @@ msgid "#!/bin/sh\n"
 "rm -rf third_party\n"
 "rm -rf node_modules\n"
 "rm -rf doc"
-msgstr ""
-
-msgid "Misc"
-msgstr ""
-
-msgid "Running end-to-end tests"
-msgstr ""
-
-msgid "./test-e2e.sh"
 msgstr ""
 
