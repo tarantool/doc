@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-21 20:06+0000\n"
+"PO-Revision-Date: 2020-03-12 12:53+0300\n"
+"Last-Translator: \n"
+"Language: ru\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+msgid "Getting started"
+msgstr "Руководство для начинающих"
+
+msgid ""
+"In this chapter, we show how to work with Tarantool as a DBMS -- and how "
+"to connect to a Tarantool database from other programming languages."
+msgstr ""
+"В этой главе объясняются основы работы с Tarantool как с СУБД, а также "
+"приводятся способы подключения к базе на Tarantool из других языков "
+"программирования."
+
+#~ msgid ""
+#~ "In this chapter, we explain how to"
+#~ " install Tarantool, how to start it,"
+#~ " and how to create a simple "
+#~ "database."
+#~ msgstr ""
+#~ "В этой главе объясняется, как установить"
+#~ " и запустить Tarantool, а также как"
+#~ " создать простую базу данных."
+
+#~ msgid "This chapter contains the following sections:"
+#~ msgstr "Эта глава состоит из следующих разделов:"
