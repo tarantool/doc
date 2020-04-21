@@ -13,7 +13,7 @@ Pre-requisites
 Before we proceed:
 
 #. `Install <https://github.com/tarantool-php/client#installation>`_
-   the ``tarantool-php`` library.
+   the ``tarantool/client`` library.
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)
    and make sure that you have created and populated a database as we suggested
@@ -41,8 +41,9 @@ To get connected to the Tarantool server, say this:
 
 .. code-block:: php
 
-    require_once __DIR__.'/vendor/autoload.php';
     use Tarantool\Client\Client;
+
+    require __DIR__.'/vendor/autoload.php';
     $client = Client::fromDefaults();
 
 You can also specify the user name and password, if needed:
@@ -98,8 +99,9 @@ of each tuple). Use ``select``:
 
     $result = $tester->select(Criteria::key([4]));
     printf(json_encode($result));
-    ```
-    ```
+
+.. code-block:: none
+
     [[4, 'ABBA', 1972]]
 
 Next, select tuples by a secondary key.
@@ -128,12 +130,11 @@ is the same:
 
     [2, 'Scorpions', 2015]
 
-Finally, select all the tuples in a space via a ``select`` with no
-arguments:
+Finally, select all the tuples in a space via a ``select``:
 
 .. code-block:: php
 
-    $result = $tester->select(Criteria::AllIterator());
+    $result = $tester->select(Criteria::allIterator());
 
 .. _getting_started-php-update:
 
