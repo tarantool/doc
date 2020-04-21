@@ -39,7 +39,7 @@
                 .. raw:: html
 
                     <div class="getting-started-button-container">
-                        <a href="book/getting_started/">
+                        <a href="getting_started/">
                             <button class="getting-started-button btn">
                                 Руководство для начинающих
                             </button>
@@ -51,7 +51,7 @@
                 .. raw:: html
 
                     <div class="getting-started-button-container">
-                        <a href="book/getting_started/">
+                        <a href="getting_started/">
                             <button class="getting-started-button btn">
                                 Getting started
                             </button>
