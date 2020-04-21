@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 12:18+0000\n"
+"POT-Creation-Date: 2020-04-22 16:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,13 +37,13 @@ msgstr ""
 msgid "*object:*"
 msgstr ""
 
-msgid "*datadir:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Data directory for all cluster servers."
+msgid "*datadir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Data directory for all cluster servers."
 msgstr ""
 
-msgid "*server_command:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Command to run server."
+msgid "*server_command:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Command to run server."
 msgstr ""
 
-msgid "*cookie:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Cluster cookie."
+msgid "*cookie:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Cluster cookie."
 msgstr ""
 
 msgid "*base_http_port:* (**int**) Value to calculate server's http_port. (optional)"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Find server by alias."
 msgstr ""
 
-msgid "*alias:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
 msgstr ""
 
 msgid ":ref:`cartridge.test-helpers.server <cartridge.test-helpers.server>`"
@@ -163,16 +163,16 @@ msgstr ""
 msgid "**Fields:**"
 msgstr ""
 
-msgid "*alias:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Prefix to generate server alias automatically. (optional)"
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Prefix to generate server alias automatically. (optional)"
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Replicaset uuid."
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Replicaset uuid."
 msgstr ""
 
-msgid "*roles:* (`{string} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) List of roles for servers in the replicaset."
+msgid "*roles:* (`{string} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) List of roles for servers in the replicaset."
 msgstr ""
 
-msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Name of vshard group."
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Name of vshard group."
 msgstr ""
 
 msgid "*all_rw:* (optional **boolan**) Make all replicas writable."
