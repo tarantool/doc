@@ -14,8 +14,11 @@ _theme/tarantool/static/design.css.map
 .idea
 rocks
 .vscode/
-/locale/*/LC_MESSAGES/
-!/locale/ru
+/locale/book/LC_MESSAGES/
+/locale/dev_guide/LC_MESSAGES/
+/locale/reference/LC_MESSAGES/
+/locale/tutorials/LC_MESSAGES/
+/locale/getting_started/LC_MESSAGES/
 /doc/book/cartridge/cartridge_api/
 /doc/book/cartridge/cartridge_cli.rst
 /doc/book/cartridge/cartridge_cli/
