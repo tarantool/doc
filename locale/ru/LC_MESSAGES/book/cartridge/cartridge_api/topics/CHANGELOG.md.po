@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-17 09:51+0000\n"
+"POT-Creation-Date: 2020-04-21 12:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 msgid "Changelog"
 msgstr ""
@@ -35,84 +35,37 @@ msgstr ""
 msgid "Added"
 msgstr ""
 
-msgid "Show how-to-connect-demo instructions on every page in WebUI."
+msgid "Show \"You are here\" marker in webui."
 msgstr ""
 
 msgid ""
-"Make use of GraphQL error extensions: provide additional information "
-"about `class_name` and `stack` of original error."
+"Respect `box.cfg` options `wal_dir`, `memtx_dir`, `vinyl_dir`. They can "
+"be either absolute or relative - in the later case it's calculated "
+"relative to `cartridge.workdir`."
 msgstr ""
 
-msgid "Validate YAML in code editor WebUI."
+msgid "Implement stateful failover mode."
 msgstr ""
 
-msgid "Expose membership options with argparse."
+msgid "Add new field Graphql field `cluster{ issues {topic} }`"
 msgstr ""
 
-msgid "Allow specifying `all_rw` replicaset flag in luatest helpers."
-msgstr ""
-
-msgid "Code applying error in Code editor."
-msgstr ""
-
-msgid ""
-"New GraphQL API fields in `servers{ boxinfo{ cartridge }}`: `version`, "
-"`state`, `error`."
+msgid "Extend issues API for stateful failover"
 msgstr ""
 
 msgid ""
-"Remember last opened file in code editor to local storage. Opens first "
-"file when local storage empty."
-msgstr ""
-
-msgid "File tree expanded by default."
-msgstr ""
-
-msgid "New internal module to hanle `.tar` files."
+"New option in `cartridge.cfg({upgrade_schema=...}, ...)` to perform auto "
+"upgrade schema to actual tarantool version (only for leader). It also has"
+" bean added for `argparse`."
 msgstr ""
 
 msgid ""
-"Add an ability to hide certain WebUI pages by specifying "
-"`cartridge.cfg({webui_blacklist = {'/admin/code', ...}})`."
+"GraphQL validation significantly improved: scalar values can't have "
+"subselections; composite types must have subselections; omitting non-"
+"nullable arguments in variable list is forbidden."
 msgstr ""
 
-msgid "Show Cartridge version in server info dialog."
-msgstr ""
-
-msgid "Server alias is clickable in replicaset list."
-msgstr ""
-
-msgid ""
-"New functions `cartridge.get_shema()` and `cartridge.set_shema(schema)` "
-"for get/set clusterwide DDL schema. They are reference "
-"`_G.cartridge_get_schema` and `_G.cartridge_set_schema`."
-msgstr ""
-
-msgid ""
-"New GraphQL API to obtain more details on replication status `cluster{ "
-"issues{ level message ... }}`."
-msgstr ""
-
-msgid "Add option for clusterwide env in test helpers."
-msgstr ""
-
-msgid "New GraphQL API fields in `cluster{ self }`: `app_name`, `instance_name`."
-msgstr ""
-
-msgid "Changed"
-msgstr ""
-
-msgid "Network error shows with fixed splash panel instead of notification."
-msgstr ""
-
-msgid "Remove redundant topology availability checks."
-msgstr ""
-
-msgid ""
-"Prevent instance state transition from `ConnectingFullmesh` to "
-"`OperationError` if replication fails to connect or to sync. Since now "
-"such fails result in staying in `ConnectingFullmesh` state until it "
-"succeeds."
+msgid "Indicate replication and failover issues in WebUI."
 msgstr ""
 
 msgid "Deprecated"
@@ -145,28 +98,98 @@ msgstr ""
 msgid "Fixed"
 msgstr ""
 
-msgid "DDL failure if spaces is `null` in input schema."
+msgid "Fix quering failure `cluster {issues {...} }` on uninitialized instance"
+msgstr ""
+
+msgid "[2.0.2] - 2020-03-17"
 msgstr ""
 
 msgid ""
-"Content of `cluster_cookie` is checked for absence of special characters "
-"so it doesn't break the authotization. Allowed symbols are "
-"`[a-zA-Z0-9_.~-]`."
+"Expose membership options in `argparse` module (edit them with "
+"environment variables and command-line arguments)."
+msgstr ""
+
+msgid "New internal module to handle `.tar` files."
+msgstr ""
+
+msgid ""
+"`cartridge.cfg({webui_blacklist = {'/admin/code', ...}})`: blacklist "
+"certain WebUI pages."
+msgstr ""
+
+msgid "`cartridge.get_schema()` referencing older `_G.cartridge_get_schema`."
+msgstr ""
+
+msgid "`cartridge.set_schema()` referencing older `_G.cartridge_set_schema`."
+msgstr ""
+
+msgid ""
+"Make use of GraphQL error extensions: provide additional information "
+"about `class_name` and `stack` of original error."
+msgstr ""
+
+msgid ""
+"`cluster{ issues{ level message ... }}`: obtain more details on "
+"replication status"
+msgstr ""
+
+msgid "`cluster{ self {...} }`: new fields `app_name`, `instance_name`."
+msgstr ""
+
+msgid ""
+"`servers{ boxinfo { cartridge {...} }}`: new fields `version`, `state`, "
+"`error`."
+msgstr ""
+
+msgid "Test helpers:"
+msgstr ""
+
+msgid "Allow specifying `all_rw` replicaset flag in luatest helpers."
+msgstr ""
+
+msgid ""
+"Add `cluster({env = ...})` option for specifying clusterwide environment "
+"variables."
+msgstr ""
+
+msgid "Changed"
+msgstr ""
+
+msgid "Remove redundant topology availability checks from two-phase commit."
+msgstr ""
+
+msgid ""
+"Prevent instance state transition from `ConnectingFullmesh` to "
+"`OperationError` if replication fails to connect or to sync. Since now "
+"such fails result in staying in `ConnectingFullmesh` state until it "
+"succeeds."
+msgstr ""
+
+msgid ""
+"Specifying `pool.connect()` options `user`, `password`, `reconnect_after`"
+" are deprecated and ignored, they never worked as intended and will never"
+" do. Option `connect_timeout` is deprecated, but for backward "
+"compatibility treated as `wait_connected`."
+msgstr ""
+
+msgid "Fix DDL failure if `spaces` field is `null` in input schema."
+msgstr ""
+
+msgid ""
+"Check content of `cluster_cookie` for absence of special characters so it"
+" doesn't break the authorization. Allowed symbols are `[a-zA-Z0-9_.~-]`."
 msgstr ""
 
 msgid ""
 "Drop remote-control connections after full-featured `box.cfg` becomes "
 "available to prevent clients from using limited functionality for too "
-"long. During instance recovery remote-controll won't accept any "
-"connections: clients wait for box.cfg to finish recvovery."
+"long. During instance recovery remote-control won't accept any "
+"connections: clients wait for box.cfg to finish recovery."
 msgstr ""
 
 msgid ""
 "Update errors rock dependency to 2.1.2: eliminate duplicate stack trace "
 "from `error.str` field."
-msgstr ""
-
-msgid "Replicaset weight input in WebUI accepts float values."
 msgstr ""
 
 msgid "Apply `custom_proc_title` setting without waiting for `box.cfg`."
@@ -178,6 +201,38 @@ msgstr ""
 msgid ""
 "Avoid \"attempt to index nil value\" error when using rpc on an "
 "uninitialized instance."
+msgstr ""
+
+msgid "Enhanced in WebUI"
+msgstr ""
+
+msgid "Add an ability to hide certain WebUI pages."
+msgstr ""
+
+msgid "Validate YAML in code editor WebUI."
+msgstr ""
+
+msgid "Fix showing errors in Code editor page."
+msgstr ""
+
+msgid ""
+"Remember last open file in Code editor page. Open first file when local "
+"storage is empty."
+msgstr ""
+
+msgid "Expand file tree in Code editor page by default."
+msgstr ""
+
+msgid "Show Cartridge version in server info dialog."
+msgstr ""
+
+msgid "Server alias is clickable in replicaset list."
+msgstr ""
+
+msgid "Show networking errors in splash panel instead of notifications."
+msgstr ""
+
+msgid "Accept float values for vshard-storage weight."
 msgstr ""
 
 msgid "[2.0.1] - 2020-01-15"
@@ -957,3 +1012,87 @@ msgstr ""
 msgid "Gitlab CI integration"
 msgstr ""
 
+#~ msgid "Show how-to-connect-demo instructions on every page in WebUI."
+#~ msgstr ""
+
+#~ msgid "Expose membership options with argparse."
+#~ msgstr ""
+
+#~ msgid "Code applying error in Code editor."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "New GraphQL API fields in `servers{ "
+#~ "boxinfo{ cartridge }}`: `version`, `state`,"
+#~ " `error`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Remember last opened file in code "
+#~ "editor to local storage. Opens first "
+#~ "file when local storage empty."
+#~ msgstr ""
+
+#~ msgid "File tree expanded by default."
+#~ msgstr ""
+
+#~ msgid "New internal module to hanle `.tar` files."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Add an ability to hide certain "
+#~ "WebUI pages by specifying "
+#~ "`cartridge.cfg({webui_blacklist = {'/admin/code', "
+#~ "...}})`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "New functions `cartridge.get_shema()` and "
+#~ "`cartridge.set_shema(schema)` for get/set "
+#~ "clusterwide DDL schema. They are "
+#~ "reference `_G.cartridge_get_schema` and "
+#~ "`_G.cartridge_set_schema`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "New GraphQL API to obtain more "
+#~ "details on replication status `cluster{ "
+#~ "issues{ level message ... }}`."
+#~ msgstr ""
+
+#~ msgid "Add option for clusterwide env in test helpers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "New GraphQL API fields in `cluster{ "
+#~ "self }`: `app_name`, `instance_name`."
+#~ msgstr ""
+
+#~ msgid "Network error shows with fixed splash panel instead of notification."
+#~ msgstr ""
+
+#~ msgid "Remove redundant topology availability checks."
+#~ msgstr ""
+
+#~ msgid "DDL failure if spaces is `null` in input schema."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Content of `cluster_cookie` is checked "
+#~ "for absence of special characters so "
+#~ "it doesn't break the authotization. "
+#~ "Allowed symbols are `[a-zA-Z0-9_.~-]`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Drop remote-control connections after "
+#~ "full-featured `box.cfg` becomes available "
+#~ "to prevent clients from using limited"
+#~ " functionality for too long. During "
+#~ "instance recovery remote-controll won't "
+#~ "accept any connections: clients wait for"
+#~ " box.cfg to finish recvovery."
+#~ msgstr ""
+
+#~ msgid "Replicaset weight input in WebUI accepts float values."
+#~ msgstr ""
