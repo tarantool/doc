@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 13:32+0000\n"
+"POT-Creation-Date: 2020-04-21 12:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -304,10 +304,13 @@ msgstr ""
 msgid "an array of the function's arguments"
 msgstr ""
 
-msgid "* ``timeout`` – a request timeout, in seconds. If the router cannot identify a   shard with the specified ``bucket_id``, the operation will be repeated until the   timeout is reached."
+msgid "* ``timeout`` – a request timeout, in seconds. If the router cannot identify a   shard with the specified ``bucket_id``, the operation will be repeated until the   timeout is reached. * other :ref:`net.box options <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are also supported."
 msgstr ""
 
 msgid "``timeout`` – a request timeout, in seconds. If the router cannot identify a shard with the specified ``bucket_id``, the operation will be repeated until the timeout is reached."
+msgstr ""
+
+msgid "other :ref:`net.box options <net_box-options>`, such as ``is_async``, ``buffer``, ``on_push`` are also supported."
 msgstr ""
 
 msgid "The mode parameter has two possible forms: a string or a map. Examples of the string form are: ``'read'``, ``'write'``. Examples of the map form are: ``{mode='read'}``, ``{mode='write'}``, ``{mode='read', prefer_replica=true}``, ``{mode='read', balance=true}``, ``{mode='read', prefer_replica=true, balance=true}``."
@@ -345,7 +348,7 @@ msgstr ""
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id, in read-only mode (similar to calling vshard.router.call with mode='read'). See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-msgid "* ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a   shard with the bucket id, the operation will be repeated until the   timeout is reached."
+msgid "* ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a   shard with the bucket id, the operation will be repeated until the   timeout is reached. * other :ref:`net.box options <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are also supported."
 msgstr ""
 
 msgid "``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a shard with the bucket id, the operation will be repeated until the timeout is reached."

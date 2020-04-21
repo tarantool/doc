@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 15:34+0000\n"
+"POT-Creation-Date: 2020-04-21 12:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,12 +52,6 @@ msgstr ""
 msgid ":ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`"
 msgstr ""
 
-msgid ":ref:`msgpack.NULL <msgpack-null>`"
-msgstr ""
-
-msgid "Analog of Lua's \"nil\""
-msgstr ""
-
 msgid ":ref:`msgpack.decode_array_header <msgpack-decode_array_header>`"
 msgstr ""
 
@@ -70,10 +64,22 @@ msgstr ""
 msgid "Skip map header in a MsgPack string"
 msgstr ""
 
+msgid ":ref:`__serialize parameter <msgpack-serialize>`"
+msgstr ""
+
+msgid "Output structure specification"
+msgstr ""
+
 msgid ":ref:`msgpack.cfg <msgpack-cfg>`"
 msgstr ""
 
 msgid "Change configuration"
+msgstr ""
+
+msgid ":ref:`msgpack.NULL <msgpack-null>`"
+msgstr ""
+
+msgid "Analog of Lua's \"nil\""
 msgstr ""
 
 msgid "Convert a Lua object to a MsgPack string."
@@ -127,9 +133,6 @@ msgstr ""
 msgid "lua object"
 msgstr ""
 
-msgid "A value comparable to Lua \"nil\" which may be useful as a placeholder in a tuple."
-msgstr ""
-
 msgid "Call the mp_decode_array function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library and return the array size and a pointer to the first array component. A subsequent call to ``msgpack_decode`` can decode the component instead of the whole array."
 msgstr ""
 
@@ -179,41 +182,22 @@ msgid "-- Example of decode_map_header\n"
 "-- The result will be: 1,\"AA\", true."
 msgstr ""
 
-msgid "Example"
-msgstr ""
-
-msgid "tarantool> msgpack = require('msgpack')\n"
-"---\n"
-"...\n"
-"tarantool> y = msgpack.encode({'a',1,'b',2})\n"
-"---\n"
-"...\n"
-"tarantool> z = msgpack.decode(y)\n"
-"---\n"
-"...\n"
-"tarantool> z[1], z[2], z[3], z[4]\n"
-"---\n"
-"- a\n"
-"- 1\n"
-"- b\n"
-"- 2\n"
-"...\n"
-"tarantool> box.space.tester:insert{20, msgpack.NULL, 20}\n"
-"---\n"
-"- [20, null, 20]\n"
-"..."
+msgid "**__serialize parameter:**"
 msgstr ""
 
 msgid "The MsgPack output structure can be specified with ``__serialize``:"
 msgstr ""
 
-msgid "``__serialize = \"seq\" or \"sequence\"`` for an array"
+msgid "'seq', 'sequence', 'array' - table encoded as an array"
 msgstr ""
 
-msgid "``__serialize = \"map\" or \"mapping\"`` for a map"
+msgid "'map', 'mappping' - table encoded as a map"
 msgstr ""
 
-msgid "Serializing 'A' and 'B' with different ``__serialize`` values causes different results. To show this, here is a routine which encodes `{'A','B'}` both as an array and as a map, then displays each result in hexadecimal."
+msgid "function - the meta-method called to unpack serializable representation of table, cdata or userdata objects"
+msgstr ""
+
+msgid "Serializing 'A' and 'B' with different ``__serialize`` values brings different results. To show this, here is a routine which encodes ``{'A','B'}`` both as an array and as a map, then displays each result in hexadecimal."
 msgstr ""
 
 msgid "function hexdump(bytes)\n"
@@ -242,7 +226,7 @@ msgid "**array** encoding: 92 a1 41 a1 42\n"
 "**map** encoding:   82 01 a1 41 02 a1 42"
 msgstr ""
 
-msgid "The MsgPack Specification_ page explains that the first encoding means:"
+msgid "The MsgPack `Specification page <http://github.com/msgpack/msgpack/blob/master/spec.md>`_ explains that the first encoding means:"
 msgstr ""
 
 msgid "fixarray(2), fixstr(1), \"A\", fixstr(1), \"B\""
@@ -332,26 +316,201 @@ msgstr ""
 msgid "'float 64' = cb 3f f8 00 00 00 00 00 00"
 msgstr ""
 
-msgid "Some MsgPack configuration settings can be changed, in the same way that they can be changed for json. See :ref:`Module JSON <json-module_cfg>` for a list of some configuration settings. (The same configuration settings exist for json, for MsgPack, and for  :ref:`YAML <yaml-module>`.)"
+msgid "Some MsgPack configuration settings can be changed."
 msgstr ""
 
-msgid "For example, if ``msgpack.cfg.encode_invalid_numbers = true`` (the default), then nan and inf are legal values. If that is not desirable, then ensure that ``msgpack.encode()`` will not accept them, by saying ``msgpack.cfg{encode_invalid_numbers = false}``, thus:"
+msgid "The values are all either integers or boolean ``true``/``false``."
 msgstr ""
 
-msgid " tarantool> msgpack = require('msgpack'); msgpack.cfg{encode_invalid_numbers = true}\n"
-" ---\n"
-" ...\n"
-" tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})\n"
-" ---\n"
-" - [1, -nan, inf, false]\n"
-" - 22\n"
-" ...\n"
-" tarantool> msgpack.cfg{encode_invalid_numbers = false}\n"
+msgid "Option"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "``cfg.encode_max_depth``"
+msgstr ""
+
+msgid "128"
+msgstr ""
+
+msgid "Max recursion depth for encoding"
+msgstr ""
+
+msgid "``cfg.encode_deep_as_nil``"
+msgstr ""
+
+msgid "A flag saying whether to crop tables with nesting level deeper than ``cfg.encode_max_depth``. Not-encoded fields are replaced with one null. If not set, too high nesting is considered an error."
+msgstr ""
+
+msgid "``cfg.encode_invalid_numbers``"
+msgstr ""
+
+msgid "A flag saying whether to enable encoding of NaN and Inf numbers"
+msgstr ""
+
+msgid "``cfg.encode_load_metatables``"
+msgstr ""
+
+msgid "A flag saying whether the serializer will follow :ref:`__serialize <json-serialize>` metatable field"
+msgstr ""
+
+msgid "``cfg.encode_use_tostring``"
+msgstr ""
+
+msgid "A flag saying whether to use ``tostring()`` for unknown types"
+msgstr ""
+
+msgid "``cfg.encode_invalid_as_nil``"
+msgstr ""
+
+msgid "A flag saying whether to use NULL for non-recognized types"
+msgstr ""
+
+msgid "``cfg.encode_sparse_convert``"
+msgstr ""
+
+msgid "A flag saying whether to handle excessively sparse arrays as maps. See detailed description :ref:`below <msgpack-cfg_sparse>`"
+msgstr ""
+
+msgid "``cfg.encode_sparse_ratio``"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid "1/``encode_sparse_ratio`` is the permissible percentage of missing values in a sparse array"
+msgstr ""
+
+msgid "``cfg.encode_sparse_safe``"
+msgstr ""
+
+msgid "10"
+msgstr ""
+
+msgid "A limit ensuring that small Lua arrays are always encoded as sparse arrays (instead of generating an error or encoding as a map)"
+msgstr ""
+
+msgid "``cfg.decode_invalid_numbers``"
+msgstr ""
+
+msgid "A flag saying whether to enable decoding of NaN and Inf numbers"
+msgstr ""
+
+msgid "``cfg.decode_save_metatables``"
+msgstr ""
+
+msgid "A flag saying whether to set metatables for all arrays and maps"
+msgstr ""
+
+msgid "**Sparse arrays features:**"
+msgstr ""
+
+msgid "During encoding, the MsgPack encoder tries to classify tables into one of four kinds:"
+msgstr ""
+
+msgid "map - at least one table index is not unsigned integer"
+msgstr ""
+
+msgid "regular array - all array indexes are available"
+msgstr ""
+
+msgid "sparse array - at least one array index is missing"
+msgstr ""
+
+msgid "excessively sparse array - the number of values missing exceeds the configured ratio"
+msgstr ""
+
+msgid "An array is excessively sparse when **all** the following conditions are met:"
+msgstr ""
+
+msgid "``encode_sparse_ratio`` > 0"
+msgstr ""
+
+msgid "``max(table)`` > ``encode_sparse_safe``"
+msgstr ""
+
+msgid "``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``"
+msgstr ""
+
+msgid "MsgPack encoder will never consider an array to be excessively sparse when ``encode_sparse_ratio = 0``. The ``encode_sparse_safe`` limit ensures that small Lua arrays are always encoded as sparse arrays. By default, attempting to encode an excessively sparse array will generate an error. If ``encode_sparse_convert`` is set to ``true``, excessively sparse arrays will be handled as maps."
+msgstr ""
+
+msgid "**msgpack.cfg() example 1:**"
+msgstr ""
+
+msgid "If ``msgpack.cfg.encode_invalid_numbers = true`` (the default), then NaN and Inf are legal values. If that is not desirable, then ensure that ``msgpack.encode()`` will not accept them, by saying ``msgpack.cfg{encode_invalid_numbers = false}``, thus:"
+msgstr ""
+
+msgid "tarantool> msgpack = require('msgpack'); msgpack.cfg{encode_invalid_numbers = true}\n"
 "---\n"
 "...\n"
-" tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})\n"
-" ---\n"
-" - error: ... number must not be NaN or Inf'\n"
+"tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})\n"
+"---\n"
+"- [1, -nan, inf, false]\n"
+"- 22\n"
+"...\n"
+"tarantool> msgpack.cfg{encode_invalid_numbers = false}\n"
+"---\n"
+"...\n"
+"tarantool> msgpack.decode(msgpack.encode{1, 0 / 0, 1 / 0, false})\n"
+"---\n"
+"- error: ... number must not be NaN or Inf'\n"
+"..."
+msgstr ""
+
+msgid "**msgpack.cfg example 2:**"
+msgstr ""
+
+msgid "To avoid generating errors on attempts to encode unknown data types as userdata/cdata, you can use this code:"
+msgstr ""
+
+msgid "tarantool> httpc = require('http.client').new()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> msgpack.encode(httpc.curl)\n"
+"---\n"
+"- error: unsupported Lua type 'userdata'\n"
+"...\n"
+"\n"
+"tarantool> msgpack.encode(httpc.curl, {encode_use_tostring=true})\n"
+"---\n"
+"- '\"userdata: 0x010a4ef2a0\"'\n"
+"..."
+msgstr ""
+
+msgid "To achieve the same effect for only one call to ``msgpack.encode()`` (i.e. without changing the configuration permanently), you can use ``msgpack.encode({1, x, y, 2}, {encode_invalid_numbers = true})``."
+msgstr ""
+
+msgid "Similar configuration settings exist for :ref:`JSON <json-module_cfg>` and :ref:`YAML <yaml-cfg>`."
+msgstr ""
+
+msgid "A value comparable to Lua \"nil\" which may be useful as a placeholder in a tuple."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid "tarantool> msgpack = require('msgpack')\n"
+"---\n"
+"...\n"
+"tarantool> y = msgpack.encode({'a',1,'b',2})\n"
+"---\n"
+"...\n"
+"tarantool> z = msgpack.decode(y)\n"
+"---\n"
+"...\n"
+"tarantool> z[1], z[2], z[3], z[4]\n"
+"---\n"
+"- a\n"
+"- 1\n"
+"- b\n"
+"- 2\n"
+"...\n"
+"tarantool> box.space.tester:insert{20, msgpack.NULL, 20}\n"
+"---\n"
+"- [20, null, 20]\n"
 "..."
 msgstr ""
 

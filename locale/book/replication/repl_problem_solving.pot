@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-21 12:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Resolving replication conflicts"
+msgstr ""
+
+msgid "Solving problems with master-master replication"
+msgstr ""
+
+msgid "**Case:** you have two instances of Tarantool. For example, you try to make a ``replace`` operation with the same primary key on both instances in the same time. This will cause a conflict over which tuple to save and which one to discard."
+msgstr ""
+
+msgid "Tarantool :ref:`trigger functions <triggers>` can help here to implement the rules of conflict resolution on some condition. For example, if you have a timestamp, you can declare saving the tuple with the bigger one."
+msgstr ""
+
+msgid "First, you need a :ref:`before_replace() <box_space-before_replace>` trigger on the space which may have conflicts. In this trigger you can compare the old and new replica records and choose which one to use (or skip the update entirely, or merge two records together)."
+msgstr ""
+
+msgid "Then you need to set the trigger at the right time, before the space starts to receive any updates. The way you usually set the ``before_replace`` trigger is right when the space is created, so you need a trigger to set another trigger on the system space ``_space``, to capture the moment when your space is created and set the trigger there. This can be an :ref:`on_replace() <box_space-on_replace>` trigger."
+msgstr ""
+
+msgid "The difference between ``before_replace`` and ``on_replace`` is that ``on_replace`` is called after a row is inserted into the space, and ``before_replace`` is called before that."
+msgstr ""
+
+msgid "To set a ``_space:on_replace()`` trigger correctly, you also need the right timing. The best timing to use it is when ``_space`` is just created, which is the :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` trigger."
+msgstr ""
+
+msgid "You will also need to utilize ``box.on_commit`` to get access to the space being created. The resulting snippet would be the following:"
+msgstr ""
+
+msgid "local my_space_name = 'my_space'\n"
+"local my_trigger = function(old, new) ... end -- your function resolving a conflict\n"
+"box.schema.on_schema_init(function()\n"
+"    box.space._space:on_replace(function(_, new_space)\n"
+"        if new_space.name == my_space_name then\n"
+"            box.on_commit(function()\n"
+"                box.space[my_space_name]:before_replace(my_trigger)\n"
+"            end\n"
+"        end\n"
+"    end)\n"
+"end)"
+msgstr ""
+
