@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 18:45+0000\n"
+"POT-Creation-Date: 2020-04-22 16:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,6 +95,45 @@ msgid "*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in
 msgstr ""
 
 msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new schema"
+msgstr ""
+
+msgid "on_patch (trigger_new, trigger_old)"
+msgstr ""
+
+msgid "Set up trigger for for patch_clusterwide."
+msgstr ""
+
+msgid "It will be executed **before** new new config applied."
+msgstr ""
+
+msgid "If the parameters are  ``(nil, old_trigger)`` , then the old trigger is deleted."
+msgstr ""
+
+msgid "The trigger function is called with two argument: -  ``conf_new``  ( ``ClusterwideConfig`` ) -  ``conf_old``  ( ``ClusterWideConfig`` )"
+msgstr ""
+
+msgid "It is allowed to modify  ``conf_new`` , but not  ``conf_old`` . Return values are ignored. If calling a trigger raises an error, ``patch_clusterwide``  returns it as  ``nil, err`` ."
+msgstr ""
+
+msgid "(**Added** in v2.1.0-4)"
+msgstr ""
+
+msgid "*trigger_new:* (**function**)"
+msgstr ""
+
+msgid "*trigger_old:* (**function**)"
+msgstr ""
+
+msgid "Usage:"
+msgstr ""
+
+msgid "local function inject_data(conf_new, _)\n"
+"    local data_yml = yaml.encode({foo = 'bar'})\n"
+"    conf_new:set_plaintext('data.yml', data_yml)\n"
+"end)\n"
+"\n"
+"twophase.on_patch(inject_data) -- set custom patch modifier trigger\n"
+"twophase.on_patch(nil, inject_data) -- drop trigger"
 msgstr ""
 
 msgid "Local Functions"

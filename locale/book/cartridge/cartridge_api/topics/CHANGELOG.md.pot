@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 18:45+0000\n"
+"POT-Creation-Date: 2020-04-22 16:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,15 @@ msgstr ""
 msgid "[Unreleased]"
 msgstr ""
 
+msgid "Added"
+msgstr ""
+
+msgid "Validation of `console_sock` length."
+msgstr ""
+
+msgid "[2.1.1] - 2020-04-20"
+msgstr ""
+
 msgid "Fixed"
 msgstr ""
 
@@ -35,9 +44,6 @@ msgid "Frontend core update: fix route mapping"
 msgstr ""
 
 msgid "[2.1.0] - 2020-04-16"
-msgstr ""
-
-msgid "Added"
 msgstr ""
 
 msgid "Implement stateful failover mode. You can read more in \"Failover architecture\" documentation topic (see `failover.md`)."
