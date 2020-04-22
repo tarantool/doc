@@ -40,6 +40,9 @@ Below is a list of all ``box.error`` functions.
     | :ref:`box.error.new()                | Create an error but do not      |
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.error.set()                | Set an error in diagnostic area |
+    | <box_error-set>`                     |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. function:: box.error{reason = string [, code = number]}
 
@@ -149,10 +152,11 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.new(code, errtext [, errtext ...])
 
-    Create an error object, but do not throw.
+    Create an error object, but doesn't set it to Tarantool's diagnostic area as
+    :ref:`box.error() <box_error-error>` does.
     This is useful when error information should be saved for later retrieval.
-    The parameters are the same as for :ref:`box.error() <box_error-error>`,
-    see the description there.
+    To set error in diagnostic area explicitly use 
+    :ref:`box.error.set() <box_error-set>`.
 
     :param number       code: number of a pre-defined error
     :param string errtext(s): part of the message which will accompany the error
@@ -173,6 +177,32 @@ Below is a list of all ``box.error`` functions.
           - file: '[string "e = box.error.new{code = 555, reason = ''Arbit..."]'
             line: 1
         ...
+        tarantool> box.error.last()
+        ---
+        - nil
 
+.. _box_error-set:
 
+.. function:: box.error.set(error object)
 
+    Set an error in diagnostic area explicitly. Accepts error object and set it
+    as the last system error (i.e. becomes available via ``box.error.last()``).
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        err = box.error.new({code = 111, reason = "cause"})
+        ---
+        ...
+        tarantool> box.error.last()
+        ---
+        - nil
+        ...
+        tarantool> box.error.set(err)
+        ---
+        ...
+        tarantool> box.error.last()
+        ---
+        - err
+        ...
