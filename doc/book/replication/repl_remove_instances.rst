@@ -4,7 +4,7 @@
 Removing instances
 ================================================================================
 
-Let's consider the following configured replica set with 3 instances
+Let's assume that we have the following configured replica set with 3 instances
 (*instance1*, *instance2* and *intance3*) and we want to remove *instance2*.
 
 .. image:: replication.svg
