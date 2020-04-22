@@ -254,4 +254,3 @@ msgid ""
 ">>> connection.eval('return 4 + 5')\n"
 "9"
 msgstr ""
-
