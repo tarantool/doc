@@ -14,7 +14,7 @@ To remove it politely, follow these steps:
 
 1. Disconnect *instance2* from the cluster.
 2. Disconnect the cluster from *instance2*.
-3. Remove *instance2* from the``_cluster`` space.
+3. Remove *instance2* from the ``_cluster`` space.
 
 .. image:: replicationX.svg
       :align: left
@@ -200,7 +200,7 @@ Take a note of ``id`` and ``uuid``.
 Now choose any master from the remaining cluster and perform the following actions on it
 (let's assume that we chose *instance1*):
 
-1. Select all records from the `_cluster` space:
+1. Select all records from the ``_cluster`` space:
 
 .. code-block:: tarantoolsession
 
