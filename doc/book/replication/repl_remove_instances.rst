@@ -4,24 +4,24 @@
 Removing instances
 ================================================================================
 
-Let's consider the following configured replicaset with 3 instances: 
-*intance1*, *instance2* and *intance3*, from which we want to remove *instance2*.
+Let's consider the following configured replica set with 3 instances
+(*instance1*, *instance2* and *intance3*) and we want to remove *instance2*.
 
 .. image:: replication.svg
       :align: left
 
 To remove it politely, follow these steps:
 
-1. Disconnect *instance2* from cluster
-2. Disconnect cluster from *instance2*
-3. Clean up ``_cluster`` space from *instance2*
+1. Disconnect *instance2* from the cluster.
+2. Disconnect the cluster from *instance2*.
+3. Remove *instance2* from the``_cluster`` space.
 
 .. image:: replicationX.svg
       :align: left
 
-**Step 1: disconnecting instance from cluster**
+**Step 1: disconnecting an instance from the cluster**
 
-On the disconnecting instance *instance2* run ``box.cfg{}``
+On the disconnecting instance *instance2*, run ``box.cfg{}``
 with a blank replication source:
 
 .. code-block:: tarantoolsession
@@ -29,7 +29,7 @@ with a blank replication source:
    tarantool> box.cfg{replication=''}
 
 Then check that it was disconnected. Take a look at ``box.info.replication``
-on *instance2* (Note absence of ``replication.{1,3}.upstream``):
+on *instance2* (notice that ``replication.{1,3}.upstream`` is absent):
 
 .. code-block:: tarantoolsession
    
@@ -59,8 +59,8 @@ on *instance2* (Note absence of ``replication.{1,3}.upstream``):
          vclock: {1: 9}
    ...
 
-Check also the *instance1* and the *instance3*
-(Note the status ``stopped`` of ``replication.2.downstream``):
+Check *instance1* and *instance3* as well
+(notice that the status of ``replication.2.downstream`` is ``stopped``):
 
 .. code-block:: tarantoolsession
 
@@ -100,19 +100,19 @@ Check also the *instance1* and the *instance3*
          vclock: {1: 9}
    ...
 
-**Step 2: disconnecting cluster from decommissioned instance**
+**Step 2: disconnecting the cluster from the decommissioned instance**
 
 On every other instance in the cluster remove *instance2* from 
-``box.cfg{ replication }`` list and call appropriate
-``box.cfg{ replication = {instance1, instance3} }``
+the ``box.cfg{ replication }`` list and call an appropriate
+``box.cfg{ replication = {instance1, instance3} }``:
 
 .. code-block:: tarantoolsession
 
    tarantool> box.cfg{ replication = { 'instance1-uri', 'instance3-uri' } }
 
-Take a look at ``box.info.replication`` on *instance2* to check that they were
-disconnected.
-(Note the status ``stopped`` of ``replication.{1,3}.downstream``):
+Take a look at ``box.info.replication`` on *instance2* to check that ``instance1`` and ``instance3`` were
+disconnected
+(notice that the status of ``replication.{1,3}.downstream`` is ``stopped``):
 
 .. code-block:: tarantoolsession
 
@@ -142,8 +142,8 @@ disconnected.
          system_message: Broken pipe
    ...
 
-Check also the *instance1* and the *instance3* 
-(Note the status ``stopped``of ``replication.2.upstream``):
+Check *instance1* and *instance3* as well 
+(notice that the status of ``replication.2.upstream`` is ``stopped``):
 
 .. code-block:: tarantoolsession
 
@@ -180,12 +180,12 @@ Check also the *instance1* and the *instance3*
 
 **Step 3: persistent removal**
 
-If the removed instance rejoins later, it will receive all the updates made
- by other instances while it was disconnected.
+If a removed instance rejoins later, it will receive all the updates made
+by the other instances while it was disconnected.
 
-If the instance is decommissioned forever, we should clean up ``_cluster`` space.
-First, discover ``id`` and ``uuid`` of the instance. 
-On *instance2* call ``return box.info.id, box.info.uuid``
+If an instance is decommissioned forever, we should clean up the ``_cluster`` space.
+First, discover the ``id`` and ``uuid`` of the instance. 
+On *instance2*, call ``return box.info.id, box.info.uuid``:
 
 .. code-block:: tarantoolsession
 
@@ -197,10 +197,10 @@ On *instance2* call ``return box.info.id, box.info.uuid``
 
 Take a note of ``id`` and ``uuid``.
 
-Now choose any master from remaining cluster and perform the following on it
-(let's consider it would be *instance1*):
+Now choose any master from the remaining cluster and perform the following actions on it
+(let's assume that we chose *instance1*):
 
-1. Select `_cluster` space to take a look
+1. Select all records from the `_cluster` space:
 
 .. code-block:: tarantoolsession
 
@@ -211,7 +211,7 @@ Now choose any master from remaining cluster and perform the following on it
    - [3, 'bb362584-c265-4e53-aeb6-450ae818bf59']
    ...
 
-2. Check if ``id`` and ``uuid`` of *intance2* are correct and remove them
+2. Check if the ``id`` and ``uuid`` of *instance2* are correct and remove them
 from the cluster:
 
 .. code-block:: tarantoolsession
@@ -223,4 +223,4 @@ from the cluster:
 
 **Final ckecks**
 
-Afrer all modifications, check ``box.info.replication`` for healthy status.
+After all modifications, say ``box.info.replication`` to check the health status.
