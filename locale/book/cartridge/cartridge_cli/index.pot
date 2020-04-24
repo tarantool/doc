@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 1.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 11:47+0000\n"
+"POT-Creation-Date: 2020-04-24 09:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgid "Contents"
 msgstr ""
 
 msgid ":ref:`Installation <installation>`"
-msgstr ""
-
-msgid ":ref:`RPM package (CentOS, Fedora, ALT Linux) <rpm-package-centos-fedora-alt-linux>`"
-msgstr ""
-
-msgid ":ref:`DEB package (Debian, Ubuntu) <deb-package-debian-ubuntu>`)"
-msgstr ""
-
-msgid ":ref:`Homebrew (MacOS) <homebrew-macos>`"
-msgstr ""
-
-msgid ":ref:`From luarocks <from-luarocks>`"
 msgstr ""
 
 msgid ":ref:`Quick start <quick-start>`"
@@ -73,70 +61,66 @@ msgstr ""
 msgid "Installation"
 msgstr ""
 
-msgid "RPM package (CentOS, Fedora, ALT Linux)"
+msgid "Install Tarantool 1.10 or higher."
 msgstr ""
 
-msgid "# Select a Tarantool version (copy one of these lines):\n"
-"TARANTOOL_VERSION=1_10\n"
-"TARANTOOL_VERSION=2x\n"
-"TARANTOOL_VERSION=2_2\n"
+msgid "You can:"
+msgstr ""
+
+msgid "Install it from a package (see https://www.tarantool.io/en/download/ for OS-specific instructions)."
+msgstr ""
+
+msgid "Build it from sources (see https://www.tarantool.io/en/download/os-installation/building-from-source/)."
+msgstr ""
+
+msgid "*[On all platforms except MacOS X]* If you built Tarantool from sources, you need to manually set up the Tarantool packages repository:"
+msgstr ""
+
+msgid "curl -L https://tarantool.io/installer.sh | sudo -E bash -s -- --repo-only"
+msgstr ""
+
+msgid "Install the `cartridge-cli` package:"
+msgstr ""
+
+msgid "for CentOS, Fedora, ALT Linux (RPM package):"
+msgstr ""
+
+msgid "      sudo yum install cartridge-cli\n"
 "\n"
-"# Set up the Tarantool packages repository:\n"
-"curl -s https://packagecloud.io/install/repositories/tarantool/$TARANTOOL_VERSION/script.rpm.sh | sudo bash\n"
 "\n"
-"# Install the package:\n"
-"sudo yum install cartridge-cli\n"
+"* for Debian, Ubuntu (DEB package):"
+msgstr ""
+
+msgid "      sudo apt-get install cartridge-cli\n"
 "\n"
-"# Check the installation:\n"
-"cartridge --version"
-msgstr ""
-
-msgid "Now you can create and start your first application! Go to the :ref:`quick start <quick-start>` section and try it."
-msgstr ""
-
-msgid "DEB package (Debian, Ubuntu)"
-msgstr ""
-
-msgid "# Select a Tarantool version (copy one of these lines):\n"
-"TARANTOOL_VERSION=1_10\n"
-"TARANTOOL_VERSION=2x\n"
-"TARANTOOL_VERSION=2_2\n"
 "\n"
-"# Set up the Tarantool packages repository:\n"
-"curl -s https://packagecloud.io/install/repositories/tarantool/$TARANTOOL_VERSION/script.deb.sh | sudo bash\n"
+"* for MacOS X (Homebrew formula):"
+msgstr ""
+
+msgid "      brew install cartridge-cli\n"
 "\n"
-"# Install the package:\n"
-"sudo apt-get install cartridge-cli\n"
 "\n"
-"# Check the installation:\n"
-"cartridge --version"
+"* for any OS (from luarocks):"
 msgstr ""
 
-msgid "Homebrew (MacOS)"
-msgstr ""
-
-msgid "brew install cartridge-cli\n"
+msgid "    tarantoolctl rocks install cartridge-cli\n"
 "\n"
-"# Check the installation:\n"
-"cartridge --version"
-msgstr ""
-
-msgid "From luarocks"
-msgstr ""
-
-msgid "To install `cartridge-cli` to the application's directory (installed `Tarantool <https://www.tarantool.io/download/>`_ is required):"
-msgstr ""
-
-msgid "tarantoolctl rocks install cartridge-cli"
-msgstr ""
-
-msgid "The executable will be available at `.rocks/bin/cartridge`. Optionally, you can add `.rocks/bin` to the executable path:"
+"\n"
+"This installs the rock to the application's directory.\n"
+"The executable is available at `.rocks/bin/cartridge`.\n"
+"Optionally, you can add `.rocks/bin` to the executable path:"
 msgstr ""
 
 msgid "export PATH=$PWD/.rocks/bin/:$PATH"
 msgstr ""
 
-msgid "Now you can create and start your first application! Go to the :ref:`next <quick-start>` section and try it."
+msgid "Check the installation:"
+msgstr ""
+
+msgid "cartridge --version"
+msgstr ""
+
+msgid "Now you can `create and start <https://www.tarantool.io/en/doc/1.10/getting_started/getting_started_cartridge/>`_ your first application!"
 msgstr ""
 
 msgid "Quick start"
@@ -164,7 +148,7 @@ msgstr ""
 msgid "That's all! You can visit http://localhost:8081 and see your application Admin Web UI:"
 msgstr ""
 
-msgid "You can find more details in the :ref:`documentation <usage>` or start with our `getting started guide <https://github.com/tarantool/cartridge-cli/blob/master/examples/getting-started-app/README.md>`_."
+msgid "You can find more details in the :ref:`documentation <usage>` or start with our `getting started guide <https://www.tarantool.io/en/doc/1.10/getting_started/getting_started_cartridge/>`_."
 msgstr ""
 
 msgid "Usage"
@@ -263,6 +247,9 @@ msgid "`<app_name>-scm-1.rockspec` file where you can specify application depend
 msgstr ""
 
 msgid "`init.lua` file which is the entry point for your application"
+msgstr ""
+
+msgid "`stateboard.init.lua` file which is the entry point for the application `stateboard <https://github.com/tarantool/cartridge/blob/master/topics/failover.md>`_"
 msgstr ""
 
 msgid ":ref:`special files <special-files>` (used to build and pack the application):"
@@ -423,6 +410,12 @@ msgstr ""
 msgid "`--daemonize / -d` starts the instance in background. With this option, Tarantool also waits until the app's main script is finished. For example, this is useful if `init.lua` requires time-consuming startup from snapshot, and Tarantool waits for the startup to complete. This is also useful if the app's main script generates errors, and Tarantool can handle them."
 msgstr ""
 
+msgid "`--stateboard` starts the application stateboard as well as instances. Defaults to TARANTOOL_STATEBOARD or `false`. Ignored if `--stateboard-only` is specified."
+msgstr ""
+
+msgid "`--stateboard-only` starts only the application stateboard. Defaults to TARANTOOL_STATEBOARD_ONLY or `false`. If specified, `INSTANCE_NAME` is ignored."
+msgstr ""
+
 msgid "The `cartridge start` command starts a `tarantool` instance with enforced **environment variables**:"
 msgstr ""
 
@@ -478,6 +471,15 @@ msgid "`--run-dir DIR`"
 msgstr ""
 
 msgid "`--cfg FILE`"
+msgstr ""
+
+msgid "`--apps-path PATH`"
+msgstr ""
+
+msgid "`--stateboard`"
+msgstr ""
+
+msgid "`--stateboard-only`"
 msgstr ""
 
 msgid "Packing an application"
@@ -661,6 +663,20 @@ msgid "systemctl start myapp@instance-1\n"
 "systemctl start myapp@instance-2"
 msgstr ""
 
+msgid "If you use stateful failover, you need to start application stateboard. **Note:** Your application should contain `stateboard.init.lua` in its root. Add `myapp-stateboard` section to `/etc/tarantool/conf.d/myapp.yml`:"
+msgstr ""
+
+msgid "myapp-stateboard:\n"
+"  listen: localhost:3310\n"
+"  password: passwd"
+msgstr ""
+
+msgid "Then, start stateboard service:"
+msgstr ""
+
+msgid "systemctl start myapp-stateboard"
+msgstr ""
+
 msgid "Package details"
 msgstr ""
 
@@ -695,10 +711,16 @@ msgstr ""
 msgid "the contents of the distribution directory, placed in the `/usr/share/tarantool/<app_name>` directory (for Tarantool Enterprise, this directory also contains `tarantool` and `tarantoolctl` binaries);"
 msgstr ""
 
-msgid "unit files for running the application as a `systemd` service: `/etc/systemd/system/${name}.service` and `/etc/systemd/system/${name}@.service`;"
+msgid "unit files for running the application as a `systemd` service: `/etc/systemd/system/<app_name>.service` and `/etc/systemd/system/<app_name>@.service`;"
 msgstr ""
 
-msgid "the file `/usr/lib/tmpfiles.d/<name>.conf` that allows the instance to restart after server restart."
+msgid "application stateboard unit file: `/etc/systemd/system/<app_name>-stateboard.service`"
+msgstr ""
+
+msgid "(will be packed only if application contains `stateboard.init.lua` in it's root);"
+msgstr ""
+
+msgid "the file `/usr/lib/tmpfiles.d/<app_name>.conf` that allows the instance to restart after server restart."
 msgstr ""
 
 msgid "These directories are created:"
@@ -722,6 +744,9 @@ msgstr ""
 msgid "systemctl start myapp@instance-1"
 msgstr ""
 
+msgid "To start the application stateboard service, say:"
+msgstr ""
+
 msgid "This instance will look for its `configuration <https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_dev/#configuring-instances>`_ across all sections of the YAML file(s) stored in `/etc/tarantool/conf.d/*`."
 msgstr ""
 
@@ -741,24 +766,30 @@ msgid "[Unit]\n"
 "[Service]\n"
 "Type=simple\n"
 "ExecStartPre=/bin/sh -c 'mkdir -p ${workdir}.default'\n"
-"ExecStart=${bindir}/tarantool ${dir}/init.lua\n"
+"ExecStart=${bindir}/tarantool ${app_dir}/init.lua\n"
 "User=tarantool\n"
 "Group=tarantool\n"
 "\n"
 "Environment=TARANTOOL_WORKDIR=${workdir}.%i\n"
 "Environment=TARANTOOL_CFG=/etc/tarantool/conf.d/\n"
-"Environment=TARANTOOL_PID_FILE=/var/run/tarantool/${name}.%i.pid\n"
-"Environment=TARANTOOL_CONSOLE_SOCK=/var/run/tarantool/${name}.%i.control\n"
+"Environment=TARANTOOL_PID_FILE=/var/run/tarantool/${app_name}.%i.pid\n"
+"Environment=TARANTOOL_CONSOLE_SOCK=/var/run/tarantool/${app_name}.%i.control\n"
 "Environment=TARANTOOL_INSTANCE_NAME=%i"
 msgstr ""
 
 msgid "In this file, you can use the following environment variables:"
 msgstr ""
 
-msgid "`name` - the application name;"
+msgid "`app_name` - the application name;"
 msgstr ""
 
-msgid "`workdir` - path to the work directory (by default, `/var/lib/tarantool/<name>`);"
+msgid "`app_dir` - application files directory (by default, `/usr/share/tarantool/<app_name>`)"
+msgstr ""
+
+msgid "`workdir` - path to the work directory (by default, `/var/lib/tarantool/<app_name>`);"
+msgstr ""
+
+msgid "`bindir` - the directory, where Tarantool executable is placed."
 msgstr ""
 
 msgid "Docker"
