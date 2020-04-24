@@ -13,6 +13,7 @@ Usage:
 
 import os
 import argparse
+import re
 
 
 parser = argparse.ArgumentParser(description='Process some integers.')
@@ -21,6 +22,8 @@ parser.add_argument('action', type=str, choices=['add', 'rm'],
 
 fake_lines = '\n\nmsgid "fake_message"\nmsgstr "fake_translation"\n'
 fake_lines_commented = '\n\n#~ msgid "fake_message"\n#~ msgstr "fake_translation"\n'
+pattern_meta = "# .*?\nmsgid \"\"\nmsgstr \"\"\n.*?\n\n"
+
 
 def process_po_files(action) -> int:
     counter = 0
@@ -39,6 +42,9 @@ def process_po_files(action) -> int:
                     with open(os.path.join(path, file), "r+") as f:
                         s = f.read()
                         d = s.replace(fake_lines, '').replace(fake_lines_commented, '')
+
+                        d = re.sub(pattern_meta, '', d)
+                        d = re.sub(pattern_meta, '\n', d, flags=re.DOTALL)
 
                         if d != s:
                             f.seek(0)
