@@ -39,6 +39,7 @@ This reference covers Tarantool's built-in Lua modules.
     net_box
     osmodule
     pickle
+    popen
     socket
     strict
     string
