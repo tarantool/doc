@@ -7,7 +7,7 @@ msgstr "|nbspc|"
 
 #, fuzzy
 msgid ""
-"Tarantool 2.3 manual  This manual embraces all aspects of using "
+"Tarantool 2.4 manual  This manual embraces all aspects of using "
 "Tarantool: from introductory information and exercises for beginners -- "
 "to advanced instructions and detailed references for power users and "
 "contributors.  Документация находится в процессе перевода и может "
@@ -42,7 +42,8 @@ msgstr ""
 " without a blank line; unexpected unindent. Поддержка:  Форум в Google  "
 "Чат в Telegram  Поддержка:  Форум в Google  Чат в Telegram"
 
-msgid "Tarantool 2.3 manual"
+#, fuzzy
+msgid "Tarantool 2.4 manual"
 msgstr "Руководство по Tarantool 2.3"
 
 msgid ""

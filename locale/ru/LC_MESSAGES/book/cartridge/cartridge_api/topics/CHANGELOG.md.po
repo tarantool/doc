@@ -14,22 +14,39 @@ msgstr ""
 msgid "[Unreleased]"
 msgstr ""
 
-msgid "Added"
+msgid "Enhanced in WebUI"
 msgstr ""
 
-msgid "Validation of `console_sock` length."
+msgid "Prettier errors displaying."
 msgstr ""
 
-msgid "[2.1.1] - 2020-04-20"
+msgid "[2.1.2] - 2020-04-24"
 msgstr ""
 
 msgid "Fixed"
+msgstr ""
+
+msgid "Avoid trimming `console_sock` if it's name is too long."
+msgstr ""
+
+msgid "Fix file descriptors leak during box recovery."
+msgstr ""
+
+msgid ""
+"Support `console_sock` option in stateboard as well as notify socket and "
+"other box options similar to regular cartridge instances."
+msgstr ""
+
+msgid "[2.1.1] - 2020-04-20"
 msgstr ""
 
 msgid "Frontend core update: fix route mapping"
 msgstr ""
 
 msgid "[2.1.0] - 2020-04-16"
+msgstr ""
+
+msgid "Added"
 msgstr ""
 
 msgid ""
@@ -115,9 +132,6 @@ msgid "Show WebUI notification on successful config upload."
 msgstr ""
 
 msgid "Repair GraphQL queries `add_user`, `issues` on uninitialized instance."
-msgstr ""
-
-msgid "Enhanced in WebUI"
 msgstr ""
 
 msgid "Show \"You are here\" marker."
@@ -1042,3 +1056,6 @@ msgstr ""
 
 msgid "Gitlab CI integration"
 msgstr ""
+
+#~ msgid "Validation of `console_sock` length."
+#~ msgstr ""
