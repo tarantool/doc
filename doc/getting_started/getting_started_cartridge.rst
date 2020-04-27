@@ -6,31 +6,16 @@ Creating your first Tarantool Cartridge application
 
 Here we'll walk you through developing a simple cluster application.
 
-First, set up the development environment:
+First,
+`set up the development environment <https://github.com/tarantool/cartridge-cli#installation>`_.
 
-#. `Install <https://github.com/tarantool/cartridge-cli#installation>`_
-   ``cartridge-cli``, a command-line tool for developing, deploying, and
-   managing Tarantool applications.
-
-#. `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_
-   ``git``, a version control system.
-
-#. `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`_
-   the ``unzip`` utility.
-
-#. `Install <https://gcc.gnu.org/install/>`_
-   the ``gcc`` compiler.
-
-#. `Install <https://cmake.org/install/>`_
-   the ``cmake`` and ``make`` tools.
-
-Now create an application named ``myapp``. Say:
+Next, create an application named ``myapp``. Say:
 
 .. code-block:: console
 
     $ cartridge create --name myapp
 
-This will create a Tarantool Cartridge application in the ``./myapp`` directory
+This will create a Tarantool Cartridge application in the ``./myapp`` directory,
 with a handful of
 :ref:`template files and directories <creating-an-application-from-template>`
 inside.
