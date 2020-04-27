@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 20:06+0000\n"
+"POT-Creation-Date: 2020-04-27 13:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,31 +22,16 @@ msgstr ""
 msgid "Here we'll walk you through developing a simple cluster application."
 msgstr ""
 
-msgid "First, set up the development environment:"
+msgid "First, `set up the development environment <https://github.com/tarantool/cartridge-cli#installation>`_."
 msgstr ""
 
-msgid "`Install <https://github.com/tarantool/cartridge-cli#installation>`_ ``cartridge-cli``, a command-line tool for developing, deploying, and managing Tarantool applications."
-msgstr ""
-
-msgid "`Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_ ``git``, a version control system."
-msgstr ""
-
-msgid "`Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`_ the ``unzip`` utility."
-msgstr ""
-
-msgid "`Install <https://gcc.gnu.org/install/>`_ the ``gcc`` compiler."
-msgstr ""
-
-msgid "`Install <https://cmake.org/install/>`_ the ``cmake`` and ``make`` tools."
-msgstr ""
-
-msgid "Now create an application named ``myapp``. Say:"
+msgid "Next, create an application named ``myapp``. Say:"
 msgstr ""
 
 msgid "$ cartridge create --name myapp"
 msgstr ""
 
-msgid "This will create a Tarantool Cartridge application in the ``./myapp`` directory with a handful of :ref:`template files and directories <creating-an-application-from-template>` inside."
+msgid "This will create a Tarantool Cartridge application in the ``./myapp`` directory, with a handful of :ref:`template files and directories <creating-an-application-from-template>` inside."
 msgstr ""
 
 msgid "Go inside and make a dry run:"
