@@ -545,7 +545,7 @@ With the handle one can execute methods.
 
     .. _popen-info:
 
-    .. method:: infol()
+    .. method:: info()
 
         Return information about the popen handle.
 
