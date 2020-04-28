@@ -31,45 +31,53 @@ nullable values set to null) in case of using Lua **nil** value.
 
 To overcome this and some other issues use ``box.NULL`` constant instead.
 
-.. function:: box.NULL
+Using box.NULL
+--------------
 
-    Use ``box.NULL`` instead of **nil** value in case you need NULL.
+``box.NULL`` is a generic pointer to a C-like NULL. So it there is
+some not **nil** value, even if it is a pointer to NULL.
 
-    ``box.NULL`` is a generic pointer to a C-like NULL. So by using it there is
-    some not **nil** value, even if it is a pointer to NULL.
+Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
 
-    .. NOTE::
+.. NOTE::
 
-        Use ``box.NULL`` only with capitalized NULL (not ``box.null``).
+    Technically speaking ``box.NULL`` equals to ``ffi.cast('void *', nil)``.
 
-    **Example:**
+**Example:**
 
-    .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-        unix/:/var/run/tarantool/tarantool.sock> t = {0, box.NULL, 1, 2, box.NULL}
-        ---
-        ...
+    tarantool> t = {0, box.NULL, 1, 2, box.NULL}
+    ---
+    ...
 
-        unix/:/var/run/tarantool/tarantool.sock> t
-        ---
-        - - 0
-        - null
-        - 1
-        - 2
-        - null
-        ...
+    tarantool> t
+    ---
+    - - 0
+    - null
+    - 1
+    - 2
+    - null
+    ...
 
-        unix/:/var/run/tarantool/tarantool.sock> #t
-        ---
-        - 5
-        ...
+   tarantool> #t
+    ---
+    - 5
+    ...
 
-    .. NOTE::
+.. NOTE::
 
-        There is a possible another problem induced by using ``box.NULL``.
-        Avoid using implicit comparisons with nullable values when using ``box.NULL``.
-        Due to `Lua behaviour <https://www.lua.org/manual/5.1/manual.html#2.4.4>`_
-        returning from condition expression anything except **false** or **nil**
-        is considered as **true**. And as it was mentioned earlier box.NULL is a
-        pointer by design. Thats why expression ``if box.NULL then a=0 end`` will
-        always execute (as condition box.NULL is always not **false** nor **nil**).
+    There is a possible problem induced by using ``box.NULL``.
+    Avoid using implicit comparisons with nullable values when using ``box.NULL``.
+    Due to `Lua behaviour <https://www.lua.org/manual/5.1/manual.html#2.4.4>`_
+    returning from condition expression anything except **false** or **nil**
+    is considered as **true**. And as it was mentioned earlier ``box.NULL`` is a
+    pointer by design.
+
+    That is why expression ``box.NULL`` will always be considered true in case
+    it is used as condition in comparison. That means function
+
+    ``if box.NULL then func() end``
+
+    will always execute function ``func()`` (as condition box.NULL is always
+    not **false** nor **nil**).
