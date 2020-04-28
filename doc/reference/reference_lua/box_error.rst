@@ -155,7 +155,7 @@ Below is a list of all ``box.error`` functions.
     Create an error object, but doesn't set it to Tarantool's diagnostic area as
     :ref:`box.error() <box_error-error>` does.
     This is useful when error information should be saved for later retrieval.
-    To set error in diagnostic area explicitly use 
+    To set an error in a diagnostic area explicitly use 
     :ref:`box.error.set() <box_error-set>`.
 
     :param number       code: number of a pre-defined error
@@ -185,8 +185,8 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.set(error object)
 
-    Set an error in diagnostic area explicitly. Accepts error object and set it
-    as the last system error (i.e. becomes available via ``box.error.last()``).
+    Set an error in a diagnostic area explicitly. Accepts an error object and sets it
+    as the last system error (i.e. becomes available via :ref:`box.error.last() <box_error-last>`).
 
     **Example:**
 
