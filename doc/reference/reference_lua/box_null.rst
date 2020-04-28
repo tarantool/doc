@@ -1,4 +1,4 @@
-.. _box-once:
+.. _box-null:
 
 -------------------------------------------------------------------------------
                              Constant `box.NULL`
@@ -66,8 +66,6 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     - 5
     ...
 
-
-
 .. NOTE::
 
     There is a possible problem induced by using ``box.NULL``.
@@ -84,8 +82,6 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
 
     will always execute function ``func()`` (because condition ``box.NULL`` will
     always be neither **false** nor **nil**).
-
-
 
 Distinction of nil and box.NULL
 -------------------------------
