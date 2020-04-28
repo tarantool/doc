@@ -18,7 +18,7 @@ msgid "**Parameters:**"
 msgstr ""
 
 msgid ""
-"*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  "
+"*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)  "
 "(optional)"
 msgstr ""
 
@@ -35,7 +35,7 @@ msgid "(**nil**)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Discover an instance."
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "enable_servers (uuids)"
@@ -67,7 +67,7 @@ msgstr ""
 
 msgid ""
 "*uuids:* (`{string,...} "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "disable_servers (uuids)"
@@ -85,5 +85,26 @@ msgstr ""
 msgid "Get alias, uri and uuid of current instance."
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
+
+#~ msgid ""
+#~ "*uuid:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "Error description"
+#~ msgstr ""
+
+#~ msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*uuids:* (`{string,...} "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""

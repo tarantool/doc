@@ -23,12 +23,12 @@ msgstr ""
 msgid ""
 ":ref:`popen.shell <popen-shell>` which is similar to the libc `popen "
 "<https://www.gnu.org/software/libc/manual/html_node/Pipe-"
-"to-a-Subprocess.html>`_ syscall, and"
+"to-a-Subprocess.html>`_ syscall"
 msgstr ""
 
 msgid ""
 ":ref:`popen.new <popen-new>` to create a popen object with more specific "
-"options."
+"options"
 msgstr ""
 
 msgid ""
@@ -66,16 +66,16 @@ msgstr ""
 msgid "The possible ``mode`` values are:"
 msgstr ""
 
-msgid "'w'    which enables :ref:`popen_handle:write() <popen-write>`,"
+msgid "'w'    which enables :ref:`popen_handle:write() <popen-write>`"
 msgstr ""
 
-msgid "'r'    which enables :ref:`popen_handle:read() <popen-read>`,"
+msgid "'r'    which enables :ref:`popen_handle:read() <popen-read>`"
 msgstr ""
 
-msgid "'R'    which enables :ref:`popen_handle:read(stderr = true) <popen-read>`,"
+msgid "'R'    which enables :ref:`popen_handle:read(stderr = true) <popen-read>`"
 msgstr ""
 
-msgid "nil    which means inherit parent's std* file descriptors."
+msgid "nil    which means inherit parent's std* file descriptors"
 msgstr ""
 
 msgid "Several mode characters can be set together, for example 'rw', 'rRw'."
@@ -144,26 +144,26 @@ msgstr ""
 msgid "Possible raised errors are:"
 msgstr ""
 
-msgid "\"- IllegalParams: incorrect type or value of a parameter\""
+msgid "\"IllegalParams: incorrect type or value of a parameter\""
 msgstr ""
 
-msgid "\"- IllegalParams: group signal is set, while setsid is not\""
+msgid "\"IllegalParams: group signal is set, while setsid is not\""
 msgstr ""
 
 msgid "Possible error reasons when ``nil, err`` is returned are:"
 msgstr ""
 
 msgid ""
-"\"- SystemError: dup(), fcntl(), pipe(), vfork() or close() fails in the "
+"\"SystemError: dup(), fcntl(), pipe(), vfork() or close() fails in the "
 "parent process\""
 msgstr ""
 
 msgid ""
-"\"- SystemError: (temporary restriction) the parent process has closed "
+"\"SystemError: (temporary restriction) the parent process has closed "
 "stdin, stdout or stderr\""
 msgstr ""
 
-msgid "\"- OutOfMemory: unable to allocate the handle or a temporary buffer\""
+msgid "\"OutOfMemory: unable to allocate the handle or a temporary buffer\""
 msgstr ""
 
 msgid "Possible ``opts`` items are:"
@@ -233,8 +233,8 @@ msgid "false"
 msgstr ""
 
 msgid ""
-"If true, then run a child process via 'sh -c \"${opts.argv}\"'. If false,"
-" then call the executable directly."
+"If true, then run a child process via ``sh -c \"${opts.argv}\"``. If "
+"false, then call the executable directly."
 msgstr ""
 
 msgid "opts.setsid"
@@ -313,6 +313,12 @@ msgid ""
 msgstr ""
 
 msgid "**Example 1**"
+msgstr ""
+
+msgid ""
+"This is the equivalent of the ``sh -c date`` command. It starts a "
+"process, runs 'date', reads the output, and closes the popen object "
+"(``ph``)."
 msgstr ""
 
 msgid ""
@@ -473,37 +479,37 @@ msgid ""
 "both ``opts.stdout`` and ``opts.stderr`` to ``true``)."
 msgstr ""
 
-msgid "\"- IllegalParams:    incorrect type or value of a parameter\""
+msgid "\"IllegalParams:    incorrect type or value of a parameter\""
 msgstr ""
 
-msgid "\"- IllegalParams:    called on a closed handle\""
+msgid "\"IllegalParams:    called on a closed handle\""
 msgstr ""
 
-msgid "\"- IllegalParams:    opts.stdout and opts.stderr are both set\""
+msgid "\"IllegalParams:    opts.stdout and opts.stderr are both set\""
 msgstr ""
 
 msgid ""
-"\"- IllegalParams:    a requested IO operation is not supported by the "
+"\"IllegalParams:    a requested IO operation is not supported by the "
 "handle (stdout / stderr is not piped)\""
 msgstr ""
 
-msgid "\"- IllegalParams:    attempt to operate on a closed file descriptor\""
+msgid "\"IllegalParams:    attempt to operate on a closed file descriptor\""
 msgstr ""
 
-msgid "\"- FiberIsCancelled: cancelled by an outside code\""
+msgid "\"FiberIsCancelled: cancelled by an outside code\""
 msgstr ""
 
-msgid "\"- SocketError: an IO error occurs at read()\""
+msgid "\"SocketError: an IO error occurs at read()\""
 msgstr ""
 
-msgid "\"- TimedOut:    exceeded the `opts.timeout` quota\""
+msgid "\"TimedOut:    exceeded the `opts.timeout` quota\""
 msgstr ""
 
-msgid "\"- OutOfMemory: no memory space for a buffer to read into\""
+msgid "\"OutOfMemory: no memory space for a buffer to read into\""
 msgstr ""
 
 msgid ""
-"\"-  LuajitError: (\"not enough memory\"): no memory space for the Lua "
+"\"LuajitError: (\"not enough memory\"): no memory space for the Lua "
 "string\""
 msgstr ""
 
@@ -521,18 +527,18 @@ msgid ""
 "quota in seconds)."
 msgstr ""
 
-msgid "\"- IllegalParams:    string length is greater then SSIZE_MAX\""
+msgid "\"IllegalParams:    string length is greater then SSIZE_MAX\""
 msgstr ""
 
 msgid ""
-"\"- IllegalParams:    a requested IO operation is not supported by the "
+"\"IllegalParams:    a requested IO operation is not supported by the "
 "handle (stdin is not piped)\""
 msgstr ""
 
-msgid "\"- SocketError: an IO error occurs at write()\""
+msgid "\"SocketError: an IO error occurs at write()\""
 msgstr ""
 
-msgid "\"- TimedOut:    exceeded `opts.timeout` quota\""
+msgid "\"TimedOut:    exceeded `opts.timeout` quota\""
 msgstr ""
 
 msgid ""
@@ -564,18 +570,18 @@ msgstr ""
 msgid "We may use the term std* to mean any one of these items."
 msgstr ""
 
-msgid "\"- IllegalParams:  an incorrect handle parameter\""
+msgid "\"IllegalParams:  an incorrect handle parameter\""
 msgstr ""
 
-msgid "\"- IllegalParams:  called on a closed handle\""
+msgid "\"IllegalParams:  called on a closed handle\""
 msgstr ""
 
-msgid "\"- IllegalParams:  neither stdin, stdout nor stderr is choosen\""
+msgid "\"IllegalParams:  neither stdin, stdout nor stderr is choosen\""
 msgstr ""
 
 msgid ""
-"\"- IllegalParams:  a requested IO operation is not supported by the "
-"handle (one of std* is not piped)\""
+"\"IllegalParams:  a requested IO operation is not supported by the handle"
+" (one of std* is not piped)\""
 msgstr ""
 
 msgid ""
@@ -612,7 +618,7 @@ msgstr ""
 
 msgid ""
 "see :ref:`popen_handle:signal() <popen-signal>` for errors and return "
-"values."
+"values"
 msgstr ""
 
 msgid ""
@@ -640,27 +646,27 @@ msgstr ""
 msgid "Possible raised errors:"
 msgstr ""
 
-msgid "\"- IllegalParams:    an incorrect handle parameter\""
+msgid "\"IllegalParams:    an incorrect handle parameter\""
 msgstr ""
 
 msgid "Possible error values for ``nil, err``:"
 msgstr ""
 
 msgid ""
-"\"- SystemError: a process does not exists any more\" (this may also be "
+"\"SystemError: a process does not exists any more\" (this may also be "
 "returned for a zombie process or when all processes in a group are "
 "zombies (but see note re Mac OS below)"
 msgstr ""
 
-msgid "\"- SystemError: invalid signal number\""
+msgid "\"SystemError: invalid signal number\""
 msgstr ""
 
 msgid ""
-"\"- SystemError: no permission to send a signal to a process or a process"
-" group\" (this is returned on Mac OS when a signal is sent to a process "
+"\"SystemError: no permission to send a signal to a process or a process "
+"group\" (this is returned on Mac OS when a signal is sent to a process "
 "group, where a group leader is a zombie (or when all processes in it are "
 "zombies, details re uncertain) (this may also appear due to other "
-"reasons, details are uncertain)."
+"reasons, details are uncertain)"
 msgstr ""
 
 msgid ""
@@ -683,10 +689,10 @@ msgstr ""
 msgid "res"
 msgstr ""
 
-msgid "\"- IllegalParams: an incorrect handle parameter\""
+msgid "\"IllegalParams: an incorrect handle parameter\""
 msgstr ""
 
-msgid "\"- IllegalParams: called on a closed handle\""
+msgid "\"IllegalParams: called on a closed handle\""
 msgstr ""
 
 msgid "The result format is:"
@@ -812,12 +818,6 @@ msgid "Wait until a child process gets exited or signaled."
 msgstr ""
 
 msgid ""
-"Possible raised errors are: * \"- IllegalParams: an incorrect handle "
-"parameter\" * \"- IllegalParams: called on a closed handle\" * \"- "
-"FiberIsCancelled: cancelled by an outside code\""
-msgstr ""
-
-msgid ""
 "The formatted result is a process status table (the same as the "
 "``status`` component of the table returned by :ref:`popen_handle:info() "
 "<popen-info>`)."
@@ -835,8 +835,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"\"- SystemError: no permission to send a signal to a process or a process"
-" group\" (This diagnostic may appear due to Mac OS behavior on zombies "
+"\"SystemError: no permission to send a signal to a process or a process "
+"group\" (This diagnostic may appear due to Mac OS behavior on zombies "
 "when ``opts.group_signal`` is set, see :ref:`popen_handle:signal() "
 "<popen-signal>`. It may appear for other reasons, details are unclear.)"
 msgstr ""
@@ -1497,4 +1497,185 @@ msgstr ""
 #~ " The return values are purely "
 #~ "informational: they are for logging or"
 #~ " some kind of reporting."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":ref:`popen.shell <popen-shell>` which is "
+#~ "similar to the libc `popen "
+#~ "<https://www.gnu.org/software/libc/manual/html_node/Pipe-"
+#~ "to-a-Subprocess.html>`_ syscall, and"
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":ref:`popen.new <popen-new>` to create a"
+#~ " popen object with more specific "
+#~ "options."
+#~ msgstr ""
+
+#~ msgid "'w'    which enables :ref:`popen_handle:write() <popen-write>`,"
+#~ msgstr ""
+
+#~ msgid "'r'    which enables :ref:`popen_handle:read() <popen-read>`,"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "'R'    which enables :ref:`popen_handle:read(stderr"
+#~ " = true) <popen-read>`,"
+#~ msgstr ""
+
+#~ msgid "nil    which means inherit parent's std* file descriptors."
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams: incorrect type or value of a parameter\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams: group signal is set, while setsid is not\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- SystemError: dup(), fcntl(), pipe(), "
+#~ "vfork() or close() fails in the "
+#~ "parent process\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- SystemError: (temporary restriction) the"
+#~ " parent process has closed stdin, "
+#~ "stdout or stderr\""
+#~ msgstr ""
+
+#~ msgid "\"- OutOfMemory: unable to allocate the handle or a temporary buffer\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If true, then run a child process"
+#~ " via 'sh -c \"${opts.argv}\"'. If "
+#~ "false, then call the executable "
+#~ "directly."
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:    incorrect type or value of a parameter\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:    called on a closed handle\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:    opts.stdout and opts.stderr are both set\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- IllegalParams:    a requested IO "
+#~ "operation is not supported by the "
+#~ "handle (stdout / stderr is not "
+#~ "piped)\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:    attempt to operate on a closed file descriptor\""
+#~ msgstr ""
+
+#~ msgid "\"- FiberIsCancelled: cancelled by an outside code\""
+#~ msgstr ""
+
+#~ msgid "\"- SocketError: an IO error occurs at read()\""
+#~ msgstr ""
+
+#~ msgid "\"- TimedOut:    exceeded the `opts.timeout` quota\""
+#~ msgstr ""
+
+#~ msgid "\"- OutOfMemory: no memory space for a buffer to read into\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"-  LuajitError: (\"not enough memory\"): "
+#~ "no memory space for the Lua "
+#~ "string\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:    string length is greater then SSIZE_MAX\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- IllegalParams:    a requested IO "
+#~ "operation is not supported by the "
+#~ "handle (stdin is not piped)\""
+#~ msgstr ""
+
+#~ msgid "\"- SocketError: an IO error occurs at write()\""
+#~ msgstr ""
+
+#~ msgid "\"- TimedOut:    exceeded `opts.timeout` quota\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:  an incorrect handle parameter\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:  called on a closed handle\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:  neither stdin, stdout nor stderr is choosen\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- IllegalParams:  a requested IO "
+#~ "operation is not supported by the "
+#~ "handle (one of std* is not "
+#~ "piped)\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "see :ref:`popen_handle:signal() <popen-signal>` "
+#~ "for errors and return values."
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams:    an incorrect handle parameter\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- SystemError: a process does not "
+#~ "exists any more\" (this may also "
+#~ "be returned for a zombie process "
+#~ "or when all processes in a group"
+#~ " are zombies (but see note re "
+#~ "Mac OS below)"
+#~ msgstr ""
+
+#~ msgid "\"- SystemError: invalid signal number\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- SystemError: no permission to send"
+#~ " a signal to a process or a "
+#~ "process group\" (this is returned on "
+#~ "Mac OS when a signal is sent "
+#~ "to a process group, where a group"
+#~ " leader is a zombie (or when "
+#~ "all processes in it are zombies, "
+#~ "details re uncertain) (this may also "
+#~ "appear due to other reasons, details "
+#~ "are uncertain)."
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams: an incorrect handle parameter\""
+#~ msgstr ""
+
+#~ msgid "\"- IllegalParams: called on a closed handle\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Possible raised errors are: * \"- "
+#~ "IllegalParams: an incorrect handle parameter\""
+#~ " * \"- IllegalParams: called on a "
+#~ "closed handle\" * \"- FiberIsCancelled: "
+#~ "cancelled by an outside code\""
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\"- SystemError: no permission to send"
+#~ " a signal to a process or a "
+#~ "process group\" (This diagnostic may "
+#~ "appear due to Mac OS behavior on"
+#~ " zombies when ``opts.group_signal`` is set,"
+#~ " see :ref:`popen_handle:signal() <popen-signal>`."
+#~ " It may appear for other reasons, "
+#~ "details are unclear.)"
 #~ msgstr ""

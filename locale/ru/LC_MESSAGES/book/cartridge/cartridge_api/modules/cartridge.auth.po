@@ -41,7 +41,7 @@ msgid "(**nil**)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Get authentication callbacks."
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) callbacks"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) callbacks"
 msgstr ""
 
 msgid "Configuration"
@@ -168,7 +168,7 @@ msgstr ""
 msgid "(**Added** in v1.1.0-4)"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **nil**)"
+msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_ or **nil**)"
 msgstr ""
 
 msgid "authorize_request (request)"
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Get username from cookies or basic HTTP authentication."
 msgstr ""
 
-msgid "*request:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*request:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) Access granted"
@@ -197,11 +197,11 @@ msgid ""
 "cookie."
 msgstr ""
 
-msgid "*response:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*response:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) The same "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) The same "
 "response with cookies injected"
 msgstr ""
 
@@ -214,17 +214,17 @@ msgstr ""
 msgid "User information."
 msgstr ""
 
-msgid "*username:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*username:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
 "*fullname:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
 "*email:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "add_user (username, password, fullname, email)"
@@ -238,7 +238,7 @@ msgid ""
 " with fields conforming to  ``UserInfo`` . Unknown fields are ignored."
 msgstr ""
 
-msgid "*password:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*password:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "(`UserInfo <cartridge.auth.UserInfo_>`_)"
@@ -258,7 +258,7 @@ msgstr ""
 
 msgid ""
 "*password:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "list_users ()"
@@ -286,3 +286,50 @@ msgid ""
 " with fields conforming to  ``UserInfo`` , which was removed. Unknown "
 "fields are ignored."
 msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "Error description"
+#~ msgstr ""
+
+#~ msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) callbacks"
+#~ msgstr ""
+
+#~ msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **nil**)"
+#~ msgstr ""
+
+#~ msgid "*request:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""
+
+#~ msgid "*response:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "The same response with cookies injected"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*username:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*fullname:* (optional `string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*email:* (optional `string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*password:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*password:* (optional `string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""

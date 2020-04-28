@@ -29,13 +29,13 @@ msgstr ""
 
 msgid ""
 "*section_name:* (`string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)  (optional)"
 msgstr ""
 
 msgid "**Returns**:"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "get_deepcopy ([section_name])"
@@ -59,7 +59,7 @@ msgid "Perform state transition."
 msgstr ""
 
 msgid ""
-"*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) New"
+"*state:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) New"
 " state"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgid "Make a wish for meeting desired state."
 msgstr ""
 
 msgid ""
-"*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+"*state:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) "
 "Desired state."
 msgstr ""
 
@@ -84,7 +84,7 @@ msgid "*timeout:* (**number**)  (optional)"
 msgstr ""
 
 msgid ""
-"(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Final state,"
+"(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Final state,"
 " may differ from desired."
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 
 msgid ""
 "*clusterwide_config_new:* (`table "
-"<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) true"
@@ -106,7 +106,7 @@ msgid "**Or**"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
 
@@ -118,5 +118,45 @@ msgstr ""
 
 msgid ""
 "*clusterwide_config:* (`table "
-"<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
+
+#~ msgid ""
+#~ "*section_name:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+#~ msgstr ""
+
+#~ msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*state:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_) New "
+#~ "state"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*state:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_) Desired "
+#~ "state."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+#~ "Final state, may differ from desired."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*clusterwide_config_new:* (`table "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "Error description"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*clusterwide_config:* (`table "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""

@@ -54,7 +54,7 @@ msgstr ""
 msgid "**Returns**:"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) coordinator"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) coordinator"
 msgstr ""
 
 msgid "**Or**"
@@ -64,7 +64,7 @@ msgid "(**nil**)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 
 msgid ""
 "*replicaset_uuid:* (`{[string]=string} "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_) to leader_uuid map"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_) to leader_uuid map"
 msgstr ""
 
 msgid "(**boolean**) Whether leadership map has changed"
@@ -148,3 +148,17 @@ msgstr ""
 
 msgid "Check current instance writability."
 msgstr ""
+
+#~ msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) coordinator"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "Error description"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*replicaset_uuid:* (`{[string]=string} "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_) to "
+#~ "leader_uuid map"
+#~ msgstr ""
