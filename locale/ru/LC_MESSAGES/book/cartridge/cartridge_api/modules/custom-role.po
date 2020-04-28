@@ -40,10 +40,10 @@ msgstr ""
 msgid "Validate clusterwide configuration callback."
 msgstr ""
 
-msgid "*conf_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*conf_new:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
-msgid "*conf_old:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*conf_old:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "apply_config (conf, opts)"
@@ -53,7 +53,7 @@ msgid "Apply clusterwide configuration callback."
 msgstr ""
 
 msgid ""
-"*conf:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+"*conf:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) "
 "Clusterwide configuration"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Displayed role name. When absent, module name is used instead."
 msgstr ""
 
-msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "hidden"

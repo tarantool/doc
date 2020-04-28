@@ -83,7 +83,7 @@ msgstr ""
 
 msgid ""
 "*data:* (`{string=string,...} "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_) Plaintext content "
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_) Plaintext content "
 "(optional)"
 msgstr ""
 
@@ -100,7 +100,7 @@ msgid "(**nil**)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgstr ""
 msgid "*clusterwide_config:* (**ClusterwideConfig**)"
 msgstr ""
 
-msgid "*filename:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*filename:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "(**boolean**) true"
@@ -146,7 +146,7 @@ msgid "Load old-style config from YAML file."
 msgstr ""
 
 msgid ""
-"*filename:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+"*filename:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) "
 "Filename to load."
 msgstr ""
 
@@ -157,7 +157,7 @@ msgid "Load new-style config from a directory."
 msgstr ""
 
 msgid ""
-"*path:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Path"
+"*path:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Path"
 " to the config."
 msgstr ""
 

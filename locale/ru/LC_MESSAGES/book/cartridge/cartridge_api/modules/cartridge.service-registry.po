@@ -31,12 +31,12 @@ msgstr ""
 
 msgid ""
 "*module_name:* (`string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
 "*instance:* (**nil** or `table "
-"<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "**Returns**:"
@@ -54,7 +54,7 @@ msgstr ""
 msgid "**Or**"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) instance"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) instance"
 msgstr ""
 
 #~ msgid ""
