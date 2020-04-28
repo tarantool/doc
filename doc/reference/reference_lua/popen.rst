@@ -26,8 +26,8 @@ object:
 
 * :ref:`popen.shell <popen-shell>` which is similar to
   the libc `popen <https://www.gnu.org/software/libc/manual/html_node/Pipe-to-a-Subprocess.html>`_
-  syscall, and
-* :ref:`popen.new <popen-new>` to create a popen object with more specific options.
+  syscall
+* :ref:`popen.new <popen-new>` to create a popen object with more specific options
 
 Either function returns a handle which we will call ``popen_handle`` or ``ph``.
 With the handle one can execute methods.
@@ -51,10 +51,10 @@ With the handle one can execute methods.
 
     The possible ``mode`` values are:
 
-    * 'w'    which enables :ref:`popen_handle:write() <popen-write>`,
-    * 'r'    which enables :ref:`popen_handle:read() <popen-read>`,
-    * 'R'    which enables :ref:`popen_handle:read(stderr = true) <popen-read>`,
-    * nil    which means inherit parent's std* file descriptors.
+    * 'w'    which enables :ref:`popen_handle:write() <popen-write>`
+    * 'r'    which enables :ref:`popen_handle:read() <popen-read>`
+    * 'R'    which enables :ref:`popen_handle:read(stderr = true) <popen-read>`
+    * nil    which means inherit parent's std* file descriptors
 
     Several mode characters can be set together, for example 'rw', 'rRw'.
 
@@ -112,16 +112,16 @@ With the handle one can execute methods.
 
     Possible raised errors are:
 
-    * "- IllegalParams: incorrect type or value of a parameter"
-    * "- IllegalParams: group signal is set, while setsid is not"
+    * "IllegalParams: incorrect type or value of a parameter"
+    * "IllegalParams: group signal is set, while setsid is not"
 
     Possible error reasons when ``nil, err`` is returned are:
 
-    * "- SystemError: dup(), fcntl(), pipe(), vfork() or close() fails in the
+    * "SystemError: dup(), fcntl(), pipe(), vfork() or close() fails in the
       parent process"
-    * "- SystemError: (temporary restriction) the parent process has closed stdin,
+    * "SystemError: (temporary restriction) the parent process has closed stdin,
       stdout or stderr"
-    * "- OutOfMemory: unable to allocate the handle or a temporary buffer"
+    * "OutOfMemory: unable to allocate the handle or a temporary buffer"
 
     Possible ``opts`` items are:
 
@@ -157,7 +157,7 @@ With the handle one can execute methods.
         | Name                 | Default        | Use                                       |
         +======================+================+===========================================+
         | opts.shell           | false          | If true, then run a child process         |
-        |                      |                | via 'sh -c "${opts.argv}"'.               |
+        |                      |                | via ``sh -c "${opts.argv}"``.             |
         |                      |                | If false, then call the executable        |
         |                      |                | directly.                                 |
         +----------------------+----------------+-------------------------------------------+
@@ -221,7 +221,7 @@ With the handle one can execute methods.
 
     **Example 1**
 
-    This is the equivalent of the 'sh -c date' command.
+    This is the equivalent of the ``sh -c date`` command.
     It starts a process, runs 'date', reads the output,
     and closes the popen object (``ph``).
 
@@ -356,20 +356,20 @@ With the handle one can execute methods.
 
         Possible raised errors are:
 
-        * "- IllegalParams:    incorrect type or value of a parameter"
-        * "- IllegalParams:    called on a closed handle"
-        * "- IllegalParams:    opts.stdout and opts.stderr are both set"
-        * "- IllegalParams:    a requested IO operation is not supported by
+        * "IllegalParams:    incorrect type or value of a parameter"
+        * "IllegalParams:    called on a closed handle"
+        * "IllegalParams:    opts.stdout and opts.stderr are both set"
+        * "IllegalParams:    a requested IO operation is not supported by
           the handle (stdout / stderr is not piped)"
-        * "- IllegalParams:    attempt to operate on a closed file descriptor"
-        * "- FiberIsCancelled: cancelled by an outside code"
+        * "IllegalParams:    attempt to operate on a closed file descriptor"
+        * "FiberIsCancelled: cancelled by an outside code"
 
         Possible error reasons when ``nil, err`` is returned are:
 
-        * "- SocketError: an IO error occurs at read()"
-        * "- TimedOut:    exceeded the `opts.timeout` quota"
-        * "- OutOfMemory: no memory space for a buffer to read into"
-        * "-  LuajitError: ("not enough memory"): no memory space for the Lua string"
+        * "SocketError: an IO error occurs at read()"
+        * "TimedOut:    exceeded the `opts.timeout` quota"
+        * "OutOfMemory: no memory space for a buffer to read into"
+        * "LuajitError: ("not enough memory"): no memory space for the Lua string"
 
     .. _popen-write:
 
@@ -392,18 +392,18 @@ With the handle one can execute methods.
 
         Possible raised errors are:
 
-        * "- IllegalParams:    incorrect type or value of a parameter"
-        * "- IllegalParams:    called on a closed handle"
-        * "- IllegalParams:    string length is greater then SSIZE_MAX"
-        * "- IllegalParams:    a requested IO operation is not supported by the
+        * "IllegalParams:    incorrect type or value of a parameter"
+        * "IllegalParams:    called on a closed handle"
+        * "IllegalParams:    string length is greater then SSIZE_MAX"
+        * "IllegalParams:    a requested IO operation is not supported by the
           handle (stdin is not piped)"
-        * "- IllegalParams:    attempt to operate on a closed file descriptor"
-        * "- FiberIsCancelled: cancelled by an outside code"
+        * "IllegalParams:    attempt to operate on a closed file descriptor"
+        * "FiberIsCancelled: cancelled by an outside code"
 
         Possible error reasons when ``nil, err`` is returned are:
 
-        * "- SocketError: an IO error occurs at write()"
-        * "- TimedOut:    exceeded `opts.timeout` quota"
+        * "SocketError: an IO error occurs at write()"
+        * "TimedOut:    exceeded `opts.timeout` quota"
 
         ``write()`` may yield forever if the child process does
         not read data from stdin and a pipe buffer becomes full.
@@ -437,10 +437,10 @@ With the handle one can execute methods.
 
         Possible raised errors are:
 
-        * "- IllegalParams:  an incorrect handle parameter"
-        * "- IllegalParams:  called on a closed handle"
-        * "- IllegalParams:  neither stdin, stdout nor stderr is choosen"
-        * "- IllegalParams:  a requested IO operation is not supported by
+        * "IllegalParams:  an incorrect handle parameter"
+        * "IllegalParams:  called on a closed handle"
+        * "IllegalParams:  neither stdin, stdout nor stderr is choosen"
+        * "IllegalParams:  a requested IO operation is not supported by
           the handle (one of std* is not piped)"
 
         The main reason to use ``shutdown()`` is to send EOF to a
@@ -479,7 +479,7 @@ With the handle one can execute methods.
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: see :ref:`popen_handle:signal() <popen-signal>` for errors and
-                 return values.
+                 return values
 
         ``terminate()`` only sends a SIGTERM signal.
         It does *not* free any resources (such as popen handle memory and
@@ -495,7 +495,7 @@ With the handle one can execute methods.
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: see :ref:`popen_handle:signal() <popen-signal>` for errors and
-                 return values.
+                 return values
 
 
         ``kill()`` only sends a SIGKILL signal.
@@ -518,22 +518,22 @@ With the handle one can execute methods.
 
         Possible raised errors:
 
-        * "- IllegalParams:    an incorrect handle parameter"
-        * "- IllegalParams:    called on a closed handle"
+        * "IllegalParams:    an incorrect handle parameter"
+        * "IllegalParams:    called on a closed handle"
 
         Possible error values for ``nil, err``:
 
-        * "- SystemError: a process does not exists any more"
+        * "SystemError: a process does not exists any more"
           (this may also be returned for a zombie process or when all
           processes in a group are zombies (but see note re Mac OS below)
-        * "- SystemError: invalid signal number"
-        * "- SystemError: no permission to send a signal to a process or
+        * "SystemError: invalid signal number"
+        * "SystemError: no permission to send a signal to a process or
           a process group"
           (this is returned on Mac OS when a signal is
           sent to a process group, where a group leader
           is a zombie (or when all processes in it
           are zombies, details re uncertain)
-          (this may also appear due to other reasons, details are uncertain).
+          (this may also appear due to other reasons, details are uncertain)
 
         If ``opts.setsid`` and ``opts.group_signal`` are set for the handle,
         the signal is sent to the process group rather than to the
@@ -558,8 +558,8 @@ With the handle one can execute methods.
 
         Possible raised errors are:
 
-        * "- IllegalParams: an incorrect handle parameter"
-        * "- IllegalParams: called on a closed handle"
+        * "IllegalParams: an incorrect handle parameter"
+        * "IllegalParams: called on a closed handle"
 
         The result format is:
 
@@ -690,9 +690,10 @@ With the handle one can execute methods.
         :rtype: res
 
         Possible raised errors are:
-        * "- IllegalParams: an incorrect handle parameter"
-        * "- IllegalParams: called on a closed handle"
-        * "- FiberIsCancelled: cancelled by an outside code"
+
+        * "IllegalParams: an incorrect handle parameter"
+        * "IllegalParams: called on a closed handle"
+        * "FiberIsCancelled: cancelled by an outside code"
 
         The formatted result is a process status table (the same as the
         ``status`` component of the table returned by
@@ -713,12 +714,12 @@ With the handle one can execute methods.
 
         Possible raised errors are:
 
-        * "- IllegalParams: an incorrect handle parameter"
+        * "IllegalParams: an incorrect handle parameter"
 
         Possible diagnostics when ``nil, err`` is returned
         (do not consider them as errors):
 
-        * "- SystemError: no permission to send a signal to a process or a process group"
+        * "SystemError: no permission to send a signal to a process or a process group"
           (This diagnostic may appear due to Mac OS behavior on zombies when
           ``opts.group_signal`` is set, see :ref:`popen_handle:signal() <popen-signal>`.
           It may appear for other reasons, details are unclear.)
