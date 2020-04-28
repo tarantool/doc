@@ -55,10 +55,10 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     tarantool> t
     ---
     - - 0
-    - null
-    - 1
-    - 2
-    - null
+      - null
+      - 1
+      - 2
+      - null
     ...
 
     tarantool> #t
