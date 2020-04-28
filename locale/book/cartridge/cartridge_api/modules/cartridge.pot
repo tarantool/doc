@@ -1,20 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 
-# This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: Tarantool 2.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 18:45+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 
 msgid "Module *cartridge*"
 msgstr ""
@@ -49,49 +32,49 @@ msgstr ""
 msgid "*opts:* Available options are:"
 msgstr ""
 
-msgid "*workdir:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) a directory where all data will be stored: snapshots, wal logs and cartridge config file.(default: \".\", overridden byenv  ``TARANTOOL_WORKDIR`` ,args  ``--workdir`` )"
+msgid "*workdir:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) a directory where all data will be stored: snapshots, wal logs and cartridge config file.(default: \".\", overridden byenv  ``TARANTOOL_WORKDIR`` ,args  ``--workdir`` )"
 msgstr ""
 
-msgid "*advertise_uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) either `\"<HOST>:<PORT>\"` or `\"<HOST>:\"` or `\"<PORT>\"`.Used by other instances to connect to the current one.When `<HOST>` isn't specified, it's detected as the only non-local IP address.If there is more than one IP address available - defaults to \"localhost\".When `<PORT>` isn't specified, it's derived as follows:If the `TARANTOOL_INSTANCE_NAME` has numeric suffix `_<N>`, then `<PORT> = 3300+<N>`.Otherwise default `<PORT> = 3301` is used."
+msgid "*advertise_uri:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) either `\"<HOST>:<PORT>\"` or `\"<HOST>:\"` or `\"<PORT>\"`.Used by other instances to connect to the current one.When `<HOST>` isn't specified, it's detected as the only non-local IP address.If there is more than one IP address available - defaults to \"localhost\".When `<PORT>` isn't specified, it's derived as follows:If the `TARANTOOL_INSTANCE_NAME` has numeric suffix `_<N>`, then `<PORT> = 3300+<N>`.Otherwise default `<PORT> = 3301` is used."
 msgstr ""
 
-msgid "*cluster_cookie:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) secret used to separate unrelated applications, whichprevents them from seeing each other during broadcasts.Also used as admin password in HTTP and binary connections and forencrypting internal communications.Allowed symbols are  ``[a-zA-Z0-9_.~-]`` .(default: \"secret-cluster-cookie\", overridden byenv  ``TARANTOOL_CLUSTER_COOKIE`` ,args  ``--cluster-cookie`` )"
+msgid "*cluster_cookie:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) secret used to separate unrelated applications, whichprevents them from seeing each other during broadcasts.Also used as admin password in HTTP and binary connections and forencrypting internal communications.Allowed symbols are  ``[a-zA-Z0-9_.~-]`` .(default: \"secret-cluster-cookie\", overridden byenv  ``TARANTOOL_CLUSTER_COOKIE`` ,args  ``--cluster-cookie`` )"
 msgstr ""
 
 msgid "*bucket_count:* (optional **number**) bucket count for vshard cluster. See vshard doc for more details.(default: 30000, overridden byenv  ``TARANTOOL_BUCKET_COUNT`` ,args  ``--bucket-count`` )"
 msgstr ""
 
-msgid "*vshard_groups:* (optional `{[string]=VshardGroup,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) vshard storage groups, table keys used as names"
+msgid "*vshard_groups:* (optional `{[string]=VshardGroup,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) vshard storage groups, table keys used as names"
 msgstr ""
 
 msgid "*http_enabled:* (optional **boolean**) whether http server should be started(default: true, overridden byenv `TARANTOOL_HTTP_ENABLED`,args `--http-enabled`)"
 msgstr ""
 
-msgid "*http_port:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **number**) port to open administrative UI and API on(default: 8081, derived from`TARANTOOL_INSTANCE_NAME`,overridden byenv `TARANTOOL_HTTP_PORT`,args `--http-port`)"
+msgid "*http_port:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_ or **number**) port to open administrative UI and API on(default: 8081, derived from`TARANTOOL_INSTANCE_NAME`,overridden byenv `TARANTOOL_HTTP_PORT`,args `--http-port`)"
 msgstr ""
 
-msgid "*alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) human-readable instance name that will be available in administrative UI(default: argparse instance name, overridden byenv `TARANTOOL_ALIAS`,args `--alias`)"
+msgid "*alias:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) human-readable instance name that will be available in administrative UI(default: argparse instance name, overridden byenv `TARANTOOL_ALIAS`,args `--alias`)"
 msgstr ""
 
-msgid "*roles:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) list of user-defined roles that will be availableto enable on the instance_uuid"
+msgid "*roles:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) list of user-defined roles that will be availableto enable on the instance_uuid"
 msgstr ""
 
 msgid "*auth_enabled:* (optional **boolean**) toggle authentication in administrative UI and API(default: false)"
 msgstr ""
 
-msgid "*auth_backend_name:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) user-provided set of callbacks related to authentication"
+msgid "*auth_backend_name:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) user-provided set of callbacks related to authentication"
 msgstr ""
 
-msgid "*console_sock:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Socket to start console listening on.(default: nil, overridden byenv  ``TARANTOOL_CONSOLE_SOCK`` ,args  ``--console-sock`` )"
+msgid "*console_sock:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Socket to start console listening on.(default: nil, overridden byenv  ``TARANTOOL_CONSOLE_SOCK`` ,args  ``--console-sock`` )"
 msgstr ""
 
-msgid "*webui_blacklist:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) List of pages to be hidden in WebUI.(**Added** in v2.0.1-54, default:  ``{}`` )"
+msgid "*webui_blacklist:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) List of pages to be hidden in WebUI.(**Added** in v2.0.1-54, default:  ``{}`` )"
 msgstr ""
 
 msgid "*upgrade_schema:* (optional **boolean**) Run schema upgrade on the leader instance.(**Added** in v2.0.2-3,default:  ``false`` , overridden byenv  ``TARANTOOL_UPGRADE_SCHEMA`` args  ``--upgrade-schema`` )"
 msgstr ""
 
-msgid "*box_opts:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) tarantool extra box.cfg options (e.g. memtx_memory),that may require additional tuning"
+msgid "*box_opts:* (optional `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) tarantool extra box.cfg options (e.g. memtx_memory),that may require additional tuning"
 msgstr ""
 
 msgid "**Returns**:"
@@ -106,7 +89,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
 msgstr ""
 
 msgid "is_healthy ()"
@@ -151,7 +134,7 @@ msgstr ""
 msgid "(**Added** in v1.2.0-28)"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Schema in YAML format"
+msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Schema in YAML format"
 msgstr ""
 
 msgid "_G.cartridge_set_schema (schema)"
@@ -160,10 +143,10 @@ msgstr ""
 msgid "Apply clusterwide DDL schema."
 msgstr ""
 
-msgid "*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in YAML format"
+msgid "*schema:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) in YAML format"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new schema"
+msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) The same new schema"
 msgstr ""
 
 msgid "Clusterwide DDL schema"
@@ -193,22 +176,22 @@ msgstr ""
 msgid "Instance general information."
 msgstr ""
 
-msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable instance name."
+msgid "*alias:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Human-readable instance name."
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*disabled:* (**boolean**)"
 msgstr ""
 
-msgid "*status:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Instance health."
+msgid "*status:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Instance health."
 msgstr ""
 
-msgid "*message:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Auxilary health status."
+msgid "*message:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Auxilary health status."
 msgstr ""
 
 msgid "*replicaset:* (`ReplicasetInfo <cartridge.ReplicasetInfo_>`_) Circular reference to a replicaset."
@@ -226,13 +209,13 @@ msgstr ""
 msgid "Replicaset general information."
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The replicaset UUID."
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) The replicaset UUID."
 msgstr ""
 
-msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Roles enabled on the replicaset."
+msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Roles enabled on the replicaset."
 msgstr ""
 
-msgid "*status:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Replicaset health."
+msgid "*status:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Replicaset health."
 msgstr ""
 
 msgid "*master:* (`ServerInfo <cartridge.ServerInfo_>`_) Replicaset leader according to configuration."
@@ -244,13 +227,13 @@ msgstr ""
 msgid "*weight:* (**number**) Vshard replicaset weight.Matters only if vshard-storage role is enabled."
 msgstr ""
 
-msgid "*vshard_group:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Name of vshard group the replicaset belongs to."
+msgid "*vshard_group:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Name of vshard group the replicaset belongs to."
 msgstr ""
 
 msgid "*all_rw:* (**boolean**) A flag indicating that all servers in the replicaset should be read-write."
 msgstr ""
 
-msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable replicaset name."
+msgid "*alias:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Human-readable replicaset name."
 msgstr ""
 
 msgid "*servers:* (`{ServerInfo,...} <cartridge.ServerInfo_>`_) Circular reference to all instances in the replicaset."
@@ -262,7 +245,7 @@ msgstr ""
 msgid "Get servers list. Optionally filter out the server with the given uuid."
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)  (optional)"
 msgstr ""
 
 msgid "(`{ServerInfo,...} <cartridge.ServerInfo_>`_)"
@@ -289,7 +272,7 @@ msgstr ""
 msgid "Enable nodes after they were disabled."
 msgstr ""
 
-msgid "*uuids:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uuids:* (`{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "admin_disable_servers (uuids)"
@@ -319,13 +302,13 @@ msgstr ""
 msgid "(**Added** in v2.0.2-2)"
 msgstr ""
 
-msgid "*mode:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Supported modes are \"disabled\", \"eventual\" and \"stateful\""
+msgid "*mode:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Supported modes are \"disabled\", \"eventual\" and \"stateful\""
 msgstr ""
 
-msgid "*state_provider:* (**nil** or `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Only \"tarantool\" is supported now"
+msgid "*state_provider:* (**nil** or `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Only \"tarantool\" is supported now"
 msgstr ""
 
-msgid "*tarantool_params:* (**nil** or `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) `{uri = 'string', password = 'string'}`"
+msgid "*tarantool_params:* (**nil** or `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) `{uri = 'string', password = 'string'}`"
 msgstr ""
 
 msgid "failover_get_params ()"
@@ -346,13 +329,13 @@ msgstr ""
 msgid "*opts:*"
 msgstr ""
 
-msgid "*mode:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*mode:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*tarantool_params:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*tarantool_params:* (optional `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) `true` if config applied successfully"
@@ -364,7 +347,7 @@ msgstr ""
 msgid "Promote leaders in replicasets."
 msgstr ""
 
-msgid "*replicaset_uuid:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) ] = leader_uuid }"
+msgid "*replicaset_uuid:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) ] = leader_uuid }"
 msgstr ""
 
 msgid "(**boolean**) true On success"
@@ -433,13 +416,13 @@ msgstr ""
 msgid "Replicatets modifications."
 msgstr ""
 
-msgid "*uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uuid:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*alias:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*all_rw:* (optional **boolean**)"
@@ -448,10 +431,10 @@ msgstr ""
 msgid "*weight:* (optional **number**)"
 msgstr ""
 
-msgid "*failover_priority:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of uuids specifying servers failover priority"
+msgid "*failover_priority:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) array of uuids specifying servers failover priority"
 msgstr ""
 
-msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*join_servers:* (optional `{JoinServerParams,...} <cartridge.JoinServerParams_>`_)"
@@ -463,10 +446,10 @@ msgstr ""
 msgid "Servers modifications."
 msgstr ""
 
-msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "*disabled:* (optional **boolean**)"
@@ -493,10 +476,10 @@ msgstr ""
 msgid "Returns either  ``conf[section_name]``  or entire  ``conf`` . Any attempt to modify the section or its children will raise an error."
 msgstr ""
 
-msgid "*section_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+msgid "*section_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)  (optional)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "config_get_deepcopy ([section_name])"
@@ -532,7 +515,7 @@ msgstr ""
 msgid "V. Performs the commit phase ( ``commit_2pc`` ). In case the phase fails, an automatic rollback is impossible, the cluster should be repaired manually."
 msgstr ""
 
-msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*patch:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) true"
@@ -547,10 +530,10 @@ msgstr ""
 msgid "Get a module from registry."
 msgstr ""
 
-msgid "*module_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*module_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) instance"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) instance"
 msgstr ""
 
 msgid "service_set (module_name, instance)"
@@ -559,7 +542,7 @@ msgstr ""
 msgid "Put a module into registry or drop it. This function typically doesn't need to be called explicitly, the cluster automatically sets all the initialized roles."
 msgstr ""
 
-msgid "*instance:* (**nil** or `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*instance:* (**nil** or `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "Cross-instance calls"
@@ -571,13 +554,13 @@ msgstr ""
 msgid "Perform a remote procedure call. Find a suitable healthy instance with an enabled role and perform a [ ``net.box``   ``conn:call`` ]( https://tarantool.io/en/doc/latest/reference/reference_lua/net_box/#net-box-call) on it."
 msgstr ""
 
-msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*fn_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*fn_name:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*args:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)  (optional)"
+msgid "*args:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)  (optional)"
 msgstr ""
 
 msgid "*prefer_local:* (optional **boolean**) Don't perform a remote call if possible. When the role is enabledlocally and current instance is healthy the remote netbox call issubstituted with a local Lua function call. When the option isdisabled it never tries to perform call locally and always usesnetbox connection, even to connect self.(default: **true**)"
@@ -586,7 +569,7 @@ msgstr ""
 msgid "*leader_only:* (optional **boolean**) Perform a call only on the replica set leaders.(default: **false**)"
 msgstr ""
 
-msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Force a call to be performed on this particular uri.Disregards member status and  ``opts.prefer_local`` .Conflicts with  ``opts.leader_only = true`` .(added in v1.2.0-63)"
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Force a call to be performed on this particular uri.Disregards member status and  ``opts.prefer_local`` .Conflicts with  ``opts.leader_only = true`` .(added in v1.2.0-63)"
 msgstr ""
 
 msgid "*remote_only:*  (*deprecated*) Use  ``prefer_local``  instead."
@@ -613,7 +596,7 @@ msgstr ""
 msgid "*healthy_only:* (optional **boolean**) Filter instances which have membership status healthy.(added in v1.1.0-11, default: **true**)"
 msgstr ""
 
-msgid "(`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) URIs"
+msgid "(`{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) URIs"
 msgstr ""
 
 msgid "Authentication and authorization"
@@ -631,7 +614,7 @@ msgstr ""
 msgid "(**Added** in v1.1.0-4)"
 msgstr ""
 
-msgid "*request:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*request:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) Access granted"
@@ -646,10 +629,10 @@ msgstr ""
 msgid "Inject set-cookie headers into response in order to renew or reset the cookie."
 msgstr ""
 
-msgid "*response:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*response:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) The same response with cookies injected"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) The same response with cookies injected"
 msgstr ""
 
 msgid "http_get_username ()"
@@ -658,7 +641,7 @@ msgstr ""
 msgid "Get username for the current HTTP session."
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **nil**)"
+msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_ or **nil**)"
 msgstr ""
 
 msgid "Deprecated functions"
@@ -673,10 +656,10 @@ msgstr ""
 msgid "(**Deprecated** since v1.0.0-17 in favor of :ref:`cartridge.admin_edit_topology <cartridge.admin_edit_topology>`)"
 msgstr ""
 
-msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*alias:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*master:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Failover order"
+msgid "*master:* (optional `{string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Failover order"
 msgstr ""
 
 msgid "admin_edit_server (args)"
@@ -685,7 +668,7 @@ msgstr ""
 msgid "Edit an instance (*deprecated*)."
 msgstr ""
 
-msgid "*labels:* (optional `{[string]=string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*labels:* (optional `{[string]=string,...} <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "admin_join_server (args)"
@@ -694,16 +677,16 @@ msgstr ""
 msgid "Join an instance to the cluster (*deprecated*)."
 msgstr ""
 
-msgid "*instance_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*instance_uuid:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*replicaset_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*replicaset_uuid:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*timeout:* (optional **number**)"
 msgstr ""
 
-msgid "*replicaset_alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*replicaset_alias:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*replicaset_weight:* (optional **number**)"
