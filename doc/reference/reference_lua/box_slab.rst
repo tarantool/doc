@@ -114,7 +114,9 @@ Below is a list of all ``box.slab`` functions.
 
     :return:
 
-      * ``quota_size`` - memory limit for slab allocator, the default is 2^28 bytes = 268,435,456 bytes
+      * ``quota_size`` - memory limit for slab allocator (as configured in the
+        :ref:`memtx_memory <cfg_storage-memtx_memory>` parameter,
+        the default is 2^28 bytes = 268,435,456 bytes)
       * ``quota_used`` - used by slab allocator
       * ``items_size`` - allocated only for tuples
       * ``items_used`` - used only for tuples
