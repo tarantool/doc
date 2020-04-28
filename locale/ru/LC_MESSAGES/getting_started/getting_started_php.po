@@ -246,4 +246,3 @@ msgstr ""
 
 msgid "$result = $client->evaluate('return 4 + 5');"
 msgstr ""
-
