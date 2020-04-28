@@ -1,20 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 
-# This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 20:06+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 
 msgid "Module *cartridge.auth*"
 msgstr ""
@@ -52,7 +35,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
 msgstr ""
 
 msgid "get_enabled ()"
@@ -106,7 +89,7 @@ msgstr ""
 msgid "Get authentication callbacks."
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) callbacks"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) callbacks"
 msgstr ""
 
 msgid "Configuration"
@@ -172,7 +155,7 @@ msgstr ""
 msgid "(**Added** in v1.1.0-4)"
 msgstr ""
 
-msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **nil**)"
+msgid "(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_ or **nil**)"
 msgstr ""
 
 msgid "authorize_request (request)"
@@ -184,7 +167,7 @@ msgstr ""
 msgid "Get username from cookies or basic HTTP authentication."
 msgstr ""
 
-msgid "*request:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*request:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) Access granted"
@@ -199,10 +182,10 @@ msgstr ""
 msgid "Inject set-cookie headers into response in order to renew or reset the cookie."
 msgstr ""
 
-msgid "*response:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*response:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) The same response with cookies injected"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) The same response with cookies injected"
 msgstr ""
 
 msgid "User management"
@@ -214,13 +197,13 @@ msgstr ""
 msgid "User information."
 msgstr ""
 
-msgid "*username:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*username:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*fullname:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*fullname:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*email:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*email:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "add_user (username, password, fullname, email)"
@@ -232,7 +215,7 @@ msgstr ""
 msgid "The callback is triggered with the same arguments and must return a table with fields conforming to  ``UserInfo`` . Unknown fields are ignored."
 msgstr ""
 
-msgid "*password:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*password:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "(`UserInfo <cartridge.auth.UserInfo_>`_)"
@@ -250,7 +233,7 @@ msgstr ""
 msgid "Trigger registered edit_user callback."
 msgstr ""
 
-msgid "*password:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*password:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "list_users ()"

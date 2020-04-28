@@ -17,13 +17,13 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "**Returns**:"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "**Or**"
@@ -33,6 +33,17 @@ msgid "(**nil**)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
+
+#~ msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+#~ msgstr ""
+
+#~ msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "Error description"
+#~ msgstr ""

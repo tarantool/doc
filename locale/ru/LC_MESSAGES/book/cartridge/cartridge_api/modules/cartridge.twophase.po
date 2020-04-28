@@ -49,7 +49,7 @@ msgstr ""
 msgid "**Parameters:**"
 msgstr ""
 
-msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*patch:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "**Returns**:"
@@ -65,7 +65,7 @@ msgid "(**nil**)"
 msgstr ""
 
 msgid ""
-"(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error "
+"(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error "
 "description"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgid "(**Added** in v1.2.0-28)"
 msgstr ""
 
 msgid ""
-"(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Schema in "
+"(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Schema in "
 "YAML format"
 msgstr ""
 
@@ -90,60 +90,13 @@ msgid "Apply clusterwide DDL schema."
 msgstr ""
 
 msgid ""
-"*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in"
+"*schema:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) in"
 " YAML format"
 msgstr ""
 
 msgid ""
-"(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new"
+"(`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) The same new"
 " schema"
-msgstr ""
-
-msgid "on_patch (trigger_new, trigger_old)"
-msgstr ""
-
-msgid "Set up trigger for for patch_clusterwide."
-msgstr ""
-
-msgid "It will be executed **before** new new config applied."
-msgstr ""
-
-msgid ""
-"If the parameters are  ``(nil, old_trigger)`` , then the old trigger is "
-"deleted."
-msgstr ""
-
-msgid ""
-"The trigger function is called with two argument: -  ``conf_new``  ( "
-"``ClusterwideConfig`` ) -  ``conf_old``  ( ``ClusterWideConfig`` )"
-msgstr ""
-
-msgid ""
-"It is allowed to modify  ``conf_new`` , but not  ``conf_old`` . Return "
-"values are ignored. If calling a trigger raises an error, "
-"``patch_clusterwide``  returns it as  ``nil, err`` ."
-msgstr ""
-
-msgid "(**Added** in v2.1.0-4)"
-msgstr ""
-
-msgid "*trigger_new:* (**function**)"
-msgstr ""
-
-msgid "*trigger_old:* (**function**)"
-msgstr ""
-
-msgid "Usage:"
-msgstr ""
-
-msgid ""
-"local function inject_data(conf_new, _)\n"
-"    local data_yml = yaml.encode({foo = 'bar'})\n"
-"    conf_new:set_plaintext('data.yml', data_yml)\n"
-"end)\n"
-"\n"
-"twophase.on_patch(inject_data) -- set custom patch modifier trigger\n"
-"twophase.on_patch(nil, inject_data) -- drop trigger"
 msgstr ""
 
 msgid "Local Functions"
@@ -162,7 +115,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"*data:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+"*data:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) "
 "clusterwide config content"
 msgstr ""
 
@@ -187,3 +140,85 @@ msgstr ""
 
 msgid "Release the lock for further commit attempts."
 msgstr ""
+
+#~ msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) "
+#~ "Error description"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+#~ "Schema in YAML format"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*schema:* (`string "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.4>`_) in "
+#~ "YAML format"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) "
+#~ "The same new schema"
+#~ msgstr ""
+
+#~ msgid "on_patch (trigger_new, trigger_old)"
+#~ msgstr ""
+
+#~ msgid "Set up trigger for for patch_clusterwide."
+#~ msgstr ""
+
+#~ msgid "It will be executed **before** new new config applied."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If the parameters are  ``(nil, "
+#~ "old_trigger)`` , then the old trigger"
+#~ " is deleted."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The trigger function is called with "
+#~ "two argument: -  ``conf_new``  ( "
+#~ "``ClusterwideConfig`` ) -  ``conf_old``  ( "
+#~ "``ClusterWideConfig`` )"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "It is allowed to modify  ``conf_new``"
+#~ " , but not  ``conf_old`` . Return "
+#~ "values are ignored. If calling a "
+#~ "trigger raises an error, ``patch_clusterwide``"
+#~ "  returns it as  ``nil, err`` ."
+#~ msgstr ""
+
+#~ msgid "(**Added** in v2.1.0-4)"
+#~ msgstr ""
+
+#~ msgid "*trigger_new:* (**function**)"
+#~ msgstr ""
+
+#~ msgid "*trigger_old:* (**function**)"
+#~ msgstr ""
+
+#~ msgid "Usage:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "local function inject_data(conf_new, _)\n"
+#~ "    local data_yml = yaml.encode({foo = 'bar'})\n"
+#~ "    conf_new:set_plaintext('data.yml', data_yml)\n"
+#~ "end)\n"
+#~ "\n"
+#~ "twophase.on_patch(inject_data) -- set custom patch modifier trigger\n"
+#~ "twophase.on_patch(nil, inject_data) -- drop trigger"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "*data:* (`table "
+#~ "<https://www.lua.org/manual/5.1/manual.html#5.5>`_) clusterwide"
+#~ " config content"
+#~ msgstr ""

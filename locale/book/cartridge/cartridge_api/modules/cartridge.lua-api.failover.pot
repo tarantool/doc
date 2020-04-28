@@ -1,20 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 
-# This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: Tarantool 2.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 20:06+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 
 msgid "Module *cartridge.lua-api.failover*"
 msgstr ""
@@ -52,13 +35,13 @@ msgstr ""
 msgid "*opts:*"
 msgstr ""
 
-msgid "*mode:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*mode:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*tarantool_params:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgid "*tarantool_params:* (optional `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "(**boolean**) `true` if config applied successfully"
@@ -70,7 +53,7 @@ msgstr ""
 msgid "(**nil**)"
 msgstr ""
 
-msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgid "(`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) Error description"
 msgstr ""
 
 msgid "get_failover_enabled ()"
@@ -100,7 +83,7 @@ msgstr ""
 msgid "Promote leaders in replicasets."
 msgstr ""
 
-msgid "*replicaset_uuid:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) ] = leader_uuid }"
+msgid "*replicaset_uuid:* (`table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) ] = leader_uuid }"
 msgstr ""
 
 msgid "(**boolean**) true On success"
@@ -118,12 +101,12 @@ msgstr ""
 msgid "**Fields:**"
 msgstr ""
 
-msgid "*mode:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Supported modes are \"disabled\", \"eventual\" and \"stateful\""
+msgid "*mode:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Supported modes are \"disabled\", \"eventual\" and \"stateful\""
 msgstr ""
 
-msgid "*state_provider:* (**nil** or `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Only \"tarantool\" is supported now"
+msgid "*state_provider:* (**nil** or `string <https://www.lua.org/manual/5.3/manual.html#6.4>`_) Only \"tarantool\" is supported now"
 msgstr ""
 
-msgid "*tarantool_params:* (**nil** or `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) `{uri = 'string', password = 'string'}`"
+msgid "*tarantool_params:* (**nil** or `table <https://www.lua.org/manual/5.3/manual.html#6.6>`_) `{uri = 'string', password = 'string'}`"
 msgstr ""
 
