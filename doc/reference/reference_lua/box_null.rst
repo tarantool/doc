@@ -34,14 +34,15 @@ To overcome this and some other issues use ``box.NULL`` constant instead.
 Using box.NULL
 --------------
 
-``box.NULL`` is a generic pointer to a C-like NULL. So it is
+``box.NULL`` is a value of cdata type representing a NULL pointer.
+It is similar to ``msgpack.NULL``, ``json.NULL`` and ``ffi.NULL``. So it is
 some not **nil** value, even if it is a pointer to NULL.
 
 Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
 
 .. NOTE::
 
-    Technically speaking ``box.NULL`` equals to ``ffi.cast('void *', nil)``.
+    Technically speaking ``box.NULL`` equals to ``ffi.cast('void *', 0)``.
 
 **Example:**
 
@@ -65,6 +66,8 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     - 5
     ...
 
+
+
 .. NOTE::
 
     There is a possible problem induced by using ``box.NULL``.
@@ -79,5 +82,39 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
 
     ``if box.NULL then func() end``
 
-    will always execute function ``func()`` (as condition ``box.NULL`` will always
-    be not **false** nor **nil**).
+    will always execute function ``func()`` (because condition ``box.NULL`` will
+    always be neither **false** nor **nil**).
+
+
+
+Distinction of nil and box.NULL
+-------------------------------
+
+If condition expression ``x == nil`` is **true** the ``x`` could be **nil** or
+``box.NULL``.
+
+To check whether ``x`` is a **nil** but not a ``box.NULL`` use the following
+condition expression:
+
+.. code-block:: tarantoolsession
+
+    x == nil and type(x) == 'nil'
+
+If its **true** then the ``x`` is a **nil**, but not a ``box.NULL``.
+
+You can use the following for ``box.NULL``:
+
+.. code-block:: tarantoolsession
+
+    x == nil and type(x) == 'cdata'
+
+If the expression above is **true** then the ``x`` is a ``box.NULL``.
+
+.. NOTE::
+
+    By converting data to different format (JSON, YAML, msgpack) you shall expect
+    that it is possible, that **nil** in sparse arrays will be converted to
+    ``box.NULL``. And it is worth mentioning that such convertation might be
+    unexpected (for example: by sending data via :ref:`net.box <net_box-module>`
+    or by obtaining data from :ref:`storage spaces <box_space> etc.`).
+    You must anticipate such behaviour and use proper condition expression.
