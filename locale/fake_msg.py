@@ -28,7 +28,10 @@ pattern_list = [
     "#,.*?\nmsgid \"\"\nmsgstr \"\"\n.*?\n\n",
     "msgid \"\"\nmsgstr \"\"\n.*?\n\n",
 ]
-
+allowed_po_path = 'ru/LC_MESSAGES'
+po = '.po'
+pot = '.pot'
+files_to_process = (po, pot)
 
 def remove_meta(file):
     with open(file, "r+") as f:
@@ -43,13 +46,18 @@ def remove_meta(file):
 
 def process_po_files(action) -> int:
     counter = 0
-    for path, folders, files in os.walk('ru/LC_MESSAGES'):
+    for path, folders, files in os.walk('.'):
         for file in files:
-            if os.path.splitext(file)[1] == '.po':
+            ext = os.path.splitext(file)[1]
+            file_path = os.path.join(path, file)
 
-                file_path = os.path.join(path, file)
+            if ext == po and allowed_po_path not in file_path:
+                continue
+
+            if ext in files_to_process:
                 remove_meta(file_path)
 
+            if ext == po:
                 if action == 'add':
 
                     with open(file_path, 'a') as f:
