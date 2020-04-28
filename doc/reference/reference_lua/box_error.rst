@@ -192,17 +192,18 @@ Below is a list of all ``box.error`` functions.
 
     .. code-block:: tarantoolsession
 
-        err = box.error.new({code = 111, reason = "cause"})
+        tarantool> err = box.error.new({code = 111, reason = "cause"})
         ---
         ...
         tarantool> box.error.last()
         ---
-        - nil
+        - error: '[string "return tarantool> box.error.last()"]:1: attempt to compare two
+            nil values'
         ...
         tarantool> box.error.set(err)
         ---
         ...
         tarantool> box.error.last()
         ---
-        - err
+        - cause
         ...
