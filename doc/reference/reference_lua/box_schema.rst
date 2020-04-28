@@ -966,9 +966,9 @@ All functions related to sequences require appropriate
 
 .. function:: sequence_object:current()
 
-    Return the last retrieved value of the specified sequence or throws an error
-    if no value has been generated yet ("next" has not been called yet or right
-    after "reset" is called).
+    Return the last retrieved value of the specified sequence or throw an error
+    if no value has been generated yet (``next()`` has not been called yet, or ``current()`` is called right
+    after ``reset()`` is called).
 
     **Example:**
 
