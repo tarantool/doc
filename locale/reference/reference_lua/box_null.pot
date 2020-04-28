@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 1.10\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 14:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Constant `box.NULL`"
+msgstr ""
+
+msgid "There are some major problems with using a Lua **nil** value in tuples. For example: you can't correctly assess length of sparse array (an array with nullable values set to null) in case of using Lua **nil** value."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> t = {0, nil, 1, 2, nil}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> t\n"
+"---\n"
+"- - 0\n"
+"  - null\n"
+"  - 1\n"
+"  - 2\n"
+"...\n"
+"\n"
+"tarantool> #t\n"
+"---\n"
+"- 4\n"
+"..."
+msgstr ""
+
+msgid "To overcome this and some other issues use ``box.NULL`` constant instead."
+msgstr ""
+
+msgid "Using box.NULL"
+msgstr ""
+
+msgid "``box.NULL`` is a generic pointer to a C-like NULL. So it there is some not **nil** value, even if it is a pointer to NULL."
+msgstr ""
+
+msgid "Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect)."
+msgstr ""
+
+msgid "Technically speaking ``box.NULL`` equals to ``ffi.cast('void *', nil)``."
+msgstr ""
+
+msgid " tarantool> t = {0, box.NULL, 1, 2, box.NULL}\n"
+" ---\n"
+" ...\n"
+"\n"
+" tarantool> t\n"
+" ---\n"
+" - - 0\n"
+" - null\n"
+" - 1\n"
+" - 2\n"
+" - null\n"
+" ...\n"
+"\n"
+"tarantool> #t\n"
+" ---\n"
+" - 5\n"
+" ..."
+msgstr ""
+
+msgid "There is a possible problem induced by using ``box.NULL``. Avoid using implicit comparisons with nullable values when using ``box.NULL``. Due to `Lua behaviour <https://www.lua.org/manual/5.1/manual.html#2.4.4>`_ returning from condition expression anything except **false** or **nil** is considered as **true**. And as it was mentioned earlier ``box.NULL`` is a pointer by design."
+msgstr ""
+
+msgid "That is why expression ``box.NULL`` will always be considered true in case it is used as condition in comparison. That means function"
+msgstr ""
+
+msgid "``if box.NULL then func() end``"
+msgstr ""
+
+msgid "will always execute function ``func()`` (as condition box.NULL is always not **false** nor **nil**)."
+msgstr ""
+

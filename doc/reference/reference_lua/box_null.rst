@@ -34,7 +34,7 @@ To overcome this and some other issues use ``box.NULL`` constant instead.
 Using box.NULL
 --------------
 
-``box.NULL`` is a generic pointer to a C-like NULL. So it there is
+``box.NULL`` is a generic pointer to a C-like NULL. So it is
 some not **nil** value, even if it is a pointer to NULL.
 
 Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
@@ -60,7 +60,7 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     - null
     ...
 
-   tarantool> #t
+    tarantool> #t
     ---
     - 5
     ...
@@ -75,9 +75,9 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     pointer by design.
 
     That is why expression ``box.NULL`` will always be considered true in case
-    it is used as condition in comparison. That means function
+    it is used as condition in comparison. This means that code
 
     ``if box.NULL then func() end``
 
-    will always execute function ``func()`` (as condition box.NULL is always
-    not **false** nor **nil**).
+    will always execute function ``func()`` (as condition ``box.NULL`` will always
+    be not **false** nor **nil**).
