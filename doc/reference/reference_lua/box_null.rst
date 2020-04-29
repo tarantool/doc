@@ -75,7 +75,12 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
 
 .. NOTE::
 
-    There is a possible problem induced by using ``box.NULL``.
+    Take a notice how t[2] shows the same ``null`` output in both examples.
+    However in this example t[2] and t[5] is a cdata type. While in the previous
+    example their type was **nil**.
+
+.. important::
+
     Avoid using implicit comparisons with nullable values when using ``box.NULL``.
     Due to `Lua behaviour <https://www.lua.org/manual/5.1/manual.html#2.4.4>`_
     returning from condition expression anything except **false** or **nil**
@@ -101,7 +106,7 @@ condition expression:
 
 .. code-block:: tarantoolsession
 
-    x == nil and type(x) == 'nil'
+    type(x) == 'nil'
 
 If its **true** then the ``x`` is a **nil**, but not a ``box.NULL``.
 
