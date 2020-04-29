@@ -29,7 +29,14 @@ nullable values set to null) in case of using Lua **nil** value.
     - 4
     ...
 
-To overcome this and some other issues use ``box.NULL`` constant instead.
+Provided example clearly shows a problem with sparse arrays.
+
+.. NOTE::
+
+    Trying to find length for sparse arrays in LuaJIT leads to
+    `undefined behaviour <https://www.lua.org/manual/5.2/manual.html#3.4.6>`_.
+
+To overcome this and some other issues use ``box.NULL`` constant instead of **nil**.
 
 Using box.NULL
 --------------
@@ -112,5 +119,20 @@ If the expression above is **true** then the ``x`` is a ``box.NULL``.
     that it is possible, that **nil** in sparse arrays will be converted to
     ``box.NULL``. And it is worth mentioning that such convertation might be
     unexpected (for example: by sending data via :ref:`net.box <net_box-module>`
-    or by obtaining data from :ref:`storage spaces <box_space> etc.`).
+    or by obtaining data from :ref:`spaces <box_space> etc.`).
+
+    .. code-block:: tarantoolsession
+
+        tarantool> type(({1, nil, 2})[2])
+        ---
+        - nil
+        ...
+
+        tarantool> type(json.decode(json.encode({1, nil, 2}))[2])
+        ---
+        - cdata
+        ...
+
     You must anticipate such behaviour and use proper condition expression.
+    Use explicit comparison ``x == nil`` for checking for NULL in nullable values.
+    It will detect both **nil** and ``box.NULL``.
