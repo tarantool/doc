@@ -77,10 +77,22 @@ Below is a list of all ``box.error`` functions.
 
     :except: whatever is specified in errcode-number.
 
+    ``box.error()`` is able to accept two types of arguments: either a pair of
+    error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``)
+    or an error object (``box.error(err)``). In both cases an error is promoted
+    to the diagnostic area.
+
     **Example:**
 
     .. code-block:: tarantoolsession
 
+        tarantool> e1 = box.error.new({code = 111, reason = "Сause"})
+        ---
+        ...
+        tarantool> box.error(e1)
+        ---
+        - error: Сause
+        ...
         tarantool> box.error{code = 555, reason = 'Arbitrary message'}
         ---
         - error: Arbitrary message
