@@ -114,25 +114,17 @@ Below is a list of all ``box.slab`` functions.
 
     :return:
 
-      * ``items_size`` is the *total* amount of memory (including allocated, but
-        currently free slabs) used only for tuples, no indexes;
-      * ``items_used_ratio`` = ``items_used`` / ``items_size``, where 
-        ``items_size`` = ``slab_count`` * ``slab_size``
-        (these are slabs used only for tuples, no indexes);
-      * ``quota_size`` is the maximum amount of memory that the slab allocator
-        can use for both tuples and indexes
-        (as configured in the :ref:`memtx_memory <cfg_storage-memtx_memory>`
-        parameter, the default is 2^28 bytes =  268,435,456 bytes);
-      * ``quota_used_ratio`` = ``quota_used`` / ``quota_size``;
-      * ``arena_used_ratio`` = ``arena_used`` / ``arena_size``;
-      * ``items_used`` is the *efficient* amount of memory (omitting allocated, but
-        currently free slabs) used only for tuples, no indexes;
-      * ``quota_used`` is the amount of memory that is already distributed to
-        the slab allocator;
-      * ``arena_size`` is the *total* memory used for tuples and indexes together
-        (including allocated, but currently free slabs);
-      * ``arena_used`` is the *efficient* memory used for storing tuples and indexes
-        together (omitting allocated, but currently free slabs).
+      * ``quota_size`` - memory limit for slab allocator (as configured in the
+        :ref:`memtx_memory <cfg_storage-memtx_memory>` parameter,
+        the default is 2^28 bytes = 268,435,456 bytes)
+      * ``quota_used`` - used by slab allocator
+      * ``items_size`` - allocated only for tuples
+      * ``items_used`` - used only for tuples
+      * ``arena_size`` - allocated for both tuples and indexes
+      * ``arena_used`` - used for both tuples and indexes
+      * ``items_used_ratio`` = ``items_used`` / ``items_size``
+      * ``quota_used_ratio`` = ``quota_used`` / ``quota_size``
+      * ``arena_used_ratio`` = ``arena_used`` / ``arena_size``
 
     :rtype:  table
 
