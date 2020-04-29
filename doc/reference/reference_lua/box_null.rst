@@ -6,7 +6,7 @@
 
 There are some major problems with using a Lua **nil** value in tuples.
 For example: you can't correctly assess length of sparse array (an array with
-nullable values set to null) in case of using Lua **nil** value.
+nullable values set to NULL) in case of using Lua **nil** value.
 
 **Example:**
 
