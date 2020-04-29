@@ -812,6 +812,14 @@ functions.
 
     **Possible errors:** nil.
 
+    Note that ``fio.open()`` returns a descriptor which can be closed manually by
+    calling ``:close()`` method, or it will be closed automatically, when it has
+    no references, and the garbage collector deletes it.
+
+    Keep in mind, that the number of file descriptors is limited, and
+    they can end earlier than garbage collector will be triggered to collect not
+    used descriptors. It is always better to close them manually as soon as possible.
+
     **Example 1:**
 
     .. code-block:: tarantoolsession
