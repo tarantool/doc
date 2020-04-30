@@ -42,7 +42,7 @@ Using box.NULL
 --------------
 
 ``box.NULL`` is a value of cdata type representing a NULL pointer.
-It is similar to ``msgpack.NULL``, ``json.NULL`` and ``ffi.NULL``. So it is
+It is similar to ``msgpack.NULL``, ``json.NULL`` and ``yaml.NULL``. So it is
 some not **nil** value, even if it is a pointer to NULL.
 
 Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
