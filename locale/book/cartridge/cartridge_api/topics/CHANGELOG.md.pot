@@ -1,20 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 
-# This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: Tarantool 1.10\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-24 09:15+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 
 msgid "Changelog"
 msgstr ""
@@ -28,55 +11,31 @@ msgstr ""
 msgid "[Unreleased]"
 msgstr ""
 
-msgid "Fixed"
-msgstr ""
-
-msgid "Avoid trimming `console_sock` it it's name is too long."
-msgstr ""
-
-msgid "Fix fd leak during box recovery."
-msgstr ""
-
-msgid "Support `console_sock` option in stateboard"
-msgstr ""
-
-msgid "[2.1.1] - 2020-04-20"
-msgstr ""
-
-msgid "Frontend core update: fix route mapping"
-msgstr ""
-
-msgid "[2.1.0] - 2020-04-16"
-msgstr ""
-
 msgid "Added"
 msgstr ""
 
-msgid "Implement stateful failover mode. You can read more in \"Failover architecture\" documentation topic (see `failover.md`)."
+msgid "Show \"You are here\" marker in webui."
 msgstr ""
 
 msgid "Respect `box.cfg` options `wal_dir`, `memtx_dir`, `vinyl_dir`. They can be either absolute or relative - in the later case it's calculated relative to `cartridge.workdir`."
 msgstr ""
 
-msgid "New option in `cartridge.cfg({upgrade_schema=...})` to automatically upgrade schema to modern tarantool version (only for leader). It also has been added for `argparse`."
+msgid "Implement stateful failover mode."
 msgstr ""
 
-msgid "Extend GraphQL `issues` API with various topics: `replication`, `failover`, `memory`, `clock`. Make thresholds configurable via argparse."
+msgid "Add new field Graphql field `cluster{ issues {topic} }`"
 msgstr ""
 
-msgid "Changed"
+msgid "Extend issues API for stateful failover"
 msgstr ""
 
-msgid "Make GraphQL validation stricter: scalar values can't have sub-selections; composite types must have sub-selections; omitting non-nullable arguments in variable list is forbidden. Your code **may be affected** if it doesn't conform GraphQL specification."
+msgid "New option in `cartridge.cfg({upgrade_schema=...}, ...)` to perform auto upgrade schema to actual tarantool version (only for leader). It also has bean added for `argparse`."
 msgstr ""
 
-msgid "GraphQL query `auth_params` returns \"fullname\" (if it was specified) instead of \"username\"."
+msgid "GraphQL validation significantly improved: scalar values can't have subselections; composite types must have subselections; omitting non-nullable arguments in variable list is forbidden."
 msgstr ""
 
-msgid "Update `errors` dependency to 2.1.3."
-msgstr ""
-
-msgid "Update `ddl` dependency to 1.1.0."
+msgid "Indicate replication and failover issues in WebUI."
 msgstr ""
 
 msgid "Deprecated"
@@ -100,39 +59,10 @@ msgstr ""
 msgid "`mutation {cluster {failover()} }` -> `mutation {cluster {failover_params() {...} } }`"
 msgstr ""
 
-msgid "Properly handle nested input object in GraphQL:"
+msgid "Fixed"
 msgstr ""
 
-msgid "mutation($uuid: String!) {\n"
-"  cluster { edit_topology(servers: [{uuid: $uuid ...}]) {} }\n"
-"}"
-msgstr ""
-
-msgid "Show WebUI notification on successful config upload."
-msgstr ""
-
-msgid "Repair GraphQL queries `add_user`, `issues` on uninitialized instance."
-msgstr ""
-
-msgid "Enhanced in WebUI"
-msgstr ""
-
-msgid "Show \"You are here\" marker."
-msgstr ""
-
-msgid "Show application and instance names in app title."
-msgstr ""
-
-msgid "Indicate replication and failover issues."
-msgstr ""
-
-msgid "Fix bug with multiple menu items selected."
-msgstr ""
-
-msgid "Refactor pages filtering, forbid opening blacklisted pages."
-msgstr ""
-
-msgid "Enable JS chunks caching."
+msgid "Fix quering failure `cluster {issues {...} }` on uninitialized instance"
 msgstr ""
 
 msgid "[2.0.2] - 2020-03-17"
@@ -174,6 +104,9 @@ msgstr ""
 msgid "Add `cluster({env = ...})` option for specifying clusterwide environment variables."
 msgstr ""
 
+msgid "Changed"
+msgstr ""
+
 msgid "Remove redundant topology availability checks from two-phase commit."
 msgstr ""
 
@@ -202,6 +135,9 @@ msgid "Make GraphQL compatible with `req:read_cached()` call in httpd hooks."
 msgstr ""
 
 msgid "Avoid \"attempt to index nil value\" error when using rpc on an uninitialized instance."
+msgstr ""
+
+msgid "Enhanced in WebUI"
 msgstr ""
 
 msgid "Add an ability to hide certain WebUI pages."

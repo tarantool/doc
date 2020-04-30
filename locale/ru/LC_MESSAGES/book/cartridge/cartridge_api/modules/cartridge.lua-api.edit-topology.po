@@ -59,17 +59,17 @@ msgstr ""
 
 msgid ""
 "*uuid:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
 "*alias:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
 "*roles:* (optional `{string,...} "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*all_rw:* (optional **boolean**)"
@@ -80,13 +80,13 @@ msgstr ""
 
 msgid ""
 "*failover_priority:* (optional `{string,...} "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of uuids "
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_) array of uuids "
 "specifying servers failover priority"
 msgstr ""
 
 msgid ""
 "*vshard_group:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
@@ -100,12 +100,12 @@ msgstr ""
 msgid "Parameters required for joining a new server."
 msgstr ""
 
-msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uri:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid ""
 "*labels:* (optional `table "
-"<https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.6>`_)"
 msgstr ""
 
 msgid "EditServerParams"
@@ -116,10 +116,10 @@ msgstr ""
 
 msgid ""
 "*uri:* (optional `string "
-"<https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+"<https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
-msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.3/manual.html#6.4>`_)"
 msgstr ""
 
 msgid "*disabled:* (optional **boolean**)"

@@ -22,29 +22,53 @@ parser.add_argument('action', type=str, choices=['add', 'rm'],
 
 fake_lines = '\n\nmsgid "fake_message"\nmsgstr "fake_translation"\n'
 fake_lines_commented = '\n\n#~ msgid "fake_message"\n#~ msgstr "fake_translation"\n'
-pattern_meta = "# .*?\nmsgid \"\"\nmsgstr \"\"\n.*?\n\n"
+fake_lines_lone = '\n#~ msgid "fake_message"\n#~ msgstr "fake_translation"\n'
+pattern_list = [
+    "# .*?\nmsgid \"\"\nmsgstr \"\"\n.*?\n\n",
+    "#,.*?\nmsgid \"\"\nmsgstr \"\"\n.*?\n\n",
+    "msgid \"\"\nmsgstr \"\"\n.*?\n\n",
+]
+allowed_po_path = 'ru/LC_MESSAGES'
+po = '.po'
+pot = '.pot'
+files_to_process = (po, pot)
+
+def remove_meta(file):
+    with open(file, "r+") as f:
+        d = f.read()
+        for pattern_meta in pattern_list:
+            d = re.sub(pattern_meta, '', d)
+            d = re.sub(pattern_meta, '\n', d, flags=re.DOTALL)
+        f.seek(0)
+        f.write(d)
+        f.truncate()
 
 
 def process_po_files(action) -> int:
     counter = 0
-    for path, folders, files in os.walk('ru/LC_MESSAGES'):
+    for path, folders, files in os.walk('.'):
         for file in files:
-            if os.path.splitext(file)[1] == '.po':
+            ext = os.path.splitext(file)[1]
+            file_path = os.path.join(path, file)
 
+            if ext == po and allowed_po_path not in file_path:
+                continue
+
+            if ext in files_to_process:
+                remove_meta(file_path)
+
+            if ext == po:
                 if action == 'add':
 
-                    with open(os.path.join(path, file), 'a') as f:
+                    with open(file_path, 'a') as f:
                         f.write(fake_lines)
                     counter += 1
 
                 elif action == 'rm':
 
-                    with open(os.path.join(path, file), "r+") as f:
+                    with open(file_path, "r+") as f:
                         s = f.read()
-                        d = s.replace(fake_lines, '').replace(fake_lines_commented, '')
-
-                        d = re.sub(pattern_meta, '', d)
-                        d = re.sub(pattern_meta, '\n', d, flags=re.DOTALL)
+                        d = s.replace(fake_lines, '').replace(fake_lines_commented, '').replace(fake_lines_lone, '')
 
                         if d != s:
                             f.seek(0)
