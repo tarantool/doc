@@ -249,7 +249,7 @@ IPROTO_KEY (0x20) + MP_ARRAY (array of key values).
 See the illustration of IPROTO_SELECT in the earlier section,
 :ref:`Binary protocol -- illustration <box_protocol-illustration>`.
 
-**IPROTO_INSERT** == 0x02.
+**IPROTO_INSERT** = 0x02.
 
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
@@ -871,48 +871,52 @@ version and protocol type. The second line contains up to 44 bytes of base64-enc
 random string, to use in the authentication packet, and ends with up to 23 spaces.
 
 Part of the greeting is a base-64-encoded session salt -
-a random string which can be used for authentication. The length of a decoded
-salt (44 bytes) exceeds the amount necessary to sign the authentication
-message (the first 20 bytes). An excess is reserved for future authentication
+a random string which can be used for authentication. The maximum length of an encoded
+salt (44 bytes) is more than the amount necessary to create the authentication
+message. An excess is reserved for future authentication
 schemas.
 
 Authentication is optional -- if it is skipped, then the session user is ``'guest'``
 (the ``'guest'`` user does not need a password).
 
 If authentication is not skipped, then at any time an authentication packet
-can be prepared using the greeting, as follows.
+can be prepared using the greeting, the user's name and password,
+and `sha-1 <https://en.wikipedia.org/wiki/SHA-1>`_ functions, as follows.
 
 .. code-block:: none
 
     PREPARE SCRAMBLE:
 
-        LEN(ENCODED_SALT) = 44;
-        LEN(SCRAMBLE)     = 20;
+        size_of_encoded_salt_in_greeting = 44;
+        size_of_salt_after_base64_decode = 32;
+        /* sha1() will only use the first 20 bytes */
+        size_of_any_sha1_digest = 20;
+        size_of_scramble = 20;
 
     prepare 'chap-sha1' scramble:
 
         salt = base64_decode(encoded_salt);
         step_1 = sha1(password);
         step_2 = sha1(step_1);
-        step_3 = sha1(salt, step_2);
+        step_3 = sha1(first_20_bytes_of_salt, step_2);
         scramble = xor(step_1, step_3);
         return scramble;
 
     AUTHORIZATION BODY: CODE = IPROTO_AUTH (0x07)
 
-    +==========================+====================================+
-    |                          |        +-------------+-----------+ |
-    |  (KEY)                   | (TUPLE)|  len == 9   | len == 20 | |
-    |   0x23: IPROTO_USER_NAME |   0x21:| "chap-sha1" |  SCRAMBLE | |
-    | MP_INT: MP_STRING        | MP_INT:|  MP_STRING  |  MP_BIN   | |
-    |                          |        +-------------+-----------+ |
-    |                          |                   MP_ARRAY         |
-    +==========================+====================================+
+    +==========================+=====================================+
+    |                          |        +-------------+------------+ |
+    |  (KEY)                   | (TUPLE)| size == 9   | size == 20 | |
+    |   0x23: IPROTO_USER_NAME |   0x21:| "chap-sha1" |  SCRAMBLE  | |
+    | MP_INT: MP_STRING        | MP_INT:|  MP_STRING  |  MP_STRING | |
+    |                          |        +-------------+------------+ |
+    |                          |                   MP_ARRAY          |
+    +==========================+=====================================+
                             MP_MAP
 
 :code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 fields:
 authentication mechanism ("chap-sha1" is the only supported mechanism right now)
-and password, encrypted according to the specified mechanism.
+and scramble, encrypted according to the specified mechanism.
 
 The server instance responds to an authentication packet with a standard response with 0 tuples.
 
