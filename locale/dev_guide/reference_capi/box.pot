@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 13:22+0000\n"
+"POT-Creation-Date: 2020-05-06 15:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,5 +152,17 @@ msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
 msgstr ""
 
 msgid "Truncate a space."
+msgstr ""
+
+msgid "Return the last retrieved value of the specified sequence."
+msgstr ""
+
+msgid "sequence identifier"
+msgstr ""
+
+msgid "pointer to a variable where the current sequence value will be stored on success."
+msgstr ""
+
+msgid "0 on success and -1 otherwise. In case of an error user could get it via ``box_error_last()``."
 msgstr ""
 

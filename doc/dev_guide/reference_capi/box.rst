@@ -164,4 +164,4 @@
                                value will be stored on success.
 
         :return: 0 on success and -1 otherwise. In case of an error user
-                 could get it via box_error_last().
+                 could get it via ``box_error_last()``.
