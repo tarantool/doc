@@ -1649,4 +1649,3 @@ msgid ""
 "s:replace{{a = {b = {nil}}}} -- error\n"
 "s:replace{{a = {b = {box.NULL}}}} -- ok"
 msgstr ""
-
