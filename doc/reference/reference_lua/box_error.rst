@@ -40,8 +40,8 @@ Below is a list of all ``box.error`` functions.
     | :ref:`box.error.new()                | Create an error but do not      |
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
-    | :ref:`box.error.set()                | Set an error to diagnostic area |
-    | <box_error-set>`                     |                                 |
+    | :ref:`box.error.set()                | Set an error as                 |
+    | <box_error-set>`                     | ``box.error.last()``            |
     +--------------------------------------+---------------------------------+
 
 .. function:: box.error{reason = string [, code = number]}
@@ -152,11 +152,10 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.new(code, errtext [, errtext ...])
 
-    Create an error object, but doesn't set it to Tarantool's diagnostic area as
+    Create an error object, but doesn't throw it as
     :ref:`box.error() <box_error-error>` does.
     This is useful when error information should be saved for later retrieval.
-    To set an error to a diagnostic area explicitly use 
-    :ref:`box.error.set() <box_error-set>`.
+    To set an error as the last explicitly use :ref:`box.error.set() <box_error-set>`.
 
     :param number       code: number of a pre-defined error
     :param string errtext(s): part of the message which will accompany the error
@@ -185,9 +184,8 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.set(error object)
 
-    Set an error to a diagnostic area explicitly. Accepts an error object and 
-    sets it as the last system error (i.e. becomes available via 
-    :ref:`box.error.last() <box_error-last>`).
+    Set an error as the last system error explicitly. Accepts an error object and 
+    makes it available via :ref:`box.error.last() <box_error-last>`.
 
     **Example:**
 

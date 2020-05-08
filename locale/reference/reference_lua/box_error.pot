@@ -47,7 +47,7 @@ msgstr ""
 msgid ":ref:`box.error.set() <box_error-set>`"
 msgstr ""
 
-msgid "Set an error to diagnostic area"
+msgid "Set an error as ``box.error.last()``"
 msgstr ""
 
 msgid "When called with a Lua-table argument, the code and reason have any user-desired values. The result will be those values."
@@ -137,7 +137,7 @@ msgid "tarantool> box.error{code = 555, reason = 'Arbitrary message'}\n"
 "..."
 msgstr ""
 
-msgid "Create an error object, but doesn't set it to Tarantool's diagnostic area as :ref:`box.error() <box_error-error>` does. This is useful when error information should be saved for later retrieval. To set an error to a diagnostic area explicitly use :ref:`box.error.set() <box_error-set>`."
+msgid "Create an error object, but doesn't throw it as :ref:`box.error() <box_error-error>` does. This is useful when error information should be saved for later retrieval. To set an error as the last explicitly use :ref:`box.error.set() <box_error-set>`."
 msgstr ""
 
 msgid "tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
@@ -157,7 +157,7 @@ msgid "tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
 "- nil"
 msgstr ""
 
-msgid "Set an error to a diagnostic area explicitly. Accepts an error object and sets it as the last system error (i.e. becomes available via :ref:`box.error.last() <box_error-last>`)."
+msgid "Set an error as the last system error explicitly. Accepts an error object and makes it available via :ref:`box.error.last() <box_error-last>`."
 msgstr ""
 
 msgid "tarantool> err = box.error.new({code = 111, reason = \"cause\"})\n"
