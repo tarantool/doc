@@ -17,9 +17,30 @@ Before we proceed:
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)
    and make sure that you have created and populated a database as we suggested
-   :ref:`earlier <creating-db-locally>`.
+   :ref:`earlier <creating-db-locally>`:
 
-   .. NOTE::
+   .. code-block:: lua
+
+       box.cfg{listen = 3301}
+       s = box.schema.space.create('tester')
+       s:format({
+                {name = 'id', type = 'unsigned'},
+                {name = 'band_name', type = 'string'},
+                {name = 'year', type = 'unsigned'}
+                })
+       s:create_index('primary', {
+                type = 'hash',
+                parts = {'id'}
+                })
+       s:create_index('secondary', {
+                type = 'hash',
+                parts = {'band_name'}
+                })
+       s:insert{1, 'Roxette', 1986}
+       s:insert{2, 'Scorpions', 2015}
+       s:insert{3, 'Ace of Base', 1993}
+
+   .. IMPORTANT::
 
        Please do not close the terminal window
        where Tarantool is running -- you'll need it soon.
@@ -44,21 +65,21 @@ To get connected to the Tarantool server, write a simple Go program:
     package main
 
     import (
-        "fmt"
+    	"fmt"
 
-        "github.com/tarantool/go-tarantool"
+    	"github.com/tarantool/go-tarantool"
     )
 
     func main() {
-        conn, err := tarantool.Connect("127.0.0.1:3301", tarantool.Opts{})
+    	conn, err := tarantool.Connect("127.0.0.1:3301", tarantool.Opts{})
 
-        if err != nil {
-            fmt.Println("Connection refused")
-        }
+    	if err != nil {
+    		fmt.Println("Connection refused")
+    	}
 
-        defer conn.Close()
+    	defer conn.Close()
 
-        // Your logic for interacting with the database
+    	// Your logic for interacting with the database
     }
 
 You can also specify the user name and password, if needed:
@@ -91,7 +112,9 @@ To insert a tuple into a space, use ``insert``:
 
 This inserts the tuple ``(4, "ABBA", 1972)`` into a space named ``tester``.
 
-The response code and data are available in the ``tarantool.Response`` structure:
+The response code and data are available in the
+`tarantool.Response <https://github.com/tarantool/go-tarantool#usage>`_
+structure:
 
 .. code-block:: go
 
@@ -104,7 +127,8 @@ The response code and data are available in the ``tarantool.Response`` structure
 Querying data
 ********************************************************************************
 
-To select a tuple from a space, use ``Select``:
+To select a tuple from a space, use
+`Select <https://github.com/tarantool/go-tarantool#api-reference>`_:
 
 .. code-block:: go
 
@@ -125,6 +149,8 @@ Finally, select all the tuples in a space:
 .. code-block:: go
 
     resp, err = conn.Select("tester", "primary", 0, tarantool.KeyLimit, tarantool.IterAll, []interface{}{})
+
+For more examples, see https://github.com/tarantool/go-tarantool#usage
 
 .. _getting_started-go-update:
 
@@ -171,7 +197,6 @@ To delete a tuple, use ``сonnection.Delete``:
 .. code-block:: go
 
     resp, err = conn.Delete("tester", "primary", []interface{}{4})
-
 
 To delete all tuples in a space (or to delete an entire space), use ``Call``.
 We'll focus on this function in more detail in the
