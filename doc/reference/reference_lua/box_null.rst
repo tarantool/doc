@@ -4,9 +4,8 @@
                              Constant `box.NULL`
 -------------------------------------------------------------------------------
 
-There are some major problems with using a Lua **nil** value in tuples.
-For example: you can't correctly assess length of sparse array (an array with
-nullable values set to NULL) in case of using Lua **nil** value.
+There are some major problems with using a Lua **nil** value in tables.
+For example: you can't correctly assess length of a table that is not a sequence.
 
 **Example:**
 
@@ -29,14 +28,17 @@ nullable values set to NULL) in case of using Lua **nil** value.
     - 4
     ...
 
-Provided example clearly shows a problem with sparse arrays.
+Console output of ``t`` processes **nil** value in the middle and at the end of
+the table differently. This is due to undefined behaviour.
 
 .. NOTE::
 
-    Trying to find length for sparse arrays in LuaJIT leads to
+    Trying to find length for sparse arrays in LuaJIT leads to another
     `undefined behaviour <https://www.lua.org/manual/5.2/manual.html#3.4.6>`_.
 
-To overcome this and some other issues use ``box.NULL`` constant instead of **nil**.
+To overcome this issue use ``box.NULL`` constant instead of **nil**.
+``box.NULL`` is a placeholder for a **nil** value in tables to preserve a key
+without a value.
 
 Using box.NULL
 --------------
@@ -62,10 +64,10 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     tarantool> t
     ---
     - - 0
-      - null
+      - null # cdata
       - 1
       - 2
-      - null
+      - null # cdata
     ...
 
     tarantool> #t
