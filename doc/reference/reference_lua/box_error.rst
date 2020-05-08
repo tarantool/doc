@@ -80,7 +80,7 @@ Below is a list of all ``box.error`` functions.
     ``box.error()`` is able to accept two types of arguments: either a pair of
     error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``)
     or an error object (``box.error(err)``). In both cases an error is promoted
-    to the diagnostic area.
+    as the last error.
 
     **Example:**
 

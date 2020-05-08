@@ -80,7 +80,7 @@ msgstr ""
 msgid "whatever is specified in errcode-number."
 msgstr ""
 
-msgid "``box.error()`` is able to accept two types of arguments: either a pair of error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``) or an error object (``box.error(err)``). In both cases an error is promoted to the diagnostic area."
+msgid "``box.error()`` is able to accept two types of arguments: either a pair of error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``) or an error object (``box.error(err)``). In both cases an error is promoted as the last error."
 msgstr ""
 
 msgid "**Example:**"
