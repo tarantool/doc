@@ -100,8 +100,7 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
 Distinction of nil and box.NULL
 -------------------------------
 
-If condition expression ``x == nil`` is **true** the ``x`` could be **nil** or
-``box.NULL``.
+Use expression ``if x == nil`` to check if the ``x`` is either **nil** or ``box.NULL``.
 
 To check whether ``x`` is a **nil** but not a ``box.NULL`` use the following
 condition expression:
