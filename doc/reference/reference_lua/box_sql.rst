@@ -114,10 +114,11 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     The order of components within a map is not guaranteed.
 
-.. _box-sql_if_full_metadata:
+    .. _box-sql_if_full_metadata:
 
     If ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system table
     is TRUE, then result set metadata may include these things in addition to ``name`` and ``type``: |br|
+
     * ``collation`` (present only if COLLATE clause is specified for a STRING) = :ref:`"Collation" <index-collation>`. |br|
     * ``is_nullable`` (present only if the :ref:`select list <sql_select_list>` specified a
     base table column and nothing else) = false if column was defined as :ref:`NOT NULL <sql_nulls>`, otherwise true.
