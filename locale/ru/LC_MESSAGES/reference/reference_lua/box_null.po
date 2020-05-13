@@ -188,7 +188,7 @@ msgstr ""
 
 msgid "If the expression above is **true**, then ``x`` is a ``box.NULL``."
 msgstr ""
-"Если вышеуказанное выражение истинно (**true**), то ``x`` это "
+"Если вышеуказанное выражение истинно (**true**), то ``x`` -- это "
 "``box.NULL``."
 
 msgid ""
