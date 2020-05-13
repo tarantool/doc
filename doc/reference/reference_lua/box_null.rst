@@ -117,7 +117,7 @@ If it's **true**, then ``x`` is a **nil**, but not a ``box.NULL``.
 
 You can use the following for ``box.NULL``:
 
-.. code-block:: tarantoolsession
+.. code-block:: lua
 
     x == nil and type(x) == 'cdata'
 
@@ -129,7 +129,7 @@ If the expression above is **true**, then ``x`` is a ``box.NULL``.
     that it is possible that **nil** in sparse arrays will be converted to
     ``box.NULL``. And it is worth mentioning that such conversion might be
     unexpected (for example: by sending data via :ref:`net.box <net_box-module>`
-    or by obtaining data from :ref:`spaces <box_space> etc.`).
+    or by obtaining data from :ref:`spaces <box_space>` etc.).
 
     .. code-block:: tarantoolsession
 
