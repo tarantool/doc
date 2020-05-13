@@ -58,6 +58,9 @@ Below is a list of all ``box.session`` functions and members.
     | :ref:`box.session.storage            | Table with session-specific     |
     | <box_session-storage>`               | names and values                |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.session.settings           | Update values of session        |
+    | <box_session-settings>`              | settings                        |
+    +--------------------------------------+---------------------------------+    
     | :ref:`box.session.on_connect()       | Define a connect trigger        |
     | <box_session-on_connect>`            |                                 |
     +--------------------------------------+---------------------------------+
@@ -293,6 +296,36 @@ Below is a list of all ``box.session`` functions and members.
         ---
         - 'radius_of_mars=3396 random_memorandum=Don''t forget the eggs. '
         ...
+
+.. _box_session-settings:
+
+.. data:: settings
+
+    A table allowing to update values of session settings. It is always
+    accessible to a user. The syntax is following:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.session.settings.<setting_name> = <new_value>
+
+    **Example of usage:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.session.settings.sql_default_engine
+        ---
+        - memtx
+        ...
+
+        tarantool> box.session.settings.sql_default_engine = 'vinyl'
+        ---
+        ...
+
+    The table itself represents the unordered result of select
+    from :ref:`_session_settings <box_space-session_settings>` space.
+
+    Another method of updating values of session settings is using SQL.
+
 
 .. _box_session-on_connect:
 
