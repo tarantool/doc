@@ -240,11 +240,89 @@ msgstr ""
 msgid "Commands for managing Tarantool modules"
 msgstr "Команды для управления модулями Tarantool'а"
 
+msgid "``tarantoolctl rocks build NAME``"
+msgstr ""
+
+msgid "Build/compile and install a rock."
+msgstr "Создание/Компиляция и установка модуля."
+
+msgid "``tarantoolctl rocks config URI``"
+msgstr ""
+
+msgid "Query and set the LuaRocks configuration."
+msgstr "Запрос и настройка конфигурации LuaRocks."
+
+msgid "``tarantoolctl rocks doc NAME``"
+msgstr ""
+
+msgid "Show a documentation for an installed rock."
+msgstr "Отображение документации для установленного модуля."
+
+msgid "``tarantoolctl rocks download [NAME]``"
+msgstr ""
+
+msgid "Download a specific rock or rockspec file from a rocks server."
+msgstr "Загрузка определенного модуля или файла типа rockspec с сервера."
+
+msgid "``tarantoolctl rocks help NAME``"
+msgstr ""
+
+msgid "Help on commands."
+msgstr "Помощь по командам."
+
+msgid "``tarantoolctl rocks init NAME``"
+msgstr ""
+
+msgid "Initialize a directory for a Lua project using LuaRocks."
+msgstr "Инициализация каталога для проекта Lua с помощью LuaRocks."
+
 msgid "``tarantoolctl rocks install NAME``"
 msgstr "``tarantoolctl rocks install NAME``"
 
 msgid "Install a module in the current directory."
 msgstr "Установка модуля в текущей директории."
+
+msgid "``tarantoolctl rocks lint FILE``"
+msgstr ""
+
+msgid "Check syntax of a rockspec."
+msgstr "Проверка синтаксиса файла типа rockspec."
+
+msgid "``tarantoolctl rocks list``"
+msgstr "``tarantoolctl rocks list``"
+
+msgid "List all installed modules."
+msgstr "Вывод списка всех установленных модулей."
+
+msgid "``tarantoolctl rocks make``"
+msgstr ""
+
+msgid "Compile package in the current directory using a rockspec and install it."
+msgstr "Компиляция пакета в текущем каталоге с помощью rockspec и его установка."
+
+msgid "``tarantoolctl rocks make_manifest``"
+msgstr ""
+
+msgid "Compile a manifest file for a repository."
+msgstr "Компиляция файла-манифеста для репозитория."
+
+msgid "``tarantoolctl rocks new_version NAME``"
+msgstr ""
+
+msgid "Auto-write a rockspec for a new version of a rock."
+msgstr "Автоматическая запись файла типа rockspec для новой версии модуля."
+
+msgid "``tarantoolctl rocks pack NAME``"
+msgstr ""
+
+msgid "Create a rock by packing sources or binaries."
+msgstr "Создание модуля путем компоновки исходных или бинарных файлов."
+
+msgid "``tarantoolctl rocks purge NAME``"
+msgstr ""
+
+msgid "Remove all installed rocks from a tree."
+msgstr "Удаление всех установленных модулей в дереве."
 
 msgid "``tarantoolctl rocks remove NAME``"
 msgstr "``tarantoolctl rocks remove NAME``"
@@ -264,17 +342,23 @@ msgstr "``tarantoolctl rocks search NAME``"
 msgid "Search the repository for modules."
 msgstr "Поиск модулей по репозиторию."
 
-msgid "``tarantoolctl rocks list``"
-msgstr "``tarantoolctl rocks list``"
+msgid "``tarantoolctl rocks unpack NAME``"
+msgstr ""
 
-msgid "List all installed modules."
-msgstr "Вывод списка всех установленных модулей."
+msgid "Unpack the contents of a rock."
+msgstr "Распаковка содержимого модуля."
 
-msgid "``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``"
-msgstr "``tarantoolctl rocks pack {<rockspec> | <имя> [<версия>]}``"
+msgid "``tarantoolctl rocks which NAME``"
+msgstr ""
 
-msgid "Create a rock by packing sources or binaries."
-msgstr "Создание модуля путем компоновки исходных или бинарных файлов."
+msgid "Tell which file corresponds to a given module name."
+msgstr "Какой файл соответствует заданному модулю."
+
+msgid "``tarantoolctl rocks write_rockspec``"
+msgstr ""
+
+msgid "Write a template for a rockspec file."
+msgstr "Запись шаблона для rockspec-файла."
 
 msgid "As an argument, you can specify:"
 msgstr "В качестве аргумента можно указать:"
@@ -323,3 +407,18 @@ msgid ""
 msgstr ""
 "``--only-server=имя_сервера`` проверить только данный сервер, остальные "
 "пропустить."
+
+#~ msgid "``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``"
+#~ msgstr "``tarantoolctl rocks pack {<rockspec> | <имя> [<версия>]}``"
+
+#~ msgid "``tarantoolctl rocks path``"
+#~ msgstr ""
+
+#~ msgid "Return the currently configured package path."
+#~ msgstr "Отображение текущего установленного пути к пакету."
+
+#~ msgid "``tarantoolctl rocks upload FILE``"
+#~ msgstr ""
+
+#~ msgid "Upload a rockspec to the public rocks repository."
+#~ msgstr "Загрузить rockspec-файл в публичный репозиторий модуля."

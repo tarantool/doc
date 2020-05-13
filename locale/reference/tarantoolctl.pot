@@ -146,10 +146,88 @@ msgstr ""
 msgid "Commands for managing Tarantool modules"
 msgstr ""
 
+msgid "``tarantoolctl rocks build NAME``"
+msgstr ""
+
+msgid "Build/compile and install a rock."
+msgstr ""
+
+msgid "``tarantoolctl rocks config URI``"
+msgstr ""
+
+msgid "Query and set the LuaRocks configuration."
+msgstr ""
+
+msgid "``tarantoolctl rocks doc NAME``"
+msgstr ""
+
+msgid "Show a documentation for an installed rock."
+msgstr ""
+
+msgid "``tarantoolctl rocks download [NAME]``"
+msgstr ""
+
+msgid "Download a specific rock or rockspec file from a rocks server."
+msgstr ""
+
+msgid "``tarantoolctl rocks help NAME``"
+msgstr ""
+
+msgid "Help on commands."
+msgstr ""
+
+msgid "``tarantoolctl rocks init NAME``"
+msgstr ""
+
+msgid "Initialize a directory for a Lua project using LuaRocks."
+msgstr ""
+
 msgid "``tarantoolctl rocks install NAME``"
 msgstr ""
 
 msgid "Install a module in the current directory."
+msgstr ""
+
+msgid "``tarantoolctl rocks lint FILE``"
+msgstr ""
+
+msgid "Check syntax of a rockspec."
+msgstr ""
+
+msgid "``tarantoolctl rocks list``"
+msgstr ""
+
+msgid "List all installed modules."
+msgstr ""
+
+msgid "``tarantoolctl rocks make``"
+msgstr ""
+
+msgid "Compile package in the current directory using a rockspec and install it."
+msgstr ""
+
+msgid "``tarantoolctl rocks make_manifest``"
+msgstr ""
+
+msgid "Compile a manifest file for a repository."
+msgstr ""
+
+msgid "``tarantoolctl rocks new_version NAME``"
+msgstr ""
+
+msgid "Auto-write a rockspec for a new version of a rock."
+msgstr ""
+
+msgid "``tarantoolctl rocks pack NAME``"
+msgstr ""
+
+msgid "Create a rock by packing sources or binaries."
+msgstr ""
+
+msgid "``tarantoolctl rocks purge NAME``"
+msgstr ""
+
+msgid "Remove all installed rocks from a tree."
 msgstr ""
 
 msgid "``tarantoolctl rocks remove NAME``"
@@ -170,16 +248,22 @@ msgstr ""
 msgid "Search the repository for modules."
 msgstr ""
 
-msgid "``tarantoolctl rocks list``"
+msgid "``tarantoolctl rocks unpack NAME``"
 msgstr ""
 
-msgid "List all installed modules."
+msgid "Unpack the contents of a rock."
 msgstr ""
 
-msgid "``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``"
+msgid "``tarantoolctl rocks which NAME``"
 msgstr ""
 
-msgid "Create a rock by packing sources or binaries."
+msgid "Tell which file corresponds to a given module name."
+msgstr ""
+
+msgid "``tarantoolctl rocks write_rockspec``"
+msgstr ""
+
+msgid "Write a template for a rockspec file."
 msgstr ""
 
 msgid "As an argument, you can specify:"
