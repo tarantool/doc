@@ -104,7 +104,7 @@ Manipulating the data
 Inserting data
 ********************************************************************************
 
-To insert a tuple into a space, use ``insert``:
+To insert a tuple into a space, use ``Insert``:
 
 .. code-block:: go
 
