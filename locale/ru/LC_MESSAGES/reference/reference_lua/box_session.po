@@ -91,6 +91,12 @@ msgstr ":ref:`box.session.storage <box_session-storage>`"
 msgid "Table with session-specific names and values"
 msgstr "Таблица с именами и значениями по сессии"
 
+msgid ":ref:`box.session.settings <box_session-settings>`"
+msgstr ":ref:`box.session.settings <box_session-settings>`"
+
+msgid "Update values of session settings"
+msgstr "Обновление настроек сессии"
+
 msgid ":ref:`box.session.on_connect() <box_session-on_connect>`"
 msgstr ":ref:`box.session.on_connect() <box_session-on_connect>`"
 
@@ -459,6 +465,40 @@ msgstr ""
 "---\n"
 "- 'radius_of_mars=3396 random_memorandum=Don''t forget the eggs. '\n"
 "..."
+
+msgid ""
+"A table allowing to update values of session settings. It is always "
+"accessible to a user. The syntax is following:"
+msgstr ""
+"Таблица, позволяющая обновлять значения настроек сессии. Она всегда "
+"доступна пользователю. Имеет синтаксис:"
+
+msgid "tarantool> box.session.settings.<setting_name> = <new_value>"
+msgstr ""
+
+msgid "**Example of usage:**"
+msgstr "**Пример использования:**"
+
+msgid ""
+"tarantool> box.session.settings.sql_default_engine\n"
+"---\n"
+"- memtx\n"
+"...\n"
+"\n"
+"tarantool> box.session.settings.sql_default_engine = 'vinyl'\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid ""
+"The table itself represents the unordered result of select from "
+":ref:`_session_settings <box_space-session_settings>` space."
+msgstr ""
+"Сама по себе таблица представляет собой результат запроса select из "
+"спейса :ref:`_session_settings <box_space-session_settings>`."
+
+msgid "Another method of updating values of session settings is using SQL."
+msgstr "Обновлять значения настроек сессии можно также с помощью SQL."
 
 msgid ""
 "Define a trigger for execution when a new session is created due to an "
