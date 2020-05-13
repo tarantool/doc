@@ -164,7 +164,7 @@ msgid ""
 "Use the expression ``if x == nil`` to check if the ``x`` is either a "
 "**nil** or a ``box.NULL``."
 msgstr ""
-"Используйте выражение ``x == nil`` для проверки является ли ``x`` "
+"Используйте выражение ``x == nil`` для проверки того, является ли ``x`` "
 " **nil** или ``box.NULL``."
 
 msgid ""
