@@ -471,7 +471,7 @@ msgid ""
 "accessible to a user. The syntax is following:"
 msgstr ""
 "Таблица, позволяющая обновлять значения настроек сессии. Она всегда "
-"доступна пользователю. Имеет синтаксис:"
+"доступна пользователю. Имеет следующий синтаксис:"
 
 msgid "tarantool> box.session.settings.<setting_name> = <new_value>"
 msgstr ""
