@@ -177,7 +177,7 @@
     :param box_tuple_t**  result: output argument. An old tuple. Can be
                                   set to NULL to discard result
 
-    :return: -1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)
+    :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
     See also :ref:`space_object.upsert()<box_space-upsert>`
@@ -188,3 +188,14 @@
 
     :param uint32_t space_id: space identifier
 
+.. c:function:: int box_session_push(const char *data, const char *data_end)
+
+    Push MessagePack data into a session data channel - socket, console or
+    whatever is behind the session. Behaves just like Lua
+    :ref:`box.session.push() <box_session-push>`.
+
+    :param const char* data: begin of MessagePack to push
+    :param const char* data_end: end of MessagePack to push
+
+    :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
+    :return: 0 otherwise
