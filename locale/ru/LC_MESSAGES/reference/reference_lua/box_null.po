@@ -158,7 +158,7 @@ msgstr ""
 "``box.NULL`` всегда будет не **false** (ложь) и не **nil** (ничто))."
 
 msgid "Distinction of nil and `box.NULL`"
-msgstr "Различение nil и box.NULL"
+msgstr "Различение nil и `box.NULL`"
 
 msgid ""
 "Use the expression ``if x == nil`` to check if the ``x`` is either a "
