@@ -27,6 +27,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     box_index
     box_info
     box_once
+    box_null
     box_schema
     box_session
     box_slab
