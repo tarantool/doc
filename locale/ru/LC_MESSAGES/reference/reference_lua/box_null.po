@@ -178,7 +178,7 @@ msgid "type(x) == 'nil'"
 msgstr ""
 
 msgid "If it's **true**, then ``x`` is a **nil**, but not a ``box.NULL``."
-msgstr "Если оно истинно (**true**), то ``x`` это **nil**, но не``box.NULL``."
+msgstr "Если оно истинно (**true**), то ``x`` -- это **nil**, но не``box.NULL``."
 
 msgid "You can use the following for ``box.NULL``:"
 msgstr "Вы можете использовать следующее выражение для ``box.NULL``:"
