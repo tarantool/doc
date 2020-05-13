@@ -172,7 +172,7 @@ msgid ""
 "following condition expression:"
 msgstr ""
 "Для выяснения того, является ли ``x`` в действительности **nil**, но не "
-"``box.NULL`` используйте следующее условие:"
+"``box.NULL``, используйте следующее условие:"
 
 msgid "type(x) == 'nil'"
 msgstr ""
