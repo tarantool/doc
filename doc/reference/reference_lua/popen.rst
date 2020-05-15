@@ -32,6 +32,54 @@ object:
 Either function returns a handle which we will call ``popen_handle`` or ``ph``.
 With the handle one can execute methods.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``popen`` functions.
+
+.. container:: table
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`popen.shell()                  | Execute a shell command         |
+    | <popen-shell>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen.new()                    | Execute a child program in      |
+    | <popen-new>`                         | a new process                   |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:read()            | Read data from a child peer     |
+    | <popen-read>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:write()           | Write string str to stdin       |
+    | <popen-write>`                       | stream of a child process       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:shutdown()        | Close parent's ends of std* fds |
+    | <popen-shutdown>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:terminate()       | Send SIGTERM signal to a child  |
+    | <popen-terminate>`                   | process                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:kill()            | Send SIGKILL signal to a child  |
+    | <popen-kill>`                        | process                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:signal()          | Send signal to a child process  |
+    | <popen-signal>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:info()            | Return information about the    |
+    | <popen-info>`                        | popen handle                    |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:wait()            | Wait until a child process gets |
+    | <popen-wait>`                        | exited or signaled              |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:close()           | Close a popen handle            |
+    | <popen-close>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+
 .. _popen-shell:
 
 .. function:: shell(command [, mode])
