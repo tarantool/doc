@@ -816,7 +816,7 @@ functions.
     calling the ``:close()`` method, or it will be closed automatically when it has
     no references, and the garbage collector deletes it.
 
-    Keep in mind, that the number of file descriptors is limited, and
+    Keep in mind that the number of file descriptors is limited, and
     they can become exhausted earlier than the garbage collector will be triggered to collect not
     used descriptors. It is always good practice to close them manually as soon as possible.
 
