@@ -152,7 +152,7 @@ msgstr ""
 msgid "Truncate a space."
 msgstr ""
 
-msgid "Push MessagePack data into a session data channel - socket, console or whatever is behind the session. Behaves just like Lua :ref:`box.session.push() <box_session-push>`."
+msgid "Push MessagePack data into a session data channel -- socket, console or whatever is behind the session. Behaves just like Lua :ref:`box.session.push() <box_session-push>`."
 msgstr ""
 
 msgid "begin of MessagePack to push"
@@ -160,4 +160,3 @@ msgstr ""
 
 msgid "end of MessagePack to push"
 msgstr ""
-

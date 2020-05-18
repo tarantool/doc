@@ -190,7 +190,7 @@
 
 .. c:function:: int box_session_push(const char *data, const char *data_end)
 
-    Push MessagePack data into a session data channel - socket, console or
+    Push MessagePack data into a session data channel -- socket, console or
     whatever is behind the session. Behaves just like Lua
     :ref:`box.session.push() <box_session-push>`.
 
