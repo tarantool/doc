@@ -172,3 +172,23 @@ msgstr "См. также :ref:`space_object.upsert()<box_space-upsert>`"
 
 msgid "Truncate a space."
 msgstr "Очистка спейса."
+
+msgid "Return the last retrieved value of the specified sequence."
+msgstr "Вернуть последнее найденное значение заданной последовательности"
+
+msgid "sequence identifier"
+msgstr "идентификатор последовательности"
+
+msgid ""
+"pointer to a variable where the current sequence value will be stored on "
+"success."
+msgstr ""
+"указатель на переменную, где будет храниться значение последовательности "
+"в случае успеха."
+
+msgid ""
+"0 on success and -1 otherwise. In case of an error user could get it via "
+"``box_error_last()``."
+msgstr ""
+"0 при успехе и -1 в обратном случае. В случае ошибки, ее можно получить с"
+" помощью ``box_error_last()``."

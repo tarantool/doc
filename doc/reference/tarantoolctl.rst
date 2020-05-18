@@ -129,8 +129,47 @@ Supported options:
 Commands for managing Tarantool modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+``tarantoolctl rocks build NAME``
+        Build/compile and install a rock.
+
+``tarantoolctl rocks config URI``
+        Query and set the LuaRocks configuration.
+
+``tarantoolctl rocks doc NAME``
+        Show documentation for an installed rock.
+
+``tarantoolctl rocks download [NAME]``
+        Download a specific rock or rockspec file from a rocks server.
+
+``tarantoolctl rocks help NAME``
+        Help on commands.
+
+``tarantoolctl rocks init NAME``
+        Initialize a directory for a Lua project using LuaRocks.
+
 ``tarantoolctl rocks install NAME``
         Install a module in the current directory.
+
+``tarantoolctl rocks lint FILE``
+        Check the syntax of a rockspec.
+
+``tarantoolctl rocks list``
+        List all installed modules.
+
+``tarantoolctl rocks make``
+        Compile a package in the current directory using a rockspec and install it.
+
+``tarantoolctl rocks make_manifest``
+        Compile a manifest file for a repository.
+
+``tarantoolctl rocks new_version NAME``
+        Auto-write a rockspec for a new version of a rock.
+
+``tarantoolctl rocks pack NAME``
+        Create a rock by packing sources or binaries.
+
+``tarantoolctl rocks purge NAME``
+        Remove all installed rocks from a tree.
 
 ``tarantoolctl rocks remove NAME``
         Remove a module.
@@ -141,11 +180,15 @@ Commands for managing Tarantool modules
 ``tarantoolctl rocks search NAME``
         Search the repository for modules.
 
-``tarantoolctl rocks list``
-        List all installed modules.
+``tarantoolctl rocks unpack NAME``
+        Unpack the contents of a rock.
 
-``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``
-        Create a rock by packing sources or binaries.
+``tarantoolctl rocks which NAME``
+        Tell which file corresponds to a given module name.
+
+``tarantoolctl rocks write_rockspec``
+        Write a template for a rockspec file.
+
 
         As an argument, you can specify:
 

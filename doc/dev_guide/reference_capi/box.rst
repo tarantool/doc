@@ -188,3 +188,13 @@
 
     :param uint32_t space_id: space identifier
 
+.. c:function:: int box_sequence_current(uint32_t seq_id, int64_t *result);
+
+        Return the last retrieved value of the specified sequence.
+
+        :param uint32_t seq_id: sequence identifier
+        :param int64_t result: pointer to a variable where the current sequence 
+                               value will be stored on success.
+
+        :return: 0 on success and -1 otherwise. In case of an error user
+                 could get it via ``box_error_last()``.
