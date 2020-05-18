@@ -19,7 +19,7 @@
 
         .. container:: documentation-main-page-title
 
-            Tarantool 2.3 manual
+            Tarantool 2.4 manual
 
         .. container:: documentation-main-page-description
 
@@ -39,7 +39,7 @@
                 .. raw:: html
 
                     <div class="getting-started-button-container">
-                        <a href="book/getting_started/">
+                        <a href="getting_started/">
                             <button class="getting-started-button btn">
                                 Руководство для начинающих
                             </button>
@@ -51,7 +51,7 @@
                 .. raw:: html
 
                     <div class="getting-started-button-container">
-                        <a href="book/getting_started/">
+                        <a href="getting_started/">
                             <button class="getting-started-button btn">
                                 Getting started
                             </button>

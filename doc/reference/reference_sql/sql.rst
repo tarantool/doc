@@ -1697,10 +1697,13 @@ So AAA = Always for explicit, Always for Implicit (assignment), Always for Impli
 
 The S "Sometimes allowed" character applies for these special situations: |br|
 From STRING To BOOLEAN is allowed if UPPER(string-value) = ``'TRUE'`` or ``'FALSE'``. |br|
-From number to INTEGER or UNSIGNED is allowed for cast and assignment only if the result is not out of range. |br|
-From STRING to number is allowed only if the string has a representation of a number. |br|
+From number to INTEGER or UNSIGNED is allowed for cast and assignment only if the result is not out of range,
+and the number has no post-decimal digits. |br|
+From STRING to INTEGER or UNSIGNED is allowed only if the string has a representation of a number,
+and the result is not out of range,
+and the number has no post-decimal digits. |br|
+From STRING to DOUBLE or NUMBER is allowed only if the string has a representation of a number. |br|
 From BOOLEAN to number is allowed only if the number is not DOUBLE.
-
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
 not the type of the column definition.
 Explicit cast to SCALAR is allowed but has no effect, the result data type is always the same as the original data type.
@@ -1740,8 +1743,12 @@ Exception: for BETWEEN the cast is to the data type of the first and last operan
 Therefore ``'66' BETWEEN 5 AND '7'`` is TRUE.
 
 For assignments, the cast is always from source to target.
-Therefore ``INSERT INTO t (integer_column) VALUES ('5');`` inserts 5. |br| |br|
+Therefore ``INSERT INTO t (integer_column) VALUES ('5');`` inserts 5. |br|
 If the cast fails, then the result is an error.
+Due to a change in behavior starting with Tarantool 2.4.1,
+if the string contains post-decimal digits and the target is INTEGER or UNSIGNED,
+the assignment will fail.
+Therefore ``INSERT INTO t (integer_column) VALUES ('5.5');`` causes an error. |br|
 
 Implicit cast also happens if STRINGS are used in arithmetic. |br|
 Therefore ``'5' / '5' = 1``. If the cast fails, then the result is an error. |br|

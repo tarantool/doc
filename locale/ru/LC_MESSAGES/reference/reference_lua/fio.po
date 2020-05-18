@@ -1,23 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C)
-# This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-#
-msgid ""
-msgstr ""
-"Project-Id-Version: Tarantool 1.10\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 13:22+0000\n"
-"PO-Revision-Date: 2019-12-06 16:16+0300\n"
-"Last-Translator: \n"
-"Language: ru\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
 
 msgid "Module `fio`"
 msgstr "Модуль `fio`"
@@ -1110,6 +1090,27 @@ msgstr ""
 
 msgid "userdata"
 msgstr "пользовательские данные"
+
+msgid ""
+"Note that ``fio.open()`` returns a descriptor which can be closed "
+"manually by calling the ``:close()`` method, or it will be closed "
+"automatically when it has no references, and the garbage collector "
+"deletes it."
+msgstr ""
+"Обратите внимание, что ``fio.open()`` возвращает дескриптор, который "
+"можно закрыть вручную, вызвав метод ``:close()``, или он будет закрыт "
+"автоматически, когда у него нет ссылок, и сборщик мусора удаляет его."
+
+msgid ""
+"Keep in mind that the number of file descriptors is limited, and they "
+"can become exhausted earlier than the garbage collector will be triggered"
+" to collect not used descriptors. It is always good practice to close "
+"them manually as soon as possible."
+msgstr ""
+"Имейте в виду, что количество файловых дескрипторов ограничено и они "
+"могут быть исчерпаны раньше, чем будет запущен сборщик мусора для сбора "
+"неиспользуемых дескрипторов. Всегда рекомендуется закрывать их вручную "
+"как можно скорее."
 
 msgid "**Example 1:**"
 msgstr "**Пример 1:**"

@@ -9,6 +9,7 @@
     :maxdepth: 2
 
     intro
+    getting_started/index
     book/index
     reference/index
     tutorials/index

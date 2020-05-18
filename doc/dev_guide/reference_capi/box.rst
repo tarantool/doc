@@ -24,6 +24,39 @@
              :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
+
+.. _box-box_return_mp:
+
+.. c:function:: int box_return_mp(box_function_ctx_t *ctx, const char *mp, const char *mp_end)
+
+    Return a pointer to a series of bytes in MessagePack format.
+
+    This can be used instead of :ref:`box_return_tuple() <box-box_return_tuple>` --
+    it can send the same value, but as MessagePack instead of as a tuple object.
+    It may be simpler than ``box_return_tuple()`` when the result is small, for
+    example a number or a boolean or a short string.
+    It will also be faster than ``box_return_tuple()``, if the result is that
+    users save time by not creating a tuple every time they want to return
+    something from a C function.
+
+    On the other hand, if an already-existing tuple was obtained from
+    an iterator, then it would be faster to return the tuple via ``box_return_tuple()``
+    rather than extracting its parts and sending them via ``box_return_mp()``.
+
+    :param box_function_ctx_t* ctx: an opaque structure passed to the C stored
+                                    procedure by Tarantool
+    :param char*               mp:  the first MessagePack byte
+    :param char*           mp_end:  after the last MessagePack byte
+
+    :return: -1 on error (perhaps, out of memory; check
+             :ref:`box_error_last()<c_api-error-box_error_last>`)
+    :return: 0 otherwise
+
+    For example, if ``mp`` is a buffer, and ``mp_end`` is a return value
+    produced by encoding a single MP_UINT scalar value with
+    ``mp_end=mp_encode_uint(mp,1);``, then
+    ``box_return_mp(ctx,mp,mp_end);`` should return ``0``.    
+
 .. _box-box_space_id_by_name:
 
 .. c:function:: uint32_t box_space_id_by_name(const char *name, uint32_t len)
@@ -155,3 +188,13 @@
 
     :param uint32_t space_id: space identifier
 
+.. c:function:: int box_sequence_current(uint32_t seq_id, int64_t *result);
+
+        Return the last retrieved value of the specified sequence.
+
+        :param uint32_t seq_id: sequence identifier
+        :param int64_t result: pointer to a variable where the current sequence 
+                               value will be stored on success.
+
+        :return: 0 on success and -1 otherwise. In case of an error user
+                 could get it via ``box_error_last()``.
