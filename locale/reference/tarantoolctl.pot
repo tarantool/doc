@@ -161,7 +161,7 @@ msgstr ""
 msgid "``tarantoolctl rocks doc NAME``"
 msgstr ""
 
-msgid "Show a documentation for an installed rock."
+msgid "Show documentation for an installed rock."
 msgstr ""
 
 msgid "``tarantoolctl rocks download [NAME]``"
@@ -191,7 +191,7 @@ msgstr ""
 msgid "``tarantoolctl rocks lint FILE``"
 msgstr ""
 
-msgid "Check syntax of a rockspec."
+msgid "Check the syntax of a rockspec."
 msgstr ""
 
 msgid "``tarantoolctl rocks list``"
@@ -203,7 +203,7 @@ msgstr ""
 msgid "``tarantoolctl rocks make``"
 msgstr ""
 
-msgid "Compile package in the current directory using a rockspec and install it."
+msgid "Compile a package in the current directory using a rockspec and install it."
 msgstr ""
 
 msgid "``tarantoolctl rocks make_manifest``"

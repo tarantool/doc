@@ -255,7 +255,7 @@ msgstr "Запрос и настройка конфигурации LuaRocks."
 msgid "``tarantoolctl rocks doc NAME``"
 msgstr ""
 
-msgid "Show a documentation for an installed rock."
+msgid "Show documentation for an installed rock."
 msgstr "Отображение документации для установленного модуля."
 
 msgid "``tarantoolctl rocks download [NAME]``"
@@ -285,7 +285,7 @@ msgstr "Установка модуля в текущей директории."
 msgid "``tarantoolctl rocks lint FILE``"
 msgstr ""
 
-msgid "Check syntax of a rockspec."
+msgid "Check the syntax of a rockspec."
 msgstr "Проверка синтаксиса файла типа rockspec."
 
 msgid "``tarantoolctl rocks list``"
@@ -297,7 +297,9 @@ msgstr "Вывод списка всех установленных модуле
 msgid "``tarantoolctl rocks make``"
 msgstr ""
 
-msgid "Compile package in the current directory using a rockspec and install it."
+msgid ""
+"Compile a package in the current directory using a rockspec and install "
+"it."
 msgstr "Компиляция пакета в текущем каталоге с помощью rockspec и его установка."
 
 msgid "``tarantoolctl rocks make_manifest``"
