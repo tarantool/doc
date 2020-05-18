@@ -352,7 +352,7 @@ msgid "``tarantoolctl rocks which NAME``"
 msgstr ""
 
 msgid "Tell which file corresponds to a given module name."
-msgstr "Какой файл соответствует заданному модулю."
+msgstr "Определение того, какой файл соответствует заданному модулю."
 
 msgid "``tarantoolctl rocks write_rockspec``"
 msgstr ""

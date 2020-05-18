@@ -136,7 +136,7 @@ Commands for managing Tarantool modules
         Query and set the LuaRocks configuration.
 
 ``tarantoolctl rocks doc NAME``
-        Show a documentation for an installed rock.
+        Show documentation for an installed rock.
 
 ``tarantoolctl rocks download [NAME]``
         Download a specific rock or rockspec file from a rocks server.
@@ -151,13 +151,13 @@ Commands for managing Tarantool modules
         Install a module in the current directory.
 
 ``tarantoolctl rocks lint FILE``
-        Check syntax of a rockspec.
+        Check the syntax of a rockspec.
 
 ``tarantoolctl rocks list``
         List all installed modules.
 
 ``tarantoolctl rocks make``
-        Compile package in the current directory using a rockspec and install it.
+        Compile a package in the current directory using a rockspec and install it.
 
 ``tarantoolctl rocks make_manifest``
         Compile a manifest file for a repository.
