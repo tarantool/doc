@@ -249,7 +249,7 @@ IPROTO_KEY (0x20) + MP_ARRAY (array of key values).
 See the illustration of IPROTO_SELECT in the earlier section,
 :ref:`Binary protocol -- illustration <box_protocol-illustration>`.
 
-**IPROTO_INSERT** == 0x02.
+**IPROTO_INSERT** = 0x02.
 
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
@@ -871,48 +871,52 @@ version and protocol type. The second line contains up to 44 bytes of base64-enc
 random string, to use in the authentication packet, and ends with up to 23 spaces.
 
 Part of the greeting is a base-64-encoded session salt -
-a random string which can be used for authentication. The length of a decoded
-salt (44 bytes) exceeds the amount necessary to sign the authentication
-message (the first 20 bytes). An excess is reserved for future authentication
+a random string which can be used for authentication. The maximum length of an encoded
+salt (44 bytes) is more than the amount necessary to create the authentication
+message. An excess is reserved for future authentication
 schemas.
 
 Authentication is optional -- if it is skipped, then the session user is ``'guest'``
 (the ``'guest'`` user does not need a password).
 
 If authentication is not skipped, then at any time an authentication packet
-can be prepared using the greeting, as follows.
+can be prepared using the greeting, the user's name and password,
+and `sha-1 <https://en.wikipedia.org/wiki/SHA-1>`_ functions, as follows.
 
 .. code-block:: none
 
     PREPARE SCRAMBLE:
 
-        LEN(ENCODED_SALT) = 44;
-        LEN(SCRAMBLE)     = 20;
+        size_of_encoded_salt_in_greeting = 44;
+        size_of_salt_after_base64_decode = 32;
+        /* sha1() will only use the first 20 bytes */
+        size_of_any_sha1_digest = 20;
+        size_of_scramble = 20;
 
     prepare 'chap-sha1' scramble:
 
         salt = base64_decode(encoded_salt);
         step_1 = sha1(password);
         step_2 = sha1(step_1);
-        step_3 = sha1(salt, step_2);
+        step_3 = sha1(first_20_bytes_of_salt, step_2);
         scramble = xor(step_1, step_3);
         return scramble;
 
     AUTHORIZATION BODY: CODE = IPROTO_AUTH (0x07)
 
-    +==========================+====================================+
-    |                          |        +-------------+-----------+ |
-    |  (KEY)                   | (TUPLE)|  len == 9   | len == 20 | |
-    |   0x23: IPROTO_USER_NAME |   0x21:| "chap-sha1" |  SCRAMBLE | |
-    | MP_INT: MP_STRING        | MP_INT:|  MP_STRING  |  MP_BIN   | |
-    |                          |        +-------------+-----------+ |
-    |                          |                   MP_ARRAY         |
-    +==========================+====================================+
+    +==========================+=====================================+
+    |                          |        +-------------+------------+ |
+    |  (KEY)                   | (TUPLE)| size == 9   | size == 20 | |
+    |   0x23: IPROTO_USER_NAME |   0x21:| "chap-sha1" |  SCRAMBLE  | |
+    | MP_INT: MP_STRING        | MP_INT:|  MP_STRING  |  MP_STRING | |
+    |                          |        +-------------+------------+ |
+    |                          |                   MP_ARRAY          |
+    +==========================+=====================================+
                             MP_MAP
 
 :code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 fields:
 authentication mechanism ("chap-sha1" is the only supported mechanism right now)
-and password, encrypted according to the specified mechanism.
+and scramble, encrypted according to the specified mechanism.
 
 The server instance responds to an authentication packet with a standard response with 0 tuples.
 
@@ -1007,12 +1011,12 @@ Binary protocol -- replication
 The DECIMAL type
 ----------------------------
 
-MessagePack EXT type ``MP_EXT`` together with the extension type
-``MP_DECIMAL`` is used as a record header.
+The MessagePack EXT type ``MP_EXT`` together with the extension type
+``MP_DECIMAL`` is a header for values of the DECIMAL type.
 
 MP_DECIMAL is 1.
 
-`MessagePack spec <https://github.com/MessagePack/MessagePack/blob/master/spec.md#ext-format-family>`_
+`MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines two kinds of types:
 
 * ``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly;
@@ -1041,10 +1045,10 @@ Here ``length`` is the length of ``PackedDecimal`` field, and it is of type
     +-------+=============+
 
 Here ``scale`` is either ``MP_INT`` or ``MP_UINT``. |br|
-``scale`` = -exponent (exponent negated!)
+``scale`` = number of digits after the decimal point
 
 ``BCD`` is a sequence of bytes representing decimal digits of the encoded number
-(each byte represents two decimal digits each encoded using 4 bits),
+(each byte has two decimal digits each encoded using 4-bit ``nibbles``),
 so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
 The leftmost digit in the array is the most significant.
 The rightmost digit in the array is the least significant.
@@ -1057,15 +1061,16 @@ represented as follows:
     |  4 bits           |  4 bits           |
        = 0x                = the 1st digit
 
+(The first ``nibble`` contains 0 if the decimal number has an even number of digits.)
 The last byte of the ``BCD`` array contains the last digit of the number and the
-``nibble``, represented as follows:
+final ``nibble``, represented as follows:
 
 .. code-block:: none
 
     |  4 bits           |  4 bits           |
        = the last digit    = nibble
 
-The ``nibble`` represents the number's sign:
+The final ``nibble`` represents the number's sign:
 
 * ``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,
 * ``0x0b`` and ``0x0d`` stand for minus.
@@ -1087,6 +1092,53 @@ will be encoded as ``0xc7,0x03,0x01,0x24,0x01,0x0c``:
     | MP_EXT (ext 8) | length | MP_DECIMAL | scale |  1   | 0 (plus) |
     |      0xc7      |  0x03  |    0x01    | 0x24  | 0x01 | 0x0c     |
 
+
+.. _box_protocol-uuid:
+
+----------------------------
+The UUID type
+----------------------------
+
+The MessagePack EXT type ``MP_EXT`` together with the extension type
+``MP_UUID`` for values of the UUID type.
+
+MP_UUID is 2.
+
+The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+defines ``d8`` to mean fixext with size 16, and a uuid's size is always 16.
+So the uuid MessagePack representation looks like this:
+
+.. code-block:: none
+
+    +--------+------------+-----------------+
+    | MP_EXT | MP_UUID    | PackedDecimal   |
+    | = d8   | = 2        | = 16-byte value |
+    +--------+------------+-----------------+
+
+
+The 16-byte value has 2 digits per byte.
+Typically it consists of 11 fields, which are encoded as big endian
+unsigned integers in the following order: time_low (4 bytes), time_mid
+(2 bytes), time_hi_and_version (2 bytes), clock_seq_hi_and_reserved (1
+byte), clock_seq_low (1 byte), node[0], ..., node[5] (1 byte each).
+
+Some of the functions in :ref:`Module uuid <uuid-module>` can produce values
+which are compatible with the UUID data type.
+For example, after
+
+.. code-block:: none
+
+    uuid = require('uuid')
+    box.schema.space.create('t')
+    box.space.t:create_index('i', {parts={1,'uuid'}})
+    box.space.t:insert{uuid.fromstr('f6423bdf-b49e-4913-b361-0740c9702e4b')}
+    box.space.t:select()
+
+a peek at the server response packet will show that it contains
+
+.. code-block:: none
+
+    d8 02 f6 42 3b df b4 9e 49 13 b3 61 07 40 c9 70 2e 4b
 
 ----------------
 XLOG / SNAP

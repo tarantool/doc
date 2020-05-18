@@ -1,23 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C)
-# This file is distributed under the same license as the Tarantool package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-#
-msgid ""
-msgstr ""
-"Project-Id-Version: Tarantool 1.10\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 13:22+0000\n"
-"PO-Revision-Date: 2019-12-06 16:16+0300\n"
-"Last-Translator: \n"
-"Language: ru\n"
-"Language-Team: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
 
 msgid "Configuration reference"
 msgstr "Справочник по настройке"
@@ -492,7 +472,9 @@ msgstr "массив аргументов функции"
 msgid ""
 "* ``timeout`` – a request timeout, in seconds. If the router cannot "
 "identify a   shard with the specified ``bucket_id``, the operation will "
-"be repeated until the   timeout is reached."
+"be repeated until the   timeout is reached. * other :ref:`net.box options"
+" <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are "
+"also supported."
 msgstr ""
 "* ``timeout`` -- время ожидания запроса в секундах. Если роутер не может "
 "определить шард с указанным идентификатором сегмента, операция "
@@ -507,6 +489,11 @@ msgstr ""
 "``timeout`` -- время ожидания запроса в секундах. Если роутер не может "
 "определить шард с указанным идентификатором сегмента, операция "
 "повторяется до истечения времени ожидания."
+
+msgid ""
+"other :ref:`net.box options <net_box-options>`, such as ``is_async``, "
+"``buffer``, ``on_push`` are also supported."
+msgstr ""
 
 #, fuzzy
 msgid ""
@@ -609,10 +596,13 @@ msgstr ""
 "получения подробной информации о работе функции см. раздел "
 ":ref:`Обработка запросов <vshard-process-requests>`."
 
+#, fuzzy
 msgid ""
 "* ``timeout`` – a request timeout, in seconds. In case the ``router`` "
 "cannot identify a   shard with the bucket id, the operation will be "
-"repeated until the   timeout is reached."
+"repeated until the   timeout is reached. * other :ref:`net.box options "
+"<net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are "
+"also supported."
 msgstr ""
 "* ``timeout`` -- время ожидания запроса в секундах. Если ``роутер`` не "
 "может определить шард с идентификатором сегмента, операция повторяется до"
