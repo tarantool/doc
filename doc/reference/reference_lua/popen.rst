@@ -32,6 +32,60 @@ object:
 Either function returns a handle which we will call ``popen_handle`` or ``ph``.
 With the handle one can execute methods.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+Below is a list of all ``popen`` functions and handle methods.
+
+.. container:: table
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`popen.shell()                  | Execute a shell command         |
+    | <popen-shell>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen.new()                    | Execute a child program in      |
+    | <popen-new>`                         | a new process                   |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:read()            | Read data from a child peer     |
+    | <popen-read>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:write()           | Write a string to stdin         |
+    | <popen-write>`                       | stream of a child process       |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:shutdown()        | Close parent's ends of std* fds |
+    | <popen-shutdown>`                    |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:terminate()       | Send SIGTERM signal to a child  |
+    | <popen-terminate>`                   | process                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:kill()            | Send SIGKILL signal to a child  |
+    | <popen-kill>`                        | process                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:signal()          | Send signal to a child process  |
+    | <popen-signal>`                      |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:info()            | Return information about the    |
+    | <popen-info>`                        | popen handle                    |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:wait()            | Wait until a child process gets |
+    | <popen-wait>`                        | exited or signaled              |
+    +--------------------------------------+---------------------------------+
+    | :ref:`popen_handle:close()           | Close a popen handle            |
+    | <popen-close>`                       |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`Module constants               | Module constants                |
+    | <popen-constants>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`Handle fields                  | Handle fields                   |
+    | <popen-handle_fields>`               |                                 |
+    +--------------------------------------+---------------------------------+
+
 .. _popen-shell:
 
 .. function:: shell(command [, mode])
@@ -755,40 +809,44 @@ With the handle one can execute methods.
         means success for a caller. The return values are purely
         informational: they are for logging or some kind of reporting.
 
-        **Handle fields**
+    .. _popen-handle_fields:
 
-        .. code-block:: none
+    **Handle fields**
 
-            popen_handle.pid
-            popen_handle.command
-            popen_handle.opts
-            popen_handle.status
-            popen_handle.stdin
-            popen_handle.stdout
-            popen_handle.stderr
+    .. code-block:: none
 
-        See :ref:`popen_handle:info() <popen-info>` for details.
+        popen_handle.pid
+        popen_handle.command
+        popen_handle.opts
+        popen_handle.status
+        popen_handle.stdin
+        popen_handle.stdout
+        popen_handle.stderr
 
-        **Module constants**
+    See :ref:`popen_handle:info() <popen-info>` for details.
 
-        .. code-block:: none
+    .. _popen-constants:
 
-            - popen.opts
-              - INHERIT (== 'inherit')
-              - DEVNULL (== 'devnull')
-              - CLOSE   (== 'close')
-              - PIPE    (== 'pipe')
+    **Module constants**
 
-            - popen.signal
-              - SIGTERM (== 9)
-              - SIGKILL (== 15)
-              - ...
+    .. code-block:: none
 
-            - popen.state
-              - ALIVE    (== 'alive')
-              - EXITED   (== 'exited')
-              - SIGNALED (== 'signaled')
+        - popen.opts
+          - INHERIT (== 'inherit')
+          - DEVNULL (== 'devnull')
+          - CLOSE   (== 'close')
+          - PIPE    (== 'pipe')
 
-            - popen.stream
-              - OPEN    (== 'open')
-              - CLOSED  (== 'closed')
+        - popen.signal
+          - SIGTERM (== 9)
+          - SIGKILL (== 15)
+          - ...
+
+        - popen.state
+          - ALIVE    (== 'alive')
+          - EXITED   (== 'exited')
+          - SIGNALED (== 'signaled')
+
+        - popen.stream
+          - OPEN    (== 'open')
+          - CLOSED  (== 'closed')
