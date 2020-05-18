@@ -17,9 +17,30 @@ Before we proceed:
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)
    and make sure that you have created and populated a database as we suggested
-   :ref:`earlier <creating-db-locally>`.
+   :ref:`earlier <creating-db-locally>`:
 
-   .. NOTE::
+   .. code-block:: lua
+
+       box.cfg{listen = 3301}
+       s = box.schema.space.create('tester')
+       s:format({
+                {name = 'id', type = 'unsigned'},
+                {name = 'band_name', type = 'string'},
+                {name = 'year', type = 'unsigned'}
+                })
+       s:create_index('primary', {
+                type = 'hash',
+                parts = {'id'}
+                })
+       s:create_index('secondary', {
+                type = 'hash',
+                parts = {'band_name'}
+                })
+       s:insert{1, 'Roxette', 1986}
+       s:insert{2, 'Scorpions', 2015}
+       s:insert{3, 'Ace of Base', 1993}
+
+   .. IMPORTANT::
 
        Please do not close the terminal window
        where Tarantool is running -- you'll need it soon.
@@ -102,6 +123,9 @@ First off, select tuples using the index number:
 
     >>> tester.select('Scorpions', index=1)
     [2, 'Scorpions', 2015]
+
+(We say ``index=1`` because index numbers in Tarantool start with 0,
+and we're using our second index here.)
 
 Now make a similar query by the index name and make sure that the result
 is the same:
