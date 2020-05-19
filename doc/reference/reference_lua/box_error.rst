@@ -77,10 +77,12 @@ Below is a list of all ``box.error`` functions.
 
     :except: whatever is specified in errcode-number.
 
-    ``box.error()`` is able to accept two types of arguments: either a pair of
-    error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``)
-    or an error object (``box.error(err)``). In both cases an error is promoted
-    as the last error.
+    ``box.error()`` accepts two sets of arguments:
+    
+    * error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``), or
+    * error object (``box.error(err)``).
+
+    In both cases the error is promoted as the last error.
 
     **Example:**
 
