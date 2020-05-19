@@ -972,37 +972,37 @@ All functions related to sequences require appropriate
 
     **Example:**
 
-      .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-        tarantool> sq = box.schema.sequence.create('test')
-        ---
-        ...
-        tarantool> sq:current()
-        ---
-        - error: Sequence 'test' is not started
-        ...
-        tarantool> sq:next()
-        ---
-        - 1
-        ...
-        tarantool> sq:current()
-        ---
-        - 1
-        ...
-        tarantool> sq:set(42)
-        ---
-        ...
-        tarantool> sq:current()
-        ---
-        - 42
-        ...
-        tarantool> sq:reset()
-        ---
-        ...
-        tarantool> sq:current()  -- error
-        ---
-        - error: Sequence 'test' is not started
-        ...
+      tarantool> sq = box.schema.sequence.create('test')
+      ---
+      ...
+      tarantool> sq:current()
+      ---
+      - error: Sequence 'test' is not started
+      ...
+      tarantool> sq:next()
+      ---
+      - 1
+      ...
+      tarantool> sq:current()
+      ---
+      - 1
+      ...
+      tarantool> sq:set(42)
+      ---
+      ...
+      tarantool> sq:current()
+      ---
+      - 42
+      ...
+      tarantool> sq:reset()
+      ---
+      ...
+      tarantool> sq:current()  -- error
+      ---
+      - error: Sequence 'test' is not started
+      ...
 
 .. _box_schema-sequence_drop:
 
