@@ -40,10 +40,10 @@ Below is a list of all ``box.error`` functions.
     | :ref:`box.error.new()                | Create an error but do not      |
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
-    | :ref:`error_object.prev              | Return a previous error         |
+    | :ref:`error_object.prev              | Return the previous error       |
     | <box_error-prev>`                    |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`error_object.set_prev()        | Set an error as previous error  |
+    | :ref:`error_object.set_prev()        | Set the previous error          |
     | <box_error-set_prev>`                |                                 |
     +--------------------------------------+---------------------------------+
 
@@ -184,20 +184,20 @@ Below is a list of all ``box.error`` functions.
 
 .. class:: error_object
 
-    Errors can be organized into lists. To achieve this Lua table representing
+    Errors can be organized into lists. To achieve this, a Lua table representing an
     error object has ``.prev`` field and ``e:set_prev(err)`` method.
 
     .. _box_error-prev:
 
     .. data:: prev
 
-        Return a previous error if any exist.
+        Return a previous error, if any.
 
     .. _box_error-set_prev:
 
     .. method:: set_prev(error object)
 
-        Set an error as previous error. Accepts an `error object` or `nil`.
+        Set an error as the previous error. Accepts an ``error object`` or ``nil``.
 
     **Example:**
 
@@ -226,7 +226,7 @@ Below is a list of all ``box.error`` functions.
         - error: 'builtin/error.lua:147: Cycles are not allowed'
         ...
 
-    Setting previous error does not erase its own previous members:
+    Setting the previous error does not erase its own previous members:
 
     .. code-block:: Lua
 
@@ -237,5 +237,5 @@ Below is a list of all ``box.error`` functions.
         e2:set_prev(e5)
         -- Now there are two lists: e1->e2->e5 and e3->e4
 
-    Stacked diagnostics is also supported by IProto protocol. See details
+    The iProto protocol also supports stacked diagnostics. See details
     :ref:`here <box_protocol-iproto_protocol>`.
