@@ -32,6 +32,9 @@ Below is a list of all ``box.tuple`` functions.
     | :ref:`box.tuple.new()                | Create a tuple                  |
     | <box_tuple-new>`                     |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.tuple.is()                 | Check whether a given object is |
+    | <box_tuple-is>`                      | a tuple cdata object            |
+    +--------------------------------------+---------------------------------+
     | :ref:`#tuple_object                  | Count tuple fields              |
     | <box_tuple-count_fields>`            |                                 |
     +--------------------------------------+---------------------------------+
@@ -119,6 +122,16 @@ Below is a list of all ``box.tuple`` functions.
         ---
         - ['abc', 'def', 'ghi', 'abc']
         ...
+
+.. _box_tuple-is:
+
+.. function:: is(object)
+
+    A function to check whether a given object is a tuple cdata object. 
+    Never raises nor returns an error.
+
+    :return: true or false
+    :rtype: boolean
 
 .. class:: tuple_object
 

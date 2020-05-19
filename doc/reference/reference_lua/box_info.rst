@@ -21,6 +21,8 @@ variables.
   (see :ref:`below <box_info_replication>`).
 * **lsn** corresponds to **replication.lsn**
   (see :ref:`below <box_info_replication>`).
+* **listen** returns a real address to which an instance was bound
+  (see :ref:`below <box_info_listen>`).
 * **memory()** returns the statistics about memory
   (see :ref:`below <box_info_memory>`).
 * **pid** is the process ID. This value is also shown by
@@ -110,6 +112,36 @@ variables.
     * **gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false
     * **gc().vclock** -- the garbage collector's vclock.
     * **gc().signature** -- the sum of the garbage collector's checkpoint's components.
+
+.. _box_info_listen:
+
+.. data:: box.info.listen
+
+    Return a real address to which an instance was bound. For example, if
+    ``box.cfg{listen}`` was set with a zero port, ``box.info.listen`` will show
+    a real port. The address is stored as a string:
+
+    * unix/:<path> for UNIX domain sockets
+    * <ip>:<port> for IPv4
+    * [ip]:<port> for IPv6
+    
+    If an instance does not listen to anything, ``box.info.listen`` is nil.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+      tarantool> box.cfg{listen=0}
+      ---
+      ...
+      tarantool> box.cfg.listen
+      ---
+      - '0'
+      ...
+      tarantool> box.info.listen
+      ---
+      - 0.0.0.0:44149
+      ...
 
 .. _box_info_replication:
 
@@ -212,37 +244,27 @@ variables.
 
         tarantool> box.info()
         ---
-        - vinyl: []
-          version: 2.2.0-482-g8c84932ad
-          id: 2
-          ro: true
-          status: running
-          vclock: {1: 9}
-          uptime: 356
-          lsn: 0
-          memory: []
+        - version: 2.4.0-251-gc44ed3c08
+          id: 1
+          ro: false
+          uuid: 1738767b-afa3-4987-b485-c333cf83415b
+          package: Tarantool
           cluster:
-            uuid: e261a5bc-6303-4de3-9873-556f311255e0
-          pid: 160
-          gc: []
-          signature: 9
+            uuid: 40ee7f0f-7070-4650-8883-801e7014407c
+          listen: '[::1]:57122'
           replication:
             1:
               id: 1
-              uuid: fce71bb3-0e99-40ec-ab7e-5159487e18d1
-              lsn: 9
-              upstream:
-                status: follow
-                idle: 0.035709699994186
-                peer: replicator@127.0.0.1:3401
-                lag: 0.00016164779663086
-              downstream:
-                status: follow
-                idle: 0.59840899999836
-                vclock: {1: 9}
-            2:
-              id: 2
-              uuid: bc4629ce-ea31-4f75-b805-a4807bcacc93
-              lsn: 0
-          uuid: bc4629ce-ea31-4f75-b805-a4807bcacc93
+              uuid: 1738767b-afa3-4987-b485-c333cf83415b
+              lsn: 16
+          signature: 16
+          status: running
+          vinyl: []
+          uptime: 21
+          lsn: 16
+          sql: []
+          gc: []
+          pid: 20293
+          memory: []
+          vclock: {1: 16}
         ...
