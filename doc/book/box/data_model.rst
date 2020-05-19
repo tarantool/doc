@@ -365,6 +365,10 @@ Here is how Tarantool indexed field types correspond to MsgPack data types.
     | **decimal**                | **ext**                           | TREE or HASH         | 1.2                |
     |                            | (extension)                       |                      |                    |
     +----------------------------+-----------------------------------+----------------------+--------------------+
+    | **uuid**                   | **ext**                           | TREE or HASH         | 64d22e4d-ac92-|br| |
+    |                            | (extension)                       |                      | 4a23-899a-|br|     |
+    |                            |                                   |                      | e5934af5479        |
+    +----------------------------+-----------------------------------+----------------------+--------------------+
     | **array**                  | **array**                         | RTREE                | {10, 11}           |
     |                            | (list of numbers representing     |                      |                    |
     |                            | points in a geometric figure)     |                      | {3, 5, 9, 10}      |
