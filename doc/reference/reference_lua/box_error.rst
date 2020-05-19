@@ -40,6 +40,9 @@ Below is a list of all ``box.error`` functions.
     | :ref:`box.error.new()                | Create an error but do not      |
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.error.set()                | Set an error as                 |
+    | <box_error-set>`                     | ``box.error.last()``            |
+    +--------------------------------------+---------------------------------+
 
 .. function:: box.error{reason = string [, code = number]}
 
@@ -149,10 +152,10 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.new(code, errtext [, errtext ...])
 
-    Create an error object, but do not throw.
+    Create an error object, but doesn't throw it as
+    :ref:`box.error() <box_error-error>` does.
     This is useful when error information should be saved for later retrieval.
-    The parameters are the same as for :ref:`box.error() <box_error-error>`,
-    see the description there.
+    To set an error as the last explicitly use :ref:`box.error.set() <box_error-set>`.
 
     :param number       code: number of a pre-defined error
     :param string errtext(s): part of the message which will accompany the error
@@ -161,18 +164,66 @@ Below is a list of all ``box.error`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}
+        tarantool> e=box.error.new{code=5,reason='A',type='B'}
         ---
         ...
         tarantool> e:unpack()
         ---
-        - type: ClientError
-          code: 555
-          message: Arbitrary message
+        - code: 5
+          base_type: CustomError
+          type: B
+          custom_type: B
+          message: A
           trace:
-          - file: '[string "e = box.error.new{code = 555, reason = ''Arbit..."]'
+          - file: '[string "e=box.error.new{code=5,reason=''A'',type=''B''}"]'
             line: 1
         ...
+        tarantool> box.error.last()
+        ---
+        - nil
 
+    Beginning in version 2.4.1 there is a :ref:`session_settings <box_space-session_settings>`
+    setting which affects structure of error objects. If ``error_marshaling_enabled``
+    is changed to ``true``, then the object will have the MP_EXT type and the
+    MP_ERROR subtype. Using the :ref:`binary protocol <internals-box_protocol>`,
+    in the body of a packet that the server could send in response to ``box.error.new()``,
+    one will see:
+    the encoding of MP_EXT according to the
+    `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+    (usually 0xc7),
+    followed by the encoding of MP_ERROR (0x03),
+    followed by the encoding of MP_ERROR_STACK (0x81),
+    followed by all of the MP_ERROR_STACK components
+    (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.)
+    that are described and illustrated in section
+    :ref:`Binary protocol -- responses for errors -- extra <box_protocol-responses_error_extra>`.
+    The map field for error object "type" will have key = MP_ERROR_TYPE,
+    the map field for error object "code" will have key = MP_ERROR_CODE,
+    the map field for error object "message" will have key = MP_ERROR_MESSAGE.
 
+.. _box_error-set:
 
+.. function:: box.error.set(error object)
+
+    Set an error as the last system error explicitly. Accepts an error object and 
+    makes it available via :ref:`box.error.last() <box_error-last>`.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> err = box.error.new({code = 111, reason = "cause"})
+        ---
+        ...
+        tarantool> box.error.last()
+        ---
+        - error: '[string "return tarantool> box.error.last()"]:1: attempt to compare two
+            nil values'
+        ...
+        tarantool> box.error.set(err)
+        ---
+        ...
+        tarantool> box.error.last()
+        ---
+        - cause
+        ...

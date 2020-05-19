@@ -26,6 +26,12 @@ msgstr ""
 msgid "Create a tuple"
 msgstr ""
 
+msgid ":ref:`box.tuple.is() <box_tuple-is>`"
+msgstr ""
+
+msgid "Check whether a given object is a tuple cdata object"
+msgstr ""
+
 msgid ":ref:`#tuple_object <box_tuple-count_fields>`"
 msgstr ""
 
@@ -160,6 +166,15 @@ msgid "tarantool> x = box.space.tester:insert{\n"
 "---\n"
 "- ['abc', 'def', 'ghi', 'abc']\n"
 "..."
+msgstr ""
+
+msgid "A function to check whether a given object is a tuple cdata object. Never raises nor returns an error."
+msgstr ""
+
+msgid "true or false"
+msgstr ""
+
+msgid "boolean"
 msgstr ""
 
 msgid "The ``#`` operator in Lua means \"return count of components\". So, if ``t`` is a tuple instance, ``#t`` will return the number of fields."
