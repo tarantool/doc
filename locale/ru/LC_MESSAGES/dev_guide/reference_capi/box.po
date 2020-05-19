@@ -41,6 +41,40 @@ msgstr ""
 msgid "0 otherwise"
 msgstr "0 в остальных случаях"
 
+msgid "Return a pointer to a series of bytes in MessagePack format."
+msgstr ""
+
+msgid ""
+"This can be used instead of :ref:`box_return_tuple() <box-"
+"box_return_tuple>` -- it can send the same value, but as MessagePack "
+"instead of as a tuple object. It may be simpler than "
+"``box_return_tuple()`` when the result is small, for example a number or "
+"a boolean or a short string. It will also be faster than "
+"``box_return_tuple()``, if the result is that users save time by not "
+"creating a tuple every time they want to return something from a C "
+"function."
+msgstr ""
+
+msgid ""
+"On the other hand, if an already-existing tuple was obtained from an "
+"iterator, then it would be faster to return the tuple via "
+"``box_return_tuple()`` rather than extracting its parts and sending them "
+"via ``box_return_mp()``."
+msgstr ""
+
+msgid "the first MessagePack byte"
+msgstr ""
+
+msgid "after the last MessagePack byte"
+msgstr ""
+
+msgid ""
+"For example, if ``mp`` is a buffer, and ``mp_end`` is a return value "
+"produced by encoding a single MP_UINT scalar value with "
+"``mp_end=mp_encode_uint(mp,1);``, then ``box_return_mp(ctx,mp,mp_end);`` "
+"should return ``0``."
+msgstr ""
+
 msgid "Find space id by name."
 msgstr "Поиск идентификатора спейса по имени."
 
@@ -162,16 +196,26 @@ msgstr "Выполнение запроса обновления и вставк
 msgid "end of a ``ops``"
 msgstr "конец операций ``ops``"
 
-msgid "-1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)"
-msgstr ""
-"-1 в случае ошибки (проверьте :ref:`box_error_last()<c_api-error-"
-"box_error_last>`)"
-
 msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
 msgstr "См. также :ref:`space_object.upsert()<box_space-upsert>`"
 
 msgid "Truncate a space."
 msgstr "Очистка спейса."
+
+msgid ""
+"Push MessagePack data into a session data channel -- socket, console or "
+"whatever is behind the session. Behaves just like Lua "
+":ref:`box.session.push() <box_session-push>`."
+msgstr ""
+"Передача данных в формате MessagePack в канал данных сессии -- сокет, "
+"консоль или что-либо иное, что используется в сессии. Имеет поведение, "
+"аналогичное :ref:`box.session.push() <box_session-push>`."
+
+msgid "begin of MessagePack to push"
+msgstr "начало данных для передачи"
+
+msgid "end of MessagePack to push"
+msgstr "конец данных для передачи"
 
 msgid "Return the last retrieved value of the specified sequence."
 msgstr "Вернуть последнее найденное значение заданной последовательности"
