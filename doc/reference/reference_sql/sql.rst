@@ -947,6 +947,7 @@ In alphabetical order, the following statements are legal.
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[HAVING expression] <sql_having>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[ORDER BY expression] <sql_order_by>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`LIMIT expression [OFFSET expression]]; <sql_limit>` |br|
+|nbsp| :ref:`SET SESSION session-name = session-value; <sql_set>` |br|
 |nbsp| :ref:`START TRANSACTION; <sql_start_transaction>` |br|
 |nbsp| :ref:`TRUNCATE TABLE table-name; <sql_truncate>` |br|
 |nbsp| :ref:`UPDATE table-name <sql_update>` |br|
@@ -1135,7 +1136,7 @@ NULL NUM NUMBER NUMERIC OF ON OR ORDER OUT OUTER OVER PARTIAL
 PARTITION PRAGMA PRECISION PRIMARY PROCEDURE RANGE RANK
 READS REAL RECURSIVE REFERENCES REGEXP RELEASE RENAME
 REPEAT REPLACE RESIGNAL RETURN REVOKE RIGHT ROLLBACK ROW
-ROWS ROW_NUMBER SAVEPOINT SCALAR SELECT SENSITIVE SET
+ROWS ROW_NUMBER SAVEPOINT SCALAR SELECT SENSITIVE SESSION SET
 SIGNAL SIMPLE SMALLINT SPECIFIC SQL START STRING SYSTEM TABLE
 TEXT THEN TO TRAILING TRANSACTION TRIGGER TRIM TRUE
 TRUNCATE UNION UNIQUE UNKNOWN UNSIGNED UPDATE USER USING VALUES
@@ -1799,7 +1800,7 @@ Statements
 A statement consists of SQL-language keywords and expressions that direct Tarantool to do something with a database.
 Statements begin with one of the words
 ALTER ANALYZE COMMIT CREATE DELETE DROP EXPLAIN INSERT PRAGMA RELEASE REPLACE ROLLBACK SAVEPOINT
-SELECT START TRUNCATE UPDATE VALUES WITH.
+SELECT SET START TRUNCATE UPDATE VALUES WITH.
 Statements should end with ";" semicolon although this is not mandatory.
 
 A client sends a statement to the Tarantool server.
@@ -4741,6 +4742,58 @@ Example: ``EXPLAIN DELETE FROM m;`` returns:
       - [4, 'Goto', 0, 1, 0, '', '00', '']
 
 Variation: ``EXPLAIN QUERY PLAN statement;`` shows the steps of a search.
+
+.. _sql_set:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SET
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syntax:
+
+* :samp:`SET SESSION {setting-name} = {setting-value};`
+
+.. image:: set.svg
+    :align: left
+
+``SET SESSION`` is a shorthand way
+to update the
+:ref:`box.space._session_settings <box_space-session_settings>`
+temporary system space.
+
+``setting-name`` can be any one of
+``"error_marshaling_enabled"``.
+``"sql_default_engine"``.
+``"sql_defer_foreign_keys"``,
+``"sql_full_column_names"``,
+``"sql_full_metadata"``,
+``"sql_parser_debug"``,
+``"sql_recursive_triggers"``,
+``"sql_reverse_unordered_selects"``,
+``"sql_select_debug"``,
+``"sql_vdbe_debug"``. The quote marks are necessary.
+
+If ``setting-name`` is ``"sql_default_engine"``, then
+``setting-value`` can be either 'vinyl' or 'memtx'.
+Otherwise, ``setting-value`` can be either TRUE or FALSE.
+
+Example: ``SET SESSION "sql_default_engine" = 'vinyl';``
+changes the default engine to 'vinyl' instead of 'memtx',
+and returns:
+
+.. code-block:: none
+
+    ---
+    - row_count: 1
+    ...
+
+It is functionally the same thing as an :ref:`UPDATE statement:
+
+.. code-block:: none
+
+    UPDATE "_session_settings"
+    SET "value" = 'vinyl'
+    WHERE "name" = 'sql_default_engine';
 
 .. COMMENT
    ANALYZE is currently disabled.

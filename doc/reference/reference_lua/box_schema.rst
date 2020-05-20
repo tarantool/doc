@@ -101,6 +101,9 @@ Below is a list of all ``box.schema`` functions.
     | :ref:`sequence_object:set()          | Set the new value               |
     | <box_schema-sequence_set>`           |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`sequence_object:current()      | Return the last retrieved value |
+    | <box_schema-sequence_current>`       |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`sequence_object:drop()         | Drop the sequence               |
     | <box_schema-sequence_drop>`          |                                 |
     +--------------------------------------+---------------------------------+
@@ -958,6 +961,48 @@ All functions related to sequences require appropriate
     Set the "previous value" to ``new-previous-value``.
     This function requires a :ref:`'write' privilege <box_schema-user_grant>`
     on the sequence.
+
+.. _box_schema-sequence_current:
+
+.. function:: sequence_object:current()
+
+    Return the last retrieved value of the specified sequence or throw an error
+    if no value has been generated yet (``next()`` has not been called yet, or ``current()`` is called right
+    after ``reset()`` is called).
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+      tarantool> sq = box.schema.sequence.create('test')
+      ---
+      ...
+      tarantool> sq:current()
+      ---
+      - error: Sequence 'test' is not started
+      ...
+      tarantool> sq:next()
+      ---
+      - 1
+      ...
+      tarantool> sq:current()
+      ---
+      - 1
+      ...
+      tarantool> sq:set(42)
+      ---
+      ...
+      tarantool> sq:current()
+      ---
+      - 42
+      ...
+      tarantool> sq:reset()
+      ---
+      ...
+      tarantool> sq:current()  -- error
+      ---
+      - error: Sequence 'test' is not started
+      ...
 
 .. _box_schema-sequence_drop:
 

@@ -320,6 +320,11 @@ Functionality added or changed:
 
 * :ref:`Merger <merger-module>` for tuples streams added.
 
+Deprecations
+
+* (SQL) SESSION will be a reserved word in a later version so objects named SESSION will be illegal.
+Part of issue `4711 <https://github.com/tarantool/tarantool/issues/4711>`_.
+
 .. _whats_new_212:
 
 **Release 2.1.2**

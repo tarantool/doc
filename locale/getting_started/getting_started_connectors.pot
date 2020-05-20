@@ -17,7 +17,27 @@ msgstr ""
 msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`_ the ``tarantool-python`` library. We recommend using ``python3`` and ``pip3``."
 msgstr ""
 
-msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`."
+msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`:"
+msgstr ""
+
+msgid "box.cfg{listen = 3301}\n"
+"s = box.schema.space.create('tester')\n"
+"s:format({\n"
+"         {name = 'id', type = 'unsigned'},\n"
+"         {name = 'band_name', type = 'string'},\n"
+"         {name = 'year', type = 'unsigned'}\n"
+"         })\n"
+"s:create_index('primary', {\n"
+"         type = 'hash',\n"
+"         parts = {'id'}\n"
+"         })\n"
+"s:create_index('secondary', {\n"
+"         type = 'hash',\n"
+"         parts = {'band_name'}\n"
+"         })\n"
+"s:insert{1, 'Roxette', 1986}\n"
+"s:insert{2, 'Scorpions', 2015}\n"
+"s:insert{3, 'Ace of Base', 1993}"
 msgstr ""
 
 msgid "Please do not close the terminal window where Tarantool is running -- you'll need it soon."
@@ -85,6 +105,9 @@ msgstr ""
 
 msgid ">>> tester.select('Scorpions', index=1)\n"
 "[2, 'Scorpions', 2015]"
+msgstr ""
+
+msgid "(We say ``index=1`` because index numbers in Tarantool start with 0, and we're using our second index here.)"
 msgstr ""
 
 msgid "Now make a similar query by the index name and make sure that the result is the same:"
@@ -233,6 +256,9 @@ msgstr ""
 msgid "[2, 'Scorpions', 2015]"
 msgstr ""
 
+msgid "(We say ``index(1)`` because index numbers in Tarantool start with 0, and we're using our second index here.)"
+msgstr ""
+
 msgid "$result = $tester->select(Criteria::index('secondary')->andKey(['Scorpions']));\n"
 "printf(json_encode($result));"
 msgstr ""
@@ -298,7 +324,7 @@ msgid "package main\n"
 "    conn, err := tarantool.Connect(\"127.0.0.1:3301\", tarantool.Opts{})\n"
 "\n"
 "    if err != nil {\n"
-"        fmt.Println(\"Connection refused\")\n"
+"            fmt.Println(\"Connection refused\")\n"
 "    }\n"
 "\n"
 "    defer conn.Close()\n"
@@ -312,20 +338,23 @@ msgid "opts := tarantool.Opts{User: \"username\", Pass: \"password\"}\n"
 "..."
 msgstr ""
 
+msgid "To insert a tuple into a space, use ``Insert``:"
+msgstr ""
+
 msgid "resp, err = conn.Insert(\"tester\", []interface{}{4, \"ABBA\", 1972})"
 msgstr ""
 
 msgid "This inserts the tuple ``(4, \"ABBA\", 1972)`` into a space named ``tester``."
 msgstr ""
 
-msgid "The response code and data are available in the ``tarantool.Response`` structure:"
+msgid "The response code and data are available in the `tarantool.Response <https://github.com/tarantool/go-tarantool#usage>`_ structure:"
 msgstr ""
 
 msgid "code := resp.Code\n"
 "data := resp.Data"
 msgstr ""
 
-msgid "To select a tuple from a space, use ``Select``:"
+msgid "To select a tuple from a space, use `Select <https://github.com/tarantool/go-tarantool#api-reference>`_:"
 msgstr ""
 
 msgid "resp, err = conn.Select(\"tester\", \"primary\", 0, 1, tarantool.IterEq, []interface{}{4})"
@@ -344,6 +373,9 @@ msgid "Finally, select all the tuples in a space:"
 msgstr ""
 
 msgid "resp, err = conn.Select(\"tester\", \"primary\", 0, tarantool.KeyLimit, tarantool.IterAll, []interface{}{})"
+msgstr ""
+
+msgid "For more examples, see https://github.com/tarantool/go-tarantool#usage"
 msgstr ""
 
 msgid "Update a field value using ``Update``:"

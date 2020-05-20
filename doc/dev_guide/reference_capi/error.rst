@@ -159,6 +159,8 @@
     :param box_error_t* error: error
     :return: not-null string
 
+.. _capi-box_error_code_code:
+
 .. c:function:: uint32_t box_error_code(const box_error_t *error)
 
     Return IPROTO error code
