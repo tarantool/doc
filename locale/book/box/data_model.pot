@@ -359,6 +359,12 @@ msgstr ""
 msgid "**ext** (extension)"
 msgstr ""
 
+msgid "**uuid**"
+msgstr ""
+
+msgid "64d22e4d-ac92-|br| 4a23-899a-|br| e5934af5479"
+msgstr ""
+
 msgid "**array**"
 msgstr ""
 

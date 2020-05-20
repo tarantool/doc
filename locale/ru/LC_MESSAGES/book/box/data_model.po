@@ -674,6 +674,12 @@ msgstr ""
 msgid "**ext** (extension)"
 msgstr ""
 
+msgid "**uuid**"
+msgstr ""
+
+msgid "64d22e4d-ac92-|br| 4a23-899a-|br| e5934af5479"
+msgstr ""
+
 msgid "**array**"
 msgstr "**array**"
 
@@ -694,9 +700,8 @@ msgstr "{3, 5, 9, 10}"
 msgid "**scalar**"
 msgstr "**scalar**"
 
-#, fuzzy
 msgid "**null**"
-msgstr "null"
+msgstr ""
 
 msgid ""
 "**decimal** (value returned by a function in the :ref:`decimal <decimal>`"
