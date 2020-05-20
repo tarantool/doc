@@ -40,6 +40,9 @@ Below is a list of all ``box.error`` functions.
     | :ref:`box.error.new()                | Create an error but do not      |
     | <box_error-new>`                     | throw                           |
     +--------------------------------------+---------------------------------+
+    | :ref:`box.error.set()                | Set an error as                 |
+    | <box_error-set>`                     | ``box.error.last()``            |
+    +--------------------------------------+---------------------------------+
     | :ref:`error_object.prev              | Return the previous error       |
     | <box_error-prev>`                    |                                 |
     +--------------------------------------+---------------------------------+
@@ -155,10 +158,10 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.new(code, errtext [, errtext ...])
 
-    Create an error object, but do not throw.
+    Create an error object, but doesn't throw it as
+    :ref:`box.error() <box_error-error>` does.
     This is useful when error information should be saved for later retrieval.
-    The parameters are the same as for :ref:`box.error() <box_error-error>`,
-    see the description there.
+    To set an error as the last explicitly use :ref:`box.error.set() <box_error-set>`.
 
     :param number       code: number of a pre-defined error
     :param string errtext(s): part of the message which will accompany the error
@@ -178,6 +181,36 @@ Below is a list of all ``box.error`` functions.
           trace:
           - file: '[string "e = box.error.new{code = 555, reason = ''Arbit..."]'
             line: 1
+        ...
+        tarantool> box.error.last()
+        ---
+        - nil
+
+.. _box_error-set:
+
+.. function:: box.error.set(error object)
+
+    Set an error as the last system error explicitly. Accepts an error object and 
+    makes it available via :ref:`box.error.last() <box_error-last>`.
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> err = box.error.new({code = 111, reason = "cause"})
+        ---
+        ...
+        tarantool> box.error.last()
+        ---
+        - error: '[string "return tarantool> box.error.last()"]:1: attempt to compare two
+            nil values'
+        ...
+        tarantool> box.error.set(err)
+        ---
+        ...
+        tarantool> box.error.last()
+        ---
+        - cause
         ...
 
 .. _box_error-error_object:
@@ -237,5 +270,5 @@ Below is a list of all ``box.error`` functions.
         e2:set_prev(e5)
         -- Now there are two lists: e1->e2->e5 and e3->e4
 
-    The iProto protocol also supports stacked diagnostics. See details
-    :ref:`here <box_protocol-iproto_protocol>`.
+    The iProto protocol also supports stacked diagnostics. See details in
+    :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`.
