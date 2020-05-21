@@ -592,7 +592,9 @@ Below is a list of all ``popen`` functions and handle methods.
         If ``opts.setsid`` and ``opts.group_signal`` are set for the handle,
         the signal is sent to the process group rather than to the
         process. See :ref:`popen.new() <popen-new>` for details about group
-        signaling.
+        signaling. Warning: On Mac OS it is possible that a process in the group
+        will not receive the signal, particularly if the process has just been
+        forked (this may be due to a race condition).
 
         Note: The module offers ``popen.signal.SIG*`` constants, because
         some signals have different numbers on different platforms.
