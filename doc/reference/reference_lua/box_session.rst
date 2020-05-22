@@ -514,6 +514,9 @@ Below is a list of all ``box.session`` functions and members.
     :param int sync: an optional argument to indicate what the session is,
                      as taken from an earlier call to :ref:`box_session:sync() <box_session-sync>`.
                      If it is omitted, the default is the current ``box.session.sync()`` value.
+                     In Tarantool version 2.4.1, `sync` is deprecated and its use will cause
+                     a warning.
+                     In Tarantool versions after 2.4.1, its use will cause an error.
     :rtype: {nil, error} or true:
 
             * If the result is an error, then the first part of the return is

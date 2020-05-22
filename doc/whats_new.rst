@@ -39,6 +39,15 @@ client-server protocol and replication protocol.
 You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
 procedure.
 
+.. _whats_new_241:
+
+**Release 2.4.1**
+
+Deprecations
+
+* (SQL) SESSION will be a reserved word so objects named SESSION will be illegal. Part of issue `4711 <https://github.com/tarantool/tarantool/issues/4711>`_.
+* In :ref:`box.session.push() <box_session-push>` the use of the ``sync`` parameter will cause a warning in version 2.4.1 and will cause an error in later versions. Part of issue `4689 <https://github.com/tarantool/tarantool/issues/4689>`_.
+
 .. _whats_new_221:
 
 **Release 2.2.1**
@@ -319,11 +328,6 @@ Functionality added or changed:
 * New function ``utime()`` introduced to the ``fio`` module.
 
 * :ref:`Merger <merger-module>` for tuples streams added.
-
-Deprecations
-
-* (SQL) SESSION will be a reserved word in a later version so objects named SESSION will be illegal.
-Part of issue `4711 <https://github.com/tarantool/tarantool/issues/4711>`_.
 
 .. _whats_new_212:
 
