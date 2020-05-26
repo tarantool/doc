@@ -54,6 +54,7 @@ default settings to all the parameters:
       feedback_interval            = 3600
       force_recovery               = false
       hot_standby                  = false
+      instance_uuid                = nil -- generated automatically
       io_collect_interval          = nil
       listen                       = nil
       log                          = nil
@@ -68,15 +69,18 @@ default settings to all the parameters:
       pid_file                     = nil
       readahead                    = 16320
       read_only                    = false
+      replicaset_uuid              = nil -- generated automatically
       replication                  = nil
+      replication_anon             = false
+      replication_connect_quorum   = nil
       replication_connect_timeout  = 4
       replication_skip_conflict    = false
       replication_sync_lag         = 10
       replication_sync_timeout     = 300
       replication_timeout          = 1
-      rows_per_wal                 = 500000
       slab_alloc_factor            = 1.05
       snap_io_rate_limit           = nil
+      sql_cache_size               = 5242880
       strip_core                   = true
       too_long_threshold           = 0.5
       username                     = nil
