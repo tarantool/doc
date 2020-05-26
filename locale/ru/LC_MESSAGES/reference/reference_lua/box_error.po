@@ -352,7 +352,7 @@ msgid ""
 "representing an error object has ``.prev`` field and ``e:set_prev(err)`` "
 "method."
 msgstr ""
-"Ошибки можно записывать в списки. Чтобы сделатьт это, у Lua-таблицы, "
+"Ошибки можно записывать в списки. Для этого у Lua-таблицы, "
 "представляющей объект ошибки, есть поле ``.prev`` и метод "
 "``e:set_prev(err)``."
 
@@ -383,7 +383,7 @@ msgid ""
 msgstr ""
 
 msgid "Cycles are not allowed for error lists:"
-msgstr "Циклы недопустимы для списков ошибок:"
+msgstr "Циклы для списков ошибок недопустимы:"
 
 msgid ""
 "tarantool> e2:set_prev(e1)\n"
@@ -394,7 +394,7 @@ msgstr ""
 
 msgid "Setting the previous error does not erase its own previous members:"
 msgstr ""
-"Установка предыдущей ошибки не подтягивает за ней ее собственные "
+"Установка предыдущей ошибки подтягивает за ней ее собственные "
 "предыдущие ошибки:"
 
 msgid ""
@@ -414,4 +414,3 @@ msgstr ""
 "Протокол IProto тоже поддерживает диагностику с помощью стека ошибок. "
 "Подробнее в разделе :ref:`Двоичный протокол -- ответы на ошибки -- "
 "дополнительно. <box_protocol-responses_error_extra>`."
-
