@@ -203,6 +203,14 @@ To select tuples using the ``secondary`` index, say:
     - - [2, 'Scorpions', 2015]
     ...
 
+To drop an index, say:
+
+.. code-block:: tarantoolsession
+
+    tarantool> s.index.secondary:drop()
+    ---
+    ...
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Stopping a container
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
