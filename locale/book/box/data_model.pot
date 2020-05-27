@@ -95,6 +95,9 @@ msgstr ""
 msgid "You can add, drop, or alter the definitions at runtime, with some restrictions. See syntax details in reference on :ref:`box <box-module>` module."
 msgstr ""
 
+msgid "Read more about index operations :ref:`below <index-box_index-operations>`."
+msgstr ""
+
 msgid "Data types"
 msgstr ""
 
