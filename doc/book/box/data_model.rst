@@ -131,6 +131,8 @@ in TREE indexes may be non-unique.
   You can add, drop, or alter the definitions at runtime, with some restrictions.
   See syntax details in reference on :ref:`box <box-module>` module.
 
+Read more about index operations :ref:`below <index-box_index-operations>`.
+
 .. _index-box_data-types:
 
 --------------------------------------------------------------------------------
