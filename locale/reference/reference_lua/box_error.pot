@@ -50,6 +50,18 @@ msgstr ""
 msgid "Set an error as ``box.error.last()``"
 msgstr ""
 
+msgid ":ref:`error_object.prev <box_error-prev>`"
+msgstr ""
+
+msgid "Return the previous error"
+msgstr ""
+
+msgid ":ref:`error_object.set_prev() <box_error-set_prev>`"
+msgstr ""
+
+msgid "Set the previous error"
+msgstr ""
+
 msgid "When called with a Lua-table argument, the code and reason have any user-desired values. The result will be those values."
 msgstr ""
 
@@ -199,5 +211,52 @@ msgid "tarantool> err = box.error.new({code = 111, reason = \"cause\"})\n"
 "---\n"
 "- cause\n"
 "..."
+msgstr ""
+
+msgid "Errors can be organized into lists. To achieve this, a Lua table representing an error object has ``.prev`` field and ``e:set_prev(err)`` method."
+msgstr ""
+
+msgid "Return a previous error, if any."
+msgstr ""
+
+msgid "Set an error as the previous error. Accepts an ``error object`` or ``nil``."
+msgstr ""
+
+msgid "tarantool> e1 = box.error.new({code = 111, reason = \"some cause\"})\n"
+"---\n"
+"...\n"
+"tarantool> e2 = box.error.new({code = 111, reason = \"cause of cause\"})\n"
+"---\n"
+"...\n"
+"tarantool> e1:set_prev(e2)\n"
+"---\n"
+"...\n"
+"tarantool> e1.prev\n"
+"---\n"
+"- cause of cause\n"
+"..."
+msgstr ""
+
+msgid "Cycles are not allowed for error lists:"
+msgstr ""
+
+msgid "tarantool> e2:set_prev(e1)\n"
+"---\n"
+"- error: 'builtin/error.lua:147: Cycles are not allowed'\n"
+"..."
+msgstr ""
+
+msgid "Setting the previous error does not erase its own previous members:"
+msgstr ""
+
+msgid "-- e1 -> e2 -> e3 -> e4\n"
+"e1:set_prev(e2)\n"
+"e2:set_prev(e3)\n"
+"e3:set_prev(e4)\n"
+"e2:set_prev(e5)\n"
+"-- Now there are two lists: e1->e2->e5 and e3->e4"
+msgstr ""
+
+msgid "The iProto protocol also supports stacked diagnostics. See details in :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`."
 msgstr ""
 
