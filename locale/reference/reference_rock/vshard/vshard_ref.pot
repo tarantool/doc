@@ -212,16 +212,16 @@ msgstr ""
 msgid ":ref:`vshard.router.buckets_info() <router_api-buckets_info>`"
 msgstr ""
 
-msgid ":ref:`replicaset.call() <router_api-replicaset_call>`"
+msgid ":ref:`replicaset_object:call() <router_api-replicaset_call>`"
 msgstr ""
 
-msgid ":ref:`replicaset.callro() <router_api-replicaset_callro>`"
+msgid ":ref:`replicaset_object:callro() <router_api-replicaset_callro>`"
 msgstr ""
 
-msgid ":ref:`replicaset.callrw() <router_api-replicaset_callrw>`"
+msgid ":ref:`replicaset_object:callrw() <router_api-replicaset_callrw>`"
 msgstr ""
 
-msgid ":ref:`replicaset.callre() <router_api-replicaset_callre>`"
+msgid ":ref:`replicaset_object:callre() <router_api-replicaset_callre>`"
 msgstr ""
 
 msgid "Perform the initial cluster bootstrap and distribute all buckets across the replica sets."
@@ -287,10 +287,10 @@ msgstr ""
 msgid "an array of the function's arguments"
 msgstr ""
 
-msgid "* ``timeout`` – a request timeout, in seconds. If the router cannot identify a   shard with the specified ``bucket_id``, the operation will be repeated until the   timeout is reached. * other :ref:`net.box options <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are also supported."
+msgid "* ``timeout`` – a request timeout, in seconds. If the ``router`` cannot identify a   shard with the specified ``bucket_id``, the operation will be repeated until the   timeout is reached.  * other :ref:`net.box options <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are also supported."
 msgstr ""
 
-msgid "``timeout`` – a request timeout, in seconds. If the router cannot identify a shard with the specified ``bucket_id``, the operation will be repeated until the timeout is reached."
+msgid "``timeout`` – a request timeout, in seconds. If the ``router`` cannot identify a shard with the specified ``bucket_id``, the operation will be repeated until the timeout is reached."
 msgstr ""
 
 msgid "other :ref:`net.box options <net_box-options>`, such as ``is_async``, ``buffer``, ``on_push`` are also supported."
@@ -331,7 +331,7 @@ msgstr ""
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id, in read-only mode (similar to calling vshard.router.call with mode='read'). See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-msgid "* ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a   shard with the bucket id, the operation will be repeated until the   timeout is reached. * other :ref:`net.box options <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are also supported."
+msgid "* ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a   shard with the bucket id, the operation will be repeated until the   timeout is reached.  * other :ref:`net.box options <net_box-options>`, such as ``is_async``,   ``buffer``, ``on_push`` are also supported."
 msgstr ""
 
 msgid "``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a shard with the bucket id, the operation will be repeated until the timeout is reached."
@@ -509,7 +509,7 @@ msgstr ""
 msgid "``available_ro`` – the number of buckets known to the ``router`` and available for read requests"
 msgstr ""
 
-msgid "``available_rw`` – the number of buckets known to the router and available for read and write requests"
+msgid "``available_rw`` – the number of buckets known to the ``router`` and available for read and write requests"
 msgstr ""
 
 msgid "``unavailable`` – the number of buckets known to the ``router`` but unavailable for any requests"
@@ -562,10 +562,7 @@ msgstr ""
 msgid "Call a function on a nearest available master (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments."
 msgstr ""
 
-msgid "The ``replicaset.call`` method is similar to ``replicaset.callrw``."
-msgstr ""
-
-msgid "UUID of a replica set"
+msgid "The ``replicaset_object:call`` method is similar to ``replicaset_object:callrw``."
 msgstr ""
 
 msgid "function to execute"
@@ -574,16 +571,22 @@ msgstr ""
 msgid "array of the function's arguments"
 msgstr ""
 
+msgid "result of ``function_name`` on success"
+msgstr ""
+
+msgid "nill, err otherwise"
+msgstr ""
+
 msgid "Call a function on a nearest available master (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with a specified arguments."
 msgstr ""
 
-msgid "The ``replicaset.callrw`` method is similar to ``replicaset.call``."
+msgid "The ``replicaset_object:callrw`` method is similar to ``replicaset_object:call``."
 msgstr ""
 
-msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to call only read-only functions using ``replicaset.callro()``, as the function can be executed not only on a master, but also on replicas."
+msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to call only read-only functions using ``replicaset_object:callro()``, as the function can be executed not only on a master, but also on replicas."
 msgstr ""
 
-msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments, with preference for a replica rather than a master (similar to calling vshard.router.call with prefer_replica = true). It is recommended to call only read-only functions using ``replicaset.callre()``, as the function can be executed not only on a master, but also on replicas."
+msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments, with preference for a replica rather than a master (similar to calling vshard.router.call with prefer_replica = true). It is recommended to call only read-only functions using ``replicaset_object:callre()``, as the function can be executed not only on a master, but also on replicas."
 msgstr ""
 
 msgid "Router internal API"

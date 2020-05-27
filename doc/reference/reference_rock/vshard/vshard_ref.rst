@@ -311,9 +311,10 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` – a request timeout, in seconds. If the router cannot identify a
+        * ``timeout`` – a request timeout, in seconds. If the ``router`` cannot identify a
           shard with the specified ``bucket_id``, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -373,6 +374,7 @@ Router public API
         * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -406,6 +408,7 @@ Router public API
         * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -441,6 +444,7 @@ Router public API
         * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -666,7 +670,7 @@ Router public API
     Bucket parameters:
 
     * ``available_ro`` – the number of buckets known to the ``router`` and available for read requests
-    * ``available_rw`` – the number of buckets known to the router and available for read and write requests
+    * ``available_rw`` – the number of buckets known to the ``router`` and available for read and write requests
     * ``unavailable`` – the number of buckets known to the ``router`` but unavailable for any requests
     * ``unreachable`` – the number of buckets whose replica sets are not known to the ``router``
 
@@ -733,10 +737,16 @@ Router public API
         :param options:
 
             * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-            shard with the bucket id, the operation will be repeated until the
-            timeout is reached.
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
+
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-            ``buffer``, ``on_push`` are also supported.
+              ``buffer``, ``on_push`` are also supported.
+
+        :return: 
+
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
     .. _router_api-replicaset_callrw:
 
@@ -755,10 +765,16 @@ Router public API
         :param options:
 
             * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-            shard with the bucket id, the operation will be repeated until the
-            timeout is reached.
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
+
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-            ``buffer``, ``on_push`` are also supported.
+              ``buffer``, ``on_push`` are also supported.
+
+        :return: 
+
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
     .. _router_api-replicaset_callro:
 
@@ -775,10 +791,16 @@ Router public API
         :param options:
 
             * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-            shard with the bucket id, the operation will be repeated until the
-            timeout is reached.
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
+
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-            ``buffer``, ``on_push`` are also supported.
+              ``buffer``, ``on_push`` are also supported.
+
+        :return: 
+
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
     .. _router_api-replicaset_callre:
 
@@ -798,10 +820,16 @@ Router public API
         :param options:
 
             * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-            shard with the bucket id, the operation will be repeated until the
-            timeout is reached.
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
+
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-            ``buffer``, ``on_push`` are also supported.
+              ``buffer``, ``on_push`` are also supported.
+
+        :return: 
+
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
 .. _vshard_api_reference-router_internal_api:
 
