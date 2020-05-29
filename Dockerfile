@@ -9,5 +9,7 @@ RUN apt update && apt install -y luarocks && \
 ADD https://api.github.com/repos/tarantool/LDoc/git/refs/heads/tarantool version.json
 RUN git clone https://github.com/tarantool/LDoc.git /usr/local/ldoc
 
+RUN curl -L https://tarantool.io/installer.sh | bash
+
 RUN mkdir /doc
 WORKDIR /doc

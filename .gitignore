@@ -22,3 +22,6 @@ rocks
 /doc/book/cartridge/cartridge_api/
 /doc/book/cartridge/cartridge_cli.rst
 /doc/book/cartridge/cartridge_cli/
+/locale/ru/LC_MESSAGES/book/cartridge/
+/locale/book/cartridge/
+/doc/book/cartridge/
