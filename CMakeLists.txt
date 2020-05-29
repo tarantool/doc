@@ -221,14 +221,6 @@ add_custom_target(linkcheck
 )
 
 add_custom_target(submodules
-    COMMAND cd modules/cartridge && lua /usr/local/ldoc/ldoc.lua
-        --ext=rst
-        --dir=${LDOC_CARTRIDGE_DEST_DIR}
-        --all
-        .
-    COMMENT "Generate cartridge rst from lua sources"
-)
-add_custom_command(TARGET submodules
     COMMAND cd modules/cartridge-cli && lua /usr/local/ldoc/ldoc.lua
         --dir=${LDOC_CARTRIDGE_CLI_DEST_DIR}
         --ext=rst
