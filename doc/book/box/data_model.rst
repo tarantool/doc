@@ -853,8 +853,9 @@ traversing indexes one key at a time, taking advantage of features that are
 specific to an index type, for example evaluating Boolean expressions when
 traversing BITSET indexes, or going in descending order when traversing TREE indexes.
 
-See also other index operations like :ref:`alter() <box_index-alter>` and
-:ref:`drop() <box_index-drop>` in reference for :ref:`box.index <box_index>` submodule.
+See also other index operations like :ref:`alter() <box_index-alter>`
+(modify index) and :ref:`drop() <box_index-drop>` (delete index) in reference
+for :ref:`box.index <box_index>` submodule.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Complexity factors
