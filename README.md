@@ -12,7 +12,7 @@ docker build -t tarantool-doc-builder .
 
 Init and update submodules:
 ```bash
-bash update_submodules.sh
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "./update_submodules.sh"
 ```
 or do it manually:
 ```bash
