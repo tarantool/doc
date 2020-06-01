@@ -626,7 +626,7 @@ response will look like this:
 
 IPROTO_DATA is what we get with net_box and :ref:`Module buffer <buffer-module>`
 so if we were using net_box we could decode with
-:ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`,
+:ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_string>`,
 or we could convert to a string with :samp:`ffi.string({pointer},{length})`.
 The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
 
