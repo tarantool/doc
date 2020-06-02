@@ -98,10 +98,29 @@ msgstr ""
 msgid "whatever is specified in errcode-number."
 msgstr ""
 
+msgid "``box.error()`` accepts two sets of arguments:"
+msgstr ""
+
+msgid "error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``), or"
+msgstr ""
+
+msgid "error object (``box.error(err)``)."
+msgstr ""
+
+msgid "In both cases the error is promoted as the last error."
+msgstr ""
+
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.error{code = 555, reason = 'Arbitrary message'}\n"
+msgid "tarantool> e1 = box.error.new({code = 111, reason = \"Сause\"})\n"
+"---\n"
+"...\n"
+"tarantool> box.error(e1)\n"
+"---\n"
+"- error: Сause\n"
+"...\n"
+"tarantool> box.error{code = 555, reason = 'Arbitrary message'}\n"
 "---\n"
 "- error: Arbitrary message\n"
 "...\n"
