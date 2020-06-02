@@ -118,9 +118,9 @@ Please, familiarize yourself with the mechanism of trigger functions before usin
     system spaces are created when the server starts, the ``before_replace``
     triggers will be activated for each tuple in each system space.
     For example, such a trigger could change the storage engine of a
-    given space, or make a given space replica-local while a replica
-    is being bootstrapped. Making such a change after ``box.cfg`` is
-    not reliable because other connections might use the database before
+    given space, or make a given space :ref:`replica-local <replication-local>` 
+    while a replica is being bootstrapped. Making such a change after ``box.cfg``
+    is not reliable because other connections might use the database before
     the change is made.
 
     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
@@ -139,7 +139,7 @@ Please, familiarize yourself with the mechanism of trigger functions before usin
     .. code-block:: lua
 
         function function_for_before_replace(old, new)
-          if new[3] == 'space_name' and new[4] ~= 'vinyl' then
+          if old == nil and new ~= nil and new[3] == 'space_name' and new[4] ~= 'vinyl' then
             return new:update{{'=', 4, 'vinyl'}}
           end
         end
