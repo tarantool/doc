@@ -5,15 +5,18 @@
 -------------------------------------------------------------------------------
 
 The ``buffer`` module returns a dynamically resizable buffer which is solely
-for use as an option for methods of the :ref:`net.box module <net_box-module>`.
+for optional use by methods of the :ref:`net.box module <net_box-module>`
+or the :ref:`msgpack module <msgpack-module>`.
 
 Ordinarily the ``net.box`` methods return a Lua table.
 If a ``buffer`` option is used, then the ``net.box`` methods return a
-raw MsgPack_ string.
+:ref:`raw MsgPack string <msgpack-definitions>`.
 This saves time on the server, if the client application has
-its own routine for decoding MsgPack strings.
+its own routine for decoding raw MsgPack strings.
 
 .. module:: buffer
+
+.. _buffer-ibuf:
 
 .. function:: ibuf()
 
@@ -30,7 +33,7 @@ its own routine for decoding MsgPack strings.
     for a ``conn.space...select()`` call.
     The result will be in MsgPack_ format.
     To show this, we will use
-    :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`
+    :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_c_style_string_pointer>`
     on ``ibuf.rpos`` (the "read position" of the buffer).
     Thus we do not decode on the remote server, but we do
     decode on the local server.
