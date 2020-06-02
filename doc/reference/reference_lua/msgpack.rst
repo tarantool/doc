@@ -188,11 +188,11 @@ Below is a list of all ``msgpack`` functions and members.
 
 .. _msgpack-decode_unchecked_c_style_string_pointer:
 
-.. function:: decode_unchecked(C_style_string_pointer[, size])
+.. function:: decode_unchecked(C_style_string_pointer)
 
     Input and output are the same as for
     :ref:`decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`,
-    except that ``size`` is optional.
+    except that ``size`` is not needed.
     Some checking is skipped, and ``decode_unchecked(C_style_string_pointer)`` can operate with
     string pointers to buffers which ``decode(C_style_string_pointer)`` cannot handle. 
     For an example see the :ref:`buffer <buffer-module>` module.
