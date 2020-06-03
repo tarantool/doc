@@ -721,7 +721,7 @@ Below is a list of all ``box.space`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: tarantoolsession
 
             -- Create a format with two fields named 'a' and 'b'.
             -- Create a space with that format.
@@ -1024,12 +1024,11 @@ Below is a list of all ``box.space`` functions and members.
           inserting|replacing the new value;
         * if the value is nil, then the tuple will be deleted;
         * if the value is the same as the old parameter, then no
-          `on_replace`` function will be called and the data
+          ``on_replace`` function will be called and the data
           change will be skipped
         * if the value is the same as the new parameter, then it's as if
           the ``before_replace`` function wasn't called;
-        * if the value is something else, then execution proceeds,
-          inserting|replacing the new value.
+        * if value is an other tuple, then it is used for insert/replace.
 
         However, if a trigger function returns an old tuple, or if a
         trigger function calls :ref:`run_triggers(false) <box_space-run_triggers>`,
@@ -1635,14 +1634,14 @@ Below is a list of all ``box.space`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        # checking the number of indexes for space 'tester'
+        -- checking the number of indexes for space 'tester'
         tarantool> local counter=0; for i=0,#box.space.tester.index do
           if box.space.tester.index[i]~=nil then counter=counter+1 end
           end; print(counter)
         1
         ---
         ...
-        # checking the type of index 'primary'
+        -- checking the type of index 'primary'
         tarantool> box.space.tester.index.primary.type
         ---
         - TREE
@@ -2077,8 +2076,7 @@ Below is a list of all ``box.space`` functions and members.
 
     To create a new user, use :ref:`box.schema.user.create() <box_schema-user_create>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         box.schema.user.create(*user-name*)
         box.schema.user.create(*user-name*, {if_not_exists = true})
@@ -2086,8 +2084,7 @@ Below is a list of all ``box.space`` functions and members.
 
     To change the user's password, use :ref:`box.schema.user.password() <box_schema-user_password>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         -- To change the current user's password
         box.schema.user.passwd(*password*)
@@ -2098,23 +2095,20 @@ Below is a list of all ``box.space`` functions and members.
 
     To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         box.schema.user.drop(*user-name*)
 
     To check whether a user exists, use :ref:`box.schema.user.exists() <box_schema-user_exists>`,
     which returns ``true`` or ``false``:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         box.schema.user.exists(*user-name*)
 
     To find what privileges a user has, use :ref:`box.schema.user.info() <box_schema-user_info>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         box.schema.user.info(*user-name*)
 
