@@ -509,8 +509,8 @@ Below is a list of all ``box.space`` functions and members.
         box.space.tester:format({{name='x', type='scalar'}, {name='y', type='integer'}})
         box.space.tester:create_index('I2',{parts={{'x', 'scalar'}}})
         box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
-        box.space.tester:create_index('I4',{parts={1,'scalar'}})
-        box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})
+        box.space.tester:create_index('I4',{parts={{1,'scalar'}}})
+        box.space.tester:create_index('I5',{parts={{1,'scalar'},{2,'integer'}}})
         box.space.tester:create_index('I6',{parts={1}})
         box.space.tester:create_index('I7',{parts={1,2}})
         box.space.tester:create_index('I8',{parts={'x'}})
@@ -558,7 +558,7 @@ Below is a list of all ``box.space`` functions and members.
     In fact a single field can have multiple keys, as in this example which retrieves the
     same tuple twice because there are two keys 'A' and 'B' which both match the request:
 
-    .. code-block:: none
+    .. code-block:: lua
 
         s = box.schema.space.create('json_documents')
         s:create_index('primarykey')
@@ -568,12 +568,16 @@ Below is a list of all ``box.space`` functions and members.
                           {name='B'}},
                   extra_field = 1}})
         i:select({''},{iterator='GE'})
-        --  The result of the select request looks like this:
-        --  tarantool> i:select({''},{iterator='GE'})
-        --  ---
-        --  - - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
-        --    - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
-        --  ...
+    
+    The result of the select request looks like this:
+      
+    .. code-block:: tarantoolsession
+      
+        tarantool> i:select({''},{iterator='GE'})
+        ---
+        - - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
+        - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
+        ...
 
     Some restrictions exist:
     () '[*]' must be alone or must be at the end of a name in the path;
@@ -608,19 +612,20 @@ Below is a list of all ``box.space`` functions and members.
     Functional indexes must not be primary-key indexes. |br|
     Functional indexes cannot be altered and the function cannot
     be changed if it is used for an index, so the only way to change
-    them is to drop the index and create it again.
+    them is to drop the index and create it again. |br|
+    Only sandboxed functions are suitable for functional indexes.
 
     **Example:**
 
     A function could make a key using only the first letter of a string field.
 
-    .. code-block:: none
+    .. code-block:: lua
 
         -- Step 1: Make the space.
         -- The space needs a primary-key field, which is not the field that we
         -- will use for the functional index.
         box.schema.space.create('x', {engine = 'memtx'})
-        box.space.x:create_index('i',{parts={field = 1, type = 'string'}})
+        box.space.x:create_index('i',{parts={{field = 1, type = 'string'}}})
         -- Step 2: Make the function.
         -- The function expects a tuple. In this example it will work on tuple[2]
         -- because the key souce is field number 2 in what we will insert.
@@ -633,7 +638,7 @@ Below is a list of all ``box.space`` functions and members.
         -- Step 4: Make the functional index.
         -- Specify the fields whose values will be passed to the function.
         -- Specify the function.
-        box.space.x:create_index('j',{parts={field = 1, type = 'string'},func = 'F'})
+        box.space.x:create_index('j',{parts={{field = 1, type = 'string'}},func = 'F'})
         -- Step 5: Test.
         -- Insert a few tuples.
         -- Select using only the first letter, it will work because that is the key
@@ -649,14 +654,13 @@ Below is a list of all ``box.space`` functions and members.
 
     The results of the two ``select`` requests will look like this:
 
-    .. code-block:: none
+    .. code-block:: tarantoolsession
 
-        tarantool>     box.space.x.index.j:select('w')
+        tarantool> box.space.x.index.j:select('w')
         ---
         - - ['a', 'wombat']
         ...
-
-        tarantool>     box.space.x.index.j:select(box.func.F:call({{'x','wombat'}}));
+        tarantool> box.space.x.index.j:select(box.func.F:call({{'x','wombat'}}));
         ---
         - - ['a', 'wombat']
         ...
@@ -669,12 +673,12 @@ Below is a list of all ``box.space`` functions and members.
 
     **Example:**
 
-    .. code-block:: none
+    .. code-block:: lua
 
         s = box.schema.space.create('withdata')
         s:format({{name = 'name', type = 'string'},
                   {name = 'address', type = 'string'}})
-        pk = s:create_index('name', {parts = {field = 1, type = 'string'}})
+        pk = s:create_index('name', {parts = {{field = 1, type = 'string'}}})
         lua_code = [[function(tuple)
                        local address = string.split(tuple[2])
                        local ret = {}
@@ -876,7 +880,7 @@ Below is a list of all ``box.space`` functions and members.
                      >                     {name='8',type='array'},
                      >                     {name='9',type='map'}})
             --- ...
-            tarantool> box.space.t:create_index('i',{parts={field = 2, type = 'unsigned'}})
+            tarantool> box.space.t:create_index('i',{parts={{field = 2, type = 'unsigned'}}})
             --- ...
             tarantool> box.space.t:insert{{'a'},      -- any
                      >                    1,          -- unsigned
@@ -933,7 +937,7 @@ Below is a list of all ``box.space`` functions and members.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: tarantoolsession
 
             -- Create a format with two fields named 'a' and 'b'.
             -- Create a space with that format.
@@ -1238,12 +1242,11 @@ Below is a list of all ``box.space`` functions and members.
           inserting|replacing the new value;
         * if the value is nil, then the tuple will be deleted;
         * if the value is the same as the old parameter, then no
-          `on_replace`` function will be called and the data
+          ``on_replace`` function will be called and the data
           change will be skipped
         * if the value is the same as the new parameter, then it's as if
           the ``before_replace`` function wasn't called;
-        * if the value is something else, then execution proceeds,
-          inserting|replacing the new value.
+        * if value is an other tuple, then it is used for insert/replace.
 
         However, if a trigger function returns an old tuple, or if a
         trigger function calls :ref:`run_triggers(false) <box_space-run_triggers>`,
@@ -1455,7 +1458,7 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> s = box.schema.space.create('tmp', {temporary=true})
             ---
             ...
-            tarantool> s:create_index('primary',{parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })
+            tarantool> s:create_index('primary',{parts = {{field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })
             ---
             ...
             tarantool> s:insert{1,'A'}
@@ -1855,8 +1858,7 @@ Below is a list of all ``box.space`` functions and members.
         The required field count for all tuples in this space. The field_count
         can be set initially with:
 
-        .. cssclass:: highlight
-        .. parsed-literal::
+        .. code-block:: Lua
 
             box.schema.space.create(..., {
                 ... ,
@@ -2369,8 +2371,7 @@ Below is a list of all ``box.space`` functions and members.
 
     To create a new user, use :ref:`box.schema.user.create() <box_schema-user_create>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: Lua
 
         box.schema.user.create(*user-name*)
         box.schema.user.create(*user-name*, {if_not_exists = true})
@@ -2378,8 +2379,7 @@ Below is a list of all ``box.space`` functions and members.
 
     To change the user's password, use :ref:`box.schema.user.password() <box_schema-user_password>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: Lua
 
         -- To change the current user's password
         box.schema.user.passwd(*password*)
@@ -2390,23 +2390,20 @@ Below is a list of all ``box.space`` functions and members.
 
     To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: Lua
 
         box.schema.user.drop(*user-name*)
 
     To check whether a user exists, use :ref:`box.schema.user.exists() <box_schema-user_exists>`,
     which returns ``true`` or ``false``:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         box.schema.user.exists(*user-name*)
 
     To find what privileges a user has, use :ref:`box.schema.user.info() <box_schema-user_info>`:
 
-    .. cssclass:: highlight
-    .. parsed-literal::
+    .. code-block:: lua
 
         box.schema.user.info(*user-name*)
 
