@@ -111,7 +111,7 @@ After the words "length 32" is a packet that ends with with these 32 bytes:
     11                   IPROTO_INDEX_ID (Select-Map Item#2)
     00                   MP_INT = 0 = id of index within _space
     14                   IPROTO_ITERATOR (Select-Map Item#3)
-    00                   MP_INT = 0 = Tarantool iterator_types.h constant ITER_EQ 
+    00                   MP_INT = 0 = Tarantool iterator_type.h constant ITER_EQ 
     13                   IPROTO_OFFSET (Select-Map Item#4)
     00                   MP_INT = 0 = amount to offset
     12                   IPROTO_LIMIT (Select-Map Item#5)
