@@ -659,10 +659,6 @@ Below is a list of all ``box.space`` functions and members.
         -- Or, select using the same function as was used for insertion
         box.space.x:insert{'a', 'wombat'}
         box.space.x:insert{'b', 'rabbit'}
-        -- Select using only the first letter, it will work because that is the key
-        -- Or, select using the same function as was used for insertion
-        box.space.x:insert{'a', 'wombat'}
-        box.space.x:insert{'b', 'rabbit'}
         box.space.x.index.j:select('w')
         box.space.x.index.j:select(box.func.F:call({{'x', 'wombat'}}));
 
