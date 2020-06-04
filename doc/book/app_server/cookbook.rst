@@ -255,6 +255,10 @@ ffi_varbinary_insert.lua
 
 Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to
 insert a tuple which has a VARBINARY field.
+
+Note that it is allowed only inside a memtx transaction: when ``box_insert()``
+does not yield.
+
 Lua does not have direct support for VARBINARY, so using C
 is one way to put in data which in MessagePack is stored as bin
 (MP_BIN). If the tuple is retrieved later, field "b" will have type = 'cdata'.
