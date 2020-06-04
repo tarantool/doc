@@ -721,7 +721,7 @@ type. For example, if ``MP_ERROR_TYPE`` is "AccessDeniedError", then ``MP_ERROR_
 will include "object_type", "object_name", "access_type".
 
 Client and connector programmers should ensure that unknown map keys are ignored,
-and should should check for addition of new keys in the Tarantool
+and should check for addition of new keys in the Tarantool
 source code file where error object creation is defined.
 In version 2.4.1 the name of this source code file is mp_error.cc.
 
