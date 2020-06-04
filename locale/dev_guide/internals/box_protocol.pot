@@ -950,6 +950,6 @@ msgid "0            3 4                                         17\n"
 "    MP_MAP                     MP_MAP"
 msgstr ""
 
-msgid "See the example in the following (:ref:`File formats <internals-data_persistence>`) section."
+msgid "See the example in the :ref:`File formats <internals-data_persistence>` section."
 msgstr ""
 

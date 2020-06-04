@@ -1264,4 +1264,4 @@ may be data tuples that have this form:
     +============+ +===================================+
         MP_MAP                     MP_MAP
 
-See the example in the following (:ref:`File formats <internals-data_persistence>`) section.
+See the example in the :ref:`File formats <internals-data_persistence>` section.
