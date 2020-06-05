@@ -556,6 +556,10 @@ Below is a list of all ``net.box`` functions.
         Alternatively the client could check for "out-of-band" messages from the server
         by calling ``pairs()`` in a loop -- see :ref:`box.session.push() <box_session-push>`.
 
+        A user would say ``future:discard()`` to make a connection forget about the response --
+        if a response for a discarded object is received then it will be ignored, so that
+        the size of the requests table will be reduced and other requests will be faster.
+
         **Example:**
 
         .. code-block:: lua
