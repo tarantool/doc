@@ -62,6 +62,12 @@ msgstr ""
 msgid "Set the previous error"
 msgstr ""
 
+msgid ":ref:`Custom error types <box_error-custom_type>`"
+msgstr ""
+
+msgid "Create custom error type"
+msgstr ""
+
 msgid "When called with a Lua-table argument, the code and reason have any user-desired values. The result will be those values."
 msgstr ""
 
@@ -258,5 +264,60 @@ msgid "-- e1 -> e2 -> e3 -> e4\n"
 msgstr ""
 
 msgid "The iProto protocol also supports stacked diagnostics. See details in :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`."
+msgstr ""
+
+msgid "Custom error types"
+msgstr ""
+
+msgid "Errors can be created in 2 ways: with ``box.error.new()`` and with ``box.error()``."
+msgstr ""
+
+msgid "Both used to take either code, reason, <reason string args> or {code = code, reason = reason, ...} arguments."
+msgstr ""
+
+msgid "In the first option instead of code you can specify a string as its own error type. In the second option you can specify both code and type."
+msgstr ""
+
+msgid "box.error('MyErrorType', 'Message')\n"
+"box.error({type = 'MyErrorType', code = 1024, reason = 'Message'})"
+msgstr ""
+
+msgid "Or no-throw version:"
+msgstr ""
+
+msgid "box.error.new('MyErrorType', 'Message')\n"
+"box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})"
+msgstr ""
+
+msgid "When a custom type is specified, it is shown in ``err.type`` attribute. When it is not specified, ``err.type`` shows one of built-in errors such as ``'ClientError'``, ``'OurOfMemory'``, etc."
+msgstr ""
+
+msgid "Name length limit on the custom type is *63 bytes*. Everything longer then the limit is truncated."
+msgstr ""
+
+msgid "Original error type can be checked using ``err.base_type`` member, although normally it should not be used. For user-defined types base type is ``'CustomError'``."
+msgstr ""
+
+msgid "tarantool> e = box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> e:unpack()\n"
+"---\n"
+"- code: 1024\n"
+"trace:\n"
+"- file: '[string \"e = box.error.new({type = ''MyErrorType'', code...\"]'\n"
+"    line: 1\n"
+"type: MyErrorType\n"
+"custom_type: MyErrorType\n"
+"message: Message\n"
+"base_type: CustomError\n"
+"..."
+msgstr ""
+
+msgid "You can also use a format string to compose an error message for ``'CustomError type'``."
+msgstr ""
+
+msgid "box.error(\"MyCustomType\", \"The error reason: %s\", \"some error reason\")"
 msgstr ""
 

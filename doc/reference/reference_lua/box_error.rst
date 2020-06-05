@@ -49,6 +49,9 @@ Below is a list of all ``box.error`` functions.
     | :ref:`error_object.set_prev()        | Set the previous error          |
     | <box_error-set_prev>`                |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`Custom error types             | Create custom error type        |
+    | <box_error-custom_type>`             |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. function:: box.error{reason = string [, code = number]}
 
@@ -307,3 +310,66 @@ Below is a list of all ``box.error`` functions.
 
     The iProto protocol also supports stacked diagnostics. See details in
     :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`.
+
+.. _box_error-custom_type:
+
+===============================================================================
+                            Custom error types
+===============================================================================
+
+Errors can be created in 2 ways: with ``box.error.new()`` and with ``box.error()``.
+
+Both used to take either code, reason, <reason string args> or
+{code = code, reason = reason, ...} arguments.
+
+In the first option instead of code you can specify a string as its own
+error type. In the second option you can specify both code and type.
+
+.. code-block:: lua
+
+    box.error('MyErrorType', 'Message')
+    box.error({type = 'MyErrorType', code = 1024, reason = 'Message'})
+
+Or no-throw version:
+
+.. code-block:: lua
+
+    box.error.new('MyErrorType', 'Message')
+    box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})
+
+When a custom type is specified, it is shown in ``err.type`` attribute.
+When it is not specified, ``err.type`` shows one of built-in errors such as
+``'ClientError'``, ``'OurOfMemory'``, etc.
+
+Name length limit on the custom type is *63 bytes*. Everything longer then the
+limit is truncated.
+
+Original error type can be checked using ``err.base_type`` member, although
+normally it should not be used. For user-defined types base type is ``'CustomError'``.
+
+**Example:**
+
+.. code-block:: tarantoolsession
+
+    tarantool> e = box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})
+    ---
+    ...
+
+    tarantool> e:unpack()
+    ---
+    - code: 1024
+    trace:
+    - file: '[string "e = box.error.new({type = ''MyErrorType'', code..."]'
+        line: 1
+    type: MyErrorType
+    custom_type: MyErrorType
+    message: Message
+    base_type: CustomError
+    ...
+
+You can also use a format string to compose an error message for
+``'CustomError type'``.
+
+.. code-block:: lua
+
+    box.error("MyCustomType", "The error reason: %s", "some error reason")
