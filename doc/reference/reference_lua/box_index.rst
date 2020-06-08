@@ -492,10 +492,11 @@ Below is a list of all ``box.index`` functions and members.
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
         :param scalar/table      key: values to be matched against the index key
-        :param table/nil     options: none, any or all of next parameters
-        :param      options.iterator: type of iterator
-        :param number  options.limit: maximum number of tuples
-        :param number options.offset: start tuple number
+        :param table/nil     options: none, any or all of next parameters:
+
+                                      * iterator - type of iterator
+                                      * limit - maximum number of tuples
+                                      * offset - start tuple number
 
         :return: the tuple or tuples that match the field values.
         :rtype:  array of tuples
@@ -522,7 +523,7 @@ Below is a list of all ``box.index`` functions and members.
             tarantool> sp:insert{2, 'Y', 'Row with field[2]=Y'}
             tarantool> sp:insert{3, 'Z', 'Row with field[2]=Z'}
             -- Select all tuples where the secondary index
-            -- keys are greater than 'X'.`
+            -- keys are greater than 'X'.
             tarantool> sp.index.secondary:select({'X'}, {
                      >   iterator = 'GT',
                      >   limit = 1000
@@ -539,6 +540,14 @@ Below is a list of all ``box.index`` functions and members.
 
         .. NOTE::
 
+            The arguments are optional. If you call
+            :samp:`box.space.{space-name}:select{}`, then every key in the index
+            is considered to be a match, regardless of iterator type. Therefore,
+            for the example above, ``box.space.tester:select{}`` will select every
+            tuple in the ``tester`` space via the first (primary-key) index.
+
+        .. NOTE::
+
             :samp:`index.{index-name}` is optional. If it is omitted, then the assumed
             index is the first (primary-key) index. Therefore, for the example
             above, ``box.space.tester:select({1}, {iterator = 'GT'})`` would have
@@ -549,19 +558,11 @@ Below is a list of all ``box.index`` functions and members.
             :samp:`iterator = {iterator-type}` is optional. If it is omitted, then
             ``iterator = 'EQ'`` is assumed.
 
-        .. NOTE::
-
-            :samp:`{field-value} [, {field-value ...}]` is optional. If it is omitted,
-            then every key in the index is considered to be a match, regardless of
-            iterator type. Therefore, for the example above,
-            ``box.space.tester:select{}`` will select every tuple in the tester
-            space via the first (primary-key) index.
-
         .. _box_index-note:
 
         .. NOTE::
 
-            :samp:`box.space.{space-name}.index.{index-name}:select(...)[1]``. can be
+            :samp:`box.space.{space-name}.index.{index-name}:select(...)[1]`. can be
             replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`.
             That is, ``get`` can be used as a convenient shorthand to get the first
             tuple in the tuple set that would be returned by ``select``. However,
