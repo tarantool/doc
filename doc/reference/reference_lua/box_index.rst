@@ -788,6 +788,8 @@ Below is a list of all ``box.index`` functions and members.
         :return: the updated tuple.
         :rtype:  tuple
 
+        Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`.
+
     .. _box_index-delete:
 
     .. method:: delete(key)

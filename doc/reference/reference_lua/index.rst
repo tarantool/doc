@@ -54,3 +54,4 @@ This reference covers Tarantool's built-in Lua modules.
     other
     errcodes
     debug_facilities
+    json_paths
