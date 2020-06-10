@@ -280,10 +280,10 @@ variables.
 
     The output is similar to the one produced by ``box.info.replication`` with
     an exception that anonymous replicas are indexed by their uuid strings
-    rather then server ids, since server ids have no meaning for anonymous
+    rather than server ids, since server ids have no meaning for anonymous
     replicas.
 
-    Note, that when you issue a plain ``box.info.replication_anon``, the only
+    Notice that when you issue a plain ``box.info.replication_anon``, the only
     info returned is the number of anonymous replicas following the current
     instance. In order to see the full stats, you have to call
     ``box.info.replication_anon()``. This is done to not overload the ``box.info``
@@ -318,8 +318,8 @@ variables.
             vclock: {1: 1}
       ...
 
-    Note, that anonymous replicas hide their lsn from the others, so
-    anonymous replica lsn will always be reported as zero, even if anonymous
-    replicas perform some local space operations.
-    To know the anonymous replica's lsn, you have to issue ``box.info.lsn`` on
+    Notice that anonymous replicas hide their ``lsn`` from the others, so an
+    anonymous replica ``lsn`` will always be reported as zero, even if an anonymous
+    replica performs some local space operations.
+    To find out the ``lsn`` of a specific anonymous replica, you have to issue ``box.info.lsn`` on
     it.
