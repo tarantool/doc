@@ -73,7 +73,7 @@ default settings to all the parameters:
       replication                  = nil
       replication_anon             = false
       replication_connect_quorum   = nil
-      replication_connect_timeout  = 4
+      replication_connect_timeout  = 30
       replication_skip_conflict    = false
       replication_sync_lag         = 10
       replication_sync_timeout     = 300
@@ -85,7 +85,7 @@ default settings to all the parameters:
       too_long_threshold           = 0.5
       username                     = nil
       vinyl_bloom_fpr              = 0.05
-      vinyl_cache                  = 128
+      vinyl_cache                  = 128 * 1024 * 1024
       vinyl_dir                    = '.'
       vinyl_max_tuple_size         = 1024 * 1024* 1024 * 1024
       vinyl_memory                 = 128 * 1024 * 1024
@@ -95,7 +95,7 @@ default settings to all the parameters:
       vinyl_run_count_per_level    = 2
       vinyl_run_size_ratio         = 3.5
       vinyl_timeout                = 60
-      vinyl_write_threads          = 2
+      vinyl_write_threads          = 4
       wal_dir                      = '.'
       wal_dir_rescan_delay         = 2
       wal_max_size                 = 256 * 1024 * 1024
