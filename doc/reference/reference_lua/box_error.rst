@@ -216,7 +216,7 @@ Below is a list of all ``box.error`` functions.
     followed by all of the MP_ERROR_STACK components
     (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.)
     that are described and illustrated in section
-    :ref:`Binary protocol -- responses for errors -- extra <box_protocol-responses_error_extra>`.
+    :ref:`MessagePack extensions - The ERROR type <msgpack_ext-error>`.
     The map field for error object "type" will have key = MP_ERROR_TYPE,
     the map field for error object "code" will have key = MP_ERROR_CODE,
     the map field for error object "message" will have key = MP_ERROR_MESSAGE.
@@ -306,4 +306,4 @@ Below is a list of all ``box.error`` functions.
         -- Now there are two lists: e1->e2->e5 and e3->e4
 
     The iProto protocol also supports stacked diagnostics. See details in
-    :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`.
+    :ref:`MessagePack extensions - The ERROR type <msgpack_ext-error>`.

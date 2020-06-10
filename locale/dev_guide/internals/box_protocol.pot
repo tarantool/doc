@@ -70,7 +70,7 @@ msgstr ""
 msgid "**MP_DOUBLE** double"
 msgstr ""
 
-msgid "**MP_EXT**    extension (including the :ref:`DECIMAL type <box_protocol-decimal>`)"
+msgid "**MP_EXT**    extension (including the :ref:`DECIMAL type <msgpack_ext-decimal>`)"
 msgstr ""
 
 msgid "**MP_OBJECT** any MessagePack object"
@@ -214,7 +214,7 @@ msgstr ""
 msgid "IPROTO_SPACE_ID (0x10) + MP_INT, IPROTO_INDEX_ID (0x11) + MP_INT, IPROTO_ITERATOR (0x14) + MP_INT, IPROTO_OFFSET (0x13) + MP_INT, IPROTO_LIMIT (0x12) + MP_INT, IPROTO_KEY (0x20) + MP_ARRAY (array of key values). See the illustration of IPROTO_SELECT in the earlier section, :ref:`Binary protocol -- illustration <box_protocol-illustration>`."
 msgstr ""
 
-msgid "**IPROTO_INSERT** == 0x02."
+msgid "**IPROTO_INSERT** = 0x02."
 msgstr ""
 
 msgid "See :ref:`space_object:insert()  <box_space-insert>`. The body is a 2-item map:"
@@ -519,7 +519,7 @@ msgid "ce 00 00 00 20                MP_UINT = HEADER + BODY SIZE\n"
 "06                              MP_INT = 6 = the value that was inserted"
 msgstr ""
 
-msgid "IPROTO_DATA is what we get with net_box and :ref:`Module buffer <buffer-module>` so if we were using net_box we could decode with :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`, or we could convert to a string with :samp:`ffi.string({pointer},{length})`. The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful."
+msgid "IPROTO_DATA is what we get with net_box and :ref:`Module buffer <buffer-module>` so if we were using net_box we could decode with :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_string>`, or we could convert to a string with :samp:`ffi.string({pointer},{length})`. The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful."
 msgstr ""
 
 msgid "Binary protocol -- responses for errors"
@@ -528,19 +528,19 @@ msgstr ""
 msgid "For a response other than IPROTO_OK, the header Response-Code-Indicator will be 0x8XXX and the body will be:"
 msgstr ""
 
-msgid "++======================+\n"
-"||                      |\n"
-"||   0x31: IPROTO_ERROR |\n"
-"|| MP_INT: MP_STRING    |\n"
-"||                      |\n"
-"++======================+\n"
+msgid "++=========================+\n"
+"||                         |\n"
+"||   0x31: IPROTO_ERROR_24 |\n"
+"|| MP_INT: MP_STRING       |\n"
+"||                         |\n"
+"++=========================+\n"
 "      MP_MAP"
 msgstr ""
 
 msgid "where 0x8XXX is the indicator for an error and XXX is a value in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_. ``src/box/errcode.h`` also has some convenience macros which define hexadecimal constants for return codes."
 msgstr ""
 
-msgid "For example, if we try to create a duplicate space with |br| ``conn:eval([[box.schema.space.create('_space');]])`` |br| the server response will look like this:"
+msgid "For example, in version 2.4.0 or earlier, if we try to create a duplicate space with |br| ``conn:eval([[box.schema.space.create('_space');]])`` |br| the server response will look like this:"
 msgstr ""
 
 msgid "ce 00 00 00 3b                  MP_UINT = HEADER + BODY SIZE\n"
@@ -552,11 +552,14 @@ msgid "ce 00 00 00 3b                  MP_UINT = HEADER + BODY SIZE\n"
 "  05                              IPROTO_SCHEMA_VERSION\n"
 "  ce 00 00 00 78                  MP_UINT = schema version value\n"
 "  81                              MP_MAP, size 1\n"
-"    31                              IPROTO_ERROR\n"
+"    31                              IPROTO_ERROR_24\n"
 "    db 00 00 00 1d 53 70 61 63 etc. MP_STR = \"Space '_space' already exists\""
 msgstr ""
 
 msgid "Looking in errcode.h we find that error code 0x0a (decimal 10) is ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is \"Space '%s' already exists\"."
+msgstr ""
+
+msgid "Beginning in version 2.4.1, responses for errors have extra information following what was described above. This extra information is given via MP_ERROR extension type. See details in :ref:`MessagePack extensions <msgpack_ext-error>` section."
 msgstr ""
 
 msgid "Binary protocol -- responses for SQL"
@@ -712,43 +715,46 @@ msgstr ""
 msgid "The greeting contains two 64-byte lines of ASCII text. Each line ends with a newline character (:code:`\\n`). The first line contains the instance version and protocol type. The second line contains up to 44 bytes of base64-encoded random string, to use in the authentication packet, and ends with up to 23 spaces."
 msgstr ""
 
-msgid "Part of the greeting is a base-64-encoded session salt - a random string which can be used for authentication. The length of a decoded salt (44 bytes) exceeds the amount necessary to sign the authentication message (the first 20 bytes). An excess is reserved for future authentication schemas."
+msgid "Part of the greeting is a base-64-encoded session salt - a random string which can be used for authentication. The maximum length of an encoded salt (44 bytes) is more than the amount necessary to create the authentication message. An excess is reserved for future authentication schemas."
 msgstr ""
 
 msgid "Authentication is optional -- if it is skipped, then the session user is ``'guest'`` (the ``'guest'`` user does not need a password)."
 msgstr ""
 
-msgid "If authentication is not skipped, then at any time an authentication packet can be prepared using the greeting, as follows."
+msgid "If authentication is not skipped, then at any time an authentication packet can be prepared using the greeting, the user's name and password, and `sha-1 <https://en.wikipedia.org/wiki/SHA-1>`_ functions, as follows."
 msgstr ""
 
 msgid "PREPARE SCRAMBLE:\n"
 "\n"
-"    LEN(ENCODED_SALT) = 44;\n"
-"    LEN(SCRAMBLE)     = 20;\n"
+"    size_of_encoded_salt_in_greeting = 44;\n"
+"    size_of_salt_after_base64_decode = 32;\n"
+"    /* sha1() will only use the first 20 bytes */\n"
+"    size_of_any_sha1_digest = 20;\n"
+"    size_of_scramble = 20;\n"
 "\n"
 "prepare 'chap-sha1' scramble:\n"
 "\n"
 "    salt = base64_decode(encoded_salt);\n"
 "    step_1 = sha1(password);\n"
 "    step_2 = sha1(step_1);\n"
-"    step_3 = sha1(salt, step_2);\n"
+"    step_3 = sha1(first_20_bytes_of_salt, step_2);\n"
 "    scramble = xor(step_1, step_3);\n"
 "    return scramble;\n"
 "\n"
 "AUTHORIZATION BODY: CODE = IPROTO_AUTH (0x07)\n"
 "\n"
-"+==========================+====================================+\n"
-"|                          |        +-------------+-----------+ |\n"
-"|  (KEY)                   | (TUPLE)|  len == 9   | len == 20 | |\n"
-"|   0x23: IPROTO_USER_NAME |   0x21:| \"chap-sha1\" |  SCRAMBLE | |\n"
-"| MP_INT: MP_STRING        | MP_INT:|  MP_STRING  |  MP_BIN   | |\n"
-"|                          |        +-------------+-----------+ |\n"
-"|                          |                   MP_ARRAY         |\n"
-"+==========================+====================================+\n"
+"+==========================+=====================================+\n"
+"|                          |        +-------------+------------+ |\n"
+"|  (KEY)                   | (TUPLE)| size == 9   | size == 20 | |\n"
+"|   0x23: IPROTO_USER_NAME |   0x21:| \"chap-sha1\" |  SCRAMBLE  | |\n"
+"| MP_INT: MP_STRING        | MP_INT:|  MP_STRING  |  MP_STRING | |\n"
+"|                          |        +-------------+------------+ |\n"
+"|                          |                   MP_ARRAY          |\n"
+"+==========================+=====================================+\n"
 "                        MP_MAP"
 msgstr ""
 
-msgid ":code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 fields: authentication mechanism (\"chap-sha1\" is the only supported mechanism right now) and password, encrypted according to the specified mechanism."
+msgid ":code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 fields: authentication mechanism (\"chap-sha1\" is the only supported mechanism right now) and scramble, encrypted according to the specified mechanism."
 msgstr ""
 
 msgid "The server instance responds to an authentication packet with a standard response with 0 tuples."
@@ -829,93 +835,6 @@ msgid "JOIN:\n"
 "\n"
 "Then you must process every request that could come through other masters.\n"
 "Every request between masters will have Additional LSN and SERVER_ID."
-msgstr ""
-
-msgid "The DECIMAL type"
-msgstr ""
-
-msgid "MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_DECIMAL`` is used as a record header."
-msgstr ""
-
-msgid "MP_DECIMAL is 1."
-msgstr ""
-
-msgid "`MessagePack spec <https://github.com/MessagePack/MessagePack/blob/master/spec.md#ext-format-family>`_ defines two kinds of types:"
-msgstr ""
-
-msgid "``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly;"
-msgstr ""
-
-msgid "``ext 8/16/32`` types require the data length to be encoded."
-msgstr ""
-
-msgid "``MP_EXP`` + optional ``length`` imply using one of these types."
-msgstr ""
-
-msgid "The decimal MessagePack representation looks like this:"
-msgstr ""
-
-msgid "+--------+-------------------+------------+===============+\n"
-"| MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |\n"
-"+--------+-------------------+------------+===============+"
-msgstr ""
-
-msgid "Here ``length`` is the length of ``PackedDecimal`` field, and it is of type ``MP_UINT``, when encoded explicitly (i.e. when the type is ``ext 8/16/32``)."
-msgstr ""
-
-msgid "``PackedDecimal`` has the following structure:"
-msgstr ""
-
-msgid " <--- length bytes -->\n"
-"+-------+=============+\n"
-"| scale |     BCD     |\n"
-"+-------+=============+"
-msgstr ""
-
-msgid "Here ``scale`` is either ``MP_INT`` or ``MP_UINT``. |br| ``scale`` = -exponent (exponent negated!)"
-msgstr ""
-
-msgid "``BCD`` is a sequence of bytes representing decimal digits of the encoded number (each byte represents two decimal digits each encoded using 4 bits), so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit. The leftmost digit in the array is the most significant. The rightmost digit in the array is the least significant."
-msgstr ""
-
-msgid "The first byte of the ``BCD`` array contains the first digit of the number, represented as follows:"
-msgstr ""
-
-msgid "|  4 bits           |  4 bits           |\n"
-"   = 0x                = the 1st digit"
-msgstr ""
-
-msgid "The last byte of the ``BCD`` array contains the last digit of the number and the ``nibble``, represented as follows:"
-msgstr ""
-
-msgid "|  4 bits           |  4 bits           |\n"
-"   = the last digit    = nibble"
-msgstr ""
-
-msgid "The ``nibble`` represents the number's sign:"
-msgstr ""
-
-msgid "``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,"
-msgstr ""
-
-msgid "``0x0b`` and ``0x0d`` stand for minus."
-msgstr ""
-
-msgid "**Examples**"
-msgstr ""
-
-msgid "The decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``:"
-msgstr ""
-
-msgid "|MP_EXT (fixext 4) | MP_DECIMAL | scale |  1   |  2,3 |  4 (minus) |\n"
-"|       0xd6       |    0x01    | 0x02  | 0x01 | 0x23 | 0x4d       |"
-msgstr ""
-
-msgid "The decimal 0.000000000000000000000000000000000010 will be encoded as ``0xc7,0x03,0x01,0x24,0x01,0x0c``:"
-msgstr ""
-
-msgid "| MP_EXT (ext 8) | length | MP_DECIMAL | scale |  1   | 0 (plus) |\n"
-"|      0xc7      |  0x03  |    0x01    | 0x24  | 0x01 | 0x0c     |"
 msgstr ""
 
 msgid "XLOG / SNAP"
