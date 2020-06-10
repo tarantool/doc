@@ -819,7 +819,7 @@ msgstr ""
 msgid "And this will work:"
 msgstr ""
 
-msgid "tarantool> box.space.T:insert{nil,0}\n"
+msgid "tarantool> box.space.T:insert{box.NULL,0}\n"
 "---\n"
 "- [1, 0]\n"
 "..."

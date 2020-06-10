@@ -909,7 +909,7 @@ All functions related to sequences require appropriate
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.space.T:insert{nil,0}
+        tarantool> box.space.T:insert{box.NULL,0}
         ---
         - [1, 0]
         ...
