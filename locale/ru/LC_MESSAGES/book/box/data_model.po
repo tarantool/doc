@@ -323,15 +323,24 @@ msgstr ""
 msgid "[!!binary 3t7e]"
 msgstr ""
 
-msgid "ext"
-msgstr ""
-
-msgid "(converted to exact number)"
+msgid "decimal"
 msgstr ""
 
 #, fuzzy
 msgid "1.2"
 msgstr "1,234"
+
+msgid "uuid"
+msgstr ""
+
+msgid "12a34b5c-de67-8f90-123g- h4567ab8901"
+msgstr ""
+
+msgid "ext"
+msgstr ""
+
+msgid "(converted to exact number)"
+msgstr ""
 
 msgid "compound"
 msgstr "составной"
