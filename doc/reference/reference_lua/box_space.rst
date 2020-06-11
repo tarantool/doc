@@ -1024,8 +1024,8 @@ Below is a list of all ``box.space`` functions and members.
           inserting|replacing the new value;
         * if the value is nil, then the tuple will be deleted;
         * if the value is the same as the old parameter, then no
-          `on_replace`` function will be called and the data
-          change will be skipped
+          ``on_replace`` function will be called and the data
+          change will be skipped. The return value will be absent.
         * if the value is the same as the new parameter, then it's as if
           the ``before_replace`` function wasn't called;
         * if the value is something else, then execution proceeds,
