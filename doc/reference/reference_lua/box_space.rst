@@ -1246,7 +1246,7 @@ Below is a list of all ``box.space`` functions and members.
           change will be skipped
         * if the value is the same as the new parameter, then it's as if
           the ``before_replace`` function wasn't called;
-        * if value is an other tuple, then it is used for insert/replace.
+        * if the value is some other tuple, then it is used for insert/replace.
 
         However, if a trigger function returns an old tuple, or if a
         trigger function calls :ref:`run_triggers(false) <box_space-run_triggers>`,
@@ -3182,4 +3182,3 @@ matches the specified key part.
     - - [7, 8, 9]
       - [10, 11, 9]
     ...
-
