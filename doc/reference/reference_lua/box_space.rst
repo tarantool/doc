@@ -379,9 +379,9 @@ Below is a list of all ``box.space`` functions and members.
 
     **Details about index field types:**
 
-    The ten index field types (unsigned | string | integer | number | decimal |
-    boolean | decimal | varbinary | array | scalar) differ depending on what values are allowed, and
-    what index types are allowed.
+    The ten index field types (unsigned | string | integer | number | double |
+    boolean | decimal | varbinary | array | scalar) differ depending on
+    what values are allowed, and what index types are allowed.
 
     * **unsigned**: unsigned integers between 0 and 18446744073709551615,
       about 18 quintillion. May also be called 'uint' or 'num', but 'num'
@@ -406,10 +406,9 @@ Below is a list of all ``box.space`` functions and members.
       :ref:`decimal <decimal>` module. Legal in memtx TREE or HASH indexes,
       and in vinyl TREE indexes.
     * **varbinary**: any set of octets, up to the :ref:`maximum length
-      <limitations_bytes_in_index_key>`. Legal in
-      memtx TREE or HASH indexes, and in vinyl TREE indexes.
-      A varbinary byte sequence does not have a :ref:`collation <index-collation>`
-      because its contents are not UTF-8 characters.
+      <limitations_bytes_in_index_key>`. Legal in memtx TREE or HASH indexes,
+      and in vinyl TREE indexes. A varbinary byte sequence does not have a 
+      :ref:`collation <index-collation>` because its contents are not UTF-8 characters.
     * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
     * **scalar**: null (input with ``msgpack.NULL`` or ``yaml.NULL`` or ``json.NULL``),
       booleans (true or false), or integers between
