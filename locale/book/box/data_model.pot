@@ -173,13 +173,22 @@ msgstr ""
 msgid "[!!binary 3t7e]"
 msgstr ""
 
+msgid "decimal"
+msgstr ""
+
+msgid "1.2"
+msgstr ""
+
+msgid "uuid"
+msgstr ""
+
+msgid "12a34b5c-de67-8f90-123g- h4567ab8901"
+msgstr ""
+
 msgid "ext"
 msgstr ""
 
 msgid "(converted to exact number)"
-msgstr ""
-
-msgid "1.2"
 msgstr ""
 
 msgid "compound"
@@ -360,6 +369,12 @@ msgid "**decimal**"
 msgstr ""
 
 msgid "**ext** (extension)"
+msgstr ""
+
+msgid "**uuid**"
+msgstr ""
+
+msgid "64d22e4d-ac92-|br| 4a23-899a-|br| e5934af5479"
 msgstr ""
 
 msgid "**array**"

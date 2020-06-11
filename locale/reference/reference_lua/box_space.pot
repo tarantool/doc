@@ -545,7 +545,7 @@ msgstr ""
 msgid "**Details about index field types:**"
 msgstr ""
 
-msgid "The ten index field types (unsigned | string | integer | number | decimal | boolean | decimal | varbinary | array | scalar) differ depending on what values are allowed, and what index types are allowed."
+msgid "The eleven index field types (unsigned | string | integer | number | double | boolean | decimal | uuid | varbinary | array | scalar) differ depending on what values are allowed, and what index types are allowed."
 msgstr ""
 
 msgid "**unsigned**: unsigned integers between 0 and 18446744073709551615, about 18 quintillion. May also be called 'uint' or 'num', but 'num' is deprecated. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
@@ -567,6 +567,9 @@ msgid "**boolean**: true or false. Legal in memtx TREE or HASH indexes, and in v
 msgstr ""
 
 msgid "**decimal**: exact number returned from a function in the :ref:`decimal <decimal>` module. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+
+msgid "**uuid**: stores a 128-bit quantity sequence of lower-case hexadecimal digits, representing Universally Unique Identifiers (UUID). Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
 msgstr ""
 
 msgid "**varbinary**: any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes. A varbinary byte sequence does not have a :ref:`collation <index-collation>` because its contents are not UTF-8 characters."
@@ -672,6 +675,15 @@ msgid "exact numbers returned by a function in the :ref:`decimal <decimal>` modu
 msgstr ""
 
 msgid "decimal.new(1.2) |br|"
+msgstr ""
+
+msgid "**uuid**"
+msgstr ""
+
+msgid "values returned by :ref:`uuid.new() <uuid-new>`"
+msgstr ""
+
+msgid "uuid.fromstr('|br| 64d22e4d-ac92-4a |br| 23-899a-e59f34af5479')"
 msgstr ""
 
 msgid "**array**"
