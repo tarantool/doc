@@ -467,7 +467,7 @@ Router public API
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
-    with mode parameter = {mode='read', balance=true}.
+    with mode parameter = ``{mode='read', balance=true}``.
 
 .. _router_api-callbre:
 
@@ -475,7 +475,7 @@ Router public API
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
-    with mode ``parameter = {mode='read', balance=true, prefer_replica=true}``.
+    with mode parameter = ``{mode='read', balance=true, prefer_replica=true}``.
 
 .. _router_api-route:
 

@@ -346,10 +346,10 @@ msgstr ""
 msgid "Call the function identified by function-name on the shard storing the bucket identified by bucket_id, in read-only mode (similar to calling ``vshard.router.call`` with ``mode='read'``), with preference for a replica rather than a master (similar to calling ``vshard.router.call`` with ``prefer_replica = true``). See the :ref:`Processing requests <vshard-process-requests>` section for details on function operation."
 msgstr ""
 
-msgid "This has the same effect as :ref:`vshard.router.call() <router_api-call>` with mode parameter = {mode='read', balance=true}."
+msgid "This has the same effect as :ref:`vshard.router.call() <router_api-call>` with mode parameter = ``{mode='read', balance=true}``."
 msgstr ""
 
-msgid "This has the same effect as :ref:`vshard.router.call() <router_api-call>` with mode ``parameter = {mode='read', balance=true, prefer_replica=true}``."
+msgid "This has the same effect as :ref:`vshard.router.call() <router_api-call>` with mode parameter = ``{mode='read', balance=true, prefer_replica=true}``."
 msgstr ""
 
 msgid "Return the replica set object for the bucket with the specified bucket id value."
@@ -583,10 +583,10 @@ msgstr ""
 msgid "The ``replicaset_object:callrw`` method is similar to ``replicaset_object:call``."
 msgstr ""
 
-msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to call only read-only functions using ``replicaset_object:callro()``, as the function can be executed not only on a master, but also on replicas."
+msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments. It is recommended to use ``replicaset_object:callro()`` for calling only read-only functions, as the called functions can be executed not only on a master, but also on replicas."
 msgstr ""
 
-msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments, with preference for a replica rather than a master (similar to calling vshard.router.call with prefer_replica = true). It is recommended to call only read-only functions using ``replicaset_object:callre()``, as the function can be executed not only on a master, but also on replicas."
+msgid "Call a function on the nearest available replica (distances are defined using ``replica.zone`` and ``cfg.weights`` matrix) with specified arguments, with preference for a replica rather than a master (similar to calling ``vshard.router.call`` with ``prefer_replica = true``). It is recommended to use ``replicaset_object:callre()`` for calling only read-only functions, as the called function can be executed not only on a master, but also on replicas."
 msgstr ""
 
 msgid "Router internal API"
