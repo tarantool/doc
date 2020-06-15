@@ -782,8 +782,8 @@ Router public API
 
         Call a function on the nearest available replica (distances are defined
         using ``replica.zone`` and ``cfg.weights`` matrix) with specified
-        arguments. It is recommended to call only read-only functions using
-        ``replicaset_object:callro()``, as the function can be executed not only
+        arguments. It is recommended to use
+        ``replicaset_object:callro()`` for calling only read-only functions, as the called functions can be executed not only
         on a master, but also on replicas.
 
         :param function_name: function to execute
@@ -810,9 +810,9 @@ Router public API
         ``replica.zone`` and ``cfg.weights`` matrix) with specified
         arguments,
         with preference for a replica rather than a master
-        (similar to calling vshard.router.call with prefer_replica = true).
-        It is recommended to call only read-only functions using
-        ``replicaset_object:callre()``, as the function can be executed not
+        (similar to calling ``vshard.router.call`` with ``prefer_replica = true``).
+        It is recommended to use
+        ``replicaset_object:callre()`` for calling only read-only functions, as the called function can be executed not
         only on a master, but also on replicas.
 
         :param function_name: function to execute
