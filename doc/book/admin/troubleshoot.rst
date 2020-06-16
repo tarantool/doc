@@ -5,15 +5,6 @@
 Troubleshooting guide
 ================================================================================
 
-For this guide, you need to install Tarantool
-`stat <https://github.com/tarantool/stat>`_ module:
-
-.. code-block:: console
-
-    $ sudo yum install tarantool-stat
-    $ # -- OR --
-    $ sudo apt-get install tarantool-stat
-
 .. _admin-troubleshoot-memory-issues:
 
 --------------------------------------------------------------------------------
@@ -37,10 +28,10 @@ Problem: INSERT/UPDATE-requests result in ER_MEMORY_ISSUE error
   .. code-block:: tarantoolsession
 
       -- requesting arena_used_ratio value
-      tarantool> require('stat').stat()['slab.arena_used_ratio']
+      tarantool> box.slab.info().arena_used_ratio
 
       -- requesting quota_used_ratio value
-      tarantool> require('stat').stat()['slab.quota_used_ratio']
+      tarantool> box.slab.info().quota_used_ratio
 
 **Solution**
 
@@ -63,10 +54,10 @@ Try either of the following measures:
   .. code-block:: tarantoolsession
 
       -- requesting quota_used_ratio value
-      tarantool> require('stat').stat()['slab.quota_used_ratio']
+      tarantool> box.slab.info().quota_used_ratio
 
       -- requesting items_used_ratio value
-      tarantool> require('stat').stat()['slab.items_used_ratio']
+      tarantool> box.slab.info().items_used_ratio
 
   In case of heavy memory fragmentation (``quota_used_ratio`` is getting close
   to 100%, ``items_used_ratio`` is about 50%), we recommend restarting Tarantool
@@ -99,7 +90,7 @@ and spot the CPU consumption leader. The following commands can help:
 .. code-block:: tarantoolsession
 
     -- checking the RPS of calling stored procedures
-    tarantool> require('stat').stat()['stat.op.call.rps']
+    tarantool> box.stat().CALL.rps
 
 The critical RPS value is 75 000, boiling down to 10 000 - 20 000 for a rich
 Lua application (a Lua module of 200+ lines).
@@ -107,7 +98,7 @@ Lua application (a Lua module of 200+ lines).
 .. code-block:: tarantoolsession
 
     -- checking RPS per query type
-    tarantool> require('stat').stat()['stat.op.<query_type>.rps']
+    tarantool> box.stat().<query_type>.rps
 
 The critical RPS value for SELECT/INSERT/UPDATE/DELETE requests is 100 000.
 
@@ -309,11 +300,11 @@ Example of calculating memory usage statistics:
 .. code-block:: tarantoolsession
 
     -- loading Tarantool's "clock" module with time-related routines
-    tarantool> local clock = require 'clock'
+    tarantool> clock = require 'clock'
     -- starting the timer
-    tarantool> local b = clock.proc()
+    tarantool> b = clock.proc()
     -- launching garbage collection
-    tarantool> local c = collectgarbage('count')
+    tarantool> c = collectgarbage('count')
     -- stopping the timer after garbage collection is completed
     tarantool> return c, clock.proc() - b
 
