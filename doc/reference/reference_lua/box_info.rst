@@ -224,7 +224,7 @@ variables.
       so it is shown in :ref:`box.cfg.replication <cfg_replication-replication>`.
     * :samp:`replication[{n}].upstream.status` is the replication status of the connection with instance *n*:
 
-      * ``auth`` means that :ref:`authenticated <authentication>` is happening.
+      * ``auth`` means that :ref:`authentication <authentication>` is happening.
       * ``connecting`` means that connection is happening.
       * ``disconnected`` means that it is not connected to the replica set (due to network problems, not replication errors).
       * ``follow`` means that the current instance's role is "replica" (read-only, or not read-only but acting as a replica for this remote peer in a master-master configuration), and is receiving or able to receive data from instance *n* (upstream) master.
@@ -270,7 +270,7 @@ variables.
       Even if instance *n* is :ref:`removed <replication-remove_instances>`,
       its values will still appear here; however,
       its values will be overridden if an instance joins later with the same UUID.
-      The vector clock will only appear if instance *n* has made a data-change operation.
+      Vendor clock pairs will only appear if ``lsn > 0``.
       :samp:`replication[{n}].downstream.vclock` may be the same as the current instance's vclock (``box.info.vclock``)
       because this is for all known vclock values of the cluster.
       A master will know what is in a replica's copy of vclock
@@ -278,7 +278,7 @@ variables.
       the change information to the replica (including the master's
       vector clock), and the replica replies with what is in its entire
       vector clock table.
-      Also the replica sends its entire vendor clock table in response
+      Also the replica sends its entire vector clock table in response
       to a master's heartbeat message, see the heartbeat-message examples
       in section :ref:`Binary protocol -- replication <box_protocol-replication>`.
 
