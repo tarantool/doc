@@ -305,6 +305,7 @@ recommended.
     of seconds. Only the current fiber can be made to sleep.
 
     :param time: number of seconds to sleep.
+    :Exception: see the :ref:`Example of yield failure <fiber-fail>`.
 
     **Example:**
 
@@ -320,6 +321,8 @@ recommended.
 
     Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`,
     except that `fiber.sleep(0)` depends on a timer, `fiber.yield()` does not.
+
+    :Exception: see the :ref:`Example of yield failure <fiber-fail>`.
 
     **Example:**
 
@@ -846,6 +849,33 @@ the status is dead because the cancel worked.
     ...
 
 .. _coroutine:  http://www.lua.org/pil/contents.html#9
+
+.. _fiber-fail:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example of yield failure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Warning: :ref:`yield() <fiber-yield>` and any function which implicitly yields
+(such as :ref:`sleep() <fiber-sleep>`) can fail (raise an exception).
+For example, this function has a loop which repeats until :ref:`cancel() <fiber_object-cancel>` happens.
+The last thing that it will print is 'before yield', which demonstrates
+that ``yield()`` failed, the loop did not continue until :ref:`testcancel() <fiber-testcancel>` failed.
+
+.. code-block:: none
+
+    fiber = require('fiber')
+    function function_name()
+      while true do
+        print('before testcancel')
+        fiber.testcancel()
+        print('before yield')
+        fiber.yield()
+      end
+    end
+    fiber_object = fiber.create(function_name)
+    fiber.sleep(.1)
+    fiber_object:cancel()
 
 .. _fiber_ipc-channel:
 
