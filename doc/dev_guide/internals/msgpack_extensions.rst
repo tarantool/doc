@@ -189,7 +189,8 @@ The value here will be the same as the lower part of the Response-Code-Indicator
 
 ``MP_ERROR_FIELDS`` (0x06) (MP_MAPs) Additional fields depending on error
 type. For example, if ``MP_ERROR_TYPE`` is "AccessDeniedError", then ``MP_ERROR_FIELDS``
-will include "object_type", "object_name", "access_type".
+will include "object_type", "object_name", "access_type". This field will be 
+omitted from the response body if there are no additional fields available.
 
 Client and connector programmers should ensure that unknown map keys are ignored,
 and should check for addition of new keys in the Tarantool
