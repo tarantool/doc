@@ -1010,6 +1010,36 @@ Binary protocol -- replication
     Then you must process every request that could come through other masters.
     Every request between masters will have Additional LSN and SERVER_ID.
 
+.. _box_protocol-heartbeat:
+
+Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
+For example, if there is a replica with id = 2,  
+and a timestamp with a moment in 2020, a master might send this:
+
+.. code-block:: none
+
+    83                      MP_MAP, size 3
+    00                        Main-Map Item #1 IPROTO_REQUEST_TYPE
+    00                          MP_UINT = 0
+    02                        Main-Map Item #2 IPROTO_REPLICA_ID
+    02                          MP_UINT = 2 = id
+    04                        Main-Map Item #3 IPROTO_TIMESTAMP
+    cb                          MP_DOUBLE (MessagePack "Float 64")
+    41 d7 ba 06 7b 3a 03 21     8-byte timestamp
+
+and the replica might send back this:
+
+.. code-block:: none
+
+    81                       MP_MAP, size 1
+    00                         Main-Map Item #1 Response-code-indicator
+    00                         MP_UINT = 0 = IPROTO_OK
+    81                         Main-Map Item #2, MP_MAP, size 1
+    26                           Sub-Map Item #1 IPROTO_VCLOCK
+    81                           Sub-Map Item #2, MP_MAP, size 1
+    01                             MP_UINT = 1 = id (part 1 of vclock)
+    06                             MP_UINT = 6 = lsn (part 2 of vclock)
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 XLOG / SNAP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
