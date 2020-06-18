@@ -20,6 +20,7 @@ Basic parameters
 * :ref:`rebalancer_disbalance_threshold <cfg_basic-rebalancer_disbalance_threshold>`
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
 * :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
+* :ref:` discovery_set <cfg_basic-discovery_set>`
 
 .. _cfg_basic-sharding:
 
@@ -161,6 +162,18 @@ Basic parameters
     | Default: 1
     | Dynamic: yes
 
+.. _cfg_basic-discovery_set:
+
+.. confval:: discovery_set
+
+    A mode of a bucket discovery fiber: ``on``/``off``/``once``. See details
+    :ref:`below <router_api-discovery_set>`.
+
+    | Type: string
+    | Default: 'on'
+    | Dynamic: yes
+
+
 .. _vshard-config-replica-set-funcs:
 
 -------------------------------------------------------------------------------
@@ -219,6 +232,7 @@ Router public API
 * :ref:`vshard.router.bucket_count() <router_api-bucket_count>`
 * :ref:`vshard.router.sync(timeout) <router_api-sync>`
 * :ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`
+* :ref:`vshard.router.discovery_set() <router_api-discovery_set>`
 * :ref:`vshard.router.info() <router_api-info>`
 * :ref:`vshard.router.buckets_info() <router_api-buckets_info>`
 * :ref:`replicaset.call() <router_api-replicaset_call>`
@@ -640,6 +654,43 @@ Router public API
 .. function:: vshard.router.discovery_wakeup()
 
     Force wakeup of the bucket discovery fiber.
+
+.. _router_api-discovery_set:
+
+.. function:: vshard.router.discovery_set(mode)
+
+    Turn on/off the background discovery fiber used by the router to
+    find buckets.
+
+    :param mode: working mode of a discovery fiber. There are three modes: ``on``,
+                 ``off`` and ``once``
+
+    When the mode is ``on`` (default), the discovery fiber works all the lifetime
+    of the router. Even after all buckets are discovered, it will
+    still come to storages and download their buckets with some big
+    period. This is useful if a bucket topology changes often and the number of
+    buckets is not big. The router will keep its route table up to
+    date even when no requests are processed.
+
+    When the mode is ``off``, a discovery is disabled completely.
+
+    When the mode is ``once``, a discovery will start, find locations of
+    all buckets, and then the discovery fiber is terminated. This
+    is good for large bucket count and for clusters, where rebalancing is rare.
+
+    The method is good to enable/disable discovery after the router is
+    already started, but discovery is enabled by default. You may want
+    to never enable it even for a short time - then specify
+    discovery_mode option in the :ref:`configuration <cfg_basic-discovery_set>`.
+    It takes the same values as :samp:`vshard.router.discovery_set({mode})`.
+
+    You may decide to turn off discovery or make it ``once`` if you have
+    many routers, or tons of buckets (hundreds of thousands and more),
+    and you see that the discovery process consumes notable CPU % on
+    routers and storages. In that case it may be wise to turn off the
+    discovery when there is no rebalancing in the cluster. And turn it
+    on for new routers, as well as for all routers when a rebalancing is
+    started.
 
 .. _router_api-info:
 
