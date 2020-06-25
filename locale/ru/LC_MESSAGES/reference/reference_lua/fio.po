@@ -1237,6 +1237,13 @@ msgstr ""
 "(Буферы можно ввести с помощью :ref:`buffer.ibuf <buffer-module>`.)"
 
 msgid ""
+"In case of an error the method returns ``nil, err`` and sets the error to"
+" ``errno``."
+msgstr ""
+"Если вызов метода закончился ошибкой, то возвращается ``nil, err`` и "
+"номер ошибки записывается в ``errno``."
+
+msgid ""
 "ibuf = require('buffer').ibuf()\n"
 "---\n"
 "...\n"

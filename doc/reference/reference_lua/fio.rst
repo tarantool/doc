@@ -892,15 +892,20 @@ functions.
                        ``read(buffer, count)``)
         :param number count: number of bytes to read
 
-        If the format is ``read()`` -- omitting ``count`` -- then read all
-        bytes in the file.
+        :return: * If the format is ``read()`` -- omitting ``count`` -- then read all
+                   bytes in the file.
 
-        If the format is ``read()``  or ``read([count])`` then return a string
-        containing the data that was read from the file, or nil if failure.
+                 * If the format is ``read()``  or ``read([count])`` then return a string
+                   containing the data that was read from the file, or nil if failure.
 
-        If the format is ``read(buffer, count)`` then return the data
-        to the buffer.
-        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+                 * If the format is ``read(buffer, count)`` then return the data
+                   to the buffer.
+                   (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+
+                 * In case of an error the method returns ``nil, err`` and sets
+                   the error to ``errno``.
+
+                
 
         .. code-block:: tarantoolsession
 
