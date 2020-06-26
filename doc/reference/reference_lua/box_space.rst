@@ -1386,8 +1386,9 @@ Below is a list of all ``box.space`` functions and members.
                                  (#tuple + negative field number + 1)
         :param lua_value  value: what value will be applied
 
-        :return: the updated tuple.
-        :rtype:  tuple
+        :return: * the updated tuple
+                 * nil if the key is not found
+        :rtype:  tuple or nil
 
         **Possible errors:** it is illegal to modify a primary-key field.
 
