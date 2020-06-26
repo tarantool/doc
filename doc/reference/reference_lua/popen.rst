@@ -394,6 +394,17 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
+
+        Possible errors, raised on incorrect parameters or when the fiber is cancelled:
+
+        * IllegalParams:    incorrect type or value of a parameter
+        * IllegalParams:    called on a closed handle
+        * IllegalParams:    opts.stdout and opts.stderr are both set
+        * IllegalParams:    a requested IO operation is not supported by
+          the handle (stdout / stderr is not piped)
+        * IllegalParams:    attempt to operate on a closed file descriptor
+        * FiberIsCancelled: cancelled by an outside code
+
         :return: true on success, false on error
         :rtype:  (if success) string with read value, empty string if EOF
 
@@ -409,15 +420,7 @@ Below is a list of all ``popen`` functions and handle methods.
         stderr if one sets ``opts.stderr`` to ``true`` (it is not legal to set both
         ``opts.stdout`` and ``opts.stderr`` to ``true``).
 
-        Possible raised errors are:
 
-        * IllegalParams:    incorrect type or value of a parameter
-        * IllegalParams:    called on a closed handle
-        * IllegalParams:    opts.stdout and opts.stderr are both set
-        * IllegalParams:    a requested IO operation is not supported by
-          the handle (stdout / stderr is not piped)
-        * IllegalParams:    attempt to operate on a closed file descriptor
-        * FiberIsCancelled: cancelled by an outside code
 
         Possible error reasons when ``nil, err`` is returned are:
 
