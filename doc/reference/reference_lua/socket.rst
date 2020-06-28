@@ -212,7 +212,9 @@ the function invocations will look like ``sock:function_name(...)``.
     :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]`
     :code:`}`.
     ``handler_function`` is mandatory; it may have a
-    single parameter = the socket; it is for continuous
+    single parameter = the socket;
+    it is executed once after accept() happens (once per connection);
+    it is for continuous
     operation after the connection is made.
     ``prepare_function`` is optional;
     it may have whatever parameters the user defines;
