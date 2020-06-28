@@ -214,8 +214,12 @@ the function invocations will look like ``sock:function_name(...)``.
     ``handler_function`` is mandatory; it may have a
     single parameter = the socket; it is for continuous
     operation after the connection is made.
-    ``prepare_function`` is optional; it is executed once before
-    any connection is made. Examples:
+    ``prepare_function`` is optional;
+    it may have whatever parameters the user defines;
+    it should return nothing;
+    it is executed only once before bind() on the listening socket
+    (not once per connection).
+    Examples:
 
         .. code-block:: none
 
