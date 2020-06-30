@@ -100,7 +100,7 @@
 
     However, by specifying ``replication_skip_conflict = true``,
     users can state that such errors may be ignored. So instead of saving
-    the broken transaction to the xlog, it will be written there as ``NOP``.
+    the broken transaction to the xlog, it will be written there as ``NOP`` (No operation).
 
     Example:
 
