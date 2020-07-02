@@ -4,22 +4,22 @@
 Resolving replication conflicts
 ================================================================================
 
-*************************************************
+--------------------------------------------------------------------------------
 Solving problems with master-master replication
-*************************************************
+--------------------------------------------------------------------------------
 
 Tarantool guarantees that every update is applied only once on every replica.
 However, due to the asynchronous nature of replication, the order of updates is
 not guaranteed. We now analyze this problem with more details, provide examples
 of replication going out of sync, and suggest solutions.
 
---------------------------------------------------------
-    Replacing the same primary key
---------------------------------------------------------
+*******************************
+Replacing the same primary key
+*******************************
 
-**Case 1:** You have two instances of Tarantool. For example, you try to make a 
+**Case 1:** You have two instances of Tarantool. For example, you try to make a
 ``replace`` operation with the same primary key on both instances in the same time.
-This will cause a conflict over which tuple to save and which one to discard. 
+This will cause a conflict over which tuple to save and which one to discard.
 
 Tarantool :ref:`trigger functions <triggers>` can help here to implement the
 rules of conflict resolution on some condition. For example, if you have a
@@ -42,8 +42,8 @@ is called after a row is inserted into the space, and ``before_replace``
 is called before that.
 
 To set a ``_space:on_replace()`` trigger correctly, you also need the right timing. The best
-timing to use it is when ``_space`` is just created, which is 
-the :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` trigger. 
+timing to use it is when ``_space`` is just created, which is
+the :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` trigger.
 
 You will also need to utilize ``box.on_commit`` to get access to the space being
 created. The resulting snippet would be the following:
@@ -64,9 +64,9 @@ created. The resulting snippet would be the following:
 
 .. _replication-duplicates:
 
------------------------------------------------------
+****************************
 Preventing duplicate insert
------------------------------------------------------
+****************************
 
 .. _replication-replication_stops:
 
