@@ -221,10 +221,10 @@ Router public API
 * :ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`
 * :ref:`vshard.router.info() <router_api-info>`
 * :ref:`vshard.router.buckets_info() <router_api-buckets_info>`
-* :ref:`replicaset.call() <router_api-replicaset_call>`
-* :ref:`replicaset.callro() <router_api-replicaset_callro>`
-* :ref:`replicaset.callrw() <router_api-replicaset_callrw>`
-* :ref:`replicaset.callre() <router_api-replicaset_callre>`
+* :ref:`replicaset_object:call() <router_api-replicaset_call>`
+* :ref:`replicaset_object:callro() <router_api-replicaset_callro>`
+* :ref:`replicaset_object:callrw() <router_api-replicaset_callrw>`
+* :ref:`replicaset_object:callre() <router_api-replicaset_callre>`
 
 .. _router_api-bootstrap:
 
@@ -311,9 +311,10 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` – a request timeout, in seconds. If the router cannot identify a
+        * ``timeout`` – a request timeout, in seconds. If the ``router`` cannot identify a
           shard with the specified ``bucket_id``, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -373,6 +374,7 @@ Router public API
         * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -406,6 +408,7 @@ Router public API
         * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -441,6 +444,7 @@ Router public API
         * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -463,7 +467,7 @@ Router public API
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
-    with mode parameter = {mode='read', balance=true}.
+    with mode parameter = ``{mode='read', balance=true}``.
 
 .. _router_api-callbre:
 
@@ -471,7 +475,7 @@ Router public API
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
-    with mode ``parameter = {mode='read', balance=true, prefer_replica=true}``.
+    with mode parameter = ``{mode='read', balance=true, prefer_replica=true}``.
 
 .. _router_api-route:
 
@@ -666,7 +670,7 @@ Router public API
     Bucket parameters:
 
     * ``available_ro`` – the number of buckets known to the ``router`` and available for read requests
-    * ``available_rw`` – the number of buckets known to the router and available for read and write requests
+    * ``available_rw`` – the number of buckets known to the ``router`` and available for read and write requests
     * ``unavailable`` – the number of buckets known to the ``router`` but unavailable for any requests
     * ``unreachable`` – the number of buckets whose replica sets are not known to the ``router``
 
@@ -714,96 +718,118 @@ Router public API
 
     :Return: a map of the following type: ``{bucket_id = 'unknown'/replicaset_uuid}``
 
-.. _router_api-replicaset_call:
+.. class:: replicaset_object
 
-.. function:: replicaset.call(replicaset, function_name, {argument_list}, {options})
+    .. _router_api-replicaset_call:
 
-    Call a function on a nearest available master (distances are defined using
-    ``replica.zone`` and ``cfg.weights`` matrix) with specified
-    arguments.
+    .. method:: call(function_name, {argument_list}, {options})
 
-    .. NOTE::
+        Call a function on a nearest available master (distances are defined using
+        ``replica.zone`` and ``cfg.weights`` matrix) with specified
+        arguments.
 
-        The ``replicaset.call`` method is similar to ``replicaset.callrw``.
+        .. NOTE::
 
-    :param replicaset: UUID of a replica set
-    :param function_name: function to execute
-    :param argument_list: array of the function's arguments
-    :param options:
+            The ``replicaset_object:call`` method is similar to ``replicaset_object:callrw``.
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-          shard with the bucket id, the operation will be repeated until the
-          timeout is reached.
-        * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supported.
+        :param function_name: function to execute
+        :param argument_list: array of the function's arguments
+        :param options:
 
-.. _router_api-replicaset_callrw:
+            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
 
-.. function:: replicaset.callrw(replicaset, function_name, {argument_list}, {options})
+            * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
+              ``buffer``, ``on_push`` are also supported.
 
-    Call a function on a nearest available master (distances are defined using
-    ``replica.zone`` and ``cfg.weights`` matrix) with a specified
-    arguments.
+        :return: 
 
-    .. NOTE::
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
-        The ``replicaset.callrw`` method is similar to ``replicaset.call``.
+    .. _router_api-replicaset_callrw:
 
-    :param replicaset: UUID of a replica set
-    :param function_name: function to execute
-    :param argument_list: array of the function's arguments
-    :param options:
+    .. method:: callrw(function_name, {argument_list}, {options})
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-          shard with the bucket id, the operation will be repeated until the
-          timeout is reached.
-        * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supported.
+        Call a function on a nearest available master (distances are defined using
+        ``replica.zone`` and ``cfg.weights`` matrix) with a specified
+        arguments.
 
-.. _router_api-replicaset_callro:
+        .. NOTE::
 
-.. function:: replicaset.callro(function_name, {argument_list}, {options})
+            The ``replicaset_object:callrw`` method is similar to ``replicaset_object:call``.
 
-    Call a function on the nearest available replica (distances are defined using
-    ``replica.zone`` and ``cfg.weights`` matrix) with specified
-    arguments. It is recommended to call only read-only functions using
-    ``replicaset.callro()``, as the function can be executed not only on a master,
-    but also on replicas.
+        :param function_name: function to execute
+        :param argument_list: array of the function's arguments
+        :param options:
 
-    :param replicaset: UUID of a replica set
-    :param function_name: function to execute
-    :param argument_list: array of the function's arguments
-    :param options:
+            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-          shard with the bucket id, the operation will be repeated until the
-          timeout is reached.
-        * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supported.
+            * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
+              ``buffer``, ``on_push`` are also supported.
 
-.. _router_api-replicaset_callre:
+        :return: 
 
-.. function:: replicaset.callre(function_name, {argument_list}, {options})
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
-    Call a function on the nearest available replica (distances are defined using
-    ``replica.zone`` and ``cfg.weights`` matrix) with specified
-    arguments,
-    with preference for a replica rather than a master
-    (similar to calling vshard.router.call with prefer_replica = true).
-    It is recommended to call only read-only functions using
-    ``replicaset.callre()``, as the function can be executed not only on a master,
-    but also on replicas.
+    .. _router_api-replicaset_callro:
 
-    :param replicaset: UUID of a replica set
-    :param function_name: function to execute
-    :param argument_list: array of the function's arguments
-    :param options:
+    .. method:: callro(function_name, {argument_list}, {options})
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
-          shard with the bucket id, the operation will be repeated until the
-          timeout is reached.
-        * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
-          ``buffer``, ``on_push`` are also supported.
+        Call a function on the nearest available replica (distances are defined
+        using ``replica.zone`` and ``cfg.weights`` matrix) with specified
+        arguments. It is recommended to use
+        ``replicaset_object:callro()`` for calling only read-only functions, as the called functions can be executed not only
+        on a master, but also on replicas.
+
+        :param function_name: function to execute
+        :param argument_list: array of the function's arguments
+        :param options:
+
+            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
+
+            * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
+              ``buffer``, ``on_push`` are also supported.
+
+        :return: 
+
+            * result of ``function_name`` on success
+            * nill, err otherwise
+
+    .. _router_api-replicaset_callre:
+
+    .. method:: replicaset:callre(function_name, {argument_list}, {options})
+
+        Call a function on the nearest available replica (distances are defined using
+        ``replica.zone`` and ``cfg.weights`` matrix) with specified
+        arguments,
+        with preference for a replica rather than a master
+        (similar to calling ``vshard.router.call`` with ``prefer_replica = true``).
+        It is recommended to use
+        ``replicaset_object:callre()`` for calling only read-only functions, as the called function can be executed not
+        only on a master, but also on replicas.
+
+        :param function_name: function to execute
+        :param argument_list: array of the function's arguments
+        :param options:
+
+            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+              shard with the bucket id, the operation will be repeated until the
+              timeout is reached.
+
+            * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
+              ``buffer``, ``on_push`` are also supported.
+
+        :return: 
+
+            * result of ``function_name`` on success
+            * nill, err otherwise
 
 .. _vshard_api_reference-router_internal_api:
 
