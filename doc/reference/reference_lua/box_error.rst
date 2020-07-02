@@ -49,7 +49,7 @@ Below is a list of all ``box.error`` functions.
     | :ref:`error_object.set_prev()        | Set the previous error          |
     | <box_error-set_prev>`                |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`Custom error types             | Create custom error type        |
+    | :ref:`Custom error types             | Create a custom error type      |
     | <box_error-custom_type>`             |                                 |
     +--------------------------------------+---------------------------------+
 
@@ -320,7 +320,7 @@ Below is a list of all ``box.error`` functions.
 Errors can be created in 2 ways: with ``box.error.new()`` and with ``box.error()``.
 
 Both used to take either code, reason, <reason string args> or
-{code = code, reason = reason, ...} arguments.
+{code = code, reason = reason, ...}.
 
 In the first option instead of code you can specify a string as its own
 error type. In the second option you can specify both code and type.
@@ -330,22 +330,22 @@ error type. In the second option you can specify both code and type.
     box.error('MyErrorType', 'Message')
     box.error({type = 'MyErrorType', code = 1024, reason = 'Message'})
 
-Or no-throw version:
+Or a no-throw version:
 
 .. code-block:: lua
 
     box.error.new('MyErrorType', 'Message')
     box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})
 
-When a custom type is specified, it is shown in ``err.type`` attribute.
-When it is not specified, ``err.type`` shows one of built-in errors such as
+When a custom type is specified, it is reported in the ``err.type`` attribute.
+When it is not specified, ``err.type`` reports one of built-in errors such as
 ``'ClientError'``, ``'OurOfMemory'``, etc.
 
-Name length limit on the custom type is *63 bytes*. Everything longer then the
+The maximum name length for a custom type is *63 bytes*. Everything longer than this
 limit is truncated.
 
-Original error type can be checked using ``err.base_type`` member, although
-normally it should not be used. For user-defined types base type is ``'CustomError'``.
+The original error type can be checked using the ``err.base_type`` member, although
+normally it should not be used. For user-defined types, the base type is ``'CustomError'``.
 
 **Example:**
 
@@ -368,7 +368,7 @@ normally it should not be used. For user-defined types base type is ``'CustomErr
     ...
 
 You can also use a format string to compose an error message for
-``'CustomError type'``.
+the ``'CustomError'`` type.
 
 .. code-block:: lua
 
