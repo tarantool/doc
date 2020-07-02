@@ -1649,8 +1649,9 @@ Below is a list of all ``box.space`` functions and members.
         :param number-or-string  field_identifier: what field the operation will apply to.
         :param lua_value  value: what value will be applied
 
-        :return: the updated tuple.
-        :rtype:  tuple
+        :return: * the updated tuple
+                 * nil if the key is not found
+        :rtype:  tuple or nil
 
         **Possible errors:** it is illegal to modify a primary-key field.
 
