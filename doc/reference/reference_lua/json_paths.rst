@@ -78,21 +78,21 @@ of nested structures are also supported.
         - - [1, {}, [2, 3, {'key3': 20, 'key4': 'value4'}], 'inserted value']
         ...
 
-Note, that there is the same rule, as in tuple field :ref:`access by JSON
-<box_tuple-field_path>`, for field names looking like JSON paths: firstly the
-whole path is interpreted as a field name. If such a name does not exist, then
+Notice that field names that look like JSON paths are processed similarly to :ref:`accessing tuple fields by JSON
+<box_tuple-field_path>`: first, the
+whole path is interpreted as a field name; if such a name does not exist, then
 it is treated as a path.
 
-For example, if there is a field name *'field.name.like.json'*, then this update
+For example, for a field name ``field.name.like.json``, this update
 
 .. cssclass:: highlight
 .. parsed-literal::
 
     :samp:`{object-name}:update({..., 'field.name.like.json', ...})`
 
-will update this field, instead of keys *'field' -> 'name' ->
-'like' -> 'json'*. If such a name is needed as a part of a bigger
-path, then it should be wrapped in quotes and []:
+will update this field instead of keys ``field`` -> ``name`` ->
+``like`` -> ``json``. If you need such a name as part of a bigger
+path, then you should wrap it in quotes ``""`` and brackets ``[]``:
 
 .. cssclass:: highlight
 .. parsed-literal::
@@ -112,9 +112,9 @@ path, then it should be wrapped in quotes and []:
 
   ``{'#', 'field1.field2', 10}`` is not.
 
-  That limitation originates from a problem, that keys in a map
+  This limitation originates from the problem that keys in a map
   are not ordered anyhow, and ``'#'`` with more than 1 key would lead
-  to undefined behaviour.
+  to undefined behavior.
 
 * Operation ``'!'`` on maps can't create a key, if it exists already.
 
@@ -127,7 +127,7 @@ path, then it should be wrapped in quotes and []:
 
 * They consume less space in WAL, because for an update only its
   keys, operations, and arguments are stored. It is cheaper to
-  store update of one deep field, than the whole tuple.
+  store an update of one deep field than of the whole tuple.
 
 * They are faster. Firstly, this is because they are implemented
   in C, and have no problems with Lua GC and dynamic typing.
@@ -137,8 +137,8 @@ path, then it should be wrapped in quotes and []:
   arguments).
 
 * They are available from remote clients, as well as any other
-  DML. Before JSON updates to update one deep part of a tuple it
-  would be necessary to download that tuple, update it in memory,
-  send it back - 2 network hops. With JSON paths it can be 1 when
+  DML. Before JSON updates became available in Tarantool, to update one deep part of a tuple, it
+  was necessary to download that tuple, update it in memory,
+  and send it back -- 2 network hops. With JSON paths, it can be 1 hop when
   the update can be described in paths.
   
