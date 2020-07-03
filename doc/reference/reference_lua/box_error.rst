@@ -317,13 +317,24 @@ Below is a list of all ``box.error`` functions.
                             Custom error types
 ===============================================================================
 
-Errors can be created in 2 ways: with ``box.error.new()`` and with ``box.error()``.
+From above you know that errors can be created in two ways: with ``box.error.new()``
+and with ``box.error()``.
 
-Both used to take either code, reason, <reason string args> or
-{code = code, reason = reason, ...}.
+Both methods can take arguments either as a list (``code, reason, <reason string args>``):
 
-In the first option instead of code you can specify a string as its own
-error type. In the second option you can specify both code and type.
+.. code-block:: lua
+
+    box.error(9, 'my_space', 'reason') -- error: 'Failed to create space my_space: reason'
+
+...or as a table (``{code = code, reason = reason, ...}``):
+
+.. code-block:: lua
+
+    box.error({code = 9, reason = 'Failed to create space my_space: reason'})
+
+It is also possible to specify your own type of errors instead of pre-defined
+ones. Put a string with your type in the ``type`` field if you pass arguments as
+a table, or instead of the ``code`` parameter if you use listing:
 
 .. code-block:: lua
 
@@ -341,11 +352,12 @@ When a custom type is specified, it is reported in the ``err.type`` attribute.
 When it is not specified, ``err.type`` reports one of built-in errors such as
 ``'ClientError'``, ``'OurOfMemory'``, etc.
 
-The maximum name length for a custom type is *63 bytes*. Everything longer than this
-limit is truncated.
+The maximum name length for a custom type is *63 bytes*. Everything longer than
+this limit is truncated.
 
-The original error type can be checked using the ``err.base_type`` member, although
-normally it should not be used. For user-defined types, the base type is ``'CustomError'``.
+The original error type can be checked using the ``err.base_type`` member,
+although normally it should not be used. For user-defined types, the base type
+is ``'CustomError'``.
 
 **Example:**
 
@@ -372,4 +384,4 @@ the ``'CustomError'`` type.
 
 .. code-block:: lua
 
-    box.error("MyCustomType", "The error reason: %s", "some error reason")
+    box.error('MyCustomType', 'The error reason: %s', 'some error reason')
