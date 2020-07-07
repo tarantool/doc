@@ -803,10 +803,6 @@ msgid "-- Step 1: Make the space.\n"
 "-- Or, select using the same function as was used for insertion\n"
 "box.space.x:insert{'a', 'wombat'}\n"
 "box.space.x:insert{'b', 'rabbit'}\n"
-"-- Select using only the first letter, it will work because that is the key\n"
-"-- Or, select using the same function as was used for insertion\n"
-"box.space.x:insert{'a', 'wombat'}\n"
-"box.space.x:insert{'b', 'rabbit'}\n"
 "box.space.x.index.j:select('w')\n"
 "box.space.x.index.j:select(box.func.F:call({{'x', 'wombat'}}));"
 msgstr ""
@@ -1615,6 +1611,9 @@ msgid "In the update: |br| ``box.space.tester:update({999}, {{'=', 2, 'XYZ'}})``
 msgstr ""
 
 msgid "In the update: |br| ``box.space.tester:update({999}, {{':', 2, 2, 1, '!!'}})`` |br| The third argument is ``':'``, that is, this is the example of splice. The fourth argument is ``2`` because the change will occur in ``field[2]``. The fifth argument is 2 because deletion will begin with the second byte. The sixth argument is 1 because the number of bytes to delete is 1. The seventh argument is ``'!!'``, because ``'!!'`` is to be added at this position. Therefore, after this update, ``field[1]`` = ``999``, ``field[2]`` = ``'X!!Z'``."
+msgstr ""
+
+msgid "Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`."
 msgstr ""
 
 msgid "Update or insert a tuple."

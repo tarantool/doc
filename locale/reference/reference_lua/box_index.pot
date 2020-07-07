@@ -519,7 +519,7 @@ msgid "-- Create a space named tester.\n"
 "tarantool> sp:insert{2, 'Y', 'Row with field[2]=Y'}\n"
 "tarantool> sp:insert{3, 'Z', 'Row with field[2]=Z'}\n"
 "-- Select all tuples where the secondary index\n"
-"-- keys are greater than 'X'.`\n"
+"-- keys are greater than 'X'.\n"
 "tarantool> sp.index.secondary:select({'X'}, {\n"
 "         >   iterator = 'GT',\n"
 "         >   limit = 1000\n"
@@ -544,7 +544,7 @@ msgstr ""
 msgid ":samp:`{field-value} [, {field-value ...}]` is optional. If it is omitted, then every key in the index is considered to be a match, regardless of iterator type. Therefore, for the example above, ``box.space.tester:select{}`` will select every tuple in the tester space via the first (primary-key) index."
 msgstr ""
 
-msgid ":samp:`box.space.{space-name}.index.{index-name}:select(...)[1]``. can be replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`. That is, ``get`` can be used as a convenient shorthand to get the first tuple in the tuple set that would be returned by ``select``. However, if there is more than one tuple in the tuple set, then ``get`` throws an error."
+msgid ":samp:`box.space.{space-name}.index.{index-name}:select(...)[1]`. can be replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`. That is, ``get`` can be used as a convenient shorthand to get the first tuple in the tuple set that would be returned by ``select``. However, if there is more than one tuple in the tuple set, then ``get`` throws an error."
 msgstr ""
 
 msgid "**Example with BITSET index:**"
@@ -708,6 +708,9 @@ msgid "what value will be applied"
 msgstr ""
 
 msgid "the updated tuple."
+msgstr ""
+
+msgid "Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`."
 msgstr ""
 
 msgid "Delete a tuple identified by a key."
