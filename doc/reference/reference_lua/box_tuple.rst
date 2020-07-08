@@ -638,6 +638,7 @@ Below is a list of all ``box.tuple`` functions.
             - ['Fld#1', 'B', 'Fld#3', 'Fld#4', 'Fld#5']
             ...
 
+        Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`.
 
     .. _box_tuple-upsert:
 

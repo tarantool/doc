@@ -2874,6 +2874,13 @@ msgstr ""
 "данном положении будет добавляться ``'!!'``. Таким образом, после данного"
 " обновления ``field[1]`` = ``999``, ``field[2]`` = ``'X!!Z'``."
 
+msgid ""
+"Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths"
+"<json_paths-module>`."
+msgstr ""
+"Начиная с версии Tarantool 2.3 кортеж можно обновить с помощью "
+":ref:`JSON-путей <json_paths-module>`."
+
 msgid "Update or insert a tuple."
 msgstr "Обновление или вставка кортежа."
 
