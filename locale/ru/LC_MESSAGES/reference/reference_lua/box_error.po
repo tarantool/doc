@@ -488,7 +488,7 @@ msgid ""
 "although normally it should not be used. For user-defined types base type"
 " is ``'CustomError'``."
 msgstr ""
-"Оригинальный тип ошибки можно проверить, используя член `err.base_type``,"
+"Исходный тип ошибки можно проверить, используя член ``err.base_type``,"
 " хотя, как правило, его не следует использовать. Для пользовательских "
 "типов базовым типом является ``'CustomError'``."
 
