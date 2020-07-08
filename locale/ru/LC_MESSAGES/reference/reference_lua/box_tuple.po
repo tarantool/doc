@@ -1047,6 +1047,13 @@ msgstr ""
 "..."
 
 msgid ""
+"Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths"
+"<json_paths-module>`."
+msgstr ""
+"Начиная с версии Tarantool 2.3 кортеж можно обновить с помощью "
+":ref:`JSON-путей <json_paths-module>`."
+
+msgid ""
 "The same as ``tuple_object:update()``, but ignores errors. In case of an "
 "error the tuple is left intact, but an error message is printed. Only "
 "client errors are ignored, such as a bad field type, or wrong field "
