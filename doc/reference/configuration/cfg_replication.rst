@@ -99,7 +99,8 @@
     with error = ER_TUPLE_FOUND.
 
     However, by specifying ``replication_skip_conflict = true``,
-    users can state that such errors may be ignored.
+    users can state that such errors may be ignored. So instead of saving
+    the broken transaction to the xlog, it will be written there as ``NOP`` (No operation).
 
     Example:
 
@@ -111,6 +112,11 @@
     | Default: false
     | Dynamic: **yes**
 
+
+    .. NOTE::
+
+        ``replication_skip_conflict = true`` is recommended to be used only for
+        manual replication recovery.
 
 .. _cfg_replication-replication_sync_lag:
 

@@ -704,10 +704,13 @@ msgstr ""
 msgid "By default, if a replica adds a unique key that another replica has added, replication :ref:`stops <replication-replication_stops>` with error = ER_TUPLE_FOUND."
 msgstr ""
 
-msgid "However, by specifying ``replication_skip_conflict = true``, users can state that such errors may be ignored."
+msgid "However, by specifying ``replication_skip_conflict = true``, users can state that such errors may be ignored. So instead of saving the broken transaction to the xlog, it will be written there as ``NOP`` (No operation)."
 msgstr ""
 
 msgid "box.cfg{replication_skip_conflict=true}"
+msgstr ""
+
+msgid "``replication_skip_conflict = true`` is recommended to be used only for manual replication recovery."
 msgstr ""
 
 msgid "The maximum :ref:`lag <box_info_replication_upstream_lag>` allowed for a replica. When a replica :ref:`syncs <replication-orphan_status>` (gets updates from a master), it may not catch up completely. The number of seconds that the replica is behind the master is called the \"lag\". Syncing is considered to be complete when the replica's lag is less than or equal to ``replication_sync_lag``."
