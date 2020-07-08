@@ -785,8 +785,9 @@ Below is a list of all ``box.index`` functions and members.
         :param number-or-string field_identifier: what field the operation will apply to.
         :param lua_value  value: what value will be applied
 
-        :return: the updated tuple.
-        :rtype:  tuple
+        :return: * the updated tuple
+                 * nil if the key is not found
+        :rtype:  tuple or nil
 
         Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`.
 

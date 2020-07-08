@@ -244,8 +244,7 @@ msgid ""
 "Read more about index operations :ref:`below <index-box_index-"
 "operations>`."
 msgstr ""
-"Подробнее об операциях с индексом читайте "
-":ref:`ниже <index-box_index-"
+"Подробнее об операциях с индексом читайте :ref:`ниже <index-box_index-"
 "operations>`."
 
 msgid "Data types"
@@ -331,15 +330,18 @@ msgstr ""
 msgid "[!!binary 3t7e]"
 msgstr ""
 
-msgid "ext"
-msgstr ""
-
-msgid "(converted to exact number)"
+msgid "decimal"
 msgstr ""
 
 #, fuzzy
 msgid "1.2"
 msgstr "1,234"
+
+msgid "ext"
+msgstr ""
+
+msgid "(converted to exact number)"
+msgstr ""
 
 msgid "compound"
 msgstr "составной"
@@ -702,9 +704,8 @@ msgstr "{3, 5, 9, 10}"
 msgid "**scalar**"
 msgstr "**scalar**"
 
-#, fuzzy
 msgid "**null**"
-msgstr "null"
+msgstr ""
 
 msgid ""
 "**decimal** (value returned by a function in the :ref:`decimal <decimal>`"
@@ -1709,15 +1710,15 @@ msgstr ""
 "например оценка логических выражений при обходе BITSET-индексов или обход"
 " TREE-индексов в порядке по убыванию."
 
+#, fuzzy
 msgid ""
-"See also other index operations like :ref:`alter() <box_index-alter>` and"
-" :ref:`drop() <box_index-drop>` in reference for :ref:`box.index "
-"<box_index>` submodule."
+"See also other index operations like :ref:`alter() <box_index-alter>` "
+"(modify index) and :ref:`drop() <box_index-drop>` (delete index) in "
+"reference for :ref:`box.index <box_index>` submodule."
 msgstr ""
-"Полный список операций над индексами, таких как "
-":ref:`alter() <box_index-alter>` (изменение индекса) и :ref:`drop() "
-"<box_index-drop>` (удаление индекса), приводится во вложенном модуле :ref:`box.index"
-" <box_index>`."
+"Полный список операций над индексами, таких как :ref:`alter() <box_index-"
+"alter>` (изменение индекса) и :ref:`drop() <box_index-drop>` (удаление "
+"индекса), приводится во вложенном модуле :ref:`box.index <box_index>`."
 
 msgid "Complexity factors"
 msgstr "Факторы сложности"

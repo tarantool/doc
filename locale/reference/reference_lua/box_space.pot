@@ -545,7 +545,7 @@ msgstr ""
 msgid "**Details about index field types:**"
 msgstr ""
 
-msgid "The ten index field types (unsigned | string | integer | number | decimal | boolean | decimal | varbinary | array | scalar) differ depending on what values are allowed, and what index types are allowed."
+msgid "The ten index field types (unsigned | string | integer | number | double | boolean | decimal | varbinary | array | scalar) differ depending on what values are allowed, and what index types are allowed."
 msgstr ""
 
 msgid "**unsigned**: unsigned integers between 0 and 18446744073709551615, about 18 quintillion. May also be called 'uint' or 'num', but 'num' is deprecated. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."

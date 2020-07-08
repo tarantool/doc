@@ -43,9 +43,9 @@ created. The resulting snippet would be the following:
 
     local my_space_name = 'my_space'
     local my_trigger = function(old, new) ... end -- your function resolving a conflict
-    box.schema.on_schema_init(function()
-        box.space._space:on_replace(function(_, new_space)
-            if new_space.name == my_space_name then
+    box.ctl.on_schema_init(function()
+        box.space._space:on_replace(function(old_space, new_space)
+            if not old_space and new_space and new_space.name == my_space_name then
                 box.on_commit(function()
                     box.space[my_space_name]:before_replace(my_trigger)
                 end

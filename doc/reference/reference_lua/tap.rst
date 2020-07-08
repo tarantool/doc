@@ -96,7 +96,7 @@ so on.
 
     :param string test-name: an arbitrary name to give for the test outputs.
     :return: taptest
-    :rtype:  userdata
+    :rtype:  table
 
     .. code-block:: lua
 
