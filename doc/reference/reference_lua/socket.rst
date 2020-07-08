@@ -212,13 +212,13 @@ the function invocations will look like ``sock:function_name(...)``.
     :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]`
     :code:`}`.
     ``handler_function`` is mandatory; it may have a
-    single parameter = the socket;
+    parameter = the socket object;
     it is executed once after accept() happens (once per connection);
     it is for continuous
     operation after the connection is made.
     ``prepare_function`` is optional;
-    it may have whatever parameters the user defines;
-    it should return nothing;
+    it may have parameters = the socket object and a table with client information;
+    it should return either a backlog value or nothing;
     it is executed only once before bind() on the listening socket
     (not once per connection).
     Examples:
@@ -229,8 +229,10 @@ the function invocations will look like ``sock:function_name(...)``.
             socket.tcp_server('localhost', 3302, {handler=hfunc, name='name'})
             socket.tcp_server('localhost', 3302, {handler=hfunc, prepare=pfunc})
 
-    For a fuller example see
-    :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`.
+    For fuller examples see
+    :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`
+    and
+    :ref:`Use tcp_server with handler and prepare <socket_handler_prepare>`.
 
 .. class:: socket_object
 
@@ -770,5 +772,71 @@ tmp.txt file to the server instance's host and port:
 
 Now watch what happens on the first shell.
 The strings "A", "B", "C" are printed.
+
+.. _socket_handler_prepare:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Use tcp_server with handler and prepare
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is an example of the tcp_server function
+using ``handler`` and ``prepare``.
+
+Start two shells. The first shell will be a server instance.
+The second shell will be the client.
+
+On the first shell, start Tarantool and say:
+
+.. code-block:: lua
+
+    box.cfg{}
+    socket = require('socket')
+    sock = socket.tcp_server(
+      '0.0.0.0',
+      3302,
+      {prepare =
+         function(sock)
+           print('listening on socket ' .. sock:fd())
+           sock:setsockopt('SOL_SOCKET','SO_REUSEADDR',true)
+           return 5
+         end,
+       handler =
+        function(sock, from)
+          print('accepted connection from: ')
+          print('  host: ' .. from.host)
+          print('  family: ' .. from.family)
+          print('  port: ' .. from.port)
+        end
+      }
+    )
+
+The above code means: use ``tcp_server()`` to wait for a
+connection from any host on port 3302.
+Specify that there will be an initial call to ``prepare``
+which displays something about the server,
+then calls ``setsockopt(...'SO_REUSEADDR'...)`` (this is the same
+option that Tarantool would set if there was no
+``prepare``),
+and then returns 5 (this is a rather low backlog queue size).
+Specify that there will be per-connection calls to ``handler``
+which display something about the client.
+
+Now watch what happens on the first shell.
+The display will include something like
+'listening on socket 12'.
+
+On the second shell, start Tarantool and say:
+
+.. code-block:: lua
+
+    box.cfg{}
+    require('socket').tcp_connect('127.0.0.1', 3302)
+
+Now watch what happens on the first shell.
+The display will include something like
+'accepted connection from 
+host: 127.0.0.1 family: AF_INET port: 37186'.
+
+
 
 .. _luasocket: https://github.com/diegonehab/luasocket
