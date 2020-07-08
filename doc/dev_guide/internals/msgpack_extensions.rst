@@ -152,7 +152,8 @@ The ERROR type
 ****************************************************
 
 Beginning in version 2.4.1, responses for errors have extra information
-following what was described in the previous section.
+following what was described in :ref:`Box protocol -- responses for errors
+<box_protocol-responses_error>`.
 This is a "compatible" enhancement, because clients that expect old-style
 server responses should ignore map components that they do not recognize.
 Notice, however, that there has been a renaming of a constant:
@@ -180,10 +181,10 @@ The extra information, most of which is also in :ref:`error object <box_error-ne
 ``MP_ERROR_MESSAGE`` (0x03) (MP_STR) Text of reason, as in :samp:`{error_object}.message`.
 The value here will be the same as in the ``IPROTO_ERROR_24`` value.
 
-``MP_ERROR_ERRNO`` (0x04) (MP_UINT) Ordinal number of the error, as in :samp:`error_object}.errno`.
+``MP_ERROR_ERRNO`` (0x04) (MP_UINT) Ordinal number of the error, as in :samp:`{error_object}.errno`.
 Not to be confused with ``MP_ERROR_ERRCODE``.
 
-``MP_ERROR_ERRCODE`` (0x05) (MP_UINT) Number of the error as defined in errcode.h, as in :samp:`error_object}.code`,
+``MP_ERROR_ERRCODE`` (0x05) (MP_UINT) Number of the error as defined in errcode.h, as in :samp:`{error_object}.code`,
 which can also be retrieved with the C function :ref:`box_error_code() <capi-box_error_code_code>`.
 The value here will be the same as the lower part of the Response-Code-Indicator value.
 

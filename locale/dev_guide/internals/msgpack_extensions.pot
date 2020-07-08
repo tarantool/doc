@@ -132,7 +132,7 @@ msgstr ""
 msgid "The ERROR type"
 msgstr ""
 
-msgid "Beginning in version 2.4.1, responses for errors have extra information following what was described in the previous section. This is a \"compatible\" enhancement, because clients that expect old-style server responses should ignore map components that they do not recognize. Notice, however, that there has been a renaming of a constant: formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31, now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31."
+msgid "Beginning in version 2.4.1, responses for errors have extra information following what was described in :ref:`Box protocol -- responses for errors <box_protocol-responses_error>`. This is a \"compatible\" enhancement, because clients that expect old-style server responses should ignore map components that they do not recognize. Notice, however, that there has been a renaming of a constant: formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31, now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31."
 msgstr ""
 
 msgid "++=========================+============================+\n"
@@ -159,13 +159,13 @@ msgstr ""
 msgid "``MP_ERROR_MESSAGE`` (0x03) (MP_STR) Text of reason, as in :samp:`{error_object}.message`. The value here will be the same as in the ``IPROTO_ERROR_24`` value."
 msgstr ""
 
-msgid "``MP_ERROR_ERRNO`` (0x04) (MP_UINT) Ordinal number of the error, as in :samp:`error_object}.errno`. Not to be confused with ``MP_ERROR_ERRCODE``."
+msgid "``MP_ERROR_ERRNO`` (0x04) (MP_UINT) Ordinal number of the error, as in :samp:`{error_object}.errno`. Not to be confused with ``MP_ERROR_ERRCODE``."
 msgstr ""
 
-msgid "``MP_ERROR_ERRCODE`` (0x05) (MP_UINT) Number of the error as defined in errcode.h, as in :samp:`error_object}.code`, which can also be retrieved with the C function :ref:`box_error_code() <capi-box_error_code_code>`. The value here will be the same as the lower part of the Response-Code-Indicator value."
+msgid "``MP_ERROR_ERRCODE`` (0x05) (MP_UINT) Number of the error as defined in errcode.h, as in :samp:`{error_object}.code`, which can also be retrieved with the C function :ref:`box_error_code() <capi-box_error_code_code>`. The value here will be the same as the lower part of the Response-Code-Indicator value."
 msgstr ""
 
-msgid "``MP_ERROR_FIELDS`` (0x06) (MP_MAPs) Additional fields depending on error type. For example, if ``MP_ERROR_TYPE`` is \"AccessDeniedError\", then ``MP_ERROR_FIELDS`` will include \"object_type\", \"object_name\", \"access_type\"."
+msgid "``MP_ERROR_FIELDS`` (0x06) (MP_MAPs) Additional fields depending on error type. For example, if ``MP_ERROR_TYPE`` is \"AccessDeniedError\", then ``MP_ERROR_FIELDS`` will include \"object_type\", \"object_name\", \"access_type\". This field will be omitted from the response body if there are no additional fields available."
 msgstr ""
 
 msgid "Client and connector programmers should ensure that unknown map keys are ignored, and should check for addition of new keys in the Tarantool source code file where error object creation is defined. In version 2.4.1 the name of this source code file is mp_error.cc."
