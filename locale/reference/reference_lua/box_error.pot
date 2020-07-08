@@ -65,7 +65,7 @@ msgstr ""
 msgid ":ref:`Custom error types <box_error-custom_type>`"
 msgstr ""
 
-msgid "Create custom error type"
+msgid "Create a custom error type"
 msgstr ""
 
 msgid "When called with a Lua-table argument, the code and reason have any user-desired values. The result will be those values."
@@ -269,33 +269,42 @@ msgstr ""
 msgid "Custom error types"
 msgstr ""
 
-msgid "Errors can be created in 2 ways: with ``box.error.new()`` and with ``box.error()``."
+msgid "From above you know that errors can be created in two ways: with ``box.error.new()`` and with ``box.error()``."
 msgstr ""
 
-msgid "Both used to take either code, reason, <reason string args> or {code = code, reason = reason, ...} arguments."
+msgid "Both methods can take arguments either as a list (``code, reason, <reason string args>``):"
 msgstr ""
 
-msgid "In the first option instead of code you can specify a string as its own error type. In the second option you can specify both code and type."
+msgid "box.error(9, 'my_space', 'reason') -- error: 'Failed to create space my_space: reason'"
+msgstr ""
+
+msgid "...or as a table (``{code = code, reason = reason, ...}``):"
+msgstr ""
+
+msgid "box.error({code = 9, reason = 'Failed to create space my_space: reason'})"
+msgstr ""
+
+msgid "It is also possible to specify your own type of errors instead of pre-defined ones. Put a string with your type in the ``type`` field if you pass arguments as a table, or instead of the ``code`` parameter if you use listing:"
 msgstr ""
 
 msgid "box.error('MyErrorType', 'Message')\n"
 "box.error({type = 'MyErrorType', code = 1024, reason = 'Message'})"
 msgstr ""
 
-msgid "Or no-throw version:"
+msgid "Or a no-throw version:"
 msgstr ""
 
 msgid "box.error.new('MyErrorType', 'Message')\n"
 "box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})"
 msgstr ""
 
-msgid "When a custom type is specified, it is shown in ``err.type`` attribute. When it is not specified, ``err.type`` shows one of built-in errors such as ``'ClientError'``, ``'OurOfMemory'``, etc."
+msgid "When a custom type is specified, it is reported in the ``err.type`` attribute. When it is not specified, ``err.type`` reports one of built-in errors such as ``'ClientError'``, ``'OurOfMemory'``, etc."
 msgstr ""
 
-msgid "Name length limit on the custom type is *63 bytes*. Everything longer then the limit is truncated."
+msgid "The maximum name length for a custom type is *63 bytes*. Everything longer than this limit is truncated."
 msgstr ""
 
-msgid "Original error type can be checked using ``err.base_type`` member, although normally it should not be used. For user-defined types base type is ``'CustomError'``."
+msgid "The original error type can be checked using the ``err.base_type`` member, although normally it should not be used. For user-defined types, the base type is ``'CustomError'``."
 msgstr ""
 
 msgid "tarantool> e = box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})\n"
@@ -315,9 +324,9 @@ msgid "tarantool> e = box.error.new({type = 'MyErrorType', code = 1024, reason =
 "..."
 msgstr ""
 
-msgid "You can also use a format string to compose an error message for ``'CustomError type'``."
+msgid "You can also use a format string to compose an error message for the ``'CustomError'`` type."
 msgstr ""
 
-msgid "box.error(\"MyCustomType\", \"The error reason: %s\", \"some error reason\")"
+msgid "box.error('MyCustomType', 'The error reason: %s', 'some error reason')"
 msgstr ""
 
