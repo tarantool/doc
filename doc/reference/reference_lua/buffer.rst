@@ -73,13 +73,13 @@ its own routine for decoding raw MsgPack strings.
 
 The example in the previous section
 
-    .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-        tarantool> msgpack.decode_unchecked(ibuf.rpos)
-        ---
-        - {48: [['ABCDE', 12345]]}
-        - 'cdata<char *>: 0x7f97ba10c041'
-        ...
+    tarantool> msgpack.decode_unchecked(ibuf.rpos)
+    ---
+    - {48: [['ABCDE', 12345]]}
+    - 'cdata<char *>: 0x7f97ba10c041'
+    ...
 
 showed that, ordinarily, the response from net.box includes a header --
 48 (hexadecimal 30) is the :ref:`key <internals-unified_packet_structure>`
@@ -98,33 +98,33 @@ The default is ``skip-header=false``.
 
 Now here is the same example, except that ``skip_header=true`` is used.
 
-    .. code-block:: lua
+.. code-block:: lua
 
-        box.cfg{listen=3302}
-        buffer = require('buffer')
-        ibuf = buffer.ibuf()
-        net_box = require('net.box')
-        conn = net_box.connect('farhost:3301')
-        buffer = require('buffer')
-        conn.space.T:select({},{buffer=ibuf, skip_header=true})
-        msgpack = require('msgpack')
-        msgpack.decode_unchecked(ibuf.rpos)
+    box.cfg{listen=3302}
+    buffer = require('buffer')
+    ibuf = buffer.ibuf()
+    net_box = require('net.box')
+    conn = net_box.connect('farhost:3301')
+    buffer = require('buffer')
+    conn.space.T:select({},{buffer=ibuf, skip_header=true})
+    msgpack = require('msgpack')
+    msgpack.decode_unchecked(ibuf.rpos)
 
-    The result of the final request looks like this:
+The result of the final request looks like this:
 
-    .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-        tarantool>         msgpack.decode_unchecked(ibuf.rpos)
-        ---
-        - [['ABCDE', 12345]]
-        - 'cdata<char *>: 0x7f8fd102803f'
-        ...
+    tarantool>         msgpack.decode_unchecked(ibuf.rpos)
+    ---
+    - [['ABCDE', 12345]]
+    - 'cdata<char *>: 0x7f8fd102803f'
+    ...
 
-    Notice that the IPROTO_DATA header (48) is gone.
+Notice that the IPROTO_DATA header (48) is gone.
 
-    The result is still inside an array, as is clear from the fact
-    that it is shown inside square brackets. It is possible to skip
-    the array header too, with
-    :ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`.
+The result is still inside an array, as is clear from the fact
+that it is shown inside square brackets. It is possible to skip
+the array header too, with
+:ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`.
 
 .. _MsgPack: http://msgpack.org/

@@ -2,10 +2,10 @@
 msgid "Module `buffer`"
 msgstr ""
 
-msgid "The ``buffer`` module returns a dynamically resizable buffer which is solely for use as an option for methods of the :ref:`net.box module <net_box-module>`."
+msgid "The ``buffer`` module returns a dynamically resizable buffer which is solely for optional use by methods of the :ref:`net.box module <net_box-module>` or the :ref:`msgpack module <msgpack-module>`."
 msgstr ""
 
-msgid "Ordinarily the ``net.box`` methods return a Lua table. If a ``buffer`` option is used, then the ``net.box`` methods return a raw MsgPack_ string. This saves time on the server, if the client application has its own routine for decoding MsgPack strings."
+msgid "Ordinarily the ``net.box`` methods return a Lua table. If a ``buffer`` option is used, then the ``net.box`` methods return a :ref:`raw MsgPack string <msgpack-definitions>`. This saves time on the server, if the client application has its own routine for decoding raw MsgPack strings."
 msgstr ""
 
 msgid "return"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "Assume a Tarantool server is listening on farhost:3301. Assume it has a space ``T`` with one tuple: ``'ABCDE', 12345``. In this example we start up a server on localhost:3302 and then use ``net.box`` routines to connect to farhost. Then we create a buffer, and use it as an option for a ``conn.space...select()`` call. The result will be in MsgPack_ format. To show this, we will use :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>` on ``ibuf.rpos`` (the \"read position\" of the buffer). Thus we do not decode on the remote server, but we do decode on the local server."
+msgid "Assume a Tarantool server is listening on farhost:3301. Assume it has a space ``T`` with one tuple: ``'ABCDE', 12345``. In this example we start up a server on localhost:3302 and then use ``net.box`` routines to connect to farhost. Then we create a buffer, and use it as an option for a ``conn.space...select()`` call. The result will be in MsgPack_ format. To show this, we will use :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_c_style_string_pointer>` on ``ibuf.rpos`` (the \"read position\" of the buffer). Thus we do not decode on the remote server, but we do decode on the local server."
 msgstr ""
 
 msgid "box.cfg{listen=3302}\n"
@@ -48,5 +48,41 @@ msgid "tarantool> msgpack.decode_unchecked(ibuf.rpos)\n"
 msgstr ""
 
 msgid "Before Tarantool version 1.7.7, the function to use for this case is ``msgpack.ibuf_decode(ibuf.rpos)``. Starting with Tarantool version 1.7.7, ``ibuf_decode`` is deprecated."
+msgstr ""
+
+msgid "**Module buffer and skip-header**"
+msgstr ""
+
+msgid "The example in the previous section"
+msgstr ""
+
+msgid "showed that, ordinarily, the response from net.box includes a header -- 48 (hexadecimal 30) is the :ref:`key <internals-unified_packet_structure>` for IPROTO_DATA. But in some situations, for example when passing the buffer to a C function that expects a MsgPack byte array without a header, the header can be skipped. This is done by specifying ``skip-header=true`` as an option to :ref:`conn.space.space-name:select{...} <conn-select>` or :ref:`conn.space.space-name:insert{...} <conn-insert>` or :ref:`conn.space.space-name:replace{...} <conn-replace>` or :ref:`conn.space.space-name:update{...} <conn-update>` or :ref:`conn.space.space-name:upsert{...} <conn-upsert>` or :ref:`conn.space.space-name:delete{...} <conn-delete>`. The default is ``skip-header=false``."
+msgstr ""
+
+msgid "Now here is the same example, except that ``skip_header=true`` is used."
+msgstr ""
+
+msgid "box.cfg{listen=3302}\n"
+"buffer = require('buffer')\n"
+"ibuf = buffer.ibuf()\n"
+"net_box = require('net.box')\n"
+"conn = net_box.connect('farhost:3301')\n"
+"buffer = require('buffer')\n"
+"conn.space.T:select({},{buffer=ibuf, skip_header=true})\n"
+"msgpack = require('msgpack')\n"
+"msgpack.decode_unchecked(ibuf.rpos)"
+msgstr ""
+
+msgid "tarantool>         msgpack.decode_unchecked(ibuf.rpos)\n"
+"---\n"
+"- [['ABCDE', 12345]]\n"
+"- 'cdata<char *>: 0x7f8fd102803f'\n"
+"..."
+msgstr ""
+
+msgid "Notice that the IPROTO_DATA header (48) is gone."
+msgstr ""
+
+msgid "The result is still inside an array, as is clear from the fact that it is shown inside square brackets. It is possible to skip the array header too, with :ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`."
 msgstr ""
 
