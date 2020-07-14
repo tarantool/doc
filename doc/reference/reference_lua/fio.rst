@@ -263,7 +263,7 @@ functions.
 
 .. _fio-path_exists:
 
-.. function:: path.exists(path-name)
+.. function:: fio.path.exists(path-name)
 
     :param string path-name: path to directory or file.
     :return: true if path-name refers to a directory or file that exists and is not a broken symbolic link; otherwise false
@@ -271,7 +271,7 @@ functions.
 
 .. _fio-path_is_dir:
 
-.. function:: path.is_dir(path-name)
+.. function:: fio.path.is_dir(path-name)
 
     :param string path-name: path to directory or file.
     :return: true if path-name refers to a directory; otherwise false
@@ -279,7 +279,7 @@ functions.
 
 .. _fio-path_is_file:
 
-.. function:: path.is_file(path-name)
+.. function:: fio.path.is_file(path-name)
 
     :param string path-name: path to directory or file.
     :return: true if path-name refers to a file; otherwise false
@@ -287,7 +287,7 @@ functions.
 
 .. _fio-path_is_link:
 
-.. function:: path.is_link(path-name)
+.. function:: fio.path.is_link(path-name)
 
     :param string path-name: path to directory or file.
     :return: true if path-name refers to a symbolic link; otherwise false
@@ -295,7 +295,7 @@ functions.
 
 .. _fio-path_lexists:
 
-.. function:: path.lexists(path-name)
+.. function:: fio.path.lexists(path-name)
 
     :param string path-name: path to directory or file.
     :return: true if path-name refers to a directory or file that exists or is a broken symbolic link; otherwise false

@@ -34,6 +34,8 @@ Below is list of all ``uuid`` functions and members.
     | :ref:`uuid.bin() <uuid-bin>` |br|    | Get a UUID                      |
     | :ref:`uuid.str() <uuid-str>`         |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`uuid.new() <uuid-new>`         | Create a UUID                   |
+    +--------------------------------------+---------------------------------+
     | :ref:`uuid.fromstr()                 |                                 |
     | <uuid-fromstr>` |br|                 |                                 |
     | :ref:`uuid.frombin()                 |                                 |
@@ -54,6 +56,41 @@ Below is list of all ``uuid`` functions and members.
 .. data:: nil
 
     A nil object
+
+.. _uuid-new:
+
+.. function:: new()
+
+    Create a UUID sequence. You can use it in an index over a 
+    :ref:`uuid field <details_about_index_field_types>`.
+    For example, to create such index for a space named `test`, say:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.space.test:create_index("pk", {parts={field = 1, type = 'uuid'}})
+
+    Now you can insert uuids into the space:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.space.test:insert{uuid.new()}
+        ---
+        - [e631fdcc-0e8a-4d2f-83fd-b0ce6762b13f]
+        ...
+
+        tarantool> box.space.test:insert{uuid.fromstr('64d22e4d-ac92-4a23-899a-e59f34af5479')}
+        ---
+        - [64d22e4d-ac92-4a23-899a-e59f34af5479]
+        ...
+
+        tarantool> box.space.test:select{}
+        ---
+        - - [64d22e4d-ac92-4a23-899a-e59f34af5479]
+        - [e631fdcc-0e8a-4d2f-83fd-b0ce6762b13f]
+        ...
+
+    :return: a UUID
+    :rtype: cdata
 
 .. _uuid-__call:
 

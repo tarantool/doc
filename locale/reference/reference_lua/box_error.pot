@@ -196,7 +196,7 @@ msgid "tarantool> e=box.error.new{code=5,reason='A',type='B'}\n"
 "- nil"
 msgstr ""
 
-msgid "Beginning in version 2.4.1 there is a :ref:`session_settings <box_space-session_settings>` setting which affects structure of error objects. If ``error_marshaling_enabled`` is changed to ``true``, then the object will have the MP_EXT type and the MP_ERROR subtype. Using the :ref:`binary protocol <internals-box_protocol>`, in the body of a packet that the server could send in response to ``box.error.new()``, one will see: the encoding of MP_EXT according to the `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ (usually 0xc7), followed by the encoding of MP_ERROR (0x03), followed by the encoding of MP_ERROR_STACK (0x81), followed by all of the MP_ERROR_STACK components (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.) that are described and illustrated in section :ref:`Binary protocol -- responses for errors -- extra <box_protocol-responses_error_extra>`. The map field for error object \"type\" will have key = MP_ERROR_TYPE, the map field for error object \"code\" will have key = MP_ERROR_CODE, the map field for error object \"message\" will have key = MP_ERROR_MESSAGE."
+msgid "Beginning in version 2.4.1 there is a :ref:`session_settings <box_space-session_settings>` setting which affects structure of error objects. If ``error_marshaling_enabled`` is changed to ``true``, then the object will have the MP_EXT type and the MP_ERROR subtype. Using the :ref:`binary protocol <internals-box_protocol>`, in the body of a packet that the server could send in response to ``box.error.new()``, one will see: the encoding of MP_EXT according to the `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ (usually 0xc7), followed by the encoding of MP_ERROR (0x03), followed by the encoding of MP_ERROR_STACK (0x81), followed by all of the MP_ERROR_STACK components (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.) that are described and illustrated in section :ref:`MessagePack extensions - The ERROR type <msgpack_ext-error>`. The map field for error object \"type\" will have key = MP_ERROR_TYPE, the map field for error object \"code\" will have key = MP_ERROR_CODE, the map field for error object \"message\" will have key = MP_ERROR_MESSAGE."
 msgstr ""
 
 msgid "Set an error as the last system error explicitly. Accepts an error object and makes it available via :ref:`box.error.last() <box_error-last>`."
@@ -263,7 +263,7 @@ msgid "-- e1 -> e2 -> e3 -> e4\n"
 "-- Now there are two lists: e1->e2->e5 and e3->e4"
 msgstr ""
 
-msgid "The iProto protocol also supports stacked diagnostics. See details in :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`."
+msgid "The iProto protocol also supports stacked diagnostics. See details in :ref:`MessagePack extensions - The ERROR type <msgpack_ext-error>`."
 msgstr ""
 
 msgid "Custom error types"

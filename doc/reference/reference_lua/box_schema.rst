@@ -704,7 +704,7 @@ Below is a list of all ``box.schema`` functions.
     Therefore a sandboxed function can only use modules and functions
     which cannot affect isolation:
     `assert <https://www.lua.org/manual/5.1/manual.html#pdf-assert>`_,
-    `error <://www.lua.org/manual/5.1/manual.html#pdf-error>`_,
+    `error <https://www.lua.org/manual/5.1/manual.html#pdf-error>`_,
     `ipairs <https://www.lua.org/manual/5.1/manual.html#pdf-ipairs>`_,
     `math.* <https://www.lua.org/manual/5.1/manual.html#5.6>`_,
     `next <https://www.lua.org/manual/5.1/manual.html#pdf-next>`_,
@@ -1100,7 +1100,7 @@ All functions related to sequences require appropriate
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.space.T:insert{nil,0}
+        tarantool> box.space.T:insert{box.NULL,0}
         ---
         - [1, 0]
         ...

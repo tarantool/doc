@@ -176,18 +176,19 @@ Below is a list of all ``net.box`` functions.
 
       .. NOTE::
 
-         In the presence of ``reconnect_after``, ``wait_connected`` ignores transient failures.
+         If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures.
          The wait completes once the connection is established or is closed explicitly.
 
-    * `reconnect_after`: a ``net.box`` instance automatically reconnects
-      any time the connection is broken or if a connection attempt fails.
+    * `reconnect_after`: if ``reconnect_after`` is greater than zero, then a ``net.box`` instance
+      will try to reconnect if a connection is broken or if a connection attempt fails.
       This makes transient network failures become transparent to the application.
-      Reconnect happens automatically in the background, so queries/requests that
-      suffered due to connectivity loss are transparently retried.
-      The number of retries is unlimited, connection attempts are done over the
-      specified timeout (e.g. ``reconnect_after=5`` for 5 secs).
-      Once a connection is explicitly closed, or once the Lua garbage collector
-      removes it, reconnects stop.
+      Reconnect happens automatically in the background, so requests that
+      initially fail due to connectivity loss are transparently retried.
+      The number of retries is unlimited, connection attempts are made after each
+      specified interval (for example ``reconnect_after=5`` means try to reconnect every 5 seconds).
+      When a connection is explicitly closed, or when the Lua garbage collector
+      removes it, then reconnect attempts stop.
+      The default value of ``reconnect_after``, as with other ``connect`` options, is ``nil``.
 
     * `call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new
       binary protocol command for CALL, which is not backward compatible with previous versions.
@@ -555,6 +556,10 @@ Below is a list of all ``net.box`` functions.
         or say ``request_result=future:wait_result(...)``.
         Alternatively the client could check for "out-of-band" messages from the server
         by calling ``pairs()`` in a loop -- see :ref:`box.session.push() <box_session-push>`.
+
+        A user would say ``future:discard()`` to make a connection forget about the response --
+        if a response for a discarded object is received then it will be ignored, so that
+        the size of the requests table will be reduced and other requests will be faster.
 
         **Example:**
 

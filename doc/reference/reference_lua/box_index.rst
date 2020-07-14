@@ -522,7 +522,7 @@ Below is a list of all ``box.index`` functions and members.
             tarantool> sp:insert{2, 'Y', 'Row with field[2]=Y'}
             tarantool> sp:insert{3, 'Z', 'Row with field[2]=Z'}
             -- Select all tuples where the secondary index
-            -- keys are greater than 'X'.`
+            -- keys are greater than 'X'.
             tarantool> sp.index.secondary:select({'X'}, {
                      >   iterator = 'GT',
                      >   limit = 1000
@@ -561,7 +561,7 @@ Below is a list of all ``box.index`` functions and members.
 
         .. NOTE::
 
-            :samp:`box.space.{space-name}.index.{index-name}:select(...)[1]``. can be
+            :samp:`box.space.{space-name}.index.{index-name}:select(...)[1]`. can be
             replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`.
             That is, ``get`` can be used as a convenient shorthand to get the first
             tuple in the tuple set that would be returned by ``select``. However,
@@ -785,8 +785,11 @@ Below is a list of all ``box.index`` functions and members.
         :param number-or-string field_identifier: what field the operation will apply to.
         :param lua_value  value: what value will be applied
 
-        :return: the updated tuple.
-        :rtype:  tuple
+        :return: * the updated tuple
+                 * nil if the key is not found
+        :rtype:  tuple or nil
+
+        Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`.
 
     .. _box_index-delete:
 
