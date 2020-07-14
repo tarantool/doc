@@ -49,6 +49,9 @@ Below is a list of all ``box.error`` functions.
     | :ref:`error_object.set_prev()        | Set the previous error          |
     | <box_error-set_prev>`                |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`Custom error types             | Create a custom error type      |
+    | <box_error-custom_type>`             |                                 |
+    +--------------------------------------+---------------------------------+
 
 .. _box_error-error:
 
@@ -128,7 +131,7 @@ Below is a list of all ``box.error`` functions.
     * "code" (number) error’s number
     * "type" (string) error’s C++ class
     * "message" (string) error’s message
-    * "trace" - table with 2 members:
+    * "trace" -- table with 2 members:
           * "line" (number) Tarantool source file line number
           * "file" (string) Tarantool source file
 
@@ -164,8 +167,8 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.clear()
 
-    Clear the record of errors, so functions like `box.error()`
-    or `box.error.last()` will have no effect.
+    Clear the record of errors, so functions like ``box.error()``
+    or ``box.error.last()`` will have no effect.
 
     **Example:**
 
@@ -230,7 +233,7 @@ Below is a list of all ``box.error`` functions.
     followed by all of the MP_ERROR_STACK components
     (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.)
     that are described and illustrated in section
-    :ref:`Binary protocol -- responses for errors -- extra <box_protocol-responses_error_extra>`.
+    :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`.
     The map field for error object "type" will have key = MP_ERROR_TYPE,
     the map field for error object "code" will have key = MP_ERROR_CODE,
     the map field for error object "message" will have key = MP_ERROR_MESSAGE.
@@ -320,4 +323,79 @@ Below is a list of all ``box.error`` functions.
         -- Now there are two lists: e1->e2->e5 and e3->e4
 
     The iProto protocol also supports stacked diagnostics. See details in
-    :ref:`Binary protocol -- responces for errors -- extra <box_protocol-responses_error_extra>`.
+    :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`.
+
+.. _box_error-custom_type:
+
+===============================================================================
+                            Custom error types
+===============================================================================
+
+From above you know that errors can be created in two ways: with ``box.error.new()``
+and with ``box.error()``.
+
+Both methods can take arguments either as a list (``code, reason, <reason string args>``):
+
+.. code-block:: lua
+
+    box.error(9, 'my_space', 'reason') -- error: 'Failed to create space my_space: reason'
+
+...or as a table (``{code = code, reason = reason, ...}``):
+
+.. code-block:: lua
+
+    box.error({code = 9, reason = 'Failed to create space my_space: reason'})
+
+It is also possible to specify your own type of errors instead of pre-defined
+ones. Put a string with your type in the ``type`` field if you pass arguments as
+a table, or instead of the ``code`` parameter if you use listing:
+
+.. code-block:: lua
+
+    box.error('MyErrorType', 'Message')
+    box.error({type = 'MyErrorType', code = 1024, reason = 'Message'})
+
+Or a no-throw version:
+
+.. code-block:: lua
+
+    box.error.new('MyErrorType', 'Message')
+    box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})
+
+When a custom type is specified, it is reported in the ``err.type`` attribute.
+When it is not specified, ``err.type`` reports one of built-in errors such as
+``'ClientError'``, ``'OurOfMemory'``, etc.
+
+The maximum name length for a custom type is *63 bytes*. Everything longer than
+this limit is truncated.
+
+The original error type can be checked using the ``err.base_type`` member,
+although normally it should not be used. For user-defined types, the base type
+is ``'CustomError'``.
+
+**Example:**
+
+.. code-block:: tarantoolsession
+
+    tarantool> e = box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})
+    ---
+    ...
+
+    tarantool> e:unpack()
+    ---
+    - code: 1024
+    trace:
+    - file: '[string "e = box.error.new({type = ''MyErrorType'', code..."]'
+        line: 1
+    type: MyErrorType
+    custom_type: MyErrorType
+    message: Message
+    base_type: CustomError
+    ...
+
+You can also use a format string to compose an error message for
+the ``'CustomError'`` type.
+
+.. code-block:: lua
+
+    box.error('MyCustomType', 'The error reason: %s', 'some error reason')
