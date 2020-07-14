@@ -11,8 +11,7 @@
 The ``socket`` module allows exchanging data via BSD sockets with a local or
 remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode.
 Semantics of the calls in the ``socket`` API closely follow semantics of the
-corresponding POSIX calls. Function names and signatures are mostly compatible
-with `luasocket`_.
+corresponding POSIX calls.
 
 The functions for setting up and connecting are ``socket``, ``sysconnect``,
 ``tcp_connect``. The functions for sending data are ``send``, ``sendto``,
@@ -109,6 +108,9 @@ Below is a list of all ``socket`` functions.
     |                                                       | connection's far side        |
     +-------------------------------------------------------+------------------------------+
     | :ref:`socket.iowait() <socket-iowait>`                | Wait for read/write activity |
+    +-------------------------------------------------------+------------------------------+
+    | :ref:`LuaSocket wrapper functions <socket-luasocket>` | Several methods for          |
+    |                                                       | emulating the LuaSocket API  |
     +-------------------------------------------------------+------------------------------+
 
 Typically a socket session will begin with the setup functions, will set one
@@ -212,13 +214,13 @@ the function invocations will look like ``sock:function_name(...)``.
     :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]`
     :code:`}`.
     ``handler_function`` is mandatory; it may have a
-    single parameter = the socket;
+    parameter = the socket;
     it is executed once after accept() happens (once per connection);
     it is for continuous
     operation after the connection is made.
     ``prepare_function`` is optional;
-    it may have whatever parameters the user defines;
-    it should return nothing;
+    it may have parameters = the socket object and a table with client information;
+    it should return either a backlog value or nothing;
     it is executed only once before bind() on the listening socket
     (not once per connection).
     Examples:
@@ -229,8 +231,10 @@ the function invocations will look like ``sock:function_name(...)``.
             socket.tcp_server('localhost', 3302, {handler=hfunc, name='name'})
             socket.tcp_server('localhost', 3302, {handler=hfunc, prepare=pfunc})
 
-    For a fuller example see
-    :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`.
+    For fuller examples see
+    :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`
+    and
+    :ref:`Use tcp_server with handler and prepare <socket_handler_prepare>`.
 
 .. class:: socket_object
 
@@ -598,6 +602,27 @@ the function invocations will look like ``sock:function_name(...)``.
 
     Example: ``socket.iowait(sock:fd(), 'r', 1.11)``
 
+.. _socket-luasocket:
+
+=================================================
+             LuaSocket wrapper functions
+=================================================
+
+The LuaSocket API has functions that are equivalent to the ones described above,
+with different names and parameters, for example ``connect()``
+rather than ``tcp_connect()``. Tarantool supports these functions so that
+third-party packages which depend on them will work.
+
+The LuaSocket project is on
+`github <https://github.com/diegonehab/luasocket>`_.
+The API description is in the
+`LuaSocket manual <http://w3.impa.br/~diego/software/luasocket/>`_
+(click the "introduction" and "reference" links at the
+bottom of the manual's main page).
+
+A Tarantool example is
+:ref:`Use of a socket with LuaSocket wrapper functions <socket-wrapper>`.
+
 .. _socket-recommended:
 
 =================================================
@@ -664,6 +689,45 @@ with this particular site, but shows that the system works.
     tarantool> sock:close()
     ---
     - true
+    ...
+
+.. _socket-wrapper:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Use of a socket with LuaSocket wrapper functions 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a variation of the earlier example
+"Use of a TCP socket over the Internet".
+It uses :ref:`LuaSocket wrapper functions <socket-luasocket>`,
+with a too-short timeout so that a "Connection timed out" error is likely.
+The more common way to specify timeout is with an option of
+:ref:`tcp_connect() <socket-tcp_connect>`.
+
+.. code-block:: tarantoolsession
+
+    tarantool> socket = require('socket')
+    ---
+    ...
+    tarantool> sock = socket.connect('tarantool.org', 80)
+    ---
+    ...
+    tarantool> sock:settimeout(0.001)
+    ---
+    - 1
+    ...
+    tarantool> sock:send("HEAD / HTTP/1.0\r\nHost: tarantool.org\r\n\r\n")
+    ---
+    - 40
+    ...
+    tarantool> sock:receive(17)
+    ---
+    - null
+    - Connection timed out
+    ...
+    tarantool> sock:close()
+    ---
+    - 1
     ...
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -771,4 +835,67 @@ tmp.txt file to the server instance's host and port:
 Now watch what happens on the first shell.
 The strings "A", "B", "C" are printed.
 
-.. _luasocket: https://github.com/diegonehab/luasocket
+.. _socket_handler_prepare:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Use tcp_server with handler and prepare
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is an example of the tcp_server function
+using ``handler`` and ``prepare``.
+
+Start two shells. The first shell will be a server instance.
+The second shell will be the client.
+
+On the first shell, start Tarantool and say:
+
+.. code-block:: lua
+
+    box.cfg{}
+    socket = require('socket')
+    sock = socket.tcp_server(
+      '0.0.0.0',
+      3302,
+      {prepare =
+         function(sock)
+           print('listening on socket ' .. sock:fd())
+           sock:setsockopt('SOL_SOCKET','SO_REUSEADDR',true)
+           return 5
+         end,
+       handler =
+        function(sock, from)
+          print('accepted connection from: ')
+          print('  host: ' .. from.host)
+          print('  family: ' .. from.family)
+          print('  port: ' .. from.port)
+        end
+      }
+    )
+
+The above code means: use ``tcp_server()`` to wait for a
+connection from any host on port 3302.
+Specify that there will be an initial call to ``prepare``
+which displays something about the server,
+then calls ``setsockopt(...'SO_REUSEADDR'...)`` (this is the same
+option that Tarantool would set if there was no
+``prepare``),
+and then returns 5 (this is a rather low backlog queue size).
+Specify that there will be per-connection calls to ``handler``
+which display something about the client.
+
+Now watch what happens on the first shell.
+The display will include something like
+'listening on socket 12'.
+
+On the second shell, start Tarantool and say:
+
+.. code-block:: lua
+
+    box.cfg{}
+    require('socket').tcp_connect('127.0.0.1', 3302)
+
+Now watch what happens on the first shell.
+The display will include something like
+'accepted connection from 
+host: 127.0.0.1 family: AF_INET port: 37186'.
+

@@ -280,7 +280,7 @@ variables.
       vector clock table.
       Also the replica sends its entire vector clock table in response
       to a master's heartbeat message, see the heartbeat-message examples
-      in section :ref:`Binary protocol -- replication <box_protocol-replication>`.
+      in section :ref:`Binary protocol -- replication <box_protocol-heartbeat>`.
 
     * :samp:`replication[{n}].downstream.idle` is the time (in seconds) since the last
       time that instance *n* sent events through the downstream replication.

@@ -575,6 +575,9 @@ msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
 "..."
 msgstr ""
 
+msgid "Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`."
+msgstr ""
+
 msgid "The same as ``tuple_object:update()``, but ignores errors. In case of an error the tuple is left intact, but an error message is printed. Only client errors are ignored, such as a bad field type, or wrong field index/name. System errors, such as OOM, are not ignored and raised just like with a normal ``update()``. Note that only bad operations are ignored. All correct operations are applied."
 msgstr ""
 

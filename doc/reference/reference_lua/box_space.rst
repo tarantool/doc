@@ -1751,6 +1751,8 @@ Below is a list of all ``box.space`` functions and members.
         :ref:`Example: using data operations <box_space-operations-detailed-examples>`
         further in this section.
 
+        Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`.
+
     .. _box_space-upsert:
 
     .. method:: upsert({tuple}, {{operator, field_identifier, value}, ...}, )
