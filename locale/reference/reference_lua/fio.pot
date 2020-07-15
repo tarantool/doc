@@ -740,6 +740,9 @@ msgstr ""
 msgid "Perform random-access read operation on a file, without affecting the current seek position of the file. For details type ``man 2 pread``."
 msgstr ""
 
+msgid "file-handle as returned by ``fio.open()``"
+msgstr ""
+
 msgid "where to read into (if the format is ``pread(buffer, count, offset)``)"
 msgstr ""
 
@@ -752,7 +755,7 @@ msgstr ""
 msgid "If the format is ``pread(count, offset)`` then return a string containing the data that was read from the file, or nil if failure."
 msgstr ""
 
-msgid "If the format is ``pread(buffer, count, offset)`` then return the data to the buffer. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgid "If the format is ``pread(buffer, count, offset)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
 msgstr ""
 
 msgid "tarantool> fh:pread(25, 25)\n"
@@ -766,10 +769,13 @@ msgstr ""
 msgid "Perform random-access write operation on a file, without affecting the current seek position of the file. For details type ``man 2 pwrite``."
 msgstr ""
 
-msgid "value to write"
+msgid "value to write (if the format is ``pwrite(new-string, offset)``)"
 msgstr ""
 
-msgid "number of bytes to write (if the format is ``pwrite(buffer, count, offset)``)"
+msgid "value to write (if the format is ``pwrite(buffer, count, offset)``)"
+msgstr ""
+
+msgid "number of bytes to write"
 msgstr ""
 
 msgid "offset within file where writing begins"
@@ -778,7 +784,7 @@ msgstr ""
 msgid "If the format is ``pwrite(new-string, offset)`` then the returned string is written to the file, as far as the end of the string."
 msgstr ""
 
-msgid "If the format is ``pwrite(buffer, count, offset)`` then the buffer contents are written to the file, for ``count`` bytes. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgid "If the format is ``pwrite(buffer, count, offset)`` then the buffer contents are written to the file, for ``count`` bytes. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
 msgstr ""
 
 msgid "ibuf = require('buffer').ibuf()\n"
@@ -806,7 +812,7 @@ msgstr ""
 msgid "If the format is ``read()``  or ``read([count])`` then return a string containing the data that was read from the file, or nil if failure."
 msgstr ""
 
-msgid "If the format is ``read(buffer, count)`` then return the data to the buffer. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgid "If the format is ``read(buffer, count)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
 msgstr ""
 
 msgid "In case of an error the method returns ``nil, err`` and sets the error to ``errno``."
@@ -829,16 +835,26 @@ msgstr ""
 msgid "Perform non-random-access write on a file. For details type ``man 2 write``."
 msgstr ""
 
-msgid "number of bytes to write (if the format is ``write(buffer, count)``)"
+msgid "value to write (if the format is ``write(new-string)``)"
+msgstr ""
+
+msgid "value to write (if the format is ``write(buffer, count)``)"
 msgstr ""
 
 msgid "If the format is ``write(new-string)`` then the returned string is written to the file, as far as the end of the string."
 msgstr ""
 
-msgid "If the format is ``write(buffer, count)`` then the buffer contents are written to the file, for ``count`` bytes. (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)"
+msgid "If the format is ``write(buffer, count)`` then the buffer contents are written to the file, for ``count`` bytes. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
 msgstr ""
 
 msgid "tarantool> fh:write(\"new data\")\n"
+"---\n"
+"- true\n"
+"...\n"
+"ibuf = require('buffer').ibuf()\n"
+"---\n"
+"...\n"
+"tarantool> fh:write(ibuf, 1)\n"
 "---\n"
 "- true\n"
 "..."
