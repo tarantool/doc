@@ -14,6 +14,7 @@ User's Guide
     app_server/index
     admin/index
     replication/index
+    monitoring/index
     connectors/index
     sql
     faq
