@@ -2,10 +2,10 @@
 msgid "Module `buffer`"
 msgstr ""
 
-msgid "The ``buffer`` module returns a dynamically resizable buffer which is solely for use as an option for methods of the :ref:`net.box module <net_box-module>`."
+msgid "The ``buffer`` module returns a dynamically resizable buffer which is solely for optional use by methods of the :ref:`net.box module <net_box-module>` or the :ref:`msgpack module <msgpack-module>`."
 msgstr ""
 
-msgid "Ordinarily the ``net.box`` methods return a Lua table. If a ``buffer`` option is used, then the ``net.box`` methods return a raw MsgPack_ string. This saves time on the server, if the client application has its own routine for decoding MsgPack strings."
+msgid "Ordinarily the ``net.box`` methods return a Lua table. If a ``buffer`` option is used, then the ``net.box`` methods return a :ref:`raw MsgPack string <msgpack-definitions>`. This saves time on the server, if the client application has its own routine for decoding raw MsgPack strings."
 msgstr ""
 
 msgid "return"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "Assume a Tarantool server is listening on farhost:3301. Assume it has a space ``T`` with one tuple: ``'ABCDE', 12345``. In this example we start up a server on localhost:3302 and then use ``net.box`` routines to connect to farhost. Then we create a buffer, and use it as an option for a ``conn.space...select()`` call. The result will be in MsgPack_ format. To show this, we will use :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>` on ``ibuf.rpos`` (the \"read position\" of the buffer). Thus we do not decode on the remote server, but we do decode on the local server."
+msgid "Assume a Tarantool server is listening on farhost:3301. Assume it has a space ``T`` with one tuple: ``'ABCDE', 12345``. In this example we start up a server on localhost:3302 and then use ``net.box`` routines to connect to farhost. Then we create a buffer, and use it as an option for a ``conn.space...select()`` call. The result will be in MsgPack_ format. To show this, we will use :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_c_style_string_pointer>` on ``ibuf.rpos`` (the \"read position\" of the buffer). Thus we do not decode on the remote server, but we do decode on the local server."
 msgstr ""
 
 msgid "box.cfg{listen=3302}\n"

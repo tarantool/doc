@@ -654,7 +654,7 @@ functions.
     :param string     file-name: name.
     :param number     accesstime: time of last access. default current time.
     :param number     updatetime: time of last update. default = access time.
-    
+
     :return: (If no error) true. |br|
              (If error) two return values: false, error message.
     :rtype:  boolean
@@ -666,7 +666,7 @@ functions.
         tarantool> fio.utime('/home/username/tmp.txt')
         ---
         - true
-        ...        
+        ...
 
 .. _fio-copyfile:
 
@@ -875,7 +875,7 @@ functions.
         the current seek position of the file.
         For details type ``man 2 pread``.
 
-        :param userdata fh: file-handle as returned by ``fio.open()``.
+        :param userdata fh: file-handle as returned by ``fio.open()``
         :param buffer: where to read into (if the format is
                        ``pread(buffer, count, offset)``)
         :param number count: number of bytes to read
@@ -886,7 +886,7 @@ functions.
 
         If the format is ``pread(buffer, count, offset)`` then return the data
         to the buffer.
-        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+        Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.
 
         **Example:**
 
@@ -908,11 +908,12 @@ functions.
         the current seek position of the file.
         For details type ``man 2 pwrite``.
 
-        :param userdata fh: file-handle as returned by ``fio.open()``.
-        :param string new-string or buffer: value to write
-        :param number count: number of bytes to write (if the format is
-                             ``pwrite(buffer, count, offset)``)
+        :param userdata fh: file-handle as returned by ``fio.open()``
+        :param string new-string: value to write (if the format is ``pwrite(new-string, offset)``)
+        :param cdata buffer: value to write (if the format is ``pwrite(buffer, count, offset)``)
+        :param number count: number of bytes to write
         :param number offset: offset within file where writing begins
+
         :return: true if success, false if failure.
         :rtype:  boolean
 
@@ -921,7 +922,7 @@ functions.
 
         If the format is ``pwrite(buffer, count, offset)`` then the buffer
         contents are written to the file, for ``count`` bytes.
-        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+        Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.
 
         .. code-block:: tarantoolsession
 
@@ -954,15 +955,18 @@ functions.
                        ``read(buffer, count)``)
         :param number count: number of bytes to read
 
-        If the format is ``read()`` -- omitting ``count`` -- then read all
-        bytes in the file.
+        :return: * If the format is ``read()`` -- omitting ``count`` -- then read all
+                   bytes in the file.
 
-        If the format is ``read()``  or ``read([count])`` then return a string
-        containing the data that was read from the file, or nil if failure.
+                 * If the format is ``read()``  or ``read([count])`` then return a string
+                   containing the data that was read from the file, or nil if failure.
 
-        If the format is ``read(buffer, count)`` then return the data
-        to the buffer.
-        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+                 * If the format is ``read(buffer, count)`` then return the data
+                   to the buffer.
+                   Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.
+
+                 * In case of an error the method returns ``nil, err`` and sets
+                   the error to ``errno``.
 
         .. code-block:: tarantoolsession
 
@@ -994,10 +998,11 @@ functions.
             file from multiple fibers. It is possible to limit or prevent file
             access from other fibers with ``fiber.ipc``.
 
-        :param userdata fh: file-handle as returned by ``fio.open()``.
-        :param string new-string or buffer: value to write
-        :param number count: number of bytes to write (if the format is
-                             ``write(buffer, count)``)
+        :param userdata fh: file-handle as returned by ``fio.open()``
+        :param string new-string: value to write (if the format is ``write(new-string)``)
+        :param cdata buffer: value to write (if the format is ``write(buffer, count)``)
+        :param number count: number of bytes to write
+
         :return: true if success, false if failure.
         :rtype:  boolean
 
@@ -1006,13 +1011,20 @@ functions.
 
         If the format is ``write(buffer, count)`` then the buffer contents
         are written to the file, for ``count`` bytes.
-        (Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.)
+        Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`.
 
         **Example:**
 
         .. code-block:: tarantoolsession
 
             tarantool> fh:write("new data")
+            ---
+            - true
+            ...
+            ibuf = require('buffer').ibuf()
+            ---
+            ...
+            tarantool> fh:write(ibuf, 1)
             ---
             - true
             ...
