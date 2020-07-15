@@ -8,6 +8,7 @@ git pull --recurse-submodules
 git submodule update --remote --merge
 
 project_root=$(pwd)
+echo "${project_root}"
 cartridge_root="${project_root}/modules/cartridge"
 rst_src="${project_root}/modules/cartridge/build.luarocks/build.rst"
 rst_dest="${project_root}/doc/book/cartridge"
@@ -18,6 +19,11 @@ po_dest="${project_root}/locale/ru/LC_MESSAGES/book/cartridge"
 cartridge_cli_root="${project_root}/modules/cartridge-cli"
 cartridge_cli_dest="${rst_dest}/cartridge_cli"
 cartridge_cli_index_dest="${cartridge_cli_dest}/index.rst"
+monitoring_root="${project_root}/modules/metrics/doc/monitoring"
+monitoring_dest="${project_root}/doc/book"
+
+mkdir -p "${monitoring_dest}"
+yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
 
 mkdir -p "${cartridge_cli_dest}"
 yes | cp -rf "${cartridge_cli_root}/README.rst" "${cartridge_cli_index_dest}"
