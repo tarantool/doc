@@ -20,10 +20,10 @@ cartridge_cli_root="${project_root}/modules/cartridge-cli"
 cartridge_cli_dest="${rst_dest}/cartridge_cli"
 cartridge_cli_index_dest="${cartridge_cli_dest}/index.rst"
 monitoring_root="${project_root}/modules/metrics/doc/monitoring"
-monitoring_dest="${project_root}/doc/book/metrics"
+monitoring_dest="${project_root}/doc/book"
 
 mkdir -p "${monitoring_dest}"
-yes | cp -rf "${monitoring_root}/*.rst" "${monitoring_dest}/"
+yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
 
 mkdir -p "${cartridge_cli_dest}"
 yes | cp -rf "${cartridge_cli_root}/README.rst" "${cartridge_cli_index_dest}"
