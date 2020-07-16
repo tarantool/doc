@@ -53,25 +53,25 @@ Below is a list of all ``box.error`` functions.
     | <box_error-custom_type>`             |                                 |
     +--------------------------------------+---------------------------------+
 
-.. function:: box.error{reason = string [, code = number]}
-
-    When called with a Lua-table argument, the code and reason have any
-    user-desired values. The result will be those values.
-
-    :param string reason: description of an error, defined by user
-    :param integer  code: numeric code for this error, defined by user
+.. _box_error-error:
 
 .. function:: box.error()
 
     When called without arguments, ``box.error()`` re-throws whatever the last
     error was.
 
-.. _box_error-error:
+.. function:: box.error{reason = string [, code = number]}
+
+    Throw an error. When called with a Lua-table argument, the code and reason
+    have any user-desired values. The result will be those values.
+
+    :param string reason: description of an error, defined by user
+    :param integer  code: numeric code for this error, defined by user
 
 .. function:: box.error(code, errtext [, errtext ...])
 
-    Emulate a request error, with text based on one of the pre-defined Tarantool
-    errors defined in the file `errcode.h
+    Throw an error. This method emulates a request error, with text based on one
+    of the pre-defined Tarantool errors defined in the file `errcode.h
     <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ in
     the source tree. Lua constants which correspond to those Tarantool errors are
     defined as members of ``box.error``, for example ``box.error.NO_SUCH_USER == 45``.
@@ -84,14 +84,16 @@ Below is a list of all ``box.error`` functions.
     the ``NO_SUCH_USER`` message is "``User '%s' is not found``" -- it includes
     one "``%s``" component which will be replaced with errtext. Thus a call to
     ``box.error(box.error.NO_SUCH_USER, 'joe')`` or ``box.error(45, 'joe')``
-    will result in an error with the accompanying message
-    "``User 'joe' is not found``".
+    will result in an error with the accompanying message "``User 'joe' is not found``".
 
     :except: whatever is specified in errcode-number.
 
+.. function:: box.error(code, errtext [, errtext ...])
+
     ``box.error()`` accepts two sets of arguments:
-    
-    * error code and reason (``box.error{code = 555, reason = 'Arbitrary message'}``), or
+
+    * error code and reason/errtext (``box.error{code = 555, reason = 'Arbitrary
+      message'}``), or
     * error object (``box.error(err)``).
 
     In both cases the error is promoted as the last error.
@@ -100,7 +102,7 @@ Below is a list of all ``box.error`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> e1 = box.error.new({code = 111, reason = "Сause"})
+        tarantool> e1 = box.error.new({code = 111, reason = 'Сause'})
         ---
         ...
         tarantool> box.error(e1)
@@ -124,44 +126,57 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.last()
 
-    Returns a description of the last error, as a Lua table
-    with five members: "line" (number) Tarantool source file line number,
-    "code" (number) error's number,
-    "type", (string) error's C++ class,
-    "message" (string) error's message,
-    "file" (string) Tarantool source file.
+    Return a description of the last error, as a Lua table with four members:
+
+    * "code" (number) error’s number
+    * "type" (string) error’s C++ class
+    * "message" (string) error’s message
+    * "trace" -- table with 2 members:
+          * "line" (number) Tarantool source file line number
+          * "file" (string) Tarantool source file
+
     Additionally, if the error is a system error (for example due to a
-    failure in socket or file io), there may be a sixth member:
+    failure in socket or file io), there may be a fifth member:
     "errno" (number) C standard error number.
 
-    rtype: table
+    :rtype: table
+
+    To show the table, use ``unpack()``:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> box.schema.space.create('')
+        ---
+        - error: Invalid identifier '' (expected printable symbols only or it is too long)
+        ...
+        tarantool> box.error.last()
+        ---
+        - Invalid identifier '' (expected printable symbols only or it is too long)
+        ...
+        tarantool> box.error.last():unpack()
+        ---
+        - type: ClientError
+          code: 70
+          message: Invalid identifier '' (expected printable symbols only or it is too long)
+          trace:
+          - file: /tmp/tarantool-20200109-43082-1pv0594/tarantool-2.3.1.1/src/box/identifier.c
+            line: 68
+        ...
 
 .. _box_error-clear:
 
 .. function:: box.error.clear()
 
-    Clears the record of errors, so functions like `box.error()`
-    or `box.error.last()` will have no effect.
+    Clear the record of errors, so functions like ``box.error()``
+    or ``box.error.last()`` will have no effect.
 
     **Example:**
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.error{code = 555, reason = 'Arbitrary message'}
-        ---
-        - error: Arbitrary message
-        ...
-        tarantool> box.schema.space.create('#')
-        ---
-        - error: Invalid identifier '#' (expected letters, digits or an underscore)
-        ...
         tarantool> box.error.last()
         ---
-        - line: 278
-          code: 70
-          type: ClientError
-          message: Invalid identifier '#' (expected letters, digits or an underscore)
-          file: /tmp/buildd/tarantool-1.7.0.252.g1654e31~precise/src/box/key_def.cc
+        - Invalid identifier '' (expected printable symbols only or it is too long)
         ...
         tarantool> box.error.clear()
         ---
@@ -175,9 +190,8 @@ Below is a list of all ``box.error`` functions.
 
 .. function:: box.error.new(code, errtext [, errtext ...])
 
-    Create an error object, but doesn't throw it as
-    :ref:`box.error() <box_error-error>` does.
-    This is useful when error information should be saved for later retrieval.
+    Create an error object, but not throw it as :ref:`box.error() <box_error-error>`
+    does. This is useful when error information should be saved for later retrieval.
     To set an error as the last explicitly use :ref:`box.error.set() <box_error-set>`.
 
     :param number       code: number of a pre-defined error
@@ -203,7 +217,7 @@ Below is a list of all ``box.error`` functions.
         ...
         tarantool> box.error.last()
         ---
-        - nil
+        - null
 
     Beginning in version 2.4.1 there is a :ref:`session_settings <box_space-session_settings>`
     setting which affects structure of error objects. If ``error_marshaling_enabled``
@@ -219,7 +233,7 @@ Below is a list of all ``box.error`` functions.
     followed by all of the MP_ERROR_STACK components
     (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.)
     that are described and illustrated in section
-    :ref:`MessagePack extensions - The ERROR type <msgpack_ext-error>`.
+    :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`.
     The map field for error object "type" will have key = MP_ERROR_TYPE,
     the map field for error object "code" will have key = MP_ERROR_CODE,
     the map field for error object "message" will have key = MP_ERROR_MESSAGE.
@@ -235,7 +249,7 @@ Below is a list of all ``box.error`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> err = box.error.new({code = 111, reason = "cause"})
+        tarantool> err = box.error.new({code = 111, reason = 'cause'})
         ---
         ...
         tarantool> box.error.last()
@@ -274,10 +288,10 @@ Below is a list of all ``box.error`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> e1 = box.error.new({code = 111, reason = "some cause"})
+        tarantool> e1 = box.error.new({code = 111, reason = 'some cause'})
         ---
         ...
-        tarantool> e2 = box.error.new({code = 111, reason = "cause of cause"})
+        tarantool> e2 = box.error.new({code = 111, reason = 'cause of cause'})
         ---
         ...
         tarantool> e1:set_prev(e2)
@@ -309,7 +323,7 @@ Below is a list of all ``box.error`` functions.
         -- Now there are two lists: e1->e2->e5 and e3->e4
 
     The iProto protocol also supports stacked diagnostics. See details in
-    :ref:`MessagePack extensions - The ERROR type <msgpack_ext-error>`.
+    :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`.
 
 .. _box_error-custom_type:
 
