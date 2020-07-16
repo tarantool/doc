@@ -852,16 +852,21 @@ msgstr ""
 msgid "values to be matched against the index key"
 msgstr "значения для сопоставления с ключом индекса"
 
-msgid "none, any or all of next parameters"
+msgid ""
+"none, any or all of next parameters:  * iterator - type of iterator * "
+"limit - maximum number of tuples * offset - start tuple number"
+msgstr ""
+
+msgid "none, any or all of next parameters:"
 msgstr "ни один, любой или все следующие параметры"
 
-msgid "type of iterator"
+msgid "iterator - type of iterator"
 msgstr "тип итератора"
 
-msgid "maximum number of tuples"
+msgid "limit - maximum number of tuples"
 msgstr "максимальное количество кортежей"
 
-msgid "start tuple number"
+msgid "offset - start tuple number"
 msgstr "номер начального кортежа"
 
 msgid "the tuple or tuples that match the field values."
@@ -1268,8 +1273,14 @@ msgstr ""
 msgid "what value will be applied"
 msgstr "какое значение применяется"
 
-msgid "the updated tuple."
-msgstr "обновленный кортеж."
+msgid "the updated tuple"
+msgstr "обновленный кортеж"
+
+msgid "nil if the key is not found"
+msgstr "nil, если ключ не найден"
+
+msgid "tuple or nil"
+msgstr ""
 
 msgid "Delete a tuple identified by a key."
 msgstr "Удаление кортежа по ключу."
