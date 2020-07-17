@@ -112,6 +112,12 @@ Here's an example that illustrates the most typical case -- "update and reload".
 Reloading a module in C
 --------------------------------------------------------------------------------
 
-After you compiled a new version of a C module (``*.so`` shared library), call
+After you have compiled a new version of a C module (``*.so`` shared library), call
 :ref:`box.schema.func.reload('module-name') <box_schema-func_reload>`
 from your Lua script to reload the module.
+
+Starting in Tarantool version 2.3, ``reload()`` will create a
+temporary file to store the module if any of its
+functions is still running. The directory for this file
+is what is specified in the TMPDIR environment variable, or
+it is /tmp if the TMPDIR environment variable is blank.
