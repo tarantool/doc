@@ -1,0 +1,179 @@
+.. _repl_sync:
+
+----------------------------------------
+Synchronous replication
+----------------------------------------
+
+=======================================
+Overview
+=======================================
+
+By default replication in Tarantool is asynchronous. Meaning that if a transaction
+is committed locally on a master node, it does not mean it is replicated onto any
+replicas. If a master responds success to a client and then dies, after failover
+to a replica from client's point of view the transaction will disappear .
+
+Synchronous replication exists to solve this problem. Synchronous transactions
+are not considered committed and are not responded to a client until are
+replicated onto some number of replicas.
+
+==================================
+Usage
+==================================
+
+In Tarantool it can be enabled per-space using ``is_sync`` option:
+
+.. code-block:: lua
+
+    box.schema.create_space('test1', {is_sync = true})
+
+Any transaction doing a DML request on this space becomes synchronous.
+Notice that DDL on this space is not synchronous. Including truncation. To
+control synchronous transactions behaviour there are global ``box.cfg`` options:
+
+.. code-block:: lua
+
+    box.cfg{replication_synchro_quorum = <number of instances>}
+
+This option tells how many replicas should confirm the receipt of a synchronous
+transaction before it can finish its commit. So far this option accounts all
+replicas, including anonymous. As a usage example, consider this:
+
+.. code-block:: lua
+
+    -- Instance 1
+    box.cfg{
+        listen = 3313,
+        replication_synchro_quorum = 2,
+    }
+    box.schema.user.grant('guest', 'super')
+    _ = box.schema.space.create('sync', {is_sync=true})
+    _ = _:create_index('pk')
+
+.. code-block:: lua
+
+    -- Instance 2
+    box.cfg{
+        listen = 3314,
+        replication = 'localhost:3313'
+    }
+
+.. code-block:: lua
+
+    -- Instance 1
+    box.space.sync:replace{1}
+
+When the first instance makes ``replace()``, it won't finish until the second
+instance confirms its receipt and successful appliance. Note that the quorum is
+set to 2, but the transaction was still committed even though there is only one
+replica. This is because the master instance itself also participates in the quorum.
+
+Now if the second instance is down, the first one won't be able to commit any
+synchronous change.
+
+.. code-block:: lua
+
+    -- Instance 2
+    Ctrl+D
+
+.. code-block:: tarantoolsession
+
+    -- Instance 1
+    tarantool> box.space.sync:replace{2}
+    ---
+    - error: Quorum collection for a synchronous transaction is timed out
+    ...
+
+The transaction wasn't committed because it failed to achieve the quorum in the
+given time. The time is a second configuration option:
+
+.. code-block:: lua
+
+    box.cfg{replication_synchro_timeout = <number of seconds, can be float>}
+
+It tells how many seconds need to wait for a synchronous transaction quorum
+replication until it is declared failed and is rolled back.
+
+Successful synchronous transaction commit is persisted in WAL as a special
+CONFIRM record. The rollbacks are also persisted with ROLLBACK record.
+
+The ``timeout`` and ``quorum`` options are not used on replicas. It means if
+master dies, the pending synchronous transactions will be kept waiting on
+the replicas until a new master is elected.
+
+=====================================================
+Synchronous and asynchronous transactions
+=====================================================
+
+One of the killer features of Tarantool's sync replication is being per-space.
+It means that if you need it only rarely for some critical data changes, you
+won't pay for it in performance.
+
+When there is more than one synchronous transaction, they all wait for being
+replicated. Moreover, if an asynchronous transaction will appear now, it will
+also be blocked by the existing sync transactions. This behaviour is very similar
+to regular async transactions queue because all the transactions finish their
+commits in the same order as start them. Regardless of being sync or async.
+
+So the simple rule for all types of txns: transactions always finish their
+commit in the same order as start them.
+
+If one of the waiting sync transactions times out and is rolled back, it will
+first rollback all the newer pending transactions. Again, just like how async
+transactions are rolled back when WAL write fails. Here the simple rule is that
+transactions are always rolled back in the order reversed from the commit start
+order. Regardless of being sync or async.
+
+Another important thing is that if an async transaction is blocked on a sync
+transaction, it does not mean it also becomes sync. It just means it will wait
+for a sync transaction commit. But once it is done, the async transaction will
+finish its commit immediately. It won't wait for being replicated itself.
+
+================================================
+Restrictions and known problems
+================================================
+
+Currently there is no way to enable sync replication for existing spaces, but it
+is only a temporary restriction.
+
+Synchronous transactions work only for master-slave topology. You can have multiple
+replicas, anonymous replicas, but only one node can make synchronous transactions.
+
+Anonymous replicas participate in quorum. This will change. It won't be possible
+for a sync transaction to gather quorum using anonymous replicas in future.
+
+====================================
+Master election
+====================================
+
+There is no automatic master election so far. For now it is expected to be done
+by an external tool or manually.
+
+When the master node dies, you need to find the replica which received the latest
+changes from the master compared to all the other replicas. I.e. with the biggest
+LSN in the old master's vclock component.
+
+On this replica you need to call function ``box.ctl.clear_synchro_queue()``.
+This function will try to successfully confirm and commit the pending sync
+transactions. If it couldn't be done in the ``box.cfg.replication_synchro_timeout``,
+the not confirmed transactions are rolled back. From this moment this instance
+can become new master and make new synchronous transactions.
+
+=======================================
+Things to keep in mind
+=======================================
+
+**The commit rule:** transactions always finish their commit in the same order
+as they begin it. Regardless of being sync or async.
+
+**The rollback rule:** transactions always are rolled back in the order reversed
+from the commit begin order. Regardless of being sync or async.
+
+If a transaction is rolled back, it does not mean the ROLLBACK message reached
+the replicas. It still can be so the master node will suddenly die, and the
+transaction will be committed by the new master. The application logic should be
+ready to that.
+
+Synchronous transactions are better to use with full-mesh. Then the replicas can
+talk to each other in case of master node's death, and still confirm some pending
+transactions.
