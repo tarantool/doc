@@ -11,8 +11,7 @@
 The ``socket`` module allows exchanging data via BSD sockets with a local or
 remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode.
 Semantics of the calls in the ``socket`` API closely follow semantics of the
-corresponding POSIX calls. Function names and signatures are mostly compatible
-with `luasocket`_.
+corresponding POSIX calls.
 
 The functions for setting up and connecting are ``socket``, ``sysconnect``,
 ``tcp_connect``. The functions for sending data are ``send``, ``sendto``,
@@ -109,6 +108,9 @@ Below is a list of all ``socket`` functions.
     |                                                       | connection's far side        |
     +-------------------------------------------------------+------------------------------+
     | :ref:`socket.iowait() <socket-iowait>`                | Wait for read/write activity |
+    +-------------------------------------------------------+------------------------------+
+    | :ref:`LuaSocket wrapper functions <socket-luasocket>` | Several methods for          |
+    |                                                       | emulating the LuaSocket API  |
     +-------------------------------------------------------+------------------------------+
 
 Typically a socket session will begin with the setup functions, will set one
@@ -212,7 +214,7 @@ the function invocations will look like ``sock:function_name(...)``.
     :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]`
     :code:`}`.
     ``handler_function`` is mandatory; it may have a
-    parameter = the socket object;
+    parameter = the socket;
     it is executed once after accept() happens (once per connection);
     it is for continuous
     operation after the connection is made.
@@ -600,6 +602,29 @@ the function invocations will look like ``sock:function_name(...)``.
 
     Example: ``socket.iowait(sock:fd(), 'r', 1.11)``
 
+.. _socket-luasocket:
+
+=================================================
+             LuaSocket wrapper functions
+=================================================
+
+The LuaSocket API has functions that are equivalent to the ones described above,
+with different names and parameters, for example ``connect()``
+rather than ``tcp_connect()``,
+as well as ``getpeername``, ``getsockname``, ``setoption``, ``settimeout``.
+Tarantool supports these functions so that
+third-party packages which depend on them will work.
+
+The LuaSocket project is on
+`github <https://github.com/diegonehab/luasocket>`_.
+The API description is in the
+`LuaSocket manual <http://w3.impa.br/~diego/software/luasocket/>`_
+(click the "introduction" and "reference" links at the
+bottom of the manual's main page).
+
+A Tarantool example is
+:ref:`Use of a socket with LuaSocket wrapper functions <socket-wrapper>`.
+
 .. _socket-recommended:
 
 =================================================
@@ -666,6 +691,45 @@ with this particular site, but shows that the system works.
     tarantool> sock:close()
     ---
     - true
+    ...
+
+.. _socket-wrapper:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Use of a socket with LuaSocket wrapper functions 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a variation of the earlier example
+"Use of a TCP socket over the Internet".
+It uses :ref:`LuaSocket wrapper functions <socket-luasocket>`,
+with a too-short timeout so that a "Connection timed out" error is likely.
+The more common way to specify timeout is with an option of
+:ref:`tcp_connect() <socket-tcp_connect>`.
+
+.. code-block:: tarantoolsession
+
+    tarantool> socket = require('socket')
+    ---
+    ...
+    tarantool> sock = socket.connect('tarantool.org', 80)
+    ---
+    ...
+    tarantool> sock:settimeout(0.001)
+    ---
+    - 1
+    ...
+    tarantool> sock:send("HEAD / HTTP/1.0\r\nHost: tarantool.org\r\n\r\n")
+    ---
+    - 40
+    ...
+    tarantool> sock:receive(17)
+    ---
+    - null
+    - Connection timed out
+    ...
+    tarantool> sock:close()
+    ---
+    - 1
     ...
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -837,4 +901,3 @@ The display will include something like
 'accepted connection from 
 host: 127.0.0.1 family: AF_INET port: 37186'.
 
-.. _luasocket: https://github.com/diegonehab/luasocket
