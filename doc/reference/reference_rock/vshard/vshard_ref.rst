@@ -665,23 +665,23 @@ Router public API
     :param mode: working mode of a discovery fiber. There are three modes: ``on``,
                  ``off`` and ``once``
 
-    When the mode is ``on`` (default), the discovery fiber works all the lifetime
+    When the mode is ``on`` (default), the discovery fiber works during all the lifetime
     of the router. Even after all buckets are discovered, it will
     still come to storages and download their buckets with some big
-    period. This is useful if a bucket topology changes often and the number of
+    period. This is useful if the bucket topology changes often and the number of
     buckets is not big. The router will keep its route table up to
     date even when no requests are processed.
 
-    When the mode is ``off``, a discovery is disabled completely.
+    When the mode is ``off``, discovery is disabled completely.
 
-    When the mode is ``once``, a discovery will start, find locations of
+    When the mode is ``once``, discovery will start, find the locations of
     all buckets, and then the discovery fiber is terminated. This
-    is good for large bucket count and for clusters, where rebalancing is rare.
+    is good for a large bucket count and for clusters, where rebalancing is rare.
 
     The method is good to enable/disable discovery after the router is
     already started, but discovery is enabled by default. You may want
-    to never enable it even for a short time - then specify
-    discovery_mode option in the :ref:`configuration <cfg_basic-discovery_set>`.
+    to never enable it even for a short time -- then specify the
+    ``discovery_mode`` option in the :ref:`configuration <cfg_basic-discovery_set>`.
     It takes the same values as :samp:`vshard.router.discovery_set({mode})`.
 
     You may decide to turn off discovery or make it ``once`` if you have
@@ -689,7 +689,7 @@ Router public API
     and you see that the discovery process consumes notable CPU % on
     routers and storages. In that case it may be wise to turn off the
     discovery when there is no rebalancing in the cluster. And turn it
-    on for new routers, as well as for all routers when a rebalancing is
+    on for new routers, as well as for all routers when rebalancing is
     started.
 
 .. _router_api-info:
