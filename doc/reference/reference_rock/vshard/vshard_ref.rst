@@ -20,7 +20,7 @@ Basic parameters
 * :ref:`rebalancer_disbalance_threshold <cfg_basic-rebalancer_disbalance_threshold>`
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
 * :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
-* :ref:` discovery_set <cfg_basic-discovery_set>`
+* :ref:`discovery_set <cfg_basic-discovery_set>`
 
 .. _cfg_basic-sharding:
 
@@ -668,7 +668,8 @@ Router public API
     When the mode is ``on`` (default), the discovery fiber works during all the lifetime
     of the router. Even after all buckets are discovered, it will
     still come to storages and download their buckets with some big
-    period. This is useful if the bucket topology changes often and the number of
+    period (`DISCOVERY_IDLE_INTERVAL <https://github.com/tarantool/vshard/blob/master/vshard/consts.lua>`_).
+    This is useful if the bucket topology changes often and the number of
     buckets is not big. The router will keep its route table up to
     date even when no requests are processed.
 
