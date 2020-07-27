@@ -280,7 +280,7 @@ memory ratio), the plot would look something like this:
 As for read amplification, it’s proportional to the number of levels. The lookup
 cost at each level is no greater than that for a B-tree. Getting back to the
 example of a tree with 100,000,000 elements: given 256 Mb of RAM and the default
-values of ``vinyl_level_size_ratio`` and ``run_count_per_level``, write
+values of ``vinyl_run_size_ratio`` and ``vinyl_run_count_per_level``, write
 amplification would come out to about 13, while read amplification could be as
 high as 150. Let’s try to figure out why this happens.
 
