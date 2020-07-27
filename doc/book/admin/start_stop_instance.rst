@@ -58,7 +58,7 @@ is ``my_app``):
 .. code-block:: console
 
     $ systemctl start tarantool@my_app
-    $ ps axuf|grep exampl[e]
+    $ ps axuf|grep my_app
     taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool my_app.lua <running>
 
 ... this actually calls ``tarantoolctl`` like in case of
