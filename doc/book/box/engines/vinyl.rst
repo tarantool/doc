@@ -567,7 +567,7 @@ simultaneously occurring in all of the bit arrays is infinitesimal.
 
 The key advantage of Bloom filters in Tarantool is that they’re easily
 configurable. The only parameter that can be specified separately for each index
-is called ``bloom_fpr`` (FPR stands for "false positive ratio") and it has the
+is called ``vinyl_bloom_fpr`` (FPR stands for "false positive ratio") and it has the
 default value of 0.05, which translates to a 5% FPR. Based on this parameter,
 Tarantool automatically creates Bloom filters of the optimal size for partial-
 key and full-key searches. The Bloom filters are stored in the `.index` file,
