@@ -174,8 +174,8 @@ We can expect that "L0 = 0" immediately after a dump.
 ``box.stat.vinyl().memory.page_index`` and  ``box.stat.vinyl().memory.bloom_filter``
 have the current amount being used for index-related structures.
 The size is a function of the number and size of keys,
-plus :ref:`page_size <cfg_storage-vinyl_page_size>`,
-plus :ref:`bloom_fpr <cfg_storage-vinyl_bloom_fpr>`.
+plus :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`,
+plus :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`.
 This is not a count of bloom filter "hits"
 (the number of reads that could be avoided because the
 bloom filter predicts their presence in a run file) --
