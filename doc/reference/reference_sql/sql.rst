@@ -1584,7 +1584,7 @@ although it may exist in data created by Tarantool's NoSQL. In SQL, -nan is trea
 
 A string will be converted to a number if it is used with an arithmetic operator and conversion is possible,
 for example ``'7' + '7'`` = 14.
-And for comparison or assignment, ``'7'`` = 7.
+And for comparison, ``'7'`` = 7.
 This is called implicit casting. It is applicable for STRINGs and all numeric data types.
 
 Limitations: (`Issue#2346 <https://github.com/tarantool/tarantool/issues/2346>`_) |br|
@@ -1685,8 +1685,8 @@ The specific situations in this chart follow the general rules:
     ~                To BOOLEAN | To number  | To STRING | To VARBINARY
     ---------------  ----------   ----------   ---------   ------------
     From BOOLEAN   | AAA        | S--        | A--       | ---
-    From number    | A--        | SSA        | AAA       | ---
-    From STRING    | S--        | SSS        | AAA       | A--
+    From number    | A--        | SSA        | A-A       | ---
+    From STRING    | S--        | S-S        | AAA       | A--
     From VARBINARY | ---        | ---        | A--       | AAA
 
 Where each entry in the chart has 3 characters: |br|
@@ -1728,6 +1728,12 @@ The result is TRUE.
 column is AAA and the third letter of AAA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.  For detailed explanation see the following section.
 
+``CAST('5' AS INTEGER)`` is legal because the intersection of the "From STRING" row with the "To number"
+column is S-S and the first letter of S-S is for explicit cast and S means Sometimes Allowed.
+However, ``CAST('5.5' AS INTEGER)`` is illegal because 5.5 is not an integer --
+if the string contains post-decimal digits and the target is INTEGER or UNSIGNED,
+the assignment will fail.
+
 Implicit string/numeric cast
 
 Special considerations may apply for casting STRINGs
@@ -1743,15 +1749,11 @@ Therefore ``1e400 < ''`` is TRUE. |br|
 Exception: for BETWEEN the cast is to the data type of the first and last operands. |br|
 Therefore ``'66' BETWEEN 5 AND '7'`` is TRUE.
 
-For assignments, the cast is always from source to target.
-Therefore ``INSERT INTO t (integer_column) VALUES ('5');`` inserts 5. |br|
-If the cast fails, then the result is an error.
-Due to a change in behavior starting with Tarantool 2.4.1,
-if the string contains post-decimal digits and the target is INTEGER or UNSIGNED,
-the assignment will fail.
-Therefore ``INSERT INTO t (integer_column) VALUES ('5.5');`` causes an error. |br|
+For assignments, due to a change in behavior starting with Tarantool 2.5.1,
+implicit casts from strings to numbers are not legal. Therefore
+``INSERT INTO t (integer_column) VALUES ('5');`` is an error.
 
-Implicit cast also happens if STRINGS are used in arithmetic. |br|
+Implicit cast does happen if STRINGS are used in arithmetic. |br|
 Therefore ``'5' / '5' = 1``. If the cast fails, then the result is an error. |br|
 Therefore ``'5' / ''`` is an error.
 
@@ -4787,7 +4789,7 @@ and returns:
     - row_count: 1
     ...
 
-It is functionally the same thing as an :ref:`UPDATE statement:
+It is functionally the same thing as an :ref:`UPDATE Statement <sql_update>`:
 
 .. code-block:: none
 
