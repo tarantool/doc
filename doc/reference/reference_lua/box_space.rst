@@ -312,9 +312,9 @@ Below is a list of all ``box.space`` functions and members.
             | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
             |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
             |                     |                                                       | ``'number'`` or ``'double'`` or  |                               |
-            |                     |                                                       | ``'decimal'``or 'boolean'`` or   |                               |
-            |                     |                                                       | ``'varbinary'`` or               |                               |
-            |                     |                                                       | ``'array'`` or ``'scalar'``,     |                               |
+            |                     |                                                       | ``'decimal'`` or ``'boolean'``   |                               |
+            |                     |                                                       | or ``'varbinary'`` or ``'uuid'`` |                               |
+            |                     |                                                       | or ``'array'`` or ``'scalar'``,  |                               |
             |                     |                                                       | and optional collation or        |                               |
             |                     |                                                       | is_nullable value or path}       |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
@@ -816,7 +816,8 @@ Below is a list of all ``box.space`` functions and members.
           have the same name;
         * the ``type`` value may be any of those allowed for
           :ref:`indexed fields <index-box_indexed-field-types>`:
-          unsigned | string | varbinary | integer | number | double | boolean | decimal | array | scalar
+          unsigned | string | varbinary | integer | number | double | boolean |
+          decimal | uuid | array | scalar
           (the same as the requirement in
           :ref:`"Options for space_object:create_index" <box_space-create_index-options>`);
         * the optional ``is_nullable`` value may be either ``true`` or ``false``
@@ -910,6 +911,9 @@ Below is a list of all ``box.space`` functions and members.
             tarantool> decimal = require('decimal')
             ---
             ...
+            tarantool> uuid = require('uuid')
+            ---
+            ...
             tarantool> box.space.t:format({{name = '1', type = 'any'},
                      >                     {name = '2', type = 'unsigned'},
                      >                     {name = '3', type = 'string'},
@@ -918,9 +922,10 @@ Below is a list of all ``box.space`` functions and members.
                      >                     {name = '6', type = 'integer'},
                      >                     {name = '7', type = 'boolean'},
                      >                     {name = '8', type = 'decimal'},
-                     >                     {name = '9', type = 'scalar'},
-                     >                     {name = 'a', type = 'array'},
-                     >                     {name = 'b', type = 'map'}})
+                     >                     {name = '9', type = 'uuid'},
+                     >                     {name = 'a', type = 'scalar'},
+                     >                     {name = 'b', type = 'array'},
+                     >                     {name = 'c', type = 'map'}})
             ---
             ...
             tarantool> box.space.t:create_index('i',{parts={2, type = 'unsigned'}})
@@ -943,11 +948,12 @@ Below is a list of all ``box.space`` functions and members.
                      >                    -0, -- integer
                      >                    true, -- boolean
                      >                    decimal.new(1.2), -- decimal
+                     >                    uuid.new(), -- uuid
                      >                    true, -- scalar
                      >                    {{'a'}}, -- array
                      >                    {val=1}} -- map
             ---
-            - [['a'], 1, 'W?', 5.5, 1, 0, true, 1.2, true, [['a']], {'val': 1}]
+            - [['a'], 1, 'W?', 5.5, 1, 0, true, 1.2, 1f41e7b8-3191-483d-b46e-1aa6a4b14557, true, [['a']], {'val': 1}]
             ...
 
         Names specified with the format clause can be used in
