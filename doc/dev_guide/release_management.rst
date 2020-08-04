@@ -10,30 +10,30 @@ Release management
 Release policy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A Tarantool release is identified by three digits, for example, 1.7.7.
-We use these digits according to their definitions provided at http://semver.org:
+A Tarantool release is identified by three digits, for example, 1.10.7:
 
-* The first digit stands for MAJOR release. A **major** release may contain
+* The first digit stands for ?a MAJOR release. A [TODO]**major** release may contain
   *incompatible changes*.
-* The second digit stands for MINOR release, it does not contain incompatible
+* The second digit stands for ?a MINOR release. It does not contain incompatible
   changes, and is used for introducing backward-compatible *features*.
-* The third digit is for PATCH releases that contain only backward-compatible
+* The third digit is for [TODO]PATCH releases that contain only backward-compatible
   *bug fixes*.
 
-In MINOR digit, we reflect how stable a release is:
+[TODO]In ?the PATCH digit, we reflect how stable a release is:
+[TODO]
+* 0 meaning **alpha**
+* 1 meaning **beta**
+* [TODO]2 and above meaning **stable**.
 
-* 0 meaning alpha,
-* 1 meaning beta,
-* anything between 1 and 10 meaning stable, and
-* 10 meaning LTS.
-
-So, each MAJOR release series goes through a development-maturity life cycle of
-MINOR releases, as follows:
+So, each MINOR release series goes through a development-maturity life cycle as follows:
 
 1. **Alpha**. Once in every few months we release a few alpha versions,
    e.g. 2.0.1, 2.0.2.
 
-   Alpha versions may contain incompatible changes, crashes and other bugs.
+[TODO] **Alpha**. Once a quarter, we start off with a new alpha version, ?such as/e.g. 2.3.0, 2.4.0, and so on.
+This/It is not what is usually meant by ?an ?classic alpha release in ?classic software development but rather the current trunk version
+which is under heavy development and may/?can be unstable. The current alpha version always lives in the master branch.
+
 
 2. **Beta**. Once major changes necessary to introduce new flagship features
    are ready, we release a few beta versions, e.g. 2.1.3, 2.1.4.
@@ -41,27 +41,47 @@ MINOR releases, as follows:
    Beta versions may contain crashes, but do not have incompatible changes,
    so can be used to develop new applications.
 
-4. **Stable**. Finally, after we see our beta versions run successfully in
+[TODO] **Beta**. Once all the features planned are implemented, we fork a new branch from the master ?one/branch and tag it as a new beta version.
+It contains ?``1`` for the PATCH ?digit/position, e.g., 2.3.1, 2.4.1, ?and so on.
+This version is still unstable although there're no critical regressions in it since the last stable release. We do this quarterly as well.
+
+
+3. **Stable**. Finally, after we see our beta versions run successfully in
    production, usually in a few more months, during which we fix all incoming
    bugs and add some minor features, we declare this MAJOR release series
    stable.
 
-Like Ubuntu, we distinguish two kinds of stable releases:
+[TODO] "Stable. Finally, after we see our beta versions run successfully in production
+or in development environment during another quarter while we fix incoming bugs we declare version as stable.
+It is tagged w/ 2 for PATCH. E.g. 2.3.2, 2.4.2.
+We support such version for 3 months ?while making another stable release after a quarter with ?fixes/fixing of all bugs found.
+This last tag on/?in the release branch contains ?``3`` for the PATCH ?digit/position, e.g., 2.3.3, 2.4.3, ?and so on.
+After the tag is ?put, no new changes are allowed to the release branch, and it is declared deprecated and superseded by a newer version."
+
+
+Like Ubuntu, we distinguish ?between two kinds of stable releases:
 
 * **LTS (Long Term Support)** releases that are supported for 3 years
   (community) and up to 5 years (paying customers). **LTS** release
   is identified by MINOR version 10.
+
+[TODO]"**LTS (Long Term Support)** releases that are supported for 3 years (community) and up to 5 years (paying customers). LTS release is currently 1.10.x"
+
 * **Standard stable releases** are only supported a few months after the next
   stable is out.
 
 "Support" means that we continue fixing bugs in a release.
 
 We add commits simultaneously to three MAJOR releases:
+[TODO]We add bug fixes simultaneously in three releases and alpha:
 
 * **LTS** is a stable release which does not receive new features, and only gets
   backward compatible fixes. Hence, following the rules of semver, LTS release
   never has its MAJOR or MINOR version increased, and only gets PATCH level
   releases.
+
+[TODO]"Hence,...-> "LTS release never has its MAJOR or MINOR version increased, and only gets PATCH level releases."
+
 
 * **STABLE** is our current stable release, which may receive new features.
   When the next STABLE version is published, MINOR version is incremented.
@@ -70,12 +90,18 @@ We add commits simultaneously to three MAJOR releases:
   two STABLE releases, the current and the previous one, to preserve support
   continuity.
 
+[TODO]"STABLE... -> "STABLE[S] are our current stable releases, which may not receive new features. When the next STABLE version is published, MINOR version is incremented. We maintain PATCH level releases for two STABLE releases, the current and the previous one, to preserve support continuity."
+
+
 * **NEXT** is our next MAJOR release, and it follows the maturity
   cycle described in the beginning. While NEXT release is in alpha state,
   its MINOR is frozen at 0 and is only increased when the release reaches
   BETA status. Once the NEXT release becomes STABLE, we switch the vehicle for
   delivery of minor features, designating the previous stable release as LTS,
   and releasing it with MINOR set to 10.
+
+[TODO] "NEXT is... -> "BETA is our next MINOR release, and it follows the maturity cycle described in the beginning."
+
 
 To sum up, once a quarter we release:
 
