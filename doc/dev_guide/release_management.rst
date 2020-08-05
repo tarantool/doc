@@ -123,6 +123,44 @@ Example version identifier:
 * 2.2 - a stable version of 2.0 series, but not an LTS yet
 * 2.10 - an LTS release
 
+.. _release-list:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[TODO] Release list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[TODO] Below is the ?list of all Tarantool releases starting from 1.10.0 up to
+the current latest versions.
+Releases are sorted out ?for aplha, beta, and stable ones.
+
+
++-------+--------+--------+--------+
+| MINOR | Alpha  | Beta   | Stable |
++=======+========+========+========+
+| 1.10  | 1.10.0 | 1.10.1 | 1.10.2 |
+| (LTS) |        |        | 1.10.3 |
+|       |        |        | 1.10.4 |
+|       |        |        | 1.10.5 |
+|       |        |        | 1.10.6 |
+|       |        |        | 1.10.7 |
++-------+--------+--------+--------+
+| 2.1   | 2.1.0  | 2.1.1  | 2.1.2  |
+|       |        |        | 2.1.3  |
++-------+--------+--------+--------+
+| 2.2   | 2.2.0  | 2.2.1  | 2.2.2  |
+|       |        |        | 2.2.3  |
++-------+--------+--------+--------+
+| 2.3   | 2.3.0  | 2.3.1  | 2.3.2  |
+|       |        |        | 2.3.2  |
++-------+--------+--------+--------+
+| 2.4   | 2.4.0  | 2.4.1  | 2.4.2  |
++-------+--------+--------+--------+
+| 2.5   | 2.5.0  | 2.5.1  |        |
++-------+--------+--------+--------+
+| 2.6   | 2.6.0  |        |        |
++-------+--------+--------+--------+
+
+
 .. _release-minor:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,37 +225,3 @@ Also, don't forget this:
 
 2. Click 'Release milestone'. Create a milestone for the next minor release.
    Alert the driver to target bugs and blueprints to the new milestone.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to release a Docker container
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To bump a new version of a Docker container:
-
-1. On the ``master`` branch of
-   `tarantool/docker <https://github.com/tarantool/docker>`_ repository,
-   find the Dockerfile that corresponds to the commit's **major** version (e.g.
-   https://github.com/tarantool/docker/blob/master/2.x/Dockerfile
-   for Tarantool version 2.4) and specify the required commit in
-   ``TARANTOOL_VERSION``, for example
-   ``TARANTOOL_VERSION=2.4.0-11-gcd17b77f9``.
-
-   Commit the Dockerfile back to ``master`` branch.
-
-3. In the same repository, create a branch named after the commit's
-   ``<major>.<minor>`` versions,
-   e.g. branch ``2.4`` for commit 2.4.0-11-gcd17b77f9.
-
-4. In Tarantool container build settings at ``hub.docker.com``
-   (https://hub.docker.com/r/tarantool/tarantool/~/settings/automated-builds/),
-   add a new line:
-
-   .. code-block:: text
-
-       Branch: x.y, /x, x.y
-
-   where ``x`` and ``y`` correspond to the commit's major and minor versions.
-
-   Click **Save changes**.
-
-Shortly after, a new Docker container will be built.
