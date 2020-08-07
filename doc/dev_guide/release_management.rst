@@ -12,103 +12,77 @@ Release policy
 
 A Tarantool release is identified by three digits, for example, 1.10.7:
 
-* The first digit stands for ?a MAJOR release. A [TODO]**major** release may contain
+* The first digit stands for ?a MAJOR release. A MAJOR release may contain
   *incompatible changes*.
 * The second digit stands for ?a MINOR release. It does not contain incompatible
   changes, and is used for introducing backward-compatible *features*.
-* The third digit is for [TODO]PATCH releases that contain only backward-compatible
-  *bug fixes*.
+* The third digit is for [TODO]PATCH releases that contain only
+  backward-compatible *bug fixes*.
 
-[TODO]In ?the PATCH digit, we reflect how stable a release is:
-[TODO]
-* 0 meaning **alpha**
-* 1 meaning **beta**
-* [TODO]2 and above meaning **stable**.
+In the PATCH digit, we reflect how stable a release is:
 
-So, each MINOR release series goes through a development-maturity life cycle as follows:
+* ``0`` meaning **alpha**
+* ``1`` meaning **beta**
+* ``2`` and above meaning **stable**.
 
-1. **Alpha**. Once in every few months we release a few alpha versions,
-   e.g. 2.0.1, 2.0.2.
+So, each MINOR release series goes through a development-maturity life cycle
+as follows:
 
-[TODO] **Alpha**. Once a quarter, we start off with a new alpha version, ?such as/e.g. 2.3.0, 2.4.0, and so on.
-This/It is not what is usually meant by ?an ?classic alpha release in ?classic software development but rather the current trunk version
-which is under heavy development and may/?can be unstable. The current alpha version always lives in the master branch.
+1. **Alpha**. Once a quarter, we start off with a new alpha version,
+   such as 2.3.0, 2.4.0, and so on. It is not what an alpha release usually
+   means in the software release life cycle but rather the current trunk version
+   which is under heavy development and can be unstable.
+   The current alpha version always lives in the master branch.
 
+2. **Beta**. When all the features planned are implemented, we fork a new branch
+   from the master branch and tag it as a new beta version.
+   It contains ``1`` for the PATCH digit, e.g., 2.3.1, 2.4.1, and so on.
+   This version is still unstable although there're no critical regressions
+   in it since the last stable release. We do this quarterly as well.
 
-2. **Beta**. Once major changes necessary to introduce new flagship features
-   are ready, we release a few beta versions, e.g. 2.1.3, 2.1.4.
+3. **Stable**. Finally, after we see our beta version runs successfully in
+   a production or development environment during another quarter while we fix
+   incoming bugs we declare this version stable. It is tagged with ``2`` for
+   the PATCH digit, e.g., 2.3.2, 2.4.2, and so on.
 
-   Beta versions may contain crashes, but do not have incompatible changes,
-   so can be used to develop new applications.
+   We support such version for 3 months while making another stable release
+   by fixing all bugs found. We release it in a quarter. This last tag
+   contains ``3`` for the PATCH digit, e.g., 2.3.3, 2.4.3, and so on.
+   After the tag is set, no new changes are allowed to the release branch,
+   and it is declared deprecated and superseded by a newer MINOR version."
 
-[TODO] **Beta**. Once all the features planned are implemented, we fork a new branch from the master ?one/branch and tag it as a new beta version.
-It contains ?``1`` for the PATCH ?digit/position, e.g., 2.3.1, 2.4.1, ?and so on.
-This version is still unstable although there're no critical regressions in it since the last stable release. We do this quarterly as well.
+Like Ubuntu, we distinguish between two kinds of stable releases:
 
-
-3. **Stable**. Finally, after we see our beta versions run successfully in
-   production, usually in a few more months, during which we fix all incoming
-   bugs and add some minor features, we declare this MAJOR release series
-   stable.
-
-[TODO] "Stable. Finally, after we see our beta versions run successfully in production
-or in development environment during another quarter while we fix incoming bugs we declare version as stable.
-It is tagged w/ 2 for PATCH. E.g. 2.3.2, 2.4.2.
-We support such version for 3 months ?while making another stable release after a quarter with ?fixes/fixing of all bugs found.
-This last tag on/?in the release branch contains ?``3`` for the PATCH ?digit/position, e.g., 2.3.3, 2.4.3, ?and so on.
-After the tag is ?put, no new changes are allowed to the release branch, and it is declared deprecated and superseded by a newer version."
-
-
-Like Ubuntu, we distinguish ?between two kinds of stable releases:
-
-* **LTS (Long Term Support)** releases that are supported for 3 years
-  (community) and up to 5 years (paying customers). **LTS** release
-  is identified by MINOR version 10.
-
-[TODO]"**LTS (Long Term Support)** releases that are supported for 3 years (community) and up to 5 years (paying customers). LTS release is currently 1.10.x"
+* **LTS (Long Term Support)** is a release series that is supported
+  for 3 years (community) and up to 5 years (paying customers).
+  Current LTS release series is 1.10.
 
 * **Standard stable releases** are only supported a few months after the next
   stable is out.
 
 "Support" means that we continue fixing bugs in a release.
 
-We add commits simultaneously to three MAJOR releases:
-[TODO]We add bug fixes simultaneously in three releases and alpha:
+We add bug fixes simultaneously into the following three releases and
+into the current alpha release:
 
 * **LTS** is a stable release which does not receive new features, and only gets
-  backward compatible fixes. Hence, following the rules of semver, LTS release
+  backward compatible fixes. Hence, LTS release
   never has its MAJOR or MINOR version increased, and only gets PATCH level
   releases.
 
-[TODO]"Hence,...-> "LTS release never has its MAJOR or MINOR version increased, and only gets PATCH level releases."
-
-
-* **STABLE** is our current stable release, which may receive new features.
+* **STABLE** are our current stable releases which may not receive new features.
   When the next STABLE version is published, MINOR version is incremented.
-  Between MINOR releases, we may have intermediate PATCH level releases as well,
-  which will contain only bug fixes. We maintain PATCH level releases for
-  two STABLE releases, the current and the previous one, to preserve support
-  continuity.
+  We maintain PATCH level releases for two STABLE releases,
+  the current and the previous one, to preserve support continuity.
 
-[TODO]"STABLE... -> "STABLE[S] are our current stable releases, which may not receive new features. When the next STABLE version is published, MINOR version is incremented. We maintain PATCH level releases for two STABLE releases, the current and the previous one, to preserve support continuity."
-
-
-* **NEXT** is our next MAJOR release, and it follows the maturity
-  cycle described in the beginning. While NEXT release is in alpha state,
-  its MINOR is frozen at 0 and is only increased when the release reaches
-  BETA status. Once the NEXT release becomes STABLE, we switch the vehicle for
-  delivery of minor features, designating the previous stable release as LTS,
-  and releasing it with MINOR set to 10.
-
-[TODO] "NEXT is... -> "BETA is our next MINOR release, and it follows the maturity cycle described in the beginning."
-
+* **NEXT** Beta is our next MINOR release, and it follows the maturity cycle
+  described in the beginning.
 
 To sum up, once a quarter we release:
 
-* the next LTS release, e.g. 2.10.6, 2.10.7 or 2.10.8
-* the next STABLE release, e.g. 3.6, 3.7 or 3.8
-* (optionally) an alpha or beta version of the NEXT release,
-  e.g. 4.0.1, 4.0.2 or 4.0.3
+* the next LTS release, e.g., 1.10.6, 1.10.7, and or so on
+* the next STABLE release, e.g., 2.4.2 or 2.3.3
+* the beta version of the NEXT release, e.g., 2.5.1 or 2.6.1.
 
 In all supported releases, we also release a PATCH release as soon as we
 find and fix an outstanding CVE/vulnerability.
@@ -118,21 +92,20 @@ identifier to designate the nightly build number.
 
 Example version identifier:
 
-* 2.0.3 - third alpha of 2.0 release
-* 2.1.3 - a beta of 2.0 release
-* 2.2 - a stable version of 2.0 series, but not an LTS yet
-* 2.10 - an LTS release
+* 2.5.0 -- the current alpha version under development
+* 2.6.1 -- a beta version of the 2.6 release
+* 2.3.3 or 2.4.2 -- stable versions of the 2.3 or 2.4 releases, but not an LTS yet
+* 1.10.7 - a release within the LTS release series 1.10.
 
 .. _release-list:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[TODO] Release list
+Release list
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[TODO] Below is the ?list of all Tarantool releases starting from 1.10.0 up to
-the current latest versions.
-Releases are sorted out ?for aplha, beta, and stable ones.
-
+Below is the table containing all Tarantool releases starting from 1.10.0 up to
+the current latest versions. Releases are sorted out for alpha, beta, and
+stable ones.
 
 +-------+--------+--------+--------+
 | MINOR | Alpha  | Beta   | Stable |
