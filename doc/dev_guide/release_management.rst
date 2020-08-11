@@ -12,11 +12,13 @@ Release policy
 
 A Tarantool release is identified by three digits, for example, 1.10.7:
 
-* The first digit stands for ?a MAJOR release. A MAJOR release may contain
-  *incompatible changes*.
-* The second digit stands for ?a MINOR release. It does not contain incompatible
-  changes, and is used for introducing backward-compatible *features*.
-* The third digit is for [TODO]PATCH releases that contain only
+* The first digit stands for a MAJOR release that introduces
+  some *major changes*. Up to now, there has been only one major release jump
+  when we delivered the 2.x release series with the SQL support.
+* The second digit stands for a MINOR release that is used for
+  introducing new *features*. Some of the features may have no backward
+  compatibility.
+* The third digit is for PATCH releases that contain only
   backward-compatible *bug fixes*.
 
 In the PATCH digit, we reflect how stable a release is:
@@ -65,12 +67,13 @@ Like Ubuntu, we distinguish between two kinds of stable releases:
 We add bug fixes simultaneously into the following three releases and
 into the current alpha release:
 
-* **LTS** is a stable release which does not receive new features, and only gets
+* **LTS** is a stable release which does not receive new features and only gets
   backward compatible fixes. Hence, LTS release
   never has its MAJOR or MINOR version increased, and only gets PATCH level
   releases.
 
-* **STABLE** are our current stable releases which may not receive new features.
+* **STABLE** are our current stable releases. They also receive no new features
+  and only backward compatible fixes.
   When the next STABLE version is published, MINOR version is incremented.
   We maintain PATCH level releases for two STABLE releases,
   the current and the previous one, to preserve support continuity.
@@ -84,18 +87,20 @@ To sum up, once a quarter we release:
 * the next STABLE release, e.g., 2.4.2 or 2.3.3
 * the beta version of the NEXT release, e.g., 2.5.1 or 2.6.1.
 
-In all supported releases, we also release a PATCH release as soon as we
-find and fix an outstanding CVE/vulnerability.
+In all supported releases, when we find and fix an outstanding CVE/vulnerability,
+we release a patch for that but do not tag a new PATCH level version.
+Users will be informed about such critical patches via official Tarantool news
+channel (`tarantool_news <https://t.me/tarantool_news>`_).
 
 We also publish nightly builds, and use the fourth slot in the version
 identifier to designate the nightly build number.
 
 Example version identifier:
 
-* 2.5.0 -- the current alpha version under development
-* 2.6.1 -- a beta version of the 2.6 release
+* 2.5.0 -- current alpha version under development
+* 2.6.1 -- beta version of the 2.6 release
 * 2.3.3 or 2.4.2 -- stable versions of the 2.3 or 2.4 releases, but not an LTS yet
-* 1.10.7 - a release within the LTS release series 1.10.
+* 1.10.7 -- a release within the LTS release series 1.10.
 
 .. _release-list:
 
