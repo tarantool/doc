@@ -572,7 +572,7 @@ Tarantool constants 0x41 to 0x46 (decimal 65 to 70) are for replication.
 Connectors and clients do not need to send replication packets.
 See :ref:`Binary protocol -- replication <box_protocol-replication>`.
 
-Next two IProto messages are used in the replication connections between
+The next two IProto messages are used in replication connections between
 Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
 The messages are not supposed to be used by any client applications in their
 regular connections.
