@@ -65,7 +65,7 @@ the signal and possibly including a value, with slight modification:
 * **MP_OBJECT** any MessagePack object
 
 Short descriptions are in MessagePack's `"spec" page <https://github.com/msgpack/msgpack/blob/master/spec.md>`_.
-                                                      
+
 And words that start with **IPROTO_** mean:
 a Tarantool constant which is either defined or mentioned in the
 `iproto_constants.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_.
@@ -111,7 +111,7 @@ After the words "length 32" is a packet that ends with with these 32 bytes:
     11                   IPROTO_INDEX_ID (Select-Map Item#2)
     00                   MP_INT = 0 = id of index within _space
     14                   IPROTO_ITERATOR (Select-Map Item#3)
-    00                   MP_INT = 0 = Tarantool iterator_type.h constant ITER_EQ 
+    00                   MP_INT = 0 = Tarantool iterator_type.h constant ITER_EQ
     13                   IPROTO_OFFSET (Select-Map Item#4)
     00                   MP_INT = 0 = amount to offset
     12                   IPROTO_LIMIT (Select-Map Item#5)
@@ -357,7 +357,7 @@ in space #256 to 'BBBB'. The body will look like this:
 IPROTO_INDEX_BASE, to emphasize that field numbers
 start with 1, which is optional and can be omitted):
 
-.. code-block:: none 
+.. code-block:: none
 
     04               IPROTO_UPDATE
     85               IPROTO_MAP, size 5
@@ -508,7 +508,7 @@ with two ? placeholders, and execute with two parameters, thus: |br|
 :code:`conn:execute(n.stmt_id, {1,'a'})` |br|
 Then the body will look like this:
 
-.. code-block:: none 
+.. code-block:: none
 
     0b               IPROTO_EXECUTE
     83               MP_MAP, size 3
@@ -572,6 +572,52 @@ Tarantool constants 0x41 to 0x46 (decimal 65 to 70) are for replication.
 Connectors and clients do not need to send replication packets.
 See :ref:`Binary protocol -- replication <box_protocol-replication>`.
 
+The next two IProto messages are used in replication connections between
+Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
+The messages are not supposed to be used by any client applications in their
+regular connections.
+
+.. _box_protocol-confirm:
+
+**IPROTO_CONFIRM** = 0x28
+
+This message confirms that the transactions originated from the instance
+with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
+up to LSN = IPROTO_LSN and including it.
+
+The body is a 2-item map:
+
+.. code-block:: none
+
+    +===========================+====================+
+    |                           |                    |
+    |   0x02: IPROTO_REPLICA_ID |   0x03: IPROTO_LSN |
+    | MP_UINT: MP_UINT          | MP_UINT: MP_UINT   |
+    |                           |                    |
+    +===========================+====================+
+                        MP_MAP
+
+.. _box_protocol-rollback:
+
+**IPROTO_ROLLBACK** = 0x29
+
+This message says that the transactions originated from the instance
+with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
+and should be rolled back, down to LSN = IPROTO_LSN and including it.
+
+The body is a 2-item map:
+
+.. code-block:: none
+
+    +===========================+====================+
+    |                           |                    |
+    |   0x02: IPROTO_REPLICA_ID |   0x03: IPROTO_LSN |
+    | MP_UINT: MP_UINT          | MP_UINT: MP_UINT   |
+    |                           |                    |
+    +===========================+====================+
+                        MP_MAP
+
+
 .. _box_protocol-responses:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -608,7 +654,7 @@ bodies can have a wide variety of structures.
 For example, after :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}` a successful
 response will look like this:
 
-.. code-block:: none 
+.. code-block:: none
 
     ce 00 00 00 20                MP_UINT = HEADER + BODY SIZE
     83                            MP_MAP, size 3
@@ -617,7 +663,7 @@ response will look like this:
     01                              IPROTO_SYNC
     cf 00 00 00 00 00 00 00 53      MP_UINT = sync value
     05                              IPROTO_SCHEMA_VERSION
-    ce 00 00 00 68                  MP_UINT = schema version 
+    ce 00 00 00 68                  MP_UINT = schema version
     81                            MP_MAP, size 1
     30                              IPROTO_DATA
     dd 00 00 00 01                  MP_ARRAY, size 1 (row count)
@@ -676,7 +722,7 @@ ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is
 
 Beginning in version 2.4.1, responses for errors have extra information
 following what was described above. This extra information is given via
-MP_ERROR extension type. See details in :ref:`MessagePack extensions 
+MP_ERROR extension type. See details in :ref:`MessagePack extensions
 <msgpack_ext-error>` section.
 
 .. _box_protocol-sql_protocol:
@@ -1013,7 +1059,7 @@ Binary protocol -- replication
 .. _box_protocol-heartbeat:
 
 Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
-For example, if there is a replica with id = 2,  
+For example, if there is a replica with id = 2,
 and a timestamp with a moment in 2020, a master might send this:
 
 .. code-block:: none
