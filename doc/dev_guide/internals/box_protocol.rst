@@ -601,7 +601,7 @@ The body is a 2-item map:
 
 **IPROTO_ROLLBACK** = 0x29
 
-This message tells that the transactions originated from the instance
+This message says that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID couldn't achieve quorum by some reason
 and should be rolled back, down to LSN = IPROTO_LSN and including it.
 
