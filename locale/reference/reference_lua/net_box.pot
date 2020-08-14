@@ -197,10 +197,10 @@ msgstr ""
 msgid "`wait_connected`: by default, connection creation is blocked until the connection is established, but passing ``wait_connected=false`` makes it return immediately. Also, passing a timeout makes it wait before returning (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 seconds)."
 msgstr ""
 
-msgid "In the presence of ``reconnect_after``, ``wait_connected`` ignores transient failures. The wait completes once the connection is established or is closed explicitly."
+msgid "If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures. The wait completes once the connection is established or is closed explicitly."
 msgstr ""
 
-msgid "`reconnect_after`: a ``net.box`` instance automatically reconnects any time the connection is broken or if a connection attempt fails. This makes transient network failures become transparent to the application. Reconnect happens automatically in the background, so queries/requests that suffered due to connectivity loss are transparently retried. The number of retries is unlimited, connection attempts are done over the specified timeout (e.g. ``reconnect_after=5`` for 5 secs). Once a connection is explicitly closed, or once the Lua garbage collector removes it, reconnects stop."
+msgid "`reconnect_after`: if ``reconnect_after`` is greater than zero, then a ``net.box`` instance will try to reconnect if a connection is broken or if a connection attempt fails. This makes transient network failures become transparent to the application. Reconnect happens automatically in the background, so requests that initially fail due to connectivity loss are transparently retried. The number of retries is unlimited, connection attempts are made after each specified interval (for example ``reconnect_after=5`` means try to reconnect every 5 seconds). When a connection is explicitly closed, or when the Lua garbage collector removes it, then reconnect attempts stop. The default value of ``reconnect_after``, as with other ``connect`` options, is ``nil``."
 msgstr ""
 
 msgid "`call_16`: [since 1.7.2] by default, ``net.box`` connections comply with a new binary protocol command for CALL, which is not backward compatible with previous versions. The new CALL no longer restricts a function to returning an array of tuples and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing). The old CALL is left intact for backward compatibility. It will be removed in the next major release. All programming language drivers will be gradually changed to use the new CALL. To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``."
@@ -320,7 +320,7 @@ msgstr ""
 msgid "conn:close()"
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:select`:code:`{...}`."
+msgid ":samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:select`:code:`{...}` (:ref:`see details <box_space-select>`)."
 msgstr ""
 
 msgid "conn.space.testspace:select({1,'B'}, {timeout=1})"
@@ -329,34 +329,34 @@ msgstr ""
 msgid "Due to :ref:`the implicit yield rules <atomic-implicit-yields>` a local :samp:`box.space.{space-name}:select`:code:`{...}` does not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}` call does yield, so global variables or database tuples data may change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}` occurs."
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:get(...)`."
+msgid ":samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:get(...)` (:ref:`see details <box_space-get>`)."
 msgstr ""
 
 msgid "conn.space.testspace:get({1})"
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:insert(...)`."
+msgid ":samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:insert(...)` (:ref:`see details <box_space-insert>`)."
 msgstr ""
 
 msgid "conn.space.testspace:insert({2,3,4,5}, {timeout=1.1})"
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:replace(...)`."
+msgid ":samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:replace(...)` (:ref:`see details <box_space-replace>`)."
 msgstr ""
 
 msgid "conn.space.testspace:replace({5,6,7,8})"
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:update(...)`."
+msgid ":samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:update(...)` (:ref:`see details <box_space-update>`)."
 msgstr ""
 
 msgid "conn.space.Q:update({1},{{'=',2,5}}, {timeout=0})"
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:upsert(...)`."
+msgid ":samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:upsert(...)` (:ref:`see details <box_space-upsert>`)."
 msgstr ""
 
-msgid ":samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:delete(...)`."
+msgid ":samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:delete(...)` (:ref:`see details <box_space-delete>`)."
 msgstr ""
 
 msgid ":samp:`conn:eval({Lua-string})` evaluates and executes the expression in Lua-string, which may be any statement or series of statements. An :ref:`execute privilege <authentication-owners_privileges>` is required; if the user does not have it, an administrator may grant it with :samp:`box.schema.user.grant({username}, 'execute', 'universe')`."
@@ -440,6 +440,9 @@ msgid "``future:discard()`` to abandon the object."
 msgstr ""
 
 msgid "Typically a user would say ``future=request-name(...{is_async=true})``, then either loop checking ``future:is_ready()`` until it is true and then say ``request_result=future:result()``, or say ``request_result=future:wait_result(...)``. Alternatively the client could check for \"out-of-band\" messages from the server by calling ``pairs()`` in a loop -- see :ref:`box.session.push() <box_session-push>`."
+msgstr ""
+
+msgid "A user would say ``future:discard()`` to make a connection forget about the response -- if a response for a discarded object is received then it will be ignored, so that the size of the requests table will be reduced and other requests will be faster."
 msgstr ""
 
 msgid "tarantool> future = conn.space.tester:insert({900},{is_async=true})\n"
