@@ -45,6 +45,9 @@ Below is list of all ``uuid`` functions and members.
     | :ref:`uuid_object:str()              |                                 |
     | <uuid-object_str>`                   |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`uuid.is_uuid() <uuid-is_uuid>` | Check if the specified value    |
+    |                                      | has uuid type                   |
+    +--------------------------------------+---------------------------------+
     | :ref:`uuid_object:isnil()            | Check if a UUID is an all-zero  |
     | <uuid-isnil>`                        | value                           |
     +--------------------------------------+---------------------------------+
@@ -128,6 +131,14 @@ Below is list of all ``uuid`` functions and members.
     :param uuid_str: UUID in 16-byte binary string
     :return: converted UUID
     :rtype: cdata
+
+.. _uuid-is_uuid:
+
+.. method:: is_uuid(value)
+
+    :param value: a value to check
+    :return: ``true`` if the specified value is a uuid, and ``false`` otherwise
+    :rtype: bool
 
 .. class:: uuid_object
 

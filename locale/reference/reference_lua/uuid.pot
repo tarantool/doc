@@ -44,6 +44,12 @@ msgstr ""
 msgid "Get a converted UUID"
 msgstr ""
 
+msgid ":ref:`uuid.is_uuid() <uuid-is_uuid>`"
+msgstr ""
+
+msgid "Check if the specified value has uuid type"
+msgstr ""
+
 msgid ":ref:`uuid_object:isnil() <uuid-isnil>`"
 msgstr ""
 
@@ -106,6 +112,15 @@ msgstr ""
 msgid "UUID in 16-byte binary string"
 msgstr ""
 
+msgid "a value to check"
+msgstr ""
+
+msgid "``true`` if the specified value is a uuid, and ``false`` otherwise"
+msgstr ""
+
+msgid "bool"
+msgstr ""
+
 msgid "``byte-order`` can be one of next flags:"
 msgstr ""
 
@@ -137,9 +152,6 @@ msgid "The all-zero UUID value can be expressed as uuid.NULL, or as ``uuid.froms
 msgstr ""
 
 msgid "true if the value is all zero, otherwise false."
-msgstr ""
-
-msgid "bool"
 msgstr ""
 
 msgid "Example"
