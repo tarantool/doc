@@ -548,7 +548,8 @@ Below is a list of all ``net.box`` functions.
         * ``future:result()`` to get the result of the request (returns the
           response or **nil** in case it's not ready yet or there has been an error),
         * ``future:wait_result(timeout)`` to
-          wait until the result of the request is available and then get it,
+          wait until the result of the request is available and then get it or
+          throw an error if there is no result after the timeout exceeded,
         * ``future:discard()`` to abandon the object.
 
         Typically a user would say ``future=request-name(...{is_async=true})``,

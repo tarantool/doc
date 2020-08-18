@@ -433,7 +433,7 @@ msgstr ""
 msgid "``future:result()`` to get the result of the request (returns the response or **nil** in case it's not ready yet or there has been an error),"
 msgstr ""
 
-msgid "``future:wait_result(timeout)`` to wait until the result of the request is available and then get it,"
+msgid "``future:wait_result(timeout)`` to wait until the result of the request is available and then get it or throw an error if there is no result after the timeout exceeded,"
 msgstr ""
 
 msgid "``future:discard()`` to abandon the object."
