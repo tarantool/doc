@@ -1101,7 +1101,7 @@ msgid "file-handle as returned by ``fio.open()``"
 msgstr "дескриптор файла, который возвращает ``fio.open()``."
 
 msgid "where to read into (if the format is ``pread(buffer, count, offset)``)"
-msgstr "откуда читать (если формат -- ``pread(buffer, count, offset)``)"
+msgstr "куда считать (если формат -- ``pread(buffer, count, offset)``)"
 
 msgid "number of bytes to read"
 msgstr "количество байтов для чтения"
@@ -1212,7 +1212,7 @@ msgstr ""
 "помощью ``fiber.ipc``."
 
 msgid "where to read into (if the format is ``read(buffer, count)``)"
-msgstr "откуда читать (если формат -- ``read(buffer, count)``)"
+msgstr "куда считать (если формат -- ``read(buffer, count)``)"
 
 msgid ""
 "If the format is ``read()`` -- omitting ``count`` -- then read all bytes "
