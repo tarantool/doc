@@ -211,7 +211,7 @@ Now, here are other types of constraints ...
 CHECK -- a table description can have a clause "CHECK (conditional expression)".
 For example, if the CREATE TABLE modules statement looked like this:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE modules (name STRING,
                           size INTEGER,
@@ -230,7 +230,7 @@ FOREIGN KEY -- a table description can have a clause
 For example, if there is a new table "submodules" which in a way depends on the modules table,
 it can be defined like this:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE submodules (name STRING,
                              module_name STRING,
@@ -275,7 +275,7 @@ NoSQL emphasizes freedom and making your own rules.
 
 Think about the two tables that we have discussed so far:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE modules (name STRING,
                           size INTEGER,
@@ -348,7 +348,7 @@ The fourth variation is that conditions can be combined with AND / OR, and negat
 So this statement would return all rows (the first condition is false
 but the second condition is true, and OR means "return true if either condition is true"):
 
-.. code-block:: none
+.. code-block:: sql
 
     SELECT size
     FROM modules
@@ -419,7 +419,7 @@ Suppose that we want to list the submodules that refer to modules for which the 
 That is, this involves a search of one table using a value in another table.
 This can be done by enclosing "(SELECT ...)" within the WHERE clause. For example:
 
-.. code-block:: none
+.. code-block:: sql
 
     SELECT name FROM submodules
     WHERE module_name =
@@ -429,7 +429,7 @@ Subqueries are also useful in the select list, when one wishes to combine
 information from more than one table.
 For example this statement will display submodules rows but will include values that come from the modules table:
 
-.. code-block:: none
+.. code-block:: sql
 
     SELECT name AS submodules_name,
         (SELECT purpose FROM modules
@@ -490,7 +490,7 @@ It is handy to look at the above result, called a "Cartesian join" result, to se
 Probably for this case the row that actually makes sense is the one where the modules.name = submodules.module_name,
 and we should make that clear in both the select list and the WHERE clause, thus:
 
-.. code-block:: none
+.. code-block:: sql
 
     SELECT modules.name AS modules_name,
            modules.size AS modules_size,
@@ -582,7 +582,7 @@ When that is what we want, the type of join is an "outer join"
 (as opposed to the type we have used so far which is an "inner join").
 Specifically we will use LEFT [OUTER] JOIN because our main table, modules, is on the left. For example:
 
-.. code-block:: none
+.. code-block:: sql
 
     SELECT *
     FROM modules LEFT JOIN submodules
@@ -656,7 +656,7 @@ Supposing further, we want to divide the rows into two groups, the ones whose na
 begin with 'b' and the ones whose names begin with 'c'.
 This can be done by adding a clause [GROUP BY expression]. For example,
 
-.. code-block:: none
+.. code-block:: sql
 
     SELECT SUBSTR(name, 1, 1), AVG(size), SUM(size), MIN(size), MAX(size), COUNT(size)
     FROM modules
@@ -712,7 +712,7 @@ The result will be the third row, 'box'.
 
 A view is a canned SELECT. If you have a complex SELECT that you want to run frequently, create a view and then do a simple SELECT on the view. For example:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE VIEW v AS SELECT size, (size *5) AS size_times_5
     FROM modules
@@ -735,7 +735,7 @@ since a transaction began, to be cancelled.
 
 For example, consider these statements:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE things (remark STRING, PRIMARY KEY (remark));
     START TRANSACTION;
@@ -760,14 +760,14 @@ While a transaction is active, all statements are legal except another START TRA
 Tarantool's SQL data is the same as Tarantool's NoSQL data. When you create a table or an index with SQL,
 you are creating a space or an index in NoSQL. For example:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE things (remark STRING, PRIMARY KEY (remark));
     INSERT INTO things VALUES ('X');
 
 is somewhat similar to
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.space.create('THINGS',
     {
@@ -841,14 +841,14 @@ The explanations for installing and starting the Tarantool server are in earlier
 
 To get started specifically with the SQL features, using Tarantool as a client, execute these requests:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.cfg{}
     box.execute([[VALUES ('hello');]])
 
 The bottom of the screen should now look like this: 
 
-.. code-block:: none
+.. code-block:: tarantoolsession
 
     tarantool> box.execute([[VALUES ('hello');]])
     ---
@@ -863,7 +863,7 @@ That's an SQL statement done with Tarantool.
 
 Now you are ready to execute any SQL statements via the connection. For example
 
-.. code-block:: none
+.. code-block:: lua
 
     box.execute([[CREATE TABLE things (id INTEGER PRIMARY key,
                                        remark STRING);]])
@@ -898,7 +898,7 @@ unless they are enclosed in double quote marks.
 Comments may be between ``/*`` and ``*/`` (bracketed)
 or between ``--`` and the end of a line (simple).
 
-.. code-block:: none
+.. code-block:: sql
 
     INSERT /* This is a bracketed comment */ INTO t VALUES (5);
     INSERT INTO t VALUES (5); -- this is a simple comment
@@ -1233,7 +1233,7 @@ The following are examples of legal and illegal identifiers.
 
 The following example shows that conversion to upper case affects regular identifiers but not delimited identifiers.
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE "q" ("q" INTEGER PRIMARY KEY);
     SELECT * FROM q;
@@ -2283,7 +2283,7 @@ have the same values for the columns specified in the constraint.
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
     -- this is a table with a one-column primary-key constraint
     CREATE TABLE t1 (s1 INTEGER, PRIMARY KEY (s1));
@@ -2323,7 +2323,7 @@ Unique columns are unique, that is, it is illegal to have two rows with the same
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
     -- this is a table with a one-column primary-key constraint
     -- and a one-column unique constraint
@@ -2356,7 +2356,7 @@ and restarted with ALTER TABLE ... ENABLE CHECK CONSTRAINT.
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
     -- this is a table with a one-column primary-key constraint
     -- and a check constraint
@@ -2398,7 +2398,7 @@ or at least one of the referencing columns must contain NULL.
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
     -- A foreign key referencing a primary key in the same table
     CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER, FOREIGN KEY (s2) REFERENCES t1 (s1));
@@ -2423,7 +2423,7 @@ The default is ``NO ACTION``.
 
 For example:
 
-.. code-block:: none
+.. code-block:: sql
 
     CREATE TABLE f1 (ordinal INTEGER PRIMARY KEY,
                  referenced_planet STRING UNIQUE NOT NULL);
@@ -3180,7 +3180,7 @@ Trigger extra clauses
   a change on ``table2``, and at the same time have a trigger on ``table2``
   which causes a change on ``table1``. For example:
 
-  .. code-block:: none
+  .. code-block:: sql
 
      CREATE TRIGGER table1_before_update
       BEFORE UPDATE ON table1
@@ -4578,7 +4578,7 @@ ROLLBACK is illegal unless a transaction is active.
 
 Examples:
 
-.. code-block:: sql
+.. code-block:: none
 
    -- the simple form:
    ROLLBACK;
@@ -4981,8 +4981,8 @@ will require two or more bytes.
 
 Examples:
 
-  * ``HEX('A')`` will return ``41``.
-  * ``HEX('Д')`` will return ``D094``.
+* ``HEX('A')`` will return ``41``.
+* ``HEX('Д')`` will return ``D094``.
 
 .. _sql_function_ifnull:
 
@@ -5041,10 +5041,10 @@ and ``CHARACTER_LENGTH(expression)`` do the same thing.
 
 Examples:
 
-  * ``LENGTH('ДД')`` is 2, the string has 2 characters.
-  * ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes.
-  * ``LENGTH(CHAR(0, 65))`` is 2, '\0' does not mean 'end of string'.
-  * ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY.
+* ``LENGTH('ДД')`` is 2, the string has 2 characters.
+* ``LENGTH(CAST('ДД' AS VARBINARY))`` is 4, the string has 4 bytes.
+* ``LENGTH(CHAR(0, 65))`` is 2, '\0' does not mean 'end of string'.
+* ``LENGTH(X'410041')`` is 3, X'...' byte sequences have type VARBINARY.
 
 .. _sql_function_likelihood:
 
@@ -5104,8 +5104,8 @@ otherwise return NULL.
 
 Examples:
 
-  * ``NULLIF('a', 'A')`` is 'a'.
-  * ``NULLIF(1.00, 1)`` is NULL.
+* ``NULLIF('a', 'A')`` is 'a'.
+* ``NULLIF(1.00, 1)`` is NULL.
 
 .. _sql_function_position:
 
@@ -5157,9 +5157,9 @@ are a number and a string, and so on.
 
 If an argument is missing or is NULL, it becomes:
 
-  * '0' if the format requires an integer,
-  * '0.0' if the format requires a number with a decimal point,
-  * '' if the format requires a string.
+* '0' if the format requires an integer,
+* '0.0' if the format requires a number with a decimal point,
+* '' if the format requires a string.
 
 Example: ``PRINTF('%da', 5)`` is '5a'.
 
@@ -5371,6 +5371,7 @@ If expression-1 is omitted, the default is ' ' (space) for data type STRING
 or X'00' (nul) for data type VARBINARY.
 
 Examples:
+
 ``TRIM('a' FROM 'abaaaaa')`` is 'b' -- all repetitions of 'a' are removed on both sides;
 ``TRIM(TRAILING 'ב' FROM 'אב')`` is 'א' -- if all characters are Hebrew, TRAILING means "left";
 ``TRIM(X'004400')`` is X'44' -- the default byte sequence to trim is X'00' when data type is VARBINARY;
@@ -5389,6 +5390,7 @@ Syntax:
 Return the :ref:`data type <sql_column_def_data_type>` of the expression.
 
 Examples:
+
 ``TYPEOF('A')`` returns 'string';
 ``TYPEOF(RANDOMBLOB(1))`` returns 'varbinary';
 ``TYPEOF(1e44)`` returns 'double' or 'number';
@@ -5485,7 +5487,7 @@ The COLLATE clause is allowed for STRING or SCALAR items: |br|
 
 Examples:
 
-.. code-block:: none
+.. code-block:: sql
 
     -- In CREATE INDEX
     CREATE INDEX idx_unicode_mb_1 ON mb (s1 COLLATE "unicode");
@@ -5585,7 +5587,7 @@ For example, suppose a table has been created with |br|
 This is viewable from Tarantool's NoSQL feature as a memtx space named THINGS with a primary-key
 :ref:`TREE index <index-box_index>` ...
 
-.. code-block:: none
+.. code-block:: tarantoolsession
 
     tarantool> box.space.THINGS
     ---
@@ -5835,7 +5837,7 @@ because that may allow Tarantool to generate more efficient SQL byte code.
 
 For a useful example, here is a general function for decoding a single Lua ``'map'`` field:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.create('_DECODE',
        {language = 'LUA',
@@ -5854,7 +5856,7 @@ That space has a ``'map'`` field named opts which has a part named sql.
 By selecting from the space and passing the field and the part name to _DECODE,
 you can get a list of all the trigger bodies.
 
-.. code-block:: none
+.. code-block:: lua
 
     __GLOBAL = ""
     box.execute([[SELECT _decode("opts", 'sql') FROM "_trigger";]])
@@ -5879,7 +5881,7 @@ But we have a more sophisticated way, we can create a function that
 returns true if ``"flags".view`` is true.
 So our way of making the function looks like this:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.create('TABLES_IS_VIEW',
          {language = 'LUA',
@@ -5897,7 +5899,7 @@ So our way of making the function looks like this:
 
 And this creates the view:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.execute([[
     CREATE VIEW vtables AS SELECT
@@ -5965,12 +5967,15 @@ So the session looks like this: |br|
 ``box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;]])``
 
 If one executes the above requests with Tarantool as a client, provided the database
-objects do not already exist, the execution will be successful and the final display will be |br|
-tarantool> box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;]])
-``---`` |br|
-``- - [1, 'A', 'C']`` |br|
-``  - [4, 'D', 'A']`` |br|
-``  - [6, 'F', null]`` |br|
+objects do not already exist, the execution will be successful and the final display will be
+
+.. code-block:: tarantoolsession
+
+   tarantool> box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;]])
+   ---
+   - - [1, 'A', 'C']
+   - [4, 'D', 'A']
+   - [6, 'F', null]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example Session -- Get a List of Columns
@@ -5982,7 +5987,7 @@ It is not a necessary function because one can create a
 :ref:`_COLUMNS view <sql__columns_view>` instead.
 It merely shows, with simpler Lua code, how to make a base table instead of a view.
 
-.. code-block:: none
+.. code-block:: lua
 
     function create_information_schema_columns()
       box.execute([[DROP TABLE IF EXISTS information_schema_columns;]])
@@ -6028,7 +6033,7 @@ and the inserting is done with an SQL :ref:`INSERT statement <sql_insert>`.
 Otherwise, it is the same. It is the same because Lua and SQL are compatible,
 just as Lua and NoSQL are compatible.
 
-.. code-block:: none
+.. code-block:: lua
 
     box.execute([[CREATE TABLE tester (s1 INTEGER PRIMARY KEY, s2 STRING);]])
 
@@ -6105,7 +6110,7 @@ Example:
 
 Definition of the function and the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.drop('_TABLES_IS_VIEW',{if_exists = true})
     box.schema.func.create('_TABLES_IS_VIEW',
@@ -6176,7 +6181,7 @@ Example:
 
 Definition of the function and the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.drop('_COLUMNS_FORMATS', {if_exists = true})
     box.schema.func.create('_COLUMNS_FORMATS',
@@ -6278,7 +6283,7 @@ Example:
 
 Definition of the function and the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.drop('_VIEWS_DEFINITION',{if_exists = true})
     box.schema.func.create('_VIEWS_DEFINITION',
@@ -6333,7 +6338,7 @@ Example:
 
 Definition of the function and the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.drop('_TRIGGERS_OPTS_SQL',{if_exists = true})
     box.schema.func.create('_TRIGGERS_OPTS_SQL',
@@ -6387,7 +6392,7 @@ Example:
 
 Definition of the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     pcall(function ()
         box.schema.role.revoke('public', 'read', 'space', '_REFERENTIAL_CONSTRAINTS', {if_exists = true})
@@ -6442,7 +6447,7 @@ Example:
 
 Definition of the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     pcall(function ()
         box.schema.role.revoke('public', 'read', 'space', '_CHECK_CONSTRAINTS', {if_exists = true})
@@ -6495,7 +6500,7 @@ Example:
 
 Definition of the function and the CREATE VIEW statement:
 
-.. code-block:: none
+.. code-block:: lua
 
     box.schema.func.drop('_TABLE_CONSTRAINTS_OPTS_UNIQUE',{if_exists = true})
     function _TABLE_CONSTRAINTS_OPTS_UNIQUE (opts) return require('msgpack').decode(opts).unique end
