@@ -16,7 +16,7 @@ You can see this by saying "table": you will see this list of functions:
 ``copy`` (make a copy of an array),
 ``deepcopy`` (see description below),
 ``foreach``,
-``foreach1``,
+``foreachi``,
 `getn <https://www.lua.org/pil/19.1.html>`_ (get the number of elements in an array),
 `insert <https://www.lua.org/manual/5.1/manual.html#pdf-table.insert>`_ (insert an element into an array),
 `maxn <https://www.lua.org/manual/5.1/manual.html#pdf-table.maxn>`_ (get largest index)
