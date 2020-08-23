@@ -152,14 +152,15 @@ the function invocations will look like ``sock:function_name(...)``.
     :param string host: URL or IP address
     :param number port: port number
     :param number timeout: timeout
-    :return: a connected socket, if no error.
-    :rtype: userdata
+    :return: (if error) {nil, error-message-string}. (if no error) a new socket object.
+    :rtype: socket object, which may be viewed as a table
 
     **Example:**
 
     .. code-block:: lua
 
-        socket.tcp_connect('127.0.0.1', 3301)
+        sock, e = socket.tcp_connect('127.0.0.1', 3301)
+        if sock == nil then print(e) end
 
 .. _socket-getaddrinfo:
 
@@ -171,7 +172,7 @@ the function invocations will look like ``sock:function_name(...)``.
     This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
     configuration parameter.
 
-    :return: A table containing these fields: "host", "family", "type", "protocol", "port".
+    :return: (if error) {nil, error-message-string}. (if no errror) A table containing these fields: "host", "family", "type", "protocol", "port".
     :rtype:  table
 
     **Example:**
@@ -206,6 +207,8 @@ the function invocations will look like ``sock:function_name(...)``.
                                                      connection occurs
     :param number         timeout: number of seconds to wait before
                                    timing out
+    :return: (if error) {nil, error-message-string}. (if no error) a new socket object.
+    :rtype: socket object, which may be viewed as a table
 
     The handler-function-or-table parameter may be simply a function name
     / function declaration:
@@ -364,11 +367,10 @@ the function invocations will look like ``sock:function_name(...)``.
 
         :param string host: URL or IP address
         :param number port: port number
-
-        :return: true for success, false for error.
-                 If return is false, use :ref:`socket_object:errno() <socket-error>`
+        :return: (if error) {nil, error-message-string}. (if no error) a small table.
+                 If return indicates there is an error, use :ref:`socket_object:errno() <socket-error>`
                  or :ref:`socket_object:error() <socket-error>` to see details.
-        :rtype:  boolean
+        :rtype:  table
 
     .. _socket-listen:
 
