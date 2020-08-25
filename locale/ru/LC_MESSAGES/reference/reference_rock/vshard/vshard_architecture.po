@@ -126,7 +126,7 @@ msgid ""
 "Each replica set stores a unique subset of buckets. One bucket cannot "
 "belong to multiple replica sets at a time."
 msgstr ""
-"В каждом наборе реплик есть уникальное подмножество сегментов. Одна "
+"В каждом наборе реплик есть уникальное подмножество сегментов. Один "
 "сегмент не может относиться к нескольким наборам реплик одновременно."
 
 msgid ""
