@@ -9,6 +9,7 @@
 
 .. confval:: force_recovery
 
+    Since version 1.7.4.
     If ``force_recovery`` equals true, Tarantool tries to continue if there is
     an error while reading a :ref:`snapshot file<index-box_persistence>`
     (at server instance start) or a :ref:`write-ahead log file<internals-wal>`
@@ -27,6 +28,7 @@
 
 .. confval:: rows_per_wal
 
+    Since version 1.6.2.
     How many log records to store in a single write-ahead log file.
     When this limit is reached, Tarantool creates another WAL file
     named :samp:`{<first-lsn-in-wal>}.xlog`. This can be useful for
@@ -40,6 +42,7 @@
 
 .. confval:: wal_max_size
 
+    Since version 1.7.4.
     The maximum number of bytes in a single write-ahead log file.
     When a request would cause an .xlog file to become larger than
     ``wal_max_size``, Tarantool creates another WAL file --
@@ -55,6 +58,7 @@
 
 .. confval:: snap_io_rate_limit
 
+    Since version 1.4.9.
     Reduce the throttling effect of :ref:`box.snapshot <box-snapshot>` on
     INSERT/UPDATE/DELETE performance by setting a limit on how many
     megabytes per second it can write to disk. The same can be
@@ -73,7 +77,7 @@
 
 .. confval:: wal_mode
 
-    Specify fiber-WAL-disk synchronization mode as:
+    Since version 1.6.2. Specify fiber-WAL-disk synchronization mode as:
 
     * ``none``: write-ahead log is not maintained;
     * ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
@@ -89,6 +93,7 @@
 
 .. confval:: wal_dir_rescan_delay
 
+    Since version 1.6.2.
     Number of seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
     files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.

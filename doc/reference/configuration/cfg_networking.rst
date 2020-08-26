@@ -6,6 +6,7 @@
 
 .. confval:: io_collect_interval
 
+    Since version 1.4.9.
     The instance will sleep for io_collect_interval seconds between iterations
     of the event loop. Can be used to reduce CPU load in deployments in which
     the number of client connections is large, but requests are not so frequent
@@ -19,7 +20,7 @@
 
 .. confval:: net_msg_max
 
-    To handle messages, Tarantool allocates fibers.
+    Since version 1.10.1. To handle messages, Tarantool allocates fibers.
     To prevent fiber overhead from affecting the whole system,
     Tarantool restricts how many messages the fibers handle,
     so that some pending requests are blocked.
@@ -55,6 +56,7 @@
 
 .. confval:: readahead
 
+    Since version 1.6.2.
     The size of the read-ahead buffer associated with a client connection. The
     larger the buffer, the more memory an active connection consumes and the
     more requests can be read from the operating system buffer in a single

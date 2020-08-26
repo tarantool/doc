@@ -1,6 +1,6 @@
 .. confval:: hot_standby
 
-    Whether to start the server in **hot standby** mode.
+    Since version 1.7.4. Whether to start the server in **hot standby** mode.
 
     Hot standby is a feature which provides a simple form of failover without
     :ref:`replication <replication>`.

@@ -15,6 +15,7 @@
 
 .. confval:: background
 
+    Since version 1.6.2.
     Run the server as a background task. The :ref:`log <cfg_logging-log>`
     and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for
     this to work.
@@ -27,6 +28,7 @@
 
 .. confval:: custom_proc_title
 
+    Since version 1.6.7.
     Add the given string to the server's process title
     (what’s shown in the COMMAND column for
     ``ps -ef`` and ``top -c`` commands).
@@ -55,6 +57,7 @@
 
 .. confval:: listen
 
+    Since version 1.6.4.
     The read/write data port number or :ref:`URI <index-uri>` (Universal
     Resource Identifier) string. Has no default value, so **must be specified**
     if connections will occur from remote clients that do not use the
@@ -77,6 +80,7 @@
 
 .. confval:: memtx_dir
 
+    Since version 1.7.4.
     A directory where memtx stores snapshot (.snap) files. Can be relative to
     :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to
     ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`.
@@ -89,6 +93,7 @@
 
 .. confval:: pid_file
 
+    Since version 1.4.9.
     Store the process id in this file. Can be relative to :ref:`work_dir
     <cfg_basic-work_dir>`. A typical value is “:file:`tarantool.pid`”.
 
@@ -100,6 +105,7 @@
 
 .. confval:: read_only
 
+    Since version 1.7.1.
     Say ``box.cfg{read_only=true...}`` to put the server instance in read-only
     mode. After this, any requests that try to change persistent data will fail with error
     :errcode:`ER_READONLY`. Read-only mode should be used for master-replica
@@ -120,6 +126,7 @@
 
 .. confval:: vinyl_dir
 
+    Since version 1.7.1.
     A directory where vinyl files or subdirectories will be stored. Can be
     relative to :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults
     to ``work_dir``.
@@ -132,6 +139,7 @@
 
 .. confval:: vinyl_timeout
 
+    Since version 1.7.5.
     The vinyl storage engine has a scheduler which does compaction.
     When vinyl is low on available memory, the compaction scheduler
     may be unable to keep up with incoming update requests.
@@ -149,7 +157,7 @@
 
 .. confval:: username
 
-    UNIX user name to switch to after start.
+    Since version 1.4.9. UNIX user name to switch to after start.
 
     | Type: string
     | Default: null
@@ -159,6 +167,7 @@
 
 .. confval:: wal_dir
 
+    Since version 1.6.2.
     A directory where write-ahead log (.xlog) files are stored. Can be relative
     to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and
     :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so
@@ -173,6 +182,7 @@
 
 .. confval:: work_dir
 
+    Since version 1.4.9.
     A directory where database working files will be stored. The server instance
     switches to ``work_dir`` with :manpage:`chdir(2)` after start. Can be
     relative to the current directory. If not specified, defaults to
@@ -199,6 +209,7 @@
 
 .. confval:: worker_pool_threads
 
+    Since version 1.7.5.
     The maximum number of threads to use during execution
     of certain internal processes (currently
     :ref:`socket.getaddrinfo() <socket-getaddrinfo>` and
