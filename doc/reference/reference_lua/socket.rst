@@ -47,6 +47,9 @@ Below is a list of all ``socket`` functions.
     | :ref:`socket.tcp_server() <socket-tcp_server>`        | Make Tarantool act as a TCP  |
     |                                                       | server                       |
     +-------------------------------------------------------+------------------------------+
+    | :ref:`socket.bind() <socket-bind_non_object>`         | Bind a socket to the given   |
+    |                                                       | host/port                    |
+    +-------------------------------------------------------+------------------------------+
     | :ref:`socket_object:sysconnect() <socket-sysconnect>` | Connect a socket to a remote |
     |                                                       | host                         |
     +-------------------------------------------------------+------------------------------+
@@ -239,6 +242,21 @@ the function invocations will look like ``sock:function_name(...)``.
     and
     :ref:`Use tcp_server with handler and prepare <socket_handler_prepare>`.
 
+.. _socket-bind_non_object:
+
+.. function:: bind(host, port)
+
+    Bind a socket to the given host/port.
+    This is equivalent to :ref:`socket_object:bind() <socket-bind>`,
+    but is done on the result of ``require('socket')``, rather than on the
+    socket object.
+
+    :param string host: URL or IP address
+    :param number port: port number
+
+    :return: (if error) {nil, error-message-string}. (if no errror) A table which may have information about the bind result.
+    :rtype:  table
+
 .. class:: socket_object
 
     .. _socket-sysconnect:
@@ -358,7 +376,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
     .. _socket-bind:
 
-    .. method:: bind(host [, port])
+     .. method:: bind(host [, port])
 
         Bind a socket to the given host/port. A UDP socket after binding
         can be used to receive data (see :ref:`socket_object.recvfrom <socket-recvfrom>`).
@@ -367,10 +385,11 @@ the function invocations will look like ``sock:function_name(...)``.
 
         :param string host: URL or IP address
         :param number port: port number
-        :return: (if error) {nil, error-message-string}. (if no error) a small table.
-                 If return indicates there is an error, use :ref:`socket_object:errno() <socket-error>`
+
+        :return: true for success, false for error.
+                 If return is false, use :ref:`socket_object:errno() <socket-error>`
                  or :ref:`socket_object:error() <socket-error>` to see details.
-        :rtype:  table
+        :rtype:  boolean
 
     .. _socket-listen:
 
