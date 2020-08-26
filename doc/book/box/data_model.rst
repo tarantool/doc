@@ -776,7 +776,7 @@ started" exercises <getting_started>`:
         is_nullable: true
         fieldno: 4
     ...
-    -- Add the rate to the tuple №1
+    -- Add the rate to the tuple #1
     tarantool> box.space.tester:update(1, {{'=', 4, 5}})
     ---
     - [1, 'Roxette', 1986, 5]
