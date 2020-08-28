@@ -866,7 +866,7 @@ msgstr ""
 
 msgid ""
 "``future:wait_result(timeout)`` to wait until the result of the request "
-"is available and then get it or throw an error if there is no result "
+"is available and then get it, or throw an error if there is no result "
 "after the timeout exceeded,"
 msgstr ""
 "``future:wait_result(timeout)`` будет ждать, когда результат запроса "
