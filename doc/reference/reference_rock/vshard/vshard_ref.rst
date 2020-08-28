@@ -675,7 +675,7 @@ Router public API
 
     When the mode is ``off``, discovery is disabled completely.
 
-    When the mode is ``once``, discovery will start, find the locations of
+    When the mode is ``once``, discovery starts and finds the locations of
     all buckets, and then the discovery fiber is terminated. This
     is good for a large bucket count and for clusters, where rebalancing is rare.
 
