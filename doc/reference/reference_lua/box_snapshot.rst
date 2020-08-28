@@ -80,7 +80,7 @@
 
     In vinyl, inserted data is stacked in memory until the limit, set in
     :ref:`vinyl_memory <cfg_storage-vinyl_memory>` parameter, is reached. Then
-    vinyl automatically dumps it to a disc. ``box.snapshot()`` forces doing
+    vinyl automatically dumps it to the disc. ``box.snapshot()`` forces
     this dump in order to have the ability to recover from this checkpoint.
     The snapshot files are stored in :samp:`{space_id}/{index_id}/*.run`.
     Thus, strictly all the data that was written at the time of LSN of the
@@ -89,9 +89,9 @@
     by ``box.snapshot()`` are consistent and have the same LSN as checkpoint.
 
     At the checkpoint vinyl also rotates the metadata log `*.vylog`, containing
-    data manipulation operations like «create file» and «delete file». It goes
+    data manipulation operations like "create file" and "delete file". It goes
     through the log, removes duplicating operations from the memory and creates
-    new `*.vylog` file, giving it the name according to the
+    a new `*.vylog` file, giving it the name according to the
     :ref:`vclock <box_introspection-box_info>` of the new checkpoint, with
-    «create» operations only. This procedure cleans `*.vylog` and is useful for
+    "create" operations only. This procedure cleans `*.vylog` and is useful for
     recovery because the name of the log is the same as the checkpoint signature.
