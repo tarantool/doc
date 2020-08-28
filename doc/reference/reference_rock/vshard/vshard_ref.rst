@@ -20,7 +20,7 @@ Basic parameters
 * :ref:`rebalancer_disbalance_threshold <cfg_basic-rebalancer_disbalance_threshold>`
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
 * :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
-* :ref:`discovery_set <cfg_basic-discovery_set>`
+* :ref:`discovery_mode <cfg_basic-discovery_mode>`
 
 .. _cfg_basic-sharding:
 
@@ -162,9 +162,9 @@ Basic parameters
     | Default: 1
     | Dynamic: yes
 
-.. _cfg_basic-discovery_set:
+.. _cfg_basic-discovery_mode:
 
-.. confval:: discovery_set
+.. confval:: discovery_mode
 
     A mode of a bucket discovery fiber: ``on``/``off``/``once``. See details
     :ref:`below <router_api-discovery_set>`.
@@ -682,7 +682,7 @@ Router public API
     The method is good to enable/disable discovery after the router is
     already started, but discovery is enabled by default. You may want
     to never enable it even for a short time -- then specify the
-    ``discovery_mode`` option in the :ref:`configuration <cfg_basic-discovery_set>`.
+    ``discovery_mode`` option in the :ref:`configuration <cfg_basic-discovery_mode>`.
     It takes the same values as :samp:`vshard.router.discovery_set({mode})`.
 
     You may decide to turn off discovery or make it ``once`` if you have
