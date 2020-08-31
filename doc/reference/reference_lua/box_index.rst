@@ -492,11 +492,11 @@ Below is a list of all ``box.index`` functions and members.
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
         :param scalar/table      key: values to be matched against the index key
-        :param table/nil     options: none, any or all of next parameters:
+        :param table/nil     options: none, any, or all of the following parameters:
 
-                                      * iterator - type of iterator
-                                      * limit - maximum number of tuples
-                                      * offset - start tuple number
+                                      * ``iterator`` -- type of iterator
+                                      * ``limit`` -- maximum number of tuples
+                                      * ``offset`` -- start tuple number
 
         :return: the tuple or tuples that match the field values.
         :rtype:  array of tuples
@@ -542,7 +542,7 @@ Below is a list of all ``box.index`` functions and members.
 
             The arguments are optional. If you call
             :samp:`box.space.{space-name}:select{}`, then every key in the index
-            is considered to be a match, regardless of iterator type. Therefore,
+            is considered to be a match, regardless of the iterator type. Therefore,
             for the example above, ``box.space.tester:select{}`` will select every
             tuple in the ``tester`` space via the first (primary-key) index.
 
