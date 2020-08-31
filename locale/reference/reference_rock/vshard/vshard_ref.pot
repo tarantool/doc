@@ -53,7 +53,7 @@ msgstr ""
 msgid "A field defining the configuration of relative weights for each zone pair in a replica set. See the :ref:`Replica weights <vshard-replica-weights>` section."
 msgstr ""
 
-msgid "Name of a TREE index over the :ref:`bucket id <vshard-vbuckets>`. Spaces without this index do not participate in a sharded Tarantool cluster and can be used as regular spaces if needed."
+msgid "Name or id of a TREE index over the :ref:`bucket id <vshard-vbuckets>`. Spaces without this index do not participate in a sharded Tarantool cluster and can be used as regular spaces if needed. It is necessary to specify the first part of the index, other parts are optional."
 msgstr ""
 
 msgid "Type: non-empty string or non-negative integer"
