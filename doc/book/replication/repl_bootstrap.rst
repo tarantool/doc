@@ -41,23 +41,24 @@ where:
 * the ``box.cfg()`` :ref:`listen <cfg_basic-listen>` parameter defines a URI
   (port 3301 in our example), on which the master can accept connections from
   replicas.
-* the ``box.cfg()`` :ref:`replication <cfg_replication-replication>` parameter defines the URIs at
-  which all instances in the replica set can accept connections. It includes the
-  replica's URI as well, although the replica is not a replication source right
-  now.
+* the ``box.cfg()`` :ref:`replication <cfg_replication-replication>` parameter
+  defines the URIs at which all instances in the replica set can accept connections.
+  It includes the replica's URI as well, although the replica is not a replication
+  source right now. This parameter is mandatory only for master-master or full-mesh
+  cluster setups.
 
   .. NOTE::
 
-     For security reasons, we recommend that administrators prevent unauthorized replication
-     sources by associating a password with every user that has a replication
-     :ref:`role <authentication-roles>`. That way, the :ref:`URI <index-uri>`
-     for ``replication`` parameter must have the long form
+     For security reasons, we recommend that administrators prevent unauthorized
+     replication sources by associating a password with every user that has a
+     replication :ref:`role <authentication-roles>`. That way, the :ref:`URI
+     <index-uri>` for ``replication`` parameter must have the long form
      ``username:password@host:port``.
 
-* the :ref:`read_only = false <cfg_basic-read_only>` parameter setting enables data-change
-  operations on the instance and makes the instance act as a master,
-  not as a replica. *That is the only parameter setting in our instance files that will
-  differ.*
+* the :ref:`read_only = false <cfg_basic-read_only>` parameter setting enables
+  data-change operations on the instance and makes the instance act as a master,
+  not as a replica. *That is the only parameter setting in our instance files
+  that will differ.*
 * the :ref:`box.once() <box-once>` function contains database initialization logic
   that should be executed only once during the replica set lifetime.
 
