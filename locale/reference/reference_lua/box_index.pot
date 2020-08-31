@@ -483,19 +483,19 @@ msgstr ""
 msgid "values to be matched against the index key"
 msgstr ""
 
-msgid "none, any or all of next parameters:  * iterator - type of iterator * limit - maximum number of tuples * offset - start tuple number"
+msgid "none, any, or all of the following parameters:  * ``iterator`` -- type of iterator * ``limit`` -- maximum number of tuples * ``offset`` -- start tuple number"
 msgstr ""
 
-msgid "none, any or all of next parameters:"
+msgid "none, any, or all of the following parameters:"
 msgstr ""
 
-msgid "iterator - type of iterator"
+msgid "``iterator`` -- type of iterator"
 msgstr ""
 
-msgid "limit - maximum number of tuples"
+msgid "``limit`` -- maximum number of tuples"
 msgstr ""
 
-msgid "offset - start tuple number"
+msgid "``offset`` -- start tuple number"
 msgstr ""
 
 msgid "the tuple or tuples that match the field values."
@@ -538,7 +538,7 @@ msgid "---\n"
 "..."
 msgstr ""
 
-msgid "The arguments are optional. If you call :samp:`box.space.{space-name}:select{}`, then every key in the index is considered to be a match, regardless of iterator type. Therefore, for the example above, ``box.space.tester:select{}`` will select every tuple in the ``tester`` space via the first (primary-key) index."
+msgid "The arguments are optional. If you call :samp:`box.space.{space-name}:select{}`, then every key in the index is considered to be a match, regardless of the iterator type. Therefore, for the example above, ``box.space.tester:select{}`` will select every tuple in the ``tester`` space via the first (primary-key) index."
 msgstr ""
 
 msgid ":samp:`index.{index-name}` is optional. If it is omitted, then the assumed index is the first (primary-key) index. Therefore, for the example above, ``box.space.tester:select({1}, {iterator = 'GT'})`` would have returned the same two rows, via the 'primary' index."
