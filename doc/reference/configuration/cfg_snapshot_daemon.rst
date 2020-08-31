@@ -50,6 +50,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
 .. confval:: checkpoint_interval
 
+    Since version 1.7.4.
     The interval between actions by the checkpoint daemon, in seconds. If
     ``checkpoint_interval`` is set to a value greater than zero, and there is
     activity which causes change to a database, then the checkpoint daemon will
@@ -74,7 +75,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
 .. confval:: checkpoint_count
 
-    The maximum number of snapshots that may exist on the
+    Since version 1.7.4. The maximum number of snapshots that may exist on the
     :ref:`memtx_dir <cfg_basic-memtx_dir>` directory
     before the checkpoint daemon will delete old snapshots.
     If ``checkpoint_count`` equals zero, then the checkpoint daemon
@@ -103,17 +104,15 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
 .. confval:: checkpoint_wal_threshold
 
+    Since version 2.1.2.
     The threshold for the total size in bytes of all WAL files created since the last checkpoint.
     Once the configured threshold is exceeded, the WAL thread notifies the
     checkpoint daemon that it must make a new checkpoint and delete old WAL files.
 
-    | Type: integer
-    | Default: 10^18 (a large number so in effect there is no limit by default)
-    | Dynamic: yes
+    This parameter enables administrators to handle a problem that could occur
+    with calculating how much disk space to allocate for a partition containing
+    WAL files.
 
-    This parameter was added in version 2.1. It enables administrators to
-    handle a problem that could occur with calculating
-    how much disk space to allocate for a partition containing WAL files.
     For example, suppose
     :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`
     = 2 and
@@ -126,5 +125,9 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
     during one checkpoint interval,
     Tarantool encounters an unusual spike and tries to write 11 GB,
     causing an operating-system ENOSPC ("no space") error.
-    By setting checkpoint_wal_threshold to a lower value, say 9 GB,
+    By setting ``checkpoint_wal_threshold`` to a lower value, say 9 GB,
     an administrator could prevent the error.
+
+    | Type: integer
+    | Default: 10^18 (a large number so in effect there is no limit by default)
+    | Dynamic: yes
