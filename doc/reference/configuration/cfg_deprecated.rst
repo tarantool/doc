@@ -15,6 +15,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
 * :ref:`snap_dir <cfg_basic-snap_dir_deprecated>`
 * :ref:`snapshot_count <cfg_checkpoint_daemon-snapshot_count_deprecated>`
 * :ref:`snapshot_period <cfg_checkpoint_daemon-snapshot_period_deprecated>`
+* :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`
 
 .. _cfg_basic-coredump_deprecated:
 
@@ -152,3 +153,11 @@ These parameters are deprecated since Tarantool version 1.7.4:
     :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`.
     The parameter was only renamed,
     while the type, values and semantics remained intact.
+
+.. _cfg_binary_logging_snapshots-rows_per_wal:
+
+.. confval:: rows_per_wal
+
+    **Deprecated** in favour of
+    :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`.
+    The parameter does not allow to properly limit size of WAL logs.

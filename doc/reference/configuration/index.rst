@@ -82,20 +82,20 @@ meaning respectively any IPv4 address or any IPv6 address,
 on the local machine.
 If username:password is omitted, then 'guest' is assumed. Some examples:
 
-    .. container:: table
+.. container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-        +-----------------------------+------------------------------+
-        | URI fragment                | Example                      |
-        +=============================+==============================+
-        | port                        | 3301                         |
-        +-----------------------------+------------------------------+
-        | host:port                   | 127.0.0.1:3301               |
-        +-----------------------------+------------------------------+
-        | username:password@host:port | notguest:sesame@mail.ru:3301 |
-        +-----------------------------+------------------------------+
+    +-----------------------------+------------------------------+
+    | URI fragment                | Example                      |
+    +=============================+==============================+
+    | port                        | 3301                         |
+    +-----------------------------+------------------------------+
+    | host:port                   | 127.0.0.1:3301               |
+    +-----------------------------+------------------------------+
+    | username:password@host:port | notguest:sesame@mail.ru:3301 |
+    +-----------------------------+------------------------------+
 
 In certain circumstances a Unix domain socket may be used
 where a URI is expected, for example "unix/:/tmp/unix_domain_socket.sock" or
@@ -124,7 +124,7 @@ server will be used or if ports need to be opened. For example, suppose
         listen              = os.getenv("LISTEN_URI"),
         memtx_memory        = 100000,
         pid_file            = "tarantool.pid",
-        rows_per_wal        = 50
+        wal_max_size        = 2500
     }
     print('Starting ', arg[1])
 

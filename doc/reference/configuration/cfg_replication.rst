@@ -12,6 +12,7 @@
 
 .. confval:: replication
 
+    Since version 1.7.4.
     If ``replication`` is not an empty string, the instance is considered to be
     a Tarantool :ref:`replica <replication>`. The replica will
     try to connect to the master specified in ``replication`` with a
@@ -49,6 +50,7 @@
 
 .. confval:: replication_connect_timeout
 
+    Since version 1.9.0.
     The number of seconds that a replica will wait when trying to
     connect to a master in a cluster.
     See :ref:`orphan status <replication-orphan_status>` for details.
@@ -66,6 +68,7 @@
 
 .. confval:: replication_connect_quorum
 
+    Since version 1.9.0.
     By default a replica will try to connect to all the masters,
     or it will not start. (The default is recommended so that all replicas
     will receive the same replica set UUID.)
@@ -94,6 +97,7 @@
 
 .. confval:: replication_skip_conflict
 
+    Since version 1.10.1.
     By default, if a replica adds a unique key that another replica has
     added, replication :ref:`stops <replication-replication_stops>`
     with error = ER_TUPLE_FOUND.
@@ -122,6 +126,7 @@
 
 .. confval:: replication_sync_lag
 
+    Since version 1.9.0.
     The maximum :ref:`lag <box_info_replication_upstream_lag>` allowed for a replica.
     When a replica :ref:`syncs <replication-orphan_status>`
     (gets updates from a master), it may not catch up completely.
@@ -145,6 +150,7 @@
 
 .. confval:: replication_sync_timeout
 
+    Since version 1.10.2.
     The number of seconds that a replica will wait when trying to
     sync with a master in a cluster,
     or a :ref:`quorum <cfg_replication-replication_connect_quorum>` of masters,
@@ -162,6 +168,7 @@
 
 .. confval:: replication_timeout
 
+    Since version 1.8.2.
     If the master has no updates to send to the replicas, it sends heartbeat messages
     every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
 
@@ -179,7 +186,7 @@
 
 .. confval:: replicaset_uuid
 
-    As described in section
+    Since version 1.9.0. As described in section
     :ref:`"Replication architecture" <replication-architecture>`,
     each replica set is identified by a
     `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_
@@ -228,6 +235,7 @@
 
 .. confval:: instance_uuid
 
+    Since version 1.9.0.
     For replication administration purposes, it is possible to set the
     `universally unique identifiers <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_
     of the instance (``instance_uuid``) and the replica set

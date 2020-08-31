@@ -10,6 +10,7 @@
 
 .. confval:: log_level
 
+    Since version 1.6.2.
     What level of detail the :ref:`log <admin-logs>` will have. There are seven levels:
 
     * 1 – ``SYSERROR``
@@ -38,6 +39,7 @@
 
 .. confval:: log
 
+    Since version 1.7.4.
     By default, Tarantool sends the log to the standard error stream
     (``stderr``). If ``log`` is specified, Tarantool sends the log to a file,
     or to a pipe, or to the system logger.
@@ -115,6 +117,7 @@
 
 .. confval:: log_nonblock
 
+    Since version 1.7.4.
     If ``log_nonblock`` equals true, Tarantool does not block during logging
     when the system is not ready for writing, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
@@ -139,6 +142,7 @@
 
 .. confval:: too_long_threshold
 
+    Since version 1.6.2.
     If processing a request takes longer than the given value (in seconds),
     warn about it in the log. Has effect only if :ref:`log_level
     <cfg_logging-log_level>` is more than or equal to 4 (WARNING).
@@ -151,7 +155,7 @@
 
 .. confval:: log_format
 
-    Log entries have two possible formats:
+    Since version 1.7.6. Log entries have two possible formats:
 
     * 'plain' (the default), or
     * 'json' (with more detail and with JSON labels).
@@ -283,7 +287,7 @@ adjust or turn off this feature.
 
 .. confval:: feedback_enabled
 
-    Whether to send feedback.
+    Since version 1.10.1 Whether to send feedback.
 
     If this is set to ``true``, feedback will be sent as described above.
     If this is set to ``false``, no feedback will be sent.
@@ -296,7 +300,7 @@ adjust or turn off this feature.
 
 .. confval:: feedback_host
 
-    The address to which the packet is sent.
+    Since version 1.10.1. The address to which the packet is sent.
     Usually the recipient is Tarantool, but it can be any URL.
 
     | Type: string
@@ -307,7 +311,7 @@ adjust or turn off this feature.
 
 .. confval:: feedback_interval
 
-    The number of seconds between sendings, usually 3600 (1 hour).
+    Since version 1.10.1. The number of seconds between sendings, usually 3600 (1 hour).
 
     | Type: float
     | Default: 3600
