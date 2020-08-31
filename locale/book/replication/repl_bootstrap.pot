@@ -33,7 +33,7 @@ msgstr ""
 msgid "the ``box.cfg()`` :ref:`listen <cfg_basic-listen>` parameter defines a URI (port 3301 in our example), on which the master can accept connections from replicas."
 msgstr ""
 
-msgid "the ``box.cfg()`` :ref:`replication <cfg_replication-replication>` parameter defines the URIs at which all instances in the replica set can accept connections. It includes the replica's URI as well, although the replica is not a replication source right now."
+msgid "the ``box.cfg()`` :ref:`replication <cfg_replication-replication>` parameter defines the URIs at which all instances in the replica set can accept connections. It includes the replica's URI as well, although the replica is not a replication source right now. This parameter is mandatory only for master-master or full-mesh cluster setups."
 msgstr ""
 
 msgid "For security reasons, we recommend that administrators prevent unauthorized replication sources by associating a password with every user that has a replication :ref:`role <authentication-roles>`. That way, the :ref:`URI <index-uri>` for ``replication`` parameter must have the long form ``username:password@host:port``."
