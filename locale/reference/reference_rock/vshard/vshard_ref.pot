@@ -35,6 +35,9 @@ msgstr ""
 msgid ":ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`"
 msgstr ""
 
+msgid ":ref:`discovery_mode <cfg_basic-discovery_mode>`"
+msgstr ""
+
 msgid "A field defining the logical topology of the sharded Tarantool cluster."
 msgstr ""
 
@@ -128,6 +131,15 @@ msgstr ""
 msgid "The maximum value is ``15``."
 msgstr ""
 
+msgid "A mode of a bucket discovery fiber: ``on``/``off``/``once``. See details :ref:`below <router_api-discovery_set>`."
+msgstr ""
+
+msgid "Type: string"
+msgstr ""
+
+msgid "Default: 'on'"
+msgstr ""
+
 msgid "Replica set functions"
 msgstr ""
 
@@ -204,6 +216,9 @@ msgid ":ref:`vshard.router.sync(timeout) <router_api-sync>`"
 msgstr ""
 
 msgid ":ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`"
+msgstr ""
+
+msgid ":ref:`vshard.router.discovery_set() <router_api-discovery_set>`"
 msgstr ""
 
 msgid ":ref:`vshard.router.info() <router_api-info>`"
@@ -471,6 +486,27 @@ msgid "``true`` if the dataset was synchronized successfully; or ``nil`` and ``e
 msgstr ""
 
 msgid "Force wakeup of the bucket discovery fiber."
+msgstr ""
+
+msgid "Turn on/off the background discovery fiber used by the router to find buckets."
+msgstr ""
+
+msgid "working mode of a discovery fiber. There are three modes: ``on``, ``off`` and ``once``"
+msgstr ""
+
+msgid "When the mode is ``on`` (default), the discovery fiber works during all the lifetime of the router. Even after all buckets are discovered, it will still come to storages and download their buckets with some big period (`DISCOVERY_IDLE_INTERVAL <https://github.com/tarantool/vshard/blob/master/vshard/consts.lua>`_). This is useful if the bucket topology changes often and the number of buckets is not big. The router will keep its route table up to date even when no requests are processed."
+msgstr ""
+
+msgid "When the mode is ``off``, discovery is disabled completely."
+msgstr ""
+
+msgid "When the mode is ``once``, discovery starts and finds the locations of all buckets, and then the discovery fiber is terminated. This is good for a large bucket count and for clusters, where rebalancing is rare."
+msgstr ""
+
+msgid "The method is good to enable/disable discovery after the router is already started, but discovery is enabled by default. You may want to never enable it even for a short time -- then specify the ``discovery_mode`` option in the :ref:`configuration <cfg_basic-discovery_mode>`. It takes the same values as :samp:`vshard.router.discovery_set({mode})`."
+msgstr ""
+
+msgid "You may decide to turn off discovery or make it ``once`` if you have many routers, or tons of buckets (hundreds of thousands and more), and you see that the discovery process consumes notable CPU % on routers and storages. In that case it may be wise to turn off the discovery when there is no rebalancing in the cluster. And turn it on for new routers, as well as for all routers when rebalancing is started."
 msgstr ""
 
 msgid "Return information about each instance."
