@@ -340,7 +340,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:select({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
+        of the local call :samp:`box.space.{space-name}:select`:code:`{...}` (:ref:`see details <box_space-select>`).
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
@@ -363,7 +363,8 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:get({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:get(...)`.
+        of the local call :samp:`box.space.{space-name}:get(...)`
+        (:ref:`see details <box_space-get>`).
 
         **Example:**
 
@@ -376,7 +377,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:insert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:insert(...)`.
+        of the local call :samp:`box.space.{space-name}:insert(...)` (:ref:`see details <box_space-insert>`).
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
@@ -390,7 +391,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:replace({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:replace(...)`.
+        of the local call :samp:`box.space.{space-name}:replace(...)` (:ref:`see details <box_space-replace>`).
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
@@ -404,7 +405,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:update({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:update(...)`.
+        of the local call :samp:`box.space.{space-name}:update(...)` (:ref:`see details <box_space-update>`).
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
         **Example:**
@@ -418,7 +419,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:upsert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:upsert(...)`.
+        of the local call :samp:`box.space.{space-name}:upsert(...)`. (:ref:`see details <box_space-upsert>`)
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
     .. _conn-delete:
@@ -426,7 +427,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:delete({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:delete(...)`.
+        of the local call :samp:`box.space.{space-name}:delete(...)` (:ref:`see details <box_space-delete>`).
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
     .. _net_box-eval:
@@ -547,7 +548,8 @@ Below is a list of all ``net.box`` functions.
         * ``future:result()`` to get the result of the request (returns the
           response or **nil** in case it's not ready yet or there has been an error),
         * ``future:wait_result(timeout)`` to
-          wait until the result of the request is available and then get it,
+          wait until the result of the request is available and then get it, or
+          throw an error if there is no result after the timeout exceeded,
         * ``future:discard()`` to abandon the object.
 
         Typically a user would say ``future=request-name(...{is_async=true})``,
@@ -647,16 +649,16 @@ With the ``net.box`` module, you can use the following
     :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
     :return: nil or function pointer
 
-        .. NOTE::
+    .. NOTE::
 
-            If the parameters are ``(nil, old-trigger-function)``,
-            then the old trigger is deleted.
+        If the parameters are ``(nil, old-trigger-function)``,
+        then the old trigger is deleted.
 
-            If both parameters are omitted, then the response is a list of
-            existing trigger functions.
+        If both parameters are omitted, then the response is a list of
+        existing trigger functions.
 
-            Details about trigger characteristics are in the
-            :ref:`triggers <triggers-box_triggers>` section.
+        Details about trigger characteristics are in the
+        :ref:`triggers <triggers-box_triggers>` section.
 
 ============================================================================
 Example
