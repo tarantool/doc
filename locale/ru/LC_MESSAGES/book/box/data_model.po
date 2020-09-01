@@ -1553,11 +1553,11 @@ msgstr ""
 "поиске же по вторичному индексу имя индекса указывать необходимо."
 
 msgid ""
-"3. The search may be for some or all key parts but should contain the "
+"The search may be for some or all key parts but should contain the "
 "prefix of the key. Notice that partial key searches are available only in"
 " TREE indexes."
 msgstr ""
-"3. Поиск может осуществляться по некоторым или по всем частям ключа, но "
+"Поиск может осуществляться по некоторым или по всем частям ключа, но "
 "должен содержать префикс ключа. Обратите внимание, что частичный поиск по"
 " частям ключа доступен только в TREE индексах."
 

@@ -821,8 +821,8 @@ otherwise in ascending order.
 For a primary-key search, it is optional to specify an index name.
 For a secondary-key search, it is mandatory.
 
-3. The search may be for some or all key parts but should contain the prefix of the key.
-Notice that partial key searches are available only in TREE indexes.
+3. The search may be for some or all key parts but should contain the prefix of
+   the key. Notice that partial key searches are available only in TREE indexes.
 
 .. code-block:: tarantoolsession
 
