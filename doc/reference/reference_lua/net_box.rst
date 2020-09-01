@@ -340,7 +340,8 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:select({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:select`:code:`{...}`.
+        of the local call :samp:`box.space.{space-name}:select`:code:`{...}`
+        (:ref:`see details <box_space-select>`).
 
         **Example:**
 
@@ -362,7 +363,8 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:get({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:get(...)`.
+        of the local call :samp:`box.space.{space-name}:get(...)`
+        (:ref:`see details <box_space-get>`).
 
         **Example:**
 
@@ -375,7 +377,8 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:insert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:insert(...)`.
+        of the local call :samp:`box.space.{space-name}:insert(...)`
+        (:ref:`see details <box_space-insert>`).
 
         **Example:**
 
@@ -388,7 +391,8 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:replace({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:replace(...)`.
+        of the local call :samp:`box.space.{space-name}:replace(...)`
+        (:ref:`see details <box_space-replace>`).
 
         **Example:**
 
@@ -401,7 +405,8 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:update({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:update(...)`.
+        of the local call :samp:`box.space.{space-name}:update(...)`
+        (:ref:`see details <box_space-update>`).
 
         **Example:**
 
@@ -414,14 +419,16 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:upsert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:upsert(...)`.
+        of the local call :samp:`box.space.{space-name}:upsert(...)`
+        (:ref:`see details <box_space-upsert>`).
 
     .. _conn-delete:
 
     .. method:: conn.space.<space-name>:delete({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:delete(...)`.
+        of the local call :samp:`box.space.{space-name}:delete(...)`
+        (:ref:`see details <box_space-delete>`).
 
     .. _net_box-eval:
 
@@ -541,7 +548,8 @@ Below is a list of all ``net.box`` functions.
         * ``future:result()`` to get the result of the request (returns the
           response or **nil** in case it's not ready yet or there has been an error),
         * ``future:wait_result(timeout)`` to
-          wait until the result of the request is available and then get it,
+          wait until the result of the request is available and then get it, or
+          throw an error if there is no result after the timeout exceeded,
         * ``future:discard()`` to abandon the object.
 
         Typically a user would say ``future=request-name(...{is_async=true})``,
