@@ -65,6 +65,12 @@ msgstr ""
 msgid "Get a converted UUID"
 msgstr "Получение конвертированного UUID"
 
+msgid ":ref:`uuid.is_uuid() <uuid-is_uuid>`"
+msgstr ""
+
+msgid "Check if the specified value has uuid type"
+msgstr "Проверка, является ли указанное значение UUID"
+
 msgid ":ref:`uuid_object:isnil() <uuid-isnil>`"
 msgstr ":ref:`uuid_object:isnil() <uuid-isnil>`"
 
@@ -136,6 +142,17 @@ msgstr "конвертированный UUID"
 msgid "UUID in 16-byte binary string"
 msgstr "UUID в 16-байтной двоичной строке"
 
+msgid "a value to check"
+msgstr "проверяемое значение"
+
+msgid "``true`` if the specified value is a uuid, and ``false`` otherwise"
+msgstr ""
+"``true``, если указанное значение имеет тип uuid, в противном случае "
+"``false``"
+
+msgid "bool"
+msgstr "bool (логический)"
+
 msgid "``byte-order`` can be one of next flags:"
 msgstr "``byte-order`` может быть одним из следующих флагов:"
 
@@ -178,9 +195,6 @@ msgid "true if the value is all zero, otherwise false."
 msgstr ""
 "true (правда), если значение состоит из одних нулей, в противном случае "
 "false (ложь)."
-
-msgid "bool"
-msgstr "bool (логический)"
 
 msgid "Example"
 msgstr "Пример"
