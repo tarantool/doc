@@ -20,11 +20,10 @@ msgstr ""
 "запретить работу сборщика мусора. Резервное копирование может проводиться"
 " в любое время с минимальной затратой ресурсов."
 
-#, fuzzy
 msgid "Two functions are helpful for backups in certain situations:"
 msgstr ""
-"Данные функции используются для резервного копирования в определенных "
-"ситуациях:"
+"Для резервного копирования в определенных ситуациях используются две "
+"функции:"
 
 msgid ""
 ":ref:`box.backup.start() <reference_lua-box_backup-backup_start>` informs"
@@ -124,7 +123,6 @@ msgstr ""
 "memtx, выполняемых vinyl-файлов и индексных файлов, соответствующих "
 "последней контрольной точке."
 
-#, fuzzy
 msgid ""
 "Issue ``box.backup.stop()`` so the garbage collector can continue as "
 "usual."
