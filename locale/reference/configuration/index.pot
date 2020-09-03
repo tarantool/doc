@@ -1326,3 +1326,4 @@ msgstr ""
 
 msgid "**Deprecated** in favour of :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`. The parameter does not allow to properly limit size of WAL logs."
 msgstr ""
+
