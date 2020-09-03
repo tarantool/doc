@@ -31,7 +31,7 @@ Any transaction doing a DML request on this space becomes synchronous.
 Notice that DDL on this space (including truncation) is **not** synchronous.
 
 To control the behavior of synchronous transactions, there exist global
-``box.cfg`` options:
+``box.cfg`` :ref:`options <cfg_replication-replication_synchro_quorum>`:
 
 .. code-block:: lua
 

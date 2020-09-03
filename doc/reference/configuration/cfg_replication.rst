@@ -8,6 +8,9 @@
 * :ref:`replication_timeout <cfg_replication-replication_timeout>`
 * :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
+* :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
+* :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`
+
 
 .. _cfg_replication-replication:
 
@@ -395,3 +398,41 @@
     | Type: string
     | Default: null
     | Dynamic: no
+
+.. _cfg_replication-replication_synchro_quorum:
+
+.. confval:: replication_synchro_quorum
+
+    Since version 2.5.1.
+    For :ref:`synchronous replication <repl_sync>` only.
+    This option tells how many replicas should confirm the receipt of a
+    synchronous transaction before it can finish its commit. So far this
+    option accounts all replicas, including anonymous.
+
+    It is 1 by default, so synchronous transactions work like asynchronous when
+    not configured. 1 means successful WAL write on master is enough for
+    commit.
+
+    It is not used on replicas, so if the master dies, the pending synchronous
+    transactions will be kept waiting on the replicas until a new master is elected.
+
+    | Type: number
+    | Default: 1
+    | Dynamic: **yes**
+
+.. _cfg_replication-replication_synchro_timeout:
+
+.. confval:: replication_synchro_timeout
+
+    Since version 2.5.1.
+    For :ref:`synchronous replication <repl_sync>` only.
+    Tells how many seconds to wait for a synchronous transaction quorum
+    replication until it is declared failed and is rolled back.
+
+    It is not used on replicas, so if the master dies, the pending synchronous
+    transactions will be kept waiting on the replicas until a new master is
+    elected.
+
+    | Type: number
+    | Default: 5
+    | Dynamic: **yes**

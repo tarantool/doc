@@ -662,6 +662,12 @@ msgstr ""
 msgid ":ref:`instance_uuid <cfg_replication-instance_uuid>`"
 msgstr ""
 
+msgid ":ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`"
+msgstr ""
+
+msgid ":ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`"
+msgstr ""
+
 msgid "Since version 1.7.4. If ``replication`` is not an empty string, the instance is considered to be a Tarantool :ref:`replica <replication>`. The replica will try to connect to the master specified in ``replication`` with a :ref:`URI <index-uri>` (Universal Resource Identifier), for example:"
 msgstr ""
 
@@ -915,6 +921,21 @@ msgstr ""
 msgid "box.cfg{instance_uuid='037fec43-18a9-4e12-a684-a42b716fcd02'}"
 msgstr ""
 
+msgid "Since version 2.5.1. For :ref:`synchronous replication <repl_sync>` only. This option tells how many replicas should confirm the receipt of a synchronous transaction before it can finish its commit. So far this option accounts all replicas, including anonymous."
+msgstr ""
+
+msgid "It is 1 by default, so synchronous transactions work like asynchronous when not configured. 1 means successful WAL write on master is enough for commit."
+msgstr ""
+
+msgid "It is not used on replicas, so if the master dies, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
+msgstr ""
+
+msgid "Since version 2.5.1. For :ref:`synchronous replication <repl_sync>` only. Tells how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
+msgstr ""
+
+msgid "Default: 5"
+msgstr ""
+
 msgid "Networking"
 msgstr ""
 
@@ -997,9 +1018,6 @@ msgid "7 – ``DEBUG``"
 msgstr ""
 
 msgid "By setting log_level, one can enable logging of all classes below or equal to the given level. Tarantool prints its logs to the standard error stream by default, but this can be changed with the :ref:`log <cfg_logging-log>` configuration parameter."
-msgstr ""
-
-msgid "Default: 5"
 msgstr ""
 
 msgid "Warning: prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was level 6. Starting with Tarantool 1.7.5 ``VERBOSE`` is level 6 and ``DEBUG`` is level 7. ``VERBOSE`` is a new level for monitoring repetitive events which would cause too much log writing if ``INFO`` were used instead."
