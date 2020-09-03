@@ -410,10 +410,10 @@
     option accounts all replicas, including anonymous.
 
     It is 1 by default, so synchronous transactions work like asynchronous when
-    not configured anyhow. 1 means successful WAL write on master is enough for
+    not configured. 1 means successful WAL write on master is enough for
     commit.
 
-    It is not used on replicas, so if the master dies,  the pending synchronous
+    It is not used on replicas, so if the master dies, the pending synchronous
     transactions will be kept waiting on the replicas until a new master is elected.
 
     | Type: number
@@ -429,7 +429,7 @@
     Tells how many seconds to wait for a synchronous transaction quorum
     replication until it is declared failed and is rolled back.
 
-    It is not used on replicas, so if the master dies,  the pending synchronous
+    It is not used on replicas, so if the master dies, the pending synchronous
     transactions will be kept waiting on the replicas until a new master is
     elected.
 
