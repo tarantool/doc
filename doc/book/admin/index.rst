@@ -1,7 +1,7 @@
 .. _admin:
 
 ********************************************************************************
-Server administration
+Administration
 ********************************************************************************
 
 Tarantool is designed to have multiple running instances on the same host.
@@ -36,3 +36,4 @@ This chapter includes the following sections:
    os_notes
    bug_reports
    troubleshoot
+   ../monitoring/index
