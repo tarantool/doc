@@ -1034,7 +1034,7 @@ msgstr ""
 
 msgid ""
 "the ``type`` value may be any of allowed types: any | unsigned | string |"
-" integer | number | boolean | array | map | scalar but for creating an "
+" integer | number | boolean | array | map | scalar, but for creating an "
 "index use only :ref:`indexed fields <index-box_indexed-field-types>`;"
 msgstr ""
 "значением ``type`` может быть любой из разрешенных типов: any | unsigned "

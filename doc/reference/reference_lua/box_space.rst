@@ -581,7 +581,7 @@ Below is a list of all ``box.space`` functions and members.
         * the ``name`` value may be any string, provided that two fields do not
           have the same name;
         * the ``type`` value may be any of allowed types: any | unsigned | string |
-          integer | number | boolean | array | map | scalar but for creating an
+          integer | number | boolean | array | map | scalar, but for creating an
           index use only :ref:`indexed fields <index-box_indexed-field-types>`;
         * the optional ``is_nullable`` value may be either ``true`` or ``false``
           (the same as the requirement in
