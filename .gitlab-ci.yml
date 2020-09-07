@@ -1,0 +1,22 @@
+stages:
+  - update-tarantool-doc
+
+release:
+  stage: update-tarantool-doc
+  image: artembo/python-texlive-sphinx:python3.7sphinx1.8.5
+  tags:
+    - docker
+  before_script:
+    - curl -L https://tarantool.io/installer.sh | VER=2.2 bash
+  script:
+    - bash update_submodules.sh
+    - cmake .
+    - make json json-ru singlehtml-website singlehtml-ru-website pdf pdf-ru
+    - bash upload_output.sh
+  only:
+    - "1.10"
+    - "2.2"
+    - "2.3"
+    - "2.4"
+    - "2.5"
+    - "2.6"
