@@ -65,7 +65,7 @@ msgstr ""
 msgid "0 on success"
 msgstr ""
 
-msgid "``LUA_ERRRUN``, ``LUA_ERRMEM` or ``LUA_ERRERR`` otherwise."
+msgid "``LUA_ERRRUN``, ``LUA_ERRMEM`` or ``LUA_ERRERR`` otherwise."
 msgstr ""
 
 msgid "See also: ``ffi.cdef(def)``"

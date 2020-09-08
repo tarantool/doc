@@ -119,7 +119,7 @@ msgstr ""
 msgid "rtype"
 msgstr ""
 
-msgid "userdata"
+msgid "table"
 msgstr ""
 
 msgid "tap = require('tap')\n"
