@@ -131,7 +131,7 @@ identifier to designate the nightly build number.
    is always compatible with the previous series as well as with the LTS series
    (an instance of ``X.Y`` version can be started on top of ``X.(Y+1)``
    or ``1.10.z`` data); binary protocol is compatible too
-   (as client-server as well as replication protocol).
+   (client-server as well as replication protocol).
 
 .. _release-list:
 
