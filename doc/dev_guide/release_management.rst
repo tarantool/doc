@@ -52,7 +52,7 @@ as follows:
    After the tag is set, no new changes are allowed to the release branch,
    and it is declared deprecated and superseded by a newer MINOR version.
 
-   Stable versions don't receive any new features and only gets backward
+   Stable versions don't receive any new features and only get backward
    compatible fixes.
 
 Like Ubuntu, in terms of support, we distinguish between two kinds of stable
