@@ -101,7 +101,7 @@ into the following release series: LTS, last stable, beta, and alpha.
 If we look at the release diagram above, it means that the bug fixes are to be
 added into 1.10, 2.4, 2.5, and 2.6 release series.
 
-To sum it up, once a quarter we release (?see the release diagram above for
+To sum it up, once a quarter we release (see the release diagram above for
 reference):
 
 * next LTS release, e.g., 1.10.7
@@ -109,7 +109,7 @@ reference):
 * beta version of the next release series, e.g., 2.5.1.
 
 In all supported releases, when we find and fix an outstanding CVE/vulnerability,
-we release a patch for that but do not tag a new PATCH level version.
+we deliver a patch for that but do not tag a new PATCH level version.
 Users will be informed about such critical patches via official Tarantool news
 channel (`tarantool_news <https://t.me/tarantool_news>`_).
 
@@ -120,7 +120,7 @@ identifier to designate the nightly build number.
 
 .. note::
 
-   A release series may contain backward incompatible changes in a sense that
+   A release series may introduce backward incompatible changes in a sense that
    existing Lua, SQL or C code that are run on a current release series
    may not be run with the same effect on a future series.
    However, we don't exploit this rule and don't make incompatible changes
@@ -140,8 +140,8 @@ Release list
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Below is the table containing all Tarantool releases starting from 1.10.0 up to
-the current latest versions. For each release series, releases are sorted out
-as alpha, beta, and stable ones.
+the current latest versions (as of September 1, 2020). For each release series,
+releases are sorted out as alpha, beta, and stable ones.
 
 +---------+--------+--------+--------+
 | Release | Alpha  | Beta   | Stable |
