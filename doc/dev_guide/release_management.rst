@@ -110,7 +110,7 @@ reference):
 
 In all supported releases, when we find and fix an outstanding CVE/vulnerability,
 we deliver a patch for that but do not tag a new PATCH level version.
-Users will be informed about such critical patches via official Tarantool news
+Users will be informed about such critical patches via the official Tarantool news
 channel (`tarantool_news <https://t.me/tarantool_news>`_).
 
 We also publish nightly builds, and use the fourth slot in the version
