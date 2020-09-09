@@ -39,16 +39,25 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
       |nbsp| |nbsp| ``box.execute("insert into t values (" .. i .. ")")`` |br|
       ``end``
 
-    * The second way is to put placeholder ``?`` question-mark tokens inside the string,
-      and pass a second argument *extra-parameters*, which must be a table containing values for each placeholder.
-      For example these two requests are equivalent: |br|
+    * The second way, which is the preferred way, is to put placeholders in the string,
+      and pass a second argument, an *extra-parameters* table.
+      A placeholder is either a question mark "?", or a colon ":" followed by a name.
+      An extra parameter is any Lua expression.
+      If placeholders are question marks, then they will be replaced by extra-parameter
+      values in corresponding positions, that is, the first ? will be replaced by the first
+      extra parameter, the second ? will be replaced by the second extra parameter, and so on.
+      If placeholders are :names, then they will be replaced by extra-parameter
+      values with corrresponding names.
+      For example this request which contains literal values 1 and 'x': |br|
       ``box.execute([[INSERT INTO tt VALUES (1, 'x');]]);`` |br|
-      ``x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?, ?);]], x);`` |br|
-      Or, put parameter names inside the string. A parameter name must start with ``:`` colon
-      and must match a named component of the *extra-parameters* table. For example,
-      this request is also equivalent: |br|
-      ``box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})``
-
+      is the same as this request which contains two question-mark placeholders (``?`` and ``?``)
+      and a two-element extra-parameters table: |br|
+      ``x = {1,'x'}`` |br|
+      ``box.execute([[INSERT INTO tt VALUES (?, ?);]], x);`` |br|
+      and is the same as this request which contains two :name placeholders (``:a`` and ``:b``)
+      and a two-element extra-parameters table with elements named a and b: |br|
+      ``box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})`` |br|
+      
     Since ``box.execute()`` is an invocation of a Lua function,
     it either causes an error message or returns a value.
 
