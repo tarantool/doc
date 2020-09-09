@@ -92,25 +92,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
           - [5]
         ...
 
-    The data for the result set, in MsgPack format, will look like this:
-
-    .. code-block:: none
-
-        dd 00 00 00 01                  1-element array
-        82                              2-element map (for metadata + rows)
-        a8 6d 65 74 61 64 61 74 61      string = "metadata"
-        91                              1-element array (for column count)
-        82                              2-element map (for name + type)
-        a4 6e 61 6d 65                  string = "name"
-        a1 78                           string = "x"
-        a4 74 79 70 6                   string = "type"
-        a7 69 6e 74 65 67 65 72         string = "integer"
-        a4 72 6f 77 73                  string = "rows"
-        91                              1-element array (for row count)
-        91                              1-element array (for field count)
-        05                              contents
-
-    For a look at the raw format see :ref:`Binary protocol -- illustration <box_protocol-illustration>`.
+    For a look at raw format of SELECT results, see :ref:`Binary protocol -- responses for SQL <box_protocol-sql_protocol>`.
 
     The order of components within a map is not guaranteed.
  
