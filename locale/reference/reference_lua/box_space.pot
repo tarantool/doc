@@ -2562,3 +2562,4 @@ msgid "tarantool> s:insert{1, 2, 3}\n"
 "  - [10, 11, 9]\n"
 "..."
 msgstr ""
+
