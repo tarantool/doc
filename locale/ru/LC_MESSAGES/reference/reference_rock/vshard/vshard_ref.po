@@ -725,8 +725,11 @@ msgstr "ассоциативный массив следующего вида: `
 msgid "Rtype"
 msgstr "Тип возвращаемого значения"
 
-msgid "replicaset = vshard.router.routeall()"
-msgstr "replicaset = vshard.router.routeall()"
+msgid "a map of replica set objects"
+msgstr "ассоциативный массив объектов набора реплик"
+
+msgid "replicasets = vshard.router.routeall()"
+msgstr "replicasets = vshard.router.routeall()"
 
 msgid ""
 "**Deprecated**. Logs a warning when used because it is not consistent for"
