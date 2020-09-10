@@ -385,7 +385,10 @@ msgstr ""
 msgid "Rtype"
 msgstr ""
 
-msgid "replicaset = vshard.router.routeall()"
+msgid "a map of replica set objects"
+msgstr ""
+
+msgid "replicasets = vshard.router.routeall()"
 msgstr ""
 
 msgid "**Deprecated**. Logs a warning when used because it is not consistent for cdata numbers."

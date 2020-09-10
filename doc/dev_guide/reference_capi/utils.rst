@@ -63,7 +63,7 @@
     :param const char* ctypename: C definitions (e.g. "struct stat")
 
     :return: 0 on success
-    :return: ``LUA_ERRRUN``, ``LUA_ERRMEM` or ``LUA_ERRERR`` otherwise.
+    :return: ``LUA_ERRRUN``, ``LUA_ERRMEM`` or ``LUA_ERRERR`` otherwise.
 
     See also: ``ffi.cdef(def)``
 
