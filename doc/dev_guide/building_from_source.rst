@@ -27,7 +27,6 @@ the preferences can differ. But strategically the steps are always the same.
    * `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
    * `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
    * `OpenSSL <https://www.openssl.org>`_ library, version 1.0.1+
-   * `LibYAML <http://pyyaml.org/wiki/LibYAML>`_ library, version 0.1.4+
    * `ICU <http://site.icu-project.org/download>`_ library, recent version
    * `Autoconf <https://www.gnu.org/software/autoconf/>`_ library, any version
    * `Automake <https://www.gnu.org/software/automake/>`_ library, any version
@@ -53,7 +52,7 @@ the preferences can differ. But strategically the steps are always the same.
 
         $ apt install -y build-essential cmake make coreutils sed \
               autoconf automake libtool zlib1g-dev \
-              libreadline-dev libncurses5-dev libyaml-dev libssl-dev \
+              libreadline-dev libncurses5-dev libssl-dev \
               libunwind-dev libicu-dev \
               python python-pip python-setuptools python-dev \
               python-msgpack python-yaml python-argparse python-six python-gevent
@@ -64,7 +63,7 @@ the preferences can differ. But strategically the steps are always the same.
 
          $ yum install -y gcc gcc-c++ cmake make coreutils sed \
                autoconf automake libtool zlib-devel \
-               readline-devel ncurses-devel libyaml-devel openssl-devel \
+               readline-devel ncurses-devel openssl-devel \
                libunwind-devel libicu-devel \
                python python-pip python-setuptools python-devel \
                python-msgpack python-yaml python-argparse python-six python-gevent
@@ -77,7 +76,7 @@ the preferences can differ. But strategically the steps are always the same.
 
          $ brew install cmake make autoconf binutils zlib \
                 autoconf automake libtool \
-                readline ncurses libyaml openssl libunwind-headers icu4c \
+                readline ncurses openssl libunwind-headers icu4c \
                 && pip install python-daemon \
                 msgpack-python pyyaml configargparse six gevent
 
@@ -98,7 +97,7 @@ the preferences can differ. But strategically the steps are always the same.
 
          $ pkg install -y sudo git cmake gmake gcc coreutils \
                autoconf automake libtool \
-               readline ncurses libyaml openssl libunwind icu \
+               readline ncurses openssl libunwind icu \
                python27 py27-pip py27-setuptools py27-daemon \
                py27-msgpack py27-yaml py27-argparse py27-six py27-gevent
 
