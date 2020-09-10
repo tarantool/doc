@@ -515,13 +515,13 @@ Router public API
     Return all available replica set objects.
 
     :Return: a map of the following type: ``{UUID = replicaset}``
-    :Rtype: a replica set object
+    :Rtype: a map of replica set objects
 
     **Example:**
 
     .. code-block:: lua
 
-        replicaset = vshard.router.routeall()
+        replicasets = vshard.router.routeall()
 
 .. _router_api-bucket_id:
 
