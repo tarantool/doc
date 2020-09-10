@@ -107,7 +107,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
     * 'w'    which enables :ref:`popen_handle:write() <popen-write>`
     * 'r'    which enables :ref:`popen_handle:read() <popen-read>`
-    * 'R'    which enables :ref:`popen_handle:read(stderr = true) <popen-read>`
+    * 'R'    which enables :ref:`popen_handle:read({stderr = true}) <popen-read>`
     * nil    which means inherit parent's std* file descriptors
 
     Several mode characters can be set together, for example 'rw', 'rRw'.

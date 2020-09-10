@@ -72,7 +72,7 @@ msgstr ""
 msgid "'r'    which enables :ref:`popen_handle:read() <popen-read>`"
 msgstr ""
 
-msgid "'R'    which enables :ref:`popen_handle:read(stderr = true) <popen-read>`"
+msgid "'R'    which enables :ref:`popen_handle:read({stderr = true}) <popen-read>`"
 msgstr ""
 
 msgid "nil    which means inherit parent's std* file descriptors"
