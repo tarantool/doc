@@ -804,7 +804,7 @@ msgstr ""
 msgid "offset within file where reading begins"
 msgstr ""
 
-msgid "If the format is ``pread(count, offset)`` then return a string containing the data that was read from the file, or nil if failure."
+msgid "If the format is ``pread(count, offset)`` then return a string containing the data that was read from the file, or empty string if failure."
 msgstr ""
 
 msgid "If the format is ``pread(buffer, count, offset)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
@@ -861,7 +861,7 @@ msgstr ""
 msgid "If the format is ``read()`` -- omitting ``count`` -- then read all bytes in the file."
 msgstr ""
 
-msgid "If the format is ``read()``  or ``read([count])`` then return a string containing the data that was read from the file, or nil if failure."
+msgid "If the format is ``read()``  or ``read([count])`` then return a string containing the data that was read from the file, or empty string if failure."
 msgstr ""
 
 msgid "If the format is ``read(buffer, count)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."

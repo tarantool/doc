@@ -882,7 +882,7 @@ functions.
         :param number offset: offset within file where reading begins
 
         If the format is ``pread(count, offset)`` then return a string
-        containing the data that was read from the file, or nil if failure.
+        containing the data that was read from the file, or empty string if failure.
 
         If the format is ``pread(buffer, count, offset)`` then return the data
         to the buffer.
@@ -959,7 +959,7 @@ functions.
                    bytes in the file.
 
                  * If the format is ``read()``  or ``read([count])`` then return a string
-                   containing the data that was read from the file, or nil if failure.
+                   containing the data that was read from the file, or empty string if failure.
 
                  * If the format is ``read(buffer, count)`` then return the data
                    to the buffer.
