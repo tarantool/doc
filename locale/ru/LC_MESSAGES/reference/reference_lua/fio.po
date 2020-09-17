@@ -1146,10 +1146,10 @@ msgstr "смещение в файле -- где начинается чтени
 
 msgid ""
 "If the format is ``pread(count, offset)`` then return a string containing"
-" the data that was read from the file, or nil if failure."
+" the data that was read from the file, or empty string if failure."
 msgstr ""
 "Если формат -- ``pread(count, offset)``, возвращается строка с данными, "
-"прочитанными из файла, либо нулевое значение nil, если не выполнено."
+"прочитанными из файла, либо пустая строка, если не выполнено."
 
 msgid ""
 "If the format is ``pread(buffer, count, offset)`` then return the data to"
@@ -1258,11 +1258,11 @@ msgstr ""
 
 msgid ""
 "If the format is ``read()``  or ``read([count])`` then return a string "
-"containing the data that was read from the file, or nil if failure."
+"containing the data that was read from the file, or empty string if "
+"failure."
 msgstr ""
 "Если формат -- ``read()``  или ``read([count])``, возвращается строка с "
-"данными, прочитанными из файла, либо нулевое значение nil, если не "
-"выполнено."
+"данными, прочитанными из файла, либо пустая строка, если не выполнено."
 
 msgid ""
 "If the format is ``read(buffer, count)`` then return the data to the "
