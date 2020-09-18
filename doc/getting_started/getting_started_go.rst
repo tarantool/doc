@@ -78,7 +78,7 @@ To get connected to the Tarantool server, write a simple Go program:
     	})
 
     	if err != nil {
-    		panic("Connection refused")
+    		log.Fatalf("Connection refused")
     	}
 
     	defer conn.Close()

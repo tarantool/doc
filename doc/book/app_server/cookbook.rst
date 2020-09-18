@@ -781,85 +781,11 @@ select_all.go
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Go, there is no one-liner to select all tuples from a Tarantool space.
-Yet you can use a script like this one.
+Yet you can use a script like this one. Call it on the instance you want to
+connect to.
 
-.. code-block:: go
-
-    package main
-
-    import (
-    	"fmt"
-
-    	"github.com/tarantool/go-tarantool"
-    )
-
-    /*
-    box.cfg{listen = 3301}
-    box.schema.user.passwd('pass')
-
-    s = box.schema.space.create('tester')
-    s:format({
-    			{name = 'id', type = 'unsigned'},
-    			{name = 'band_name', type = 'string'},
-    			{name = 'year', type = 'unsigned'}
-    			})
-    s:create_index('primary', {
-    			type = 'hash',
-    			parts = {'id'}
-    			})
-    s:create_index('scanner', { type = 'tree', parts = {'id', 'band_name'} })
-
-    s:insert{1, 'Roxette', 1986}
-    s:insert{2, 'Scorpions', 2015}
-    s:insert{3, 'Ace of Base', 1993}
-    */
-
-    func main() {
-    	conn, err := tarantool.Connect("127.0.0.1:3301", tarantool.Opts{
-    		User: "admin",
-    		Pass: "pass",
-    	})
-
-    	if err != nil {
-    		panic("Connection refused")
-    	}
-    	defer conn.Close()
-
-    	spaceName := "tester"
-    	indexName := "scanner"
-    	idFn := conn.Schema.Spaces[spaceName].Fields["id"].Id
-    	bandNameFn := conn.Schema.Spaces[spaceName].Fields["band_name"].Id
-
-    	var tuplesPerRequest uint32
-    	cursor := []interface{}{}
-
-    	tuplesPerRequest = 2
-
-    	for {
-    		resp, err := conn.Select(spaceName, indexName, 0, tuplesPerRequest, tarantool.IterGt, cursor)
-    		if err != nil {
-    			panic(fmt.Errorf("Failed to select: %s", err))
-    		}
-
-    		if resp.Code != tarantool.OkCode {
-    			panic(fmt.Errorf("Select failed: %s", resp.Error))
-    		}
-
-    		if len(resp.Data) == 0 {
-    			break
-    		}
-
-    		fmt.Println("Iteration")
-
-    		tuples := resp.Tuples()
-    		for _, tuple := range tuples {
-    			fmt.Printf("\t%v\n", tuple)
-    		}
-
-    		lastTuple := tuples[len(tuples)-1]
-    		cursor = []interface{}{lastTuple[idFn], lastTuple[bandNameFn]}
-    	}
-    }
+.. literalinclude:: cookbook/main.go
+  :language: go
 
 .. _rock: http://rocks.tarantool.org/
 .. _http: https://github.com/tarantool/http/
