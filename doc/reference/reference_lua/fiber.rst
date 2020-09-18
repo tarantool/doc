@@ -321,8 +321,7 @@ recommended.
 
 .. function:: yield()
 
-    Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`,
-    except that `fiber.sleep(0)` depends on a timer, `fiber.yield()` does not.
+    Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`.
 
     :Exception: see the :ref:`Example of yield failure <fiber-fail>`.
 
@@ -578,8 +577,8 @@ recommended.
         :param string name: the new name of the fiber.
         :param options:
 
-            * ``truncate=true`` - truncates the name to the max length if it is
-              too long. If this option is false (the default), 
+            * ``truncate=true`` -- truncates the name to the max length if it is
+              too long. If this option is false (the default),
               ``fiber.name(new_name)`` fails with an exception if a new name is
               too long.
 
@@ -840,13 +839,13 @@ recommended.
 
     **Example:**
 
-        .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-            tarantool> fiber.time(), fiber.time()
-            ---
-            - 1448466279.2415
-            - 1448466279.2415
-            ...
+        tarantool> fiber.time(), fiber.time()
+        ---
+        - 1448466279.2415
+        - 1448466279.2415
+        ...
 
 .. _fiber-time64:
 
@@ -945,11 +944,12 @@ Example of yield failure
 
 Warning: :ref:`yield() <fiber-yield>` and any function which implicitly yields
 (such as :ref:`sleep() <fiber-sleep>`) can fail (raise an exception).
+
 For example, this function has a loop which repeats until :ref:`cancel() <fiber_object-cancel>` happens.
 The last thing that it will print is 'before yield', which demonstrates
 that ``yield()`` failed, the loop did not continue until :ref:`testcancel() <fiber-testcancel>` failed.
 
-.. code-block:: none
+.. code-block:: Lua
 
     fiber = require('fiber')
     function function_name()
