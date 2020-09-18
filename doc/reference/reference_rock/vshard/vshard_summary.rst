@@ -32,4 +32,4 @@ The buckets have **states**, so it is easy to monitor the server states. For exa
 a server instance is active and available for all types of requests, or a failover
 occurred and the instance accepts only read requests.
 
-The ``vshard`` module provides router and storage public and internal API for sharding-aware applications.
+The ``vshard`` module provides router and storage API (public and internal) for sharding-aware applications.
