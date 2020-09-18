@@ -612,14 +612,18 @@ With the ``net.box`` module, you can use the following
 
 .. function:: conn:on_connect([trigger-function[, old-trigger-function]])
 
-    Define a trigger for execution when a new connection is created due to an
-    event such as ``net_box.connect``. The trigger function will be the first thing
-    executed after a new connection is created. If the trigger execution fails
-    and raises an error, the error is sent to the client and the connection is closed.
+    Define a trigger for execution when a new connection is established, and authentication
+    and schema fetch are completed due to an event such as ``net_box.connect``.
+    If the trigger execution fails and an exception happens, the connection's
+    state changes to 'error'. In this case, the connection is terminated, regardless of the
+    ``reconnect_after`` option's value. Can be called as many times as
+    reconnection happens, if ``reconnect_after`` is greater than zero.
 
-    :param function trigger-function: function which will become the trigger function. Takes the ``conn``
+    :param function trigger-function: function which will become the trigger
+                                      function. Takes the ``conn``
                                       object as the first argument
-    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :param function old-trigger-function: existing trigger function which will
+                                          be replaced by trigger-function
     :return: nil or function pointer
 
 .. _net_box-on_disconnect:
@@ -631,9 +635,11 @@ With the ``net.box`` module, you can use the following
     Execution stops after a connection is explicitly closed, or once the Lua
     garbage collector removes it.
 
-    :param function trigger-function: function which will become the trigger function. Takes the ``conn``
+    :param function trigger-function: function which will become the trigger
+                                      function. Takes the ``conn``
                                       object as the first argument
-    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :param function old-trigger-function: existing trigger function which will
+                                          be replaced by trigger-function
     :return: nil or function pointer
 
 .. _net_box-on_schema_reload:
@@ -641,24 +647,26 @@ With the ``net.box`` module, you can use the following
 .. function:: conn:on_schema_reload([trigger-function[, old-trigger-function]])
 
     Define a trigger executed when some operation has been performed on the remote
-    server after schema has been updated. So, if a server request fails due to a schema
-    version mismatch error, schema reload is triggered.
+    server after schema has been updated. So, if a server request fails due to a
+    schema version mismatch error, schema reload is triggered.
 
-    :param function trigger-function: function which will become the trigger function. Takes the ``conn``
+    :param function trigger-function: function which will become the trigger
+                                      function. Takes the ``conn``
                                       object as the first argument
-    :param function old-trigger-function: existing trigger function which will be replaced by trigger-function
+    :param function old-trigger-function: existing trigger function which will
+                                          be replaced by trigger-function
     :return: nil or function pointer
 
-        .. NOTE::
+    .. NOTE::
 
-            If the parameters are ``(nil, old-trigger-function)``,
-            then the old trigger is deleted.
+        If the parameters are ``(nil, old-trigger-function)``,
+        then the old trigger is deleted.
 
-            If both parameters are omitted, then the response is a list of
-            existing trigger functions.
+        If both parameters are omitted, then the response is a list of
+        existing trigger functions.
 
-            Details about trigger characteristics are in the
-            :ref:`triggers <triggers-box_triggers>` section.
+        Details about trigger characteristics are in the
+        :ref:`triggers <triggers-box_triggers>` section.
 
 ============================================================================
 Example
