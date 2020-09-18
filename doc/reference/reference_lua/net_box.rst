@@ -612,12 +612,12 @@ With the ``net.box`` module, you can use the following
 
 .. function:: conn:on_connect([trigger-function[, old-trigger-function]])
 
-    Define a trigger for execution when a new connection is established, auth
-    and schema fetch are finished due to an event such as ``net_box.connect``.
+    Define a trigger for execution when a new connection is established, and authentication
+    and schema fetch are completed due to an event such as ``net_box.connect``.
     If the trigger execution fails and an exception happens, the connection's
-    state becomes 'error'. Then the connection is terminated, regardless of the
+    state changes to 'error'. In this case, the connection is terminated, regardless of the
     ``reconnect_after`` option's value. Can be called as many times as
-    the reconnection happens, if the ``reconnect_after`` is greater then zero.
+    reconnection happens, if ``reconnect_after`` is greater than zero.
 
     :param function trigger-function: function which will become the trigger
                                       function. Takes the ``conn``
