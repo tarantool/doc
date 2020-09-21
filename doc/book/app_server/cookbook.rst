@@ -592,7 +592,7 @@ socket_udp_echo.lua
 
 Tarantool does not currently have a `udp_server` function,
 therefore socket_udp_echo.lua is more complicated than
-socket_tcp_echo.lua. 
+socket_tcp_echo.lua.
 It can be implemented with sockets and fibers.
 
 .. code-block:: lua
@@ -774,7 +774,18 @@ An "HTML" file for this server, including Lua, could look like this
     </body>
     </html>
 
+.. _cookbook-select-all-go:
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+select_all.go
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Go, there is no one-liner to select all tuples from a Tarantool space.
+Yet you can use a script like this one. Call it on the instance you want to
+connect to.
+
+.. literalinclude:: cookbook/main.go
+  :language: go
 
 .. _rock: http://rocks.tarantool.org/
 .. _http: https://github.com/tarantool/http/
