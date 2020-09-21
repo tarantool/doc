@@ -71,24 +71,20 @@ To get connected to the Tarantool server, write a simple Go program:
     )
 
     func main() {
-    	conn, err := tarantool.Connect("127.0.0.1:3301", tarantool.Opts{})
+
+    	conn, err := tarantool.Connect("127.0.0.1:3301", tarantool.Opts{
+    		User: "admin",
+    		Pass: "pass",
+    	})
 
     	if err != nil {
-    		fmt.Println("Connection refused")
+    		log.Fatalf("Connection refused")
     	}
 
     	defer conn.Close()
 
     	// Your logic for interacting with the database
     }
-
-You can also specify the user name and password, if needed:
-
-.. code-block:: go
-
-    opts := tarantool.Opts{User: "username", Pass: "password"}
-    conn, err := tarantool.Connect("127.0.0.1:3301", opts)
-    ...
 
 The default user is ``guest``.
 
@@ -144,11 +140,9 @@ Next, select tuples by a secondary key.
 
     resp, err = conn.Select("tester", "secondary", 0, 1, tarantool.IterEq, []interface{}{"ABBA"})
 
-Finally, select all the tuples in a space:
-
-.. code-block:: go
-
-    resp, err = conn.Select("tester", "primary", 0, tarantool.KeyLimit, tarantool.IterAll, []interface{}{})
+Finally, it would be nice to select all the tuples in a space. But there is no
+one-liner for this in Go; you would need a script like
+:ref:`this one <cookbook-select-all-go>`.
 
 For more examples, see https://github.com/tarantool/go-tarantool#usage
 
