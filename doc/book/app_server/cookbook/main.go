@@ -41,10 +41,8 @@ func main() {
 	idFn := conn.Schema.Spaces[spaceName].Fields["id"].Id
 	bandNameFn := conn.Schema.Spaces[spaceName].Fields["band_name"].Id
 
-	var tuplesPerRequest uint32
+	var tuplesPerRequest uint32 = 2
 	cursor := []interface{}{}
-
-	tuplesPerRequest = 2
 
 	for {
 		resp, err := conn.Select(spaceName, indexName, 0, tuplesPerRequest, tarantool.IterGt, cursor)
