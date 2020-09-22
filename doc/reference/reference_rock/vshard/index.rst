@@ -15,7 +15,7 @@ complete ``vshard`` documentation:
    :maxdepth: 2
    :numbered: 0
 
-   vshard_summary
+   vshard_summary_index
    vshard_architecture
    vshard_admin
    vshard_quick
