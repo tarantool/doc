@@ -8,10 +8,11 @@
                                    Overview
 ===============================================================================
 
-The ``box.space`` submodule has the data-manipulation functions ``select``,
-``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``.
-It also has members, such as id, and whether or not a space is enabled. Submodule
-source code is available in file
+**CRUD operations** in Tarantool are implemented by the ``box.space`` submodule.
+It has the data-manipulation functions ``select``, ``insert``, ``replace``,
+``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members,
+such as id, and whether or not a space is enabled. Submodule source code
+is available in file
 `src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/2.1/src/box/lua/schema.lua>`_.
 
 ===============================================================================
@@ -568,11 +569,11 @@ Below is a list of all ``box.space`` functions and members.
                           {name='B'}},
                   extra_field = 1}})
         i:select({''},{iterator='GE'})
-    
+
     The result of the select request looks like this:
-      
+
     .. code-block:: tarantoolsession
-      
+
         tarantool> i:select({''},{iterator='GE'})
         ---
         - - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
@@ -741,7 +742,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: drop()
 
-        Drop a space. The method is performed in background and doesn't block 
+        Drop a space. The method is performed in background and doesn't block
         consequent requests.
 
         :param space_object space_object: an :ref:`object reference
@@ -1157,7 +1158,7 @@ Below is a list of all ``box.space`` functions and members.
           You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``
             * transactions,
             * yield-oprations (:ref:`explicit <atomic-implicit-yields>` or not),
-            * actions that are not allowed to be used in transactions 
+            * actions that are not allowed to be used in transactions
               (see :ref:`rule #2 <box-txn_management>`)
           because everything executed inside triggers is already in a transaction.
 
@@ -1523,7 +1524,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: truncate()
 
-        Deletes all tuples. The method is performed in background and doesn't 
+        Deletes all tuples. The method is performed in background and doesn't
         block consequent requests.
 
         :param space_object space_object: an :ref:`object reference
