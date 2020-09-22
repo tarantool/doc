@@ -1,7 +1,7 @@
 .. _release_notes:
 
 ********************************************************************************
-Release Notes
+Release notes
 ********************************************************************************
 
 The Release Notes are summaries of significant changes introduced in Tarantool

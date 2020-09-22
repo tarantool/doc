@@ -8,10 +8,11 @@
                                    Overview
 ===============================================================================
 
-The ``box.space`` submodule has the data-manipulation functions ``select``,
-``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``.
-It also has members, such as id, and whether or not a space is enabled. Submodule
-source code is available in file
+**CRUD operations** in Tarantool are implemented by the ``box.space`` submodule.
+It has the data-manipulation functions ``select``, ``insert``, ``replace``,
+``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members,
+such as id, and whether or not a space is enabled. Submodule source code
+is available in file
 `src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_.
 
 ===============================================================================
@@ -943,7 +944,7 @@ Below is a list of all ``box.space`` functions and members.
           You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``
             * transactions,
             * yield-oprations (:ref:`explicit <atomic-implicit-yields>` or not),
-            * actions that are not allowed to be used in transactions 
+            * actions that are not allowed to be used in transactions
               (see :ref:`rule #2 <box-txn_management>`)
           because everything executed inside triggers is already in a transaction.
 

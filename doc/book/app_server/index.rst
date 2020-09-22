@@ -4,7 +4,7 @@
 Application server
 ********************************************************************************
 
-In this chapter, we introduce the basics of working with Tarantool as a Lua
+Here we introduce the basics of working with Tarantool as a Lua
 application server.
 
 This chapter contains the following sections:
