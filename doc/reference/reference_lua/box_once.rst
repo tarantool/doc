@@ -14,10 +14,10 @@
     See an example of using ``box.once()`` while
     :ref:`bootstrapping a replica set <replication-bootstrap>`.
 
-    If an error occurs inside ``box.once()`` when initializing a database, you
-    can re-execute the failed ``box.once()`` block without stopping the database.
-    The solution is to delete the ``once`` object from the system space
-    :ref:`_schema <box_space-schema>`.
+    **Warning:** If an error occurs inside ``box.once()`` when initializing a
+    database, you can re-execute the failed ``box.once()`` block without
+    stopping the database. The solution is to delete the ``once`` object from
+    the system space :ref:`_schema <box_space-schema>`.
     Say ``box.space._schema:select{}``, find your ``once`` object there and
     delete it. For example, re-executing a block with ``key='hello'`` :
 
@@ -48,3 +48,11 @@
     :param string        key: a value that will be checked
     :param function function: a function
     :param               ...: arguments that must be passed to function
+
+    .. NOTE::
+
+        The parameter `key` will be stored in :ref:`_schema <box_space-schema>`
+        system space after ``box.once()`` is called in order to prevent a double
+        run. These keys are global per replicaset. So a simultaneous call of
+        ``box.once()`` with the same key on two instances of the same replicaset
+        may succeed on both of them, but it'll lead to the transaction conflict.
