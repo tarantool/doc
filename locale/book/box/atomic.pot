@@ -1,5 +1,5 @@
 
-msgid "Transaction control"
+msgid "Transactions"
 msgstr ""
 
 msgid "Transactions in Tarantool occur in **fibers** on a single **thread**. That is why Tarantool has a guarantee of execution atomicity. That requires emphasis."
@@ -63,9 +63,6 @@ msgid "When requests are small, for example simple UPDATE or INSERT or DELETE or
 msgstr ""
 
 msgid "However, a function might perform complex computations or might be written in such a way that yields do not occur for a long time. This can lead to unfair scheduling, when a single client throttles the rest of the system, or to apparent stalls in request processing. Avoiding this situation is the responsibility of the function’s author."
-msgstr ""
-
-msgid "Transactions"
 msgstr ""
 
 msgid "In the absence of transactions, any function that contains yield points may see changes in the database state caused by fibers that preempt. Multi-statement transactions exist to provide **isolation**: each transaction sees a consistent database state and commits all its changes atomically. At :ref:`commit <box-commit>` time, a yield happens and all transaction changes are written to the :ref:`write ahead log <internals-wal>` in a single batch. Or, if needed, transaction changes can be rolled back -- :ref:`completely <box-rollback>` or to a specific :ref:`savepoint <box-rollback_to_savepoint>`."
