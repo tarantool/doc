@@ -91,6 +91,12 @@ Below is a list of all ``fiber`` functions and members.
     | :ref:`fiber.time64()                 | Get the system time in          |
     | <fiber-time64>`                      | microseconds                    |
     +--------------------------------------+---------------------------------+
+    | :ref:`fiber.clock()                  | Get the monotonic time in       |
+    | <fiber-clock>`                       | seconds                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.clock64()                | Get the monotonic time in       |
+    | <fiber-clock64>`                     | microseconds                    |
+    +--------------------------------------+---------------------------------+
     | :ref:`fiber.channel()                | Create a communication channel  |
     | <fiber-channel>`                     |                                 |
     +--------------------------------------+---------------------------------+
@@ -778,6 +784,46 @@ recommended.
             - 1448466351.2708
             - 1448466351270762
             ...
+
+.. _fiber-clock:
+
+.. function:: clock()
+
+    Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for
+    calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because
+    ``fiber.time()`` reports real time so it is affected by system time changes.
+
+    :Return: a floating-point number of seconds, representing elapsed wall-clock
+             time since some time in the past that is guaranteed not to change
+             during the life of the process
+    :Rtype: number
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> start = fiber.clock()
+        ---
+        ...
+        tarantool> print(start)
+        248700.58805
+        ---
+        ...
+        tarantool> print(fiber.time(), fiber.time()-start)
+        1600785979.8291 1600537279.241
+        ---
+        ...
+
+.. _fiber-clock64:
+
+.. function:: clock64()
+
+    Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds.
+
+    :Return: a number of seconds as 64-bit integer, representing
+             elapsed wall-clock time since some time in the past that is
+             guaranteed not to change during the life of the process
+    :Rtype: cdata
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example
