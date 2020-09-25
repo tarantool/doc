@@ -790,8 +790,8 @@ recommended.
 .. function:: clock()
 
     Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for
-    calculating timeouts instead of ``fiber.time()`` because ``fiber.time()``
-    reports real time so it is affected by system time changes.
+    calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because
+    ``fiber.time()`` reports real time so it is affected by system time changes.
 
     :Return: a floating-point number of seconds, representing elapsed wall-clock
              time since some time in the past that is guaranteed not to change
@@ -818,7 +818,7 @@ recommended.
 
 .. function:: clock64()
 
-    Same as ``fiber.clock()`` but in microseconds.
+    Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds.
 
     :Return: a number of seconds as 64-bit integer, representing
              elapsed wall-clock time since some time in the past that is

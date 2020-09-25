@@ -683,7 +683,7 @@ msgid "tarantool> fiber.time(), fiber.time64()\n"
 "..."
 msgstr ""
 
-msgid "Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for calculating timeouts instead of ``fiber.time()`` because ``fiber.time()`` reports real time so it is affected by system time changes."
+msgid "Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because ``fiber.time()`` reports real time so it is affected by system time changes."
 msgstr ""
 
 msgid "a floating-point number of seconds, representing elapsed wall-clock time since some time in the past that is guaranteed not to change during the life of the process"
@@ -702,7 +702,7 @@ msgid "tarantool> start = fiber.clock()\n"
 "..."
 msgstr ""
 
-msgid "Same as ``fiber.clock()`` but in microseconds."
+msgid "Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds."
 msgstr ""
 
 msgid "a number of seconds as 64-bit integer, representing elapsed wall-clock time since some time in the past that is guaranteed not to change during the life of the process"
