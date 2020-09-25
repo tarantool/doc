@@ -47,6 +47,9 @@ msgstr ""
 msgid "Index"
 msgstr ""
 
+msgid "Indexes"
+msgstr ""
+
 msgid "An **index** is a group of key values and pointers."
 msgstr ""
 
@@ -95,16 +98,13 @@ msgstr ""
 msgid "You can add, drop, or alter the definitions at runtime, with some restrictions. See syntax details in reference on :ref:`box <box-module>` module."
 msgstr ""
 
-msgid "Read more about index operations :ref:`below <index-box_index-operations>`."
+msgid "Read more about index operations :ref:`here <index-box_index-operations>`."
 msgstr ""
 
 msgid "Data types"
 msgstr ""
 
 msgid "Tarantool is both a database and an application server. Hence a developer often deals with two type sets: the programming language types (e.g. Lua) and the types of the Tarantool storage format (MsgPack)."
-msgstr ""
-
-msgid "Lua vs MsgPack"
 msgstr ""
 
 msgid "Scalar / compound"
@@ -227,9 +227,6 @@ msgid "tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}\n"
 "---\n"
 "- [3, [1, 2, 3, 4, 5]]\n"
 "..."
-msgstr ""
-
-msgid "Indexed field types"
 msgstr ""
 
 msgid "Indexes restrict values which Tarantool's MsgPack may contain. This is why, for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’ data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' index contains only *non-negative* integer values and an ‘integer’ index contains *all* integer values."
@@ -435,9 +432,6 @@ msgstr ""
 msgid "As well, you can specify several options when creating a new sequence. The options determine what value will be generated whenever the sequence is used."
 msgstr ""
 
-msgid "Options for ``box.schema.sequence.create()``"
-msgstr ""
-
 msgid "Option name"
 msgstr ""
 
@@ -607,9 +601,6 @@ msgstr ""
 msgid "Operations"
 msgstr ""
 
-msgid "Data operations"
-msgstr ""
-
 msgid "The basic data operations supported in Tarantool are:"
 msgstr ""
 
@@ -709,9 +700,6 @@ msgstr ""
 msgid "Besides Lua, you can use :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`. The client server protocol is open and documented. See this :ref:`annotated BNF <box_protocol-iproto_protocol>`."
 msgstr ""
 
-msgid "Index operations"
-msgstr ""
-
 msgid "Index operations are automatic: if a data-manipulation request changes a tuple, then it also changes the index keys defined for the tuple."
 msgstr ""
 
@@ -733,19 +721,89 @@ msgstr ""
 msgid "This looks for a single tuple via the first index. Since the first index is always unique, the maximum number of returned tuples will be: one. You can call ``select()`` without arguments, causing all tuples to be returned."
 msgstr ""
 
-msgid "Let's continue working with the space 'tester' created in the :ref:`\"Getting started\" exercises <getting_started>`:"
+msgid "Let's continue working with the space 'tester' created in the :ref:`\"Getting started\" exercises <getting_started_db-creating_db>` but first modify it:"
 msgstr ""
 
-msgid "-- Let's modify our space 'tester'\n"
-"tarantool> box.space.tester:format({\n"
+msgid "tarantool> box.space.tester:format({\n"
 "         > {name = 'id', type = 'unsigned'},\n"
 "         > {name = 'band_name', type = 'string'},\n"
 "         > {name = 'year', type = 'unsigned'},\n"
 "         > {name = 'rate', type = 'unsigned', is_nullable=true}})\n"
 "---\n"
+"..."
+msgstr ""
+
+msgid "Add the rate to the tuple #1 and #2:"
+msgstr ""
+
+msgid "tarantool> box.space.tester:update(1, {{'=', 4, 5}})\n"
+"---\n"
+"- [1, 'Roxette', 1986, 5]\n"
 "...\n"
-"-- Create an index with three parts\n"
-"tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'},{field=3, type='unsigned'}, {field=4, type='unsigned'}}})\n"
+"tarantool> box.space.tester:update(2, {{'=', 4, 4}})\n"
+"---\n"
+"- [2, 'Scorpions', 2015, 4]\n"
+"..."
+msgstr ""
+
+msgid "And insert another tuple:"
+msgstr ""
+
+msgid "tarantool> box.space.tester:insert({4, 'Roxette', 2016, 3})\n"
+"---\n"
+"- [4, 'Roxette', 2016, 3]\n"
+"..."
+msgstr ""
+
+msgid "**The existing SELECT variations:**"
+msgstr ""
+
+msgid "The search can use comparisons other than equality."
+msgstr ""
+
+msgid "tarantool> box.space.tester:select(1, {iterator = 'GT'})\n"
+"---\n"
+"- - [2, 'Scorpions', 2015, 4]\n"
+"  - [3, 'Ace of Base', 1993]\n"
+"  - [4, 'Roxette', 2016, 3]\n"
+"..."
+msgstr ""
+
+msgid "The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT (for \"less than\", \"less than or equal\", \"equal\", \"reversed equal\", \"greater than or equal\", \"greater than\" respectively). Comparisons make sense if and only if the index type is ‘TREE'."
+msgstr ""
+
+msgid "This type of search may return more than one tuple; if so, the tuples will be in descending order by key when the comparison operator is LT or LE or REQ, otherwise in ascending order."
+msgstr ""
+
+msgid "The search can use a secondary index."
+msgstr ""
+
+msgid "For a primary-key search, it is optional to specify an index name. For a secondary-key search, it is mandatory."
+msgstr ""
+
+msgid "tarantool> box.space.tester:create_index('secondary', {parts = {{field=3, type='unsigned'}}})\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 3\n"
+"  id: 2\n"
+"  space_id: 512\n"
+"  type: TREE\n"
+"  name: secondary\n"
+"...\n"
+"tarantool> box.space.tester.index.secondary:select({1993})\n"
+"---\n"
+"- - [3, 'Ace of Base', 1993]\n"
+"..."
+msgstr ""
+
+msgid "The search may be for some key parts starting with the prefix of the key. Notice that partial key searches are available only in TREE indexes."
+msgstr ""
+
+msgid "-- Create an index with three parts\n"
+"tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'}, {field=3, type='unsigned'}, {field=4, type='unsigned'}}})\n"
 "---\n"
 "- unique: true\n"
 "  parts:\n"
@@ -763,97 +821,30 @@ msgid "-- Let's modify our space 'tester'\n"
 "  type: TREE\n"
 "  name: tertiary\n"
 "...\n"
-"-- And make sure it has three parts\n"
-"tarantool> box.space.tester.index.tertiary.parts\n"
+"-- Make a partial search\n"
+"tarantool> box.space.tester.index.tertiary:select({'Scorpions', 2015})\n"
 "---\n"
-"- - type: string\n"
-"    is_nullable: false\n"
-"    fieldno: 2\n"
-"  - type: unsigned\n"
-"    is_nullable: false\n"
-"    fieldno: 3\n"
-"  - type: unsigned\n"
-"    is_nullable: true\n"
-"    fieldno: 4\n"
-"...\n"
-"-- Add the rate to the tuple #1\n"
-"tarantool> box.space.tester:update(1, {{'=', 4, 5}})\n"
-"---\n"
-"- [1, 'Roxette', 1986, 5]\n"
-"...\n"
-"-- And insert another tuple\n"
-"tarantool> box.space.tester:insert({4, 'Roxette', 2016, 5})\n"
-"---\n"
-"- [4, 'Roxette', 2016, 5]\n"
-"..."
-msgstr ""
-
-msgid "The existing SELECT variations:"
-msgstr ""
-
-msgid "The search can use comparisons other than equality."
-msgstr ""
-
-msgid "tarantool> box.space.tester:select(1, {iterator = 'GT'})\n"
-"---\n"
-"- - [2, 'Scorpions', 2015]\n"
-"  - [3, 'Ace of Base', 1993]\n"
-"  - [4, 'Roxette', 2016, 5]\n"
-"..."
-msgstr ""
-
-msgid "The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT (for \"less than\", \"less than or equal\", \"equal\", \"reversed equal\", \"greater than or equal\", \"greater than\" respectively). Comparisons make sense if and only if the index type is ‘TREE'."
-msgstr ""
-
-msgid "This type of search may return more than one tuple; if so, the tuples will be in descending order by key when the comparison operator is LT or LE or REQ, otherwise in ascending order."
-msgstr ""
-
-msgid "The search can use a secondary index."
-msgstr ""
-
-msgid "tarantool> box.space.tester.index.secondary:select({'Ace of Base'})\n"
-"---\n"
-"- - [3, 'Ace of Base', 1993]\n"
-"..."
-msgstr ""
-
-msgid "For a primary-key search, it is optional to specify an index name. For a secondary-key search, it is mandatory."
-msgstr ""
-
-msgid "The search may be for some or all key parts but should contain the prefix of the key. Notice that partial key searches are available only in TREE indexes."
-msgstr ""
-
-msgid "tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016})\n"
-"---\n"
-"- - [1, 'Roxette', 2016, 5]\n"
-"...\n"
-"tarantool> box.space.tester.index.tertiary:select({'Roxette', nil, 5})\n"
-"---\n"
-"- - [1, 'Roxette', 1986, 5]\n"
-"  - [4, 'Roxette', 2016, 5]\n"
+"- - [2, 'Scorpions', 2015, 4]\n"
 "..."
 msgstr ""
 
 msgid "The search may be for all fields, using a table for the value:"
 msgstr ""
 
-msgid "tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016 ,5})\n"
+msgid "tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016, 3})\n"
 "---\n"
-"- - [4, 'Roxette', 2016, 5]\n"
+"- - [4, 'Roxette', 2016, 3]\n"
 "..."
 msgstr ""
 
 msgid "or the search can be for one field, using a table or a scalar:"
 msgstr ""
 
-msgid "tarantool> box.space.tester.index.tertiary:select('Roxette')\n"
+msgid "tarantool> box.space.tester.index.tertiary:select({'Roxette'})\n"
 "---\n"
 "- - [1, 'Roxette', 1986, 5]\n"
-"  - [4, 'Roxette', 2016, 5]\n"
+"  - [4, 'Roxette', 2016, 3]\n"
 "..."
-msgstr ""
-
-msgid "Working with BITSET and RTREE"
 msgstr ""
 
 msgid "**BITSET example:**"
@@ -904,9 +895,6 @@ msgid "Additionally, there exist :ref:`index iterator operations <box_index-inde
 msgstr ""
 
 msgid "See also other index operations like :ref:`alter() <box_index-alter>` (modify index) and :ref:`drop() <box_index-drop>` (delete index) in reference for :ref:`box.index <box_index>` submodule."
-msgstr ""
-
-msgid "Complexity factors"
 msgstr ""
 
 msgid "In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>` submodules, there are notes about which complexity factors might affect the resource usage of each function."
