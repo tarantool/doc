@@ -21,6 +21,70 @@ to understand network messages,
 to support new features that their favorite connector doesn't support yet,
 or to avoid repetitive parsing by the server.
 
+===============================================================================
+                                    Index
+===============================================================================
+
+.. container:: table
+
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
+
+    +--------------------------------------------------+------------------------+
+    | Section                                          | Description            |
+    +==================================================+========================+
+    | :ref:`Symbols and terms                          | Notation of binary     |
+    | <box_protocol-notation>`                         | protocol               |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Illustration                               | Illustration of use    |
+    | <box_protocol-illustration>`                     |                        |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Header and body                            | Header of a request    |
+    | <box_protocol-header>`                           |                        |
+    +--------------------------------------------------+------------------------+
+    | Requests:                                        | Body of a request      |
+    | |br|:ref:`IPROTO_SELECT <box_protocol-select>`   |                        |
+    | |br|:ref:`IPROTO_INSERT <box_protocol-insert>`   |                        |
+    | |br|:ref:`IPROTO_REPLACE <box_protocol-replace>` |                        |
+    | |br|:ref:`IPROTO_UPDATE <box_protocol-update>`   |                        |
+    | |br|:ref:`IPROTO_DELETE <box_protocol-delete>`   |                        |
+    | |br|:ref:`IPROTO_CALL_16 <box_protocol-call16>`  |                        |
+    | |br|:ref:`IPROTO_AUTH <box_protocol-auth>`       |                        |
+    | |br|:ref:`IPROTO_EVAL <box_protocol-eval>`       |                        |
+    | |br|:ref:`IPROTO_UPSERT <box_protocol-upsert>`   |                        |
+    | |br|:ref:`IPROTO_CALL <box_protocol-call>`       |                        |
+    | |br|:ref:`IPROTO_EXECUTE <box_protocol-execute>` |                        |
+    | |br|:ref:`IPROTO_NOP <box_protocol-nop>`         |                        |
+    | |br|:ref:`IPROTO_PREPARE <box_protocol-prepare>` |                        |
+    | |br|:ref:`IPROTO_PING <box_protocol-ping>`       |                        |
+    | |br|:ref:`IPROTO_JOIN <box_protocol-join>`       |                        |
+    | |br|:ref:`IPROTO_SUBSCRIBE <box_protocol-join>`  |                        |
+    | |br|:ref:`IPROTO_VOTE_DEPRECATED                 |                        |
+    | <box_protocol-join>`                             |                        |
+    | |br|:ref:`IPROTO_VOTE <box_protocol-join>`       |                        |
+    | |br|:ref:`IPROTO_FETCH_SNAPSHOT                  |                        |
+    | <box_protocol-join>`                             |                        |
+    | |br|:ref:`IPROTO_REGISTER <box_protocol-join>`   |                        |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Responses if no error and no               | Responses for no SQL   |
+    | SQL <box_protocol-responses>`                    |                        |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Responses for errors                       | Responses for errors   |
+    | <box_protocol-responses_error>`                  |                        |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Responses for SQL                          | Responses for SQL      |
+    | <box_protocol-sql_protocol>`                     |                        |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Authentication                             | Authentication after   |
+    | <box_protocol-authentication>`                   | connection             |
+    +--------------------------------------------------+------------------------+
+    | :ref:`Replication                                | Replication request    |
+    | <box_protocol-replication>`                      |                        |
+    +--------------------------------------------------+------------------------+
+    | :ref:`XLOG/SNAP <box_protocol-xlog>`             | Format of .xlog        |
+    |                                                  | and .snap files        |
+    +--------------------------------------------------+------------------------+
+
 .. _box_protocol-notation:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -48,8 +112,8 @@ For diagrams in this section, the box borders have special meanings:
      TYPE - type of MessagePack value
 
 And words that start with **MP_** mean:
-a `MessagePack <http://MessagePack.org>`_ type or a range of MessagePack types, including
-the signal and possibly including a value, with slight modification:
+a `MessagePack <http://MessagePack.org>`_ type or a range of MessagePack types,
+including the signal and possibly including a value, with slight modification:
 
 * **MP_NIL**    nil
 * **MP_UINT**   unsigned integer
@@ -143,9 +207,9 @@ Some :ref:`connectors <index-box_connectors>` have similar code.
 Binary protocol -- header and body
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Except during connection (which involves a greeting from the server
-and optional :ref:`authentication <box_protocol-authentication>` that we will discuss later in this section),
-the protocol is pure request/response (the client requests and
+Except during connection (which involves a greeting from the server and optional
+:ref:`authentication <box_protocol-authentication>` that we will discuss later
+in this section), the protocol is pure request/response (the client requests and
 the server responds). It is legal to put more than one request in a packet.
 
 Almost all requests and responses contain both a header and a body.
@@ -181,9 +245,10 @@ HEADER may contain, in any order:
                               MP_MAP
 
 **IPROTO_SYNC** = 0x01.
-An unsigned integer that should be incremented so that it is unique in every request.
-This integer is also returned from :ref:`box.session.sync() <box_session-sync>`.
-The IPROTO_SYNC value of a response should be the same as the IPROTO_SYNC value of a request.
+An unsigned integer that should be incremented so that it is unique in every
+request. This integer is also returned from :ref:`box.session.sync()
+<box_session-sync>`. The IPROTO_SYNC value of a response should be the same as
+the IPROTO_SYNC value of a request.
 
 **IPROTO_SCHEMA_VERSION** = 0x05.
 An unsigned number, sometimes called SCHEMA_ID, that goes up when there is a
@@ -206,8 +271,8 @@ a :ref:`IPROTO_PING <box_protocol-ping>` request.
 Have a look at file
 `xrow.c <https://github.com/tarantool/tarantool/blob/master/src/box/xrow.c>`_
 function xrow_header_encode, to see how Tarantool encodes the header.
-Have a look at file net_box.c, function netbox_decode_data, to see how Tarantool decodes the header.
-For example, in a successful response to ``box.space:select()``,
+Have a look at file net_box.c, function netbox_decode_data, to see how Tarantool
+decodes the header. For example, in a successful response to ``box.space:select()``,
 the Response-Code-Indicator value will be 0 = IPROTO_OK and the
 array will have all the tuples of the result.
 
@@ -217,8 +282,10 @@ array will have all the tuples of the result.
 Binary protocol -- requests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After the :ref:`HEADER <box_protocol-header>`, for a request, there will be a body
-that begins with these request-type IPROTO codes.
+After the :ref:`HEADER <box_protocol-header>`, for a request, there will be a
+body that begins with these request-type IPROTO codes.
+
+.. _box_protocol-select:
 
 **IPROTO_SELECT** = 0x01.
 
@@ -249,7 +316,9 @@ IPROTO_KEY (0x20) + MP_ARRAY (array of key values).
 See the illustration of IPROTO_SELECT in the earlier section,
 :ref:`Binary protocol -- illustration <box_protocol-illustration>`.
 
-**IPROTO_INSERT** = 0x02.
+.. _box_protocol-insert:
+
+**IPROTO_INSERT** == 0x02.
 
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
@@ -266,6 +335,8 @@ The body is a 2-item map:
 
 IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_TUPLE + MP_ARRAY (array of field values).
+
+.. _box_protocol-replace:
 
 **IPROTO_REPLACE** = 0x03,
 See :ref:`space_object:replace()  <box_space-replace>`.
@@ -377,6 +448,8 @@ start with 1, which is optional and can be omitted):
     91                 MP_ARRAY, size 1, for array of key values
     02                   MP_UINT = primary-key value = 2
 
+.. _box_protocol-delete:
+
 **IPROTO_DELETE** = 0x05.
 
 See :ref:`space_object:delete()  <box_space-delete>`.
@@ -396,10 +469,12 @@ IPROTO_SPACE_ID (0x10) + MP_INT,
 IPROTO_INDEX_ID (0x11) + MP_INT,
 IPROTO_KEY (0x20) + MP_ARRAY (array of key values).
 
+.. _box_protocol-call16:
+
 **IPROTO_CALL_16** = 0x06.
 
-See :ref:`conn:call() <net_box-call>`. The suffix ``_16`` is a hint that this is for the
-``call()`` until Tarantool 1.6. It is deprecated.
+See :ref:`conn:call() <net_box-call>`. The suffix ``_16`` is a hint that this is
+for the ``call()`` until Tarantool 1.6. It is deprecated.
 Use :ref:`IPROTO_CALL <box_protocol-call>` instead.
 The body is a 2-item map:
 
@@ -416,6 +491,8 @@ The body is a 2-item map:
 IPROTO_FUNCTION_NAME (0x22) +  function name (MP_STRING),
 IPROTO_TUPLE (0x22) + array of arguments (MP_ARRAY).
 The return value is an array of tuples.
+
+.. _box_protocol-auth:
 
 **IPROTO_AUTH** = 0x07.
 
@@ -450,6 +527,8 @@ The body is a 2-item map:
 IPROTO_EXPR (0x27) + expression (MP_STRING),
 IPROTO_TUPLE (0x21) + array of arguments to match placeholders.
 
+.. _box_protocol-upsert:
+
 **IPROTO_UPSERT** = 0x09.
 
 See :ref:`space_object:upsert()  <box_space-upsert>`.
@@ -474,7 +553,8 @@ The body is a 2-item map:
 
 IPROTO_FUNCTION_NAME (0x22) +  function name (MP_STRING),
 IPROTO_TUPLE (0x22) + array of arguments (MP_ARRAY).
-The response will be a list of values, similar to the :ref:`IPROTO_EVAL <box_protocol-eval>` response.
+The response will be a list of values, similar to the
+:ref:`IPROTO_EVAL <box_protocol-eval>` response.
 
 .. _box_protocol-execute:
 
@@ -499,8 +579,8 @@ The body is a 3-item map:
 IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement
 or
 IPROTO_SQL_TEXT (0x40) + statement-text (MP_STR) if executing an SQL string,
-IPROTO_SQL_BIND (0x41) + array of parameter values to match ? placeholders or :name placeholders,
-IPROTO_OPTIONS (0x2b) + array of options (usually empty).
+IPROTO_SQL_BIND (0x41) + array of parameter values to match ? placeholders or
+:name placeholders, IPROTO_OPTIONS (0x2b) + array of options (usually empty).
 
 For example, suppose we prepare a statement
 with two ? placeholders, and execute with two parameters, thus: |br|
@@ -521,6 +601,8 @@ Then the body will look like this:
     2b                 IPROTO_OPTIONS Map Item#3
     90                 MP_ARRAY, size 0 (there are no options)
 
+.. _box_protocol-nop:
+
 **IPROTO_NOP** = 0x0c.
 
 There is no Lua request exactly equivalent to IPROTO_NOP.
@@ -529,6 +611,8 @@ It could be sometimes used for updates where the old and new values
 are the same, but the LSN must be increased because a data-change
 must be recorded.
 The body is: nothing.
+
+.. _box_protocol-prepare:
 
 **IPROTO_PREPARE** = 0x0d.
 
@@ -560,6 +644,8 @@ Thus the IPROTO_PREPARE map item is the same as the first item of the
 
 See :ref:`conn:ping() <conn-ping>`. The BODY will be an empty map because IPROTO_PING
 in the HEADER contains all the information that the server instance needs.
+
+.. _box_protocol-join:
 
 **IPROTO_JOIN** = 0x41, for replication  |br|
 **IPROTO_SUBSCRIBE** = 0x42, for replication SUBSCRIBE |br|
@@ -647,12 +733,12 @@ For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body will be
 For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
 For most data-access requests (IPROTO_SELECT IPROTO_INSERT IPROTO_DELETE etc.)
 it will be an array of tuples that contain an array of fields.
-For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>` it will usually be an array but, since
-Lua requests can result in a wide variety of structures,
-bodies can have a wide variety of structures.
+For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
+it will usually be an array but, since Lua requests can result in a wide variety
+of structures, bodies can have a wide variety of structures.
 
-For example, after :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}` a successful
-response will look like this:
+For example, after :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}`
+a successful response will look like this:
 
 .. code-block:: none
 
@@ -682,7 +768,8 @@ The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
 Binary protocol -- responses for errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For a response other than IPROTO_OK, the header Response-Code-Indicator will be 0x8XXX and the body will be:
+For a response other than IPROTO_OK, the header Response-Code-Indicator will be
+0x8XXX and the body will be:
 
 .. code-block:: none
 
@@ -696,7 +783,8 @@ For a response other than IPROTO_OK, the header Response-Code-Indicator will be 
 
 where 0x8XXX is the indicator for an error and XXX is a value in
 `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
-``src/box/errcode.h`` also has some convenience macros which define hexadecimal constants for return codes.
+``src/box/errcode.h`` also has some convenience macros which define hexadecimal
+constants for return codes.
 
 For example, in version 2.4.0 or earlier, if we try to create a duplicate space with |br|
 ``conn:eval([[box.schema.space.create('_space');]])`` |br|
@@ -735,9 +823,9 @@ After the :ref:`HEADER <box_protocol-header>`, for a response to an SQL statemen
 there will be a body that is slightly different from the body for
 :ref:`Binary protocol -- responses if no error and no SQL <box_protocol-responses>`.
 
-If the SQL request is not SELECT or VALUES or PRAGMA, then the response body contains only IPROTO_SQL_INFO (0x42).
-Usually IPROTO_SQL_INFO is a map with only one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of
-changed rows.
+If the SQL request is not SELECT or VALUES or PRAGMA, then the response body
+contains only IPROTO_SQL_INFO (0x42). Usually IPROTO_SQL_INFO is a map with only
+one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of changed rows.
 
 .. code-block:: none
 
@@ -754,15 +842,16 @@ changed rows.
     +=========================================================+
 
 For example, if the request is
-:samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body contains
-an IPROTO_SQL_INFO map with SQL_INFO_ROW_COUNT = 3.
+:samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body
+contains an IPROTO_SQL_INFO map with SQL_INFO_ROW_COUNT = 3.
 SQL_INFO_ROW_COUNT can be 0 for statements that do not change rows,
 but can be 1 for statements that create new objects.
 
-The IPROTO_SQL_INFO map may contain a second item -- SQL_INFO_AUTO_INCREMENT_IDS (0x01) -- which is the
-new primary-key value (or values) for an INSERT in a table defined with PRIMARY KEY
-AUTOINCREMENT. In this case the MP_MAP will have two keys, and  one of the two keys
-will be 0x01: SQL_INFO_AUTO_INCREMENT_IDS, which is an array of unsigned integers.
+The IPROTO_SQL_INFO map may contain a second item -- SQL_INFO_AUTO_INCREMENT_IDS
+(0x01) -- which is the new primary-key value (or values) for an INSERT in a table
+defined with PRIMARY KEY AUTOINCREMENT. In this case the MP_MAP will have two
+keys, and  one of the two keys will be 0x01: SQL_INFO_AUTO_INCREMENT_IDS, which
+is an array of unsigned integers.
 
 For example, if we use the same net.box connection that
 we used for :ref:`Binary protocol -- illustration <box_protocol-illustration>`
@@ -791,9 +880,11 @@ If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
 
 * IPROTO_METADATA + array of column maps, with each column map containing
   at least IPROTO_FIELD_NAME (0x00) + MP_STR, and IPROTO_FIELD_TYPE (0x01) + MP_STR.
-  Additionally, if ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system space
+  Additionally, if ``sql_full_metadata`` in the
+  :ref:`_session_settings <box_space-session_settings>` system space
   is TRUE, then the array will have these additional column maps
-  which correspond to components described in the :ref:`box.execute() <box-sql_if_full_metadata>` section:
+  which correspond to components described in the
+  :ref:`box.execute() <box-sql_if_full_metadata>` section:
   IPROTO_FIELD_COLL (0x02) + MP_STR, IPROTO_FIELD_IS_NULLABLE (0x03) + MP_BOOL,
   IPROTO_FIELD_IS_AUTOINCREMENT (0x04) + MP_BOOL,
   IPROTO_FIELD_SPAN (0x05) + MP_STR or MP_NIL.
@@ -875,7 +966,7 @@ be no IPROTO_DATA and there would be two additional items: |br|
     32                         IPROTO_METADATA
     92                         MP_ARRAY, size 2 (i.e. 2 columns)
     85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FELD_NAME + 'DD'
+    00 a2 44 44                    IPROTO_FIELD_NAME + 'DD'
     01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE + 'integer'
     03 c2                          IPROTO_FIELD_IS_NULLABLE + false
     04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT + true
@@ -897,8 +988,8 @@ itself decodes extra items.
 Binary protocol -- authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a client connects to the server instance, the instance responds with a 128-byte
-text greeting message, like this:
+When a client connects to the server instance, the instance responds with
+a 128-byte text greeting message, like this:
 
 .. code-block:: none
 
@@ -917,9 +1008,10 @@ text greeting message, like this:
     64                  107              127
 
 The greeting contains two 64-byte lines of ASCII text.
-Each line ends with a newline character (:code:`\n`). The first line contains the instance
-version and protocol type. The second line contains up to 44 bytes of base64-encoded
-random string, to use in the authentication packet, and ends with up to 23 spaces.
+Each line ends with a newline character (:code:`\n`). The first line contains
+the instance version and protocol type. The second line contains up to 44 bytes
+of base64-encoded random string, to use in the authentication packet, and ends
+with up to 23 spaces.
 
 Part of the greeting is a base-64-encoded session salt -
 a random string which can be used for authentication. The maximum length of an encoded
@@ -1012,9 +1104,10 @@ Binary protocol -- replication
     +================+=======================++========================+
                    MP_MAP                     MP_MAP
 
-    Then the instance which you want to connect to will send its last SNAP file, by simply
-    creating a number of INSERTs (with additional LSN and ServerID)
-    (do not reply to this). Then that instance will send a vclock's MP_MAP and close a socket.
+    Then the instance which you want to connect to will send its last SNAP file,
+    by simply creating a number of INSERTs (with additional LSN and ServerID)
+    (do not reply to this). Then that instance will send a vclock's MP_MAP and
+    close a socket.
 
     +================+=======================++============================+
     |                |                       ||        +~~~~~~~~~~~~~~~~~+ |
@@ -1086,9 +1179,11 @@ and the replica might send back this:
     01                             MP_UINT = 1 = id (part 1 of vclock)
     06                             MP_UINT = 6 = lsn (part 2 of vclock)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _box_protocol-xlog:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 XLOG / SNAP
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .xlog and .snap files have nearly the same format. The header looks like:
 
