@@ -1471,7 +1471,8 @@ Below is a list of all ``box.space`` functions and members.
 
     .. method:: select([key [,, options]])
 
-        Search for a tuple or a set of tuples in the given space.
+        Search for a tuple or a set of tuples in the given space. This method
+        doesn't yield (for details see :ref:`Сooperative multitasking <atomic-cooperative_multitasking>`).
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
