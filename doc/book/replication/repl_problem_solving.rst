@@ -228,11 +228,6 @@ But the trigger function will differ:
             if new[2] > old[2] then
                 -- Creating new tuple will change op to ‘REPLACE’
                 return box.tuple.new(new)
-                -- -- or, custom afterwork:
-                -- box.on_commit(function()
-                --     print("Do something after")
-                --     box.space[sp]:replace(new)
-                -- end)
             end
             return old
         end
