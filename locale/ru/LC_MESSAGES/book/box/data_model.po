@@ -11,12 +11,12 @@ msgstr ""
 
 msgid ""
 "If you tried to create a database as suggested in our :ref:`\"Getting "
-"started\" exercises <getting_started>`, then your test database now looks"
-" like this:"
+"started\" exercises <getting_started_db>`, then your test database now "
+"looks like this:"
 msgstr ""
 "Если вы пробовали создать базу данных, как предлагается в упражнениях в "
-":ref:`\"Руководстве для начинающих\" <getting_started>`, то ваша тестовая"
-" база данных выглядит следующим образом:"
+":ref:`\"Руководстве для начинающих\" <getting_started_db>`, то ваша "
+"тестовая база данных выглядит следующим образом:"
 
 msgid "Space"
 msgstr "Спейс"
@@ -104,9 +104,6 @@ msgstr ""
 
 msgid "Index"
 msgstr "Индекс"
-
-msgid "Indexes"
-msgstr "Индексы"
 
 msgid "An **index** is a group of key values and pointers."
 msgstr "**Индекс** -- это совокупность значений ключей и указателей."
@@ -260,6 +257,9 @@ msgstr ""
 "одновременно. Следовательно, разработчик часто работает с двумя наборами "
 "типов: типы языка программирования (например, Lua) и типы формата "
 "хранилища Tarantool (MsgPack)."
+
+msgid "Lua vs MsgPack"
+msgstr "Lua в сравнении с MsgPack"
 
 msgid "Scalar / compound"
 msgstr "Скалярный / составной"
@@ -480,6 +480,9 @@ msgstr ""
 "---\n"
 "- [3, [1, 2, 3, 4, 5]]\n"
 "..."
+
+msgid "Indexed field types"
+msgstr "Типы индексированных полей"
 
 msgid ""
 "Indexes restrict values which Tarantool's MsgPack may contain. This is "
@@ -842,6 +845,9 @@ msgstr ""
 "последовательности. Параметры определяют, какое значение будет "
 "генерироваться при использовании последовательности."
 
+msgid "Options for ``box.schema.sequence.create()``"
+msgstr "Параметры для ``box.schema.sequence.create()``"
+
 msgid "Option name"
 msgstr "Имя параметра"
 
@@ -1143,6 +1149,9 @@ msgstr ""
 msgid "Operations"
 msgstr "Операции"
 
+msgid "Data operations"
+msgstr "Операции с данными"
+
 msgid "The basic data operations supported in Tarantool are:"
 msgstr "Tarantool поддерживает следующие основные операции с данными:"
 
@@ -1325,6 +1334,9 @@ msgstr ""
 "протокол открыт и задокументирован. См. :ref:`БНФ с комментариями "
 "<box_protocol-iproto_protocol>`."
 
+msgid "Index operations"
+msgstr "Операции с индексами"
+
 msgid ""
 "Index operations are automatic: if a data-manipulation request changes a "
 "tuple, then it also changes the index keys defined for the tuple."
@@ -1368,12 +1380,12 @@ msgstr ""
 
 msgid ""
 "Let's continue working with the space 'tester' created in the "
-":ref:`\"Getting started\" exercises <getting_started_db-creating_db>` but"
-" first modify it:"
+":ref:`\"Getting started\" exercises <getting_started_db>` but first "
+"modify it:"
 msgstr ""
 "Продолжим работу со спейсом 'tester', созданным в упражнениях из "
-":ref:`\"Руководства для начинающих\" <getting_started>`, но сначала его "
-"немного модифицируем:"
+":ref:`\"Руководства для начинающих\" <getting_started_db>`, но сначала "
+"его немного модифицируем:"
 
 msgid ""
 "tarantool> box.space.tester:format({\n"
@@ -1566,6 +1578,9 @@ msgid ""
 "..."
 msgstr ""
 
+msgid "Working with BITSET and RTREE"
+msgstr "Работа с BITSET и RTREE"
+
 msgid "**BITSET example:**"
 msgstr "**Примеры BITSET:**"
 
@@ -1676,6 +1691,9 @@ msgstr ""
 "alter>` (изменение индекса) и :ref:`drop() <box_index-drop>` (удаление "
 "индекса), приводится во вложенном модуле :ref:`box.index <box_index>`."
 
+msgid "Complexity factors"
+msgstr "Факторы сложности"
+
 msgid ""
 "In reference for :ref:`box.space <box_space>` and :ref:`box.index "
 "<box_index>` submodules, there are notes about which complexity factors "
@@ -1763,24 +1781,3 @@ msgstr ""
 "  WAL производится при каждом запросе на изменение данных, то при каждом "
 "таком запросе приходится ждать, пока отработает обращение к более "
 "медленному диску, и данный фактор становится важнее всех остальных."
-
-#~ msgid "Lua vs MsgPack"
-#~ msgstr "Lua в сравнении с MsgPack"
-
-#~ msgid "Indexed field types"
-#~ msgstr "Типы индексированных полей"
-
-#~ msgid "Options for ``box.schema.sequence.create()``"
-#~ msgstr "Параметры для ``box.schema.sequence.create()``"
-
-#~ msgid "Data operations"
-#~ msgstr "Операции с данными"
-
-#~ msgid "Index operations"
-#~ msgstr "Операции с индексами"
-
-#~ msgid "Working with BITSET and RTREE"
-#~ msgstr "Работа с BITSET и RTREE"
-
-#~ msgid "Complexity factors"
-#~ msgstr "Факторы сложности"

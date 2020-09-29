@@ -8,7 +8,7 @@ This section describes how Tarantool stores values and what operations with data
 it supports.
 
 If you tried to create a database as suggested in our
-:ref:`"Getting started" exercises <getting_started>`,
+:ref:`"Getting started" exercises <getting_started_db>`,
 then your test database now looks like this:
 
 .. image:: data_model.png
@@ -668,7 +668,7 @@ is always unique, the maximum number of returned tuples will be: one.
 You can call ``select()`` without arguments, causing all tuples to be returned.
 
 Let's continue working with the space 'tester' created in the :ref:`"Getting
-started" exercises <getting_started_db-creating_db>` but first modify it:
+started" exercises <getting_started_db>` but first modify it:
 
 .. code-block:: tarantoolsession
 

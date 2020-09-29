@@ -5,7 +5,7 @@ msgstr ""
 msgid "This section describes how Tarantool stores values and what operations with data it supports."
 msgstr ""
 
-msgid "If you tried to create a database as suggested in our :ref:`\"Getting started\" exercises <getting_started>`, then your test database now looks like this:"
+msgid "If you tried to create a database as suggested in our :ref:`\"Getting started\" exercises <getting_started_db>`, then your test database now looks like this:"
 msgstr ""
 
 msgid "Space"
@@ -45,9 +45,6 @@ msgid "When Tarantool returns a tuple value in console, it uses the `YAML <https
 msgstr ""
 
 msgid "Index"
-msgstr ""
-
-msgid "Indexes"
 msgstr ""
 
 msgid "An **index** is a group of key values and pointers."
@@ -105,6 +102,9 @@ msgid "Data types"
 msgstr ""
 
 msgid "Tarantool is both a database and an application server. Hence a developer often deals with two type sets: the programming language types (e.g. Lua) and the types of the Tarantool storage format (MsgPack)."
+msgstr ""
+
+msgid "Lua vs MsgPack"
 msgstr ""
 
 msgid "Scalar / compound"
@@ -227,6 +227,9 @@ msgid "tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}\n"
 "---\n"
 "- [3, [1, 2, 3, 4, 5]]\n"
 "..."
+msgstr ""
+
+msgid "Indexed field types"
 msgstr ""
 
 msgid "Indexes restrict values which Tarantool's MsgPack may contain. This is why, for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’ data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' index contains only *non-negative* integer values and an ‘integer’ index contains *all* integer values."
@@ -432,6 +435,9 @@ msgstr ""
 msgid "As well, you can specify several options when creating a new sequence. The options determine what value will be generated whenever the sequence is used."
 msgstr ""
 
+msgid "Options for ``box.schema.sequence.create()``"
+msgstr ""
+
 msgid "Option name"
 msgstr ""
 
@@ -601,6 +607,9 @@ msgstr ""
 msgid "Operations"
 msgstr ""
 
+msgid "Data operations"
+msgstr ""
+
 msgid "The basic data operations supported in Tarantool are:"
 msgstr ""
 
@@ -700,6 +709,9 @@ msgstr ""
 msgid "Besides Lua, you can use :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`. The client server protocol is open and documented. See this :ref:`annotated BNF <box_protocol-iproto_protocol>`."
 msgstr ""
 
+msgid "Index operations"
+msgstr ""
+
 msgid "Index operations are automatic: if a data-manipulation request changes a tuple, then it also changes the index keys defined for the tuple."
 msgstr ""
 
@@ -721,7 +733,7 @@ msgstr ""
 msgid "This looks for a single tuple via the first index. Since the first index is always unique, the maximum number of returned tuples will be: one. You can call ``select()`` without arguments, causing all tuples to be returned."
 msgstr ""
 
-msgid "Let's continue working with the space 'tester' created in the :ref:`\"Getting started\" exercises <getting_started_db-creating_db>` but first modify it:"
+msgid "Let's continue working with the space 'tester' created in the :ref:`\"Getting started\" exercises <getting_started_db>` but first modify it:"
 msgstr ""
 
 msgid "tarantool> box.space.tester:format({\n"
@@ -847,6 +859,9 @@ msgid "tarantool> box.space.tester.index.tertiary:select({'Roxette'})\n"
 "..."
 msgstr ""
 
+msgid "Working with BITSET and RTREE"
+msgstr ""
+
 msgid "**BITSET example:**"
 msgstr ""
 
@@ -895,6 +910,9 @@ msgid "Additionally, there exist :ref:`index iterator operations <box_index-inde
 msgstr ""
 
 msgid "See also other index operations like :ref:`alter() <box_index-alter>` (modify index) and :ref:`drop() <box_index-drop>` (delete index) in reference for :ref:`box.index <box_index>` submodule."
+msgstr ""
+
+msgid "Complexity factors"
 msgstr ""
 
 msgid "In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>` submodules, there are notes about which complexity factors might affect the resource usage of each function."
