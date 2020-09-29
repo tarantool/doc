@@ -1,5 +1,5 @@
 
-msgid "Release Notes"
+msgid "Release notes"
 msgstr "Примечания к версиям"
 
 msgid ""
