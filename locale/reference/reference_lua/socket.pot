@@ -5,7 +5,7 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-msgid "The ``socket`` module allows exchanging data via BSD sockets with a local or remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode. Semantics of the calls in the ``socket`` API closely follow semantics of the corresponding POSIX calls. Function names and signatures are mostly compatible with `luasocket`_."
+msgid "The ``socket`` module allows exchanging data via BSD sockets with a local or remote host in connection-oriented (TCP) or datagram-oriented (UDP) mode. Semantics of the calls in the ``socket`` API closely follow semantics of the corresponding POSIX calls."
 msgstr ""
 
 msgid "The functions for setting up and connecting are ``socket``, ``sysconnect``, ``tcp_connect``. The functions for sending data are ``send``, ``sendto``, ``write``, ``syswrite``. The functions for receiving data are ``recv``, ``recvfrom``, ``read``. The functions for waiting before sending/receiving data are ``wait``, ``readable``, ``writable``. The functions for setting flags are ``nonblock``, ``setsockopt``. The functions for stopping and disconnecting are ``shutdown``, ``close``. The functions for error checking are ``errno``, ``error``."
@@ -182,6 +182,12 @@ msgstr ""
 msgid "Wait for read/write activity"
 msgstr ""
 
+msgid ":ref:`LuaSocket wrapper functions <socket-luasocket>`"
+msgstr ""
+
+msgid "Several methods for emulating the LuaSocket API"
+msgstr ""
+
 msgid "Typically a socket session will begin with the setup functions, will set one or more flags, will have a loop with sending and receiving functions, will end with the teardown functions -- as an example at the end of this section will show. Throughout, there may be error-checking and waiting functions for synchronization. To prevent a fiber containing socket functions from \"blocking\" other fibers, the :ref:`implicit yield rules <atomic-implicit-yields>` will cause a yield so that other processes may take over, as is the norm for :ref:`cooperative multitasking <atomic-cooperative_multitasking>`."
 msgstr ""
 
@@ -233,6 +239,27 @@ msgstr ""
 msgid "The ``socket.getaddrinfo()`` function is useful for finding information about a remote site so that the correct arguments for ``sock:sysconnect()`` can be passed. This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>` configuration parameter."
 msgstr ""
 
+msgid "port number or a string pointing to a port"
+msgstr ""
+
+msgid "maximum number of seconds to wait"
+msgstr ""
+
+msgid "* type -- preferred socket type * family -- desired address family for the   returned addresses * protocol * flags -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)"
+msgstr ""
+
+msgid "type -- preferred socket type"
+msgstr ""
+
+msgid "family -- desired address family for the returned addresses"
+msgstr ""
+
+msgid "protocol"
+msgstr ""
+
+msgid "flags -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)"
+msgstr ""
+
 msgid "A table containing these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
 msgstr ""
 
@@ -251,6 +278,17 @@ msgid "tarantool> socket.getaddrinfo('tarantool.org', 'http')\n"
 "    type: SOCK_DGRAM\n"
 "    protocol: udp\n"
 "    port: 80\n"
+"...\n"
+"-- To find the available values for the options use the following:\n"
+"tarantool> socket.internal.AI_FLAGS -- or SO_TYPE, or DOMAIN\n"
+"---\n"
+"- AI_ALL: 256\n"
+"  AI_PASSIVE: 1\n"
+"  AI_NUMERICSERV: 4096\n"
+"  AI_NUMERICHOST: 4\n"
+"  AI_V4MAPPED: 2048\n"
+"  AI_ADDRCONFIG: 1024\n"
+"  AI_CANONNAME: 2\n"
 "..."
 msgstr ""
 
@@ -269,7 +307,7 @@ msgstr ""
 msgid "number of seconds to wait before timing out"
 msgstr ""
 
-msgid "The handler-function-or-table parameter may be simply a function name / function declaration: :code:`handler_function`. Or it may be a table: :code:`{handler =` :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]` :code:`}`. ``handler_function`` is mandatory; it may have a single parameter = the socket; it is for continuous operation after the connection is made. ``prepare_function`` is optional; it is executed once before any connection is made. Examples:"
+msgid "The handler-function-or-table parameter may be simply a function name / function declaration: :code:`handler_function`. Or it may be a table: :code:`{handler =` :samp:`{handler_function} [, prepare = {prepare_function}] [, name = {name}]` :code:`}`. ``handler_function`` is mandatory; it may have a parameter = the socket; it is executed once after accept() happens (once per connection); it is for continuous operation after the connection is made. ``prepare_function`` is optional; it may have parameters = the socket object and a table with client information; it should return either a backlog value or nothing; it is executed only once before bind() on the listening socket (not once per connection). Examples:"
 msgstr ""
 
 msgid "socket.tcp_server('localhost', 3302, function (s) loop_loop() end)\n"
@@ -277,7 +315,7 @@ msgid "socket.tcp_server('localhost', 3302, function (s) loop_loop() end)\n"
 "socket.tcp_server('localhost', 3302, {handler=hfunc, prepare=pfunc})"
 msgstr ""
 
-msgid "For a fuller example see :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`."
+msgid "For fuller examples see :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>` and :ref:`Use tcp_server with handler and prepare <socket_handler_prepare>`."
 msgstr ""
 
 msgid "Connect an existing socket to a remote host. The argument values are the same as in :ref:`tcp_connect() <socket-tcp_connect>`. The host must be an IP address."
@@ -602,6 +640,18 @@ msgstr ""
 msgid "Example: ``socket.iowait(sock:fd(), 'r', 1.11)``"
 msgstr ""
 
+msgid "LuaSocket wrapper functions"
+msgstr ""
+
+msgid "The LuaSocket API has functions that are equivalent to the ones described above, with different names and parameters, for example ``connect()`` rather than ``tcp_connect()``, as well as ``getpeername``, ``getsockname``, ``setoption``, ``settimeout``. Tarantool supports these functions so that third-party packages which depend on them will work."
+msgstr ""
+
+msgid "The LuaSocket project is on `github <https://github.com/diegonehab/luasocket>`_. The API description is in the `LuaSocket manual <http://w3.impa.br/~diego/software/luasocket/>`_ (click the \"introduction\" and \"reference\" links at the bottom of the manual's main page)."
+msgstr ""
+
+msgid "A Tarantool example is :ref:`Use of a socket with LuaSocket wrapper functions <socket-wrapper>`."
+msgstr ""
+
 msgid "Recommended size"
 msgstr ""
 
@@ -648,6 +698,37 @@ msgid "tarantool> socket = require('socket')\n"
 "tarantool> sock:close()\n"
 "---\n"
 "- true\n"
+"..."
+msgstr ""
+
+msgid "Use of a socket with LuaSocket wrapper functions"
+msgstr ""
+
+msgid "This is a variation of the earlier example \"Use of a TCP socket over the Internet\". It uses :ref:`LuaSocket wrapper functions <socket-luasocket>`, with a too-short timeout so that a \"Connection timed out\" error is likely. The more common way to specify timeout is with an option of :ref:`tcp_connect() <socket-tcp_connect>`."
+msgstr ""
+
+msgid "tarantool> socket = require('socket')\n"
+"---\n"
+"...\n"
+"tarantool> sock = socket.connect('tarantool.org', 80)\n"
+"---\n"
+"...\n"
+"tarantool> sock:settimeout(0.001)\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> sock:send(\"HEAD / HTTP/1.0\\r\\nHost: tarantool.org\\r\\n\\r\\n\")\n"
+"---\n"
+"- 40\n"
+"...\n"
+"tarantool> sock:receive(17)\n"
+"---\n"
+"- null\n"
+"- Connection timed out\n"
+"...\n"
+"tarantool> sock:close()\n"
+"---\n"
+"- 1\n"
 "..."
 msgstr ""
 
@@ -724,7 +805,7 @@ msgid "box.cfg{}\n"
 ")"
 msgstr ""
 
-msgid "The above code means: use `tcp_server()` to wait for a connection from any host on port 3302. When it happens, enter a loop that reads on the socket and prints what it reads. The \"delimiter\" for the read function is \"\\\\n\" so each `read()` will read a string as far as the next line feed, including the line feed."
+msgid "The above code means: |br| Use ``tcp_server()`` to wait for a connection from any host on port 3302. |br| When it happens, enter a loop that reads on the socket and prints what it reads. The \"delimiter\" for the read function is \"\\\\n\" so each ``read()`` will read a string as far as the next line feed, including the line feed."
 msgstr ""
 
 msgid "On the second shell, create a file that contains a few lines. The contents don't matter. Suppose the first line contains A, the second line contains B, the third line contains C. Call this file \"tmp.txt\"."
@@ -737,5 +818,49 @@ msgid "$ socat TCP:localhost:3302 ./tmp.txt"
 msgstr ""
 
 msgid "Now watch what happens on the first shell. The strings \"A\", \"B\", \"C\" are printed."
+msgstr ""
+
+msgid "Use tcp_server with handler and prepare"
+msgstr ""
+
+msgid "Here is an example of the tcp_server function using ``handler`` and ``prepare``."
+msgstr ""
+
+msgid "box.cfg{}\n"
+"socket = require('socket')\n"
+"sock = socket.tcp_server(\n"
+"  '0.0.0.0',\n"
+"  3302,\n"
+"  {prepare =\n"
+"     function(sock)\n"
+"       print('listening on socket ' .. sock:fd())\n"
+"       sock:setsockopt('SOL_SOCKET','SO_REUSEADDR',true)\n"
+"       return 5\n"
+"     end,\n"
+"   handler =\n"
+"    function(sock, from)\n"
+"      print('accepted connection from: ')\n"
+"      print('  host: ' .. from.host)\n"
+"      print('  family: ' .. from.family)\n"
+"      print('  port: ' .. from.port)\n"
+"    end\n"
+"  }\n"
+")"
+msgstr ""
+
+msgid "The above code means: |br| Use ``tcp_server()`` to wait for a connection from any host on port 3302. |br| Specify that there will be an initial call to ``prepare`` which displays something about the server, then calls ``setsockopt(...'SO_REUSEADDR'...)`` (this is the same option that Tarantool would set if there was no ``prepare``), and then returns 5 (this is a rather low backlog queue size). |br| Specify that there will be per-connection calls to ``handler`` which display something about the client."
+msgstr ""
+
+msgid "Now watch what happens on the first shell. The display will include something like 'listening on socket 12'."
+msgstr ""
+
+msgid "On the second shell, start Tarantool and say:"
+msgstr ""
+
+msgid "box.cfg{}\n"
+"require('socket').tcp_connect('127.0.0.1', 3302)"
+msgstr ""
+
+msgid "Now watch what happens on the first shell. The display will include something like 'accepted connection from host: 127.0.0.1 family: AF_INET port: 37186'."
 msgstr ""
 
