@@ -69,7 +69,7 @@ its own routine for decoding raw MsgPack strings.
 
 .. _buffer-module_and_skip_header:
 
-**Module buffer and skip-header**
+**Module buffer and skip_header**
 
 The example in the previous section
 
@@ -87,14 +87,14 @@ for IPROTO_DATA. But in some situations,
 for example when passing the buffer to a C function
 that expects a MsgPack byte array without a header,
 the header can be skipped. This is done by specifying
-``skip-header=true`` as an option to
+``skip_header=true`` as an option to
 :ref:`conn.space.space-name:select{...} <conn-select>` or
 :ref:`conn.space.space-name:insert{...} <conn-insert>` or
 :ref:`conn.space.space-name:replace{...} <conn-replace>` or
 :ref:`conn.space.space-name:update{...} <conn-update>` or
 :ref:`conn.space.space-name:upsert{...} <conn-upsert>` or
 :ref:`conn.space.space-name:delete{...} <conn-delete>`.
-The default is ``skip-header=false``.
+The default is ``skip_header=false``.
 
 Now here is the same example, except that ``skip_header=true`` is used.
 
