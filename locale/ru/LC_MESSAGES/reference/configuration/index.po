@@ -1536,7 +1536,7 @@ msgstr ""
 
 msgid ""
 "Both master and replicas are programmed to drop the connection if they "
-"get no response in four ``replication_timeout`` seconds. If the "
+"get no response in four ``replication_timeout`` periods. If the "
 "connection is dropped, a replica tries to reconnect to the master."
 msgstr ""
 "И мастер, и реплики запрограммированы разорвать соединение при отсутствии"
