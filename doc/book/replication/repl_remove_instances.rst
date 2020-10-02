@@ -110,7 +110,7 @@ the ``box.cfg{ replication }`` list and call an appropriate
 
    tarantool> box.cfg{ replication = { 'instance1-uri', 'instance3-uri' } }
 
-Take a look at ``box.info.replication`` on *instance2* to check that ``instance1`` and ``instance3`` were
+Take a look at ``box.info.replication`` on *instance2* to check that *instance1* and *instance3* were
 disconnected
 (notice that the status of ``replication.{1,3}.downstream`` is ``stopped``):
 
