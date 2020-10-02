@@ -258,7 +258,7 @@ It is being called again in order to perform recovery.
 
     2. Connect to at least
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-       nodes. If failed - set status to 'orphan'.
+       nodes. If failed -- set status to 'orphan'.
        (Attempts to sync will continue in the background and when/if they succeed
        then 'orphan' will be changed to 'connected'.)
 
@@ -356,7 +356,7 @@ request, it will send back:
     UUID to its ``_cluster`` space.
 
 *If there is no snapshot .snap file and the 'replication' parameter is not empty
-and the ``_cluster`` space contains other replica UUIDs*: |br|
+and the* ``_cluster`` *space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant
 replicas which are listed in ``replication``. This is called the "on-connect

@@ -210,7 +210,7 @@ msgstr ""
 msgid "Perform :ref:`recovery <internals-recovery_process>` from the last local snapshot and the WAL files."
 msgstr ""
 
-msgid "Connect to at least :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` nodes. If failed - set status to 'orphan'. (Attempts to sync will continue in the background and when/if they succeed then 'orphan' will be changed to 'connected'.)"
+msgid "Connect to at least :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` nodes. If failed -- set status to 'orphan'. (Attempts to sync will continue in the background and when/if they succeed then 'orphan' will be changed to 'connected'.)"
 msgstr ""
 
 msgid "If connected - sync with all connected nodes, until the difference is not more than :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds."
@@ -261,7 +261,7 @@ msgstr ""
 msgid "the contents of the distant replica's .snap file. |br| When the local replica receives this information, it puts the replica set UUID in its ``_schema`` space, puts the distant replica's UUID and connection information in its ``_cluster`` space, and makes a snapshot containing all the data sent by the distant replica. Then, if the local replica has data in its WAL .xlog files, it sends that data to the distant replica. The distant replica will receive this and update its own copy of the data, and add the local replica's UUID to its ``_cluster`` space."
 msgstr ""
 
-msgid "*If there is no snapshot .snap file and the 'replication' parameter is not empty and the ``_cluster`` space contains other replica UUIDs*: |br| then the local replica assumes it is not a standalone instance, and is already part of a replica set. It will send its replica UUID and replica set UUID to all the distant replicas which are listed in ``replication``. This is called the \"on-connect handshake\". When a distant replica receives an on-connect handshake: |br|"
+msgid "*If there is no snapshot .snap file and the 'replication' parameter is not empty and the* ``_cluster`` *space contains other replica UUIDs*: |br| then the local replica assumes it is not a standalone instance, and is already part of a replica set. It will send its replica UUID and replica set UUID to all the distant replicas which are listed in ``replication``. This is called the \"on-connect handshake\". When a distant replica receives an on-connect handshake: |br|"
 msgstr ""
 
 msgid "the distant replica compares its own copy of the replica set UUID to the one in the on-connect handshake. If there is no match, then the handshake fails and the local replica will display an error."
