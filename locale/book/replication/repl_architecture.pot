@@ -17,7 +17,7 @@ msgstr ""
 msgid "Data definition operations on **temporary spaces**, such as creating/dropping, adding indexes, truncating, etc., are written to the WAL, since information about temporary spaces is stored in non-temporary system spaces, such as :ref:`box.space._space <box_space-space>`. Data change operations on temporary spaces are not written to the WAL and are not replicated."
 msgstr ""
 
-msgid "Data change operations on **replication-local** spaces (spaces :ref:`created <box_schema-space_create>` with ``is_local`` = true) are written to the WAL but are not replicated."
+msgid "Data change operations on **replication-local** spaces (spaces :ref:`created <box_schema-space_create>` with ``is_local = true``) are written to the WAL but are not replicated."
 msgstr ""
 
 msgid "To create a valid initial state, to which WAL changes can be applied, every instance of a replica set requires a start set of :ref:`checkpoint files <index-box_persistence>`, such as .snap files for memtx and .run files for vinyl. A replica joining an existing replica set, chooses an existing master and automatically downloads the initial state from it. This is called an **initial join**."
