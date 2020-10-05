@@ -61,7 +61,7 @@
     gets no heartbeats.
 
     | Type: float
-    | Default: 4
+    | Default: 30
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_connect_quorum:

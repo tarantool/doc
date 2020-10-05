@@ -635,6 +635,9 @@ msgstr ""
 msgid "This parameter is different from :ref:`replication_timeout <cfg_replication-replication_timeout>`, which is only used to automatically reconnect replication when it gets no heartbeats."
 msgstr ""
 
+msgid "Default: 30"
+msgstr ""
+
 msgid "Since version 1.9.0. By default a replica will try to connect to all the masters, or it will not start. (The default is recommended so that all replicas will receive the same replica set UUID.)"
 msgstr ""
 
