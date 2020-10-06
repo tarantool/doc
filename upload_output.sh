@@ -38,6 +38,5 @@ if [ "${LATEST_DOC}" = "${CI_COMMIT_REF_NAME}" ]; then
   aws s3 cp --acl public-read output/html/ru/_static $S3_PATH/latest/ru/_static --endpoint-url=$AWS_S3_ENDPOINT_URL --recursive
   aws s3 cp --acl public-read output/html/ru/_images $S3_PATH/latest/ru/_images --endpoint-url=$AWS_S3_ENDPOINT_URL --recursive
   aws s3 cp --acl public-read output/html/ru/singlehtml.html $S3_PATH/latest/ru/singlehtml.html --endpoint-url=$AWS_S3_ENDPOINT_URL
+  curl --data '{"update_key":"'"$TARANTOOL_UPDATE_KEY"'"}' --header "Content-Type: application/json" --request POST "$TARANTOOL_UPDATE_URL"latest/
 fi
-
-curl --data '{"update_key":"'"$TARANTOOL_UPDATE_KEY"'"}' --header "Content-Type: application/json" --request POST "$TARANTOOL_UPDATE_URL"latest/
