@@ -82,9 +82,9 @@ the types of the Tarantool storage format (MsgPack).
 
 .. _index-box_lua-vs-msgpack:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Lua vs MsgPack
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 .. container:: table
 
@@ -247,9 +247,9 @@ Examples of insert requests with different data types:
 
 .. _index-box_indexed-field-types:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Indexed field types
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 Indexes restrict values which Tarantool's MsgPack may contain. This is why,
 for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’
@@ -485,9 +485,9 @@ The options determine what value will be generated whenever the sequence is used
 
 .. _index-box_sequence-options:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Options for ``box.schema.sequence.create()``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 .. container:: table
 
@@ -640,9 +640,9 @@ Operations
 
 .. _index-box_data-operations:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Data operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 The basic data operations supported in Tarantool are:
 
@@ -742,9 +742,9 @@ See reference on ``box.space`` for more
 
 .. _index-box_index-operations:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Index operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 Index operations are automatic: if a data-manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple.
@@ -894,9 +894,9 @@ or the search can be for one field, using a table or a scalar:
       - [4, 'Roxette', 2016, 5]
     ...
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Working with BITSET and RTREE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 **BITSET example:**
 
@@ -954,9 +954,9 @@ See also other index operations like :ref:`alter() <box_index-alter>`
 (modify index) and :ref:`drop() <box_index-drop>` (delete index) in reference
 for :ref:`box.index <box_index>` submodule.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Complexity factors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>`
 submodules, there are notes about which complexity factors might affect the

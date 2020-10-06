@@ -197,6 +197,8 @@ the preferences can differ. But strategically the steps are always the same.
    the ``/usr/local`` directory and keep your system clean. However, it is
    possible to run the Tarantool executable without installation.
 
+.. _run_test_suite:
+
 5. Run the test suite.
 
    This step is optional. Tarantool's developers always run the test suite

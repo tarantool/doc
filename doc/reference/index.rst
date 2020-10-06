@@ -11,6 +11,8 @@ Reference
     reference_lua/index
     reference_rock/index
     configuration/index
+    ../dev_guide/reference_capi/index
+    ../dev_guide/internals/index
     interactive_console
     tarantoolctl
     lua_tips

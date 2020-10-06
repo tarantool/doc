@@ -16,4 +16,5 @@
     book/box/engines/index
     book/connectors/index
     reference/index
+    contributing/index
     whats_new
