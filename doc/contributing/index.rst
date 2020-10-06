@@ -1,16 +1,12 @@
 .. _reference:
 
 ********************************************************************************
-Reference
+Contributing
 ********************************************************************************
 
 .. toctree::
     :maxdepth: 2
 
-    reference_lua/index
-    reference_rock/index
-    configuration/index
-    ../dev_guide/reference_capi/index
-    ../dev_guide/internals_index
-    tarantoolctl
-    lua_tips
+    contributing
+    ../dev_guide/build_contribute_index
+    ../dev_guide/guidelines_index
