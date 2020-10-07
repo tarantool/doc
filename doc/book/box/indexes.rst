@@ -1,7 +1,3 @@
-********************************************************************************
-Indexes
-********************************************************************************
-
 An **index** is a group of key values and pointers.
 
 As with spaces, you should specify the index **name**, and let Tarantool
