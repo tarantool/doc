@@ -8,7 +8,7 @@ This section describes how Tarantool stores values and what operations with data
 it supports.
 
 If you tried to create a database as suggested in our
-:ref:`"Getting started" exercises <getting_started>`,
+:ref:`"Getting started" exercises <getting_started_db>`,
 then your test database now looks like this:
 
 .. image:: data_model.png
@@ -708,11 +708,10 @@ is always unique, the maximum number of returned tuples will be: one.
 You can call ``select()`` without arguments, causing all tuples to be returned.
 
 Let's continue working with the space 'tester' created in the :ref:`"Getting
-started" exercises <getting_started>`:
+started" exercises <getting_started_db>` but first modify it:
 
 .. code-block:: tarantoolsession
 
-    -- Let's modify our space 'tester'
     tarantool> box.space.tester:format({
              > {name = 'id', type = 'unsigned'},
              > {name = 'band_name', type = 'string'},
@@ -720,8 +719,83 @@ started" exercises <getting_started>`:
              > {name = 'rate', type = 'unsigned', is_nullable=true}})
     ---
     ...
+
+Add the rate to the tuple #1 and #2:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:update(1, {{'=', 4, 5}})
+    ---
+    - [1, 'Roxette', 1986, 5]
+    ...
+    tarantool> box.space.tester:update(2, {{'=', 4, 4}})
+    ---
+    - [2, 'Scorpions', 2015, 4]
+    ...
+
+
+And insert another tuple:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:insert({4, 'Roxette', 2016, 3})
+    ---
+    - [4, 'Roxette', 2016, 3]
+    ...
+
+**The existing SELECT variations:**
+
+1. The search can use comparisons other than equality.
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:select(1, {iterator = 'GT'})
+    ---
+    - - [2, 'Scorpions', 2015, 4]
+      - [3, 'Ace of Base', 1993]
+      - [4, 'Roxette', 2016, 3]
+    ...
+
+The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
+(for "less than", "less than or equal", "equal", "reversed equal",
+"greater than or equal", "greater than" respectively).
+Comparisons make sense if and only if the index type is ‘TREE'.
+
+This type of search may return more than one tuple; if so, the tuples will be
+in descending order by key when the comparison operator is LT or LE or REQ,
+otherwise in ascending order.
+
+2. The search can use a secondary index.
+
+For a primary-key search, it is optional to specify an index name.
+For a secondary-key search, it is mandatory.
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:create_index('secondary', {parts = {{field=3, type='unsigned'}}})
+    ---
+    - unique: true
+      parts:
+      - type: unsigned
+        is_nullable: false
+        fieldno: 3
+      id: 2
+      space_id: 512
+      type: TREE
+      name: secondary
+    ...
+    tarantool> box.space.tester.index.secondary:select({1993})
+    ---
+    - - [3, 'Ace of Base', 1993]
+    ...
+
+3. The search may be for some key parts starting with the prefix of
+   the key. Notice that partial key searches are available only in TREE indexes.
+
+.. code-block:: tarantoolsession
+
     -- Create an index with three parts
-    tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'},{field=3, type='unsigned'}, {field=4, type='unsigned'}}})
+    tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'}, {field=3, type='unsigned'}, {field=4, type='unsigned'}}})
     ---
     - unique: true
       parts:
@@ -739,96 +813,29 @@ started" exercises <getting_started>`:
       type: TREE
       name: tertiary
     ...
-    -- And make sure it has three parts
-    tarantool> box.space.tester.index.tertiary.parts
+    -- Make a partial search
+    tarantool> box.space.tester.index.tertiary:select({'Scorpions', 2015})
     ---
-    - - type: string
-        is_nullable: false
-        fieldno: 2
-      - type: unsigned
-        is_nullable: false
-        fieldno: 3
-      - type: unsigned
-        is_nullable: true
-        fieldno: 4
-    ...
-    -- Add the rate to the tuple #1
-    tarantool> box.space.tester:update(1, {{'=', 4, 5}})
-    ---
-    - [1, 'Roxette', 1986, 5]
-    ...
-    -- And insert another tuple
-    tarantool> box.space.tester:insert({4, 'Roxette', 2016, 5})
-    ---
-    - [4, 'Roxette', 2016, 5]
-    ...
-
-The existing SELECT variations:
-
-1. The search can use comparisons other than equality.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.tester:select(1, {iterator = 'GT'})
-    ---
-    - - [2, 'Scorpions', 2015]
-      - [3, 'Ace of Base', 1993]
-      - [4, 'Roxette', 2016, 5]
-    ...
-
-The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
-(for "less than", "less than or equal", "equal", "reversed equal",
-"greater than or equal", "greater than" respectively).
-Comparisons make sense if and only if the index type is ‘TREE'.
-
-This type of search may return more than one tuple; if so, the tuples will be
-in descending order by key when the comparison operator is LT or LE or REQ,
-otherwise in ascending order.
-
-2. The search can use a secondary index.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.tester.index.secondary:select({'Ace of Base'})
-    ---
-    - - [3, 'Ace of Base', 1993]
-    ...
-
-For a primary-key search, it is optional to specify an index name.
-For a secondary-key search, it is mandatory.
-
-3. The search may be for some or all key parts but should contain the prefix of
-   the key. Notice that partial key searches are available only in TREE indexes.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016})
-    ---
-    - - [1, 'Roxette', 2016, 5]
-    ...
-    tarantool> box.space.tester.index.tertiary:select({'Roxette', nil, 5})
-    ---
-    - - [1, 'Roxette', 1986, 5]
-      - [4, 'Roxette', 2016, 5]
+    - - [2, 'Scorpions', 2015, 4]
     ...
 
 4. The search may be for all fields, using a table for the value:
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016 ,5})
+    tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016, 3})
     ---
-    - - [4, 'Roxette', 2016, 5]
+    - - [4, 'Roxette', 2016, 3]
     ...
 
 or the search can be for one field, using a table or a scalar:
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.space.tester.index.tertiary:select('Roxette')
+    tarantool> box.space.tester.index.tertiary:select({'Roxette'})
     ---
     - - [1, 'Roxette', 1986, 5]
-      - [4, 'Roxette', 2016, 5]
+      - [4, 'Roxette', 2016, 3]
     ...
 
 ********************************************************
