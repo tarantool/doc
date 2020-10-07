@@ -47,7 +47,7 @@ msgstr ""
 "``box.stat()``, ``box.stat.net()``, ``box.stat.vinyl()`` и "
 ":ref:`box.space.index <box_space-space_index>`."
 
-msgid "In the tables that ``box.stat()`` return:"
+msgid "In the tables that ``box.stat()`` returns:"
 msgstr "В таблицах, которые возвращает ``box.stat()``:"
 
 msgid ""
@@ -67,7 +67,7 @@ msgstr ""
 msgid "\"ERROR\" is the count of requests that resulted in an error."
 msgstr "\"ERROR\" -- это счетчик запросов, которые завершились с ошибкой."
 
-msgid "In the tables that ``box.stat.net()`` return:"
+msgid "In the tables that ``box.stat.net()`` returns:"
 msgstr "В таблицах, которые возвращает ``box.stat.net()``:"
 
 msgid ""
@@ -87,7 +87,6 @@ msgstr ""
 msgid ""
 "``CONNECTIONS.rps`` -- number of connections opened per second in the "
 "last 5 seconds"
-
 msgstr ""
 "``CONNECTIONS.rps`` -- количество подключений, открытых в секунду, за "
 "последние 5 секунд"

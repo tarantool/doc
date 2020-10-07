@@ -17,7 +17,7 @@ msgstr ""
 msgid "Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``, ``box.stat.net()``, ``box.stat.vinyl()`` and :ref:`box.space.index <box_space-space_index>`."
 msgstr ""
 
-msgid "In the tables that ``box.stat()`` return:"
+msgid "In the tables that ``box.stat()`` returns:"
 msgstr ""
 
 msgid "``total`` stands for \"total number of requests processed per second since the server started\","
@@ -29,7 +29,7 @@ msgstr ""
 msgid "\"ERROR\" is the count of requests that resulted in an error."
 msgstr ""
 
-msgid "In the tables that ``box.stat.net()`` return:"
+msgid "In the tables that ``box.stat.net()`` returns:"
 msgstr ""
 
 msgid "``SENT.rps`` and ``RECEIVED.rps`` -- average number of bytes sent/received per second in the last 5 seconds"
