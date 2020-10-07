@@ -175,11 +175,11 @@ the function invocations will look like ``sock:function_name(...)``.
     :param string host: URL or IP address
     :param number port: port number or a string pointing to a port
     :param number timeout: maximum number of seconds to wait
-    :param table options: * type -- preferred socket type
-                          * family -- desired address family for the
+    :param table options: * ``type`` -- preferred socket type
+                          * ``family`` -- desired address family for the
                             returned addresses
-                          * protocol
-                          * flags -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)
+                          * ``protocol``
+                          * ``flags`` -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)
     :return: A table containing these fields: "host", "family", "type", "protocol", "port".
     :rtype:  table
 
@@ -917,4 +917,3 @@ Now watch what happens on the first shell.
 The display will include something like
 'accepted connection from 
 host: 127.0.0.1 family: AF_INET port: 37186'.
-
