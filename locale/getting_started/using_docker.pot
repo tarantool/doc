@@ -178,6 +178,14 @@ msgid "tarantool.sock> s.index.secondary:select{'Scorpions'}\n"
 "..."
 msgstr ""
 
+msgid "To drop an index, say:"
+msgstr ""
+
+msgid "tarantool> s.index.secondary:drop()\n"
+"---\n"
+"..."
+msgstr ""
+
 msgid "Stopping a container"
 msgstr ""
 

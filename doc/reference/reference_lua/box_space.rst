@@ -411,7 +411,7 @@ Below is a list of all ``box.space`` functions and members.
       HASH indexes, and in vinyl TREE indexes. 
     * **varbinary**: any set of octets, up to the :ref:`maximum length
       <limitations_bytes_in_index_key>`. Legal in memtx TREE or HASH indexes,
-      and in vinyl TREE indexes. A varbinary byte sequence does not have a 
+      and in vinyl TREE indexes. A varbinary byte sequence does not have a
       :ref:`collation <index-collation>` because its contents are not UTF-8 characters.
     * **array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes.
     * **scalar**: null (input with ``msgpack.NULL`` or ``yaml.NULL`` or ``json.NULL``),
@@ -1655,7 +1655,7 @@ Below is a list of all ``box.space`` functions and members.
             * Positive field number. The first field is 1, the second field is 2, and so on.
             * Negative field number. The last field is -1, the second-last field is -2, and so on. In other words: (#tuple + negative field number + 1).
             * Name. If the space was formatted with :ref:`space_object:format() <box_space-format>`, then this can be a string for the field 'name'.
- 
+
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param scalar/table key: primary-key field values, must be passed as a

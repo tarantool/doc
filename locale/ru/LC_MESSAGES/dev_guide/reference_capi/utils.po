@@ -81,7 +81,6 @@ msgstr "0, если выполнено"
 msgid "``LUA_ERRRUN``, ``LUA_ERRMEM`` or ``LUA_ERRERR`` otherwise."
 msgstr "``LUA_ERRRUN``, ``LUA_ERRMEM`` или ``LUA_ERRERR``, в противном случае."
 
-
 msgid "See also: ``ffi.cdef(def)``"
 msgstr "См. также ``ffi.cdef(def)``"
 
