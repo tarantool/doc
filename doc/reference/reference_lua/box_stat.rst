@@ -25,7 +25,7 @@ Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
 ``box.stat.net()``, ``box.stat.vinyl()`` and
 :ref:`box.space.index <box_space-space_index>`.
 
-In the tables that ``box.stat()`` return:
+In the tables that ``box.stat()`` returns:
 
 * ``total`` stands for "total number of requests processed per second since
   the server started",
@@ -33,7 +33,7 @@ In the tables that ``box.stat()`` return:
 
 "ERROR" is the count of requests that resulted in an error.
 
-In the tables that ``box.stat.net()`` return:
+In the tables that ``box.stat.net()`` returns:
 
 * ``SENT.rps`` and ``RECEIVED.rps`` -- average number of bytes sent/received per
   second in the last 5 seconds
@@ -272,4 +272,3 @@ for dumping or compaction:
   try to arrange a dump before this hard limit is reached.
 
   A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation.
-
