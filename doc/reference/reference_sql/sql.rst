@@ -1838,9 +1838,7 @@ Syntax:
 
 ALTER is used to change a table's name or a table's constraints.
 
-Examples:
-
-.. code-block:: sql
+**Examples:**
 
 For renaming a table with ``ALTER ... RENAME``, the *old-table* must exist, the *new-table* must not
 exist. Example: |br|

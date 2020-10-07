@@ -343,6 +343,15 @@ msgstr ""
 "- - [2, 'Scorpions', 2015]\n"
 "..."
 
+msgid "To drop an index, say:"
+msgstr "Чтобы удалить индекс, введите:"
+
+msgid ""
+"tarantool> s.index.secondary:drop()\n"
+"---\n"
+"..."
+msgstr ""
+
 msgid "Stopping a container"
 msgstr "Остановка контейнера"
 
