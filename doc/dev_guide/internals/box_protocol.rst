@@ -192,7 +192,7 @@ Now read the source code file
 `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
 and skip to the line ``netbox_encode_select(lua_State *L)``.
 From the comments and from simple function calls like
-"mpstream_encode_uint(&stream, IPROTO_SPACE_ID);"
+``mpstream_encode_uint(&stream, IPROTO_SPACE_ID);``
 you will be able to see how net_box put together the packet contents that you
 have just observed with tcpdump.
 
@@ -200,7 +200,7 @@ There are libraries for reading and writing MessagePack objects.
 C programmers sometimes include `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_.
 
 Now you know how Tarantool itself makes requests with the binary protocol.
-When in doubt about a detail, consult net_box.c -- it has routines for each
+When in doubt about a detail, consult ``net_box.c`` -- it has routines for each
 request. Some :ref:`connectors <index-box_connectors>` have similar code.
 
 .. _internals-unified_packet_structure:
@@ -611,8 +611,8 @@ where the key holds a name of the parameter (with a colon) and the value holds
 an actual value. So, to bind foo and bar to 42 and 43, a client should send
 ``IPROTO_SQL_TEXT: <...>, IPROTO_SQL_BIND: [{"foo": 42}, {"bar": 43}]``.
 
-If a statement has both named and non-named parameters, wrap into a map only
-named ones. The rest are positional and substituted in order.
+If a statement has both named and non-named parameters, wrap only named ones
+into a map. The rest of parameters are positional and substituted in order.
 
 .. _box_protocol-nop:
 
