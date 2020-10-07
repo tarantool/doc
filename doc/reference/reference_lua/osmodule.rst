@@ -270,7 +270,7 @@ Below is a list of all ``os`` functions.
 
     .. code-block:: tarantoolsession
 
-        tarantool> require('string').sub(os.setlocale(),1,20)
+        tarantool> string.sub(os.setlocale(),1,20)
         ---
         - LC_CTYPE=en_US.UTF-8
         ...

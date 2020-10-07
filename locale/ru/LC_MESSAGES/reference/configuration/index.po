@@ -1403,6 +1403,9 @@ msgstr ""
 "переподключения репликации, когда отсутствуют сообщения контрольного "
 "сигнала."
 
+msgid "Default: 30"
+msgstr "По умолчанию: 30"
+
 msgid ""
 "Since version 1.9.0. By default a replica will try to connect to all the "
 "masters, or it will not start. (The default is recommended so that all "
@@ -1536,7 +1539,7 @@ msgstr ""
 
 msgid ""
 "Both master and replicas are programmed to drop the connection if they "
-"get no response in four ``replication_timeout`` seconds. If the "
+"get no response in four ``replication_timeout`` periods. If the "
 "connection is dropped, a replica tries to reconnect to the master."
 msgstr ""
 "И мастер, и реплики запрограммированы разорвать соединение при отсутствии"
