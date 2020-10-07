@@ -39,7 +39,7 @@ operations on temporary spaces are not written to the WAL and are not replicated
 .. _replication-local:
 
 Data change operations on **replication-local** spaces
-(spaces :ref:`created <box_schema-space_create>` with ``is_local`` = true)
+(spaces :ref:`created <box_schema-space_create>` with ``is_local = true``)
 are written to the WAL but are not replicated.
 
 To create a valid initial state, to which WAL changes can be applied, every

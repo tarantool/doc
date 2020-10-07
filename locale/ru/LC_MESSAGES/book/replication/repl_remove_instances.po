@@ -8,7 +8,7 @@ msgid ""
 "remove *instance2*."
 msgstr ""
 "Предположим, что у нас настроен следующий набор реплик с 3 экземплярами "
-"(*instance1*, *instance2* и *instance3*), и мы хотим удалить *instance2*"
+"(*instance1*, *instance2* и *instance3*), и мы хотим удалить *instance2*."
 
 msgid "To remove it politely, follow these steps:"
 msgstr ""
@@ -22,7 +22,7 @@ msgid "Disconnect the cluster from *instance2*."
 msgstr "Отключите кластер от *instance2*."
 
 msgid "Remove *instance2* from the ``_cluster`` space."
-msgstr "Исключите *instance2* из системного спейса``_cluster``."
+msgstr "Исключите *instance2* из системного спейса ``_cluster``."
 
 msgid "**Step 1: disconnecting an instance from the cluster**"
 msgstr "**Шаг 1: отключение экземпляра от кластера**"
@@ -34,9 +34,8 @@ msgstr ""
 "На отключаемом *instance2* выполните ``box.cfg{}`` с пустым источником "
 "репликации:"
 
-#, fuzzy
 msgid "tarantool> box.cfg{replication=''}"
-msgstr "tarantool> box.cfg{replication=...}"
+msgstr ""
 
 msgid ""
 "Then check that it was disconnected. Take a look at "

@@ -13,7 +13,7 @@ Pre-requisites
 Before we proceed:
 
 #. `Install <https://github.com/tarantool/tarantool-python#download-and-install>`_
-   the ``tarantool-python`` library. We recommend using ``python3`` and ``pip3``.
+   the ``tarantool`` module. We recommend using ``python3`` and ``pip3``.
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)
    and make sure that you have created and populated a database as we suggested
@@ -42,8 +42,8 @@ Before we proceed:
 
    .. IMPORTANT::
 
-       Please do not close the terminal window
-       where Tarantool is running -- you'll need it soon.
+     Please do not close the terminal window
+     where Tarantool is running -- you'll need it soon.
 
 #. In order to connect to Tarantool as an administrator, reset the password
    for the ``admin`` user:
