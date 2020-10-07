@@ -163,7 +163,8 @@ the function invocations will look like ``sock:function_name(...)``.
 
 .. _socket-getaddrinfo:
 
-.. function:: getaddrinfo(host, type, [, {option-list}])
+.. function:: getaddrinfo(host, port[, timeout[, {option-list}]])
+.. function:: getaddrinfo(host, port[, {option-list}])
 
     The ``socket.getaddrinfo()`` function is useful for finding information
     about a remote site so that the correct arguments for
@@ -171,6 +172,14 @@ the function invocations will look like ``sock:function_name(...)``.
     This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
     configuration parameter.
 
+    :param string host: URL or IP address
+    :param number port: port number or a string pointing to a port
+    :param number timeout: maximum number of seconds to wait
+    :param table options: * ``type`` -- preferred socket type
+                          * ``family`` -- desired address family for the
+                            returned addresses
+                          * ``protocol``
+                          * ``flags`` -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)
     :return: A table containing these fields: "host", "family", "type", "protocol", "port".
     :rtype:  table
 
@@ -190,6 +199,17 @@ the function invocations will look like ``sock:function_name(...)``.
             type: SOCK_DGRAM
             protocol: udp
             port: 80
+        ...
+        -- To find the available values for the options use the following:
+        tarantool> socket.internal.AI_FLAGS -- or SO_TYPE, or DOMAIN
+        ---
+        - AI_ALL: 256
+          AI_PASSIVE: 1
+          AI_NUMERICSERV: 4096
+          AI_NUMERICHOST: 4
+          AI_V4MAPPED: 2048
+          AI_ADDRCONFIG: 1024
+          AI_CANONNAME: 2
         ...
 
 .. _socket-tcp_server:
@@ -225,11 +245,11 @@ the function invocations will look like ``sock:function_name(...)``.
     (not once per connection).
     Examples:
 
-        .. code-block:: none
+    .. code-block:: none
 
-            socket.tcp_server('localhost', 3302, function (s) loop_loop() end)
-            socket.tcp_server('localhost', 3302, {handler=hfunc, name='name'})
-            socket.tcp_server('localhost', 3302, {handler=hfunc, prepare=pfunc})
+        socket.tcp_server('localhost', 3302, function (s) loop_loop() end)
+        socket.tcp_server('localhost', 3302, {handler=hfunc, name='name'})
+        socket.tcp_server('localhost', 3302, {handler=hfunc, prepare=pfunc})
 
     For fuller examples see
     :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>`
@@ -478,31 +498,31 @@ the function invocations will look like ``sock:function_name(...)``.
         `Linux getsockopt(2) man page <http://man7.org/linux/man-pages/man2/setsockopt.2.html>`_.
         The ones that Tarantool accepts are:
 
-            * SO_ACCEPTCONN
-            * SO_BINDTODEVICE
-            * SO_BROADCAST
-            * SO_DEBUG
-            * SO_DOMAIN
-            * SO_ERROR
-            * SO_DONTROUTE
-            * SO_KEEPALIVE
-            * SO_MARK
-            * SO_OOBINLINE
-            * SO_PASSCRED
-            * SO_PEERCRED
-            * SO_PRIORITY
-            * SO_PROTOCOL
-            * SO_RCVBUF
-            * SO_RCVBUFFORCE
-            * SO_RCVLOWAT
-            * SO_SNDLOWAT
-            * SO_RCVTIMEO
-            * SO_SNDTIMEO
-            * SO_REUSEADDR
-            * SO_SNDBUF
-            * SO_SNDBUFFORCE
-            * SO_TIMESTAMP
-            * SO_TYPE
+        * SO_ACCEPTCONN
+        * SO_BINDTODEVICE
+        * SO_BROADCAST
+        * SO_DEBUG
+        * SO_DOMAIN
+        * SO_ERROR
+        * SO_DONTROUTE
+        * SO_KEEPALIVE
+        * SO_MARK
+        * SO_OOBINLINE
+        * SO_PASSCRED
+        * SO_PEERCRED
+        * SO_PRIORITY
+        * SO_PROTOCOL
+        * SO_RCVBUF
+        * SO_RCVBUFFORCE
+        * SO_RCVLOWAT
+        * SO_SNDLOWAT
+        * SO_RCVTIMEO
+        * SO_SNDTIMEO
+        * SO_REUSEADDR
+        * SO_SNDBUF
+        * SO_SNDBUFFORCE
+        * SO_TIMESTAMP
+        * SO_TYPE
 
         Setting SO_LINGER is done with ``sock:linger(active)``.
 
@@ -815,17 +835,16 @@ On the first shell, start Tarantool and say:
     }
     )
 
-The above code means: use `tcp_server()` to wait for a
-connection from any host on port 3302. When it happens,
-enter a loop that reads on the socket and prints what it
-reads. The "delimiter" for the read function is "\\n" so
-each `read()` will read a string as far as the next line feed,
-including the line feed.
+The above code means:
 
-On the second shell, create a file that contains a few
-lines. The contents don't matter. Suppose the first line
-contains A, the second line contains B, the third line
-contains C. Call this file "tmp.txt".
+#. Use ``tcp_server()`` to wait for a connection from any host on port 3302.
+#. When it happens, enter a loop that reads on the socket and prints what it
+   reads. The "delimiter" for the read function is "\\n" so each ``read()``
+   will read a string as far as the next line feed, including the line feed.
+
+On the second shell, create a file that contains a few lines. The contents don't
+matter. Suppose the first line contains A, the second line contains B, the third
+line contains C. Call this file "tmp.txt".
 
 On the second shell, use the socat utility to ship the
 tmp.txt file to the server instance's host and port:
@@ -874,20 +893,18 @@ On the first shell, start Tarantool and say:
       }
     )
 
-The above code means: use ``tcp_server()`` to wait for a
-connection from any host on port 3302.
-Specify that there will be an initial call to ``prepare``
-which displays something about the server,
-then calls ``setsockopt(...'SO_REUSEADDR'...)`` (this is the same
-option that Tarantool would set if there was no
-``prepare``),
-and then returns 5 (this is a rather low backlog queue size).
-Specify that there will be per-connection calls to ``handler``
-which display something about the client.
+The above code means:
 
-Now watch what happens on the first shell.
-The display will include something like
-'listening on socket 12'.
+#. Use ``tcp_server()`` to wait for a connection from any host on port 3302.
+#. Specify that there will be an initial call to ``prepare`` which displays
+   something about the server, then calls ``setsockopt(...'SO_REUSEADDR'...)``
+   (this is the same option that Tarantool would set if there was no ``prepare``),
+   and then returns 5 (this is a rather low backlog queue size).
+#. Specify that there will be per-connection calls to ``handler`` which display
+   something about the client.
+
+Now watch what happens on the first shell. The display will include something
+like 'listening on socket 12'.
 
 On the second shell, start Tarantool and say:
 
@@ -900,4 +917,3 @@ Now watch what happens on the first shell.
 The display will include something like
 'accepted connection from 
 host: 127.0.0.1 family: AF_INET port: 37186'.
-
