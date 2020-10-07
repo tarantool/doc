@@ -1697,7 +1697,7 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-upsert:
 
-    .. method:: upsert({tuple}, {{operator, field_no, value}, ...}, )
+    .. method:: upsert(tuple, {{operator, field_no, value}, ...}, )
 
         Update or insert a tuple.
 

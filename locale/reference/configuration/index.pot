@@ -680,6 +680,9 @@ msgstr ""
 msgid "This parameter is different from :ref:`replication_timeout <cfg_replication-replication_timeout>`, which is only used to automatically reconnect replication when it gets no heartbeats."
 msgstr ""
 
+msgid "Default: 30"
+msgstr ""
+
 msgid "Since version 1.9.0. By default a replica will try to connect to all the masters, or it will not start. (The default is recommended so that all replicas will receive the same replica set UUID.)"
 msgstr ""
 
@@ -728,7 +731,7 @@ msgstr ""
 msgid "Since version 1.8.2. If the master has no updates to send to the replicas, it sends heartbeat messages every ``replication_timeout`` seconds, and each replica sends an ACK packet back."
 msgstr ""
 
-msgid "Both master and replicas are programmed to drop the connection if they get no response in four ``replication_timeout`` seconds. If the connection is dropped, a replica tries to reconnect to the master."
+msgid "Both master and replicas are programmed to drop the connection if they get no response in four ``replication_timeout`` periods. If the connection is dropped, a replica tries to reconnect to the master."
 msgstr ""
 
 msgid "See more in :ref:`Monitoring a replica set <replication-monitoring>`."

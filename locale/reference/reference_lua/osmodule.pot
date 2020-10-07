@@ -229,7 +229,7 @@ msgstr ""
 msgid "Change the locale. If new-locale-string is not specified, return the current locale."
 msgstr ""
 
-msgid "tarantool> require('string').sub(os.setlocale(),1,20)\n"
+msgid "tarantool> string.sub(os.setlocale(),1,20)\n"
 "---\n"
 "- LC_CTYPE=en_US.UTF-8\n"
 "..."

@@ -491,7 +491,7 @@ msgid ""
 "Here we create a Lua function that will be executed under the user id of "
 "its creator, even if called by another user."
 msgstr ""
-"Здесь создадим Lua-функциб, которая будет выполняться от ID пользователя,"
+"Здесь создадим Lua-функцию, которая будет выполняться от ID пользователя,"
 " который является ее создателем, даже если она вызывается другим "
 "пользователем."
 
