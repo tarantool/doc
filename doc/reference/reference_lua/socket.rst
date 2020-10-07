@@ -498,31 +498,31 @@ the function invocations will look like ``sock:function_name(...)``.
         `Linux getsockopt(2) man page <http://man7.org/linux/man-pages/man2/setsockopt.2.html>`_.
         The ones that Tarantool accepts are:
 
-            * SO_ACCEPTCONN
-            * SO_BINDTODEVICE
-            * SO_BROADCAST
-            * SO_DEBUG
-            * SO_DOMAIN
-            * SO_ERROR
-            * SO_DONTROUTE
-            * SO_KEEPALIVE
-            * SO_MARK
-            * SO_OOBINLINE
-            * SO_PASSCRED
-            * SO_PEERCRED
-            * SO_PRIORITY
-            * SO_PROTOCOL
-            * SO_RCVBUF
-            * SO_RCVBUFFORCE
-            * SO_RCVLOWAT
-            * SO_SNDLOWAT
-            * SO_RCVTIMEO
-            * SO_SNDTIMEO
-            * SO_REUSEADDR
-            * SO_SNDBUF
-            * SO_SNDBUFFORCE
-            * SO_TIMESTAMP
-            * SO_TYPE
+        * SO_ACCEPTCONN
+        * SO_BINDTODEVICE
+        * SO_BROADCAST
+        * SO_DEBUG
+        * SO_DOMAIN
+        * SO_ERROR
+        * SO_DONTROUTE
+        * SO_KEEPALIVE
+        * SO_MARK
+        * SO_OOBINLINE
+        * SO_PASSCRED
+        * SO_PEERCRED
+        * SO_PRIORITY
+        * SO_PROTOCOL
+        * SO_RCVBUF
+        * SO_RCVBUFFORCE
+        * SO_RCVLOWAT
+        * SO_SNDLOWAT
+        * SO_RCVTIMEO
+        * SO_SNDTIMEO
+        * SO_REUSEADDR
+        * SO_SNDBUF
+        * SO_SNDBUFFORCE
+        * SO_TIMESTAMP
+        * SO_TYPE
 
         Setting SO_LINGER is done with ``sock:linger(active)``.
 
@@ -835,17 +835,16 @@ On the first shell, start Tarantool and say:
     }
     )
 
-The above code means: |br|
-Use ``tcp_server()`` to wait for a connection from any host on port 3302. |br|
-When it happens, enter a loop that reads on the socket and prints what it
-reads. The "delimiter" for the read function is "\\n" so
-each ``read()`` will read a string as far as the next line feed,
-including the line feed.
+The above code means:
 
-On the second shell, create a file that contains a few
-lines. The contents don't matter. Suppose the first line
-contains A, the second line contains B, the third line
-contains C. Call this file "tmp.txt".
+#. Use ``tcp_server()`` to wait for a connection from any host on port 3302.
+#. When it happens, enter a loop that reads on the socket and prints what it
+   reads. The "delimiter" for the read function is "\\n" so each ``read()``
+   will read a string as far as the next line feed, including the line feed.
+
+On the second shell, create a file that contains a few lines. The contents don't
+matter. Suppose the first line contains A, the second line contains B, the third
+line contains C. Call this file "tmp.txt".
 
 On the second shell, use the socat utility to ship the
 tmp.txt file to the server instance's host and port:
@@ -894,14 +893,15 @@ On the first shell, start Tarantool and say:
       }
     )
 
-The above code means: |br|
-Use ``tcp_server()`` to wait for a connection from any host on port 3302. |br|
-Specify that there will be an initial call to ``prepare`` which displays something
-about the server, then calls ``setsockopt(...'SO_REUSEADDR'...)`` (this is the
-same option that Tarantool would set if there was no ``prepare``), and then
-returns 5 (this is a rather low backlog queue size). |br|
-Specify that there will be per-connection calls to ``handler``
-which display something about the client.
+The above code means:
+
+#. Use ``tcp_server()`` to wait for a connection from any host on port 3302.
+#. Specify that there will be an initial call to ``prepare`` which displays
+   something about the server, then calls ``setsockopt(...'SO_REUSEADDR'...)``
+   (this is the same option that Tarantool would set if there was no ``prepare``),
+   and then returns 5 (this is a rather low backlog queue size).
+#. Specify that there will be per-connection calls to ``handler`` which display
+   something about the client.
 
 Now watch what happens on the first shell. The display will include something
 like 'listening on socket 12'.
