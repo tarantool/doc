@@ -8,7 +8,7 @@ For production purposes, we recommend
 `official binary packages <http://tarantool.org/download.html>`_.
 You can choose from several Tarantool versions.
 An automatic build system creates, tests and publishes packages for every
-push into a corresponding branch (``1.10``, ``2.5``, etc) at
+push into a corresponding branch (``1.10``, ``2.6``, etc) at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
 To download and install the package that’s appropriate for your OS,
