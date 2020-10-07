@@ -51,8 +51,8 @@
 
     .. NOTE::
 
-        The parameter `key` will be stored in :ref:`_schema <box_space-schema>`
+        The parameter ``key`` will be stored in the :ref:`_schema <box_space-schema>`
         system space after ``box.once()`` is called in order to prevent a double
-        run. These keys are global per replicaset. So a simultaneous call of
-        ``box.once()`` with the same key on two instances of the same replicaset
-        may succeed on both of them, but it'll lead to the transaction conflict.
+        run. These keys are global per replica set. So a simultaneous call of
+        ``box.once()`` with the same key on two instances of the same replica set
+        may succeed on both of them, but it'll lead to a transaction conflict.
