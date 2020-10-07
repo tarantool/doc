@@ -25,13 +25,26 @@ Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``,
 ``box.stat.net()``, ``box.stat.vinyl()`` and
 :ref:`box.space.index <box_space-space_index>`.
 
-In the tables that ``box.stat()`` and ``box.stat.net()`` return:
-``rps`` stands for "[average number of] requests per second [in the last 5 seconds]",
-``total`` stands for "total [number of requests processed per second since the 
-server started]",
-``current`` stands for "[number of] current [requests in progress, which can be
-limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]".
+In the tables that ``box.stat()`` return:
+
+* ``total`` stands for "total number of requests processed per second since
+  the server started",
+* ``rps`` stands for "average number of requests per second in the last 5 seconds".
+
 "ERROR" is the count of requests that resulted in an error.
+
+In the tables that ``box.stat.net()`` return:
+
+* ``SENT.rps`` and ``RECEIVED.rps`` -- average number of bytes sent/received per
+  second in the last 5 seconds
+* ``SENT.total`` and ``RECEIVED.total`` -- total number of bytes sent/received
+  since the server started
+* ``CONNECTIONS.rps`` -- number of connections opened per second in the last 5 seconds
+* ``CONNECTIONS.total`` -- total number of connections opened since the server started
+* ``REQUESTS.current`` -- number of requests in progress, which can be
+  limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`
+* ``REQUESTS.rps`` -- number of requests processed per second in the last 5 seconds
+* ``REQUESTS.total`` -- total number of requests processed since startup
 
 .. code-block:: tarantoolsession
 

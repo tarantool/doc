@@ -17,7 +17,40 @@ msgstr ""
 msgid "Use ``box.stat.reset()`` to reset the statistics of ``box.stat()``, ``box.stat.net()``, ``box.stat.vinyl()`` and :ref:`box.space.index <box_space-space_index>`."
 msgstr ""
 
-msgid "In the tables that ``box.stat()`` and ``box.stat.net()`` return: ``rps`` stands for \"[average number of] requests per second [in the last 5 seconds]\", ``total`` stands for \"total [number of requests processed per second since the server started]\", ``current`` stands for \"[number of] current [requests in progress, which can be limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`]\". \"ERROR\" is the count of requests that resulted in an error."
+msgid "In the tables that ``box.stat()`` return:"
+msgstr ""
+
+msgid "``total`` stands for \"total number of requests processed per second since the server started\","
+msgstr ""
+
+msgid "``rps`` stands for \"average number of requests per second in the last 5 seconds\"."
+msgstr ""
+
+msgid "\"ERROR\" is the count of requests that resulted in an error."
+msgstr ""
+
+msgid "In the tables that ``box.stat.net()`` return:"
+msgstr ""
+
+msgid "``SENT.rps`` and ``RECEIVED.rps`` -- average number of bytes sent/received per second in the last 5 seconds"
+msgstr ""
+
+msgid "``SENT.total`` and ``RECEIVED.total`` -- total number of bytes sent/received since the server started"
+msgstr ""
+
+msgid "``CONNECTIONS.rps`` -- number of connections opened per second in the last 5 seconds"
+msgstr ""
+
+msgid "``CONNECTIONS.total`` -- total number of connections opened since the server started"
+msgstr ""
+
+msgid "``REQUESTS.current`` -- number of requests in progress, which can be limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`"
+msgstr ""
+
+msgid "``REQUESTS.rps`` -- number of requests processed per second in the last 5 seconds"
+msgstr ""
+
+msgid "``REQUESTS.total`` -- total number of requests processed since startup"
 msgstr ""
 
 msgid "tarantool> box.stat() -- return 10 tables\n"
