@@ -539,13 +539,10 @@ msgstr ""
 msgid "Local storage within the fiber. It is a Lua table created when it is first accessed. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings."
 msgstr ""
 
-msgid "``fiber.storage`` is destroyed when the fiber is finished, regardless of how is it finished -- via :samp:`{fiber_object}:cancel()`, or the fiber's function did 'return'. Moreover, from that moment the storage is cleaned up even for pooled fibers used to serve IProto requests. Pooled fibers never really die, but nonetheless their storage is cleaned up after each request. That makes possible to use ``fiber.storage`` as a full featured request-local storage."
+msgid "``fiber.storage`` is destroyed when the fiber is finished, regardless of how is it finished -- via :samp:`{fiber_object}:cancel()`, or the fiber's function did 'return'. Moreover, the storage is cleaned up even for pooled fibers used to serve IProto requests. Pooled fibers never really die, but nonetheless their storage is cleaned up after each request. That makes possible to use ``fiber.storage`` as a full featured request-local storage."
 msgstr ""
 
 msgid "This storage may be created for a fiber, no matter how the fiber itself was created -- from C or from Lua. For example, a fiber can be created in C using ``fiber_new()``, then it can insert into a space, which has Lua ``on_replace`` triggers, and one of the triggers can create ``fiber.storage``. That storage will be deleted when the fiber is stopped."
-msgstr ""
-
-msgid "``fiber.storage`` may be also used for the replication applier fiber. The applier has a fiber from which it applies transactions from a remote instance. In case the applier fiber somehow creates a ``fiber.storage`` (for example, from a space trigger again), the storage won't be deleted until the applier fiber is stopped."
 msgstr ""
 
 msgid "tarantool> fiber = require('fiber')\n"
