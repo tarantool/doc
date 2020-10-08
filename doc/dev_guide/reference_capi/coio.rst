@@ -1,3 +1,5 @@
+.. _coio-module:
+
 ===========================================================
                         Module `coio`
 ===========================================================
@@ -31,7 +33,7 @@
 .. c:function:: ssize_t coio_call(ssize_t (*func)(va_list), ...)
 
     Create new eio task with specified function and arguments. Yield and wait
-    until the task is complete or a timeout occurs.
+    until the task is complete.
     This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
     configuration parameter.
 
@@ -41,7 +43,7 @@
     preserved across the call.
 
     :return: -1 and ``errno`` = ENOMEM if failed to create a task
-    :return: the function return (``errno`` is preserved).
+    :return: the function's return (``errno`` is preserved).
 
     **Example:**
 
@@ -54,7 +56,7 @@
                 return open(filename, flags);
         }
 
-        if (coio_call(openfile_cb, 0.10, "/tmp/file", 0) == -1)
+        if (coio_call(openfile_cb, "/tmp/file", 0) == -1)
             // handle errors.
         ...
 
