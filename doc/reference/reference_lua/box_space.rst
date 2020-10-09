@@ -2069,7 +2069,7 @@ Below is a list of all ``box.space`` functions and members.
 
     * the numeric id of the user who gave the privilege ("grantor_id"),
     * the numeric id of the user who received the privilege ("grantee_id"),
-    * the type of object: 'space', 'function', 'sequence' or 'universe',
+    * the type of object: 'space', 'index', 'function', 'sequence', 'user', 'role', or 'universe',
     * the numeric id of the object,
     * the type of operation: "read" = 1, "write" = 2, "execute" = 4,
       "create" = 32, "drop" = 64, "alter" = 128, or
