@@ -720,17 +720,19 @@ to turn Tarantool into a web server.
 
 .. code-block:: lua
 
-    #!/usr/bin/env tarantool
+      #!/usr/bin/env tarantool
 
-    local function handler(self)
-        return self:render{ json = { ['Your-IP-Is'] = self.peer.host } }
-    end
+      local function handler(self)
+          return self:render{ json = { ['Your-IP-Is'] = self:peer().host } }
+      end
 
-    local server = require('http.server').new(nil, 8080) -- listen *:8080
-    server:route({ path = '/' }, handler)
-    server:start()
-    -- connect to localhost:8080 and see json
+      local server = require('http.server').new(nil, 8080) -- listen *:8080
+      local router = require('http.router').new({charset = "utf8"})
+      server:set_router(router)
+      router:route({ path = '/' }, handler)
+      server:start()
 
+      -- connect to localhost:8080 and see json
 .. _cookbook-generate_html:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
