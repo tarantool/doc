@@ -61,6 +61,9 @@ set(SPHINX_BUILD_SINGLEHTML_RU_DIR "${SPHINX_OUTPUT_DIR}/_single_ru/")
 set(SPHINX_BUILD_HTML_DIR          "${SPHINX_OUTPUT_DIR}/_html_en/")
 set(SPHINX_BUILD_HTML_RU_DIR       "${SPHINX_OUTPUT_DIR}/_html_ru/")
 
+set(SPHINX_BUILD_HTML_OLD_DIR          "${SPHINX_OUTPUT_DIR}/_html_old_en/")
+set(SPHINX_BUILD_HTML_RU_OLD_DIR       "${SPHINX_OUTPUT_DIR}/_html_old_ru/")
+
 set(SPHINX_BUILD_LATEX_DIR         "${SPHINX_OUTPUT_DIR}/_latex_en/")
 set(SPHINX_BUILD_LATEX_RU_DIR      "${SPHINX_OUTPUT_DIR}/_latex_ru/")
 
@@ -69,6 +72,8 @@ set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_ru/doctrees
 
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/en/")
 set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/ru/")
+set(SPHINX_EN_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/en/")
+set(SPHINX_RU_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/ru/")
 set(SPHINX_EN_JSON_DIR             "${SPHINX_OUTPUT_DIR}/json/_build_en/json")
 set(SPHINX_RU_JSON_DIR             "${SPHINX_OUTPUT_DIR}/json/_build_ru/json")
 
@@ -132,6 +137,28 @@ add_custom_target(html-ru ALL
         "${SPHINX_RU_HTML_DIR}"
         -D language=ru
     COMMENT "Building Russian HTML documentation with Sphinx"
+)
+
+add_custom_target(html-old-ru ALL
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b html
+        -d "${SPHINX_BUILD_HTML_RU_OLD_DIR}"
+        -c html/
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_RU_HTML_OLD_DIR}"
+        -D language=ru -D master_doc=singlehtml
+    COMMENT "Building Russian HTML documentation with Sphinx"
+)
+
+add_custom_target(html-old ALL
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b html
+        -d "${SPHINX_BUILD_HTML_OLD_DIR}"
+        -c html/
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_EN_HTML_OLD_DIR}"
+        -D language=en -D master_doc=singlehtml
+    COMMENT "Building English HTML documentation with Sphinx"
 )
 
 add_custom_target(json-ru ALL
