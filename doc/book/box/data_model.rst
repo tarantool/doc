@@ -16,7 +16,7 @@ then your test database now looks like this:
 .. _index-box_space:
 
 --------------------------------------------------------------------------------
-Space
+Spaces
 --------------------------------------------------------------------------------
 
 A **space** -- 'tester' in our example -- is a container.
@@ -35,7 +35,7 @@ It can also have secondary indexes.
 .. _index-box_tuple:
 
 --------------------------------------------------------------------------------
-Tuple
+Tuples
 --------------------------------------------------------------------------------
 
 A **tuple** plays the same role as a “row” or a “record”, and the components of
@@ -61,11 +61,7 @@ When Tarantool returns a tuple value in the console,
 by default it uses :ref:`YAML <interactive_console>` format,
 for example: ``[3, 'Ace of Base', 1993]``.
 
-.. _index-box_index:
-
---------------------------------------------------------------------------------
-Index
---------------------------------------------------------------------------------
+.. // Including a section about indexes
 
 .. include:: indexes.rst
 
