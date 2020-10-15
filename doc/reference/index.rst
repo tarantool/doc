@@ -12,5 +12,6 @@ Reference
     configuration/index
     ../dev_guide/reference_capi/index
     ../dev_guide/internals_index
+    ../book/box/limitations
     tarantoolctl
     lua_tips
