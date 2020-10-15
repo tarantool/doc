@@ -76,6 +76,7 @@
                 book/box/engines/index
                 book/connectors/index
                 reference/index
+                tutorials/index
                 contributing/index
                 whats_new
 

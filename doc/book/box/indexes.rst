@@ -1,3 +1,9 @@
+.. _index-box_index:
+
+--------------------------------------------------------------------------------
+Indexes
+--------------------------------------------------------------------------------
+
 An **index** is a group of key values and pointers.
 
 As with spaces, you should specify the index **name**, and let Tarantool
@@ -20,8 +26,8 @@ and it must be unique. All other indexes are called **secondary indexes**,
 and they may be non-unique.
 
 An index definition may include identifiers of tuple fields and their expected
-**types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>`
-below).
+**types**. See allowed indexed field types
+:ref:`here <index-box_indexed-field-types>`.
 
 .. NOTE::
 
