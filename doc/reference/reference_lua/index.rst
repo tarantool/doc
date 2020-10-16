@@ -15,7 +15,6 @@ This reference covers Tarantool's built-in Lua modules.
 .. toctree::
     :maxdepth: 1
     :numbered: 0
-    :includehidden:
     :caption: List of Lua modules
 
     box

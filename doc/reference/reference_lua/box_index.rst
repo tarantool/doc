@@ -87,7 +87,7 @@ Below is a list of all ``box.index`` functions and members.
     +--------------------------------------+---------------------------------+
 
 .. toctree::
-   :hidden:
+    :hidden:
 
     box_index/box_index_unique
     box_index/box_index_type
