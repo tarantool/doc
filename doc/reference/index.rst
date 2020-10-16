@@ -6,6 +6,7 @@ Reference
 
 .. toctree::
     :maxdepth: 2
+    :includehidden:
 
     reference_lua/index
     reference_rock/index

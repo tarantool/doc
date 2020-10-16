@@ -60,6 +60,7 @@
 
             .. toctree::
                 :maxdepth: 1
+                :includehidden:
 
                 getting_started/index
                 book/box/data_model
