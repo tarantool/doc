@@ -18,7 +18,8 @@ The contents of the ``box`` module can be inspected at runtime
 with ``box``, with no arguments. The ``box`` module contains:
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
+    :includehidden:
 
     box_backup
     box_cfg
