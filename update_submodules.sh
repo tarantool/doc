@@ -30,6 +30,7 @@ cd "${luatest_root}"
 ldoc --ext=rst --dir=rst --toctree="API" .
 cd "${luatest_dest}"
 yes | cp -fa "${luatest_root}/rst/." "${luatest_dest}"
+yes | cp "${luatest_root}/README.rst" "${luatest_dest}"
 
 mkdir -p "${monitoring_dest}"
 yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
