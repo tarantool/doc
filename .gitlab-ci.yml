@@ -9,6 +9,7 @@ release:
   before_script:
     - curl -L https://tarantool.io/installer.sh | VER=2.2 bash
   script:
+    - luarocks install https://raw.githubusercontent.com/tarantool/LDoc/tarantool/ldoc-scm-2.rockspec
     - bash update_submodules.sh
     - cmake .
     - make json json-ru singlehtml-website singlehtml-ru-website pdf pdf-ru
