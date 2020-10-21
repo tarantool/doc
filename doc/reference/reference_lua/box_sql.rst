@@ -32,14 +32,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     There are two ways to pass extra parameters for ``box.execute()``:
 
-    * The first way is to concatenate strings.
-      For example, this Lua script will insert 10 rows with different primary-key
-      values into table t: |br|
-      ``for i=1,10,1 do`` |br|
-      |nbsp| |nbsp| ``box.execute("insert into t values (" .. i .. ")")`` |br|
-      ``end``
-
-    * The second way, which is the preferred way, is to put placeholders in the string,
+    * The first way, which is the preferred way, is to put placeholders in the string,
       and pass a second argument, an *extra-parameters* table.
       A placeholder is either a question mark "?", or a colon ":" followed by a name.
       An extra parameter is any Lua expression.
@@ -55,18 +48,26 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
       ``x = {1,'x'}`` |br|
       ``box.execute([[INSERT INTO tt VALUES (?, ?);]], x);`` |br|
       and is the same as this request which contains two :name placeholders (``:a`` and ``:b``)
-      and a two-element extra-parameters table with elements named a and b: |br|
+      and a two-element extra-parameters table with elements named "a" and "b": |br|
       ``box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})`` |br|
+
+    * The second way is to concatenate strings.
+      For example, this Lua script will insert 10 rows with different primary-key
+      values into table t: |br|
+      ``for i=1,10,1 do`` |br|
+      |nbsp| |nbsp| ``box.execute("insert into t values (" .. i .. ")")`` |br|
+      ``end`` |br|
+      When creating SQL statements based on user input, application developers
+      should beware of `SQL injection <https://en.wikipedia.org/wiki/SQL_injection>`_.
       
     Since ``box.execute()`` is an invocation of a Lua function,
     it either causes an error message or returns a value.
 
-    For some statements the returned value will contain a field named rowcount.
+    For some statements the returned value will contain a field named "rowcount".
     For example;
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.execute([[INSERT INTO tt VALUES (8,8),(9,9);]])
         tarantool> box.execute([[CREATE TABLE table1 (column1 INT PRIMARY key, column2 VARCHAR(10));]])
         ---
         - rowcount: 1
