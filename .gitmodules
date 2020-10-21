@@ -7,3 +7,6 @@
 [submodule "modules/metrics"]
 	path = modules/metrics
 	url = https://github.com/tarantool/metrics.git
+[submodule "modules/luatest"]
+	path = modules/luatest
+	url = https://github.com/tarantool/luatest
