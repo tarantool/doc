@@ -224,9 +224,9 @@ Below is a list of all ``fio`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        tarantool> fio.dirname('path/to/my.lua')
+        tarantool> fio.dirname('/path/to/my.lua')
         ---
-        - 'path/to/'
+        - '/path/to/'
 
 .. _fio-abspath:
 
@@ -245,7 +245,7 @@ Below is a list of all ``fio`` functions and members.
 
         tarantool> fio.abspath('my.lua')
         ---
-        - 'path/to/my.lua'
+        - '/path/to/my.lua'
         ...
 
 .. _fio-checks:
