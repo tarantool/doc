@@ -133,7 +133,7 @@ msgstr ""
 msgid ":samp:`replication[{n}].id` is a short numeric identifier of instance *n* within the replica set. This value is stored in the :ref:`box.space._cluster <box_space-cluster>` system space."
 msgstr ""
 
-msgid ":samp:`replication[{n}].uuid` is a globally unique identifier of instance *n*. This value is also stored in the :ref:`box.space._cluster <box_space-cluster>` system space."
+msgid ":samp:`replication[{n}].uuid` is a globally unique identifier of instance *n*. This value is stored in the :ref:`box.space._cluster <box_space-cluster>` system space."
 msgstr ""
 
 msgid ":samp:`replication[{n}].lsn` is the :ref:`log sequence number <replication-mechanism>` (LSN) for the latest entry in instance *n*'s :ref:`write ahead log <index-box_persistence>` (WAL)."

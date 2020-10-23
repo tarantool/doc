@@ -133,7 +133,7 @@ variables.
       This value is stored in the :ref:`box.space._cluster <box_space-cluster>`
       system space.
     * :samp:`replication[{n}].uuid` is a globally unique identifier of instance *n*.
-      This value is also stored in the :ref:`box.space._cluster <box_space-cluster>`
+      This value is stored in the :ref:`box.space._cluster <box_space-cluster>`
       system space.
     * :samp:`replication[{n}].lsn` is the
       :ref:`log sequence number <replication-mechanism>`
