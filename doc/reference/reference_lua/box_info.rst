@@ -31,7 +31,13 @@ variables.
   or if status is 'orphan'.
 * **signature** is the sum of all **lsn** values from the vector clocks
   (**vclock**) of all instances in the replica set.
-* **status** corresponds to **replication.upstream.status** (see below).
+* **status** is the current state of the instance. It can be:
+
+  * ``running`` -- the instance is loaded,
+  * ``loading`` -- the instance is either recovering xlogs/snapshots or bootstrapping,
+  * ``orphan`` --  the instance has not (yet) succeeded in joining the required
+    number of masters (see :ref:`orphan status <replication-orphan_status>`),
+  * ``hot_standby`` -- the instance is :ref:`standing by <index-hot_standby>` another instance.
 * **uptime** is the number of seconds since the instance started.
   This value can also be retrieved with
   :ref:`tarantool.uptime() <tarantool-build>`.
@@ -116,6 +122,7 @@ variables.
     The **replication** section of ``box.info()`` is a table array with statistics for all
     instances in the replica set that the current instance belongs to (see also
     :ref:`"Monitoring a replica set" <replication-monitoring>`):
+
     In the following, *n* is the index number of one table item, for example
     :samp:`replication[1]`, which has data about server instance number 1,
     which may or may not be the same as the current instance
@@ -123,10 +130,10 @@ variables.
 
     * :samp:`replication[{n}].id` is a short numeric identifier of instance *n* within
       the replica set.
-      This value is also stored in the :ref:`box.space._cluster <box_space-cluster>`
+      This value is stored in the :ref:`box.space._cluster <box_space-cluster>`
       system space.
     * :samp:`replication[{n}].uuid` is a globally unique identifier of instance *n*.
-      This value is also stored in the :ref:`box.space._cluster <box_space-cluster>`
+      This value is stored in the :ref:`box.space._cluster <box_space-cluster>`
       system space.
     * :samp:`replication[{n}].lsn` is the
       :ref:`log sequence number <replication-mechanism>`
@@ -146,11 +153,14 @@ variables.
 
       * ``auth`` means that :ref:`authentication <authentication>` is happening.
       * ``connecting`` means that connection is happening.
-      * ``disconnected`` means that it is not connected to the replica set (due to network problems, not replication errors).
-      * ``follow`` means that the current instance's role is "replica" (read-only, or not read-only but acting as a replica for this remote peer in a master-master configuration), and is receiving or able to receive data from instance *n* (upstream) master.
-      * ``running`` means that replication is in progress.
-      * ``stopped`` means that replication was stopped due to a replication error (for example :ref:`duplicate key <error_codes>`).
-      * ``orphan`` means that it has not (yet) succeeded in joining the required number of masters (see :ref:`orphan status <replication-orphan_status>`).
+      * ``disconnected`` means that it is not connected to the replica set
+        (due to network problems, not replication errors).
+      * ``follow`` means that the current instance's role is "replica" (read-only,
+        or not read-only but acting as a replica for this remote peer in a
+        master-master configuration), and is receiving or able to receive data
+        from instance *n*'s (upstream) master.
+      * ``stopped`` means that replication was stopped due to a replication error
+        (for example :ref:`duplicate key <error_codes>`).
       * ``sync`` means that the master and replica are synchronizing to have the same data.
 
     .. _box_info_replication_upstream_idle:
@@ -186,13 +196,16 @@ variables.
       :ref:`vector clock <replication-vector>`, which is a table of
       '**id**, **lsn**' pairs, for example
       :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`.
-      (Notice that the table may have multiple pairs although ``vclock`` is a singular name.)
+      (Notice that the table may have multiple pairs although ``vclock`` is a singular name).
+
       Even if instance *n* is :ref:`removed <replication-remove_instances>`,
       its values will still appear here; however,
       its values will be overridden if an instance joins later with the same UUID.
-      Vendor clock pairs will only appear if ``lsn > 0``.
-      :samp:`replication[{n}].downstream.vclock` may be the same as the current instance's vclock (``box.info.vclock``)
-      because this is for all known vclock values of the cluster.
+      Vector clock pairs will only appear if ``lsn > 0``.
+
+      :samp:`replication[{n}].downstream.vclock` may be the same as the current
+      instance's vclock (``box.info.vclock``) because this is for all known
+      vclock values of the cluster.
       A master will know what is in a replica's copy of vclock
       because, when the master makes a data change, it sends
       the change information to the replica (including the master's
@@ -205,16 +218,16 @@ variables.
     * :samp:`replication[{n}].downstream.status` is the replication status for downstream
       replications:
 
-      * ``stopped`` means that downstream replication has stopped.
+      * ``stopped`` means that downstream replication has stopped,
       * ``follow`` means that downstream replication is in progress
-        (instance *n* is ready to accept data from the master or is currently doing so)
+        (instance *n* is ready to accept data from the master or is currently doing so).
 
     * :samp:`replication[{n}].downstream.message` and 
       :samp:`replication[{n}].downstream.system_message`
       will be nil unless a problem occurs with the connection.
       For example, if instance *n* goes down, then one may see
-      status = 'stopped', message = 'unexpected EOF when reading from socket', and
-      system_message = 'Broken pipe'.
+      ``status = 'stopped'``, ``message = 'unexpected EOF when reading from socket'``, and
+      ``system_message = 'Broken pipe'``.
       See also :ref:`degraded state <replication-recover>`.
 
 .. function:: box.info()
