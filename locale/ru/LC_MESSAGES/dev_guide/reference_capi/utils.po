@@ -3,7 +3,7 @@ msgid "Module `lua/utils`"
 msgstr "Модуль `lua/utils`"
 
 msgid "Push cdata of given ``ctypeid`` onto the stack."
-msgstr "Принудительная передача cdata заданного ``ctypeid`` в стек."
+msgstr "Занесение cdata заданного ``ctypeid`` в стек."
 
 msgid ""
 "CTypeID must be used from FFI at least once. Allocated memory returned "
