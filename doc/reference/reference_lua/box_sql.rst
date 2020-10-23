@@ -8,10 +8,10 @@ The ``box`` module contains some functions related to SQL:
 
 * ``box.schema.func.create`` -- for making Lua functions callable from
   SQL statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>`
-  in the :ref:`SQL Plus Lua <sql_sql_plus_lua>` section.
+  in the :ref:`SQL Plus Lua <sql_plus_lua>` section.
 
 * ``box.execute`` -- for making SQL statements callable from Lua functions.
-  See the :ref:`SQL user guide <sql_sql_user_guide>`.
+  See the :ref:`SQL user guide <sql_user_guide>`.
 
 * ``box.prepare`` and ``box.unprepare``.
 
@@ -23,7 +23,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     Execute the SQL statement contained in the sql-statement parameter.
 
-    :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_sql_statements_and_clauses>`
+    :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_statements_and_clauses>`
     :param table extra-parameters: optional table for placeholders in the statement
 
     :return: depends on statement
@@ -145,7 +145,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
     Prepare the SQL statement contained in the sql-statement parameter.
     The syntax and requirements for ``box.prepare`` are the same as for :ref:`box.execute <box-sql_box_execute>`.
 
-    :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_sql_statements_and_clauses>`
+    :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_statements_and_clauses>`
 
     :return: prepared_table, with id and methods and metadata
     :rtype:  table
