@@ -290,9 +290,9 @@ msgstr ""
 msgid "directory name, that is, path name except for file name."
 msgstr ""
 
-msgid "tarantool> fio.dirname('path/to/my.lua')\n"
+msgid "tarantool> fio.dirname('/path/to/my.lua')\n"
 "---\n"
-"- 'path/to/'"
+"- '/path/to/'"
 msgstr ""
 
 msgid "Given a final part (the file name), return the full path name."
@@ -303,7 +303,7 @@ msgstr ""
 
 msgid "tarantool> fio.abspath('my.lua')\n"
 "---\n"
-"- 'path/to/my.lua'\n"
+"- '/path/to/my.lua'\n"
 "..."
 msgstr ""
 

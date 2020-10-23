@@ -59,6 +59,12 @@ Tarantool's database module in the container is already
 You needn't do it manually, unless you use Tarantool as an
 :ref:`application server <app_server>` and run it with an application.
 
+.. NOTE::
+
+    If your container terminates soon after start, follow
+    `this page <https://stackoverflow.com/questions/64178499/tarantool-does-not-start-due-to-disk-write-error>`_
+    for a possible solution.
+
 .. _getting_started-docker-attaching:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

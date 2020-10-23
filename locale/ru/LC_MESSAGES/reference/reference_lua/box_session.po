@@ -411,6 +411,7 @@ msgstr ""
 "использовать для хранения текущих задач при работе с `очередями сообщений"
 " в Tarantool'е <https://github.com/tarantool/queue>`_."
 
+#, fuzzy
 msgid ""
 "tarantool> box.session.peer(box.session.id())\n"
 "---\n"
