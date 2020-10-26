@@ -21,77 +21,6 @@ query:
 
     tarantool> box.space.tester:update({3}, {{'=', 2, 'size'}, {'=', 3, 0}})
 
-[todo] convert content in English and finalize
-
-Этот запрос будет обработан тремя потоками операционной системы:
-Если мы передадим запрос на удаленный клиент, сетевой поток на стороне сервера получит запрос, разберет выражение и преобразует его в выполняемое сообщение сервера, которое уже проверено. Такое сообщение экземпляр сервера может понимать без повторного разбора.
-
-
-Сетевой поток отправляет это сообщение в поток обработки транзакций с помощью шины передачи сообщений без блокировок. Lua-программы выполняются непосредственно в потоке обработки транзакций и не требуют разбора и подготовки.
-
- Поток обработки транзакций экземпляра использует индекс на поле первичного ключа field[1], чтобы найти нужный кортеж. Он проверяет, что данный кортеж можно обновить (мы хотим лишь изменить значение не индексированного поля на более короткое, и вряд ли что-то пойдет не так).
-
-
-Поток обработки транзакций отправляет сообщение в поток упреждающей записи в журнал (WAL) для коммита транзакции. По завершении поток WAL отправляет ответ с результатом COMMIT (коммит) или ROLLBACK (откат) на клиент.
-
-
-Обратите внимание, что в Tarantool’е есть только один поток обработки транзакций. Некоторые уже привыкли к мысли, что потоков для обработки данных в базе данных может быть много (например, поток №1 читает данные из строки №x, в то время как поток №2 записывает данные в столбец №y). В случае с Tarantool’ом такого не происходит. Доступ к базе есть только у потока обработки транзакций, и на каждый экземпляр Tarantool’а есть только один такой поток.
-Как и любой другой поток Tarantool’а, поток обработки транзакций может управлять множеством файберов. Файбер – это набор команд, среди которых могут быть и сигналы «передачи управления». Поток обработки транзакций выполняет все команды, пока не увидит такой сигнал, и тогда он переключается на выполнение команд из другого файбера. Например, таким образом поток обработки транзакций сначала выполняет чтение данных из строки №x для файбера №1, а затем выполняет запись в строку №y для файбера №2.
-Передача управления необходима, в противном случае, поток обработки транзакции заклинит на одном файбере. Есть два типа передачи управления:
-неявная передача управления: каждая операция по изменению данных или доступ к сети вызывают неявную передачу управления, а также каждое выражение, которое проходит через клиент Tarantool’а, вызывает неявную передачу управления.
-явная передача управления: в Lua-функции можно (и нужно) добавить выражения «передачи управления» для предотвращения захвата ЦП. Это называется кооперативной многозадачностью.
-Кооперативная многозадачность
-Кооперативная многозадачность означает, что если запущенный файбер намеренно не передаст управление, он не вытесняется каким-либо другим файбером. Но запущенный файбер намеренно передает управление, когда обнаруживает “точку передачи управления”: коммит транзакции, вызов операционной системы или запрос явной «передачи управления». Любой вызов системы, который может блокировать файбер, будет производиться асинхронно, а запущенный файбер, который должен ожидать системного вызова, будет вытеснен так, что другой готовый к работе файбер занимает его место и становится запущенным файбером.
-Эта модель исключает необходимость любых программных блокировок – кооперативная многозадачность обеспечивает отсутствие многопоточности вокруг ресурса, состояния гонки и проблем с согласованностью данных.
-При небольших запросах, таких как простые UPDATE, INSERT, DELETE или SELECT, происходит справедливое планирование файберов: немного времени требуется на обработку запроса, планирование записи на диск и передачу управления на файбер, обслуживающий следующего клиента.
-Однако функция может выполнять сложные расчеты или может быть написана так, что управление не передается в течение длительного времени. Это может привести к несправедливому планированию, когда отдельный клиент перекрывает работу остальной системы, или к явным задержкам в обработке запросов. Автору функции следует не допускать таких ситуаций.
-Транзакции
-В отсутствие транзакций любая функция, в которой есть точки передачи управления, может видеть изменения в состоянии базы данных, вызванные вытесняющими файберами. Составные транзакции предназначены для изоляции: каждая транзакция видит постоянное состояние базы данных и делает атомарные коммиты изменений. Во время коммита происходит передача управления, а все транзакционные изменения записываются в журнал упреждающей записи в отдельный пакет. Или, при необходимости, можно откатить изменения – полностью или на определенную точку сохранения.
-Чтобы осуществить изоляцию, Tarantool использует простой планировщик с оптимистичным управлением: транзакция подтверждена первой – выигрывает. Если параллельная активная транзакция читает значение, измененное подтвержденной транзакцией, она прерывается.
-Кооперативный планировщик обеспечивает, что в отсутствие передачи управления составная транзакция не вытесняется, поэтому никогда не прерывается. Таким образом, понимание передачи управления необходимо для написания кода без прерываний.
-Иногда при тестировании механизма транзакций в Tarantool можно заметить, что выдача после box.begin(), но перед любой операцией чтения/записи не приводит к прерыванию, как это должно происходить согласно описанию. Причина в том, что на самом деле box.begin() не запускает транзакцию: это просто метка, указывающая Tarantool запустить транзакцию после некоторого запроса к базе данных, который следует за этим.
-Примечание
-На сегодняшний день нельзя смешивать движки базы данных в транзакции.
-Правила неявной передачи управления
-Единственные запросы явной передачи данных в Tarantool’е отправляют fiber.sleep() и fiber.yield(), но многие другие запросы «неявно» подразумевают передачу управления, поскольку цель Tarantool’а – избежать блокировок.
-Запросы к базе данных подразумевают передачу управления исключительно при вводе-выводе с диска. В memtx’е нет дискового ввода-вывода во время запроса, поскольку все данные находятся в памяти. Что же касается vinyl’а, то некоторых данных может не быть в памяти, поэтому для чтения дисковый ввод-вывод может использоваться для чтения (для извлечения данных с диска) или для записи (потому что в ожидании освобождения памяти может произойти задержка). Как для memtx’а, так и для vinyl’а обычно используются коммиты, поскольку запросы на изменение данных должны быть записаны в WAL. В режиме автокоммита по умолчанию коммиты производятся автоматически после каждого запроса. В режиме транзакций коммит производится в конце транзакции, когда пользователь специально совершает коммит, вызывая box.commit(). Поэтому как для memtx’а, так и для vinyl’а некоторые операции с базой данных могут вызывать передачу управления, поскольку может производиться дисковый ввод-вывод.
-Многие функции в модулях fio, net_box, console и socket (запросы «ОС» и «сети») передают управление.
-Поэтому выполнение отдельных команд, таких как select(), insert(), update() в консоли внутри транзакции, приведет к прерыванию транзакции. Это связано с тем, что после выполнения каждого фрагмента кода в консоли происходит неявная передача управления (yield).
-Пример №1
-Движок = memtx
- В select() insert() управление передается один раз в конце вставки, что вызвано неявным коммитом; select() ничего не записывает в WAL-файл, поэтому не передает управление.
-Движок = vinyl
- В select() insert() управление передается от одного до трех раз, поскольку select() может передавать управление, если данные не находятся в кэше, insert() может передавать управление в ожидании свободной памяти, а при коммите управление передается неявно.
-Последовательность begin() insert() insert() commit() передает управление только при коммите, если движок – memtx, и может передавать управление до 3 раз, если движок – vinyl.
-Пример №2
-Предположим, что в спейсе ‘tester’ существуют кортежи, третье поле которых представляет собой положительную сумму в долларах. Начнем транзакцию, снимем сумму из кортежа №1, внесем ее в кортеж №2 и завершим транзакцию, подтверждая изменения.
-COPY
-tarantool> function txn_example(from, to, amount_of_money)
-         >  box.begin()
-         >  box.space.tester:update(from, {{'-', 3, amount_of_money}})
-         >  box.space.tester:update(to,   {{'+', 3, amount_of_money}})
-         >  box.commit()
-         >  return "ok"
-         > end
----
-...
-tarantool> txn_example({999}, {1000}, 1.00)
----
-- "ok"
-...
-
-Если wal_mode = ‘none’, то при коммите управление не передается неявно, потому что не идет запись в WAL-файл.
-Если задача интерактивная – отправка запроса на сервер и получение ответа – то она включает в себя сетевой ввод-вывод, поэтому наблюдается неявная передача управления, даже если отправляемый на сервер запрос не представляет собой запрос с неявной передачей управления. Таким образом, последовательность:
-select
-select
-select
-
-приводит к блокировке (в memtx’е), если находится внутри функции или Lua-программы, которая выполняется на экземпляре сервера. Однако она вызывает передачу управления (и в memtx’е, и в vinyl’е), если выполняется как серия передач от клиента, включая клиентов, работающих по telnet, по одному из коннекторов или модулей MySQL и PostgreSQL или в интерактивном режиме при использовании Tarantool’а как клиента.
-После того, как файбер передал управление, а затем вернул его, он незамедлительно вызывает testcancel.
-
-
-[/todo]
-
 This is equivalent to the following SQL statement for a table that stores
 primary keys in ``field[1]``:
 
@@ -99,12 +28,18 @@ primary keys in ``field[1]``:
 
    UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[1]" = 3
 
+В предположении, что такой запрос будет получен тарантулом по сети,
 This query will be processed with three operating system **threads**:
 
 1. If we issue the query on a remote client, then the **network thread** on
    the server side receives the query, parses the statement and changes it
    to a server executable message which has already been checked, and which
    the server instance can understand without parsing everything again.
+
+Сетевой поток на стороне сервера получит запрос, разберет выражение, проверит
+его корректность и преобразует в специальную структуру - сообщение, которое содержит готовый для исполнения запрос и его опции.
+
+
 
 2. The network thread ships this message to the instance's
    **transaction processor thread** using a lock-free message bus.
@@ -114,12 +49,15 @@ This query will be processed with three operating system **threads**:
    The instance's transaction processor thread uses the primary-key index on
    field[1] to find the location of the tuple. It determines that the tuple
    can be updated (not much can go wrong when you're merely changing an
-   unindexed field value to something shorter).
+   unindexed field value).
 
 3. The transaction processor thread sends a message to the
    :ref:`write-ahead logging (WAL) thread <internals-wal>` to commit the
    transaction. When done, the WAL thread replies with a COMMIT or ROLLBACK
    result, which is returned to the client.
+
+   По завершении поток WAL отправляет ответ с результатом COMMIT (коммит) или
+   ROLLBACK (откат) в поток обработки транзакций, который передает его обратно сетевому потоку, который в свою очередь отправит результат на клиент.
 
 Notice that there is only one transaction processor thread in Tarantool.
 Some people are used to the idea that there can be multiple threads operating
@@ -163,6 +101,8 @@ ready-to-run fiber takes its place and becomes the new running fiber.
 This model makes all programmatic locks unnecessary: cooperative multitasking
 ensures that there will be no concurrency around a resource, no race conditions,
 and no memory consistency issues.
+Это достигается простым способом - в критической секции кода просто не нужно использовать передачу управления (явно или неявно) - и тогда никто не сможет вмешаться в выполнение этого кода.
+
 
 When requests are small, for example simple UPDATE or INSERT or DELETE or SELECT,
 fiber scheduling is fair: it takes only a little time to process the request,
@@ -190,6 +130,11 @@ Or, if needed, transaction changes can be rolled back --
 :ref:`completely <box-rollback>` or to a specific
 :ref:`savepoint <box-rollback_to_savepoint>`.
 
+ Уровень изоляции транзакций в тарантуле - serializable с небольшой оговоркой
+ “если нет сбоев при записи в WAL”. Если же произойдет сбой (например, закончится место на диске), то уровень изоляции превращается в read uncommitted.
+
+
+
 To implement isolation, Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
 has read a value modified by a committed transaction, it is aborted.
@@ -203,6 +148,12 @@ that yielding after ``box.begin()`` but before any read/write operation does not
 cause an abort as it should according to the description. This happens because
 actually ``box.begin()`` does not start a transaction. It is a mark telling
 Tarantool to start a transaction after some database request that follows.
+
+В memtx если в процессе выполнения транзакции будет выполнена инструкция,
+подразумевающая передачу управления (явно или неявно), то такая транзакция будет
+целиком отменена. В vinyl используется более сложный менеджер транзакций, который разрешает передачу управления.
+
+
 
 .. note::
 
@@ -219,7 +170,7 @@ and :ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields
 because Tarantool is designed to avoid blocking.
 
 Database requests imply yields if and only if there is disk I/O.
-For memtx, since all data is in memory, there is no disk I/O during the request.
+For memtx, since all data is in memory, there is no disk I/O during a read request.
 For vinyl, since some data may not be in memory, there may be disk I/O
 for a read (to fetch data from disk) or for a write (because a stall
 may occur while waiting for memory to be free).
@@ -242,12 +193,12 @@ due to implicit yield happening after each chunk of code is executed in the cons
 **Example #1**
 
 * *Engine = memtx* |br|
-  ``select() insert()`` has one yield, at the end of insertion, caused by
+  The sequence ``select() insert()`` has one yield, at the end of insertion, caused by
   implicit commit; ``select()`` has nothing to write to the WAL and so does not
   yield.
 
 * *Engine = vinyl* |br|
-  ``select() insert()`` has between one and three yields, since ``select()``
+  The sequence ``select() insert()`` has one to three yields, since ``select()``
   may yield if the data is not in cache, ``insert()`` may yield waiting for
   available memory, and there is an implicit yield at commit.
 
@@ -256,7 +207,7 @@ due to implicit yield happening after each chunk of code is executed in the cons
 
 **Example #2**
 
-Assume that in space ‘tester’ there are tuples in which the third field
+Assume that in the memtx space ‘tester’ there are tuples in which the third field
 represents a positive dollar amount. Let's start a transaction, withdraw
 from tuple#1, deposit in tuple#2, and end the transaction, making its
 effects permanent.
@@ -284,14 +235,14 @@ no writes to the WAL.
 If a task is interactive -- sending requests to the server and receiving responses --
 then it involves network IO, and therefore there is an implicit yield, even if the
 request that is sent to the server is not itself an implicit yield request.
-Therefore, the sequence:
+Therefore, the following sequence
 
 .. cssclass:: highlight
 .. parsed-literal::
 
-   select
-   select
-   select
+   conn.space.test:select{1}
+   conn.space.test:select{2}
+   conn.space.test:select{3}
 
 causes blocking (in memtx), if it is inside a function or Lua program being
 executed on the server instance, but causes yielding (in both memtx and vinyl)
@@ -299,6 +250,15 @@ if it is done as a series of transmissions from a client, including a client whi
 operates via telnet, via one of the connectors, or via the
 :ref:`MySQL and PostgreSQL rocks <dbms_modules>`, or via the interactive mode when
 :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`.
+
+приводит к последовательно трехкратной передаче управления в момент отсылки
+запроса в сеть и ожидания результата. На сервере же эти запросы будут выполнены
+в общем порядке, возможно, перемешиваясь с другим запросами по сети и из локальных файберов.
+Примерно то же самое происходит при использовании
+клиентов, работающих по telnet, по одному из коннекторов или модулей MySQL и PostgreSQL или в интерактивном режиме при использовании Tarantool’а как клиента.
+
+
+
 
 After a fiber has yielded and then has regained control, it immediately issues
 :ref:`testcancel <fiber-testcancel>`.
