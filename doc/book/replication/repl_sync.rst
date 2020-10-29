@@ -137,8 +137,9 @@ immediately -- it won't wait for being replicated itself.
 Limitations and known problems
 --------------------------------------------------------------------------------
 
-Currently, there is no way to enable synchronous replication for existing spaces,
-but this limitation is only temporary.
+Until version 2.5.2 there was no way to enable synchronous replication for
+existing spaces, but since 2.5.2 it can be enabled by :ref:`space_object:alter({
+is_sync = true}) <box_space-alter>`.
 
 Synchronous transactions work only for master-slave topology. You can have multiple
 replicas, anonymous replicas, but only one node can make synchronous transactions.
