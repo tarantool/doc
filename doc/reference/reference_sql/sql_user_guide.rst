@@ -51,7 +51,7 @@ The bottom of the screen should now look like this:
     tarantool> box.execute([[VALUES ('hello');]])
     ---
     - metadata:
-      - name: column1
+      - name: COLUMN_1
         type: string
       rows:
       - ['hello']

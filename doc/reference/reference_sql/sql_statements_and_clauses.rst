@@ -1813,10 +1813,16 @@ The column name is useful for two reasons:
   then
   the column names in the new table will be the column names in the *select list*.
 
-If ``[[AS] column-name]`` is missing, Tarantool makes a name equal to the
-expression, for example ``SELECT 5 * 88`` will cause the column name to be
-``5 * 88``, but such names may be ambiguous or illegal in other contexts,
-so it is better to say, for example, ``SELECT 5 * 88 AS column1``.
+If ``[[AS] column-name]`` is missing, and the expression is not simply
+the name of a column in the table, then Tarantool makes a name
+:samp:`COLUMN_{n}` where :samp:`{n}` is the number of the non-simple
+expression within the select list, for example
+``SELECT 5.88, table1.x, 'b' COLLATE "unicode_ci" FROM table1;``
+will cause the column names to be COLUMN_1, X, COLUMN_2.
+This is a behavior change in Tarantool 2.6, in earlier versions
+the name would be equal to the expression, 
+see `Issue#3962 <https://github.com/tarantool/tarantool/issues/3962>`_.
+It is still legal to define tables with column names like ``COLUMN_1`` but not recommended.
 
 Examples:
 
@@ -1832,10 +1838,6 @@ Examples:
    SELECT * FROM table1;
    -- as a list:
    SELECT 1 AS a, 2 AS b, table1.* FROM table1;
-
-Limitations: (`Issue#3962 <https://github.com/tarantool/tarantool/issues/3962>`_) |br|
-* Names for expressions will change in a future version.
-
 
 .. _sql_from:
 
