@@ -58,7 +58,7 @@ Before we proceed:
 Connecting to Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get connected to the Tarantool server, say this:
+To configure a connection to the Tarantool server, say this:
 
 .. code-block:: php
 
@@ -67,6 +67,7 @@ To get connected to the Tarantool server, say this:
     require __DIR__.'/vendor/autoload.php';
     $client = Client::fromDefaults();
 
+The connection itself will be established at the first request.
 You can also specify the user name and password, if needed:
 
 .. code-block:: php
