@@ -28,18 +28,12 @@ primary keys in ``field[1]``:
 
    UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[1]" = 3
 
-В предположении, что такой запрос будет получен тарантулом по сети,
-This query will be processed with three operating system **threads**:
+Assuming this query is received by Tarantool via network,
+it will be processed with three operating system **threads**:
 
-1. If we issue the query on a remote client, then the **network thread** on
-   the server side receives the query, parses the statement and changes it
-   to a server executable message which has already been checked, and which
-   the server instance can understand without parsing everything again.
-
-Сетевой поток на стороне сервера получит запрос, разберет выражение, проверит
-его корректность и преобразует в специальную структуру - сообщение, которое содержит готовый для исполнения запрос и его опции.
-
-
+1. The **network thread** on the server side receives the query, parses
+   the statement, checks if it's correct, and then transforms it into a special
+   structure--a message containing an executable statement and its options.
 
 2. The network thread ships this message to the instance's
    **transaction processor thread** using a lock-free message bus.
@@ -54,10 +48,8 @@ This query will be processed with three operating system **threads**:
 3. The transaction processor thread sends a message to the
    :ref:`write-ahead logging (WAL) thread <internals-wal>` to commit the
    transaction. When done, the WAL thread replies with a COMMIT or ROLLBACK
-   result, which is returned to the client.
-
-   По завершении поток WAL отправляет ответ с результатом COMMIT (коммит) или
-   ROLLBACK (откат) в поток обработки транзакций, который передает его обратно сетевому потоку, который в свою очередь отправит результат на клиент.
+   result to the transaction processor which gives it back to the network thread,
+   and the network thread returns the result to the client.
 
 Notice that there is only one transaction processor thread in Tarantool.
 Some people are used to the idea that there can be multiple threads operating
@@ -100,9 +92,9 @@ ready-to-run fiber takes its place and becomes the new running fiber.
 
 This model makes all programmatic locks unnecessary: cooperative multitasking
 ensures that there will be no concurrency around a resource, no race conditions,
-and no memory consistency issues.
-Это достигается простым способом - в критической секции кода просто не нужно использовать передачу управления (явно или неявно) - и тогда никто не сможет вмешаться в выполнение этого кода.
-
+and no memory consistency issues. The way to achieve this is quite simple:
+in a critical code sections, don't use yields, explicit or implicit, and no one
+can interfere into the code execution.
 
 When requests are small, for example simple UPDATE or INSERT or DELETE or SELECT,
 fiber scheduling is fair: it takes only a little time to process the request,
@@ -130,12 +122,12 @@ Or, if needed, transaction changes can be rolled back --
 :ref:`completely <box-rollback>` or to a specific
 :ref:`savepoint <box-rollback_to_savepoint>`.
 
- Уровень изоляции транзакций в тарантуле - serializable с небольшой оговоркой
- “если нет сбоев при записи в WAL”. Если же произойдет сбой (например, закончится место на диске), то уровень изоляции превращается в read uncommitted.
+In Tarantool, `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_
+is *serializable* with the clause "if no failure during writing to WAL". In
+case of such a failure that can happen, for example, if the disk space
+is over, the transaction isolation level becomes *read uncommitted*.
 
-
-
-To implement isolation, Tarantool uses a simple optimistic scheduler:
+[TODO - Is it in Vynil?] To implement isolation, Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
 has read a value modified by a committed transaction, it is aborted.
 
@@ -149,11 +141,9 @@ cause an abort as it should according to the description. This happens because
 actually ``box.begin()`` does not start a transaction. It is a mark telling
 Tarantool to start a transaction after some database request that follows.
 
-В memtx если в процессе выполнения транзакции будет выполнена инструкция,
-подразумевающая передачу управления (явно или неявно), то такая транзакция будет
-целиком отменена. В vinyl используется более сложный менеджер транзакций, который разрешает передачу управления.
-
-
+In memtx, if an instruction that implies yields, explicit or implicit, is
+executed during a transaction, the transaction is fully rolled back. In vynil,
+we use more complex transactional manager that allows yields.
 
 .. note::
 
@@ -233,7 +223,7 @@ implicit yielding at commit time does not take place, because there are
 no writes to the WAL.
 
 If a task is interactive -- sending requests to the server and receiving responses --
-then it involves network IO, and therefore there is an implicit yield, even if the
+then it involves network I/O, and therefore there is an implicit yield, even if the
 request that is sent to the server is not itself an implicit yield request.
 Therefore, the following sequence
 
@@ -244,21 +234,13 @@ Therefore, the following sequence
    conn.space.test:select{2}
    conn.space.test:select{3}
 
-causes blocking (in memtx), if it is inside a function or Lua program being
-executed on the server instance, but causes yielding (in both memtx and vinyl)
-if it is done as a series of transmissions from a client, including a client which
-operates via telnet, via one of the connectors, or via the
+causes yields three times sequentially when sending requests to the network
+and awaiting the results. On the server side, the same requests are executed
+in common order possibly mixing with other requests from the network and
+local fibers. Something similar happens when using clients that operate
+via telnet, via one of the connectors, or via the
 :ref:`MySQL and PostgreSQL rocks <dbms_modules>`, or via the interactive mode when
 :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`.
-
-приводит к последовательно трехкратной передаче управления в момент отсылки
-запроса в сеть и ожидания результата. На сервере же эти запросы будут выполнены
-в общем порядке, возможно, перемешиваясь с другим запросами по сети и из локальных файберов.
-Примерно то же самое происходит при использовании
-клиентов, работающих по telnet, по одному из коннекторов или модулей MySQL и PostgreSQL или в интерактивном режиме при использовании Tarantool’а как клиента.
-
-
-
 
 After a fiber has yielded and then has regained control, it immediately issues
 :ref:`testcancel <fiber-testcancel>`.
