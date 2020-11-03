@@ -174,12 +174,11 @@ msgstr ":ref:`fio.rename() <fio-rename>`"
 msgid "Rename a file or directory"
 msgstr "Переименование файла или директории"
 
-#, fuzzy
 msgid ":ref:`fio.utime() <fio-utime>`"
-msgstr ":ref:`os.time() <os-time>`"
+msgstr ":ref:`fio.utime() <fio-utime>`"
 
 msgid "Change file update time"
-msgstr ""
+msgstr "Изменение времени обновления файла"
 
 msgid ":ref:`fio.copyfile() <fio-copyfile>`"
 msgstr ":ref:`fio.copyfile() <fio-copyfile>`"
