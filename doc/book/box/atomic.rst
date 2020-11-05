@@ -28,12 +28,12 @@ primary keys in ``field[1]``:
 
    UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[1]" = 3
 
-This query will be processed with three operating system **threads**:
+Assuming this query is received by Tarantool via network,
+it will be processed with three operating system **threads**:
 
-1. If we issue the query on a remote client, then the **network thread** on
-   the server side receives the query, parses the statement and changes it
-   to a server executable message which has already been checked, and which
-   the server instance can understand without parsing everything again.
+1. The **network thread** on the server side receives the query, parses
+   the statement, checks if it's correct, and then transforms it into a special
+   structure--a message containing an executable statement and its options.
 
 2. The network thread ships this message to the instance's
    **transaction processor thread** using a lock-free message bus.
@@ -43,12 +43,13 @@ This query will be processed with three operating system **threads**:
    The instance's transaction processor thread uses the primary-key index on
    field[1] to find the location of the tuple. It determines that the tuple
    can be updated (not much can go wrong when you're merely changing an
-   unindexed field value to something shorter).
+   unindexed field value).
 
 3. The transaction processor thread sends a message to the
    :ref:`write-ahead logging (WAL) thread <internals-wal>` to commit the
    transaction. When done, the WAL thread replies with a COMMIT or ROLLBACK
-   result, which is returned to the client.
+   result to the transaction processor which gives it back to the network thread,
+   and the network thread returns the result to the client.
 
 Notice that there is only one transaction processor thread in Tarantool.
 Some people are used to the idea that there can be multiple threads operating
@@ -91,7 +92,9 @@ ready-to-run fiber takes its place and becomes the new running fiber.
 
 This model makes all programmatic locks unnecessary: cooperative multitasking
 ensures that there will be no concurrency around a resource, no race conditions,
-and no memory consistency issues.
+and no memory consistency issues. The way to achieve this is quite simple:
+in critical sections, don't use yields, explicit or implicit, and no one
+can interfere into the code execution.
 
 When requests are small, for example simple UPDATE or INSERT or DELETE or SELECT,
 fiber scheduling is fair: it takes only a little time to process the request,
@@ -119,7 +122,12 @@ Or, if needed, transaction changes can be rolled back --
 :ref:`completely <box-rollback>` or to a specific
 :ref:`savepoint <box-rollback_to_savepoint>`.
 
-To implement isolation, Tarantool uses a simple optimistic scheduler:
+In Tarantool, `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_
+is *serializable* with the clause "if no failure during writing to WAL". In
+case of such a failure that can happen, for example, if the disk space
+is over, the transaction isolation level becomes *read uncommitted*.
+
+In :ref:`vynil <engines-chapter>`, to implement isolation Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
 has read a value modified by a committed transaction, it is aborted.
 
@@ -132,6 +140,10 @@ that yielding after ``box.begin()`` but before any read/write operation does not
 cause an abort as it should according to the description. This happens because
 actually ``box.begin()`` does not start a transaction. It is a mark telling
 Tarantool to start a transaction after some database request that follows.
+
+In memtx, if an instruction that implies yields, explicit or implicit, is
+executed during a transaction, the transaction is fully rolled back. In vynil,
+we use more complex transactional manager that allows yields.
 
 .. note::
 
@@ -148,7 +160,7 @@ and :ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields
 because Tarantool is designed to avoid blocking.
 
 Database requests imply yields if and only if there is disk I/O.
-For memtx, since all data is in memory, there is no disk I/O during the request.
+For memtx, since all data is in memory, there is no disk I/O during a read request.
 For vinyl, since some data may not be in memory, there may be disk I/O
 for a read (to fetch data from disk) or for a write (because a stall
 may occur while waiting for memory to be free).
@@ -171,12 +183,12 @@ due to implicit yield happening after each chunk of code is executed in the cons
 **Example #1**
 
 * *Engine = memtx* |br|
-  ``select() insert()`` has one yield, at the end of insertion, caused by
+  The sequence ``select() insert()`` has one yield, at the end of insertion, caused by
   implicit commit; ``select()`` has nothing to write to the WAL and so does not
   yield.
 
 * *Engine = vinyl* |br|
-  ``select() insert()`` has between one and three yields, since ``select()``
+  The sequence ``select() insert()`` has one to three yields, since ``select()``
   may yield if the data is not in cache, ``insert()`` may yield waiting for
   available memory, and there is an implicit yield at commit.
 
@@ -185,7 +197,7 @@ due to implicit yield happening after each chunk of code is executed in the cons
 
 **Example #2**
 
-Assume that in space ‘tester’ there are tuples in which the third field
+Assume that in the memtx space ‘tester’ there are tuples in which the third field
 represents a positive dollar amount. Let's start a transaction, withdraw
 from tuple#1, deposit in tuple#2, and end the transaction, making its
 effects permanent.
@@ -211,21 +223,22 @@ implicit yielding at commit time does not take place, because there are
 no writes to the WAL.
 
 If a task is interactive -- sending requests to the server and receiving responses --
-then it involves network IO, and therefore there is an implicit yield, even if the
+then it involves network I/O, and therefore there is an implicit yield, even if the
 request that is sent to the server is not itself an implicit yield request.
-Therefore, the sequence:
+Therefore, the following sequence
 
 .. cssclass:: highlight
 .. parsed-literal::
 
-   select
-   select
-   select
+   conn.space.test:select{1}
+   conn.space.test:select{2}
+   conn.space.test:select{3}
 
-causes blocking (in memtx), if it is inside a function or Lua program being
-executed on the server instance, but causes yielding (in both memtx and vinyl)
-if it is done as a series of transmissions from a client, including a client which
-operates via telnet, via one of the connectors, or via the
+causes yields three times sequentially when sending requests to the network
+and awaiting the results. On the server side, the same requests are executed
+in common order possibly mixing with other requests from the network and
+local fibers. Something similar happens when using clients that operate
+via telnet, via one of the connectors, or via the
 :ref:`MySQL and PostgreSQL rocks <dbms_modules>`, or via the interactive mode when
 :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`.
 
