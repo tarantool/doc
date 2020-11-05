@@ -20,41 +20,51 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
 
     Execute the SQL statement contained in the sql-statement parameter.
 
-    :param string sql-statement: statement, which should conform to the rules for SQL grammar
-    :param table extra-parameters: optional list for placeholders in the statement
+    :param string sql-statement: statement, which should conform to :ref:`the rules for SQL grammar <sql_sql_statements_and_clauses>`
+    :param table extra-parameters: optional table for placeholders in the statement
 
     :return: depends on statement
 
+    .. _box-sql_extra_parameters:
+
     There are two ways to pass extra parameters for ``box.execute()``:
 
-    * The first way is to concatenate strings.
+    * The first way, which is the preferred way, is to put placeholders in the string,
+      and pass a second argument, an *extra-parameters* table.
+      A placeholder is either a question mark "?", or a colon ":" followed by a name.
+      An extra parameter is any Lua expression.
+      If placeholders are question marks, then they will be replaced by extra-parameter
+      values in corresponding positions, that is, the first ? will be replaced by the first
+      extra parameter, the second ? will be replaced by the second extra parameter, and so on.
+      If placeholders are :names, then they will be replaced by extra-parameter
+      values with corrresponding names.
+      For example this request which contains literal values 1 and 'x': |br|
+      ``box.execute([[INSERT INTO tt VALUES (1, 'x');]]);`` |br|
+      is the same as this request which contains two question-mark placeholders (``?`` and ``?``)
+      and a two-element extra-parameters table: |br|
+      ``x = {1,'x'}`` |br|
+      ``box.execute([[INSERT INTO tt VALUES (?, ?);]], x);`` |br|
+      and is the same as this request which contains two :name placeholders (``:a`` and ``:b``)
+      and a two-element extra-parameters table with elements named "a" and "b": |br|
+      ``box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})`` |br|
+
+    * The second way is to concatenate strings.
       For example, this Lua script will insert 10 rows with different primary-key
-      values into table t:
-
-      .. code-block:: lua
-
-          for i=1,10,1 do
-            box.execute("insert into t values (" .. i .. ")")
-          end
-
-    * The second way is to put one or more placeholder "?" tokens inside the string,
-      and pass a second argument, which must be a table containing values for each placeholder.
-      For example these two requests are equivalent:
-
-      .. code-block:: lua
-
-          box.execute([[INSERT INTO tt VALUES (1,'x');]]);
-          x = {1,'x'}; box.execute([[INSERT INTO tt VALUES (?,?);]], x);
-
+      values into table t: |br|
+      ``for i=1,10,1 do`` |br|
+      |nbsp| |nbsp| ``box.execute("insert into t values (" .. i .. ")")`` |br|
+      ``end`` |br|
+      When creating SQL statements based on user input, application developers
+      should beware of `SQL injection <https://en.wikipedia.org/wiki/SQL_injection>`_.
+      
     Since ``box.execute()`` is an invocation of a Lua function,
     it either causes an error message or returns a value.
 
-    For some statements the returned value will contain a field named rowcount.
+    For some statements the returned value will contain a field named "rowcount".
     For example;
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.execute([[INSERT INTO tt VALUES (8,8),(9,9);]])
         tarantool> box.execute([[CREATE TABLE table1 (column1 INT PRIMARY key, column2 VARCHAR(10));]])
         ---
         - rowcount: 1
@@ -67,7 +77,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
     For statements that cause generation of values for PRIMARY KEY AUTOINCREMENT columns,
     there will also be a field named "autoincrement_ids".
 
-    For SELECT statements the returned value will contain a field named metadata
+    For SELECT statements the returned value will contain a field named "metadata"
     (a table with column names and data types)
     and a field named "rows" (a table with the result set). For example:
 

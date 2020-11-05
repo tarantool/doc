@@ -291,7 +291,7 @@ Below is a list of all ``box.session`` functions and members.
         ...
         tarantool> m
         ---
-        - 'radius_of_mars=3396 random_memorandum=Don''t forget the eggs. '
+        - 'radius_of_mars=3396 random_memorandum=Don't forget the eggs. '
         ...
 
 .. _box_session-on_connect:

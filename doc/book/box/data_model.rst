@@ -8,7 +8,7 @@ This section describes how Tarantool stores values and what operations with data
 it supports.
 
 If you tried to create a database as suggested in our
-:ref:`"Getting started" exercises <getting_started>`,
+:ref:`"Getting started" exercises <getting_started_db>`,
 then your test database now looks like this:
 
 .. image:: data_model.png
@@ -16,7 +16,7 @@ then your test database now looks like this:
 .. _index-box_space:
 
 --------------------------------------------------------------------------------
-Space
+Spaces
 --------------------------------------------------------------------------------
 
 A **space** -- 'tester' in our example -- is a container.
@@ -35,7 +35,7 @@ It can also have secondary indexes.
 .. _index-box_tuple:
 
 --------------------------------------------------------------------------------
-Tuple
+Tuples
 --------------------------------------------------------------------------------
 
 A **tuple** plays the same role as a “row” or a “record”, and the components of
@@ -61,76 +61,9 @@ When Tarantool returns a tuple value in the console,
 by default it uses :ref:`YAML <interactive_console>` format,
 for example: ``[3, 'Ace of Base', 1993]``.
 
-.. _index-box_index:
+.. // Including a section about indexes
 
---------------------------------------------------------------------------------
-Index
---------------------------------------------------------------------------------
-
-An **index** is a group of key values and pointers.
-
-As with spaces, you should specify the index **name**, and let Tarantool
-come up with a unique **numeric identifier** ("index id").
-
-An index always has a **type**. The default index type is 'TREE'.
-TREE indexes are provided by all Tarantool engines, can index unique and
-non-unique values, support partial key searches, comparisons and ordered results.
-Additionally, memtx engine supports HASH, RTREE and BITSET indexes.
-
-An index may be **multi-part**, that is, you can declare that an index key value
-is composed of two or more fields in the tuple, in any order.
-For example, for an ordinary TREE index, the maximum number of parts is 255.
-
-An index may be **unique**, that is, you can declare that it would be illegal
-to have the same key value twice.
-
-The first index defined on a space is called the **primary key index**,
-and it must be unique. All other indexes are called **secondary indexes**,
-and they may be non-unique.
-
-An index definition may include identifiers of tuple fields and their expected
-**types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>`
-below).
-
-.. NOTE::
-
-  A recommended design pattern for a data model is to base primary keys on the
-  first fields of a tuple, because this speeds up tuple comparison.
-
-In our example, we first defined the primary index (named 'primary') based on
-field #1 of each tuple:
-
-.. code-block:: tarantoolsession
-
-   tarantool> i = s:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}
-
-The effect is that, for all tuples in space 'tester', field #1 must exist and
-must contain an unsigned integer.
-The index type is 'hash', so values in field #1 must be unique, because keys
-in HASH indexes are unique.
-
-After that, we defined a secondary index (named 'secondary') based on field #2
-of each tuple:
-
-.. code-block:: tarantoolsession
-
-   tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field = 2, type = 'string'}})
-
-The effect is that, for all tuples in space 'tester', field #2 must exist and
-must contain a string.
-The index type is 'tree', so values in field #2 must not be unique, because keys
-in TREE indexes may be non-unique.
-
-.. NOTE::
-
-  Space definitions and index definitions are stored permanently in Tarantool's
-  system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>`
-  (for details, see reference on :ref:`box.space <box_space>` submodule).
-
-  You can add, drop, or alter the definitions at runtime, with some restrictions.
-  See syntax details in reference on :ref:`box <box-module>` module.
-
-Read more about index operations :ref:`below <index-box_index-operations>`.
+.. include:: indexes.rst
 
 .. _index-box_data-types:
 
@@ -145,9 +78,9 @@ the types of the Tarantool storage format (MsgPack).
 
 .. _index-box_lua-vs-msgpack:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Lua vs MsgPack
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 .. container:: table
 
@@ -261,9 +194,9 @@ Examples of insert requests with different data types:
 
 .. _index-box_indexed-field-types:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Indexed field types
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 Indexes restrict values which Tarantool's MsgPack may contain. This is why,
 for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’
@@ -485,9 +418,9 @@ The options determine what value will be generated whenever the sequence is used
 
 .. _index-box_sequence-options:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Options for ``box.schema.sequence.create()``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 .. container:: table
 
@@ -640,9 +573,9 @@ Operations
 
 .. _index-box_data-operations:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Data operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 The basic data operations supported in Tarantool are:
 
@@ -742,9 +675,9 @@ See reference on ``box.space`` for more
 
 .. _index-box_index-operations:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Index operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 Index operations are automatic: if a data-manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple.
@@ -771,11 +704,10 @@ is always unique, the maximum number of returned tuples will be: one.
 You can call ``select()`` without arguments, causing all tuples to be returned.
 
 Let's continue working with the space 'tester' created in the :ref:`"Getting
-started" exercises <getting_started>`:
+started" exercises <getting_started_db>` but first modify it:
 
 .. code-block:: tarantoolsession
 
-    -- Let's modify our space 'tester'
     tarantool> box.space.tester:format({
              > {name = 'id', type = 'unsigned'},
              > {name = 'band_name', type = 'string'},
@@ -783,8 +715,83 @@ started" exercises <getting_started>`:
              > {name = 'rate', type = 'unsigned', is_nullable=true}})
     ---
     ...
+
+Add the rate to the tuple #1 and #2:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:update(1, {{'=', 4, 5}})
+    ---
+    - [1, 'Roxette', 1986, 5]
+    ...
+    tarantool> box.space.tester:update(2, {{'=', 4, 4}})
+    ---
+    - [2, 'Scorpions', 2015, 4]
+    ...
+
+
+And insert another tuple:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:insert({4, 'Roxette', 2016, 3})
+    ---
+    - [4, 'Roxette', 2016, 3]
+    ...
+
+**The existing SELECT variations:**
+
+1. The search can use comparisons other than equality.
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:select(1, {iterator = 'GT'})
+    ---
+    - - [2, 'Scorpions', 2015, 4]
+      - [3, 'Ace of Base', 1993]
+      - [4, 'Roxette', 2016, 3]
+    ...
+
+The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
+(for "less than", "less than or equal", "equal", "reversed equal",
+"greater than or equal", "greater than" respectively).
+Comparisons make sense if and only if the index type is ‘TREE'.
+
+This type of search may return more than one tuple; if so, the tuples will be
+in descending order by key when the comparison operator is LT or LE or REQ,
+otherwise in ascending order.
+
+2. The search can use a secondary index.
+
+For a primary-key search, it is optional to specify an index name.
+For a secondary-key search, it is mandatory.
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space.tester:create_index('secondary', {parts = {{field=3, type='unsigned'}}})
+    ---
+    - unique: true
+      parts:
+      - type: unsigned
+        is_nullable: false
+        fieldno: 3
+      id: 2
+      space_id: 512
+      type: TREE
+      name: secondary
+    ...
+    tarantool> box.space.tester.index.secondary:select({1993})
+    ---
+    - - [3, 'Ace of Base', 1993]
+    ...
+
+3. The search may be for some key parts starting with the prefix of
+   the key. Notice that partial key searches are available only in TREE indexes.
+
+.. code-block:: tarantoolsession
+
     -- Create an index with three parts
-    tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'},{field=3, type='unsigned'}, {field=4, type='unsigned'}}})
+    tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'}, {field=3, type='unsigned'}, {field=4, type='unsigned'}}})
     ---
     - unique: true
       parts:
@@ -802,101 +809,34 @@ started" exercises <getting_started>`:
       type: TREE
       name: tertiary
     ...
-    -- And make sure it has three parts
-    tarantool> box.space.tester.index.tertiary.parts
+    -- Make a partial search
+    tarantool> box.space.tester.index.tertiary:select({'Scorpions', 2015})
     ---
-    - - type: string
-        is_nullable: false
-        fieldno: 2
-      - type: unsigned
-        is_nullable: false
-        fieldno: 3
-      - type: unsigned
-        is_nullable: true
-        fieldno: 4
-    ...
-    -- Add the rate to the tuple #1
-    tarantool> box.space.tester:update(1, {{'=', 4, 5}})
-    ---
-    - [1, 'Roxette', 1986, 5]
-    ...
-    -- And insert another tuple
-    tarantool> box.space.tester:insert({4, 'Roxette', 2016, 5})
-    ---
-    - [4, 'Roxette', 2016, 5]
-    ...
-
-The existing SELECT variations:
-
-1. The search can use comparisons other than equality.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.tester:select(1, {iterator = 'GT'})
-    ---
-    - - [2, 'Scorpions', 2015]
-      - [3, 'Ace of Base', 1993]
-      - [4, 'Roxette', 2016, 5]
-    ...
-
-The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
-(for "less than", "less than or equal", "equal", "reversed equal",
-"greater than or equal", "greater than" respectively).
-Comparisons make sense if and only if the index type is ‘TREE'.
-
-This type of search may return more than one tuple; if so, the tuples will be
-in descending order by key when the comparison operator is LT or LE or REQ,
-otherwise in ascending order.
-
-2. The search can use a secondary index.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.tester.index.secondary:select({'Ace of Base'})
-    ---
-    - - [3, 'Ace of Base', 1993]
-    ...
-
-For a primary-key search, it is optional to specify an index name.
-For a secondary-key search, it is mandatory.
-
-3. The search may be for some or all key parts but should contain the prefix of
-   the key. Notice that partial key searches are available only in TREE indexes.
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016})
-    ---
-    - - [1, 'Roxette', 2016, 5]
-    ...
-    tarantool> box.space.tester.index.tertiary:select({'Roxette', nil, 5})
-    ---
-    - - [1, 'Roxette', 1986, 5]
-      - [4, 'Roxette', 2016, 5]
+    - - [2, 'Scorpions', 2015, 4]
     ...
 
 4. The search may be for all fields, using a table for the value:
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016 ,5})
+    tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016, 3})
     ---
-    - - [4, 'Roxette', 2016, 5]
+    - - [4, 'Roxette', 2016, 3]
     ...
 
 or the search can be for one field, using a table or a scalar:
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.space.tester.index.tertiary:select('Roxette')
+    tarantool> box.space.tester.index.tertiary:select({'Roxette'})
     ---
     - - [1, 'Roxette', 1986, 5]
-      - [4, 'Roxette', 2016, 5]
+      - [4, 'Roxette', 2016, 3]
     ...
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Working with BITSET and RTREE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 **BITSET example:**
 
@@ -954,9 +894,9 @@ See also other index operations like :ref:`alter() <box_index-alter>`
 (modify index) and :ref:`drop() <box_index-drop>` (delete index) in reference
 for :ref:`box.index <box_index>` submodule.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 Complexity factors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************************************
 
 In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>`
 submodules, there are notes about which complexity factors might affect the

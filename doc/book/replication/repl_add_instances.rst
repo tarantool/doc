@@ -258,7 +258,7 @@ It is being called again in order to perform recovery.
 
     2. Connect to at least
        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-       nodes. If failed - set status to 'orphan'.
+       nodes. If failed -- set status to 'orphan'.
        (Attempts to sync will continue in the background and when/if they succeed
        then 'orphan' will be changed to 'connected'.)
 
@@ -327,7 +327,7 @@ source(-s). We will refer to this replica, which is starting up due to ``box.cfg
 as the "local" replica to distinguish it from the other replicas in a replica set,
 which we will refer to as "distant" replicas.
 
-*If there is no snapshot .snap file and the 'replication' parameter is empty*: |br|
+*If there is no snapshot .snap file and the* ``replication`` *parameter is empty*: |br|
 then the local replica assumes it is an unreplicated "standalone" instance, or is
 the first replica of a new replica set. It will generate new UUIDs for
 itself and for the replica set. The replica UUID is stored in the ``_cluster`` space; the
@@ -337,8 +337,8 @@ replica UUID and the replica set UUID. Therefore, when the local replica restart
 later occasions, it will be able to recover these UUIDs when it reads the .snap
 file.
 
-*If there is no snapshot .snap file and the 'replication' parameter is not empty
-and the '_cluster' space contains no other replica UUIDs*: |br|
+*If there is no snapshot .snap file and the* ``replication`` *parameter is not empty
+and the* ``_cluster`` *space contains no other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, but is not yet part
 of a replica set. It must now join the replica set. It will send its replica UUID to the
 first distant replica which is listed in ``replication`` and which will act as a
@@ -355,8 +355,8 @@ request, it will send back:
     receive this and update its own copy of the data, and add the local replica's
     UUID to its ``_cluster`` space.
 
-*If there is no snapshot .snap file and the 'replication' parameter is not empty
-and the ``_cluster`` space contains other replica UUIDs*: |br|
+*If there is no snapshot .snap file and the* ``replication`` *parameter is not empty
+and the* ``_cluster`` *space contains other replica UUIDs*: |br|
 then the local replica assumes it is not a standalone instance, and is already part
 of a replica set. It will send its replica UUID and replica set UUID to all the distant
 replicas which are listed in ``replication``. This is called the "on-connect

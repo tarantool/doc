@@ -1,9 +1,5 @@
 .. _vshard-summary:
 
-===============================================================================
-Summary
-===============================================================================
-
 Scaling databases in a growing project is often considered one of the most
 challenging issues. Once a single server cannot withstand the load, scaling
 methods should be applied.
@@ -12,7 +8,8 @@ methods should be applied.
 `horizontal scaling <https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling>`_,
 which implies that a dataset is partitioned and distributed over multiple servers.
 
-With ``vshard``, the tuples of a dataset are distributed across
+With Tarantool's `vshard <https://github.com/tarantool/vshard>`_ module,
+the tuples of a dataset are distributed across
 multiple nodes, with a Tarantool database server instance on each node. Each instance
 handles only a subset of the total data, so larger loads can be handled by simply
 adding more servers. The initial dataset is partitioned into multiple parts, so each
@@ -32,6 +29,4 @@ The buckets have **states**, so it is easy to monitor the server states. For exa
 a server instance is active and available for all types of requests, or a failover
 occurred and the instance accepts only read requests.
 
-The ``vshard`` module provides analogs of the **data-manipulation functions** of the
-Tarantool ``box`` library (select, insert, replace, update, delete) for
-sharding-aware applications.
+The ``vshard`` module provides router and storage API (public and internal) for sharding-aware applications.

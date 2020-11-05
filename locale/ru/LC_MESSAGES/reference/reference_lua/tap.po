@@ -150,8 +150,8 @@ msgstr "taptest"
 msgid "rtype"
 msgstr "тип возвращаемого значения"
 
-msgid "userdata"
-msgstr "пользовательские данные"
+msgid "table"
+msgstr ""
 
 msgid ""
 "tap = require('tap')\n"

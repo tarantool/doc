@@ -10,6 +10,6 @@ This reference covers third-party Lua modules for Tarantool.
     dbms
     expirationd
     membership
-    shard
     vshard/index
-    tdb
+    ../../book/cartridge/index
+    luatest/luatest_overview

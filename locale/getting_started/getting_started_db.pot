@@ -45,6 +45,9 @@ msgstr ""
 msgid "Tarantool's database module in the container is already :ref:`configured <box_introspection-box_cfg>` and started. You needn't do it manually, unless you use Tarantool as an :ref:`application server <app_server>` and run it with an application."
 msgstr ""
 
+msgid "If your container terminates soon after start, follow `this page <https://stackoverflow.com/questions/64178499/tarantool-does-not-start-due-to-disk-write-error>`_ for a possible solution."
+msgstr ""
+
 msgid "Attaching to Tarantool"
 msgstr ""
 

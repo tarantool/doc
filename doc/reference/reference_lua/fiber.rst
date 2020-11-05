@@ -91,6 +91,12 @@ Below is a list of all ``fiber`` functions and members.
     | :ref:`fiber.time64()                 | Get the system time in          |
     | <fiber-time64>`                      | microseconds                    |
     +--------------------------------------+---------------------------------+
+    | :ref:`fiber.clock()                  | Get the monotonic time in       |
+    | <fiber-clock>`                       | seconds                         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.clock64()                | Get the monotonic time in       |
+    | <fiber-clock64>`                     | microseconds                    |
+    +--------------------------------------+---------------------------------+
     | :ref:`fiber.channel()                | Create a communication channel  |
     | <fiber-channel>`                     |                                 |
     +--------------------------------------+---------------------------------+
@@ -319,8 +325,7 @@ recommended.
 
 .. function:: yield()
 
-    Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`,
-    except that `fiber.sleep(0)` depends on a timer, `fiber.yield()` does not.
+    Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`.
 
     :Exception: see the :ref:`Example of yield failure <fiber-fail>`.
 
@@ -491,8 +496,8 @@ recommended.
         :param string name: the new name of the fiber.
         :param options:
 
-            * ``truncate=true`` - truncates the name to the max length if it is
-              too long. If this option is false (the default), 
+            * ``truncate=true`` -- truncates the name to the max length if it is
+              too long. If this option is false (the default),
               ``fiber.name(new_name)`` fails with an exception if a new name is
               too long.
 
@@ -572,20 +577,21 @@ recommended.
 
     .. data:: storage
 
-        Local storage within the fiber. It is a Lua table created when it is first
-        accessed. The storage can contain any number of
-        named values, subject to memory limitations. Naming may be done with
-        :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].`
-        or with a number :samp:`{fiber_object}.storage[{number}]`.
+        Local storage within the fiber. It is a Lua table created when it is
+        first accessed. The storage can contain any number of named values,
+        subject to memory limitations. Naming may be done with
+        :samp:`{fiber_object}.storage.{name}` or
+        :samp:`{fiber_object}.storage['{name}'].` or with a number
+        :samp:`{fiber_object}.storage[{number}]`.
         Values may be either numbers or strings.
 
         ``fiber.storage`` is destroyed when the fiber is finished, regardless
         of how is it finished -- via :samp:`{fiber_object}:cancel()`,
-        or the fiber's function did 'return'. Moreover, from
-        that moment the storage is cleaned up even for pooled fibers used to
-        serve IProto requests. Pooled fibers never really die, but nonetheless their
-        storage is cleaned up after each request. That makes possible to
-        use ``fiber.storage`` as a full featured request-local storage.
+        or the fiber's function did 'return'. Moreover, the storage is cleaned
+        up even for pooled fibers used to serve IProto requests. Pooled fibers
+        never really die, but nonetheless their storage is cleaned up after each
+        request. That makes possible to use ``fiber.storage`` as a full featured
+        request-local storage.
 
         This storage may be created for a fiber, no matter how the fiber
         itself was created -- from C or from Lua. For example, a fiber can
@@ -593,12 +599,6 @@ recommended.
         space, which has Lua ``on_replace`` triggers, and one of the triggers
         can create ``fiber.storage``. That storage will be deleted when the
         fiber is stopped.
-
-        ``fiber.storage`` may be also used for the replication applier fiber.
-        The applier has a fiber from which it applies transactions from a remote
-        instance. In case the applier fiber somehow creates a ``fiber.storage``
-        (for example, from a space trigger again), the storage won't be deleted
-        until the applier fiber is stopped.
 
         **Example:**
 
@@ -753,13 +753,13 @@ recommended.
 
     **Example:**
 
-        .. code-block:: tarantoolsession
+    .. code-block:: tarantoolsession
 
-            tarantool> fiber.time(), fiber.time()
-            ---
-            - 1448466279.2415
-            - 1448466279.2415
-            ...
+        tarantool> fiber.time(), fiber.time()
+        ---
+        - 1448466279.2415
+        - 1448466279.2415
+        ...
 
 .. _fiber-time64:
 
@@ -779,6 +779,46 @@ recommended.
             - 1448466351.2708
             - 1448466351270762
             ...
+
+.. _fiber-clock:
+
+.. function:: clock()
+
+    Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for
+    calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because
+    ``fiber.time()`` reports real time so it is affected by system time changes.
+
+    :Return: a floating-point number of seconds, representing elapsed wall-clock
+             time since some time in the past that is guaranteed not to change
+             during the life of the process
+    :Rtype: number
+
+    **Example:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> start = fiber.clock()
+        ---
+        ...
+        tarantool> print(start)
+        248700.58805
+        ---
+        ...
+        tarantool> print(fiber.time(), fiber.time()-start)
+        1600785979.8291 1600537279.241
+        ---
+        ...
+
+.. _fiber-clock64:
+
+.. function:: clock64()
+
+    Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds.
+
+    :Return: a number of seconds as 64-bit integer, representing
+             elapsed wall-clock time since some time in the past that is
+             guaranteed not to change during the life of the process
+    :Rtype: cdata
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example
@@ -858,11 +898,12 @@ Example of yield failure
 
 Warning: :ref:`yield() <fiber-yield>` and any function which implicitly yields
 (such as :ref:`sleep() <fiber-sleep>`) can fail (raise an exception).
+
 For example, this function has a loop which repeats until :ref:`cancel() <fiber_object-cancel>` happens.
 The last thing that it will print is 'before yield', which demonstrates
 that ``yield()`` failed, the loop did not continue until :ref:`testcancel() <fiber-testcancel>` failed.
 
-.. code-block:: none
+.. code-block:: Lua
 
     fiber = require('fiber')
     function function_name()

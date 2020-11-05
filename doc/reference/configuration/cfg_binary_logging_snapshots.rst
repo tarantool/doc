@@ -33,7 +33,7 @@
     ``wal_max_size``, Tarantool creates another WAL file.
 
     | Type: integer
-    | Default: 268435456 (256 * 1024 * 1024)
+    | Default: 268435456 (256 * 1024 * 1024) bytes
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-snap_io_rate_limit:

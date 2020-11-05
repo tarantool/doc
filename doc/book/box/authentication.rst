@@ -131,7 +131,7 @@ The following privileges can be granted:
   (access to certain system spaces is also necessary)
 * 'drop', e.g. allow
   :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
-  (currently this can be granted but has no effect)
+  (access to certain system spaces is also necessary)
 * 'usage', e.g. whether any action is allowable regardless of other
   privileges (sometimes revoking 'usage' is a convenient way to
   block a user temporarily without dropping the user)
@@ -148,7 +148,8 @@ if the users need to execute function F). See below some
 :ref:`examples for granting specific privileges <authentication-owners_privileges-examples-specific>`
 that a grantor -- that is, 'admin' or the object creator -- can make.
 
-To **drop** an object, users must be the object's creator or be 'admin'.
+To drop an object, users must be 'admin' or have the 'super' role.
+Some objects may also be dropped by their creators.
 As the owner of the entire database, 'admin' can drop any object including
 other users.
 
@@ -164,9 +165,10 @@ In either case, there are up to five parameters:
 * ``privilege`` is any of 'read', 'write', 'execute', 'create', 'alter', 'drop',
   'usage', or 'session' (or a comma-separated list);
 * ``object-type`` is any of 'space', 'index',
-  'sequence', 'function', role-name, or 'universe';
+  'sequence', 'function', 'user', 'role', or 'universe';
 * ``object-name`` is what the privilege is for
-  (omitted if ``object-type`` is 'universe');
+  (omitted if ``object-type`` is 'universe')
+  (may be omitted or ``nil`` if the intent is to grant for all objects of the same type);
 * ``options`` is a list inside braces for example ``{if_not_exists=true|false}``
   (usually omitted because the default is acceptable).
 
@@ -186,22 +188,19 @@ many objects to user 'U', with a single request.
 
 **Examples for granting privileges for specific operations**
 
-In these examples the object's creator grants precisely
+In these examples an administrator grants precisely
 the minimal privileges necessary for particular operations,
 to user 'U'.
 
 .. code-block:: lua
 
     -- So that 'U' can create spaces:
-      box.schema.user.grant('U','create','universe')
+      box.schema.user.grant('U','create','space')
       box.schema.user.grant('U','write', 'space', '_schema')
       box.schema.user.grant('U','write', 'space', '_space')
-    -- So that 'U' can  create indexes (assuming 'U' created the space)
-      box.schema.user.grant('U','read', 'space', '_space')
-      box.schema.user.grant('U','read,write', 'space', '_index')
-    -- So that 'U' can  create indexes on space T (assuming 'U' did not create space T)
-      box.schema.user.grant('U','create','space','T')
-      box.schema.user.grant('U','read', 'space', '_space')
+    -- So that 'U' can  create indexes on space T
+      box.schema.user.grant('U','create,read','space','T')
+      box.schema.user.grant('U','read,write','space','_space_sequence')
       box.schema.user.grant('U','write', 'space', '_index')
     -- So that 'U' can  alter indexes on space T (assuming 'U' did not create the index)
       box.schema.user.grant('U','alter','space','T')
@@ -209,18 +208,27 @@ to user 'U'.
       box.schema.user.grant('U','read','space','_index')
       box.schema.user.grant('U','read','space','_space_sequence')
       box.schema.user.grant('U','write','space','_index')
-    -- So that 'U' can create users or roles:
-      box.schema.user.grant('U','create','universe')
-      box.schema.user.grant('U','read,write', 'space', '_user')
-      box.schema.user.grant('U','write','space', '_priv')
-    -- So that 'U' can create sequences:
-      box.schema.user.grant('U','create','universe')
-      box.schema.user.grant('U','read,write','space','_sequence')
+    -- So that 'U' can alter indexes on space T (assuming 'U' created the index)
+      box.schema.user.grant('U','read','space','_space_sequence')
+      box.schema.user.grant('U','read,write','space','_index')
+    -- So that 'U' can create users:
+      box.schema.user.grant('U','create','user')
+      box.schema.user.grant('U', 'read,write', 'space', '_user')
+      box.schema.user.grant('U', 'write', 'space', '_priv')
+    -- So that 'U' can create roles:
+      box.schema.user.grant('U','create','role')
+      box.schema.user.grant('U', 'read,write', 'space', '_user')
+      box.schema.user.grant('U', 'write', 'space', '_priv')
+    -- So that 'U' can create sequence generators:
+      box.schema.user.grant('U','create','sequence')
+      box.schema.user.grant('U', 'read,write', 'space', '_sequence')
     -- So that 'U' can create functions:
-      box.schema.user.grant('U','create','universe')
+      box.schema.user.grant('U','create','function')
       box.schema.user.grant('U','read,write','space','_func')
+    -- So that 'U' can create any object of any type
+      box.schema.user.grant('guest','read,write,create','universe')
     -- So that 'U' can grant access on objects that 'U' created
-      box.schema.user.grant('U','read','space','_user')
+      box.schema.user.grant('U','write','space','_priv')
     -- So that 'U' can select or get from a space named 'T'
       box.schema.user.grant('U','read','space','T')
     -- So that 'U' can update or insert or delete or truncate a space named 'T'
@@ -231,6 +239,24 @@ to user 'U'.
       box.schema.user.grant('U','read,write','sequence','S')
     -- So that 'U' can use the "S:set()" or "S:reset() function with a sequence named S
       box.schema.user.grant('U','write','sequence','S')
+    -- So that 'U' can drop a sequence (assuming 'U' did not create it)
+      box.schema.user.grant('U','drop','sequence')
+      box.schema.user.grant('U','write','space','_sequence_data')
+      box.schema.user.grant('U','write','space','_sequence')
+    -- So that 'U' can drop a function (assuming 'U' did not create it)
+      box.schema.user.grant('U','drop','function')
+      box.schema.user.grant('U','write','space','_func')
+    -- So that 'U' can drop a space that has some associated objects
+      box.schema.user.grant('U','create,drop','space')
+      box.schema.user.grant('U','write','space','_schema')
+      box.schema.user.grant('U','write','space','_space')
+      box.schema.user.grant('U','write','space','_space_sequence')
+      box.schema.user.grant('U','read','space','_trigger')
+      box.schema.user.grant('U','read','space','_fk_constraint')
+      box.schema.user.grant('U','read','space','_ck_constraint')
+      box.schema.user.grant('U','read','space','_func_index')
+    -- So that 'U' can drop any space (ignore if the privilege exists already)
+      box.schema.user.grant('U','drop','space',nil,{if_not_exists=true})
 
 **Example for creating users and objects then granting privileges**
 

@@ -122,6 +122,15 @@ msgstr ""
 "требуется, если только вы не используете Tarantool как :ref:`сервер "
 "приложений <app_server>` и не запускаете его вместе с приложением."
 
+msgid ""
+"If your container terminates soon after start, follow `this page "
+"<https://stackoverflow.com/questions/64178499/tarantool-does-not-start-"
+"due-to-disk-write-error>`_ for a possible solution."
+msgstr ""
+"Если ваш контейнер рушится вскоре после запуска, `перейдите на эту "
+"страницу <https://stackoverflow.com/questions/64178499/tarantool-does-"
+"not-start-due-to-disk-write-error>`_, чтобы найти возможное решение."
+
 msgid "Attaching to Tarantool"
 msgstr "Подключение к экземпляру Tarantool’а"
 

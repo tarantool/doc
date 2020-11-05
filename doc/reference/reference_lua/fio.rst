@@ -227,9 +227,9 @@ Below is a list of all ``fio`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        tarantool> fio.dirname('path/to/my.lua')
+        tarantool> fio.dirname('/path/to/my.lua')
         ---
-        - 'path/to/'
+        - '/path/to/'
 
 .. _fio-abspath:
 
@@ -248,7 +248,7 @@ Below is a list of all ``fio`` functions and members.
 
         tarantool> fio.abspath('my.lua')
         ---
-        - 'path/to/my.lua'
+        - '/path/to/my.lua'
         ...
 
 .. _fio-checks:
@@ -847,7 +847,7 @@ functions.
         :param number offset: offset within file where reading begins
 
         If the format is ``pread(count, offset)`` then return a string
-        containing the data that was read from the file, or nil if failure.
+        containing the data that was read from the file, or empty string if failure.
 
         If the format is ``pread(buffer, count, offset)`` then return the data
         to the buffer.
@@ -891,7 +891,7 @@ functions.
 
         .. code-block:: tarantoolsession
 
-            ibuf = require('buffer').ibuf()
+            tarantool> ibuf = require('buffer').ibuf()
             ---
             ...
 
@@ -913,7 +913,8 @@ functions.
             ``fh:read`` and ``fh:write`` affect the seek position within the
             file, and this must be taken into account when working on the same
             file from multiple fibers. It is possible to limit or prevent file
-            access from other fibers with ``fiber.ipc``.
+            access from other fibers with :ref:`fiber.cond() <fiber-cond>` or
+            :ref:`fiber.channel() <fiber-channel>`.
 
         :param userdata fh: file-handle as returned by ``fio.open()``.
         :param buffer: where to read into (if the format is
@@ -924,7 +925,7 @@ functions.
                    bytes in the file.
 
                  * If the format is ``read()``  or ``read([count])`` then return a string
-                   containing the data that was read from the file, or nil if failure.
+                   containing the data that was read from the file, or empty string if failure.
 
                  * If the format is ``read(buffer, count)`` then return the data
                    to the buffer.
@@ -935,7 +936,7 @@ functions.
 
         .. code-block:: tarantoolsession
 
-            ibuf = require('buffer').ibuf()
+            tarantool> ibuf = require('buffer').ibuf()
             ---
             ...
 
@@ -961,7 +962,8 @@ functions.
             ``fh:read`` and ``fh:write`` affect the seek position within the
             file, and this must be taken into account when working on the same
             file from multiple fibers. It is possible to limit or prevent file
-            access from other fibers with ``fiber.ipc``.
+            access from other fibers with :ref:`fiber.cond() <fiber-cond>` or
+            :ref:`fiber.channel() <fiber-channel>`.
 
         :param userdata fh: file-handle as returned by ``fio.open()``
         :param string new-string: value to write (if the format is ``write(new-string)``)
@@ -986,7 +988,7 @@ functions.
             ---
             - true
             ...
-            ibuf = require('buffer').ibuf()
+            tarantool> ibuf = require('buffer').ibuf()
             ---
             ...
             tarantool> fh:write(ibuf, 1)

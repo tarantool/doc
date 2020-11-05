@@ -1,5 +1,5 @@
 
-msgid "Release Notes"
+msgid "Release notes"
 msgstr ""
 
 msgid "The Release Notes are summaries of significant changes introduced in Tarantool :ref:`2.2.1 <whats_new_221>`, :ref:`2.1.2 <whats_new_212>`, :ref:`2.1.1 <whats_new_211>`, :ref:`2.0.4 <whats_new_204>`, :ref:`1.10.4 <whats_new_1104>`, :ref:`1.10.3 <whats_new_1103>`, :ref:`1.10.2 <whats_new_1102>`, :ref:`1.9.0 <whats_new_190>`, :ref:`1.8.1 <whats_new_181>`, :ref:`1.7.6 <whats_new_176>`, :ref:`1.7.5 <whats_new_175>`, :ref:`1.7.4 <whats_new_174>`, :ref:`1.7.3 <whats_new_173>`, :ref:`1.7.2 <whats_new_172>`, :ref:`1.7.1 <whats_new_171>`, :ref:`1.6.9 <whats_new_169>`, :ref:`1.6.8 <whats_new_168>`, and :ref:`1.6.6 <whats_new_166>`."

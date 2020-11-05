@@ -83,7 +83,7 @@ and variables which are outside all modules.
     and :samp:`type(tonumber64({number-with-more-than-14-digits}))`
     is cdata, not a Lua arithmetic type, which prevents
     direct use with some functions in Lua libraries such as `math <https://www.lua.org/manual/5.1/manual.html#5.6>`_.
-    See the `LuaJit reference <http://luajit.org/ext_ffi_semantics.html>`_
+    See the `LuaJIT reference <http://luajit.org/ext_ffi_semantics.html>`_
     and look for the phrase "64 bit integer arithmetic".
     and the phrase "64 bit integer comparison".
     Or see the comments on

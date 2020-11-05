@@ -39,7 +39,7 @@ some engineers are always present on #tarantool channel on irc.freenode.net.
           Commenting style
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use Doxygen comment format, Javadoc flavor, i.e. `@tag` rather than `\tag`.
+Use Doxygen comment format, Javadoc flavor, i.e. `@tag` rather than `\\tag`.
 The main tags in use are @param, @retval, @return, @see, @note and @todo.
 
 Every function, except perhaps a very short and obvious one, should have a
@@ -55,7 +55,7 @@ comment. A sample function comment may look like below:
      *
      * @retval 0  Success
      *
-     * @reval  1  An error occurred (not EINTR)
+     * @retval  1  An error occurred (not EINTR)
      * /
     static int
     write_all(int fd, void \*data, size_t len);
