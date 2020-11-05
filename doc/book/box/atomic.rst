@@ -93,7 +93,7 @@ ready-to-run fiber takes its place and becomes the new running fiber.
 This model makes all programmatic locks unnecessary: cooperative multitasking
 ensures that there will be no concurrency around a resource, no race conditions,
 and no memory consistency issues. The way to achieve this is quite simple:
-in a critical code sections, don't use yields, explicit or implicit, and no one
+in critical sections, don't use yields, explicit or implicit, and no one
 can interfere into the code execution.
 
 When requests are small, for example simple UPDATE or INSERT or DELETE or SELECT,
@@ -127,7 +127,7 @@ is *serializable* with the clause "if no failure during writing to WAL". In
 case of such a failure that can happen, for example, if the disk space
 is over, the transaction isolation level becomes *read uncommitted*.
 
-[TODO - Is it in Vynil?] To implement isolation, Tarantool uses a simple optimistic scheduler:
+In :ref:`vynil <engines-chapter>`, to implement isolation Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
 has read a value modified by a committed transaction, it is aborted.
 
