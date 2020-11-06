@@ -12,6 +12,7 @@
 * :ref:`work_dir <cfg_basic-work_dir>`
 * :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`
 * :ref:`strip_core <cfg_basic-strip_core>`
+* :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`
 
 .. _cfg_basic-background:
 
@@ -260,3 +261,12 @@
     | Default: true
     | Dynamic: no
 
+.. _cfg_basic-memtx_use_mvcc_engine:
+
+.. confval:: memtx_use_mvcc_engine
+
+    Since version 2.6.1. Enables :ref:`transactional manager <atomic-transactional-manager>` if set to ``true``.
+
+    | Type: boolean
+    | Default: false
+    | Dynamic: no
